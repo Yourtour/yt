@@ -1,5 +1,18 @@
 *.class
 
+**/build/
+**/bin/
+**/target/
+
+# eclipse project and classpath
+**/.project
+**/.classpath
+**/.settings/
+**/.myeclipse/
+
+# gradle
+**/.gradle/
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
