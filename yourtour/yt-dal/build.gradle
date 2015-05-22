@@ -1,0 +1,7 @@
+dependencies {
+	compile "org.springframework.data:spring-data-hadoop:2.1.2.RELEASE",
+	        "org.springframework.data:spring-data-commons:1.9.2.RELEASE",
+	        "org.apache.hbase:hbase-client:1.0.0",
+	        "javax.persistence:persistence-api:1.0.2",
+	        project(":yt-core")
+}

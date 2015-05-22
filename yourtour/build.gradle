@@ -1,0 +1,27 @@
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+    
+    ext {
+       springVersion = "4.1.6.RELEASE"
+    }
+    
+    sourceCompatibility=1.7
+
+    repositories {
+       mavenCentral()
+       maven {
+        url "http://repo.spring.io/release"
+    }
+    }
+
+    dependencies {
+        testCompile 'junit:junit:4.8.2'
+    }
+
+    version = '1.0.0'
+
+    jar {
+        manifest.attributes provider: 'Shanghai YourTour Company'
+    }
+}
