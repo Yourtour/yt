@@ -5,12 +5,18 @@
     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/hadoop
     http://www.springframework.org/schema/hadoop/spring-hadoop.xsd">
+    
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
 
 	<bean id="hbaseTemplate" class="org.springframework.data.hadoop.hbase.HbaseTemplate">
 		<property name="configuration" ref="hbaseConfiguration" />
 	</bean>
 	
 	<bean id="hbaseManager" class="com.yt.dal.hbase.HbaseManager" />
+	
+	<bean id="ddlGeneralOperate" class="com.yt.dal.hbase.DdlGeneralOperate" depends-on="beanDescriptorGeneralCacheImpl" />
+	
+	<bean id="crudGeneralOperate" class="com.yt.dal.hbase.CrudGeneralOperate"  depends-on="beanDescriptorGeneralCacheImpl" />
 	
 	<bean id="beanDescriptorGeneralCacheImpl" class="com.yt.dal.hbase.cache.BeanDescriptorGeneralCacheImpl">
 		<property name="beanRepositories" value="com.yt.test.hbase.bean" />

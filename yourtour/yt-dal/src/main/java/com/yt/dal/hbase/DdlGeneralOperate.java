@@ -1,11 +1,15 @@
 package com.yt.dal.hbase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.hbase.HColumnDescriptor;
 import org.apache.hadoop.hbase.HTableDescriptor;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.Admin;
+import org.apache.hadoop.hbase.util.Bytes;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.yt.dal.hbase.cache.BeanDescriptor;
@@ -59,6 +63,10 @@ public class DdlGeneralOperate implements IDdlOperate {
 	 */
 	@Override
 	public void createTable(String tableName) throws Exception {
+		if (tableExist(tableName)) {
+			throw new Exception(String.format("The table[%s] has existed.",
+					tableName));
+		}
 		HTableDescriptor htd = new HTableDescriptor(
 				TableName.valueOf(tableName));
 		manager.getAdmin().createTable(htd);
@@ -73,11 +81,25 @@ public class DdlGeneralOperate implements IDdlOperate {
 	@Override
 	public void createTable(String tableName, String[] families)
 			throws Exception {
+		createTable(tableName, families, null);
+	}
+
+	private void createTable(String tableName, String[] families,
+			Map<String, byte[]> properties) throws Exception {
+		if (tableExist(tableName)) {
+			throw new Exception(String.format("The table[%s] has existed.",
+					tableName));
+		}
 		HTableDescriptor htd = new HTableDescriptor(
 				TableName.valueOf(tableName));
 		for (String family : families) {
 			HColumnDescriptor hcd = new HColumnDescriptor(family);
 			htd.addFamily(hcd);
+		}
+		if (properties != null) {
+			for (String key : properties.keySet()) {
+				htd.setValue(Bytes.toBytes(key), properties.get(key));
+			}
 		}
 		manager.getAdmin().createTable(htd);
 	}
@@ -97,12 +119,21 @@ public class DdlGeneralOperate implements IDdlOperate {
 			}
 		}
 		String tableName = bd.getTableName();
+		if (tableExist(tableName)) {
+			throw new Exception(String.format("The table[%s] has existed.",
+					tableName));
+		}
 		String[] families = new String[bd.getFamilies().size()];
 		int index = 0;
 		for (Family family : bd.getFamilies().values()) {
 			families[index++] = family.getName();
 		}
-		createTable(tableName, families);
+		Map<String, byte[]> properties = new HashMap<String, byte[]>(4);
+		properties.put("startKey", Bytes.toBytes(bd.getStartKey()));
+		properties.put("endKey", Bytes.toBytes(bd.getEndKey()));
+		properties.put("regionNum", Bytes.toBytes(bd.getRegionNum()));
+		properties.put("version", Bytes.toBytes(bd.getVersion()));
+		createTable(tableName, families, properties);
 	}
 
 	/*
@@ -112,14 +143,20 @@ public class DdlGeneralOperate implements IDdlOperate {
 	 */
 	@Override
 	public void dropTable(String tableName) throws Exception {
-		TableName tn = TableName.valueOf(tableName);
-		Admin admin = manager.getAdmin();
-		if (admin.tableExists(tn)) {
-			admin.deleteTable(tn);
-		} else {
-			throw new Exception(String.format(
-					"The table[%s] is not exist, the drop operate is ignored.",
-					tableName));
+		try {
+			if (tableExist(tableName)) {
+				Admin admin = manager.getAdmin();
+				TableName tn = TableName.valueOf(tableName);
+				admin.disableTable(tn);
+				admin.deleteTable(tn);
+			} else {
+				if (LOG.isWarnEnabled()) {
+					LOG.warn(String.format("The table[%s] is not exist.",
+							tableName));
+				}
+			}
+		} catch (Exception ex) {
+			throw ex;
 		}
 	}
 

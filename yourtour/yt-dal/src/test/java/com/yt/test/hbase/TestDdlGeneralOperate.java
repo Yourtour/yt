@@ -2,11 +2,14 @@ package com.yt.test.hbase;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import org.apache.hadoop.hbase.HColumnDescriptor;
 import org.apache.hadoop.hbase.HTableDescriptor;
 import org.apache.hadoop.hbase.TableName;
+import org.apache.hadoop.hbase.util.Bytes;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -52,32 +55,44 @@ public class TestDdlGeneralOperate {
 			ddlOperate.dropTable(TestBean.class);
 			assertFalse(ddlOperate.tableExist(TestBean.class));
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			fail(ex.getMessage());
 		}
 	}
-	
+
 	@Test
 	public void testMetadata() {
 		HbaseManager manager = context.getBean(HbaseManager.class);
 		assertNotNull(manager);
-		IBeanDescriptorCache cache = context.getBean(BeanDescriptorGeneralCacheImpl.class);
+		IBeanDescriptorCache cache = context
+				.getBean(BeanDescriptorGeneralCacheImpl.class);
 		assertNotNull(cache);
 		try {
 			ddlOperate.dropTable(TestBean.class);
 			assertFalse(ddlOperate.tableExist(TestBean.class));
 			ddlOperate.createTable(TestBean.class);
 			assertTrue(ddlOperate.tableExist(TestBean.class));
-			
+
 			BeanDescriptor bd = cache.get(TestBean.class);
 			assertNotNull(bd);
-			HTableDescriptor htd = manager.getAdmin().getTableDescriptor(TableName.valueOf(bd.getTableName()));
+			HTableDescriptor htd = manager.getAdmin().getTableDescriptor(
+					TableName.valueOf(bd.getTableName()));
 			assertNotNull(htd);
-			assertTrue(bd.getTableName().equals(htd.getTableName().getNameAsString()));
-			//TODO
-			
+			assertTrue(bd.getTableName().equals(
+					htd.getTableName().getNameAsString()));
+			HColumnDescriptor hcd = htd.getFamily(Bytes.toBytes("if"));
+			assertNotNull(hcd);
+			assertNull(htd.getFamily(Bytes.toBytes("d")));
+			assertTrue("".equals(htd.getValue("startKey")));
+			assertTrue("".equals(htd.getValue("endKey")));
+			assertTrue("1.1".equals(htd.getValue("version")));
+			assertTrue(1 == Bytes
+					.toInt(htd.getValue(Bytes.toBytes("regionNum"))));
+
 			ddlOperate.dropTable(TestBean.class);
 			assertFalse(ddlOperate.tableExist(TestBean.class));
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			fail(ex.getMessage());
 		}
 	}
