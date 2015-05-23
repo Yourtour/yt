@@ -1,5 +1,6 @@
 package com.yt.dal.hbase;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,6 +8,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.hbase.HColumnDescriptor;
 import org.apache.hadoop.hbase.HTableDescriptor;
+import org.apache.hadoop.hbase.NamespaceDescriptor;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.Admin;
 import org.apache.hadoop.hbase.util.Bytes;
@@ -67,9 +69,7 @@ public class DdlGeneralOperate implements IDdlOperate {
 			throw new Exception(String.format("The table[%s] has existed.",
 					tableName));
 		}
-		HTableDescriptor htd = new HTableDescriptor(
-				TableName.valueOf(tableName));
-		manager.getAdmin().createTable(htd);
+		createTable(tableName, null);
 	}
 
 	/*
@@ -84,24 +84,47 @@ public class DdlGeneralOperate implements IDdlOperate {
 		createTable(tableName, families, null);
 	}
 
+	// 创建hbase表，并根据需要创建namespace、table、family等
 	private void createTable(String tableName, String[] families,
 			Map<String, byte[]> properties) throws Exception {
+		Admin admin = manager.getAdmin();
+		String namespace = getNamespaceFromTableName(tableName);
+		if (namespace != null) {
+			// 判断命名空间是否存在
+			NamespaceDescriptor nd = null;
+			try {
+				nd = admin.getNamespaceDescriptor(namespace);
+			} catch (IOException ex) {
+				if (LOG.isDebugEnabled()) {
+					LOG.debug(String.format("The namespace[%s] not exist.",
+							namespace), ex);
+				}
+			}
+			if (nd == null) {
+				// 命名空间不存在，需要创建
+				admin.createNamespace(NamespaceDescriptor.create(namespace)
+						.build());
+			}
+		}
 		if (tableExist(tableName)) {
 			throw new Exception(String.format("The table[%s] has existed.",
 					tableName));
 		}
 		HTableDescriptor htd = new HTableDescriptor(
 				TableName.valueOf(tableName));
-		for (String family : families) {
-			HColumnDescriptor hcd = new HColumnDescriptor(family);
-			htd.addFamily(hcd);
+		// create the family
+		if (families != null) {
+			for (String family : families) {
+				HColumnDescriptor hcd = new HColumnDescriptor(family);
+				htd.addFamily(hcd);
+			}
 		}
 		if (properties != null) {
 			for (String key : properties.keySet()) {
 				htd.setValue(Bytes.toBytes(key), properties.get(key));
 			}
 		}
-		manager.getAdmin().createTable(htd);
+		admin.createTable(htd);
 	}
 
 	/*
@@ -118,7 +141,7 @@ public class DdlGeneralOperate implements IDdlOperate {
 						clazz.getName()));
 			}
 		}
-		String tableName = bd.getTableName();
+		String tableName = bd.getFullTableName();
 		if (tableExist(tableName)) {
 			throw new Exception(String.format("The table[%s] has existed.",
 					tableName));
@@ -139,13 +162,46 @@ public class DdlGeneralOperate implements IDdlOperate {
 	/*
 	 * (non-Javadoc)
 	 * 
+	 * @see com.yt.dal.hbase.IDdlOperate#dropNamespace(java.lang.String)
+	 */
+	@Override
+	public void dropNamespace(String namespace) throws Exception {
+		if ("default".equals(namespace) || "hbase".equals(namespace)) {
+			throw new Exception(
+					"The 'default' or 'hbase' namespace can not be deleted.");
+		}
+		Admin admin = manager.getAdmin();
+		NamespaceDescriptor nd = admin.getNamespaceDescriptor(namespace);
+		if (nd == null) {
+			throw new Exception(String.format("The Namespace[%s] not exist.",
+					namespace));
+		}
+		admin.deleteNamespace(namespace);
+	}
+
+	// 从完整的表名中获取命名空间名称，如果不存在，则返回null。
+	private String getNamespaceFromTableName(String tableName) {
+		if (tableName == null) {
+			return null;
+		}
+		String[] words = tableName.split(":");
+		if (words.length == 2) {
+			return words[0];
+		} else {
+			return null;
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.yt.dal.hbase.IDdlOperate#dropTable(java.lang.String)
 	 */
 	@Override
 	public void dropTable(String tableName) throws Exception {
 		try {
+			Admin admin = manager.getAdmin();
 			if (tableExist(tableName)) {
-				Admin admin = manager.getAdmin();
 				TableName tn = TableName.valueOf(tableName);
 				admin.disableTable(tn);
 				admin.deleteTable(tn);
@@ -174,7 +230,7 @@ public class DdlGeneralOperate implements IDdlOperate {
 						clazz.getName()));
 			}
 		}
-		String tableName = bd.getTableName();
+		String tableName = bd.getFullTableName();
 		dropTable(tableName);
 	}
 
@@ -202,7 +258,7 @@ public class DdlGeneralOperate implements IDdlOperate {
 						clazz.getName()));
 			}
 		}
-		String tableName = bd.getTableName();
+		String tableName = bd.getFullTableName();
 		return tableExist(tableName);
 	}
 

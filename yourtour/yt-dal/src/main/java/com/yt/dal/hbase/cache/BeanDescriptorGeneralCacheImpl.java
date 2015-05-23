@@ -22,6 +22,29 @@ import org.springframework.util.ClassUtils;
 import com.yt.dal.hbase.BaseBean;
 import com.yt.dal.hbase.annotation.HbaseTable;
 
+/**
+ * 一个本地的通用设置hbase表描述对象的缓存实现。
+ * 
+ * <p>
+ * <b>修改历史：</b>
+ * <table border="1">
+ * <tr>
+ * <th>修改时间</th>
+ * <th>修改人</th>
+ * <th>备注</th>
+ * </tr>
+ * <tr>
+ * <td>2015年5月18日</td>
+ * <td>john</td>
+ * <td>Create</td>
+ * </tr>
+ * </table>
+ * 
+ * @author john
+ * 
+ * @version 1.0
+ * @since 1.0
+ */
 public class BeanDescriptorGeneralCacheImpl implements IBeanDescriptorCache,
 		InitializingBean {
 	private static final Log LOG = LogFactory
@@ -35,15 +58,30 @@ public class BeanDescriptorGeneralCacheImpl implements IBeanDescriptorCache,
 
 	private Map<String, BeanDescriptor> cache;
 
+	/**
+	 * 默认构造方法
+	 */
 	public BeanDescriptorGeneralCacheImpl() {
 		super();
 		this.cache = new HashMap<String, BeanDescriptor>();
 	}
 
+	/**
+	 * 设置需要扫描的hbase实体类的包列表
+	 * 
+	 * @param beanRepositories
+	 *            包含hbase实体类的包列表
+	 */
 	public void setBeanRepositories(String[] beanRepositories) {
 		this.beanRepositories = beanRepositories;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
+	 */
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		// 启动的时候扫描指定包路径中的Bean，并进行缓存。
@@ -79,6 +117,7 @@ public class BeanDescriptorGeneralCacheImpl implements IBeanDescriptorCache,
 		}
 	}
 
+	// 判断是否在预定义的过滤条件中
 	private boolean matchesEntityTypeFilter(MetadataReader reader,
 			MetadataReaderFactory readerFactory) throws IOException {
 		for (TypeFilter filter : ENTITY_TYPE_FILTERS) {
@@ -89,6 +128,7 @@ public class BeanDescriptorGeneralCacheImpl implements IBeanDescriptorCache,
 		return false;
 	}
 
+	// 设置缓存
 	private void putCache(String className) throws Exception {
 		// 从指定的BaseBean类中的注解生成BeanDescriptor，并放入到缓存中。
 		@SuppressWarnings("unchecked")
@@ -97,6 +137,11 @@ public class BeanDescriptorGeneralCacheImpl implements IBeanDescriptorCache,
 		cache.put(className, bd);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.yt.dal.hbase.cache.IBeanDescriptorCache#put(java.lang.Class)
+	 */
 	@Override
 	public BeanDescriptor put(Class<? extends BaseBean> clazz) {
 		String beanClass = clazz.getName();
@@ -119,6 +164,11 @@ public class BeanDescriptorGeneralCacheImpl implements IBeanDescriptorCache,
 		return get(beanClass);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.yt.dal.hbase.cache.IBeanDescriptorCache#get(java.lang.Class)
+	 */
 	@Override
 	public BeanDescriptor get(Class<? extends BaseBean> clazz) {
 		String beanClass = clazz.getName();
@@ -134,6 +184,11 @@ public class BeanDescriptorGeneralCacheImpl implements IBeanDescriptorCache,
 		return bd.clone();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.yt.dal.hbase.cache.IBeanDescriptorCache#get(java.lang.String)
+	 */
 	@Override
 	public BeanDescriptor get(String beanClass) {
 		if (cache.containsKey(beanClass)) {

@@ -63,6 +63,16 @@ public interface IDdlOperate {
 	public void createTable(Class<? extends BaseBean> clazz) throws Exception;
 
 	/**
+	 * 根据指定的命名空间名称，删除命名空间；如果命名空间中还有表，则抛出异常。
+	 * 
+	 * @param namespace
+	 *            命名空间名称
+	 * @throws Exception
+	 *             删除命名空间过程中发生的异常
+	 */
+	public void dropNamespace(String namespace) throws Exception;
+
+	/**
 	 * 根据指定表名删除表
 	 * 
 	 * @param tableName

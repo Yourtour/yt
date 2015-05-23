@@ -8,6 +8,7 @@ import static org.junit.Assert.fail;
 
 import org.apache.hadoop.hbase.HColumnDescriptor;
 import org.apache.hadoop.hbase.HTableDescriptor;
+import org.apache.hadoop.hbase.NamespaceDescriptor;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.junit.After;
@@ -21,11 +22,21 @@ import com.yt.dal.hbase.IDdlOperate;
 import com.yt.dal.hbase.cache.BeanDescriptor;
 import com.yt.dal.hbase.cache.BeanDescriptorGeneralCacheImpl;
 import com.yt.dal.hbase.cache.IBeanDescriptorCache;
+import com.yt.test.hbase.bean.BaseServiceInfo;
+import com.yt.test.hbase.bean.NoNamespaceBean;
 import com.yt.test.hbase.bean.TestBean;
 
 public class TestDdlGeneralOperate {
 	private ApplicationContext context;
 	IDdlOperate ddlOperate;
+	
+	public static void main(String[] args) throws Exception {
+		TestDdlGeneralOperate test = new TestDdlGeneralOperate();
+		test.setUp();
+		test.ddlOperate.createTable(TestBean.class);
+		test.ddlOperate.createTable(BaseServiceInfo.class);
+		test.ddlOperate.createTable(NoNamespaceBean.class);
+	}
 
 	@Before
 	public void setUp() throws Exception {
@@ -75,6 +86,9 @@ public class TestDdlGeneralOperate {
 
 			BeanDescriptor bd = cache.get(TestBean.class);
 			assertNotNull(bd);
+			NamespaceDescriptor nd = manager.getAdmin().getNamespaceDescriptor(bd.getNamespace());
+			assertNotNull(nd);
+			assertTrue("default".equals(nd.getName()));
 			HTableDescriptor htd = manager.getAdmin().getTableDescriptor(
 					TableName.valueOf(bd.getTableName()));
 			assertNotNull(htd);
@@ -94,6 +108,17 @@ public class TestDdlGeneralOperate {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			fail(ex.getMessage());
+		}
+	}
+	
+	@Test
+	public void dropDefaultNamespace() {
+		try {
+			ddlOperate.dropNamespace("default");
+			ddlOperate.dropNamespace("hbase");
+			fail("Drop default namespace success, it's fail.");
+		} catch (Exception ex) {
+			ex.printStackTrace();
 		}
 	}
 

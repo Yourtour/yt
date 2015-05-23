@@ -16,6 +16,7 @@ import com.yt.dal.hbase.cache.BeanDescriptor.Family;
 import com.yt.dal.hbase.cache.BeanDescriptor.Qualifier;
 import com.yt.dal.hbase.cache.IBeanDescriptorCache;
 import com.yt.test.hbase.bean.BaseServiceInfo;
+import com.yt.test.hbase.bean.NoNamespaceBean;
 import com.yt.test.hbase.bean.TestBean;
 
 public class TestBeanDescriptorGeneralCacheImpl {
@@ -34,6 +35,7 @@ public class TestBeanDescriptorGeneralCacheImpl {
 		assertNotNull(cache);
 		BeanDescriptor bd = cache.get(TestBean.class);
 		assertNotNull(bd);
+		assertTrue(bd.getNamespace().equals("default"));
 		assertTrue(bd.getTableName().equals("T_TestBean"));
 		assertTrue(bd.getFamilies().size() == 1);
 		assertTrue(bd.getFamilies().containsKey("if"));
@@ -81,6 +83,7 @@ public class TestBeanDescriptorGeneralCacheImpl {
 		assertNotNull(cache);
 		BeanDescriptor bd = cache.get(BaseServiceInfo.class);
 		assertNotNull(bd);
+		assertTrue(bd.getNamespace().equals("service"));
 		assertTrue(bd.getTableName().equals("T_BASE_SERVICE_INFO"));
 		assertTrue(bd.getFamilies().size() == 1);
 		assertTrue(bd.getFamilies().containsKey("d"));
@@ -109,6 +112,25 @@ public class TestBeanDescriptorGeneralCacheImpl {
 		assertTrue("stat".equals(family.getQualifier("status").getQualifier()));
 		assertTrue("1.0".equals(family.getQualifier("status").getVersion()));
 		assertFalse("1.1".equals(bd.getVersion()));
+	}
+	
+	@Test
+	public void testNoNamespace() {
+		assertNotNull(cache);
+		BeanDescriptor bd = cache.get(NoNamespaceBean.class);
+		assertNotNull(bd);
+		assertTrue(bd.getNamespace().equals(""));
+		assertTrue(bd.getTableName().equals("T_NO"));
+		assertTrue(bd.getFamilies().size() == 1);
+		assertTrue(bd.getFamilies().containsKey("d"));
+		assertFalse(bd.getFamilies().containsKey("e"));
+		Family family = bd.getFamily("d");
+		assertNotNull(family);
+		assertTrue(family.getQualifiers().size() == 2);
+		assertTrue("code".equals(family.getQualifier("code").getQualifier()));
+		assertTrue("1.0".equals(family.getQualifier("code").getVersion()));
+		assertTrue("name".equals(family.getQualifier("name").getQualifier()));
+		assertTrue("1.0".equals(family.getQualifier("name").getVersion()));
 	}
 
 }

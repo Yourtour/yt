@@ -4,7 +4,7 @@ import com.yt.dal.hbase.BaseBean;
 import com.yt.dal.hbase.annotation.HbaseColumn;
 import com.yt.dal.hbase.annotation.HbaseTable;
 
-@HbaseTable(name = "T_BASE_SERVICE_INFO")
+@HbaseTable(name = "T_BASESERVICEINFO", namespace = "service")
 public class BaseServiceInfo extends BaseBean {
 	private static final long serialVersionUID = -706371483532376012L;
 
@@ -14,7 +14,7 @@ public class BaseServiceInfo extends BaseBean {
 	@HbaseColumn(name = "prep")
 	private boolean prepayment;
 
-	@HbaseColumn(family="d", name = "cuid")
+	@HbaseColumn(family = "d", name = "cuid")
 	private String createdUserId;
 
 	@HbaseColumn(name = "uuid")
