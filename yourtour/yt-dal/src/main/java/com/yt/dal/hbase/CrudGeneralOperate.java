@@ -76,7 +76,7 @@ public class CrudGeneralOperate implements ICrudOperate {
 		}
 		Object[] result = new Object[batch.size()];
 		table.batch(batch, result);
-		// setBeanValue(bean, result);
+		// TODO setBeanValue(bean, result);
 		return bean;
 	}
 
