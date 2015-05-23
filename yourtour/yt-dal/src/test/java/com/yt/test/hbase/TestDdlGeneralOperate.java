@@ -22,32 +22,27 @@ import com.yt.dal.hbase.IDdlOperate;
 import com.yt.dal.hbase.cache.BeanDescriptor;
 import com.yt.dal.hbase.cache.BeanDescriptorGeneralCacheImpl;
 import com.yt.dal.hbase.cache.IBeanDescriptorCache;
-import com.yt.test.hbase.bean.BaseServiceInfo;
-import com.yt.test.hbase.bean.NoNamespaceBean;
 import com.yt.test.hbase.bean.TestBean;
 
 public class TestDdlGeneralOperate {
 	private ApplicationContext context;
-	IDdlOperate ddlOperate;
+	private HbaseManager manager;
+	private IDdlOperate ddlOperate;
 	
-	public static void main(String[] args) throws Exception {
-		TestDdlGeneralOperate test = new TestDdlGeneralOperate();
-		test.setUp();
-		test.ddlOperate.createTable(TestBean.class);
-		test.ddlOperate.createTable(BaseServiceInfo.class);
-		test.ddlOperate.createTable(NoNamespaceBean.class);
-	}
-
 	@Before
 	public void setUp() throws Exception {
 		context = new ClassPathXmlApplicationContext(
 				new String[] { "hbaseApplicationContext.xml" });
+		manager = context.getBean(HbaseManager.class);
 		ddlOperate = context.getBean(IDdlOperate.class);
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		ddlOperate = null;
+		manager.getAdmin().close();
+		manager.getConnection().close();
+		manager = null;
 		context = null;
 	}
 

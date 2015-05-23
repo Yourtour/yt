@@ -1,12 +1,15 @@
 package com.yt.dal.hbase;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.hbase.TableName;
+import org.apache.hadoop.hbase.client.Delete;
 import org.apache.hadoop.hbase.client.Put;
 import org.apache.hadoop.hbase.client.Table;
 import org.apache.hadoop.hbase.util.Bytes;
@@ -27,36 +30,69 @@ public class CrudGeneralOperate implements ICrudOperate {
 	@Autowired
 	private IBeanDescriptorCache cache;
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.yt.dal.hbase.ICrudOperate#save(com.yt.dal.hbase.BaseBean)
+	 */
 	@Override
-	public BaseBean save(BaseBean bean) throws Exception {
-		return save(bean, true);
+	public void save(BaseBean bean) throws Exception {
+		if (bean == null) {
+			return;
+		}
+		List<BaseBean> beans = new Vector<BaseBean>(1);
+		beans.add(bean);
+		saveBatch(beans, true);
 	}
 
-	@SuppressWarnings("unchecked")
-	private BaseBean save(BaseBean bean, boolean saveTimestamp)
+	// 以Batch的方式批量保存数据
+	private void saveBatch(List<BaseBean> beans, boolean saveTimestamp)
 			throws Exception {
-		if (bean == null) {
+		if (beans == null || beans.isEmpty()) {
 			if (LOG.isDebugEnabled()) {
-				LOG.debug("The bean is null.");
+				LOG.debug("The bean is null or em.");
 			}
-			return null;
+			return;
 		}
-		Class<BaseBean> clazz = (Class<BaseBean>)bean.getClass();
-		BeanDescriptor bd = cache.get(clazz);
-		if (bd == null) {
-			if (LOG.isWarnEnabled()) {
-				LOG.warn(String.format("The BeanDescriptor[%s] not exist.",
-						clazz.getName()));
+		Map<String, List<Put>> batch = new HashMap<String, List<Put>>();
+		for (BaseBean bean : beans) {
+			Class<? extends BaseBean> clazz = bean.getClass();
+			BeanDescriptor bd = cache.get(clazz);
+			if (bd == null) {
+				if (LOG.isWarnEnabled()) {
+					LOG.warn(String.format("The BeanDescriptor[%s] not exist.",
+							clazz.getName()));
+				}
+			}
+			List<Put> puts = getBatchPuts(bd, bean, saveTimestamp);
+			String ftn = bd.getFullTableName();
+			if (batch.containsKey(ftn)) {
+				batch.get(ftn).addAll(puts);
+			} else {
+				batch.put(ftn, puts);
 			}
 		}
-		String tableName = bd.getTableName();
-		if (!manager.tableExist(tableName)) {
-			ddlOperate.createTable(tableName);
+		// batch save a table
+		int num = 0;
+		for (String ftn : batch.keySet()) {
+			Table table = manager.getConnection().getTable(
+					TableName.valueOf(ftn));
+			List<Put> list = batch.get(ftn);
+			Object[] putResult = new Object[list.size()];
+			table.batch(list, putResult);
+			num += putResult.length;
 		}
-		Table table = manager.getConnection().getTable(
-				TableName.valueOf(tableName));
+		if (LOG.isDebugEnabled()) {
+			LOG.debug(String.format(
+					"Save data successfully, total put %d operate.", num));
+		}
+	}
+
+	// 转换并获取一个实体对应的Put批处理列表，便于后续高效存储数据。
+	private List<Put> getBatchPuts(BeanDescriptor bd, BaseBean bean,
+			boolean saveTimestamp) throws Exception {
+		Vector<Put> puts = new Vector<Put>();
 		byte[] rowkey = Bytes.toBytes(bean.getRowKey());
-		Vector<Put> batch = new Vector<Put>();
 		for (BeanDescriptor.Family family : bd.getFamilies().values()) {
 			byte[] byteFamily = family.getByteFamily();
 			for (BeanDescriptor.Qualifier qualifier : family.getQualifiers()
@@ -71,36 +107,109 @@ public class CrudGeneralOperate implements ICrudOperate {
 				} else {
 					put.addColumn(byteFamily, byteQualifier, byteValue);
 				}
-				batch.add(put);
+				puts.add(put);
 			}
 		}
-		Object[] result = new Object[batch.size()];
-		table.batch(batch, result);
-		// TODO setBeanValue(bean, result);
-		return bean;
+		return puts;
+
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.yt.dal.hbase.ICrudOperate#save(java.util.List)
+	 */
 	@Override
-	public List<BaseBean> save(List<BaseBean> beans) throws Exception {
-		List<BaseBean> result = new Vector<BaseBean>(beans.size());
-		for (BaseBean bean : beans) {
-			result.add(save(bean));
+	public void save(List<BaseBean> beans) throws Exception {
+		saveBatch(beans, true);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.yt.dal.hbase.ICrudOperate#saveOne(com.yt.dal.hbase.BaseBean)
+	 */
+	@Override
+	public void saveOne(BaseBean bean) throws Exception {
+		if (bean == null) {
+			return;
 		}
-		return result;
+		List<BaseBean> beans = new Vector<BaseBean>(1);
+		beans.add(bean);
+		saveBatch(beans, false);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.yt.dal.hbase.ICrudOperate#saveOne(java.util.List)
+	 */
 	@Override
-	public BaseBean saveOne(BaseBean bean) throws Exception {
-		return save(bean, false);
+	public void saveOne(List<BaseBean> beans) throws Exception {
+		saveBatch(beans, false);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.yt.dal.hbase.ICrudOperate#deleteRow(com.yt.dal.hbase.BaseBean)
+	 */
 	@Override
-	public List<BaseBean> saveOne(List<BaseBean> beans) throws Exception {
-		List<BaseBean> result = new Vector<BaseBean>(beans.size());
-		for (BaseBean bean : beans) {
-			result.add(saveOne(bean));
+	public void deleteRow(BaseBean bean) throws Exception {
+		if (bean == null) {
+			if (LOG.isDebugEnabled()) {
+				LOG.debug("The bean is null, the delete operate be ignored.");
+			}
+			return;
 		}
-		return result;
+		List<BaseBean> beans = new Vector<BaseBean>(1);
+		beans.add(bean);
+		deleteRows(beans);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.yt.dal.hbase.ICrudOperate#deleteRows(java.util.List)
+	 */
+	@Override
+	public void deleteRows(List<BaseBean> beans) throws Exception {
+		if (beans == null || beans.isEmpty()) {
+			return;
+		}
+		Map<String, List<Delete>> batch = new HashMap<String, List<Delete>>();
+		for (BaseBean bean : beans) {
+			Class<? extends BaseBean> clazz = bean.getClass();
+			BeanDescriptor bd = cache.get(clazz);
+			if (bd == null) {
+				if (LOG.isWarnEnabled()) {
+					LOG.warn(String.format("The BeanDescriptor[%s] not exist.",
+							clazz.getName()));
+				}
+			}
+			String ftn = bd.getFullTableName();
+			Delete del = new Delete(Bytes.toBytes(bean.getRowKey()));
+			if (batch.containsKey(ftn)) {
+				batch.get(ftn).add(del);
+			} else {
+				List<Delete> list = new Vector<Delete>();
+				list.add(del);
+				batch.put(ftn, list);
+			}
+		}
+		// batch save a table
+		int rows = 0;
+		for (String ftn : batch.keySet()) {
+			Table table = manager.getConnection().getTable(
+					TableName.valueOf(ftn));
+			List<Delete> list = batch.get(ftn);
+			Object[] delResult = new Object[list.size()];
+			table.batch(list, delResult);
+			rows += delResult.length;
+		}
+		if (LOG.isDebugEnabled()) {
+			LOG.debug(String.format("delete data[%d rows] successfully.", rows));
+		}
 	}
 
 	@Override
