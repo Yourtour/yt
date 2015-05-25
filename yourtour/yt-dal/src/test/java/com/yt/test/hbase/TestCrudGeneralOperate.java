@@ -16,12 +16,38 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.yt.dal.hbase.HbaseManager;
 import com.yt.dal.hbase.ICrudOperate;
+import com.yt.test.hbase.bean.BaseServiceInfo;
 import com.yt.test.hbase.bean.TestBean;
 
 public class TestCrudGeneralOperate {
 	private ApplicationContext context;
 	private HbaseManager manager;
 	private ICrudOperate crudOperate;
+	
+	public static void main(String[] args) throws Exception {
+		TestCrudGeneralOperate test = new TestCrudGeneralOperate();
+		test.setUp();
+		
+		test.testCrudTestBean();
+		
+		/*
+		BaseServiceInfo info = new BaseServiceInfo();
+		info.setRowKey("BSI-01-02-003-02");
+		info.setCode(info.getRowKey());
+		info.setName("餐饮服务");
+		info.setCreatedUserId("admin");
+		info.setMemo("餐饮服务");
+		info.setMode("01");
+		info.setPrepayment(true);
+		info.setStatus("有效");
+		info.setType("02");
+		test.crudOperate.save(info);
+		*/
+		//info.setMemo(info.getMemo() + ", modify once.");
+		//test.crudOperate.save(info);
+		
+		test.tearDown();
+	}
 
 	@Before
 	public void setUp() throws Exception {
@@ -51,13 +77,14 @@ public class TestCrudGeneralOperate {
 	public void testCrudTestBean() {
 		TestBean bean = new TestBean();
 		bean.setRowKey("row-key-001");
-		bean.setTableName("table name 01");
-		bean.setFamily("family 01");
-		bean.setQualifier("qualifier 01");
+		bean.setTableName("table name 03");
+		bean.setFamily("family 03");
+		bean.setQualifier("qualifier 03");
 		bean.setTimestamp(System.currentTimeMillis());
-		bean.setValue("This is a test message.");
+		bean.setValue("This is a test message, asldjlaskjd09823098.");
 		try {
 		crudOperate.save(bean);
+		Thread.sleep(1000);
 		crudOperate.deleteRow(bean);
 		} catch (Exception ex) {
 			ex.printStackTrace();

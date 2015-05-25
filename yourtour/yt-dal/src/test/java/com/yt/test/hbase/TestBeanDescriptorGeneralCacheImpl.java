@@ -84,7 +84,7 @@ public class TestBeanDescriptorGeneralCacheImpl {
 		BeanDescriptor bd = cache.get(BaseServiceInfo.class);
 		assertNotNull(bd);
 		assertTrue(bd.getNamespace().equals("service"));
-		assertTrue(bd.getTableName().equals("T_BASE_SERVICE_INFO"));
+		assertTrue(bd.getTableName().equals("T_BASESERVICEINFO"));
 		assertTrue(bd.getFamilies().size() == 1);
 		assertTrue(bd.getFamilies().containsKey("d"));
 		assertFalse(bd.getFamilies().containsKey("e"));
@@ -92,6 +92,7 @@ public class TestBeanDescriptorGeneralCacheImpl {
 		assertNotNull(family);
 		assertTrue(family.getQualifiers().size() == 10);
 		assertTrue("code".equals(family.getQualifier("code").getQualifier()));
+		assertTrue("code".equals(family.getQualifier("code").getName()));
 		assertTrue("1.0".equals(family.getQualifier("code").getVersion()));
 		assertTrue("name".equals(family.getQualifier("name").getQualifier()));
 		assertTrue("1.0".equals(family.getQualifier("name").getVersion()));

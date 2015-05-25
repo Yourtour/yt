@@ -1,5 +1,6 @@
 package com.yt.dal.hbase;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,15 +9,23 @@ import java.util.Vector;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.hadoop.hbase.Cell;
+import org.apache.hadoop.hbase.CellUtil;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.Delete;
+import org.apache.hadoop.hbase.client.Get;
 import org.apache.hadoop.hbase.client.Put;
+import org.apache.hadoop.hbase.client.Result;
+import org.apache.hadoop.hbase.client.ResultScanner;
+import org.apache.hadoop.hbase.client.Scan;
 import org.apache.hadoop.hbase.client.Table;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.yt.dal.hbase.cache.BeanDescriptor;
+import com.yt.dal.hbase.cache.BeanDescriptor.Family;
 import com.yt.dal.hbase.cache.IBeanDescriptorCache;
+import com.yt.dal.hbase.utils.HBaseUtils;
 
 public class CrudGeneralOperate implements ICrudOperate {
 	private static final Log LOG = LogFactory.getLog(CrudGeneralOperate.class);
@@ -45,8 +54,18 @@ public class CrudGeneralOperate implements ICrudOperate {
 		saveBatch(beans, true);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.yt.dal.hbase.ICrudOperate#save(java.util.List)
+	 */
+	@Override
+	public void save(List<? extends BaseBean> beans) throws Exception {
+		saveBatch(beans, true);
+	}
+
 	// 以Batch的方式批量保存数据
-	private void saveBatch(List<BaseBean> beans, boolean saveTimestamp)
+	private void saveBatch(List<? extends BaseBean> beans, boolean saveTimestamp)
 			throws Exception {
 		if (beans == null || beans.isEmpty()) {
 			if (LOG.isDebugEnabled()) {
@@ -80,6 +99,7 @@ public class CrudGeneralOperate implements ICrudOperate {
 			List<Put> list = batch.get(ftn);
 			Object[] putResult = new Object[list.size()];
 			table.batch(list, putResult);
+			table.close();
 			num += putResult.length;
 		}
 		if (LOG.isDebugEnabled()) {
@@ -111,42 +131,6 @@ public class CrudGeneralOperate implements ICrudOperate {
 			}
 		}
 		return puts;
-
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.yt.dal.hbase.ICrudOperate#save(java.util.List)
-	 */
-	@Override
-	public void save(List<BaseBean> beans) throws Exception {
-		saveBatch(beans, true);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.yt.dal.hbase.ICrudOperate#saveOne(com.yt.dal.hbase.BaseBean)
-	 */
-	@Override
-	public void saveOne(BaseBean bean) throws Exception {
-		if (bean == null) {
-			return;
-		}
-		List<BaseBean> beans = new Vector<BaseBean>(1);
-		beans.add(bean);
-		saveBatch(beans, false);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.yt.dal.hbase.ICrudOperate#saveOne(java.util.List)
-	 */
-	@Override
-	public void saveOne(List<BaseBean> beans) throws Exception {
-		saveBatch(beans, false);
 	}
 
 	/*
@@ -173,7 +157,7 @@ public class CrudGeneralOperate implements ICrudOperate {
 	 * @see com.yt.dal.hbase.ICrudOperate#deleteRows(java.util.List)
 	 */
 	@Override
-	public void deleteRows(List<BaseBean> beans) throws Exception {
+	public void deleteRows(List<? extends BaseBean> beans) throws Exception {
 		if (beans == null || beans.isEmpty()) {
 			return;
 		}
@@ -205,6 +189,7 @@ public class CrudGeneralOperate implements ICrudOperate {
 			List<Delete> list = batch.get(ftn);
 			Object[] delResult = new Object[list.size()];
 			table.batch(list, delResult);
+			table.close();
 			rows += delResult.length;
 		}
 		if (LOG.isDebugEnabled()) {
@@ -212,22 +197,145 @@ public class CrudGeneralOperate implements ICrudOperate {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.yt.dal.hbase.ICrudOperate#getNewest(java.lang.Class,
+	 * java.lang.String)
+	 */
 	@Override
-	public BaseBean getNewest(String tableName, String rowKey) {
+	public BaseBean getNewest(Class<? extends BaseBean> clazz, String rowKey)
+			throws Exception {
+		BeanDescriptor bd = cache.get(clazz);
+		if (bd == null) {
+			throw new Exception(String.format(
+					"The BeanDescriptor[%s] is not exist.", clazz.getName()));
+		}
+		BaseBean bean = clazz.newInstance();
+		try (Table table = manager.getConnection().getTable(
+				TableName.valueOf(bd.getFullTableName()))) {
+			Get get = new Get(Bytes.toBytes(rowKey));
+			Result rs = table.get(get);
+			for (Cell cell : rs.rawCells()) {
+				String family = Bytes.toString(CellUtil.cloneFamily(cell));
+				String qualifier = Bytes
+						.toString(CellUtil.cloneQualifier(cell));
+				byte[] value = CellUtil.cloneValue(cell);
+				HBaseUtils.set(bean,
+						HBaseUtils.getFieldName(bd, family, qualifier), value);
+			}
+		} catch (IOException ex) {
+			throw new Exception(String.format(
+					"Get the data[class=%s, rowkey=%s] fail.", clazz.getName(),
+					rowKey));
+		}
+		return bean;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.yt.dal.hbase.ICrudOperate#get(java.lang.Class, java.lang.String)
+	 */
+	@Override
+	public List<? extends BaseBean> get(Class<? extends BaseBean> clazz,
+			String rowKey) throws Exception {
+		BeanDescriptor bd = cache.get(clazz);
+		if (bd == null) {
+			throw new Exception(String.format(
+					"The BeanDescriptor[%s] is not exist.", clazz.getName()));
+		}
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.yt.dal.hbase.ICrudOperate#get(java.lang.Class)
+	 */
 	@Override
-	public List<BaseBean> get(String tableName) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<? extends BaseBean> get(Class<? extends BaseBean> clazz)
+			throws Exception {
+		BeanDescriptor bd = cache.get(clazz);
+		if (bd == null) {
+			throw new Exception(String.format(
+					"The BeanDescriptor[%s] is not exist.", clazz.getName()));
+		}
+		List<BaseBean> result = new Vector<BaseBean>();
+		try (Table table = manager.getConnection().getTable(
+				TableName.valueOf(bd.getFullTableName()))) {
+			Scan scan = new Scan();
+			for (Family f : bd.getFamilies().values()) {
+				scan.addFamily(f.getByteFamily());
+			}
+			ResultScanner rss = table.getScanner(scan);
+			for (Result rs = rss.next(); rs != null; rs = rss.next()) {
+				BaseBean bean = clazz.newInstance();
+				for (Cell cell : rs.rawCells()) {
+					String family = Bytes.toString(CellUtil.cloneFamily(cell));
+					String qualifier = Bytes.toString(CellUtil
+							.cloneQualifier(cell));
+					byte[] value = CellUtil.cloneValue(cell);
+					HBaseUtils.set(bean,
+							HBaseUtils.getFieldName(bd, family, qualifier),
+							value);
+				}
+				result.add(bean);
+			}
+		} catch (IOException ex) {
+			throw new Exception(String.format("Scan the data[class=%s] fail.",
+					clazz.getName()));
+		}
+		return result;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.yt.dal.hbase.ICrudOperate#get(java.lang.Class, long, long)
+	 */
 	@Override
-	public List<BaseBean> get(String tableName, String rowKey) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<? extends BaseBean> get(Class<? extends BaseBean> clazz,
+			long ts1, long ts2) throws Exception {
+		BeanDescriptor bd = cache.get(clazz);
+		if (bd == null) {
+			throw new Exception(String.format(
+					"The BeanDescriptor[%s] is not exist.", clazz.getName()));
+		}
+		List<BaseBean> result = new Vector<BaseBean>();
+		try (Table table = manager.getConnection().getTable(
+				TableName.valueOf(bd.getFullTableName()))) {
+			Scan scan = new Scan();
+			for (Family f : bd.getFamilies().values()) {
+				scan.addFamily(f.getByteFamily());
+			}
+			if (ts1 < 0) {
+				ts1  = 0;
+			}
+			if (ts2 > 0) {
+				ts2 = Long.MAX_VALUE;
+			}
+			scan.setTimeRange(ts1, ts2);
+			ResultScanner rss = table.getScanner(scan);
+			for (Result rs = rss.next(); rs != null; rs = rss.next()) {
+				BaseBean bean = clazz.newInstance();
+				for (Cell cell : rs.rawCells()) {
+					String family = Bytes.toString(CellUtil.cloneFamily(cell));
+					String qualifier = Bytes.toString(CellUtil
+							.cloneQualifier(cell));
+					byte[] value = CellUtil.cloneValue(cell);
+					HBaseUtils.set(bean,
+							HBaseUtils.getFieldName(bd, family, qualifier),
+							value);
+				}
+				result.add(bean);
+			}
+		} catch (IOException ex) {
+			throw new Exception(String.format("Scan the data[class=%s] fail.",
+					clazz.getName()));
+		}
+		return result;
 	}
 
 }
