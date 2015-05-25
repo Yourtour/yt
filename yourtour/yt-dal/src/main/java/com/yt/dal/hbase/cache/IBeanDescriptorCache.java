@@ -50,9 +50,9 @@ public interface IBeanDescriptorCache {
 	/**
 	 * 获取指定hbase实体对象名的表描述对象
 	 * 
-	 * @param beanClass
+	 * @param beanClassName
 	 *            hbase实体对象名称
 	 * @return hbase表描述对象，如果不存在，则返回null。
 	 */
-	public BeanDescriptor get(String beanClass);
+	public BeanDescriptor get(String beanClassName);
 }

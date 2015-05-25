@@ -190,9 +190,9 @@ public class BeanDescriptorGeneralCacheImpl implements IBeanDescriptorCache,
 	 * @see com.yt.dal.hbase.cache.IBeanDescriptorCache#get(java.lang.String)
 	 */
 	@Override
-	public BeanDescriptor get(String beanClass) {
-		if (cache.containsKey(beanClass)) {
-			BeanDescriptor bd = cache.get(beanClass);
+	public BeanDescriptor get(String beanClassName) {
+		if (cache.containsKey(beanClassName)) {
+			BeanDescriptor bd = cache.get(beanClassName);
 			return bd.clone();
 		} else {
 			return null;
