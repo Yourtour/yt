@@ -6,6 +6,8 @@
 package com.yt.test.hbase;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import org.junit.After;
@@ -16,38 +18,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.yt.dal.hbase.HbaseManager;
 import com.yt.dal.hbase.ICrudOperate;
-import com.yt.test.hbase.bean.BaseServiceInfo;
 import com.yt.test.hbase.bean.TestBean;
 
 public class TestCrudGeneralOperate {
 	private ApplicationContext context;
 	private HbaseManager manager;
 	private ICrudOperate crudOperate;
-	
-	public static void main(String[] args) throws Exception {
-		TestCrudGeneralOperate test = new TestCrudGeneralOperate();
-		test.setUp();
-		
-		test.testCrudTestBean();
-		
-		/*
-		BaseServiceInfo info = new BaseServiceInfo();
-		info.setRowKey("BSI-01-02-003-02");
-		info.setCode(info.getRowKey());
-		info.setName("餐饮服务");
-		info.setCreatedUserId("admin");
-		info.setMemo("餐饮服务");
-		info.setMode("01");
-		info.setPrepayment(true);
-		info.setStatus("有效");
-		info.setType("02");
-		test.crudOperate.save(info);
-		*/
-		//info.setMemo(info.getMemo() + ", modify once.");
-		//test.crudOperate.save(info);
-		
-		test.tearDown();
-	}
 
 	@Before
 	public void setUp() throws Exception {
@@ -72,7 +48,7 @@ public class TestCrudGeneralOperate {
 		assertNotNull(manager);
 		assertNotNull(crudOperate);
 	}
-	
+
 	@Test
 	public void testCrudTestBean() {
 		TestBean bean = new TestBean();
@@ -80,15 +56,23 @@ public class TestCrudGeneralOperate {
 		bean.setTableName("table name 03");
 		bean.setFamily("family 03");
 		bean.setQualifier("qualifier 03");
-		bean.setTimestamp(System.currentTimeMillis());
-		bean.setValue("This is a test message, asldjlaskjd09823098.");
 		try {
-		crudOperate.save(bean);
-		Thread.sleep(1000);
-		crudOperate.deleteRow(bean);
+			crudOperate.save(bean);
+			TestBean bean1 = (TestBean) crudOperate.getNewest(TestBean.class,
+					bean.getRowKey());
+			assertNotNull(bean1);
+			assertTrue(bean.getRowKey().equals(bean1.getRowKey()));
+			assertTrue(bean.getFamily().equals(bean1.getFamily()));
+			assertTrue(bean.getQualifier().equals(bean1.getQualifier()));
+			assertTrue(bean.getTableName().equals(bean1.getTableName()));
+			crudOperate.deleteRow(bean);
+			TestBean bean2 = (TestBean) crudOperate.getNewest(TestBean.class,
+					bean.getRowKey());
+			assertNull(bean2);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			fail(ex.getMessage());
 		}
 	}
+	
 }

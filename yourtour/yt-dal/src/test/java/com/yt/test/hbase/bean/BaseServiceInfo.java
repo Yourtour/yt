@@ -1,43 +1,47 @@
 package com.yt.test.hbase.bean;
 
-import com.yt.dal.hbase.BaseBean;
+import com.yt.dal.hbase.BaseDictBean;
 import com.yt.dal.hbase.annotation.HbaseColumn;
 import com.yt.dal.hbase.annotation.HbaseTable;
 
 @HbaseTable(name = "T_BASESERVICEINFO", namespace = "service")
-public class BaseServiceInfo extends BaseBean {
+public class BaseServiceInfo extends BaseDictBean {
 	private static final long serialVersionUID = -706371483532376012L;
 
 	@HbaseColumn
-	private String code="", name="", type="", memo="", mode="";
+	private String code = "", name = "", type = "", memo = "", mode = "";
 
 	@HbaseColumn(name = "prep")
 	private boolean prepayment;
 
 	@HbaseColumn(family = "d", name = "cuid")
-	private String createdUserId="";
+	private String createdUserId = "";
 
 	@HbaseColumn(name = "uuid")
-	private String updatedUserId="";
+	private String updatedUserId = "";
 
 	@HbaseColumn(name = "ut")
 	private long updatedTime;
 
 	@HbaseColumn(name = "stat")
-	private String status="";
+	private BaseServiceInfoEnum status = BaseServiceInfoEnum.DRAFT;
 
+	@Override
 	public String getCode() {
 		return this.code;
 	}
 
+	@Override
 	public void setCode(String code) {
 		this.code = code;
 	}
 
+	@Override
 	public String getName() {
 		return this.name;
 	}
 
+	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -74,36 +78,50 @@ public class BaseServiceInfo extends BaseBean {
 		this.prepayment = prepayment;
 	}
 
+	@Override
 	public String getCreatedUserId() {
 		return this.createdUserId;
 	}
 
+	@Override
 	public void setCreatedUserId(String createdUserId) {
 		this.createdUserId = createdUserId;
 	}
 
+	@Override
 	public String getUpdatedUserId() {
 		return this.updatedUserId;
 	}
 
+	@Override
 	public void setUpdatedUserId(String updatedUserId) {
 		this.updatedUserId = updatedUserId;
 	}
 
+	@Override
 	public long getUpdatedTime() {
 		return this.updatedTime;
 	}
 
+	@Override
 	public void setUpdatedTime(long updatedTime) {
 		this.updatedTime = updatedTime;
 	}
 
-	public String getStatus() {
+	@Override
+	public Enum<?> getStatus() {
 		return this.status;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	@Override
+	public void setStatus(Enum<?> status) {
+		if (status instanceof BaseServiceInfoEnum) {
+			this.status = (BaseServiceInfoEnum) status;
+		}
 	}
-	
+
+	public enum BaseServiceInfoEnum {
+		DRAFT, VALIDATED, ACTIVED, CLOSED, CANCELED
+	}
+
 }

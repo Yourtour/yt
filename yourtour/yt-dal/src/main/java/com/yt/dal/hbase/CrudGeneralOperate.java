@@ -13,6 +13,7 @@ import org.apache.hadoop.hbase.Cell;
 import org.apache.hadoop.hbase.CellUtil;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.Delete;
+import org.apache.hadoop.hbase.client.Durability;
 import org.apache.hadoop.hbase.client.Get;
 import org.apache.hadoop.hbase.client.Put;
 import org.apache.hadoop.hbase.client.Result;
@@ -24,9 +25,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.yt.dal.hbase.cache.BeanDescriptor;
 import com.yt.dal.hbase.cache.BeanDescriptor.Family;
+import com.yt.dal.hbase.cache.BeanDescriptor.Qualifier;
 import com.yt.dal.hbase.cache.IBeanDescriptorCache;
 import com.yt.dal.hbase.utils.HBaseUtils;
 
+/**
+ * hbase中进行CRUD操作的实现类。
+ *
+ * <p>
+ * <b>修改历史：</b>
+ * <table border="1">
+ * <tr>
+ * <th>修改时间</th>
+ * <th>修改人</th>
+ * <th>备注</th>
+ * </tr>
+ * <tr>
+ * <td>2015年5月18日</td>
+ * <td>john</td>
+ * <td>Create</td>
+ * </tr>
+ * </table>
+ * 
+ * @author john
+ *  
+ * @version 1.0
+ * @since 1.0
+ */
 public class CrudGeneralOperate implements ICrudOperate {
 	private static final Log LOG = LogFactory.getLog(CrudGeneralOperate.class);
 
@@ -98,7 +123,8 @@ public class CrudGeneralOperate implements ICrudOperate {
 					TableName.valueOf(ftn));
 			List<Put> list = batch.get(ftn);
 			Object[] putResult = new Object[list.size()];
-			table.batch(list, putResult);
+			//table.batch(list, putResult);
+			 table.put(list);
 			table.close();
 			num += putResult.length;
 		}
@@ -117,7 +143,12 @@ public class CrudGeneralOperate implements ICrudOperate {
 			byte[] byteFamily = family.getByteFamily();
 			for (BeanDescriptor.Qualifier qualifier : family.getQualifiers()
 					.values()) {
-				Put put = new Put(rowkey);
+				Put put = null;
+				if (saveTimestamp) {
+					put = new Put(rowkey, System.currentTimeMillis());
+				} else {
+					put = new Put(rowkey);
+				}
 				byte[] byteQualifier = qualifier.getByteQualifier();
 				byte[] byteValue = Bytes.toBytes(BeanUtils.getProperty(bean,
 						qualifier.getName()));
@@ -127,6 +158,7 @@ public class CrudGeneralOperate implements ICrudOperate {
 				} else {
 					put.addColumn(byteFamily, byteQualifier, byteValue);
 				}
+				put.setDurability(Durability.SYNC_WAL);
 				puts.add(put);
 			}
 		}
@@ -173,6 +205,12 @@ public class CrudGeneralOperate implements ICrudOperate {
 			}
 			String ftn = bd.getFullTableName();
 			Delete del = new Delete(Bytes.toBytes(bean.getRowKey()));
+			for (Family family : bd.getFamilies().values()) {
+				for (Qualifier qualifier : family.getQualifiers().values()) {
+					del.addColumn(family.getByteFamily(),
+							qualifier.getByteQualifier());
+				}
+			}
 			if (batch.containsKey(ftn)) {
 				batch.get(ftn).add(del);
 			} else {
@@ -188,7 +226,8 @@ public class CrudGeneralOperate implements ICrudOperate {
 					TableName.valueOf(ftn));
 			List<Delete> list = batch.get(ftn);
 			Object[] delResult = new Object[list.size()];
-			table.batch(list, delResult);
+			//table.batch(list, delResult);
+			table.delete(list);
 			table.close();
 			rows += delResult.length;
 		}
@@ -215,7 +254,11 @@ public class CrudGeneralOperate implements ICrudOperate {
 		try (Table table = manager.getConnection().getTable(
 				TableName.valueOf(bd.getFullTableName()))) {
 			Get get = new Get(Bytes.toBytes(rowKey));
+			bean.setRowKey(rowKey);
 			Result rs = table.get(get);
+			if (rs.isEmpty()) {
+				return null;
+			}
 			for (Cell cell : rs.rawCells()) {
 				String family = Bytes.toString(CellUtil.cloneFamily(cell));
 				String qualifier = Bytes
@@ -224,29 +267,12 @@ public class CrudGeneralOperate implements ICrudOperate {
 				HBaseUtils.set(bean,
 						HBaseUtils.getFieldName(bd, family, qualifier), value);
 			}
+			return bean;
 		} catch (IOException ex) {
 			throw new Exception(String.format(
 					"Get the data[class=%s, rowkey=%s] fail.", clazz.getName(),
 					rowKey));
 		}
-		return bean;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.yt.dal.hbase.ICrudOperate#get(java.lang.Class, java.lang.String)
-	 */
-	@Override
-	public List<? extends BaseBean> get(Class<? extends BaseBean> clazz,
-			String rowKey) throws Exception {
-		BeanDescriptor bd = cache.get(clazz);
-		if (bd == null) {
-			throw new Exception(String.format(
-					"The BeanDescriptor[%s] is not exist.", clazz.getName()));
-		}
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	/*
@@ -271,7 +297,11 @@ public class CrudGeneralOperate implements ICrudOperate {
 			}
 			ResultScanner rss = table.getScanner(scan);
 			for (Result rs = rss.next(); rs != null; rs = rss.next()) {
+				if (rs.isEmpty()) {
+					continue;
+				}
 				BaseBean bean = clazz.newInstance();
+				bean.setRowKey(Bytes.toString(rs.getRow()));
 				for (Cell cell : rs.rawCells()) {
 					String family = Bytes.toString(CellUtil.cloneFamily(cell));
 					String qualifier = Bytes.toString(CellUtil
@@ -311,7 +341,7 @@ public class CrudGeneralOperate implements ICrudOperate {
 				scan.addFamily(f.getByteFamily());
 			}
 			if (ts1 < 0) {
-				ts1  = 0;
+				ts1 = 0;
 			}
 			if (ts2 > 0) {
 				ts2 = Long.MAX_VALUE;
@@ -319,7 +349,11 @@ public class CrudGeneralOperate implements ICrudOperate {
 			scan.setTimeRange(ts1, ts2);
 			ResultScanner rss = table.getScanner(scan);
 			for (Result rs = rss.next(); rs != null; rs = rss.next()) {
+				if (rs.isEmpty()) {
+					continue;
+				}
 				BaseBean bean = clazz.newInstance();
+				bean.setRowKey(Bytes.toString(rs.getRow()));
 				for (Cell cell : rs.rawCells()) {
 					String family = Bytes.toString(CellUtil.cloneFamily(cell));
 					String qualifier = Bytes.toString(CellUtil
