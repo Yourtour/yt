@@ -18,6 +18,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.yt.dal.hbase.HbaseManager;
 import com.yt.dal.hbase.ICrudOperate;
+import com.yt.test.hbase.bean.BaseServiceInfo;
 import com.yt.test.hbase.bean.TestBean;
 
 public class TestCrudGeneralOperate {
@@ -58,7 +59,7 @@ public class TestCrudGeneralOperate {
 		bean.setQualifier("qualifier 03");
 		try {
 			crudOperate.save(bean);
-			TestBean bean1 = (TestBean) crudOperate.getNewest(TestBean.class,
+			TestBean bean1 = (TestBean) crudOperate.get(TestBean.class,
 					bean.getRowKey());
 			assertNotNull(bean1);
 			assertTrue(bean.getRowKey().equals(bean1.getRowKey()));
@@ -66,7 +67,7 @@ public class TestCrudGeneralOperate {
 			assertTrue(bean.getQualifier().equals(bean1.getQualifier()));
 			assertTrue(bean.getTableName().equals(bean1.getTableName()));
 			crudOperate.deleteRow(bean);
-			TestBean bean2 = (TestBean) crudOperate.getNewest(TestBean.class,
+			TestBean bean2 = (TestBean) crudOperate.get(TestBean.class,
 					bean.getRowKey());
 			assertNull(bean2);
 		} catch (Exception ex) {
@@ -74,5 +75,38 @@ public class TestCrudGeneralOperate {
 			fail(ex.getMessage());
 		}
 	}
-	
+
+	@Test
+	public void testBaseServiceInfo() {
+		BaseServiceInfo info = new BaseServiceInfo();
+		info.setCode("code");
+		info.setCreatedUserId("john");
+		info.setMemo("memo");
+		info.setMode("mode");
+		info.setName("name");
+		info.setPrepayment(true);
+		info.setRowKey("rowkey");
+		info.setStatus(BaseServiceInfo.BaseServiceInfoEnum.CLOSED);
+		info.setType("type");
+		info.setUpdatedTime(System.currentTimeMillis());
+		info.setUpdatedUserId("john");
+		try {
+			crudOperate.save(info);
+			BaseServiceInfo info1 = (BaseServiceInfo)crudOperate.get(BaseServiceInfo.class, info.getRowKey());
+			assertNotNull(info1);
+			assertTrue(info.getRowKey().equals(info1.getRowKey()));
+			assertTrue(info.getName().equals(info1.getName()));
+			assertTrue(info.isPrepayment() == info1.isPrepayment());
+			assertNotNull(info1.getStatus());
+			assertTrue(info.getStatus().name().equals(info1.getStatus().name()));
+			
+			crudOperate.deleteRow(info);
+			BaseServiceInfo info2 = (BaseServiceInfo)crudOperate.get(BaseServiceInfo.class, info.getRowKey());
+			assertNull(info2);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			fail(ex.getMessage());
+		}
+	}
+
 }

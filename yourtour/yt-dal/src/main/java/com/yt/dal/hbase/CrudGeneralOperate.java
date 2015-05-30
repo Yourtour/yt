@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.hbase.Cell;
@@ -150,8 +149,7 @@ public class CrudGeneralOperate implements ICrudOperate {
 					put = new Put(rowkey);
 				}
 				byte[] byteQualifier = qualifier.getByteQualifier();
-				byte[] byteValue = Bytes.toBytes(BeanUtils.getProperty(bean,
-						qualifier.getName()));
+				byte[] byteValue = HBaseUtils.get(bean, qualifier.getName());
 				if (saveTimestamp) {
 					put.addColumn(byteFamily, byteQualifier,
 							System.currentTimeMillis(), byteValue);
@@ -243,7 +241,7 @@ public class CrudGeneralOperate implements ICrudOperate {
 	 * java.lang.String)
 	 */
 	@Override
-	public BaseBean getNewest(Class<? extends BaseBean> clazz, String rowKey)
+	public BaseBean get(Class<? extends BaseBean> clazz, String rowKey)
 			throws Exception {
 		BeanDescriptor bd = cache.get(clazz);
 		if (bd == null) {

@@ -73,7 +73,7 @@ public interface ICrudOperate {
 	 * @throws Exception
 	 *             获取过程中发生的异常
 	 */
-	public BaseBean getNewest(Class<? extends BaseBean> clazz, String rowKey) throws Exception;
+	public BaseBean get(Class<? extends BaseBean> clazz, String rowKey) throws Exception;
 
 	/**
 	 * 获取指定hbase实体类的所有bean数据对象

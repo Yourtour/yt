@@ -109,12 +109,14 @@ public class HBaseUtils {
 			throw new Exception("The field's is null.");
 		}
 		Field field = bean.getClass().getDeclaredField(fieldName);
+		field.setAccessible(true);
 		Object value = field.get(bean);
-		Class<?> clazz = field.getDeclaringClass();
+		Class<?> clazz = field.getType();
 		return toBytes(value, clazz);
 	}
 
 	// 根据数据字段类型，将字节数组转换为对应数据类型的数据
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private static Object fromBytes(byte[] value, Class<?> clazz)
 			throws Exception {
 		if (clazz.isAssignableFrom(byte[].class)) {
@@ -146,6 +148,10 @@ public class HBaseUtils {
 			return (value == null ? 0 : Bytes.toShort(value));
 		} else if (clazz.isAssignableFrom(String.class)) {
 			return (value == null ? "" : Bytes.toString(value));
+		} else if (clazz.isEnum()) {
+			Class c = Class.forName(clazz.getName());
+			String name = (value == null ? null : Bytes.toString(value));
+			return (name == null ? c.newInstance() : Enum.valueOf(c, name));
 		} else if (clazz.isAssignableFrom(BaseBean.class)) {
 			// TODO 暂时不支持将关联的bean加载出来，以后考虑实现。
 			throw new Exception("暂时不支持将关联的bean加载出来，以后考虑实现。");
@@ -199,6 +205,9 @@ public class HBaseUtils {
 		} else if (clazz.isAssignableFrom(String.class)) {
 			value = (value == null ? "" : value);
 			return Bytes.toBytes((String) value);
+		} else if (clazz.isEnum()) {
+			value = (value == null ? clazz.newInstance() : value);
+			return Bytes.toBytes(((Enum<?>)value).name());
 		} else if (clazz.isAssignableFrom(BaseBean.class)) {
 			if (value == null) {
 				throw new Exception(
