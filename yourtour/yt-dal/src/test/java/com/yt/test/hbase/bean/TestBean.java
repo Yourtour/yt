@@ -37,5 +37,4 @@ public class TestBean extends BaseBean {
 	public void setQualifier(String qualifier) {
 		this.qualifier = qualifier;
 	}
-
 }
