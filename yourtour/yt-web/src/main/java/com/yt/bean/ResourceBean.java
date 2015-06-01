@@ -11,7 +11,7 @@ import com.yt.dal.hbase.annotation.HbaseTable;
  *
  */
 @HbaseTable(name = "T_ROUTE_MEMBER_INFO")
-public class RouteMemberBean extends BaseBean {
+public class ResourceBean extends BaseBean {
 	private static final long serialVersionUID = -8980153602025087935L;
 	
 	public static enum ROLE{LEADER, MEMBER, EXPERT, HOST}
@@ -26,7 +26,7 @@ public class RouteMemberBean extends BaseBean {
 	private 	@HbaseColumn(name = "ut")				long updatedTime;
 	private 	@HbaseColumn(name = "stat")			int	status;
 	
-	public RouteMemberBean() {
+	public ResourceBean() {
 		super();
 	}
 
