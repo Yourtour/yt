@@ -22,6 +22,8 @@ import com.yt.dal.hbase.IDdlOperate;
 import com.yt.dal.hbase.cache.BeanDescriptor;
 import com.yt.dal.hbase.cache.BeanDescriptorGeneralCacheImpl;
 import com.yt.dal.hbase.cache.IBeanDescriptorCache;
+import com.yt.test.hbase.bean.BaseServiceInfo;
+import com.yt.test.hbase.bean.NoNamespaceBean;
 import com.yt.test.hbase.bean.TestBean;
 
 public class TestDdlGeneralOperate {
@@ -60,6 +62,20 @@ public class TestDdlGeneralOperate {
 			assertTrue(ddlOperate.tableExist(TestBean.class));
 			ddlOperate.dropTable(TestBean.class);
 			assertFalse(ddlOperate.tableExist(TestBean.class));
+			
+			ddlOperate.dropTable(NoNamespaceBean.class);
+			assertFalse(ddlOperate.tableExist(NoNamespaceBean.class));
+			ddlOperate.createTable(NoNamespaceBean.class);
+			assertTrue(ddlOperate.tableExist(NoNamespaceBean.class));
+			ddlOperate.dropTable(NoNamespaceBean.class);
+			assertFalse(ddlOperate.tableExist(NoNamespaceBean.class));
+			
+			ddlOperate.dropTable(BaseServiceInfo.class);
+			assertFalse(ddlOperate.tableExist(BaseServiceInfo.class));
+			ddlOperate.createTable(BaseServiceInfo.class);
+			assertTrue(ddlOperate.tableExist(BaseServiceInfo.class));
+			ddlOperate.dropTable(BaseServiceInfo.class);
+			assertFalse(ddlOperate.tableExist(BaseServiceInfo.class));
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			fail(ex.getMessage());
