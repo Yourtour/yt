@@ -16,6 +16,11 @@ import com.yt.common.ResponseMessage;
 import com.yt.vo.RouteScheduleVO;
 import com.yt.vo.RouteVO;
 
+/**
+ * 
+ * @author Tony.Zhang
+ * 该控制器定义了和行程相关的服务接口
+ */
 @Controller
 @RequestMapping(value="/route/")
 public class RouteController {
@@ -61,7 +66,7 @@ public class RouteController {
 	 * @return
 	 */
 	@RequestMapping(value="/schedule/{routeId}", method=RequestMethod.GET)
-	public @ResponseBody ResponseMessage queryRouteInfo(@PathVariable("routeId") String routeId){
+	public @ResponseBody ResponseMessage getRouteInfo(@PathVariable("routeId") String routeId){
 		List<RouteScheduleVO> data =   (List<RouteScheduleVO>) MockDataFactory.getMockListData(RouteScheduleVO.class, "route_" + routeId);
 		
 		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, "", data);
