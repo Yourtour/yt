@@ -1,5 +1,6 @@
 dependencies {
 	compile "org.springframework:spring-webmvc:${springVersion}",
+					"org.springframework:spring-webmvc:${springVersion}",
 	        project(":yt-core"),
 	        project(":yt-dal"),
 	        project(":yt-ftsl"),
