@@ -5,31 +5,30 @@ import com.yt.dal.hbase.annotation.HbaseColumn;
 import com.yt.dal.hbase.annotation.HbaseTable;
 
 /**
- * @author Tony.Zhang
  * 
- * 行程随记bean，定义了行程过程中的随记信息
- *
+ * @author Tony.Zhang
+ *  行程费用实体BEAN，记录行程费用信息
  */
-@HbaseTable(name = "T_ROUTE_NOTES_INFO")
-public class RouteNotesBean extends BaseBean {
-	private static final long serialVersionUID = 1857376918585112905L;
+@HbaseTable(name = "T_ROUTE_CHARGE_INFO")
+public class RouteChargeBean extends BaseBean {
+	private static final long serialVersionUID = 4796045583657054183L;
 	
-	public static enum TYPE{IMG, VIDEO};
+	public static enum TYPE{PERSONAL_EXPEND, GROUP_EXPEND, PRERECEIVE, PERSONAL_BUDGET, GROUP_BUDGET, GROUP_SPLIT};
 	
-	private 	@HbaseColumn(name = "id")	String id = "";
+	private 	@HbaseColumn(name = "id")		String id = "";
 	private	@HbaseColumn(name = "rid")		String routeId = "";
-	private	@HbaseColumn(name = "sid")		String scheduleId = "";
-	private	@HbaseColumn(name = "url")		String url = "";
-	private 	@HbaseColumn(name = "type")		TYPE type;
-	private 	@HbaseColumn(name = "words")		String words = "";
-	private 	@HbaseColumn(name = "live")		int	live;
+	private 	@HbaseColumn(name = "type")	TYPE  type;
+	private 	@HbaseColumn(name = "name")	String  name;
+	private	@HbaseColumn(name = "amount")	double amount;
+	private	@HbaseColumn(name = "memo")	String	memo;
+	private	@HbaseColumn(name = "img")		String imgUrl = "";
 	private 	@HbaseColumn(name = "cuid")	String createdUserId = "";
 	private 	@HbaseColumn(name = "ct")		long createdTime;
 	private 	@HbaseColumn(name = "uuid")	String updatedUserId = "";
 	private 	@HbaseColumn(name = "ut")		long updatedTime;
 	private 	@HbaseColumn(name = "stat")		int	status;
 	
-	public RouteNotesBean() {
+	public RouteChargeBean() {
 	}
 
 	public String getId() {
@@ -48,22 +47,6 @@ public class RouteNotesBean extends BaseBean {
 		this.routeId = routeId;
 	}
 
-	public String getScheduleId() {
-		return scheduleId;
-	}
-
-	public void setScheduleId(String scheduleId) {
-		this.scheduleId = scheduleId;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
 	public TYPE getType() {
 		return type;
 	}
@@ -72,20 +55,36 @@ public class RouteNotesBean extends BaseBean {
 		this.type = type;
 	}
 
-	public int getLive() {
-		return live;
+	public String getName() {
+		return name;
 	}
 
-	public void setLive(int live) {
-		this.live = live;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getWords() {
-		return words;
+	public double getAmount() {
+		return amount;
 	}
 
-	public void setWords(String words) {
-		this.words = words;
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+	public String getMemo() {
+		return memo;
+	}
+
+	public void setMemo(String memo) {
+		this.memo = memo;
+	}
+
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 
 	public String getCreatedUserId() {
@@ -127,7 +126,6 @@ public class RouteNotesBean extends BaseBean {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	
-	
 
+	
 }

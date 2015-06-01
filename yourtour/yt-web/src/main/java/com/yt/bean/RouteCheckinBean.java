@@ -13,7 +13,7 @@ import com.yt.dal.hbase.annotation.HbaseTable;
 public class RouteCheckinBean extends BaseBean {
 	private static final long serialVersionUID = 4796045583657054183L;
 	
-	public static enum TYPE{ARRIVE, LEAVE}
+	public static enum TYPE{ARRIVE, LEAVE};
 	
 	private 	@HbaseColumn(name = "id")		String id = "";
 	private	@HbaseColumn(name = "rid")		String routeId = "";
