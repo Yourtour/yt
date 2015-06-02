@@ -7,7 +7,8 @@ import com.yt.dal.hbase.annotation.HbaseTable;
 /**
  * 
  * @author Tony.Zhang
- * 该实体定义数据之间的关系信息
+ * 该实体定义数据之间的关系信息，便于简单查询。
+ * 该Bean的rowkey格式为：sourceId_type_targetId
  */
 @HbaseTable(name = "T_RELATIONSHIP_INFO")
 public class RelationshipBean extends BaseBean {
