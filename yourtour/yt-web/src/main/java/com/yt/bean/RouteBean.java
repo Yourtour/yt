@@ -16,7 +16,6 @@ public class RouteBean extends BaseBean {
 	
 	public static enum TYPE{MEMO, SCENE, FOOD, HOTEL, TRAFFIC}
 	
-	private 	@HbaseColumn(name = "rid")			String 	routeId; 	//行程ID
 	private 	@HbaseColumn(name = "name")	String 	name; 	//安排名称
 	private 	@HbaseColumn(name = "iu")			String 	imageUrl; 	//行程图片
 	private 	@HbaseColumn(name = "intr")		String 	intro; 	//概述， 可以针对行程安排中具体某天或者某个景点进行描述 
@@ -34,14 +33,6 @@ public class RouteBean extends BaseBean {
 	
 	public RouteBean() {
 		super();
-	}
-
-	public String getRouteId() {
-		return routeId;
-	}
-
-	public void setRouteId(String routeId) {
-		this.routeId = routeId;
 	}
 
 	public String getName() {

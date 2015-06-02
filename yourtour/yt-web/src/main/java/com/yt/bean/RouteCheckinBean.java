@@ -15,7 +15,6 @@ public class RouteCheckinBean extends BaseBean {
 	
 	public static enum TYPE{ARRIVE, LEAVE};
 	
-	private 	@HbaseColumn(name = "id")		String id = "";
 	private	@HbaseColumn(name = "rid")		String routeId = "";
 	private	@HbaseColumn(name = "sid")		String scheduleId = "";
 	private 	@HbaseColumn(name = "type")		TYPE type;
@@ -28,14 +27,6 @@ public class RouteCheckinBean extends BaseBean {
 	private 	@HbaseColumn(name = "stat")		int	status;
 	
 	public RouteCheckinBean() {
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
 	}
 
 	public String getRouteId() {

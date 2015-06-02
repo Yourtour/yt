@@ -67,4 +67,17 @@ public class UserController {
 		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS);;
 		return response;
 	}
+	
+	/**
+	 * 获取用户权益信息
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping(value="/equity/{userId}", method=RequestMethod.GET)
+	public @ResponseBody ResponseMessage 	queryUserEquityInfoes(@PathVariable("userId") String userId){
+		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS);;
+		return response;
+	}
+	
+	
 }

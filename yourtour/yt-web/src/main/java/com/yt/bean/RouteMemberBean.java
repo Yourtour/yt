@@ -7,7 +7,7 @@ import com.yt.dal.hbase.annotation.HbaseTable;
 /**
  * @author Tony.Zhang
  * 
- * 行程bean，定义了行程基本信息
+ * 行程成员bean，定义了行程成员信息
  *
  */
 @HbaseTable(name = "T_ROUTE_MEMBER_INFO")
@@ -16,7 +16,6 @@ public class RouteMemberBean extends BaseBean {
 	
 	public static enum ROLE{LEADER, MEMBER, EXPERT, HOST}
 	
-	private 	@HbaseColumn(name = "mid")			String 	memberId; 	//成员ID
 	private 	@HbaseColumn(name = "rid")				String 	routeId; 	//行程ID
 	private 	@HbaseColumn(name = "uid")			String 	userId; 	//用户ID
 	private 	@HbaseColumn(name = "role")			String 	role; 	//角色 
@@ -36,14 +35,6 @@ public class RouteMemberBean extends BaseBean {
 
 	public void setRouteId(String routeId) {
 		this.routeId = routeId;
-	}
-
-	public String getMemberId() {
-		return memberId;
-	}
-
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
 	}
 
 	public String getUserId() {

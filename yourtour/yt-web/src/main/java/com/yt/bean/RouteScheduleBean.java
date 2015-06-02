@@ -16,7 +16,6 @@ public class RouteScheduleBean extends BaseBean {
 	
 	public static enum TYPE{MEMO, SCENE, FOOD, HOTEL, TRAFFIC}
 	
-	private 	@HbaseColumn(name = "sid")		String 	sceheduleId; 	//安排ID
 	private 	@HbaseColumn(name = "rid")		String 	routeId; 	//行程ID
 	private 	@HbaseColumn(name = "name")		String 	name; 	//安排名称
 	private 	@HbaseColumn(name = "type")		TYPE 	type; 	//安排类型
@@ -47,14 +46,6 @@ public class RouteScheduleBean extends BaseBean {
 	
 	public RouteScheduleBean() {
 		super();
-	}
-
-	public String getSceheduleId() {
-		return sceheduleId;
-	}
-
-	public void setSceheduleId(String sceheduleId) {
-		this.sceheduleId = sceheduleId;
 	}
 
 	public String getRouteId() {

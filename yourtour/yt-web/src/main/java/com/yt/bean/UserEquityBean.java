@@ -5,54 +5,36 @@ import com.yt.dal.hbase.annotation.HbaseColumn;
 import com.yt.dal.hbase.annotation.HbaseTable;
 
 /**
- * @author Tony.Zhang
  * 
- * 行程随记bean，定义了行程过程中的随记信息
- *
+ * @author Tony.Zhang
+ * 该实体定义了用户权益信息
  */
-@HbaseTable(name = "T_ROUTE_NOTES_INFO")
-public class RouteNotesBean extends BaseBean {
-	private static final long serialVersionUID = 1857376918585112905L;
+@HbaseTable(name = "T_USER_EQUITY_INFO")
+public class UserEquityBean extends BaseBean {
+	private static final long serialVersionUID = -6977525800090683657L;
 	
-	public static enum TYPE{IMG, VIDEO};
+	public static enum TYPE{CASH, POINT, COUPON} //现金，积分，优惠券
 	
-	private	@HbaseColumn(name = "rid")		String routeId = "";
-	private	@HbaseColumn(name = "sid")		String scheduleId = "";
-	private	@HbaseColumn(name = "url")		String url = "";
-	private 	@HbaseColumn(name = "type")		TYPE type;
-	private 	@HbaseColumn(name = "words")		String words = "";
-	private 	@HbaseColumn(name = "live")		int	live;
+	private 	@HbaseColumn(name = "uid")		String 	userId; 	//用户ID
+	private 	@HbaseColumn(name = "type")		TYPE 	type; 	//类型
+	private 	@HbaseColumn(name = "amount")	int		amount; 	//数量
+	private 	@HbaseColumn(name = "src")			String 	source; 	//来源
+	
 	private 	@HbaseColumn(name = "cuid")	String createdUserId = "";
 	private 	@HbaseColumn(name = "ct")		long createdTime;
 	private 	@HbaseColumn(name = "uuid")	String updatedUserId = "";
 	private 	@HbaseColumn(name = "ut")		long updatedTime;
 	private 	@HbaseColumn(name = "stat")		int	status;
-	
-	public RouteNotesBean() {
+
+	public UserEquityBean() {
 	}
 
-	public String getRouteId() {
-		return routeId;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setRouteId(String routeId) {
-		this.routeId = routeId;
-	}
-
-	public String getScheduleId() {
-		return scheduleId;
-	}
-
-	public void setScheduleId(String scheduleId) {
-		this.scheduleId = scheduleId;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public TYPE getType() {
@@ -63,20 +45,20 @@ public class RouteNotesBean extends BaseBean {
 		this.type = type;
 	}
 
-	public int getLive() {
-		return live;
+	public int getAmount() {
+		return amount;
 	}
 
-	public void setLive(int live) {
-		this.live = live;
+	public void setAmount(int amount) {
+		this.amount = amount;
 	}
 
-	public String getWords() {
-		return words;
+	public String getSource() {
+		return source;
 	}
 
-	public void setWords(String words) {
-		this.words = words;
+	public void setSource(String source) {
+		this.source = source;
 	}
 
 	public String getCreatedUserId() {
@@ -118,7 +100,5 @@ public class RouteNotesBean extends BaseBean {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	
-	
 
 }

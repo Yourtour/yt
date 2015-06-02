@@ -14,7 +14,6 @@ import com.yt.dal.hbase.annotation.HbaseTable;
 public class ResourceExpertBean extends BaseBean {
 	private static final long serialVersionUID = -8980153602025087935L;
 	
-	private 	@HbaseColumn(name = "id")			String 	id; 	//达人ID
 	private 	@HbaseColumn(name = "rid")			String 	resId; 	//资源ID
 	private 	@HbaseColumn(name = "uid")		String 	userId; 	//达人用户ID
 	private	@HbaseColumn(name = "srvs")			String 	services; 	//提供的服务
@@ -28,14 +27,6 @@ public class ResourceExpertBean extends BaseBean {
 		super();
 	}
 	
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
 	public String getResId() {
 		return resId;
 	}

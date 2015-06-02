@@ -16,7 +16,6 @@ public class ResourceBean extends BaseBean {
 	
 	public static enum TYPE{SCENE, FOOD, HOTEL, TRAFFIC}
 	
-	private 	@HbaseColumn(name = "id")			String 	id; 	//资源ID
 	private 	@HbaseColumn(name = "name")				String 	name; 	//名称
 	private 	@HbaseColumn(name = "intr")				String 	intro; 	//简介
 	private 	@HbaseColumn(name = "url")			String 	imageUrl; 	//图片
@@ -46,14 +45,6 @@ public class ResourceBean extends BaseBean {
 	
 	public ResourceBean() {
 		super();
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
 	}
 
 	public String getName() {

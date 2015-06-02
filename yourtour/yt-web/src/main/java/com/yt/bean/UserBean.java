@@ -4,13 +4,17 @@ import com.yt.dal.hbase.BaseBean;
 import com.yt.dal.hbase.annotation.HbaseColumn;
 import com.yt.dal.hbase.annotation.HbaseTable;
 
+/**
+ * 
+ * @author Tony.Zhang
+ * 该实体定义了用户的相关信息
+ */
 @HbaseTable(name = "T_USER_INFO")
 public class UserBean extends BaseBean {
 	private static final long serialVersionUID = -6977525800090683657L;
 	
 	public static enum RATE{GENERAL, EXPERT, HOST}
 	
-	private 	@HbaseColumn(name = "uid")		String 	userId; 	//用户ID
 	private 	@HbaseColumn(name = "name")	String 	userName; 	//登录名
 	private 	@HbaseColumn(name = "pwd")		String 	pwd; 	//登录密码
 	private 	@HbaseColumn(name = "rname")	String 	realName; 	//真实姓名
@@ -33,14 +37,6 @@ public class UserBean extends BaseBean {
 	private 	@HbaseColumn(name = "stat")		int	status;
 
 	public UserBean() {
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
 	}
 
 	public String getUserName() {

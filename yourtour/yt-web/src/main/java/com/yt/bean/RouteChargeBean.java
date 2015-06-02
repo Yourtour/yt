@@ -15,7 +15,6 @@ public class RouteChargeBean extends BaseBean {
 	
 	public static enum TYPE{PERSONAL_EXPEND, GROUP_EXPEND, PRERECEIVE, PERSONAL_BUDGET, GROUP_BUDGET, GROUP_SPLIT};
 	
-	private 	@HbaseColumn(name = "id")		String id = "";
 	private	@HbaseColumn(name = "rid")		String routeId = "";
 	private 	@HbaseColumn(name = "type")	TYPE  type;
 	private 	@HbaseColumn(name = "name")	String  name;
@@ -29,14 +28,6 @@ public class RouteChargeBean extends BaseBean {
 	private 	@HbaseColumn(name = "stat")		int	status;
 	
 	public RouteChargeBean() {
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
 	}
 
 	public String getRouteId() {
