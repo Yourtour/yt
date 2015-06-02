@@ -29,7 +29,7 @@ public class ResourceController {
 	 * @return
 	 */
 	@RequestMapping(value="/{resId}", method=RequestMethod.GET)
-	public @ResponseBody ResponseMessage getResourceInfo(@PathVariable(value="resId") String resId){
+	public @ResponseBody ResponseMessage getResourceInfo(@PathVariable(value="resId") String resId)throws Exception{
 		ResourceVO data = (ResourceVO) MockDataFactory.getMockData(ResourceVO.class, "resource_" + resId);
 		
 		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, data);
@@ -43,7 +43,7 @@ public class ResourceController {
 	 * @return
 	 */
 	@RequestMapping(value="/place/{place}/{type}", method=RequestMethod.GET)
-	public @ResponseBody ResponseMessage queryResourceInfoes(@PathVariable(value="place") String place,@PathVariable(value="type") String type ){
+	public @ResponseBody ResponseMessage queryResourceInfoes(@PathVariable(value="place") String place,@PathVariable(value="type") String type )throws Exception{
 		List<ResourceVO> data = (List<ResourceVO>) MockDataFactory.getMockListData(ResourceVO.class, "resource_place_" + place + "_type_" + type);
 		
 		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, data);
@@ -57,7 +57,7 @@ public class ResourceController {
 	 * @return
 	 */
 	@RequestMapping(value="/nearby/{resId}/{type}", method=RequestMethod.GET)
-	public @ResponseBody ResponseMessage queryNearbyResourceInfoes(@PathVariable(value="resId") String resId,@PathVariable(value="type") String type ){
+	public @ResponseBody ResponseMessage queryNearbyResourceInfoes(@PathVariable(value="resId") String resId,@PathVariable(value="type") String type )throws Exception{
 		List<ResourceVO> data = (List<ResourceVO>) MockDataFactory.getMockListData(ResourceVO.class, "resource_" + resId + "_type_" + type);
 		
 		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, data);

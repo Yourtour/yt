@@ -31,7 +31,7 @@ public class MemberController {
 	 * @return
 	 */
 	@RequestMapping(value="/route/{routeId}", method=RequestMethod.GET)
-	public @ResponseBody ResponseMessage queryMemberInfoes(@PathVariable(value="routeId") String routeId){
+	public @ResponseBody ResponseMessage queryMemberInfoes(@PathVariable(value="routeId") String routeId)throws Exception{
 		List<RouteMemberVO> data = (List<RouteMemberVO>) MockDataFactory.getMockData(RouteMemberVO.class, "member_route_" + routeId);
 		
 		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, data);

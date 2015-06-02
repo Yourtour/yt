@@ -8,32 +8,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.yt.bean.RouteBean;
+import com.yt.bean.RouteNotesBean;
 import com.yt.bean.RouteScheduleBean;
 import com.yt.common.MockDataFactory;
 import com.yt.common.ResponseMessage;
 import com.yt.vo.RouteScheduleVO;
-import com.yt.vo.RouteVO;
 
 /**
  * 
  * @author Tony.Zhang
- * 该控制器定义了和行程相关的服务接口
+ * 该控制器定义了和行程随记相关的服务接口
  */
 @Controller
-@RequestMapping(value="/route/")
-public class RouteController {
+@RequestMapping(value="/route/notes/")
+public class RouteChargeController {
 	/**
-	 * 获取用户的行程信息
-	 * @param userId 用户标识ID
+	 * 保存行程随记信息
+	 * @param note
+	 * @param request
 	 * @return
+	 * @throws Exception
 	 */
-	@RequestMapping(value="/user/{userId}")
-	public @ResponseBody ResponseMessage queryRouteInfoes(@PathVariable("userId") String userId) throws Exception{
-		List<RouteVO> data = (List<RouteVO>) MockDataFactory.getMockListData(RouteVO.class, "route_user_" + userId);
+	@RequestMapping(value="/route/{routeId}")
+	public @ResponseBody ResponseMessage saveRouteNoteInfo(@RequestBody RouteNotesBean note , MultipartHttpServletRequest request) throws Exception{
+		//List<RouteVO> data = (List<RouteVO>) MockDataFactory.getMockListData(RouteVO.class, "route_user_" + userId);
 		
-		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, "", data);
+		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS);
 		return response;
 	}
 	

@@ -1,6 +1,7 @@
 dependencies {
 	compile "org.springframework:spring-webmvc:${springVersion}",
 					"org.springframework:spring-webmvc:${springVersion}",
+					"org.codehaus.jackson:jackson-mapper-lgpl:1.7.4",
 	        project(":yt-core"),
 	        project(":yt-dal"),
 	        project(":yt-ftsl"),
