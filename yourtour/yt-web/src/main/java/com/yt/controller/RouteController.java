@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yt.bean.RouteBean;
 import com.yt.bean.RouteScheduleBean;
-import com.yt.common.MockDataFactory;
 import com.yt.common.ResponseMessage;
+import com.yt.mocker.MockDataFactory;
 import com.yt.vo.RouteScheduleVO;
 import com.yt.vo.RouteVO;
 
