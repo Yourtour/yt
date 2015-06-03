@@ -1,5 +1,7 @@
 package com.yt.bean;
 
+import com.yt.common.Constants.ChargeType;
+import com.yt.common.Constants.Status;
 import com.yt.dal.hbase.BaseBean;
 import com.yt.dal.hbase.annotation.HbaseColumn;
 import com.yt.dal.hbase.annotation.HbaseTable;
@@ -13,10 +15,10 @@ import com.yt.dal.hbase.annotation.HbaseTable;
 public class RouteChargeBean extends BaseBean {
 	private static final long serialVersionUID = 4796045583657054183L;
 	
-	public static enum TYPE{PERSONAL_EXPEND, GROUP_EXPEND, PRERECEIVE, PERSONAL_BUDGET, GROUP_BUDGET, GROUP_SPLIT};
+	
 	
 	private	@HbaseColumn(name = "rid")		String routeId = "";
-	private 	@HbaseColumn(name = "type")	TYPE  type;
+	private 	@HbaseColumn(name = "type")	ChargeType  type;
 	private 	@HbaseColumn(name = "name")	String  name;
 	private	@HbaseColumn(name = "amount")	double amount;
 	private	@HbaseColumn(name = "memo")	String	memo;
@@ -25,7 +27,7 @@ public class RouteChargeBean extends BaseBean {
 	private 	@HbaseColumn(name = "ct")		long createdTime;
 	private 	@HbaseColumn(name = "uuid")	String updatedUserId = "";
 	private 	@HbaseColumn(name = "ut")		long updatedTime;
-	private 	@HbaseColumn(name = "stat")		int	status;
+	private 	@HbaseColumn(name = "stat")		Status	status;
 	
 	public RouteChargeBean() {
 	}
@@ -38,11 +40,11 @@ public class RouteChargeBean extends BaseBean {
 		this.routeId = routeId;
 	}
 
-	public TYPE getType() {
+	public ChargeType getType() {
 		return type;
 	}
 
-	public void setType(TYPE type) {
+	public void setType(ChargeType type) {
 		this.type = type;
 	}
 
@@ -110,13 +112,11 @@ public class RouteChargeBean extends BaseBean {
 		this.updatedTime = updatedTime;
 	}
 
-	public int getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
-
-	
 }

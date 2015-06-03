@@ -1,5 +1,7 @@
 package com.yt.bean;
 
+import com.yt.common.Constants.EquityType;
+import com.yt.common.Constants.Status;
 import com.yt.dal.hbase.BaseBean;
 import com.yt.dal.hbase.annotation.HbaseColumn;
 import com.yt.dal.hbase.annotation.HbaseTable;
@@ -16,7 +18,7 @@ public class UserEquityBean extends BaseBean {
 	public static enum TYPE{CASH, POINT, COUPON} //现金，积分，优惠券
 	
 	private 	@HbaseColumn(name = "uid")		String 	userId; 	//用户ID
-	private 	@HbaseColumn(name = "type")		TYPE 	type; 	//类型
+	private 	@HbaseColumn(name = "type")		EquityType 	type; 	//类型
 	private 	@HbaseColumn(name = "amount")	int		amount; 	//数量
 	private 	@HbaseColumn(name = "src")			String 	source; 	//来源
 	
@@ -24,7 +26,7 @@ public class UserEquityBean extends BaseBean {
 	private 	@HbaseColumn(name = "ct")		long createdTime;
 	private 	@HbaseColumn(name = "uuid")	String updatedUserId = "";
 	private 	@HbaseColumn(name = "ut")		long updatedTime;
-	private 	@HbaseColumn(name = "stat")		int	status;
+	private 	@HbaseColumn(name = "stat")		Status	status;
 
 	public UserEquityBean() {
 	}
@@ -37,11 +39,11 @@ public class UserEquityBean extends BaseBean {
 		this.userId = userId;
 	}
 
-	public TYPE getType() {
+	public EquityType getType() {
 		return type;
 	}
 
-	public void setType(TYPE type) {
+	public void setType(EquityType type) {
 		this.type = type;
 	}
 
@@ -93,12 +95,11 @@ public class UserEquityBean extends BaseBean {
 		this.updatedTime = updatedTime;
 	}
 
-	public int getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
-
 }

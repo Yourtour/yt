@@ -1,5 +1,6 @@
 package com.yt.bean;
 
+import com.yt.common.Constants.CheckinType;
 import com.yt.dal.hbase.BaseBean;
 import com.yt.dal.hbase.annotation.HbaseColumn;
 import com.yt.dal.hbase.annotation.HbaseTable;
@@ -13,11 +14,9 @@ import com.yt.dal.hbase.annotation.HbaseTable;
 public class RouteCheckinBean extends BaseBean {
 	private static final long serialVersionUID = 4796045583657054183L;
 	
-	public static enum TYPE{ARRIVE, LEAVE};
-	
 	private	@HbaseColumn(name = "rid")		String routeId = "";
 	private	@HbaseColumn(name = "sid")		String scheduleId = "";
-	private 	@HbaseColumn(name = "type")		TYPE type;
+	private 	@HbaseColumn(name = "type")		CheckinType type;
 	private	@HbaseColumn(name = "img")		String imgUrl = "";
 	private 	@HbaseColumn(name = "words")		String words = "";
 	private 	@HbaseColumn(name = "cuid")	String createdUserId = "";
@@ -51,6 +50,14 @@ public class RouteCheckinBean extends BaseBean {
 
 	public void setImgUrl(String imgUrl) {
 		this.imgUrl = imgUrl;
+	}
+
+	public CheckinType getType() {
+		return type;
+	}
+
+	public void setType(CheckinType type) {
+		this.type = type;
 	}
 
 	public String getWords() {

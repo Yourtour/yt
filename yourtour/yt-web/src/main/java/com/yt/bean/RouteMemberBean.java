@@ -1,5 +1,7 @@
 package com.yt.bean;
 
+import com.yt.common.Constants.RoleType;
+import com.yt.common.Constants.Status;
 import com.yt.dal.hbase.BaseBean;
 import com.yt.dal.hbase.annotation.HbaseColumn;
 import com.yt.dal.hbase.annotation.HbaseTable;
@@ -18,12 +20,12 @@ public class RouteMemberBean extends BaseBean {
 	
 	private 	@HbaseColumn(name = "rid")				String 	routeId; 	//行程ID
 	private 	@HbaseColumn(name = "uid")			String 	userId; 	//用户ID
-	private 	@HbaseColumn(name = "role")			String 	role; 	//角色 
+	private 	@HbaseColumn(name = "role")			RoleType 	role; 	//角色 
 	private 	@HbaseColumn(name = "cuid")			String createdUserId = "";
 	private 	@HbaseColumn(name = "ct")				long createdTime;
 	private 	@HbaseColumn(name = "uuid")			String updatedUserId = "";
 	private 	@HbaseColumn(name = "ut")				long updatedTime;
-	private 	@HbaseColumn(name = "stat")			int	status;
+	private 	@HbaseColumn(name = "stat")			Status	status;
 	
 	public RouteMemberBean() {
 		super();
@@ -45,11 +47,11 @@ public class RouteMemberBean extends BaseBean {
 		this.userId = userId;
 	}
 
-	public String getRole() {
+	public RoleType getRole() {
 		return role;
 	}
 
-	public void setRole(String role) {
+	public void setRole(RoleType role) {
 		this.role = role;
 	}
 
@@ -85,11 +87,11 @@ public class RouteMemberBean extends BaseBean {
 		this.updatedTime = updatedTime;
 	}
 
-	public int getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 }

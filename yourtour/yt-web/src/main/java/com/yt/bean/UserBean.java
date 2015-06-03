@@ -1,5 +1,6 @@
 package com.yt.bean;
 
+import com.yt.common.Constants.Status;
 import com.yt.dal.hbase.BaseBean;
 import com.yt.dal.hbase.annotation.HbaseColumn;
 import com.yt.dal.hbase.annotation.HbaseTable;
@@ -34,7 +35,7 @@ public class UserBean extends BaseBean {
 	private 	@HbaseColumn(name = "ct")		long createdTime;
 	private 	@HbaseColumn(name = "uuid")	String updatedUserId = "";
 	private 	@HbaseColumn(name = "ut")		long updatedTime;
-	private 	@HbaseColumn(name = "stat")		int	status;
+	private 	@HbaseColumn(name = "stat")		Status 	status;
 
 	public UserBean() {
 	}
@@ -183,11 +184,11 @@ public class UserBean extends BaseBean {
 		this.updatedTime = updatedTime;
 	}
 
-	public int getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 

@@ -1,5 +1,7 @@
 package com.yt.bean;
 
+import com.yt.common.Constants.ResType;
+import com.yt.common.Constants.Status;
 import com.yt.dal.hbase.BaseBean;
 import com.yt.dal.hbase.annotation.HbaseColumn;
 import com.yt.dal.hbase.annotation.HbaseTable;
@@ -18,7 +20,7 @@ public class RouteScheduleBean extends BaseBean {
 	
 	private 	@HbaseColumn(name = "rid")		String 	routeId; 	//行程ID
 	private 	@HbaseColumn(name = "name")		String 	name; 	//安排名称
-	private 	@HbaseColumn(name = "type")		TYPE 	type; 	//安排类型
+	private 	@HbaseColumn(name = "type")		ResType 	type; 	//安排类型
 	private 	@HbaseColumn(name = "pid")		String 	parentId; 	//父级ID, 根节点的话，该值为0 
 	private 	@HbaseColumn(name = "prid")		String 	priorId; 	//前一个行程安排ID， 同层节点第一个，那么该值为0，
 	private 	@HbaseColumn(name = "nid")		String 	nextId; 	//后一个行程安排ID， 同层节点最后一个，那么该值为0
@@ -42,7 +44,7 @@ public class RouteScheduleBean extends BaseBean {
 	private 	@HbaseColumn(name = "ct")		long createdTime;
 	private 	@HbaseColumn(name = "uuid")	String updatedUserId = "";
 	private 	@HbaseColumn(name = "ut")		long updatedTime;
-	private 	@HbaseColumn(name = "stat")		int	status;
+	private 	@HbaseColumn(name = "stat")		Status	status;
 	
 	public RouteScheduleBean() {
 		super();
@@ -64,11 +66,11 @@ public class RouteScheduleBean extends BaseBean {
 		this.name = name;
 	}
 
-	public TYPE getType() {
+	public ResType getType() {
 		return type;
 	}
 
-	public void setType(TYPE type) {
+	public void setType(ResType type) {
 		this.type = type;
 	}
 
@@ -256,15 +258,11 @@ public class RouteScheduleBean extends BaseBean {
 		this.updatedTime = updatedTime;
 	}
 
-	public int getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(Status status) {
 		this.status = status;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 }

@@ -1,5 +1,6 @@
 package com.yt.bean;
 
+import com.yt.common.Constants.Status;
 import com.yt.dal.hbase.BaseBean;
 import com.yt.dal.hbase.annotation.HbaseColumn;
 import com.yt.dal.hbase.annotation.HbaseTable;
@@ -14,8 +15,6 @@ import com.yt.dal.hbase.annotation.HbaseTable;
 public class RouteBean extends BaseBean {
 	private static final long serialVersionUID = -8980153602025087935L;
 	
-	public static enum TYPE{MEMO, SCENE, FOOD, HOTEL, TRAFFIC}
-	
 	private 	@HbaseColumn(name = "name")	String 	name; 	//安排名称
 	private 	@HbaseColumn(name = "iu")			String 	imageUrl; 	//行程图片
 	private 	@HbaseColumn(name = "intr")		String 	intro; 	//概述， 可以针对行程安排中具体某天或者某个景点进行描述 
@@ -29,7 +28,7 @@ public class RouteBean extends BaseBean {
 	private 	@HbaseColumn(name = "ct")		long createdTime;
 	private 	@HbaseColumn(name = "uuid")	String updatedUserId = "";
 	private 	@HbaseColumn(name = "ut")		long updatedTime;
-	private 	@HbaseColumn(name = "stat")		int	status;
+	private 	@HbaseColumn(name = "stat")		Status	status;
 	
 	public RouteBean() {
 		super();
@@ -131,15 +130,11 @@ public class RouteBean extends BaseBean {
 		this.updatedTime = updatedTime;
 	}
 
-	public int getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(Status status) {
 		this.status = status;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 }

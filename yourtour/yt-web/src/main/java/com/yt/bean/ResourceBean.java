@@ -1,5 +1,7 @@
 package com.yt.bean;
 
+import com.yt.common.Constants.ResType;
+import com.yt.common.Constants.Status;
 import com.yt.dal.hbase.BaseBean;
 import com.yt.dal.hbase.annotation.HbaseColumn;
 import com.yt.dal.hbase.annotation.HbaseTable;
@@ -14,12 +16,10 @@ import com.yt.dal.hbase.annotation.HbaseTable;
 public class ResourceBean extends BaseBean {
 	private static final long serialVersionUID = -8980153602025087935L;
 	
-	public static enum TYPE{SCENE, FOOD, HOTEL, TRAFFIC}
-	
 	private 	@HbaseColumn(name = "name")				String 	name; 	//名称
 	private 	@HbaseColumn(name = "intr")				String 	intro; 	//简介
 	private 	@HbaseColumn(name = "url")			String 	imageUrl; 	//图片
-	private 	@HbaseColumn(name = "type")			TYPE 	type; 	//类型 
+	private 	@HbaseColumn(name = "type")			ResType 	type; 	//类型 
 	private 	@HbaseColumn(name = "otime")				String 	openTime; 	//开发时间 hh24:mi
 	private 	@HbaseColumn(name = "ctime")				String 	closeTime; 	//关闭时间 hh24:mi
 	private 	@HbaseColumn(name = "pintr")				String 	priceIntro; 	//价格信息
@@ -41,7 +41,7 @@ public class ResourceBean extends BaseBean {
 	private 	@HbaseColumn(name = "ct")				long createdTime;
 	private 	@HbaseColumn(name = "uuid")			String updatedUserId = "";
 	private 	@HbaseColumn(name = "ut")				long updatedTime;
-	private 	@HbaseColumn(name = "stat")			int	status;
+	private 	@HbaseColumn(name = "stat")			Status	status;
 	
 	public ResourceBean() {
 		super();
@@ -71,11 +71,11 @@ public class ResourceBean extends BaseBean {
 		this.imageUrl = imageUrl;
 	}
 
-	public TYPE getType() {
+	public ResType getType() {
 		return type;
 	}
 
-	public void setType(TYPE type) {
+	public void setType(ResType type) {
 		this.type = type;
 	}
 
@@ -247,11 +247,11 @@ public class ResourceBean extends BaseBean {
 		this.updatedTime = updatedTime;
 	}
 
-	public int getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 }
