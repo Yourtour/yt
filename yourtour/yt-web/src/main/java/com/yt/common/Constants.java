@@ -78,6 +78,24 @@ public interface Constants {
 				this.name = name;
 		}
 	}
+	
+	//权益枚举
+	public static enum MessageType{
+			TEXT("Text","文本"), 
+			IMAGE("Image","图片"),
+			VIDEO("Video","视频"),
+			FILE("File","附件"),
+			URL("Url","转发");
+				
+			public String code;
+			public String name;
+				
+			private MessageType(String code, String name){
+					this.code = code;
+					this.name = name;
+			}
+	}
+
 
 	public static enum TYPE{CASH, POINT, COUPON} //现金，积分，优惠券
 		//费用类型
