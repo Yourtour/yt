@@ -10,19 +10,18 @@ import com.yt.dal.hbase.annotation.HbaseTable;
  * 
  * @author Tony.Zhang
  *  行程费用实体BEAN，记录行程费用信息
+ *  
  */
 @HbaseTable(name = "T_ROUTE_CHARGE_INFO")
 public class RouteChargeBean extends BaseBean {
 	private static final long serialVersionUID = 4796045583657054183L;
 	
-	
-	
-	private	@HbaseColumn(name = "rid")		String routeId = "";
-	private 	@HbaseColumn(name = "type")	ChargeType  type;
-	private 	@HbaseColumn(name = "name")	String  name;
-	private	@HbaseColumn(name = "amount")	double amount;
-	private	@HbaseColumn(name = "memo")	String	memo;
-	private	@HbaseColumn(name = "img")		String imgUrl = "";
+	private	@HbaseColumn(name = "rid")		String routeId = ""; //行程ID
+	private 	@HbaseColumn(name = "type")	ChargeType  type;  //费用类型
+	private 	@HbaseColumn(name = "name")	String  name; //费用名称
+	private	@HbaseColumn(name = "amount")	double amount; //j金额
+	private	@HbaseColumn(name = "memo")	String	memo; //备注
+	private	@HbaseColumn(name = "img")		String imgUrl = "";  //图片
 	private 	@HbaseColumn(name = "cuid")	String createdUserId = "";
 	private 	@HbaseColumn(name = "ct")		long createdTime;
 	private 	@HbaseColumn(name = "uuid")	String updatedUserId = "";

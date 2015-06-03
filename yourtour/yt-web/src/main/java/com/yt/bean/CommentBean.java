@@ -14,7 +14,7 @@ import com.yt.dal.hbase.annotation.HbaseTable;
 public class CommentBean extends BaseBean {
 	private static final long serialVersionUID = -6977525800090683657L;
 	
-	private 	@HbaseColumn(name = "titl")	String title = ""; //评论标题	
+	private 	@HbaseColumn(name = "title")	String title = ""; //评论标题	
 	private 	@HbaseColumn(name = "cont")	String content = ""; //评论内容
 	private 	@HbaseColumn(name = "score")	int score = 0; //评分
 	private	@HbaseColumn(name = "uvote")		int upvotes = 0; //点赞数

@@ -9,18 +9,18 @@ import com.yt.dal.hbase.annotation.HbaseTable;
 /**
  * @author Tony.Zhang
  * 
- * 行程成员bean，定义了行程成员信息
+ * 行程成员bean，定义了和行程相关的各种成员信息
  *
  */
 @HbaseTable(name = "T_ROUTE_MEMBER_INFO")
 public class RouteMemberBean extends BaseBean {
 	private static final long serialVersionUID = -8980153602025087935L;
 	
-	public static enum ROLE{LEADER, MEMBER, EXPERT, HOST}
-	
 	private 	@HbaseColumn(name = "rid")				String 	routeId; 	//行程ID
 	private 	@HbaseColumn(name = "uid")			String 	userId; 	//用户ID
 	private 	@HbaseColumn(name = "role")			RoleType 	role; 	//角色 
+	private  	@HbaseColumn(name = "pos")			String 	position; 	//位置信息
+	
 	private 	@HbaseColumn(name = "cuid")			String createdUserId = "";
 	private 	@HbaseColumn(name = "ct")				long createdTime;
 	private 	@HbaseColumn(name = "uuid")			String updatedUserId = "";
@@ -53,6 +53,14 @@ public class RouteMemberBean extends BaseBean {
 
 	public void setRole(RoleType role) {
 		this.role = role;
+	}
+
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
 	}
 
 	public String getCreatedUserId() {
