@@ -9,13 +9,14 @@ import com.yt.dal.hbase.annotation.HbaseTable;
 /**
  * 
  * @author Tony.Zhang
- * 该实体定义聊天会话消息
+ * 该实体定义聊天会话信息以及参与会话的用户信息
  */
 @HbaseTable(name = "T_MESSAGE_SESSION_INFO")
 public class MessageSessionBean extends BaseBean {
 	private static final long serialVersionUID = -6977525800090683657L;
 	
 	private 	@HbaseColumn(name = "name")	String name = ""; //会话名
+	private 	@HbaseColumn(name = "uids")	String userIds = ""; //参与会话用户ID，采用分号分隔
 	private 	@HbaseColumn(name = "lcnt")	String latestContent = ""; //最后发送内容
 	private 	@HbaseColumn(name = "type")	MessageType  type; //类型
 	private 	@HbaseColumn(name = "lser")	String latestSender = ""; //最后发送人
@@ -39,6 +40,14 @@ public class MessageSessionBean extends BaseBean {
 
 	public String getLatestContent() {
 		return latestContent;
+	}
+
+	public String getUserIds() {
+		return userIds;
+	}
+
+	public void setUserIds(String userIds) {
+		this.userIds = userIds;
 	}
 
 	public void setLatestContent(String latestContent) {

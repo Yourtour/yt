@@ -16,14 +16,13 @@ public class MessageContentBean extends BaseBean {
 	private static final long serialVersionUID = -6977525800090683657L;
 	
 	private 	@HbaseColumn(name = "name")	String content = ""; //内容
-	private 	@HbaseColumn(name = "name")	MessageType  type; //类型
+	private 	@HbaseColumn(name = "type")	MessageType  type; //类型
 	private 	@HbaseColumn(name = "sender")		String sender = ""; //发送人
 	private 	@HbaseColumn(name = "st")		long sendTime ; //发送时间
 	private 	@HbaseColumn(name = "stat")		Status	status;
 	
 	public MessageContentBean() {
 	}
-
 
 	public String getContent() {
 		return content;
