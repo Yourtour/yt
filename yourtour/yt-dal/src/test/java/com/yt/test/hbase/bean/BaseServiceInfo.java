@@ -121,7 +121,16 @@ public class BaseServiceInfo extends BaseDictBean {
 	}
 
 	public enum BaseServiceInfoEnum {
-		DRAFT, VALIDATED, ACTIVED, CLOSED, CANCELED
+		DRAFT("Draft", "草稿"), VALIDATED("Validated", "有效"), ACTIVED("Actived",
+				"激活"), CLOSED("Closed", "关闭"), CANCELED("Canceled", "取消");
+
+		public String code;
+		public String name;
+
+		private BaseServiceInfoEnum(String code, String name) {
+			this.code = code;
+			this.name = name;
+		}
 	}
 
 }

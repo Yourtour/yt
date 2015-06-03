@@ -6,6 +6,7 @@ import java.nio.ByteBuffer;
 
 import org.apache.hadoop.hbase.util.Bytes;
 
+import com.yt.core.utils.EnumUtils;
 import com.yt.dal.hbase.BaseBean;
 import com.yt.dal.hbase.annotation.HbaseTable;
 import com.yt.dal.hbase.cache.BeanDescriptor;
@@ -14,7 +15,7 @@ import com.yt.dal.hbase.cache.BeanDescriptor.Qualifier;
 
 /**
  * 操作hbase数据中常用的方法
- *
+ * 
  * <p>
  * <b>修改历史：</b>
  * <table border="1">
@@ -31,7 +32,7 @@ import com.yt.dal.hbase.cache.BeanDescriptor.Qualifier;
  * </table>
  * 
  * @author john
- *  
+ * 
  * @version 1.0
  * @since 1.0
  */
@@ -74,10 +75,15 @@ public class HBaseUtils {
 
 	/**
 	 * 以字节数组方式设置hbase实体对象中指定字段的值
-	 * @param bean hbase实体对象
-	 * @param fieldName 字段名称
-	 * @param value 字节数组形式的数据
-	 * @throws Exception 设置过程中发生的异常
+	 * 
+	 * @param bean
+	 *            hbase实体对象
+	 * @param fieldName
+	 *            字段名称
+	 * @param value
+	 *            字节数组形式的数据
+	 * @throws Exception
+	 *             设置过程中发生的异常
 	 */
 	public static void set(BaseBean bean, String fieldName, byte[] value)
 			throws Exception {
@@ -96,10 +102,14 @@ public class HBaseUtils {
 
 	/**
 	 * 以字节数组方式获取hbase实体对象中对应字段的数据
-	 * @param bean hbase实体对象
-	 * @param fieldName 字段名称
+	 * 
+	 * @param bean
+	 *            hbase实体对象
+	 * @param fieldName
+	 *            字段名称
 	 * @return 对应字段数据的字节数组
-	 * @throws Exception 获取过程中发生的异常
+	 * @throws Exception
+	 *             获取过程中发生的异常
 	 */
 	public static byte[] get(BaseBean bean, String fieldName) throws Exception {
 		if (bean == null) {
@@ -149,9 +159,12 @@ public class HBaseUtils {
 		} else if (clazz.isAssignableFrom(String.class)) {
 			return (value == null ? "" : Bytes.toString(value));
 		} else if (clazz.isEnum()) {
-			Class c = Class.forName(clazz.getName());
-			String name = (value == null ? null : Bytes.toString(value));
-			return (name == null ? c.newInstance() : Enum.valueOf(c, name));
+			Class<? extends Enum> enumClass = (Class<Enum>) clazz;
+			if (value == null) {
+				return EnumUtils.createDefault(enumClass);
+			}
+			String code = Bytes.toString(value);
+			return EnumUtils.valueOf(code, enumClass);
 		} else if (clazz.isAssignableFrom(BaseBean.class)) {
 			// TODO 暂时不支持将关联的bean加载出来，以后考虑实现。
 			throw new Exception("暂时不支持将关联的bean加载出来，以后考虑实现。");
@@ -162,6 +175,7 @@ public class HBaseUtils {
 	}
 
 	// 根据数据字段类型，将数据内容转换为字节数组
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private static byte[] toBytes(Object value, Class<?> clazz)
 			throws Exception {
 		if (clazz.isAssignableFrom(byte[].class)) {
@@ -206,8 +220,10 @@ public class HBaseUtils {
 			value = (value == null ? "" : value);
 			return Bytes.toBytes((String) value);
 		} else if (clazz.isEnum()) {
-			value = (value == null ? clazz.newInstance() : value);
-			return Bytes.toBytes(((Enum<?>)value).name());
+			if (value == null) {
+				value = EnumUtils.createDefault((Class<Enum>) clazz);
+			}
+			return Bytes.toBytes(EnumUtils.valueOf((Enum) value));
 		} else if (clazz.isAssignableFrom(BaseBean.class)) {
 			if (value == null) {
 				throw new Exception(

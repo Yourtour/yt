@@ -21,6 +21,7 @@ import com.yt.dal.hbase.HbaseManager;
 import com.yt.dal.hbase.ICrudOperate;
 import com.yt.dal.hbase.IDdlOperate;
 import com.yt.test.hbase.bean.BaseServiceInfo;
+import com.yt.test.hbase.bean.BaseServiceInfo.BaseServiceInfoEnum;
 import com.yt.test.hbase.bean.TestBean;
 
 public class TestCrudGeneralOperate {
@@ -113,7 +114,9 @@ public class TestCrudGeneralOperate {
 			assertTrue(info.getName().equals(info1.getName()));
 			assertTrue(info.isPrepayment() == info1.isPrepayment());
 			assertNotNull(info1.getStatus());
-			assertTrue(info.getStatus().name().equals(info1.getStatus().name()));
+			assertTrue(((BaseServiceInfoEnum)info.getStatus()).code.equals(((BaseServiceInfoEnum)info1.getStatus()).code));
+			assertTrue("Closed".equals(((BaseServiceInfoEnum)info1.getStatus()).code));
+			assertTrue("关闭".equals(((BaseServiceInfoEnum)info1.getStatus()).name));
 
 			crudOperate.deleteRow(info);
 			BaseServiceInfo info2 = (BaseServiceInfo) crudOperate.get(
