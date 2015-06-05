@@ -22,8 +22,8 @@ import com.yt.vo.RouteScheduleVO;
  */
 @Controller
 @RequestMapping("/line")
-public class LineController {
-	public LineController() {
+public class RouteLineController {
+	public RouteLineController() {
 	}
 	
 	
