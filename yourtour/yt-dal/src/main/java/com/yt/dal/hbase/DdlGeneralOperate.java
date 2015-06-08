@@ -38,7 +38,7 @@ import com.yt.dal.hbase.cache.IBeanDescriptorCache;
  * 
  * @author John Peng
  * 
- * @version 1。0
+ * @version 1.0
  * @since 1.0
  */
 public class DdlGeneralOperate implements IDdlOperate {
@@ -135,28 +135,21 @@ public class DdlGeneralOperate implements IDdlOperate {
 	@Override
 	public void createTable(Class<? extends BaseBean> clazz) throws Exception {
 		BeanDescriptor bd = cache.get(clazz);
-		if (bd == null) {
-			if (LOG.isWarnEnabled()) {
-				LOG.warn(String.format("The BeanDescriptor[%s] not exist.",
-						clazz.getName()));
-			}
+		createTable(bd);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.yt.dal.hbase.IDdlOperate#createTable(com.yt.dal.hbase.cache.
+	 * BeanDescriptor)
+	 */
+	@Override
+	public void createTable(BeanDescriptor bd) throws Exception {
+		InnerData data = fetchInnerData(bd);
+		if (data != null) {
+			createTable(data.tableName, data.families, data.properties);
 		}
-		String tableName = bd.getFullTableName();
-		if (tableExist(tableName)) {
-			throw new Exception(String.format("The table[%s] has existed.",
-					tableName));
-		}
-		String[] families = new String[bd.getFamilies().size()];
-		int index = 0;
-		for (Family family : bd.getFamilies().values()) {
-			families[index++] = family.getName();
-		}
-		Map<String, byte[]> properties = new HashMap<String, byte[]>(4);
-		properties.put("startKey", Bytes.toBytes(bd.getStartKey()));
-		properties.put("endKey", Bytes.toBytes(bd.getEndKey()));
-		properties.put("regionNum", Bytes.toBytes(bd.getRegionNum()));
-		properties.put("version", Bytes.toBytes(bd.getVersion()));
-		createTable(tableName, families, properties);
 	}
 
 	/*
@@ -252,11 +245,23 @@ public class DdlGeneralOperate implements IDdlOperate {
 	@Override
 	public boolean tableExist(Class<? extends BaseBean> clazz) throws Exception {
 		BeanDescriptor bd = cache.get(clazz);
+		return tableExist(bd);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.yt.dal.hbase.IDdlOperate#tableExist(com.yt.dal.hbase.cache.BeanDescriptor
+	 * )
+	 */
+	@Override
+	public boolean tableExist(BeanDescriptor bd) throws Exception {
 		if (bd == null) {
 			if (LOG.isWarnEnabled()) {
-				LOG.warn(String.format("The BeanDescriptor[%s] not exist.",
-						clazz.getName()));
+				LOG.warn("The BeanDescriptor[%s] not exist.");
 			}
+			return false;
 		}
 		String tableName = bd.getFullTableName();
 		return tableExist(tableName);
@@ -266,12 +271,11 @@ public class DdlGeneralOperate implements IDdlOperate {
 	 * (non-Javadoc)
 	 * 
 	 * @see com.yt.dal.hbase.IDdlOperate#alterTable(java.lang.String,
-	 * java.lang.String)
+	 * java.lang.String[])
 	 */
 	@Override
-	public void alterTable(String tableName, String family) {
-		// TODO Auto-generated method stub
-
+	public void alterTable(String tableName, String[] family) throws Exception {
+		alterTable(tableName, family, null);
 	}
 
 	/*
@@ -280,8 +284,101 @@ public class DdlGeneralOperate implements IDdlOperate {
 	 * @see com.yt.dal.hbase.IDdlOperate#alterTable(java.lang.Class)
 	 */
 	@Override
-	public void alterTable(Class<? extends BaseBean> clazz) {
-		// TODO Auto-generated method stub
-
+	public void alterTable(Class<? extends BaseBean> clazz) throws Exception {
+		BeanDescriptor bd = cache.get(clazz);
+		alterTable(bd);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.yt.dal.hbase.IDdlOperate#alterTable(com.yt.dal.hbase.cache.BeanDescriptor
+	 * )
+	 */
+	@Override
+	public void alterTable(BeanDescriptor bd) throws Exception {
+		InnerData data = fetchInnerData(bd);
+		if (data != null) {
+			alterTable(data.tableName, data.families, data.properties);
+		}
+	}
+
+	// 根据传入的参数修改表
+	private void alterTable(String tableName, String[] families,
+			Map<String, byte[]> properties) throws Exception {
+		Admin admin = manager.getAdmin();
+		TableName tn = TableName.valueOf(tableName);
+		HTableDescriptor htd = admin.getTableDescriptor(tn);
+		if (htd == null) {
+			if (LOG.isWarnEnabled()) {
+				LOG.warn(String.format(
+						"The table[%s] not exist, will create it.", tableName));
+			}
+			createTable(tableName, families, properties);
+		} else {
+			admin.disableTable(tn);
+			// modify the family
+			if (families != null) {
+				for (String family : families) {
+					// 如果存在，则忽略，否则新增列族；不考虑删除列族。
+					if (htd.hasFamily(Bytes.toBytes(family))) {
+						continue;
+					}
+					HColumnDescriptor hcd = new HColumnDescriptor(family);
+					htd.addFamily(hcd);
+				}
+			}
+			if (properties != null) {
+				for (String key : properties.keySet()) {
+					htd.setValue(Bytes.toBytes(key), properties.get(key));
+				}
+			}
+			admin.modifyTable(tn, htd);
+			admin.enableTable(tn);
+			if (LOG.isDebugEnabled()) {
+				LOG.debug(String.format("Alter table[%s] successfully.",
+						tableName));
+			}
+		}
+	}
+
+	// 为了代码重用，封装了公共的内部数据对象获取
+	private InnerData fetchInnerData(BeanDescriptor bd) throws Exception {
+		InnerData data = new InnerData();
+		if (bd == null) {
+			if (LOG.isWarnEnabled()) {
+				LOG.warn("The BeanDescriptor is null.");
+			}
+			return null;
+		}
+		String tableName = bd.getFullTableName();
+		if (tableExist(tableName)) {
+			if (LOG.isWarnEnabled()) {
+				LOG.warn(String.format("The table[%s] has existed.", tableName));
+			}
+		}
+		data.tableName = tableName;
+		String[] families = new String[bd.getFamilies().size()];
+		int index = 0;
+		for (Family family : bd.getFamilies().values()) {
+			families[index++] = family.getName();
+		}
+		data.families = families;
+		Map<String, byte[]> properties = new HashMap<String, byte[]>(4);
+		properties.put("startKey", Bytes.toBytes(bd.getStartKey()));
+		properties.put("endKey", Bytes.toBytes(bd.getEndKey()));
+		properties.put("regionNum", Bytes.toBytes(bd.getRegionNum()));
+		properties.put("version", Bytes.toBytes(bd.getVersion()));
+		data.properties = properties;
+		return data;
+	}
+
+	// 内部数据对象
+	private class InnerData {
+		public String tableName;
+		public String[] families;
+		public Map<String, byte[]> properties;
+	}
+
 }
