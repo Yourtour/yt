@@ -21,8 +21,8 @@ import com.yt.vo.RouteMemberVO;
  */
 @Controller
 @RequestMapping("/member")
-public class MemberController {
-	public MemberController() {
+public class RouteMemberController {
+	public RouteMemberController() {
 	}
 	
 	/**

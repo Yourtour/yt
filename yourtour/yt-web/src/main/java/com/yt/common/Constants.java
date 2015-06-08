@@ -2,6 +2,24 @@ package com.yt.common;
 
 public interface Constants {
 	//资源枚举
+	public static enum ScheduleType{
+		PLAY("Play","游玩"), 
+		FOOD("Food","餐饮"), 
+		HOTEL("Hotel","住宿"), 
+		TRAFFIC("Traffic","交通"),
+		FREE("Free","自行安排"),
+		MATTER("Matter","事项");
+		
+		public String code;
+		public String name;
+		
+		private ScheduleType(String code, String name){
+			this.code = code;
+			this.name = name;
+		}
+	}
+		
+	//资源枚举
 	public static enum ResType{
 		SCENE("Scene","景点资源"), 
 		FOOD("Food","美食资源"), 
@@ -80,7 +98,7 @@ public interface Constants {
 	}
 	
 	//权益枚举
-	public static enum MessageType{
+	public static enum ContentType{
 			TEXT("Text","文本"), 
 			IMAGE("Image","图片"),
 			VIDEO("Video","视频"),
@@ -90,14 +108,27 @@ public interface Constants {
 			public String code;
 			public String name;
 				
-			private MessageType(String code, String name){
+			private ContentType(String code, String name){
 					this.code = code;
 					this.name = name;
 			}
 	}
-
-
-	public static enum TYPE{CASH, POINT, COUPON} //现金，积分，优惠券
-		//费用类型
-	public static enum ChargeType{PERSONAL_EXPEND, GROUP_EXPEND, PRERECEIVE, PERSONAL_BUDGET, GROUP_BUDGET, GROUP_SPLIT};
+	
+	//费用枚举
+	public static enum ChargeType{
+			PERSONAL_EXPEND("PExpend","个人支出"), 
+			GROUP_EXPEND("GExpend","集体支出"),
+			GROUP_RERECEIVE("GPreReceive","集体预收"),
+			PERSONAL_BUDGET("PBudget","个人预算"),
+			GROUP_BUDGET("GBudget","集体预算"),
+			GROUP_SPLIT("GSplit","集体分摊");
+					
+			public String code;
+			public String name;
+				
+			private ChargeType(String code, String name){
+					this.code = code;
+					this.name = name;
+			}
+		}
 }

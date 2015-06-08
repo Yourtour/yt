@@ -30,8 +30,64 @@ public class RouteController {
 	 * @return
 	 */
 	@RequestMapping(value="/user/{userId}")
-	public @ResponseBody ResponseMessage queryRouteInfoes(@PathVariable("userId") String userId) throws Exception{
-		List<RouteVO> data = (List<RouteVO>) MockDataFactory.getMockListData(RouteVO.class, "route_user_" + userId);
+	public @ResponseBody ResponseMessage queryRouteInfoesByUser(@PathVariable("userId") String userId) throws Exception{
+		List<RouteVO> data = (List<RouteVO>) MockDataFactory.getMockListData(RouteVO.class, "route/user/query");
+		
+		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, "", data);
+		return response;
+	}
+	
+	/**
+	 * 根据目的地查询行程信息
+	 * @param place
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/place/{place}")
+	public @ResponseBody ResponseMessage queryRouteInfoesByPlace(@PathVariable("place") String place) throws Exception{
+		List<RouteVO> data = (List<RouteVO>) MockDataFactory.getMockListData(RouteVO.class, "route/place/query");
+		
+		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, "", data);
+		return response;
+	}
+	
+	/**
+	 * 根据资源查询相关行程
+	 * @param resource
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/resource/{resource}")
+	public @ResponseBody ResponseMessage queryRouteInfoesByResource(@PathVariable("resource") String resource) throws Exception{
+		List<RouteVO> data = (List<RouteVO>) MockDataFactory.getMockListData(RouteVO.class, "route/resource/query");
+		
+		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, "", data);
+		return response;
+	}
+	
+	/**
+	 * 根据主题查询行程 
+	 * @param subject
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/subject/{subject}")
+	public @ResponseBody ResponseMessage queryRouteInfoesBySubject(@PathVariable("subject") String subject) throws Exception{
+		List<RouteVO> data = (List<RouteVO>) MockDataFactory.getMockListData(RouteVO.class, "route/subject/query");
+		
+		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, "", data);
+		return response;
+	}
+	
+	/**
+	 * 根据线路查询行程 
+	 * @param subject
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/line/{lineId}")
+	public @ResponseBody ResponseMessage queryRouteInfoesByLine(@PathVariable("lineId") String lineId) throws Exception{
+		List<RouteVO> data = (List<RouteVO>) MockDataFactory.getMockListData(RouteVO.class, "route/subject/query");
 		
 		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, "", data);
 		return response;

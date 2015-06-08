@@ -1,5 +1,6 @@
 package com.yt.bean;
 
+import com.yt.common.Constants.ContentType;
 import com.yt.common.Constants.Status;
 import com.yt.dal.hbase.BaseBean;
 import com.yt.dal.hbase.annotation.HbaseColumn;
@@ -15,13 +16,11 @@ import com.yt.dal.hbase.annotation.HbaseTable;
 public class RouteNotesBean extends BaseBean {
 	private static final long serialVersionUID = 1857376918585112905L;
 	
-	public static enum TYPE{IMG, VIDEO};
-	
-	private	@HbaseColumn(name = "rid")		String routeId = "";
-	private	@HbaseColumn(name = "sid")		String scheduleId = "";
-	private	@HbaseColumn(name = "url")		String url = "";
-	private 	@HbaseColumn(name = "type")		TYPE type;
-	private 	@HbaseColumn(name = "words")		String words = "";
+	private	@HbaseColumn(name = "rid")			String routeId = "";  //行程ID
+	private	@HbaseColumn(name = "sid")			String scheduleId = ""; //行程安排ID
+	private	@HbaseColumn(name = "url")			String url = ""; //
+	private 	@HbaseColumn(name = "type")		ContentType type;
+	private 	@HbaseColumn(name = "words")	String words = "";
 	private 	@HbaseColumn(name = "live")		int	live;
 	private 	@HbaseColumn(name = "cuid")	String createdUserId = "";
 	private 	@HbaseColumn(name = "ct")		long createdTime;
@@ -56,11 +55,11 @@ public class RouteNotesBean extends BaseBean {
 		this.url = url;
 	}
 
-	public TYPE getType() {
+	public ContentType getType() {
 		return type;
 	}
 
-	public void setType(TYPE type) {
+	public void setType(ContentType type) {
 		this.type = type;
 	}
 
