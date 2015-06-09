@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * hbase中对实体进行CRUD操作的接口定义。
- *
+ * 
  * <p>
  * <b>修改历史：</b>
  * <table border="1">
@@ -21,7 +21,7 @@ import java.util.List;
  * </table>
  * 
  * @author john
- *  
+ * 
  * @version 1.0
  * @since 1.0
  */
@@ -65,15 +65,29 @@ public interface ICrudOperate {
 	/**
 	 * 获取指定表和行键的bean数据对象，仅仅返回最新版本数据。
 	 * 
-	 * @param class
-	 *            hbase实体类
-	 * @param rowKey
+	 * @param className
+	 *            hbase实体类名。
+	 * @param rowkey
 	 *            行键
 	 * @return bean数据对象，如果指定对象不存在，则返回null。
 	 * @throws Exception
 	 *             获取过程中发生的异常
 	 */
-	public BaseBean get(Class<? extends BaseBean> clazz, String rowKey) throws Exception;
+	public BaseBean get(String className, String rowkey) throws Exception;
+
+	/**
+	 * 获取指定表和行键的bean数据对象，仅仅返回最新版本数据。
+	 * 
+	 * @param class hbase实体类
+	 * @param rowKey
+	 *            行键
+	 * @return bean数据对象，如果指定对象不存在，则返回null。
+	 * @throws Exception
+	 *             获取过程中发生的异常
+	 * @see #get(String, String)
+	 */
+	public BaseBean get(Class<? extends BaseBean> clazz, String rowKey)
+			throws Exception;
 
 	/**
 	 * 获取指定hbase实体类的所有bean数据对象

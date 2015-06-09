@@ -233,6 +233,17 @@ public class CrudGeneralOperate implements ICrudOperate {
 			LOG.debug(String.format("delete data[%d rows] successfully.", rows));
 		}
 	}
+	
+	/* (non-Javadoc)
+	 * @see com.yt.dal.hbase.ICrudOperate#get(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public BaseBean get(String className, String rowkey) throws Exception {
+		BeanDescriptor bd = cache.get(className);
+		@SuppressWarnings("unchecked")
+		Class<BaseBean> clazz = (Class<BaseBean>)Class.forName(className);
+		return get(bd, clazz, rowkey);
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -248,6 +259,11 @@ public class CrudGeneralOperate implements ICrudOperate {
 			throw new Exception(String.format(
 					"The BeanDescriptor[%s] is not exist.", clazz.getName()));
 		}
+		return get(bd, clazz, rowKey);
+	}
+	
+	// 从hbase中获取指定的实体对象。
+	private BaseBean get(BeanDescriptor bd, Class<? extends BaseBean> clazz, String rowKey) throws Exception {
 		BaseBean bean = clazz.newInstance();
 		try (Table table = manager.getConnection().getTable(
 				TableName.valueOf(bd.getFullTableName()))) {
