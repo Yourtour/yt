@@ -1,5 +1,7 @@
 package com.yt.dal.hbase.cache;
 
+import java.util.List;
+
 import com.yt.dal.hbase.BaseBean;
 
 /**
@@ -55,4 +57,11 @@ public interface IBeanDescriptorCache {
 	 * @return hbase表描述对象，如果不存在，则返回null。
 	 */
 	public BeanDescriptor get(String beanClassName);
+
+	/**
+	 * 获取缓存中所有的hbase实体对象
+	 * 
+	 * @return hbase实体对象列表
+	 */
+	public List<BeanDescriptor> get();
 }

@@ -21,6 +21,10 @@
 		<property name="beanRepositories" value="com.yt.test.hbase.bean" />
 	</bean>
 	
+	<bean id="hbaseStructureSync" class="com.yt.dal.hbase.generator.HbaseStructureSync">
+		<property name="ignoreError" value="true" />
+	</bean>
+	
 	<hdp:configuration>
         
     </hdp:configuration> <hdp:hbase-configuration zk-quorum="YT-DATABASE" zk-port="2181" /> </beans>

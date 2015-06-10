@@ -10,4 +10,7 @@ public class NoNamespaceBean extends BaseBean {
 	
 	@HbaseColumn
 	private String name, code;
+	
+	@HbaseColumn(family="info", name="stud")
+	private boolean student;
 }

@@ -2,7 +2,9 @@ package com.yt.dal.hbase.cache;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -197,6 +199,18 @@ public class BeanDescriptorGeneralCacheImpl implements IBeanDescriptorCache,
 		} else {
 			return null;
 		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.yt.dal.hbase.cache.IBeanDescriptorCache#get()
+	 */
+	@Override
+	public List<BeanDescriptor> get() {
+		List<BeanDescriptor> list = new Vector<BeanDescriptor>(cache.size());
+		list.addAll(cache.values());
+		return list;
 	}
 
 }
