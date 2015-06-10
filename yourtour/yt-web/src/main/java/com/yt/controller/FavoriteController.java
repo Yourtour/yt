@@ -22,7 +22,6 @@ import com.yt.vo.RouteVO;
 @Controller
 @RequestMapping("/favorite")
 public class FavoriteController {
-
 	public FavoriteController() {
 	}
 	
