@@ -7,12 +7,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yt.bean.RouteBean;
 import com.yt.bean.RouteScheduleBean;
 import com.yt.common.ResponseMessage;
 import com.yt.mocker.MockDataFactory;
+import com.yt.vo.LineVO;
 import com.yt.vo.RouteScheduleVO;
 import com.yt.vo.RouteVO;
 
@@ -38,7 +40,7 @@ public class RouteController {
 	}
 	
 	/**
-	 * 根据目的地查询行程信息
+	 * 根据目的地代码查询行程信息
 	 * @param place
 	 * @return
 	 * @throws Exception
@@ -53,13 +55,27 @@ public class RouteController {
 	
 	/**
 	 * 根据资源查询相关行程
-	 * @param resource
+	 * @param resId
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/resource/{resource}")
-	public @ResponseBody ResponseMessage queryRouteInfoesByResource(@PathVariable("resource") String resource) throws Exception{
+	@RequestMapping(value="/resource/{resId}")
+	public @ResponseBody ResponseMessage queryRouteInfoesByResource(@PathVariable("resId") String resId) throws Exception{
 		List<RouteVO> data = (List<RouteVO>) MockDataFactory.getMockListData(RouteVO.class, "route/resource/query");
+		
+		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, "", data);
+		return response;
+	}
+	
+	/**
+	 * 根据用户输入的搜索关键字（线路名称，景点名称等）进行检索
+	 * @param name
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/search", method=RequestMethod.GET)
+	public @ResponseBody ResponseMessage searchRouteInfoes(@RequestParam("name") String name) throws Exception{
+		List<LineVO> data = (List<LineVO>) MockDataFactory.getMockListData(LineVO.class, "route/place/query");
 		
 		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, "", data);
 		return response;
@@ -88,6 +104,20 @@ public class RouteController {
 	@RequestMapping(value="/line/{lineId}")
 	public @ResponseBody ResponseMessage queryRouteInfoesByLine(@PathVariable("lineId") String lineId) throws Exception{
 		List<RouteVO> data = (List<RouteVO>) MockDataFactory.getMockListData(RouteVO.class, "route/subject/query");
+		
+		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, "", data);
+		return response;
+	}
+	
+	/**
+	 * 查找和某行程相近的行程
+	 * @param routeId
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/{routeId}/relationship")
+	public @ResponseBody ResponseMessage queryRelatedRouteInfoes(@PathVariable("routeId") String routeId) throws Exception{
+		List<LineVO> data = (List<LineVO>) MockDataFactory.getMockListData(LineVO.class, "route/place/query");
 		
 		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, "", data);
 		return response;

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yt.bean.LineBean;
@@ -28,7 +29,7 @@ public class LineController {
 	}
 
 	/**
-	 * 根据目的地查询线路信息
+	 * 根据目的地代码查询线路信息
 	 * @param place
 	 * @return
 	 * @throws Exception
@@ -42,12 +43,55 @@ public class LineController {
 	}
 	
 	/**
+	 * 根据资源找相关的线路信息
+	 * @param place
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/resource/{resId}")
+	public @ResponseBody ResponseMessage queryLineInfoesByResource(@PathVariable("resId") String resId) throws Exception{
+		List<LineVO> data = (List<LineVO>) MockDataFactory.getMockListData(LineVO.class, "route/place/query");
+		
+		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, "", data);
+		return response;
+	}
+	
+	/**
+	 * 根据主题查询线路
+	 * @param subject
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/subject/{subject}")
+	public @ResponseBody ResponseMessage queryLineInfoesBySubject(@PathVariable("subject") String subject) throws Exception{
+		List<RouteVO> data = (List<RouteVO>) MockDataFactory.getMockListData(RouteVO.class, "route/subject/query");
+		
+		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, "", data);
+		return response;
+	}
+	
+	
+	/**
+	 * 根据用户输入的搜索关键字（线路名称，景点名称等）进行检索
+	 * @param name
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/search", method=RequestMethod.GET)
+	public @ResponseBody ResponseMessage searchLineInfoes(@RequestParam("name") String name) throws Exception{
+		List<LineVO> data = (List<LineVO>) MockDataFactory.getMockListData(LineVO.class, "route/place/query");
+		
+		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, "", data);
+		return response;
+	}
+	
+	/**
 	 * 查找和某条线路相近的线路
 	 * @param line
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/{lineId}/relation")
+	@RequestMapping(value="/{lineId}/relationship")
 	public @ResponseBody ResponseMessage queryRelatedLineInfoes(@PathVariable("lineId") String line) throws Exception{
 		List<LineVO> data = (List<LineVO>) MockDataFactory.getMockListData(LineVO.class, "route/place/query");
 		
@@ -103,7 +147,7 @@ public class LineController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/{lineId}", method=RequestMethod.POST)
+	@RequestMapping(value="/save/{lineId}", method=RequestMethod.POST)
 	public @ResponseBody ResponseMessage updateLineInfo(@PathVariable("lineId") String lineId, @RequestBody LineBean line) throws Exception{
 		List<RouteVO> data = (List<RouteVO>) MockDataFactory.getMockData(LineVO.class, "route/place/query");
 		
@@ -117,7 +161,7 @@ public class LineController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(method=RequestMethod.POST)
+	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public @ResponseBody ResponseMessage insertLineInfo(@RequestBody LineBean line) throws Exception{
 		List<RouteVO> data = (List<RouteVO>) MockDataFactory.getMockData(LineVO.class, "route/place/query");
 		
@@ -145,8 +189,8 @@ public class LineController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/{lineId}/routes", method=RequestMethod.POST)
-	public @ResponseBody ResponseMessage insertLineRouteInfo(@PathVariable("lineId") String lineId) throws Exception{
+	@RequestMapping(value="/{lineId}/route/{routeId}", method=RequestMethod.POST)
+	public @ResponseBody ResponseMessage insertLineRouteInfo(@PathVariable("lineId") String lineId,  @PathVariable("routeId") String routeId) throws Exception{
 		List<RouteVO> data = (List<RouteVO>) MockDataFactory.getMockData(LineVO.class, "route/place/query");
 		
 		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, "", data);
