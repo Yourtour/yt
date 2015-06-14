@@ -18,7 +18,11 @@ Ext.application({
     ],
 
     views: [
-        'Main'
+        'Main','Launch','Welcome'
+    ],
+    
+    controllers: [
+        'Welcome'
     ],
 
     icon: {
@@ -27,7 +31,9 @@ Ext.application({
         '114': 'resources/icons/Icon@2x.png',
         '144': 'resources/icons/Icon~ipad@2x.png'
     },
-
+    
+    localStorage : window.localStorage, 
+    
     isIconPrecomposed: true,
 
     startupImage: {
@@ -40,11 +46,27 @@ Ext.application({
     },
 
     launch: function() {
-        // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
-
+        
+        setTimeout(function() {
+        	var visited = this.localStorage.getItem("welcome.visited");
+        	if(visited == null){
+	        	Ext.Viewport.setActiveItem(
+	        		'welcome', {
+	                type : 'slide',
+	                direction : 'left'
+	            });
+	        }else{
+	        	Ext.Viewport.setActiveItem(
+	        		'main', {
+	                type : 'slide',
+	                direction : 'left'
+	            });
+	        }
+        }, 2000); 
+        
         // Initialize the main view
-        Ext.Viewport.add(Ext.create('YourTour.view.Main'));
+        Ext.Viewport.add(Ext.create('YourTour.view.Launch'));
     },
 
     onUpdated: function() {

@@ -70,9 +70,10 @@
      *
      *      }
      */
-    "css": [
+   "css": [
         {
-            "path": "resources/css/app.css",
+            "path": "resources/css/cupertino.css",
+            "theme":"Cupertino",
             "update": "delta"
         }
     ],

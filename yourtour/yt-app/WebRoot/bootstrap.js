@@ -639,7 +639,10 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.viewport.WindowsPhone": [
     "Ext.viewport.WP"
   ],
-  "YourTour.view.Main": []
+  "YourTour.controller.Welcome": [],
+  "YourTour.view.Launch": [],
+  "YourTour.view.Main": [],
+  "YourTour.view.Welcome": []
 });
 Ext.ClassManager.addNameAliasMappings({
   "Ext.AbstractComponent": [],
@@ -1359,7 +1362,14 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.Ios": [],
   "Ext.viewport.Viewport": [],
   "Ext.viewport.WindowsPhone": [],
+  "YourTour.controller.Welcome": [],
+  "YourTour.view.Launch": [
+    "widget.launch"
+  ],
   "YourTour.view.Main": [
     "widget.main"
+  ],
+  "YourTour.view.Welcome": [
+    "widget.welcome"
   ]
 });

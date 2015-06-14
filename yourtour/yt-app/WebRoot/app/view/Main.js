@@ -1,3 +1,4 @@
+
 Ext.define('YourTour.view.Main', {
     extend: 'Ext.tab.Panel',
     xtype: 'main',
