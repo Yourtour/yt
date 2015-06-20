@@ -18,13 +18,21 @@ Ext.application({
     ],
 
     views: [
-        'Main','Launch','Welcome'
+        'Main','Launch','Welcome','RouteMain','HomeMain'
     ],
     
     controllers: [
-        'Welcome'
+        'Welcome', 'Main', 'RouteMain'
     ],
-
+    
+    models:[
+        'LocalCache','RouteMain'
+    ],
+    
+    stores:[
+        'RouteMain'
+    ],
+        
     icon: {
         '57': 'resources/icons/Icon.png',
         '72': 'resources/icons/Icon~ipad.png',
@@ -32,41 +40,26 @@ Ext.application({
         '144': 'resources/icons/Icon~ipad@2x.png'
     },
     
-    localStorage : window.localStorage, 
-    
     isIconPrecomposed: true,
 
     startupImage: {
-        '320x460': 'resources/startup/320x460.jpg',
-        '640x920': 'resources/startup/640x920.png',
-        '768x1004': 'resources/startup/768x1004.png',
-        '748x1024': 'resources/startup/748x1024.png',
-        '1536x2008': 'resources/startup/1536x2008.png',
-        '1496x2048': 'resources/startup/1496x2048.png'
+        '320x460': 'resources/startup/launch.jpg',
+        '640x920': 'resources/startup/launch.png',
+        '768x1004': 'resources/startup/launch.png',
+        '748x1024': 'resources/startup/launch.png',
+        '1536x2008': 'resources/startup/launch.png',
+        '1496x2048': 'resources/startup/launch.png'
     },
 
     launch: function() {
         Ext.fly('appLoadingIndicator').destroy();
         
-        setTimeout(function() {
-        	var visited = this.localStorage.getItem("welcome.visited");
-        	if(visited == null){
-	        	Ext.Viewport.setActiveItem(
-	        		'welcome', {
-	                type : 'slide',
-	                direction : 'left'
-	            });
-	        }else{
-	        	Ext.Viewport.setActiveItem(
-	        		'main', {
-	                type : 'slide',
-	                direction : 'left'
-	            });
-	        }
-        }, 2000); 
-        
         // Initialize the main view
         Ext.Viewport.add(Ext.create('YourTour.view.Launch'));
+        
+        Ext.defer(function () { 
+        	Ext.Viewport.setActiveItem(Ext.create('YourTour.view.Main'));
+        },2000);
     },
 
     onUpdated: function() {

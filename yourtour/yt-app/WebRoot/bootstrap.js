@@ -639,9 +639,19 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.viewport.WindowsPhone": [
     "Ext.viewport.WP"
   ],
+  "YourTour.controller.Main": [],
+  "YourTour.controller.RouteMain": [],
   "YourTour.controller.Welcome": [],
+  "YourTour.model.LocalCache": [],
+  "YourTour.model.RouteMain": [],
+  "YourTour.store.BaseStore": [],
+  "YourTour.store.RouteMain": [],
+  "YourTour.view.Community": [],
+  "YourTour.view.HomeMain": [],
   "YourTour.view.Launch": [],
   "YourTour.view.Main": [],
+  "YourTour.view.PersonalMain": [],
+  "YourTour.view.RouteMain": [],
   "YourTour.view.Welcome": []
 });
 Ext.ClassManager.addNameAliasMappings({
@@ -1362,12 +1372,32 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.Ios": [],
   "Ext.viewport.Viewport": [],
   "Ext.viewport.WindowsPhone": [],
+  "YourTour.controller.Main": [],
+  "YourTour.controller.RouteMain": [],
   "YourTour.controller.Welcome": [],
+  "YourTour.model.LocalCache": [
+    "widget.localCache"
+  ],
+  "YourTour.model.RouteMain": [],
+  "YourTour.store.BaseStore": [],
+  "YourTour.store.RouteMain": [],
+  "YourTour.view.Community": [
+    "widget.communityview"
+  ],
+  "YourTour.view.HomeMain": [
+    "widget.homemain"
+  ],
   "YourTour.view.Launch": [
     "widget.launch"
   ],
   "YourTour.view.Main": [
-    "widget.main"
+    "widget.mainview"
+  ],
+  "YourTour.view.PersonalMain": [
+    "widget.personalmain"
+  ],
+  "YourTour.view.RouteMain": [
+    "widget.routemain"
   ],
   "YourTour.view.Welcome": [
     "widget.welcome"
