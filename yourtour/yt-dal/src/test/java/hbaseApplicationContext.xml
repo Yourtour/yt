@@ -14,8 +14,8 @@
 	
 	<bean id="hbaseManager" class="com.yt.dal.hbase.HbaseManager" />
 	
-	<bean id="ddlGeneralOperate" class="com.yt.dal.hbase.DdlGeneralOperate" />
-	<bean id="crudGeneralOperate" class="com.yt.dal.hbase.CrudGeneralOperate"  />
+	<bean id="hbaseDDL" class="com.yt.dal.hbase.DdlGeneralOperate" />
+	<bean id="hbaseCRUD" class="com.yt.dal.hbase.CrudGeneralOperate"  />
 	
 	<bean id="beanDescriptorGeneralCacheImpl" class="com.yt.dal.hbase.cache.BeanDescriptorGeneralCacheImpl">
 		<property name="beanRepositories" value="com.yt.test.hbase.bean" />
