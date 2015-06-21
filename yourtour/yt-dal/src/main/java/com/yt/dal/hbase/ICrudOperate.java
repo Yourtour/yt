@@ -32,7 +32,7 @@ public interface ICrudOperate {
 	 * @param bean
 	 *            待保存的bean对象，必须使用@Table进行注解。
 	 */
-	public void save(BaseBean bean) throws Exception;
+	public void save(IBaseBean bean) throws Exception;
 
 	/**
 	 * 保存指定的bean对象列表数据到Hbase，同时将显式保存当前的时间戳。
@@ -40,7 +40,7 @@ public interface ICrudOperate {
 	 * @param beans
 	 *            待保持的bean对象列表，必须使用@Table进行注解。
 	 */
-	public void save(List<? extends BaseBean> beans) throws Exception;
+	public void save(List<? extends IBaseBean> beans) throws Exception;
 
 	/**
 	 * 逻辑删除指定的bean对象数据
@@ -50,7 +50,7 @@ public interface ICrudOperate {
 	 * @throws Exception
 	 *             删除数据过程中发生的异常
 	 */
-	public void deleteRow(BaseBean bean) throws Exception;
+	public void deleteRow(IBaseBean bean) throws Exception;
 
 	/**
 	 * 逻辑删除指定的bean对象列表数据
@@ -60,7 +60,7 @@ public interface ICrudOperate {
 	 * @throws Exception
 	 *             删除数据过程中发生的异常
 	 */
-	public void deleteRows(List<? extends BaseBean> beans) throws Exception;
+	public void deleteRows(List<? extends IBaseBean> beans) throws Exception;
 
 	/**
 	 * 获取指定表和行键的bean数据对象，仅仅返回最新版本数据。
@@ -73,7 +73,7 @@ public interface ICrudOperate {
 	 * @throws Exception
 	 *             获取过程中发生的异常
 	 */
-	public BaseBean get(String className, String rowkey) throws Exception;
+	public IBaseBean get(String className, String rowkey) throws Exception;
 
 	/**
 	 * 获取指定表和行键的bean数据对象，仅仅返回最新版本数据。
@@ -86,7 +86,7 @@ public interface ICrudOperate {
 	 *             获取过程中发生的异常
 	 * @see #get(String, String)
 	 */
-	public BaseBean get(Class<? extends BaseBean> clazz, String rowKey)
+	public IBaseBean get(Class<? extends IBaseBean> clazz, String rowKey)
 			throws Exception;
 
 	/**
@@ -98,7 +98,7 @@ public interface ICrudOperate {
 	 * @throws Exception
 	 *             获取过程中发生的异常
 	 */
-	public List<? extends BaseBean> get(Class<? extends BaseBean> clazz)
+	public List<? extends IBaseBean> get(Class<? extends IBaseBean> clazz)
 			throws Exception;
 
 	/**
@@ -114,7 +114,7 @@ public interface ICrudOperate {
 	 * @throws Exception
 	 *             获取过程中发生的异常
 	 */
-	public List<? extends BaseBean> get(Class<? extends BaseBean> clazz,
+	public List<? extends IBaseBean> get(Class<? extends IBaseBean> clazz,
 			long ts1, long ts2) throws Exception;
 
 }

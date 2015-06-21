@@ -21,7 +21,7 @@ import org.springframework.core.type.filter.AssignableTypeFilter;
 import org.springframework.core.type.filter.TypeFilter;
 import org.springframework.util.ClassUtils;
 
-import com.yt.dal.hbase.BaseBean;
+import com.yt.dal.hbase.IBaseBean;
 import com.yt.dal.hbase.annotation.HbaseTable;
 
 /**
@@ -53,7 +53,7 @@ public class BeanDescriptorGeneralCacheImpl implements IBeanDescriptorCache,
 			.getLog(BeanDescriptorGeneralCacheImpl.class);
 	private final TypeFilter[] ENTITY_TYPE_FILTERS = new TypeFilter[] {
 			new AnnotationTypeFilter(HbaseTable.class, false),
-			new AssignableTypeFilter(BaseBean.class) };
+			new AssignableTypeFilter(IBaseBean.class) };
 	private final String RESOURCE_PATTERN = "/**/*.class";
 
 	private String[] beanRepositories;
@@ -134,7 +134,7 @@ public class BeanDescriptorGeneralCacheImpl implements IBeanDescriptorCache,
 	private void putCache(String className) throws Exception {
 		// 从指定的BaseBean类中的注解生成BeanDescriptor，并放入到缓存中。
 		@SuppressWarnings("unchecked")
-		Class<BaseBean> clazz = (Class<BaseBean>) Class.forName(className);
+		Class<IBaseBean> clazz = (Class<IBaseBean>) Class.forName(className);
 		BeanDescriptor bd = BeanDescriptor.valueOf(clazz);
 		cache.put(className, bd);
 	}
@@ -145,7 +145,7 @@ public class BeanDescriptorGeneralCacheImpl implements IBeanDescriptorCache,
 	 * @see com.yt.dal.hbase.cache.IBeanDescriptorCache#put(java.lang.Class)
 	 */
 	@Override
-	public BeanDescriptor put(Class<? extends BaseBean> clazz) {
+	public BeanDescriptor put(Class<? extends IBaseBean> clazz) {
 		String beanClass = clazz.getName();
 		if (!cache.containsKey(beanClass)) {
 			BeanDescriptor bd = BeanDescriptor.valueOf(clazz);
@@ -172,7 +172,7 @@ public class BeanDescriptorGeneralCacheImpl implements IBeanDescriptorCache,
 	 * @see com.yt.dal.hbase.cache.IBeanDescriptorCache#get(java.lang.Class)
 	 */
 	@Override
-	public BeanDescriptor get(Class<? extends BaseBean> clazz) {
+	public BeanDescriptor get(Class<? extends IBaseBean> clazz) {
 		String beanClass = clazz.getName();
 		BeanDescriptor bd = get(beanClass);
 		if (bd == null) {

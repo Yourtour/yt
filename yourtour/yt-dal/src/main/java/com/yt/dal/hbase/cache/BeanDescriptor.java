@@ -10,7 +10,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.hbase.util.Bytes;
 
-import com.yt.dal.hbase.BaseBean;
+import com.yt.dal.hbase.IBaseBean;
 import com.yt.dal.hbase.annotation.HbaseColumn;
 import com.yt.dal.hbase.annotation.HbaseTable;
 
@@ -312,7 +312,7 @@ public class BeanDescriptor implements Serializable {
 	 * @see HbaseTable
 	 * @see HbaseColumn
 	 */
-	public static BeanDescriptor valueOf(Class<? extends BaseBean> clazz) {
+	public static BeanDescriptor valueOf(Class<? extends IBaseBean> clazz) {
 		if (!clazz.isAnnotationPresent(HbaseTable.class)) {
 			// 如果没有使用HbaseTable进行注解，则返回null。
 			if (LOG.isWarnEnabled()) {

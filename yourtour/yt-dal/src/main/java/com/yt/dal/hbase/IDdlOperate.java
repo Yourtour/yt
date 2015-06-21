@@ -61,7 +61,7 @@ public interface IDdlOperate {
 	 * @see HbaseTable
 	 * @see HbaseColumn
 	 */
-	public void createTable(Class<? extends BaseBean> clazz) throws Exception;
+	public void createTable(Class<? extends IBaseBean> clazz) throws Exception;
 
 	/**
 	 * 根据传入的BeanDescriptor创建表。
@@ -104,7 +104,7 @@ public interface IDdlOperate {
 	 * @see #dropTable(String)
 	 * @see HbaseTable
 	 */
-	public void dropTable(Class<? extends BaseBean> clazz) throws Exception;
+	public void dropTable(Class<? extends IBaseBean> clazz) throws Exception;
 
 	/**
 	 * 根据指定的表名判断表是否存在
@@ -127,7 +127,7 @@ public interface IDdlOperate {
 	 *             判断过程中发生的异常
 	 * @see #tableExist(String)
 	 */
-	public boolean tableExist(Class<? extends BaseBean> clazz) throws Exception;
+	public boolean tableExist(Class<? extends IBaseBean> clazz) throws Exception;
 
 	/**
 	 * 根据BeanDescriptor来判断表是否存在
@@ -161,7 +161,7 @@ public interface IDdlOperate {
 	 * @throws Exception
 	 *             修改表过程中发生的异常
 	 */
-	public void alterTable(Class<? extends BaseBean> clazz) throws Exception;
+	public void alterTable(Class<? extends IBaseBean> clazz) throws Exception;
 
 	/**
 	 * 根据传入的BeanDescriptor来修改hbase表结构。<br>
