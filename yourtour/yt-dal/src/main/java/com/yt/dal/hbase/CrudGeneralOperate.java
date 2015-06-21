@@ -1,6 +1,7 @@
 package com.yt.dal.hbase;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +31,7 @@ import com.yt.dal.hbase.utils.HBaseUtils;
 
 /**
  * hbase中进行CRUD操作的实现类。
- *
+ * 
  * <p>
  * <b>修改历史：</b>
  * <table border="1">
@@ -47,7 +48,7 @@ import com.yt.dal.hbase.utils.HBaseUtils;
  * </table>
  * 
  * @author john
- *  
+ * 
  * @version 1.0
  * @since 1.0
  */
@@ -89,8 +90,8 @@ public class CrudGeneralOperate implements ICrudOperate {
 	}
 
 	// 以Batch的方式批量保存数据
-	private void saveBatch(List<? extends IBaseBean> beans, boolean saveTimestamp)
-			throws Exception {
+	private void saveBatch(List<? extends IBaseBean> beans,
+			boolean saveTimestamp) throws Exception {
 		if (beans == null || beans.isEmpty()) {
 			if (LOG.isDebugEnabled()) {
 				LOG.debug("The bean is null or em.");
@@ -122,8 +123,8 @@ public class CrudGeneralOperate implements ICrudOperate {
 					TableName.valueOf(ftn));
 			List<Put> list = batch.get(ftn);
 			Object[] putResult = new Object[list.size()];
-			//table.batch(list, putResult);
-			 table.put(list);
+			// table.batch(list, putResult);
+			table.put(list);
 			table.close();
 			num += putResult.length;
 		}
@@ -133,9 +134,20 @@ public class CrudGeneralOperate implements ICrudOperate {
 		}
 	}
 
+	// 判断对应的数据是否相等，如果相等则返回true，表示未修改，否则返回false。
+	private boolean judgeNotUpdated(IBaseBean bean, String fieldName,
+			byte[] value) throws Exception {
+		if (bean == null) {
+			return false;
+		}
+		byte[] src = HBaseUtils.get(bean, fieldName);
+		return Arrays.equals(src, value);
+	}
+
 	// 转换并获取一个实体对应的Put批处理列表，便于后续高效存储数据。
 	private List<Put> getBatchPuts(BeanDescriptor bd, IBaseBean bean,
 			boolean saveTimestamp) throws Exception {
+		IBaseBean srcBean = get(bean.getClass(), bean.getRowKey());
 		Vector<Put> puts = new Vector<Put>();
 		byte[] rowkey = Bytes.toBytes(bean.getRowKey());
 		for (BeanDescriptor.Family family : bd.getFamilies().values()) {
@@ -150,6 +162,11 @@ public class CrudGeneralOperate implements ICrudOperate {
 				}
 				byte[] byteQualifier = qualifier.getByteQualifier();
 				byte[] byteValue = HBaseUtils.get(bean, qualifier.getName());
+				// 判断数据是否有更新
+				if (judgeNotUpdated(srcBean, qualifier.getName(), byteValue)) {
+					// 跟hbase库中数据相同，没有更新数据，不需要进行保存
+					continue;
+				}
 				if (saveTimestamp) {
 					put.addColumn(byteFamily, byteQualifier,
 							System.currentTimeMillis(), byteValue);
@@ -224,7 +241,7 @@ public class CrudGeneralOperate implements ICrudOperate {
 					TableName.valueOf(ftn));
 			List<Delete> list = batch.get(ftn);
 			Object[] delResult = new Object[list.size()];
-			//table.batch(list, delResult);
+			// table.batch(list, delResult);
 			table.delete(list);
 			table.close();
 			rows += delResult.length;
@@ -233,15 +250,18 @@ public class CrudGeneralOperate implements ICrudOperate {
 			LOG.debug(String.format("delete data[%d rows] successfully.", rows));
 		}
 	}
-	
-	/* (non-Javadoc)
-	 * @see com.yt.dal.hbase.ICrudOperate#get(java.lang.String, java.lang.String)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.yt.dal.hbase.ICrudOperate#get(java.lang.String,
+	 * java.lang.String)
 	 */
 	@Override
 	public IBaseBean get(String className, String rowkey) throws Exception {
 		BeanDescriptor bd = cache.get(className);
 		@SuppressWarnings("unchecked")
-		Class<IBaseBean> clazz = (Class<IBaseBean>)Class.forName(className);
+		Class<IBaseBean> clazz = (Class<IBaseBean>) Class.forName(className);
 		return get(bd, clazz, rowkey);
 	}
 
@@ -261,9 +281,10 @@ public class CrudGeneralOperate implements ICrudOperate {
 		}
 		return get(bd, clazz, rowKey);
 	}
-	
+
 	// 从hbase中获取指定的实体对象。
-	private IBaseBean get(BeanDescriptor bd, Class<? extends IBaseBean> clazz, String rowKey) throws Exception {
+	private IBaseBean get(BeanDescriptor bd, Class<? extends IBaseBean> clazz,
+			String rowKey) throws Exception {
 		IBaseBean bean = clazz.newInstance();
 		try (Table table = manager.getConnection().getTable(
 				TableName.valueOf(bd.getFullTableName()))) {
