@@ -1,7 +1,11 @@
 dependencies {
-	compile "org.springframework.data:spring-data-neo4j:3.3.0.RELEASE",
-		             "org.springframework.data:spring-data-neo4j-rest:3.3.0.RELEASE",
-		             "org.springframework.data:spring-data-neo4j-tx:3.3.0.RELEASE",
+	ext {
+		springDataVersion = "3.2.0.RELEASE"
+	}
+	compile "org.springframework.data:spring-data-neo4j:${springDataVersion}",
+		             "org.springframework.data:spring-data-neo4j-rest:${springDataVersion}",
+		             "org.springframework.data:spring-data-neo4j-tx:${springDataVersion}",
+		             "org.neo4j:neo4j-cypher-dsl:2.1.4",
 		             "javax.validation:validation-api:1.1.0.Final",
 	                 project(":yt-core"),
 	                 project(":yt-dal")

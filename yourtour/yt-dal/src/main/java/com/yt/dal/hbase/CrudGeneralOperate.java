@@ -1,6 +1,7 @@
 package com.yt.dal.hbase;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +31,7 @@ import com.yt.dal.hbase.utils.HBaseUtils;
 
 /**
  * hbase中进行CRUD操作的实现类。
- *
+ * 
  * <p>
  * <b>修改历史：</b>
  * <table border="1">
@@ -47,7 +48,7 @@ import com.yt.dal.hbase.utils.HBaseUtils;
  * </table>
  * 
  * @author john
- *  
+ * 
  * @version 1.0
  * @since 1.0
  */
@@ -66,14 +67,14 @@ public class CrudGeneralOperate implements ICrudOperate {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.yt.dal.hbase.ICrudOperate#save(com.yt.dal.hbase.BaseBean)
+	 * @see com.yt.dal.hbase.ICrudOperate#save(com.yt.dal.hbase.IBaseBean)
 	 */
 	@Override
-	public void save(BaseBean bean) throws Exception {
+	public void save(IBaseBean bean) throws Exception {
 		if (bean == null) {
 			return;
 		}
-		List<BaseBean> beans = new Vector<BaseBean>(1);
+		List<IBaseBean> beans = new Vector<IBaseBean>(1);
 		beans.add(bean);
 		saveBatch(beans, true);
 	}
@@ -84,13 +85,13 @@ public class CrudGeneralOperate implements ICrudOperate {
 	 * @see com.yt.dal.hbase.ICrudOperate#save(java.util.List)
 	 */
 	@Override
-	public void save(List<? extends BaseBean> beans) throws Exception {
+	public void save(List<? extends IBaseBean> beans) throws Exception {
 		saveBatch(beans, true);
 	}
 
 	// 以Batch的方式批量保存数据
-	private void saveBatch(List<? extends BaseBean> beans, boolean saveTimestamp)
-			throws Exception {
+	private void saveBatch(List<? extends IBaseBean> beans,
+			boolean saveTimestamp) throws Exception {
 		if (beans == null || beans.isEmpty()) {
 			if (LOG.isDebugEnabled()) {
 				LOG.debug("The bean is null or em.");
@@ -98,8 +99,8 @@ public class CrudGeneralOperate implements ICrudOperate {
 			return;
 		}
 		Map<String, List<Put>> batch = new HashMap<String, List<Put>>();
-		for (BaseBean bean : beans) {
-			Class<? extends BaseBean> clazz = bean.getClass();
+		for (IBaseBean bean : beans) {
+			Class<? extends IBaseBean> clazz = bean.getClass();
 			BeanDescriptor bd = cache.get(clazz);
 			if (bd == null) {
 				if (LOG.isWarnEnabled()) {
@@ -122,8 +123,8 @@ public class CrudGeneralOperate implements ICrudOperate {
 					TableName.valueOf(ftn));
 			List<Put> list = batch.get(ftn);
 			Object[] putResult = new Object[list.size()];
-			//table.batch(list, putResult);
-			 table.put(list);
+			// table.batch(list, putResult);
+			table.put(list);
 			table.close();
 			num += putResult.length;
 		}
@@ -133,9 +134,20 @@ public class CrudGeneralOperate implements ICrudOperate {
 		}
 	}
 
+	// 判断对应的数据是否相等，如果相等则返回true，表示未修改，否则返回false。
+	private boolean judgeNotUpdated(IBaseBean bean, String fieldName,
+			byte[] value) throws Exception {
+		if (bean == null) {
+			return false;
+		}
+		byte[] src = HBaseUtils.get(bean, fieldName);
+		return Arrays.equals(src, value);
+	}
+
 	// 转换并获取一个实体对应的Put批处理列表，便于后续高效存储数据。
-	private List<Put> getBatchPuts(BeanDescriptor bd, BaseBean bean,
+	private List<Put> getBatchPuts(BeanDescriptor bd, IBaseBean bean,
 			boolean saveTimestamp) throws Exception {
+		IBaseBean srcBean = get(bean.getClass(), bean.getRowKey());
 		Vector<Put> puts = new Vector<Put>();
 		byte[] rowkey = Bytes.toBytes(bean.getRowKey());
 		for (BeanDescriptor.Family family : bd.getFamilies().values()) {
@@ -150,6 +162,11 @@ public class CrudGeneralOperate implements ICrudOperate {
 				}
 				byte[] byteQualifier = qualifier.getByteQualifier();
 				byte[] byteValue = HBaseUtils.get(bean, qualifier.getName());
+				// 判断数据是否有更新
+				if (judgeNotUpdated(srcBean, qualifier.getName(), byteValue)) {
+					// 跟hbase库中数据相同，没有更新数据，不需要进行保存
+					continue;
+				}
 				if (saveTimestamp) {
 					put.addColumn(byteFamily, byteQualifier,
 							System.currentTimeMillis(), byteValue);
@@ -166,17 +183,17 @@ public class CrudGeneralOperate implements ICrudOperate {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.yt.dal.hbase.ICrudOperate#deleteRow(com.yt.dal.hbase.BaseBean)
+	 * @see com.yt.dal.hbase.ICrudOperate#deleteRow(com.yt.dal.hbase.IBaseBean)
 	 */
 	@Override
-	public void deleteRow(BaseBean bean) throws Exception {
+	public void deleteRow(IBaseBean bean) throws Exception {
 		if (bean == null) {
 			if (LOG.isDebugEnabled()) {
 				LOG.debug("The bean is null, the delete operate be ignored.");
 			}
 			return;
 		}
-		List<BaseBean> beans = new Vector<BaseBean>(1);
+		List<IBaseBean> beans = new Vector<IBaseBean>(1);
 		beans.add(bean);
 		deleteRows(beans);
 	}
@@ -187,13 +204,13 @@ public class CrudGeneralOperate implements ICrudOperate {
 	 * @see com.yt.dal.hbase.ICrudOperate#deleteRows(java.util.List)
 	 */
 	@Override
-	public void deleteRows(List<? extends BaseBean> beans) throws Exception {
+	public void deleteRows(List<? extends IBaseBean> beans) throws Exception {
 		if (beans == null || beans.isEmpty()) {
 			return;
 		}
 		Map<String, List<Delete>> batch = new HashMap<String, List<Delete>>();
-		for (BaseBean bean : beans) {
-			Class<? extends BaseBean> clazz = bean.getClass();
+		for (IBaseBean bean : beans) {
+			Class<? extends IBaseBean> clazz = bean.getClass();
 			BeanDescriptor bd = cache.get(clazz);
 			if (bd == null) {
 				if (LOG.isWarnEnabled()) {
@@ -224,7 +241,7 @@ public class CrudGeneralOperate implements ICrudOperate {
 					TableName.valueOf(ftn));
 			List<Delete> list = batch.get(ftn);
 			Object[] delResult = new Object[list.size()];
-			//table.batch(list, delResult);
+			// table.batch(list, delResult);
 			table.delete(list);
 			table.close();
 			rows += delResult.length;
@@ -233,15 +250,18 @@ public class CrudGeneralOperate implements ICrudOperate {
 			LOG.debug(String.format("delete data[%d rows] successfully.", rows));
 		}
 	}
-	
-	/* (non-Javadoc)
-	 * @see com.yt.dal.hbase.ICrudOperate#get(java.lang.String, java.lang.String)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.yt.dal.hbase.ICrudOperate#get(java.lang.String,
+	 * java.lang.String)
 	 */
 	@Override
-	public BaseBean get(String className, String rowkey) throws Exception {
+	public IBaseBean get(String className, String rowkey) throws Exception {
 		BeanDescriptor bd = cache.get(className);
 		@SuppressWarnings("unchecked")
-		Class<BaseBean> clazz = (Class<BaseBean>)Class.forName(className);
+		Class<IBaseBean> clazz = (Class<IBaseBean>) Class.forName(className);
 		return get(bd, clazz, rowkey);
 	}
 
@@ -252,7 +272,7 @@ public class CrudGeneralOperate implements ICrudOperate {
 	 * java.lang.String)
 	 */
 	@Override
-	public BaseBean get(Class<? extends BaseBean> clazz, String rowKey)
+	public IBaseBean get(Class<? extends IBaseBean> clazz, String rowKey)
 			throws Exception {
 		BeanDescriptor bd = cache.get(clazz);
 		if (bd == null) {
@@ -261,10 +281,11 @@ public class CrudGeneralOperate implements ICrudOperate {
 		}
 		return get(bd, clazz, rowKey);
 	}
-	
+
 	// 从hbase中获取指定的实体对象。
-	private BaseBean get(BeanDescriptor bd, Class<? extends BaseBean> clazz, String rowKey) throws Exception {
-		BaseBean bean = clazz.newInstance();
+	private IBaseBean get(BeanDescriptor bd, Class<? extends IBaseBean> clazz,
+			String rowKey) throws Exception {
+		IBaseBean bean = clazz.newInstance();
 		try (Table table = manager.getConnection().getTable(
 				TableName.valueOf(bd.getFullTableName()))) {
 			Get get = new Get(Bytes.toBytes(rowKey));
@@ -295,14 +316,14 @@ public class CrudGeneralOperate implements ICrudOperate {
 	 * @see com.yt.dal.hbase.ICrudOperate#get(java.lang.Class)
 	 */
 	@Override
-	public List<? extends BaseBean> get(Class<? extends BaseBean> clazz)
+	public List<? extends IBaseBean> get(Class<? extends IBaseBean> clazz)
 			throws Exception {
 		BeanDescriptor bd = cache.get(clazz);
 		if (bd == null) {
 			throw new Exception(String.format(
 					"The BeanDescriptor[%s] is not exist.", clazz.getName()));
 		}
-		List<BaseBean> result = new Vector<BaseBean>();
+		List<IBaseBean> result = new Vector<IBaseBean>();
 		try (Table table = manager.getConnection().getTable(
 				TableName.valueOf(bd.getFullTableName()))) {
 			Scan scan = new Scan();
@@ -314,7 +335,7 @@ public class CrudGeneralOperate implements ICrudOperate {
 				if (rs.isEmpty()) {
 					continue;
 				}
-				BaseBean bean = clazz.newInstance();
+				IBaseBean bean = clazz.newInstance();
 				bean.setRowKey(Bytes.toString(rs.getRow()));
 				for (Cell cell : rs.rawCells()) {
 					String family = Bytes.toString(CellUtil.cloneFamily(cell));
@@ -340,14 +361,14 @@ public class CrudGeneralOperate implements ICrudOperate {
 	 * @see com.yt.dal.hbase.ICrudOperate#get(java.lang.Class, long, long)
 	 */
 	@Override
-	public List<? extends BaseBean> get(Class<? extends BaseBean> clazz,
+	public List<? extends IBaseBean> get(Class<? extends IBaseBean> clazz,
 			long ts1, long ts2) throws Exception {
 		BeanDescriptor bd = cache.get(clazz);
 		if (bd == null) {
 			throw new Exception(String.format(
 					"The BeanDescriptor[%s] is not exist.", clazz.getName()));
 		}
-		List<BaseBean> result = new Vector<BaseBean>();
+		List<IBaseBean> result = new Vector<IBaseBean>();
 		try (Table table = manager.getConnection().getTable(
 				TableName.valueOf(bd.getFullTableName()))) {
 			Scan scan = new Scan();
@@ -366,7 +387,7 @@ public class CrudGeneralOperate implements ICrudOperate {
 				if (rs.isEmpty()) {
 					continue;
 				}
-				BaseBean bean = clazz.newInstance();
+				IBaseBean bean = clazz.newInstance();
 				bean.setRowKey(Bytes.toString(rs.getRow()));
 				for (Cell cell : rs.rawCells()) {
 					String family = Bytes.toString(CellUtil.cloneFamily(cell));

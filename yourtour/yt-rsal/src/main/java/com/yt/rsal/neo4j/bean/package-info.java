@@ -5,4 +5,4 @@
  *
  * @author John Peng
  */
-package com.yt.rsal.hbase.bean;
+package com.yt.rsal.neo4j.bean;

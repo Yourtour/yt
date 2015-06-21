@@ -25,22 +25,22 @@ import java.io.Serializable;
  * @version 1.0
  * @since 1.0
  */
-public abstract class BaseBean implements Serializable {
+public abstract class BaseBean implements Serializable, IBaseBean {
 	private static final long serialVersionUID = -1098345715801304322L;
 	private String rowKey;
 
-	/**
-	 * 获取hbase实体对象的行键
-	 * @return hbase实体对象的行键
+	/* (non-Javadoc)
+	 * @see com.yt.dal.hbase.IBaseBean#getRowKey()
 	 */
+	@Override
 	public String getRowKey() {
 		return rowKey;
 	}
 
-	/**
-	 * 设置hbase实体对象的行键
-	 * @param rowKey  hbase实体对象的行键
+	/* (non-Javadoc)
+	 * @see com.yt.dal.hbase.IBaseBean#setRowKey(java.lang.String)
 	 */
+	@Override
 	public void setRowKey(String rowKey) {
 		this.rowKey = rowKey;
 	}

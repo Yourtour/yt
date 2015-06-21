@@ -7,7 +7,7 @@ import java.nio.ByteBuffer;
 import org.apache.hadoop.hbase.util.Bytes;
 
 import com.yt.core.utils.EnumUtils;
-import com.yt.dal.hbase.BaseBean;
+import com.yt.dal.hbase.IBaseBean;
 import com.yt.dal.hbase.annotation.HbaseTable;
 import com.yt.dal.hbase.cache.BeanDescriptor;
 import com.yt.dal.hbase.cache.BeanDescriptor.Family;
@@ -85,7 +85,7 @@ public class HBaseUtils {
 	 * @throws Exception
 	 *             设置过程中发生的异常
 	 */
-	public static void set(BaseBean bean, String fieldName, byte[] value)
+	public static void set(IBaseBean bean, String fieldName, byte[] value)
 			throws Exception {
 		if (bean == null) {
 			throw new Exception("The bean is null.");
@@ -111,7 +111,7 @@ public class HBaseUtils {
 	 * @throws Exception
 	 *             获取过程中发生的异常
 	 */
-	public static byte[] get(BaseBean bean, String fieldName) throws Exception {
+	public static byte[] get(IBaseBean bean, String fieldName) throws Exception {
 		if (bean == null) {
 			throw new Exception("The bean is null.");
 		}
@@ -165,7 +165,7 @@ public class HBaseUtils {
 			}
 			String code = Bytes.toString(value);
 			return EnumUtils.valueOf(code, enumClass);
-		} else if (clazz.isAssignableFrom(BaseBean.class)) {
+		} else if (clazz.isAssignableFrom(IBaseBean.class)) {
 			// TODO 暂时不支持将关联的bean加载出来，以后考虑实现。
 			throw new Exception("暂时不支持将关联的bean加载出来，以后考虑实现。");
 		}
@@ -224,14 +224,14 @@ public class HBaseUtils {
 				value = EnumUtils.createDefault((Class<Enum>) clazz);
 			}
 			return Bytes.toBytes(EnumUtils.valueOf((Enum) value));
-		} else if (clazz.isAssignableFrom(BaseBean.class)) {
+		} else if (clazz.isAssignableFrom(IBaseBean.class)) {
 			if (value == null) {
 				throw new Exception(
 						String.format(
 								"The Type[%] is assigned from BaseBean, but the object is null.",
 								clazz.getName()));
 			}
-			return Bytes.toBytes(getAssociatedString((BaseBean) value));
+			return Bytes.toBytes(getAssociatedString((IBaseBean) value));
 		}
 		throw new Exception(String.format(
 				"The Type[%s] can not be supported to transform to bytes.",
@@ -239,8 +239,8 @@ public class HBaseUtils {
 	}
 
 	// 从关联的 BaseBean中获取关联字段描述
-	private static String getAssociatedString(BaseBean bean) throws Exception {
-		Class<? extends BaseBean> clazz = bean.getClass();
+	private static String getAssociatedString(IBaseBean bean) throws Exception {
+		Class<? extends IBaseBean> clazz = bean.getClass();
 		if (!clazz.isAnnotationPresent(HbaseTable.class)) {
 			throw new Exception(String.format(
 					"The Class[%s] is not annotated from HbaseTable.",

@@ -133,7 +133,7 @@ public class DdlGeneralOperate implements IDdlOperate {
 	 * @see com.yt.dal.hbase.IDdlOperate#createTable(java.lang.Class)
 	 */
 	@Override
-	public void createTable(Class<? extends BaseBean> clazz) throws Exception {
+	public void createTable(Class<? extends IBaseBean> clazz) throws Exception {
 		BeanDescriptor bd = cache.get(clazz);
 		createTable(bd);
 	}
@@ -215,7 +215,7 @@ public class DdlGeneralOperate implements IDdlOperate {
 	 * @see com.yt.dal.hbase.IDdlOperate#dropTable(java.lang.Class)
 	 */
 	@Override
-	public void dropTable(Class<? extends BaseBean> clazz) throws Exception {
+	public void dropTable(Class<? extends IBaseBean> clazz) throws Exception {
 		BeanDescriptor bd = cache.get(clazz);
 		if (bd == null) {
 			if (LOG.isWarnEnabled()) {
@@ -243,7 +243,7 @@ public class DdlGeneralOperate implements IDdlOperate {
 	 * @see com.yt.dal.hbase.IDdlOperate#tableExist(java.lang.Class)
 	 */
 	@Override
-	public boolean tableExist(Class<? extends BaseBean> clazz) throws Exception {
+	public boolean tableExist(Class<? extends IBaseBean> clazz) throws Exception {
 		BeanDescriptor bd = cache.get(clazz);
 		return tableExist(bd);
 	}
@@ -284,7 +284,7 @@ public class DdlGeneralOperate implements IDdlOperate {
 	 * @see com.yt.dal.hbase.IDdlOperate#alterTable(java.lang.Class)
 	 */
 	@Override
-	public void alterTable(Class<? extends BaseBean> clazz) throws Exception {
+	public void alterTable(Class<? extends IBaseBean> clazz) throws Exception {
 		BeanDescriptor bd = cache.get(clazz);
 		alterTable(bd);
 	}

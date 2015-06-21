@@ -1,4 +1,4 @@
-package com.yt.rsal.hbase.bean;
+package com.yt.rsal.neo4j.bean;
 
 import com.yt.dal.hbase.BaseBean;
 import com.yt.dal.hbase.annotation.HbaseColumn;

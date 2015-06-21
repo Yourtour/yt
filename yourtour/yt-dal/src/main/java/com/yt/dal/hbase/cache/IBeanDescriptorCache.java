@@ -2,7 +2,7 @@ package com.yt.dal.hbase.cache;
 
 import java.util.List;
 
-import com.yt.dal.hbase.BaseBean;
+import com.yt.dal.hbase.IBaseBean;
 
 /**
  * 定义hbase表描述对象的缓存接口。<br>
@@ -37,7 +37,7 @@ public interface IBeanDescriptorCache {
 	 * @return hbase表描述对象，如果设置不成功，则返回null。
 	 * @see #get(Class)
 	 */
-	public BeanDescriptor put(Class<? extends BaseBean> clazz);
+	public BeanDescriptor put(Class<? extends IBaseBean> clazz);
 
 	/**
 	 * 获取指定hbase实体类的表描述对象
@@ -47,7 +47,7 @@ public interface IBeanDescriptorCache {
 	 * @return hbase表描述对象，如果不存在，则返回null。
 	 * @see #get(String)
 	 */
-	public BeanDescriptor get(Class<? extends BaseBean> clazz);
+	public BeanDescriptor get(Class<? extends IBaseBean> clazz);
 
 	/**
 	 * 获取指定hbase实体对象名的表描述对象

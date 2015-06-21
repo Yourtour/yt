@@ -122,8 +122,9 @@ public class TestBeanDescriptorGeneralCacheImpl {
 		assertNotNull(bd);
 		assertTrue(bd.getNamespace().equals(""));
 		assertTrue(bd.getTableName().equals("T_NO"));
-		assertTrue(bd.getFamilies().size() == 1);
+		assertTrue(bd.getFamilies().size() == 2);
 		assertTrue(bd.getFamilies().containsKey("d"));
+		assertTrue(bd.getFamilies().containsKey("info"));
 		assertFalse(bd.getFamilies().containsKey("e"));
 		Family family = bd.getFamily("d");
 		assertNotNull(family);
