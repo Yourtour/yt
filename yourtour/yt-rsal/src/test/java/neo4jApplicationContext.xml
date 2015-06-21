@@ -11,20 +11,24 @@
             http://www.springframework.org/schema/data/neo4j/spring-neo4j.xsd">
 
 	<context:annotation-config />
+	
 	<neo4j:config graphDatabaseService="graphDatabaseService"
-		base-package="com.yt.rsal.hbase.bean" />
+		base-package="com.yt.test.hbase.bean" />
+	<!--neo4j:config storeDirectory="yt-data" base-package="com.yt.test.hbase.bean" /-->
+		
+	<neo4j:repositories base-package="com.yt.rsal.repository" />
 		
 	<bean id="graphDatabaseService"
-		class="org.springframework.data.neo4j.rest.SpringCypherRestGraphDatabase">
+		class="org.springframework.data.neo4j.rest.SpringRestGraphDatabase">
 		<constructor-arg index="0" value="http://YT-DATABASE:7474/db/data" />
-		<!--constructor-arg index="1" value="neo4j" />
-		<constructor-arg index="2" value="1234" /-->
 	</bean>
  
 	<!--bean id="graphDatabaseService" scope="singleton" destroy-method="shutdown"
 		class="org.springframework.data.neo4j.support.GraphDatabaseServiceFactoryBean">
 		<constructor-arg value="yt-data" />
 	</bean-->
+	
+	<bean id="neo4jCRUD" class="com.yt.rsal.neo4j.repository.CrudGeneralOperate" />
 
 </beans>
 
