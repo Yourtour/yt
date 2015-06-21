@@ -1,10 +1,9 @@
 Ext.define('YourTour.controller.Main', {
     extend: 'Ext.app.Controller',
     config: {
-       refs: {
-        	mainView:'mainview'
+       refs:{
+    	 mainView:'mainview'  
        },
-        
        control:{
     	   mainView:{
     		   activeitemchange:'activeitemchange'
@@ -14,8 +13,7 @@ Ext.define('YourTour.controller.Main', {
     
     activeitemchange:function(tabBar, newTab, oldTab){
     	var index = tabBar.indexOf(newTab);
-    	
-    	if(index == 2){
+    	if(index == 3){
     		this.redirectTo('/main/route');
     	}
     }

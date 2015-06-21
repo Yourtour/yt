@@ -11,12 +11,24 @@ Ext.define('YourTour.view.Main', {
     
     config: {
         tabBarPosition: 'bottom',
+        layout: {
+            align: 'stretch',
+        },
+        
+        defaults: {
+            flex: 1
+        },
         
         items: [
             {
                 title:'首页',
                 xtype:'homemain',
                 iconCls:'home'
+            },
+            {
+                title:'搜索',
+                xtype:'searchmain',
+                iconCls:'search'
             },
             {
                 title:'行程',
@@ -31,7 +43,7 @@ Ext.define('YourTour.view.Main', {
             {
                 title:'个人',
                 xtype:'personalmain',
-                iconCls:'home'
+                iconCls:'user'
             },
            
         ]

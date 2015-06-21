@@ -16,7 +16,8 @@ subprojects {
     }
 
     dependencies {
-        testCompile 'junit:junit:4.8.2'
+        testCompile 'junit:junit:4.8.2',
+        					  'log4j:log4j:1.2.17'
     }
 
     version = '1.0.0'

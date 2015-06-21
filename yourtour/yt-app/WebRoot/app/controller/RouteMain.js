@@ -3,12 +3,22 @@ Ext.define('YourTour.controller.RouteMain', {
     config: {
         refs: {
         	mainView:'mainview',
-        	routeCarousel:'#routeCarousel'
+        	routeCarousel:'#routeCarousel',
        },
-        
-        routes:{
+       
+       control:{
+    	   '#routemain #btnRouteNew':{
+    		   tap:'newRoute'
+    	   }
+       },
+       
+       routes:{
         	'/main/route':'showRouteView'
-        }
+       }
+    },
+    
+    newRoute:function(){
+    	this.redirectTo("/route/new");
     },
     
     showRouteView:function(){
@@ -17,9 +27,9 @@ Ext.define('YourTour.controller.RouteMain', {
     	var handler = function(){
         	var tpl = new Ext.XTemplate([
                    "<img src='{imgUrl}' style='width:100%'>",
-                   "<div class='route.content'>名称：{name}</div>",
-                   "<div class='route.content'>线路：{lineName}</div>",
-                   "<div class='route.content'>随记：{feeling}</div>",
+                   "<div class='label'>名称：{name}</div>",
+                   "<div class='label'>线路：{lineName}</div>",
+                   "<div class='multiline'>随记：{feeling}</div>",
             ]);
         	
         	var panels = [];

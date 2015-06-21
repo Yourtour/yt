@@ -1,17 +1,30 @@
 Ext.define('YourTour.view.RouteMain', {
     extend: 'Ext.Panel',
     xtype: 'routemain',
-    requires:['Ext.Carousel', 'Ext.TitleBar'],
+    requires:['Ext.Carousel', 'Ext.TitleBar', 'Ext.Button'],
     
     config: {
-    	fullscreen: true,
     	itemId:'routemain',
+    	fullscreen: true,
     	layout:'vbox',
         items: [
             {
             	xtype: 'titlebar',
                 docked: 'top',
-                title: '行程'
+                title: '行程',
+                items:[{
+                	xtype: "button", 
+                    ui: "normal", 
+                	text:'管理',
+                	align:'left'
+                },
+                {
+                	xtype: "button", 
+                    ui: "normal", 
+                	text:'新建',
+                	itemId:'btnRouteNew',
+                	align:'right'
+                }]
             },
             {
             	xtype: 'carousel',

@@ -18,15 +18,15 @@ Ext.application({
     ],
 
     views: [
-        'Main','Launch','Welcome','RouteMain','HomeMain'
+        'Main','Launch','Welcome','RouteMain','HomeMain','SearchMain','RouteNew'
     ],
     
     controllers: [
-        'Welcome', 'Main', 'RouteMain'
+        'Welcome', 'Main', 'RouteMain','RouteNew'
     ],
     
     models:[
-        'LocalCache','RouteMain'
+        'RouteMain'
     ],
     
     stores:[

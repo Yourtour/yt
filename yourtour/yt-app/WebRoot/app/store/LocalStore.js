@@ -1,4 +1,4 @@
-Ext.define('YourTour.store.AjaxStore', {
+Ext.define('YourTour.store.LocalStore', {
     extend: 'Ext.data.Store',
     
     getUrl:function(url){
