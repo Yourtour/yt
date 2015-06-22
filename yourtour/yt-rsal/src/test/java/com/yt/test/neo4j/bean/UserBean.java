@@ -69,12 +69,12 @@ public class UserBean extends Neo4JBaseBean {
 	private @HbaseColumn(name = "stat")
 	transient Status status;
 
-	private @RelatedTo(type = "playmates", direction = Direction.BOTH)
+	private @RelatedTo(type = "playWith", direction = Direction.BOTH)
 	Set<UserBean> playmates; // 游伴
-	private @RelatedTo(type = "follows", direction = Direction.OUTGOING)
+	private @RelatedTo(type = "followMe", direction = Direction.OUTGOING)
 	Set<UserBean> follows; // 跟随者
 
-	private @RelatedTo(type = "watch", direction = Direction.OUTGOING)
+	private @RelatedTo(type = "watchRoute", direction = Direction.OUTGOING)
 	Set<RouteBean> watchRoutes; // 关注的行程
 
 	public UserBean() {

@@ -6,6 +6,8 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.util.Set;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,6 +16,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.yt.rsal.neo4j.repository.CrudGeneralOperate;
 import com.yt.rsal.neo4j.repository.ICrudOperate;
+import com.yt.rsal.neo4j.repository.UserBeanRepository;
 import com.yt.test.neo4j.bean.Constants.Status;
 import com.yt.test.neo4j.bean.RouteBean;
 import com.yt.test.neo4j.bean.UserBean;
@@ -41,46 +44,6 @@ public class TestUserBeanNeo4J {
 		assertNotNull(context);
 		assertNotNull(neo4jCRUD);
 	}
-
-	// @Test
-	// public void testMovie() {
-	// try {
-	// MovieRepository repository = context.getBean(MovieRepository.class);
-	// assertNotNull(repository);
-	//
-	// repository.deleteAll();
-	// assertTrue(repository.count() == 0l);
-	// assertTrue(template.count(Person.class) == 0l);
-	//
-	// Movie m = new Movie();
-	// m.setTitle("matrix");
-	// Person director = new Person();
-	// director.setName("john");
-	// m.setDirector(director);
-	// m.addActor(director);
-	// assertNull(m.getId());
-	// repository.save(m);
-	// assertNotNull(m.getId());
-	// Movie m1 = repository.findOne(m.getId());
-	// //Movie m1 = repository.findBySchemaPropertyValue("title", "matrix");
-	// assertNotNull(m1);
-	// assertNotNull(m1.getDirector());
-	// assertTrue(m1.getActors().size() == 1);
-	//
-	// m.getActors().remove(director);
-	// m.setDirector(null);
-	// repository.save(m);
-	//
-	// repository.deleteAll();
-	// template.delete(director);
-	//
-	// assertTrue(repository.count() == 0l);
-	// assertTrue(template.count(Person.class) == 0l);
-	// } catch (Exception ex) {
-	// ex.printStackTrace();
-	// fail(ex.getMessage());
-	// }
-	// }
 
 	@Test
 	public void testCRUDUserBean() {
@@ -139,6 +102,10 @@ public class TestUserBeanNeo4J {
 
 	@Test
 	public void testUserBeanRelations() {
+		UserBeanRepository repository = context
+				.getBean(UserBeanRepository.class);
+		assertNotNull(repository);
+
 		try {
 			// clean
 			neo4jCRUD.delete(UserBean.class);
@@ -218,14 +185,21 @@ public class TestUserBeanNeo4J {
 			assertEquals("Assert the follow of UserBean after save.", tony1
 					.getFollows().size(), 0);
 			// chech relationships (WatchRoute)
-			assertEquals("Assert the watched routeBean of UserBean after save.", nan1
-					.getWatchRoutes().size(), 1);
-			assertEquals("Assert the watched routeBean of UserBean after save.", john1
-					.getWatchRoutes().size(), 1);
-			assertEquals("Assert the watched routeBean of UserBean after save.", tony1
-					.getWatchRoutes().size(), 1);
-			
-			// TODO test relationship query
+			assertEquals(
+					"Assert the watched routeBean of UserBean after save.",
+					nan1.getWatchRoutes().size(), 1);
+			assertEquals(
+					"Assert the watched routeBean of UserBean after save.",
+					john1.getWatchRoutes().size(), 1);
+			assertEquals(
+					"Assert the watched routeBean of UserBean after save.",
+					tony1.getWatchRoutes().size(), 1);
+
+			// test relationship query
+			Set<UserBean> sameWatch = repository.getUsersWatchSameRoutes(john1);
+			assertNotNull(sameWatch);
+			assertEquals("Assert the users for watch the same route.",
+					sameWatch.size(), 2);
 
 			// clean
 			neo4jCRUD.delete(UserBean.class);
