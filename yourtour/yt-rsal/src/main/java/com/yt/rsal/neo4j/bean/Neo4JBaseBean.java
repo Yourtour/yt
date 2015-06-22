@@ -34,7 +34,8 @@ import com.yt.dal.hbase.IBaseBean;
  * @since 1.0
  */
 @NodeEntity
-public class Neo4JBaseBean implements Serializable, IBaseBean, INeo4JBaseBean {
+public class Neo4JBaseBean implements Serializable, IBaseBean, INeo4JBaseBean,
+		Comparable<Neo4JBaseBean> {
 	private static final long serialVersionUID = -1255893864343425738L;
 	@GraphId
 	private Long graphid;
@@ -43,7 +44,9 @@ public class Neo4JBaseBean implements Serializable, IBaseBean, INeo4JBaseBean {
 	@Indexed(unique = true)
 	private String rowKey;
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.yt.rsal.hbase.bean.INeo4jBaseBean#getGraphId()
 	 */
 	@Override
@@ -61,7 +64,9 @@ public class Neo4JBaseBean implements Serializable, IBaseBean, INeo4JBaseBean {
 		this.graphid = id;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.yt.dal.hbase.IBaseBean#getRowKey()
 	 */
 	@Override
@@ -69,12 +74,35 @@ public class Neo4JBaseBean implements Serializable, IBaseBean, INeo4JBaseBean {
 		return rowKey;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.yt.dal.hbase.IBaseBean#setRowKey(java.lang.String)
 	 */
 	@Override
 	public void setRowKey(String rowKey) {
 		this.rowKey = rowKey;
 	}
-	
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
+	@Override
+	public int compareTo(Neo4JBaseBean o) {
+		if (o == null) {
+			return 1;
+		}
+		String src = this.getRowKey();
+		String tar = o.getRowKey();
+		if (src == null && tar == null) {
+			return 0;
+		} else if (src != null) {
+			return src.compareTo(tar);
+		} else {
+			return - tar.compareTo(src);
+		}
+	}
+
 }
