@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -33,7 +32,7 @@ public class RouteController {
 	 * @return
 	 */
 	@RequestMapping(value="/user/Query")
-	public @ResponseBody ResponseMessage queryRouteInfoesByUser(@RequestHeader("user_id") String userId) throws Exception{
+	public @ResponseBody ResponseMessage queryRouteInfoesByUser(@RequestHeader(value="user_id", required=false) String userId) throws Exception{
 		System.out.println(userId);
 		List<RouteVO> data = (List<RouteVO>) MockDataFactory.getMockListData(RouteVO.class, "route/user/query");
 		
@@ -47,7 +46,7 @@ public class RouteController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/place/{place}")
+	@RequestMapping(value="/place/Query")
 	public @ResponseBody ResponseMessage queryRouteInfoesByPlace(@PathVariable("place") String place) throws Exception{
 		List<RouteVO> data = (List<RouteVO>) MockDataFactory.getMockListData(RouteVO.class, "route/place/query");
 		
@@ -61,7 +60,7 @@ public class RouteController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/resource/{resId}")
+	@RequestMapping(value="/resource/Query")
 	public @ResponseBody ResponseMessage queryRouteInfoesByResource(@PathVariable("resId") String resId) throws Exception{
 		List<RouteVO> data = (List<RouteVO>) MockDataFactory.getMockListData(RouteVO.class, "route/resource/query");
 		
@@ -75,7 +74,7 @@ public class RouteController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/search", method=RequestMethod.GET)
+	@RequestMapping(value="/Query")
 	public @ResponseBody ResponseMessage searchRouteInfoes(@RequestParam("name") String name) throws Exception{
 		List<LineVO> data = (List<LineVO>) MockDataFactory.getMockListData(LineVO.class, "route/place/query");
 		
@@ -89,7 +88,7 @@ public class RouteController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/subject/{subject}")
+	@RequestMapping(value="/subject/Query")
 	public @ResponseBody ResponseMessage queryRouteInfoesBySubject(@PathVariable("subject") String subject) throws Exception{
 		List<RouteVO> data = (List<RouteVO>) MockDataFactory.getMockListData(RouteVO.class, "route/subject/query");
 		
@@ -103,7 +102,7 @@ public class RouteController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/line/{lineId}")
+	@RequestMapping(value="/line/Query")
 	public @ResponseBody ResponseMessage queryRouteInfoesByLine(@PathVariable("lineId") String lineId) throws Exception{
 		List<RouteVO> data = (List<RouteVO>) MockDataFactory.getMockListData(RouteVO.class, "route/subject/query");
 		
@@ -117,7 +116,7 @@ public class RouteController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/{routeId}/relationship")
+	@RequestMapping(value="/relationship/Query")
 	public @ResponseBody ResponseMessage queryRelatedRouteInfoes(@PathVariable("routeId") String routeId) throws Exception{
 		List<LineVO> data = (List<LineVO>) MockDataFactory.getMockListData(LineVO.class, "route/place/query");
 		
@@ -131,7 +130,7 @@ public class RouteController {
 	 * @param routeBean
 	 * @return
 	 */
-	@RequestMapping(value="/{routeId}", method=RequestMethod.POST)
+	@RequestMapping(value="/Save")
 	public @ResponseBody ResponseMessage saveRouteInfo(@PathVariable(value="routeId") String routeId, @RequestBody RouteBean routeBean){
 		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, "", routeBean);
 		return response;
@@ -142,7 +141,7 @@ public class RouteController {
 	 * @param routeId
 	 * @return
 	 */
-	@RequestMapping(value="/{routeId}", method=RequestMethod.DELETE)
+	@RequestMapping(value="/Delete")
 	public @ResponseBody ResponseMessage deleteRouteInfo(@PathVariable(value="routeId") String routeId){
 		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS);;
 		return response;
@@ -153,7 +152,7 @@ public class RouteController {
 	 * @param routeId 具体行程标识ID
 	 * @return
 	 */
-	@RequestMapping(value="/schedule/{routeId}", method=RequestMethod.GET)
+	@RequestMapping(value="/schedule/Query")
 	public @ResponseBody ResponseMessage getRouteInfo(@PathVariable("routeId") String routeId)throws Exception{
 		List<RouteScheduleVO> data =   (List<RouteScheduleVO>) MockDataFactory.getMockListData(RouteScheduleVO.class, "route_" + routeId);
 		
@@ -167,7 +166,7 @@ public class RouteController {
 	 * @param routeBean
 	 * @return
 	 */
-	@RequestMapping(value="/schedule/{scheduleId}", method=RequestMethod.POST)
+	@RequestMapping(value="/schedule/Save")
 	public @ResponseBody ResponseMessage saveRouteScheduleInfo(@PathVariable(value="scheduleId") String scheduleId, @RequestBody RouteScheduleBean scheduleBean){
 		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, "", scheduleBean);
 		return response;
@@ -179,7 +178,7 @@ public class RouteController {
 	 * @param routeBean
 	 * @return
 	 */
-	@RequestMapping(value="/schedule/{scheduleId}", method=RequestMethod.DELETE)
+	@RequestMapping(value="/schedule/Delete")
 	public @ResponseBody ResponseMessage deleteRouteScheduleInfo(@PathVariable(value="scheduleId") String scheduleId){
 		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS);
 		return response;

@@ -53,8 +53,15 @@ Ext.define('YourTour.view.RouteNew', {
 			},
 			{  
 			    xtype: 'textfield',  
-			    name : 'name',  
+			    name : 'startDate',  
 			    label: '日程',  
+			    clearIcon: true,
+			    disabled:true,
+			    cls:'textfield'
+			},
+			{  
+			    xtype: 'textfield',  
+			    name : 'endDate',  
 			    clearIcon: true,
 			    disabled:true,
 			    cls:'textfield'

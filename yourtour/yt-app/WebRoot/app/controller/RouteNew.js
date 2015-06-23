@@ -1,5 +1,6 @@
 Ext.define('YourTour.controller.RouteNew', {
     extend: 'Ext.app.Controller',
+    requires:['YourTour.store.RouteMain', 'YourTour.model.RouteMain'],
     config: {
        refs:{
     	  form:'#routenew'  

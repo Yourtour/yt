@@ -648,6 +648,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.store.AjaxStore": [],
   "YourTour.store.LocalStore": [],
   "YourTour.store.RouteMain": [],
+  "YourTour.util.Context": [],
   "YourTour.view.Community": [],
   "YourTour.view.HomeMain": [],
   "YourTour.view.Launch": [],
@@ -1387,6 +1388,9 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.store.AjaxStore": [],
   "YourTour.store.LocalStore": [],
   "YourTour.store.RouteMain": [],
+  "YourTour.util.Context": [
+    "Context"
+  ],
   "YourTour.view.Community": [
     "widget.communityview"
   ],
