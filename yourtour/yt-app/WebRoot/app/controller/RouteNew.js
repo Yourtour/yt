@@ -1,12 +1,16 @@
 Ext.define('YourTour.controller.RouteNew', {
     extend: 'Ext.app.Controller',
-    requires: [
-       'YourTour.view.RouteNew'
-    ],
     config: {
+       refs:{
+    	  form:'#routenew'  
+       },
        control:{
     	   "#close":{
-    		   tap:"close"
+    		   tap:"OnCloseClick"
+    	   },
+    	   
+    	   '#next':{
+    		   tap:'OnNextClick'
     	   }
        },
        
@@ -15,8 +19,24 @@ Ext.define('YourTour.controller.RouteNew', {
        }
     },
     
-    close:function(){
+    store:Ext.create('YourTour.store.RouteMain'),
+    
+    OnCloseClick:function(){
     	Ext.Viewport.setActiveItem("mainview");
+    },
+    
+    OnNextClick:function(){
+    	var routeStore = this.store;
+    	var route = Ext.create('YourTour.model.RouteMain');
+    	this.getForm().updateRecord(route);
+    	
+    	route.setProxy(routeStore.getProxy());
+    	route.save({
+			success:function(){
+				routeStore.add(route);
+				Ext.Viewport.setActiveItem("mainview");
+			}
+		});
     },
     
     showNewRouteView:function(){

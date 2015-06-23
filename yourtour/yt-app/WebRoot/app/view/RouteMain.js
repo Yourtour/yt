@@ -1,13 +1,18 @@
 Ext.define('YourTour.view.RouteMain', {
     extend: 'Ext.Panel',
     xtype: 'routemain',
-    requires:['Ext.Carousel', 'Ext.TitleBar', 'Ext.Button'],
+    requires:['Ext.Carousel', 'Ext.TitleBar', 'Ext.Button', 'Ext.field.Hidden'],
     
     config: {
     	itemId:'routemain',
     	fullscreen: true,
     	layout:'vbox',
         items: [
+			{
+			    xtype: 'hiddenfield',
+			    name: 'user_id',
+			    value: 123
+			},    
             {
             	xtype: 'titlebar',
                 docked: 'top',

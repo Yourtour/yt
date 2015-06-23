@@ -14,7 +14,7 @@ Ext.application({
     name: 'YourTour',
 
     requires: [
-        'Ext.MessageBox'
+        'Ext.MessageBox', 'Ext.form.Hidden','YourTour.util.Context'
     ],
 
     views: [
@@ -41,6 +41,10 @@ Ext.application({
     },
     
     isIconPrecomposed: true,
+    
+    getUserId:function(){
+    	return '2222';
+    },
 
     startupImage: {
         '320x460': 'resources/startup/launch.jpg',
@@ -54,7 +58,6 @@ Ext.application({
     launch: function() {
         Ext.fly('appLoadingIndicator').destroy();
         
-        // Initialize the main view
         Ext.Viewport.add(Ext.create('YourTour.view.Launch'));
         
         Ext.defer(function () { 

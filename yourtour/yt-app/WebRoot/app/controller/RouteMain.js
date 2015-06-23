@@ -1,7 +1,9 @@
 Ext.define('YourTour.controller.RouteMain', {
     extend: 'Ext.app.Controller',
+    requires:['YourTour.store.RouteMain', 'YourTour.model.RouteMain'],
+    
     config: {
-        refs: {
+       refs: {
         	mainView:'mainview',
         	routeCarousel:'#routeCarousel',
        },
@@ -13,20 +15,20 @@ Ext.define('YourTour.controller.RouteMain', {
        },
        
        routes:{
-        	'/main/route':'showRouteView'
+        	'/main/route':'showRoute'
        }
     },
+    
+    store:Ext.create('YourTour.store.RouteMain'),
     
     newRoute:function(){
     	this.redirectTo("/route/new");
     },
     
-    showRouteView:function(){
-    	var store = Ext.create('YourTour.store.RouteMain');
-    	
+    showRoute:function(){
     	var handler = function(){
         	var tpl = new Ext.XTemplate([
-                   "<img src='{imgUrl}' style='width:100%'>",
+                   "<img src='{imageUrl}' style='width:100%'>",
                    "<div class='label'>名称：{name}</div>",
                    "<div class='label'>线路：{lineName}</div>",
                    "<div class='multiline'>随记：{feeling}</div>",
@@ -34,7 +36,7 @@ Ext.define('YourTour.controller.RouteMain', {
         	
         	var panels = [];
         	
-        	store.each(function(item){
+        	this.store.each(function(item){
         		var tplHtml = tpl.apply(item.data);
         		
         		panels.push(Ext.create('Ext.Panel',{html:tplHtml, style:'padding:5px',scrollable:{
@@ -48,6 +50,6 @@ Ext.define('YourTour.controller.RouteMain', {
         	this.getRouteCarousel().setActiveItem(0);
     	};
     	
-    	store.load(handler,this);
+    	this.store.load({params:{userId:'1111','userName':'tony'}, callback:handler,scope:this});
     }
 });

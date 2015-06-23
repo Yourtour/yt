@@ -4,6 +4,7 @@ Ext.define('YourTour.controller.Main', {
        refs:{
     	 mainView:'mainview'  
        },
+       
        control:{
     	   mainView:{
     		   activeitemchange:'activeitemchange'
