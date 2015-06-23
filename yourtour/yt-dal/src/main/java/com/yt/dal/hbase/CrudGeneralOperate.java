@@ -64,6 +64,13 @@ public class CrudGeneralOperate implements ICrudOperate {
 	@Autowired
 	private IBeanDescriptorCache cache;
 
+	/**
+	 * 默认构造方法
+	 */
+	public CrudGeneralOperate() {
+		super();
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 

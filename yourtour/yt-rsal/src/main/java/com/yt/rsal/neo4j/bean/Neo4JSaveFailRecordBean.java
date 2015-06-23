@@ -56,6 +56,13 @@ public class Neo4JSaveFailRecordBean extends BaseBean {
 	private long updateTime;
 
 	/**
+	 * 默认构造方法
+	 */
+	public Neo4JSaveFailRecordBean() {
+		super();
+	}
+
+	/**
 	 * 获取操作对应的hbase实体类名
 	 * 
 	 * @return hbase实体类名

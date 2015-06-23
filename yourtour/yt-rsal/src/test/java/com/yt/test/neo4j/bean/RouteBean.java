@@ -1,6 +1,8 @@
 package com.yt.test.neo4j.bean;
 
 import org.springframework.data.neo4j.annotation.GraphProperty;
+import org.springframework.data.neo4j.annotation.Indexed;
+import org.springframework.data.neo4j.support.index.IndexType;
 
 import com.yt.dal.hbase.annotation.HbaseColumn;
 import com.yt.dal.hbase.annotation.HbaseTable;
@@ -19,12 +21,15 @@ public class RouteBean extends Neo4JBaseBean {
 
 	private @HbaseColumn(name = "name")
 	@GraphProperty
+	@Indexed
 	String name; // 安排名称
 	private @HbaseColumn(name = "iu")
 	transient String imageUrl; // 行程图片
 	private @HbaseColumn(name = "intr")
+	@Indexed(indexType=IndexType.FULLTEXT)
 	transient String intro; // 概述， 可以针对行程安排中具体某天或者某个景点进行描述
 	private @HbaseColumn(name = "feat")
+	@Indexed(indexType=IndexType.FULLTEXT)
 	transient String feature; // 特点， 可以针对行程安排中具体某天或者某个景点进行特点描述
 	private @HbaseColumn(name = "reas")
 	transient String reason; // 推荐理由，， 可以针对行程安排中具体某天或者某个景点进行推荐描述

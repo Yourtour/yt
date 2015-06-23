@@ -54,6 +54,13 @@ public class CrudGeneralOperate implements ICrudOperate {
 	@Autowired
 	private com.yt.dal.hbase.ICrudOperate hbaseCrud;
 
+	/**
+	 * 默认构造方法
+	 */
+	public CrudGeneralOperate() {
+		super();
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
