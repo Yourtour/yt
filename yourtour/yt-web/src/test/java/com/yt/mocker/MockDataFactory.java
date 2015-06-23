@@ -1,22 +1,29 @@
 package com.yt.mocker;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
+
+import org.dom4j.Document;
+import org.dom4j.Element;
+import org.dom4j.Node;
+import org.dom4j.io.SAXReader;
 
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.yt.vo.RouteMemberVO;
+import com.yt.vo.RouteVO;
 
 public class MockDataFactory {
-	private static Properties props; 
+	private static Element root;
+	
 	static{
 		try{
-			InputStream is = MockDataFactory.class.getClassLoader().getResourceAsStream("mock.json");
-			
-			props = new Properties();
-			props.load(is);
+			SAXReader reader = new SAXReader();               
+	        Document   document = reader.read(MockDataFactory.class.getClassLoader().getResourceAsStream("mock.xml")); 
+	        
+	        root = document.getRootElement();
+	        
+	        System.out.println(root.getNodeTypeName());
+	        
 		}catch(Exception exc){
 			exc.printStackTrace();
 		}
@@ -28,8 +35,10 @@ public class MockDataFactory {
 	 * @return
 	 */
 	public static  Object getMockData(Class<?> clazz, String url) throws Exception{
-		String json = props.getProperty(url);
+		Node node = root.selectSingleNode("mock[@url='" + url + "']");
 		ObjectMapper mapper = new ObjectMapper();
+		
+		String json = node.getText().trim();
 		return mapper.readValue(json, clazz);
 	}
 	
@@ -40,16 +49,15 @@ public class MockDataFactory {
 	 * @return
 	 */
 	public static  List  getMockListData(Class<?> clazz, String url) throws Exception{
-		String json = props.getProperty(url);
+		Node node = root.selectSingleNode("mock[@url='" + url + "']");
 		ObjectMapper mapper = new ObjectMapper();
 		JavaType javaType = mapper.getTypeFactory().constructParametrizedType(ArrayList.class, List.class, clazz); 
 		
+		String json = node.getText().trim();
 		return (List) mapper.readValue(json, javaType);
 	}
 	
 	public static void main(String[] args) throws Exception{
-		List<RouteMemberVO> members = getMockListData(RouteMemberVO.class, "user.query");
-		
-		System.out.println();
+		getMockListData(RouteVO.class, "route/user/query");
 	}
 }

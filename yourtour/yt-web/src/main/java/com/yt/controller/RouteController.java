@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,15 +25,16 @@ import com.yt.vo.RouteVO;
  * 该控制器定义了和行程相关的服务接口
  */
 @Controller
-@RequestMapping(value="/route/")
+@RequestMapping(value="/route")
 public class RouteController {
 	/**
 	 * 获取用户的行程信息
 	 * @param userId 用户标识ID
 	 * @return
 	 */
-	@RequestMapping(value="/user/{userId}")
-	public @ResponseBody ResponseMessage queryRouteInfoesByUser(@PathVariable("userId") String userId) throws Exception{
+	@RequestMapping(value="/user/Query")
+	public @ResponseBody ResponseMessage queryRouteInfoesByUser(@RequestHeader("user_id") String userId) throws Exception{
+		System.out.println(userId);
 		List<RouteVO> data = (List<RouteVO>) MockDataFactory.getMockListData(RouteVO.class, "route/user/query");
 		
 		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, "", data);
