@@ -11,9 +11,6 @@ Ext.define('YourTour.view.Main', {
     
     config: {
         tabBarPosition: 'bottom',
-        layout: {
-            align: 'stretch',
-        },
         
         defaults: {
             flex: 1

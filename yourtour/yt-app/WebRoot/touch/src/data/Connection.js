@@ -105,7 +105,7 @@ Ext.define('Ext.data.Connection', {
          * This should be set to false when making CORS (cross-domain) requests.
          * @accessor
          */
-        useDefaultXhrHeader : true,
+        useDefaultXhrHeader : false,
 
         /**
          * @cfg {String} defaultXhrHeader
@@ -308,7 +308,7 @@ Ext.define('Ext.data.Connection', {
             }
 
             headers = me.setupHeaders(xhr, options, requestOptions.data, requestOptions.params);
-
+           
             // create the transaction object
             request = {
                 id: ++Ext.data.Connection.requestId,
@@ -322,7 +322,7 @@ Ext.define('Ext.data.Connection', {
                 }, options.timeout || me.getTimeout())
             };
             me.requests[request.id] = request;
-
+            
 
             // bind our onload/statechange listener
             if (async) {
@@ -711,7 +711,6 @@ Ext.define('Ext.data.Connection', {
             xmlData = options.xmlData,
             key,
             header;
-
         if (!headers['Content-Type'] && (data || params)) {
             if (data) {
                 if (options.rawData) {

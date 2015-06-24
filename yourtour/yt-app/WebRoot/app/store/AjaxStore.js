@@ -2,6 +2,8 @@ Ext.define('YourTour.store.AjaxStore', {
     extend: 'Ext.data.Store',
     
     config:{
+    	useDefaultXhrHeader: false,
+    	
 	    proxy:{
 			type: 'ajax',
 			noCache: false,
@@ -13,7 +15,7 @@ Ext.define('YourTour.store.AjaxStore', {
 			},
 			
 			headers:{
-				//user_id:YourTour.util.Context.getUserId()
+				user_id:YourTour.util.Context.getUserId()
 			}
 	    }
     }
