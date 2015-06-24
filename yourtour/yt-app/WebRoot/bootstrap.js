@@ -649,15 +649,15 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.store.LocalStore": [],
   "YourTour.store.RouteStore": [],
   "YourTour.util.Context": [],
-  "YourTour.view.Community": [],
-  "YourTour.view.HomeMain": [],
   "YourTour.view.Launch": [],
   "YourTour.view.Main": [],
-  "YourTour.view.PersonalMain": [],
-  "YourTour.view.RouteMain": [],
-  "YourTour.view.RouteNew": [],
   "YourTour.view.SearchMain": [],
-  "YourTour.view.Welcome": []
+  "YourTour.view.Welcome": [],
+  "YourTour.view.community.Main": [],
+  "YourTour.view.home.Main": [],
+  "YourTour.view.personal.Main": [],
+  "YourTour.view.route.Main": [],
+  "YourTour.view.route.New": []
 });
 Ext.ClassManager.addNameAliasMappings({
   "Ext.AbstractComponent": [],
@@ -1391,31 +1391,31 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.util.Context": [
     "Context"
   ],
-  "YourTour.view.Community": [
-    "widget.communityview"
-  ],
-  "YourTour.view.HomeMain": [
-    "widget.homemain"
-  ],
   "YourTour.view.Launch": [
     "widget.launch"
   ],
   "YourTour.view.Main": [
     "widget.mainview"
   ],
-  "YourTour.view.PersonalMain": [
-    "widget.personalmain"
-  ],
-  "YourTour.view.RouteMain": [
-    "widget.routemain"
-  ],
-  "YourTour.view.RouteNew": [
-    "widget.routenew"
-  ],
   "YourTour.view.SearchMain": [
     "widget.searchmain"
   ],
   "YourTour.view.Welcome": [
     "widget.welcome"
+  ],
+  "YourTour.view.community.Main": [
+    "widget.communityview"
+  ],
+  "YourTour.view.home.Main": [
+    "widget.homemain"
+  ],
+  "YourTour.view.personal.Main": [
+    "widget.personalmain"
+  ],
+  "YourTour.view.route.Main": [
+    "widget.routemain"
+  ],
+  "YourTour.view.route.New": [
+    "widget.routenew"
   ]
 });

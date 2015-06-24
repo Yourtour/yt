@@ -7,6 +7,7 @@ Ext.define('YourTour.view.route.Main', {
     	itemId:'routemain',
     	fullscreen: true,
     	layout:'vbox',
+    	
         items: [
 			{
 			    xtype: 'hiddenfield',

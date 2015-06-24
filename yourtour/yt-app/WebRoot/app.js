@@ -18,7 +18,7 @@ Ext.application({
     ],
 
     views: [
-        'Main','Launch','Welcome','route.Main','home.Main','SearchMain','route.RouteNew'
+        'Main','Launch','Welcome','route.Main','home.Main','SearchMain','route.New'
     ],
     
     controllers: [

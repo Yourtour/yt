@@ -1,5 +1,6 @@
-Ext.define('YourTour.view.route.RouteNew', {
+Ext.define('YourTour.view.route.New', {
     extend: 'Ext.form.Panel',
+    requires:['Ext.field.DatePicker'],
     xtype: 'routenew',
     config: {
     	itemId:'routenew',
@@ -58,8 +59,8 @@ Ext.define('YourTour.view.route.RouteNew', {
 			    value:new Date(),
 			    dateFormat:'Y/m/d',
 			    clearIcon: true,
-			    cls:'textfield'
-			    	
+			    cls:'textfield',
+			    iconCls:'arrow_right'
 			},
 			{  
 			    xtype: 'datepickerfield',  

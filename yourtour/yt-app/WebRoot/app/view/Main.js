@@ -12,8 +12,14 @@ Ext.define('YourTour.view.Main', {
     config: {
         tabBarPosition: 'bottom',
         
-        defaults: {
-            flex: 1
+        tabBar : {
+            layout: {
+                type: 'hbox'
+            },
+            
+            defaults: {
+                flex:1
+            }
         },
         
         items: [
