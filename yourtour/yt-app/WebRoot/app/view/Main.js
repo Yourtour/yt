@@ -3,10 +3,10 @@ Ext.define('YourTour.view.Main', {
     extend: 'Ext.tab.Panel',
     xtype: 'mainview',
     requires: [
-        'YourTour.view.HomeMain',
-        'YourTour.view.RouteMain',
-        'YourTour.view.Community',
-        'YourTour.view.PersonalMain'
+        'YourTour.view.home.Main',
+        'YourTour.view.route.Main',
+        'YourTour.view.community.Main',
+        'YourTour.view.personal.Main'
     ],
     
     config: {

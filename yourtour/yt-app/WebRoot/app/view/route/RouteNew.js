@@ -1,4 +1,4 @@
-Ext.define('YourTour.view.RouteNew', {
+Ext.define('YourTour.view.route.RouteNew', {
     extend: 'Ext.form.Panel',
     xtype: 'routenew',
     config: {
@@ -52,18 +52,22 @@ Ext.define('YourTour.view.RouteNew', {
 			    cls:'textfield'
 			},
 			{  
-			    xtype: 'textfield',  
+			    xtype: 'datepickerfield',  
 			    name : 'startDate',  
-			    label: '日程',  
+			    label: '出发日期',  
+			    value:new Date(),
+			    dateFormat:'Y/m/d',
 			    clearIcon: true,
-			    disabled:true,
 			    cls:'textfield'
+			    	
 			},
 			{  
-			    xtype: 'textfield',  
-			    name : 'endDate',  
+			    xtype: 'datepickerfield',  
+			    name : 'endDate',
+			    label: '返回日期', 
+			    value:new Date(),
+			    dateFormat:'Y/m/d',
 			    clearIcon: true,
-			    disabled:true,
 			    cls:'textfield'
 			},
 			{  

@@ -1,4 +1,4 @@
-Ext.define('YourTour.view.RouteMain', {
+Ext.define('YourTour.view.route.Main', {
     extend: 'Ext.Panel',
     xtype: 'routemain',
     requires:['Ext.Carousel', 'Ext.TitleBar', 'Ext.Button', 'Ext.field.Hidden'],

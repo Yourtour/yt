@@ -1,4 +1,4 @@
-Ext.define('YourTour.view.PersonalMain', {
+Ext.define('YourTour.view.personal.Main', {
     extend: 'Ext.Panel',
     xtype: 'personalmain',
     requires:['Ext.Img', 'Ext.Panel', 'Ext.TitleBar'],

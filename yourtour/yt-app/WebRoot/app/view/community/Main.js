@@ -1,4 +1,4 @@
-Ext.define('YourTour.view.Community', {
+Ext.define('YourTour.view.community.Main', {
     extend: 'Ext.Panel',
     xtype: 'communityview',
     requires:['Ext.Img', 'Ext.Panel', 'Ext.TitleBar'],

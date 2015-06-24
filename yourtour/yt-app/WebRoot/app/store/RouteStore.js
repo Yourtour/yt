@@ -1,10 +1,10 @@
-Ext.define('YourTour.store.RouteMain', {
+Ext.define('YourTour.store.RouteStore', {
     extend: 'YourTour.store.AjaxStore',
     requires: [
-       'YourTour.model.RouteMain'
+       'YourTour.model.RouteModel'
     ],
     config:{
-    	model:'YourTour.model.RouteMain',
+    	model:'YourTour.model.RouteModel',
     	autoLoad:false,
     	
     	proxy:{

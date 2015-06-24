@@ -131,7 +131,7 @@ public class RouteController {
 	 * @return
 	 */
 	@RequestMapping(value="/Save")
-	public @ResponseBody ResponseMessage saveRouteInfo(@PathVariable(value="routeId") String routeId, @RequestBody RouteBean routeBean){
+	public @ResponseBody ResponseMessage saveRouteInfo(@RequestBody RouteBean routeBean){
 		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, "", routeBean);
 		return response;
 	}

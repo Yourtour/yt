@@ -644,10 +644,10 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.controller.RouteNew": [],
   "YourTour.controller.Welcome": [],
   "YourTour.model.LocalCache": [],
-  "YourTour.model.RouteMain": [],
+  "YourTour.model.RouteModel": [],
   "YourTour.store.AjaxStore": [],
   "YourTour.store.LocalStore": [],
-  "YourTour.store.RouteMain": [],
+  "YourTour.store.RouteStore": [],
   "YourTour.util.Context": [],
   "YourTour.view.Community": [],
   "YourTour.view.HomeMain": [],
@@ -1384,10 +1384,10 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.model.LocalCache": [
     "widget.localCache"
   ],
-  "YourTour.model.RouteMain": [],
+  "YourTour.model.RouteModel": [],
   "YourTour.store.AjaxStore": [],
   "YourTour.store.LocalStore": [],
-  "YourTour.store.RouteMain": [],
+  "YourTour.store.RouteStore": [],
   "YourTour.util.Context": [
     "Context"
   ],

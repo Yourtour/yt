@@ -18,6 +18,7 @@ public class RouteBean extends BaseBean {
 	private 	@HbaseColumn(name = "name")	String 	name; 	//安排名称
 	private 	@HbaseColumn(name = "iu")			String 	imageUrl; 	//行程图片
 	private	@HbaseColumn(name = "line")		String 	lineName; 	//线路名称
+	private	@HbaseColumn(name = "step")		int 	 	step; 	//规划步骤
 	private 	@HbaseColumn(name = "intr")		String 	intro; 	//概述， 可以针对行程安排中具体某天或者某个景点进行描述 
 	private 	@HbaseColumn(name = "feat")		String 	feature; 	//特点， 可以针对行程安排中具体某天或者某个景点进行特点描述
 	private 	@HbaseColumn(name = "reas")		String 	reason;  	//推荐理由，， 可以针对行程安排中具体某天或者某个景点进行推荐描述
@@ -57,6 +58,14 @@ public class RouteBean extends BaseBean {
 
 	public void setIntro(String intro) {
 		this.intro = intro;
+	}
+
+	public int getStep() {
+		return step;
+	}
+
+	public void setStep(int step) {
+		this.step = step;
 	}
 
 	public String getFeature() {

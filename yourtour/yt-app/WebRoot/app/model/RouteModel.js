@@ -1,4 +1,4 @@
-Ext.define('YourTour.model.RouteMain', {
+Ext.define('YourTour.model.RouteModel', {
     extend: 'Ext.data.Model',
     config:{
 	    fields:[{name:'id', type:'string'},

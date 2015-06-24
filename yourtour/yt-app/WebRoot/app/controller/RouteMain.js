@@ -1,6 +1,6 @@
 Ext.define('YourTour.controller.RouteMain', {
     extend: 'Ext.app.Controller',
-    requires:['YourTour.store.RouteMain', 'YourTour.model.RouteMain'],
+    requires:['YourTour.store.RouteStore', 'YourTour.model.RouteModel'],
     
     config: {
        refs: {
@@ -19,7 +19,7 @@ Ext.define('YourTour.controller.RouteMain', {
        }
     },
     
-    store:Ext.create('YourTour.store.RouteMain'),
+    routeStore:Ext.create('YourTour.store.RouteStore'),
     
     newRoute:function(){
     	this.redirectTo("/route/new");
@@ -36,7 +36,7 @@ Ext.define('YourTour.controller.RouteMain', {
         	
         	var panels = [];
         	
-        	this.store.each(function(item){
+        	this.routeStore.each(function(item){
         		var tplHtml = tpl.apply(item.data);
         		
         		panels.push(Ext.create('Ext.Panel',{html:tplHtml, style:'padding:5px',scrollable:{
@@ -50,6 +50,6 @@ Ext.define('YourTour.controller.RouteMain', {
         	this.getRouteCarousel().setActiveItem(0);
     	};
     	
-    	this.store.load({params:{userId:'1111','userName':'tony'}, callback:handler,scope:this});
+    	this.routeStore.load({params:{userId:'1111','userName':'tony'}, callback:handler,scope:this});
     }
 });

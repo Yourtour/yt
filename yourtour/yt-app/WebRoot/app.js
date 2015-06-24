@@ -18,7 +18,7 @@ Ext.application({
     ],
 
     views: [
-        'Main','Launch','Welcome','RouteMain','HomeMain','SearchMain','RouteNew'
+        'Main','Launch','Welcome','route.Main','home.Main','SearchMain','route.RouteNew'
     ],
     
     controllers: [
@@ -26,11 +26,11 @@ Ext.application({
     ],
     
     models:[
-        'RouteMain'
+        'RouteModel'
     ],
     
     stores:[
-        'RouteMain'
+        'RouteStore'
     ],
         
     icon: {

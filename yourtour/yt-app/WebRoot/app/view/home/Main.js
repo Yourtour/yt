@@ -1,4 +1,4 @@
-Ext.define('YourTour.view.HomeMain', {
+Ext.define('YourTour.view.home.Main', {
     extend: 'Ext.Panel',
     xtype: 'homemain',
     requires:['Ext.Panel', 'Ext.TitleBar'],

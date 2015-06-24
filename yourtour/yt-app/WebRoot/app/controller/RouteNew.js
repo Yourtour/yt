@@ -1,6 +1,6 @@
 Ext.define('YourTour.controller.RouteNew', {
     extend: 'Ext.app.Controller',
-    requires:['YourTour.store.RouteMain', 'YourTour.model.RouteMain'],
+    requires:['YourTour.store.RouteStore', 'YourTour.model.RouteModel'],
     config: {
        refs:{
     	  form:'#routenew'  
@@ -20,18 +20,18 @@ Ext.define('YourTour.controller.RouteNew', {
        }
     },
     
-    store:Ext.create('YourTour.store.RouteMain'),
+    routeStore:Ext.create('YourTour.store.RouteStore'),
     
     OnCloseClick:function(){
     	Ext.Viewport.setActiveItem("mainview");
     },
     
     OnNextClick:function(){
-    	var routeStore = this.store;
-    	var route = Ext.create('YourTour.model.RouteMain');
+    	var store = this.routeStore;
+    	var route = Ext.create('YourTour.model.RouteModel');
     	this.getForm().updateRecord(route);
     	
-    	route.setProxy(routeStore.getProxy());
+    	route.setProxy(store.getProxy());
     	route.save({
 			success:function(){
 				routeStore.add(route);
