@@ -26,7 +26,14 @@ package com.yt.dal.hbase;
  */
 public abstract class BaseDictBean extends BaseBean {
 	private static final long serialVersionUID = 9059455163441467114L;
-	
+				
+	/**
+	 * 默认构造方法
+	 */
+	public BaseDictBean() {
+		super();
+	}
+
 	/**
 	 * 获取代码
 	 * @return 代码

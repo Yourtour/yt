@@ -43,6 +43,13 @@ public class Neo4JBaseBean implements Serializable, IBaseBean, INeo4JBaseBean,
 	@GraphProperty
 	@Indexed(unique = true)
 	private String rowKey;
+	
+	/**
+	 * 默认构造方法
+	 */
+	public Neo4JBaseBean() {
+		super();
+	}
 
 	/*
 	 * (non-Javadoc)

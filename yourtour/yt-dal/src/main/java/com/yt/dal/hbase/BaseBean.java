@@ -30,6 +30,13 @@ public abstract class BaseBean implements Serializable, IBaseBean,
 	private static final long serialVersionUID = -1098345715801304322L;
 	private String rowKey;
 
+	/**
+	 * 默认构造方法
+	 */
+	public BaseBean() {
+		super();
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 

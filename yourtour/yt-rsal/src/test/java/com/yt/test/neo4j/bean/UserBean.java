@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.GraphProperty;
+import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.data.neo4j.annotation.RelatedTo;
 
@@ -28,18 +29,22 @@ public class UserBean extends Neo4JBaseBean {
 
 	private @HbaseColumn(name = "name")
 	@GraphProperty
+	@Indexed
 	String userName; // 登录名
 	private @HbaseColumn(name = "pwd")
 	transient String pwd; // 登录密码
 	private @HbaseColumn(name = "rname")
 	@GraphProperty
+	@Indexed
 	String realName; // 真实姓名
 	private @HbaseColumn(name = "nname")
 	@GraphProperty
+	@Indexed
 	String nickName; // 昵称
 	private @HbaseColumn(name = "sex")
 	transient String sex; // 性别 F/M
 	private @HbaseColumn(name = "birth")
+	@Indexed(numeric=true)
 	transient long birthday; // 生日
 	private @HbaseColumn(name = "img")
 	transient String imageUrl; // 头像
