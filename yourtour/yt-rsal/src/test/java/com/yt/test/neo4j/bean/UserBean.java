@@ -8,6 +8,7 @@ import org.springframework.data.neo4j.annotation.GraphProperty;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.data.neo4j.annotation.RelatedTo;
+import org.springframework.data.neo4j.support.index.IndexType;
 
 import com.yt.dal.hbase.annotation.HbaseColumn;
 import com.yt.dal.hbase.annotation.HbaseTable;
@@ -22,6 +23,7 @@ import com.yt.test.neo4j.bean.Constants.Status;
 @NodeEntity
 public class UserBean extends Neo4JBaseBean {
 	private static final long serialVersionUID = -6977525800090683657L;
+	private static final String INDEX_NAME = "user";
 
 	public static enum RATE {
 		GENERAL, EXPERT, HOST
@@ -31,8 +33,6 @@ public class UserBean extends Neo4JBaseBean {
 	@GraphProperty
 	@Indexed
 	String userName; // 登录名
-	private @HbaseColumn(name = "pwd")
-	transient String pwd; // 登录密码
 	private @HbaseColumn(name = "rname")
 	@GraphProperty
 	@Indexed
@@ -42,27 +42,35 @@ public class UserBean extends Neo4JBaseBean {
 	@Indexed
 	String nickName; // 昵称
 	private @HbaseColumn(name = "sex")
-	transient String sex; // 性别 F/M
+	String sex; // 性别 F/M
 	private @HbaseColumn(name = "birth")
-	@Indexed(numeric=true)
-	transient long birthday; // 生日
+	@Indexed(numeric = true)
+	long birthday; // 生日
+	private @HbaseColumn(name = "char")
+	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
+	String character; // 性格
+	private @HbaseColumn(name = "rpla")
+	@Indexed
+	String residence; // 居住地
+	private @HbaseColumn(name = "npla")
+	@Indexed
+	String nativePlace; // 籍贯
+	private @HbaseColumn(name = "stat")
+	@Indexed
+	Status status;
+
+	private @HbaseColumn(name = "pwd")
+	transient String pwd; // 登录密码
 	private @HbaseColumn(name = "img")
 	transient String imageUrl; // 头像
-	private @HbaseColumn(name = "char")
-	transient String character; // 性格
 	private @HbaseColumn(name = "mbno")
 	transient String mobileNo; // 手机号
 	private @HbaseColumn(name = "mail")
 	transient String email; // 邮箱地址
-	private @HbaseColumn(name = "rpla")
-	transient String residence; // 居住地
-	private @HbaseColumn(name = "npla")
-	transient String nativePlace; // 籍贯
 	private @HbaseColumn(name = "cstl")
 	transient String constellation; // 星座
 	private @HbaseColumn(name = "rate")
 	transient RATE rate; // 评级
-
 	private @HbaseColumn(name = "cuid")
 	transient String createdUserId = "";
 	private @HbaseColumn(name = "ct")
@@ -71,8 +79,6 @@ public class UserBean extends Neo4JBaseBean {
 	transient String updatedUserId = "";
 	private @HbaseColumn(name = "ut")
 	transient long updatedTime;
-	private @HbaseColumn(name = "stat")
-	transient Status status;
 
 	private @RelatedTo(type = "playWith", direction = Direction.BOTH)
 	Set<UserBean> playmates; // 游伴
@@ -139,7 +145,7 @@ public class UserBean extends Neo4JBaseBean {
 			watchRoutes.add(routeBean);
 		}
 	}
-	
+
 	public Set<RouteBean> getWatchRoutes() {
 		return this.watchRoutes;
 	}

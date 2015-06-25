@@ -68,7 +68,6 @@ public class TestUserBeanNeo4J {
 			user.setRate(RATE.EXPERT);
 			user.setRealName("real name");
 			user.setResidence("residence");
-			user.setRowKey("rowkey");
 			user.setSex("F");
 			user.setStatus(Status.ACTIVED);
 			user.setUpdatedTime(System.currentTimeMillis());

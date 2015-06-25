@@ -18,30 +18,38 @@ import com.yt.test.neo4j.bean.Constants.Status;
 @HbaseTable(name = "T_ROUTE_INFO")
 public class RouteBean extends Neo4JBaseBean {
 	private static final long serialVersionUID = -8980153602025087935L;
+	private static final String INDEX_NAME = "route";
 
 	private @HbaseColumn(name = "name")
 	@GraphProperty
 	@Indexed
 	String name; // 安排名称
-	private @HbaseColumn(name = "iu")
-	transient String imageUrl; // 行程图片
 	private @HbaseColumn(name = "intr")
-	@Indexed(indexType=IndexType.FULLTEXT)
-	transient String intro; // 概述， 可以针对行程安排中具体某天或者某个景点进行描述
+	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
+	String intro; // 概述， 可以针对行程安排中具体某天或者某个景点进行描述
 	private @HbaseColumn(name = "feat")
-	@Indexed(indexType=IndexType.FULLTEXT)
-	transient String feature; // 特点， 可以针对行程安排中具体某天或者某个景点进行特点描述
+	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
+	String feature; // 特点， 可以针对行程安排中具体某天或者某个景点进行特点描述
 	private @HbaseColumn(name = "reas")
-	transient String reason; // 推荐理由，， 可以针对行程安排中具体某天或者某个景点进行推荐描述
+	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
+	String reason; // 推荐理由，， 可以针对行程安排中具体某天或者某个景点进行推荐描述
 	private @HbaseColumn(name = "plac")
 	@GraphProperty
+	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
 	String place; // 目的地
+	private @HbaseColumn(name = "peri")
+	@Indexed(numeric = true)
+	long period; // 安排持续时间， 以秒为单位
+	private @HbaseColumn(name = "stat")
+	@GraphProperty
+	Status status;
+
+	private @HbaseColumn(name = "iu")
+	transient String imageUrl; // 行程图片
 	private @HbaseColumn(name = "st")
 	transient long startTime; // 安排开始时间，以秒为单位
 	private @HbaseColumn(name = "et")
 	transient long endTime; // 安排结束时间，以秒为单位
-	private @HbaseColumn(name = "peri")
-	transient int period; // 安排持续时间， 以秒为单位
 	private @HbaseColumn(name = "cuid")
 	transient String createdUserId = "";
 	private @HbaseColumn(name = "ct")
@@ -50,9 +58,6 @@ public class RouteBean extends Neo4JBaseBean {
 	transient String updatedUserId = "";
 	private @HbaseColumn(name = "ut")
 	transient long updatedTime;
-	private @HbaseColumn(name = "stat")
-	@GraphProperty
-	Status status;
 
 	public RouteBean() {
 		super();
@@ -122,11 +127,11 @@ public class RouteBean extends Neo4JBaseBean {
 		this.endTime = endTime;
 	}
 
-	public int getPeriod() {
+	public long getPeriod() {
 		return period;
 	}
 
-	public void setPeriod(int period) {
+	public void setPeriod(long period) {
 		this.period = period;
 	}
 
