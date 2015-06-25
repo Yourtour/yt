@@ -51,7 +51,7 @@ public class TestRouteBeanNeo4J {
 	public RouteBean createRoute() {
 		RouteBean route = new RouteBean();
 		route.setRowKey("route-001");
-		route.setName("I love you");
+		route.setName("五台山三日游");
 		route.setFeature("五台山是中国佛教寺庙建筑最早的建造地之一。自五台山中的寺院五台山中的寺院东汉永平（公元58年～75年）年间起，历代修造的寺庙鳞次栉比，佛塔摩天，殿宇巍峨，金碧辉煌，是中国历代建筑荟萃之地。雕塑、石刻、壁画、书法遍及各寺，均具有很高的艺术价值。");
 		route.setIntro("五台山（Mount Wutai）位于山西省忻州市五台县境内，位列中国佛教四大名山之首。五台山位于山西省东北部，隶属忻州市五台县，西南距省会太原市230公里，与浙江普陀山、安徽九华山、四川峨眉山、共称“中国佛教四大名山”。五台山与尼泊尔蓝毗尼花园、印度鹿野苑、菩提伽耶、拘尸那迦并称为世界五大佛教圣地。");
 		route.setPeriod(3 * 24 * 3600);
@@ -155,6 +155,42 @@ public class TestRouteBeanNeo4J {
 			assertNotNull(route2);
 			assertEquals("Assert the name.", route.getName(), route2.getName());
 			assertTrue(route2.getFeature().indexOf("东汉永平") >= 0);
+
+			RouteBean r1 = createRoute();
+			r1.setRowKey("route-002");
+			r1.setFeature("中华人民共和国");
+			neo4jCRUD.save(r1);
+
+			list = search.query(RouteBean.class, new QueryTerm("intro", "五台山"));
+			assertTrue(list.size() == 2);
+			RouteBean r11 = (RouteBean) list.get(0);
+			assertNotNull(r11);
+			assertEquals("Assert the name.", route.getName(), r11.getName());
+			assertTrue(r11.getIntro().indexOf("五台山") >= 0);
+			RouteBean r12 = (RouteBean) list.get(1);
+			assertNotNull(r12);
+			assertEquals("Assert the name.", r1.getName(), r12.getName());
+			assertTrue(r12.getIntro().indexOf("五台山") >= 0);
+
+			query = new Vector<QueryTerm>();
+			query.add(new QueryTerm("intro", "五台山"));
+			query.add(new QueryTerm("feature", "东汉永平"));
+			list = search.query(RouteBean.class, query);
+			assertTrue(list.size() == 1);
+			RouteBean r21 = (RouteBean) list.get(0);
+			assertNotNull(r21);
+			assertEquals("Assert the name.", route.getName(), r21.getName());
+			assertTrue(r21.getFeature().indexOf("东汉永平") >= 0);
+
+			query = new Vector<QueryTerm>();
+			query.add(new QueryTerm("intro", "五台山"));
+			query.add(new QueryTerm("feature", "共和国"));
+			list = search.query(RouteBean.class, query);
+			assertTrue(list.size() == 1);
+			RouteBean r22 = (RouteBean) list.get(0);
+			assertNotNull(r22);
+			assertEquals("Assert the name.", r1.getName(), r22.getName());
+			assertTrue(r22.getFeature().indexOf("共和国") >= 0);
 
 			neo4jCRUD.delete(RouteBean.class);
 			assertEquals("Assert the count when clean.",

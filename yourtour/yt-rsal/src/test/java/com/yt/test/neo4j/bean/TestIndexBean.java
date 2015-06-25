@@ -17,7 +17,7 @@ public class TestIndexBean extends Neo4JBaseBean {
 	private String name;
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
 	private String description;
-	@Indexed(numeric = true)
+	@Indexed(indexType = IndexType.SIMPLE, numeric = true)
 	private int age;
 	private boolean married = false;
 
