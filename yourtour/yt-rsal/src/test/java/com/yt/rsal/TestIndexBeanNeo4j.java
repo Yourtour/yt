@@ -1,6 +1,7 @@
 package com.yt.rsal;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -21,7 +22,6 @@ import com.yt.rsal.neo4j.repository.CrudGeneralOperate;
 import com.yt.rsal.neo4j.repository.ICrudOperate;
 import com.yt.rsal.neo4j.repository.IFullTextSearchOperate;
 import com.yt.rsal.neo4j.repository.IFullTextSearchOperate.QueryTerm;
-import com.yt.test.neo4j.bean.RouteBean;
 import com.yt.test.neo4j.bean.TestIndexBean;
 
 public class TestIndexBeanNeo4j {
@@ -60,17 +60,17 @@ public class TestIndexBeanNeo4j {
 
 			Neo4jTemplate template = context.getBean(Neo4jTemplate.class);
 			assertNotNull(template);
-			
+
 			IFullTextSearchOperate search = context
 					.getBean(IFullTextSearchOperate.class);
-			List<Neo4JBaseBean> list = search.query(RouteBean.class,
+			List<Neo4JBaseBean> list = search.query(TestIndexBean.class,
 					new QueryTerm("description", "people"));
 			assertTrue(list.size() == 1);
 			TestIndexBean test = (TestIndexBean) list.get(0);
 			assertNotNull(test);
 			assertEquals("Assert the name.", bean.getName(), test.getName());
 			assertTrue(test.getDescription().indexOf("people") >= 0);
-			
+
 			GraphRepository<TestIndexBean> repository = template
 					.repositoryFor(TestIndexBean.class);
 			assertNotNull(repository);
@@ -80,6 +80,8 @@ public class TestIndexBeanNeo4j {
 				assertNotNull(tib);
 				assertEquals("Assert the name", tib.getName(), bean.getName());
 			}
+			rs = repository.findAllByRange("age", 45, 50);
+			assertFalse(rs.iterator().hasNext());
 
 			neo4jCRUD.delete(TestIndexBean.class);
 			assertEquals("Assert the count when clean.",
