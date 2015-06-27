@@ -1,7 +1,7 @@
-package com.yt.bean;
+package com.yt.business.bean;
 
-import com.yt.common.Constants.ChargeType;
-import com.yt.common.Constants.Status;
+import com.yt.business.common.Constants.ChargeType;
+import com.yt.business.common.Constants.Status;
 import com.yt.dal.hbase.BaseBean;
 import com.yt.dal.hbase.annotation.HbaseColumn;
 import com.yt.dal.hbase.annotation.HbaseTable;

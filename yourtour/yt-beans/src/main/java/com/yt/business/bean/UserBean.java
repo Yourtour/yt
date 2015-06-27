@@ -1,10 +1,10 @@
-package com.yt.bean;
+package com.yt.business.bean;
 
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.data.neo4j.support.index.IndexType;
 
-import com.yt.common.Constants.Status;
+import com.yt.business.common.Constants.Status;
 import com.yt.dal.hbase.annotation.HbaseColumn;
 import com.yt.dal.hbase.annotation.HbaseTable;
 import com.yt.rsal.neo4j.bean.Neo4JBaseBean;

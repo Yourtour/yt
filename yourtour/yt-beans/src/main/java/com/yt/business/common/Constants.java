@@ -1,4 +1,4 @@
-package com.yt.common;
+package com.yt.business.common;
 
 public interface Constants {
 	//资源枚举

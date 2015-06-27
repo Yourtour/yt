@@ -1,6 +1,6 @@
-package com.yt.bean;
+package com.yt.business.bean;
 
-import com.yt.common.Constants.CheckinType;
+import com.yt.business.common.Constants.CheckinType;
 import com.yt.dal.hbase.BaseBean;
 import com.yt.dal.hbase.annotation.HbaseColumn;
 import com.yt.dal.hbase.annotation.HbaseTable;

@@ -1,4 +1,4 @@
-package com.yt.bean;
+package com.yt.business.bean;
 
 import com.yt.dal.hbase.BaseBean;
 import com.yt.dal.hbase.annotation.HbaseTable;
