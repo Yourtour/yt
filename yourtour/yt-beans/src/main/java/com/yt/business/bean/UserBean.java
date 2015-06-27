@@ -1,43 +1,107 @@
 package com.yt.bean;
 
+import org.springframework.data.neo4j.annotation.Indexed;
+import org.springframework.data.neo4j.annotation.NodeEntity;
+import org.springframework.data.neo4j.support.index.IndexType;
+
 import com.yt.common.Constants.Status;
-import com.yt.dal.hbase.BaseBean;
 import com.yt.dal.hbase.annotation.HbaseColumn;
 import com.yt.dal.hbase.annotation.HbaseTable;
+import com.yt.rsal.neo4j.bean.Neo4JBaseBean;
 
 /**
+ * 该实体定义了用户的相关信息
+ * 
+ * <p>
+ * <b>修改历史：</b>
+ * <table border="1">
+ * <tr>
+ * <th>修改时间</th>
+ * <th>修改人</th>
+ * <th>备注</th>
+ * </tr>
+ * <tr>
+ * <td>2015年6月2日</td>
+ * <td>Tony.Zhang</td>
+ * <td>Create</td>
+ * </tr>
+ * <tr>
+ * <td>2015年6月27日</td>
+ * <td>John.Peng</td>
+ * <td>根据定稿后的hbase和Neo4j操作方式进行修改完善。</td>
+ * </tr>
+ * </table>
  * 
  * @author Tony.Zhang
- * 该实体定义了用户的相关信息
+ * 
+ * @version 1.0
+ * @since 1.0
  */
 @HbaseTable(name = "T_USER_INFO")
-public class UserBean extends BaseBean {
+@NodeEntity
+public class UserBean extends Neo4JBaseBean {
 	private static final long serialVersionUID = -6977525800090683657L;
-	
-	public static enum RATE{GENERAL, EXPERT, HOST}
-	
-	private 	@HbaseColumn(name = "name")	String 	userName; 	//登录名
-	private 	@HbaseColumn(name = "pwd")		String 	pwd; 	//登录密码
-	private 	@HbaseColumn(name = "rname")	String 	realName; 	//真实姓名
-	private 	@HbaseColumn(name = "nname")	String 	nickName; 	//昵称
-	private 	@HbaseColumn(name = "sex")		String 	sex; 	//性别 F/M
-	private 	@HbaseColumn(name = "birth")		long 	birthday; 	//生日
-	private 	@HbaseColumn(name = "img")		String 	imageUrl; 	//头像
-	private 	@HbaseColumn(name = "char")		String 	character; 	//性格
-	private 	@HbaseColumn(name = "mbno")	String 	mobileNo; 	//手机号
-	private 	@HbaseColumn(name = "mail")		String 	email; 	//邮箱地址
-	private 	@HbaseColumn(name = "rpla")		String 	residence; 	//居住地
-	private 	@HbaseColumn(name = "npla")		String 	nativePlace; 	//籍贯
-	private 	@HbaseColumn(name = "cstl")		String 	constellation; 	//星座
-	private	@HbaseColumn(name = "rate")		RATE 	rate; 	//评级
-	
-	private 	@HbaseColumn(name = "cuid")	String createdUserId = "";
-	private 	@HbaseColumn(name = "ct")		long createdTime;
-	private 	@HbaseColumn(name = "uuid")	String updatedUserId = "";
-	private 	@HbaseColumn(name = "ut")		long updatedTime;
-	private 	@HbaseColumn(name = "stat")		Status 	status;
+	private static final String INDEX_NAME = "user"; // 定义了本实体中全文检索的索引名称。
+
+	public static enum RATE {
+		/** 成员变量：常规用户 */
+		GENERAL,
+		/** 成员变量：达人 */
+		EXPERT,
+		/** 成员变量：地主 */
+		HOST
+	}
+
+	private @HbaseColumn(name = "name")
+	@Indexed
+	String userName; // 登录名
+	private @HbaseColumn(name = "pwd")
+	transient String pwd; // 登录密码
+	private @HbaseColumn(name = "rname")
+	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
+	String realName; // 真实姓名
+	private @HbaseColumn(name = "nname")
+	@Indexed
+	String nickName; // 昵称
+	private @HbaseColumn(name = "sex")
+	String sex; // 性别 F/M
+	private @HbaseColumn(name = "birth")
+	long birthday; // 生日
+	private @HbaseColumn(name = "img")
+	transient String imageUrl; // 头像
+	private @HbaseColumn(name = "char")
+	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
+	String character; // 性格
+	private @HbaseColumn(name = "mbno")
+	@Indexed
+	String mobileNo; // 手机号
+	private @HbaseColumn(name = "mail")
+	String email; // 邮箱地址
+	private @HbaseColumn(name = "rpla")
+	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
+	String residence; // 居住地
+	private @HbaseColumn(name = "npla")
+	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
+	String nativePlace; // 籍贯
+	private @HbaseColumn(name = "cstl")
+	String constellation; // 星座
+	@Indexed
+	private @HbaseColumn(name = "rate")
+	RATE rate; // 评级
+	private @HbaseColumn(name = "cuid")
+	transient String createdUserId = "";
+	private @HbaseColumn(name = "ct")
+	transient long createdTime;
+	private @HbaseColumn(name = "uuid")
+	transient String updatedUserId = "";
+	private @HbaseColumn(name = "ut")
+	transient long updatedTime;
+	private @HbaseColumn(name = "stat")
+	@Indexed
+	Status status;
 
 	public UserBean() {
+		super();
 	}
 
 	public String getUserName() {
