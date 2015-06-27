@@ -43,6 +43,8 @@
 	<tx:annotation-driven mode="aspectj" transaction-manager="neo4jTransactionManager" /-->
 	
 	<bean id="neo4jCRUD" class="com.yt.rsal.neo4j.repository.CrudGeneralOperate" />
+	
+	<bean id="neo4jFTS" class="com.yt.rsal.neo4j.repository.FullTextSearchOperate" />
 
 </beans>
 

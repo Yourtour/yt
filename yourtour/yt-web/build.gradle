@@ -1,11 +1,17 @@
+configurations{
+    providedCompile
+}
+
 dependencies {
 	compile "org.springframework:spring-webmvc:${springVersion}",
-					"org.springframework:spring-webmvc:${springVersion}",
-					"org.codehaus.jackson:jackson-mapper-lgpl:1.7.4",
-					"com.fasterxml.jackson.core:jackson-core:2.5.4",
-					"com.fasterxml.jackson.core:jackson-databind:2.5.4",
-					"com.fasterxml.jackson.core:jackson-annotations:2.5.4",
-					"dom4j:dom4j:1.6.1",
-					"org.ebaysf.web:cors-filter:1.0.1"
-	        project(":yt-dal")
+					 "org.springframework:spring-webmvc:${springVersion}",
+					 "org.codehaus.jackson:jackson-mapper-lgpl:1.7.4",
+					 "com.fasterxml.jackson.core:jackson-core:2.5.4",
+					 "com.fasterxml.jackson.core:jackson-databind:2.5.4",
+					 "com.fasterxml.jackson.core:jackson-annotations:2.5.4",
+					 "dom4j:dom4j:1.6.1",
+					 "org.ebaysf.web:cors-filter:1.0.1",
+				project(":yt-dal")	
+				
+	 providedCompile "javax.servlet:servlet-api:2.5"
 }
