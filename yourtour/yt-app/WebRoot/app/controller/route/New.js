@@ -1,13 +1,18 @@
-Ext.define('YourTour.controller.RouteNew', {
+Ext.define('YourTour.controller.route.New', {
     extend: 'Ext.app.Controller',
     requires:['YourTour.store.RouteStore', 'YourTour.model.RouteModel'],
     config: {
        refs:{
-    	  form:'#routenew'  
+    	  form:'#routenew'
        },
+       
        control:{
     	   "#close":{
     		   tap:"OnCloseClick"
+    	   },
+    	   
+    	   '#routenew #place':{
+    		   focus:"OnPlaceClick"
     	   },
     	   
     	   '#next':{
@@ -26,18 +31,12 @@ Ext.define('YourTour.controller.RouteNew', {
     	Ext.Viewport.setActiveItem("mainview");
     },
     
+    OnPlaceClick:function(){
+    	this.redirectTo('/place/selection');
+    },
+    
     OnNextClick:function(){
-    	var store = this.routeStore;
-    	var route = Ext.create('YourTour.model.RouteModel');
-    	this.getForm().updateRecord(route);
-    	
-    	route.setProxy(store.getProxy());
-    	route.save({
-			success:function(){
-				routeStore.add(route);
-				Ext.Viewport.setActiveItem("mainview");
-			}
-		});
+    	this.redirectTo('/route/plan');
     },
     
     showNewRouteView:function(){

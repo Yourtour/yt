@@ -18,15 +18,16 @@ Ext.application({
     ],
 
     views: [
-        'Main','Launch','Welcome','route.Main','home.Main','SearchMain','route.New'
+        'Main','Launch','Welcome','home.Main','SearchMain','route.Main','route.New','route.Plan','route.Schedule','common.PlaceSelection',
+        'line.ListView'
     ],
     
     controllers: [
-        'Welcome', 'Main', 'RouteMain','RouteNew'
+        'Welcome', 'Main', 'route.Main','route.New','route.Plan','common.Place'
     ],
     
     models:[
-        'RouteModel'
+        'RouteModel','LineModel', 'UserModel'
     ],
     
     stores:[

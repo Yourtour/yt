@@ -1,4 +1,4 @@
-Ext.define('YourTour.controller.RouteMain', {
+Ext.define('YourTour.controller.route.Main', {
     extend: 'Ext.app.Controller',
     requires:['YourTour.store.RouteStore', 'YourTour.model.RouteModel'],
     

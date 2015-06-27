@@ -21,9 +21,6 @@ public class MockDataFactory {
 	        Document   document = reader.read(MockDataFactory.class.getClassLoader().getResourceAsStream("mock.xml")); 
 	        
 	        root = document.getRootElement();
-	        
-	        System.out.println(root.getNodeTypeName());
-	        
 		}catch(Exception exc){
 			exc.printStackTrace();
 		}

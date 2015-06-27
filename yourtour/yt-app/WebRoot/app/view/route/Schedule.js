@@ -1,4 +1,4 @@
-Ext.define('YourTour.view.route.New', {
+Ext.define('YourTour.view.route.Schedule', {
     extend: 'Ext.form.Panel',
     requires:['Ext.field.DatePicker','Ext.field.Select', 'Ext.field.Text'],
     xtype: 'routenew',

@@ -640,12 +640,17 @@ Ext.ClassManager.addNameAlternateMappings({
     "Ext.viewport.WP"
   ],
   "YourTour.controller.Main": [],
-  "YourTour.controller.RouteMain": [],
-  "YourTour.controller.RouteNew": [],
   "YourTour.controller.Welcome": [],
+  "YourTour.controller.common.Place": [],
+  "YourTour.controller.route.Main": [],
+  "YourTour.controller.route.New": [],
+  "YourTour.controller.route.Plan": [],
+  "YourTour.model.LineModel": [],
   "YourTour.model.LocalCache": [],
+  "YourTour.model.MemberModel": [],
   "YourTour.model.RouteModel": [],
   "YourTour.store.AjaxStore": [],
+  "YourTour.store.LineStore": [],
   "YourTour.store.LocalStore": [],
   "YourTour.store.RouteStore": [],
   "YourTour.util.Context": [],
@@ -653,11 +658,15 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.Main": [],
   "YourTour.view.SearchMain": [],
   "YourTour.view.Welcome": [],
+  "YourTour.view.common.PlaceSelection": [],
   "YourTour.view.community.Main": [],
   "YourTour.view.home.Main": [],
+  "YourTour.view.line.ListView": [],
   "YourTour.view.personal.Main": [],
   "YourTour.view.route.Main": [],
-  "YourTour.view.route.New": []
+  "YourTour.view.route.New": [],
+  "YourTour.view.route.Plan": [],
+  "YourTour.view.route.Schedule": []
 });
 Ext.ClassManager.addNameAliasMappings({
   "Ext.AbstractComponent": [],
@@ -1378,14 +1387,19 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.Viewport": [],
   "Ext.viewport.WindowsPhone": [],
   "YourTour.controller.Main": [],
-  "YourTour.controller.RouteMain": [],
-  "YourTour.controller.RouteNew": [],
   "YourTour.controller.Welcome": [],
+  "YourTour.controller.common.Place": [],
+  "YourTour.controller.route.Main": [],
+  "YourTour.controller.route.New": [],
+  "YourTour.controller.route.Plan": [],
+  "YourTour.model.LineModel": [],
   "YourTour.model.LocalCache": [
     "widget.localCache"
   ],
+  "YourTour.model.MemberModel": [],
   "YourTour.model.RouteModel": [],
   "YourTour.store.AjaxStore": [],
+  "YourTour.store.LineStore": [],
   "YourTour.store.LocalStore": [],
   "YourTour.store.RouteStore": [],
   "YourTour.util.Context": [
@@ -1403,11 +1417,17 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.Welcome": [
     "widget.welcome"
   ],
+  "YourTour.view.common.PlaceSelection": [
+    "widget.placeselection"
+  ],
   "YourTour.view.community.Main": [
     "widget.communityview"
   ],
   "YourTour.view.home.Main": [
     "widget.homemain"
+  ],
+  "YourTour.view.line.ListView": [
+    "widget.lineListView"
   ],
   "YourTour.view.personal.Main": [
     "widget.personalmain"
@@ -1416,6 +1436,12 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.routemain"
   ],
   "YourTour.view.route.New": [
+    "widget.routenew"
+  ],
+  "YourTour.view.route.Plan": [
+    "widget.routeplan"
+  ],
+  "YourTour.view.route.Schedule": [
     "widget.routenew"
   ]
 });

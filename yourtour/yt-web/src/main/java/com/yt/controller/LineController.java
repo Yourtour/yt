@@ -29,6 +29,20 @@ public class LineController {
 	}
 
 	/**
+	 * 线路匹配
+	 * @param place
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/Match")
+	public @ResponseBody ResponseMessage queryMatchedLineInfoes() throws Exception{
+		List<LineVO> data = (List<LineVO>) MockDataFactory.getMockListData(LineVO.class, "line/match");
+		
+		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, "", data);
+		return response;
+	}
+	
+	/**
 	 * 根据目的地代码查询线路信息
 	 * @param place
 	 * @return

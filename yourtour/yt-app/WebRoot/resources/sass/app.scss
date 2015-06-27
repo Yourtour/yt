@@ -7,4 +7,6 @@
 // Custom code goes here..
 
 // Examples of using the icon mixin:
-@include icon('route');
+.back-arrow {
+  background: url("../icons/back_arrow.png") no-repeat;
+}

@@ -33,7 +33,6 @@ public class RouteController {
 	 */
 	@RequestMapping(value="/user/Query")
 	public @ResponseBody ResponseMessage queryRouteInfoesByUser(@RequestHeader(value="user_id", required=false) String userId) throws Exception{
-		System.out.println(userId);
 		List<RouteVO> data = (List<RouteVO>) MockDataFactory.getMockListData(RouteVO.class, "route/user/query");
 		
 		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, "", data);

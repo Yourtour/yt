@@ -1,7 +1,7 @@
 Ext.define('YourTour.view.home.Main', {
     extend: 'Ext.Panel',
     xtype: 'homemain',
-    requires:['Ext.Panel', 'Ext.TitleBar'],
+    requires:['Ext.Panel', 'Ext.TitleBar', 'Ext.Toolbar'],
     config: {
     	fullscreen: true,
     	
@@ -17,6 +17,22 @@ Ext.define('YourTour.view.home.Main', {
                 	text:'切换',
                 	align:'right'
                 }]	
+            },
+            {
+            	xtype:'toolbar',
+            	layout: { align: 'stretch' },
+            	defaults:{flext:1},
+            	items:[
+            	   {
+					   text:'达人'
+				   } ,    
+            	   {
+            		   text:'景点'
+            	   } ,
+            	   {
+            		   text:'住宿'
+            	   } ,
+            	]
             }
         ]
     }
