@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.nio.ByteBuffer;
 
 import org.apache.hadoop.hbase.util.Bytes;
+import org.mortbay.log.Log;
 
 import com.yt.core.utils.EnumUtils;
 import com.yt.dal.hbase.IBaseBean;
@@ -166,8 +167,17 @@ public class HBaseUtils {
 			String code = Bytes.toString(value);
 			return EnumUtils.valueOf(code, enumClass);
 		} else if (clazz.isAssignableFrom(IBaseBean.class)) {
-			// TODO 暂时不支持将关联的bean加载出来，以后考虑实现。
-			throw new Exception("暂时不支持将关联的bean加载出来，以后考虑实现。");
+			if (value == null) {
+				return null;
+			}
+			String associatedString = Bytes.toString(value);
+			String rowKey = associatedString.substring(associatedString.indexOf('@'));
+			IBaseBean bean = (IBaseBean)clazz.newInstance();
+			bean.setRowKey(rowKey);
+			if (Log.isDebugEnabled()) {
+				Log.debug(String.format("Instance a BaseBean[%s] Object, rowkey: %s.", clazz.getName(), rowKey));
+			}
+			return bean;
 		}
 		throw new Exception(String.format(
 				"The Type[%s] can not be supported to transform to bytes.",
@@ -238,8 +248,15 @@ public class HBaseUtils {
 				clazz.getName()));
 	}
 
-	// 从关联的 BaseBean中获取关联字段描述
-	private static String getAssociatedString(IBaseBean bean) throws Exception {
+	/**
+	 * 从关联的 BaseBean中获取关联字段描述
+	 * 
+	 * @param bean
+	 *            hbase实体
+	 * @return 唯一标示该hbase实体的关联字符串，形如：“行键@命名空间:表名”。
+	 * @throws Exception
+	 */
+	public static String getAssociatedString(IBaseBean bean) throws Exception {
 		Class<? extends IBaseBean> clazz = bean.getClass();
 		if (!clazz.isAnnotationPresent(HbaseTable.class)) {
 			throw new Exception(String.format(
@@ -251,7 +268,7 @@ public class HBaseUtils {
 		if ("".equals(ns)) {
 			ns = "default";
 		}
-		return String.format("%s@%:%s", bean.getRowKey(), ns, table.name());
+		return String.format("%s@%s:%s", bean.getRowKey(), ns, table.name());
 	}
 
 }
