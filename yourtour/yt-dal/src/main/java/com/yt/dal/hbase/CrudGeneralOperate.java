@@ -289,27 +289,32 @@ public class CrudGeneralOperate implements ICrudOperate {
 		return get(bd, clazz, rowKey);
 	}
 
+	// 从Result中填充一个Bean
+	private IBaseBean fillBean(Result rs, BeanDescriptor bd,
+			Class<? extends IBaseBean> clazz) throws Exception {
+		if (rs.isEmpty()) {
+			return null;
+		}
+		IBaseBean bean = clazz.newInstance();
+		bean.setRowKey(Bytes.toString(rs.getRow()));
+		for (Cell cell : rs.rawCells()) {
+			String family = Bytes.toString(CellUtil.cloneFamily(cell));
+			String qualifier = Bytes.toString(CellUtil.cloneQualifier(cell));
+			byte[] value = CellUtil.cloneValue(cell);
+			HBaseUtils.set(bean,
+					HBaseUtils.getFieldName(bd, family, qualifier), value);
+		}
+		return bean;
+	}
+
 	// 从hbase中获取指定的实体对象。
 	private IBaseBean get(BeanDescriptor bd, Class<? extends IBaseBean> clazz,
 			String rowKey) throws Exception {
-		IBaseBean bean = clazz.newInstance();
 		try (Table table = manager.getConnection().getTable(
 				TableName.valueOf(bd.getFullTableName()))) {
 			Get get = new Get(Bytes.toBytes(rowKey));
-			bean.setRowKey(rowKey);
 			Result rs = table.get(get);
-			if (rs.isEmpty()) {
-				return null;
-			}
-			for (Cell cell : rs.rawCells()) {
-				String family = Bytes.toString(CellUtil.cloneFamily(cell));
-				String qualifier = Bytes
-						.toString(CellUtil.cloneQualifier(cell));
-				byte[] value = CellUtil.cloneValue(cell);
-				HBaseUtils.set(bean,
-						HBaseUtils.getFieldName(bd, family, qualifier), value);
-			}
-			return bean;
+			return fillBean(rs, bd, clazz);
 		} catch (IOException ex) {
 			throw new Exception(String.format(
 					"Get the data[class=%s, rowkey=%s] fail.", clazz.getName(),
@@ -339,22 +344,12 @@ public class CrudGeneralOperate implements ICrudOperate {
 			}
 			ResultScanner rss = table.getScanner(scan);
 			for (Result rs = rss.next(); rs != null; rs = rss.next()) {
-				if (rs.isEmpty()) {
-					continue;
+				IBaseBean bean = fillBean(rs, bd, clazz);
+				if (bean != null) {
+					result.add(bean);
 				}
-				IBaseBean bean = clazz.newInstance();
-				bean.setRowKey(Bytes.toString(rs.getRow()));
-				for (Cell cell : rs.rawCells()) {
-					String family = Bytes.toString(CellUtil.cloneFamily(cell));
-					String qualifier = Bytes.toString(CellUtil
-							.cloneQualifier(cell));
-					byte[] value = CellUtil.cloneValue(cell);
-					HBaseUtils.set(bean,
-							HBaseUtils.getFieldName(bd, family, qualifier),
-							value);
-				}
-				result.add(bean);
 			}
+			rss.close();
 		} catch (IOException ex) {
 			throw new Exception(String.format("Scan the data[class=%s] fail.",
 					clazz.getName()));
@@ -391,22 +386,12 @@ public class CrudGeneralOperate implements ICrudOperate {
 			scan.setTimeRange(ts1, ts2);
 			ResultScanner rss = table.getScanner(scan);
 			for (Result rs = rss.next(); rs != null; rs = rss.next()) {
-				if (rs.isEmpty()) {
-					continue;
+				IBaseBean bean = fillBean(rs, bd, clazz);
+				if (bean != null) {
+					result.add(bean);
 				}
-				IBaseBean bean = clazz.newInstance();
-				bean.setRowKey(Bytes.toString(rs.getRow()));
-				for (Cell cell : rs.rawCells()) {
-					String family = Bytes.toString(CellUtil.cloneFamily(cell));
-					String qualifier = Bytes.toString(CellUtil
-							.cloneQualifier(cell));
-					byte[] value = CellUtil.cloneValue(cell);
-					HBaseUtils.set(bean,
-							HBaseUtils.getFieldName(bd, family, qualifier),
-							value);
-				}
-				result.add(bean);
 			}
+			rss.close();
 		} catch (IOException ex) {
 			throw new Exception(String.format("Scan the data[class=%s] fail.",
 					clazz.getName()));
