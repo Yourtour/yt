@@ -4,8 +4,9 @@ import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.nio.ByteBuffer;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.hbase.util.Bytes;
-import org.mortbay.log.Log;
 
 import com.yt.core.utils.EnumUtils;
 import com.yt.dal.hbase.IBaseBean;
@@ -38,6 +39,7 @@ import com.yt.dal.hbase.cache.BeanDescriptor.Qualifier;
  * @since 1.0
  */
 public class HBaseUtils {
+	private static final Log LOG = LogFactory.getLog(HBaseUtils.class);
 
 	/**
 	 * 从指定的BeanDescriptor中获取指定列族和限定词（列）对应的bean字段名。
@@ -94,7 +96,7 @@ public class HBaseUtils {
 		if (fieldName == null || fieldName.length() <= 0) {
 			throw new Exception("The field's is null.");
 		}
-		Field field = bean.getClass().getDeclaredField(fieldName);
+		Field field = getField(bean.getClass(), fieldName);
 		if (!field.isAccessible()) {
 			field.setAccessible(true);
 		}
@@ -119,11 +121,27 @@ public class HBaseUtils {
 		if (fieldName == null || fieldName.length() <= 0) {
 			throw new Exception("The field's is null.");
 		}
-		Field field = bean.getClass().getDeclaredField(fieldName);
+		Field field = getField(bean.getClass(), fieldName);
 		field.setAccessible(true);
 		Object value = field.get(bean);
 		Class<?> clazz = field.getType();
 		return toBytes(value, clazz);
+	}
+
+	private static Field getField(Class<?> clazz, String fieldName) {
+		if (clazz == null) {
+			return null;
+		}
+		try {
+			return clazz.getDeclaredField(fieldName);
+		} catch (Exception ex) {
+			if (LOG.isDebugEnabled()) {
+				LOG.debug(String.format(
+						"Get the field[%s] from Class[%s] fail.", fieldName,
+						clazz.getName()), ex);
+			}
+			return getField(clazz.getSuperclass(), fieldName);
+		}
 	}
 
 	// 根据数据字段类型，将字节数组转换为对应数据类型的数据
@@ -171,11 +189,14 @@ public class HBaseUtils {
 				return null;
 			}
 			String associatedString = Bytes.toString(value);
-			String rowKey = associatedString.substring(associatedString.indexOf('@'));
-			IBaseBean bean = (IBaseBean)clazz.newInstance();
+			String rowKey = associatedString.substring(associatedString
+					.indexOf('@'));
+			IBaseBean bean = (IBaseBean) clazz.newInstance();
 			bean.setRowKey(rowKey);
-			if (Log.isDebugEnabled()) {
-				Log.debug(String.format("Instance a BaseBean[%s] Object, rowkey: %s.", clazz.getName(), rowKey));
+			if (LOG.isDebugEnabled()) {
+				LOG.debug(String.format(
+						"Instance a BaseBean[%s] Object, rowkey: %s.",
+						clazz.getName(), rowKey));
 			}
 			return bean;
 		}

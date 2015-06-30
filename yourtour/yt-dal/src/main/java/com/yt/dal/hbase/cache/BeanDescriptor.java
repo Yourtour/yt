@@ -330,6 +330,17 @@ public class BeanDescriptor implements Serializable {
 		bd.startKey = table.startKey();
 		bd.endKey = table.endKey();
 		bd.regionNum = table.regionNum();
+		scanFields(clazz, bd);
+		Class<?> supClass = clazz.getSuperclass();
+		if (supClass != null) {
+			scanFields(supClass, bd);
+		}
+		return bd;
+	}
+
+	// 扫描IBaseBean实现类中的hbase标记属性
+	private static void scanFields(Class<?> clazz,
+			BeanDescriptor bd) {
 		Field[] fields = clazz.getDeclaredFields();
 		String version = "0.0";
 		// 循环处理每一列，并获取列族信息和版本信息。
@@ -356,14 +367,13 @@ public class BeanDescriptor implements Serializable {
 			} else {
 				qualifier = bd.createQualifier(field.getName(), qualifierName);
 				family.getQualifiers().put(qualifier.getName(), qualifier);
+				qualifier.version = column.version();
 			}
-			qualifier.version = column.version();
 			if (bd.compareVersion(version, qualifier.version) < 0) {
 				version = qualifier.version;
 			}
 		}
 		bd.version = version;
-		return bd;
 	}
 
 	// 创建一个列族描述对象

@@ -8,6 +8,7 @@ import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 
 import com.yt.dal.hbase.IBaseBean;
+import com.yt.dal.hbase.annotation.HbaseColumn;
 
 /**
  * Neo4J中定义实体的基类，定义所有实体类中都至少包括的GraphId字段，并进行了注解。<br>
@@ -43,7 +44,16 @@ public class Neo4JBaseBean implements Serializable, IBaseBean, INeo4JBaseBean,
 	@GraphProperty
 	@Indexed(unique = true)
 	private String rowKey;
-	
+
+	private @HbaseColumn(name = "cuid")
+	transient String createdUserId = "";
+	private @HbaseColumn(name = "ct")
+	transient long createdTime;
+	private @HbaseColumn(name = "uuid")
+	transient String updatedUserId = "";
+	private @HbaseColumn(name = "ut")
+	transient long updatedTime;
+
 	/**
 	 * 默认构造方法
 	 */
@@ -108,8 +118,40 @@ public class Neo4JBaseBean implements Serializable, IBaseBean, INeo4JBaseBean,
 		} else if (src != null) {
 			return src.compareTo(tar);
 		} else {
-			return - tar.compareTo(src);
+			return -tar.compareTo(src);
 		}
+	}
+
+	public String getCreatedUserId() {
+		return createdUserId;
+	}
+
+	public void setCreatedUserId(String createdUserId) {
+		this.createdUserId = createdUserId;
+	}
+
+	public long getCreatedTime() {
+		return createdTime;
+	}
+
+	public void setCreatedTime(long createdTime) {
+		this.createdTime = createdTime;
+	}
+
+	public String getUpdatedUserId() {
+		return updatedUserId;
+	}
+
+	public void setUpdatedUserId(String updatedUserId) {
+		this.updatedUserId = updatedUserId;
+	}
+
+	public long getUpdatedTime() {
+		return updatedTime;
+	}
+
+	public void setUpdatedTime(long updatedTime) {
+		this.updatedTime = updatedTime;
 	}
 
 }

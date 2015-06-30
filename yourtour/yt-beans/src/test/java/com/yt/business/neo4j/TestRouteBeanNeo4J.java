@@ -1,4 +1,4 @@
-package com.yt.business.beans;
+package com.yt.business.neo4j;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;

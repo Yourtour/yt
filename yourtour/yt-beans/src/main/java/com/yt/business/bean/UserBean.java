@@ -50,11 +50,19 @@ public class UserBean extends Neo4JBaseBean {
 
 	public static enum RATE {
 		/** 成员变量：常规用户 */
-		GENERAL,
+		GENERAL("GENERAL", "常规用户"),
 		/** 成员变量：达人 */
-		EXPERT,
+		EXPERT("EXPERT", "达人"),
 		/** 成员变量：地主 */
-		HOST
+		HOST("HOST", "地主");
+
+		public String code;
+		public String name;
+
+		private RATE(String code, String name) {
+			this.code = code;
+			this.name = name;
+		}
 	}
 
 	private @HbaseColumn(name = "name")
@@ -93,14 +101,6 @@ public class UserBean extends Neo4JBaseBean {
 	@Indexed
 	private @HbaseColumn(name = "rate")
 	RATE rate; // 评级
-	private @HbaseColumn(name = "cuid")
-	transient String createdUserId = "";
-	private @HbaseColumn(name = "ct")
-	transient long createdTime;
-	private @HbaseColumn(name = "uuid")
-	transient String updatedUserId = "";
-	private @HbaseColumn(name = "ut")
-	transient long updatedTime;
 	private @HbaseColumn(name = "stat")
 	@Indexed
 	Status status;
@@ -285,38 +285,6 @@ public class UserBean extends Neo4JBaseBean {
 
 	public void setRate(RATE rate) {
 		this.rate = rate;
-	}
-
-	public String getCreatedUserId() {
-		return createdUserId;
-	}
-
-	public void setCreatedUserId(String createdUserId) {
-		this.createdUserId = createdUserId;
-	}
-
-	public long getCreatedTime() {
-		return createdTime;
-	}
-
-	public void setCreatedTime(long createdTime) {
-		this.createdTime = createdTime;
-	}
-
-	public String getUpdatedUserId() {
-		return updatedUserId;
-	}
-
-	public void setUpdatedUserId(String updatedUserId) {
-		this.updatedUserId = updatedUserId;
-	}
-
-	public long getUpdatedTime() {
-		return updatedTime;
-	}
-
-	public void setUpdatedTime(long updatedTime) {
-		this.updatedTime = updatedTime;
 	}
 
 	public Status getStatus() {
