@@ -18,7 +18,7 @@
 	<bean id="hbaseCRUD" class="com.yt.dal.hbase.CrudGeneralOperate"  />
 	
 	<bean id="beanDescriptorGeneralCacheImpl" class="com.yt.dal.hbase.cache.BeanDescriptorGeneralCacheImpl">
-		<property name="beanRepositories" value="com.yt.test.hbase.bean" />
+		<property name="beanRepositories" value="com.yt.business.bean" />
 	</bean>
 	
 	<!--bean id="hbaseStructureSync" class="com.yt.dal.hbase.generator.HbaseStructureSync">

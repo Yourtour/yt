@@ -1,2 +1,2 @@
 
-include "yt-core", "yt-dal", "yt-ftsl", "yt-rsal", "yt-beans", "yt-web"
+include "yt-core", "yt-dal", "yt-rsal", "yt-data-service", "yt-web"
