@@ -14,7 +14,7 @@ Ext.define('YourTour.controller.Main', {
     
     activeitemchange:function(tabBar, newTab, oldTab){
     	var index = tabBar.indexOf(newTab);
-    	if(index == 3){
+    	if(index == 2){
     		this.redirectTo('/main/route');
     	}
     }

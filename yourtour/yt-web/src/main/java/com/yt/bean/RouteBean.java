@@ -1,5 +1,6 @@
 package com.yt.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.yt.common.Constants.Status;
 import com.yt.dal.hbase.BaseBean;
 import com.yt.dal.hbase.annotation.HbaseColumn;
@@ -99,7 +100,8 @@ public class RouteBean extends BaseBean {
 	public void setPlace(String place) {
 		this.place = place;
 	}
-
+	
+	@JsonIgnore
 	public long getStartTime() {
 		return startTime;
 	}
@@ -107,7 +109,8 @@ public class RouteBean extends BaseBean {
 	public void setStartTime(long startTime) {
 		this.startTime = startTime;
 	}
-
+	
+	@JsonIgnore
 	public long getEndTime() {
 		return endTime;
 	}

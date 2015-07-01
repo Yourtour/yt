@@ -1,12 +1,16 @@
 Ext.define('YourTour.model.RouteModel', {
     extend: 'Ext.data.Model',
     config:{
-	    fields:[{name:'id', type:'string'},
+    	idProperty:'rowKey',
+    	
+	    fields:[{name:'rowKey', type:'string'},
 	            {name:'imageUrl', type:'string'},
 	    		{name:'name', type:'string'},
 	    		{name:'lineName', type:'string'},
 	    		{name:'feeling', type:'string'},
-	    		{name:'step', type:'string'}
+	    		{name:'startTime', type:'string'},
+	    		{name:'endTime', type:'string'},
+	    		{name:'period', type:'string'}
 	    ]
     }
 });

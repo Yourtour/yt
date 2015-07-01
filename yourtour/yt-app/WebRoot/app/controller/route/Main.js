@@ -1,6 +1,6 @@
 Ext.define('YourTour.controller.route.Main', {
     extend: 'Ext.app.Controller',
-    requires:['YourTour.store.RouteStore', 'YourTour.model.RouteModel'],
+    requires:['YourTour.store.RouteStore','YourTour.store.RouteLocalStore', 'YourTour.model.RouteModel'],
     
     config: {
        refs: {
@@ -38,7 +38,6 @@ Ext.define('YourTour.controller.route.Main', {
         	
         	this.routeStore.each(function(item){
         		var tplHtml = tpl.apply(item.data);
-        		
         		panels.push(Ext.create('Ext.Panel',{html:tplHtml, style:'padding:5px',scrollable:{
                     direction:'vertical',
                     directionLock:true

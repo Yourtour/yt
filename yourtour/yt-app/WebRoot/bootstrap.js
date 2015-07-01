@@ -645,14 +645,18 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.controller.route.Main": [],
   "YourTour.controller.route.New": [],
   "YourTour.controller.route.Plan": [],
+  "YourTour.controller.user.Main": [],
   "YourTour.model.LineModel": [],
   "YourTour.model.LocalCache": [],
-  "YourTour.model.MemberModel": [],
+  "YourTour.model.OptionModel": [],
   "YourTour.model.RouteModel": [],
+  "YourTour.model.ScheduleModel": [],
+  "YourTour.model.UserModel": [],
   "YourTour.store.AjaxStore": [],
   "YourTour.store.LineStore": [],
-  "YourTour.store.LocalStore": [],
+  "YourTour.store.RouteLocalStore": [],
   "YourTour.store.RouteStore": [],
+  "YourTour.store.SessionStore": [],
   "YourTour.util.Context": [],
   "YourTour.view.Launch": [],
   "YourTour.view.Main": [],
@@ -661,12 +665,27 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.common.PlaceSelection": [],
   "YourTour.view.community.Main": [],
   "YourTour.view.home.Main": [],
+  "YourTour.view.line.ListItem": [],
   "YourTour.view.line.ListView": [],
   "YourTour.view.personal.Main": [],
   "YourTour.view.route.Main": [],
+  "YourTour.view.route.MainItem": [],
   "YourTour.view.route.New": [],
   "YourTour.view.route.Plan": [],
-  "YourTour.view.route.Schedule": []
+  "YourTour.view.route.Schedule": [],
+  "YourTour.view.route.schedule.ActivityListItem": [],
+  "YourTour.view.route.schedule.ActivityListView": [],
+  "YourTour.view.route.schedule.SceneActivityListItem": [],
+  "YourTour.view.route.schedule.ScheduleListItem": [],
+  "YourTour.view.route.schedule.ScheduleListView": [],
+  "YourTour.view.user.Login": [],
+  "YourTour.view.user.Register": [],
+  "YourTour.view.user.RegisterAccount": [],
+  "YourTour.view.user.RegisterAuthentication": [],
+  "YourTour.view.user.RegisterProfile": [],
+  "YourTour.view.widget.Button": [],
+  "YourTour.view.widget.TitleBar": [],
+  "YourTour.view.widget.ToolButton": []
 });
 Ext.ClassManager.addNameAliasMappings({
   "Ext.AbstractComponent": [],
@@ -1392,16 +1411,20 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.controller.route.Main": [],
   "YourTour.controller.route.New": [],
   "YourTour.controller.route.Plan": [],
+  "YourTour.controller.user.Main": [],
   "YourTour.model.LineModel": [],
   "YourTour.model.LocalCache": [
     "widget.localCache"
   ],
-  "YourTour.model.MemberModel": [],
+  "YourTour.model.OptionModel": [],
   "YourTour.model.RouteModel": [],
+  "YourTour.model.ScheduleModel": [],
+  "YourTour.model.UserModel": [],
   "YourTour.store.AjaxStore": [],
   "YourTour.store.LineStore": [],
-  "YourTour.store.LocalStore": [],
+  "YourTour.store.RouteLocalStore": [],
   "YourTour.store.RouteStore": [],
+  "YourTour.store.SessionStore": [],
   "YourTour.util.Context": [
     "Context"
   ],
@@ -1426,6 +1449,9 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.home.Main": [
     "widget.homemain"
   ],
+  "YourTour.view.line.ListItem": [
+    "widget.lineListItem"
+  ],
   "YourTour.view.line.ListView": [
     "widget.lineListView"
   ],
@@ -1435,6 +1461,9 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.route.Main": [
     "widget.routemain"
   ],
+  "YourTour.view.route.MainItem": [
+    "widget.routemainitem"
+  ],
   "YourTour.view.route.New": [
     "widget.routenew"
   ],
@@ -1443,5 +1472,44 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.route.Schedule": [
     "widget.routenew"
+  ],
+  "YourTour.view.route.schedule.ActivityListItem": [
+    "widget.activityListItem"
+  ],
+  "YourTour.view.route.schedule.ActivityListView": [
+    "widget.activityListView"
+  ],
+  "YourTour.view.route.schedule.SceneActivityListItem": [
+    "widget.sceneActivityListItem"
+  ],
+  "YourTour.view.route.schedule.ScheduleListItem": [
+    "widget.scheduleListItem"
+  ],
+  "YourTour.view.route.schedule.ScheduleListView": [
+    "widget.scheduleListView"
+  ],
+  "YourTour.view.user.Login": [
+    "widget.loginview"
+  ],
+  "YourTour.view.user.Register": [
+    "widget.registerview"
+  ],
+  "YourTour.view.user.RegisterAccount": [
+    "widget.registeraccount"
+  ],
+  "YourTour.view.user.RegisterAuthentication": [
+    "widget.registerauth"
+  ],
+  "YourTour.view.user.RegisterProfile": [
+    "widget.registerprofile"
+  ],
+  "YourTour.view.widget.Button": [
+    "widget.ytButton"
+  ],
+  "YourTour.view.widget.TitleBar": [
+    "widget._titlebar"
+  ],
+  "YourTour.view.widget.ToolButton": [
+    "widget.toolbutton"
   ]
 });

@@ -1,12 +1,20 @@
 Ext.define('YourTour.model.LineModel', {
     extend: 'Ext.data.Model',
+    requires:['YourTour.model.UserModel'],
     config:{
-	    fields:[{name:'id', type:'string'},
+    	idProperty:'rowKey',
+    	
+	    fields:[{name:'rowKey', type:'string'},
 	            {name:'imageUrl', type:'string'},
 	    		{name:'name', type:'string'},
 	    		{name:'lineName', type:'string'}
 	    ],
 	    
-	    hasMany:{model:'YourTour.model.UserModel', name:'users'}
-    },
+	    associations: [{  
+            type: 'hasMany',   
+            model: 'YourTour.model.UserModel',   
+            name:'users',   
+            associationKey:'users'  
+        }]  
+    }
 });

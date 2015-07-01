@@ -69,7 +69,7 @@ public interface Constants {
 	//成员角色枚举
 	public static enum RoleType{
 			MEMBER("Member","一般成员"), 
-			EXPERT("Expert","大人"),
+			EXPERT("Expert","达人"),
 			HOST("Host","地主"), 
 			LEADER("Leader","团长");
 			

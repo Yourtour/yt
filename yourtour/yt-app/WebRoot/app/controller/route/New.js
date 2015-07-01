@@ -15,7 +15,7 @@ Ext.define('YourTour.controller.route.New', {
     		   focus:"OnPlaceClick"
     	   },
     	   
-    	   '#next':{
+    	   '#routenew #next':{
     		   tap:'OnNextClick'
     	   }
        },
@@ -32,6 +32,7 @@ Ext.define('YourTour.controller.route.New', {
     },
     
     OnPlaceClick:function(){
+    	
     	this.redirectTo('/place/selection');
     },
     

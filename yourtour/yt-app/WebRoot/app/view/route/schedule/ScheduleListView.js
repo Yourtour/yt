@@ -1,11 +1,10 @@
-Ext.define('YourTour.view.line.ListView', {
+Ext.define('YourTour.view.route.schedule.ScheduleListView', {
     extend: 'Ext.dataview.DataView',
-    requires:['YourTour.view.line.ListItem'],
-    xtype: 'lineListView',
+    requires:['YourTour.view.route.schedule.ScheduleListItem'],
+    xtype: 'scheduleListView',
     config: {
-    	id:'lineListView',
-    	style:'background-color:#EDEDED',
-    	
+    	itemId:'scheduleListView',
+    	id:'scheduleListView',
     	/**
          * Tell the dataview to use components for each item
          */
@@ -15,7 +14,7 @@ Ext.define('YourTour.view.line.ListView', {
          * Set the default item for this component list to be the {@link Example.view.KittensListItem}
          * class.
          */
-        defaultType: 'lineListItem'
+        defaultType: 'scheduleListItem'
     },
     
     initialize : function() {

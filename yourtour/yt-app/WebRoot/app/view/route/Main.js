@@ -1,7 +1,7 @@
 Ext.define('YourTour.view.route.Main', {
     extend: 'Ext.Panel',
     xtype: 'routemain',
-    requires:['Ext.Carousel', 'Ext.TitleBar', 'Ext.Button', 'Ext.field.Hidden'],
+    requires:['Ext.Carousel', 'YourTour.view.widget.TitleBar', 'YourTour.view.widget.ToolButton', 'Ext.field.Hidden'],
     
     config: {
     	itemId:'routemain',
@@ -15,17 +15,17 @@ Ext.define('YourTour.view.route.Main', {
 			    value: 123
 			},    
             {
-            	xtype: 'titlebar',
+            	xtype: '_titlebar',
                 docked: 'top',
                 title: '行程',
                 items:[{
-                	xtype: "button", 
+                	xtype: "toolbutton", 
                     ui: "normal", 
                 	text:'管理',
                 	align:'left'
                 },
                 {
-                	xtype: "button", 
+                	xtype: "toolbutton", 
                     ui: "normal", 
                 	text:'新建',
                 	itemId:'btnRouteNew',

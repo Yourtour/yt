@@ -18,20 +18,21 @@ Ext.application({
     ],
 
     views: [
-        'Main','Launch','Welcome','home.Main','SearchMain','route.Main','route.New','route.Plan','route.Schedule','common.PlaceSelection',
-        'line.ListView'
+        'Main','Launch','Welcome','home.Main','SearchMain','route.Main','route.New','route.Plan','route.schedule.ActivityListView','common.PlaceSelection',
+        'line.ListView','route.schedule.ScheduleListView',
+        'user.Login','user.Register'
     ],
     
     controllers: [
-        'Welcome', 'Main', 'route.Main','route.New','route.Plan','common.Place'
+        'Welcome', 'Main', 'route.Main','route.New','route.Plan','common.Place','user.Main'
     ],
     
     models:[
-        'RouteModel','LineModel', 'UserModel'
+        'RouteModel','LineModel', 'UserModel','ScheduleModel','OptionModel'
     ],
     
     stores:[
-        'RouteStore'
+        'RouteStore','RouteLocalStore'
     ],
         
     icon: {
@@ -62,7 +63,7 @@ Ext.application({
         Ext.Viewport.add(Ext.create('YourTour.view.Launch'));
         
         Ext.defer(function () { 
-        	Ext.Viewport.setActiveItem(Ext.create('YourTour.view.Main'));
+        	Ext.Viewport.setActiveItem(Ext.create('YourTour.view.user.Login'));
         },2000);
     },
 

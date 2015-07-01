@@ -29,11 +29,6 @@ Ext.define('YourTour.view.Main', {
                 iconCls:'home'
             },
             {
-                title:'搜索',
-                xtype:'searchmain',
-                iconCls:'search'
-            },
-            {
                 title:'行程',
                 xtype:'routemain',
                 iconCls:'home'

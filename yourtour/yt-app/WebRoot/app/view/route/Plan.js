@@ -1,12 +1,14 @@
 Ext.define('YourTour.view.route.Plan', {
     extend: 'Ext.Panel',
-    requires:['Ext.tab.Panel'],
+    requires:['Ext.tab.Panel', 'Ext.Toolbar', 'Ext.Panel'],
     xtype: 'routeplan',
     config: {
     	itemId:'routeplan',
     	id:'routeplan',
     	fullscreen: true,
     	layout:'vbox',
+    	cls:'clsMainBody',
+    	
         items: [
             {    
 				xtype: 'titlebar',
@@ -25,28 +27,41 @@ Ext.define('YourTour.view.route.Plan', {
             },
             
             {    
-				xtype: 'tabpanel',
-				itemId:'tpPlan',
-				id:'tpPlan',
-				style:'height:100%',
-				tabBar : {
-					 docked: 'top',//固定在底部
-		            layout: {
-		                type: 'hbox'
-		            },
-		            
-		            defaults: {
-		                flex:1
-		            }
-		        },
+				xtype: 'toolbar',
+				itemId:'tbPlan',
+				id:'tbPlan',
 				items:[{
-					title:'线路推荐',
-					xtype:'lineListView'	
+					itemId:'btnRecommend',
+					id:'btnRecommend',
+					text:'线路推荐',
+					flex:1
 				},{
-					title:'线路定制'
+					text:'线路定制',
+					itemId:'btnCustomer',
+					id:'btnCustomer',
+					flex:1
+				}]
+            },
+            
+            {
+            	xtype: 'panel',
+				itemId:'panels',
+				id:'panels',
+				layout:{
+					type:'card',
+					animation:'slide'
+				},
+				style:'height:100%',
+				items:[{
+					xtype:'lineListView',
+					itemId:'lineListView',
+					id:'lineListView'
+				},{
+					xtype:'scheduleListView',
+					itemId:'scheduleListView',
+					id:'scheduleListView'
 				}]
             }
-            
         ]
     }
 });

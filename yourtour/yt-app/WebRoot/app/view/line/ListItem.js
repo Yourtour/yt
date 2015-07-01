@@ -1,47 +1,58 @@
 Ext.define('YourTour.view.line.ListItem', {
     extend: 'Ext.dataview.component.DataItem',
     xtype: 'lineListItem',
-    requires:['YourTour.view.line.ListItemView'],
     config: {
-    	dataMap: {
-    		getItemView:{
-                setImageUrl: 'imageUrl',
-                setName:'name'
-    		}
-        },
-        
-        itemView:{
-        	xtype : 'lineListItemView'
-        }
+    	layout : 'vbox',
+    	cls:'clsLineItem',
+    	items:[
+    	   {
+    		   xtype:'panel',
+    		   layout:'hbox',
+    		   cls:'clsLineInfo',
+	    	   items:[{
+	    		   itemId : 'imageUrl',
+	    		   xtype : 'image',
+	    		   mode : 'tag',
+	    		   flex:1,
+	    		   src : ''
+	    	   },
+	    	   
+	    	   {
+	    		   itemId : 'name',
+	    		   html:'名称',
+	    		   flex:2
+	    	   }]
+    	   },
+    	   
+    	   {
+    		   itemId : 'users',
+    		   xtype:'dataview',
+    		   style:'height:85px',
+    		   scrollable:false,
+    		   itemTpl:'<div class="clsExpertInfo"><table height="100%" width="100%"><tr><td width="40px"><img src="{imageUrl}"></td><td>{nickName}</td></tr></table></div>'
+    	   },
+    	]
     },
     
-    /**
-     * Called when you set the {@link #image} configuration.
-     *
-     * Uses Ext.factory to return a proper instance using the configuration passed, the
-     * default component, and the existing instance (if it exists).
-     *
-     * This should *never* be called manually. It will be called when you call {@link #setImage}.
-     */
-    applyItemView: function(config) {
-        return Ext.factory(config, 'YourTour.view.line.ListItemView', this.getItemView());
-    },
-
-    /**
-     * Called when you set the {@link #image} configuration, and is passed both the new value
-     * (from applyImage) and the old value.
-     *
-     * This should *never* be called manually. It will be called when you call {@link #setImage}.
-     * @private
-     */
-    updateItemView: function(newListItemView, oldListItemView) {
-        if (newListItemView) {
-            this.add(newListItemView);
-        }
-
-        if (oldListItemView) {
-            this.remove(oldListItemView);
-        }
-    }
+    updateRecord: function(record) {
+       var me = this;
+       
+       if(record){
+	 	   var imageUrl = me.down('#imageUrl');
+	 	   imageUrl.setSrc(record.get('imageUrl'));
+	 	   
+	 	   var name = me.down('#name');
+	 	   name.setHtml(record.get('name'));
+	 	   
+	 	   var users = me.down('#users');
+	 	   var arrayUser = [];
+	 	   record.users().each(function(user){
+	 	   	  arrayUser.push(user.data);
+	 	   });
+	 	   
+	 	   var store = Ext.create('Ext.data.Store',{data:arrayUser, model:'YourTour.model.UserModel'});
+	 	   users.setStore(store);  
+	 	}
+    }   
 });
 

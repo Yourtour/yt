@@ -21,17 +21,20 @@ Ext.define('YourTour.view.home.Main', {
             {
             	xtype:'toolbar',
             	layout: { align: 'stretch' },
-            	defaults:{flext:1},
+            	defaults:{flex:1},
             	items:[
             	   {
 					   text:'达人'
 				   } ,    
+				   {
+            		   text:'线路'
+            	   } ,
             	   {
             		   text:'景点'
             	   } ,
             	   {
             		   text:'住宿'
-            	   } ,
+            	   }  
             	]
             }
         ]
