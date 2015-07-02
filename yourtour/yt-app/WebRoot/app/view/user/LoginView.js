@@ -1,9 +1,8 @@
-Ext.define('YourTour.view.user.Login', {
+Ext.define('YourTour.view.user.LoginView', {
     extend: 'Ext.Panel',
     xtype: 'loginview',
     requires:['Ext.Panel', 'YourTour.view.widget.TitleBar', 'Ext.field.Password','Ext.field.Text', 'YourTour.view.widget.Button', 'YourTour.view.widget.ToolButton'],
     config: {
-    	xtype:'loginview',
     	itemId:'loginview',
     	id:'loginview',
     	fullscreen: true,
@@ -21,7 +20,6 @@ Ext.define('YourTour.view.user.Login', {
                 	id:'btnRegister',
                 	ui: 'mask',
                 	text:'注册',
-                	margin:'0 10 0 0',
                 	align:'right'
                 }]	
             },
@@ -81,7 +79,8 @@ Ext.define('YourTour.view.user.Login', {
             	xtype:'ytButton',
             	margin:'10 0 0 0',
             	id:'btnLogin',
-            	text:'登录',
+            	text:'登录'
+            	
             }
         ]
     }

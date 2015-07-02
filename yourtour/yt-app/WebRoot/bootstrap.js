@@ -639,12 +639,12 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.viewport.WindowsPhone": [
     "Ext.viewport.WP"
   ],
+  "YourTour.controller.LineCtrl": [],
   "YourTour.controller.Main": [],
   "YourTour.controller.Welcome": [],
   "YourTour.controller.common.Place": [],
-  "YourTour.controller.route.Main": [],
-  "YourTour.controller.route.New": [],
-  "YourTour.controller.route.Plan": [],
+  "YourTour.controller.route.MainCtrl": [],
+  "YourTour.controller.route.NewCtrl": [],
   "YourTour.controller.user.Main": [],
   "YourTour.model.LineModel": [],
   "YourTour.model.LocalCache": [],
@@ -665,25 +665,26 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.common.PlaceSelection": [],
   "YourTour.view.community.Main": [],
   "YourTour.view.home.Main": [],
-  "YourTour.view.line.ListItem": [],
-  "YourTour.view.line.ListView": [],
+  "YourTour.view.line.RecommedListItem": [],
+  "YourTour.view.line.RecommendView": [],
   "YourTour.view.personal.Main": [],
-  "YourTour.view.route.Main": [],
   "YourTour.view.route.MainItem": [],
-  "YourTour.view.route.New": [],
-  "YourTour.view.route.Plan": [],
+  "YourTour.view.route.MainView": [],
+  "YourTour.view.route.NewView": [],
   "YourTour.view.route.Schedule": [],
   "YourTour.view.route.schedule.ActivityListItem": [],
   "YourTour.view.route.schedule.ActivityListView": [],
   "YourTour.view.route.schedule.SceneActivityListItem": [],
   "YourTour.view.route.schedule.ScheduleListItem": [],
   "YourTour.view.route.schedule.ScheduleListView": [],
-  "YourTour.view.user.Login": [],
-  "YourTour.view.user.Register": [],
+  "YourTour.view.user.LoginView": [],
   "YourTour.view.user.RegisterAccount": [],
   "YourTour.view.user.RegisterAuthentication": [],
   "YourTour.view.user.RegisterProfile": [],
+  "YourTour.view.user.RegisterView": [],
   "YourTour.view.widget.Button": [],
+  "YourTour.view.widget.MarkedLabel": [],
+  "YourTour.view.widget.SubTitleBar": [],
   "YourTour.view.widget.TitleBar": [],
   "YourTour.view.widget.ToolButton": []
 });
@@ -1405,12 +1406,12 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.Ios": [],
   "Ext.viewport.Viewport": [],
   "Ext.viewport.WindowsPhone": [],
+  "YourTour.controller.LineCtrl": [],
   "YourTour.controller.Main": [],
   "YourTour.controller.Welcome": [],
   "YourTour.controller.common.Place": [],
-  "YourTour.controller.route.Main": [],
-  "YourTour.controller.route.New": [],
-  "YourTour.controller.route.Plan": [],
+  "YourTour.controller.route.MainCtrl": [],
+  "YourTour.controller.route.NewCtrl": [],
   "YourTour.controller.user.Main": [],
   "YourTour.model.LineModel": [],
   "YourTour.model.LocalCache": [
@@ -1449,26 +1450,23 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.home.Main": [
     "widget.homemain"
   ],
-  "YourTour.view.line.ListItem": [
+  "YourTour.view.line.RecommedListItem": [
     "widget.lineListItem"
   ],
-  "YourTour.view.line.ListView": [
-    "widget.lineListView"
+  "YourTour.view.line.RecommendView": [
+    "widget.linerecommendview"
   ],
   "YourTour.view.personal.Main": [
     "widget.personalmain"
   ],
-  "YourTour.view.route.Main": [
-    "widget.routemain"
-  ],
   "YourTour.view.route.MainItem": [
     "widget.routemainitem"
   ],
-  "YourTour.view.route.New": [
-    "widget.routenew"
+  "YourTour.view.route.MainView": [
+    "widget.routemainview"
   ],
-  "YourTour.view.route.Plan": [
-    "widget.routeplan"
+  "YourTour.view.route.NewView": [
+    "widget.newrouteview"
   ],
   "YourTour.view.route.Schedule": [
     "widget.routenew"
@@ -1488,11 +1486,8 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.route.schedule.ScheduleListView": [
     "widget.scheduleListView"
   ],
-  "YourTour.view.user.Login": [
+  "YourTour.view.user.LoginView": [
     "widget.loginview"
-  ],
-  "YourTour.view.user.Register": [
-    "widget.registerview"
   ],
   "YourTour.view.user.RegisterAccount": [
     "widget.registeraccount"
@@ -1503,8 +1498,17 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.user.RegisterProfile": [
     "widget.registerprofile"
   ],
+  "YourTour.view.user.RegisterView": [
+    "widget.registerview"
+  ],
   "YourTour.view.widget.Button": [
     "widget.ytButton"
+  ],
+  "YourTour.view.widget.MarkedLabel": [
+    "widget.markedlabel"
+  ],
+  "YourTour.view.widget.SubTitleBar": [
+    "widget.subtitlebar"
   ],
   "YourTour.view.widget.TitleBar": [
     "widget._titlebar"

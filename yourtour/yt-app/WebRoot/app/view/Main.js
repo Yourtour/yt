@@ -4,7 +4,7 @@ Ext.define('YourTour.view.Main', {
     xtype: 'mainview',
     requires: [
         'YourTour.view.home.Main',
-        'YourTour.view.route.Main',
+        'YourTour.view.route.MainView',
         'YourTour.view.community.Main',
         'YourTour.view.personal.Main'
     ],
@@ -30,7 +30,7 @@ Ext.define('YourTour.view.Main', {
             },
             {
                 title:'行程',
-                xtype:'routemain',
+                xtype:'routemainview',
                 iconCls:'home'
             },
             {
@@ -42,8 +42,7 @@ Ext.define('YourTour.view.Main', {
                 title:'个人',
                 xtype:'personalmain',
                 iconCls:'user'
-            },
-           
+            }
         ]
     }
 });

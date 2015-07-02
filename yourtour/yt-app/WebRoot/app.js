@@ -18,13 +18,13 @@ Ext.application({
     ],
 
     views: [
-        'Main','Launch','Welcome','home.Main','SearchMain','route.Main','route.New','route.Plan','route.schedule.ActivityListView','common.PlaceSelection',
-        'line.ListView','route.schedule.ScheduleListView',
-        'user.Login','user.Register'
+        'Main','Launch','Welcome','home.Main','SearchMain','route.MainView','route.NewView','route.schedule.ActivityListView','common.PlaceSelection',
+        'line.RecommendView','line.lineintroductionview','route.schedule.ScheduleListView',
+        'user.LoginView','user.RegisterView'
     ],
     
     controllers: [
-        'Welcome', 'Main', 'route.Main','route.New','route.Plan','common.Place','user.Main'
+        'Welcome', 'Main', 'route.MainCtrl','route.NewCtrl','LineCtrl','common.Place','user.Main'
     ],
     
     models:[
@@ -63,7 +63,7 @@ Ext.application({
         Ext.Viewport.add(Ext.create('YourTour.view.Launch'));
         
         Ext.defer(function () { 
-        	Ext.Viewport.setActiveItem(Ext.create('YourTour.view.user.Login'));
+        	Ext.Viewport.setActiveItem(Ext.create('YourTour.view.user.LoginView'));
         },2000);
     },
 

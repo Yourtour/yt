@@ -1,4 +1,4 @@
-Ext.define('YourTour.view.user.Register', {
+Ext.define('YourTour.view.user.RegisterView', {
     extend: 'Ext.Panel',
     xtype: 'registerview',
     requires:['Ext.Panel', 'YourTour.view.widget.TitleBar', 'YourTour.view.user.RegisterAuthentication','Ext.field.Text', 'YourTour.view.user.RegisterAccount','YourTour.view.user.RegisterProfile'],

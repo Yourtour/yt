@@ -1,13 +1,14 @@
-Ext.define('YourTour.view.route.Main', {
+Ext.define('YourTour.view.route.MainView', {
     extend: 'Ext.Panel',
-    xtype: 'routemain',
+    xtype: 'routemainview',
     requires:['Ext.Carousel', 'YourTour.view.widget.TitleBar', 'YourTour.view.widget.ToolButton', 'Ext.field.Hidden'],
     
     config: {
-    	itemId:'routemain',
+    	itemId:'routemainview',
+    	id:'routemainview',
     	fullscreen: true,
     	layout:'vbox',
-    	
+    	baseCls:'page',
         items: [
 			{
 			    xtype: 'hiddenfield',
@@ -28,13 +29,14 @@ Ext.define('YourTour.view.route.Main', {
                 	xtype: "toolbutton", 
                     ui: "normal", 
                 	text:'新建',
-                	itemId:'btnRouteNew',
+                	itemId:'new',
                 	align:'right'
                 }]
             },
             {
             	xtype: 'carousel',
             	itemId:'routeCarousel',
+            	indicator:false,
             	style:'height:100%;weight:100%',
             }
         ]
