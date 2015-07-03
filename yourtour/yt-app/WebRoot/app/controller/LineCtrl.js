@@ -1,5 +1,5 @@
 Ext.define('YourTour.controller.LineCtrl', {
-    extend: 'Ext.app.Controller',
+    extend: 'YourTour.controller.BaseCtrl',
     requires:['YourTour.store.LineStore','YourTour.view.line.RecommedListItem'],
     config: {
        refs:{
@@ -7,17 +7,21 @@ Ext.define('YourTour.controller.LineCtrl', {
        },
        
        control:{
+       	   lineCarousel:{
+       	   		tap:'showLineIntro'	
+       	   },
+       	   
        	   '#linerecommendview #close':{
        	   	   tap:'backToNewRouteView'
        	   },
        	   
-    	   "#routeplan #users":{
+    	   "#linerecommendview #expertListItem":{
     		   itemtap:"onUsersItemTap"
     	   },
     	   
     	   '#routeplan #lineListView':{
     		   itemtap:"onLineItemTap"
-    	   }
+    	   },
        },
        
        routes:{
@@ -25,12 +29,20 @@ Ext.define('YourTour.controller.LineCtrl', {
        }
     },
     
+    showLineIntro:function(){
+    	this.redirectTo('/line/introduction');
+    },
+    
     backToNewRouteView:function(){
-    	Ext.Viewport.setActiveItem('newrouteview');
+    	this.show('newrouteview','YourTour.view.route.NewView');
+    },
+    
+    onUsersItemTap:function(){
+    	console.log('onUsersItemTap');	
     },
     
     showLineRecommendView:function(){
-    	Ext.Viewport.setActiveItem('linerecommendview');
+    	this.show('linerecommendview','YourTour.view.line.RecommendView');
     	
     	var lineCarousel = this.getLineCarousel();
     	var store = Ext.create('YourTour.store.LineStore');

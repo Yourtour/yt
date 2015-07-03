@@ -4,7 +4,6 @@ Ext.define('YourTour.util.Context', {
 	requires:['YourTour.model.RouteModel'],
 	
     config : {
-    	
     },
     
     constructor : function(config) {

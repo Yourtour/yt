@@ -1,21 +1,30 @@
 Ext.define('YourTour.controller.Main', {
-    extend: 'Ext.app.Controller',
+    extend: 'YourTour.controller.BaseCtrl',
     config: {
-       refs:{
-    	 mainView:'mainview'  
-       },
+       	refs:{
+    	   	navigationBar:'#mainview #navigationBar'  
+       	},
        
-       control:{
-    	   mainView:{
-    		   activeitemchange:'activeitemchange'
-    	   }
-        }
+       	control:{
+			'#mainview #btnHome':{
+				tap:'onRouteTap'
+			},
+			
+			'#mainview #btnRoute':{
+				tap:'onRouteTap'			
+			},
+			
+			'#mainview #btnCommunity':{
+				tap:'onRouteTap'
+			},
+			
+			'#mainview #btnPersonal':{
+				tap:'onRouteTap'
+			}
+       }
     },
     
-    activeitemchange:function(tabBar, newTab, oldTab){
-    	var index = tabBar.indexOf(newTab);
-    	if(index == 2){
-    		this.redirectTo('/main/route');
-    	}
+    onRouteTap:function(){
+    	this.redirectTo("/main/route");
     }
 });

@@ -23,7 +23,7 @@ Ext.define('YourTour.view.widget.SubTitleBar', {
     			items:[
 		    		{
 		    			padding:'0 0 0 10',
-		    			id: 'title',
+		    			itemId: 'title',
 		    			xtype:'label',
 		    			flex:1,
 		    			html:''
@@ -38,7 +38,6 @@ Ext.define('YourTour.view.widget.SubTitleBar', {
     },
     
     setHtml:function(newHtml){
-    	console.log('setHtml----' + newHtml);
     	var label = this.down('#title');
         label.setHtml(newHtml);
     },

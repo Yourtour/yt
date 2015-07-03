@@ -37,7 +37,7 @@ Ext.define('YourTour.controller.user.Main', {
     },
     
     doLogin:function(){
-    	Ext.Viewport.setActiveItem(Ext.create('YourTour.view.Main'));
+    	Ext.Viewport.setActiveItem(Ext.create('YourTour.view.MainView'));
     },
     
     doRegisterAccount:function(){

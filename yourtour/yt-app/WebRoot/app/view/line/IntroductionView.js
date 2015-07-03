@@ -1,9 +1,9 @@
 Ext.define('YourTour.view.line.IntroductionView', {
     extend: 'Ext.Panel',
     requires:['Ext.Toolbar', 'Ext.Panel','Ext.Carousel','YourTour.view.widget.TitleBar'],
-    xtype: 'lineintroductionview',
+    xtype: 'lineintroview',
     config: {
-    	id:'lineintroductionview',
+    	id:'lineintroview',
     	fullscreen: true,
     	layout:'vbox',
     	baseCls:'page',
@@ -12,7 +12,7 @@ Ext.define('YourTour.view.line.IntroductionView', {
         	{    
 				xtype: '_titlebar',
 				docked: 'top',
-				title: '线路推荐',
+				title: '线路介绍',
 				items:[{
 					xtype: "image", 
                 	itemId:'close',
@@ -22,14 +22,34 @@ Ext.define('YourTour.view.line.IntroductionView', {
                 	align:'left'
 				}]			
 			},
-            
-            {
-            	xtype: 'carousel',
-            	itemId:'lineCarousel',
-            	showAnimation:'fade',
-            	indicator:false,
-            	style:'width:100%; height:100%'
-            }
+			
+			{
+    	   		itemId : 'imageUrl',
+	    		xtype : 'image',
+	    		mode : 'tag',
+	        	src : ''
+	    	},
+	    	
+	    	{
+			   xtype:'markedlabel',
+			   pack:'center',
+			   align:'center',
+			   itemId:'name',
+			   html : ''
+		    },
+		    
+		    {
+			   xtype:'panel',
+			   layout:'vbox',
+			   items:[
+			   		
+			   ]
+		    },
+		    
+		    {
+		    	xtype:'dataview',
+		    	itemId:'scenes'
+		    }
         ]
     }
 });

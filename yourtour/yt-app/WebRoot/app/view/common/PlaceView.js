@@ -1,10 +1,10 @@
-Ext.define('YourTour.view.common.PlaceSelection', {
+Ext.define('YourTour.view.common.PlaceView', {
     extend: 'Ext.Panel',
-    xtype: 'placeselection',
+    xtype: 'placeview',
     requires:['YourTour.view.widget.TitleBar','Ext.Toolbar','Ext.Carousel'],
     config: {
-    	itemId:'placeselection',
-    	id:'placeselection',
+    	itemId:'placeview',
+    	id:'placeview',
     	fullscreen: true,
     	layout:'vbox',
     	

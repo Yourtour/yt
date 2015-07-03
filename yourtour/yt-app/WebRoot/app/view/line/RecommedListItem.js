@@ -1,12 +1,17 @@
 Ext.define('YourTour.view.line.RecommedListItem', {
     extend: 'Ext.Panel',
     xtype: 'lineListItem',
-    requires:['YourTour.view.widget.SubTitleBar','Ext.Panel', 'Ext.Img'],
+    requires:['YourTour.view.widget.SubTitleBar','Ext.Panel', 'Ext.Img', 'Ext.DataView','YourTour.view.user.ExpertListItem'],
     config: {
     	data:undefined,
-    	
+    	fullscreen: true,
     	layout : 'vbox',
     	cls:'lineListItem',
+		scrollable: {
+    	    direction: 'vertical',
+    	    directionLock: true
+    	},
+    	
     	items:[
     	   {
     	   		itemId : 'imageUrl',
@@ -92,10 +97,10 @@ Ext.define('YourTour.view.line.RecommedListItem', {
             
     	    {
     		   itemId : 'users',
-    		   xtype:'dataview',
-    		   style:'height:85px',
-    		   scrollable:false,
-    		   itemTpl:'<div class="clsExpertInfo"><table height="100%" width="100%"><tr><td width="40px"><img src="{imageUrl}"></td><td>{nickName}</td></tr></table></div>'
+    		   xtype:'panel',
+    		   style:'background:#fff',
+    		   items:[
+    		   ]
     	    }
     	]
     },
@@ -111,13 +116,10 @@ Ext.define('YourTour.view.line.RecommedListItem', {
 	 	   name.setHtml(record.get('name'));
 	 	   
 	 	   var users = me.down('#users');
-	 	   var arrayUser = [];
 	 	   record.users().each(function(user){
-	 	   	  arrayUser.push(user.data);
+	 	   	  var item = Ext.create('YourTour.view.user.ExpertListItem',{data:user.data});	
+	 	   	  users.add(item);
 	 	   });
-	 	   
-	 	   var store = Ext.create('Ext.data.Store',{data:arrayUser, model:'YourTour.model.UserModel'});
-	 	   users.setStore(store);  
 	 	}
     }   
 });

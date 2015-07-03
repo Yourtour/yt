@@ -18,13 +18,13 @@ Ext.application({
     ],
 
     views: [
-        'Main','Launch','Welcome','home.Main','SearchMain','route.MainView','route.NewView','route.schedule.ActivityListView','common.PlaceSelection',
-        'line.RecommendView','line.lineintroductionview','route.schedule.ScheduleListView',
+        'MainView','Launch','Welcome','home.Main','SearchMain','route.MainView','route.NewView','route.schedule.ActivityListView','common.PlaceView',
+        'line.RecommendView','line.IntroductionView','route.schedule.ScheduleListView',
         'user.LoginView','user.RegisterView'
     ],
     
     controllers: [
-        'Welcome', 'Main', 'route.MainCtrl','route.NewCtrl','LineCtrl','common.Place','user.Main'
+        'Welcome', 'Main', 'route.MainCtrl','route.NewCtrl','LineCtrl','common.PlaceCtrl','user.Main','LineIntroCtrl'
     ],
     
     models:[

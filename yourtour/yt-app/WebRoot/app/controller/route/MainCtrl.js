@@ -1,5 +1,5 @@
 Ext.define('YourTour.controller.route.MainCtrl', {
-    extend: 'Ext.app.Controller',
+    extend: 'YourTour.controller.BaseCtrl',
     requires:['YourTour.store.RouteStore','YourTour.store.RouteLocalStore', 'YourTour.model.RouteModel','YourTour.view.route.MainItem'],
     
     config: {
@@ -27,6 +27,8 @@ Ext.define('YourTour.controller.route.MainCtrl', {
     },
     
     showRoute:function(){
+    	this.show('routemainview','YourTour.view.route.MainView');
+    	
     	var handler = function(){
     		var routeCarousel = this.getRouteCarousel();
     		routeCarousel.removeAll(true, false);

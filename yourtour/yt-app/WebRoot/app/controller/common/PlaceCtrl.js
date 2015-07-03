@@ -1,9 +1,9 @@
-Ext.define('YourTour.controller.common.Place', {
-    extend: 'Ext.app.Controller',
+Ext.define('YourTour.controller.common.PlaceCtrl', {
+    extend: 'YourTour.controller.BaseCtrl',
     
     config: {
        refs: {
-       	   back:'#placeselection #close'
+       	   back:'#placeview #close'
        },
        
        control:{
@@ -21,12 +21,10 @@ Ext.define('YourTour.controller.common.Place', {
     
     showPlaceSelectionView:function(source){
     	this.source = source;
-    	
-    	Ext.Viewport.setActiveItem('placeselection');
+    	this.show('placeview','YourTour.view.common.PlaceView');
     },
     
     onBack:function(){
-    	
-    	Ext.Viewport.setActiveItem('routenew');
+    	this.show('newrouteview','YourTour.view.route.NewView');
     }
 });

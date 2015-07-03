@@ -1,9 +1,8 @@
 Ext.define('YourTour.controller.route.NewCtrl', {
-    extend: 'Ext.app.Controller',
+    extend: 'YourTour.controller.BaseCtrl',
     requires:['YourTour.store.RouteStore', 'YourTour.model.RouteModel'],
     config: {
        refs:{
-    	  newRouteView:'#newrouteview',
        },
        
        control:{
@@ -38,7 +37,7 @@ Ext.define('YourTour.controller.route.NewCtrl', {
     },
     
     OnCloseClick:function(){
-    	Ext.Viewport.setActiveItem("mainview");
+    	this.show('routemainview','YourTour.view.route.MainView');
     },
     
     addStartPlace:function(){
@@ -50,6 +49,6 @@ Ext.define('YourTour.controller.route.NewCtrl', {
     },
     
     showNewRouteView:function(){
-    	Ext.Viewport.setActiveItem('newrouteview');
+    	this.show("newrouteview","YourTour.view.route.NewView");
     }
 });
