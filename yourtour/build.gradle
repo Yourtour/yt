@@ -12,8 +12,6 @@ subprojects {
        mavenCentral()
        maven {
 			url "http://repo.spring.io/release"
-       }
-       maven {
 			url "http://m2.neo4j.org/content/repositories/releases"
        }
     }
