@@ -109,7 +109,8 @@ Ext.define('YourTour.view.line.RecommedListItem', {
        var me = this;
        
        if(record){
-	 	   var imageUrl = me.down('#imageUrl');
+
+       	   var imageUrl = me.down('#imageUrl');
 	 	   imageUrl.setHtml("<img src='" + record.get('imageUrl') + "' style='width:100%; max-height:150px'>");
 	 	   
 	 	   var name = me.down('#name');

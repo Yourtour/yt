@@ -1,6 +1,6 @@
 package com.yt.vo;
 
-import com.yt.bean.ResourceBean;
+import com.yt.business.bean.ResourceBean;
 
 public class ResourceVO extends ResourceBean {
 	private String imageUrls;

@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.yt.bean.RouteBean;
-import com.yt.bean.RouteScheduleBean;
+import com.yt.business.bean.RouteBean;
+import com.yt.business.bean.RouteScheduleBean;
 import com.yt.common.ResponseMessage;
 import com.yt.mocker.MockDataFactory;
 import com.yt.vo.LineVO;

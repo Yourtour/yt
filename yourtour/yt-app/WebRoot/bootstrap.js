@@ -651,6 +651,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.model.LineModel": [],
   "YourTour.model.LocalCache": [],
   "YourTour.model.OptionModel": [],
+  "YourTour.model.ResourceModel": [],
   "YourTour.model.RouteModel": [],
   "YourTour.model.ScheduleModel": [],
   "YourTour.model.UserModel": [],
@@ -668,6 +669,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.community.Main": [],
   "YourTour.view.home.Main": [],
   "YourTour.view.line.IntroductionView": [],
+  "YourTour.view.line.LineResourceItem": [],
   "YourTour.view.line.RecommedListItem": [],
   "YourTour.view.line.RecommendView": [],
   "YourTour.view.personal.Main": [],
@@ -1424,6 +1426,7 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.localCache"
   ],
   "YourTour.model.OptionModel": [],
+  "YourTour.model.ResourceModel": [],
   "YourTour.model.RouteModel": [],
   "YourTour.model.ScheduleModel": [],
   "YourTour.model.UserModel": [],
@@ -1458,6 +1461,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.line.IntroductionView": [
     "widget.lineintroview"
+  ],
+  "YourTour.view.line.LineResourceItem": [
+    "widget.lineresourceitem"
   ],
   "YourTour.view.line.RecommedListItem": [
     "widget.lineListItem"

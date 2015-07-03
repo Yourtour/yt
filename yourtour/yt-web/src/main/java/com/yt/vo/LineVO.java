@@ -3,7 +3,7 @@ package com.yt.vo;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.yt.bean.LineBean;
+import com.yt.business.bean.LineBean;
 
 public class LineVO extends LineBean {
 	private static final long serialVersionUID = 1L;
@@ -12,7 +12,6 @@ public class LineVO extends LineBean {
 	Set<ResourceVO> resources = new HashSet<ResourceVO>();
 	
 	public LineVO() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Set<UserVO> getUsers() {

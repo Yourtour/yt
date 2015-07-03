@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.yt.bean.RouteBean;
-import com.yt.bean.RouteNotesBean;
-import com.yt.bean.RouteScheduleBean;
+import com.yt.business.bean.RouteBean;
+import com.yt.business.bean.RouteNotesBean;
+import com.yt.business.bean.RouteScheduleBean;
 import com.yt.common.ResponseMessage;
 import com.yt.mocker.MockDataFactory;
 import com.yt.vo.RouteScheduleVO;

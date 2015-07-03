@@ -1,6 +1,6 @@
 package com.yt.vo;
 
-import com.yt.bean.UserBean;
+import com.yt.business.bean.UserBean;
 
 public class UserVO extends UserBean {
 

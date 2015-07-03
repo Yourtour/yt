@@ -1,15 +1,17 @@
 Ext.define('YourTour.view.line.IntroductionView', {
     extend: 'Ext.Panel',
-    requires:['Ext.Toolbar', 'Ext.Panel','Ext.Carousel','YourTour.view.widget.TitleBar'],
+    requires:['Ext.Toolbar', 'Ext.Panel','Ext.Carousel','YourTour.view.widget.TitleBar','YourTour.view.line.LineResourceItem'],
     xtype: 'lineintroview',
     config: {
-    	data:undefined,
     	itemId:'lineintroview',
     	id:'lineintroview',
     	fullscreen: true,
     	layout:'vbox',
     	baseCls:'page',
-    	
+    	scrollable: {
+    	    direction: 'vertical',
+    	    directionLock: true
+    	},
         items: [
         	{    
 				xtype: '_titlebar',
@@ -31,15 +33,7 @@ Ext.define('YourTour.view.line.IntroductionView', {
 	    		mode : 'tag',
 	        	src : ''
 	    	},
-	    	
-	    	{
-			   xtype:'markedlabel',
-			   pack:'center',
-			   align:'center',
-			   itemId:'name',
-			   html : ''
-		    },
-		    
+				    
 		    {
 			   xtype:'markedlabel',
 			   pack:'center',
@@ -47,7 +41,7 @@ Ext.define('YourTour.view.line.IntroductionView', {
 			   itemId:'name',
 			   html : ''
 		    },
-		    
+				    
 		    {
 			   xtype:'panel',
 			   margin:'5 0 0 0',
@@ -107,9 +101,9 @@ Ext.define('YourTour.view.line.IntroductionView', {
 			   			]
 			   		}
 			   ]
-		    },
-		    
-		    {
+	    	},
+			    
+		    /*{
 		       xtype:'panel',
 			   margin:'5 0 0 0',
 			   style:'background:#fff',
@@ -117,35 +111,43 @@ Ext.define('YourTour.view.line.IntroductionView', {
 			   items:[
 			   		{
 			   			xtype:'label',
-				   		html:'线路特点'
+				   		html:'线路特点',
+				   		style:'font-weight:bold; font-size:14px',
+				   		padding:'5'
 			   		},	
 			   		
 			   		{
 			   			xtype:'label',
-			   			itemId:'feature'
+			   			itemId:'feature',
+			   			style:'font-size:14px;line-height:20px',
+			   			padding:'5'
 			   		},
 			   		
 			   		{
 			   			xtype:'label',
-				   		html:'推荐理由'
+				   		html:'推荐理由',
+				   		style:'font-weight:bold; font-size:14px',
+				   		padding:'5'
 			   		},
 			   		
 			   		{
 			   			xtype:'label',
-			   			itemId:'reason'
-			   		},
+			   			itemId:'reason',
+			   			style:'font-size:14px;line-height:20px',
+			   			padding:'5'
+			   		}
 			   ]
-		    },
-		    
+		    },*/
+			    
 		    {
 		    	xtype:'dataview',
-		    	itemId:'scenes'
+		    	itemId:'scenes',
+		    	flex:1,
+		    	margin:'5 0 0 0',
+		    	useComponents:true,
+		    	defaultType:'lineresourceitem'
 		    }
         ]
-    },
-    
-    setData:function(record){
-    	console.log(record);
     }
 });
 

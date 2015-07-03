@@ -3,11 +3,14 @@ package com.yt.vo;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.yt.bean.RouteBean;
+import com.yt.business.bean.RouteBean;
 import com.yt.utils.DateUtils;
 
 public class RouteVO extends RouteBean {
 	private String feeling;
+	
+	private String formattedStartTime;
+	private String formattedEndTime;
 	
 	/**
 	 * 
@@ -28,15 +31,19 @@ public class RouteVO extends RouteBean {
 	
 	@JsonProperty("startTime")
 	public String getFormattedStartTime(){
-			Date d = new Date(super.getStartTime());
-			
-			return DateUtils.format(d);
+			return this.formattedStartTime;
 	}
 	
 	@JsonProperty("endTime")
 	public String getFormattedEndTime(){
-		Date d = new Date(super.getEndTime());
-		
-		return DateUtils.format(d);
+		return this.formattedEndTime;
 }
+
+	public void setFormattedStartTime(String formattedStartTime) {
+		this.formattedStartTime = formattedStartTime;
+	}
+
+	public void setFormattedEndTime(String formattedEndTime) {
+		this.formattedEndTime = formattedEndTime;
+	}
 }

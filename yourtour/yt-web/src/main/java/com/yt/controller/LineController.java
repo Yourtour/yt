@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.yt.bean.LineBean;
+import com.yt.business.bean.LineBean;
 import com.yt.common.ResponseMessage;
 import com.yt.mocker.MockDataFactory;
 import com.yt.vo.LineVO;
