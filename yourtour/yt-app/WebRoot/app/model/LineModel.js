@@ -7,7 +7,8 @@ Ext.define('YourTour.model.LineModel', {
 	    fields:[{name:'rowKey', type:'string'},
 	            {name:'imageUrl', type:'string'},
 	    		{name:'name', type:'string'},
-	    		{name:'lineName', type:'string'}
+	    		{name:'feature', type:'string'},
+	    		{name:'reason', type:'string'}
 	    ],
 	    
 	    associations: [{  
@@ -15,6 +16,12 @@ Ext.define('YourTour.model.LineModel', {
             model: 'YourTour.model.UserModel',   
             name:'users',   
             associationKey:'users'  
+        },
+        {  
+            type: 'hasMany',   
+            model: 'YourTour.model.ResourceModel',   
+            name:'resources',   
+            associationKey:'resources'  
         }]  
     }
 });

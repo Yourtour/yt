@@ -1,7 +1,9 @@
 package com.yt.mocker;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.dom4j.Document;
 import org.dom4j.Element;
@@ -52,6 +54,21 @@ public class MockDataFactory {
 		
 		String json = node.getText().trim();
 		return (List) mapper.readValue(json, javaType);
+	}
+	
+	/**
+	 * 根据URL 中文件从读取模拟数据，并将模拟数据转换成集合对象
+	 * @param clazz
+	 * @param url
+	 * @return
+	 */
+	public static  Set  getMockSetData(Class<?> clazz, String url) throws Exception{
+		Node node = root.selectSingleNode("mock[@url='" + url + "']");
+		ObjectMapper mapper = new ObjectMapper();
+		JavaType javaType = mapper.getTypeFactory().constructParametrizedType(HashSet.class, Set.class, clazz); 
+		
+		String json = node.getText().trim();
+		return (Set) mapper.readValue(json, javaType);
 	}
 	
 	public static void main(String[] args) throws Exception{

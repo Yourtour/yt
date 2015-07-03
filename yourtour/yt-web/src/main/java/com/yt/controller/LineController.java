@@ -1,6 +1,7 @@
 package com.yt.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,7 +37,7 @@ public class LineController {
 	 */
 	@RequestMapping(value="/Match")
 	public @ResponseBody ResponseMessage queryMatchedLineInfoes() throws Exception{
-		List<LineVO> data = (List<LineVO>) MockDataFactory.getMockListData(LineVO.class, "line/match");
+		Set<LineVO> data = (Set<LineVO>) MockDataFactory.getMockSetData(LineVO.class, "line/match");
 		
 		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, "", data);
 		return response;

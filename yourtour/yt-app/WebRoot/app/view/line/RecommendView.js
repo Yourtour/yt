@@ -20,7 +20,15 @@ Ext.define('YourTour.view.line.RecommendView', {
                 	margin:'0 0 0 5',
                 	src:'resources/icons/icon_back.png',
                 	align:'left'
-				}]			
+				},			
+				{
+                	xtype: "toolbutton", 
+                    ui: "normal", 
+                	text:'详情',
+                	itemId:'intro',
+                	align:'right'
+                }
+                ]
 			},
             
             {

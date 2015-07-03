@@ -6,14 +6,18 @@ Ext.define('YourTour.controller.BaseCtrl', {
        }
     },
     
-    show:function(viewId, viewName){
+    show:function(viewId, viewName, cfg){
+    	if(cfg == undefined){
+    		cfg = {};
+    	}
+    	
     	var pageContainer = this.getPageContainer();
     	if(pageContainer == undefined) return;
     	
     	var view = pageContainer.getItems(viewId);
     	if(view.items.length == 0){
     		console.log('creating view for viewId=' + viewId +', viewname=' + viewName);
-    		view = Ext.create(viewName);
+    		view = Ext.create(viewName,cfg);
 	    	pageContainer.add(view);
     	}else{
     		console.log('view for viewId=' + viewId +' existed');

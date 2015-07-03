@@ -107,7 +107,7 @@ Ext.define('YourTour.view.route.MainItem', {
         
         if(record){
  	 	   var imageUrl = me.down('#imageUrl');
- 	 	   imageUrl.setHtml("<img src='" + record.get('imageUrl') + "' style='width:100%; max-height:250px'>");
+ 	 	   imageUrl.setHtml("<img src='" + record.get('imageUrl') + "' style='width:100%; max-height:150px'>");
  	 	   
  	 	   var name = me.down('#routeName');
  	 	   name.setHtml(record.get('name'));

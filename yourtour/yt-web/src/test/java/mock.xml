@@ -13,9 +13,59 @@
 	<mock url="line/match">
 		<![CDATA[
 	        [
-		    {"rowKey":"1", "imageUrl":"http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg", "name":"九寨沟、黄龙、峨眉、乐山", "users":[{"rowKey":"11", "imageUrl":"http://192.168.2.102:8080/yt-app/resources/images/user_logo.png", "nickName":"行走天下1"},{"rowKey":"12", "imageUrl":"http://192.168.2.102:8080/yt-app/resources/images/user_logo.png", "nickName":"行走天下2"},{"rowKey":"13", "imageUrl":"http://192.168.2.102:8080/yt-app/resources/images/user_logo.png", "nickName":"行走天下3"},{"rowKey":"14", "imageUrl":"http://192.168.2.102:8080/yt-app/resources/images/user_logo.png", "nickName":"行走天下4"},{"rowKey":"15", "imageUrl":"http://192.168.2.102:8080/yt-app/resources/images/user_logo.png", "nickName":"行走天下5"}]},
-			{"rowKey":"2", "imageUrl":"http://192.168.2.102:8080/yt-app/resources/images/scene_1.jpg", "name":"九寨沟、黄龙、峨眉、乐山", "users":[{"rowKey":"21", "imageUrl":"http://192.168.2.102:8080/yt-app/resources/images/user_logo.png", "nickName":"行走天下1"},{"rowKey":"22", "imageUrl":"http://192.168.2.102:8080/yt-app/resources/images/user_logo.png", "nickName":"行走天下2"},{"rowKey":"23", "imageUrl":"http://192.168.2.102:8080/yt-app/resources/images/user_logo.png", "nickName":"行走天下3"},{"rowKey":"24", "imageUrl":"http://192.168.2.102:8080/yt-app/resources/images/user_logo.png", "nickName":"行走天下4"},{"rowKey":"25", "imageUrl":"http://192.168.2.102:8080/yt-app/resources/images/user_logo.png", "nickName":"行走天下5"}]}
+			    {
+			    	"rowKey":"1", "imageUrl":"http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg", "name":"九寨沟、黄龙、峨眉、乐山",
+			     	"feature":"迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘，驿站背负着古道的岁月。如此辽阔的原野，如此美丽的风景，驾车出行，将会真正感受到悠远、壮美和自在。南疆太大了，景点又很分散，不知道从哪里开始最好。就从乌鲁木齐出发，以塔克拉玛干沙漠为中心，穿越帕米尔高原，环游南疆。越过“死亡之海”，一睹千年古迹，逛“巴扎”和“麻扎”，饱览民族风情。",
+			     	"reason":"迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘，驿站背负着古道的岁月。如此辽阔的原野，如此美丽的风景，驾车出行，将会真正感受到悠远、壮美和自在。南疆太大了，景点又很分散，不知道从哪里开始最好。就从乌鲁木齐出发，以塔克拉玛干沙漠为中心，穿越帕米尔高原，环游南疆。越过“死亡之海”，一睹千年古迹，逛“巴扎”和“麻扎”，饱览民族风情。", 
+			     	"users":[
+				     	{"rowKey":"11", "imageUrl":"http://192.168.2.102:8080/yt-app/resources/images/user_logo.png", "nickName":"行走天下1"},
+				     	{"rowKey":"12", "imageUrl":"http://192.168.2.102:8080/yt-app/resources/images/user_logo.png", "nickName":"行走天下2"},
+				     	{"rowKey":"13", "imageUrl":"http://192.168.2.102:8080/yt-app/resources/images/user_logo.png", "nickName":"行走天下3"},
+				     	{"rowKey":"14", "imageUrl":"http://192.168.2.102:8080/yt-app/resources/images/user_logo.png", "nickName":"行走天下4"},
+				     	{"rowKey":"15", "imageUrl":"http://192.168.2.102:8080/yt-app/resources/images/user_logo.png", "nickName":"行走天下5"}
+				     ],
+				     "resources":[
+				     	{"rowKey":"11", "name":"九寨沟","imageUrls":"http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg"},
+				     	{"rowKey":"12", "name":"黄龙","imageUrls":"http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg"},
+				     	{"rowKey":"13", "name":"乐山","imageUrls":"http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg"},
+				     	{"rowKey":"14", "name":"峨眉","imageUrls":"http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg'}
+				     ]
+			     },
+		     
+				{
+					"rowKey":"2", "imageUrl":"http://192.168.2.102:8080/yt-app/resources/images/scene_1.jpg", "name":"九寨沟、黄龙、峨眉、乐山", 
+					"feature":"迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘，驿站背负着古道的岁月。如此辽阔的原野，如此美丽的风景，驾车出行，将会真正感受到悠远、壮美和自在。南疆太大了，景点又很分散，不知道从哪里开始最好。就从乌鲁木齐出发，以塔克拉玛干沙漠为中心，穿越帕米尔高原，环游南疆。越过“死亡之海”，一睹千年古迹，逛“巴扎”和“麻扎”，饱览民族风情。",
+			     	"reason":"迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘，驿站背负着古道的岁月。如此辽阔的原野，如此美丽的风景，驾车出行，将会真正感受到悠远、壮美和自在。南疆太大了，景点又很分散，不知道从哪里开始最好。就从乌鲁木齐出发，以塔克拉玛干沙漠为中心，穿越帕米尔高原，环游南疆。越过“死亡之海”，一睹千年古迹，逛“巴扎”和“麻扎”，饱览民族风情。",					
+					"users":[
+				     	{"rowKey":"11", "imageUrl":"http://192.168.2.102:8080/yt-app/resources/images/user_logo.png", "nickName":"行走天下1"},
+				     	{"rowKey":"12", "imageUrl":"http://192.168.2.102:8080/yt-app/resources/images/user_logo.png", "nickName":"行走天下2"},
+				     	{"rowKey":"13", "imageUrl":"http://192.168.2.102:8080/yt-app/resources/images/user_logo.png", "nickName":"行走天下3"},
+				     	{"rowKey":"14", "imageUrl":"http://192.168.2.102:8080/yt-app/resources/images/user_logo.png", "nickName":"行走天下4"},
+				     	{"rowKey":"15", "imageUrl":"http://192.168.2.102:8080/yt-app/resources/images/user_logo.png", "nickName":"行走天下5"}
+				     ],
+				     
+				     "resources":[
+				     	{"rowKey":"11", "name":"九寨沟","imageUrls":"http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg"},
+				     	{"rowKey":"12", "name":"黄龙","imageUrls":"http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg"},
+				     	{"rowKey":"13", "name":"乐山","imageUrls":"http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg"},
+				     	{"rowKey":"14", "name":"峨眉","imageUrls":"http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg'}
+				     ]
+				}
 	        ]
+		]]>
+	</mock>
+	
+	<mock url="line/get">
+		<![CDATA[
+		    {"rowKey":"1", "imageUrl":"http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg", "name":"九寨沟、黄龙、峨眉、乐山", 
+		     "feature":"迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘，驿站背负着古道的岁月。如此辽阔的原野，如此美丽的风景，驾车出行，将会真正感受到悠远、壮美和自在。南疆太大了，景点又很分散，不知道从哪里开始最好。就从乌鲁木齐出发，以塔克拉玛干沙漠为中心，穿越帕米尔高原，环游南疆。越过“死亡之海”，一睹千年古迹，逛“巴扎”和“麻扎”，饱览民族风情。",
+		     "reason":"迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘，驿站背负着古道的岁月。如此辽阔的原野，如此美丽的风景，驾车出行，将会真正感受到悠远、壮美和自在。南疆太大了，景点又很分散，不知道从哪里开始最好。就从乌鲁木齐出发，以塔克拉玛干沙漠为中心，穿越帕米尔高原，环游南疆。越过“死亡之海”，一睹千年古迹，逛“巴扎”和“麻扎”，饱览民族风情。",
+		     "resources":[
+		     	{"rowKey":"11", "name":"九寨沟","imageUrls":"http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg"},
+		     	{"rowKey":"12", "name":"黄龙","imageUrls":"http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg"},
+		     	{"rowKey":"13", "name":"乐山","imageUrls":"http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg"},
+		     	{"rowKey":"14", "name":"峨眉","imageUrls":"http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg;http://192.168.2.102:8080/yt-app/resources/images/scene_8.jpg'}
+		    }
 		]]>
 	</mock>
 </mocks>
