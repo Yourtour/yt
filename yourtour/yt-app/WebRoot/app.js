@@ -24,7 +24,7 @@ Ext.application({
     ],
     
     controllers: [
-        'Welcome', 'Main', 'route.MainCtrl','route.NewCtrl','LineCtrl','common.PlaceCtrl','user.Main','LineIntroCtrl'
+        'Welcome', 'Main', 'route.MainCtrl','route.NewCtrl','line.RecommendCtrl','line.IntroductionCtrl','common.PlaceCtrl','user.Main'
     ],
     
     models:[

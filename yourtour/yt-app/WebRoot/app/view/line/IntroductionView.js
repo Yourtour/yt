@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.line.IntroductionView', {
     extend: 'Ext.Panel',
-    requires:['Ext.Panel','Ext.Img','Ext.dataview.DataView', 'YourTour.view.widget.TitleBar','YourTour.view.widget.MarkedLabel', 'YourTour.view.line.LineResourceItem'],
+    requires:['Ext.Panel','Ext.Img','Ext.DataView', 'YourTour.view.widget.TitleBar','YourTour.view.widget.MarkedLabel', 'YourTour.view.line.LineResourceItem'],
     xtype: 'lineintroview',
     config: {
     	itemId:'lineintroview',
@@ -136,6 +136,15 @@ Ext.define('YourTour.view.line.IntroductionView', {
 			   			padding:'5'
 			   		}
 			   ]
+		    },
+		    
+		    {
+		    	xtype:'dataview',
+		    	itemId:'scenes',
+		    	margin:'5 0 0 0',
+				useComponents:true,
+				scrollable:null,
+		    	defaultType:'lineresourceitem'
 		    }
         ]
     }

@@ -1,10 +1,8 @@
 Ext.define('YourTour.view.user.ExpertListItem', {
-    extend: 'Ext.Panel',
+    extend: 'Ext.dataview.component.DataItem',
     xtype: 'expertListItem',
     requires:['Ext.Label', 'Ext.Panel', 'Ext.Img'],
     config: {
-    	data:undefined,
-    	itemId:'expertListItem',
     	layout : 'hbox',
     	cls:'expertListItem',
     	padding:'5 10 5 10',
@@ -68,29 +66,28 @@ Ext.define('YourTour.view.user.ExpertListItem', {
     	]
     },
     
-    setData: function(record) {
+    updateRecord: function(record) {
        	var me = this;
        	
        	if(record){
 	 	   var imageUrl = me.down('#imageUrl');
-	 	   imageUrl.setHtml("<img src='" + record.imageUrl + "' style='width:100%; max-height:250px'>");
+	 	   imageUrl.setHtml("<img src='" + record.get('imageUrl') + "' style='width:100%; max-height:250px'>");
 	 	   
 	 	   var nickName = me.down('#nickName');
-	 	   nickName.setHtml(record.nickName);
+	 	   nickName.setHtml(record.get('nickName'));
 	 	   
 	 	   var slogan = me.down('#slogan');
-	 	   slogan.setHtml(record.slogan);
+	 	   slogan.setHtml(record.get('slogan'));
 	 	   
 	 	   var male = me.down('#male'), female = me.down('#female');
-	 	   if(record.sex == 'F'){
+	 	   if(record.get('sex') == 'F'){
 	 	   		female.show();
 	 	   }else{
 	 	   		male.show();
 	 	   }
 	 	   
 	 	   var rank = me.down('#rank');
-	 	   rank.setHtml(record.rank);
+	 	   rank.setHtml(record.get('rank'));
        	}
     }
 });
-

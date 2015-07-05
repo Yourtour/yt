@@ -1,23 +1,17 @@
 Ext.define('YourTour.view.line.RecommedListItem', {
-    extend: 'Ext.Panel',
+    extend: 'Ext.dataview.component.DataItem',
     xtype: 'lineListItem',
-    requires:['YourTour.view.widget.SubTitleBar','Ext.Panel', 'Ext.Img', 'Ext.DataView','YourTour.view.user.ExpertListItem'],
+    requires:['YourTour.view.widget.SubTitleBar','Ext.Panel', 'Ext.Img'],
     config: {
-    	data:undefined,
-    	fullscreen: true,
     	layout : 'vbox',
     	cls:'lineListItem',
-		scrollable: {
-    	    direction: 'vertical',
-    	    directionLock: true
-    	},
-    	
+    	margin:'10 0 0 0',
+    	style:'background:#fff',
     	items:[
     	   {
     	   		itemId : 'imageUrl',
 	    		xtype : 'image',
-	    		mode : 'tag',
-	        	src : ''
+	    		mode : 'tag'
 	    	},
     		
 	    	{
@@ -30,8 +24,6 @@ Ext.define('YourTour.view.line.RecommedListItem', {
 		    
 		    {
 			   xtype:'panel',
-			   margin:'5 0 0 0',
-			   style:'background:#fff',
 			   layout:'vbox',
 			   items:[
 			   		{
@@ -95,40 +87,19 @@ Ext.define('YourTour.view.line.RecommedListItem', {
 			   			]
 			   		}
 			   ]
-		    },
-		    
-		    {
-            	xtype:'subtitlebar',
-            	margin:'5 0 5 0',
-            	html:'达人信息'
-            },
-            
-    	    {
-    		   itemId : 'users',
-    		   xtype:'panel',
-    		   style:'background:#fff',
-    		   items:[
-    		   ]
-    	    }
+		    }
     	]
     },
     
-    setData: function(record) {
+    updateRecord: function(record) {
        var me = this;
        
        if(record){
-
-       	   var imageUrl = me.down('#imageUrl');
-	 	   imageUrl.setHtml("<img src='" + record.get('imageUrl') + "' style='width:100%; max-height:150px'>");
+       	   var imageUrlEl = me.down('#imageUrl');
+	 	   imageUrlEl.setHtml("<img src='" + record.get('imageUrl') + "' style='width:100%; max-height:150px'>");
 	 	   
-	 	   var name = me.down('#name');
-	 	   name.setHtml(record.get('name'));
-	 	   
-	 	   var users = me.down('#users');
-	 	   record.users().each(function(user){
-	 	   	  var item = Ext.create('YourTour.view.user.ExpertListItem',{data:user.data});	
-	 	   	  users.add(item);
-	 	   });
+	 	   var nameEl = me.down('#name');
+	 	   nameEl.setHtml(record.get('name'));
 	 	}
     }   
 });

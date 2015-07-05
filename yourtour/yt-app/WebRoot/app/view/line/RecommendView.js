@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.line.RecommendView', {
     extend: 'Ext.Panel',
-    requires:['Ext.Toolbar', 'Ext.Panel','Ext.Carousel','YourTour.view.widget.TitleBar'],
+    requires:['Ext.Toolbar', 'Ext.Panel','Ext.Carousel','YourTour.view.widget.TitleBar','YourTour.view.line.RecommedListItem'],
     xtype: 'linerecommendview',
     config: {
     	id:'linerecommendview',
@@ -24,19 +24,23 @@ Ext.define('YourTour.view.line.RecommendView', {
 				{
                 	xtype: "toolbutton", 
                     ui: "normal", 
-                	text:'详情',
-                	itemId:'intro',
+                	text:'新建',
+                	itemId:'new',
                 	align:'right'
                 }
                 ]
 			},
             
             {
-            	xtype: 'carousel',
-            	itemId:'lineCarousel',
-            	showAnimation:'fade',
-            	indicator:false,
-            	style:'width:100%; height:100%'
+            	xtype: 'dataview',
+            	itemId:'lines',
+			   	flex:1,
+			   	scrollable: {
+		    	    direction: 'vertical',
+		    	    directionLock: true
+		    	},
+			   	useComponents:true,
+		       	defaultType:'lineListItem'
             }
         ]
     }
