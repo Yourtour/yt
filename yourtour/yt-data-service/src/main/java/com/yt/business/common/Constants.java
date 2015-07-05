@@ -66,8 +66,8 @@ public interface Constants {
 			}
 		}
 	
-	//成员角色枚举
-	public static enum RoleType{
+	//APP角色
+	public static enum Role{
 			MEMBER("Member","一般成员"), 
 			EXPERT("Expert","大人"),
 			HOST("Host","地主"), 
@@ -76,11 +76,27 @@ public interface Constants {
 			public String code;
 			public String name;
 			
-			private RoleType(String code, String name){
+			private Role(String code, String name){
 				this.code = code;
 				this.name = name;
 			}
 		}
+	
+	//行程团队角色
+	public static enum GroupRole{
+			MEMBER("Member","一般成员"), 
+			EXPERT("Expert","达人"),
+			HOST("Host","地主"), 
+			LEADER("Leader","团长");
+			
+			public String code;
+			public String name;
+			
+			private GroupRole(String code, String name){
+				this.code = code;
+				this.name = name;
+			}
+	}
 	
 	//权益枚举
 	public static enum EquityType{

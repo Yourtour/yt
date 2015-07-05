@@ -5,7 +5,7 @@ import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.data.neo4j.annotation.RelatedTo;
 
-import com.yt.business.common.Constants.RoleType;
+import com.yt.business.common.Constants.GroupRole;
 import com.yt.business.common.Constants.Status;
 import com.yt.dal.hbase.annotation.HbaseColumn;
 import com.yt.dal.hbase.annotation.HbaseTable;
@@ -51,7 +51,7 @@ public class RouteMemberBean extends Neo4JBaseBean {
 	@RelatedTo(type = "user", direction = Direction.BOTH, elementClass = UserBean.class)
 	UserBean user; // 用户ID
 	private @HbaseColumn(name = "role")
-	RoleType role; // 角色
+	GroupRole role; // 角色
 	private @HbaseColumn(name = "pos")
 	String position; // 位置信息
 
@@ -87,11 +87,11 @@ public class RouteMemberBean extends Neo4JBaseBean {
 		this.user = user;
 	}
 
-	public RoleType getRole() {
+	public GroupRole getRole() {
 		return role;
 	}
 
-	public void setRole(RoleType role) {
+	public void setRole(GroupRole role) {
 		this.role = role;
 	}
 

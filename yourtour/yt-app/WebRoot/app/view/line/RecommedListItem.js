@@ -70,18 +70,26 @@ Ext.define('YourTour.view.line.RecommedListItem', {
 			   			xtype:'panel',
 			   			layout:'hbox',
 			   			padding:'5',
+			   			defaults:{
+			   				flex:1
+			   			},
 			   			items:[
 				   			{
 				   				xtype:'label',
 				   				html:'最佳时间:',
-				   				flex:1,
 				   				style:'font-weight:bold; font-size:14px'
 				   			},
-				   			
 				   			{
 				   				xtype:'label',
 				   				html:'最佳时间:',
-				   				flex:4,
+				   				style:'font-size:14px'
+				   			},
+				   			{
+				   				xtype:'label',
+				   				style:'font-weight:bold; font-size:14px'
+				   			},
+				   			{
+				   				xtype:'label',
 				   				style:'font-size:14px'
 				   			}
 			   			]

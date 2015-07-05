@@ -1,12 +1,11 @@
 Ext.define('YourTour.view.line.IntroductionView', {
     extend: 'Ext.Panel',
-    requires:['Ext.Toolbar', 'Ext.Panel','Ext.Carousel','YourTour.view.widget.TitleBar','YourTour.view.line.LineResourceItem'],
+    requires:['Ext.Panel','Ext.Img','Ext.dataview.DataView', 'YourTour.view.widget.TitleBar','YourTour.view.widget.MarkedLabel', 'YourTour.view.line.LineResourceItem'],
     xtype: 'lineintroview',
     config: {
     	itemId:'lineintroview',
     	id:'lineintroview',
-    	fullscreen: true,
-    	layout:'vbox',
+      	layout:'vbox',
     	baseCls:'page',
     	scrollable: {
     	    direction: 'vertical',
@@ -103,7 +102,7 @@ Ext.define('YourTour.view.line.IntroductionView', {
 			   ]
 	    	},
 			    
-		    /*{
+		    {
 		       xtype:'panel',
 			   margin:'5 0 0 0',
 			   style:'background:#fff',
@@ -137,15 +136,6 @@ Ext.define('YourTour.view.line.IntroductionView', {
 			   			padding:'5'
 			   		}
 			   ]
-		    },*/
-			    
-		    {
-		    	xtype:'dataview',
-		    	itemId:'scenes',
-		    	flex:1,
-		    	margin:'5 0 0 0',
-		    	useComponents:true,
-		    	defaultType:'lineresourceitem'
 		    }
         ]
     }

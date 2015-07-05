@@ -6,7 +6,10 @@ Ext.define('YourTour.model.UserModel', {
 	    fields:[
             {name:'rowKey', type:'string'},
             {name:'imageUrl', type:'string'},
-    		{name:'nickName', type:'string'}
+    		{name:'nickName', type:'string'},
+    		{name:'rank', type:'string'},
+    		{name:'slogan', type:'string'},
+    		{name:'sex', type:'string'}
 	    ]
     },
 });

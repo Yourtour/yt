@@ -9,6 +9,7 @@ import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.data.neo4j.annotation.RelatedTo;
 import org.springframework.data.neo4j.support.index.IndexType;
 
+import com.yt.business.common.Constants.Role;
 import com.yt.business.common.Constants.Status;
 import com.yt.dal.hbase.annotation.HbaseColumn;
 import com.yt.dal.hbase.annotation.HbaseTable;
@@ -98,12 +99,21 @@ public class UserBean extends Neo4JBaseBean {
 	String nativePlace; // 籍贯
 	private @HbaseColumn(name = "cstl")
 	String constellation; // 星座
+
+	private @HbaseColumn(name = "role")
+	Role role; //角色
+	
 	@Indexed
-	private @HbaseColumn(name = "rate")
-	RATE rate; // 评级
+	private @HbaseColumn(name = "rank")
+	int rank; //等级
+	
 	private @HbaseColumn(name = "stat")
+	
 	@Indexed
 	Status status;
+	
+	private @HbaseColumn(name = "slga")
+	String slogan;
 
 	private @RelatedTo(type = "playWith", direction = Direction.BOTH)
 	Set<UserBean> playmates; // 游伴
@@ -239,6 +249,14 @@ public class UserBean extends Neo4JBaseBean {
 		this.character = character;
 	}
 
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
 	public String getMobileNo() {
 		return mobileNo;
 	}
@@ -249,6 +267,14 @@ public class UserBean extends Neo4JBaseBean {
 
 	public String getEmail() {
 		return email;
+	}
+
+	public String getSlogan() {
+		return slogan;
+	}
+
+	public void setSlogan(String slogan) {
+		this.slogan = slogan;
 	}
 
 	public void setEmail(String email) {
@@ -279,12 +305,12 @@ public class UserBean extends Neo4JBaseBean {
 		this.constellation = constellation;
 	}
 
-	public RATE getRate() {
-		return rate;
+	public int getRank() {
+		return rank;
 	}
 
-	public void setRate(RATE rate) {
-		this.rate = rate;
+	public void setRank(int rank) {
+		this.rank = rank;
 	}
 
 	public Status getStatus() {

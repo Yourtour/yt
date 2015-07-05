@@ -1,11 +1,13 @@
 Ext.define('YourTour.view.line.LineResourceItem', {
-    extend: 'Ext.dataview.component.DataItem',
+    extend: 'Ext.Panel',
     xtype: 'lineresourceitem',
     requires:['Ext.Label', 'Ext.Img'],
     config: {
-    	itemId:'lineresourceitem',
+    	record:null,
+    	
     	layout : 'vbox',
     	style:'background:#fff',
+    	margin:'5 0 0 0',
     	padding:'5',
     	items:[
     	    {
@@ -56,24 +58,34 @@ Ext.define('YourTour.view.line.LineResourceItem', {
     	]
     },
     
-    updateRecord: function(record) {
+    initialize: function() {
+    	var me = this;
+    	
+    	me.callParent();
+    	
+    	me.element.on("tap",function(){
+    	 	me.fireEvent('onTap', me.record);
+    	});       			
+    },
+    
+    setRecord: function(record) {
        var me = this;
        
-       console.log(record);
+       this.record = record;
        if(record){
-	 	   var name = me.down('#name');
-	 	   name.setHtml(record.get('name'));
+	 	   	var name = me.down('#name');
+	 	   	name.setHtml(record.name);
 	 	   
-	 	   var imageUrls = record.get('imageUrls');
-	 	   var urls = imageUrls.split(';');
-	 	   for (var i=1; i <= urls.length; i++){
+	 	   	var imageUrls = record.imageUrls;
+	 	   	var urls = imageUrls.split(';');
+	 	   	for (var i=1; i <= urls.length; i++){
 	 	   		var img = me.down('#imageUrl' + i);
 	 	   		img.show();
 	 	   		img.setHtml("<img src='" + urls[i-1] + "' style='width:100%; max-height:50px'>");
-	 	   }
+	 	   	}
 	 	   
-	 	   var intro = me.down('#intro');
-	 	   intro.setHtml(record.get('intro'));
+	 	   	var intro = me.down('#intro');
+	 	   	intro.setHtml(record.intro);
 	 	}
     }   
 });

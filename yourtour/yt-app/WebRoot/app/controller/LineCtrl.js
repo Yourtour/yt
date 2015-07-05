@@ -12,6 +12,10 @@ Ext.define('YourTour.controller.LineCtrl', {
        	   		tap:'showLineIntro'	
        	   },
        	   
+       	   'lineresourceitem[itemId=lineresourceitem]':{
+       	   	   onTap:'showResource'
+       	   },
+       	   
        	   /**
        	    * 线路推荐列表返回按钮事件定义
        	    * @type 
@@ -57,6 +61,10 @@ Ext.define('YourTour.controller.LineCtrl', {
     	this.store = Ext.create('YourTour.store.LineStore');	
     },
     
+    showResource:function(record){
+    	console.log(record);
+    },
+    
     /**
      * 显示线路详细信息
      */
@@ -66,30 +74,26 @@ Ext.define('YourTour.controller.LineCtrl', {
     	var index = this.getLineCarousel().getActiveIndex();
     	var record = this.store.getAt(index);
     	
+    	var lineIntroView = this.getLineIntro();
     	if(record){
-    	   	var imageUrl = this.getLineIntro().down('#imageUrl');
+    	   	var imageUrl = lineIntroView.down('#imageUrl');
  	 	   	imageUrl.setHtml("<img src='" + record.get('imageUrl') + "' style='width:100%; max-height:150px'>");
  	 	   	
- 	 	   	var name = this.getLineIntro().down('#name');
+ 	 	   	var name = lineIntroView.down('#name');
  	 	   	name.setHtml(record.get('name'));
  	 	   	
- 	 	   	/*var feature = this.getLineIntro().down('#feature');
+ 	 	   	var feature = lineIntroView.down('#feature');
  	 	   	feature.setHtml(record.get('feature'));
  	 	   	
- 	 	   	var reason = this.getLineIntro().down('#reason');
- 	 	   	reason.setHtml(record.get('reason'));*/
+ 	 	   	var reason = lineIntroView.down('#reason');
+ 	 	   	reason.setHtml(record.get('reason'));
 			 	 	   	
- 	 	   	var scenes = this.getLineIntro().down('#scenes');
- 	 	   	var resources = [];
  	 	   	record.resources().each(function(resource){
- 	 	   		resources.push(resource.data);
+ 	 	   		var item = Ext.create('YourTour.view.line.LineResourceItem',{itemId:'lineresourceitem',record:resource.data});
+ 	 	   		lineIntroView.add(item);
  	 	   	});
- 	 	   	
- 	 	   	var sceneStore = Ext.create('Ext.data.Store',{model:'YourTour.model.ResourceModel', data:resources});
- 	 	   	scenes.setStore(sceneStore);
     	}
     },
-    
     
     backToLineRecommendView:function(){
     	this.show('linerecommendview','YourTour.view.line.RecommendView');
