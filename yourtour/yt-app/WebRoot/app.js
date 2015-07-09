@@ -18,21 +18,24 @@ Ext.application({
     ],
 
     views: [
-        'MainView','Launch','Welcome','home.Main','SearchMain','route.MainView','route.NewView','route.schedule.ActivityListView','common.PlaceView',
-        'line.RecommendView','line.IntroductionView','route.schedule.ScheduleListView',
-        'user.LoginView','user.RegisterView'
+        'MainView','Launch','Welcome','home.Main','SearchMain','route.MainView','route.NewView','common.PlaceView',
+        'line.RecommendView','line.IntroductionView',
+        'route.schedule.ScheduleListView','route.schedule.SceneScheduleView','route.schedule.HotelScheduleView','route.schedule.FoodScheduleView',
+        'user.LoginView','user.RegisterView',
+        'resource.SelectionView'
     ],
     
     controllers: [
-        'Welcome', 'Main', 'route.MainCtrl','route.NewCtrl','line.RecommendCtrl','line.IntroductionCtrl','common.PlaceCtrl','user.Main'
+        'Welcome', 'Main', 'route.MainCtrl','route.NewCtrl','route.ScheduleCtrl', 'line.RecommendCtrl','line.IntroductionCtrl','common.PlaceCtrl','user.Main',
+        'resource.SelectionCtrl'
     ],
     
     models:[
-        'RouteModel','LineModel', 'UserModel','ScheduleModel','OptionModel'
+        'RouteModel','ScheduleModel','LineModel', 'UserModel','OptionModel'
     ],
     
     stores:[
-        'RouteStore','RouteLocalStore'
+        'RouteStore','LineStore'
     ],
         
     icon: {
@@ -44,10 +47,6 @@ Ext.application({
     
     isIconPrecomposed: true,
     
-    getUserId:function(){
-    	return '2222';
-    },
-
     startupImage: {
         '320x460': 'resources/startup/launch.jpg',
         '640x920': 'resources/startup/launch.png',

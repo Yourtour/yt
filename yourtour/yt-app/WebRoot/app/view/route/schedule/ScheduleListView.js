@@ -1,24 +1,54 @@
 Ext.define('YourTour.view.route.schedule.ScheduleListView', {
-    extend: 'Ext.dataview.DataView',
-    requires:['YourTour.view.route.schedule.ScheduleListItem'],
+    extend: 'Ext.Container',
+    requires:['YourTour.view.route.schedule.ScheduleListItem','Ext.Panel','YourTour.view.widget.TitleBar'],
     xtype: 'scheduleListView',
     config: {
     	itemId:'scheduleListView',
     	id:'scheduleListView',
-    	/**
-         * Tell the dataview to use components for each item
-         */
-        useComponents: true,
-        
-        /**
-         * Set the default item for this component list to be the {@link Example.view.KittensListItem}
-         * class.
-         */
-        defaultType: 'scheduleListItem'
-    },
-    
-    initialize : function() {
-    	this.callParent(arguments);
+    	fullscreen:true,
+    	layout:'vbox',
+    	baseCls:'page',
+    	
+    	items:[
+    		{    
+				xtype: '_titlebar',
+				docked: 'top',
+				title: '行程规划',
+				items:[
+					{
+						xtype: "image", 
+	                	itemId:'close',
+	                	mode:'tag',
+	                	margin:'0 0 0 5',
+	                	src:'resources/icons/icon_back.png',
+	                	align:'left'
+					}
+                ]
+			},
+			
+    		{
+    	   		itemId : 'imageUrl',
+	    		xtype : 'image',
+	    		mode : 'tag'
+	    	},
+	    	
+    		{
+    			itemId:'scheduleList',
+    			xtype:'dataview',
+    			flex:1,
+    			
+		    	/**
+		         * Tell the dataview to use components for each item
+		         */
+		        useComponents: true,
+		        
+		        /**
+		         * Set the default item for this component list to be the {@link Example.view.KittensListItem}
+		         * class.
+		         */
+		        defaultType: 'scheduleListItem'
+    		}
+        ]
     }
 });
 

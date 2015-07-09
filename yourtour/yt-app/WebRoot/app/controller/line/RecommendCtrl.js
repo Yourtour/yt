@@ -36,7 +36,7 @@ Ext.define('YourTour.controller.line.RecommendCtrl', {
         	'/line/recommend':'showView'
        },
        
-       store : undefined
+       store : null
     },
     
     init: function(){
@@ -44,7 +44,7 @@ Ext.define('YourTour.controller.line.RecommendCtrl', {
     },
     
     onLineNewTap:function(){
-    	
+    	this.redirectTo("/route/schedule/1");
     },
    
     backToNewRouteView:function(){

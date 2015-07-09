@@ -94,5 +94,5 @@ Ext.define('YourTour.store.LineStore', {
 				 destroy: YourTour.util.Context.getContext('/route/Delete.action')
 			}
     	}*/
-    },
+    }
 });

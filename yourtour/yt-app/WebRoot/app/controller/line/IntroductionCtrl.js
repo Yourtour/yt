@@ -39,7 +39,6 @@ Ext.define('YourTour.controller.line.IntroductionCtrl', {
     showIntroduction:function(index){
     	var store = this.getLines().getStore();
     	var record = store.getAt(index);
-    	
     	this.show('lineintroview','YourTour.view.line.IntroductionView');
 	
     	var lineIntroView = this.getLineIntro();

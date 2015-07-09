@@ -11,5 +11,5 @@ Ext.define('YourTour.model.UserModel', {
     		{name:'slogan', type:'string'},
     		{name:'sex', type:'string'}
 	    ]
-    },
+    }
 });

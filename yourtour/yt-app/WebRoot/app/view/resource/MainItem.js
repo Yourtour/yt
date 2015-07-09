@@ -6,63 +6,21 @@ Ext.define('YourTour.view.route.MainItem', {
     	itemId:'routemainitem',
     	fullscreen: true,
     	layout:'vbox',
+    	scrollable: {
+    	    direction: 'vertical',
+    	    directionLock: true
+    	},
         items: [
 			{
-    	   		itemId : 'imageUrl',
-	    		xtype : 'image',
-	    		mode : 'tag'
-	    	},
+			   xtype:'panel', 
+			   itemId:'imageUrl'
+			},
 			{
 			   xtype:'markedlabel',
 			   pack:'center',
 			   align:'center',
 			   itemId:'routeName',
 			   html : ''
-		    },
-		    
-		    {
-			   xtype:'toolbar',
-			   itemId:'toolbuttons',
-			   padding:5,
-			   layout:'hbox',
-			   ui:'light',
-			   defaults:{
-			   		flex:1,
-			   		pack:'center',
-			   		align:'center'
-			   },
-			   items:[
-			   		{
-		              	xtype : 'image',
-	    				mode : 'tag',
-	    				src:'resources/icons/icon_route.png',
-		              	itemId:'btnRoute'
-		           	},
-		           	{
-		              	xtype : 'image',
-	    				mode : 'tag',
-	    				src:'resources/icons/icon_partner.png',
-		              	itemId:'btnMember'  
-		            },
-		           	{
-		              	xtype : 'image',
-	    				mode : 'tag',
-	    				src:'resources/icons/icon_expense.png',
-		              	itemId:'btnCharge'  
-		            },
-		           	{
-		              	xtype : 'image',
-	    				mode : 'tag',
-	    				src:'resources/icons/icon_album.png',
-		              	itemId:'btnAlbum'  
-		           	},
-		           	{
-		              	xtype : 'image',
-	    				mode : 'tag',
-	    				src:'resources/icons/icon_diary.png',
-		              	itemId:'btnDiary'  
-		           	}     
-			   ]
 		    },
 			
 			{

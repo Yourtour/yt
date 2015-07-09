@@ -1,5 +1,6 @@
 Ext.define('YourTour.model.RouteModel', {
     extend: 'Ext.data.Model',
+    requires:['YourTour.model.ScheduleModel'],
     config:{
     	idProperty:'rowKey',
     	
@@ -11,6 +12,13 @@ Ext.define('YourTour.model.RouteModel', {
 	    		{name:'startTime', type:'string'},
 	    		{name:'endTime', type:'string'},
 	    		{name:'period', type:'string'}
-	    ]
+	    ],
+	    
+	    associations: [{  
+            type: 'hasMany',   
+            model: 'YourTour.model.ScheduleModel',   
+            name:'schedules',
+            associationKey:'schedules'
+        }]  
     }
 });

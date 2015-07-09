@@ -1,26 +1,34 @@
 Ext.define('YourTour.controller.route.MainCtrl', {
     extend: 'YourTour.controller.BaseCtrl',
-    requires:['YourTour.store.RouteStore','YourTour.store.RouteLocalStore', 'YourTour.model.RouteModel','YourTour.view.route.MainItem'],
+    requires:['YourTour.store.RouteStore','YourTour.view.route.MainItem'],
     
     config: {
        refs: {
        	    routemainview:'#routemainview',
         	routeCarousel:'#routemainview #routeCarousel',
-       		newRoute:'#routemainview #new' 	
+       		newRoute:'#routemainview #new'
        },
        
        control:{
     	   newRoute:{
-    		   tap:'newRoute'
+    		   	tap:'newRoute'
+    	   },
+    	   
+    	   '#routemainitem #btnRoute':{
+    	   		tap:'onRouteTap'	
     	   }
        },
        
        routes:{
         	'/main/route':'showRoute'
-       }
+       },
+       
+       store:null
     },
     
-    routeStore:Ext.create('YourTour.store.RouteStore'),
+    init: function(){
+    	this.store = Ext.create('YourTour.store.RouteStore',{storeId:'routemainstore'});	
+    },
     
     newRoute:function(){
     	this.redirectTo("/route/new");
@@ -30,9 +38,10 @@ Ext.define('YourTour.controller.route.MainCtrl', {
     	this.show('routemainview','YourTour.view.route.MainView');
     	
     	var handler = function(){
+			var store = Ext.getStore('routemainstore');
     		var routeCarousel = this.getRouteCarousel();
     		routeCarousel.removeAll(true, false);
-        	this.routeStore.each(function(item){
+        	store.each(function(item){
         		var routePanel = Ext.create('YourTour.view.route.MainItem');
         		routePanel.setRecord(item);
         		routeCarousel.add(routePanel);
@@ -41,6 +50,13 @@ Ext.define('YourTour.controller.route.MainCtrl', {
         	routeCarousel.setActiveItem(0);
     	};
     	
-    	this.routeStore.load({params:{userId:'1111','userName':'tony'}, callback:handler,scope:this});
+    	this.store.load(handler, this);
+    },
+    
+    onRouteTap:function(){
+    	var routeCarousel = this.getRouteCarousel();
+    	var index = routeCarousel.getActiveIndex();
+    	var record = this.store.getAt(index);
+   		this.redirectTo('/route/schedule/' + record.get('rowKey'));
     }
 });
