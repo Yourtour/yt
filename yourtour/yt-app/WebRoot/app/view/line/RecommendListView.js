@@ -1,4 +1,4 @@
-Ext.define('YourTour.view.line.RecommendView', {
+Ext.define('YourTour.view.line.RecommendListView', {
     extend: 'Ext.Panel',
     requires:['Ext.Toolbar', 'Ext.Panel','Ext.Carousel','YourTour.view.widget.TitleBar','YourTour.view.line.RecommedListItem'],
     xtype: 'linerecommendview',
@@ -6,7 +6,6 @@ Ext.define('YourTour.view.line.RecommendView', {
     	id:'linerecommendview',
     	fullscreen: true,
     	layout:'vbox',
-    	baseCls:'page',
     	
         items: [
         	{    
@@ -32,15 +31,11 @@ Ext.define('YourTour.view.line.RecommendView', {
 			},
             
             {
-            	xtype: 'dataview',
+            	xtype: 'carousel',
             	itemId:'lines',
-			   	flex:1,
-			   	scrollable: {
-		    	    direction: 'vertical',
-		    	    directionLock: true
-		    	},
-			   	useComponents:true,
-		       	defaultType:'lineListItem'
+            	showAnimation:'fade',
+            	indicator:false,
+            	flex:1
             }
         ]
     }

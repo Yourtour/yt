@@ -1,24 +1,51 @@
 Ext.define('YourTour.view.Launch', {
     extend: 'Ext.Container',
     xtype: 'launch',
-    requires:['Ext.Img', 'Ext.Label'],
+    requires:['Ext.Img', 'Ext.Label','Ext.Carousel'],
     config: {
-    	layout:'vbox',
+    	layout:'card',
     	fullscreen: true,
+    	itemId:'launch',
     	
         items: [
             {
             	xtype: 'image',
-            	flex : 4,
-            	src: './resources/images/launch.jpg',
+            	src: 'resources/images/launch.jpg',
             	style:'width:100%;background-size:cover'
             },
+            
             {
-            	xtype: 'label',
-            	width: '100%',
-            	flex : 1,
-            	html: '世界是一本书，而不旅行的人们只读了其中的一页。',
-            	style:'text-align:center; margin'
+            	xtype: 'carousel',
+            	itemId:'routeCarousel',
+            	indicator:false,
+            	direction:'horizontal',
+            	items:[
+            		{
+            			xtype: 'image',
+		            	src: './resources/images/welcome_1.jpg',
+		            	style:'width:100%;background-size:cover'
+            		},
+            		{
+            			xtype: 'image',
+		            	src: './resources/images/welcome_2.jpg',
+		            	style:'width:100%;background-size:cover'
+            		},
+            		{
+		            	xtype:"panel",
+		            	layout:'vbox',
+		            	style:"background:url('resources/images/welcome_3.jpg') no-repeat center;background-size:auto 100%",
+		            	items:[
+			            	{
+			            		xtype: 'button',
+			            		itemId:'enter',
+			            		ui:'normal',
+			                	text: '进入游途>>',
+			                	docked:'bottom',
+			                	style:' margin-bottom:50px'
+			            	}
+            			]
+            		}
+            	]
             }
         ]
     }

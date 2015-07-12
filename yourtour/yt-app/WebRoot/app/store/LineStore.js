@@ -11,12 +11,10 @@ Ext.define('YourTour.store.LineStore', {
 		    	rowKey:"1", imageUrl:"resources/images/scene_8.jpg", name:"九寨沟、黄龙、峨眉、乐山---1",
 		     	feature:"迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘，驿站背负着古道的岁月。如此辽阔的原野，如此美丽的风景，驾车出行，将会真正感受到悠远、壮美和自在。南疆太大了，景点又很分散，不知道从哪里开始最好......",
 		     	reason:"迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘，驿站背负着古道的岁月。如此辽阔的原野，如此美丽的风景，驾车出行，将会真正感受到悠远、壮美和自在。南疆太大了，景点又很分散，不知道从哪里开始最好......", 
-		     	users:[
-			     	{rowKey:"11", imageUrl:"resources/images/user_logo.png", nickName:"行走天下1",sex:"F",rank:"1",slogan:"阳光行 快乐游  我服务 您舒心"},
-			     	{rowKey:"12", imageUrl:"resources/images/user_logo.png", nickName:"行走天下2",sex:"M",rank:"2",slogan:"阳光行 快乐游  我服务 您舒心"},
-			     	{rowKey:"13", imageUrl:"resources/images/user_logo.png", nickName:"行走天下3",sex:"M",rank:"3",slogan:"阳光行 快乐游  我服务 您舒心"},
-			     	{rowKey:"14", imageUrl:"resources/images/user_logo.png", nickName:"行走天下4",sex:"F",rank:"4",slogan:"阳光行 快乐游  我服务 您舒心"},
-			     	{rowKey:"15", imageUrl:"resources/images/user_logo.png", nickName:"行走天下5",sex:"F",rank:"5",slogan:"阳光行 快乐游  我服务 您舒心"}
+		     	routes:[
+			     	{rowKey:"11", imageUrls:"resources/images/scene_8.jpg;resources/images/scene_8.jpg;resources/images/scene_8.jpg;resources/images/scene_8.jpg", name:"九寨沟、黄龙、峨眉、乐山9日游", period:'9天',feature:'迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘，驿站背负着古道的岁月.....'},
+			     	{rowKey:"12", imageUrls:"resources/images/scene_8.jpg;resources/images/scene_8.jpg;resources/images/scene_8.jpg;resources/images/scene_8.jpg", name:"九寨沟、黄龙、峨眉、乐山8日游", period:'8天',feature:'迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘，驿站背负着古道的岁月......'},
+			     	{rowKey:"13", imageUrls:"resources/images/scene_8.jpg;resources/images/scene_8.jpg;resources/images/scene_8.jpg;resources/images/scene_8.jpg", name:"九寨沟、黄龙、峨眉、乐山7日游", period:'7天',feature:'迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘，驿站背负着古道的岁月......'}
 			     ],
 			     "resources":[
 			     	{rowKey:"11", name:"九寨沟",imageUrls:"resources/images/scene_8.jpg;resources/images/scene_8.jpg;resources/images/scene_8.jpg;resources/images/scene_8.jpg"},
@@ -30,12 +28,10 @@ Ext.define('YourTour.store.LineStore', {
 				rowKey:"2", imageUrl:"resources/images/scene_1.jpg", name:"九寨沟、黄龙、峨眉、乐山----0", 
 				feature:"迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘......",
 		     	reason:"迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘......",					
-				users:[
-			     	{rowKey:"11", imageUrl:"resources/images/user_logo.png", nickName:"行走天下1",sex:"F",rank:"1",slogan:"阳光行 快乐游  我服务 您舒心"},
-			     	{rowKey:"12", imageUrl:"resources/images/user_logo.png", nickName:"行走天下2",sex:"M",rank:"2",slogan:"阳光行 快乐游  我服务 您舒心"},
-			     	{rowKey:"13", imageUrl:"resources/images/user_logo.png", nickName:"行走天下3",sex:"M",rank:"3",slogan:"阳光行 快乐游  我服务 您舒心"},
-			     	{rowKey:"14", imageUrl:"resources/images/user_logo.png", nickName:"行走天下4",sex:"F",rank:"4",slogan:"阳光行 快乐游  我服务 您舒心"},
-			     	{rowKey:"15", imageUrl:"resources/images/user_logo.png", nickName:"行走天下5",sex:"F",rank:"5",slogan:"阳光行 快乐游  我服务 您舒心"}
+				routes:[
+   			     	{rowKey:"11", imageUrls:"resources/images/scene_8.jpg;resources/images/scene_8.jpg;resources/images/scene_8.jpg;resources/images/scene_8.jpg", name:"九寨沟、黄龙、峨眉、乐山9日游", period:'9天',feature:'迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘，驿站背负着古道的岁月......'},
+			     	{rowKey:"12", imageUrls:"resources/images/scene_8.jpg;resources/images/scene_8.jpg;resources/images/scene_8.jpg;resources/images/scene_8.jpg", name:"九寨沟、黄龙、峨眉、乐山8日游", period:'8天',feature:'迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘，驿站背负着古道的岁月......'},
+			     	{rowKey:"13", imageUrls:"resources/images/scene_8.jpg;resources/images/scene_8.jpg;resources/images/scene_8.jpg;resources/images/scene_8.jpg", name:"九寨沟、黄龙、峨眉、乐山7日游", period:'7天',feature:'迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘，驿站背负着古道的岁月......'}
 			     ],
 			     
 			     "resources":[
@@ -50,12 +46,10 @@ Ext.define('YourTour.store.LineStore', {
 				rowKey:"3", imageUrl:"resources/images/scene_3.jpg", name:"九寨沟、黄龙、峨眉、乐山----3", 
 				feature:"迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘......",
 		     	reason:"迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘......",					
-				users:[
-			     	{rowKey:"11", imageUrl:"resources/images/user_logo.png", nickName:"行走天下1",sex:"F",rank:"1",slogan:"阳光行 快乐游  我服务 您舒心"},
-			     	{rowKey:"12", imageUrl:"resources/images/user_logo.png", nickName:"行走天下2",sex:"M",rank:"2",slogan:"阳光行 快乐游  我服务 您舒心"},
-			     	{rowKey:"13", imageUrl:"resources/images/user_logo.png", nickName:"行走天下3",sex:"M",rank:"3",slogan:"阳光行 快乐游  我服务 您舒心"},
-			     	{rowKey:"14", imageUrl:"resources/images/user_logo.png", nickName:"行走天下4",sex:"F",rank:"4",slogan:"阳光行 快乐游  我服务 您舒心"},
-			     	{rowKey:"15", imageUrl:"resources/images/user_logo.png", nickName:"行走天下5",sex:"F",rank:"5",slogan:"阳光行 快乐游  我服务 您舒心"}
+				routes:[
+			     	{rowKey:"11", imageUrls:"resources/images/scene_8.jpg;resources/images/scene_8.jpg;resources/images/scene_8.jpg;resources/images/scene_8.jpg", name:"九寨沟、黄龙、峨眉、乐山9日游", period:'9天',feature:'迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘，驿站背负着古道的岁月......'},
+			     	{rowKey:"12", imageUrls:"resources/images/scene_8.jpg;resources/images/scene_8.jpg;resources/images/scene_8.jpg;resources/images/scene_8.jpg", name:"九寨沟、黄龙、峨眉、乐山8日游", period:'8天',feature:'迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘，驿站背负着古道的岁月......'},
+			     	{rowKey:"13", imageUrls:"resources/images/scene_8.jpg;resources/images/scene_8.jpg;resources/images/scene_8.jpg;resources/images/scene_8.jpg", name:"九寨沟、黄龙、峨眉、乐山7日游", period:'7天',feature:'迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘，驿站背负着古道的岁月......'}
 			     ],
 			     
 			     "resources":[
@@ -70,12 +64,10 @@ Ext.define('YourTour.store.LineStore', {
 				rowKey:"4", imageUrl:"resources/images/scene_1.jpg", name:"九寨沟、黄龙、峨眉、乐山----4", 
 				feature:"迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘......",
 		     	reason:"迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘......",					
-				users:[
-			     	{rowKey:"11", imageUrl:"resources/images/user_logo.png", nickName:"行走天下1",sex:"F",rank:"1",slogan:"阳光行 快乐游  我服务 您舒心"},
-			     	{rowKey:"12", imageUrl:"resources/images/user_logo.png", nickName:"行走天下2",sex:"M",rank:"2",slogan:"阳光行 快乐游  我服务 您舒心"},
-			     	{rowKey:"13", imageUrl:"resources/images/user_logo.png", nickName:"行走天下3",sex:"M",rank:"3",slogan:"阳光行 快乐游  我服务 您舒心"},
-			     	{rowKey:"14", imageUrl:"resources/images/user_logo.png", nickName:"行走天下4",sex:"F",rank:"4",slogan:"阳光行 快乐游  我服务 您舒心"},
-			     	{rowKey:"15", imageUrl:"resources/images/user_logo.png", nickName:"行走天下5",sex:"F",rank:"5",slogan:"阳光行 快乐游  我服务 您舒心"}
+				routes:[
+			     	{rowKey:"11", imageUrls:"resources/images/scene_8.jpg;resources/images/scene_8.jpg;resources/images/scene_8.jpg;resources/images/scene_8.jpg", name:"九寨沟、黄龙、峨眉、乐山9日游", period:'9天',feature:'迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘，驿站背负着古道的岁月。如此辽阔的原野，如此美丽的风景，驾车出行，将会真正感受到悠远、壮美和自在。南疆太大了，景点又很分散，不知道从哪里开始最好......'},
+			     	{rowKey:"12", imageUrls:"resources/images/scene_8.jpg;resources/images/scene_8.jpg;resources/images/scene_8.jpg;resources/images/scene_8.jpg", name:"九寨沟、黄龙、峨眉、乐山8日游", period:'8天',feature:'迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘，驿站背负着古道的岁月。如此辽阔的原野，如此美丽的风景，驾车出行，将会真正感受到悠远、壮美和自在。南疆太大了，景点又很分散，不知道从哪里开始最好......'},
+			     	{rowKey:"13", imageUrls:"resources/images/scene_8.jpg;resources/images/scene_8.jpg;resources/images/scene_8.jpg;resources/images/scene_8.jpg", name:"九寨沟、黄龙、峨眉、乐山7日游", period:'7天',feature:'迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘，驿站背负着古道的岁月。如此辽阔的原野，如此美丽的风景，驾车出行，将会真正感受到悠远、壮美和自在。南疆太大了，景点又很分散，不知道从哪里开始最好......'}
 			     ],
 			     
 			     "resources":[

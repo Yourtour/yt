@@ -11,17 +11,18 @@ Ext.define('YourTour.model.LineModel', {
 	    		{name:'reason', type:'string'}
 	    ],
 	    
-	    associations: [{  
-            type: 'hasMany',   
-            model: 'YourTour.model.UserModel',   
-            name:'users',   
-            associationKey:'users'  
-        },
-        {  
-            type: 'hasMany',   
-            model: 'YourTour.model.ResourceModel',   
-            name:'resources',   
-            associationKey:'resources'  
-        }]  
+	    associations: [
+	        {  
+	            type: 'hasMany',   
+	            model: 'YourTour.model.ResourceModel',   
+	            name:'resources',   
+	            associationKey:'resources'  
+	        },{  
+	            type: 'hasMany',   
+	            model: 'YourTour.model.RouteModel',   
+	            name:'routes',   
+	            associationKey:'routes'  
+	        }
+        ]  
     }
 });

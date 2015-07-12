@@ -10,11 +10,13 @@ Ext.define('YourTour.view.line.LineResourceItem', {
     	items:[
     	    {
     	   		itemId : 'name',
-	    		xtype : 'label'
+	    		xtype : 'label',
+	    		cls:'textfield nav_arrow'
 	    	},
 	    	
 	    	{	xtype:'panel',
 	    		layout:'hbox',
+	    		margin:'5 0 0 0',
 	    		defaults:{
 	    			flex:1
 	    		},
@@ -51,7 +53,7 @@ Ext.define('YourTour.view.line.LineResourceItem', {
 		    {
             	xtype:'label',
             	itemId:'intro',
-            	style:'font-size:14px;line-height:20px'
+            	style:'font-size:14px;line-height:20px; color:grey'
             }
     	]
     },

@@ -27,80 +27,105 @@ Ext.define('YourTour.view.line.IntroductionView', {
 			},
 			
 			{
-    	   		itemId : 'imageUrl',
-	    		xtype : 'image',
-	    		mode : 'tag',
-	        	src : ''
-	    	},
+    			xtype:'panel',
+    			style:'background:#fff',
+    			layout:'fit',
+    			height:150,
+    			items:[
+		    		{
+		   				itemId : 'imageUrl',
+						xtype : 'image',
+						mode : 'tag',
+						margin:5
+		    		}
+		    	]
+    		},
 				    
 		    {
-			   xtype:'markedlabel',
-			   pack:'center',
-			   align:'center',
-			   itemId:'name',
-			   html : ''
-		    },
-				    
-		    {
-			   xtype:'panel',
-			   margin:'5 0 0 0',
-			   style:'background:#fff',
-			   layout:'vbox',
-			   items:[
+    			xtype:'tappanel',
+    			layut:'vbox',
+    			itemId:'lineInfo',
+    			style:'background:#fff',
+    			defaults:{
+    				padding:'0 5 0 5'
+    			},
+	    		items:[
+		    		{
+					   xtype:'label',
+					   pack:'center',
+					   align:'center',
+					   itemId:'name',
+					   cls:'textfield',
+					   html : ''
+		    		},
+			    
 			   		{
 			   			xtype:'panel',
 			   			layout:'hbox',
-			   			padding:'5',
-			   			defaults:{
-			   				flex:1
-			   			},
+			   			cls:'textfield raty',
 			   			items:[
 				   			{
 				   				xtype:'label',
 				   				html:'推荐指数:',
-				   				style:'font-weight:bold; font-size:14px'
+				   				flex:1,
+				   				style:'font-weight:bold;'
 				   			},
 				   			
 				   			{
-				   				xtype:'label',
-				   				html:'推荐指数:',
-				   				style:'font-size:14px'
+				   				xtype:'image',
+				    			src:'resources/images/raty_32.png',
+				    			flex:2,
+				    			mode:'tag'
 				   			},
 				   			
 				   			{
 				   				xtype:'label',
 				   				html:'旅游指数:',
-				   				style:'font-weight:bold; font-size:14px'
+				   				flex:1,
+				   				style:'font-weight:bold;'
 				   			},
 				   			{
-				   				xtype:'label',
-				   				html:'推荐指数:',
-				   				style:'font-size:14px'
+				   				xtype:'image',
+				    			src:'resources/images/raty_32.png',
+				    			flex:2,
+				    			mode:'tag'
 				   			}
 			   			]
 			   		},
+					   		
 			   		{
 			   			xtype:'panel',
 			   			layout:'hbox',
-			   			padding:'5',
+			   			cls:'textfield',
 			   			items:[
 				   			{
 				   				xtype:'label',
-				   				html:'最佳时间:',
+				   				html:'推荐时间:',
 				   				flex:1,
 				   				style:'font-weight:bold; font-size:14px'
 				   			},
-				   			
 				   			{
 				   				xtype:'label',
-				   				html:'最佳时间:',
-				   				flex:4,
+				   				flex:2,
+				   				html:'7、8、9月',
+				   				style:'font-size:14px'
+				   			},
+				   			{
+				   				xtype:'label',
+				   				flex:1,
+				   				html:'服务达人',
+				   				style:'font-weight:bold; font-size:14px'
+				   			},
+				   			{
+				   				xtype:'label',
+				   				flex:2,
+				   				html:'10人',
 				   				style:'font-size:14px'
 				   			}
 			   			]
 			   		}
-			   ]
-	    	},
+				]
+    	   	},
 			    
 		    {
 		       xtype:'panel',

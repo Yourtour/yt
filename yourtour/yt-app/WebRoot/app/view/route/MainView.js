@@ -19,19 +19,15 @@ Ext.define('YourTour.view.route.MainView', {
             	xtype: '_titlebar',
                 docked: 'top',
                 title: '行程',
-                items:[{
-                	xtype: "toolbutton", 
-                    ui: "normal", 
-                	text:'管理',
-                	align:'left'
-                },
-                {
-                	xtype: "toolbutton", 
-                    ui: "normal", 
-                	text:'新建',
-                	itemId:'new',
-                	align:'right'
-                }]
+                items:[
+	                {
+	                	xtype: "toolbutton", 
+	                    ui: "normal", 
+	                	text:'新建',
+	                	itemId:'new',
+	                	align:'right'
+	                }
+                ]
             },
             {
             	xtype: 'carousel',

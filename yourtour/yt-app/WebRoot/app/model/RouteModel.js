@@ -6,12 +6,14 @@ Ext.define('YourTour.model.RouteModel', {
     	
 	    fields:[{name:'rowKey', type:'string'},
 	            {name:'imageUrl', type:'string'},
+	            {name:'imageUrls', type:'string'},
 	    		{name:'name', type:'string'},
 	    		{name:'lineName', type:'string'},
 	    		{name:'feeling', type:'string'},
 	    		{name:'startTime', type:'string'},
 	    		{name:'endTime', type:'string'},
-	    		{name:'period', type:'string'}
+	    		{name:'period', type:'string'},
+	    		{name:'feature', type:'string'}
 	    ],
 	    
 	    associations: [{  

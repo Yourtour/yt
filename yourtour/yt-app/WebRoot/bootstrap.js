@@ -641,6 +641,7 @@ Ext.ClassManager.addNameAlternateMappings({
     "Ext.viewport.WP"
   ],
   "YourTour.controller.BaseCtrl": [],
+  "YourTour.controller.Launch": [],
   "YourTour.controller.LineIntroCtrl": [],
   "YourTour.controller.Main": [],
   "YourTour.controller.Welcome": [],
@@ -651,6 +652,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.controller.route.MainCtrl": [],
   "YourTour.controller.route.NewCtrl": [],
   "YourTour.controller.route.ScheduleCtrl": [],
+  "YourTour.controller.route.ScheduleReferenceCtrl": [],
   "YourTour.controller.user.Main": [],
   "YourTour.model.LineModel": [],
   "YourTour.model.LocalCache": [],
@@ -667,14 +669,14 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.Launch": [],
   "YourTour.view.MainView": [],
   "YourTour.view.SearchMain": [],
-  "YourTour.view.Welcome": [],
   "YourTour.view.common.PlaceView": [],
   "YourTour.view.community.Main": [],
   "YourTour.view.home.Main": [],
   "YourTour.view.line.IntroductionView": [],
   "YourTour.view.line.LineResourceItem": [],
   "YourTour.view.line.RecommedListItem": [],
-  "YourTour.view.line.RecommendView": [],
+  "YourTour.view.line.RecommedRouteItem": [],
+  "YourTour.view.line.RecommendListView": [],
   "YourTour.view.personal.Main": [],
   "YourTour.view.resource.SelectionView": [],
   "YourTour.view.route.MainItem": [],
@@ -686,6 +688,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.route.schedule.SceneScheduleView": [],
   "YourTour.view.route.schedule.ScheduleListItem": [],
   "YourTour.view.route.schedule.ScheduleListView": [],
+  "YourTour.view.route.schedule.ScheduleReferenceListView": [],
   "YourTour.view.user.ExpertListItem": [],
   "YourTour.view.user.LoginView": [],
   "YourTour.view.user.RegisterAccount": [],
@@ -696,6 +699,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.MarkedLabel": [],
   "YourTour.view.widget.NoScrollDataView": [],
   "YourTour.view.widget.SubTitleBar": [],
+  "YourTour.view.widget.TapPanel": [],
   "YourTour.view.widget.TitleBar": [],
   "YourTour.view.widget.ToggleField": [],
   "YourTour.view.widget.ToolButton": []
@@ -1419,6 +1423,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.Viewport": [],
   "Ext.viewport.WindowsPhone": [],
   "YourTour.controller.BaseCtrl": [],
+  "YourTour.controller.Launch": [],
   "YourTour.controller.LineIntroCtrl": [],
   "YourTour.controller.Main": [],
   "YourTour.controller.Welcome": [],
@@ -1429,6 +1434,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.controller.route.MainCtrl": [],
   "YourTour.controller.route.NewCtrl": [],
   "YourTour.controller.route.ScheduleCtrl": [],
+  "YourTour.controller.route.ScheduleReferenceCtrl": [],
   "YourTour.controller.user.Main": [],
   "YourTour.model.LineModel": [],
   "YourTour.model.LocalCache": [
@@ -1455,9 +1461,6 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.SearchMain": [
     "widget.searchmain"
   ],
-  "YourTour.view.Welcome": [
-    "widget.welcome"
-  ],
   "YourTour.view.common.PlaceView": [
     "widget.placeview"
   ],
@@ -1476,7 +1479,10 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.line.RecommedListItem": [
     "widget.lineListItem"
   ],
-  "YourTour.view.line.RecommendView": [
+  "YourTour.view.line.RecommedRouteItem": [
+    "widget.routeListItem"
+  ],
+  "YourTour.view.line.RecommendListView": [
     "widget.linerecommendview"
   ],
   "YourTour.view.personal.Main": [
@@ -1512,6 +1518,9 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.route.schedule.ScheduleListView": [
     "widget.scheduleListView"
   ],
+  "YourTour.view.route.schedule.ScheduleReferenceListView": [
+    "widget.schedulereference"
+  ],
   "YourTour.view.user.ExpertListItem": [
     "widget.expertListItem"
   ],
@@ -1541,6 +1550,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.widget.SubTitleBar": [
     "widget.subtitlebar"
+  ],
+  "YourTour.view.widget.TapPanel": [
+    "widget.tappanel"
   ],
   "YourTour.view.widget.TitleBar": [
     "widget._titlebar"

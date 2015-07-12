@@ -7,7 +7,7 @@ Ext.define('YourTour.controller.Main', {
        
        	control:{
 			'#mainview #btnHome':{
-				tap:'onRouteTap'
+				tap:'onHomeTap'
 			},
 			
 			'#mainview #btnRoute':{
@@ -21,7 +21,24 @@ Ext.define('YourTour.controller.Main', {
 			'#mainview #btnPersonal':{
 				tap:'onRouteTap'
 			}
+       },
+       
+       routes:{
+       		'homepage':'showHomePage'
        }
+    },
+    
+    init:function(){
+    },
+    
+    showHomePage:function(){
+    	Ext.Viewport.setActiveItem(Ext.create('YourTour.view.MainView'));
+    	
+    	this.onHomeTap();
+    },
+    
+    onHomeTap:function(){
+    	this.show('homemain','YourTour.view.home.Main');
     },
     
     onRouteTap:function(){

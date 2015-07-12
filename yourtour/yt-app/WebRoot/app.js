@@ -18,16 +18,16 @@ Ext.application({
     ],
 
     views: [
-        'MainView','Launch','Welcome','home.Main','SearchMain','route.MainView','route.NewView','common.PlaceView',
-        'line.RecommendView','line.IntroductionView',
+        'MainView','Launch','home.Main','SearchMain','route.MainView','route.NewView','common.PlaceView',
+        'line.RecommendListView','line.IntroductionView',
         'route.schedule.ScheduleListView','route.schedule.SceneScheduleView','route.schedule.HotelScheduleView','route.schedule.FoodScheduleView',
         'user.LoginView','user.RegisterView',
-        'resource.SelectionView'
+        'resource.SelectionView','route.schedule.ScheduleReferenceListView'
     ],
     
     controllers: [
-        'Welcome', 'Main', 'route.MainCtrl','route.NewCtrl','route.ScheduleCtrl', 'line.RecommendCtrl','line.IntroductionCtrl','common.PlaceCtrl','user.Main',
-        'resource.SelectionCtrl'
+        'Launch', 'Main', 'route.MainCtrl','route.NewCtrl','route.ScheduleCtrl', 'line.RecommendCtrl','line.IntroductionCtrl','common.PlaceCtrl','user.Main',
+        'resource.SelectionCtrl','route.ScheduleReferenceCtrl'
     ],
     
     models:[
@@ -57,13 +57,7 @@ Ext.application({
     },
 
     launch: function() {
-        Ext.fly('appLoadingIndicator').destroy();
         
-        Ext.Viewport.add(Ext.create('YourTour.view.Launch'));
-        
-        Ext.defer(function () { 
-        	Ext.Viewport.setActiveItem(Ext.create('YourTour.view.user.LoginView'));
-        },2000);
     },
 
     onUpdated: function() {

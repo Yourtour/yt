@@ -23,21 +23,28 @@ Ext.define('YourTour.controller.line.IntroductionCtrl', {
        
        routes:{
         	'/line/introduction/:index':'showIntroduction'
-       }
+       },
+       
+       store:null
     },
     
     init: function(){
+    	this.store = Ext.create('YourTour.store.LineStore');
     },
     
     showResource:function(record){
     	console.log(record);
     },
     
+    backToLineRecommendView:function(){
+    	this.show('linerecommendview','YourTour.view.line.RecommendListView');	
+    },
+    
     /**
      * 显示线路详细信息
      */
     showIntroduction:function(index){
-    	var store = this.getLines().getStore();
+    	var store = this.store;
     	var record = store.getAt(index);
     	this.show('lineintroview','YourTour.view.line.IntroductionView');
 	
@@ -55,7 +62,7 @@ Ext.define('YourTour.controller.line.IntroductionCtrl', {
  	 	   	var reason = lineIntroView.down('#reason');
  	 	   	reason.setHtml(record.get('reason'));
 			
- 	 	   	var scenes = this.getLineIntro().down('#scenes');
+ 	 	   	var scenes = lineIntroView.down('#scenes');
  	 	   	var resources = [];
  	 	   	record.resources().each(function(resource){
  	 	   		resources.push(resource.data);
@@ -64,7 +71,6 @@ Ext.define('YourTour.controller.line.IntroductionCtrl', {
  	 	   	var sceneStore = Ext.create('Ext.data.Store',{model:'YourTour.model.ResourceModel', data:resources});
  	 	   	scenes.setStore(sceneStore);
  	 	   	
- 	 	   	var scenes = lineIntroView.down('#scenes');
  	 	   	var items = scenes.getViewItems();
  	 	   	scenes.setHeight(Ext.get(items[0].getId()).getHeight() * items.length);
     	}

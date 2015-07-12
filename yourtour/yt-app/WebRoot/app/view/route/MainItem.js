@@ -5,12 +5,14 @@ Ext.define('YourTour.view.route.MainItem', {
     config: {
     	itemId:'routemainitem',
     	fullscreen: true,
+    	baseCls:'page',
     	layout:'vbox',
         items: [
 			{
     	   		itemId : 'imageUrl',
 	    		xtype : 'image',
-	    		mode : 'tag'
+	    		mode : 'tag',
+	    		height:150
 	    	},
 			{
 			   xtype:'markedlabel',
@@ -53,12 +55,6 @@ Ext.define('YourTour.view.route.MainItem', {
 		           	{
 		              	xtype : 'image',
 	    				mode : 'tag',
-	    				src:'resources/icons/icon_album.png',
-		              	itemId:'btnAlbum'  
-		           	},
-		           	{
-		              	xtype : 'image',
-	    				mode : 'tag',
 	    				src:'resources/icons/icon_diary.png',
 		              	itemId:'btnDiary'  
 		           	}     
@@ -79,13 +75,9 @@ Ext.define('YourTour.view.route.MainItem', {
             	   
             	   {
             		   xtype:'label',
-            		   html:'日期',
-            		   cls:'subtitle',
-            		   margin:'0 0 0 5'
-            	   },
-            	   {
-            		   xtype:'label',
             		   itemId:'time',
+            		   flex:1,
+            		   style:'line-height:40px',
             		   margin:'0 0 0 5'
             	   } 
             	]
@@ -102,16 +94,11 @@ Ext.define('YourTour.view.route.MainItem', {
             		   src:'resources/icons/icon_mobile.png',
             		   mode : 'tag'
             	   },
-            	   
-            	   {
-            		   xtype:'label',
-            		   html:'目的地',
-            		   cls:'subtitle',
-            		   margin:'0 0 0 5'
-            	   },
             	   {
             		   xtype:'label',
             		   itemId:'places',
+            		   flex:1,
+            		   style:'line-height:40px',
             		   margin:'0 0 0 5'
             	   } 
             	]
@@ -130,13 +117,9 @@ Ext.define('YourTour.view.route.MainItem', {
             	   
             	   {
             		   xtype:'label',
-            		   html:'线路',
-            		   cls:'subtitle',
-            		   margin:'0 0 0 5'
-            	   },
-            	   {
-            		   xtype:'label',
             		   itemId:'lineName',
+            		   flex:1,
+            		   style:'line-height:40px',
             		   margin:'0 0 0 5'
             	   } 
             	]
