@@ -164,6 +164,7 @@ Ext.define('YourTour.view.route.schedule.ScheduleListItem', {
    	 */
     updateRecord: function(record) {
        var me = this;
+       
        if(record){
        		var dataview = me.dataview || this.getDataview();
        		
@@ -176,9 +177,13 @@ Ext.define('YourTour.view.route.schedule.ScheduleListItem', {
        			name.setHtml(record.get('name'));
        			
        			var edit = panel.down('#edit');
-		    	edit.on("tap", function(){
-		    		dataview.fireEvent("edit", dataview, record);
-		    	});
+       			if(dataview.readonly){
+       				edit.hide();	
+       			}else{
+			    	edit.on("tap", function(){
+			    		dataview.fireEvent("edit", dataview, record);
+			    	});
+       			}
        		}else if(type == 'prepareItem'){
        			var panel = me.down('#prepareItemPanel');
        			panel.show();
@@ -200,9 +205,13 @@ Ext.define('YourTour.view.route.schedule.ScheduleListItem', {
        			name.setHtml(record.get('name'));
        			
        			var edit = panel.down('#edit');
-		    	edit.on("tap", function(){
-		    		dataview.fireEvent("edit", dataview, record);
-		    	});
+       			if(dataview.readonly){
+       				edit.hide();	
+       			}else{
+			    	edit.on("tap", function(){
+			    		dataview.fireEvent("edit", dataview, record);
+			    	});
+       			}
        		}else{
        			var panel = me.down('#dayItemPanel');
        			panel.show();

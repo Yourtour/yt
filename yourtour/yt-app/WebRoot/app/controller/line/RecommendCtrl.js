@@ -33,10 +33,6 @@ Ext.define('YourTour.controller.line.RecommendCtrl', {
     	   
     	   lineInfo:{
     	       tap:'onLineInfoTap'
-    	   },
-    	   
-    	   lines:{
-    	   	
     	   }
        },
        

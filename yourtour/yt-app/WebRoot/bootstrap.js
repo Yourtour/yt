@@ -648,6 +648,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.controller.common.PlaceCtrl": [],
   "YourTour.controller.line.IntroductionCtrl": [],
   "YourTour.controller.line.RecommendCtrl": [],
+  "YourTour.controller.resource.ResourceCtrl": [],
   "YourTour.controller.resource.SelectionCtrl": [],
   "YourTour.controller.route.MainCtrl": [],
   "YourTour.controller.route.NewCtrl": [],
@@ -663,6 +664,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.model.UserModel": [],
   "YourTour.store.AjaxStore": [],
   "YourTour.store.LineStore": [],
+  "YourTour.store.ResourceStore": [],
   "YourTour.store.RouteStore": [],
   "YourTour.store.SessionStore": [],
   "YourTour.util.Context": [],
@@ -678,6 +680,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.line.RecommedRouteItem": [],
   "YourTour.view.line.RecommendListView": [],
   "YourTour.view.personal.Main": [],
+  "YourTour.view.resource.SceneResourceDetailView": [],
   "YourTour.view.resource.SelectionView": [],
   "YourTour.view.route.MainItem": [],
   "YourTour.view.route.MainView": [],
@@ -686,6 +689,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.route.schedule.FoodScheduleView": [],
   "YourTour.view.route.schedule.HotelScheduleView": [],
   "YourTour.view.route.schedule.SceneScheduleView": [],
+  "YourTour.view.route.schedule.ScheduleDataView": [],
   "YourTour.view.route.schedule.ScheduleListItem": [],
   "YourTour.view.route.schedule.ScheduleListView": [],
   "YourTour.view.route.schedule.ScheduleReferenceListView": [],
@@ -1430,6 +1434,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.controller.common.PlaceCtrl": [],
   "YourTour.controller.line.IntroductionCtrl": [],
   "YourTour.controller.line.RecommendCtrl": [],
+  "YourTour.controller.resource.ResourceCtrl": [],
   "YourTour.controller.resource.SelectionCtrl": [],
   "YourTour.controller.route.MainCtrl": [],
   "YourTour.controller.route.NewCtrl": [],
@@ -1447,6 +1452,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.model.UserModel": [],
   "YourTour.store.AjaxStore": [],
   "YourTour.store.LineStore": [],
+  "YourTour.store.ResourceStore": [],
   "YourTour.store.RouteStore": [],
   "YourTour.store.SessionStore": [],
   "YourTour.util.Context": [
@@ -1488,6 +1494,9 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.personal.Main": [
     "widget.personalmain"
   ],
+  "YourTour.view.resource.SceneResourceDetailView": [
+    "widget.SceneResourceDetailView"
+  ],
   "YourTour.view.resource.SelectionView": [
     "widget.resourceselectionview"
   ],
@@ -1511,6 +1520,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.route.schedule.SceneScheduleView": [
     "widget.scenescheduleview"
+  ],
+  "YourTour.view.route.schedule.ScheduleDataView": [
+    "widget.ScheduleDataView"
   ],
   "YourTour.view.route.schedule.ScheduleListItem": [
     "widget.scheduleListItem"

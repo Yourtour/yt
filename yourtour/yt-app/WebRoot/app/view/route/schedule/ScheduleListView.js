@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.route.schedule.ScheduleListView', {
     extend: 'Ext.Container',
-    requires:['YourTour.view.route.schedule.ScheduleListItem','Ext.Panel','YourTour.view.widget.TitleBar'],
+    requires:['YourTour.view.route.schedule.ScheduleListItem','Ext.Panel','YourTour.view.widget.TitleBar','YourTour.view.route.schedule.ScheduleDataView'],
     xtype: 'scheduleListView',
     config: {
     	itemId:'scheduleListView',
@@ -34,7 +34,8 @@ Ext.define('YourTour.view.route.schedule.ScheduleListView', {
 	    	
     		{
     			itemId:'scheduleList',
-    			xtype:'dataview',
+    			xtype:'ScheduleDataView',
+    			readonly:false,
     			flex:1,
     			
 		    	/**

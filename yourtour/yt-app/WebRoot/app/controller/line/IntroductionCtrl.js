@@ -3,13 +3,14 @@ Ext.define('YourTour.controller.line.IntroductionCtrl', {
     requires:['YourTour.store.LineStore'],
     config: {
        refs:{
-       	   lines:'#linerecommendview #lines',
-    	   lineIntro:'#lineintroview'
+       	   lineIntro:'#lineintroview',
+       	   
+       	   resources:'#lineintroview #resources'
        },
        
        control:{
        	   'lineresourceitem[itemId=lineresourceitem]':{
-       	   	   onTap:'showResource'
+       	   	   	onTap:'showResource'
        	   },
        	   
        	   /**
@@ -17,7 +18,11 @@ Ext.define('YourTour.controller.line.IntroductionCtrl', {
        	    * @type 
        	    */
        	   '#lineintroview #close':{
-       	   	   tap:'backToLineRecommendView'
+       	   	   	tap:'backToLineRecommendView'
+       	   },
+       	   
+       	   resources:{
+       	   		itemtap:'onResourceInfoTap'
        	   }
        },
        
@@ -30,6 +35,11 @@ Ext.define('YourTour.controller.line.IntroductionCtrl', {
     
     init: function(){
     	this.store = Ext.create('YourTour.store.LineStore');
+    },
+    
+    onResourceInfoTap:function(dataView, index, target, record, e, eOpts){
+    	console.log('onResourceInfoTap');
+    	this.redirectTo('/resource/detail/' + record.get('rowKey'));	
     },
     
     showResource:function(record){
@@ -62,17 +72,17 @@ Ext.define('YourTour.controller.line.IntroductionCtrl', {
  	 	   	var reason = lineIntroView.down('#reason');
  	 	   	reason.setHtml(record.get('reason'));
 			
- 	 	   	var scenes = lineIntroView.down('#scenes');
- 	 	   	var resources = [];
+ 	 	   	var resources = lineIntroView.down('#resources');
+ 	 	   	var resModels = [];
  	 	   	record.resources().each(function(resource){
- 	 	   		resources.push(resource.data);
+ 	 	   		resModels.push(resource.data);
  	 	   	});
  	 	   	
- 	 	   	var sceneStore = Ext.create('Ext.data.Store',{model:'YourTour.model.ResourceModel', data:resources});
- 	 	   	scenes.setStore(sceneStore);
+ 	 	   	var resStore = Ext.create('Ext.data.Store',{model:'YourTour.model.ResourceModel', data:resModels});
+ 	 	   	resources.setStore(resStore);
  	 	   	
- 	 	   	var items = scenes.getViewItems();
- 	 	   	scenes.setHeight(Ext.get(items[0].getId()).getHeight() * items.length);
+ 	 	   	var items = resources.getViewItems();
+ 	 	   	resources.setHeight(Ext.get(items[0].getId()).getHeight() * items.length);
     	}
     }
 });

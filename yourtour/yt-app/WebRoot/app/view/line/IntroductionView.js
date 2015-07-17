@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.line.IntroductionView', {
     extend: 'Ext.Panel',
-    requires:['Ext.Panel','Ext.Img','Ext.DataView', 'YourTour.view.widget.TitleBar','YourTour.view.widget.MarkedLabel', 'YourTour.view.line.LineResourceItem'],
+    requires:['Ext.Panel','Ext.Img','Ext.DataView', 'Ext.Toolbar','YourTour.view.widget.MarkedLabel', 'YourTour.view.line.LineResourceItem'],
     xtype: 'lineintroview',
     config: {
     	itemId:'lineintroview',
@@ -13,17 +13,54 @@ Ext.define('YourTour.view.line.IntroductionView', {
     	},
         items: [
         	{    
-				xtype: '_titlebar',
+				xtype: 'toolbar',
 				docked: 'top',
-				title: '线路介绍',
-				items:[{
-					xtype: "image", 
-                	itemId:'close',
-                	mode:'tag',
-                	margin:'0 0 0 5',
-                	src:'resources/icons/icon_back.png',
-                	align:'left'
-				}]			
+				items:[
+					{
+						xtype: "image", 
+	                	itemId:'close',
+	                	mode:'tag',
+	                	margin:'0 0 0 5',
+	                	src:'resources/icons/icon_back.png',
+	                	align:'left'
+					},
+					{
+						xtype: "label", 
+						html:'线路介绍'
+					},
+					{
+						xtype: "spacer" 
+					},
+					{
+	                	xtype: "toolbutton", 
+	                    ui: "normal", 
+	                	text:'咨询',
+	                	itemId:'consult',
+	                	align:'right'
+	                },
+	                {
+	                	xtype: "toolbutton", 
+	                    ui: "normal", 
+	                	text:'评论',
+	                	itemId:'consult',
+	                	align:'right'
+	                },
+	                {
+	                	xtype: "toolbutton", 
+	                    ui: "normal", 
+	                	text:'收藏',
+	                	itemId:'consult',
+	                	align:'right'
+	                },
+	                {
+	                	xtype: "toolbutton", 
+	                    ui: "normal", 
+	                	text:'分享',
+	                	itemId:'consult',
+	                	align:'right'
+	                }
+					
+				]			
 			},
 			
 			{
@@ -143,7 +180,7 @@ Ext.define('YourTour.view.line.IntroductionView', {
 			   		{
 			   			xtype:'label',
 			   			itemId:'feature',
-			   			style:'font-size:14px;line-height:20px',
+			   			style:'font-size:14px;line-height:20px; color:grey',
 			   			padding:'5'
 			   		},
 			   		
@@ -157,7 +194,7 @@ Ext.define('YourTour.view.line.IntroductionView', {
 			   		{
 			   			xtype:'label',
 			   			itemId:'reason',
-			   			style:'font-size:14px;line-height:20px',
+			   			style:'font-size:14px;line-height:20px; color:grey',
 			   			padding:'5'
 			   		}
 			   ]
@@ -165,7 +202,7 @@ Ext.define('YourTour.view.line.IntroductionView', {
 		    
 		    {
 		    	xtype:'dataview',
-		    	itemId:'scenes',
+		    	itemId:'resources',
 		    	margin:'5 0 0 0',
 				useComponents:true,
 				scrollable:null,

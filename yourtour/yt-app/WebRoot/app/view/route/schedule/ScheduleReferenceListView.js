@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.route.schedule.ScheduleReferenceListView', {
     extend: 'Ext.Container',
-    requires:['YourTour.view.route.schedule.ScheduleListItem','Ext.Panel','YourTour.view.widget.TitleBar'],
+    requires:['YourTour.view.route.schedule.ScheduleListItem','YourTour.view.route.schedule.ScheduleDataView','Ext.Panel','Ext.Toolbar'],
     xtype: 'schedulereference',
     config: {
     	itemId:'schedulereference',
@@ -11,9 +11,8 @@ Ext.define('YourTour.view.route.schedule.ScheduleReferenceListView', {
     	
     	items:[
     		{    
-				xtype: '_titlebar',
+				xtype: 'toolbar',
 				docked: 'top',
-				title: '行程参考',
 				items:[
 					{
 						xtype: "image", 
@@ -22,7 +21,42 @@ Ext.define('YourTour.view.route.schedule.ScheduleReferenceListView', {
 	                	margin:'0 0 0 5',
 	                	src:'resources/icons/icon_back.png',
 	                	align:'left'
-					}
+					},
+					{
+						xtype: "label", 
+						html:'行程参考'
+					},
+					{
+						xtype: "spacer" 
+					},
+					{
+	                	xtype: "toolbutton", 
+	                    ui: "normal", 
+	                	text:'复制',
+	                	itemId:'new',
+	                	align:'right'
+	                },
+					{
+	                	xtype: "toolbutton", 
+	                    ui: "normal", 
+	                	text:'咨询',
+	                	itemId:'new',
+	                	align:'right'
+	                },
+	                {
+	                	xtype: "toolbutton", 
+	                    ui: "normal", 
+	                	text:'收藏',
+	                	itemId:'consult',
+	                	align:'right'
+	                },
+	                {
+	                	xtype: "toolbutton", 
+	                    ui: "normal", 
+	                	text:'分享',
+	                	itemId:'consult',
+	                	align:'right'
+	                }
                 ]
 			},
 			
@@ -35,6 +69,7 @@ Ext.define('YourTour.view.route.schedule.ScheduleReferenceListView', {
     		{
     			itemId:'scheduleList',
     			xtype:'dataview',
+    			readonly:true,
     			flex:1,
     			
 		    	/**

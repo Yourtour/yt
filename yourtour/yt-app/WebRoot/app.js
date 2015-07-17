@@ -22,12 +22,12 @@ Ext.application({
         'line.RecommendListView','line.IntroductionView',
         'route.schedule.ScheduleListView','route.schedule.SceneScheduleView','route.schedule.HotelScheduleView','route.schedule.FoodScheduleView',
         'user.LoginView','user.RegisterView',
-        'resource.SelectionView','route.schedule.ScheduleReferenceListView'
+        'resource.SelectionView','resource.SceneResourceDetailView','route.schedule.ScheduleReferenceListView'
     ],
     
     controllers: [
         'Launch', 'Main', 'route.MainCtrl','route.NewCtrl','route.ScheduleCtrl', 'line.RecommendCtrl','line.IntroductionCtrl','common.PlaceCtrl','user.Main',
-        'resource.SelectionCtrl','route.ScheduleReferenceCtrl'
+        'resource.SelectionCtrl','route.ScheduleReferenceCtrl','resource.ResourceCtrl'
     ],
     
     models:[
@@ -35,7 +35,7 @@ Ext.application({
     ],
     
     stores:[
-        'RouteStore','LineStore'
+        'RouteStore','LineStore','ResourceStore'
     ],
         
     icon: {
