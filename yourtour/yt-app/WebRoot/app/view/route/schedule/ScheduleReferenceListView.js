@@ -33,28 +33,28 @@ Ext.define('YourTour.view.route.schedule.ScheduleReferenceListView', {
 	                	xtype: "toolbutton", 
 	                    ui: "normal", 
 	                	text:'复制',
-	                	itemId:'new',
+	                	itemId:'copy',
 	                	align:'right'
 	                },
 					{
 	                	xtype: "toolbutton", 
 	                    ui: "normal", 
 	                	text:'咨询',
-	                	itemId:'new',
+	                	itemId:'consult',
 	                	align:'right'
 	                },
 	                {
 	                	xtype: "toolbutton", 
 	                    ui: "normal", 
 	                	text:'收藏',
-	                	itemId:'consult',
+	                	itemId:'favorite',
 	                	align:'right'
 	                },
 	                {
 	                	xtype: "toolbutton", 
 	                    ui: "normal", 
 	                	text:'分享',
-	                	itemId:'consult',
+	                	itemId:'share',
 	                	align:'right'
 	                }
                 ]
@@ -68,7 +68,7 @@ Ext.define('YourTour.view.route.schedule.ScheduleReferenceListView', {
 	    	
     		{
     			itemId:'scheduleList',
-    			xtype:'dataview',
+    			xtype:'ScheduleDataView',
     			readonly:true,
     			flex:1,
     			

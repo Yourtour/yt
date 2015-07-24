@@ -16,11 +16,8 @@ Ext.define('YourTour.controller.BaseCtrl', {
     	
     	var view = pageContainer.getItems(viewId);
     	if(view.items.length == 0){
-    		console.log('creating view for viewId=' + viewId +', viewname=' + viewName);
     		view = Ext.create(viewName,cfg);
 	    	pageContainer.add(view);
-    	}else{
-    		console.log('view for viewId=' + viewId +' existed');
     	}
     	
     	pageContainer.setActiveItem(viewId);

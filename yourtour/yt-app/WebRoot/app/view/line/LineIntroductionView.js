@@ -1,10 +1,10 @@
-Ext.define('YourTour.view.line.IntroductionView', {
+Ext.define('YourTour.view.line.LineIntroductionView', {
     extend: 'Ext.Panel',
-    requires:['Ext.Panel','Ext.Img','Ext.DataView', 'Ext.Toolbar','YourTour.view.widget.MarkedLabel', 'YourTour.view.line.LineResourceItem'],
-    xtype: 'lineintroview',
+    requires:['Ext.Panel','Ext.Img','Ext.DataView', 'YourTour.view.widget.XToolbar','YourTour.view.widget.MarkedLabel', 'YourTour.view.line.LineResourceItem'],
+    xtype: 'LineIntroductionView',
     config: {
-    	itemId:'lineintroview',
-    	id:'lineintroview',
+    	itemId:'LineIntroductionView',
+    	id:'LineIntroductionView',
       	layout:'vbox',
     	baseCls:'page',
     	scrollable: {
@@ -13,24 +13,10 @@ Ext.define('YourTour.view.line.IntroductionView', {
     	},
         items: [
         	{    
-				xtype: 'toolbar',
-				docked: 'top',
+				xtype: 'xtoolbar',
+				title:'线路介绍',
+				itemId:'toolbar',
 				items:[
-					{
-						xtype: "image", 
-	                	itemId:'close',
-	                	mode:'tag',
-	                	margin:'0 0 0 5',
-	                	src:'resources/icons/icon_back.png',
-	                	align:'left'
-					},
-					{
-						xtype: "label", 
-						html:'线路介绍'
-					},
-					{
-						xtype: "spacer" 
-					},
 					{
 	                	xtype: "toolbutton", 
 	                    ui: "normal", 
@@ -59,7 +45,6 @@ Ext.define('YourTour.view.line.IntroductionView', {
 	                	itemId:'consult',
 	                	align:'right'
 	                }
-					
 				]			
 			},
 			
@@ -72,8 +57,7 @@ Ext.define('YourTour.view.line.IntroductionView', {
 		    		{
 		   				itemId : 'imageUrl',
 						xtype : 'image',
-						mode : 'tag',
-						margin:5
+						mode : 'tag'
 		    		}
 		    	]
     		},
@@ -173,28 +157,29 @@ Ext.define('YourTour.view.line.IntroductionView', {
 			   		{
 			   			xtype:'label',
 				   		html:'线路特点',
-				   		style:'font-weight:bold; font-size:14px',
-				   		padding:'5'
+				   		padding:'5',
+				   		cls:'fieldlabel'
 			   		},	
+			   		
 			   		
 			   		{
 			   			xtype:'label',
 			   			itemId:'feature',
-			   			style:'font-size:14px;line-height:20px; color:grey',
+			   			cls:'multilineinfo horizentalLine',
 			   			padding:'5'
 			   		},
 			   		
 			   		{
 			   			xtype:'label',
 				   		html:'推荐理由',
-				   		style:'font-weight:bold; font-size:14px',
+				   		cls:'fieldlabel',
 				   		padding:'5'
 			   		},
 			   		
 			   		{
 			   			xtype:'label',
 			   			itemId:'reason',
-			   			style:'font-size:14px;line-height:20px; color:grey',
+			   			cls:'multilineinfo',
 			   			padding:'5'
 			   		}
 			   ]
@@ -203,10 +188,10 @@ Ext.define('YourTour.view.line.IntroductionView', {
 		    {
 		    	xtype:'dataview',
 		    	itemId:'resources',
-		    	margin:'5 0 0 0',
+		    	cls:'space-top',
 				useComponents:true,
 				scrollable:null,
-		    	defaultType:'lineresourceitem'
+		    	defaultType:'LineResourceItem'
 		    }
         ]
     }

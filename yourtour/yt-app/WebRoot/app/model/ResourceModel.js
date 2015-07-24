@@ -11,7 +11,10 @@ Ext.define('YourTour.model.ResourceModel', {
 	    		{name:'address', type:'string'},
 	    		{name:'phone', type:'string'},
 	    		{name:'open', type:'string'},
-	    		{name:'price', type:'string'}
+	    		{name:'price', type:'string'},
+	    		{name:'recommendIndex', type:'string'},
+	    		{name:'assessmentIndex', type:'string'},
+	    		{name:'desc', type:'string'}
 	    ]
     }
 });

@@ -2,7 +2,6 @@ Ext.define('YourTour.view.MainView', {
     extend: 'Ext.Panel',
     requires:['Ext.Toolbar'],
     xtype: 'mainview',
-    
     config: {
     	itemId:'mainview',
     	id:'mainview',
@@ -25,7 +24,8 @@ Ext.define('YourTour.view.MainView', {
         			flex:1,
         			height:'55px',
         			pack:'center',
-        			padding:'5 0 0 0'
+        			padding:'5 0 0 0',
+        			style:'color:grey'
         		},
         		baseCls:'navigationBar',
         		

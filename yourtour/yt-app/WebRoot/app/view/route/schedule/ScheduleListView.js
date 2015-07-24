@@ -11,9 +11,8 @@ Ext.define('YourTour.view.route.schedule.ScheduleListView', {
     	
     	items:[
     		{    
-				xtype: '_titlebar',
+				xtype: 'toolbar',
 				docked: 'top',
-				title: '行程规划',
 				items:[
 					{
 						xtype: "image", 
@@ -22,19 +21,56 @@ Ext.define('YourTour.view.route.schedule.ScheduleListView', {
 	                	margin:'0 0 0 5',
 	                	src:'resources/icons/icon_back.png',
 	                	align:'left'
-					}
-                ]
+					},
+					{
+						xtype: "label", 
+						html:'行程规划'
+					},
+					{
+						xtype: "spacer" 
+					},
+					{
+	                	xtype: "toolbutton", 
+	                    ui: "normal", 
+	                	text:'咨询',
+	                	itemId:'consult',
+	                	align:'right'
+	                },
+	                {
+	                	xtype: "toolbutton", 
+	                    ui: "normal", 
+	                	text:'分享',
+	                	itemId:'consult',
+	                	align:'right'
+	                }
+					
+				]			
 			},
 			
-    		{
-    	   		itemId : 'imageUrl',
-	    		xtype : 'image',
-	    		mode : 'tag'
-	    	},
+			{
+	    		xtype:'panel',
+	    		layout:'vbox',
+	    		items:[
+	    			{
+		    	   		itemId : 'imageUrl',
+			    		xtype : 'image',
+			    		mode : 'tag'
+			    	},
+			    	
+			    	{
+		    	   		itemId : 'name',
+			    		xtype : 'label',
+			    		style:'background:grey;opacity:0.5; color:#fff; font-size:14px; font-weight:bold; width:100%; height:40px; line-height:40px; text-align:center',
+			    		docked:'bottom',
+			    		bottom:1
+			    	}
+		    	]
+			},
 	    	
     		{
     			itemId:'scheduleList',
     			xtype:'ScheduleDataView',
+    			cls:'space-top',
     			readonly:false,
     			flex:1,
     			

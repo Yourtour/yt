@@ -19,14 +19,14 @@ Ext.application({
 
     views: [
         'MainView','Launch','home.Main','SearchMain','route.MainView','route.NewView','common.PlaceView',
-        'line.RecommendListView','line.IntroductionView',
+        'line.LineRecommendView','line.LineIntroductionView',
         'route.schedule.ScheduleListView','route.schedule.SceneScheduleView','route.schedule.HotelScheduleView','route.schedule.FoodScheduleView',
         'user.LoginView','user.RegisterView',
-        'resource.SelectionView','resource.SceneResourceDetailView','route.schedule.ScheduleReferenceListView'
+        'resource.SelectionListView','resource.SceneResourceDetailView','route.schedule.ScheduleReferenceListView'
     ],
     
     controllers: [
-        'Launch', 'Main', 'route.MainCtrl','route.NewCtrl','route.ScheduleCtrl', 'line.RecommendCtrl','line.IntroductionCtrl','common.PlaceCtrl','user.Main',
+        'Launch', 'Main', 'route.MainCtrl','route.NewCtrl','route.ScheduleCtrl', 'line.LineRecommendCtrl','line.LineIntroductionCtrl','common.PlaceCtrl','user.Main',
         'resource.SelectionCtrl','route.ScheduleReferenceCtrl','resource.ResourceCtrl'
     ],
     
@@ -35,7 +35,7 @@ Ext.application({
     ],
     
     stores:[
-        'RouteStore','LineStore','ResourceStore'
+        'RouteStore','LineStore','ResourceStore','ResourceSelectionStore'
     ],
         
     icon: {

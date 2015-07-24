@@ -17,7 +17,8 @@ Ext.Loader.addClassPathMappings({
   "Ext.device.sqlite.SQLResultSetRowList": "touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLTransaction": "touch/src/device/sqlite/Sencha.js",
   "YourTour": "app",
-  "YourTour.view.route.MainItem": "app/view/resource/MainItem.js"
+  "YourTour.view.widget.TapLabel": "app/view/widget/TapPanel.js",
+  "YourTour.view.widget.TapPanel": "app/view/widget/TapLabel.js"
 });
 Ext.ClassManager.addNameAlternateMappings({
   "Ext.AbstractComponent": [],
@@ -646,8 +647,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.controller.Main": [],
   "YourTour.controller.Welcome": [],
   "YourTour.controller.common.PlaceCtrl": [],
-  "YourTour.controller.line.IntroductionCtrl": [],
-  "YourTour.controller.line.RecommendCtrl": [],
+  "YourTour.controller.line.LineIntroductionCtrl": [],
+  "YourTour.controller.line.LineRecommendCtrl": [],
   "YourTour.controller.resource.ResourceCtrl": [],
   "YourTour.controller.resource.SelectionCtrl": [],
   "YourTour.controller.route.MainCtrl": [],
@@ -664,6 +665,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.model.UserModel": [],
   "YourTour.store.AjaxStore": [],
   "YourTour.store.LineStore": [],
+  "YourTour.store.ResourceSelectionStore": [],
   "YourTour.store.ResourceStore": [],
   "YourTour.store.RouteStore": [],
   "YourTour.store.SessionStore": [],
@@ -674,14 +676,14 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.common.PlaceView": [],
   "YourTour.view.community.Main": [],
   "YourTour.view.home.Main": [],
-  "YourTour.view.line.IntroductionView": [],
+  "YourTour.view.line.LineIntroductionView": [],
+  "YourTour.view.line.LineRecommendItem": [],
+  "YourTour.view.line.LineRecommendView": [],
   "YourTour.view.line.LineResourceItem": [],
-  "YourTour.view.line.RecommedListItem": [],
-  "YourTour.view.line.RecommedRouteItem": [],
-  "YourTour.view.line.RecommendListView": [],
   "YourTour.view.personal.Main": [],
   "YourTour.view.resource.SceneResourceDetailView": [],
-  "YourTour.view.resource.SelectionView": [],
+  "YourTour.view.resource.SelectionListItem": [],
+  "YourTour.view.resource.SelectionListView": [],
   "YourTour.view.route.MainItem": [],
   "YourTour.view.route.MainView": [],
   "YourTour.view.route.NewView": [],
@@ -703,10 +705,12 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.MarkedLabel": [],
   "YourTour.view.widget.NoScrollDataView": [],
   "YourTour.view.widget.SubTitleBar": [],
+  "YourTour.view.widget.TapLabel": [],
   "YourTour.view.widget.TapPanel": [],
   "YourTour.view.widget.TitleBar": [],
   "YourTour.view.widget.ToggleField": [],
-  "YourTour.view.widget.ToolButton": []
+  "YourTour.view.widget.ToolButton": [],
+  "YourTour.view.widget.VDataItem": []
 });
 Ext.ClassManager.addNameAliasMappings({
   "Ext.AbstractComponent": [],
@@ -1432,8 +1436,8 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.controller.Main": [],
   "YourTour.controller.Welcome": [],
   "YourTour.controller.common.PlaceCtrl": [],
-  "YourTour.controller.line.IntroductionCtrl": [],
-  "YourTour.controller.line.RecommendCtrl": [],
+  "YourTour.controller.line.LineIntroductionCtrl": [],
+  "YourTour.controller.line.LineRecommendCtrl": [],
   "YourTour.controller.resource.ResourceCtrl": [],
   "YourTour.controller.resource.SelectionCtrl": [],
   "YourTour.controller.route.MainCtrl": [],
@@ -1452,6 +1456,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.model.UserModel": [],
   "YourTour.store.AjaxStore": [],
   "YourTour.store.LineStore": [],
+  "YourTour.store.ResourceSelectionStore": [],
   "YourTour.store.ResourceStore": [],
   "YourTour.store.RouteStore": [],
   "YourTour.store.SessionStore": [],
@@ -1476,20 +1481,17 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.home.Main": [
     "widget.homemain"
   ],
-  "YourTour.view.line.IntroductionView": [
-    "widget.lineintroview"
+  "YourTour.view.line.LineIntroductionView": [
+    "widget.LineIntroductionView"
+  ],
+  "YourTour.view.line.LineRecommendItem": [
+    "widget.LineRecommendItem"
+  ],
+  "YourTour.view.line.LineRecommendView": [
+    "widget.LineRecommendView"
   ],
   "YourTour.view.line.LineResourceItem": [
-    "widget.lineresourceitem"
-  ],
-  "YourTour.view.line.RecommedListItem": [
-    "widget.lineListItem"
-  ],
-  "YourTour.view.line.RecommedRouteItem": [
-    "widget.routeListItem"
-  ],
-  "YourTour.view.line.RecommendListView": [
-    "widget.linerecommendview"
+    "widget.LineResourceItem"
   ],
   "YourTour.view.personal.Main": [
     "widget.personalmain"
@@ -1497,8 +1499,11 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.resource.SceneResourceDetailView": [
     "widget.SceneResourceDetailView"
   ],
-  "YourTour.view.resource.SelectionView": [
-    "widget.resourceselectionview"
+  "YourTour.view.resource.SelectionListItem": [
+    "widget.SelectionListItem"
+  ],
+  "YourTour.view.resource.SelectionListView": [
+    "widget.SelectionListView"
   ],
   "YourTour.view.route.MainItem": [
     "widget.routemainitem"
@@ -1563,6 +1568,9 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.widget.SubTitleBar": [
     "widget.subtitlebar"
   ],
+  "YourTour.view.widget.TapLabel": [
+    "widget.TapLabel"
+  ],
   "YourTour.view.widget.TapPanel": [
     "widget.tappanel"
   ],
@@ -1574,5 +1582,6 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.widget.ToolButton": [
     "widget.toolbutton"
-  ]
+  ],
+  "YourTour.view.widget.VDataItem": []
 });

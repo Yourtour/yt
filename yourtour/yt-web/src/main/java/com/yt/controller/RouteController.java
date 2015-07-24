@@ -2,6 +2,7 @@ package com.yt.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +15,7 @@ import com.yt.business.bean.RouteBean;
 import com.yt.business.bean.RouteScheduleBean;
 import com.yt.common.ResponseMessage;
 import com.yt.mocker.MockDataFactory;
+import com.yt.service.ServiceFacade;
 import com.yt.vo.LineVO;
 import com.yt.vo.RouteScheduleVO;
 import com.yt.vo.RouteVO;
@@ -26,13 +28,17 @@ import com.yt.vo.RouteVO;
 @Controller
 @RequestMapping(value="/route")
 public class RouteController {
+	
+	@Autowired
+	private ServiceFacade facade;
 	/**
 	 * 获取用户的行程信息
 	 * @param userId 用户标识ID
 	 * @return
 	 */
 	@RequestMapping(value="/user/Query")
-	public @ResponseBody ResponseMessage queryRouteInfoesByUser(@RequestHeader(value="user_id", required=false) String userId) throws Exception{
+	@ResponseBody
+	public  ResponseMessage queryRouteInfoesByUser(@RequestHeader(value="user_id", required=false) String userId) throws Exception{
 		List<RouteVO> data = (List<RouteVO>) MockDataFactory.getMockListData(RouteVO.class, "route/user/query");
 		
 		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, "", data);
@@ -46,7 +52,8 @@ public class RouteController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/place/Query")
-	public @ResponseBody ResponseMessage queryRouteInfoesByPlace(@PathVariable("place") String place) throws Exception{
+	@ResponseBody 
+	public ResponseMessage queryRouteInfoesByPlace() throws Exception{
 		List<RouteVO> data = (List<RouteVO>) MockDataFactory.getMockListData(RouteVO.class, "route/place/query");
 		
 		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, "", data);
@@ -60,7 +67,8 @@ public class RouteController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/resource/Query")
-	public @ResponseBody ResponseMessage queryRouteInfoesByResource(@PathVariable("resId") String resId) throws Exception{
+	@ResponseBody
+	public ResponseMessage queryRouteInfoesByResource(@PathVariable("resId") String resId) throws Exception{
 		List<RouteVO> data = (List<RouteVO>) MockDataFactory.getMockListData(RouteVO.class, "route/resource/query");
 		
 		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, "", data);
@@ -74,7 +82,8 @@ public class RouteController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/Query")
-	public @ResponseBody ResponseMessage searchRouteInfoes(@RequestParam("name") String name) throws Exception{
+	@ResponseBody 
+	public ResponseMessage searchRouteInfoes(@RequestParam("name") String name) throws Exception{
 		List<LineVO> data = (List<LineVO>) MockDataFactory.getMockListData(LineVO.class, "route/place/query");
 		
 		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, "", data);
@@ -88,7 +97,8 @@ public class RouteController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/subject/Query")
-	public @ResponseBody ResponseMessage queryRouteInfoesBySubject(@PathVariable("subject") String subject) throws Exception{
+	@ResponseBody 
+	public ResponseMessage queryRouteInfoesBySubject(@PathVariable("subject") String subject) throws Exception{
 		List<RouteVO> data = (List<RouteVO>) MockDataFactory.getMockListData(RouteVO.class, "route/subject/query");
 		
 		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, "", data);
@@ -102,7 +112,8 @@ public class RouteController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/line/Query")
-	public @ResponseBody ResponseMessage queryRouteInfoesByLine(@PathVariable("lineId") String lineId) throws Exception{
+	@ResponseBody 
+	public ResponseMessage queryRouteInfoesByLine(@PathVariable("lineId") String lineId) throws Exception{
 		List<RouteVO> data = (List<RouteVO>) MockDataFactory.getMockListData(RouteVO.class, "route/subject/query");
 		
 		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, "", data);
@@ -116,7 +127,8 @@ public class RouteController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/relationship/Query")
-	public @ResponseBody ResponseMessage queryRelatedRouteInfoes(@PathVariable("routeId") String routeId) throws Exception{
+	@ResponseBody 
+	public ResponseMessage queryRelatedRouteInfoes(@PathVariable("routeId") String routeId) throws Exception{
 		List<LineVO> data = (List<LineVO>) MockDataFactory.getMockListData(LineVO.class, "route/place/query");
 		
 		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, "", data);
@@ -130,7 +142,8 @@ public class RouteController {
 	 * @return
 	 */
 	@RequestMapping(value="/Save")
-	public @ResponseBody ResponseMessage saveRouteInfo(@RequestBody RouteBean routeBean){
+	@ResponseBody 
+	public ResponseMessage saveRouteInfo(@RequestBody RouteBean routeBean){
 		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, "", routeBean);
 		return response;
 	}
@@ -141,7 +154,8 @@ public class RouteController {
 	 * @return
 	 */
 	@RequestMapping(value="/Delete")
-	public @ResponseBody ResponseMessage deleteRouteInfo(@PathVariable(value="routeId") String routeId){
+	@ResponseBody 
+	public ResponseMessage deleteRouteInfo(@PathVariable(value="routeId") String routeId){
 		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS);;
 		return response;
 	}
@@ -152,7 +166,8 @@ public class RouteController {
 	 * @return
 	 */
 	@RequestMapping(value="/schedule/Query")
-	public @ResponseBody ResponseMessage getRouteInfo(@PathVariable("routeId") String routeId)throws Exception{
+	@ResponseBody 
+	public ResponseMessage getRouteInfo(@PathVariable("routeId") String routeId)throws Exception{
 		List<RouteScheduleVO> data =   (List<RouteScheduleVO>) MockDataFactory.getMockListData(RouteScheduleVO.class, "route_" + routeId);
 		
 		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, "", data);
@@ -166,7 +181,8 @@ public class RouteController {
 	 * @return
 	 */
 	@RequestMapping(value="/schedule/Save")
-	public @ResponseBody ResponseMessage saveRouteScheduleInfo(@PathVariable(value="scheduleId") String scheduleId, @RequestBody RouteScheduleBean scheduleBean){
+	@ResponseBody 
+	public ResponseMessage saveRouteScheduleInfo(@PathVariable(value="scheduleId") String scheduleId, @RequestBody RouteScheduleBean scheduleBean){
 		ResponseMessage response = new ResponseMessage(ResponseMessage.SUCCESS, "", scheduleBean);
 		return response;
 	}

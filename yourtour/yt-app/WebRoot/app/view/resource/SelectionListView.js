@@ -1,11 +1,11 @@
-Ext.define('YourTour.view.resource.SelectionView', {
+Ext.define('YourTour.view.resource.SelectionListView', {
     extend: 'Ext.Panel',
-    xtype: 'resourceselectionview',
-    requires:['YourTour.view.widget.TitleBar', 'Ext.field.Select','YourTour.view.widget.ToolButton'],
+    xtype: 'SelectionListView',
+    requires:['YourTour.view.widget.TitleBar', 'Ext.field.Select','YourTour.view.widget.ToolButton','YourTour.view.resource.SelectionListItem'],
     
     config: {
-    	itemId:'resourceselectionview',
-    	id:'resourceselectionview',
+    	itemId:'SelectionListView',
+    	id:'SelectionListView',
     	fullscreen: true,
     	layout:'vbox',
     	baseCls:'page',
@@ -27,6 +27,7 @@ Ext.define('YourTour.view.resource.SelectionView', {
             {
             	xtype: 'panel',
             	layout:'hbox',
+            	cls:'textfield',
             	defaults:{
             		flex:1
             	},
@@ -46,7 +47,16 @@ Ext.define('YourTour.view.resource.SelectionView', {
                     displayField:"text",
                     valueField:"value"
                 }]
-            }
+            },
+            
+            {
+    			itemId:'selectionList',
+    			xtype:'dataview',
+    			flex:1,
+    			cls:'bg',
+		        useComponents: true,
+		        defaultType: 'SelectionListItem'
+    		}
         ]
     }
 });

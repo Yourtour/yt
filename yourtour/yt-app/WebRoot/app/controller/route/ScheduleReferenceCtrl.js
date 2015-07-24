@@ -31,6 +31,10 @@ Ext.define('YourTour.controller.route.ScheduleReferenceCtrl', {
     	   
     	   '#hotelscheduleview #close':{
     	   	   tap:'onBackTap'
+    	   },
+    	   
+    	   '#schedulereference #copy':{
+    	   		tap:'onCopyTap'
     	   }
        },
        
@@ -38,7 +42,9 @@ Ext.define('YourTour.controller.route.ScheduleReferenceCtrl', {
         	'/route/reference/schedule/:routeId':'showPage'
        },
        
-       store:null
+       store:null,
+       
+       routeId:null
     },
     
     init:function(){
@@ -51,6 +57,10 @@ Ext.define('YourTour.controller.route.ScheduleReferenceCtrl', {
     
     onBackTap:function(){
     	this.showPage();	
+    },
+    
+    onCopyTap:function(){
+    	this.redirectTo('/route/schedule/' + this.routeId);
     },
     
     onEdit:function(dataview, record){
@@ -73,6 +83,7 @@ Ext.define('YourTour.controller.route.ScheduleReferenceCtrl', {
     },
     
     showPage:function(routeId){
+    	this.routeId = routeId;
     	this.show('schedulereference','YourTour.view.route.schedule.ScheduleReferenceListView');
 		
     	var store = this.store, page=this.getPage();

@@ -4,8 +4,6 @@ Ext.define('YourTour.view.route.MainItem', {
     requires:['Ext.Label', 'Ext.Img','YourTour.view.widget.MarkedLabel', 'Ext.Toolbar'],
     config: {
     	itemId:'routemainitem',
-    	fullscreen: true,
-    	baseCls:'page',
     	layout:'vbox',
         items: [
 			{
@@ -123,7 +121,12 @@ Ext.define('YourTour.view.route.MainItem', {
             		   margin:'0 0 0 5'
             	   } 
             	]
-            }
+            },
+            {
+            	xtype:'panel',
+            	style:'background:#fff',
+            	flex:1
+           	}
         ]
     },
     

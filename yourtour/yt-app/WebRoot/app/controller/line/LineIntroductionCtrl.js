@@ -1,11 +1,11 @@
-Ext.define('YourTour.controller.line.IntroductionCtrl', {
+Ext.define('YourTour.controller.line.LineIntroductionCtrl', {
     extend: 'YourTour.controller.BaseCtrl',
     requires:['YourTour.store.LineStore'],
     config: {
        refs:{
-       	   lineIntro:'#lineintroview',
+       	   lineIntro:'#LineIntroductionView',
        	   
-       	   resources:'#lineintroview #resources'
+       	   resources:'#LineIntroductionView #resources'
        },
        
        control:{
@@ -17,8 +17,8 @@ Ext.define('YourTour.controller.line.IntroductionCtrl', {
        	    * 线路推荐列表返回按钮事件定义
        	    * @type 
        	    */
-       	   '#lineintroview #close':{
-       	   	   	tap:'backToLineRecommendView'
+       	   '#LineIntroductionView #toolbar':{
+       	   	   	back:'backToLineRecommendView'
        	   },
        	   
        	   resources:{
@@ -38,7 +38,6 @@ Ext.define('YourTour.controller.line.IntroductionCtrl', {
     },
     
     onResourceInfoTap:function(dataView, index, target, record, e, eOpts){
-    	console.log('onResourceInfoTap');
     	this.redirectTo('/resource/detail/' + record.get('rowKey'));	
     },
     
@@ -47,7 +46,7 @@ Ext.define('YourTour.controller.line.IntroductionCtrl', {
     },
     
     backToLineRecommendView:function(){
-    	this.show('linerecommendview','YourTour.view.line.RecommendListView');	
+    	this.show('LineRecommendView','YourTour.view.line.LineRecommendView');	
     },
     
     /**
@@ -56,7 +55,7 @@ Ext.define('YourTour.controller.line.IntroductionCtrl', {
     showIntroduction:function(index){
     	var store = this.store;
     	var record = store.getAt(index);
-    	this.show('lineintroview','YourTour.view.line.IntroductionView');
+    	this.show('LineIntroductionView','YourTour.view.line.LineIntroductionView');
 	
     	var lineIntroView = this.getLineIntro();
     	if(record){

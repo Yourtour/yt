@@ -32,6 +32,4 @@
     
     <!--启动对@Aspect注解的支持 -->  
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
-	
-    <import resource="application-context-web.xml"/>
 </beans>

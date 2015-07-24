@@ -1,6 +1,6 @@
-Ext.define('YourTour.view.widget.TapLabel', {
-    extend: 'Ext.Label',
-    xtype: 'TapLabel',
+Ext.define('YourTour.view.widget.TapPanel', {
+    extend: 'Ext.Panel',
+    xtype: 'tappanel',
     
     initialize : function(){
     	this.callParent(arguments);

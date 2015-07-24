@@ -24,6 +24,14 @@
         				http://www.springframework.org/schema/tx
     					http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
     default-autowire="byName">
+    <context:component-scan base-package="com.yt">
+    	<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    
+    <!--启动对@Aspect注解的支持 -->  
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	<bean class="com.yt.common.RequestLogInterceptor"></bean>
+	
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
 	</bean>
 	

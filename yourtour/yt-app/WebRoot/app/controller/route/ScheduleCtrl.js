@@ -75,6 +75,11 @@ Ext.define('YourTour.controller.route.ScheduleCtrl', {
     	var store = this.store, page=this.getPage();
     	var showView=function(){
     		var record = store.getAt(0);
+	    	var imageUrlEl = page.down('#imageUrl');
+	    	imageUrlEl.setHtml("<img src='" + record.get('imageUrl') + "' style='width:100%; max-height:150px'>");
+    	
+	    	var nameEl = page.down('#name');
+	    	nameEl.setHtml(record.get('name'));
 	    	
 	    	var scheduleList = page.down('#scheduleList');
 	 	   	var schedules = [];

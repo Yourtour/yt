@@ -5,35 +5,34 @@ Ext.define('YourTour.view.route.schedule.ScheduleListItem', {
     config: {
 		defaults:{
 			style:'background:#fff',
-			padding:'5 5 0 5'
+			padding:'0 5 0 5'
 		},
 		
+		baseCls:'ScheduleListItem',
     	items:[
     		{
     			itemId:'preparePanel',
     			xtype:'panel',
     			layout:'hbox',
     			hidden:true,
-    			margin:'5 0 5 0',
+    			cls:'prepare',
     			items:[
     				{
 		    			xtype : 'image',
 		    			mode : 'tag',
-		    			padding:'0 5 0 0',
 		    			src :'resources/icons/icon_prepare.png'
     				},
     				{
     					xtype:'label',
     					itemId:'name',
     					flex:1,
-    					style:'font-size:15px; font-weight:bold; line-height:30px'
+    					margin:'0 0 0 5'
     				},
     				{
 	                	xtype: "button", 
 	                    ui: "normal", 
 	                	text:'添加',
-	                	itemId:'edit',
-	                	style:'font-size:16px;font-weight:bold;'
+	                	itemId:'edit'
 	                }
     			]
     		},
@@ -47,24 +46,23 @@ Ext.define('YourTour.view.route.schedule.ScheduleListItem', {
     				{
 		    			xtype : 'image',
 		    			mode : 'tag',
-		    			padding:'0 5 0 0',
 		    			src :'resources/icons/icon_prepare_item.png'
     				},
     				{
     					xtype:'panel',
     					layout:'vbox',
-    					padding:'0 0 10 0',
     					flex:1,
+    					margin:'0 0 0 5',
     					items:[
 		    				{
 		    					xtype:'label',
 		    					itemId:'name',
-		    					style:'font-size:14px;font-weight:1em;line-height:30px'
+		    					cls:'name'
 		    				},
 		    				{
 		    					xtype:'label',
 		    					itemId:'desc',
-		    					style:'font-size:13px; line-height:20px; padding-right:5px'
+		    					cls:'multilineinfo'
 		    				}
 		    			]
     				}
@@ -76,26 +74,25 @@ Ext.define('YourTour.view.route.schedule.ScheduleListItem', {
     			xtype:'panel',
     			hidden:true,
     			layout:'hbox',
-    			margin:'5 0 5 0',
+    			cls:'day',
+    			height:50,
     			items:[
     				{
 		    			xtype : 'image',
 		    			mode : 'tag',
-		    			padding:'0 5 0 0',
 		    			src :'resources/icons/icon_day.png'
     				},
     				{
     					xtype:'label',
     					itemId:'name',
     					flex:1,
-    					style:'font-size:16px;font-weight:bold; line-height:30px'
+    					margin:'0 0 0 5'
     				},
     				{
 	                	xtype: "button", 
 	                    ui: "normal", 
 	                	text:'添加',
-	                	itemId:'edit',
-	                	style:'font-size:16px;font-weight:bold;'
+	                	itemId:'edit'
 	                }
     			]
     		},
@@ -105,6 +102,7 @@ Ext.define('YourTour.view.route.schedule.ScheduleListItem', {
     			xtype:'panel',
     			layout:'hbox',
     			hidden:true,
+    			minHeight:30,
     			items:[
     				{
 		    			xtype : 'image',
@@ -117,18 +115,17 @@ Ext.define('YourTour.view.route.schedule.ScheduleListItem', {
     				{
     					xtype:'panel',
     					layout:'vbox',
-    					padding:'0 0 10 0',
     					flex:1,
     					items:[
 		    				{
 		    					xtype:'label',
 		    					itemId:'name',
-		    					style:'font-size:14px;font-weight:1em;line-height:30px'
+		    					cls:'name'
 		    				},
 		    				{
 		    					xtype:'label',
 		    					itemId:'desc',
-		    					style:'font-size:13px; line-height:20px; padding-right:5px'
+		    					cls:'multilineinfo'
 		    				},
 		    				{
 		    					xtype:'panel',
@@ -139,17 +136,16 @@ Ext.define('YourTour.view.route.schedule.ScheduleListItem', {
 		    							xtype:'label',
 		    							itemId:'time',
 		    							flex:1,
-		    							style:'font-size:13px; line-height:20px;'
+		    							cls:'time'
 		    						},
 		    						
 		    						{
 		    							xtype:'label',
 		    							itemId:'period',
 		    							flex:1,
-		    							style:'text-align:right; font-size:13px; line-height:20px;'
+		    							cls:'time'
 		    						}
 		    					]
-		    					
 		    				}
 		    			]
     				}
@@ -171,12 +167,14 @@ Ext.define('YourTour.view.route.schedule.ScheduleListItem', {
        		var type = record.get('type');
        		if(type == 'prepare'){
        			var panel = me.down('#preparePanel');
+       			panel.addCls('space-bottom');
        			panel.show();
        			
        			var name = panel.down('#name');
        			name.setHtml(record.get('name'));
        			
        			var edit = panel.down('#edit');
+       			
        			if(dataview.readonly){
        				edit.hide();	
        			}else{
@@ -189,7 +187,7 @@ Ext.define('YourTour.view.route.schedule.ScheduleListItem', {
        			panel.show();
        			
        			if(record.get('isLast') != '1'){
-       				panel.getAt(1).setStyle('border-bottom:1px solid #EDEDED;');
+       				panel.getAt(1).addCls('horizentalLine');
        			}
        			
        			var name = panel.down('#name');
@@ -199,6 +197,7 @@ Ext.define('YourTour.view.route.schedule.ScheduleListItem', {
        			desc.setHtml(record.get('desc'));
        		}else if(type == 'day'){
        			var panel = me.down('#dayPanel');
+       			panel.addCls('space-both');
        			panel.show();
        			
        			var name = panel.down('#name');
@@ -217,7 +216,7 @@ Ext.define('YourTour.view.route.schedule.ScheduleListItem', {
        			panel.show();
        			
        			if(record.get('isLast') != '1'){
-       				panel.getAt(1).setStyle('border-bottom:1px solid #EDEDED;');
+       				panel.getAt(1).addCls('horizentalLine');
        			}
        			
        			var dayItemIcon = panel.down('#dayItemIcon');

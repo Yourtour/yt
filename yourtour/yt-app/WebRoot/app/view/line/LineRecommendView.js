@@ -1,9 +1,11 @@
-Ext.define('YourTour.view.line.RecommendListView', {
+Ext.define('YourTour.view.line.LineRecommendView', {
     extend: 'Ext.Panel',
-    requires:['Ext.Toolbar', 'Ext.Panel','Ext.Carousel','YourTour.view.widget.TitleBar','YourTour.view.line.RecommedListItem'],
-    xtype: 'linerecommendview',
+    requires:['Ext.Panel','Ext.Img', 'Ext.DataView','YourTour.view.widget.TitleBar','YourTour.view.line.LineRecommendItem'],
+    xtype: 'LineRecommendView',
     config: {
-    	id:'linerecommendview',
+    	id:'LineRecommendView',
+    	itemId:'LineRecommendView',
+    	
     	fullscreen: true,
     	layout:'vbox',
     	
@@ -31,12 +33,12 @@ Ext.define('YourTour.view.line.RecommendListView', {
 			},
             
             {
-            	xtype: 'carousel',
-            	itemId:'lines',
-            	showAnimation:'fade',
-            	indicator:false,
-            	flex:1
-            }
+            	xtype:'dataview',
+		    	itemId:'lineList',
+				flex:1,
+				useComponents:true,
+		    	defaultType:'LineRecommendItem'
+		    }
         ]
     }
 });

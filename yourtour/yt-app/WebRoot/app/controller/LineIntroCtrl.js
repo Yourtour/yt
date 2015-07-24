@@ -1,6 +1,6 @@
 Ext.define('YourTour.controller.LineIntroCtrl', {
     extend: 'Ext.app.Controller',
-    requires:['YourTour.store.LineStore','YourTour.view.line.RecommedListItem'],
+    requires:['YourTour.store.LineStore','YourTour.view.line.LineRecommendItem'],
     config: {
        refs:{
        },
