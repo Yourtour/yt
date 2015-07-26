@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.line.LineRecommendView', {
     extend: 'Ext.Panel',
-    requires:['Ext.Panel','Ext.Img', 'Ext.DataView','YourTour.view.widget.TitleBar','YourTour.view.line.LineRecommendItem'],
+    requires:['Ext.Panel','Ext.Img', 'Ext.DataView','YourTour.view.widget.XToolbar', 'Ext.Spacer','YourTour.view.widget.XBack','YourTour.view.widget.ToolButton','YourTour.view.line.LineRecommendItem'],
     xtype: 'LineRecommendView',
     config: {
     	id:'LineRecommendView',
@@ -11,24 +11,18 @@ Ext.define('YourTour.view.line.LineRecommendView', {
     	
         items: [
         	{    
-				xtype: '_titlebar',
-				docked: 'top',
-				title: '线路推荐',
-				items:[{
-					xtype: "image", 
-                	itemId:'close',
-                	mode:'tag',
-                	margin:'0 0 0 5',
-                	src:'resources/icons/icon_back.png',
-                	align:'left'
-				},			
-				{
-                	xtype: "toolbutton", 
-                    ui: "normal", 
-                	text:'新建',
-                	itemId:'new',
-                	align:'right'
-                }
+				xtype: 'xtoolbar',
+				items:[
+					{
+						xtype:'spacer'
+					},
+					{
+	                	xtype: "toolbutton", 
+	                    ui: "normal", 
+	                	text:'新建',
+	                	itemId:'new',
+	                	align:'right'
+	                }
                 ]
 			},
             

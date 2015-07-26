@@ -710,7 +710,12 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.TitleBar": [],
   "YourTour.view.widget.ToggleField": [],
   "YourTour.view.widget.ToolButton": [],
-  "YourTour.view.widget.VDataItem": []
+  "YourTour.view.widget.VDataItem": [],
+  "YourTour.view.widget.XBack": [],
+  "YourTour.view.widget.XBoldLabel": [],
+  "YourTour.view.widget.XField": [],
+  "YourTour.view.widget.XLabel": [],
+  "YourTour.view.widget.XToolbar": []
 });
 Ext.ClassManager.addNameAliasMappings({
   "Ext.AbstractComponent": [],
@@ -1533,7 +1538,7 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.scheduleListItem"
   ],
   "YourTour.view.route.schedule.ScheduleListView": [
-    "widget.scheduleListView"
+    "widget.ScheduleListView"
   ],
   "YourTour.view.route.schedule.ScheduleReferenceListView": [
     "widget.schedulereference"
@@ -1583,5 +1588,20 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.widget.ToolButton": [
     "widget.toolbutton"
   ],
-  "YourTour.view.widget.VDataItem": []
+  "YourTour.view.widget.VDataItem": [],
+  "YourTour.view.widget.XBack": [
+    "widget.xback"
+  ],
+  "YourTour.view.widget.XBoldLabel": [
+    "widget.xlabel"
+  ],
+  "YourTour.view.widget.XField": [
+    "widget.xfield"
+  ],
+  "YourTour.view.widget.XLabel": [
+    "widget.xlabel"
+  ],
+  "YourTour.view.widget.XToolbar": [
+    "widget.xtoolbar"
+  ]
 });

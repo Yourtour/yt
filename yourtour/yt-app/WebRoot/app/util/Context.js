@@ -13,9 +13,9 @@ Ext.define('YourTour.util.Context', {
     getContext:function(url){
     	var s;
     	if(url.substr(0,1) == '/'){
-    		s = 'http://192.168.2.102:8080/yt-web' + url;
+    		s = 'http://192.168.2.102:8080/yt-web/rest/' + url;
     	}else{
-    		s = 'http://192.168.2.102:8080/yt-web/' + url;
+    		s = 'http://192.168.2.102:8080/yt-web/rest/' + url;
     	}
     	
     	return s;

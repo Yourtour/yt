@@ -1,34 +1,20 @@
 Ext.define('YourTour.view.route.schedule.ScheduleListView', {
     extend: 'Ext.Container',
-    requires:['YourTour.view.route.schedule.ScheduleListItem','Ext.Panel','YourTour.view.widget.TitleBar','YourTour.view.route.schedule.ScheduleDataView'],
-    xtype: 'scheduleListView',
+    requires:['YourTour.view.route.schedule.ScheduleListItem','Ext.Panel','YourTour.view.widget.XToolbar','YourTour.view.route.schedule.ScheduleDataView'],
+    xtype: 'ScheduleListView',
     config: {
-    	itemId:'scheduleListView',
-    	id:'scheduleListView',
+    	itemId:'ScheduleListView',
+    	id:'ScheduleListView',
     	fullscreen:true,
     	layout:'vbox',
     	baseCls:'page',
     	
     	items:[
     		{    
-				xtype: 'toolbar',
-				docked: 'top',
+				xtype: 'xtoolbar',
+				itemId:'toolbar',
+				title:'行程规划',
 				items:[
-					{
-						xtype: "image", 
-	                	itemId:'close',
-	                	mode:'tag',
-	                	margin:'0 0 0 5',
-	                	src:'resources/icons/icon_back.png',
-	                	align:'left'
-					},
-					{
-						xtype: "label", 
-						html:'行程规划'
-					},
-					{
-						xtype: "spacer" 
-					},
 					{
 	                	xtype: "toolbutton", 
 	                    ui: "normal", 

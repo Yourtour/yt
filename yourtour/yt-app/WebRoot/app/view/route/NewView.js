@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.route.NewView', {
     extend: 'Ext.form.Panel',
-    requires:['Ext.field.DatePicker','Ext.field.Select', 'YourTour.view.widget.SubTitleBar', 'YourTour.view.widget.TitleBar', 'Ext.field.Text'],
+    requires:['Ext.field.DatePicker','Ext.field.Select', 'YourTour.view.widget.SubTitleBar', 'YourTour.view.widget.XToolbar', 'YourTour.view.widget.ToolButton', 'YourTour.view.widget.XLabel', 'YourTour.view.widget.XField', 'Ext.field.Text'],
     xtype: 'newrouteview',
     config: {
     	itemId:'newrouteview',
@@ -14,16 +14,21 @@ Ext.define('YourTour.view.route.NewView', {
 		},
         items: [
             {    
-				xtype: '_titlebar',
-				docked: 'top',
+				xtype: 'xtoolbar',
 				title: '行程规划',
 				items:[{
-					xtype: "image", 
-                	itemId:'close',
-                	mode:'tag',
-                	margin:'0 0 0 5',
-                	src:'resources/icons/icon_back.png',
-                	align:'left'
+					xtype: "toolbutton", 
+	                    ui: "normal", 
+	                	text:'新建',
+	                	itemId:'new',
+	                	align:'right'
+				},
+				{
+					xtype: "toolbutton", 
+	                    ui: "normal", 
+	                	text:'新建1',
+	                	itemId:'new1',
+	                	align:'right'
 				}]			
 			},
 			
@@ -39,7 +44,7 @@ Ext.define('YourTour.view.route.NewView', {
 				layout:'hbox',
 				margin:'5 0 0 0',
 				padding:'0 0 0 10',
-				cls:'textfield',
+				cls:'row',
 				items:[
 					{
 						xtype:'label',

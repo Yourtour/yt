@@ -1,12 +1,11 @@
 Ext.define('YourTour.view.line.LineIntroductionView', {
     extend: 'Ext.Panel',
-    requires:['Ext.Panel','Ext.Img','Ext.DataView', 'YourTour.view.widget.XToolbar','YourTour.view.widget.MarkedLabel', 'YourTour.view.line.LineResourceItem'],
+    requires:['Ext.Panel','Ext.Img','Ext.DataView', 'YourTour.view.widget.XField','YourTour.view.widget.XLabel', 'YourTour.view.widget.XToolbar','YourTour.view.line.LineResourceItem'],
     xtype: 'LineIntroductionView',
     config: {
     	itemId:'LineIntroductionView',
     	id:'LineIntroductionView',
       	layout:'vbox',
-    	baseCls:'page',
     	scrollable: {
     	    direction: 'vertical',
     	    directionLock: true
@@ -50,7 +49,6 @@ Ext.define('YourTour.view.line.LineIntroductionView', {
 			
 			{
     			xtype:'panel',
-    			style:'background:#fff',
     			layout:'fit',
     			height:150,
     			items:[
@@ -66,30 +64,28 @@ Ext.define('YourTour.view.line.LineIntroductionView', {
     			xtype:'tappanel',
     			layut:'vbox',
     			itemId:'lineInfo',
-    			style:'background:#fff',
     			defaults:{
     				padding:'0 5 0 5'
     			},
 	    		items:[
 		    		{
-					   xtype:'label',
+					   xtype:'xlabel',
 					   pack:'center',
 					   align:'center',
 					   itemId:'name',
-					   cls:'textfield',
+					   cls:'row underline bold',
 					   html : ''
 		    		},
 			    
 			   		{
 			   			xtype:'panel',
 			   			layout:'hbox',
-			   			cls:'textfield raty',
+			   			cls:'row underline raty',
 			   			items:[
 				   			{
-				   				xtype:'label',
+				   				xtype:'xlabel',
 				   				html:'推荐指数:',
-				   				flex:1,
-				   				style:'font-weight:bold;'
+				   				flex:1
 				   			},
 				   			
 				   			{
@@ -100,10 +96,9 @@ Ext.define('YourTour.view.line.LineIntroductionView', {
 				   			},
 				   			
 				   			{
-				   				xtype:'label',
+				   				xtype:'xlabel',
 				   				html:'旅游指数:',
-				   				flex:1,
-				   				style:'font-weight:bold;'
+				   				flex:1
 				   			},
 				   			{
 				   				xtype:'image',
@@ -117,31 +112,27 @@ Ext.define('YourTour.view.line.LineIntroductionView', {
 			   		{
 			   			xtype:'panel',
 			   			layout:'hbox',
-			   			cls:'textfield',
+			   			cls:'row underline',
 			   			items:[
 				   			{
-				   				xtype:'label',
+				   				xtype:'xlabel',
 				   				html:'推荐时间:',
-				   				flex:1,
-				   				style:'font-weight:bold; font-size:14px'
+				   				flex:1
 				   			},
 				   			{
-				   				xtype:'label',
+				   				xtype:'xfield',
 				   				flex:2,
-				   				html:'7、8、9月',
-				   				style:'font-size:14px'
+				   				html:'7、8、9月'
 				   			},
 				   			{
-				   				xtype:'label',
+				   				xtype:'xlabel',
 				   				flex:1,
-				   				html:'服务达人',
-				   				style:'font-weight:bold; font-size:14px'
+				   				html:'服务达人'
 				   			},
 				   			{
-				   				xtype:'label',
+				   				xtype:'xfield',
 				   				flex:2,
-				   				html:'10人',
-				   				style:'font-size:14px'
+				   				html:'10人'
 				   			}
 			   			]
 			   		}
@@ -151,33 +142,32 @@ Ext.define('YourTour.view.line.LineIntroductionView', {
 		    {
 		       xtype:'panel',
 			   margin:'5 0 0 0',
-			   style:'background:#fff',
 			   layout:'vbox',
 			   items:[
 			   		{
-			   			xtype:'label',
+			   			xtype:'xlabel',
 				   		html:'线路特点',
 				   		padding:'5',
-				   		cls:'fieldlabel'
+				   		cls:'row'
 			   		},	
 			   		
 			   		
 			   		{
-			   			xtype:'label',
+			   			xtype:'xfield',
 			   			itemId:'feature',
-			   			cls:'multilineinfo horizentalLine',
+			   			cls:'multilineinfo underline',
 			   			padding:'5'
 			   		},
 			   		
 			   		{
-			   			xtype:'label',
+			   			xtype:'xlabel',
 				   		html:'推荐理由',
-				   		cls:'fieldlabel',
-				   		padding:'5'
+				   		padding:'5',
+				   		cls:'row'
 			   		},
 			   		
 			   		{
-			   			xtype:'label',
+			   			xtype:'xfield',
 			   			itemId:'reason',
 			   			cls:'multilineinfo',
 			   			padding:'5'

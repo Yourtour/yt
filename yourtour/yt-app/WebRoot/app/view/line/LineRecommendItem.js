@@ -1,7 +1,7 @@
 Ext.define('YourTour.view.line.LineRecommendItem', {
     extend: 'YourTour.view.widget.VDataItem',
     xtype: 'LineRecommendItem',
-    requires:['Ext.Panel', 'Ext.Img'],
+    requires:['Ext.Panel', 'Ext.Img', 'YourTour.view.widget.XField','YourTour.view.widget.XLabel'],
     config: {
     	items:[
     		{
@@ -18,6 +18,7 @@ Ext.define('YourTour.view.line.LineRecommendItem', {
 		    		{
 		    	   		itemId : 'name',
 			    		xtype : 'label',
+			    		cls:'h2',
 			    		style:'background:grey;opacity:0.5; color:#fff; font-size:14px; font-weight:bold; width:100%; height:40px; line-height:40px; text-align:center',
 			    		docked:'bottom',
 			    		bottom:0
@@ -33,10 +34,10 @@ Ext.define('YourTour.view.line.LineRecommendItem', {
 			   		{
 			   			xtype:'panel',
 			   			layout:'hbox',
-			   			cls:'info horizentalLine raty',
+			   			cls:'row underline raty',
 			   			items:[
 				   			{
-				   				xtype:'label',
+				   				xtype:'xlabel',
 				   				html:'评价指数:',
 				   				flex:1
 				   			},
@@ -49,7 +50,7 @@ Ext.define('YourTour.view.line.LineRecommendItem', {
 				   			},
 				   			
 				   			{
-				   				xtype:'label',
+				   				xtype:'xlabel',
 				   				html:'推荐指数:',
 				   				flex:1
 				   			},
@@ -65,25 +66,25 @@ Ext.define('YourTour.view.line.LineRecommendItem', {
 			   		{
 			   			xtype:'panel',
 			   			layout:'hbox',
-			   			cls:'info',
+			   			cls:'row',
 			   			items:[
 				   			{
-				   				xtype:'label',
+				   				xtype:'xlabel',
 				   				html:'推荐月份:',
 				   				flex:1
 				   			},
 				   			{
-				   				xtype:'label',
+				   				xtype:'xfield',
 				   				flex:2,
 				   				html:'7、8、9月'
 				   			},
 				   			{
-				   				xtype:'label',
+				   				xtype:'xlabel',
 				   				flex:1,
 				   				html:'推荐天数:'
 				   			},
 				   			{
-				   				xtype:'label',
+				   				xtype:'xfield',
 				   				flex:2, 
 				   				html:'10天'
 				   			}

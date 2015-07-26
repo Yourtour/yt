@@ -1,10 +1,27 @@
 Ext.define('YourTour.view.widget.XToolbar', {
     extend: 'Ext.Toolbar',
     xtype: 'xtoolbar',
-    requires:['Ext.Img','Ext.Label','Ext.Spacer'],
+    requires:['Ext.Img','Ext.Label','Ext.Spacer','YourTour.view.widget.ToolButton'],
     config: {
     	title:null,
-    	docked: 'top'
+    	docked: 'top',
+    	items:[]
+    },
+    
+    constructor: function(config) {
+    	var items = config.items;
+    	
+    	items.unshift({xtype:'spacer',flex:1});
+		items.unshift({xtype:'label', itemId:'title',html:'afdafads'});
+		items.unshift({xtype:'image', itemId:'close',
+            	mode:'tag',
+            	margin:'0 0 0 5',
+            	src:'resources/icons/icon_back.png'
+		});	
+    	
+		console.log(config);
+		
+    	this.callParent(arguments);
     },
     
     initialize : function(){
@@ -12,32 +29,23 @@ Ext.define('YourTour.view.widget.XToolbar', {
     	
     	var me = this;
     	var close = me.down('#close');
-    	close.element.on({
-			scope : me,
-			tap : function(e, t) {
-				me.fireEvent('back', me, e, t);
-			}
-		});
-    },
-    
-    add: function(newItems){
-    	newItems.unshift(Ext.create('Ext.Spacer',{}));
-		newItems.unshift(Ext.create('Ext.Label',{itemId:'title'}));
-		newItems.unshift(Ext.create('Ext.Img',{itemId:'close',
-            	mode:'tag',
-            	margin:'0 0 0 5',
-            	src:'resources/icons/icon_back.png',
-            	align:'left'
-			}));	
-    	
-    	this.callParent(newItems);
+    	if(close != null){
+	    	close.element.on({
+				scope : me,
+				tap : function(e, t) {
+					me.fireEvent('back', me, e, t);
+				}
+			});
+    	}
     },
     
     applyTitle:function(title){
     	var me = this;
     	
     	var titleEl = me.down('#title');
-    	titleEl.setHtml(title);
+    	if(titleEl != null){
+    		titleEl.setHtml(title);
+    	}
     }
 });
 

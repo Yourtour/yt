@@ -4,12 +4,12 @@ Ext.define('YourTour.controller.route.ScheduleCtrl', {
     
     config: {
        refs: {
-       		page:'#scheduleListView',
+       		page:'#ScheduleListView',
        		sceneSchedulePage:'scenescheduleview',
        		foodSchedulePage:'foodscheduleview',
        		hotelSchedulePage:'hotelscheduleview',
        		
-       		sehducleList:'#scheduleListView #scheduleList'
+       		sehducleList:'#ScheduleListView #scheduleList'
        },
        
        control:{
@@ -22,8 +22,8 @@ Ext.define('YourTour.controller.route.ScheduleCtrl', {
     	   	   itemtap:'onItemTap'
     	   },
     	   
-    	   '#scenescheduleview #close':{
-    	   	   tap:'onBackTap'
+    	   '#ScheduleListView #toolbar':{
+    	   	   back:'onBackTap'
     	   },
     	   
     	   '#foodscheduleview #close':{
@@ -47,7 +47,7 @@ Ext.define('YourTour.controller.route.ScheduleCtrl', {
     },
     
     onBackTap:function(){
-    	this.showPage();	
+    	this.show('LineRecommendView','YourTour.view.line.LineRecommendView');
     },
     
     onEdit:function(dataview, record){
@@ -70,7 +70,7 @@ Ext.define('YourTour.controller.route.ScheduleCtrl', {
     },
     
     showPage:function(routeId){
-    	this.show('scheduleListView','YourTour.view.route.schedule.ScheduleListView');
+    	this.show('ScheduleListView','YourTour.view.route.schedule.ScheduleListView');
 		
     	var store = this.store, page=this.getPage();
     	var showView=function(){

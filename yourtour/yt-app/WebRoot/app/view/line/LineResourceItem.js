@@ -1,16 +1,16 @@
 Ext.define('YourTour.view.line.LineResourceItem', {
     extend: 'Ext.dataview.component.DataItem',
     xtype: 'LineResourceItem',
-    requires:['Ext.Label', 'Ext.Img'],
+    requires:['Ext.Label', 'Ext.Img', 'YourTour.view.widget.XField','YourTour.view.widget.XLabel'],
     config: {
     	layout : 'vbox',
-    	cls:'listitem space-bottom',
+    	cls:'space-bottom',
     	padding:5,
     	items:[
     	    {
     	   		itemId : 'name',
-	    		xtype : 'label',
-	    		cls:'title nav_arrow horizentalLine'
+	    		xtype : 'xlabel',
+	    		cls:'row nav_arrow horizentalLine'
 	    	},
 	    	
 	    	{	xtype:'panel',
@@ -50,7 +50,7 @@ Ext.define('YourTour.view.line.LineResourceItem', {
 	    	},
     		
 		    {
-            	xtype:'label',
+            	xtype:'xfield',
             	itemId:'intro',
             	cls:'multilineinfo'
             }

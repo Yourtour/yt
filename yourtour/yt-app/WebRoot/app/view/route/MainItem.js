@@ -1,7 +1,7 @@
 Ext.define('YourTour.view.route.MainItem', {
     extend: 'Ext.Panel',
     xtype: 'routemainitem',
-    requires:['Ext.Label', 'Ext.Img','YourTour.view.widget.MarkedLabel', 'Ext.Toolbar'],
+    requires:['Ext.Label', 'Ext.Img','YourTour.view.widget.MarkedLabel', 'Ext.Toolbar', 'YourTour.view.widget.XLabel', 'YourTour.view.widget.XField'],
     config: {
     	itemId:'routemainitem',
     	layout:'vbox',
@@ -63,7 +63,7 @@ Ext.define('YourTour.view.route.MainItem', {
             	xtype:'panel',
             	layout:'hbox',
             	padding:5,
-            	cls:'textfield',
+            	cls:'row underline',
             	items:[
             	   {
             		   xtype:'image',
@@ -72,10 +72,9 @@ Ext.define('YourTour.view.route.MainItem', {
             	   },
             	   
             	   {
-            		   xtype:'label',
+            		   xtype:'xfield',
             		   itemId:'time',
             		   flex:1,
-            		   style:'line-height:40px',
             		   margin:'0 0 0 5'
             	   } 
             	]
@@ -84,7 +83,7 @@ Ext.define('YourTour.view.route.MainItem', {
             {
             	xtype:'panel',
             	layout:'hbox',
-            	cls:'textfield',
+            	cls:'row underline',
             	padding:'5',
             	items:[
             	   {
@@ -93,10 +92,9 @@ Ext.define('YourTour.view.route.MainItem', {
             		   mode : 'tag'
             	   },
             	   {
-            		   xtype:'label',
+            		   xtype:'xfield',
             		   itemId:'places',
             		   flex:1,
-            		   style:'line-height:40px',
             		   margin:'0 0 0 5'
             	   } 
             	]
@@ -104,7 +102,7 @@ Ext.define('YourTour.view.route.MainItem', {
 			{
             	xtype:'panel',
             	layout:'hbox',
-            	cls:'textfield',
+            	cls:'row underline',
             	padding:'5',
             	items:[
             	   {
@@ -114,10 +112,9 @@ Ext.define('YourTour.view.route.MainItem', {
             	   },
             	   
             	   {
-            		   xtype:'label',
+            		   xtype:'xfield',
             		   itemId:'lineName',
             		   flex:1,
-            		   style:'line-height:40px',
             		   margin:'0 0 0 5'
             	   } 
             	]

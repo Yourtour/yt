@@ -13,7 +13,7 @@ Ext.define('YourTour.controller.line.LineRecommendCtrl', {
        	    * 线路推荐列表返回按钮事件定义
        	    * @type 
        	    */
-       	   	closeBtn:{
+       	   	'#LineRecommendView #back':{
        	   	   tap:'backToNewRouteView'
        	   	},
        	   

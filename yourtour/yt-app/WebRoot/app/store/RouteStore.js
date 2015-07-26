@@ -108,10 +108,10 @@ Ext.define('YourTour.store.RouteStore', {
     	]
     	/*proxy:{
 	    	api:{
-				 read: YourTour.util.Context.getContext('/route/user/Query.action'),
-				 create: YourTour.util.Context.getContext('/route/Save.action'),
-				 update: YourTour.util.Context.getContext('/route/Update.action'),
-				 destroy: YourTour.util.Context.getContext('/route/Delete.action')
+				 read: YourTour.util.Context.getContext('/route/user/Query'),
+				 create: YourTour.util.Context.getContext('/route/Save'),
+				 update: YourTour.util.Context.getContext('/route/Update'),
+				 destroy: YourTour.util.Context.getContext('/route/Delete')
 			}
     	}*/
     },
