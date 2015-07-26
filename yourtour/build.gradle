@@ -9,10 +9,11 @@ subprojects {
     sourceCompatibility=1.7
 
     repositories {
-       mavenCentral()
+       //mavenCentral()
        maven {
-			url "http://repo.spring.io/release"
-			url "http://m2.neo4j.org/content/repositories/releases"
+			url "http://repo1.maven.org/maven2"
+			artifactUrls "http://m2.neo4j.org/content/repositories/releases"
+			artifactUrls "http://repo.spring.io/release"
        }
     }
 

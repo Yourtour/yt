@@ -5,13 +5,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.type.JavaType;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.Node;
 import org.dom4j.io.SAXReader;
 
-import com.fasterxml.jackson.databind.JavaType;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yt.vo.RouteVO;
 
 public class MockDataFactory {
@@ -50,7 +50,7 @@ public class MockDataFactory {
 	public static  List  getMockListData(Class<?> clazz, String url) throws Exception{
 		Node node = root.selectSingleNode("mock[@url='" + url + "']");
 		ObjectMapper mapper = new ObjectMapper();
-		JavaType javaType = mapper.getTypeFactory().constructParametrizedType(ArrayList.class, List.class, clazz); 
+		JavaType javaType = mapper.getTypeFactory().constructParametricType(ArrayList.class, List.class, clazz); 
 		
 		String json = node.getText().trim();
 		return (List) mapper.readValue(json, javaType);
@@ -65,7 +65,7 @@ public class MockDataFactory {
 	public static  Set  getMockSetData(Class<?> clazz, String url) throws Exception{
 		Node node = root.selectSingleNode("mock[@url='" + url + "']");
 		ObjectMapper mapper = new ObjectMapper();
-		JavaType javaType = mapper.getTypeFactory().constructParametrizedType(HashSet.class, Set.class, clazz); 
+		JavaType javaType = mapper.getTypeFactory().constructParametricType(HashSet.class, Set.class, clazz); 
 		
 		String json = node.getText().trim();
 		return (Set) mapper.readValue(json, javaType);

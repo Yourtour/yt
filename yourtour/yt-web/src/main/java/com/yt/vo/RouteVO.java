@@ -1,10 +1,8 @@
 package com.yt.vo;
 
-import java.util.Date;
+import org.codehaus.jackson.annotate.JsonProperty;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.yt.business.bean.RouteBean;
-import com.yt.utils.DateUtils;
 
 public class RouteVO extends RouteBean {
 	private String feeling;

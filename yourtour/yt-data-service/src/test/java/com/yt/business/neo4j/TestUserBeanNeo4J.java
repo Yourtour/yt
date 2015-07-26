@@ -16,7 +16,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.yt.business.bean.RouteBean;
 import com.yt.business.bean.UserBean;
-import com.yt.business.bean.UserBean.RATE;
+import com.yt.business.common.Constants.Role;
 import com.yt.business.common.Constants.Status;
 import com.yt.business.repository.UserBeanRepository;
 import com.yt.rsal.neo4j.repository.CrudGeneralOperate;
@@ -65,7 +65,7 @@ public class TestUserBeanNeo4J {
 			user.setNativePlace("native place");
 			user.setNickName("nick name");
 			user.setPwd("password");
-			user.setRate(RATE.EXPERT);
+			user.setRole(Role.EXPERT);
 			user.setRealName("real name");
 			user.setResidence("residence");
 			user.setSex("F");

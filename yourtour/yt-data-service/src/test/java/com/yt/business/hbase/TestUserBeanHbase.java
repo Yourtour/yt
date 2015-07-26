@@ -20,7 +20,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.yt.business.bean.UserBean;
-import com.yt.business.bean.UserBean.RATE;
+import com.yt.business.common.Constants.Role;
 import com.yt.business.common.Constants.Status;
 import com.yt.dal.hbase.DdlGeneralOperate;
 import com.yt.dal.hbase.HbaseManager;
@@ -80,7 +80,7 @@ public class TestUserBeanHbase {
 			bean.setNativePlace("nateive place");
 			bean.setNickName("nick name");
 			bean.setPwd("password");
-			bean.setRate(RATE.EXPERT);
+			bean.setRole(Role.EXPERT);
 			bean.setRealName("real name");
 			bean.setResidence("residence");
 			bean.setRowKey("row key 001");
@@ -106,7 +106,7 @@ public class TestUserBeanHbase {
 			assertEquals(bean1.getNativePlace(), bean.getNativePlace());
 			assertEquals(bean1.getNickName(), bean.getNickName());
 			assertEquals(bean1.getPwd(), bean.getPwd());
-			assertEquals(bean1.getRate(), bean.getRate());
+			assertEquals(bean1.getRole(), bean.getRole());
 			assertEquals(bean1.getRealName(), bean.getRealName());
 			assertEquals(bean1.getResidence(), bean.getResidence());
 			assertEquals(bean1.getRowKey(), bean.getRowKey());
