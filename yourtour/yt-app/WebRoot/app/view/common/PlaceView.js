@@ -1,7 +1,7 @@
 Ext.define('YourTour.view.common.PlaceView', {
     extend: 'Ext.Panel',
     xtype: 'placeview',
-    requires:['YourTour.view.widget.TitleBar','Ext.Toolbar','Ext.Carousel'],
+    requires:['YourTour.view.widget.XToolbar','Ext.Toolbar','Ext.Carousel'],
     config: {
     	itemId:'placeview',
     	id:'placeview',
@@ -10,7 +10,7 @@ Ext.define('YourTour.view.common.PlaceView', {
     	
         items: [
             {    
-				xtype: '_titlebar',
+				xtype: 'xtoolbar',
 				docked: 'top',
 				title: '目的地',
 				items:[{

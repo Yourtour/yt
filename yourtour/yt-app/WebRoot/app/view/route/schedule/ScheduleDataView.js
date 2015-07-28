@@ -1,5 +1,5 @@
 Ext.define('YourTour.view.route.schedule.ScheduleDataView', {
-    extend: 'Ext.dataview.DataView',
+    extend: 'YourTour.view.widget.XDataView',
     xtype: 'ScheduleDataView',
     config: {
     	readonly:null

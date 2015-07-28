@@ -1,7 +1,7 @@
 Ext.define('YourTour.view.user.LoginView', {
     extend: 'Ext.Panel',
     xtype: 'loginview',
-    requires:['Ext.Panel', 'YourTour.view.widget.TitleBar', 'Ext.field.Password','Ext.field.Text', 'YourTour.view.widget.Button', 'YourTour.view.widget.ToolButton'],
+    requires:['Ext.Panel', 'YourTour.view.widget.XTitleBar', 'Ext.field.Password','Ext.field.Text', 'YourTour.view.widget.XButton', 'YourTour.view.widget.ToolButton'],
     config: {
     	itemId:'loginview',
     	id:'loginview',
@@ -11,7 +11,7 @@ Ext.define('YourTour.view.user.LoginView', {
     	
         items: [
             {
-            	xtype: '_titlebar',
+            	xtype: 'xtitlebar',
                 docked: 'top',
                 title: '会员登录',
                 items:[{
@@ -76,7 +76,7 @@ Ext.define('YourTour.view.user.LoginView', {
             }
             ,
             {
-            	xtype:'ytButton',
+            	xtype:'xbutton',
             	margin:'10 0 0 0',
             	id:'btnLogin',
             	text:'登录'

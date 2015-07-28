@@ -1,1 +1,5 @@
 /com
+/application-hbase-context.xml
+/application-neo4j-context.xml
+/application-rest-context.xml
+/hbaseApplicationContext.xml

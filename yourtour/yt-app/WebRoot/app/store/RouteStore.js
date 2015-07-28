@@ -9,7 +9,7 @@ Ext.define('YourTour.store.RouteStore', {
     	
     	data:[
     		{
-    			rowKey:"1",imageUrl:"resources/images/guangdong.jpg", name:"九寨沟、黄龙、峨眉、乐山双飞7日",lineName:"九寨沟、黄龙、峨眉、乐山", feeling:"旅行并不仅仅是你到了一个景点，在那儿拍照留念，当时的天气，当时空气中花粉的味道，还有当时你是否是气喘吁吁汗流浃背，这些都构成了你旅行的一部分，你整个的身体是在参与的，而不仅仅是拍照和看到",startTime:"2016-01-01", endTime:"2016-01-10", period:"10",
+    			rowKey:"1",imageUrl:"resources/images/guangdong.jpg", name:"九寨沟、黄龙、峨眉、乐山双飞7日",lineName:"九寨沟、黄龙、峨眉、乐山,九寨沟、黄龙、峨眉、乐山,九寨沟、黄龙、峨眉、乐山",impression:"我的记忆中，去游过许多地方，有水韵江南的古镇，有天下之幽的青城，有险峻天堑的华山，还有彩云之南的大理，还有……很多留下脚印的地方且不一一枚举了。然而春秋两季的九寨沟之行，着实让我彻彻底底的为大自然的神工巧斧，创作出这样童话般的杰作倍为感叹！",startTime:"2016-01-01", endTime:"2016-01-10", period:"10",
     			schedules:[
     				{rowKey:'1', type:'prepare', name:'游前准备'},
     				{rowKey:'11',type:'prepareItem', name:'制定详细行程计划'},
@@ -34,7 +34,7 @@ Ext.define('YourTour.store.RouteStore', {
     		},
     		
     		{
-    			rowKey:"2",imageUrl:"resources/images/beijing.jpg", name:"九寨沟、黄龙、峨眉、乐山双飞7日",lineName:"九寨沟、黄龙、峨眉、乐山", feeling:"旅行并不仅仅是你到了一个景点，在那儿拍照留念，当时的天气，当时空气中花粉的味道，还有当时你是否是气喘吁吁汗流浃背，这些都构成了你旅行的一部分，你整个的身体是在参与的，而不仅仅是拍照和看到",startTime:"2016-01-01", endTime:"2016-01-10", period:"10",
+    			rowKey:"2",imageUrl:"resources/images/beijing.jpg", name:"九寨沟、黄龙、峨眉、乐山双飞7日",lineName:"九寨沟、黄龙、峨眉、乐山", impression:"我的记忆中，去游过许多地方，有水韵江南的古镇，有天下之幽的青城，有险峻天堑的华山，还有彩云之南的大理，还有……很多留下脚印的地方且不一一枚举了。然而春秋两季的九寨沟之行，着实让我彻彻底底的为大自然的神工巧斧，创作出这样童话般的杰作倍为感叹！",startTime:"2016-01-01", endTime:"2016-01-10", period:"10",
     			schedules:[
     				{rowKey:'1', type:'prepare', name:'游前准备'},
     				{rowKey:'11',type:'prepareItem', name:'制定详细行程计划'},
@@ -58,7 +58,7 @@ Ext.define('YourTour.store.RouteStore', {
     			]
     		},
     		{
-    			rowKey:"3",imageUrl:"resources/images/shanghai.jpg", name:"九寨沟、黄龙、峨眉、乐山双飞7日",lineName:"九寨沟、黄龙、峨眉、乐山", feeling:"旅行并不仅仅是你到了一个景点，在那儿拍照留念，当时的天气，当时空气中花粉的味道，还有当时你是否是气喘吁吁汗流浃背，这些都构成了你旅行的一部分，你整个的身体是在参与的，而不仅仅是拍照和看到",startTime:"2016-01-01", endTime:"2016-01-10", period:"10",
+    			rowKey:"3",imageUrl:"resources/images/shanghai.jpg", name:"九寨沟、黄龙、峨眉、乐山双飞7日",lineName:"九寨沟、黄龙、峨眉、乐山", impression:"我的记忆中，去游过许多地方，有水韵江南的古镇，有天下之幽的青城，有险峻天堑的华山，还有彩云之南的大理，还有……很多留下脚印的地方且不一一枚举了。然而春秋两季的九寨沟之行，着实让我彻彻底底的为大自然的神工巧斧，创作出这样童话般的杰作倍为感叹！",startTime:"2016-01-01", endTime:"2016-01-10", period:"10",
     			schedules:[
     				{rowKey:'1', type:'prepare', name:'游前准备'},
     				{rowKey:'11',type:'prepareItem', name:'制定详细行程计划'},
@@ -82,7 +82,7 @@ Ext.define('YourTour.store.RouteStore', {
     			]
     		},
     		{
-    			rowKey:"4",imageUrl:"resources/images/yunnan.jpg", name:"九寨沟、黄龙、峨眉、乐山双飞7日",lineName:"九寨沟、黄龙、峨眉、乐山", feeling:"旅行并不仅仅是你到了一个景点，在那儿拍照留念，当时的天气，当时空气中花粉的味道，还有当时你是否是气喘吁吁汗流浃背，这些都构成了你旅行的一部分，你整个的身体是在参与的，而不仅仅是拍照和看到",startTime:"2016-01-01", endTime:"2016-01-10", period:"10",
+    			rowKey:"4",imageUrl:"resources/images/yunnan.jpg", name:"九寨沟、黄龙、峨眉、乐山双飞7日",lineName:"九寨沟、黄龙、峨眉、乐山", impression:"我的记忆中，去游过许多地方，有水韵江南的古镇，有天下之幽的青城，有险峻天堑的华山，还有彩云之南的大理，还有……很多留下脚印的地方且不一一枚举了。然而春秋两季的九寨沟之行，着实让我彻彻底底的为大自然的神工巧斧，创作出这样童话般的杰作倍为感叹！",startTime:"2016-01-01", endTime:"2016-01-10", period:"10",
     			schedules:[
     				{rowKey:'1', type:'prepare', name:'游前准备'},
     				{rowKey:'11',type:'prepareItem', name:'制定详细行程计划'},

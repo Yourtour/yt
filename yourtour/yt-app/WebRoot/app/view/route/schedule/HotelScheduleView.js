@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.route.schedule.HotelScheduleView', {
     extend: 'Ext.Container',
-    requires:['Ext.Panel','YourTour.view.widget.ToggleField','YourTour.view.widget.TitleBar'],
+    requires:['Ext.Panel','YourTour.view.widget.ToggleField','YourTour.view.widget.XToolbar'],
     xtype: 'hotelscheduleview',
     config: {
     	itemId:'hotelscheduleview',
@@ -14,7 +14,7 @@ Ext.define('YourTour.view.route.schedule.HotelScheduleView', {
     	},
     	items:[
     		{    
-				xtype: '_titlebar',
+				xtype: 'xtoolbar',
 				docked: 'top',
 				title: '住宿安排',
 				items:[

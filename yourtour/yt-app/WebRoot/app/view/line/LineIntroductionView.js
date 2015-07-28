@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.line.LineIntroductionView', {
     extend: 'Ext.Panel',
-    requires:['Ext.Panel','Ext.Img','Ext.DataView', 'YourTour.view.widget.XField','YourTour.view.widget.XLabel', 'YourTour.view.widget.XToolbar','YourTour.view.line.LineResourceItem'],
+    requires:['Ext.Panel','Ext.Img','Ext.DataView', 'YourTour.view.widget.XButton','YourTour.view.widget.XField','YourTour.view.widget.XLabel', 'YourTour.view.widget.XToolbar','YourTour.view.line.LineResourceItem'],
     xtype: 'LineIntroductionView',
     config: {
     	itemId:'LineIntroductionView',
@@ -8,7 +8,7 @@ Ext.define('YourTour.view.line.LineIntroductionView', {
       	layout:'vbox',
     	scrollable: {
     	    direction: 'vertical',
-    	    directionLock: true
+    	    indicators: false	
     	},
         items: [
         	{    
@@ -179,10 +179,19 @@ Ext.define('YourTour.view.line.LineIntroductionView', {
 		    	xtype:'dataview',
 		    	itemId:'resources',
 		    	cls:'space-top',
-				useComponents:true,
 				scrollable:null,
+				flex:1,
+		    	useComponents:true,
 		    	defaultType:'LineResourceItem'
-		    }
+		    },
+		    
+		    {
+            	xtype:'xbutton',
+            	itemId:'next',
+            	docked:'bottom',
+            	text:'行程规划'
+            }
+		    
         ]
     }
 });

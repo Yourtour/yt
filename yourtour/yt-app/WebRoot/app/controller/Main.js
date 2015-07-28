@@ -38,7 +38,7 @@ Ext.define('YourTour.controller.Main', {
     },
     
     onHomeTap:function(){
-    	this.show('homemain','YourTour.view.home.Main');
+    	this.show('homemain','YourTour.view.home.HomeMain');
     },
     
     onRouteTap:function(){

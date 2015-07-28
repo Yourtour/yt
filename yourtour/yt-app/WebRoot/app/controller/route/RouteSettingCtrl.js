@@ -1,4 +1,4 @@
-Ext.define('YourTour.controller.route.NewCtrl', {
+Ext.define('YourTour.controller.route.RouteSettingCtrl', {
     extend: 'YourTour.controller.BaseCtrl',
     requires:['YourTour.store.RouteStore', 'YourTour.model.RouteModel'],
     config: {
@@ -6,19 +6,19 @@ Ext.define('YourTour.controller.route.NewCtrl', {
        },
        
        control:{
-       	   '#newrouteview #add':{
+       	   '#RouteSettingView #add':{
        	   	   tap:"addDestinationPlace"	
        	   },
        	   
-    	   "#newrouteview #close":{
+    	   "#RouteSettingView #close":{
     		   tap:"OnCloseClick"
     	   },
     	   
-    	   '#newrouteview #place':{
+    	   '#RouteSettingView #place':{
     		   focus:"addStartPlace"
     	   },
     	   
-    	   '#newrouteview #next':{
+    	   '#RouteSettingView #next':{
     		   tap:'OnNextClick'
     	   }
        },
@@ -49,6 +49,6 @@ Ext.define('YourTour.controller.route.NewCtrl', {
     },
     
     showNewRouteView:function(){
-    	this.show("newrouteview","YourTour.view.route.NewView");
+    	this.show("RouteSettingView","YourTour.view.route.RouteSettingView");
     }
 });

@@ -10,6 +10,10 @@ Ext.define('YourTour.view.widget.XToolbar', {
     
     constructor: function(config) {
     	var items = config.items;
+    	if(items == null){
+    		items = [];
+    		config.items = items;
+    	}
     	
     	items.unshift({xtype:'spacer',flex:1});
 		items.unshift({xtype:'label', itemId:'title',html:'afdafads'});
@@ -19,8 +23,6 @@ Ext.define('YourTour.view.widget.XToolbar', {
             	src:'resources/icons/icon_back.png'
 		});	
     	
-		console.log(config);
-		
     	this.callParent(arguments);
     },
     

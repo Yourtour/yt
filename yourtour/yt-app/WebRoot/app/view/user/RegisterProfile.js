@@ -1,7 +1,7 @@
 Ext.define('YourTour.view.user.RegisterProfile', {
     extend: 'Ext.Panel',
     xtype: 'registerprofile',
-    requires:['Ext.Panel', 'Ext.TitleBar', 'Ext.field.Radio', 'Ext.Img','YourTour.view.widget.Button'],
+    requires:['Ext.Panel', 'Ext.TitleBar', 'Ext.field.Radio', 'Ext.Img','YourTour.view.widget.XButton'],
     config: {
     	itemId:'registerprofile',
     	id:'registerprofile',
@@ -137,7 +137,7 @@ Ext.define('YourTour.view.user.RegisterProfile', {
             },
             
             {
-            	xtype:'ytButton',
+            	xtype:'xbutton',
             	margin:'10 0 0 0',
             	id:'btnRegisterDone',
             	text:'注册',

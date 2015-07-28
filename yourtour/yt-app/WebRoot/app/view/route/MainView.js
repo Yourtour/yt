@@ -1,14 +1,10 @@
 Ext.define('YourTour.view.route.MainView', {
-    extend: 'Ext.Panel',
+    extend: 'YourTour.view.widget.XPage',
     xtype: 'routemainview',
-    requires:['Ext.Carousel', 'YourTour.view.widget.TitleBar', 'YourTour.view.widget.ToolButton', 'Ext.field.Hidden'],
-    
+    requires:['Ext.Carousel', 'YourTour.view.widget.XTitleBar', 'YourTour.view.widget.ToolButton', 'Ext.field.Hidden'],
     config: {
-    	itemId:'routemainview',
     	id:'routemainview',
-    	fullscreen: true,
     	layout:'vbox',
-    	baseCls:'page',
         items: [
 			{
 			    xtype: 'hiddenfield',
@@ -16,10 +12,17 @@ Ext.define('YourTour.view.route.MainView', {
 			    value: 123
 			},    
             {
-            	xtype: '_titlebar',
-                docked: 'top',
+            	xtype: 'xtitlebar',
                 title: '行程',
                 items:[
+                	{
+	                	xtype: "toolbutton", 
+	                    ui: "normal", 
+	                	text:'管理',
+	                	itemId:'manage',
+	                	align:'left'
+	                },
+	                
 	                {
 	                	xtype: "toolbutton", 
 	                    ui: "normal", 

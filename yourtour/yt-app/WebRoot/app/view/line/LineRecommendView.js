@@ -1,17 +1,17 @@
 Ext.define('YourTour.view.line.LineRecommendView', {
-    extend: 'Ext.Panel',
+    extend: 'YourTour.view.widget.XPage',
     requires:['Ext.Panel','Ext.Img', 'Ext.DataView','YourTour.view.widget.XToolbar', 'Ext.Spacer','YourTour.view.widget.XBack','YourTour.view.widget.ToolButton','YourTour.view.line.LineRecommendItem'],
     xtype: 'LineRecommendView',
     config: {
     	id:'LineRecommendView',
     	itemId:'LineRecommendView',
     	
-    	fullscreen: true,
     	layout:'vbox',
     	
         items: [
         	{    
 				xtype: 'xtoolbar',
+				title:'线路推荐',
 				items:[
 					{
 						xtype:'spacer'

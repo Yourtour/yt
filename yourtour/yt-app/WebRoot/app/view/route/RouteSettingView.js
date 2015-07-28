@@ -1,35 +1,19 @@
-Ext.define('YourTour.view.route.NewView', {
-    extend: 'Ext.form.Panel',
-    requires:['Ext.field.DatePicker','Ext.field.Select', 'YourTour.view.widget.SubTitleBar', 'YourTour.view.widget.XToolbar', 'YourTour.view.widget.ToolButton', 'YourTour.view.widget.XLabel', 'YourTour.view.widget.XField', 'Ext.field.Text'],
-    xtype: 'newrouteview',
+Ext.define('YourTour.view.route.RouteSettingView', {
+    extend: 'YourTour.view.widget.XPage',
+    requires:['Ext.form.Panel', 'Ext.field.DatePicker','Ext.field.Select', 'YourTour.view.widget.SubTitleBar', 'YourTour.view.widget.XToolbar', 'YourTour.view.widget.ToolButton', 'YourTour.view.widget.XLabel', 'YourTour.view.widget.XField', 'Ext.field.Text'],
+    xtype: 'RouteSettingView',
     config: {
-    	itemId:'newrouteview',
-    	id:'newrouteview',
-    	fullscreen: true,
+    	id:'RouteSettingView',
+    	itmeId:'RouteSettingView',
     	layout:'vbox',
     	scrollable:'none',
-    	baseCls:'page',
     	defaults:{
     		labelWidth: '20'
 		},
         items: [
             {    
 				xtype: 'xtoolbar',
-				title: '行程规划',
-				items:[{
-					xtype: "toolbutton", 
-	                    ui: "normal", 
-	                	text:'新建',
-	                	itemId:'new',
-	                	align:'right'
-				},
-				{
-					xtype: "toolbutton", 
-	                    ui: "normal", 
-	                	text:'新建1',
-	                	itemId:'new1',
-	                	align:'right'
-				}]			
+				title: '行程规划'		
 			},
 			
 			{  
@@ -147,7 +131,7 @@ Ext.define('YourTour.view.route.NewView', {
             	]
             },
             {
-            	xtype:'ytButton',
+            	xtype:'xbutton',
             	margin:'10 0 0 0',
             	itemId:'next',
             	text:'下一步'

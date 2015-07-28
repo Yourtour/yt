@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.route.schedule.SceneScheduleView', {
     extend: 'Ext.Container',
-    requires:['Ext.Panel','YourTour.view.widget.ToggleField','YourTour.view.widget.TitleBar'],
+    requires:['Ext.Panel','YourTour.view.widget.ToggleField','YourTour.view.widget.XToolbar'],
     xtype: 'scenescheduleview',
     config: {
     	itemId:'scenescheduleview',
@@ -14,7 +14,7 @@ Ext.define('YourTour.view.route.schedule.SceneScheduleView', {
     	},
     	items:[
     		{    
-				xtype: '_titlebar',
+				xtype: 'xtoolbar',
 				docked: 'top',
 				title: '游玩安排',
 				items:[

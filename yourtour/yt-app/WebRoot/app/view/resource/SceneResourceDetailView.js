@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.resource.SceneResourceDetailView', {
     extend: 'Ext.Container',
-    requires:['Ext.Panel','YourTour.view.widget.ToggleField','YourTour.view.widget.TitleBar'],
+    requires:['Ext.Panel','YourTour.view.widget.ToggleField','YourTour.view.widget.XToolbar'],
     xtype: 'SceneResourceDetailView',
     config: {
     	itemId:'SceneResourceDetailView',
@@ -14,7 +14,7 @@ Ext.define('YourTour.view.resource.SceneResourceDetailView', {
     	},
     	items:[
     		{    
-				xtype: '_titlebar',
+				xtype: 'xtoolbar',
 				docked: 'top',
 				title: '景点资源',
 				items:[

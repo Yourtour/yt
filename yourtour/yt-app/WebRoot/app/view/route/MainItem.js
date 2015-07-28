@@ -1,7 +1,7 @@
 Ext.define('YourTour.view.route.MainItem', {
     extend: 'Ext.Panel',
     xtype: 'routemainitem',
-    requires:['Ext.Label', 'Ext.Img','YourTour.view.widget.MarkedLabel', 'Ext.Toolbar', 'YourTour.view.widget.XLabel', 'YourTour.view.widget.XField'],
+    requires:['Ext.Label', 'Ext.Img','Ext.Toolbar', 'YourTour.view.widget.MarkedLabel', 'YourTour.view.widget.XLabel', 'YourTour.view.widget.XField'],
     config: {
     	itemId:'routemainitem',
     	layout:'vbox',
@@ -49,81 +49,57 @@ Ext.define('YourTour.view.route.MainItem', {
 	    				mode : 'tag',
 	    				src:'resources/icons/icon_expense.png',
 		              	itemId:'btnCharge'  
-		            },
-		           	{
-		              	xtype : 'image',
-	    				mode : 'tag',
-	    				src:'resources/icons/icon_diary.png',
-		              	itemId:'btnDiary'  
-		           	}     
+		            }   
 			   ]
 		    },
 			
-			{
-            	xtype:'panel',
-            	layout:'hbox',
-            	padding:5,
-            	cls:'row underline',
-            	items:[
-            	   {
-            		   xtype:'image',
-            		   src:'resources/icons/icon_mobile.png',
-            		   mode : 'tag'
-            	   },
-            	   
-            	   {
-            		   xtype:'xfield',
-            		   itemId:'time',
-            		   flex:1,
-            		   margin:'0 0 0 5'
-            	   } 
-            	]
-            },
-            
-            {
-            	xtype:'panel',
-            	layout:'hbox',
-            	cls:'row underline',
-            	padding:'5',
-            	items:[
-            	   {
-            		   xtype:'image',
-            		   src:'resources/icons/icon_mobile.png',
-            		   mode : 'tag'
-            	   },
-            	   {
-            		   xtype:'xfield',
-            		   itemId:'places',
-            		   flex:1,
-            		   margin:'0 0 0 5'
-            	   } 
-            	]
-            },
-			{
-            	xtype:'panel',
-            	layout:'hbox',
-            	cls:'row underline',
-            	padding:'5',
-            	items:[
-            	   {
-            		   xtype:'image',
-            		   src:'resources/icons/icon_mobile.png',
-            		   mode : 'tag'
-            	   },
-            	   
-            	   {
-            		   xtype:'xfield',
-            		   itemId:'lineName',
-            		   flex:1,
-            		   margin:'0 0 0 5'
-            	   } 
-            	]
-            },
-            {
-            	xtype:'panel',
-            	style:'background:#fff',
-            	flex:1
-           	}
+		    {
+		    	xtype:'panel',
+		    	padding:'10 10 10 10',
+		    	items:[
+				    {
+		    		   	xtype:'xlabel',
+		    		   	cls:'font-bold font-large',
+						html:'旅行线路:'
+		    		},
+		            
+					{
+		    		   xtype:'xfield',
+		    		   itemId:'lineName',
+		    		   cls:'multilineinfo',
+		    		   margin:'5 0 0 0'
+		            },
+		            
+		            {
+		    		   	xtype:'xlabel',
+		    		   	cls:'font-bold font-large',
+						html:'旅行时间:',
+						margin:'10 0 0 0'
+		    		},
+		            
+					{
+		    		   xtype:'xfield',
+		    		   itemId:'time',
+		    		   margin:'5 0 0 0'
+		            },
+		            
+		            {
+		    		   	xtype:'xlabel',
+		    		   	cls:'font-bold font-large',
+						html:'旅行印象:',
+						margin:'10 0 0 0'
+		    		},
+		            
+					{
+		    		   xtype:'xfield',
+		    		   itemId:'impression',
+		    		   cls:'multilineinfo',
+		    		   margin:'5 0 0 0',
+		    		   minHeight:20,
+		    		   maxHeight:40
+		            }
+		    	]
+		    }
         ]
     },
     
@@ -138,13 +114,13 @@ Ext.define('YourTour.view.route.MainItem', {
  	 	   name.setHtml(record.get('name'));
  	 	   
  	 	   var time = me.down('#time');
- 	 	   time.setHtml('2015/12/01~2015/12/10');
-	 	   
-	 	   var places = me.down('#places');
-	 	   places.setHtml('四川成都');
-	 	   
- 	 	   var line = me.down('#lineName');
- 	 	   line.setHtml(record.get('lineName'));
+ 	 	   time.setHtml(record.get('startTime') +'-' + record.get('endTime') + '(' + record.get('period')+')');
+ 	 	   
+ 	 	   var lineName = me.down('#lineName');
+ 	 	   lineName.setHtml(record.get('lineName'));
+ 	 	   
+ 	 	   var impression = me.down('#impression');
+ 	 	   impression.setHtml(Ext.String.ellipsis(record.get('impression'),70,false));
  	 	}
      }   
 });

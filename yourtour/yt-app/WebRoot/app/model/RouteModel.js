@@ -9,7 +9,7 @@ Ext.define('YourTour.model.RouteModel', {
 	            {name:'imageUrls', type:'string'},
 	    		{name:'name', type:'string'},
 	    		{name:'lineName', type:'string'},
-	    		{name:'feeling', type:'string'},
+	    		{name:'impression', type:'string'},
 	    		{name:'startTime', type:'string'},
 	    		{name:'endTime', type:'string'},
 	    		{name:'period', type:'string'},

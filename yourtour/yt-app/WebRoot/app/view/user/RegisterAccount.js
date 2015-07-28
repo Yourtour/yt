@@ -1,7 +1,7 @@
 Ext.define('YourTour.view.user.RegisterAccount', {
     extend: 'Ext.Panel',
     xtype: 'registeraccount',
-    requires:['Ext.Panel', 'Ext.Img','YourTour.view.widget.Button'],
+    requires:['Ext.Panel', 'Ext.Img','YourTour.view.widget.XButton'],
     config: {
     	itemId:'registeraccount',
     	id:'registeraccount',
@@ -86,7 +86,7 @@ Ext.define('YourTour.view.user.RegisterAccount', {
             	]
             },
             {
-            	xtype:'ytButton',
+            	xtype:'xbutton',
             	id:'btnRegisterProfile',
             	margin:'10 0 0 0',
             	text:'下一步'

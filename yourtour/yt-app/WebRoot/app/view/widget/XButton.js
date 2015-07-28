@@ -1,6 +1,6 @@
-Ext.define('YourTour.view.widget.Button', {
+Ext.define('YourTour.view.widget.XButton', {
     extend: 'Ext.Button',
-    xtype: 'ytButton',
+    xtype: 'xbutton',
     config: {
     	baseCls:'button'
     }

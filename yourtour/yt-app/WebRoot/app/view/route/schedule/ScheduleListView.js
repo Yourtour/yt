@@ -1,14 +1,15 @@
 Ext.define('YourTour.view.route.schedule.ScheduleListView', {
-    extend: 'Ext.Container',
+    extend: 'YourTour.view.widget.XPage',
     requires:['YourTour.view.route.schedule.ScheduleListItem','Ext.Panel','YourTour.view.widget.XToolbar','YourTour.view.route.schedule.ScheduleDataView'],
     xtype: 'ScheduleListView',
     config: {
     	itemId:'ScheduleListView',
     	id:'ScheduleListView',
-    	fullscreen:true,
     	layout:'vbox',
-    	baseCls:'page',
-    	
+		scrollable: {
+    	    direction: 'vertical',
+    	    indicators: false	
+    	},    	
     	items:[
     		{    
 				xtype: 'xtoolbar',
@@ -58,7 +59,7 @@ Ext.define('YourTour.view.route.schedule.ScheduleListView', {
     			xtype:'ScheduleDataView',
     			cls:'space-top',
     			readonly:false,
-    			flex:1,
+    			scrollable:null,
     			
 		    	/**
 		         * Tell the dataview to use components for each item

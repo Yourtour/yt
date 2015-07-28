@@ -18,7 +18,7 @@ Ext.application({
     ],
 
     views: [
-        'MainView','Launch','home.Main','SearchMain','route.MainView','route.NewView','common.PlaceView',
+        'MainView','Launch','home.HomeMain','SearchMain','route.MainView','route.RouteSettingView','common.PlaceView',
         'line.LineRecommendView','line.LineIntroductionView',
         'route.schedule.ScheduleListView','route.schedule.SceneScheduleView','route.schedule.HotelScheduleView','route.schedule.FoodScheduleView',
         'user.LoginView','user.RegisterView',
@@ -26,7 +26,7 @@ Ext.application({
     ],
     
     controllers: [
-        'Launch', 'Main', 'route.MainCtrl','route.NewCtrl','route.ScheduleCtrl', 'line.LineRecommendCtrl','line.LineIntroductionCtrl','common.PlaceCtrl','user.Main',
+        'Launch', 'Main', 'route.MainCtrl','route.RouteSettingCtrl','route.ScheduleCtrl', 'line.LineRecommendCtrl','line.LineIntroductionCtrl','common.PlaceCtrl','user.Main',
         'resource.SelectionCtrl','route.ScheduleReferenceCtrl','resource.ResourceCtrl'
     ],
     

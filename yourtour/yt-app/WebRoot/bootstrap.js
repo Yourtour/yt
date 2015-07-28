@@ -652,7 +652,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.controller.resource.ResourceCtrl": [],
   "YourTour.controller.resource.SelectionCtrl": [],
   "YourTour.controller.route.MainCtrl": [],
-  "YourTour.controller.route.NewCtrl": [],
+  "YourTour.controller.route.RouteSettingCtrl": [],
   "YourTour.controller.route.ScheduleCtrl": [],
   "YourTour.controller.route.ScheduleReferenceCtrl": [],
   "YourTour.controller.user.Main": [],
@@ -675,7 +675,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.SearchMain": [],
   "YourTour.view.common.PlaceView": [],
   "YourTour.view.community.Main": [],
-  "YourTour.view.home.Main": [],
+  "YourTour.view.home.HomeMain": [],
   "YourTour.view.line.LineIntroductionView": [],
   "YourTour.view.line.LineRecommendItem": [],
   "YourTour.view.line.LineRecommendView": [],
@@ -686,7 +686,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.resource.SelectionListView": [],
   "YourTour.view.route.MainItem": [],
   "YourTour.view.route.MainView": [],
-  "YourTour.view.route.NewView": [],
+  "YourTour.view.route.RouteSettingView": [],
   "YourTour.view.route.Schedule": [],
   "YourTour.view.route.schedule.FoodScheduleView": [],
   "YourTour.view.route.schedule.HotelScheduleView": [],
@@ -701,20 +701,22 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.user.RegisterAuthentication": [],
   "YourTour.view.user.RegisterProfile": [],
   "YourTour.view.user.RegisterView": [],
-  "YourTour.view.widget.Button": [],
   "YourTour.view.widget.MarkedLabel": [],
   "YourTour.view.widget.NoScrollDataView": [],
   "YourTour.view.widget.SubTitleBar": [],
   "YourTour.view.widget.TapLabel": [],
   "YourTour.view.widget.TapPanel": [],
-  "YourTour.view.widget.TitleBar": [],
   "YourTour.view.widget.ToggleField": [],
   "YourTour.view.widget.ToolButton": [],
   "YourTour.view.widget.VDataItem": [],
   "YourTour.view.widget.XBack": [],
   "YourTour.view.widget.XBoldLabel": [],
+  "YourTour.view.widget.XButton": [],
+  "YourTour.view.widget.XDataView": [],
   "YourTour.view.widget.XField": [],
   "YourTour.view.widget.XLabel": [],
+  "YourTour.view.widget.XPage": [],
+  "YourTour.view.widget.XTitleBar": [],
   "YourTour.view.widget.XToolbar": []
 });
 Ext.ClassManager.addNameAliasMappings({
@@ -1446,7 +1448,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.controller.resource.ResourceCtrl": [],
   "YourTour.controller.resource.SelectionCtrl": [],
   "YourTour.controller.route.MainCtrl": [],
-  "YourTour.controller.route.NewCtrl": [],
+  "YourTour.controller.route.RouteSettingCtrl": [],
   "YourTour.controller.route.ScheduleCtrl": [],
   "YourTour.controller.route.ScheduleReferenceCtrl": [],
   "YourTour.controller.user.Main": [],
@@ -1483,7 +1485,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.community.Main": [
     "widget.communityview"
   ],
-  "YourTour.view.home.Main": [
+  "YourTour.view.home.HomeMain": [
     "widget.homemain"
   ],
   "YourTour.view.line.LineIntroductionView": [
@@ -1516,8 +1518,8 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.route.MainView": [
     "widget.routemainview"
   ],
-  "YourTour.view.route.NewView": [
-    "widget.newrouteview"
+  "YourTour.view.route.RouteSettingView": [
+    "widget.RouteSettingView"
   ],
   "YourTour.view.route.Schedule": [
     "widget.routenew"
@@ -1561,9 +1563,6 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.user.RegisterView": [
     "widget.registerview"
   ],
-  "YourTour.view.widget.Button": [
-    "widget.ytButton"
-  ],
   "YourTour.view.widget.MarkedLabel": [
     "widget.markedlabel"
   ],
@@ -1579,9 +1578,6 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.widget.TapPanel": [
     "widget.tappanel"
   ],
-  "YourTour.view.widget.TitleBar": [
-    "widget._titlebar"
-  ],
   "YourTour.view.widget.ToggleField": [
     "widget.yttogglefield"
   ],
@@ -1595,11 +1591,23 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.widget.XBoldLabel": [
     "widget.xlabel"
   ],
+  "YourTour.view.widget.XButton": [
+    "widget.xbutton"
+  ],
+  "YourTour.view.widget.XDataView": [
+    "widget.xdataview"
+  ],
   "YourTour.view.widget.XField": [
     "widget.xfield"
   ],
   "YourTour.view.widget.XLabel": [
     "widget.xlabel"
+  ],
+  "YourTour.view.widget.XPage": [
+    "widget.xpage"
+  ],
+  "YourTour.view.widget.XTitleBar": [
+    "widget.xtitlebar"
   ],
   "YourTour.view.widget.XToolbar": [
     "widget.xtoolbar"

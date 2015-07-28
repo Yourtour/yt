@@ -1,14 +1,14 @@
-Ext.define('YourTour.view.home.Main', {
+Ext.define('YourTour.view.home.HomeMain', {
     extend: 'Ext.Panel',
     xtype: 'homemain',
-    requires:['Ext.Panel', 'Ext.TitleBar', 'Ext.Toolbar'],
+    requires:['Ext.Panel', 'YourTour.view.widget.XTitleBar'],
     config: {
     	fullscreen: true,
     	id:'homemain',
     	layout:'vbox',
         items: [
             {
-            	xtype: 'titlebar',
+            	xtype: 'xtitlebar',
                 docked: 'top',
                 title: '中国,上海',
             	items:[{

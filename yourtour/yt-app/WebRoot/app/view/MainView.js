@@ -39,7 +39,7 @@ Ext.define('YourTour.view.MainView', {
 		            },
 		            {
 		                itemId:'btnRoute',
-		                text:'行程',
+		                text:'旅行',
 		                iconCls:'home',
 		                iconAlign:'top'
 		            },

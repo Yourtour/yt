@@ -1,7 +1,7 @@
 Ext.define('YourTour.view.resource.SelectionListView', {
     extend: 'Ext.Panel',
     xtype: 'SelectionListView',
-    requires:['YourTour.view.widget.TitleBar', 'Ext.field.Select','YourTour.view.widget.ToolButton','YourTour.view.resource.SelectionListItem'],
+    requires:['YourTour.view.widget.XToolbar', 'Ext.field.Select','YourTour.view.widget.ToolButton','YourTour.view.resource.SelectionListItem'],
     
     config: {
     	itemId:'SelectionListView',
@@ -11,7 +11,7 @@ Ext.define('YourTour.view.resource.SelectionListView', {
     	baseCls:'page',
         items: [
             {
-            	xtype: '_titlebar',
+            	xtype: 'xtoolbar',
                 docked: 'top',
                 title: '资源查询',
                 items:[{

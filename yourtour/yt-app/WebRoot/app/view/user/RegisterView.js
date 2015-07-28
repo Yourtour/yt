@@ -1,7 +1,7 @@
 Ext.define('YourTour.view.user.RegisterView', {
     extend: 'Ext.Panel',
     xtype: 'registerview',
-    requires:['Ext.Panel', 'YourTour.view.widget.TitleBar', 'YourTour.view.user.RegisterAuthentication','Ext.field.Text', 'YourTour.view.user.RegisterAccount','YourTour.view.user.RegisterProfile'],
+    requires:['Ext.Panel', 'YourTour.view.widget.XTitleBar', 'YourTour.view.user.RegisterAuthentication','Ext.field.Text', 'YourTour.view.user.RegisterAccount','YourTour.view.user.RegisterProfile'],
     config: {
     	itemId:'registerview',
     	id:'registerview',
@@ -9,7 +9,7 @@ Ext.define('YourTour.view.user.RegisterView', {
     	layout:'vbox',
         items: [
             {
-            	xtype: '_titlebar',
+            	xtype: 'xtitlebar',
                 docked: 'top',
                 title: '会员注册',
             	items:[{
