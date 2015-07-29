@@ -318,7 +318,7 @@ public class CrudGeneralOperate implements ICrudOperate {
 		} catch (IOException ex) {
 			throw new Exception(String.format(
 					"Get the data[class=%s, rowkey=%s] fail.", clazz.getName(),
-					rowKey));
+					rowKey), ex);
 		}
 	}
 

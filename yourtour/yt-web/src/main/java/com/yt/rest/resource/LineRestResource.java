@@ -2,6 +2,7 @@ package com.yt.rest.resource;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -19,6 +20,7 @@ import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.stereotype.Component;
 
 import com.yt.business.bean.LineBean;
+import com.yt.business.repository.LineBeanRepository;
 import com.yt.error.StaticErrorEnum;
 import com.yt.rsal.neo4j.repository.ICrudOperate;
 import com.yt.rsal.neo4j.repository.IFullTextSearchOperate;
@@ -40,6 +42,9 @@ public class LineRestResource {
 	@Autowired
 	private IFullTextSearchOperate ftsOperate;
 
+	@Autowired
+	private LineBeanRepository lineRepo;
+
 	@SuppressWarnings("unchecked")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -52,7 +57,7 @@ public class LineRestResource {
 				if (bean == null) {
 					continue;
 				}
-				LineVO vo = bean2VO(bean);
+				LineVO vo = LineVO.transform(bean);
 				list.add(vo);
 			}
 		} catch (Exception ex) {
@@ -61,36 +66,6 @@ public class LineRestResource {
 			}
 		}
 		return new ResponseVO<List<LineVO>>(list);
-	}
-
-	private LineVO bean2VO(LineBean bean) {
-		if (bean == null) {
-			return null;
-		}
-		LineVO vo = new LineVO();
-		vo.setArriveNum(bean.getArriveNum());
-		vo.setCommentIndex(bean.getCommentIndex());
-		vo.setCommentNum(bean.getCommentNum());
-		vo.setCommentScore(bean.getCommentNum());
-		vo.setCreatedTime(bean.getCreatedTime());
-		vo.setCreatedUserId(bean.getCreatedUserId());
-		vo.setFavoriteNum(bean.getFavoriteNum());
-		vo.setFeature(bean.getFeature());
-		vo.setGraphid(bean.getGraphId());
-		vo.setImageUrl(bean.getImageUrl());
-		vo.setIntro(bean.getIntro());
-		vo.setName(bean.getName());
-		vo.setPlace(bean.getPlace());
-		vo.setReason(bean.getReason());
-		vo.setRecommendIndex(bean.getRecommendIndex());
-		vo.setRowKey(bean.getRowKey());
-		vo.setShareNum(bean.getShareNum());
-		vo.setStatus(bean.getStatus());
-		vo.setTags(bean.getTags());
-		vo.setThumbupNum(bean.getThumbupNum());
-		vo.setUpdatedTime(bean.getUpdatedTime());
-		vo.setUpdatedUserId(bean.getUpdatedUserId());
-		return vo;
 	}
 
 	@GET
@@ -111,7 +86,7 @@ public class LineRestResource {
 				return new ResponseVO<LineVO>(
 						StaticErrorEnum.THE_DATA_NOT_EXIST);
 			}
-			LineVO vo = bean2VO(bean);
+			LineVO vo = LineVO.transform(bean);
 			return new ResponseVO<LineVO>(vo);
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
@@ -149,7 +124,7 @@ public class LineRestResource {
 			return;
 		}
 		try {
-			LineBean bean = vo2Bean(vo);
+			LineBean bean = LineVO.transform(vo);
 			crudOperate.save(bean, true);
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
@@ -158,36 +133,6 @@ public class LineRestResource {
 								vo.getRowKey()), ex);
 			}
 		}
-	}
-
-	private LineBean vo2Bean(LineVO vo) {
-		if (vo == null) {
-			return null;
-		}
-		LineBean bean = new LineBean();
-		bean.setArriveNum(vo.getArriveNum());
-		bean.setCommentIndex(vo.getCommentIndex());
-		bean.setCommentNum(vo.getCommentNum());
-		bean.setCommentScore(vo.getCommentScore());
-		bean.setCreatedTime(vo.getCreatedTime());
-		bean.setCreatedUserId(vo.getCreatedUserId());
-		bean.setFavoriteNum(vo.getFavoriteNum());
-		bean.setFeature(vo.getFeature());
-		bean.setGraphId(vo.getGraphid());
-		bean.setImageUrl(vo.getImageUrl());
-		bean.setIntro(vo.getIntro());
-		bean.setName(vo.getName());
-		bean.setPlace(vo.getPlace());
-		bean.setReason(vo.getReason());
-		bean.setRecommendIndex(vo.getRecommendIndex());
-		bean.setRowKey(vo.getRowKey());
-		bean.setShareNum(vo.getShareNum());
-		bean.setStatus(vo.getStatus());
-		bean.setTags(vo.getTags());
-		bean.setThumbupNum(vo.getThumbupNum());
-		bean.setUpdatedTime(vo.getUpdatedTime());
-		bean.setUpdatedUserId(vo.getUpdatedUserId());
-		return bean;
 	}
 
 	@DELETE
@@ -212,19 +157,63 @@ public class LineRestResource {
 	}
 
 	@POST
-	@Path("")
+	@Path("recommand")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public ResponseVO<List<RecommandLineVO>> queryRecommandLine(
 			RecommandConditionVO condition) {
-		// TODO
-		return null;
+		if (condition == null) {
+			return new ResponseVO<List<RecommandLineVO>>(
+					StaticErrorEnum.THE_INPUT_IS_NULL);
+		}
+		String[] places = condition.getPlaces().split(",");
+		int dayNum = condition.getDayNum();
+		String[] scenes = condition.getScenes().split(",");
+		try {
+			List<LineBean> result = lineRepo.queryRecommandLine(places, dayNum,
+					scenes);
+			List<RecommandLineVO> list = new Vector<RecommandLineVO>(
+					result.size());
+			for (LineBean bean : result) {
+				if (bean == null) {
+					continue;
+				}
+				RecommandLineVO vo = new RecommandLineVO();
+				vo.setCommentIndex(bean.getCommentIndex());
+				vo.setCommentNum(bean.getCommentNum());
+				vo.setCommentScore(bean.getCommentScore());
+				vo.setFavoriteNum(bean.getFavoriteNum());
+				vo.setFeature(bean.getFeature());
+				vo.setGraphid(bean.getGraphId());
+				vo.setImageUrl(bean.getImageUrl());
+				vo.setName(bean.getName());
+				vo.setPlace(bean.getPlace());
+				vo.setReason(bean.getReason());
+				vo.setRecommendIndex(bean.getCommentIndex());
+				vo.setRowKey(bean.getRowKey());
+				vo.setShareNum(bean.getShareNum());
+				vo.setTags(bean.getTags());
+				vo.setThumbupNum(bean.getThumbupNum());
+				list.add(vo);
+			}
+			return new ResponseVO<List<RecommandLineVO>>(list);
+		} catch (Exception ex) {
+			if (LOG.isErrorEnabled()) {
+				LOG.error(
+						String.format(
+								"Fetch data fail, condition[places='%s', dayNum=%d, scenes='%s'].",
+								condition.getPlaces(), condition.getDayNum(),
+								condition.getScenes()), ex);
+			}
+			return new ResponseVO<List<RecommandLineVO>>(
+					StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
 	}
-	
+
 	public class RecommandConditionVO {
 		private String places, scenes;
 		private int dayNum;
-		
+
 		public RecommandConditionVO() {
 			super();
 		}
@@ -253,5 +242,5 @@ public class LineRestResource {
 			this.dayNum = dayNum;
 		}
 	}
-	
+
 }

@@ -12,7 +12,7 @@ import com.yt.dal.hbase.annotation.HbaseTable;
  *  行程费用实体BEAN，记录行程费用信息
  *  
  */
-@HbaseTable(name = "T_ROUTE_CHARGE_INFO")
+//@HbaseTable(name = "T_ROUTE_CHARGE_INFO")
 public class RouteChargeBean extends BaseBean {
 	private static final long serialVersionUID = 4796045583657054183L;
 	

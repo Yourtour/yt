@@ -10,7 +10,7 @@ import com.yt.dal.hbase.annotation.HbaseTable;
  * @author Tony.Zhang
  * 该实体定义达人申请信息
  */
-@HbaseTable(name = "T_EXPERT_APPLY_INFO")
+//@HbaseTable(name = "T_EXPERT_APPLY_INFO")
 public class ExpertApplyBean extends BaseBean {
 	private static final long serialVersionUID = -6977525800090683657L;
 	

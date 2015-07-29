@@ -11,7 +11,7 @@ import com.yt.dal.hbase.annotation.HbaseTable;
  * 该实体定义了系统中的所有关注信息
  * KeyValue  userId_type_targetId， type定义：10：被关注 11:关注用户 12:关注行程 13：关注线路 14：关注资源 15：关注直播 16：关注游记
  */
-@HbaseTable(name = "T_FAVORITE_INFO")
+//@HbaseTable(name = "T_FAVORITE_INFO")
 public class FavoriteBean extends BaseBean {
 	private static final long serialVersionUID = -6977525800090683657L;
 	

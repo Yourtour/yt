@@ -11,7 +11,7 @@ import com.yt.dal.hbase.annotation.HbaseTable;
  * @author Tony.Zhang
  * 该实体定义聊天会话消息
  */
-@HbaseTable(name = "T_MESSAGE_CONTENT_INFO")
+//@HbaseTable(name = "T_MESSAGE_CONTENT_INFO")
 public class MessageContentBean extends BaseBean {
 	private static final long serialVersionUID = -6977525800090683657L;
 	

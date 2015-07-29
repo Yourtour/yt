@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Vector;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.yt.business.bean.LineBean;
 import com.yt.business.bean.ResourceBean;
@@ -11,6 +12,7 @@ import com.yt.rsal.neo4j.bean.Neo4JBaseBean;
 import com.yt.rsal.neo4j.repository.IFullTextSearchOperate;
 import com.yt.rsal.neo4j.repository.IFullTextSearchOperate.QueryTerm;
 
+@Component
 public class LineBeanRespositoryImpl implements LineBeanRepository {
 
 	@Autowired

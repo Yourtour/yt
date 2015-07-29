@@ -10,7 +10,7 @@ import com.yt.dal.hbase.annotation.HbaseTable;
  * @author Tony.Zhang
  *  行程签到Bean
  */
-@HbaseTable(name = "T_ROUTE_CHECKIN_INFO")
+//@HbaseTable(name = "T_ROUTE_CHECKIN_INFO")
 public class RouteCheckinBean extends BaseBean {
 	private static final long serialVersionUID = 4796045583657054183L;
 	

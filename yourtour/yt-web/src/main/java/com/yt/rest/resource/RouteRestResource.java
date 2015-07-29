@@ -56,7 +56,7 @@ public class RouteRestResource {
 				if (bean == null) {
 					continue;
 				}
-				RouteVO vo = bean2VO(bean);
+				RouteVO vo = RouteVO.transform(bean);
 				list.add(vo);
 			}
 		} catch (Exception ex) {
@@ -65,32 +65,6 @@ public class RouteRestResource {
 			}
 		}
 		return new ResponseVO<List<RouteVO>>(list);
-	}
-
-	private RouteVO bean2VO(RouteBean bean) {
-		if (bean == null) {
-			return null;
-		}
-		RouteVO vo = new RouteVO();
-		vo.setCreatedTime(bean.getCreatedTime());
-		vo.setCreatedUserId(bean.getCreatedUserId());
-		vo.setEndTime(bean.getEndTime());
-		vo.setFeature(bean.getFeature());
-		vo.setGraphid(bean.getGraphId());
-		vo.setImageUrl(bean.getImageUrl());
-		vo.setIntro(bean.getIntro());
-		vo.setLineName(bean.getLineName());
-		vo.setName(bean.getName());
-		vo.setPeriod(bean.getPeriod());
-		vo.setPlace(bean.getPlace());
-		vo.setReason(bean.getReason());
-		vo.setRowKey(bean.getRowKey());
-		vo.setStartTime(bean.getStartTime());
-		vo.setStatus(bean.getStatus());
-		vo.setStep(bean.getStep());
-		vo.setUpdatedTime(bean.getUpdatedTime());
-		vo.setUpdatedUserId(bean.getUpdatedUserId());
-		return vo;
 	}
 
 	@GET
@@ -111,7 +85,7 @@ public class RouteRestResource {
 				return new ResponseVO<RouteVO>(
 						StaticErrorEnum.THE_DATA_NOT_EXIST);
 			}
-			RouteVO vo = bean2VO(bean);
+			RouteVO vo = RouteVO.transform(bean);
 			return new ResponseVO<RouteVO>(vo);
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
@@ -149,7 +123,7 @@ public class RouteRestResource {
 			return;
 		}
 		try {
-			RouteBean bean = vo2Bean(vo);
+			RouteBean bean = RouteVO.transform(vo);
 			crudOperate.save(bean, true);
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
@@ -158,30 +132,6 @@ public class RouteRestResource {
 								vo.getRowKey()), ex);
 			}
 		}
-	}
-
-	private RouteBean vo2Bean(RouteVO vo) {
-		if (vo == null) {
-			return null;
-		}
-		RouteBean bean = new RouteBean();
-		bean.setCreatedUserId(vo.getCreatedUserId());
-		bean.setEndTime(vo.getEndTime());
-		bean.setFeature(vo.getFeature());
-		bean.setGraphId(vo.getGraphid());
-		bean.setImageUrl(vo.getImageUrl());
-		bean.setIntro(vo.getIntro());
-		bean.setLineName(vo.getLineName());
-		bean.setName(vo.getName());
-		bean.setPeriod(vo.getPeriod());
-		bean.setPlace(vo.getPlace());
-		bean.setReason(vo.getReason());
-		bean.setRowKey(vo.getRowKey());
-		bean.setStartTime(vo.getStartTime());
-		bean.setStatus(vo.getStatus());
-		bean.setStep(vo.getStep());
-		bean.setUpdatedUserId(vo.getUpdatedUserId());
-		return bean;
 	}
 
 	@DELETE

@@ -18,6 +18,7 @@
 
 	<neo4j:config graphDatabaseService="graphDatabaseService"
 		base-package="com.yt.business.bean" />
+	<neo4j:repositories base-package="com.yt.business.repository" />
 	<bean id="graphDatabaseService"
 		class="org.springframework.data.neo4j.rest.SpringRestGraphDatabase">
 		<constructor-arg index="0"
@@ -26,9 +27,7 @@
 	<!--neo4j:config storeDirectory="data/yt.db" base-package="com.yt.business.bean" 
 		/ -->
 
-	<neo4j:repositories base-package="com.dscomm.iams.repository" />
-
-	<context:component-scan base-package="com.yt.rsal.neo4j.repository" />
+	<context:component-scan base-package="com.yt.rsal.neo4j.repository,com.yt.business.repository" />
 	<!--bean id="neo4jCRUD" class="com.yt.rsal.neo4j.repository.CrudGeneralOperate" />
 	<bean id="neo4jFTS" class="com.yt.rsal.neo4j.repository.FullTextSearchOperate" /-->
 

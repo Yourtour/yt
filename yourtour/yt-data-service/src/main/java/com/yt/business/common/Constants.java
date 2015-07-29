@@ -21,10 +21,10 @@ public interface Constants {
 		
 	//资源枚举
 	public static enum ResType{
-		SCENE("Scene","景点资源"), 
-		FOOD("Food","美食资源"), 
-		HOTEL("Hotel","住宿资源"), 
-		TRAFFIC("Traffic","交通资源");
+		SCENE("SCENE","景点资源"), 
+		FOOD("FOOD","美食资源"), 
+		HOTEL("HOTEL","住宿资源"), 
+		TRAFFIC("TRAFFIC","交通资源");
 		
 		public String code;
 		public String name;

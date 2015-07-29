@@ -11,7 +11,7 @@ import com.yt.dal.hbase.annotation.HbaseTable;
  * 资源相关达人，定义了和资源相关的达人
  *
  */
-@HbaseTable(name = "T_RESOURCE_EXPERT_INFO")
+//@HbaseTable(name = "T_RESOURCE_EXPERT_INFO")
 public class ResourceExpertBean extends BaseBean {
 	private static final long serialVersionUID = -8980153602025087935L;
 	

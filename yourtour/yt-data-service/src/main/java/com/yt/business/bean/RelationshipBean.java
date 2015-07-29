@@ -11,7 +11,7 @@ import com.yt.dal.hbase.annotation.HbaseTable;
  * 该实体定义实体之间的关系信息，便于简单查询。
  * 该Bean的rowkey格式为：sourceId_type_targetId
  */
-@HbaseTable(name = "T_RELATIONSHIP_INFO")
+//@HbaseTable(name = "T_RELATIONSHIP_INFO")
 public class RelationshipBean extends BaseBean {
 	private static final long serialVersionUID = -6977525800090683657L;
 	

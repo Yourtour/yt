@@ -72,7 +72,7 @@ public class LineBean extends Neo4JBaseBean {
 	String tags; // 标签
 
 	private @HbaseColumn(name = "cscore")
-	int commentScore; // 点评分数
+	double commentScore; // 点评分数
 	private @HbaseColumn(name = "cnum")
 	int commentNum; // 点评数
 	private @HbaseColumn(name = "tnum")
@@ -169,11 +169,11 @@ public class LineBean extends Neo4JBaseBean {
 		this.tags = tags;
 	}
 
-	public int getCommentScore() {
+	public double getCommentScore() {
 		return commentScore;
 	}
 
-	public void setCommentScore(int commentScore) {
+	public void setCommentScore(double commentScore) {
 		this.commentScore = commentScore;
 	}
 

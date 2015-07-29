@@ -57,16 +57,7 @@ public class PlaceBean extends Neo4JBaseBean {
 	private @HbaseColumn(name = "recm")
 	int recommended = 0; // 是否推荐 0:不推荐 1：推荐
 
-	private @HbaseColumn(name = "cuid")
-	transient String createdUserId = "";
-	private @HbaseColumn(name = "ct")
-	transient long createdTime;
-	private @HbaseColumn(name = "uuid")
-	transient String updatedUserId = "";
-	private @HbaseColumn(name = "ut")
-	transient long updatedTime;
-	private @HbaseColumn(name = "stat")
-	@Indexed
+	private @Indexed
 	Status status;
 
 	public PlaceBean() {
@@ -111,38 +102,6 @@ public class PlaceBean extends Neo4JBaseBean {
 
 	public void setRecommended(int recommended) {
 		this.recommended = recommended;
-	}
-
-	public String getCreatedUserId() {
-		return createdUserId;
-	}
-
-	public void setCreatedUserId(String createdUserId) {
-		this.createdUserId = createdUserId;
-	}
-
-	public long getCreatedTime() {
-		return createdTime;
-	}
-
-	public void setCreatedTime(long createdTime) {
-		this.createdTime = createdTime;
-	}
-
-	public String getUpdatedUserId() {
-		return updatedUserId;
-	}
-
-	public void setUpdatedUserId(String updatedUserId) {
-		this.updatedUserId = updatedUserId;
-	}
-
-	public long getUpdatedTime() {
-		return updatedTime;
-	}
-
-	public void setUpdatedTime(long updatedTime) {
-		this.updatedTime = updatedTime;
 	}
 
 	public Status getStatus() {

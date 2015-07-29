@@ -1,5 +1,6 @@
 package com.yt.vo;
 
+import com.yt.business.bean.LineBean;
 import com.yt.business.common.Constants.Status;
 
 public class LineVO {
@@ -19,12 +20,72 @@ public class LineVO {
 	private String place; // 目的地
 	private int arriveNum; // 到达人数
 	private String tags; // 标签
-	private int commentScore; // 点评分数
+	private double commentScore; // 点评分数
 	private int commentNum; // 点评数
 	private int thumbupNum; // 点赞数
 	private int favoriteNum; // 收藏数
 	private int shareNum; // 分享数
 	private Status status;
+
+	public static LineVO transform(LineBean bean) {
+		if (bean == null) {
+			return null;
+		}
+		LineVO vo = new LineVO();
+		vo.setArriveNum(bean.getArriveNum());
+		vo.setCommentIndex(bean.getCommentIndex());
+		vo.setCommentNum(bean.getCommentNum());
+		vo.setCommentScore(bean.getCommentNum());
+		vo.setCreatedTime(bean.getCreatedTime());
+		vo.setCreatedUserId(bean.getCreatedUserId());
+		vo.setFavoriteNum(bean.getFavoriteNum());
+		vo.setFeature(bean.getFeature());
+		vo.setGraphid(bean.getGraphId());
+		vo.setImageUrl(bean.getImageUrl());
+		vo.setIntro(bean.getIntro());
+		vo.setName(bean.getName());
+		vo.setPlace(bean.getPlace());
+		vo.setReason(bean.getReason());
+		vo.setRecommendIndex(bean.getRecommendIndex());
+		vo.setRowKey(bean.getRowKey());
+		vo.setShareNum(bean.getShareNum());
+		vo.setStatus(bean.getStatus());
+		vo.setTags(bean.getTags());
+		vo.setThumbupNum(bean.getThumbupNum());
+		vo.setUpdatedTime(bean.getUpdatedTime());
+		vo.setUpdatedUserId(bean.getUpdatedUserId());
+		return vo;
+	}
+
+	public static LineBean transform(LineVO vo) {
+		if (vo == null) {
+			return null;
+		}
+		LineBean bean = new LineBean();
+		bean.setArriveNum(vo.getArriveNum());
+		bean.setCommentIndex(vo.getCommentIndex());
+		bean.setCommentNum(vo.getCommentNum());
+		bean.setCommentScore(vo.getCommentScore());
+		bean.setCreatedTime(vo.getCreatedTime());
+		bean.setCreatedUserId(vo.getCreatedUserId());
+		bean.setFavoriteNum(vo.getFavoriteNum());
+		bean.setFeature(vo.getFeature());
+		bean.setGraphId(vo.getGraphid());
+		bean.setImageUrl(vo.getImageUrl());
+		bean.setIntro(vo.getIntro());
+		bean.setName(vo.getName());
+		bean.setPlace(vo.getPlace());
+		bean.setReason(vo.getReason());
+		bean.setRecommendIndex(vo.getRecommendIndex());
+		bean.setRowKey(vo.getRowKey());
+		bean.setShareNum(vo.getShareNum());
+		bean.setStatus(vo.getStatus());
+		bean.setTags(vo.getTags());
+		bean.setThumbupNum(vo.getThumbupNum());
+		bean.setUpdatedTime(vo.getUpdatedTime());
+		bean.setUpdatedUserId(vo.getUpdatedUserId());
+		return bean;
+	}
 
 	public LineVO() {
 		super();
@@ -158,11 +219,11 @@ public class LineVO {
 		this.tags = tags;
 	}
 
-	public int getCommentScore() {
+	public double getCommentScore() {
 		return commentScore;
 	}
 
-	public void setCommentScore(int commentScore) {
+	public void setCommentScore(double commentScore) {
 		this.commentScore = commentScore;
 	}
 

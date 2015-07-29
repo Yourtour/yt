@@ -12,7 +12,7 @@ public class RecommandLineVO {
 	private double commentIndex; // 点评指数
 	private String place; // 目的地
 	private String tags; // 标签
-	private int commentScore; // 点评分数
+	private double commentScore; // 点评分数
 	private int commentNum; // 点评数
 	private int thumbupNum; // 点赞数
 	private int favoriteNum; // 收藏数
@@ -102,11 +102,11 @@ public class RecommandLineVO {
 		this.tags = tags;
 	}
 
-	public int getCommentScore() {
+	public double getCommentScore() {
 		return commentScore;
 	}
 
-	public void setCommentScore(int commentScore) {
+	public void setCommentScore(double commentScore) {
 		this.commentScore = commentScore;
 	}
 

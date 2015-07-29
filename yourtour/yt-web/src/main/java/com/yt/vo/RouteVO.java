@@ -1,5 +1,6 @@
 package com.yt.vo;
 
+import com.yt.business.bean.RouteBean;
 import com.yt.business.common.Constants.Status;
 
 public class RouteVO {
@@ -21,6 +22,56 @@ public class RouteVO {
 	private long endTime; // 安排结束时间，以秒为单位
 	private int period; // 安排持续时间， 以秒为单位
 	private Status status;
+
+	public static RouteVO transform(RouteBean bean) {
+		if (bean == null) {
+			return null;
+		}
+		RouteVO vo = new RouteVO();
+		vo.setCreatedTime(bean.getCreatedTime());
+		vo.setCreatedUserId(bean.getCreatedUserId());
+		vo.setEndTime(bean.getEndTime());
+		vo.setFeature(bean.getFeature());
+		vo.setGraphid(bean.getGraphId());
+		vo.setImageUrl(bean.getImageUrl());
+		vo.setIntro(bean.getIntro());
+		vo.setLineName(bean.getLineName());
+		vo.setName(bean.getName());
+		vo.setPeriod(bean.getPeriod());
+		vo.setPlace(bean.getPlace());
+		vo.setReason(bean.getReason());
+		vo.setRowKey(bean.getRowKey());
+		vo.setStartTime(bean.getStartTime());
+		vo.setStatus(bean.getStatus());
+		vo.setStep(bean.getStep());
+		vo.setUpdatedTime(bean.getUpdatedTime());
+		vo.setUpdatedUserId(bean.getUpdatedUserId());
+		return vo;
+	}
+
+	public static RouteBean transform(RouteVO vo) {
+		if (vo == null) {
+			return null;
+		}
+		RouteBean bean = new RouteBean();
+		bean.setCreatedUserId(vo.getCreatedUserId());
+		bean.setEndTime(vo.getEndTime());
+		bean.setFeature(vo.getFeature());
+		bean.setGraphId(vo.getGraphid());
+		bean.setImageUrl(vo.getImageUrl());
+		bean.setIntro(vo.getIntro());
+		bean.setLineName(vo.getLineName());
+		bean.setName(vo.getName());
+		bean.setPeriod(vo.getPeriod());
+		bean.setPlace(vo.getPlace());
+		bean.setReason(vo.getReason());
+		bean.setRowKey(vo.getRowKey());
+		bean.setStartTime(vo.getStartTime());
+		bean.setStatus(vo.getStatus());
+		bean.setStep(vo.getStep());
+		bean.setUpdatedUserId(vo.getUpdatedUserId());
+		return bean;
+	}
 
 	public RouteVO() {
 		super();
