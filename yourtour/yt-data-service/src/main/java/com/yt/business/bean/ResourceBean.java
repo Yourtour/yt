@@ -1,10 +1,12 @@
 package com.yt.business.bean;
 
+import org.springframework.data.neo4j.annotation.NodeEntity;
+
 import com.yt.business.common.Constants.ResType;
 import com.yt.business.common.Constants.Status;
-import com.yt.dal.hbase.BaseBean;
 import com.yt.dal.hbase.annotation.HbaseColumn;
 import com.yt.dal.hbase.annotation.HbaseTable;
+import com.yt.rsal.neo4j.bean.Neo4JBaseBean;
 
 /**
  * @author Tony.Zhang
@@ -13,7 +15,8 @@ import com.yt.dal.hbase.annotation.HbaseTable;
  *
  */
 @HbaseTable(name = "T_RESOURCE_INFO")
-public class ResourceBean extends BaseBean {
+@NodeEntity
+public class ResourceBean extends Neo4JBaseBean {
 	private static final long serialVersionUID = -8980153602025087935L;
 	
 	private 	@HbaseColumn(name = "name")				String 	name; 	//名称

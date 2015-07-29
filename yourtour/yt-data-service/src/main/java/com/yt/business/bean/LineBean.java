@@ -1,42 +1,92 @@
 package com.yt.business.bean;
 
+import org.springframework.data.neo4j.annotation.Indexed;
+import org.springframework.data.neo4j.annotation.NodeEntity;
+import org.springframework.data.neo4j.support.index.IndexType;
+
 import com.yt.business.common.Constants.Status;
-import com.yt.dal.hbase.BaseBean;
 import com.yt.dal.hbase.annotation.HbaseColumn;
 import com.yt.dal.hbase.annotation.HbaseTable;
+import com.yt.rsal.neo4j.bean.Neo4JBaseBean;
 
 /**
  * 
- * @author Tony.Zhang
  * 该实体定义了系统中的线路信息。线路相关的景点之间的关系通过图状数据库Neo4j存储
  * 
+ * 
+ * <p>
+ * <b>修改历史：</b>
+ * <table border="1">
+ * <tr>
+ * <th>修改时间</th>
+ * <th>修改人</th>
+ * <th>备注</th>
+ * </tr>
+ * <tr>
+ * <td>2015年6月2日</td>
+ * <td>Tony.Zhang</td>
+ * <td>Create</td>
+ * </tr>
+ * <tr>
+ * <td>2015年7月28日</td>
+ * <td>John.Peng</td>
+ * <td>根据定稿后的hbase和neo4j的操作模式进行修改完善。</td>
+ * </tr>
+ * </table>
+ * 
+ * @author Tony.Zhang
+ * 
+ * @version 1.0
+ * @since 1.0
  */
 @HbaseTable(name = "T_LINE_INFO")
-public class LineBean extends BaseBean {
+@NodeEntity
+public class LineBean extends Neo4JBaseBean {
 	private static final long serialVersionUID = -3433522673262851121L;
+	private static final String INDEX_NAME = "line";
 
-	private 	@HbaseColumn(name = "name")		String	 name;  //名称 
-	private 	@HbaseColumn(name = "img") 			String	 imageUrl;  //图片 
-	private 	@HbaseColumn(name = "intr")			String 	intro; 	//概述， 线路进行简单介绍
-	private 	@HbaseColumn(name = "feat")			String 	feature; 	//特点， 对线路特点进行简单描述
-	private 	@HbaseColumn(name = "reas")			String 	reason;  	//推荐理由，描述推荐理由
-	private	@HbaseColumn(name = "rind")			int 	recommendIndex; 	//推荐指数
-	private	@HbaseColumn(name = "ruid")			String 	recommendUserId; 	//推荐人
-	private	@HbaseColumn(name = "plac")			String 	place; 	//目的地
-	
-	private	@HbaseColumn(name = "anum")		int arriveNum; 	//到达人数
-	private	@HbaseColumn(name = "cscore")		int commentScore; 	//点评分数
-	private	@HbaseColumn(name = "cnum")		int commentNum; 	//点评数
-	private	@HbaseColumn(name = "fnum")			int favoriteNum; 	//收藏数
-	private	@HbaseColumn(name = "snum")			int shareNum; 	//分享数
-	
-	private 	@HbaseColumn(name = "cuid")	String createdUserId = "";
-	private 	@HbaseColumn(name = "ct")		long createdTime;
-	private 	@HbaseColumn(name = "uuid")	String updatedUserId = "";
-	private 	@HbaseColumn(name = "ut")		long updatedTime;
-	private 	@HbaseColumn(name = "stat")		Status	status;
-	
+	private @HbaseColumn(name = "name")
+	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
+	String name; // 名称
+	private @HbaseColumn(name = "img")
+	String imageUrl; // 图片
+	private @HbaseColumn(name = "intr")
+	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
+	String intro; // 概述， 线路进行简单介绍
+	private @HbaseColumn(name = "feat")
+	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
+	String feature; // 特点， 对线路特点进行简单描述
+	private @HbaseColumn(name = "reas")
+	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
+	String reason; // 推荐理由，描述推荐理由
+	private @HbaseColumn(name = "rind")
+	double recommendIndex; // 推荐指数
+	private @HbaseColumn(name = "cind")
+	double commentIndex; // 点评指数
+	private @HbaseColumn(name = "plac")
+	String place; // 目的地
+
+	private @HbaseColumn(name = "anum")
+	int arriveNum; // 到达人数
+	private @HbaseColumn(name = "tags")
+	String tags; // 标签
+
+	private @HbaseColumn(name = "cscore")
+	int commentScore; // 点评分数
+	private @HbaseColumn(name = "cnum")
+	int commentNum; // 点评数
+	private @HbaseColumn(name = "tnum")
+	int thumbupNum; // 点赞数
+	private @HbaseColumn(name = "fnum")
+	int favoriteNum; // 收藏数
+	private @HbaseColumn(name = "snum")
+	int shareNum; // 分享数
+
+	private @HbaseColumn(name = "stat")
+	Status status;
+
 	public LineBean() {
+		super();
 	}
 
 	public String getName() {
@@ -79,20 +129,20 @@ public class LineBean extends BaseBean {
 		this.reason = reason;
 	}
 
-	public int getRecommendIndex() {
+	public double getRecommendIndex() {
 		return recommendIndex;
 	}
 
-	public void setRecommendIndex(int recommendIndex) {
+	public void setRecommendIndex(double recommendIndex) {
 		this.recommendIndex = recommendIndex;
 	}
 
-	public String getRecommendUserId() {
-		return recommendUserId;
+	public double getCommentIndex() {
+		return commentIndex;
 	}
 
-	public void setRecommendUserId(String recommendUserId) {
-		this.recommendUserId = recommendUserId;
+	public void setCommentIndex(double commentIndex) {
+		this.commentIndex = commentIndex;
 	}
 
 	public String getPlace() {
@@ -111,6 +161,14 @@ public class LineBean extends BaseBean {
 		this.arriveNum = arriveNum;
 	}
 
+	public String getTags() {
+		return tags;
+	}
+
+	public void setTags(String tags) {
+		this.tags = tags;
+	}
+
 	public int getCommentScore() {
 		return commentScore;
 	}
@@ -127,6 +185,14 @@ public class LineBean extends BaseBean {
 		this.commentNum = commentNum;
 	}
 
+	public int getThumbupNum() {
+		return thumbupNum;
+	}
+
+	public void setThumbupNum(int thumbupNum) {
+		this.thumbupNum = thumbupNum;
+	}
+
 	public int getFavoriteNum() {
 		return favoriteNum;
 	}
@@ -141,38 +207,6 @@ public class LineBean extends BaseBean {
 
 	public void setShareNum(int shareNum) {
 		this.shareNum = shareNum;
-	}
-
-	public String getCreatedUserId() {
-		return createdUserId;
-	}
-
-	public void setCreatedUserId(String createdUserId) {
-		this.createdUserId = createdUserId;
-	}
-
-	public long getCreatedTime() {
-		return createdTime;
-	}
-
-	public void setCreatedTime(long createdTime) {
-		this.createdTime = createdTime;
-	}
-
-	public String getUpdatedUserId() {
-		return updatedUserId;
-	}
-
-	public void setUpdatedUserId(String updatedUserId) {
-		this.updatedUserId = updatedUserId;
-	}
-
-	public long getUpdatedTime() {
-		return updatedTime;
-	}
-
-	public void setUpdatedTime(long updatedTime) {
-		this.updatedTime = updatedTime;
 	}
 
 	public Status getStatus() {

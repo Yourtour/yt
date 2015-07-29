@@ -61,7 +61,7 @@ public interface IFullTextSearchOperate {
 			QueryTerm term) throws Exception;
 
 	/**
-	 * 根据指定的全文检索条件在指定的实体上进行全文检索，可以使用多组条件。
+	 * 根据指定的全文检索条件在指定的实体上进行全文检索，可以使用多组条件，默认条件连接符为“AND”。
 	 * 
 	 * @param clazz
 	 *            指定的实体类
@@ -73,5 +73,21 @@ public interface IFullTextSearchOperate {
 	 */
 	public List<Neo4JBaseBean> query(Class<? extends Neo4JBaseBean> clazz,
 			List<QueryTerm> terms) throws Exception;
+
+	/**
+	 * 根据指定的全文检索条件在指定的实体上进行全文检索，可以使用多组条件，采用指定的条件连接符。
+	 * 
+	 * @param clazz
+	 *            指定的实体类
+	 * @param terms
+	 *            检索条件集合
+	 * @param andJoin
+	 *            设置为true表示用AND连接条件，否则使用OR连接条件
+	 * @return 满足条件的实体对象集合
+	 * @throws Exception
+	 *             查询过程中发生的异常
+	 */
+	public List<Neo4JBaseBean> query(Class<? extends Neo4JBaseBean> clazz,
+			List<QueryTerm> terms, boolean andJoin) throws Exception;
 
 }

@@ -1,32 +1,24 @@
 package com.yt.vo;
 
-import com.yt.business.common.Constants.Status;
 
-public class LineVO {
+public class RecommandLineVO {
 	private Long graphid;
 	private String rowKey;
-	private String createdUserId = "";
-	private long createdTime;
-	private String updatedUserId = "";
-	private long updatedTime;
 	private String name; // 名称
 	private String imageUrl; // 图片
-	private String intro; // 概述， 线路进行简单介绍
 	private String feature; // 特点， 对线路特点进行简单描述
 	private String reason; // 推荐理由，描述推荐理由
 	private double recommendIndex; // 推荐指数
 	private double commentIndex; // 点评指数
 	private String place; // 目的地
-	private int arriveNum; // 到达人数
 	private String tags; // 标签
 	private int commentScore; // 点评分数
 	private int commentNum; // 点评数
 	private int thumbupNum; // 点赞数
 	private int favoriteNum; // 收藏数
 	private int shareNum; // 分享数
-	private Status status;
 
-	public LineVO() {
+	public RecommandLineVO() {
 		super();
 	}
 
@@ -46,38 +38,6 @@ public class LineVO {
 		this.rowKey = rowKey;
 	}
 
-	public String getCreatedUserId() {
-		return createdUserId;
-	}
-
-	public void setCreatedUserId(String createdUserId) {
-		this.createdUserId = createdUserId;
-	}
-
-	public long getCreatedTime() {
-		return createdTime;
-	}
-
-	public void setCreatedTime(long createdTime) {
-		this.createdTime = createdTime;
-	}
-
-	public String getUpdatedUserId() {
-		return updatedUserId;
-	}
-
-	public void setUpdatedUserId(String updatedUserId) {
-		this.updatedUserId = updatedUserId;
-	}
-
-	public long getUpdatedTime() {
-		return updatedTime;
-	}
-
-	public void setUpdatedTime(long updatedTime) {
-		this.updatedTime = updatedTime;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -92,14 +52,6 @@ public class LineVO {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
-	}
-
-	public String getIntro() {
-		return intro;
-	}
-
-	public void setIntro(String intro) {
-		this.intro = intro;
 	}
 
 	public String getFeature() {
@@ -140,14 +92,6 @@ public class LineVO {
 
 	public void setPlace(String place) {
 		this.place = place;
-	}
-
-	public int getArriveNum() {
-		return arriveNum;
-	}
-
-	public void setArriveNum(int arriveNum) {
-		this.arriveNum = arriveNum;
 	}
 
 	public String getTags() {
@@ -196,13 +140,5 @@ public class LineVO {
 
 	public void setShareNum(int shareNum) {
 		this.shareNum = shareNum;
-	}
-
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
 	}
 }

@@ -17,6 +17,7 @@ import org.springframework.data.neo4j.conversion.Result;
 import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.stereotype.Component;
 
+import com.yt.dal.hbase.IBaseBean;
 import com.yt.rsal.neo4j.bean.INeo4JBaseBean;
 import com.yt.rsal.neo4j.bean.Neo4JBaseBean;
 import com.yt.rsal.neo4j.bean.Neo4JSaveFailRecordBean;
@@ -136,6 +137,10 @@ public class CrudGeneralOperate implements ICrudOperate {
 		INeo4JBaseBean bean = get(clazz, rowKey);
 		if (bean != null) {
 			template.delete(bean);
+			if (bean instanceof IBaseBean) {
+				// 如果实现了IBaseBean，则同时在hbase中删除
+				hbaseCrud.deleteRow((IBaseBean) bean);
+			}
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String
 						.format("Delete the Neo4JBean success, rowKey: %s, graphId: %d.",
@@ -157,6 +162,10 @@ public class CrudGeneralOperate implements ICrudOperate {
 		long count = 0;
 		for (INeo4JBaseBean bean : result) {
 			template.delete(bean);
+			if (bean instanceof IBaseBean) {
+				// 如果实现了IBaseBean，则同时在hbase中删除
+				hbaseCrud.deleteRow((IBaseBean) bean);
+			}
 			count++;
 		}
 		if (LOG.isDebugEnabled()) {
@@ -178,9 +187,30 @@ public class CrudGeneralOperate implements ICrudOperate {
 			if (LOG.isWarnEnabled()) {
 				LOG.warn(msg);
 			}
-			return null;
+			throw new NullPointerException("The Neo4JBean is null.");
 		}
+		Class<? extends INeo4JBaseBean> clazz = neo4jBean.getClass();
+		// 判断该bean是否已经存在
+		if (neo4jBean instanceof Neo4JBaseBean) {
+			INeo4JBaseBean bean = get(clazz,
+					((Neo4JBaseBean) neo4jBean).getRowKey());
+			if (bean == null) {
+				// 该记录不存在，更新Create时间
+				((Neo4JBaseBean) neo4jBean).setCreatedTime(System
+						.currentTimeMillis());
+			} else {
+				// 该记录已经存在，更新Update时间
+				((Neo4JBaseBean) neo4jBean).setGraphId(bean.getGraphId());
+				((Neo4JBaseBean) neo4jBean).setUpdatedTime(System
+						.currentTimeMillis());
+			}
+		}
+
 		INeo4JBaseBean tar = template.save(neo4jBean);
+		if (neo4jBean instanceof IBaseBean) {
+			// 如果同时实现了IBaseBean，则在hbase中也保存。
+			hbaseCrud.save((IBaseBean) neo4jBean);
+		}
 		if (LOG.isDebugEnabled()) {
 			Neo4JBaseBean bean = (Neo4JBaseBean) tar;
 			LOG.debug(String.format(

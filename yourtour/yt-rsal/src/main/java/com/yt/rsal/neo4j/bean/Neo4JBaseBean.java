@@ -46,13 +46,13 @@ public class Neo4JBaseBean implements Serializable, IBaseBean, INeo4JBaseBean,
 	private String rowKey;
 
 	private @HbaseColumn(name = "cuid")
-	transient String createdUserId = "";
+	String createdUserId = "";
 	private @HbaseColumn(name = "ct")
-	transient long createdTime;
+	long createdTime;
 	private @HbaseColumn(name = "uuid")
-	transient String updatedUserId = "";
+	String updatedUserId = "";
 	private @HbaseColumn(name = "ut")
-	transient long updatedTime;
+	long updatedTime;
 
 	/**
 	 * 默认构造方法
@@ -77,7 +77,7 @@ public class Neo4JBaseBean implements Serializable, IBaseBean, INeo4JBaseBean,
 	 * @param id
 	 *            设置的ID
 	 */
-	protected void setGraphId(Long id) {
+	public void setGraphId(Long id) {
 		this.graphid = id;
 	}
 

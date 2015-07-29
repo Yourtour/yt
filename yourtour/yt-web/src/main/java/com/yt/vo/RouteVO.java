@@ -1,47 +1,173 @@
 package com.yt.vo;
 
-import org.codehaus.jackson.annotate.JsonProperty;
+import com.yt.business.common.Constants.Status;
 
-import com.yt.business.bean.RouteBean;
+public class RouteVO {
+	private Long graphid;
+	private String rowKey;
+	private String createdUserId = "";
+	private long createdTime;
+	private String updatedUserId = "";
+	private long updatedTime;
+	private String name; // 安排名称
+	private String imageUrl; // 行程图片
+	private String lineName; // 线路名称
+	private int step; // 规划步骤
+	private String intro; // 概述， 可以针对行程安排中具体某天或者某个景点进行描述
+	private String feature; // 特点， 可以针对行程安排中具体某天或者某个景点进行特点描述
+	private String reason; // 推荐理由，， 可以针对行程安排中具体某天或者某个景点进行推荐描述
+	private String place; // 目的地
+	private long startTime; // 安排开始时间，以秒为单位
+	private long endTime; // 安排结束时间，以秒为单位
+	private int period; // 安排持续时间， 以秒为单位
+	private Status status;
 
-public class RouteVO extends RouteBean {
-	private String feeling;
-	
-	private String formattedStartTime;
-	private String formattedEndTime;
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 8728699166400902336L;
-
-	public RouteVO(){
-		
+	public RouteVO() {
+		super();
 	}
 
-	public String getFeeling() {
-		return feeling;
+	public Long getGraphid() {
+		return graphid;
 	}
 
-	public void setFeeling(String feeling) {
-		this.feeling = feeling;
-	}
-	
-	@JsonProperty("startTime")
-	public String getFormattedStartTime(){
-			return this.formattedStartTime;
-	}
-	
-	@JsonProperty("endTime")
-	public String getFormattedEndTime(){
-		return this.formattedEndTime;
-}
-
-	public void setFormattedStartTime(String formattedStartTime) {
-		this.formattedStartTime = formattedStartTime;
+	public void setGraphid(Long graphid) {
+		this.graphid = graphid;
 	}
 
-	public void setFormattedEndTime(String formattedEndTime) {
-		this.formattedEndTime = formattedEndTime;
+	public String getRowKey() {
+		return rowKey;
 	}
+
+	public void setRowKey(String rowKey) {
+		this.rowKey = rowKey;
+	}
+
+	public String getCreatedUserId() {
+		return createdUserId;
+	}
+
+	public void setCreatedUserId(String createdUserId) {
+		this.createdUserId = createdUserId;
+	}
+
+	public long getCreatedTime() {
+		return createdTime;
+	}
+
+	public void setCreatedTime(long createdTime) {
+		this.createdTime = createdTime;
+	}
+
+	public String getUpdatedUserId() {
+		return updatedUserId;
+	}
+
+	public void setUpdatedUserId(String updatedUserId) {
+		this.updatedUserId = updatedUserId;
+	}
+
+	public long getUpdatedTime() {
+		return updatedTime;
+	}
+
+	public void setUpdatedTime(long updatedTime) {
+		this.updatedTime = updatedTime;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	public String getLineName() {
+		return lineName;
+	}
+
+	public void setLineName(String lineName) {
+		this.lineName = lineName;
+	}
+
+	public int getStep() {
+		return step;
+	}
+
+	public void setStep(int step) {
+		this.step = step;
+	}
+
+	public String getIntro() {
+		return intro;
+	}
+
+	public void setIntro(String intro) {
+		this.intro = intro;
+	}
+
+	public String getFeature() {
+		return feature;
+	}
+
+	public void setFeature(String feature) {
+		this.feature = feature;
+	}
+
+	public String getReason() {
+		return reason;
+	}
+
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
+
+	public String getPlace() {
+		return place;
+	}
+
+	public void setPlace(String place) {
+		this.place = place;
+	}
+
+	public long getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(long startTime) {
+		this.startTime = startTime;
+	}
+
+	public long getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(long endTime) {
+		this.endTime = endTime;
+	}
+
+	public int getPeriod() {
+		return period;
+	}
+
+	public void setPeriod(int period) {
+		this.period = period;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
 }

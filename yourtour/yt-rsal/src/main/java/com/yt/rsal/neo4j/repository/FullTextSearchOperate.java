@@ -116,13 +116,27 @@ public class FullTextSearchOperate implements IFullTextSearchOperate {
 	@Override
 	public List<Neo4JBaseBean> query(Class<? extends Neo4JBaseBean> clazz,
 			List<QueryTerm> terms) throws Exception {
+		return query(clazz, terms, true);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.yt.rsal.neo4j.repository.IFullTextSearchOperate#query(java.lang.Class
+	 * , java.util.List, boolean)
+	 */
+	@Override
+	public List<Neo4JBaseBean> query(Class<? extends Neo4JBaseBean> clazz,
+			List<QueryTerm> terms, boolean andJoin) throws Exception {
 		String indexName = getIndexName(clazz);
 		Index<Node> index = template.getIndex(indexName, clazz);
+		String joinFlag = andJoin ? " AND " : " OR ";
 		// composite the query string
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < terms.size(); i++) {
 			if (i > 0) {
-				sb.append(" AND ");
+				sb.append(joinFlag);
 			}
 			QueryTerm term = terms.get(i);
 			sb.append(term.key);

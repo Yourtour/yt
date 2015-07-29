@@ -47,7 +47,7 @@ public class RouteBean extends Neo4JBaseBean {
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
 	String name; // 安排名称
 	private @HbaseColumn(name = "iu")
-	transient String imageUrl; // 行程图片
+	String imageUrl; // 行程图片
 	private @HbaseColumn(name = "line")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
 	String lineName; // 线路名称
@@ -71,14 +71,7 @@ public class RouteBean extends Neo4JBaseBean {
 	long endTime; // 安排结束时间，以秒为单位
 	private @HbaseColumn(name = "peri")
 	int period; // 安排持续时间， 以秒为单位
-	private @HbaseColumn(name = "cuid")
-	transient String createdUserId = "";
-	private @HbaseColumn(name = "ct")
-	transient long createdTime;
-	private @HbaseColumn(name = "uuid")
-	transient String updatedUserId = "";
-	private @HbaseColumn(name = "ut")
-	transient long updatedTime;
+
 	private @HbaseColumn(name = "stat")
 	@Indexed
 	Status status;
@@ -173,38 +166,6 @@ public class RouteBean extends Neo4JBaseBean {
 
 	public void setPeriod(int period) {
 		this.period = period;
-	}
-
-	public String getCreatedUserId() {
-		return createdUserId;
-	}
-
-	public void setCreatedUserId(String createdUserId) {
-		this.createdUserId = createdUserId;
-	}
-
-	public long getCreatedTime() {
-		return createdTime;
-	}
-
-	public void setCreatedTime(long createdTime) {
-		this.createdTime = createdTime;
-	}
-
-	public String getUpdatedUserId() {
-		return updatedUserId;
-	}
-
-	public void setUpdatedUserId(String updatedUserId) {
-		this.updatedUserId = updatedUserId;
-	}
-
-	public long getUpdatedTime() {
-		return updatedTime;
-	}
-
-	public void setUpdatedTime(long updatedTime) {
-		this.updatedTime = updatedTime;
 	}
 
 	public Status getStatus() {

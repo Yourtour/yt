@@ -37,11 +37,11 @@ public interface Constants {
 	
 	//数据状态
 	public static enum Status {
-		DRAFT("Draft","草稿"), 
-		VALIDATED("Validated","有效"), 
-		ACTIVED("Actived","激活"), 
-		CLOSED("Closed","关闭"),
-		CANCELED("Canceled","取消");
+		DRAFT("DRAFT","草稿"), 
+		VALIDATED("VALIDATED","有效"), 
+		ACTIVED("ACTIVED","激活"), 
+		CLOSED("CLOSED","关闭"),
+		CANCELED("CANCELED","取消");
 		
 		public String code;
 		public String name;

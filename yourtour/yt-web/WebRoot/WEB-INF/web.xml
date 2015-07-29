@@ -20,24 +20,12 @@
 		<servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
 		<init-param>
 			<param-name>com.sun.jersey.config.property.packages</param-name>
-			<param-value>com.dscomm.iams.rest</param-value>
-		</init-param>
-		<!--init-param>
-			<param-name>jersey.config.server.provider.scanning.recursive</param-name>
-			<param-value>false</param-value>
+			<param-value>com.yt.rest.resource</param-value>
 		</init-param>
 		<init-param>
-            <param-name>javax.ws.rs.Application</param-name>
-            <param-value>com.dscomm.iams.config.IamsRestConfig</param-value>
-        </init-param-->
-        <!--init-param>
-            <param-name>javax.ws.rs.Application</param-name>
-            <param-value>com.dscomm.iams.config.IamsRestConfig</param-value>
-        </init-param>
-        <init-param>
-            <param-name>javax.json.stream.JsonGenerator.prettyPrinting</param-name>
-            <param-value>true</param-value>
-        </init-param-->
+			<param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+			<param-value>true</param-value>
+		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
@@ -45,6 +33,16 @@
 		<servlet-name>jerseyRestful</servlet-name>
 		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
+	
+	<filter>
+		<filter-name>CorsFilter</filter-name>
+		<filter-class>org.ebaysf.web.cors.CORSFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>CorsFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
 	<filter>
 		<filter-name>encoding</filter-name>
 	   	<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
