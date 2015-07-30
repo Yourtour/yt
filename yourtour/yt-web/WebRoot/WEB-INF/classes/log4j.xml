@@ -24,7 +24,7 @@
 	</filter>
   </appender>
 
-  <category name="com.app">      
+  <category name="com.yt">      
     <level value="DEBUG" />    
     <appender-ref ref="DEBUG" />   
     <appender-ref ref="WARN" />   

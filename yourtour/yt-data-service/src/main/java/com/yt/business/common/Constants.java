@@ -1,6 +1,11 @@
 package com.yt.business.common;
 
 public interface Constants {
+	// 图节点关系
+	public static enum NodeRelationshipEnum {
+		RELATED, CONTAIN;
+	}
+	
 	//资源枚举
 	public static enum ScheduleType{
 		PLAY("Play","游玩"), 

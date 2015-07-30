@@ -36,8 +36,6 @@ import com.yt.rsal.neo4j.bean.Neo4JBaseBean;
 public class ResourceBean extends Neo4JBaseBean {
 	private static final long serialVersionUID = -8980153602025087935L;
 
-	private @HbaseColumn(name = "name")
-	String name; // 名称
 	private @HbaseColumn(name = "img")
 	String imageUrl; // 图片
 	private @HbaseColumn(name = "type")
@@ -83,14 +81,6 @@ public class ResourceBean extends Neo4JBaseBean {
 
 	public ResourceBean() {
 		super();
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getImageUrl() {

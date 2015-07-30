@@ -20,16 +20,20 @@ import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.stereotype.Component;
 
 import com.yt.business.bean.LineBean;
-import com.yt.business.repository.LineBeanRepository;
+import com.yt.business.repository.LineRepository;
 import com.yt.error.StaticErrorEnum;
 import com.yt.rsal.neo4j.repository.ICrudOperate;
 import com.yt.rsal.neo4j.repository.IFullTextSearchOperate;
 import com.yt.vo.LineVO;
+import com.yt.vo.RecommandConditionVO;
 import com.yt.vo.RecommandLineVO;
+import com.yt.vo.ResponseDataVO;
 import com.yt.vo.ResponseVO;
 
 @Component
 @Path("lines")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class LineRestResource {
 	private static final Log LOG = LogFactory.getLog(LineRestResource.class);
 
@@ -43,12 +47,14 @@ public class LineRestResource {
 	private IFullTextSearchOperate ftsOperate;
 
 	@Autowired
-	private LineBeanRepository lineRepo;
+	private LineRepository lineRepo;
 
 	@SuppressWarnings("unchecked")
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public ResponseVO<List<LineVO>> getAllLines() {
+	public ResponseDataVO<List<LineVO>> getAllLines() {
+		if (LOG.isDebugEnabled()) {
+			LOG.debug("Request fetch all the LineBean.");
+		}
 		List<LineVO> list = new ArrayList<LineVO>();
 		try {
 			List<LineBean> result = (List<LineBean>) crudOperate
@@ -60,18 +66,24 @@ public class LineRestResource {
 				LineVO vo = LineVO.transform(bean);
 				list.add(vo);
 			}
+			if (LOG.isDebugEnabled()) {
+				LOG.debug(String.format(
+						"Fetch all the LineBean success, total: %d.",
+						list.size()));
+			}
+			return new ResponseDataVO<List<LineVO>>(list);
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
 				LOG.error("Fetch all the LineBean fail.", ex);
 			}
+			return new ResponseDataVO<List<LineVO>>(
+					StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
-		return new ResponseVO<List<LineVO>>(list);
 	}
 
 	@GET
 	@Path("{id}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public ResponseVO<LineVO> getLine(@PathParam("id") String id) {
+	public ResponseDataVO<LineVO> getLine(@PathParam("id") String id) {
 		long graphId = getGraphIDFromString(id);
 		try {
 			LineBean bean = null;
@@ -83,17 +95,21 @@ public class LineRestResource {
 				bean = (LineBean) crudOperate.get(LineBean.class, id);
 			}
 			if (bean == null) {
-				return new ResponseVO<LineVO>(
+				return new ResponseDataVO<LineVO>(
 						StaticErrorEnum.THE_DATA_NOT_EXIST);
 			}
 			LineVO vo = LineVO.transform(bean);
-			return new ResponseVO<LineVO>(vo);
+			if (LOG.isDebugEnabled()) {
+				LOG.debug(String.format("Get the LineBean['%s'] success.", id));
+			}
+			return new ResponseDataVO<LineVO>(vo);
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
 				LOG.error(String.format("Fetch LineBean[id='%s'] fail.", id),
 						ex);
 			}
-			return new ResponseVO<LineVO>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+			return new ResponseDataVO<LineVO>(
+					StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
 	}
 
@@ -107,38 +123,57 @@ public class LineRestResource {
 
 	@POST
 	@Path("import")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public void importData(List<LineVO> vos) {
-		for (LineVO vo : vos) {
-			save(vo);
+	public ResponseVO importData(List<LineVO> vos) {
+		if (LOG.isDebugEnabled()) {
+			LOG.debug("Request import LineBean data.");
 		}
+		for (LineVO vo : vos) {
+			ResponseVO response = save(vo);
+			if (response.getErrorCode() != 0) {
+				if (LOG.isWarnEnabled()) {
+					LOG.warn(String.format(
+							"Import LineBean data fail, error: id = '%s'.",
+							vo.getRowKey()));
+				}
+				return response;
+			}
+		}
+		if (LOG.isDebugEnabled()) {
+			LOG.debug(String.format("Import LineBean data success, total: %d.",
+					vos.size()));
+		}
+		return new ResponseVO();
 	}
 
 	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	public void save(LineVO vo) {
+	public ResponseVO save(LineVO vo) {
 		if (vo == null) {
 			if (LOG.isWarnEnabled()) {
 				LOG.warn("The LineVO is null.");
 			}
-			return;
+			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
 		}
 		try {
 			LineBean bean = LineVO.transform(vo);
 			crudOperate.save(bean, true);
+			if (LOG.isDebugEnabled()) {
+				LOG.debug(String.format("Save LineBean[‘%s'] success.",
+						vo.getRowKey()));
+			}
+			return new ResponseVO();
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
 				LOG.error(
 						String.format("Save the LineBean[id='%s'] fail.",
 								vo.getRowKey()), ex);
 			}
+			return new ResponseVO(StaticErrorEnum.DB_OPERATE_FAIL);
 		}
 	}
 
 	@DELETE
 	@Path("{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public void delete(@PathParam("id") String id) {
+	public ResponseVO delete(@PathParam("id") String id) {
 		long graphId = getGraphIDFromString(id);
 		try {
 			LineBean bean = null;
@@ -148,55 +183,81 @@ public class LineRestResource {
 				id = bean.getRowKey();
 			}
 			crudOperate.delete(LineBean.class, id);
+			if (LOG.isDebugEnabled()) {
+				LOG.debug(String.format("Delete LineBean['%s'] success.", id));
+			}
+			return new ResponseVO();
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
 				LOG.error(String.format("Fetch LineBean[id='%s'] fail.", id),
 						ex);
 			}
+			return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
+	}
+
+	@GET
+	@Path("contain_{type}/{lid}/{sid}")
+	public ResponseVO containScene(@PathParam("type") String type,
+			@PathParam("lid") String lineId, @PathParam("sid") String sceneId) {
+		try {
+			lineRepo.relateLine2Scene(lineId, sceneId,
+					type.equalsIgnoreCase("add"));
+			if (LOG.isDebugEnabled()) {
+				LOG.debug(String
+						.format("'%s' contain from LineBean['%s'] to SceneResourceBean['%s'] success.",
+								type, lineId, sceneId));
+			}
+			return new ResponseVO();
+		} catch (Exception ex) {
+			if (LOG.isDebugEnabled()) {
+				LOG.error(
+						String.format(
+								"Relate from LineBean['%s'] to SceneResourceBean['%s'] fail.",
+								lineId, sceneId), ex);
+			}
+			return new ResponseVO(StaticErrorEnum.DB_OPERATE_FAIL);
 		}
 	}
 
 	@POST
 	@Path("recommand")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public ResponseVO<List<RecommandLineVO>> queryRecommandLine(
+	public ResponseDataVO<List<RecommandLineVO>> queryRecommandLine(
 			RecommandConditionVO condition) {
 		if (condition == null) {
-			return new ResponseVO<List<RecommandLineVO>>(
+			return new ResponseDataVO<List<RecommandLineVO>>(
 					StaticErrorEnum.THE_INPUT_IS_NULL);
+		}
+		if (condition.getPlaces() == null) {
+			condition.setPlaces("");
+		}
+		if (condition.getScenes() == null) {
+			condition.setScenes("");
 		}
 		String[] places = condition.getPlaces().split(",");
 		int dayNum = condition.getDayNum();
 		String[] scenes = condition.getScenes().split(",");
 		try {
-			List<LineBean> result = lineRepo.queryRecommandLine(places, dayNum,
+			//List<LineBean> result = lineRepo.queryRecommandLine(places, dayNum,
+			//		scenes);
+			List<LineBean> result = lineRepo.queryRecommandLine2(places, dayNum,
 					scenes);
 			List<RecommandLineVO> list = new Vector<RecommandLineVO>(
 					result.size());
 			for (LineBean bean : result) {
-				if (bean == null) {
+				RecommandLineVO vo = RecommandLineVO.transform(bean);
+				if (vo == null) {
 					continue;
 				}
-				RecommandLineVO vo = new RecommandLineVO();
-				vo.setCommentIndex(bean.getCommentIndex());
-				vo.setCommentNum(bean.getCommentNum());
-				vo.setCommentScore(bean.getCommentScore());
-				vo.setFavoriteNum(bean.getFavoriteNum());
-				vo.setFeature(bean.getFeature());
-				vo.setGraphid(bean.getGraphId());
-				vo.setImageUrl(bean.getImageUrl());
-				vo.setName(bean.getName());
-				vo.setPlace(bean.getPlace());
-				vo.setReason(bean.getReason());
-				vo.setRecommendIndex(bean.getCommentIndex());
-				vo.setRowKey(bean.getRowKey());
-				vo.setShareNum(bean.getShareNum());
-				vo.setTags(bean.getTags());
-				vo.setThumbupNum(bean.getThumbupNum());
 				list.add(vo);
 			}
-			return new ResponseVO<List<RecommandLineVO>>(list);
+			if (LOG.isDebugEnabled()) {
+				LOG.debug(String
+						.format("Fetch the recommand line success, total: %d, condition: places['%s'], dayNum[%d], scenes[’%s'].",
+								list.size(), condition.getPlaces(),
+								condition.getDayNum(), condition.getScenes()));
+			}
+			return new ResponseDataVO<List<RecommandLineVO>>(list);
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
 				LOG.error(
@@ -205,42 +266,8 @@ public class LineRestResource {
 								condition.getPlaces(), condition.getDayNum(),
 								condition.getScenes()), ex);
 			}
-			return new ResponseVO<List<RecommandLineVO>>(
+			return new ResponseDataVO<List<RecommandLineVO>>(
 					StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
 	}
-
-	public class RecommandConditionVO {
-		private String places, scenes;
-		private int dayNum;
-
-		public RecommandConditionVO() {
-			super();
-		}
-
-		public String getPlaces() {
-			return places;
-		}
-
-		public void setPlaces(String places) {
-			this.places = places;
-		}
-
-		public String getScenes() {
-			return scenes;
-		}
-
-		public void setScenes(String scenes) {
-			this.scenes = scenes;
-		}
-
-		public int getDayNum() {
-			return dayNum;
-		}
-
-		public void setDayNum(int dayNum) {
-			this.dayNum = dayNum;
-		}
-	}
-
 }

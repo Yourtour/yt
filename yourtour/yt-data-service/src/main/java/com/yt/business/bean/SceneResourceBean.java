@@ -21,7 +21,10 @@ import com.yt.dal.hbase.annotation.HbaseTable;
 public class SceneResourceBean extends ResourceBean {
 	private static final long serialVersionUID = 563053332776568183L;
 	private static final String INDEX_NAME = "scene";
-	
+
+	private @HbaseColumn(name = "name")
+	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
+	String name; // 名称
 	private @HbaseColumn(name = "intr")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
 	String intro; // 简介
@@ -29,7 +32,7 @@ public class SceneResourceBean extends ResourceBean {
 	String ticket; // 门票信息
 	private @HbaseColumn(name = "map")
 	String sceneMap; // 景区地图
-	private @HbaseColumn(name="spsc")
+	private @HbaseColumn(name = "spsc")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
 	String specialScene; // 必游特殊景色
 	private @HbaseColumn(name = "'")
@@ -37,6 +40,14 @@ public class SceneResourceBean extends ResourceBean {
 
 	public SceneResourceBean() {
 		super();
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getIntro() {

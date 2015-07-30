@@ -5,7 +5,7 @@
  *
  * @author John Peng
  */
-package com.yt.business.repository;
+package com.yt.business.neo4j.repository;
 
 import java.util.Set;
 

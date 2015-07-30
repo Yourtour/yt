@@ -18,7 +18,7 @@ import com.yt.business.bean.RouteBean;
 import com.yt.business.bean.UserBean;
 import com.yt.business.common.Constants.Role;
 import com.yt.business.common.Constants.Status;
-import com.yt.business.repository.UserBeanRepository;
+import com.yt.business.neo4j.repository.UserBeanRepository;
 import com.yt.rsal.neo4j.repository.CrudGeneralOperate;
 import com.yt.rsal.neo4j.repository.ICrudOperate;
 

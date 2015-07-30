@@ -137,6 +137,7 @@ public class CrudGeneralOperate implements ICrudOperate {
 		INeo4JBaseBean bean = get(clazz, rowKey);
 		if (bean != null) {
 			template.delete(bean);
+
 			if (bean instanceof IBaseBean) {
 				// 如果实现了IBaseBean，则同时在hbase中删除
 				hbaseCrud.deleteRow((IBaseBean) bean);
@@ -162,6 +163,7 @@ public class CrudGeneralOperate implements ICrudOperate {
 		long count = 0;
 		for (INeo4JBaseBean bean : result) {
 			template.delete(bean);
+
 			if (bean instanceof IBaseBean) {
 				// 如果实现了IBaseBean，则同时在hbase中删除
 				hbaseCrud.deleteRow((IBaseBean) bean);
@@ -207,8 +209,7 @@ public class CrudGeneralOperate implements ICrudOperate {
 		}
 
 		INeo4JBaseBean tar = template.save(neo4jBean);
-		if (neo4jBean instanceof IBaseBean) {
-			// 如果同时实现了IBaseBean，则在hbase中也保存。
+		if (neo4jBean instanceof IBaseBean) { // 如果同时实现了IBaseBean，则在hbase中也保存。
 			hbaseCrud.save((IBaseBean) neo4jBean);
 		}
 		if (LOG.isDebugEnabled()) {

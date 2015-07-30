@@ -64,11 +64,13 @@ public class LineBean extends Neo4JBaseBean {
 	private @HbaseColumn(name = "cind")
 	double commentIndex; // 点评指数
 	private @HbaseColumn(name = "plac")
+	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
 	String place; // 目的地
 
 	private @HbaseColumn(name = "anum")
 	int arriveNum; // 到达人数
 	private @HbaseColumn(name = "tags")
+	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
 	String tags; // 标签
 
 	private @HbaseColumn(name = "cscore")

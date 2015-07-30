@@ -1,5 +1,6 @@
 package com.yt.vo;
 
+import com.yt.business.bean.LineBean;
 
 public class RecommandLineVO {
 	private Long graphid;
@@ -17,6 +18,29 @@ public class RecommandLineVO {
 	private int thumbupNum; // 点赞数
 	private int favoriteNum; // 收藏数
 	private int shareNum; // 分享数
+
+	public static RecommandLineVO transform(LineBean bean) {
+		if (bean == null) {
+			return null;
+		}
+		RecommandLineVO vo = new RecommandLineVO();
+		vo.setCommentIndex(bean.getCommentIndex());
+		vo.setCommentNum(bean.getCommentNum());
+		vo.setCommentScore(bean.getCommentScore());
+		vo.setFavoriteNum(bean.getFavoriteNum());
+		vo.setFeature(bean.getFeature());
+		vo.setGraphid(bean.getGraphId());
+		vo.setImageUrl(bean.getImageUrl());
+		vo.setName(bean.getName());
+		vo.setPlace(bean.getPlace());
+		vo.setReason(bean.getReason());
+		vo.setRecommendIndex(bean.getCommentIndex());
+		vo.setRowKey(bean.getRowKey());
+		vo.setShareNum(bean.getShareNum());
+		vo.setTags(bean.getTags());
+		vo.setThumbupNum(bean.getThumbupNum());
+		return vo;
+	}
 
 	public RecommandLineVO() {
 		super();

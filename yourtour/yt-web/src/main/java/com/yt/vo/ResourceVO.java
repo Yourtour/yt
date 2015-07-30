@@ -50,7 +50,6 @@ public class ResourceVO {
 		setGraphid(bean.getGraphId());
 		setImageUrl(bean.getImageUrl());
 		setMember(bean.isMember());
-		setName(bean.getName());
 		setOpenTime(bean.getOpenTime());
 		setPayment(bean.getPayment());
 		setPhone(bean.getPhone());
@@ -81,7 +80,6 @@ public class ResourceVO {
 		bean.setGraphId(getGraphid());
 		bean.setImageUrl(getImageUrl());
 		bean.setMember(isMember());
-		bean.setName(getName());
 		bean.setOpenTime(getOpenTime());
 		bean.setPayment(getPayment());
 		bean.setPhone(getPhone());
