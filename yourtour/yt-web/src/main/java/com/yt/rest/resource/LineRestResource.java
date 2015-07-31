@@ -238,10 +238,10 @@ public class LineRestResource {
 		int dayNum = condition.getDayNum();
 		String[] scenes = condition.getScenes().split(",");
 		try {
-			//List<LineBean> result = lineRepo.queryRecommandLine(places, dayNum,
-			//		scenes);
-			List<LineBean> result = lineRepo.queryRecommandLine2(places, dayNum,
+			List<LineBean> result = lineRepo.queryRecommandLine(places, dayNum,
 					scenes);
+			//List<LineBean> result = lineRepo.queryRecommandLine2(places, dayNum,
+			//		scenes);
 			List<RecommandLineVO> list = new Vector<RecommandLineVO>(
 					result.size());
 			for (LineBean bean : result) {
