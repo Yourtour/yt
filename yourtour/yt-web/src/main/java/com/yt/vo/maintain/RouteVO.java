@@ -1,4 +1,4 @@
-package com.yt.vo;
+package com.yt.vo.maintain;
 
 import com.yt.business.bean.RouteBean;
 import com.yt.business.common.Constants.Status;

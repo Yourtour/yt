@@ -3,22 +3,18 @@ package com.yt.business.repository;
 import java.util.List;
 import java.util.Vector;
 
-import org.neo4j.graphdb.Node;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.stereotype.Component;
 
 import com.yt.business.bean.LineBean;
 import com.yt.business.bean.SceneResourceBean;
-import com.yt.business.common.Constants.NodeRelationshipEnum;
 import com.yt.business.neo4j.repository.RouteBeanRepository;
 import com.yt.business.neo4j.repository.SceneResourceBeanRepository;
-import com.yt.rsal.neo4j.bean.INeo4JBaseBean;
 import com.yt.rsal.neo4j.bean.Neo4JBaseBean;
 import com.yt.rsal.neo4j.repository.ICrudOperate;
 import com.yt.rsal.neo4j.repository.IFullTextSearchOperate;
 import com.yt.rsal.neo4j.repository.IFullTextSearchOperate.QueryTerm;
-import com.yt.rsal.neo4j.util.Neo4jUtils;
 
 @Component
 public class LineRespositoryImpl implements LineRepository {
@@ -37,27 +33,6 @@ public class LineRespositoryImpl implements LineRepository {
 
 	@Autowired
 	private RouteBeanRepository routeRepo;
-
-	@Override
-	public void relateLine2Scene(String lineId, String sceneId, boolean isAdd)
-			throws Exception {
-		long glID = Neo4jUtils.getGraphIDFromString(lineId);
-		long gsID = Neo4jUtils.getGraphIDFromString(sceneId);
-		if (glID == -1) {
-			INeo4JBaseBean line = crudOperate.get(LineBean.class, lineId);
-			glID = line.getGraphId();
-		}
-		if (gsID == -1) {
-			INeo4JBaseBean scene = crudOperate.get(SceneResourceBean.class,
-					sceneId);
-			gsID = scene.getGraphId();
-		}
-		Node nodeLine = template.getNode(glID), nodeScene = template
-				.getNode(gsID);
-		String relation = NodeRelationshipEnum.CONTAIN.name();
-		Neo4jUtils.maintainRelation(template, nodeLine, nodeScene, relation,
-				null, isAdd, false);
-	}
 
 	@Override
 	public List<LineBean> queryRecommandLine(String[] places, int dayNum,
@@ -83,7 +58,7 @@ public class LineRespositoryImpl implements LineRepository {
 		List<Neo4JBaseBean> sceneBeans = ftsOperate.query(
 				SceneResourceBean.class, terms, false);
 		long[] ids = new long[sceneBeans.size()];
-		for (int index = 0; index < ids.length; index ++) {
+		for (int index = 0; index < ids.length; index++) {
 			ids[index] = sceneBeans.get(index).getGraphId();
 		}
 

@@ -20,16 +20,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.stereotype.Component;
 
+import com.yt.business.bean.LineBean;
 import com.yt.business.bean.RouteBean;
-import com.yt.business.repository.RouteRepository;
+import com.yt.business.bean.SceneResourceBean;
+import com.yt.business.common.Constants.NodeRelationshipEnum;
 import com.yt.error.StaticErrorEnum;
+import com.yt.response.ResponseDataVO;
+import com.yt.response.ResponseVO;
 import com.yt.rsal.neo4j.repository.ICrudOperate;
 import com.yt.rsal.neo4j.repository.IFullTextSearchOperate;
 import com.yt.rsal.neo4j.util.Neo4jUtils;
 import com.yt.vo.PersonalRouteVO;
-import com.yt.vo.ResponseDataVO;
-import com.yt.vo.ResponseVO;
-import com.yt.vo.RouteVO;
+import com.yt.vo.RelationConditionVO;
+import com.yt.vo.maintain.RouteVO;
 
 @Component
 @Path("routes")
@@ -48,9 +51,6 @@ public class RouteRestResource {
 
 	@Autowired
 	private IFullTextSearchOperate ftsOperate;
-
-	@Autowired
-	private RouteRepository routeRepo;
 
 	@SuppressWarnings("unchecked")
 	@GET
@@ -168,8 +168,6 @@ public class RouteRestResource {
 
 	@DELETE
 	@Path("{id}")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
 	public ResponseVO delete(@PathParam("id") String id) {
 		long graphId = Neo4jUtils.getGraphIDFromString(id);
 		try {
@@ -193,17 +191,22 @@ public class RouteRestResource {
 		}
 	}
 
-	@GET
-	@Path("relate_{type}/{rid}/{lid}")
-	public ResponseVO relateLine(@PathParam("type") String type,
-			@PathParam("rid") String routeId, @PathParam("lid") String lineId) {
+	@POST
+	@Path("relate")
+	public ResponseVO relateLine(RelationConditionVO condition) {
+		if (condition == null) {
+			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
+		}
+		String routeId = condition.getSrcId(), lineId = condition.getTarId();
+		boolean isAdd = condition.isAdd();
 		try {
-			routeRepo.relateRoute2Line(routeId, lineId,
-					type.equalsIgnoreCase("add"));
+			Neo4jUtils.maintainRelateion(template, crudOperate,
+					NodeRelationshipEnum.RELATED, routeId, RouteBean.class,
+					lineId, LineBean.class, null, isAdd, true);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String
-						.format("'%s' relateion from RouteBean['%s'] to LineBean['%s'] success.",
-								type, routeId, lineId));
+						.format("'%s' 'RELATED' from RouteBean['%s'] to LineBean['%s'] success.",
+								isAdd ? "Add" : "Remove", routeId, lineId));
 			}
 			return new ResponseVO();
 		} catch (Exception ex) {
@@ -216,17 +219,22 @@ public class RouteRestResource {
 		}
 	}
 
-	@GET
-	@Path("contain_{type}/{rid}/{lid}")
-	public ResponseVO containScene(@PathParam("type") String type,
-			@PathParam("rid") String routeId, @PathParam("lid") String sceneId) {
+	@POST
+	@Path("contain")
+	public ResponseVO containScene(RelationConditionVO condition) {
+		if (condition == null) {
+			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
+		}
+		String routeId = condition.getSrcId(), sceneId = condition.getTarId();
+		boolean isAdd = condition.isAdd();
 		try {
-			routeRepo.relateRoute2Scene(routeId, sceneId,
-					type.equalsIgnoreCase("add"));
+			Neo4jUtils.maintainRelateion(template, crudOperate,
+					NodeRelationshipEnum.CONTAIN, routeId, RouteBean.class,
+					sceneId, SceneResourceBean.class, null, isAdd, false);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String
-						.format("'%s' contain from RouteBean['%s'] to SceneResourceBean['%s'] success.",
-								type, routeId, sceneId));
+						.format("'%s' 'CONTAIN' from RouteBean['%s'] to SceneResourceBean['%s'] success.",
+								isAdd ? "Add" : "Remove", routeId, sceneId));
 			}
 			return new ResponseVO();
 		} catch (Exception ex) {

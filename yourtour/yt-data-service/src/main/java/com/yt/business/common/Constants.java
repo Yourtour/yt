@@ -3,7 +3,7 @@ package com.yt.business.common;
 public interface Constants {
 	// 图节点关系
 	public static enum NodeRelationshipEnum {
-		RELATED, CONTAIN;
+		RELATED, CONTAIN, FOLLOW, WATCH;
 	}
 	
 	//资源枚举

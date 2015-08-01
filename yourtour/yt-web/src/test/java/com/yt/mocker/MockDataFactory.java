@@ -12,7 +12,7 @@ import org.dom4j.Element;
 import org.dom4j.Node;
 import org.dom4j.io.SAXReader;
 
-import com.yt.vo.RouteVO;
+import com.yt.vo.maintain.RouteVO;
 
 public class MockDataFactory {
 	private static Element root;

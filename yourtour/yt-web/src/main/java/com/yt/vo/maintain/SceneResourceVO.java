@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.yt.vo;
+package com.yt.vo.maintain;
 
 import com.yt.business.bean.SceneResourceBean;
 

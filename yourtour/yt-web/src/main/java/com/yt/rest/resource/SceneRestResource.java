@@ -20,11 +20,11 @@ import org.springframework.stereotype.Component;
 
 import com.yt.business.bean.SceneResourceBean;
 import com.yt.error.StaticErrorEnum;
+import com.yt.response.ResponseDataVO;
+import com.yt.response.ResponseVO;
 import com.yt.rsal.neo4j.repository.ICrudOperate;
 import com.yt.rsal.neo4j.repository.IFullTextSearchOperate;
-import com.yt.vo.ResponseDataVO;
-import com.yt.vo.ResponseVO;
-import com.yt.vo.SceneResourceVO;
+import com.yt.vo.maintain.SceneResourceVO;
 
 @Component
 @Path("scenes")

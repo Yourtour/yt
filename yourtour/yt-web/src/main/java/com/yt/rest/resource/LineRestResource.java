@@ -20,15 +20,19 @@ import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.stereotype.Component;
 
 import com.yt.business.bean.LineBean;
+import com.yt.business.bean.SceneResourceBean;
+import com.yt.business.common.Constants.NodeRelationshipEnum;
 import com.yt.business.repository.LineRepository;
 import com.yt.error.StaticErrorEnum;
+import com.yt.response.ResponseDataVO;
+import com.yt.response.ResponseVO;
 import com.yt.rsal.neo4j.repository.ICrudOperate;
 import com.yt.rsal.neo4j.repository.IFullTextSearchOperate;
-import com.yt.vo.LineVO;
+import com.yt.rsal.neo4j.util.Neo4jUtils;
 import com.yt.vo.RecommandConditionVO;
 import com.yt.vo.RecommandLineVO;
-import com.yt.vo.ResponseDataVO;
-import com.yt.vo.ResponseVO;
+import com.yt.vo.RelationConditionVO;
+import com.yt.vo.maintain.LineVO;
 
 @Component
 @Path("lines")
@@ -196,17 +200,22 @@ public class LineRestResource {
 		}
 	}
 
-	@GET
-	@Path("contain_{type}/{lid}/{sid}")
-	public ResponseVO containScene(@PathParam("type") String type,
-			@PathParam("lid") String lineId, @PathParam("sid") String sceneId) {
+	@POST
+	@Path("contain")
+	public ResponseVO containScene(RelationConditionVO condition) {
+		if (condition == null) {
+			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
+		}
+		String lineId = condition.getSrcId(), sceneId = condition.getTarId();
+		boolean isAdd = condition.isAdd();
 		try {
-			lineRepo.relateLine2Scene(lineId, sceneId,
-					type.equalsIgnoreCase("add"));
+			Neo4jUtils.maintainRelateion(template, crudOperate,
+					NodeRelationshipEnum.CONTAIN, lineId, LineBean.class,
+					sceneId, SceneResourceBean.class, null, isAdd, false);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String
 						.format("'%s' contain from LineBean['%s'] to SceneResourceBean['%s'] success.",
-								type, lineId, sceneId));
+								isAdd ? "Add" : "Remove", lineId, sceneId));
 			}
 			return new ResponseVO();
 		} catch (Exception ex) {
@@ -240,8 +249,9 @@ public class LineRestResource {
 		try {
 			List<LineBean> result = lineRepo.queryRecommandLine(places, dayNum,
 					scenes);
-			//List<LineBean> result = lineRepo.queryRecommandLine2(places, dayNum,
-			//		scenes);
+			// List<LineBean> result = lineRepo.queryRecommandLine2(places,
+			// dayNum,
+			// scenes);
 			List<RecommandLineVO> list = new Vector<RecommandLineVO>(
 					result.size());
 			for (LineBean bean : result) {

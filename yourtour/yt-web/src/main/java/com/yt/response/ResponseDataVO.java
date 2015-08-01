@@ -1,4 +1,4 @@
-package com.yt.vo;
+package com.yt.response;
 
 import com.yt.error.StaticErrorEnum;
 

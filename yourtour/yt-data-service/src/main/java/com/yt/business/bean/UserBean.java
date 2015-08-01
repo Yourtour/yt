@@ -1,12 +1,7 @@
 package com.yt.business.bean;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
-import org.springframework.data.neo4j.annotation.RelatedTo;
 import org.springframework.data.neo4j.support.index.IndexType;
 
 import com.yt.business.common.Constants.Role;
@@ -49,28 +44,11 @@ public class UserBean extends Neo4JBaseBean {
 	private static final long serialVersionUID = -6977525800090683657L;
 	private static final String INDEX_NAME = "user"; // 定义了本实体中全文检索的索引名称。
 
-	public static enum RATE {
-		/** 成员变量：常规用户 */
-		GENERAL("GENERAL", "常规用户"),
-		/** 成员变量：达人 */
-		EXPERT("EXPERT", "达人"),
-		/** 成员变量：地主 */
-		HOST("HOST", "地主");
-
-		public String code;
-		public String name;
-
-		private RATE(String code, String name) {
-			this.code = code;
-			this.name = name;
-		}
-	}
-
 	private @HbaseColumn(name = "name")
 	@Indexed
 	String userName; // 登录名
 	private @HbaseColumn(name = "pwd")
-	transient String pwd; // 登录密码
+	String pwd; // 登录密码
 	private @HbaseColumn(name = "rname")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
 	String realName; // 真实姓名
@@ -82,7 +60,7 @@ public class UserBean extends Neo4JBaseBean {
 	private @HbaseColumn(name = "birth")
 	long birthday; // 生日
 	private @HbaseColumn(name = "img")
-	transient String imageUrl; // 头像
+	String imageUrl; // 头像
 	private @HbaseColumn(name = "char")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
 	String character; // 性格
@@ -99,90 +77,21 @@ public class UserBean extends Neo4JBaseBean {
 	String nativePlace; // 籍贯
 	private @HbaseColumn(name = "cstl")
 	String constellation; // 星座
-
 	private @HbaseColumn(name = "role")
-	Role role; //角色
-	
+	Role role; // 角色
 	@Indexed
 	private @HbaseColumn(name = "rank")
-	int rank; //等级
-	
+	int rank; // 等级
 	private @HbaseColumn(name = "stat")
-	
 	@Indexed
 	Status status;
-	
+
 	private @HbaseColumn(name = "slga")
-	String slogan;
-
-	private @RelatedTo(type = "playWith", direction = Direction.BOTH)
-	Set<UserBean> playmates; // 游伴
-	private @RelatedTo(type = "followMe", direction = Direction.OUTGOING)
-	Set<UserBean> follows; // 跟随者
-
-	private @RelatedTo(type = "watchRoute", direction = Direction.OUTGOING)
-	Set<RouteBean> watchRoutes; // 关注的行程
+	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
+	String slogan; //个人口号
 
 	public UserBean() {
 		super();
-	}
-
-	public void playWith(UserBean userBean) {
-		if (userBean == null) {
-			return;
-		}
-		if (playmates == null) {
-			playmates = new HashSet<UserBean>();
-		}
-		// 成为游伴时相互的。
-		if (this.getRowKey().equals(userBean.getRowKey())) {
-			return;
-		}
-		if (!playmates.contains(userBean)) {
-			playmates.add(userBean);
-		} else {
-			return;
-		}
-		userBean.playWith(this);
-	}
-
-	public Set<UserBean> getPlaymates() {
-		return this.playmates;
-	}
-
-	public void followMe(UserBean userBean) {
-		if (userBean == null) {
-			return;
-		}
-		if (follows == null) {
-			follows = new HashSet<UserBean>();
-		}
-		if (this.getRowKey().equals(userBean.getRowKey())) {
-			return;
-		}
-		if (!follows.contains(userBean)) {
-			follows.add(userBean);
-		}
-	}
-
-	public Set<UserBean> getFollows() {
-		return this.follows;
-	}
-
-	public void watchRoute(RouteBean routeBean) {
-		if (routeBean == null) {
-			return;
-		}
-		if (watchRoutes == null) {
-			watchRoutes = new HashSet<RouteBean>();
-		}
-		if (!watchRoutes.contains(routeBean)) {
-			watchRoutes.add(routeBean);
-		}
-	}
-
-	public Set<RouteBean> getWatchRoutes() {
-		return this.watchRoutes;
 	}
 
 	public String getUserName() {

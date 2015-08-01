@@ -24,6 +24,6 @@
   </category> 
 
   <root>
-	<appender-ref ref="WARN"/>
+	<appender-ref ref="CONSOLE"/>
   </root>
 </log4j:configuration>

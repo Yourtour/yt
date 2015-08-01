@@ -1,15 +1,9 @@
-package com.yt.vo;
+package com.yt.vo.maintain;
 
 import com.yt.business.bean.LineBean;
 import com.yt.business.common.Constants.Status;
 
-public class LineVO {
-	private Long graphid;
-	private String rowKey;
-	private String createdUserId = "";
-	private long createdTime;
-	private String updatedUserId = "";
-	private long updatedTime;
+public class LineVO extends BaseVO {
 	private String name; // 名称
 	private String imageUrl; // 图片
 	private String intro; // 概述， 线路进行简单介绍
@@ -32,28 +26,23 @@ public class LineVO {
 			return null;
 		}
 		LineVO vo = new LineVO();
+		vo.fromBean(bean);
 		vo.setArriveNum(bean.getArriveNum());
 		vo.setCommentIndex(bean.getCommentIndex());
 		vo.setCommentNum(bean.getCommentNum());
 		vo.setCommentScore(bean.getCommentNum());
-		vo.setCreatedTime(bean.getCreatedTime());
-		vo.setCreatedUserId(bean.getCreatedUserId());
 		vo.setFavoriteNum(bean.getFavoriteNum());
 		vo.setFeature(bean.getFeature());
-		vo.setGraphid(bean.getGraphId());
 		vo.setImageUrl(bean.getImageUrl());
 		vo.setIntro(bean.getIntro());
 		vo.setName(bean.getName());
 		vo.setPlace(bean.getPlace());
 		vo.setReason(bean.getReason());
 		vo.setRecommendIndex(bean.getRecommendIndex());
-		vo.setRowKey(bean.getRowKey());
 		vo.setShareNum(bean.getShareNum());
 		vo.setStatus(bean.getStatus());
 		vo.setTags(bean.getTags());
 		vo.setThumbupNum(bean.getThumbupNum());
-		vo.setUpdatedTime(bean.getUpdatedTime());
-		vo.setUpdatedUserId(bean.getUpdatedUserId());
 		return vo;
 	}
 
@@ -62,81 +51,28 @@ public class LineVO {
 			return null;
 		}
 		LineBean bean = new LineBean();
+		vo.toBean(bean);
 		bean.setArriveNum(vo.getArriveNum());
 		bean.setCommentIndex(vo.getCommentIndex());
 		bean.setCommentNum(vo.getCommentNum());
 		bean.setCommentScore(vo.getCommentScore());
-		bean.setCreatedTime(vo.getCreatedTime());
-		bean.setCreatedUserId(vo.getCreatedUserId());
 		bean.setFavoriteNum(vo.getFavoriteNum());
 		bean.setFeature(vo.getFeature());
-		bean.setGraphId(vo.getGraphid());
 		bean.setImageUrl(vo.getImageUrl());
 		bean.setIntro(vo.getIntro());
 		bean.setName(vo.getName());
 		bean.setPlace(vo.getPlace());
 		bean.setReason(vo.getReason());
 		bean.setRecommendIndex(vo.getRecommendIndex());
-		bean.setRowKey(vo.getRowKey());
 		bean.setShareNum(vo.getShareNum());
 		bean.setStatus(vo.getStatus());
 		bean.setTags(vo.getTags());
 		bean.setThumbupNum(vo.getThumbupNum());
-		bean.setUpdatedTime(vo.getUpdatedTime());
-		bean.setUpdatedUserId(vo.getUpdatedUserId());
 		return bean;
 	}
 
 	public LineVO() {
 		super();
-	}
-
-	public Long getGraphid() {
-		return graphid;
-	}
-
-	public void setGraphid(Long graphid) {
-		this.graphid = graphid;
-	}
-
-	public String getRowKey() {
-		return rowKey;
-	}
-
-	public void setRowKey(String rowKey) {
-		this.rowKey = rowKey;
-	}
-
-	public String getCreatedUserId() {
-		return createdUserId;
-	}
-
-	public void setCreatedUserId(String createdUserId) {
-		this.createdUserId = createdUserId;
-	}
-
-	public long getCreatedTime() {
-		return createdTime;
-	}
-
-	public void setCreatedTime(long createdTime) {
-		this.createdTime = createdTime;
-	}
-
-	public String getUpdatedUserId() {
-		return updatedUserId;
-	}
-
-	public void setUpdatedUserId(String updatedUserId) {
-		this.updatedUserId = updatedUserId;
-	}
-
-	public long getUpdatedTime() {
-		return updatedTime;
-	}
-
-	public void setUpdatedTime(long updatedTime) {
-		this.updatedTime = updatedTime;
 	}
 
 	public String getName() {
