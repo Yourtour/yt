@@ -8,11 +8,11 @@
     
     <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
 
-	<bean id="hbaseTemplate" class="org.springframework.data.hadoop.hbase.HbaseTemplate">
+	<!--bean id="hbaseTemplate" class="org.springframework.data.hadoop.hbase.HbaseTemplate">
 		<property name="configuration" ref="hbaseConfiguration" />
-	</bean>
+	</bean-->
 	
-	<bean id="hbaseManager" class="com.yt.dal.hbase.HbaseManager" />
+	<!--bean id="hbaseManager" class="com.yt.dal.hbase.HbaseManager" />
 	
 	<bean id="hbaseDDL" class="com.yt.dal.hbase.DdlGeneralOperate" />
 	<bean id="hbaseCRUD" class="com.yt.dal.hbase.CrudGeneralOperate"  />
@@ -27,4 +27,5 @@
 	
 	<hdp:configuration>
         
-    </hdp:configuration> <hdp:hbase-configuration zk-quorum="YT-DATABASE" zk-port="2181" /> </beans>
+    </hdp:configuration> <hdp:hbase-configuration zk-quorum="YT-DATABASE" zk-port="2181" /-->
+</beans>

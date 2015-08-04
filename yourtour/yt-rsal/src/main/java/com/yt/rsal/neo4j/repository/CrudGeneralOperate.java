@@ -20,7 +20,6 @@ import org.springframework.stereotype.Component;
 import com.yt.dal.hbase.IBaseBean;
 import com.yt.rsal.neo4j.bean.INeo4JBaseBean;
 import com.yt.rsal.neo4j.bean.Neo4JBaseBean;
-import com.yt.rsal.neo4j.bean.Neo4JSaveFailRecordBean;
 import com.yt.rsal.neo4j.bean.Neo4JSaveFailRecordBean.OperateType;
 
 /**
@@ -54,8 +53,8 @@ public class CrudGeneralOperate implements ICrudOperate {
 	@Autowired
 	private Neo4jTemplate template;
 
-	@Autowired
-	private com.yt.dal.hbase.ICrudOperate hbaseCrud;
+	// @Autowired
+	// private com.yt.dal.hbase.ICrudOperate hbaseCrud;
 
 	/**
 	 * 默认构造方法
@@ -140,7 +139,8 @@ public class CrudGeneralOperate implements ICrudOperate {
 
 			if (bean instanceof IBaseBean) {
 				// 如果实现了IBaseBean，则同时在hbase中删除
-				hbaseCrud.deleteRow((IBaseBean) bean);
+				// TODO 暂时不用hbase存储，暂时注释掉这些处理代码
+				// hbaseCrud.deleteRow((IBaseBean) bean);
 			}
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String
@@ -166,7 +166,8 @@ public class CrudGeneralOperate implements ICrudOperate {
 
 			if (bean instanceof IBaseBean) {
 				// 如果实现了IBaseBean，则同时在hbase中删除
-				hbaseCrud.deleteRow((IBaseBean) bean);
+				// TODO 暂时不用hbase存储，暂时注释掉这些处理代码
+				// hbaseCrud.deleteRow((IBaseBean) bean);
 			}
 			count++;
 		}
@@ -210,7 +211,8 @@ public class CrudGeneralOperate implements ICrudOperate {
 
 		INeo4JBaseBean tar = template.save(neo4jBean);
 		if (neo4jBean instanceof IBaseBean) { // 如果同时实现了IBaseBean，则在hbase中也保存。
-			hbaseCrud.save((IBaseBean) neo4jBean);
+			// TODO 暂时不用hbase存储，暂时注释掉这些处理代码
+			// hbaseCrud.save((IBaseBean) neo4jBean);
 		}
 		if (LOG.isDebugEnabled()) {
 			Neo4JBaseBean bean = (Neo4JBaseBean) tar;
@@ -240,17 +242,18 @@ public class CrudGeneralOperate implements ICrudOperate {
 		} catch (Exception ex) {
 			if (saveFail2Hbase) {
 				// 保存失败信息到hbase，便于后续补救处理。
-				Neo4JSaveFailRecordBean fail = new Neo4JSaveFailRecordBean();
-				fail.setClassName(neo4jBean.getClass().getName());
-				fail.setOperateType(ot);
-				fail.setRelatedRowkey(bean.getRowKey());
-				fail.setRowKey(String.valueOf(bean.hashCode()));
-				hbaseCrud.save(fail);
-				if (LOG.isWarnEnabled()) {
-					LOG.warn(String
-							.format("Save Neo4JBean[class='%s', rowKey='%s'] fail, but the fail information had been saved into hbase.",
-									bean.getClass().getName(), bean.getRowKey()));
-				}
+				// TODO 暂时不用hbase存储，暂时注释掉这些处理代码
+				/*
+				 * Neo4JSaveFailRecordBean fail = new Neo4JSaveFailRecordBean();
+				 * fail.setClassName(neo4jBean.getClass().getName());
+				 * fail.setOperateType(ot);
+				 * fail.setRelatedRowkey(bean.getRowKey());
+				 * fail.setRowKey(String.valueOf(bean.hashCode()));
+				 * hbaseCrud.save(fail); if (LOG.isWarnEnabled()) {
+				 * LOG.warn(String .format(
+				 * "Save Neo4JBean[class='%s', rowKey='%s'] fail, but the fail information had been saved into hbase."
+				 * , bean.getClass().getName(), bean.getRowKey())); }
+				 */
 			}
 			throw ex;
 		}

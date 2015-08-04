@@ -249,9 +249,55 @@ public class LineRestResource {
 		try {
 			List<LineBean> result = lineRepo.queryRecommandLine(places, dayNum,
 					scenes);
-			// List<LineBean> result = lineRepo.queryRecommandLine2(places,
-			// dayNum,
-			// scenes);
+			List<RecommendLineVO> list = new Vector<RecommendLineVO>(
+					result.size());
+			for (LineBean bean : result) {
+				RecommendLineVO vo = RecommendLineVO.transform(bean);
+				if (vo == null) {
+					continue;
+				}
+				list.add(vo);
+			}
+			if (LOG.isDebugEnabled()) {
+				LOG.debug(String
+						.format("Fetch the recommand line success, total: %d, condition: places['%s'], dayNum[%d], scenes[’%s'].",
+								list.size(), condition.getPlaces(),
+								condition.getDayNum(), condition.getScenes()));
+			}
+			return new ResponseDataVO<List<RecommendLineVO>>(list);
+		} catch (Exception ex) {
+			if (LOG.isErrorEnabled()) {
+				LOG.error(
+						String.format(
+								"Fetch data fail, condition[places='%s', dayNum=%d, scenes='%s'].",
+								condition.getPlaces(), condition.getDayNum(),
+								condition.getScenes()), ex);
+			}
+			return new ResponseDataVO<List<RecommendLineVO>>(
+					StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
+	}
+
+	@POST
+	@Path("recommend2")
+	public ResponseDataVO<List<RecommendLineVO>> queryRecommendLine2(
+			RecommendConditionVO condition) {
+		if (condition == null) {
+			return new ResponseDataVO<List<RecommendLineVO>>(
+					StaticErrorEnum.THE_INPUT_IS_NULL);
+		}
+		if (condition.getPlaces() == null) {
+			condition.setPlaces("");
+		}
+		if (condition.getScenes() == null) {
+			condition.setScenes("");
+		}
+		String[] places = condition.getPlaces().split(",");
+		int dayNum = condition.getDayNum();
+		String[] scenes = condition.getScenes().split(",");
+		try {
+			List<LineBean> result = lineRepo.queryRecommandLine2(places,
+					dayNum, scenes);
 			List<RecommendLineVO> list = new Vector<RecommendLineVO>(
 					result.size());
 			for (LineBean bean : result) {
