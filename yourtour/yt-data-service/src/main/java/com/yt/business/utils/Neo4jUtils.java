@@ -1,4 +1,4 @@
-package com.yt.rsal.neo4j.util;
+package com.yt.business.utils;
 
 import java.util.Map;
 

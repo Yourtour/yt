@@ -20,11 +20,11 @@ import org.springframework.stereotype.Component;
 
 import com.yt.business.bean.UserBean;
 import com.yt.business.common.Constants.NodeRelationshipEnum;
+import com.yt.business.utils.Neo4jUtils;
 import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.rsal.neo4j.repository.ICrudOperate;
-import com.yt.rsal.neo4j.util.Neo4jUtils;
 import com.yt.vo.AuthenticationVO;
 import com.yt.vo.RelationConditionVO;
 import com.yt.vo.maintain.UserVO;
