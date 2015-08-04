@@ -29,8 +29,8 @@ import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.rsal.neo4j.repository.ICrudOperate;
 import com.yt.rsal.neo4j.repository.IFullTextSearchOperate;
-import com.yt.vo.RecommandConditionVO;
-import com.yt.vo.RecommandLineVO;
+import com.yt.vo.RecommendConditionVO;
+import com.yt.vo.RecommendLineVO;
 import com.yt.vo.RelationConditionVO;
 import com.yt.vo.maintain.LineVO;
 
@@ -230,11 +230,11 @@ public class LineRestResource {
 	}
 
 	@POST
-	@Path("recommand")
-	public ResponseDataVO<List<RecommandLineVO>> queryRecommandLine(
-			RecommandConditionVO condition) {
+	@Path("recommend")
+	public ResponseDataVO<List<RecommendLineVO>> queryRecommendLine(
+			RecommendConditionVO condition) {
 		if (condition == null) {
-			return new ResponseDataVO<List<RecommandLineVO>>(
+			return new ResponseDataVO<List<RecommendLineVO>>(
 					StaticErrorEnum.THE_INPUT_IS_NULL);
 		}
 		if (condition.getPlaces() == null) {
@@ -252,10 +252,10 @@ public class LineRestResource {
 			// List<LineBean> result = lineRepo.queryRecommandLine2(places,
 			// dayNum,
 			// scenes);
-			List<RecommandLineVO> list = new Vector<RecommandLineVO>(
+			List<RecommendLineVO> list = new Vector<RecommendLineVO>(
 					result.size());
 			for (LineBean bean : result) {
-				RecommandLineVO vo = RecommandLineVO.transform(bean);
+				RecommendLineVO vo = RecommendLineVO.transform(bean);
 				if (vo == null) {
 					continue;
 				}
@@ -267,7 +267,7 @@ public class LineRestResource {
 								list.size(), condition.getPlaces(),
 								condition.getDayNum(), condition.getScenes()));
 			}
-			return new ResponseDataVO<List<RecommandLineVO>>(list);
+			return new ResponseDataVO<List<RecommendLineVO>>(list);
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
 				LOG.error(
@@ -276,7 +276,7 @@ public class LineRestResource {
 								condition.getPlaces(), condition.getDayNum(),
 								condition.getScenes()), ex);
 			}
-			return new ResponseDataVO<List<RecommandLineVO>>(
+			return new ResponseDataVO<List<RecommendLineVO>>(
 					StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
 	}

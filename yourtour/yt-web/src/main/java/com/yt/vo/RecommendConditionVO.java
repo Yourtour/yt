@@ -1,10 +1,10 @@
 package com.yt.vo;
 
-public class RecommandConditionVO {
+public class RecommendConditionVO {
 	private String places, scenes;
 	private int dayNum;
 
-	public RecommandConditionVO() {
+	public RecommendConditionVO() {
 		super();
 	}
 

@@ -2,7 +2,7 @@ package com.yt.vo;
 
 import com.yt.business.bean.LineBean;
 
-public class RecommandLineVO {
+public class RecommendLineVO {
 	private Long graphid;
 	private String rowKey;
 	private String name; // 名称
@@ -19,11 +19,11 @@ public class RecommandLineVO {
 	private int favoriteNum; // 收藏数
 	private int shareNum; // 分享数
 
-	public static RecommandLineVO transform(LineBean bean) {
+	public static RecommendLineVO transform(LineBean bean) {
 		if (bean == null) {
 			return null;
 		}
-		RecommandLineVO vo = new RecommandLineVO();
+		RecommendLineVO vo = new RecommendLineVO();
 		vo.setCommentIndex(bean.getCommentIndex());
 		vo.setCommentNum(bean.getCommentNum());
 		vo.setCommentScore(bean.getCommentScore());
@@ -42,7 +42,7 @@ public class RecommandLineVO {
 		return vo;
 	}
 
-	public RecommandLineVO() {
+	public RecommendLineVO() {
 		super();
 	}
 
