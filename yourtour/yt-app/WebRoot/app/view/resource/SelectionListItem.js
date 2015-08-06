@@ -1,7 +1,7 @@
 Ext.define('YourTour.view.resource.SelectionListItem', {
     extend: 'Ext.dataview.component.DataItem',
     xtype: 'SelectionListItem',
-    requires:['Ext.Label', 'Ext.Img','YourTour.view.widget.TapLabel'],
+    requires:['Ext.Img','YourTour.view.widget.XLabel','YourTour.view.widget.XField'],
     config: {
     	itemId:'SelectionListItem',
     	layout:'vbox',
@@ -27,14 +27,15 @@ Ext.define('YourTour.view.resource.SelectionListItem', {
 		   				margin:'0 0 0 10',
 		   				items:[
 		   					{
-								xtype: "label", 
+								xtype: "xfield", 
 								itemId:'name',
-								cls:'title nav_arrow'
+								height:20,
+								cls:'font-bold font-medium nav_arrow'
 							},
 							{
-								xtype: "label", 
+								xtype: "xfield", 
 								itemId:'desc',
-								cls:'info'
+								margin:'5 0 0 0'
 							}
 		   				]
 		   			}
@@ -43,10 +44,11 @@ Ext.define('YourTour.view.resource.SelectionListItem', {
         	{
         		xtype:'panel',
         		layout:'hbox',
-        		cls:'info',
+        		style:'height:30px;line-height:30px',
+        		cls:'font-small',
         		items:[
         			{
-						xtype: "label", 
+						xtype: "xlabel", 
 						html:'推荐指数'
 					},
 					{
@@ -58,7 +60,7 @@ Ext.define('YourTour.view.resource.SelectionListItem', {
 					},
         			
 					{
-						xtype: "label", 
+						xtype: "xlabel", 
 						html:'评价指数'
 					},
 					{

@@ -1,4 +1,4 @@
-Ext.define('YourTour.controller.resource.SelectionCtrl', {
+Ext.define('YourTour.controller.resource.ResourceSelectionCtrl', {
     extend: 'YourTour.controller.BaseCtrl',
     config: {
        refs:{
@@ -10,7 +10,13 @@ Ext.define('YourTour.controller.resource.SelectionCtrl', {
        },
        
        control:{
-       	   
+       		'#SelectionListView #toolbar':{
+       	   	   	tap:'onBackTap'
+       	 	},
+       	 	
+       	 	'#SelectionListView #selectionList':{
+       	 		itemtap:'onListTap'
+       	 	}
        },
        
        routes:{
@@ -23,16 +29,18 @@ Ext.define('YourTour.controller.resource.SelectionCtrl', {
     init: function(){
     	this.store = Ext.create('YourTour.store.ResourceStore');
     },
+
+    onBackTap:function(){
+    	this.show('ScheduleListView','YourTour.view.route.schedule.ScheduleListView');
+    },
+    
+    onListTap:function(dataView, index, target, record, e, eOpts){
+    	this.redirectTo('/resource/plan/1');
+    },
     
     showResourceSelectionView:function(){
     	this.show('SelectionListView','YourTour.view.resource.SelectionListView');
-    	
-    	/*var values = [];
-    	values.add({text:'上海', value:'SH'});
-    	values.add({text:'北京', value:'BJ'});
-    	values.add({text:'重庆', value:'CQ'});
-    	var typeStore = Ext.create('Ext.data.Store', {model:'YourTour.model.OptionModel', data:values});*/
-    	
+		
     	this.getSelectionList().setStore(this.store);
     }
 });

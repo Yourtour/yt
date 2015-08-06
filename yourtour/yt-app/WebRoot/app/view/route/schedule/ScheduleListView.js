@@ -57,7 +57,6 @@ Ext.define('YourTour.view.route.schedule.ScheduleListView', {
     		{
     			itemId:'scheduleList',
     			xtype:'ScheduleDataView',
-    			cls:'space-top',
     			readonly:false,
     			scrollable:null,
     			

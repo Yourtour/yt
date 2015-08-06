@@ -1,31 +1,20 @@
 Ext.define('YourTour.view.route.schedule.FoodScheduleView', {
-    extend: 'Ext.Container',
-    requires:['Ext.Panel','YourTour.view.widget.ToggleField','YourTour.view.widget.XToolbar'],
-    xtype: 'foodscheduleview',
+    extend: 'YourTour.view.widget.XPage',
+    requires:['Ext.Panel','YourTour.view.widget.XLabel','YourTour.view.widget.XField','YourTour.view.widget.ToggleField','YourTour.view.widget.XToolbar'],
+    xtype:'FoodScheduleView',
     config: {
-    	itemId:'foodscheduleview',
-    	id:'foodscheduleview',
-    	fullscreen:true,
+    	itemId:'FoodScheduleView',
+    	id:'FoodScheduleView',
     	layout:'vbox',
-    	baseCls:'page',
     	scrollable: {
-    	    direction: 'vertical',
-    	    directionLock: true
+    	    direction: 'vertical'
     	},
     	items:[
     		{    
 				xtype: 'xtoolbar',
-				docked: 'top',
+				itemId:'toolbar',					
 				title: '餐饮安排',
 				items:[
-					{
-						xtype: "image", 
-	                	itemId:'close',
-	                	mode:'tag',
-	                	margin:'0 0 0 5',
-	                	src:'resources/icons/icon_back.png',
-	                	align:'left'
-					}
                 ]
 			},
 			
@@ -39,13 +28,12 @@ Ext.define('YourTour.view.route.schedule.FoodScheduleView', {
 	    		xtype : 'panel',
 	    		layout:'hbox',
 	    		padding:'0 5 0 5',
-	    		cls:'textfield raty',
+	    		cls:'row raty',
 	    		items:[
 		    		{
-		    			xtype:'label',
+		    			xtype:'xlabel',
 		    			flex:1,
-		    			html:'推荐指数',
-		    			style:'font-weight:bold'
+		    			html:'推荐指数'
 		    			
 		    		},
 		    		{
@@ -55,10 +43,9 @@ Ext.define('YourTour.view.route.schedule.FoodScheduleView', {
 		    			mode:'tag'
 		    		},
 		    		{
-		    			xtype:'label',
+		    			xtype:'xlabel',
 		    			flex:1,
-		    			html:'综合评分',
-		    			style:'font-weight:bold'
+		    			html:'综合评分'
 		    		},
 		    		{
 		    			xtype:'image',
@@ -72,20 +59,18 @@ Ext.define('YourTour.view.route.schedule.FoodScheduleView', {
 	    	{
 		    	xtype:'panel',
 		    	layout:'vbox',
-		    	padding:'5',
-		    	style:'background:#fff; border-bottom:1px solid #EDEDED;',
+		    	padding:'0 5 0 5',
 		    	items:[
 			    	{
-		    			xtype:'label',
-		    			itemId:'resName',
-		    			style:'font-weight:bold; line-height:40px;font-size:16px'
+		    			xtype:'xfield',
+		    			itemId:'resName'
 		    		},
 			    	{
-		    			xtype:'label',
+		    			xtype:'xlabel',
 		    			itemId:'address',
 		    			style:'line-height:40px;font-size:14px'
 		    		},{
-		    			xtype:'label',
+		    			xtype:'xlabel',
 		    			itemId:'phone',
 		    			style:'line-height:40px;font-size:14px'
 		    		}
@@ -105,7 +90,7 @@ Ext.define('YourTour.view.route.schedule.FoodScheduleView', {
 				cls:'textfield',
 				items:[
 					{
-						xtype:'label',
+						xtype:'xlabel',
 						html: '活动名称'
 					},
 					{
@@ -113,8 +98,7 @@ Ext.define('YourTour.view.route.schedule.FoodScheduleView', {
 						flex:1
 					},
 					{  
-					    xtype: 'label',  
-					    name : 'name',
+					    xtype: 'xlabel',  
 					    itemId:'name',
 					    clearIcon: true,
 					    cls:'nav_arrow',
@@ -130,7 +114,7 @@ Ext.define('YourTour.view.route.schedule.FoodScheduleView', {
 				cls:'textfield',
 				items:[
 					{
-						xtype:'label',
+						xtype:'xlabel',
 						html: '活动描述'
 					},
 					{
@@ -184,7 +168,7 @@ Ext.define('YourTour.view.route.schedule.FoodScheduleView', {
     			padding:'0 5 0 5',
     			items:[
     				{
-    					xtype:'label',
+    					xtype:'xlabel',
     					html:'活动方式',
     					style:'line-height:40px'
     				},
@@ -272,7 +256,7 @@ Ext.define('YourTour.view.route.schedule.FoodScheduleView', {
 					    name : 'endDate',
 					    itemId:'endDate',
 					    value:new Date(),
-					    dateFormat:'Y/m/d',
+					    dateFormat:'Y-m-d',
 					    clearIcon: true,
 					    cls:'nav_arrow',
 					    inputCls:'align-right'

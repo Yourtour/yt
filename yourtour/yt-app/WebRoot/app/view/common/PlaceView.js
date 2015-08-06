@@ -1,7 +1,7 @@
 Ext.define('YourTour.view.common.PlaceView', {
-    extend: 'Ext.Panel',
+    extend: 'YourTour.view.widget.XPage',
     xtype: 'placeview',
-    requires:['YourTour.view.widget.XToolbar','Ext.Toolbar','Ext.Carousel'],
+    requires:['YourTour.view.widget.XToolbar','Ext.Carousel'],
     config: {
     	itemId:'placeview',
     	id:'placeview',
@@ -11,24 +11,8 @@ Ext.define('YourTour.view.common.PlaceView', {
         items: [
             {    
 				xtype: 'xtoolbar',
-				docked: 'top',
 				title: '目的地',
-				items:[{
-					xtype: "image", 
-                	itemId:'close',
-                	mode:'tag',
-                	margin:'0 0 0 5',
-                	src:'resources/icons/icon_back.png',
-                	align:'left'
-				},
-				{
-					xtype: "toolbutton", 
-                    ui: "normal", 
-                	text:'搜索',
-                	itemId:'search',
-                	id:'search',
-                	align:'right'
-				}]			
+				items:[]			
 			},
 			
 			{

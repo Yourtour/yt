@@ -1,31 +1,49 @@
-Ext.define('YourTour.view.user.RegisterAccount', {
-    extend: 'Ext.Panel',
-    xtype: 'registeraccount',
-    requires:['Ext.Panel', 'Ext.Img','YourTour.view.widget.XButton'],
+Ext.define('YourTour.view.user.RegisterAccountView', {
+    extend: 'YourTour.view.widget.XPage',
+    requires:['Ext.Panel','YourTour.view.widget.HSpacer', 'YourTour.view.widget.XTitleBar', 'Ext.field.Password','YourTour.view.widget.XTextField', 'YourTour.view.widget.XButton', 'YourTour.view.widget.ToolButton'],
+    xtype: 'xregisteraccount',
     config: {
-    	itemId:'registeraccount',
-    	id:'registeraccount',
-    	fullscreen: true,
+    	itemId:'RegisterAccountView',
+    	id:'RegisterAccountView',
     	layout:'vbox',
-    	baseCls:'page',
+    	defaults:{
+    		padding:'0 10 0 10'
+    	},
         items: [
+        	{
+            	xtype: 'xtitlebar',
+                docked: 'top',
+                title: '账号注册',
+            	items:[{
+                	xtype: "image", 
+                	itemId:'back',
+                	id:'back',
+                	mode:'tag',
+                	margin:'0 0 0 5',
+                	src:'resources/icons/icon_back.png',
+                	align:'left'
+                }]	
+            },
+            
+            {
+            	xtype:'hspacer'
+            },
+            
             {
             	xtype:'panel',
             	layout:'hbox',
-            	cls:'textfield',
-            	margin:'10 0 0 0',
+            	cls:'row underline',
             	items:[
             	   {
             		   xtype:'image', 
             		   src:'resources/icons/icon_user.png',
-            		   mode : 'tag',
-            		   margin:'0 10 0 10'
+            		   mode : 'tag'
             	   },
             	   
             	   {
             		   xtype:'label',
             		   html:'|',
-            		   margin:'0 10 0 0'
+            		   margin:'0 10 0 10'
             	   },
             	   {
             		   xtype:'textfield', 
@@ -39,19 +57,18 @@ Ext.define('YourTour.view.user.RegisterAccount', {
             {
             	xtype:'panel',
             	layout:'hbox',
-            	cls:'textfield',
+            	cls:'row underline',
             	items:[
 					{
 						   xtype:'image', 
 						   src:'resources/icons/icon_password.png',
-						   mode : 'tag',
-	            		   margin:'0 10 0 10'
+						   mode : 'tag'
 					},
 					
 					{
-						   xtype:'label',
+						   xtype:'xlabel',
 	            		   html:'|',
-	            		   margin:'0 10 0 0'
+	            		   margin:'0 10 0 10'
 					},
 					{
 						xtype:'passwordfield',
@@ -63,19 +80,18 @@ Ext.define('YourTour.view.user.RegisterAccount', {
             },{
             	xtype:'panel',
             	layout:'hbox',
-            	cls:'textfield',
+            	cls:'row underline',
             	items:[
 					{
 						   xtype:'image', 
 						   src:'resources/icons/icon_password.png',
-						   mode : 'tag',
-	            		   margin:'0 10 0 10'
+						   mode : 'tag'
 					},
 					
 					{
-						   xtype:'label',
+						   xtype:'xlabel',
 	            		   html:'|',
-	            		   margin:'0 10 0 0'
+	            		   margin:'0 10 0 10'
 					},
 					{
 						xtype:'passwordfield',
@@ -85,10 +101,14 @@ Ext.define('YourTour.view.user.RegisterAccount', {
 					}
             	]
             },
+            
+            {
+            	xtype:'hspacer'
+            },
+            
             {
             	xtype:'xbutton',
             	id:'btnRegisterProfile',
-            	margin:'10 0 0 0',
             	text:'下一步'
             }
         ]

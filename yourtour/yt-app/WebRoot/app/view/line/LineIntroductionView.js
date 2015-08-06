@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.line.LineIntroductionView', {
-    extend: 'Ext.Panel',
-    requires:['Ext.Panel','Ext.Img','Ext.DataView', 'YourTour.view.widget.XButton','YourTour.view.widget.XField','YourTour.view.widget.XLabel', 'YourTour.view.widget.XToolbar','YourTour.view.line.LineResourceItem'],
+    extend: 'YourTour.view.widget.XPage',
+    requires:['Ext.Panel','Ext.Img','Ext.DataView', 'YourTour.view.widget.XPanel', 'YourTour.view.widget.XButton','YourTour.view.widget.XField','YourTour.view.widget.XLabel', 'YourTour.view.widget.XToolbar','YourTour.view.line.LineResourceItem'],
     xtype: 'LineIntroductionView',
     config: {
     	itemId:'LineIntroductionView',
@@ -16,31 +16,10 @@ Ext.define('YourTour.view.line.LineIntroductionView', {
 				title:'线路介绍',
 				itemId:'toolbar',
 				items:[
-					{
-	                	xtype: "toolbutton", 
-	                    ui: "normal", 
-	                	text:'咨询',
-	                	itemId:'consult',
-	                	align:'right'
-	                },
 	                {
 	                	xtype: "toolbutton", 
 	                    ui: "normal", 
 	                	text:'评论',
-	                	itemId:'consult',
-	                	align:'right'
-	                },
-	                {
-	                	xtype: "toolbutton", 
-	                    ui: "normal", 
-	                	text:'收藏',
-	                	itemId:'consult',
-	                	align:'right'
-	                },
-	                {
-	                	xtype: "toolbutton", 
-	                    ui: "normal", 
-	                	text:'分享',
 	                	itemId:'consult',
 	                	align:'right'
 	                }
@@ -61,7 +40,7 @@ Ext.define('YourTour.view.line.LineIntroductionView', {
     		},
 				    
 		    {
-    			xtype:'tappanel',
+    			xtype:'panel',
     			layut:'vbox',
     			itemId:'lineInfo',
     			defaults:{
@@ -73,7 +52,7 @@ Ext.define('YourTour.view.line.LineIntroductionView', {
 					   pack:'center',
 					   align:'center',
 					   itemId:'name',
-					   cls:'row underline bold',
+					   cls:'row underline bold font-large',
 					   html : ''
 		    		},
 			    
@@ -91,19 +70,19 @@ Ext.define('YourTour.view.line.LineIntroductionView', {
 				   			{
 				   				xtype:'image',
 				    			src:'resources/images/raty_32.png',
-				    			flex:2,
+				    			flex:1,
 				    			mode:'tag'
 				   			},
 				   			
 				   			{
 				   				xtype:'xlabel',
-				   				html:'旅游指数:',
+				   				html:'评价指数:',
 				   				flex:1
 				   			},
 				   			{
 				   				xtype:'image',
 				    			src:'resources/images/raty_32.png',
-				    			flex:2,
+				    			flex:1,
 				    			mode:'tag'
 				   			}
 			   			]
@@ -116,29 +95,62 @@ Ext.define('YourTour.view.line.LineIntroductionView', {
 			   			items:[
 				   			{
 				   				xtype:'xlabel',
-				   				html:'推荐时间:',
+				   				html:'推荐月份:',
 				   				flex:1
 				   			},
 				   			{
 				   				xtype:'xfield',
-				   				flex:2,
+				   				flex:1,
 				   				html:'7、8、9月'
 				   			},
 				   			{
 				   				xtype:'xlabel',
-				   				flex:1,
-				   				html:'服务达人'
+				   				flex:1
 				   			},
 				   			{
-				   				xtype:'xfield',
-				   				flex:2,
-				   				html:'10人'
+				   				xtype:'xlabel',
+				   				flex:1
 				   			}
 			   			]
 			   		}
 				]
     	   	},
-			    
+			
+    	   	{
+			   xtype:'xpanel',
+			   itemId:'experts',
+			   tappable:true,
+			   cls:'row underline',
+			   layout:'hbox',
+    		   padding:'0 5 0 5',
+			   items:[
+			   		{
+		   				xtype:'xlabel',
+		   				flex:1,
+		   				html:'线路达人:'
+		   			},
+		   			{
+		   				xtype:'xfield',
+		   				itemId:'talent',
+		   				flex:1,
+		   				tappable:true,
+		   				html:'10人'
+		   			},
+		   			{
+		   				xtype:'xlabel',
+		   				flex:1,
+		   				html:'线路驴友:'
+		   			},
+		   			{
+		   				xtype:'xfield',
+		   				itemId:'tourism',
+		   				flex:1,
+		   				tappable:true,
+		   				html:'10人'
+		   			}
+			   ]
+    		},
+		    		
 		    {
 		       xtype:'panel',
 			   margin:'5 0 0 0',
@@ -148,7 +160,7 @@ Ext.define('YourTour.view.line.LineIntroductionView', {
 			   			xtype:'xlabel',
 				   		html:'线路特点',
 				   		padding:'5',
-				   		cls:'row'
+				   		cls:'row font-medium'
 			   		},	
 			   		
 			   		
@@ -163,7 +175,7 @@ Ext.define('YourTour.view.line.LineIntroductionView', {
 			   			xtype:'xlabel',
 				   		html:'推荐理由',
 				   		padding:'5',
-				   		cls:'row'
+				   		cls:'row font-medium'
 			   		},
 			   		
 			   		{
@@ -187,7 +199,7 @@ Ext.define('YourTour.view.line.LineIntroductionView', {
 		    
 		    {
             	xtype:'xbutton',
-            	itemId:'next',
+            	itemId:'btnPlan',
             	docked:'bottom',
             	text:'行程规划'
             }

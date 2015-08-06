@@ -8,7 +8,7 @@ Ext.define('YourTour.view.route.schedule.ScheduleListItem', {
 			padding:'0 5 0 5'
 		},
 		
-		baseCls:'ScheduleListItem',
+		cls:'ScheduleListItem',
     	items:[
     		{
     			itemId:'preparePanel',

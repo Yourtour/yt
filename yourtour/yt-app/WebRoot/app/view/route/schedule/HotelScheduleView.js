@@ -1,31 +1,20 @@
 Ext.define('YourTour.view.route.schedule.HotelScheduleView', {
-    extend: 'Ext.Container',
-    requires:['Ext.Panel','YourTour.view.widget.ToggleField','YourTour.view.widget.XToolbar'],
-    xtype: 'hotelscheduleview',
+    extend: 'YourTour.view.widget.XPage',
+    requires:['Ext.Panel','YourTour.view.widget.XLabel','YourTour.view.widget.XField','YourTour.view.widget.ToggleField','YourTour.view.widget.XToolbar'],
+    xtype: 'HotelScheduleView',
     config: {
-    	itemId:'hotelscheduleview',
-    	id:'hotelscheduleview',
-    	fullscreen:true,
+    	itemId:'HotelScheduleView',
+    	id:'HotelScheduleView',
     	layout:'vbox',
-    	baseCls:'page',
     	scrollable: {
-    	    direction: 'vertical',
-    	    directionLock: true
+    	    direction: 'vertical'
     	},
     	items:[
     		{    
 				xtype: 'xtoolbar',
-				docked: 'top',
+				itemId:'toolbar',
 				title: '住宿安排',
 				items:[
-					{
-						xtype: "image", 
-	                	itemId:'close',
-	                	mode:'tag',
-	                	margin:'0 0 0 5',
-	                	src:'resources/icons/icon_back.png',
-	                	align:'left'
-					}
                 ]
 			},
 			

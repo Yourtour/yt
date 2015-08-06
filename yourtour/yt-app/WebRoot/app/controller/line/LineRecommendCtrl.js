@@ -13,8 +13,8 @@ Ext.define('YourTour.controller.line.LineRecommendCtrl', {
        	    * 线路推荐列表返回按钮事件定义
        	    * @type 
        	    */
-       	   	'#LineRecommendView #back':{
-       	   	   tap:'backToNewRouteView'
+       	   	'#LineRecommendView #toolbar':{
+       	   	   tap:'onBackTap'
        	   	},
        	   
        	   /**
@@ -49,8 +49,8 @@ Ext.define('YourTour.controller.line.LineRecommendCtrl', {
     	this.redirectTo("/route/schedule/1");
     },
    
-    backToNewRouteView:function(){
-    	this.show('newrouteview','YourTour.view.route.NewView');
+    onBackTap:function(){
+    	this.show("RouteSettingView","YourTour.view.route.RouteSettingView");
     },
     
     showView:function(){

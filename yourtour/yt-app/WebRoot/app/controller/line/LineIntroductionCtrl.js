@@ -4,7 +4,7 @@ Ext.define('YourTour.controller.line.LineIntroductionCtrl', {
     config: {
        refs:{
        	   lineIntro:'#LineIntroductionView',
-       	   
+       	   talent:'#LineIntroductionView #talent',
        	   resources:'#LineIntroductionView #resources'
        },
        
@@ -18,11 +18,23 @@ Ext.define('YourTour.controller.line.LineIntroductionCtrl', {
        	    * @type 
        	    */
        	   '#LineIntroductionView #toolbar':{
-       	   	   	back:'backToLineRecommendView'
+       	   	   	tap:'backToLineRecommendView'
        	   },
        	   
        	   resources:{
        	   		itemtap:'onResourceInfoTap'
+       	   },
+       	   
+       	   '#LineIntroductionView #btnPlan':{
+       	   	   	tap:'onPlanTap'
+       	   },
+       	   
+       	   '#LineIntroductionView #talent':{
+       	   		tap:'onTalentTap'
+       	   },
+       	   
+       	   '#LineIntroductionView #tourism':{
+       	   		tap:'onTourismTap'
        	   }
        },
        
@@ -37,8 +49,18 @@ Ext.define('YourTour.controller.line.LineIntroductionCtrl', {
     	this.store = Ext.create('YourTour.store.LineStore');
     },
     
+    onTalentTap:function(){
+    },
+    
+    onTourismTap:function(){
+    },
+    
     onResourceInfoTap:function(dataView, index, target, record, e, eOpts){
     	this.redirectTo('/resource/detail/' + record.get('rowKey'));	
+    },
+    
+    onPlanTap:function(){
+    	this.redirectTo("/route/schedule/0");
     },
     
     showResource:function(record){

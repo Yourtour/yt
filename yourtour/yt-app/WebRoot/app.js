@@ -21,13 +21,13 @@ Ext.application({
         'MainView','Launch','home.HomeMain','SearchMain','route.MainView','route.RouteSettingView','common.PlaceView',
         'line.LineRecommendView','line.LineIntroductionView',
         'route.schedule.ScheduleListView','route.schedule.SceneScheduleView','route.schedule.HotelScheduleView','route.schedule.FoodScheduleView',
-        'user.LoginView','user.RegisterView',
-        'resource.SelectionListView','resource.SceneResourceDetailView','route.schedule.ScheduleReferenceListView'
+        'user.LoginMainView',
+        'resource.SelectionListView','resource.SceneResourceDetailView','resource.SceneResourcePlanView','route.schedule.ScheduleReferenceListView'
     ],
     
     controllers: [
-        'Launch', 'Main', 'route.MainCtrl','route.RouteSettingCtrl','route.ScheduleCtrl', 'line.LineRecommendCtrl','line.LineIntroductionCtrl','common.PlaceCtrl','user.Main',
-        'resource.SelectionCtrl','route.ScheduleReferenceCtrl','resource.ResourceCtrl'
+        'Launch', 'Main', 'route.MainCtrl','route.RouteSettingCtrl','route.ScheduleListCtrl', 'line.LineRecommendCtrl','line.LineIntroductionCtrl','common.PlaceCtrl','user.Main',
+        'resource.ResourceSelectionCtrl','route.ScheduleReferenceCtrl','resource.ResourceCtrl','resource.ResourcePlanCtrl','route.ScheduleDetailCtrl'
     ],
     
     models:[

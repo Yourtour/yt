@@ -1,27 +1,18 @@
 Ext.define('YourTour.view.resource.SelectionListView', {
-    extend: 'Ext.Panel',
+    extend: 'YourTour.view.widget.XPage',
     xtype: 'SelectionListView',
     requires:['YourTour.view.widget.XToolbar', 'Ext.field.Select','YourTour.view.widget.ToolButton','YourTour.view.resource.SelectionListItem'],
     
     config: {
     	itemId:'SelectionListView',
     	id:'SelectionListView',
-    	fullscreen: true,
     	layout:'vbox',
-    	baseCls:'page',
         items: [
             {
             	xtype: 'xtoolbar',
-                docked: 'top',
+                itemId:'toolbar',
                 title: '资源查询',
-                items:[{
-					xtype: "image", 
-                	itemId:'close',
-                	mode:'tag',
-                	margin:'0 0 0 5',
-                	src:'resources/icons/icon_back.png',
-                	align:'left'
-                }]
+                items:[]
             },
             
             {
