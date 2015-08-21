@@ -74,7 +74,7 @@ public interface Constants {
 	//APP角色
 	public static enum Role{
 			MEMBER("Member","一般成员"), 
-			EXPERT("Expert","大人"),
+			EXPERT("Expert","达人"),
 			HOST("Host","地主"), 
 			LEADER("Leader","团长");
 			
