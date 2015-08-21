@@ -45,7 +45,7 @@ Ext.define('YourTour.view.line.LineRecommendItem', {
 				   			{
 				   				xtype:'image',
 				    			src:'resources/images/raty_32.png',
-				    			flex:2,
+				    			flex:1,
 				    			mode:'tag'
 				   			},
 				   			
@@ -57,7 +57,7 @@ Ext.define('YourTour.view.line.LineRecommendItem', {
 				   			{
 				   				xtype:'image',
 				    			src:'resources/images/raty_32.png',
-				    			flex:2,
+				    			flex:1,
 				    			mode:'tag'
 				   			}
 			   			]
@@ -75,7 +75,7 @@ Ext.define('YourTour.view.line.LineRecommendItem', {
 				   			},
 				   			{
 				   				xtype:'xfield',
-				   				flex:2,
+				   				flex:1,
 				   				html:'7、8、9月'
 				   			},
 				   			{
@@ -85,7 +85,7 @@ Ext.define('YourTour.view.line.LineRecommendItem', {
 				   			},
 				   			{
 				   				xtype:'xfield',
-				   				flex:2, 
+				   				flex:1, 
 				   				html:'10天'
 				   			}
 			   			]

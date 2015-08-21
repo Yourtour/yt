@@ -12,6 +12,7 @@ Ext.define('YourTour.view.line.LineRecommendView', {
         	{    
 				xtype: 'xtoolbar',
 				title:'线路推荐',
+				itemId:'toolbar',
 				items:[
 					{
 						xtype:'spacer'

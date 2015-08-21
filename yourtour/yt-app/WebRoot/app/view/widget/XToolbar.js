@@ -35,7 +35,7 @@ Ext.define('YourTour.view.widget.XToolbar', {
 	    	close.element.on({
 				scope : me,
 				tap : function(e, t) {
-					me.fireEvent('back', me, e, t);
+					me.fireEvent('tap', me, e, t);
 				}
 			});
     	}

@@ -28,7 +28,7 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 				layout:'hbox',
 				margin:'5 0 0 0',
 				padding:'0 0 0 10',
-				cls:'row',
+				cls:'row underline',
 				items:[
 					{
 						xtype:'label',
@@ -38,7 +38,6 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 					{  
 					    xtype: 'textfield',  
 					    itemId:'name',
-					    name : 'name',
 					    flex:1,
 					    clearIcon: true
 					}
@@ -49,7 +48,7 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 				xtype:'panel',
 				layout:'hbox',
 				padding:'0 0 0 10',
-				cls:'textfield',
+				cls:'row underline',
 				items:[
 					{
 						xtype:'label',
@@ -72,7 +71,7 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 				xtype:'panel',
 				layout:'hbox',
 				padding:'0 0 0 10',
-				cls:'textfield',
+				cls:'row underline',
 				items:[
 					{
 						xtype:'label',
@@ -96,7 +95,7 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 				xtype:'panel',
 				layout:'hbox',
 				padding:'0 0 0 10',
-				cls:'textfield',
+				cls:'row underline',
 				items:[
 					{
 						xtype:'label',

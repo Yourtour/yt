@@ -7,7 +7,7 @@ Ext.define('YourTour.controller.Launch', {
         
         control: {
         	'#launch #enter':{
-        		tap:'showMainView'
+        		tap:'doEnter'
         	}
         }
     },
@@ -23,7 +23,7 @@ Ext.define('YourTour.controller.Launch', {
         },2000);
     },
     
-    showMainView:function(){
-    	this.redirectTo('homepage');
+    doEnter:function(){
+    	this.redirectTo('/login');
     }
 });

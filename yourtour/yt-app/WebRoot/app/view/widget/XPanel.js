@@ -1,8 +1,8 @@
-Ext.define('YourTour.view.widget.XField', {
-    extend: 'Ext.Label',
-    xtype: 'xfield',
+Ext.define('YourTour.view.widget.XPanel', {
+    extend: 'Ext.Panel',
+    xtype: 'xpanel',
+    
     config:{
-    	cls:'field',
     	tappable:false
     },
     
@@ -18,12 +18,6 @@ Ext.define('YourTour.view.widget.XField', {
 				}
 			});
     	}
-    },
-    
-    setTappable:function(tappable){
-    	console.log('tappable=' + tappable);
-    	
-    	this.tappable = tappable;
     }
 });
 

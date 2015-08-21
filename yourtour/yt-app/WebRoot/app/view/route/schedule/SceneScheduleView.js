@@ -1,31 +1,20 @@
 Ext.define('YourTour.view.route.schedule.SceneScheduleView', {
-    extend: 'Ext.Container',
-    requires:['Ext.Panel','YourTour.view.widget.ToggleField','YourTour.view.widget.XToolbar'],
-    xtype: 'scenescheduleview',
+    extend: 'YourTour.view.widget.XPage',
+    requires:['Ext.Panel','YourTour.view.widget.XLabel','YourTour.view.widget.XField','YourTour.view.widget.ToggleField','YourTour.view.widget.XToolbar'],
+    xtype: 'SceneScheduleView',
     config: {
-    	itemId:'scenescheduleview',
-    	id:'scenescheduleview',
-    	fullscreen:true,
+    	itemId:'SceneScheduleView',
+    	id:'SceneScheduleView',
     	layout:'vbox',
-    	baseCls:'page',
     	scrollable: {
-    	    direction: 'vertical',
-    	    directionLock: true
+    	    direction: 'vertical'
     	},
     	items:[
     		{    
 				xtype: 'xtoolbar',
-				docked: 'top',
+				itemId:'toolbar',
 				title: '游玩安排',
 				items:[
-					{
-						xtype: "image", 
-	                	itemId:'close',
-	                	mode:'tag',
-	                	margin:'0 0 0 5',
-	                	src:'resources/icons/icon_back.png',
-	                	align:'left'
-					}
                 ]
 			},
 			

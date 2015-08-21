@@ -31,8 +31,6 @@ Ext.define('YourTour.view.widget.ToggleField', {
     initialize:function(){
     	var me = this;
     	
-    	console.log(me);
-    	
     	var button0 = me.getAt(0), button1 = me.getAt(1);
     	
     	var texts = this.getTexts();

@@ -2,53 +2,58 @@ Ext.define('YourTour.controller.user.Main', {
     extend: 'Ext.app.Controller',
     config: {
        refs:{
-    	   register:'#register'
+    	   loginMainView:'#LoginMainView'
        },
        
        control:{
-    	   '#loginview #btnRegister':{
-    		   tap:'onRegister'
+    	   '#LoginView #btnRegister':{
+    		   tap:'onRegisterTap'
     	   },
     	   
-    	   '#loginview #btnLogin':{
-    		   tap:'doLogin'
+    	   '#LoginView #btnLogin':{
+    		   tap:'onLoginTap'
     	   },
     	   
-    	   '#btnRegisterProfile':{
-    		   tap:'doRegisterProfile'
+    	   '#RegisterAccountView #btnRegisterProfile':{
+    		   tap:'onRegisterProfileTap'
     	   },
     	   
-    	   '#btnRegisterAccount':{
-    		   tap:'doRegisterAccount'
+    	   '#RegisterAuthView #btnRegisterAccount':{
+    		   tap:'onRegisterAccountTap'
     	   },
     	   
-    	   '#registerprofile #btnRegisterDone':{
-    		   tap:'doneRegister'
+    	   '#RegisterProfileView #btnRegisterDone':{
+    		   tap:'onRegisterDoneTap'
     	   }
        },
+       
+       routes:{
+       		'/login':'showLoginView'	
+       }
     },
     
-    onRegister:function(){
-    	this.doRegister();
+    showLoginView:function(){
+    	var loginMainView = Ext.create('YourTour.view.user.LoginMainView');
+    	Ext.Viewport.setActiveItem(loginMainView);	
     },
     
-    doRegister:function(){
-    	Ext.Viewport.setActiveItem(Ext.create('YourTour.view.user.Register'));
+    onRegisterTap:function(){
+    	this.getLoginMainView().setActiveItem('#RegisterAuthView');
     },
     
-    doLogin:function(){
-    	Ext.Viewport.setActiveItem(Ext.create('YourTour.view.MainView'));
+    onRegisterAccountTap:function(){
+    	this.getLoginMainView().setActiveItem('#RegisterAccountView');
     },
     
-    doRegisterAccount:function(){
-    	this.getRegister().setActiveItem('registeraccount');
+    onRegisterProfileTap:function(){
+    	this.getLoginMainView().setActiveItem('#RegisterProfileView');
     },
     
-    doRegisterProfile:function(){
-    	this.getRegister().setActiveItem('registerprofile');
+    onRegisterDoneTap:function(){
+    	this.redirectTo('homepage');
     },
     
-    doneRegister:function(){
-    	Ext.Viewport.setActiveItem(Ext.create('YourTour.view.Main'));
+    onLoginTap:function(){
+    	this.redirectTo('homepage');
     }
 });
