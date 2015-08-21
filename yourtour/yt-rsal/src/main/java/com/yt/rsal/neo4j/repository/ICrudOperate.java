@@ -61,6 +61,31 @@ public interface ICrudOperate {
 	public INeo4JBaseBean get(Class<? extends INeo4JBaseBean> clazz,
 			String rowKey) throws Exception;
 
+	/**
+	 * 根据指定的索引字段获取指定内容的Neo4J实体对象
+	 * 
+	 * @param clazz
+	 *            对应的Neo4J实体类
+	 * @param indexedPropertyName
+	 *            索引字段名称
+	 * @param value
+	 *            指定的搜索内容
+	 * @return Neo4J实体对象，如果不存在，则返回null。
+	 * @throws Exception
+	 *             获取过程中发生的异常
+	 */
+	public INeo4JBaseBean get(Class<? extends INeo4JBaseBean> clazz,
+			String indexedPropertyName, String value) throws Exception;
+
+	/**
+	 * 获取对应实体类的Neo4J实体对象
+	 * 
+	 * @param clazz
+	 *            对应的Neo4J实体类
+	 * @return Neo4J实体对象列表
+	 * @throws Exception
+	 *             获取过程中发生的异常
+	 */
 	public List<? extends INeo4JBaseBean> get(
 			Class<? extends INeo4JBaseBean> clazz) throws Exception;
 
@@ -77,6 +102,14 @@ public interface ICrudOperate {
 	public void delete(Class<? extends INeo4JBaseBean> clazz, String rowKey)
 			throws Exception;
 
+	/**
+	 * 删除所有对应的Neo4J实体对象。
+	 * 
+	 * @param clazz
+	 *            对应的Neo4J实体类
+	 * @throws Exception
+	 *             删除过程中发生的异常
+	 */
 	public void delete(Class<? extends INeo4JBaseBean> clazz) throws Exception;
 
 	/**

@@ -83,18 +83,31 @@ public class CrudGeneralOperate implements ICrudOperate {
 	@Override
 	public INeo4JBaseBean get(Class<? extends INeo4JBaseBean> clazz,
 			String rowKey) throws Exception {
+		return get(clazz, "rowKey", rowKey);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.yt.rsal.neo4j.repository.ICrudOperate#get(java.lang.Class,
+	 * java.lang.String, java.lang.String)
+	 */
+	@Override
+	public INeo4JBaseBean get(Class<? extends INeo4JBaseBean> clazz,
+			String indexedPropertyName, String value) throws Exception {
 		Result<INeo4JBaseBean> result = template.findByIndexedValue(clazz,
-				"rowKey", rowKey);
+				indexedPropertyName, value);
 		INeo4JBaseBean bean = result.singleOrNull();
 		if (bean == null) {
 			if (LOG.isDebugEnabled()) {
-				LOG.debug(String.format(
-						"The Neo4JBean[rowKey='%s'] not exist.", rowKey));
+				LOG.debug(String.format("The Neo4JBean[%s='%s'] not exist.",
+						indexedPropertyName, value));
 			}
 		} else {
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format(
-						"Found a Neo4JBean, rowKey: %s, graphId: %d.", rowKey,
+						"Found a Neo4JBean, %s: %s, graphId: %d.",
+						indexedPropertyName, value,
 						((Neo4JBaseBean) bean).getGraphId()));
 			}
 		}
