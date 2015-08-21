@@ -3,6 +3,8 @@ package com.yt.rest.resource;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -10,6 +12,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import org.apache.commons.logging.Log;
@@ -35,6 +38,7 @@ import com.yt.vo.maintain.UserVO;
 @Consumes(MediaType.APPLICATION_JSON)
 public class UserRestResource {
 	private static final Log LOG = LogFactory.getLog(UserRestResource.class);
+	private static final String LOGIN_USERNAME = "login.username";
 
 	@Autowired
 	private Neo4jTemplate template;
@@ -182,16 +186,79 @@ public class UserRestResource {
 	}
 
 	@POST
-	@Path("authenticate")
-	public ResponseVO authenticate(AuthenticationVO auth) {
+	@Path("login")
+	public ResponseVO login(AuthenticationVO auth,
+			@Context HttpServletRequest request) {
 		if (auth == null) {
 			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
 		}
-		
 		try {
-			// TODO 验证用户名和密码
+			UserBean user = (UserBean) crudOperate.get(UserBean.class,
+					"userName", auth.getCode());
+			if (user == null) {
+				if (LOG.isWarnEnabled()) {
+					LOG.warn(String.format(
+							"The user[%s] not exist, login fail.",
+							auth.getCode()));
+				}
+				return new ResponseVO(StaticErrorEnum.USER_NOT_EXIST);
+			}
+			if (!auth.getPassword().equals(user.getPwd())) {
+				// 认证成功
+				if (LOG.isDebugEnabled()) {
+					LOG.debug(String.format("The user[%s] login success.",
+							auth.getCode()));
+				}
+				request.getSession(true).setAttribute(LOGIN_USERNAME,
+						auth.getCode());
+				return new ResponseVO(StaticErrorEnum.AUTHENTICATE_FAIL);
+			}
 			return new ResponseVO();
 		} catch (Exception ex) {
+			if (LOG.isWarnEnabled()) {
+				LOG.warn(
+						String.format("The user[%s] login fail.",
+								auth.getCode()), ex);
+			}
+			return new ResponseVO(StaticErrorEnum.AUTHENTICATE_FAIL);
+		}
+	}
+
+	@GET
+	@Path("logout/{username}")
+	public ResponseVO logout(@PathParam("username") String username,
+			@Context HttpServletRequest request) {
+		if (username == null) {
+			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
+		}
+		try {
+			UserBean user = (UserBean) crudOperate.get(UserBean.class,
+					"userName", username);
+			if (user == null) {
+				if (LOG.isWarnEnabled()) {
+					LOG.warn(String.format(
+							"The user[%s] not exist, logout fail.", username));
+				}
+				return new ResponseVO(StaticErrorEnum.USER_NOT_EXIST);
+			}
+			HttpSession session = request.getSession();
+			if (session == null) {
+				if (LOG.isWarnEnabled()) {
+					LOG.warn("The session is null, logout fail.");
+				}
+				return new ResponseVO(StaticErrorEnum.AUTHENTICATE_FAIL);
+			}
+			session.removeAttribute(LOGIN_USERNAME);
+			if (LOG.isDebugEnabled()) {
+				LOG.debug(String.format("The user[%s] logout success.",
+						username));
+			}
+			return new ResponseVO();
+		} catch (Exception ex) {
+			if (LOG.isWarnEnabled()) {
+				LOG.warn(String.format("The user[%s] logout fail.", username),
+						ex);
+			}
 			return new ResponseVO(StaticErrorEnum.AUTHENTICATE_FAIL);
 		}
 	}

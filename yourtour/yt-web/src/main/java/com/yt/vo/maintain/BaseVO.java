@@ -15,7 +15,7 @@ public class BaseVO {
 		if (bean == null) {
 			return;
 		}
-		setGraphid(bean.getGraphId());
+		setId(bean.getGraphId());
 		setCreatedTime(bean.getCreatedTime());
 		setCreatedUserId(bean.getCreatedUserId());
 		setRowKey(bean.getRowKey());
@@ -26,7 +26,7 @@ public class BaseVO {
 	public void toBean(Neo4JBaseBean bean) {
 		bean.setCreatedTime(getCreatedTime());
 		bean.setCreatedUserId(getCreatedUserId());
-		bean.setGraphId(getGraphid());
+		bean.setGraphId(getId());
 		bean.setRowKey(getRowKey());
 		bean.setUpdatedTime(getUpdatedTime());
 		bean.setUpdatedUserId(getUpdatedUserId());
@@ -36,11 +36,11 @@ public class BaseVO {
 		super();
 	}
 
-	public Long getGraphid() {
+	public Long getId() {
 		return graphid;
 	}
 
-	public void setGraphid(Long graphid) {
+	public void setId(Long graphid) {
 		this.graphid = graphid;
 	}
 

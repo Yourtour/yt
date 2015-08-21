@@ -3,13 +3,7 @@ package com.yt.vo.maintain;
 import com.yt.business.bean.RouteBean;
 import com.yt.business.common.Constants.Status;
 
-public class RouteVO {
-	private Long graphid;
-	private String rowKey;
-	private String createdUserId = "";
-	private long createdTime;
-	private String updatedUserId = "";
-	private long updatedTime;
+public class RouteVO extends BaseVO {
 	private String name; // 安排名称
 	private String imageUrl; // 行程图片
 	private String lineName; // 线路名称
@@ -32,7 +26,7 @@ public class RouteVO {
 		vo.setCreatedUserId(bean.getCreatedUserId());
 		vo.setEndTime(bean.getEndTime());
 		vo.setFeature(bean.getFeature());
-		vo.setGraphid(bean.getGraphId());
+		vo.setId(bean.getGraphId());
 		vo.setImageUrl(bean.getImageUrl());
 		vo.setIntro(bean.getIntro());
 		vo.setLineName(bean.getLineName());
@@ -57,7 +51,7 @@ public class RouteVO {
 		bean.setCreatedUserId(vo.getCreatedUserId());
 		bean.setEndTime(vo.getEndTime());
 		bean.setFeature(vo.getFeature());
-		bean.setGraphId(vo.getGraphid());
+		bean.setGraphId(vo.getId());
 		bean.setImageUrl(vo.getImageUrl());
 		bean.setIntro(vo.getIntro());
 		bean.setLineName(vo.getLineName());
@@ -75,54 +69,6 @@ public class RouteVO {
 
 	public RouteVO() {
 		super();
-	}
-
-	public Long getGraphid() {
-		return graphid;
-	}
-
-	public void setGraphid(Long graphid) {
-		this.graphid = graphid;
-	}
-
-	public String getRowKey() {
-		return rowKey;
-	}
-
-	public void setRowKey(String rowKey) {
-		this.rowKey = rowKey;
-	}
-
-	public String getCreatedUserId() {
-		return createdUserId;
-	}
-
-	public void setCreatedUserId(String createdUserId) {
-		this.createdUserId = createdUserId;
-	}
-
-	public long getCreatedTime() {
-		return createdTime;
-	}
-
-	public void setCreatedTime(long createdTime) {
-		this.createdTime = createdTime;
-	}
-
-	public String getUpdatedUserId() {
-		return updatedUserId;
-	}
-
-	public void setUpdatedUserId(String updatedUserId) {
-		this.updatedUserId = updatedUserId;
-	}
-
-	public long getUpdatedTime() {
-		return updatedTime;
-	}
-
-	public void setUpdatedTime(long updatedTime) {
-		this.updatedTime = updatedTime;
 	}
 
 	public String getName() {
