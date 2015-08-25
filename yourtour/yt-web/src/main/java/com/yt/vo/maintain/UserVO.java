@@ -1,15 +1,16 @@
 package com.yt.vo.maintain;
 
 import com.yt.business.bean.UserBean;
+import com.yt.business.common.Constants.GenderType;
 import com.yt.business.common.Constants.Role;
 import com.yt.business.common.Constants.Status;
 
 public class UserVO extends BaseVO {
 	private String userName; // 登录名
-	private String pwd; // 登录密码
+	private String password; // 登录密码
 	private String realName; // 真实姓名
 	private String nickName; // 昵称
-	private String sex; // 性别 F/M
+	private GenderType gender = GenderType.NA; // 性别 F/M
 	private long birthday; // 生日
 	private String imageUrl; // 头像
 	private String character; // 性格
@@ -37,12 +38,27 @@ public class UserVO extends BaseVO {
 		vo.setMobileNo(bean.getMobileNo());
 		vo.setNativePlace(bean.getNativePlace());
 		vo.setNickName(bean.getNickName());
-		vo.setPwd(bean.getPwd());
+		vo.setPassword(bean.getPwd());
 		vo.setRank(bean.getRank());
 		vo.setRealName(bean.getRealName());
 		vo.setResidence(bean.getResidence());
 		vo.setRole(bean.getRole());
-		vo.setSex(bean.getSex());
+		switch (bean.getSex()) {
+		case "M":
+		case "m":
+		case "MALE":
+		case "male":
+			vo.setGender(GenderType.MALE);
+			break;
+		case "F":
+		case "f":
+		case "FEMALE":
+		case "female":
+			vo.setGender(GenderType.FEMALE);
+			break;
+		default:
+			vo.setGender(GenderType.NA);
+		}
 		vo.setSlogan(bean.getSlogan());
 		vo.setStatus(bean.getStatus());
 		vo.setUserName(bean.getUserName());
@@ -63,12 +79,12 @@ public class UserVO extends BaseVO {
 		bean.setMobileNo(vo.getMobileNo());
 		bean.setNativePlace(vo.getNativePlace());
 		bean.setNickName(vo.getNickName());
-		bean.setPwd(vo.getPwd());
+		bean.setPwd(vo.getPassword());
 		bean.setRank(vo.getRank());
 		bean.setRealName(vo.getRealName());
 		bean.setResidence(vo.getResidence());
 		bean.setRole(vo.getRole());
-		bean.setSex(vo.getSex());
+		bean.setSex(vo.getGender().code);
 		bean.setSlogan(vo.getSlogan());
 		bean.setStatus(vo.getStatus());
 		bean.setUserName(vo.getUserName());
@@ -87,12 +103,12 @@ public class UserVO extends BaseVO {
 		this.userName = userName;
 	}
 
-	public String getPwd() {
-		return pwd;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getRealName() {
@@ -111,12 +127,12 @@ public class UserVO extends BaseVO {
 		this.nickName = nickName;
 	}
 
-	public String getSex() {
-		return sex;
+	public GenderType getGender() {
+		return gender;
 	}
 
-	public void setSex(String sex) {
-		this.sex = sex;
+	public void setGender(GenderType gender) {
+		this.gender = gender;
 	}
 
 	public long getBirthday() {

@@ -2,6 +2,7 @@ package com.yt.rest.resource;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,6 +13,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
@@ -22,7 +24,10 @@ import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.stereotype.Component;
 
 import com.yt.business.bean.UserBean;
+import com.yt.business.common.Constants.GenderType;
 import com.yt.business.common.Constants.NodeRelationshipEnum;
+import com.yt.business.common.Constants.Role;
+import com.yt.business.common.Constants.Status;
 import com.yt.business.utils.Neo4jUtils;
 import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
@@ -317,5 +322,31 @@ public class UserRestResource {
 			}
 			return new ResponseVO(StaticErrorEnum.DB_OPERATE_FAIL);
 		}
+	}
+	
+	@Path("loadPage.json")
+	@GET
+	public List<UserVO> loadPage(@QueryParam("page") int page,
+			@QueryParam("start") int start, @QueryParam("limit") int limit) {
+		System.out.println(String.format("page(%d), start(%d), limit(%d).",
+				page, start, limit));
+		Vector<UserVO> result = new Vector<UserVO>();
+		UserVO vo1  = new UserVO();
+		vo1.setId(1l);
+		vo1.setUserName("john");
+		vo1.setRealName("彭明喜");
+		vo1.setBirthday(System.currentTimeMillis());
+		vo1.setCharacter("理工男，理性、务实、不浮躁！");
+		vo1.setConstellation("处女座");
+		vo1.setEmail("pengmingxi@dscomm.com.cn");
+		vo1.setGender(GenderType.MALE);
+		vo1.setMobileNo("13701760212");
+		vo1.setNickName("上善若水");
+		vo1.setPassword("12345678");
+		vo1.setRole(Role.EXPERT);
+		vo1.setStatus(Status.VALIDATED);
+		vo1.setSlogan("一起玩、一起飞！");
+		result.add(vo1);
+		return result;
 	}
 }
