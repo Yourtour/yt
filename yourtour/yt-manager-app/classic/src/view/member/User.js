@@ -7,8 +7,6 @@ Ext.define('yt_manager_app.view.member.User', {
 
     controller: 'user',
 
-    width: 400,
-    height: 300,
     defaults: {
         bodyPadding: 10,
         scrollable: true

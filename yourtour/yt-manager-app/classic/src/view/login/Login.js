@@ -16,6 +16,7 @@ Ext.define('yt_manager_app.view.login.Login', {
     title: 'Login window',
     closable: false,
     autoShow: true,
+    modal: true,
 
     items: {
         xtype: 'form',
