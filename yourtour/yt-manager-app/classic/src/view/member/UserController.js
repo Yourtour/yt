@@ -5,6 +5,14 @@ Ext.define('yt_manager_app.view.member.UserController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.user',
 
+    init: function() {
+        var me = this,
+            grid = me.lookupReference('grid_paging');
+        var store = new yt_manager_app.store.User();
+        grid.setStore(store);
+        store.load();
+    },
+
     getSelectedRecords: function () {
         var me = this,
             grid = me.lookupReference('grid_paging'),
@@ -18,38 +26,17 @@ Ext.define('yt_manager_app.view.member.UserController', {
             win = new yt_manager_app.view.member.UserWindow();
             this.getView().add(win);
         }
+        win.setTitle(title);
 
         var me = this,
             formWindow = me.lookupReference('formWindow'),
             baseInfo = me.lookupReference('baseInfo'),
-            userName = me.lookupReference('userName'),
-            realName = me.lookupReference('realName'),
-            nickName = me.lookupReference('nickName'),
-            password = me.lookupReference('password'),
-            gender = me.lookupReference('gender'),
-            mobileNo = me.lookupReference('mobileNo'),
-
             detailInfo = me.lookupReference('detailInfo'),
-            imageUrl = me.lookupReference('imageUrl'),
-            birthday = me.lookupReference('birthday'),
-            email = me.lookupReference('email'),
-            residence = me.lookupReference('residence'),
-            role = me.lookupReference('role'),
-            rank = me.lookupReference('rank'),
-            status = me.lookupReference('status'),
-
             extendInfo = me.lookupReference('extendInfo'),
-            character = me.lookupReference('character'),
-            nativePlace = me.lookupReference('nativePlace'),
-            constellation = me.lookupReference('constellation'),
-            slogan = me.lookupReference('slogan'),
-
             reset = me.lookupReference('reset'),
             save = me.lookupReference('save');
         // fill the data
         if (data) {
-            // TODO 填充数据
-            console.log(data);
             formWindow.loadRecord(data);
         }
 
@@ -72,12 +59,24 @@ Ext.define('yt_manager_app.view.member.UserController', {
         }
 
         // show
-        win.setTitle(title);
         win.show();
     },
 
     onTabChange: function (tabs, newTab, oldTab) {
+        var me = this;
+        var id = newTab.id;
+        if (id == 'general-tab') {
+            // all member tab
+        } else if (id == 'cypher-tab') {
+            // cyphere tab
+        } else {
+            // graph tab
+        }
         // TODO 切换了tab
+    },
+
+    onQueryCypher: function() {
+        // TODO 查询Cypher
     },
 
     onShowDetails: function () {

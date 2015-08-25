@@ -27,52 +27,12 @@ Ext.define('yt_manager_app.view.member.User', {
     },
 
     items: [{
+        id: 'general-tab',
         title: '所有会员',
         icon: '/resources/images/toggle-icon.png',
         items: [{
-            xtype: 'grid',
+            xtype: 'userGrid',
             reference: 'grid_paging',
-            loadMask: true,
-            viewConfig: {
-                trackOver: false,
-                stripeRows: false
-            },
-            columns: [{
-                id: 'userName',
-                text: 'User name',
-                dataIndex: 'userName',
-                width: 120,
-                sortable: true
-            }, {
-                id: 'nickName',
-                text: 'Nick name',
-                dataIndex: 'nickName',
-                sortable: true
-            }, {
-                id: 'realName',
-                text: 'Real name',
-                dataIndex: 'realName',
-                width: 120,
-                sortable: true
-            }, {
-                id: 'role',
-                text: 'Role',
-                dataIndex: 'role',
-                width: 100,
-                sortable: true
-            }, {
-                id: 'mobileNo',
-                text: 'Mobile',
-                dataIndex: 'mobileNo',
-                width: 150,
-                sortable: true
-            }, {
-                id: 'email',
-                text: 'Email',
-                dataIndex: 'email',
-                flex: 1,
-                sortable: true
-            }],
             tbar: {
                 xtype: 'toolbar',
                 items: ['->', {
@@ -96,22 +56,63 @@ Ext.define('yt_manager_app.view.member.User', {
                     html: '<img src="/resources/images/user-profile/3.png" alt="Detail">',
                     handler: 'onDeleteUser'
                 }]
-            },
-            bbar: {
-                xtype: 'pagingtoolbar',
-                displayInfo: true,
-                displayMsg: '{3}中的{0}-{1}',
-                emptyMsg: '无数据'
-            },
-            flex: 1
+            }
         }]
     }, {
+        id: 'cypher-tab',
         title: '条件查询',
         icon: '/resources/images/user-profile/3.png',
-        html: 'tab pane 2.'
+        items: [{
+            xtype: 'userGrid',
+            reference: 'grid_paging_condition',
+            tbar: {
+                xtype: 'toolbar',
+                items: [{
+                    xtype: 'textareafield',
+                    fieldLabel: 'Cypher',
+                    reference: 'cypher',
+                    name: 'cypher',
+                    width: 800,
+                    minWidth: 500,
+                    maxWidth: 1000,
+                    shrinkWrap: 0,
+                    emptyText: 'Cypher查询语句'
+                }, {
+                    xtype: 'tool',
+                    tooltip: 'Query the cypher statement.',
+                    type: 'search',
+                    handler: 'onQueryCypher'
+                }, '->', {
+                    xtype: 'button',
+                    tooltip: 'Show details.',
+                    html: '<img src="/resources/images/user-profile/3.png" alt="Details">',
+                    handler: 'onShowDetails'
+                }, '-', {
+                    xtype: 'button',
+                    tooltip: 'Add a user.',
+                    html: '<img src="/resources/images/user-profile/3.png" alt="Detail">',
+                    handler: 'onAddUser'
+                }, {
+                    xtype: 'button',
+                    tooltip: 'Modify the user.',
+                    html: '<img src="/resources/images/user-profile/3.png" alt="Detail">',
+                    handler: 'onModifyUser'
+                }, '-', {
+                    xtype: 'button',
+                    tooltip: 'Delete the user.',
+                    html: '<img src="/resources/images/user-profile/3.png" alt="Detail">',
+                    handler: 'onDeleteUser'
+                }]
+            }
+        }]
     }, {
+        id: 'graph-tab',
         title: '会员关系',
         icon: '/resources/images/user-profile/3.png',
         html: 'tab pane 3.'
-    }]
+    }],
+
+    listeners: {
+        tabchange: 'onTabChange'
+    }
 });

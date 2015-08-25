@@ -149,9 +149,9 @@ Ext.define('yt_manager_app.view.member.UserWindow', {
                         fields: ['abbr', 'name'],
                         data: (function () {
                             var data = new Array(3);
-                            data[0] = {abbr: 'Member', name: '一般会员'};
-                            data[1] = {abbr: 'Expert', name: '达人'};
-                            data[2] = {abbr: 'Host', name: '地主'};
+                            data[0] = {abbr: 'MEMBER', name: '一般会员'};
+                            data[1] = {abbr: 'EXPERT', name: '达人'};
+                            data[2] = {abbr: 'HOST', name: '地主'};
                             return data;
                         })()
                     });
@@ -166,8 +166,8 @@ Ext.define('yt_manager_app.view.member.UserWindow', {
                 emptyText: '角色'
             }, {
                 xtype: 'numberfield',
-                minValue: 1,
-                maxValue: 10,
+                minValue: 0,
+                maxValue: 11,
                 value: 5,
                 fieldLabel: '等级',
                 reference: 'rank',
