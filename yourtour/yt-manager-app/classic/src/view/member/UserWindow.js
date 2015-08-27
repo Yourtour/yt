@@ -2,56 +2,12 @@
  * Created by john on 15-8-24.
  */
 Ext.define('yt_manager_app.view.member.UserWindow', {
-    extend: 'Ext.window.Window',
+    extend: 'yt_manager_app.view.widget.GeneralFormWindow',
     xtype: 'userWindow',
     reference: 'userPopupWindow',
 
-    requires: [
-        //'Ext.ux.rating.Picker'
-    ],
-
-    defaults: {
-        bodyPadding: 10,
-        scrollable: true
-    },
-
-    width: 600,
-    height: 500,
-    minWidth: 500,
-    minHeight: 400,
-    layout: 'fit',
-    resizable: true,
-    modal: true,
-    closeAction: 'hide',
-    items: [{
-        xtype: 'form',
-        reference: 'formWindow',
-        layout: {
-            type: 'vbox',
-            align: 'stretch'
-        },
-        border: false,
-        bodyPadding: 20,
-
-        fieldDefaults: {
-            msgTarget: 'side',
-            labelAlign: 'left',
-            labelWidth: 100,
-            labelStyle: 'font-weight:bold'
-        },
-        items: [{
-            xtype: 'fieldset',
-            title: '基本信息',
-            reference: 'baseInfo',
-            collapsible: false,
-            defaultType: 'textfield',
-            bodyPadding: 2,
-            defaults: {
-                anchor: '100%',
-                afterLabelTextTpl: [
-                    '<span style="color:red;font-weight:bold" data-qtip="Required">*</span>'
-                ]
-            },
+    config: {
+        base: {
             items: [{
                 fieldLabel: '登录名',
                 reference: 'userName',
@@ -107,17 +63,8 @@ Ext.define('yt_manager_app.view.member.UserWindow', {
                 name: 'mobileNo',
                 emptyText: '移动电话号码'
             }]
-        }, {
-            xtype: 'fieldset',
-            title: '详细信息',
-            reference: 'detailInfo',
-            collapsible: true,
-            collapsed: true,
-            defaultType: 'textfield',
-            bodyPadding: 2,
-            defaults: {
-                anchor: '100%'
-            },
+        },
+        detail: {
             items: [{
                 fieldLabel: '照片',
                 reference: 'imageUrl',
@@ -129,8 +76,9 @@ Ext.define('yt_manager_app.view.member.UserWindow', {
                 format: 'Y/m/d',
                 maxValue: new Date(),
                 reference: 'birthday',
+                dataIndex: 'birthday',
                 name: 'birthday',
-                emptyText: 'YYYY/mm/dd'
+                emptyText: 'Y/m/d'
             }, {
                 fieldLabel: '邮件',
                 reference: 'email',
@@ -167,7 +115,7 @@ Ext.define('yt_manager_app.view.member.UserWindow', {
             }, {
                 xtype: 'numberfield',
                 minValue: 0,
-                maxValue: 11,
+                maxValue: 10,
                 value: 5,
                 fieldLabel: '等级',
                 reference: 'rank',
@@ -197,17 +145,8 @@ Ext.define('yt_manager_app.view.member.UserWindow', {
                 name: 'status',
                 emptyText: '状态'
             }]
-        }, {
-            xtype: 'fieldset',
-            title: '拓展信息',
-            reference: 'extendInfo',
-            collapsible: true,
-            collapsed: true,
-            defaultType: 'textareafield',
-            bodyPadding: 2,
-            defaults: {
-                anchor: '100%'
-            },
+        },
+        extend: {
             items: [{
                 fieldLabel: '个人特质',
                 reference: 'character',
@@ -229,19 +168,9 @@ Ext.define('yt_manager_app.view.member.UserWindow', {
                 name: 'slogan',
                 emptyText: '个人口号'
             }]
-        }],
-
-        buttons: [{
-            text: '重置',
-            reference: 'reset',
-            handler: 'onFormReset'
-        }, {
-            text: '保存',
-            reference: 'save',
-            handler: 'onFormSave'
-        }, {
-            text: '关闭',
-            handler: 'onFormClose'
-        }]
-    }]
+        },
+        operate: {
+            hidden: false
+        }
+    }
 });
