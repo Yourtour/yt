@@ -105,7 +105,7 @@ Ext.define('yt_manager_app.store.NavigationTree', {
             id: 'route-parent',
             children: [{
                 text: '行程',
-                //view: 'operate.Announce',
+                view: 'route.Route',
                 leaf: true,
                 iconCls: 'x-fa fa-file-o',
                 routeId: 'route.route'

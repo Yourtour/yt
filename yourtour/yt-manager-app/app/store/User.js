@@ -18,7 +18,7 @@ Ext.define('yt_manager_app.store.User', {
     }, {
         name: 'gender', type: 'string'
     }, {
-        name: 'birthday', type: 'int'
+        name: 'birthday', type: 'string'
     }, {
         name: 'imageUrl', type: 'string'
     }, {
@@ -48,16 +48,46 @@ Ext.define('yt_manager_app.store.User', {
     }, {
         name: 'updatedUserId', type: 'string'
     }, {
-        name: 'updateTime', type: 'int'
+        name: 'updatedTime', type: 'int'
     }, {
         name: 'rowKey', type: 'string'
+    }, {
+        name: 'roleName', calculate: function (data) {
+            var code = data.role;
+            if (code == 'EXPERT') {
+                return '达人';
+            } else if (code == 'HOST') {
+                return '地主';
+            } else {
+                return '一般会员';
+            }
+        }
+    }, {
+        name: 'createdTimeStr', calculate: function(data) {
+            var time = data.createdTime,
+                date = new Date();
+            date.setTime(time);
+            return Ext.Date.format(date, 'Y/m/d H:i:s');
+        }
+    }, {
+        name: 'updatedTimeStr', calculate: function(data) {
+            if (data.updatedUserId == null || data.updatedUserId == '') {
+                return '';
+            }
+            var time = data.updatedTime,
+                date = new Date();
+            date.setTime(time);
+            return Ext.Date.format(date, 'Y/m/d H:i:s');
+        }
     }],
+    idProperty:'id',
+    pageSize: 20,
 
     proxy: {
         type: 'rest',
         format: 'json',
         api: {
-            create: 'http://localhost:8080/yt-web/rest/user/create',
+            create: 'http://localhost:8080/yt-web/rest/users/save',
             read: 'http://localhost:8080/yt-web/rest/users/loadPage',
             update: 'http://localhost:8080/yt-web/rest/users/save',
             destroy: 'http://localhost:8080/yt-web/rest/users/remove'
@@ -69,7 +99,9 @@ Ext.define('yt_manager_app.store.User', {
             destroy: 'DELETE'
         },
         reader: {
-            type: 'json'
+            type: 'json',
+            rootProperty: 'data',
+            totalProperty: 'totalCount'
         }
     }
 });

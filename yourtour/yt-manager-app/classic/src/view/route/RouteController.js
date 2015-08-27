@@ -1,19 +1,19 @@
 /**
  * Created by john on 15-8-21.
  */
-Ext.define('yt_manager_app.view.member.UserController', {
-    extend: 'yt_manager_app.view.widget.GeneralCypherController',
-    alias: 'controller.user',
+Ext.define('yt_manager_app.view.member.RouteController', {
+    extend: 'yt_manager_app.view.widget.GeneralCRUDController',
+    alias: 'controller.route',
 
     config: {
-        popupWindowName: 'userPopupWindow',
+        popupWindowName: 'routePopupWindow',
         formWindowName: 'formWindow',
-        name: '用户'
+        name: '行程'
     },
 
     init: function() {
         var me = this,
-            grid = me.lookupReference('user_crud_grid_paging');
+            grid = me.lookupReference('route_crud_grid_paging');
         this.config.currentGrid = grid;
         var store = grid.getStore();
         store.load();
@@ -22,7 +22,7 @@ Ext.define('yt_manager_app.view.member.UserController', {
     showPopWindow: function (title, data, editable) {
         var win = this.lookupReference(this.config.popupWindowName);
         if (!win) {
-            win = new yt_manager_app.view.member.UserWindow();
+            win = new yt_manager_app.view.route.RouteWindow();
             this.getView().add(win);
         }
         win.setTitle(title);
@@ -68,12 +68,12 @@ Ext.define('yt_manager_app.view.member.UserController', {
     onTabChange: function (tabs, newTab, oldTab) {
         var me = this;
         var id = newTab.id;
-        if (id == 'user-crud-tab') {
+        if (id == 'route-crud-tab') {
             // all member tab
-            this.config.currentGrid = me.lookupReference('user_crud_grid_paging');
-        } else if (id == 'user-cypher-tab') {
+            this.config.currentGrid = me.lookupReference('route_crud_grid_paging');
+        } else if (id == 'route-cypher-tab') {
             // cyphere tab
-            this.config.currentGrid = me.lookupReference('user_cypher_grid_paging');
+            //this.config.currentGrid = me.lookupReference('route_cypher_grid_paging');
         } else {
             // graph tab
             // TODO 图关系

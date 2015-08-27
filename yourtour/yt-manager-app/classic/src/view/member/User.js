@@ -12,13 +12,6 @@ Ext.define('yt_manager_app.view.member.User', {
         scrollable: true
     },
 
-    requires: [
-        'Ext.data.*',
-        'Ext.grid.*',
-        'Ext.util.*',
-        'Ext.toolbar.Paging'
-    ],
-
     cls: 'tab-panel',
 
     defaults: {
@@ -26,93 +19,72 @@ Ext.define('yt_manager_app.view.member.User', {
         height: 300
     },
 
-    items: [{
-        id: 'general-tab',
-        title: '所有会员',
-        icon: '/resources/images/toggle-icon.png',
-        items: [{
-            xtype: 'userGrid',
-            reference: 'grid_paging',
-            tbar: {
-                xtype: 'toolbar',
-                items: ['->', {
-                    xtype: 'button',
-                    tooltip: 'Show details.',
-                    html: '<img src="/resources/images/user-profile/3.png" alt="Details">',
-                    handler: 'onShowDetails'
-                }, '-', {
-                    xtype: 'button',
-                    tooltip: 'Add a user.',
-                    html: '<img src="/resources/images/user-profile/3.png" alt="Detail">',
-                    handler: 'onAddUser'
-                }, {
-                    xtype: 'button',
-                    tooltip: 'Modify the user.',
-                    html: '<img src="/resources/images/user-profile/3.png" alt="Detail">',
-                    handler: 'onModifyUser'
-                }, '-', {
-                    xtype: 'button',
-                    tooltip: 'Delete the user.',
-                    html: '<img src="/resources/images/user-profile/3.png" alt="Detail">',
-                    handler: 'onDeleteUser'
-                }]
-            }
-        }]
-    }, {
-        id: 'cypher-tab',
-        title: '条件查询',
-        icon: '/resources/images/user-profile/3.png',
-        items: [{
-            xtype: 'userGrid',
-            reference: 'grid_paging_condition',
-            tbar: {
-                xtype: 'toolbar',
-                items: [{
-                    xtype: 'textareafield',
-                    fieldLabel: 'Cypher',
-                    reference: 'cypher',
-                    name: 'cypher',
-                    width: 800,
-                    minWidth: 500,
-                    maxWidth: 1000,
-                    shrinkWrap: 0,
-                    emptyText: 'Cypher查询语句'
-                }, {
-                    xtype: 'tool',
-                    tooltip: 'Query the cypher statement.',
-                    type: 'search',
-                    handler: 'onQueryCypher'
-                }, '->', {
-                    xtype: 'button',
-                    tooltip: 'Show details.',
-                    html: '<img src="/resources/images/user-profile/3.png" alt="Details">',
-                    handler: 'onShowDetails'
-                }, '-', {
-                    xtype: 'button',
-                    tooltip: 'Add a user.',
-                    html: '<img src="/resources/images/user-profile/3.png" alt="Detail">',
-                    handler: 'onAddUser'
-                }, {
-                    xtype: 'button',
-                    tooltip: 'Modify the user.',
-                    html: '<img src="/resources/images/user-profile/3.png" alt="Detail">',
-                    handler: 'onModifyUser'
-                }, '-', {
-                    xtype: 'button',
-                    tooltip: 'Delete the user.',
-                    html: '<img src="/resources/images/user-profile/3.png" alt="Detail">',
-                    handler: 'onDeleteUser'
-                }]
-            }
-        }]
-    }, {
-        id: 'graph-tab',
-        title: '会员关系',
-        icon: '/resources/images/user-profile/3.png',
-        html: 'tab pane 3.'
-    }],
-
     listeners: {
         tabchange: 'onTabChange'
+    },
+
+    initComponent: function () {
+        var userGridColumns = [{
+            text: 'User name',
+            dataIndex: 'userName',
+            width: 120,
+            sortable: true
+        }, {
+            text: 'Nick name',
+            dataIndex: 'nickName',
+            width: 120,
+            sortable: true
+        }, {
+            text: 'Real name',
+            dataIndex: 'realName',
+            width: 120,
+            sortable: true
+        }, {
+            text: 'Role',
+            dataIndex: 'roleName',
+            width: 100,
+            sortable: true
+        }, {
+            text: 'Mobile',
+            dataIndex: 'mobileNo',
+            width: 150,
+            sortable: true
+        }, {
+            text: 'Email',
+            dataIndex: 'email',
+            flex: 1,
+            sortable: true
+        }];
+
+        var generalTab = Ext.create('yt_manager_app.view.widget.GeneralCRUDPanel', {
+            id: 'user-crud-tab',
+            nameEN: 'user',
+            nameZHCN: '用户',
+            gridName: 'user_crud_grid_paging',
+            icon: '/resources/images/toggle-icon.png',
+            gridColumns: userGridColumns
+        });
+
+        var cypherTab = Ext.create('yt_manager_app.view.widget.GeneralCypherPanel', {
+            id: 'user-cypher-tab',
+            nameEN: 'user',
+            nameZHCN: '用户',
+            gridName: 'user_cypher_grid_paging',
+            icon: '/resources/images/toggle-icon.png',
+            gridColumns: userGridColumns
+        });
+
+        var graphTab = {
+            id: 'user-graph-tab',
+            title: '会员关系',
+            icon: '/resources/images/user-profile/3.png',
+            html: 'tab pane 3.'
+        };
+
+        Ext.apply(this, {
+            items: [generalTab, cypherTab, graphTab]
+        });
+        //
+        this.callParent();
     }
 });
