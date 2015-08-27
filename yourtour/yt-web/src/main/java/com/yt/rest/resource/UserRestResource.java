@@ -30,6 +30,7 @@ import com.yt.business.common.Constants.Role;
 import com.yt.business.common.Constants.Status;
 import com.yt.business.utils.Neo4jUtils;
 import com.yt.error.StaticErrorEnum;
+import com.yt.response.ResponsePagingDataVO;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.rsal.neo4j.repository.ICrudOperate;
@@ -140,6 +141,7 @@ public class UserRestResource {
 	}
 
 	@POST
+	@Path("save")
 	public ResponseVO save(UserVO vo) {
 		if (vo == null) {
 			if (LOG.isWarnEnabled()) {
@@ -166,8 +168,8 @@ public class UserRestResource {
 	}
 
 	@DELETE
-	@Path("{id}")
-	public ResponseVO delete(@PathParam("id") String id) {
+	@Path("remove")
+	public ResponseVO delete(@QueryParam("id") String id) {
 		long graphId = Neo4jUtils.getGraphIDFromString(id);
 		try {
 			UserBean bean = null;
@@ -323,19 +325,23 @@ public class UserRestResource {
 			return new ResponseVO(StaticErrorEnum.DB_OPERATE_FAIL);
 		}
 	}
-	
+
 	@Path("loadPage.json")
 	@GET
-	public List<UserVO> loadPage(@QueryParam("page") int page,
-			@QueryParam("start") int start, @QueryParam("limit") int limit) {
+	public ResponsePagingDataVO<List<UserVO>> loadPage(
+			@QueryParam("page") int page, @QueryParam("start") int start,
+			@QueryParam("limit") int limit) {
 		System.out.println(String.format("page(%d), start(%d), limit(%d).",
 				page, start, limit));
 		Vector<UserVO> result = new Vector<UserVO>();
-		UserVO vo1  = new UserVO();
+		UserVO vo1 = new UserVO();
 		vo1.setId(1l);
 		vo1.setUserName("john");
 		vo1.setRealName("彭明喜");
-		vo1.setBirthday(System.currentTimeMillis());
+		vo1.setBirthday("1973/09/18");
+		vo1.setNativePlace("重庆忠县");
+		vo1.setResidence("上海市平江路48号");
+		vo1.setImageUrl("/resources/images/john.png");
 		vo1.setCharacter("理工男，理性、务实、不浮躁！");
 		vo1.setConstellation("处女座");
 		vo1.setEmail("pengmingxi@dscomm.com.cn");
@@ -343,10 +349,11 @@ public class UserRestResource {
 		vo1.setMobileNo("13701760212");
 		vo1.setNickName("上善若水");
 		vo1.setPassword("12345678");
+		vo1.setRank(5);
 		vo1.setRole(Role.EXPERT);
 		vo1.setStatus(Status.VALIDATED);
 		vo1.setSlogan("一起玩、一起飞！");
 		result.add(vo1);
-		return result;
+		return new ResponsePagingDataVO<List<UserVO>>(1000, result);
 	}
 }

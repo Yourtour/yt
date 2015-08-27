@@ -1,17 +1,26 @@
 package com.yt.vo.maintain;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.yt.business.bean.UserBean;
 import com.yt.business.common.Constants.GenderType;
 import com.yt.business.common.Constants.Role;
 import com.yt.business.common.Constants.Status;
 
 public class UserVO extends BaseVO {
+	private static final Log LOG = LogFactory.getLog(UserVO.class);
+	private static final SimpleDateFormat dateFormat = new SimpleDateFormat(
+			"yyyy/MM/dd");
 	private String userName; // 登录名
 	private String password; // 登录密码
 	private String realName; // 真实姓名
 	private String nickName; // 昵称
 	private GenderType gender = GenderType.NA; // 性别 F/M
-	private long birthday; // 生日
+	private String birthday; // 生日
 	private String imageUrl; // 头像
 	private String character; // 性格
 	private String mobileNo; // 手机号
@@ -30,7 +39,7 @@ public class UserVO extends BaseVO {
 		}
 		UserVO vo = new UserVO();
 		vo.fromBean(bean);
-		vo.setBirthday(bean.getBirthday());
+		vo.setBirthday(dateFormat.format(new Date(bean.getBirthday())));
 		vo.setCharacter(bean.getCharacter());
 		vo.setConstellation(bean.getConstellation());
 		vo.setEmail(bean.getEmail());
@@ -71,7 +80,14 @@ public class UserVO extends BaseVO {
 		}
 		UserBean bean = new UserBean();
 		vo.toBean(bean);
-		bean.setBirthday(vo.getBirthday());
+		try {
+			bean.setBirthday(dateFormat.parse(vo.getBirthday()).getTime());
+		} catch (Exception ex) {
+			if (LOG.isWarnEnabled()) {
+				LOG.warn(String.format("Parse the Date['%s'] fail.",
+						vo.getBirthday()));
+			}
+		}
 		bean.setCharacter(vo.getCharacter());
 		bean.setConstellation(vo.getConstellation());
 		bean.setEmail(vo.getEmail());
@@ -135,11 +151,11 @@ public class UserVO extends BaseVO {
 		this.gender = gender;
 	}
 
-	public long getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(long birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 
