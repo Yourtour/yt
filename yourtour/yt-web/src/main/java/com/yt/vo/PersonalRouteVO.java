@@ -10,7 +10,7 @@ public class PersonalRouteVO {
 	private String place; // 目的地
 	private String startTime; // 安排开始时间，YYYY-MM-DD
 	private String endTime; // 安排结束时间，YYYY-MM-DD
-	private int period; // 安排持续时间， 天
+	private float period; // 安排持续时间， 天，精确到半天
 
 	public PersonalRouteVO() {
 		super();
@@ -95,11 +95,11 @@ public class PersonalRouteVO {
 		this.endTime = endTime;
 	}
 
-	public int getPeriod() {
+	public float getPeriod() {
 		return period;
 	}
 
-	public void setPeriod(int period) {
+	public void setPeriod(float period) {
 		this.period = period;
 	}
 }

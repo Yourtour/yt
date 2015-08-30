@@ -4,6 +4,7 @@ import com.yt.business.bean.RouteBean;
 import com.yt.business.common.Constants.Status;
 
 public class RouteVO extends BaseVO {
+	private static final long HALF_DAY = 3600 * 12;
 	private String name; // 安排名称
 	private String imageUrl; // 行程图片
 	private String lineName; // 线路名称
@@ -14,8 +15,16 @@ public class RouteVO extends BaseVO {
 	private String place; // 目的地
 	private long startTime; // 安排开始时间，以秒为单位
 	private long endTime; // 安排结束时间，以秒为单位
-	private int period; // 安排持续时间， 以秒为单位
+	private float period; // 安排持续时间， 以天为单位，精确到半天
 	private Status status;
+
+	public static float periodSecond2HalfDay(long period) {
+		return ((long) period / HALF_DAY) / 2;
+	}
+
+	public static long periodHalfDay2Second(float period) {
+		return ((long) (period * 2)) * HALF_DAY;
+	}
 
 	public static RouteVO transform(RouteBean bean) {
 		if (bean == null) {
@@ -31,7 +40,8 @@ public class RouteVO extends BaseVO {
 		vo.setIntro(bean.getIntro());
 		vo.setLineName(bean.getLineName());
 		vo.setName(bean.getName());
-		vo.setPeriod(bean.getPeriod());
+		// 将秒转换为天，并精确到半天
+		vo.setPeriod(periodSecond2HalfDay(bean.getPeriod()));
 		vo.setPlace(bean.getPlace());
 		vo.setReason(bean.getReason());
 		vo.setRowKey(bean.getRowKey());
@@ -56,7 +66,8 @@ public class RouteVO extends BaseVO {
 		bean.setIntro(vo.getIntro());
 		bean.setLineName(vo.getLineName());
 		bean.setName(vo.getName());
-		bean.setPeriod(vo.getPeriod());
+		// 将天转换为秒，最小单位为半天
+		bean.setPeriod((long) (vo.getPeriod() * HALF_DAY));
 		bean.setPlace(vo.getPlace());
 		bean.setReason(vo.getReason());
 		bean.setRowKey(vo.getRowKey());
@@ -151,11 +162,11 @@ public class RouteVO extends BaseVO {
 		this.endTime = endTime;
 	}
 
-	public int getPeriod() {
+	public float getPeriod() {
 		return period;
 	}
 
-	public void setPeriod(int period) {
+	public void setPeriod(float period) {
 		this.period = period;
 	}
 

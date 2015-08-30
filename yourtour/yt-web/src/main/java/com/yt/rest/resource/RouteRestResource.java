@@ -267,11 +267,7 @@ public class RouteRestResource {
 				vo.setPlace(bean.getPlace());
 				vo.setReason(bean.getReason());
 				// 将秒换算为天，并向上取整
-				int period = bean.getPeriod() / 3600 / 24;
-				if (period * 24 * 3600 < bean.getPeriod()) {
-					period += 1;
-				}
-				vo.setPeriod(period);
+				vo.setPeriod(RouteVO.periodSecond2HalfDay(bean.getPeriod()));
 				vo.setStartTime(DATE_FORMAT.format(new Date(bean.getStartTime())));
 				vo.setEndTime(DATE_FORMAT.format(new Date(bean.getEndTime())));
 				list.add(vo);

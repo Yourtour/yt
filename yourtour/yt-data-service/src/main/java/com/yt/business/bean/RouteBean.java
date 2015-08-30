@@ -70,7 +70,7 @@ public class RouteBean extends Neo4JBaseBean {
 	private @HbaseColumn(name = "et")
 	long endTime; // 安排结束时间，以秒为单位
 	private @HbaseColumn(name = "peri")
-	int period; // 安排持续时间， 以秒为单位
+	long period; // 安排持续时间， 以秒为单位
 
 	private @HbaseColumn(name = "stat")
 	@Indexed
@@ -160,11 +160,11 @@ public class RouteBean extends Neo4JBaseBean {
 		this.endTime = endTime;
 	}
 
-	public int getPeriod() {
+	public long getPeriod() {
 		return period;
 	}
 
-	public void setPeriod(int period) {
+	public void setPeriod(long period) {
 		this.period = period;
 	}
 
