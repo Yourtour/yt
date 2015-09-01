@@ -1,17 +1,30 @@
-Ext.define('YourTour.view.user.ExpertListItem', {
-    extend: 'Ext.dataview.component.DataItem',
-    xtype: 'expertListItem',
-    requires:['Ext.Label', 'Ext.Panel', 'Ext.Img'],
+Ext.define('YourTour.view.user.UserListItem', {
+    extend: 'YourTour.view.widget.VDataItem',
+    xtype: 'UserListItem',
+    requires:['YourTour.view.widget.XField','YourTour.view.widget.XLabel', 'Ext.Panel', 'Ext.Img'],
     config: {
     	layout : 'hbox',
-    	cls:'expertListItem',
-    	padding:'5 10 5 10',
-    	style:'border-bottom:1px solid #EDEDED',
+    	cls:'verticledataitem underline',
+    	padding:'10 5 10 5',
     	items:[
     	    {
-    	   		itemId : 'imageUrl',
-	    		xtype : 'image',
-	    		mode : 'tag'
+    	    	xtype:'panel',
+			   	layout:'vbox',
+			   	items:[
+				   	{
+		    	   		itemId : 'imageUrl',
+			    		xtype : 'image',
+			    		mode : 'tag'
+				   	},
+				   	
+				   	{
+				   		margin:'7 0 7 0',
+				   		style:'text-align:center',
+		    	   		itemId : 'chat',
+			    		xtype : 'xlabel',
+			    		html:'私信'
+				   	}
+			   	]
 	    	},
     		
 		    {
@@ -22,14 +35,13 @@ Ext.define('YourTour.view.user.ExpertListItem', {
 			   items:[
 			   		{	xtype:'panel',
 			   			layout:'hbox',
-			   			defaults:{
-			   				flex:1
-			   			},
+			   			margin:'5 0 0 0',
+			   			
 				   		items:[
 				   			{
-				   				xtype:'label',
-				   				itemId:'nickName',
-				   				style:'font-weight:bold; font-size:14px'
+				   				xtype:'xfield',
+				   				itemId:'nickname',
+				   				margin:'0 10 0 0'
 						   	},
 						   	
 					    	{
@@ -49,17 +61,25 @@ Ext.define('YourTour.view.user.ExpertListItem', {
 					    	},
 						   	
 					    	{
-				    	   		xtype:'label',
+				    	   		xtype:'xfield',
+				    	   		style:'text-align:center',
 				   				itemId:'rank',
-				   				style:'font-weight:bold; font-size:14px'
+				   				flex:1
+					    	},
+					    	
+					    	{
+				    	   		xtype:'xfield',
+				    	   		style:'text-align:center',
+				   				itemId:'role',
+				   				flex:1
 					    	}
 				    	]
 			   		},
 			   		{
-		            	xtype:'label',
+		            	xtype:'xfield',
 		            	itemId:'slogan',
-		            	margin:'5 0 0 0',
-		            	style:'font-size:14px'
+		            	margin:'5 0 5 0',
+		            	cls:'multilineinfo'
 		            }
 			    ]
 		    }
@@ -73,8 +93,8 @@ Ext.define('YourTour.view.user.ExpertListItem', {
 	 	   var imageUrl = me.down('#imageUrl');
 	 	   imageUrl.setHtml("<img src='" + record.get('imageUrl') + "' style='width:100%; max-height:250px'>");
 	 	   
-	 	   var nickName = me.down('#nickName');
-	 	   nickName.setHtml(record.get('nickName'));
+	 	   var nickname = me.down('#nickname');
+	 	   nickname.setHtml(record.get('nickname'));
 	 	   
 	 	   var slogan = me.down('#slogan');
 	 	   slogan.setHtml(record.get('slogan'));
@@ -88,6 +108,9 @@ Ext.define('YourTour.view.user.ExpertListItem', {
 	 	   
 	 	   var rank = me.down('#rank');
 	 	   rank.setHtml(record.get('rank'));
+	 	   
+	 	   var role = me.down('#role');
+	 	   role.setHtml(record.get('role'));
        	}
     }
 });

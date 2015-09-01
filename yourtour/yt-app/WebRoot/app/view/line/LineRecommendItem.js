@@ -36,12 +36,11 @@ Ext.define('YourTour.view.line.LineRecommendItem', {
 			   			layout:'hbox',
 			   			cls:'row underline raty',
 			   			items:[
-				   			{
+			   				{
 				   				xtype:'xlabel',
-				   				html:'评价指数:',
+				   				html:'推荐指数:',
 				   				flex:1
 				   			},
-				   			
 				   			{
 				   				xtype:'image',
 				    			src:'resources/images/raty_32.png',
@@ -51,9 +50,10 @@ Ext.define('YourTour.view.line.LineRecommendItem', {
 				   			
 				   			{
 				   				xtype:'xlabel',
-				   				html:'推荐指数:',
+				   				html:'评价指数:',
 				   				flex:1
 				   			},
+				   			
 				   			{
 				   				xtype:'image',
 				    			src:'resources/images/raty_32.png',

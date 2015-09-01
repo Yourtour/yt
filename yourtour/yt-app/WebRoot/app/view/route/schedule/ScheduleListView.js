@@ -14,8 +14,15 @@ Ext.define('YourTour.view.route.schedule.ScheduleListView', {
     		{    
 				xtype: 'xtoolbar',
 				itemId:'toolbar',
-				title:'行程规划',
+				title:'行程安排',
 				items:[
+					{
+	                	xtype: "toolbutton", 
+	                    ui: "normal", 
+	                	text:'编辑',
+	                	itemId:'plan',
+	                	align:'right'
+	                },
 					{
 	                	xtype: "toolbutton", 
 	                    ui: "normal", 

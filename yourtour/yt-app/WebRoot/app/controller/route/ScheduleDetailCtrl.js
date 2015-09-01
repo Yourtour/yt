@@ -41,7 +41,6 @@ Ext.define('YourTour.controller.route.ScheduleDetailCtrl', {
     	
     	var store = this.store;
     	
-    	console.log(store.getAt(0).getSchedules());
 		var record = store.getAt(0).schedulesStore.getAt(index);
     	
     	var page = this.getSceneSchedulePage();
@@ -52,10 +51,10 @@ Ext.define('YourTour.controller.route.ScheduleDetailCtrl', {
     	resNameEl.setHtml(record.get('resName'));
 
     	var addressEl = page.down('#address');
-    	addressEl.setHtml('地址:' + record.get('address'));
+    	addressEl.setHtml(record.get('address'));
     	
     	var phoneEl = page.down('#phone');
-    	phoneEl.setHtml('电话:' + record.get('phone'));
+    	phoneEl.setHtml(record.get('phone'));
     },
     
     showFoodSchedulePage:function(index){
@@ -73,10 +72,10 @@ Ext.define('YourTour.controller.route.ScheduleDetailCtrl', {
     	resNameEl.setHtml(record.get('resName'));
 
     	var addressEl = page.down('#address');
-    	addressEl.setHtml('地址:' + record.get('address'));
+    	addressEl.setHtml(record.get('address'));
     	
     	var phoneEl = page.down('#phone');
-    	phoneEl.setHtml('电话:' + record.get('phone'));
+    	phoneEl.setHtml(record.get('phone'));
     },
     
     showHotelSchedulePage:function(index){
@@ -93,10 +92,10 @@ Ext.define('YourTour.controller.route.ScheduleDetailCtrl', {
     	resNameEl.setHtml(record.get('resName'));
 
     	var addressEl = page.down('#address');
-    	addressEl.setHtml('地址:' + record.get('address'));
+    	addressEl.setHtml(record.get('address'));
     	
     	var phoneEl = page.down('#phone');
-    	phoneEl.setHtml('电话:' + record.get('phone'));
+    	phoneEl.setHtml(record.get('phone'));
     },
     
     onBackTap:function(){

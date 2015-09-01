@@ -16,7 +16,7 @@ Ext.define('YourTour.view.widget.XToolbar', {
     	}
     	
     	items.unshift({xtype:'spacer',flex:1});
-		items.unshift({xtype:'label', itemId:'title',html:'afdafads'});
+		items.unshift({xtype:'label', itemId:'title',html:''});
 		items.unshift({xtype:'image', itemId:'close',
             	mode:'tag',
             	margin:'0 0 0 5',

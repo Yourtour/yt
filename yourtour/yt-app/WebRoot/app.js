@@ -18,24 +18,25 @@ Ext.application({
     ],
 
     views: [
-        'MainView','Launch','home.HomeMain','SearchMain','route.MainView','route.RouteSettingView','common.PlaceView',
+        'MainView','Launch','home.HomeMain','home.PlaceMainView', 'SearchMain','route.MainView','route.RouteSettingView','common.PlaceView',
         'line.LineRecommendView','line.LineIntroductionView',
-        'route.schedule.ScheduleListView','route.schedule.SceneScheduleView','route.schedule.HotelScheduleView','route.schedule.FoodScheduleView',
-        'user.LoginMainView',
+        'route.schedule.SchedulePlanListView', 'route.schedule.ScheduleListView','route.schedule.SceneScheduleView','route.schedule.HotelScheduleView','route.schedule.FoodScheduleView',
+        'user.LoginMainView','user.UserListView',
         'resource.SelectionListView','resource.SceneResourceDetailView','resource.SceneResourcePlanView','route.schedule.ScheduleReferenceListView'
     ],
     
     controllers: [
-        'Launch', 'Main', 'route.MainCtrl','route.RouteSettingCtrl','route.ScheduleListCtrl', 'line.LineRecommendCtrl','line.LineIntroductionCtrl','common.PlaceCtrl','user.Main',
-        'resource.ResourceSelectionCtrl','route.ScheduleReferenceCtrl','resource.ResourceCtrl','resource.ResourcePlanCtrl','route.ScheduleDetailCtrl'
+        'Launch', 'Main', 'route.MainCtrl','route.RouteSettingCtrl','route.ScheduleListCtrl', 'route.SchedulePlanListCtrl', 'line.LineRecommendCtrl','line.LineIntroductionCtrl','common.PlaceCtrl','user.Main',
+        'resource.ResourceSelectionCtrl','route.ScheduleReferenceCtrl','resource.ResourceCtrl','resource.ResourcePlanCtrl','route.ScheduleDetailCtrl',
+        'user.UserListCtrl','home.PlaceMainCtrl'
     ],
     
     models:[
-        'RouteModel','ScheduleModel','LineModel', 'UserModel','OptionModel'
+        'RouteModel','ScheduleModel','LineModel', 'UserModel','OptionModel', 'PlaceModel','LiveModel','ChatModel','AlongModel','TalentModel' 
     ],
     
     stores:[
-        'RouteStore','LineStore','ResourceStore','ResourceSelectionStore'
+        'RouteStore','LineStore','ResourceStore','ResourceSelectionStore', 'UserStore', 'PlaceStore'
     ],
         
     icon: {

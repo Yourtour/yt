@@ -2,24 +2,20 @@ Ext.define('YourTour.controller.Main', {
     extend: 'YourTour.controller.BaseCtrl',
     config: {
        	refs:{
-    	   	navigationBar:'#mainview #navigationBar'  
+    	   	navigationBar:'#MainView #navigationBar'  
        	},
        
        	control:{
-			'#mainview #btnHome':{
+			'#MainView #btnHome':{
 				tap:'onHomeTap'
 			},
 			
-			'#mainview #btnRoute':{
+			'#MainView #btnRoute':{
 				tap:'onRouteTap'			
 			},
 			
-			'#mainview #btnCommunity':{
-				tap:'onRouteTap'
-			},
-			
-			'#mainview #btnPersonal':{
-				tap:'onRouteTap'
+			'#MainView #btnPersonal':{
+				tap:'onPersonalTap'
 			}
        },
        
@@ -38,7 +34,7 @@ Ext.define('YourTour.controller.Main', {
     },
     
     onHomeTap:function(){
-    	this.show('homemain','YourTour.view.home.HomeMain');
+    	this.show('HomeMain','YourTour.view.home.HomeMain');
     },
     
     onRouteTap:function(){

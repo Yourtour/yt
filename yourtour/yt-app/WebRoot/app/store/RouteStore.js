@@ -1,5 +1,5 @@
 Ext.define('YourTour.store.RouteStore', {
-    extend: 'YourTour.store.AjaxStore',
+    extend: 'Ext.data.Store',
     requires: [
        'YourTour.model.RouteModel'
     ],
@@ -7,7 +7,7 @@ Ext.define('YourTour.store.RouteStore', {
     	model:'YourTour.model.RouteModel',
     	autoLoad:true,
     	
-    	/*data:[
+    	data:[
     		{
     			rowKey:"1",imageUrl:"resources/images/guangdong.jpg", name:"九寨沟、黄龙、峨眉、乐山双飞7日",lineName:"九寨沟、黄龙、峨眉、乐山,九寨沟、黄龙、峨眉、乐山,九寨沟、黄龙、峨眉、乐山",impression:"我的记忆中，去游过许多地方，有水韵江南的古镇，有天下之幽的青城，有险峻天堑的华山，还有彩云之南的大理，还有……很多留下脚印的地方且不一一枚举了。然而春秋两季的九寨沟之行，着实让我彻彻底底的为大自然的神工巧斧，创作出这样童话般的杰作倍为感叹！",startTime:"2016-01-01", endTime:"2016-01-10", period:"10",
     			schedules:[
@@ -105,15 +105,15 @@ Ext.define('YourTour.store.RouteStore', {
     				{rowKey:'62',type:'food', name:'午餐时间',desc:'乡村农家乐，美味乡间小菜',time:'11:30-12:30', period:'约1个小时', isLast:'1'}
     			]
     		}
-    	]*/
+    	]
     	
-    	proxy:{
+    	/*proxy:{
 	    	api:{
 				 read: YourTour.util.Context.getContext('/routes/personal'),
 				 create: YourTour.util.Context.getContext('/routes/Save'),
 				 update: YourTour.util.Context.getContext('/routes/Update'),
 				 destroy: YourTour.util.Context.getContext('/routes/Delete')
 			}
-    	}
-    },
+    	}*/
+    }
 });

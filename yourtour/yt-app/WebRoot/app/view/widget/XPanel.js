@@ -18,6 +18,10 @@ Ext.define('YourTour.view.widget.XPanel', {
 				}
 			});
     	}
+    },
+    
+    setTappable:function(tappable){
+    	this.tappable = tappable;
     }
 });
 

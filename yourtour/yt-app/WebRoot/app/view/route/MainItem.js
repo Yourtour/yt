@@ -49,7 +49,13 @@ Ext.define('YourTour.view.route.MainItem', {
 	    				mode : 'tag',
 	    				src:'resources/icons/icon_expense.png',
 		              	itemId:'btnCharge'  
-		            }   
+		            } ,
+		           	{
+		              	xtype : 'image',
+	    				mode : 'tag',
+	    				src:'resources/icons/icon_comment.png',
+		              	itemId:'btnComment'  
+		            }     
 			   ]
 		    },
 			

@@ -1,10 +1,10 @@
 Ext.define('YourTour.view.MainView', {
     extend: 'Ext.Panel',
     requires:['Ext.Toolbar'],
-    xtype: 'mainview',
+    xtype: 'MainView',
     config: {
-    	itemId:'mainview',
-    	id:'mainview',
+    	itemId:'MainView',
+    	id:'MainView',
     	fullscreen: true,
     	layout:'vbox',
 		        
@@ -33,19 +33,13 @@ Ext.define('YourTour.view.MainView', {
 	            items:[
 	            	{
 	            		itemId:'btnHome', 
-		                text:'首页',
+		                text:'目的地',
 		                iconCls:'home',
 		                iconAlign:'top'
 		            },
 		            {
 		                itemId:'btnRoute',
 		                text:'旅行',
-		                iconCls:'home',
-		                iconAlign:'top'
-		            },
-		            {
-		            	itemId:'btnCommunity',
-		                text:'社区',
 		                iconCls:'home',
 		                iconAlign:'top'
 		            },

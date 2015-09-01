@@ -16,11 +16,19 @@ Ext.define('YourTour.view.line.LineIntroductionView', {
 				title:'线路介绍',
 				itemId:'toolbar',
 				items:[
+					{
+	                	xtype: "toolbutton", 
+	                    ui: "normal", 
+	                	text:'咨询',
+	                	itemId:'consult',
+	                	align:'right'
+	                },
+	                
 	                {
 	                	xtype: "toolbutton", 
 	                    ui: "normal", 
 	                	text:'评论',
-	                	itemId:'consult',
+	                	itemId:'comment',
 	                	align:'right'
 	                }
 				]			
@@ -63,8 +71,8 @@ Ext.define('YourTour.view.line.LineIntroductionView', {
 			   			items:[
 				   			{
 				   				xtype:'xlabel',
-				   				html:'推荐指数:',
-				   				flex:1
+				   				margin:'0 10 0 0',
+				   				html:'推荐指数:'
 				   			},
 				   			
 				   			{
@@ -76,8 +84,8 @@ Ext.define('YourTour.view.line.LineIntroductionView', {
 				   			
 				   			{
 				   				xtype:'xlabel',
-				   				html:'评价指数:',
-				   				flex:1
+				   				margin:'0 10 0 0',
+				   				html:'评价指数:'
 				   			},
 				   			{
 				   				xtype:'image',
@@ -95,8 +103,8 @@ Ext.define('YourTour.view.line.LineIntroductionView', {
 			   			items:[
 				   			{
 				   				xtype:'xlabel',
-				   				html:'推荐月份:',
-				   				flex:1
+				   				margin:'0 10 0 0',
+				   				html:'推荐月份:'
 				   			},
 				   			{
 				   				xtype:'xfield',
@@ -118,7 +126,7 @@ Ext.define('YourTour.view.line.LineIntroductionView', {
 			
     	   	{
 			   xtype:'xpanel',
-			   itemId:'experts',
+			   itemId:'users',
 			   tappable:true,
 			   cls:'row underline',
 			   layout:'hbox',
@@ -126,26 +134,24 @@ Ext.define('YourTour.view.line.LineIntroductionView', {
 			   items:[
 			   		{
 		   				xtype:'xlabel',
-		   				flex:1,
+		   				margin:'0 10 0 0',
 		   				html:'线路达人:'
 		   			},
 		   			{
 		   				xtype:'xfield',
 		   				itemId:'talent',
 		   				flex:1,
-		   				tappable:true,
 		   				html:'10人'
 		   			},
 		   			{
 		   				xtype:'xlabel',
-		   				flex:1,
+		   				margin:'0 10 0 0',
 		   				html:'线路驴友:'
 		   			},
 		   			{
 		   				xtype:'xfield',
 		   				itemId:'tourism',
 		   				flex:1,
-		   				tappable:true,
 		   				html:'10人'
 		   			}
 			   ]

@@ -167,28 +167,6 @@ Ext.define('YourTour.view.route.schedule.SceneScheduleView', {
     		},
     		
     		{
-    			xtype:'panel',
-    			cls:'underline',
-    			layout:'hbox',
-    			padding:'0 5 0 5',
-    			items:[
-    				{
-    					xtype:'label',
-    					html:'活动方式',
-    					style:'line-height:40px'
-    				},
-    				{
-						xtype:'spacer',
-						flex:1
-					},
-    				{
-    					xtype:'yttogglefield',
-    					texts:['个人','集体']
-    				}
-    			]
-    		},
-    		
-    		{
 				xtype:'panel',
 				layout:'hbox',
 				padding:'0 5 0 5',

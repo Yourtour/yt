@@ -29,12 +29,8 @@ Ext.define('YourTour.controller.line.LineIntroductionCtrl', {
        	   	   	tap:'onPlanTap'
        	   },
        	   
-       	   '#LineIntroductionView #talent':{
-       	   		tap:'onTalentTap'
-       	   },
-       	   
-       	   '#LineIntroductionView #tourism':{
-       	   		tap:'onTourismTap'
+       	   '#LineIntroductionView #consult':{
+       	   		tap:'onConsultTap'
        	   }
        },
        
@@ -49,10 +45,8 @@ Ext.define('YourTour.controller.line.LineIntroductionCtrl', {
     	this.store = Ext.create('YourTour.store.LineStore');
     },
     
-    onTalentTap:function(){
-    },
-    
-    onTourismTap:function(){
+    onConsultTap:function(){ 	
+    	this.redirectTo('/user/list');
     },
     
     onResourceInfoTap:function(dataView, index, target, record, e, eOpts){

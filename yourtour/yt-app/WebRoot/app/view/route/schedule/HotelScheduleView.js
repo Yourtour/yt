@@ -142,51 +142,6 @@ Ext.define('YourTour.view.route.schedule.HotelScheduleView', {
             	margin:'5 0 5 0',
             	html:'安排'
             },
-            
-            {
-    			xtype:'panel',
-    			cls:'underline',
-    			layout:'hbox',
-    			pack: 'center',
-    			padding:'0 5 0 5',
-    			items:[
-    				{
-    					xtype:'label',
-    					html:'活动性质',
-    					style:'line-height:40px'
-    				},
-    				{
-						xtype:'spacer',
-						flex:1
-					},
-    				{
-    					xtype:'yttogglefield',
-    					texts:['可选','必须']
-    				}
-    			]
-    		},
-    		
-    		{
-    			xtype:'panel',
-    			cls:'underline',
-    			layout:'hbox',
-    			padding:'0 5 0 5',
-    			items:[
-    				{
-    					xtype:'label',
-    					html:'活动方式',
-    					style:'line-height:40px'
-    				},
-    				{
-						xtype:'spacer',
-						flex:1
-					},
-    				{
-    					xtype:'yttogglefield',
-    					texts:['个人','集体']
-    				}
-    			]
-    		},
     		
     		{
 				xtype:'panel',

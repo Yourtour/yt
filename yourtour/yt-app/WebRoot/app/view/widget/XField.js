@@ -21,8 +21,6 @@ Ext.define('YourTour.view.widget.XField', {
     },
     
     setTappable:function(tappable){
-    	console.log('tappable=' + tappable);
-    	
     	this.tappable = tappable;
     }
 });
