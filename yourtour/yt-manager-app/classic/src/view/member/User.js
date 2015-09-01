@@ -56,13 +56,16 @@ Ext.define('yt_manager_app.view.member.User', {
             sortable: true
         }];
 
+        var generalStore = new yt_manager_app.store.User();
+
         var generalTab = Ext.create('yt_manager_app.view.widget.GeneralCRUDPanel', {
             id: 'user-crud-tab',
             nameEN: 'user',
             nameZHCN: '用户',
             gridName: 'user_crud_grid_paging',
             icon: '/resources/images/toggle-icon.png',
-            gridColumns: userGridColumns
+            gridColumns: userGridColumns,
+            store: generalStore
         });
 
         var cypherTab = Ext.create('yt_manager_app.view.widget.GeneralCypherPanel', {

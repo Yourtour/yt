@@ -9,7 +9,8 @@ Ext.define('yt_manager_app.view.widget.GeneralCypherPanel', {
         var nameEN = this.config.nameEN,
             nameZHCN = this.config.nameZHCN,
             gridName = this.config.gridName,
-            gridColumns = this.config.gridColumns;
+            gridColumns = this.config.gridColumns,
+            store = this.config.store;
 
         var tools = [{
             xtype: 'textareafield',
@@ -61,9 +62,7 @@ Ext.define('yt_manager_app.view.widget.GeneralCypherPanel', {
             items: [Ext.create('yt_manager_app.view.widget.GeneralGrid', {
                 reference: gridName,
                 columns: gridColumns,
-                store: {
-                    //type: nameEN
-                },
+                store: store,
                 tbar: {
                     xtype: 'toolbar',
                     items: tools

@@ -17,12 +17,20 @@ Ext.define('yt_manager_app.view.widget.GeneralGrid', {
         trackOver: false,
         stripeRows: false
     },
-    bbar: {
-        xtype: 'pagingtoolbar',
-        displayInfo: false,
-        // TODO store中有数据了，但是显示的信息仍然时“无数据”？
-        displayMsg: '{2}中的{0}-{1}',
-        emptyMsg: '无数据'
-    },
-    flex: 1
+    flex: 1,
+
+    initComponent: function() {
+        var store = this.getStore();
+        Ext.apply(this, {
+            bbar: {
+                xtype: 'pagingtoolbar',
+                displayInfo: true,
+                store: store,
+                displayMsg: '{2}中的{0}-{1}',
+                emptyMsg: '无数据'
+            }
+        });
+
+        this.callParent();
+    }
 });

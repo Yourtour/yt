@@ -69,6 +69,11 @@ Ext.define('yt_manager_app.view.widget.GeneralFormWindow', {
                     labelStyle: 'font-weight:bold'
                 },
                 items: [{
+                    xtype: 'numberfield',
+                    name: 'id',
+                    reference: 'id',
+                    hidden: true
+                }, {
                     xtype: 'fieldset',
                     title: '基本信息',
                     reference: 'baseInfo',

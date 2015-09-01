@@ -19,52 +19,6 @@ Ext.define('yt_manager_app.view.member.UserController', {
         store.load();
     },
 
-    showPopWindow: function (title, data, editable) {
-        var win = this.lookupReference(this.config.popupWindowName);
-        if (!win) {
-            win = new yt_manager_app.view.member.UserWindow();
-            this.getView().add(win);
-        }
-        win.setTitle(title);
-
-        var me = this,
-            formWindow = me.lookupReference(this.config.formWindowName),
-            baseInfo = me.lookupReference('baseInfo'),
-            detailInfo = me.lookupReference('detailInfo'),
-            extendInfo = me.lookupReference('extendInfo'),
-            operateInfo = me.lookupReference('operatedInfo'),
-            reset = me.lookupReference('reset'),
-            save = me.lookupReference('save');
-        // fill the data
-        if (data) {
-            formWindow.loadRecord(data);
-        }
-
-        // set editable
-        var disabled = !editable;
-        baseInfo.setDisabled(disabled);
-        detailInfo.setDisabled(disabled);
-        extendInfo.setDisabled(disabled);
-        operateInfo.setDisabled(disabled);
-        if (disabled) {
-            detailInfo.expand();
-            extendInfo.expand();
-            operateInfo.expand();
-            reset.hide();
-            save.hide();
-        } else {
-            detailInfo.collapse();
-            extendInfo.collapse();
-            operateInfo.collapse();
-            reset.show();
-            save.show();
-            baseInfo.focus();
-        }
-
-        // show
-        win.show();
-    },
-
     onTabChange: function (tabs, newTab, oldTab) {
         var me = this;
         var id = newTab.id;

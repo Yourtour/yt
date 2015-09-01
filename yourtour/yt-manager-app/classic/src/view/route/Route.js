@@ -24,7 +24,33 @@ Ext.define('yt_manager_app.view.route.Route', {
     },
 
     initComponent: function () {
-        var routeGridColumns = [];
+        var routeGridColumns = [{
+            text: 'name',
+            dataIndex: 'name',
+            width: 150,
+            sortable: true
+        }, {
+            text: 'Line name',
+            dataIndex: 'lineName',
+            width: 150,
+            sortable: true
+        }, {
+            text: 'Place',
+            dataIndex: 'place',
+            width: 150,
+            sortable: true
+        }, {
+            text: 'Period',
+            dataIndex: 'period',
+            width: 120,
+            sortable: true
+        }, {
+            text: 'Feature',
+            dataIndex: 'feature',
+            width: 120,
+            sortable: false,
+            flex: 1
+        }];
 
         var generalTab = Ext.create('yt_manager_app.view.widget.GeneralCRUDPanel', {
             id: 'route-crud-tab',

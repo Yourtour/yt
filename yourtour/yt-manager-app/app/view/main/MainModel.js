@@ -14,7 +14,7 @@ Ext.define('yt_manager_app.view.main.MainModel', {
         username: 'Nan',
 
         toggle: {
-            state: true,
+            state: false,
             availWidth: 1024,
             availHeight: 900,
             left: {

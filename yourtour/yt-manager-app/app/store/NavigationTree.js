@@ -73,7 +73,7 @@ Ext.define('yt_manager_app.store.NavigationTree', {
                 routeId: 'member.user'
             }, {
                 text: '达人',
-                //view: 'operate.Ready',
+                view: 'member.Expert',
                 leaf: true,
                 iconCls: 'x-fa fa-file-o',
                 routeId: 'member.expert'

@@ -7,7 +7,6 @@ import java.util.Vector;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -30,8 +29,8 @@ import com.yt.business.common.Constants.Role;
 import com.yt.business.common.Constants.Status;
 import com.yt.business.utils.Neo4jUtils;
 import com.yt.error.StaticErrorEnum;
-import com.yt.response.ResponsePagingDataVO;
 import com.yt.response.ResponseDataVO;
+import com.yt.response.ResponsePagingDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.rsal.neo4j.repository.ICrudOperate;
 import com.yt.vo.AuthenticationVO;
@@ -123,7 +122,7 @@ public class UserRestResource {
 			LOG.debug("Request import UserBean data.");
 		}
 		for (UserVO vo : vos) {
-			ResponseVO response = save(vo);
+			ResponseVO response = save(null, vo);
 			if (response.getErrorCode() != 0) {
 				if (LOG.isWarnEnabled()) {
 					LOG.warn(String.format(
@@ -141,8 +140,18 @@ public class UserRestResource {
 	}
 
 	@POST
-	@Path("save")
-	public ResponseVO save(UserVO vo) {
+	@Path("save.json")
+	public ResponseVO saveByAdd(UserVO vo) {
+		return save(null, vo);
+	}
+	
+	@POST
+	@Path("save/{id}.json")
+	public ResponseVO saveByUpdate(@PathParam("id") String id, UserVO vo) {
+		return save(id, vo);
+	}
+	
+	private ResponseVO save(String id, UserVO vo) {
 		if (vo == null) {
 			if (LOG.isWarnEnabled()) {
 				LOG.warn("The UserVO is null.");
@@ -161,15 +170,15 @@ public class UserRestResource {
 			if (LOG.isErrorEnabled()) {
 				LOG.error(
 						String.format("Save the UserBean[id='%s'] fail.",
-								vo.getRowKey()), ex);
+								vo.getId()), ex);
 			}
 			return new ResponseVO(StaticErrorEnum.DB_OPERATE_FAIL);
 		}
 	}
 
-	@DELETE
-	@Path("remove")
-	public ResponseVO delete(@QueryParam("id") String id) {
+	@GET
+	@Path("remove/{id}.json")
+	public ResponseVO delete(@PathParam("id") String id) {
 		long graphId = Neo4jUtils.getGraphIDFromString(id);
 		try {
 			UserBean bean = null;
