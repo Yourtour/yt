@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><templates><template autoinsert="false" context="settercomment_context" deleted="false" description="Comment for setter method" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.settercomment" name="settercomment">/**
+ * 设定类成员${bare_field_name}
+ * @param ${bare_field_name} 要设定的{@link #${bare_field_name}}
+ */</template><template autoinsert="false" context="overridecomment_context" deleted="false" description="Comment for overriding methods" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.overridecomment" name="overridecomment">/* (non-Javadoc)
+ * ${see_to_overridden}
+ */</template><template autoinsert="false" context="delegatecomment_context" deleted="false" description="Comment for delegate methods" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.delegatecomment" name="delegatecomment">/**
+ * ${todo} 写明方法${enclosing_type}.${enclosing_method}代理原因
+ * ${tags}
+ * ${see_to_target}
+ */</template><template autoinsert="false" context="fieldcomment_context" deleted="false" description="Comment for fields" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.fieldcomment" name="fieldcomment">/** 成员变量：${todo} 在这里请添加变量${field}的描述 */</template><template autoinsert="false" context="constructorcomment_context" deleted="false" description="Comment for created constructors" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.constructorcomment" name="constructorcomment">/**
+ * 默认构造方法
+ * ${tags}
+ */</template><template autoinsert="false" context="methodcomment_context" deleted="false" description="Comment for non-overriding methods" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.methodcomment" name="methodcomment">/**
+ * ${todo} 请添加方法${enclosing_type}.${enclosing_method}的注释
+ * ${tags}
+ */</template><template autoinsert="false" context="typecomment_context" deleted="false" description="Comment for created types" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.typecomment" name="typecomment">/**
+ * ${todo} 请添加类型${type_name}的描述
+ *
+ * &lt;p&gt;
+ * &lt;b&gt;修改历史：&lt;/b&gt;
+ * &lt;table border="1"&gt;
+ * &lt;tr&gt;
+ * &lt;th&gt;修改时间&lt;/th&gt;
+ * &lt;th&gt;修改人&lt;/th&gt;
+ * &lt;th&gt;备注&lt;/th&gt;
+ * &lt;/tr&gt;
+ * &lt;tr&gt;
+ * &lt;td&gt;${date}&lt;/td&gt;
+ * &lt;td&gt;${user}&lt;/td&gt;
+ * &lt;td&gt;Create&lt;/td&gt;
+ * &lt;/tr&gt;
+ * &lt;/table&gt;
+ * 
+ * @author ${user}
+ *  
+ * @version 1.0
+ * @since 1.0
+ */</template><template autoinsert="false" context="gettercomment_context" deleted="false" description="Comment for getter method" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.gettercomment" name="gettercomment">/**
+ * 获取类成员${bare_field_name}
+ * @return {@link #${bare_field_name}}
+ */</template><template autoinsert="false" context="filecomment_context" deleted="false" description="Comment for created Java files" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.filecomment" name="filecomment">/* 
+ * @(#)${file_name}
+ *
+ * Copyright ${year}, 迪爱斯通信设备有限公司保留.
+ */</template></templates>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><templates><template autoinsert="true" context="java-statements" deleted="false" description="用于输出系统debug日志的快捷模板" enabled="true" name="debug">if (logger.isDebugEnabled()) {&#13;
+	logger.debug("${cursor}");&#13;
+}</template><template autoinsert="true" context="java-statements" deleted="false" description="用于输出系统error日志的快捷模板" enabled="true" name="error">if (logger.isErrorEnabled()) {&#13;
+	logger.error("${cursor}");&#13;
+}</template><template autoinsert="true" context="java-statements" deleted="false" description="用于输出系统info日志的快捷模板" enabled="true" name="info">if (logger.isInfoEnabled()) {&#13;
+	logger.info("${cursor}");&#13;
+}</template><template autoinsert="true" context="javadoc" deleted="false" description="用于在Type注释History表格中增加一行，协助完成注释工作" enabled="true" name="tr_type_comment">&#13;&lt;tr&gt;&#13; * &lt;td&gt;${date}&lt;/td&gt;&#13; * &lt;td&gt;${user}&lt;/td&gt;&#13; * &lt;td&gt;Modify：${cursor}&lt;/td&gt;&#13; * &lt;/tr&gt;</template><template autoinsert="false" context="java-statements" deleted="false" description="try catch语句增加日志处理的提示模板" enabled="true" id="org.eclipse.jdt.ui.templates.try" name="try">try {
+	${line_selection}${cursor}
+} catch (${Exception} ${exception_variable_name}) {
+	// ${todo} 填写日志输出并完成异常处理逻辑
+	if(logger.isErrorEnabled()){
+		logger.error("",${exception_var});
+	}
+}</template><template autoinsert="true" context="java-statements" deleted="false" description="用于输出系统warn日志的快捷模板" enabled="true" name="warn">if (logger.isWarnEnabled()) {&#13;
+	logger.warn("${cursor}");&#13;
+}</template></templates>
