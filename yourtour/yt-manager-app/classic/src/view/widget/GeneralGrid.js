@@ -19,14 +19,14 @@ Ext.define('yt_manager_app.view.widget.GeneralGrid', {
     },
     flex: 1,
 
-    initComponent: function() {
+    initComponent: function () {
         var store = this.getStore();
         Ext.apply(this, {
             bbar: {
                 xtype: 'pagingtoolbar',
                 displayInfo: true,
                 store: store,
-                displayMsg: '{2}中的{0}-{1}',
+                displayMsg: '记录[{0}]至[{1}]，共[{2}]条记录。',
                 emptyMsg: '无数据'
             }
         });

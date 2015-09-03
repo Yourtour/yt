@@ -112,21 +112,21 @@ Ext.define('yt_manager_app.view.main.MainController', {
     },
 
     onLogoutClicked: function () {
-        var username = localStorage.getItem('iams.login.username');
+        var me = this;
+        var username = localStorage.getItem('yt_manager_app.login.username');
         Ext.Ajax.request({
             asyn: true,
-            url: 'http://localhost:8080/iams-web/rest/user/logout/' + username,
+            url: 'http://localhost:8080/yt-web/rest/users/logout/' + username,
             success: function (response, opts) {
-                console.log('Logout success.');
+                localStorage.removeItem('yt_manager_app.login.state');
+                me.getView().destroy();
+                Ext.create({
+                    xtype: 'login'
+                });
             },
             failure: function (response, opts) {
                 Ext.MessageBox.alert('Error', '登出系统失败！错误码： ' + response.status + '。');
             }
-        });
-        localStorage.removeItem('iams.login.state');
-        this.getView().destroy();
-        Ext.create({
-            xtype: 'login'
         });
     },
 

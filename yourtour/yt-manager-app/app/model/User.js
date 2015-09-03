@@ -37,7 +37,7 @@ Ext.define('yt_manager_app.model.User', {
     }, {
         name: 'rank', type: 'int', defaultValue: 5
     }, {
-        name: 'status', type: 'string', defaultValue: 'DRAFT'
+        name: 'status', type: 'string', defaultValue: 'VALIDATED'
     }, {
         name: 'slogan', type: 'string'
     }, {
@@ -50,17 +50,6 @@ Ext.define('yt_manager_app.model.User', {
         name: 'updatedTime', type: 'int'
     }, {
         name: 'rowKey', type: 'string'
-    }, {
-        name: 'roleName', calculate: function (data) {
-            var code = data.role;
-            if (code == 'EXPERT') {
-                return '达人';
-            } else if (code == 'HOST') {
-                return '地主';
-            } else {
-                return '一般会员';
-            }
-        }
     }, {
         name: 'createdTimeStr', calculate: function (data) {
             var time = data.createdTime,

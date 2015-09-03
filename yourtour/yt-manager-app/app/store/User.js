@@ -30,7 +30,8 @@ Ext.define('yt_manager_app.store.User', {
             totalProperty: 'totalCount'
         },
         writer: {
-            type: 'json'
+            type: 'json',
+            writeAllFields: true
         }
     }
 });

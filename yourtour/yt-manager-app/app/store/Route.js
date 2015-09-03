@@ -39,37 +39,6 @@ Ext.define('yt_manager_app.store.Route', {
         name: 'updatedTime', type: 'int'
     }, {
         name: 'rowKey', type: 'string'
-    }, {
-        name: 'startTimeStr', calculate: function(data) {
-            var time = data.startTime,
-                date = new Date();
-            date.setTime(time);
-            return Ext.Date.format(date, 'Y/m/d');
-        }
-    }, {
-        name: 'endTimeStr', calculate: function(data) {
-            var time = data.endTime,
-                date = new Date();
-            date.setTime(time);
-            return Ext.Date.format(date, 'Y/m/d');
-        }
-    }, {
-        name: 'createdTimeStr', calculate: function(data) {
-            var time = data.createdTime,
-                date = new Date();
-            date.setTime(time);
-            return Ext.Date.format(date, 'Y/m/d H:i:s');
-        }
-    }, {
-        name: 'updatedTimeStr', calculate: function(data) {
-            if (data.updatedUserId == null || data.updatedUserId == '') {
-                return '';
-            }
-            var time = data.updatedTime,
-                date = new Date();
-            date.setTime(time);
-            return Ext.Date.format(date, 'Y/m/d H:i:s');
-        }
     }],
     idProperty:'id',
     pageSize: 20,
@@ -93,6 +62,9 @@ Ext.define('yt_manager_app.store.Route', {
             type: 'json',
             rootProperty: 'data',
             totalProperty: 'totalCount'
+        },
+        writer: {
+            type: 'json'
         }
     }
 });

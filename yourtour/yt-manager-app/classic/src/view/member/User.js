@@ -41,9 +41,18 @@ Ext.define('yt_manager_app.view.member.User', {
             sortable: true
         }, {
             text: 'Role',
-            dataIndex: 'roleName',
+            dataIndex: 'role',
             width: 100,
-            sortable: true
+            sortable: true,
+            renderer: function(val) {
+                if (val == 'EXPERT') {
+                    return '达人';
+                } else if (val == 'HOST') {
+                    return '地主';
+                } else {
+                    return '一般会员';
+                }
+            }
         }, {
             text: 'Mobile',
             dataIndex: 'mobileNo',

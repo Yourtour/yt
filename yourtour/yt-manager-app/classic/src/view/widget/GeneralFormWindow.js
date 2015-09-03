@@ -50,8 +50,9 @@ Ext.define('yt_manager_app.view.widget.GeneralFormWindow', {
     }],
 
     initComponent: function () {
-        var config = this.config;
-        Ext.apply(this, {
+        var me = this,
+            config = me.config;
+        Ext.apply(me, {
             items: [{
                 xtype: 'form',
                 reference: 'formWindow',

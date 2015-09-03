@@ -36,21 +36,19 @@ Ext.define('yt_manager_app.view.member.UserWindow', {
             }, {
                 fieldLabel: '性别',
                 reference: 'gender',
-                name: 'gender',
                 xtype: 'radiogroup',
                 layout: {
                     autoFlex: false
                 },
                 defaults: {
-                    name: 'ccType',
+                    name: 'gender',
                     margin: '0 30 0 0'
                 },
                 items: [{
-                    inputValue: 'male',
-                    boxLabel: '男',
-                    checked: true
+                    inputValue: 'MALE',
+                    boxLabel: '男'
                 }, {
-                    inputValue: 'female',
+                    inputValue: 'FEMALE',
                     boxLabel: '女'
                 }, {
                     inputValue: 'NA',
