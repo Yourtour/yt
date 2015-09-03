@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -11,6 +12,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import org.apache.commons.logging.Log;
@@ -29,6 +31,7 @@ import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.rsal.neo4j.repository.ICrudOperate;
 import com.yt.rsal.neo4j.repository.IFullTextSearchOperate;
+import com.yt.utils.WebUtils;
 import com.yt.vo.RecommendConditionVO;
 import com.yt.vo.RecommendLineVO;
 import com.yt.vo.RelationConditionVO;
@@ -132,7 +135,7 @@ public class LineRestResource {
 			LOG.debug("Request import LineBean data.");
 		}
 		for (LineVO vo : vos) {
-			ResponseVO response = save(vo);
+			ResponseVO response = save(vo, "admin");
 			if (response.getErrorCode() != 0) {
 				if (LOG.isWarnEnabled()) {
 					LOG.warn(String.format(
@@ -150,7 +153,11 @@ public class LineRestResource {
 	}
 
 	@POST
-	public ResponseVO save(LineVO vo) {
+	public ResponseVO save(LineVO vo, @Context HttpServletRequest request) {
+		return save(vo, WebUtils.getCurrentLoginUser(request));
+	}
+
+	private ResponseVO save(LineVO vo, String operator) {
 		if (vo == null) {
 			if (LOG.isWarnEnabled()) {
 				LOG.warn("The LineVO is null.");
@@ -159,7 +166,7 @@ public class LineRestResource {
 		}
 		try {
 			LineBean bean = LineVO.transform(vo);
-			crudOperate.save(bean, true);
+			crudOperate.save(bean, operator, true);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format("Save LineBean[‘%s'] success.",
 						vo.getRowKey()));

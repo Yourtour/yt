@@ -3,6 +3,7 @@ package com.yt.rest.resource;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -10,6 +11,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import org.apache.commons.logging.Log;
@@ -24,6 +26,7 @@ import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.rsal.neo4j.repository.ICrudOperate;
 import com.yt.rsal.neo4j.repository.IFullTextSearchOperate;
+import com.yt.utils.WebUtils;
 import com.yt.vo.maintain.SceneResourceVO;
 
 @Component
@@ -120,7 +123,7 @@ public class SceneRestResource {
 	@Path("import")
 	public ResponseVO importData(List<SceneResourceVO> vos) {
 		for (SceneResourceVO vo : vos) {
-			ResponseVO response = save(vo);
+			ResponseVO response = save(vo, "admin");
 			if (response.getErrorCode() != 0) {
 				if (LOG.isWarnEnabled()) {
 					LOG.warn(String
@@ -138,7 +141,12 @@ public class SceneRestResource {
 	}
 
 	@POST
-	public ResponseVO save(SceneResourceVO vo) {
+	public ResponseVO save(SceneResourceVO vo,
+			@Context HttpServletRequest request) {
+		return save(vo, WebUtils.getCurrentLoginUser(request));
+	}
+
+	private ResponseVO save(SceneResourceVO vo, String operator) {
 		if (vo == null) {
 			if (LOG.isWarnEnabled()) {
 				LOG.warn("The SceneVO is null.");
@@ -147,7 +155,7 @@ public class SceneRestResource {
 		}
 		try {
 			SceneResourceBean bean = SceneResourceVO.transform(vo);
-			crudOperate.save(bean, true);
+			crudOperate.save(bean, operator, true);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format(
 						"Save SceneResourceBean[id='%s'] success.",

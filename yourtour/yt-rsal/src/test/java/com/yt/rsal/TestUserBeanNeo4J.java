@@ -73,7 +73,7 @@ public class TestUserBeanNeo4J {
 			user.setUpdatedTime(System.currentTimeMillis());
 			user.setUpdatedUserId("user id");
 			user.setUserName("user name");
-			neo4jCRUD.save(user);
+			neo4jCRUD.save(user, "tester");
 			assertNotNull(user.getGraphId());
 			assertEquals("Assert the count when save.",
 					neo4jCRUD.count(UserBean.class), 1l);
@@ -142,10 +142,10 @@ public class TestUserBeanNeo4J {
 			john.playWith(nan);
 			nan.followMe(john);
 			nan.watchRoute(route);
-			neo4jCRUD.save(route);
-			neo4jCRUD.save(john);
-			neo4jCRUD.save(tony);
-			neo4jCRUD.save(nan);
+			neo4jCRUD.save(route, "tester");
+			neo4jCRUD.save(john, "tester");
+			neo4jCRUD.save(tony, "tester");
+			neo4jCRUD.save(nan, "tester");
 			assertEquals("Assert the count of UserBean after save.",
 					neo4jCRUD.count(UserBean.class), 3l);
 			assertEquals("Assert the count of RouteBean after save.",

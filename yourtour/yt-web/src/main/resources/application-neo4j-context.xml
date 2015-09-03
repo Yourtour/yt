@@ -29,6 +29,9 @@
 
 	<context:component-scan base-package="com.yt.rsal.neo4j.repository, com.yt.business.repository" />
 	
+	<!-- 初始化admin账户的service -->
+	<bean id="initAdminUserService" class="com.yt.business.utils.AdminUserInitializeService" />
+	
 	<!--bean id="neo4jCRUD" class="com.yt.rsal.neo4j.repository.CrudGeneralOperate" />
 	<bean id="neo4jFTS" class="com.yt.rsal.neo4j.repository.FullTextSearchOperate" /-->
 

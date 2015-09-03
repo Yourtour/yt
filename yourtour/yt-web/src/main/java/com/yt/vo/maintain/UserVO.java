@@ -52,22 +52,7 @@ public class UserVO extends BaseVO {
 		vo.setRealName(bean.getRealName());
 		vo.setResidence(bean.getResidence());
 		vo.setRole(bean.getRole());
-		switch (bean.getSex()) {
-		case "M":
-		case "m":
-		case "MALE":
-		case "male":
-			vo.setGender(GenderType.MALE);
-			break;
-		case "F":
-		case "f":
-		case "FEMALE":
-		case "female":
-			vo.setGender(GenderType.FEMALE);
-			break;
-		default:
-			vo.setGender(GenderType.NA);
-		}
+		vo.setGender(bean.getGender());
 		vo.setSlogan(bean.getSlogan());
 		vo.setStatus(bean.getStatus());
 		vo.setUserName(bean.getUserName());
@@ -80,6 +65,8 @@ public class UserVO extends BaseVO {
 		}
 		UserBean bean = new UserBean();
 		vo.toBean(bean);
+		bean.setRowKey(vo.getUserName());
+		vo.setUserName(vo.getUserName());
 		try {
 			bean.setBirthday(dateFormat.parse(vo.getBirthday()).getTime());
 		} catch (Exception ex) {
@@ -100,7 +87,7 @@ public class UserVO extends BaseVO {
 		bean.setRealName(vo.getRealName());
 		bean.setResidence(vo.getResidence());
 		bean.setRole(vo.getRole());
-		bean.setSex(vo.getGender().code);
+		bean.setGender(vo.getGender());
 		bean.setSlogan(vo.getSlogan());
 		bean.setStatus(vo.getStatus());
 		bean.setUserName(vo.getUserName());

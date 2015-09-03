@@ -20,6 +20,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.yt.business.bean.UserBean;
+import com.yt.business.common.Constants.GenderType;
 import com.yt.business.common.Constants.Role;
 import com.yt.business.common.Constants.Status;
 import com.yt.dal.hbase.DdlGeneralOperate;
@@ -84,7 +85,7 @@ public class TestUserBeanHbase {
 			bean.setRealName("real name");
 			bean.setResidence("residence");
 			bean.setRowKey("row key 001");
-			bean.setSex("F");
+			bean.setGender(GenderType.FEMALE);
 			bean.setStatus(Status.ACTIVED);
 			bean.setUpdatedTime(System.currentTimeMillis());
 			bean.setUpdatedUserId("update user");
@@ -110,7 +111,7 @@ public class TestUserBeanHbase {
 			assertEquals(bean1.getRealName(), bean.getRealName());
 			assertEquals(bean1.getResidence(), bean.getResidence());
 			assertEquals(bean1.getRowKey(), bean.getRowKey());
-			assertEquals(bean1.getSex(), bean.getSex());
+			assertEquals(bean1.getGender(), bean.getGender());
 			assertEquals(bean1.getStatus(), bean.getStatus());
 			assertEquals(bean1.getUpdatedTime(), bean.getUpdatedTime());
 			assertEquals(bean1.getUpdatedUserId(), bean.getUpdatedUserId());

@@ -117,17 +117,22 @@ public interface ICrudOperate {
 	 * 
 	 * @param neo4jBean
 	 *            Neo4J实体对象
+	 * @param operator
+	 *            当前操作者
 	 * @return 保存后的实体对象
 	 * @throws Exception
 	 *             保存过程中发生的异常
 	 */
-	public INeo4JBaseBean save(INeo4JBaseBean neo4jBean) throws Exception;
+	public INeo4JBaseBean save(INeo4JBaseBean neo4jBean, String operator)
+			throws Exception;
 
 	/**
 	 * 保存一个指定的Neo4J实体对象
 	 * 
 	 * @param neo4jBean
 	 *            Neo4J实体对象
+	 * @param operator
+	 *            当前操作者
 	 * @param saveFail2Hbase
 	 *            如果设置为true，加入保存过程中失败，将会在hbase中保存一个Neo4JSaveFailRecordBean对象，
 	 *            便于后续补救处理。
@@ -135,6 +140,6 @@ public interface ICrudOperate {
 	 * @throws Exception
 	 *             保存过程中发生的异常
 	 */
-	public INeo4JBaseBean save(INeo4JBaseBean neo4jBean, boolean saveFail2Hbase)
-			throws Exception;
+	public INeo4JBaseBean save(INeo4JBaseBean neo4jBean, String operator,
+			boolean saveFail2Hbase) throws Exception;
 }

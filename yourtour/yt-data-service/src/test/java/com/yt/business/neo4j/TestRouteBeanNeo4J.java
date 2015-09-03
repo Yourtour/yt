@@ -78,7 +78,7 @@ public class TestRouteBeanNeo4J {
 
 			RouteBean route = createRoute();
 			assertNull(route.getGraphId());
-			neo4jCRUD.save(route);
+			neo4jCRUD.save(route, "tester");
 
 			assertNotNull(route.getGraphId());
 			assertEquals("Assert the count when save.",
@@ -133,7 +133,7 @@ public class TestRouteBeanNeo4J {
 
 			RouteBean route = createRoute();
 			assertNull(route.getGraphId());
-			neo4jCRUD.save(route);
+			neo4jCRUD.save(route, "tester");
 
 			// test fulltext search
 			IFullTextSearchOperate search = context
@@ -159,7 +159,7 @@ public class TestRouteBeanNeo4J {
 			RouteBean r1 = createRoute();
 			r1.setRowKey("route-002");
 			r1.setFeature("中华人民共和国");
-			neo4jCRUD.save(r1);
+			neo4jCRUD.save(r1, "tester");
 
 			list = search.query(RouteBean.class, new QueryTerm("intro", "五台山"));
 			assertTrue(list.size() == 2);

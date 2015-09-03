@@ -4,6 +4,7 @@ import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.data.neo4j.support.index.IndexType;
 
+import com.yt.business.common.Constants.GenderType;
 import com.yt.business.common.Constants.Role;
 import com.yt.business.common.Constants.Status;
 import com.yt.dal.hbase.annotation.HbaseColumn;
@@ -56,7 +57,7 @@ public class UserBean extends Neo4JBaseBean {
 	@Indexed
 	String nickName; // 昵称
 	private @HbaseColumn(name = "sex")
-	String sex; // 性别 F/M
+	GenderType gender = GenderType.NA; // 性别 F/M
 	private @HbaseColumn(name = "birth")
 	long birthday; // 生日
 	private @HbaseColumn(name = "img")
@@ -78,17 +79,17 @@ public class UserBean extends Neo4JBaseBean {
 	private @HbaseColumn(name = "cstl")
 	String constellation; // 星座
 	private @HbaseColumn(name = "role")
-	Role role; // 角色
+	Role role = Role.MEMBER; // 角色
 	@Indexed
 	private @HbaseColumn(name = "rank")
 	int rank; // 等级
 	private @HbaseColumn(name = "stat")
 	@Indexed
-	Status status;
+	Status status = Status.VALIDATED;
 
 	private @HbaseColumn(name = "slga")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	String slogan; //个人口号
+	String slogan; // 个人口号
 
 	public UserBean() {
 		super();
@@ -126,12 +127,12 @@ public class UserBean extends Neo4JBaseBean {
 		this.nickName = nickName;
 	}
 
-	public String getSex() {
-		return sex;
+	public GenderType getGender() {
+		return gender;
 	}
 
-	public void setSex(String sex) {
-		this.sex = sex;
+	public void setGender(GenderType gender) {
+		this.gender = gender;
 	}
 
 	public long getBirthday() {

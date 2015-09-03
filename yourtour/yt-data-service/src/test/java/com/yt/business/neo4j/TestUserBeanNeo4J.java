@@ -13,6 +13,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.yt.business.bean.UserBean;
+import com.yt.business.common.Constants.GenderType;
 import com.yt.business.common.Constants.Role;
 import com.yt.business.common.Constants.Status;
 import com.yt.rsal.neo4j.repository.CrudGeneralOperate;
@@ -64,12 +65,12 @@ public class TestUserBeanNeo4J {
 			user.setRole(Role.EXPERT);
 			user.setRealName("real name");
 			user.setResidence("residence");
-			user.setSex("F");
+			user.setGender(GenderType.FEMALE);
 			user.setStatus(Status.ACTIVED);
 			user.setUpdatedTime(System.currentTimeMillis());
 			user.setUpdatedUserId("user id");
 			user.setUserName("user name");
-			neo4jCRUD.save(user);
+			neo4jCRUD.save(user, "tester");
 			assertNotNull(user.getGraphId());
 			assertEquals("Assert the count when save.",
 					neo4jCRUD.count(UserBean.class), 1l);
@@ -84,8 +85,8 @@ public class TestUserBeanNeo4J {
 					user.getRealName(), user1.getRealName());
 			assertEquals("Assert the nickName of the UserBean.",
 					user.getNickName(), user1.getNickName());
-			assertEquals("Assert the email of the UserBean.",
-					user.getEmail(), user1.getEmail());
+			assertEquals("Assert the email of the UserBean.", user.getEmail(),
+					user1.getEmail());
 			assertNull(user1.getPwd());
 
 			neo4jCRUD.delete(UserBean.class);

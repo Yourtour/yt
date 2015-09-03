@@ -7,7 +7,7 @@
  */
 package com.yt.business.neo4j.repository;
 
-import java.util.Set;
+import java.util.List;
 
 import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.neo4j.repository.GraphRepository;
@@ -47,6 +47,18 @@ public interface UserBeanRepository extends GraphRepository<UserBean> {
 	 * @return　用户列表
 	 */
 	@Query("START u=node({0}) MATCH u-[:watchRoute]->(route)<-[:watchRoute]-(users) RETURN users")
-	public Set<UserBean> getUsersWatchSameRoutes(UserBean user);
+	public List<UserBean> getUsersWatchSameRoutes(UserBean user);
+
+	/**
+	 * 根据分页要求查询所有的用户
+	 * 
+	 * @param skip
+	 *            分页起始记录数
+	 * @param limit
+	 *            本页最大记录数
+	 * @return 该页的用户
+	 */
+	@Query("MATCH (users:UserBean) RETURN users SKIP {0} LIMIT {1}")
+	public List<UserBean> getUsersByPage(long skip, long limit);
 
 }

@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -23,16 +22,15 @@ import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.stereotype.Component;
 
 import com.yt.business.bean.UserBean;
-import com.yt.business.common.Constants.GenderType;
 import com.yt.business.common.Constants.NodeRelationshipEnum;
-import com.yt.business.common.Constants.Role;
-import com.yt.business.common.Constants.Status;
+import com.yt.business.neo4j.repository.UserBeanRepository;
 import com.yt.business.utils.Neo4jUtils;
 import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponsePagingDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.rsal.neo4j.repository.ICrudOperate;
+import com.yt.utils.WebUtils;
 import com.yt.vo.AuthenticationVO;
 import com.yt.vo.RelationConditionVO;
 import com.yt.vo.maintain.UserVO;
@@ -43,13 +41,15 @@ import com.yt.vo.maintain.UserVO;
 @Consumes(MediaType.APPLICATION_JSON)
 public class UserRestResource {
 	private static final Log LOG = LogFactory.getLog(UserRestResource.class);
-	private static final String LOGIN_USERNAME = "login.username";
 
 	@Autowired
 	private Neo4jTemplate template;
 
 	@Autowired
 	private ICrudOperate crudOperate;
+
+	@Autowired
+	private UserBeanRepository userRepo;
 
 	@SuppressWarnings("unchecked")
 	@GET
@@ -122,7 +122,8 @@ public class UserRestResource {
 			LOG.debug("Request import UserBean data.");
 		}
 		for (UserVO vo : vos) {
-			ResponseVO response = save(null, vo);
+			// 默认全部采用admin账户导入数据
+			ResponseVO response = save(null, vo, "admin");
 			if (response.getErrorCode() != 0) {
 				if (LOG.isWarnEnabled()) {
 					LOG.warn(String.format(
@@ -141,17 +142,18 @@ public class UserRestResource {
 
 	@POST
 	@Path("save.json")
-	public ResponseVO saveByAdd(UserVO vo) {
-		return save(null, vo);
+	public ResponseVO saveByAdd(UserVO vo, @Context HttpServletRequest request) {
+		return save(null, vo, WebUtils.getCurrentLoginUser(request));
 	}
-	
+
 	@POST
 	@Path("save/{id}.json")
-	public ResponseVO saveByUpdate(@PathParam("id") String id, UserVO vo) {
-		return save(id, vo);
+	public ResponseVO saveByUpdate(@PathParam("id") String id, UserVO vo,
+			@Context HttpServletRequest request) {
+		return save(id, vo, WebUtils.getCurrentLoginUser(request));
 	}
-	
-	private ResponseVO save(String id, UserVO vo) {
+
+	private ResponseVO save(String id, UserVO vo, String operator) {
 		if (vo == null) {
 			if (LOG.isWarnEnabled()) {
 				LOG.warn("The UserVO is null.");
@@ -160,7 +162,7 @@ public class UserRestResource {
 		}
 		try {
 			UserBean bean = UserVO.transform(vo);
-			crudOperate.save(bean, true);
+			crudOperate.save(bean, operator, true);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format("Save UserBean['%s'] success.",
 						vo.getRowKey()));
@@ -219,17 +221,16 @@ public class UserRestResource {
 				}
 				return new ResponseVO(StaticErrorEnum.USER_NOT_EXIST);
 			}
-			if (!auth.getPassword().equals(user.getPwd())) {
+			if (auth.getPassword().equals(user.getPwd())) {
 				// 认证成功
 				if (LOG.isDebugEnabled()) {
 					LOG.debug(String.format("The user[%s] login success.",
 							auth.getCode()));
 				}
-				request.getSession(true).setAttribute(LOGIN_USERNAME,
-						auth.getCode());
-				return new ResponseVO(StaticErrorEnum.AUTHENTICATE_FAIL);
+				WebUtils.setCurrentLoginUser(request, auth.getCode());
+				return new ResponseVO();
 			}
-			return new ResponseVO();
+			return new ResponseVO(StaticErrorEnum.AUTHENTICATE_FAIL);
 		} catch (Exception ex) {
 			if (LOG.isWarnEnabled()) {
 				LOG.warn(
@@ -257,14 +258,8 @@ public class UserRestResource {
 				}
 				return new ResponseVO(StaticErrorEnum.USER_NOT_EXIST);
 			}
-			HttpSession session = request.getSession();
-			if (session == null) {
-				if (LOG.isWarnEnabled()) {
-					LOG.warn("The session is null, logout fail.");
-				}
-				return new ResponseVO(StaticErrorEnum.AUTHENTICATE_FAIL);
-			}
-			session.removeAttribute(LOGIN_USERNAME);
+			// 清除当前session登录信息
+			WebUtils.setCurrentLoginUser(request, null);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format("The user[%s] logout success.",
 						username));
@@ -340,29 +335,42 @@ public class UserRestResource {
 	public ResponsePagingDataVO<List<UserVO>> loadPage(
 			@QueryParam("page") int page, @QueryParam("start") int start,
 			@QueryParam("limit") int limit) {
-		System.out.println(String.format("page(%d), start(%d), limit(%d).",
-				page, start, limit));
-		Vector<UserVO> result = new Vector<UserVO>();
-		UserVO vo1 = new UserVO();
-		vo1.setId(1l);
-		vo1.setUserName("john");
-		vo1.setRealName("彭明喜");
-		vo1.setBirthday("1973/09/18");
-		vo1.setNativePlace("重庆忠县");
-		vo1.setResidence("上海市平江路48号");
-		vo1.setImageUrl("/resources/images/john.png");
-		vo1.setCharacter("理工男，理性、务实、不浮躁！");
-		vo1.setConstellation("处女座");
-		vo1.setEmail("pengmingxi@dscomm.com.cn");
-		vo1.setGender(GenderType.MALE);
-		vo1.setMobileNo("13701760212");
-		vo1.setNickName("上善若水");
-		vo1.setPassword("12345678");
-		vo1.setRank(5);
-		vo1.setRole(Role.EXPERT);
-		vo1.setStatus(Status.VALIDATED);
-		vo1.setSlogan("一起玩、一起飞！");
-		result.add(vo1);
-		return new ResponsePagingDataVO<List<UserVO>>(1000, result);
+		try {
+			long totalSize = crudOperate.count(UserBean.class);
+			if (start >= totalSize) {
+				if (LOG.isWarnEnabled()) {
+					LOG.warn(String
+							.format("The query parameter is invalid, the total user: %d, but request: page(%d), start(%d), limit(%d).",
+									totalSize, page, start, limit));
+				}
+				return new ResponsePagingDataVO<List<UserVO>>(
+						StaticErrorEnum.THE_DATA_NOT_EXIST);
+			}
+
+			Vector<UserVO> result = new Vector<UserVO>();
+			List<UserBean> users = userRepo.getUsersByPage(start, limit);
+			for (UserBean user : users) {
+				UserVO vo = UserVO.transform(user);
+				if (vo == null) {
+					continue;
+				}
+				result.add(vo);
+			}
+			if (LOG.isDebugEnabled()) {
+				LOG.debug(String
+						.format("Query a page user success, total: {%d}, request: page(%d), start(%d), limit(%d).",
+								result.size(), page, start, limit));
+			}
+			return new ResponsePagingDataVO<List<UserVO>>(totalSize, result);
+		} catch (Exception ex) {
+			if (LOG.isErrorEnabled()) {
+				LOG.error(
+						String.format(
+								"Query a page user fail, request: page(%d), start(%d), limit(%d).",
+								page, start, limit), ex);
+			}
+			return new ResponsePagingDataVO<List<UserVO>>(
+					StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
 	}
 }

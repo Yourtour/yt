@@ -194,10 +194,13 @@ public class CrudGeneralOperate implements ICrudOperate {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.yt.rsal.neo4j.repository.ICrudOperate#save(java.lang.Object)
+	 * @see
+	 * com.yt.rsal.neo4j.repository.ICrudOperate#save(com.yt.rsal.neo4j.bean
+	 * .INeo4JBaseBean, java.lang.String)
 	 */
 	@Override
-	public INeo4JBaseBean save(INeo4JBaseBean neo4jBean) throws Exception {
+	public INeo4JBaseBean save(INeo4JBaseBean neo4jBean, String operator)
+			throws Exception {
 		if (neo4jBean == null) {
 			String msg = "The Neo4JBean is null.";
 			if (LOG.isWarnEnabled()) {
@@ -214,11 +217,14 @@ public class CrudGeneralOperate implements ICrudOperate {
 				// 该记录不存在，更新Create时间
 				((Neo4JBaseBean) neo4jBean).setCreatedTime(System
 						.currentTimeMillis());
+				((Neo4JBaseBean) neo4jBean).setGraphId(null);
+				((Neo4JBaseBean) neo4jBean).setCreatedUserId(operator);
 			} else {
 				// 该记录已经存在，更新Update时间
 				((Neo4JBaseBean) neo4jBean).setGraphId(bean.getGraphId());
 				((Neo4JBaseBean) neo4jBean).setUpdatedTime(System
 						.currentTimeMillis());
+				((Neo4JBaseBean) neo4jBean).setUpdatedUserId(operator);
 			}
 		}
 
@@ -239,19 +245,20 @@ public class CrudGeneralOperate implements ICrudOperate {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.yt.rsal.neo4j.repository.ICrudOperate#save(java.lang.Object,
-	 * boolean)
+	 * @see
+	 * com.yt.rsal.neo4j.repository.ICrudOperate#save(com.yt.rsal.neo4j.bean
+	 * .INeo4JBaseBean, java.lang.String, boolean)
 	 */
 	@Override
-	public INeo4JBaseBean save(INeo4JBaseBean neo4jBean, boolean saveFail2Hbase)
-			throws Exception {
+	public INeo4JBaseBean save(INeo4JBaseBean neo4jBean, String operator,
+			boolean saveFail2Hbase) throws Exception {
 		OperateType ot = OperateType.INSERT;
 		Neo4JBaseBean bean = (Neo4JBaseBean) neo4jBean;
 		if (bean.getGraphId() != null) {
 			ot = OperateType.UPDATE;
 		}
 		try {
-			return save(neo4jBean);
+			return save(neo4jBean, operator);
 		} catch (Exception ex) {
 			if (saveFail2Hbase) {
 				// 保存失败信息到hbase，便于后续补救处理。

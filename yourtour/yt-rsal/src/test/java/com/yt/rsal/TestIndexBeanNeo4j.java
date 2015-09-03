@@ -53,7 +53,7 @@ public class TestIndexBeanNeo4j {
 			bean.setAge(41);
 			bean.setDescription("All the people like john.");
 			bean.setMarried(true);
-			neo4jCRUD.save(bean);
+			neo4jCRUD.save(bean, "tester");
 			TestIndexBean bean1 = (TestIndexBean) neo4jCRUD.get(
 					TestIndexBean.class, bean.getRowKey());
 			assertNotNull(bean1);
