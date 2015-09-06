@@ -18,18 +18,15 @@ import javax.ws.rs.core.MediaType;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.stereotype.Component;
 
 import com.yt.business.bean.UserBean;
-import com.yt.business.common.Constants.NodeRelationshipEnum;
-import com.yt.business.neo4j.repository.UserBeanRepository;
+import com.yt.business.repository.UserRepository;
 import com.yt.business.utils.Neo4jUtils;
 import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponsePagingDataVO;
 import com.yt.response.ResponseVO;
-import com.yt.rsal.neo4j.repository.ICrudOperate;
 import com.yt.utils.WebUtils;
 import com.yt.vo.AuthenticationVO;
 import com.yt.vo.RelationConditionVO;
@@ -43,13 +40,7 @@ public class UserRestResource {
 	private static final Log LOG = LogFactory.getLog(UserRestResource.class);
 
 	@Autowired
-	private Neo4jTemplate template;
-
-	@Autowired
-	private ICrudOperate crudOperate;
-
-	@Autowired
-	private UserBeanRepository userRepo;
+	private UserRepository userRepository;
 
 	@SuppressWarnings("unchecked")
 	@GET
@@ -59,7 +50,7 @@ public class UserRestResource {
 		}
 		List<UserVO> list = new ArrayList<UserVO>();
 		try {
-			List<UserBean> result = (List<UserBean>) crudOperate
+			List<UserBean> result = (List<UserBean>) userRepository
 					.get(UserBean.class);
 			for (UserBean bean : result) {
 				if (bean == null) {
@@ -91,10 +82,10 @@ public class UserRestResource {
 			UserBean bean = null;
 			if (graphId != -1) {
 				// id是GraphID
-				bean = template.findOne(graphId, UserBean.class);
+				bean = userRepository.getUserByGraphId(graphId);
 			} else {
 				// id 是rowkey
-				bean = (UserBean) crudOperate.get(UserBean.class, id);
+				bean = userRepository.getUserByRowkey(id);
 			}
 			if (bean == null) {
 				return new ResponseDataVO<UserVO>(
@@ -162,7 +153,7 @@ public class UserRestResource {
 		}
 		try {
 			UserBean bean = UserVO.transform(vo);
-			crudOperate.save(bean, operator, true);
+			userRepository.save(bean, operator, true);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format("Save UserBean['%s'] success.",
 						vo.getRowKey()));
@@ -186,10 +177,10 @@ public class UserRestResource {
 			UserBean bean = null;
 			if (graphId != -1) {
 				// id是GraphID
-				bean = template.findOne(graphId, UserBean.class);
+				bean = userRepository.getUserByGraphId(graphId);
 				id = bean.getRowKey();
 			}
-			crudOperate.delete(UserBean.class, id);
+			userRepository.delete(UserBean.class, id);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format("Delete UserBean['%s'] success.", id));
 			}
@@ -211,7 +202,7 @@ public class UserRestResource {
 			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
 		}
 		try {
-			UserBean user = (UserBean) crudOperate.get(UserBean.class,
+			UserBean user = (UserBean) userRepository.getUserByField(
 					"userName", auth.getCode());
 			if (user == null) {
 				if (LOG.isWarnEnabled()) {
@@ -249,7 +240,7 @@ public class UserRestResource {
 			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
 		}
 		try {
-			UserBean user = (UserBean) crudOperate.get(UserBean.class,
+			UserBean user = (UserBean) userRepository.getUserByField(
 					"userName", username);
 			if (user == null) {
 				if (LOG.isWarnEnabled()) {
@@ -283,9 +274,11 @@ public class UserRestResource {
 		String srcId = condition.getSrcId(), tarId = condition.getTarId();
 		boolean isAdd = condition.isAdd();
 		try {
-			Neo4jUtils.maintainRelateion(template, crudOperate,
-					NodeRelationshipEnum.FOLLOW, srcId, UserBean.class, tarId,
-					UserBean.class, null, isAdd, true);
+			if (isAdd) {
+				userRepository.followUser(srcId, tarId);
+			} else {
+				userRepository.unfollowUser(srcId, tarId);
+			}
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String
 						.format("'%s' 'FOLLOW' from UserBean['%s'] to UserBean['%s'] success.",
@@ -311,9 +304,11 @@ public class UserRestResource {
 		String srcId = condition.getSrcId(), tarId = condition.getTarId();
 		boolean isAdd = condition.isAdd();
 		try {
-			Neo4jUtils.maintainRelateion(template, crudOperate,
-					NodeRelationshipEnum.WATCH, srcId, UserBean.class, tarId,
-					UserBean.class, null, isAdd, true);
+			if (isAdd) {
+				userRepository.watchUser(srcId, tarId);
+			} else {
+				userRepository.unwatchUser(srcId, tarId);
+			}
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String
 						.format("'%s' 'WATCH' from UserBean['%s'] to UserBean['%s'] success.",
@@ -336,7 +331,7 @@ public class UserRestResource {
 			@QueryParam("page") int page, @QueryParam("start") int start,
 			@QueryParam("limit") int limit) {
 		try {
-			long totalSize = crudOperate.count(UserBean.class);
+			long totalSize = userRepository.count(UserBean.class);
 			if (start >= totalSize) {
 				if (LOG.isWarnEnabled()) {
 					LOG.warn(String
@@ -348,7 +343,7 @@ public class UserRestResource {
 			}
 
 			Vector<UserVO> result = new Vector<UserVO>();
-			List<UserBean> users = userRepo.getUsersByPage(start, limit);
+			List<UserBean> users = userRepository.getUsersByPage(start, limit);
 			for (UserBean user : users) {
 				UserVO vo = UserVO.transform(user);
 				if (vo == null) {
