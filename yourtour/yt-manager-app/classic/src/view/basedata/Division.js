@@ -42,9 +42,6 @@ Ext.define('yt_manager_app.view.basedata.Division', {
             xtype: 'treepanel',
             title: '行政区划',
             reference: 'tree',
-            //store: {
-            //    type: 'division'
-            //},
             width: 100,
             height: '100%',
             border: 1,

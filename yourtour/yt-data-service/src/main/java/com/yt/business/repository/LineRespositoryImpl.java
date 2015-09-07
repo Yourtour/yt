@@ -12,21 +12,18 @@ import com.yt.business.bean.SceneResourceBean;
 import com.yt.business.neo4j.repository.RouteBeanRepository;
 import com.yt.business.neo4j.repository.SceneResourceBeanRepository;
 import com.yt.rsal.neo4j.bean.Neo4JBaseBean;
-import com.yt.rsal.neo4j.repository.ICrudOperate;
+import com.yt.rsal.neo4j.repository.CrudGeneralOperate;
 import com.yt.rsal.neo4j.repository.IFullTextSearchOperate;
 import com.yt.rsal.neo4j.repository.IFullTextSearchOperate.QueryTerm;
 
 @Component
-public class LineRespositoryImpl implements LineRepository {
+public class LineRespositoryImpl extends CrudGeneralOperate implements LineRepository {
 
 	@Autowired
 	private SceneResourceBeanRepository sceneRepo;
 
 	@Autowired
 	private IFullTextSearchOperate ftsOperate;
-
-	@Autowired
-	private ICrudOperate crudOperate;
 
 	@Autowired
 	private Neo4jTemplate template;

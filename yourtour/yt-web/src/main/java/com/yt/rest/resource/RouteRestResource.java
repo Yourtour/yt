@@ -19,6 +19,7 @@ import javax.ws.rs.core.MediaType;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.stereotype.Component;
 
@@ -50,6 +51,7 @@ public class RouteRestResource {
 	private Neo4jTemplate template;
 
 	@Autowired
+	@Qualifier("crudGeneralOperate")
 	private ICrudOperate crudOperate;
 
 	@Autowired

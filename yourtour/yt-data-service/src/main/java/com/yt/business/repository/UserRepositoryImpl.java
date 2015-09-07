@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.yt.business.bean.UserBean;
 import com.yt.business.common.Constants.NodeRelationshipEnum;
+import com.yt.business.neo4j.repository.UserBeanRepository;
 import com.yt.business.utils.Neo4jUtils;
 import com.yt.rsal.neo4j.repository.CrudGeneralOperate;
 
@@ -22,7 +23,7 @@ public class UserRepositoryImpl extends CrudGeneralOperate implements
 	private Neo4jTemplate template;
 
 	@Autowired
-	private UserRepository repository;
+	private UserBeanRepository repository;
 
 	public UserRepositoryImpl() {
 		super();

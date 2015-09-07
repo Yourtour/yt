@@ -14,8 +14,6 @@ Ext.define('yt_manager_app.view.basedata.DivisionController', {
         Ext.define('Division', {
             extend: 'Ext.data.Model',
             fields: [{
-                name: 'graphId', type: 'int'
-            }, {
                 name: 'code', typye: 'string'
             }, {
                 name: 'text', type: 'string'
@@ -26,64 +24,13 @@ Ext.define('yt_manager_app.view.basedata.DivisionController', {
         var store = Ext.create('Ext.data.TreeStore', {
             model: 'Division',
 
-            idProperty: 'graphId',
-            pageSize: 0,
+            //root: {
+            //    text: 'root',
+            //    children: [{"code":"item 1","text":"text 1","fullCode":"item 1","expanded":true,"children":[],"id":0,"leaf":true},{"code":"item 2","text":"text 2","fullCode":"item 2","expanded":true,"children":[{"code":"child 1","text":"child text 1","fullCode":"item 2-child 1","expanded":true,"children":[],"id":9,"leaf":true},{"code":"child 2","text":"child text 2","fullCode":"item 2-child 2","expanded":true,"children":[],"id":10,"leaf":true},{"code":"child 3","text":"child text 3","fullCode":"item 2-child 3","expanded":true,"children":[],"id":11,"leaf":true},{"code":"child 4","text":"child text 4","fullCode":"item 2-child 4","expanded":true,"children":[],"id":12,"leaf":true},{"code":"child 5","text":"child text 5","fullCode":"item 2-child 5","expanded":true,"children":[],"id":13,"leaf":true},{"code":"child 6","text":"child text 6","fullCode":"item 2-child 6","expanded":true,"children":[],"id":14,"leaf":true},{"code":"child 7","text":"child text 7","fullCode":"item 2-child 7","expanded":true,"children":[],"id":15,"leaf":true},{"code":"child 8","text":"child text 8","fullCode":"item 2-child 8","expanded":true,"children":[],"id":16,"leaf":true},{"code":"child 9","text":"child text 9","fullCode":"item 2-child 9","expanded":true,"children":[],"id":17,"leaf":true}],"id":1,"leaf":false},{"code":"item 3","text":"text 3","fullCode":"item 3","expanded":true,"children":[],"id":2,"leaf":true},{"code":"item 4","text":"text 4","fullCode":"item 4","expanded":true,"children":[],"id":3,"leaf":true},{"code":"item 5","text":"text 5","fullCode":"item 5","expanded":true,"children":[{"code":"child 1","text":"child text 1","fullCode":"item 5-child 1","expanded":true,"children":[],"id":18,"leaf":true},{"code":"child 2","text":"child text 2","fullCode":"item 5-child 2","expanded":true,"children":[],"id":19,"leaf":true},{"code":"child 3","text":"child text 3","fullCode":"item 5-child 3","expanded":true,"children":[],"id":20,"leaf":true},{"code":"child 4","text":"child text 4","fullCode":"item 5-child 4","expanded":true,"children":[],"id":21,"leaf":true},{"code":"child 5","text":"child text 5","fullCode":"item 5-child 5","expanded":true,"children":[],"id":22,"leaf":true},{"code":"child 6","text":"child text 6","fullCode":"item 5-child 6","expanded":true,"children":[],"id":23,"leaf":true},{"code":"child 7","text":"child text 7","fullCode":"item 5-child 7","expanded":true,"children":[],"id":24,"leaf":true},{"code":"child 8","text":"child text 8","fullCode":"item 5-child 8","expanded":true,"children":[],"id":25,"leaf":true},{"code":"child 9","text":"child text 9","fullCode":"item 5-child 9","expanded":true,"children":[],"id":26,"leaf":true}],"id":4,"leaf":false},{"code":"item 6","text":"text 6","fullCode":"item 6","expanded":true,"children":[],"id":5,"leaf":true},{"code":"item 7","text":"text 7","fullCode":"item 7","expanded":true,"children":[],"id":6,"leaf":true},{"code":"item 8","text":"text 8","fullCode":"item 8","expanded":true,"children":[],"id":7,"leaf":true},{"code":"item 9","text":"text 9","fullCode":"item 9","expanded":true,"children":[],"id":8,"leaf":true}]
+            //},
 
-            /*root: {
-             expanded: true,
-             text: 'root',
-             children: [{
-             graphId: 1,
-             text: 'item 1',
-             code: '1',
-             fullCode: '1',
-             leaf: true
-             }, {
-             text: 'item 2',
-             code: '01',
-             fullCode: '1-01',
-             expanded: true,
-             children: [{
-             text: 'leaf 1',
-             code: '001',
-             fullCode: '1-01-001',
-             leaf: true
-             }, {
-             text: 'leaf 2',
-             leaf: true
-             }, {
-             text: 'leaf 1',
-             leaf: true
-             }, {
-             text: 'leaf 2',
-             leaf: true
-             }, {
-             text: 'leaf 1',
-             leaf: true
-             }, {
-             text: 'leaf 2',
-             leaf: true
-             }, {
-             text: 'leaf 1',
-             leaf: true
-             }, {
-             text: 'leaf 2',
-             leaf: true
-             }, {
-             text: 'leaf 1',
-             leaf: true
-             }, {
-             text: 'leaf 2',
-             leaf: true
-             }, {
-             text: 'leaf 1',
-             leaf: true
-             }, {
-             text: 'leaf 2',
-             leaf: true
-             }]
-             }]
-             },*/
+            idProperty: 'id',
+            pageSize: 0,
 
             proxy: {
                 type: 'rest',
@@ -174,6 +121,7 @@ Ext.define('yt_manager_app.view.basedata.DivisionController', {
             return;
         } else {
             Division.setProxy(store.getProxy());
+            record.set('id', record.getData().graphId);
             record.erase({
                 success: function() {
                     console.log('delete success.');
@@ -214,6 +162,7 @@ Ext.define('yt_manager_app.view.basedata.DivisionController', {
             store = tree.getStore();
         var record = form.getRecord();
         form.updateRecord(record);
+        record.set('id', record.getData().graphId);
         Division.setProxy(store.getProxy());
         record.save({
             success: function () {
