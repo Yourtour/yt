@@ -45,7 +45,7 @@ public class RouteBean extends Neo4JBaseBean {
 
 	private @HbaseColumn(name = "name")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	String name; // 安排名称
+	String name; // 名称
 	private @HbaseColumn(name = "iu")
 	String imageUrl; // 行程图片
 	private @HbaseColumn(name = "line")

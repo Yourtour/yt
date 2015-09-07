@@ -9,7 +9,7 @@ import com.yt.dal.hbase.annotation.HbaseTable;
 import com.yt.rsal.neo4j.bean.Neo4JBaseBean;
 
 /**
- * 该实体定义目的地数据信息。rowkey格式为：洲（1）-国（3）-省（州）（3）-市（3），括号内是每部分长度
+ * 该实体定义目的地数据信息。
  * 
  * <p>
  * <b>修改历史：</b>
@@ -41,59 +41,48 @@ import com.yt.rsal.neo4j.bean.Neo4JBaseBean;
 public class PlaceBean extends Neo4JBaseBean {
 	private static final long serialVersionUID = -6977525800090683657L;
 
-	private @HbaseColumn(name = "zname")
+	private @HbaseColumn(name = "code")
 	@Indexed
-	String continentName = ""; // 洲名
-	private @HbaseColumn(name = "nname")
+	String code = ""; // 代码
+	private @HbaseColumn(name = "name")
 	@Indexed
-	String nationalName = ""; // 国名
-	private @HbaseColumn(name = "sname")
+	String name = ""; // 名称
+	private @HbaseColumn(name = "memo")
 	@Indexed
-	String stateName = ""; // 州名、省名或者直辖市名
-	private @HbaseColumn(name = "cname")
-	@Indexed
-	String cityName = ""; // 市名
-
+	String memo = ""; // 备注
 	private @HbaseColumn(name = "recm")
 	int recommended = 0; // 是否推荐 0:不推荐 1：推荐
-
 	private @Indexed
 	Status status;
+
+	private transient PlaceBean parent = null;
 
 	public PlaceBean() {
 		super();
 	}
 
-	public String getContinentName() {
-		return continentName;
+	public String getCode() {
+		return code;
 	}
 
-	public void setContinentName(String continentName) {
-		this.continentName = continentName;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
-	public String getNationalName() {
-		return nationalName;
+	public String getName() {
+		return name;
 	}
 
-	public void setNationalName(String nationalName) {
-		this.nationalName = nationalName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getStateName() {
-		return stateName;
+	public String getMemo() {
+		return memo;
 	}
 
-	public void setStateName(String stateName) {
-		this.stateName = stateName;
-	}
-
-	public String getCityName() {
-		return cityName;
-	}
-
-	public void setCityName(String cityName) {
-		this.cityName = cityName;
+	public void setMemo(String memo) {
+		this.memo = memo;
 	}
 
 	public int getRecommended() {
@@ -110,5 +99,13 @@ public class PlaceBean extends Neo4JBaseBean {
 
 	public void setStatus(Status status) {
 		this.status = status;
+	}
+
+	public PlaceBean getParent() {
+		return parent;
+	}
+
+	public void setParent(PlaceBean parent) {
+		this.parent = parent;
 	}
 }

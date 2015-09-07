@@ -19,28 +19,28 @@ Ext.define('yt_manager_app.view.widget.GeneralCRUDPanel', {
             tooltip: (function() {
                 return Ext.String.format('显示[{0}]详情。', nameZHCN);
             })(),
-            html: '<img class="tool-icon" src="/resources/images/icon/info-128x128.png" alt="Details">',
+            html: '<img class="tool-icon" src="./resources/images/icon/info-128x128.png" alt="Details">',
             handler: 'onShow'
         }, '-', {
             xtype: 'button',
             tooltip: (function() {
                 return Ext.String.format('新增一个[{0}]。', nameZHCN);
             })(),
-            html: '<img class="tool-icon" src="/resources/images/icon/add-128x128.png" alt="Add">',
+            html: '<img class="tool-icon" src="./resources/images/icon/add-128x128.png" alt="Add">',
             handler: 'onAdd'
         }, {
             xtype: 'button',
             tooltip: (function() {
                 return Ext.String.format('修改指定[{0}]的信息。', nameZHCN);
             })(),
-            html: '<img class="tool-icon" src="/resources/images/icon/edit-128x128.png" alt="Modify">',
+            html: '<img class="tool-icon" src="./resources/images/icon/edit-128x128.png" alt="Modify">',
             handler: 'onModify'
         }, '-', {
             xtype: 'button',
             tooltip: (function() {
                 return Ext.String.format('删除指定的[{0}]。',nameZHCN);
             })(),
-            html: '<img class="tool-icon" src="/resources/images/icon/delete-128x128.png" alt="Delete">',
+            html: '<img class="tool-icon" src="./resources/images/icon/delete-128x128.png" alt="Delete">',
             handler: 'onDelete'
         }];
 

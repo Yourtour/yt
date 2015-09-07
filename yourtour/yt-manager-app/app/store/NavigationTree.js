@@ -29,10 +29,10 @@ Ext.define('yt_manager_app.store.NavigationTree', {
             id: 'basedata-parent',
             children: [{
                 text: '行政区划',
-                //view: 'operate.Announce',
+                view: 'basedata.Division',
                 leaf: true,
                 iconCls: 'x-fa fa-file-o',
-                routeId: 'basedata.division'
+                routeId: 'basedata.Division'
             }, {
                 text: '目的地',
                 //view: 'operate.Ready',

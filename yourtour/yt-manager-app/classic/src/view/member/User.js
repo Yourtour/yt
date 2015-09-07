@@ -9,15 +9,12 @@ Ext.define('yt_manager_app.view.member.User', {
 
     defaults: {
         bodyPadding: 10,
-        scrollable: true
-    },
-
-    cls: 'tab-panel',
-
-    defaults: {
+        scrollable: true,
         width: 500,
         height: 300
     },
+
+    cls: 'tab-panel',
 
     listeners: {
         tabchange: 'onTabChange'
@@ -72,7 +69,7 @@ Ext.define('yt_manager_app.view.member.User', {
             nameEN: 'user',
             nameZHCN: '用户',
             gridName: 'user_crud_grid_paging',
-            icon: '/resources/images/toggle-icon.png',
+            icon: './resources/images/toggle-icon.png',
             gridColumns: userGridColumns,
             store: generalStore
         });
@@ -82,14 +79,14 @@ Ext.define('yt_manager_app.view.member.User', {
             nameEN: 'user',
             nameZHCN: '用户',
             gridName: 'user_cypher_grid_paging',
-            icon: '/resources/images/toggle-icon.png',
+            icon: './resources/images/toggle-icon.png',
             gridColumns: userGridColumns
         });
 
         var graphTab = {
             id: 'user-graph-tab',
             title: '会员关系',
-            icon: '/resources/images/user-profile/3.png',
+            icon: './resources/images/user-profile/3.png',
             html: 'tab pane 3.'
         };
 

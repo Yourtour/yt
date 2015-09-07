@@ -16,7 +16,7 @@ Ext.define('yt_manager_app.view.login.LoginController', {
             username = form.getValues().username,
             password = form.getValues().password;
 
-        Ext.Boot.debug(Ext.String.format('User login: username={0}, password={1}.', username, password));
+        console.log(Ext.String.format('User login: username={0}, password={1}.', username, password));
 
         var authenticate = {code: username, password: password};
         var url = localStorage.getItem('yt_manager_app.cors') ? 'http://localhost:8080/yt-web/rest/users/login' : '/rest/users/login';
@@ -32,7 +32,7 @@ Ext.define('yt_manager_app.view.login.LoginController', {
                 localStorage.setItem('yt_manager_app.login.username', username);
                 localStorage.setItem('yt_manager_app.login.state', true);
 
-                Ext.Boot.debug(Ext.String.format('User[{0}] login success.', username));
+                console.log(Ext.String.format('User[{0}] login success.', username));
 
                 view.destroy();
                 Ext.create({

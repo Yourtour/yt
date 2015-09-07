@@ -43,7 +43,7 @@ Ext.define('yt_manager_app.view.main.Main', {
             items: [{
                 xtype: 'button',
                 tooltip: 'Toggle the left panel.',
-                html: '<img class="main-logo" src="/resources/images/toggle-icon.png" alt="Toggle">',
+                html: '<img class="main-logo" src="./resources/images/toggle-icon.png" alt="Toggle">',
                 handler: 'onToggleNavigationSize'
             }, {
                 xtype: 'tbtext',
@@ -60,7 +60,7 @@ Ext.define('yt_manager_app.view.main.Main', {
             items: [{
                 xtype: 'button',
                 tooltip: 'Logout current user',
-                html: '<img class="user-profile-image" src="/resources/images/user-profile/3.png" alt="Logout">',
+                html: '<img class="user-profile-image" src="./resources/images/user-profile/3.png" alt="Logout">',
                 handler: 'onLogoutClicked'
             }, '->', {
                 xtype: 'tbtext',
