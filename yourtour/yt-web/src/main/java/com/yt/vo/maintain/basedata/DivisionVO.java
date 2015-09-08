@@ -5,13 +5,17 @@ import java.util.Vector;
 
 public class DivisionVO {
 	private Long graphId = null;
-	private String code, text, fullCode;
+	private String code, shorter, text, memo, fullCode;
 	private boolean expanded = false, leaf = false;
 	private List<DivisionVO> children;
 
 	public DivisionVO() {
 		super();
 		this.children = new Vector<DivisionVO>();
+	}
+	
+	public Long getGraphId() {
+		return graphId;
 	}
 
 	public Long getId() {
@@ -30,6 +34,14 @@ public class DivisionVO {
 		this.code = code;
 	}
 
+	public String getShorter() {
+		return shorter;
+	}
+
+	public void setShorter(String shorter) {
+		this.shorter = shorter;
+	}
+
 	public String getText() {
 		return text;
 	}
@@ -38,12 +50,16 @@ public class DivisionVO {
 		this.text = text;
 	}
 
-	public String getFullCode() {
-		return fullCode;
+	public String getMemo() {
+		return memo;
 	}
 
-	public void setFullCode(String fullCode) {
-		this.fullCode = fullCode;
+	public void setMemo(String memo) {
+		this.memo = memo;
+	}
+
+	public String getFullCode() {
+		return fullCode;
 	}
 
 	public boolean isExpanded() {

@@ -14,9 +14,15 @@ Ext.define('yt_manager_app.view.basedata.DivisionController', {
         Ext.define('Division', {
             extend: 'Ext.data.Model',
             fields: [{
-                name: 'code', typye: 'string'
+                name: 'graphId', type: 'int'
+            }, {
+                name: 'code', type: 'string'
+            }, {
+                name: 'shorter', type: 'string'
             }, {
                 name: 'text', type: 'string'
+            }, {
+                name: 'memo', type: 'string'
             }, {
                 name: 'fullCode', type: 'string'
             }]
@@ -24,12 +30,7 @@ Ext.define('yt_manager_app.view.basedata.DivisionController', {
         var store = Ext.create('Ext.data.TreeStore', {
             model: 'Division',
 
-            //root: {
-            //    text: 'root',
-            //    children: [{"code":"item 1","text":"text 1","fullCode":"item 1","expanded":true,"children":[],"id":0,"leaf":true},{"code":"item 2","text":"text 2","fullCode":"item 2","expanded":true,"children":[{"code":"child 1","text":"child text 1","fullCode":"item 2-child 1","expanded":true,"children":[],"id":9,"leaf":true},{"code":"child 2","text":"child text 2","fullCode":"item 2-child 2","expanded":true,"children":[],"id":10,"leaf":true},{"code":"child 3","text":"child text 3","fullCode":"item 2-child 3","expanded":true,"children":[],"id":11,"leaf":true},{"code":"child 4","text":"child text 4","fullCode":"item 2-child 4","expanded":true,"children":[],"id":12,"leaf":true},{"code":"child 5","text":"child text 5","fullCode":"item 2-child 5","expanded":true,"children":[],"id":13,"leaf":true},{"code":"child 6","text":"child text 6","fullCode":"item 2-child 6","expanded":true,"children":[],"id":14,"leaf":true},{"code":"child 7","text":"child text 7","fullCode":"item 2-child 7","expanded":true,"children":[],"id":15,"leaf":true},{"code":"child 8","text":"child text 8","fullCode":"item 2-child 8","expanded":true,"children":[],"id":16,"leaf":true},{"code":"child 9","text":"child text 9","fullCode":"item 2-child 9","expanded":true,"children":[],"id":17,"leaf":true}],"id":1,"leaf":false},{"code":"item 3","text":"text 3","fullCode":"item 3","expanded":true,"children":[],"id":2,"leaf":true},{"code":"item 4","text":"text 4","fullCode":"item 4","expanded":true,"children":[],"id":3,"leaf":true},{"code":"item 5","text":"text 5","fullCode":"item 5","expanded":true,"children":[{"code":"child 1","text":"child text 1","fullCode":"item 5-child 1","expanded":true,"children":[],"id":18,"leaf":true},{"code":"child 2","text":"child text 2","fullCode":"item 5-child 2","expanded":true,"children":[],"id":19,"leaf":true},{"code":"child 3","text":"child text 3","fullCode":"item 5-child 3","expanded":true,"children":[],"id":20,"leaf":true},{"code":"child 4","text":"child text 4","fullCode":"item 5-child 4","expanded":true,"children":[],"id":21,"leaf":true},{"code":"child 5","text":"child text 5","fullCode":"item 5-child 5","expanded":true,"children":[],"id":22,"leaf":true},{"code":"child 6","text":"child text 6","fullCode":"item 5-child 6","expanded":true,"children":[],"id":23,"leaf":true},{"code":"child 7","text":"child text 7","fullCode":"item 5-child 7","expanded":true,"children":[],"id":24,"leaf":true},{"code":"child 8","text":"child text 8","fullCode":"item 5-child 8","expanded":true,"children":[],"id":25,"leaf":true},{"code":"child 9","text":"child text 9","fullCode":"item 5-child 9","expanded":true,"children":[],"id":26,"leaf":true}],"id":4,"leaf":false},{"code":"item 6","text":"text 6","fullCode":"item 6","expanded":true,"children":[],"id":5,"leaf":true},{"code":"item 7","text":"text 7","fullCode":"item 7","expanded":true,"children":[],"id":6,"leaf":true},{"code":"item 8","text":"text 8","fullCode":"item 8","expanded":true,"children":[],"id":7,"leaf":true},{"code":"item 9","text":"text 9","fullCode":"item 9","expanded":true,"children":[],"id":8,"leaf":true}]
-            //},
-
-            idProperty: 'id',
+            idProperty: 'graphId',
             pageSize: 0,
 
             proxy: {
@@ -73,17 +74,26 @@ Ext.define('yt_manager_app.view.basedata.DivisionController', {
         var form = me.lookupReference('form'),
             reset = me.lookupReference('reset'),
             edit = me.lookupReference('edit'),
-            save = me.lookupReference('save'),
-            code = me.lookupReference('code'),
-            name = me.lookupReference('name');
+            save = me.lookupReference('save');
         form.loadRecord(selected[0]);
         me.setRecord(selected[0]);
         reset.setDisabled(true);
         save.setDisabled(true);
         edit.setDisabled(false);
         del.setDisabled(false);
-        code.setEditable(false);
-        name.setEditable(false);
+        me.setEditable(false);
+    },
+
+    setEditable: function(editable) {
+        var me = this,
+            code = me.lookupReference('code'),
+            shorter = me.lookupReference('shorter'),
+            name = me.lookupReference('name'),
+            memo = me.lookupReference('memo');
+        code.setEditable(editable);
+        shorter.setEditable(editable);
+        name.setEditable(editable);
+        memo.setEditable(editable);
     },
 
     onAdd: function () {
@@ -93,8 +103,6 @@ Ext.define('yt_manager_app.view.basedata.DivisionController', {
             edit = me.lookupReference('edit'),
             save = me.lookupReference('save'),
             tree = me.lookupReference('tree'),
-            code = me.lookupReference('code'),
-            name = me.lookupReference('name'),
             store = tree.getStore();
         fullCode = '';
         if (me.getRecord() != null) {
@@ -105,8 +113,7 @@ Ext.define('yt_manager_app.view.basedata.DivisionController', {
         reset.setDisabled(false);
         edit.setDisabled(true);
         save.setDisabled(false);
-        code.setEditable(true);
-        name.setEditable(true);
+        me.setEditable(true);
         me.setOperateType('add');
     },
 
@@ -144,12 +151,9 @@ Ext.define('yt_manager_app.view.basedata.DivisionController', {
         var me = this,
             edit = me.lookupReference('edit'),
             reset = me.lookupReference('reset'),
-            save = me.lookupReference('save'),
-            code = me.lookupReference('code'),
-            name = me.lookupReference('name');
+            save = me.lookupReference('save');
         edit.setDisabled(true);
-        code.setEditable(true);
-        name.setEditable(true);
+        me.setEditable(true);
         reset.setDisabled(false);
         save.setDisabled(false);
         me.setOperateType('edit');
@@ -170,6 +174,7 @@ Ext.define('yt_manager_app.view.basedata.DivisionController', {
                 if (type == 'add') {
                     store.update(record);
                 }
+                me.setEditable(false);
                 me.setOperateType('');
                 // TODO
                 console.log('save the form data.');

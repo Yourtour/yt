@@ -42,8 +42,7 @@ Ext.define('yt_manager_app.view.basedata.Division', {
             xtype: 'treepanel',
             title: '行政区划',
             reference: 'tree',
-            width: 100,
-            height: '100%',
+            width: 400,
             border: 1,
             flex: 1,
             useArrows: true,
@@ -51,14 +50,20 @@ Ext.define('yt_manager_app.view.basedata.Division', {
             columns: [{
                 xtype: 'treecolumn',
                 text: 'Name',
-                flex: 2,
+                width: 200,
                 sortable: true,
                 dataIndex: 'text'
             }, {
                 text: 'Code',
                 flex: 1,
-                width: 100,
+                width: 80,
                 dataIndex: 'code',
+                sortable: true
+            }, {
+                text: 'shorter',
+                flex: 1,
+                width: 80,
+                dataIndex: 'shorter',
                 sortable: true
             }, {
                 text: 'Full code',
@@ -108,7 +113,15 @@ Ext.define('yt_manager_app.view.basedata.Division', {
                 reference: 'code',
                 allowBlank: false,
                 editable: false,
-                name: 'code'
+                name: 'code',
+                emptyText: '数字代码！'
+            }, {
+                fieldLabel: '简称',
+                reference: 'shorter',
+                allowBlank: false,
+                editable: false,
+                name: 'shorter',
+                emptyText: '行政区域简称！'
             }, {
                 fieldLabel: '名称',
                 reference: 'name',
@@ -117,6 +130,12 @@ Ext.define('yt_manager_app.view.basedata.Division', {
                 name: 'text',
                 maxlength: 30,
                 emptyText: '行政区域名称！'
+            }, {
+                xtype: 'textareafield',
+                fieldLabel: '备注',
+                reference: 'memo',
+                name: 'memo',
+                emptyText: '备注'
             }]
         }]
     }]
