@@ -44,6 +44,9 @@ public class PlaceBean extends Neo4JBaseBean {
 	private @HbaseColumn(name = "code")
 	@Indexed
 	String code = ""; // 代码
+	private @HbaseColumn(name = "shor")
+	@Indexed
+	String shorter = ""; // 简称
 	private @HbaseColumn(name = "name")
 	@Indexed
 	String name = ""; // 名称
@@ -54,6 +57,8 @@ public class PlaceBean extends Neo4JBaseBean {
 	int recommended = 0; // 是否推荐 0:不推荐 1：推荐
 	private @Indexed
 	Status status;
+	
+	private transient boolean hasChild = false;
 
 	private transient PlaceBean parent = null;
 
@@ -67,6 +72,14 @@ public class PlaceBean extends Neo4JBaseBean {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public String getShorter() {
+		return shorter;
+	}
+
+	public void setShorter(String shorter) {
+		this.shorter = shorter;
 	}
 
 	public String getName() {
@@ -107,5 +120,13 @@ public class PlaceBean extends Neo4JBaseBean {
 
 	public void setParent(PlaceBean parent) {
 		this.parent = parent;
+	}
+	
+	public boolean hasChild() {
+		return hasChild;
+	}
+
+	public void setHasChild(boolean hasChild) {
+		this.hasChild = hasChild;
 	}
 }

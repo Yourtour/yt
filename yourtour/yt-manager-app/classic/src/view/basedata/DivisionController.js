@@ -63,11 +63,19 @@ Ext.define('yt_manager_app.view.basedata.DivisionController', {
         tree.setStore(store);
     },
 
+    onRefresh: function() {
+        var me = this,
+            tree = me.lookupReference('tree'),
+            store = tree.getStore();
+        store.load();
+    },
+
     onSelectionChange: function (model, selected) {
         var me = this,
             del = me.lookupReference('delete');
         if (selected.length <= 0) {
             del.setDisabled(true);
+            this.setRecord(null);
             return;
         }
 
@@ -164,15 +172,22 @@ Ext.define('yt_manager_app.view.basedata.DivisionController', {
             form = me.lookupReference('form'),
             tree = me.lookupReference('tree'),
             store = tree.getStore();
-        var record = form.getRecord();
+        var record = form.getRecord(),
+            type = me.getOperateType();
         form.updateRecord(record);
         record.set('id', record.getData().graphId);
+        if (me.getRecord() != null && type == 'add') {
+            record.set('parentId', me.getRecord().get('id'));
+        }
+        if (record.get('parentId') == 'root') {
+            record.set('parentId', -1);
+        }
+        console.log(record.getData());
         Division.setProxy(store.getProxy());
         record.save({
             success: function () {
-                var type = me.getOperateType();
                 if (type == 'add') {
-                    store.update(record);
+                    store.insert(record);
                 }
                 me.setEditable(false);
                 me.setOperateType('');

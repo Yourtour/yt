@@ -27,6 +27,12 @@ Ext.define('yt_manager_app.view.basedata.Division', {
             //xtype: 'toolbar',
             items: ['->', {
                 xtype: 'button',
+                tooltip: '重新加载行政区域。',
+                reference: 'refresh',
+                html: '<img class="tool-icon" src="./resources/images/icon/info-128x128.png" alt="Refresh">',
+                handler: 'onRefresh'
+            }, '-', {
+                xtype: 'button',
                 tooltip: '删除选中的行政区域。',
                 reference: 'delete',
                 html: '<img class="tool-icon" src="./resources/images/icon/delete-128x128.png" alt="Delete">',

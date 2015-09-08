@@ -19,8 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.yt.business.bean.PlaceBean;
-import com.yt.business.bean.UserBean;
-import com.yt.business.repository.PlaceRespository;
+import com.yt.business.repository.PlaceRepository;
 import com.yt.business.utils.Neo4jUtils;
 import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
@@ -35,53 +34,68 @@ import com.yt.vo.maintain.basedata.DivisionVO;
 public class DivisionRestResource {
 	private static final Log LOG = LogFactory
 			.getLog(DivisionRestResource.class);
-	private List<DivisionVO> roots = null;
-
 	@Autowired
-	private PlaceRespository placeRepository;
-
-	public DivisionRestResource() {
-		super();
-		roots = new Vector<DivisionVO>();
-		for (int index = 1; index < 10; index++) {
-			DivisionVO item = new DivisionVO();
-			item.setCode("root " + index);
-			item.setText("root text " + index);
-			item.setId((long) (index));
-			item.setExpanded(false);
-			item.setLeaf(true);
-			roots.add(item);
-		}
-		roots.get(3).setLeaf(false);
-	}
+	private PlaceRepository placeRepository;
 
 	@Path("load/{id}.json")
 	@GET
 	public ResponseDataVO<List<DivisionVO>> getDivision(
-			@PathParam("id") String key) {
-		System.out.println("............load/" + key + ".json");
-		if ("4".equals(key)) {
-			DivisionVO d3 = roots.get(3);
-			for (int index = 11; index < 20; index++) {
-				DivisionVO item = new DivisionVO();
-				item.setCode("child " + index);
-				item.setText("child text " + index);
-				item.setId((long) (index));
-				item.setExpanded(true);
-				item.setLeaf(true);
-				d3.getChildren().add(item);
+			@PathParam("id") String id) {
+		List<DivisionVO> children = new Vector<DivisionVO>();
+		try {
+			long graphId = Neo4jUtils.getGraphIDFromString(id);
+			if (graphId < 0) {
+				throw new Exception("The invalidated graphId, id = -1.");
 			}
-			return new ResponseDataVO<List<DivisionVO>>(d3.getChildren());
-		} else {
-			return new ResponseDataVO<List<DivisionVO>>();
+			List<PlaceBean> beans = placeRepository.getAllSubPlaces(graphId);
+			for (PlaceBean bean : beans) {
+				DivisionVO vo = DivisionVO.transform(bean);
+				if (vo == null) {
+					continue;
+				}
+				children.add(vo);
+			}
+			if (LOG.isDebugEnabled()) {
+				LOG.debug(String.format(
+						"Found all the sub places, id: %d, total: %d.",
+						graphId, children.size()));
+			}
+			return new ResponseDataVO<List<DivisionVO>>(children);
+		} catch (Exception ex) {
+			if (LOG.isErrorEnabled()) {
+				LOG.error(String.format(
+						"Query all the sub places fail, id: %s.", id), ex);
+			}
+			return new ResponseDataVO<List<DivisionVO>>(
+					StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
 	}
 
 	@Path("load/root.json")
 	@GET
 	public ResponseDataVO<List<DivisionVO>> getAllDivisions() {
-		System.out.println("load/root.json");
-		return new ResponseDataVO<List<DivisionVO>>(roots);
+		List<DivisionVO> roots = new Vector<DivisionVO>();
+		try {
+			List<PlaceBean> beans = placeRepository.getAllRootPlaces();
+			for (PlaceBean bean : beans) {
+				DivisionVO vo = DivisionVO.transform(bean);
+				if (vo == null) {
+					continue;
+				}
+				roots.add(vo);
+			}
+			if (LOG.isDebugEnabled()) {
+				LOG.debug(String.format(
+						"Found all the root places, total: %d.", roots.size()));
+			}
+			return new ResponseDataVO<List<DivisionVO>>(roots);
+		} catch (Exception ex) {
+			if (LOG.isErrorEnabled()) {
+				LOG.error("Query all the root places fail.", ex);
+			}
+			return new ResponseDataVO<List<DivisionVO>>(
+					StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
 	}
 
 	@POST
@@ -106,8 +120,8 @@ public class DivisionRestResource {
 			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
 		}
 		try {
-			//PlaceBean bean = DivisionVO.transform(vo);
-			//placeRepository.save(bean, operator, true);
+			PlaceBean bean = DivisionVO.transform(vo);
+			placeRepository.save(vo.getParentId(), bean, operator);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format("Save PlaceBean['%s'] success.",
 						vo.getId()));
@@ -131,10 +145,10 @@ public class DivisionRestResource {
 			PlaceBean bean = null;
 			if (graphId != -1) {
 				// id是GraphID
-				//bean = placeRepository.getPlaceByGraphId(graphId);
+				bean = placeRepository.getPlaceByGraphId(graphId);
 				id = bean.getRowKey();
 			}
-			//placeRepository.delete(UserBean.class, id);
+			// placeRepository.delete(UserBean.class, id);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format("Delete PlaceBean['%s'] success.", id));
 			}

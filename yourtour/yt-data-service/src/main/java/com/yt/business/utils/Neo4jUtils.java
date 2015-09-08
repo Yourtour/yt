@@ -19,6 +19,35 @@ public class Neo4jUtils {
 		}
 	}
 
+	public static void maintainRelation(Neo4jTemplate template,
+			NodeRelationshipEnum relateEnum, INeo4JBaseBean src,
+			INeo4JBaseBean tar, Map<String, Object> properties, boolean isAdd,
+			boolean isBoth) throws Exception {
+		if (src == null || tar == null) {
+			throw new NullPointerException();
+		}
+		Node nodeSrc = template.getNode(src.getGraphId()), nodeTar = template
+				.getNode(tar.getGraphId());
+		String relation = relateEnum.name();
+		if (isAdd) {
+			if (template.getRelationshipBetween(nodeSrc, nodeTar, relation) == null) {
+				template.createRelationshipBetween(nodeSrc, nodeTar, relation,
+						properties);
+			}
+			if (isBoth) {
+				if (template.getRelationshipBetween(nodeTar, nodeSrc, relation) == null) {
+					template.createRelationshipBetween(nodeTar, nodeSrc,
+							relation, properties);
+				}
+			}
+		} else {
+			template.deleteRelationshipBetween(nodeSrc, nodeTar, relation);
+			if (isBoth) {
+				template.deleteRelationshipBetween(nodeTar, nodeSrc, relation);
+			}
+		}
+	}
+
 	public static void maintainRelateion(Neo4jTemplate template,
 			ICrudOperate crudOperate, NodeRelationshipEnum relateEnum,
 			String srcId, Class<? extends INeo4JBaseBean> srcClass,
@@ -35,23 +64,23 @@ public class Neo4jUtils {
 			INeo4JBaseBean tar = crudOperate.get(tarClass, tarId);
 			gtId = tar.getGraphId();
 		}
-		Node srcNode = template.getNode(gsId), tarNode = template.getNode(gtId);
+		Node nodeSrc = template.getNode(gsId), nodeTar = template.getNode(gtId);
 		String relation = relateEnum.name();
 		if (isAdd) {
-			if (template.getRelationshipBetween(srcNode, tarNode, relation) == null) {
-				template.createRelationshipBetween(srcNode, tarNode, relation,
+			if (template.getRelationshipBetween(nodeSrc, nodeTar, relation) == null) {
+				template.createRelationshipBetween(nodeSrc, nodeTar, relation,
 						properties);
 			}
 			if (isBoth) {
-				if (template.getRelationshipBetween(tarNode, srcNode, relation) == null) {
-					template.createRelationshipBetween(tarNode, srcNode,
+				if (template.getRelationshipBetween(nodeTar, nodeSrc, relation) == null) {
+					template.createRelationshipBetween(nodeTar, nodeSrc,
 							relation, properties);
 				}
 			}
 		} else {
-			template.deleteRelationshipBetween(srcNode, tarNode, relation);
+			template.deleteRelationshipBetween(nodeSrc, nodeTar, relation);
 			if (isBoth) {
-				template.deleteRelationshipBetween(tarNode, srcNode, relation);
+				template.deleteRelationshipBetween(nodeTar, nodeSrc, relation);
 			}
 		}
 	}
