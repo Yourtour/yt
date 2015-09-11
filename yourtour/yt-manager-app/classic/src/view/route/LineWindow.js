@@ -1,10 +1,10 @@
 /**
  * Created by john on 15-8-24.
  */
-Ext.define('yt_manager_app.view.route.RouteWindow', {
+Ext.define('yt_manager_app.view.route.LineWindow', {
     extend: 'yt_manager_app.view.widget.GeneralFormWindow',
-    xtype: 'routeWindow',
-    reference: 'routePopupWindow',
+    xtype: 'lineWindow',
+    reference: 'linePopupWindow',
 
     config: {
         base: {
@@ -13,19 +13,13 @@ Ext.define('yt_manager_app.view.route.RouteWindow', {
                 reference: 'name',
                 allowBlank: false,
                 name: 'name',
-                emptyText: '行程名称'
-            }, {
-                fieldLabel: '线路名称',
-                reference: 'lineName',
-                allowBlank: false,
-                name: 'lineName',
                 emptyText: '线路名称'
             }, {
                 fieldLabel: '目的地',
                 reference: 'place',
                 allowBlank: false,
                 name: 'place',
-                emptyText: '行程目的地'
+                emptyText: '线路目的地'
             }],
             hidden: false
         },
@@ -36,35 +30,54 @@ Ext.define('yt_manager_app.view.route.RouteWindow', {
                 name: 'imageUrl',
                 emptyText: 'Image URL'
             },{
-                fieldLabel: '开始日期',
-                reference: 'startTime',
-                name: 'startTime',
-                emptyText: 'Y/m/d'
+                xtype: 'numberfield',
+                minValue: 0,
+                value: 0,
+                fieldLabel: '人数',
+                reference: 'arriveNum',
+                name: 'arriveNum',
+                emptyText: '到达人数'
             },{
-                fieldLabel: '结束日期',
-                reference: 'endTime',
-                name: 'endTime',
-                emptyText: 'Y/m/d'
+                xtype: 'tagfield',
+                name: 'tags',
+                fieldLabel: '选择一种分类',
+                store: {
+                    data: [{
+                        abbr: 'QZY', tag: '亲子游'
+                    }, {
+                        abbr: 'QLY', tag: '情侣游'
+                    }, {
+                        abbr: 'JTY', tag: '家庭游'
+                    }, {
+                        abbr: 'ZRSS', tag: '自然山水'
+                    }, {
+                        abbr: 'LSRW', tag: '历史人文'
+                    }, {
+                        abbr: 'MS', tag: '美食'
+                    }, {
+                        abbr: 'GW', tag: '购物'
+                    }]
+                },
+                //value: ['NA'],
+                reference: 'tags',
+                displayField: 'tag',
+                valueField: 'abbr',
+                filterPickList: true,
+                queryMode: 'local',
+                publishes: 'value'
             },{
-                fieldLabel: '行程天数',
-                reference: 'period',
-                name: 'period',
-                emptyText: '1.0'
-            }, {
                 xtype: 'combobox',
-                store: (function () {
-                    return new Ext.data.Store({
-                        fields: ['abbr', 'name'],
-                        data: (function () {
-                            var data = new Array(4);
-                            data[0] = {abbr: 'VALIDATED', name: '有效'};
-                            data[1] = {abbr: 'ACTIVED', name: '激活'};
-                            data[2] = {abbr: 'FROZEN', name: '冻结'};
-                            data[3] = {abbr: 'CLOSED', name: '关闭'};
-                            return data;
-                        })()
-                    });
-                })(),
+                store: {
+                    data: [{
+                        abbr: 'VALIDATED', name: '有效'
+                    }, {
+                        abbr: 'ACTIVED', name: '激活'
+                    }, {
+                        abbr: 'FROZEN', name: '冻结'
+                    }, {
+                        abbr: 'CLOSED', name: '关闭'
+                    }]
+                },
                 displayField: 'name',
                 valueField: 'abbr',
                 queryMode: 'local',

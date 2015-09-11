@@ -51,7 +51,7 @@ public class CrudGeneralOperate implements ICrudOperate {
 	private static final Log LOG = LogFactory.getLog(CrudGeneralOperate.class);
 
 	@Autowired
-	private Neo4jTemplate template;
+	protected Neo4jTemplate template;
 
 	// @Autowired
 	// private com.yt.dal.hbase.ICrudOperate hbaseCrud;

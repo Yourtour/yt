@@ -1,11 +1,11 @@
 /**
  * Created by john on 15-8-27.
  */
-Ext.define('yt_manager_app.view.route.Route', {
+Ext.define('yt_manager_app.view.route.Line', {
     extend: 'Ext.tab.Panel',
-    xtype: 'route',
+    xtype: 'line',
 
-    controller: 'route',
+    controller: 'line',
 
     defaults: {
         bodyPadding: 10,
@@ -24,41 +24,39 @@ Ext.define('yt_manager_app.view.route.Route', {
     },
 
     initComponent: function () {
-        var routeGridColumns = [{
-            text: 'name',
+        var lineGridColumns = [{
+            text: '名称',
             dataIndex: 'name',
             width: 150,
             sortable: true
         }, {
-            text: 'Line name',
-            dataIndex: 'lineName',
-            width: 150,
+            text: '简介',
+            dataIndex: 'intro',
+            width: 200,
             sortable: true
         }, {
-            text: 'Place',
+            text: '目的地',
             dataIndex: 'place',
             width: 150,
             sortable: true
         }, {
-            text: 'Period',
-            dataIndex: 'period',
-            width: 120,
-            sortable: true
-        }, {
-            text: 'Feature',
+            text: '特点',
             dataIndex: 'feature',
-            width: 120,
+            width: 200,
             sortable: false,
             flex: 1
         }];
 
+        var generalStore = new yt_manager_app.store.route.Line();
+
         var generalTab = Ext.create('yt_manager_app.view.widget.GeneralCRUDPanel', {
-            id: 'route-crud-tab',
-            nameEN: 'route',
-            nameZHCN: '行程',
-            gridName: 'route_crud_grid_paging',
+            id: 'line-crud-tab',
+            nameEN: 'line',
+            nameZHCN: '线路',
+            gridName: 'line_crud_grid_paging',
             icon: '/resources/images/toggle-icon.png',
-            gridColumns: routeGridColumns
+            gridColumns: lineGridColumns,
+            store: generalStore
         });
 
         Ext.apply(this, {

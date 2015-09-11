@@ -112,11 +112,7 @@ Ext.define('yt_manager_app.view.basedata.DivisionController', {
             save = me.lookupReference('save'),
             tree = me.lookupReference('tree'),
             store = tree.getStore();
-        fullCode = '';
-        if (me.getRecord() != null) {
-            fullCode = me.getRecord().fullCode;
-        }
-        var record = new Division({code: '', text: '', fullCode: fullCode});
+        var record = new Division({id: -1, code: '', text: ''});
         form.loadRecord(record);
         reset.setDisabled(false);
         edit.setDisabled(true);

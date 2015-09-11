@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.stereotype.Component;
 
 import com.yt.business.bean.UserBean;
@@ -18,9 +17,6 @@ import com.yt.rsal.neo4j.repository.CrudGeneralOperate;
 public class UserRepositoryImpl extends CrudGeneralOperate implements
 		UserRepository {
 	private static final Log LOG = LogFactory.getLog(UserRepositoryImpl.class);
-
-	@Autowired
-	private Neo4jTemplate template;
 
 	@Autowired
 	private UserBeanRepository repository;
@@ -38,7 +34,7 @@ public class UserRepositoryImpl extends CrudGeneralOperate implements
 	 */
 	@Override
 	public UserBean getUserByGraphId(Long id) throws Exception {
-		return template.findOne(id, UserBean.class);
+		return super.template.findOne(id, UserBean.class);
 	}
 
 	/*
@@ -87,8 +83,9 @@ public class UserRepositoryImpl extends CrudGeneralOperate implements
 	@Override
 	public void followUser(String srcUserId, String tarUserId) throws Exception {
 		NodeRelationshipEnum relationship = NodeRelationshipEnum.FOLLOW;
-		Neo4jUtils.maintainRelateion(template, this, relationship, srcUserId,
-				UserBean.class, tarUserId, UserBean.class, null, true, true);
+		Neo4jUtils.maintainRelateion(super.template, this, relationship,
+				srcUserId, UserBean.class, tarUserId, UserBean.class, null,
+				true, true);
 		if (LOG.isDebugEnabled()) {
 			LOG.debug(String.format(
 					"Create a relationship: UserBean[%s] <=%s=> UserBean[%s].",
@@ -107,8 +104,9 @@ public class UserRepositoryImpl extends CrudGeneralOperate implements
 	public void unfollowUser(String srcUserId, String tarUserId)
 			throws Exception {
 		NodeRelationshipEnum relationship = NodeRelationshipEnum.FOLLOW;
-		Neo4jUtils.maintainRelateion(template, this, relationship, srcUserId,
-				UserBean.class, tarUserId, UserBean.class, null, false, true);
+		Neo4jUtils.maintainRelateion(super.template, this, relationship,
+				srcUserId, UserBean.class, tarUserId, UserBean.class, null,
+				false, true);
 		if (LOG.isDebugEnabled()) {
 			LOG.debug(String.format(
 					"Remove a relationship: UserBean[%s] <=%s=> UserBean[%s].",
@@ -126,8 +124,9 @@ public class UserRepositoryImpl extends CrudGeneralOperate implements
 	@Override
 	public void watchUser(String srcUserId, String tarUserId) throws Exception {
 		NodeRelationshipEnum relationship = NodeRelationshipEnum.WATCH;
-		Neo4jUtils.maintainRelateion(template, this, relationship, srcUserId,
-				UserBean.class, tarUserId, UserBean.class, null, true, false);
+		Neo4jUtils.maintainRelateion(super.template, this, relationship,
+				srcUserId, UserBean.class, tarUserId, UserBean.class, null,
+				true, false);
 		if (LOG.isDebugEnabled()) {
 			LOG.debug(String.format(
 					"Create a relationship: UserBean[%s] =%s=> UserBean[%s].",
@@ -146,8 +145,9 @@ public class UserRepositoryImpl extends CrudGeneralOperate implements
 	public void unwatchUser(String srcUserId, String tarUserId)
 			throws Exception {
 		NodeRelationshipEnum relationship = NodeRelationshipEnum.WATCH;
-		Neo4jUtils.maintainRelateion(template, this, relationship, srcUserId,
-				UserBean.class, tarUserId, UserBean.class, null, false, false);
+		Neo4jUtils.maintainRelateion(super.template, this, relationship,
+				srcUserId, UserBean.class, tarUserId, UserBean.class, null,
+				false, false);
 		if (LOG.isDebugEnabled()) {
 			LOG.debug(String.format(
 					"Remove a relationship: UserBean[%s] =%s=> UserBean[%s].",

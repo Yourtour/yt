@@ -104,11 +104,11 @@ Ext.define('yt_manager_app.store.NavigationTree', {
             routeId: 'route-parent',
             id: 'route-parent',
             children: [{
-                text: '行程',
-                view: 'route.Route',
+                text: '线路',
+                view: 'route.Line',
                 leaf: true,
                 iconCls: 'x-fa fa-file-o',
-                routeId: 'route.route'
+                routeId: 'route.line'
             }, {
                 text: '安排',
                 //view: 'operate.Ready',
@@ -136,7 +136,6 @@ Ext.define('yt_manager_app.store.NavigationTree', {
             }]
         }, {
             text: '资源',
-            //view: 'data.Maintain',
             expanded: false,
             selectable: false,
             iconCls: 'x-fa fa-user',
@@ -144,7 +143,7 @@ Ext.define('yt_manager_app.store.NavigationTree', {
             id: 'resource-parent',
             children: [{
                 text: '景点',
-                //view: 'data.BusinessArea',
+                view: 'resource.Scene',
                 leaf: true,
                 iconCls: 'x-fa fa-file-o',
                 routeId: 'resource.scene'

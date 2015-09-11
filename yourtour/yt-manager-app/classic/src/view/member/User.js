@@ -62,7 +62,7 @@ Ext.define('yt_manager_app.view.member.User', {
             sortable: true
         }];
 
-        var generalStore = new yt_manager_app.store.User();
+        var generalStore = new yt_manager_app.store.member.User();
 
         var generalTab = Ext.create('yt_manager_app.view.widget.GeneralCRUDPanel', {
             id: 'user-crud-tab',

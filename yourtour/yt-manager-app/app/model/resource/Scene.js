@@ -1,45 +1,45 @@
 /**
- * Created by john on 15-8-30.
+ * Created by john on 15-9-11.
  */
-Ext.define('yt_manager_app.model.User', {
+Ext.define('yt_manager_app.model.resource.Scene', {
     extend: 'Ext.data.Model',
+
+    // TODO 字段未修改
 
     fields: [{
         name: 'id', type: 'int', defaultValue: -1
     }, {
-        name: 'userName', type: 'string'
-    }, {
-        name: 'password', type: 'string'
-    }, {
-        name: 'realName', type: 'string'
-    }, {
-        name: 'nickName', type: 'string'
-    }, {
-        name: 'gender', type: 'string', defaultValue: 'NA'
-    }, {
-        name: 'birthday', type: 'string'
+        name: 'name', type: 'string'
     }, {
         name: 'imageUrl', type: 'string'
     }, {
-        name: 'character', type: 'string'
+        name: 'intro', type: 'string'
     }, {
-        name: 'mobileNo', type: 'string'
+        name: 'feature', type: 'string'
     }, {
-        name: 'email', type: 'string'
+        name: 'reason', type: 'string'
     }, {
-        name: 'residence', type: 'string'
+        name: 'recommendIndex', type: 'number'
     }, {
-        name: 'nativePlace', type: 'string'
+        name: 'commentIndex', type: 'number'
     }, {
-        name: 'constellation', type: 'string'
+        name: 'place', type: 'string'
     }, {
-        name: 'role', type: 'string', defaultValue: 'MEMBER'
+        name: 'arriveNum', type: 'int'
     }, {
-        name: 'rank', type: 'int', defaultValue: 5
+        name: 'tags', type: 'string'
+    }, {
+        name: 'commentScore', type: 'number'
+    }, {
+        name: 'commentNum', type: 'int'
+    }, {
+        name: 'thumbupNum', type: 'int'
+    }, {
+        name: 'favoriteNum', type: 'int'
+    }, {
+        name: 'shareNum', type: 'int'
     }, {
         name: 'status', type: 'string', defaultValue: 'VALIDATED'
-    }, {
-        name: 'slogan', type: 'string'
     }, {
         name: 'createdUserId', type: 'string'
     }, {

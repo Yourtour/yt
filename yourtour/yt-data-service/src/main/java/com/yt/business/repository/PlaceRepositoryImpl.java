@@ -3,7 +3,6 @@ package com.yt.business.repository;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.stereotype.Component;
 
 import com.yt.business.bean.PlaceBean;
@@ -15,9 +14,6 @@ import com.yt.rsal.neo4j.repository.CrudGeneralOperate;
 @Component
 public class PlaceRepositoryImpl extends CrudGeneralOperate implements
 		PlaceRepository {
-
-	@Autowired
-	private Neo4jTemplate template;
 
 	@Autowired
 	private PlaceBeanRepository repository;
@@ -35,7 +31,7 @@ public class PlaceRepositoryImpl extends CrudGeneralOperate implements
 	 */
 	@Override
 	public PlaceBean getPlaceByGraphId(Long graphId) throws Exception {
-		return template.findOne(graphId, PlaceBean.class);
+		return super.template.findOne(graphId, PlaceBean.class);
 	}
 
 	/*
@@ -69,15 +65,24 @@ public class PlaceRepositoryImpl extends CrudGeneralOperate implements
 			throws Exception {
 		PlaceBean parent = null;
 		if (parentId >= 0) {
-			parent = template.findOne(parentId, PlaceBean.class);
+			parent = super.template.findOne(parentId, PlaceBean.class);
 		}
+		// 没有父节点，则当前节点就是根节点
+		place.setRoot(parent == null);
 		super.save(place, operator, true);
-		place = (PlaceBean) super.get(PlaceBean.class, "code", place.getCode());
-		// 建立PARENT关系
-		Neo4jUtils.maintainRelation(template, NodeRelationshipEnum.PARENT,
-				place, parent, null, true, false);
-		// 建立CHILDREN关系
-		Neo4jUtils.maintainRelation(template, NodeRelationshipEnum.CHILDREN,
-				parent, place, null, true, false);
+		// 由于save会自动更新place对象，因此没有必要在获取一次。
+		// place = (PlaceBean) super.get(PlaceBean.class, "code",
+		// place.getCode());
+		if (parent != null) {
+			// 只有parent存在的情况，才需要建立关系。
+			// 建立PARENT关系
+			Neo4jUtils.maintainRelation(super.template,
+					NodeRelationshipEnum.PARENT, place, parent, null, true,
+					false);
+			// 建立CHILDREN关系
+			Neo4jUtils.maintainRelation(super.template,
+					NodeRelationshipEnum.CHILDREN, parent, place, null, true,
+					false);
+		}
 	}
 }

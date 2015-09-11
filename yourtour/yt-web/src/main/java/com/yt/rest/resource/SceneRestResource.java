@@ -17,18 +17,16 @@ import javax.ws.rs.core.MediaType;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.stereotype.Component;
 
 import com.yt.business.bean.SceneResourceBean;
+import com.yt.business.repository.SceneRepository;
 import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponseVO;
-import com.yt.rsal.neo4j.repository.ICrudOperate;
 import com.yt.rsal.neo4j.repository.IFullTextSearchOperate;
 import com.yt.utils.WebUtils;
-import com.yt.vo.maintain.SceneResourceVO;
+import com.yt.vo.maintain.resource.SceneResourceVO;
 
 @Component
 @Path("scenes")
@@ -38,16 +36,13 @@ public class SceneRestResource {
 	private static final Log LOG = LogFactory.getLog(SceneRestResource.class);
 
 	@Autowired
-	private Neo4jTemplate template;
-
-	@Autowired
-	@Qualifier("crudGeneralOperate")
-	private ICrudOperate crudOperate;
+	private SceneRepository sceneRepository;
 
 	@Autowired
 	private IFullTextSearchOperate ftsOperate;
 
 	@SuppressWarnings("unchecked")
+	@Path("loadPage.json")
 	@GET
 	public ResponseDataVO<List<SceneResourceVO>> getAllScenes() {
 		if (LOG.isDebugEnabled()) {
@@ -55,7 +50,7 @@ public class SceneRestResource {
 		}
 		List<SceneResourceVO> list = new ArrayList<SceneResourceVO>();
 		try {
-			List<SceneResourceBean> result = (List<SceneResourceBean>) crudOperate
+			List<SceneResourceBean> result = (List<SceneResourceBean>) sceneRepository
 					.get(SceneResourceBean.class);
 			for (SceneResourceBean bean : result) {
 				if (bean == null) {
@@ -87,10 +82,10 @@ public class SceneRestResource {
 			SceneResourceBean bean = null;
 			if (graphId != -1) {
 				// id是GraphID
-				bean = template.findOne(graphId, SceneResourceBean.class);
+				bean = sceneRepository.getSceneByGraphId(graphId);
 			} else {
 				// id 是rowkey
-				bean = (SceneResourceBean) crudOperate.get(
+				bean = (SceneResourceBean) sceneRepository.get(
 						SceneResourceBean.class, id);
 			}
 			if (bean == null) {
@@ -157,7 +152,7 @@ public class SceneRestResource {
 		}
 		try {
 			SceneResourceBean bean = SceneResourceVO.transform(vo);
-			crudOperate.save(bean, operator, true);
+			sceneRepository.save(bean, operator, true);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format(
 						"Save SceneResourceBean[id='%s'] success.",
@@ -174,18 +169,18 @@ public class SceneRestResource {
 		}
 	}
 
-	@DELETE
-	@Path("{id}")
+	@GET
+	@Path("remove/{id}.json")
 	public ResponseVO delete(@PathParam("id") String id) {
 		long graphId = getGraphIDFromString(id);
 		try {
 			SceneResourceBean bean = null;
 			if (graphId != -1) {
 				// id是GraphID
-				bean = template.findOne(graphId, SceneResourceBean.class);
+				bean = sceneRepository.getSceneByGraphId(graphId);
 				id = bean.getRowKey();
 			}
-			crudOperate.delete(SceneResourceBean.class, id);
+			sceneRepository.delete(SceneResourceBean.class, id);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format(
 						"Delete SceneResourceBean['%s'] success.", id));

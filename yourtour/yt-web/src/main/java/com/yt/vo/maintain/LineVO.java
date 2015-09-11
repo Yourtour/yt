@@ -61,6 +61,7 @@ public class LineVO extends BaseVO {
 		bean.setImageUrl(vo.getImageUrl());
 		bean.setIntro(vo.getIntro());
 		bean.setName(vo.getName());
+		bean.setRowKey(bean.getName());
 		bean.setPlace(vo.getPlace());
 		bean.setReason(vo.getReason());
 		bean.setRecommendIndex(vo.getRecommendIndex());

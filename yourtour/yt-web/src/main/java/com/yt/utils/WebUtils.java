@@ -16,7 +16,7 @@ public class WebUtils {
 		if (LOG.isDebugEnabled()) {
 			LOG.debug(String.format(
 					"Get session[%s] data success, '%s' = '%s'.",
-					session.getId(), LOGIN_USERNAME, value));
+					session.getId(), LOGIN_USERNAME, String.valueOf(value)));
 		}
 		return value;
 	}

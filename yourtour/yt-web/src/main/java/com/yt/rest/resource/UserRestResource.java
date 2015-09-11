@@ -153,6 +153,20 @@ public class UserRestResource {
 		}
 		try {
 			UserBean bean = UserVO.transform(vo);
+			if (id == null) {
+				// 新增
+				bean.setGraphId(null);
+			} else {
+				// 修改
+				long graphId = Neo4jUtils.getGraphIDFromString(id);
+				if (graphId != -1l) {
+					// ID是Graph ID
+					bean.setGraphId(graphId);
+				} else {
+					// ID是Row Key
+					bean.setRowKey(id);
+				}
+			}
 			userRepository.save(bean, operator, true);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format("Save UserBean['%s'] success.",

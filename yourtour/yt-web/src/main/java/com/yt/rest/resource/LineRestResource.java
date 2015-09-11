@@ -6,7 +6,6 @@ import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -18,19 +17,14 @@ import javax.ws.rs.core.MediaType;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.stereotype.Component;
 
 import com.yt.business.bean.LineBean;
-import com.yt.business.bean.SceneResourceBean;
-import com.yt.business.common.Constants.NodeRelationshipEnum;
 import com.yt.business.repository.LineRepository;
 import com.yt.business.utils.Neo4jUtils;
 import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponseVO;
-import com.yt.rsal.neo4j.repository.ICrudOperate;
 import com.yt.rsal.neo4j.repository.IFullTextSearchOperate;
 import com.yt.utils.WebUtils;
 import com.yt.vo.RecommendConditionVO;
@@ -46,19 +40,13 @@ public class LineRestResource {
 	private static final Log LOG = LogFactory.getLog(LineRestResource.class);
 
 	@Autowired
-	private Neo4jTemplate template;
-
-	@Autowired
-	@Qualifier("crudGeneralOperate")
-	private ICrudOperate crudOperate;
-
-	@Autowired
 	private IFullTextSearchOperate ftsOperate;
 
 	@Autowired
-	private LineRepository lineRepo;
+	private LineRepository lineRepository;
 
 	@SuppressWarnings("unchecked")
+	@Path("loadPage.json")
 	@GET
 	public ResponseDataVO<List<LineVO>> getAllLines() {
 		if (LOG.isDebugEnabled()) {
@@ -66,7 +54,7 @@ public class LineRestResource {
 		}
 		List<LineVO> list = new ArrayList<LineVO>();
 		try {
-			List<LineBean> result = (List<LineBean>) crudOperate
+			List<LineBean> result = (List<LineBean>) lineRepository
 					.get(LineBean.class);
 			for (LineBean bean : result) {
 				if (bean == null) {
@@ -98,10 +86,10 @@ public class LineRestResource {
 			LineBean bean = null;
 			if (graphId != -1) {
 				// id是GraphID
-				bean = template.findOne(graphId, LineBean.class);
+				bean = lineRepository.getLineByGraphId(graphId);
 			} else {
 				// id 是rowkey
-				bean = (LineBean) crudOperate.get(LineBean.class, id);
+				bean = (LineBean) lineRepository.get(LineBean.class, id);
 			}
 			if (bean == null) {
 				return new ResponseDataVO<LineVO>(
@@ -137,7 +125,7 @@ public class LineRestResource {
 			LOG.debug("Request import LineBean data.");
 		}
 		for (LineVO vo : vos) {
-			ResponseVO response = save(vo, "admin");
+			ResponseVO response = save(null, vo, "admin");
 			if (response.getErrorCode() != 0) {
 				if (LOG.isWarnEnabled()) {
 					LOG.warn(String.format(
@@ -155,11 +143,19 @@ public class LineRestResource {
 	}
 
 	@POST
-	public ResponseVO save(LineVO vo, @Context HttpServletRequest request) {
-		return save(vo, WebUtils.getCurrentLoginUser(request));
+	@Path("save.json")
+	public ResponseVO saveByAdd(LineVO vo, @Context HttpServletRequest request) {
+		return save(null, vo, WebUtils.getCurrentLoginUser(request));
 	}
 
-	private ResponseVO save(LineVO vo, String operator) {
+	@POST
+	@Path("save/{id}.json")
+	public ResponseVO saveByUpdate(@PathParam("id") String id, LineVO vo,
+			@Context HttpServletRequest request) {
+		return save(id, vo, WebUtils.getCurrentLoginUser(request));
+	}
+
+	private ResponseVO save(String id, LineVO vo, String operator) {
 		if (vo == null) {
 			if (LOG.isWarnEnabled()) {
 				LOG.warn("The LineVO is null.");
@@ -168,34 +164,48 @@ public class LineRestResource {
 		}
 		try {
 			LineBean bean = LineVO.transform(vo);
-			crudOperate.save(bean, operator, true);
+			if (id == null) {
+				// 新增
+				bean.setGraphId(null);
+			} else {
+				// 修改
+				long graphId = Neo4jUtils.getGraphIDFromString(id);
+				if (graphId != -1l) {
+					// ID是Graph ID
+					bean.setGraphId(graphId);
+				} else {
+					// ID是Row Key
+					bean.setRowKey(id);
+				}
+			}
+			lineRepository.save(bean, operator, true);
 			if (LOG.isDebugEnabled()) {
-				LOG.debug(String.format("Save LineBean[‘%s'] success.",
-						vo.getRowKey()));
+				LOG.debug(String.format("Save LineBean['%d'] success.",
+						bean.getGraphId()));
 			}
 			return new ResponseVO();
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
 				LOG.error(
 						String.format("Save the LineBean[id='%s'] fail.",
-								vo.getRowKey()), ex);
+								String.valueOf(id)), ex);
 			}
 			return new ResponseVO(StaticErrorEnum.DB_OPERATE_FAIL);
 		}
 	}
 
-	@DELETE
-	@Path("{id}")
+	@GET
+	@Path("remove/{id}.json")
 	public ResponseVO delete(@PathParam("id") String id) {
 		long graphId = getGraphIDFromString(id);
 		try {
 			LineBean bean = null;
 			if (graphId != -1) {
 				// id是GraphID
-				bean = template.findOne(graphId, LineBean.class);
+				bean = lineRepository.getLineByGraphId(graphId);
 				id = bean.getRowKey();
 			}
-			crudOperate.delete(LineBean.class, id);
+			lineRepository.delete(LineBean.class, id);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format("Delete LineBean['%s'] success.", id));
 			}
@@ -218,9 +228,11 @@ public class LineRestResource {
 		String lineId = condition.getSrcId(), sceneId = condition.getTarId();
 		boolean isAdd = condition.isAdd();
 		try {
-			Neo4jUtils.maintainRelateion(template, crudOperate,
-					NodeRelationshipEnum.CONTAIN, lineId, LineBean.class,
-					sceneId, SceneResourceBean.class, null, isAdd, false);
+			if (isAdd) {
+				lineRepository.containScene(lineId, sceneId);
+			} else {
+				lineRepository.uncontainScene(lineId, sceneId);
+			}
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String
 						.format("'%s' contain from LineBean['%s'] to SceneResourceBean['%s'] success.",
@@ -256,8 +268,8 @@ public class LineRestResource {
 		int dayNum = condition.getDayNum();
 		String[] scenes = condition.getScenes().split(",");
 		try {
-			List<LineBean> result = lineRepo.queryRecommandLine(places, dayNum,
-					scenes);
+			List<LineBean> result = lineRepository.queryRecommandLine(places,
+					dayNum, scenes);
 			List<RecommendLineVO> list = new Vector<RecommendLineVO>(
 					result.size());
 			for (LineBean bean : result) {
@@ -305,7 +317,7 @@ public class LineRestResource {
 		int dayNum = condition.getDayNum();
 		String[] scenes = condition.getScenes().split(",");
 		try {
-			List<LineBean> result = lineRepo.queryRecommandLine2(places,
+			List<LineBean> result = lineRepository.queryRecommandLine2(places,
 					dayNum, scenes);
 			List<RecommendLineVO> list = new Vector<RecommendLineVO>(
 					result.size());

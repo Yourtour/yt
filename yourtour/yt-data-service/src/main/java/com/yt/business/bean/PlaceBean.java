@@ -55,9 +55,13 @@ public class PlaceBean extends Neo4JBaseBean {
 	String memo = ""; // 备注
 	private @HbaseColumn(name = "recm")
 	int recommended = 0; // 是否推荐 0:不推荐 1：推荐
-	private @Indexed
+	private @HbaseColumn(name = "stat")
+	@Indexed
 	Status status;
-	
+
+	private @HbaseColumn(name = "root")
+	boolean root = false; // 是否为根节点
+
 	private transient boolean hasChild = false;
 
 	private transient PlaceBean parent = null;
@@ -114,6 +118,14 @@ public class PlaceBean extends Neo4JBaseBean {
 		this.status = status;
 	}
 
+	public boolean isRoot() {
+		return root;
+	}
+
+	public void setRoot(boolean root) {
+		this.root = root;
+	}
+
 	public PlaceBean getParent() {
 		return parent;
 	}
@@ -121,7 +133,7 @@ public class PlaceBean extends Neo4JBaseBean {
 	public void setParent(PlaceBean parent) {
 		this.parent = parent;
 	}
-	
+
 	public boolean hasChild() {
 		return hasChild;
 	}

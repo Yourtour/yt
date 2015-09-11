@@ -25,14 +25,14 @@ Ext.define('yt_manager_app.view.member.UserController', {
 
     createNewRecord: function (data) {
         if (data == null) {
-            return new yt_manager_app.model.User();
+            return new yt_manager_app.model.member.User();
         } else {
-            return new yt_manager_app.model.User(data);
+            return new yt_manager_app.model.member.User(data);
         }
     },
 
     setRecordProxy: function (store) {
-        yt_manager_app.model.User.setProxy(store);
+        yt_manager_app.model.member.User.setProxy(store);
     },
 
     onTabChange: function (tabs, newTab, oldTab) {

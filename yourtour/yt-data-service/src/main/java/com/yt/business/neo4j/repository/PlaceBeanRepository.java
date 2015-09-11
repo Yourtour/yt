@@ -8,7 +8,7 @@ import org.springframework.data.neo4j.repository.GraphRepository;
 import com.yt.business.bean.PlaceBean;
 
 public interface PlaceBeanRepository extends GraphRepository<PlaceBean> {
-	@Query("MATCH (p:PlaceBean) RETURN p")
+	@Query("MATCH (p:PlaceBean{root: true})  RETURN p")
 	public List<PlaceBean> getAllRootPlaces();
 	
 	@Query("START p:node({0}) MATCH p-[:CHILDREN]->places RETURN places")
