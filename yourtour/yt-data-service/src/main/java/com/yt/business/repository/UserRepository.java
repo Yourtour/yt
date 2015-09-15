@@ -25,4 +25,8 @@ public interface UserRepository extends ICrudOperate {
 
 	public void unwatchUser(String srcUserId, String tarUserId)
 			throws Exception;
+	
+	public void watchScene(String userId, String sceneId) throws Exception;
+	
+	public void unwatchScene(String userId, String sceneId) throws Exception;
 }

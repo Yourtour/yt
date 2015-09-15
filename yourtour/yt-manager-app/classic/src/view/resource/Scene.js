@@ -33,12 +33,12 @@ Ext.define('yt_manager_app.view.resource.Scene', {
             text: '星级',
             dataIndex: 'star',
             width: 120,
-            sortable: false
-        }, {
-            text: '地址',
-            dataIndex: 'address',
-            width: 150,
             sortable: true
+        }, {
+            text: '简介',
+            dataIndex: 'intro',
+            width: 200,
+            sortable: false
         }, {
             text: '必游景点',
             dataIndex: 'specialScene',
@@ -47,13 +47,16 @@ Ext.define('yt_manager_app.view.resource.Scene', {
             flex: 1
         }];
 
+        var generalStore = new yt_manager_app.store.resource.Scene();
+
         var generalTab = Ext.create('yt_manager_app.view.widget.GeneralCRUDPanel', {
             id: 'scene-crud-tab',
             nameEN: 'scene',
             nameZHCN: '景点',
             gridName: 'scene_crud_grid_paging',
             icon: '/resources/images/toggle-icon.png',
-            gridColumns: sceneGridColumns
+            gridColumns: sceneGridColumns,
+            store: generalStore
         });
 
         Ext.apply(this, {

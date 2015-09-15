@@ -4,9 +4,11 @@
 package com.yt.vo.maintain.resource;
 
 import com.yt.business.bean.SceneResourceBean;
+import com.yt.business.common.Constants.ResType;
 import com.yt.vo.maintain.ResourceVO;
 
 public class SceneResourceVO extends ResourceVO {
+	private String name; // 名称
 	private String intro; // 简介
 	private String ticket; // 门票信息
 	private String sceneMap; // 景区地图
@@ -20,6 +22,7 @@ public class SceneResourceVO extends ResourceVO {
 		SceneResourceVO vo = new SceneResourceVO();
 		vo.fromBean(bean);
 		vo.setName(bean.getName());
+		vo.setRowKey(bean.getName());
 		vo.setIntro(bean.getIntro());
 		vo.setTicket(bean.getTicket());
 		vo.setSceneMap(bean.getSceneMap());
@@ -46,6 +49,15 @@ public class SceneResourceVO extends ResourceVO {
 
 	public SceneResourceVO() {
 		super();
+		super.setType(ResType.SCENE);
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getIntro() {

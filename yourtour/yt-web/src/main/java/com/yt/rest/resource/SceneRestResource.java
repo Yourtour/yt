@@ -2,15 +2,16 @@ package com.yt.rest.resource;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
@@ -21,8 +22,10 @@ import org.springframework.stereotype.Component;
 
 import com.yt.business.bean.SceneResourceBean;
 import com.yt.business.repository.SceneRepository;
+import com.yt.business.utils.Neo4jUtils;
 import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
+import com.yt.response.ResponsePagingDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.rsal.neo4j.repository.IFullTextSearchOperate;
 import com.yt.utils.WebUtils;
@@ -42,7 +45,7 @@ public class SceneRestResource {
 	private IFullTextSearchOperate ftsOperate;
 
 	@SuppressWarnings("unchecked")
-	@Path("loadPage.json")
+	@Path("load")
 	@GET
 	public ResponseDataVO<List<SceneResourceVO>> getAllScenes() {
 		if (LOG.isDebugEnabled()) {
@@ -74,10 +77,56 @@ public class SceneRestResource {
 		}
 	}
 
+	@Path("loadPage.json")
+	@GET
+	public ResponsePagingDataVO<List<SceneResourceVO>> loadPage(
+			@QueryParam("page") int page, @QueryParam("start") int start,
+			@QueryParam("limit") int limit) {
+		try {
+			long totalSize = sceneRepository.count(SceneResourceBean.class);
+			if (start >= totalSize) {
+				if (LOG.isWarnEnabled()) {
+					LOG.warn(String
+							.format("The query parameter is invalid, the total scene: %d, but request: page(%d), start(%d), limit(%d).",
+									totalSize, page, start, limit));
+				}
+				return new ResponsePagingDataVO<List<SceneResourceVO>>(
+						StaticErrorEnum.THE_DATA_NOT_EXIST);
+			}
+
+			Vector<SceneResourceVO> result = new Vector<SceneResourceVO>();
+			List<SceneResourceBean> scenes = sceneRepository.getScenesByPage(
+					start, limit);
+			for (SceneResourceBean scene : scenes) {
+				SceneResourceVO vo = SceneResourceVO.transform(scene);
+				if (vo == null) {
+					continue;
+				}
+				result.add(vo);
+			}
+			if (LOG.isDebugEnabled()) {
+				LOG.debug(String
+						.format("Query a page scene success, total scene: {%d}, request: page(%d), start(%d), limit(%d).",
+								result.size(), page, start, limit));
+			}
+			return new ResponsePagingDataVO<List<SceneResourceVO>>(totalSize,
+					result);
+		} catch (Exception ex) {
+			if (LOG.isErrorEnabled()) {
+				LOG.error(
+						String.format(
+								"Query a page scene fail, request: page(%d), start(%d), limit(%d).",
+								page, start, limit), ex);
+			}
+			return new ResponsePagingDataVO<List<SceneResourceVO>>(
+					StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
+	}
+
 	@GET
 	@Path("{id}")
 	public ResponseDataVO<SceneResourceVO> getScene(@PathParam("id") String id) {
-		long graphId = getGraphIDFromString(id);
+		long graphId = Neo4jUtils.getGraphIDFromString(id);
 		try {
 			SceneResourceBean bean = null;
 			if (graphId != -1) {
@@ -108,19 +157,11 @@ public class SceneRestResource {
 		}
 	}
 
-	private long getGraphIDFromString(String id) {
-		try {
-			return Long.valueOf(id);
-		} catch (Exception ex) {
-			return -1;
-		}
-	}
-
 	@POST
 	@Path("import")
 	public ResponseVO importData(List<SceneResourceVO> vos) {
 		for (SceneResourceVO vo : vos) {
-			ResponseVO response = save(vo, "admin");
+			ResponseVO response = save(null, vo, "admin");
 			if (response.getErrorCode() != 0) {
 				if (LOG.isWarnEnabled()) {
 					LOG.warn(String
@@ -138,32 +179,54 @@ public class SceneRestResource {
 	}
 
 	@POST
-	public ResponseVO save(SceneResourceVO vo,
+	@Path("save.json")
+	public ResponseVO saveByAdd(SceneResourceVO vo,
 			@Context HttpServletRequest request) {
-		return save(vo, WebUtils.getCurrentLoginUser(request));
+		return save(null, vo, WebUtils.getCurrentLoginUser(request));
 	}
 
-	private ResponseVO save(SceneResourceVO vo, String operator) {
+	@POST
+	@Path("save/{id}.json")
+	public ResponseVO saveByUpdate(@PathParam("id") String id,
+			SceneResourceVO vo, @Context HttpServletRequest request) {
+		return save(id, vo, WebUtils.getCurrentLoginUser(request));
+	}
+
+	private ResponseVO save(String id, SceneResourceVO vo, String operator) {
 		if (vo == null) {
 			if (LOG.isWarnEnabled()) {
-				LOG.warn("The SceneVO is null.");
+				LOG.warn("The SceneResourceVO is null.");
 			}
 			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
 		}
 		try {
 			SceneResourceBean bean = SceneResourceVO.transform(vo);
+			if (id == null) {
+				// 新增
+				bean.setGraphId(null);
+			} else {
+				// 修改
+				long graphId = Neo4jUtils.getGraphIDFromString(id);
+				if (graphId != -1l) {
+					// ID是Graph ID
+					bean.setGraphId(graphId);
+				} else {
+					// ID是Row Key
+					bean.setRowKey(id);
+				}
+			}
 			sceneRepository.save(bean, operator, true);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format(
-						"Save SceneResourceBean[id='%s'] success.",
-						vo.getRowKey()));
+						"Save SceneResourceBean['%s'] success.", vo.getRowKey()));
 			}
 			return new ResponseVO();
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
-				LOG.error(String.format(
-						"Save the SceneResourceBean[id='%s'] fail.",
-						vo.getRowKey()), ex);
+				LOG.error(
+						String.format(
+								"Save the SceneResourceBean[id='%s'] fail.",
+								vo.getId()), ex);
 			}
 			return new ResponseVO(StaticErrorEnum.DB_OPERATE_FAIL);
 		}
@@ -172,7 +235,7 @@ public class SceneRestResource {
 	@GET
 	@Path("remove/{id}.json")
 	public ResponseVO delete(@PathParam("id") String id) {
-		long graphId = getGraphIDFromString(id);
+		long graphId = Neo4jUtils.getGraphIDFromString(id);
 		try {
 			SceneResourceBean bean = null;
 			if (graphId != -1) {

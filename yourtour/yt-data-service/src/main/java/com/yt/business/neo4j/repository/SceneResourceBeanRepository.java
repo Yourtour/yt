@@ -11,6 +11,18 @@ import com.yt.business.bean.SceneResourceBean;
 public interface SceneResourceBeanRepository extends
 		GraphRepository<SceneResourceBean> {
 	/**
+	 * 根据分页要求查询所有的景点
+	 * 
+	 * @param skip
+	 *            分页起始记录数
+	 * @param limit
+	 *            本页最大记录数
+	 * @return 该页的景点
+	 */
+	@Query("MATCH (scenes:SceneResourceBean) RETURN scenes SKIP {0} LIMIT {1}")
+	public List<SceneResourceBean> getScenesByPage(long skip, long limit);
+
+	/**
 	 * 在指定的线路节点中根据指定范围的天数，找出相关的线路
 	 * 
 	 * @param lineIds

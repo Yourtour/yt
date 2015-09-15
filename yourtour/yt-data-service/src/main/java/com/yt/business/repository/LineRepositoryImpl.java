@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import com.yt.business.bean.LineBean;
 import com.yt.business.bean.SceneResourceBean;
 import com.yt.business.common.Constants.NodeRelationshipEnum;
+import com.yt.business.neo4j.repository.LineBeanRepository;
 import com.yt.business.neo4j.repository.RouteBeanRepository;
 import com.yt.business.neo4j.repository.SceneResourceBeanRepository;
 import com.yt.business.utils.Neo4jUtils;
@@ -32,6 +33,9 @@ public class LineRepositoryImpl extends CrudGeneralOperate implements
 
 	@Autowired
 	private RouteBeanRepository routeRepo;
+
+	@Autowired
+	private LineBeanRepository lineRepo;
 
 	/*
 	 * (non-Javadoc)
@@ -83,6 +87,16 @@ public class LineRepositoryImpl extends CrudGeneralOperate implements
 					.format("Remove a relationship: LineBean[%s] =%s=> SceneResourceBean[%s].",
 							lineId, relationship.name(), sceneId));
 		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.yt.business.repository.LineRepository#getLinesByPage(int, int)
+	 */
+	@Override
+	public List<LineBean> getLinesByPage(int start, int limit) throws Exception {
+		return lineRepo.getLinesByPage(start, limit);
 	}
 
 	/*

@@ -6,7 +6,10 @@ Ext.define('yt_manager_app.view.resource.SceneWindow', {
     xtype: 'sceneWindow',
     reference: 'scenePopupWindow',
 
-    // TODO 相关输入字段未修改
+    requires: [
+        //'Ext.ux.rating.Picker'
+    ],
+
     config: {
         base: {
             items: [{
@@ -14,20 +17,52 @@ Ext.define('yt_manager_app.view.resource.SceneWindow', {
                 reference: 'name',
                 allowBlank: false,
                 name: 'name',
-                emptyText: '线路名称'
+                emptyText: '景点名称'
             }, {
-                xtype: 'textareafield',
-                fieldLabel: '简介',
-                reference: 'intro',
-                allowBlank: false,
-                name: 'intro',
-                emptyText: '线路简介'
+                fieldLabel: '开放时间',
+                reference: 'openTime',
+                allowBlank: true,
+                name: 'openTime',
+                emptyText: '开放时间信息'
             }, {
-                fieldLabel: '目的地',
-                reference: 'place',
-                allowBlank: false,
-                name: 'place',
-                emptyText: '线路目的地'
+                fieldLabel: '关闭时间',
+                reference: 'closeTime',
+                allowBlank: true,
+                name: 'closeTime',
+                emptyText: '关闭时间信息'
+            }, /*{
+                xtype: 'fieldcontainer',
+                fieldLabel: '星级',
+                items: [{
+                    xtype: 'rating',
+                    scale: '150%',
+                    //reference: 'star1',
+                    minimum: 0,
+                    limit: 5,
+                    bind: {
+                        value: '{star}'
+                    }
+                }, {
+                    xtype: 'rating',
+                    scale: '150%',
+                    reference: 'star1',
+                    minimum: 0,
+                    limit: 5
+                }]
+            },*/ {
+                xtype: 'numberfield',
+                fieldLabel: '星级',
+                name: 'star',
+                minValue: 0,
+                maxValue: 5,
+                reference: 'star',
+                hidden: false
+            }, {
+                fieldLabel: '电话',
+                reference: 'phone',
+                allowBlank: true,
+                name: 'phone',
+                emptyText: '联系电话号码'
             }],
             hidden: false
         },
@@ -38,40 +73,41 @@ Ext.define('yt_manager_app.view.resource.SceneWindow', {
                 name: 'imageUrl',
                 emptyText: 'Image URL'
             }, {
-                xtype: 'numberfield',
-                minValue: 0,
-                value: 0,
-                fieldLabel: '人数',
-                reference: 'arriveNum',
-                name: 'arriveNum',
-                emptyText: '到达人数'
+                fieldLabel: '地址',
+                reference: 'address',
+                allowBlank: true,
+                name: 'address',
+                emptyText: '联系地址'
             }, {
-                xtype: 'tagfield',
-                fieldLabel: '选择一种分类',
-                store: {
-                    data: [{
-                        abbr: 11, tag: '亲子游'
-                    }, {
-                        abbr: 12, tag: '情侣游'
-                    }, {
-                        abbr: 13, tag: '家庭游'
-                    }, {
-                        abbr: 21, tag: '自然山水'
-                    }, {
-                        abbr: 22, tag: '历史人文'
-                    }, {
-                        abbr: 31, tag: '美食'
-                    }, {
-                        abbr: 32, tag: '购物'
-                    }]
-                },
-                value: ['NA'],
-                reference: 'tags',
-                displayField: 'tag',
-                valueField: 'abbr',
-                filterPickList: true,
-                queryMode: 'local',
-                publishes: 'value'
+                fieldLabel: '邮编',
+                reference: 'postCode',
+                allowBlank: true,
+                name: 'posCode',
+                emptyText: '邮政编码'
+            }, {
+                fieldLabel: '网址',
+                reference: 'website',
+                allowBlank: true,
+                name: 'website',
+                emptyText: '网站地址'
+            }, {
+                fieldLabel: '交通',
+                reference: 'trafficIntro',
+                allowBlank: true,
+                name: 'trafficIntro',
+                emptyText: '交通信息'
+            }, {
+                fieldLabel: '支付',
+                reference: 'payment',
+                allowBlank: true,
+                name: 'payment',
+                emptyText: '支付信息'
+            }, {
+                fieldLabel: '位置',
+                reference: 'position',
+                allowBlank: true,
+                name: 'position',
+                emptyText: '位置信息'
             }, {
                 xtype: 'combobox',
                 store: {
@@ -101,17 +137,37 @@ Ext.define('yt_manager_app.view.resource.SceneWindow', {
                 fieldLabel: '简介',
                 reference: 'intro',
                 name: 'intro',
-                emptyText: '行程简介'
+                emptyText: '景点简介'
             }, {
-                fieldLabel: '特质',
-                reference: 'feature',
-                name: 'feature',
-                emptyText: '行程特质'
+                fieldLabel: '票务',
+                reference: 'ticket',
+                name: 'ticket',
+                emptyText: '票务信息'
             }, {
-                fieldLabel: '推荐理由',
-                reference: 'reason',
-                name: 'reason',
-                emptyText: '行程推荐理由'
+                fieldLabel: '地图',
+                reference: 'sceneMap',
+                name: 'sceneMap',
+                emptyText: '景区地图'
+            }, {
+                fieldLabel: '特色',
+                reference: 'specialScene',
+                name: 'specialScene',
+                emptyText: '特色景点'
+            }, {
+                fieldLabel: '交通',
+                reference: 'sceneTraffic',
+                name: 'sceneTraffic',
+                emptyText: '景区交通信息'
+            }, {
+                fieldLabel: '预定',
+                reference: 'bookingMemo',
+                name: 'bookingMemo',
+                emptyText: '预定信息'
+            }, {
+                fieldLabel: '技巧',
+                reference: 'tips',
+                name: 'tips',
+                emptyText: '旅行技巧'
             }],
             hidden: false
         },

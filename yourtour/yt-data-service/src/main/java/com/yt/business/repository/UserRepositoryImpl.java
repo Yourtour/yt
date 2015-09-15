@@ -7,6 +7,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.yt.business.bean.SceneResourceBean;
 import com.yt.business.bean.UserBean;
 import com.yt.business.common.Constants.NodeRelationshipEnum;
 import com.yt.business.neo4j.repository.UserBeanRepository;
@@ -152,6 +153,46 @@ public class UserRepositoryImpl extends CrudGeneralOperate implements
 			LOG.debug(String.format(
 					"Remove a relationship: UserBean[%s] =%s=> UserBean[%s].",
 					srcUserId, relationship.name(), tarUserId));
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.yt.business.repository.UserRepository#watchScene(java.lang.String,
+	 * java.lang.String)
+	 */
+	@Override
+	public void watchScene(String userId, String sceneId) throws Exception {
+		NodeRelationshipEnum relationship = NodeRelationshipEnum.WATCH;
+		Neo4jUtils.maintainRelateion(super.template, this, relationship,
+				userId, UserBean.class, sceneId, SceneResourceBean.class, null,
+				true, true);
+		if (LOG.isDebugEnabled()) {
+			LOG.debug(String
+					.format("Create a relationship: UserBean[%s] <=%s=> SceneResourceBean[%s].",
+							userId, relationship.name(), sceneId));
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.yt.business.repository.UserRepository#unwatchScene(java.lang.String,
+	 * java.lang.String)
+	 */
+	@Override
+	public void unwatchScene(String userId, String sceneId) throws Exception {
+		NodeRelationshipEnum relationship = NodeRelationshipEnum.WATCH;
+		Neo4jUtils.maintainRelateion(super.template, this, relationship,
+				userId, UserBean.class, sceneId, SceneResourceBean.class, null,
+				false, true);
+		if (LOG.isDebugEnabled()) {
+			LOG.debug(String
+					.format("Remove a relationship: UserBean[%s] <=%s=> SceneResourceBean[%s].",
+							userId, relationship.name(), sceneId));
 		}
 	}
 }

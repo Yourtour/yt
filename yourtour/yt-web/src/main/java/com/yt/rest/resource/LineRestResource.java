@@ -11,6 +11,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
@@ -24,8 +25,8 @@ import com.yt.business.repository.LineRepository;
 import com.yt.business.utils.Neo4jUtils;
 import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
+import com.yt.response.ResponsePagingDataVO;
 import com.yt.response.ResponseVO;
-import com.yt.rsal.neo4j.repository.IFullTextSearchOperate;
 import com.yt.utils.WebUtils;
 import com.yt.vo.RecommendConditionVO;
 import com.yt.vo.RecommendLineVO;
@@ -40,13 +41,10 @@ public class LineRestResource {
 	private static final Log LOG = LogFactory.getLog(LineRestResource.class);
 
 	@Autowired
-	private IFullTextSearchOperate ftsOperate;
-
-	@Autowired
 	private LineRepository lineRepository;
 
 	@SuppressWarnings("unchecked")
-	@Path("loadPage.json")
+	@Path("load")
 	@GET
 	public ResponseDataVO<List<LineVO>> getAllLines() {
 		if (LOG.isDebugEnabled()) {
@@ -78,10 +76,54 @@ public class LineRestResource {
 		}
 	}
 
+	@Path("loadPage.json")
+	@GET
+	public ResponsePagingDataVO<List<LineVO>> loadPage(
+			@QueryParam("page") int page, @QueryParam("start") int start,
+			@QueryParam("limit") int limit) {
+		try {
+			long totalSize = lineRepository.count(LineBean.class);
+			if (start >= totalSize) {
+				if (LOG.isWarnEnabled()) {
+					LOG.warn(String
+							.format("The query parameter is invalid, the total line: %d, but request: page(%d), start(%d), limit(%d).",
+									totalSize, page, start, limit));
+				}
+				return new ResponsePagingDataVO<List<LineVO>>(
+						StaticErrorEnum.THE_DATA_NOT_EXIST);
+			}
+
+			Vector<LineVO> result = new Vector<LineVO>();
+			List<LineBean> lines = lineRepository.getLinesByPage(start, limit);
+			for (LineBean line : lines) {
+				LineVO vo = LineVO.transform(line);
+				if (vo == null) {
+					continue;
+				}
+				result.add(vo);
+			}
+			if (LOG.isDebugEnabled()) {
+				LOG.debug(String
+						.format("Query a page line success, total line: {%d}, request: page(%d), start(%d), limit(%d).",
+								result.size(), page, start, limit));
+			}
+			return new ResponsePagingDataVO<List<LineVO>>(totalSize, result);
+		} catch (Exception ex) {
+			if (LOG.isErrorEnabled()) {
+				LOG.error(
+						String.format(
+								"Query a page line fail, request: page(%d), start(%d), limit(%d).",
+								page, start, limit), ex);
+			}
+			return new ResponsePagingDataVO<List<LineVO>>(
+					StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
+	}
+
 	@GET
 	@Path("{id}")
 	public ResponseDataVO<LineVO> getLine(@PathParam("id") String id) {
-		long graphId = getGraphIDFromString(id);
+		long graphId = Neo4jUtils.getGraphIDFromString(id);
 		try {
 			LineBean bean = null;
 			if (graphId != -1) {
@@ -107,14 +149,6 @@ public class LineRestResource {
 			}
 			return new ResponseDataVO<LineVO>(
 					StaticErrorEnum.FETCH_DB_DATA_FAIL);
-		}
-	}
-
-	private long getGraphIDFromString(String id) {
-		try {
-			return Long.valueOf(id);
-		} catch (Exception ex) {
-			return -1;
 		}
 	}
 
@@ -186,9 +220,8 @@ public class LineRestResource {
 			return new ResponseVO();
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
-				LOG.error(
-						String.format("Save the LineBean[id='%s'] fail.",
-								String.valueOf(id)), ex);
+				LOG.error(String.format("Save the LineBean[id='%s'] fail.",
+						String.valueOf(id)), ex);
 			}
 			return new ResponseVO(StaticErrorEnum.DB_OPERATE_FAIL);
 		}
@@ -197,7 +230,7 @@ public class LineRestResource {
 	@GET
 	@Path("remove/{id}.json")
 	public ResponseVO delete(@PathParam("id") String id) {
-		long graphId = getGraphIDFromString(id);
+		long graphId = Neo4jUtils.getGraphIDFromString(id);
 		try {
 			LineBean bean = null;
 			if (graphId != -1) {

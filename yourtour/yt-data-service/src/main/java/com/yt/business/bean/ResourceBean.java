@@ -45,7 +45,7 @@ public class ResourceBean extends Neo4JBaseBean {
 	private @HbaseColumn(name = "ctime")
 	String closeTime; // 关闭时间 hh24:mi
 	private @HbaseColumn(name = "tintr")
-	String trafficeIntro; // 公交信息
+	String trafficIntro; // 公交信息
 	private @HbaseColumn(name = "pay")
 	String payment; // 支付信息
 	private @HbaseColumn(name = "star")
@@ -115,12 +115,12 @@ public class ResourceBean extends Neo4JBaseBean {
 		this.closeTime = closeTime;
 	}
 
-	public String getTrafficeIntro() {
-		return trafficeIntro;
+	public String getTrafficIntro() {
+		return trafficIntro;
 	}
 
-	public void setTrafficeIntro(String trafficeIntro) {
-		this.trafficeIntro = trafficeIntro;
+	public void setTrafficIntro(String trafficIntro) {
+		this.trafficIntro = trafficIntro;
 	}
 
 	public int getStar() {

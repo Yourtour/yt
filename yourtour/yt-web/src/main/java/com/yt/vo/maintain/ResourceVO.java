@@ -5,12 +5,11 @@ import com.yt.business.common.Constants.ResType;
 import com.yt.business.common.Constants.Status;
 
 public class ResourceVO extends BaseVO {
-	private String name; // 名称
 	private String imageUrl; // 图片
 	private ResType type; // 类型
 	private String openTime; // 开放时间 hh24:mi
 	private String closeTime; // 关闭时间 hh24:mi
-	private String trafficeIntro; // 公交信息
+	private String trafficIntro; // 公交信息
 	private String payment; // 支付信息
 	private int star; // 星级
 	private boolean member; // 是否会员
@@ -51,7 +50,7 @@ public class ResourceVO extends BaseVO {
 		setStar(bean.getStar());
 		setStatus(bean.getStatus());
 		setTips(bean.getTips());
-		setTrafficeIntro(bean.getTrafficeIntro());
+		setTrafficIntro(bean.getTrafficIntro());
 		setType(bean.getType());
 		setWebsite(bean.getWebsite());
 	}
@@ -79,21 +78,13 @@ public class ResourceVO extends BaseVO {
 		bean.setStar(getStar());
 		bean.setStatus(getStatus());
 		bean.setTips(getTips());
-		bean.setTrafficeIntro(getTrafficeIntro());
+		bean.setTrafficIntro(getTrafficIntro());
 		bean.setType(getType());
 		bean.setWebsite(getWebsite());
 	}
 
 	public ResourceVO() {
 		super();
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getImageUrl() {
@@ -108,7 +99,7 @@ public class ResourceVO extends BaseVO {
 		return type;
 	}
 
-	public void setType(ResType type) {
+	protected void setType(ResType type) {
 		this.type = type;
 	}
 
@@ -128,12 +119,12 @@ public class ResourceVO extends BaseVO {
 		this.closeTime = closeTime;
 	}
 
-	public String getTrafficeIntro() {
-		return trafficeIntro;
+	public String getTrafficIntro() {
+		return trafficIntro;
 	}
 
-	public void setTrafficeIntro(String trafficeIntro) {
-		this.trafficeIntro = trafficeIntro;
+	public void setTrafficIntro(String trafficIntro) {
+		this.trafficIntro = trafficIntro;
 	}
 
 	public int getStar() {
