@@ -25,7 +25,7 @@ import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.utils.WebUtils;
-import com.yt.vo.maintain.basedata.DivisionVO;
+import com.yt.vo.basedata.DivisionVO;
 
 @Component
 @Path("divisions")
@@ -148,7 +148,7 @@ public class DivisionRestResource {
 				bean = placeRepository.getPlaceByGraphId(graphId);
 				id = bean.getRowKey();
 			}
-			// placeRepository.delete(UserBean.class, id);
+			placeRepository.delete(PlaceBean.class, id);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format("Delete PlaceBean['%s'] success.", id));
 			}

@@ -13,8 +13,19 @@ Ext.define('yt_manager_app.view.widget.GeneralCRUDController', {
         operate: null
     },
 
-    rendererDate: function(item, opts) {
-        item.setValue('asdfasdfasdf23432');
+    afterUpdateRecord: function(record) {
+        // console.log('这是父类方法。。');
+        // Do nothing
+        return;
+    },
+
+    afterLoadRecord: function(record) {
+        // Do nothing
+        return;
+    },
+
+    dowithRecord: function (data) {
+        // Do nothing
     },
 
     getSelectedRecords: function () {
@@ -28,15 +39,15 @@ Ext.define('yt_manager_app.view.widget.GeneralCRUDController', {
     },
 
     showPopWindow: function (title, data, editable) {
-        var win = this.lookupReference(this.getPopupWindowName());
+        var me = this,
+            win = me.lookupReference(me.getPopupWindowName());
         if (!win) {
-            win = this.createNewWindow();
-            this.getView().add(win);
+            win = me.createNewWindow();
+            me.getView().add(win);
         }
         win.setTitle(title);
 
-        var me = this,
-            formWindow = me.lookupReference(this.getFormWindowName()),
+        var formWindow = me.lookupReference(me.getFormWindowName()),
             baseInfo = me.lookupReference('baseInfo'),
             detailInfo = me.lookupReference('detailInfo'),
             extendInfo = me.lookupReference('extendInfo'),
@@ -48,6 +59,7 @@ Ext.define('yt_manager_app.view.widget.GeneralCRUDController', {
         if (data) {
             formWindow.loadRecord(data);
         }
+        me.afterLoadRecord(data);
 
         // set editable
         var disabled = !editable;
@@ -76,8 +88,9 @@ Ext.define('yt_manager_app.view.widget.GeneralCRUDController', {
 
     onShow: function () {
         var record = this.getSelectedRecords()[0];
+        var model = this.dowithRecord(record);
         if (record) {
-            this.showPopWindow(Ext.String.format('显示 {0}的详细信息', this.getName()), record, false);
+            this.showPopWindow(Ext.String.format('显示 {0}的详细信息', this.getName()), model, false);
         } else {
             Ext.MessageBox.alert('提示', '在操作之前请先选中一行数据。');
         }
@@ -88,7 +101,7 @@ Ext.define('yt_manager_app.view.widget.GeneralCRUDController', {
         if (win) {
             win.destroy();
         }
-        var model = this.createNewRecord(null);
+        var model = this.dowithRecord(null);
         model.setId(-1);
         this.setOperate('add');
         this.showPopWindow(Ext.String.format('新增 一个{0}', this.getName()), model, true);
@@ -96,9 +109,10 @@ Ext.define('yt_manager_app.view.widget.GeneralCRUDController', {
 
     onModify: function () {
         var record = this.getSelectedRecords()[0];
+        var model = this.dowithRecord(record);
         if (record) {
             this.setOperate('edit');
-            this.showPopWindow(Ext.String.format('修改 {0}信息', this.getName()), record, true);
+            this.showPopWindow(Ext.String.format('修改 {0}信息', this.getName()), model, true);
         } else {
             Ext.MessageBox.alert('提示', '在操作之前请先选中一行数据。');
         }
@@ -148,6 +162,7 @@ Ext.define('yt_manager_app.view.widget.GeneralCRUDController', {
         }
 
         formWindow.updateRecord(record);
+        me.afterUpdateRecord(record);
         if (me.getCurrentGrid() != null) {
             var store = me.getCurrentGrid().getStore();
             if (store == null) {

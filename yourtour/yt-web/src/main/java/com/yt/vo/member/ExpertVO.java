@@ -1,4 +1,4 @@
-package com.yt.vo.maintain;
+package com.yt.vo.member;
 
 public class ExpertVO {
 	private String code, name;

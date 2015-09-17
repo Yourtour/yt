@@ -60,9 +60,7 @@ public class PlaceBean extends Neo4JBaseBean {
 	Status status;
 
 	private @HbaseColumn(name = "root")
-	boolean root = false; // 是否为根节点
-
-	private transient boolean hasChild = false;
+	boolean root = false, leaf = true; // 是否为根节点、叶子节点
 
 	private transient PlaceBean parent = null;
 
@@ -134,11 +132,11 @@ public class PlaceBean extends Neo4JBaseBean {
 		this.parent = parent;
 	}
 
-	public boolean hasChild() {
-		return hasChild;
+	public boolean isLeaf() {
+		return leaf;
 	}
 
-	public void setHasChild(boolean hasChild) {
-		this.hasChild = hasChild;
+	public void setLeaf(boolean leaf) {
+		this.leaf = leaf;
 	}
 }

@@ -30,26 +30,18 @@ Ext.define('yt_manager_app.view.resource.SceneWindow', {
                 allowBlank: true,
                 name: 'closeTime',
                 emptyText: '关闭时间信息'
-            }, /*{
+            }, {
                 xtype: 'fieldcontainer',
                 fieldLabel: '星级',
                 items: [{
                     xtype: 'rating',
                     scale: '150%',
-                    //reference: 'star1',
-                    minimum: 0,
-                    limit: 5,
-                    bind: {
-                        value: '{star}'
-                    }
-                }, {
-                    xtype: 'rating',
-                    scale: '150%',
-                    reference: 'star1',
+                    reference: 'star',
+                    name: 'star',
                     minimum: 0,
                     limit: 5
                 }]
-            },*/ {
+            }, /*{
                 xtype: 'numberfield',
                 fieldLabel: '星级',
                 name: 'star',
@@ -57,7 +49,7 @@ Ext.define('yt_manager_app.view.resource.SceneWindow', {
                 maxValue: 5,
                 reference: 'star',
                 hidden: false
-            }, {
+            }, */{
                 fieldLabel: '电话',
                 reference: 'phone',
                 allowBlank: true,

@@ -34,9 +34,9 @@ import com.yt.response.ResponseVO;
 import com.yt.rsal.neo4j.repository.ICrudOperate;
 import com.yt.rsal.neo4j.repository.IFullTextSearchOperate;
 import com.yt.utils.WebUtils;
-import com.yt.vo.PersonalRouteVO;
 import com.yt.vo.RelationConditionVO;
-import com.yt.vo.maintain.RouteVO;
+import com.yt.vo.route.PersonalRouteVO;
+import com.yt.vo.route.RouteVO;
 
 @Component
 @Path("routes")

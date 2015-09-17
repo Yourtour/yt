@@ -28,10 +28,10 @@ import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponsePagingDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.utils.WebUtils;
-import com.yt.vo.RecommendConditionVO;
-import com.yt.vo.RecommendLineVO;
 import com.yt.vo.RelationConditionVO;
-import com.yt.vo.maintain.LineVO;
+import com.yt.vo.route.LineVO;
+import com.yt.vo.route.RecommendConditionVO;
+import com.yt.vo.route.RecommendLineVO;
 
 @Component
 @Path("lines")

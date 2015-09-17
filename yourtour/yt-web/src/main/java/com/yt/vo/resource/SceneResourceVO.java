@@ -1,11 +1,11 @@
 /**
  * 
  */
-package com.yt.vo.maintain.resource;
+package com.yt.vo.resource;
 
 import com.yt.business.bean.SceneResourceBean;
 import com.yt.business.common.Constants.ResType;
-import com.yt.vo.maintain.ResourceVO;
+import com.yt.vo.ResourceVO;
 
 public class SceneResourceVO extends ResourceVO {
 	private String name; // 名称

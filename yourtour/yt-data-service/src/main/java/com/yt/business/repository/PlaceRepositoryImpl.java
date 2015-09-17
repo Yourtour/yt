@@ -47,34 +47,62 @@ public class PlaceRepositoryImpl extends CrudGeneralOperate implements
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.yt.business.repository.PlaceRespository#getAllSubPlaces(long)
+	 * @see
+	 * com.yt.business.repository.PlaceRespository#getAllSubPlaces(java.lang
+	 * .Long)
 	 */
 	@Override
-	public List<PlaceBean> getAllSubPlaces(long graphId) throws Exception {
+	public List<PlaceBean> getAllSubPlaces(Long graphId) throws Exception {
 		return repository.getAllSubPlaces(graphId);
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.yt.business.repository.PlaceRepository#save(long,
+	 * @see com.yt.business.repository.PlaceRepository#save(java.lang.Long,
 	 * com.yt.business.bean.PlaceBean, java.lang.String)
 	 */
 	@Override
-	public void save(long parentId, PlaceBean place, String operator)
+	public void save(Long parentId, PlaceBean place, String operator)
 			throws Exception {
+		boolean codeChanged = false;
+		PlaceBean orient = null;
+		if (place.getGraphId() != null) {
+			orient = super.template
+					.findOne(place.getGraphId(), PlaceBean.class);
+		}
+		if (orient != null && place.getCode().equals(orient.getCode())) {
+			// 未修改了代码
+			// do nothing
+		} else {
+			// 修改代码
+			codeChanged = true;
+		}
+
 		PlaceBean parent = null;
-		if (parentId >= 0) {
+		if (parentId != null && parentId >= 0) {
 			parent = super.template.findOne(parentId, PlaceBean.class);
+			if (parent.isLeaf()) {
+				parent.setLeaf(false);
+				super.save(parent, operator, true);
+			}
 		}
 		// 没有父节点，则当前节点就是根节点
 		place.setRoot(parent == null);
-		super.save(place, operator, true);
-		// 由于save会自动更新place对象，因此没有必要在获取一次。
-		// place = (PlaceBean) super.get(PlaceBean.class, "code",
-		// place.getCode());
+
+		// 设置rowkey，rowkey就是fullcode
+		String rowkey = place.getCode();
 		if (parent != null) {
-			// 只有parent存在的情况，才需要建立关系。
+			rowkey = String.format("%s-%s", parent.getRowKey(), rowkey);
+		}
+		place.setRowKey(rowkey);
+		super.save(place, operator, true);
+		if (codeChanged) {
+			// 由于代码修改过，因此相关子节点的rowkey也需要同步修改
+			iterateUpdateRowkey(place, operator);
+		}
+		if (parent != null && orient == null) {
+			// 只有parent不为空且待保存节点不存在的情况，才需要建立关系。
 			// 建立PARENT关系
 			Neo4jUtils.maintainRelation(super.template,
 					NodeRelationshipEnum.PARENT, place, parent, null, true,
@@ -83,6 +111,18 @@ public class PlaceRepositoryImpl extends CrudGeneralOperate implements
 			Neo4jUtils.maintainRelation(super.template,
 					NodeRelationshipEnum.CHILDREN, parent, place, null, true,
 					false);
+		}
+	}
+
+	private void iterateUpdateRowkey(PlaceBean place, String operator)
+			throws Exception {
+		String rowkey = place.getRowKey();
+		List<PlaceBean> children = repository.getAllSubPlaces(place
+				.getGraphId());
+		for (PlaceBean child : children) {
+			child.setRowKey(String.format("%s-%s", rowkey, child.getCode()));
+			super.save(child, operator, true);
+			iterateUpdateRowkey(child, operator);
 		}
 	}
 }

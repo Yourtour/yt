@@ -29,7 +29,7 @@ import com.yt.response.ResponsePagingDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.rsal.neo4j.repository.IFullTextSearchOperate;
 import com.yt.utils.WebUtils;
-import com.yt.vo.maintain.resource.SceneResourceVO;
+import com.yt.vo.resource.SceneResourceVO;
 
 @Component
 @Path("scenes")

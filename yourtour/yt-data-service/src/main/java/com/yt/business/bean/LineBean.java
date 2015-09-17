@@ -32,6 +32,11 @@ import com.yt.rsal.neo4j.bean.Neo4JBaseBean;
  * <td>John.Peng</td>
  * <td>根据定稿后的hbase和neo4j的操作模式进行修改完善。</td>
  * </tr>
+ * <tr>
+ * <td>2015年9月17日</td>
+ * <td>John.Peng</td>
+ * <td>删除了place（目的地）属性，采用line跟place之间的关联关系来表示。</td>
+ * </tr>
  * </table>
  * 
  * @author Tony.Zhang
@@ -63,9 +68,11 @@ public class LineBean extends Neo4JBaseBean {
 	double recommendIndex; // 推荐指数
 	private @HbaseColumn(name = "cind")
 	double commentIndex; // 点评指数
-	private @HbaseColumn(name = "plac")
-	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	String place; // 目的地
+	// private @HbaseColumn(name = "plac")
+	// @Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
+	// String place; // 目的地
+
+	private transient PlaceBean place = null;
 
 	private @HbaseColumn(name = "anum")
 	int arriveNum; // 到达人数
@@ -147,11 +154,11 @@ public class LineBean extends Neo4JBaseBean {
 		this.commentIndex = commentIndex;
 	}
 
-	public String getPlace() {
+	public PlaceBean getPlace() {
 		return place;
 	}
 
-	public void setPlace(String place) {
+	public void setPlace(PlaceBean place) {
 		this.place = place;
 	}
 

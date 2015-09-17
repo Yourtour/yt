@@ -1,4 +1,4 @@
-package com.yt.vo;
+package com.yt.vo.route;
 
 public class PersonalRouteVO {
 	private Long graphid;

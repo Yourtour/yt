@@ -1,4 +1,4 @@
-package com.yt.vo;
+package com.yt.vo.member;
 
 public class AuthenticationVO {
 	private String id, code, password;

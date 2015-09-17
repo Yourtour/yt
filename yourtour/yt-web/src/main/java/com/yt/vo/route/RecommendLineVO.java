@@ -1,6 +1,7 @@
-package com.yt.vo;
+package com.yt.vo.route;
 
 import com.yt.business.bean.LineBean;
+import com.yt.business.bean.PlaceBean;
 
 public class RecommendLineVO {
 	private Long graphid;
@@ -12,6 +13,7 @@ public class RecommendLineVO {
 	private double recommendIndex; // 推荐指数
 	private double commentIndex; // 点评指数
 	private String place; // 目的地
+	private Long placeId; // 目的地ID
 	private String tags; // 标签
 	private double commentScore; // 点评分数
 	private int commentNum; // 点评数
@@ -32,8 +34,15 @@ public class RecommendLineVO {
 		vo.setGraphid(bean.getGraphId());
 		vo.setImageUrl(bean.getImageUrl());
 		vo.setName(bean.getName());
-		vo.setPlace(bean.getPlace());
 		vo.setReason(bean.getReason());
+		PlaceBean place = bean.getPlace();
+		if (place != null) {
+			vo.setPlace(place.getName());
+			vo.setPlaceId(place.getGraphId());
+		} else {
+			vo.setPlace("");
+			vo.setPlaceId(null);
+		}
 		vo.setRecommendIndex(bean.getCommentIndex());
 		vo.setRowKey(bean.getRowKey());
 		vo.setShareNum(bean.getShareNum());
@@ -116,6 +125,14 @@ public class RecommendLineVO {
 
 	public void setPlace(String place) {
 		this.place = place;
+	}
+
+	public Long getPlaceId() {
+		return placeId;
+	}
+
+	public void setPlaceId(Long placeId) {
+		this.placeId = placeId;
 	}
 
 	public String getTags() {

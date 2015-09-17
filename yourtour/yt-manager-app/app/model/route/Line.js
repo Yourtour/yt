@@ -23,6 +23,8 @@ Ext.define('yt_manager_app.model.route.Line', {
     }, {
         name: 'place', type: 'string'
     }, {
+        name: 'placeId', type: 'int'
+    }, {
         name: 'arriveNum', type: 'int'
     }, {
         name: 'tags', type: 'string'

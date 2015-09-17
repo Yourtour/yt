@@ -35,6 +35,18 @@ Ext.define('yt_manager_app.view.resource.SceneController', {
         yt_manager_app.model.resource.Scene.setProxy(store);
     },
 
+    afterUpdateRecord: function(record) {
+        var me = this,
+            star = me.lookupReference('star');
+        record.set('star', star.getValue());
+    },
+
+    afterLoadRecord: function(record) {
+        var me = this,
+            star = me.lookupReference('star');
+        star.setValue(record.get('star'));
+    },
+
     onTabChange: function (tabs, newTab, oldTab) {
         var me = this;
         var id = newTab.id;

@@ -1,4 +1,4 @@
-package com.yt.vo.maintain;
+package com.yt.vo;
 
 import com.yt.business.bean.ResourceBean;
 import com.yt.business.common.Constants.ResType;

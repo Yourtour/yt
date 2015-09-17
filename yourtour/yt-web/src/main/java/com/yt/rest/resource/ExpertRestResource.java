@@ -13,7 +13,7 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.stereotype.Component;
 
 import com.yt.response.ResponsePagingDataVO;
-import com.yt.vo.maintain.ExpertVO;
+import com.yt.vo.member.ExpertVO;
 
 @Component
 @Path("experts")

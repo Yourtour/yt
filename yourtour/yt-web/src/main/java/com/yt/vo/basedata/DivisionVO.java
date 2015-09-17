@@ -1,4 +1,4 @@
-package com.yt.vo.maintain.basedata;
+package com.yt.vo.basedata;
 
 import java.util.List;
 import java.util.Vector;
@@ -7,8 +7,8 @@ import com.yt.business.bean.PlaceBean;
 import com.yt.business.common.Constants.Status;
 
 public class DivisionVO {
-	private Long graphId = null, parentId = null;
-	private String code, shorter, text, memo, fullCode;
+	private Long graphId = -1l, parentId = null;
+	private String code, shorter, text, memo;
 	private boolean expanded = false, leaf = false;
 	private Status status = Status.ACTIVED;
 	private List<DivisionVO> children;
@@ -18,9 +18,8 @@ public class DivisionVO {
 			return null;
 		}
 		PlaceBean bean = new PlaceBean();
-		bean.setRowKey(vo.getCode());
 		bean.setCode(vo.getCode());
-		if (vo.getGraphId().longValue() != -1l) {
+		if (vo.getGraphId() != null && vo.getGraphId().longValue() != -1l) {
 			bean.setGraphId(vo.getGraphId());
 		}
 		bean.setName(vo.getText());
@@ -36,9 +35,9 @@ public class DivisionVO {
 		}
 		DivisionVO vo = new DivisionVO();
 		vo.setCode(bean.getCode());
-		vo.setExpanded(bean.hasChild());
+		vo.setExpanded(false);
 		vo.setId(bean.getGraphId());
-		vo.setLeaf(!bean.hasChild());
+		vo.setLeaf(bean.isLeaf());
 		vo.setMemo(bean.getMemo());
 		vo.setShorter(bean.getShorter());
 		vo.setStatus(bean.getStatus());
@@ -101,10 +100,6 @@ public class DivisionVO {
 
 	public void setMemo(String memo) {
 		this.memo = memo;
-	}
-
-	public String getFullCode() {
-		return fullCode;
 	}
 
 	public boolean isExpanded() {

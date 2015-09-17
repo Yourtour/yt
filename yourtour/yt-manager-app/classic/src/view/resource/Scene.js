@@ -30,10 +30,14 @@ Ext.define('yt_manager_app.view.resource.Scene', {
             width: 150,
             sortable: true
         }, {
+            xtype: 'widgetcolumn',
             text: '星级',
             dataIndex: 'star',
-            width: 120,
-            sortable: true
+            width: 100,
+            widget: {
+                xtype: 'rating',
+                trackOver: false
+            }
         }, {
             text: '简介',
             dataIndex: 'intro',

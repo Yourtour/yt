@@ -28,7 +28,14 @@ public class SceneRepositoryImpl extends CrudGeneralOperate implements
 	 */
 	@Override
 	public SceneResourceBean getSceneByGraphId(Long graphId) throws Exception {
-		return super.template.findOne(graphId, SceneResourceBean.class);
+		SceneResourceBean bean = super.template.findOne(graphId,
+				SceneResourceBean.class);
+		if (LOG.isDebugEnabled()) {
+			LOG.debug(String.format(
+					"Get scene resource by graph ID success, the resource %s.",
+					bean != null ? "Found" : "Not Existed"));
+		}
+		return bean;
 	}
 
 	/*
@@ -39,6 +46,12 @@ public class SceneRepositoryImpl extends CrudGeneralOperate implements
 	@Override
 	public List<SceneResourceBean> getScenesByPage(int start, int limit)
 			throws Exception {
-		return sceneRepo.getScenesByPage(start, limit);
+		List<SceneResourceBean> list = sceneRepo.getScenesByPage(start, limit);
+		if (LOG.isDebugEnabled()) {
+			LOG.debug(String
+					.format("Get scene resource success, request: start(%d), limit(%d); total: %d.",
+							start, limit, list.size()));
+		}
+		return list;
 	}
 }

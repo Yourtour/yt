@@ -45,45 +45,12 @@ Ext.define('yt_manager_app.view.basedata.Division', {
             }]
         },
         items: [{
-            xtype: 'treepanel',
-            title: '行政区划',
+            xtype: 'divisionTree',
             reference: 'tree',
             width: 400,
+            title: '行政区划',
             border: 1,
-            flex: 1,
-            useArrows: true,
-            rootVisible: false,
-            columns: [{
-                xtype: 'treecolumn',
-                text: 'Name',
-                width: 200,
-                sortable: true,
-                dataIndex: 'text'
-            }, {
-                text: 'Code',
-                flex: 1,
-                width: 80,
-                dataIndex: 'code',
-                sortable: true
-            }, {
-                text: 'shorter',
-                flex: 1,
-                width: 80,
-                dataIndex: 'shorter',
-                sortable: true
-            }, {
-                text: 'Full code',
-                flex: 1,
-                width: 150,
-                dataIndex: 'fullCode',
-                sortable: true
-            }],
-            selModel: {
-                allowDeselect: true,
-                listeners: {
-                    selectionchange: 'onSelectionChange'
-                }
-            }
+            flex: 1
         }]
     }, {
         layout: {
@@ -92,6 +59,14 @@ Ext.define('yt_manager_app.view.basedata.Division', {
         },
         width: 300,
         items: [{
+            xtype: 'textfield',
+            fieldLabel: '父代码',
+            reference: 'parent',
+            editable: false,
+            disalbed: true,
+            emptyText: '无上级区划！',
+            hidden: true
+        }, {
             xtype: 'form',
             reference: 'form',
             defaults: {

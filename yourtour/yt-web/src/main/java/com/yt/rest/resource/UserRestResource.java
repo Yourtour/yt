@@ -28,9 +28,9 @@ import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponsePagingDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.utils.WebUtils;
-import com.yt.vo.AuthenticationVO;
 import com.yt.vo.RelationConditionVO;
-import com.yt.vo.maintain.UserVO;
+import com.yt.vo.member.AuthenticationVO;
+import com.yt.vo.member.UserVO;
 
 @Component
 @Path("users")

@@ -11,59 +11,10 @@ Ext.define('yt_manager_app.view.basedata.DivisionController', {
     },
 
     init: function () {
-        Ext.define('Division', {
-            extend: 'Ext.data.Model',
-            fields: [{
-                name: 'graphId', type: 'int'
-            }, {
-                name: 'code', type: 'string'
-            }, {
-                name: 'shorter', type: 'string'
-            }, {
-                name: 'text', type: 'string'
-            }, {
-                name: 'memo', type: 'string'
-            }, {
-                name: 'fullCode', type: 'string'
-            }]
-        });
-        var store = Ext.create('Ext.data.TreeStore', {
-            model: 'Division',
-
-            idProperty: 'graphId',
-            pageSize: 0,
-
-            proxy: {
-                type: 'rest',
-                format: 'json',
-                api: {
-                    create: 'http://localhost:8080/yt-web/rest/divisions/save',
-                    read: 'http://localhost:8080/yt-web/rest/divisions/load',
-                    update: 'http://localhost:8080/yt-web/rest/divisions/save',
-                    destroy: 'http://localhost:8080/yt-web/rest/divisions/remove'
-                },
-                actionMethods: {
-                    create: 'POST',
-                    read: 'GET',
-                    update: 'POST',
-                    destroy: 'GET'
-                },
-                reader: {
-                    type: 'json',
-                    rootProperty: 'data'
-                },
-                writer: {
-                    type: 'json',
-                    writeAllFields: true
-                }
-            }
-        });
-        var me = this,
-            tree = me.lookupReference('tree');
-        tree.setStore(store);
+        this.onRefresh();
     },
 
-    onRefresh: function() {
+    onRefresh: function () {
         var me = this,
             tree = me.lookupReference('tree'),
             store = tree.getStore();
@@ -72,7 +23,9 @@ Ext.define('yt_manager_app.view.basedata.DivisionController', {
 
     onSelectionChange: function (model, selected) {
         var me = this,
+            parent = me.lookupReference('parent'),
             del = me.lookupReference('delete');
+        parent.setHidden(true);
         if (selected.length <= 0) {
             del.setDisabled(true);
             this.setRecord(null);
@@ -92,7 +45,7 @@ Ext.define('yt_manager_app.view.basedata.DivisionController', {
         me.setEditable(false);
     },
 
-    setEditable: function(editable) {
+    setEditable: function (editable) {
         var me = this,
             code = me.lookupReference('code'),
             shorter = me.lookupReference('shorter'),
@@ -107,12 +60,20 @@ Ext.define('yt_manager_app.view.basedata.DivisionController', {
     onAdd: function () {
         var me = this,
             form = me.lookupReference('form'),
+            parent = me.lookupReference('parent'),
             reset = me.lookupReference('reset'),
             edit = me.lookupReference('edit'),
             save = me.lookupReference('save'),
             tree = me.lookupReference('tree'),
             store = tree.getStore();
-        var record = new Division({id: -1, code: '', text: ''});
+        if (me.getRecord() != null) {
+            parent.setValue(me.getRecord().get('code'));
+        } else {
+            parent.setValue('');
+        }
+        parent.setHidden(false);
+
+        var record = new yt_manager_app.model.basedata.Division({code: '', text: '', memo: ''});
         form.loadRecord(record);
         reset.setDisabled(false);
         edit.setDisabled(true);
@@ -130,14 +91,17 @@ Ext.define('yt_manager_app.view.basedata.DivisionController', {
         if (record == null) {
             Ext.MessageBox.alert('提示', '在删除前必须要选择一行数据。');
             return;
+        } else if (!record.get('leaf')) {
+            Ext.MessageBox.alert('提示', '不能直接删除包含下级行政区划的节点。');
+            return;
         } else {
-            Division.setProxy(store.getProxy());
-            record.set('id', record.getData().graphId);
+            yt_manager_app.model.basedata.Division.setProxy(store.getProxy());
+            record.set('id', record.getData().id);
             record.erase({
-                success: function() {
+                success: function () {
                     console.log('delete success.');
                 },
-                failure: function() {
+                failure: function () {
                     console.log('delete failure.');
                 }
             });
@@ -165,21 +129,27 @@ Ext.define('yt_manager_app.view.basedata.DivisionController', {
 
     onFormSave: function () {
         var me = this,
+            parent = me.lookupReference('parent'),
             form = me.lookupReference('form'),
             tree = me.lookupReference('tree'),
             store = tree.getStore();
         var record = form.getRecord(),
             type = me.getOperateType();
         form.updateRecord(record);
-        record.set('id', record.getData().graphId);
+        record.set('id', record.getData().id);
         if (me.getRecord() != null && type == 'add') {
+            // 新增并选择了节点，则设置父节点ID
             record.set('parentId', me.getRecord().get('id'));
+        }
+        if (type == 'add') {
+            record.set('id', null);
+        } else {
+            record.set('id', me.getRecord().get('id'));
         }
         if (record.get('parentId') == 'root') {
             record.set('parentId', -1);
         }
-        console.log(record.getData());
-        Division.setProxy(store.getProxy());
+        yt_manager_app.model.basedata.Division.setProxy(store.getProxy());
         record.save({
             success: function () {
                 if (type == 'add') {
@@ -187,6 +157,7 @@ Ext.define('yt_manager_app.view.basedata.DivisionController', {
                 }
                 me.setEditable(false);
                 me.setOperateType('');
+                parent.setHidden(true);
                 // TODO
                 console.log('save the form data.');
             },

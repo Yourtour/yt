@@ -10,8 +10,8 @@ public interface PlaceRepository extends ICrudOperate {
 
 	public List<PlaceBean> getAllRootPlaces() throws Exception;
 
-	public List<PlaceBean> getAllSubPlaces(long graphId) throws Exception;
+	public List<PlaceBean> getAllSubPlaces(Long graphId) throws Exception;
 
-	public void save(long parentId, PlaceBean place, String operator)
+	public void save(Long parentId, PlaceBean place, String operator)
 			throws Exception;
 }

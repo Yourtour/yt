@@ -1,4 +1,4 @@
-package com.yt.vo.maintain;
+package com.yt.vo;
 
 import com.yt.rsal.neo4j.bean.Neo4JBaseBean;
 

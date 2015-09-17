@@ -39,7 +39,7 @@ public class Neo4JBaseBean implements Serializable, IBaseBean, INeo4JBaseBean,
 		Comparable<Neo4JBaseBean> {
 	private static final long serialVersionUID = -1255893864343425738L;
 	@GraphId
-	private Long graphid;
+	private Long graphid = null;
 
 	@GraphProperty
 	@Indexed(unique = true)

@@ -1,7 +1,9 @@
-package com.yt.vo.maintain;
+package com.yt.vo.route;
 
 import com.yt.business.bean.LineBean;
+import com.yt.business.bean.PlaceBean;
 import com.yt.business.common.Constants.Status;
+import com.yt.vo.BaseVO;
 
 public class LineVO extends BaseVO {
 	private String name; // 名称
@@ -12,6 +14,7 @@ public class LineVO extends BaseVO {
 	private double recommendIndex; // 推荐指数
 	private double commentIndex; // 点评指数
 	private String place; // 目的地
+	private Long placeId; // 目的地对象ID
 	private int arriveNum; // 到达人数
 	private String tags; // 标签
 	private double commentScore; // 点评分数
@@ -36,7 +39,14 @@ public class LineVO extends BaseVO {
 		vo.setImageUrl(bean.getImageUrl());
 		vo.setIntro(bean.getIntro());
 		vo.setName(bean.getName());
-		vo.setPlace(bean.getPlace());
+		PlaceBean place = bean.getPlace();
+		if (place != null) {
+			vo.setPlace(place.getName());
+			vo.setPlaceId(place.getGraphId());
+		} else {
+			vo.setPlace("");
+			vo.setPlaceId(null);
+		}
 		vo.setReason(bean.getReason());
 		vo.setRecommendIndex(bean.getRecommendIndex());
 		vo.setShareNum(bean.getShareNum());
@@ -62,7 +72,8 @@ public class LineVO extends BaseVO {
 		bean.setIntro(vo.getIntro());
 		bean.setName(vo.getName());
 		bean.setRowKey(bean.getName());
-		bean.setPlace(vo.getPlace());
+		PlaceBean place = new PlaceBean();
+		place.setGraphId(vo.getPlaceId());
 		bean.setReason(vo.getReason());
 		bean.setRecommendIndex(vo.getRecommendIndex());
 		bean.setShareNum(vo.getShareNum());
@@ -138,6 +149,14 @@ public class LineVO extends BaseVO {
 
 	public void setPlace(String place) {
 		this.place = place;
+	}
+
+	public Long getPlaceId() {
+		return placeId;
+	}
+
+	public void setPlaceId(Long placeId) {
+		this.placeId = placeId;
 	}
 
 	public int getArriveNum() {

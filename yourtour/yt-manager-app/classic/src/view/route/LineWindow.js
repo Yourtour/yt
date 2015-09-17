@@ -15,11 +15,24 @@ Ext.define('yt_manager_app.view.route.LineWindow', {
                 name: 'name',
                 emptyText: '线路名称'
             }, {
+                xtype: 'fieldcontainer',
                 fieldLabel: '目的地',
-                reference: 'place',
-                allowBlank: false,
-                name: 'place',
-                emptyText: '线路目的地'
+                layout: 'hbox',
+                items: [{
+                    xtype: 'textfield',
+                    reference: 'place',
+                    allowBlank: false,
+                    editable: false,
+                    margin: '0 0 0 0',
+                    name: 'place',
+                    flex: 1,
+                    emptyText: '线路目的地'
+                }, {
+                    xtype: 'button',
+                    text: '选择',
+                    margin: '0 0 0 0',
+                    handler: 'onPopupDivisionSelectWindow'
+                }]
             }],
             hidden: false
         },

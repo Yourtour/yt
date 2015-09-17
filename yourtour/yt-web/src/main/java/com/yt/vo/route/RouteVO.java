@@ -1,7 +1,8 @@
-package com.yt.vo.maintain;
+package com.yt.vo.route;
 
 import com.yt.business.bean.RouteBean;
 import com.yt.business.common.Constants.Status;
+import com.yt.vo.BaseVO;
 
 public class RouteVO extends BaseVO {
 	private static final long HALF_DAY = 3600 * 12;

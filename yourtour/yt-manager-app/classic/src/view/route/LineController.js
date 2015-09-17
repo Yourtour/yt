@@ -20,19 +20,41 @@ Ext.define('yt_manager_app.view.route.LineController', {
     },
 
     createNewWindow: function () {
-        return new yt_manager_app.view.route.LineWindow();
+         return new yt_manager_app.view.route.LineWindow();
     },
 
-    createNewRecord: function (data) {
+    dowithRecord: function (data) {
         if (data == null) {
             return new yt_manager_app.model.route.Line({id: null});
         } else {
-            return new yt_manager_app.model.route.Line(data);
+            return data;
         }
     },
 
     setRecordProxy: function (store) {
         yt_manager_app.model.route.Line.setProxy(store);
+    },
+
+    onPopupDivisionSelectWindow: function() {
+        var me = this,
+            division = me.lookupReference('place');
+        // TODO 获取当前设定的区划
+        var initDivision = me.getData().getData().place;
+        var win = new yt_manager_app.view.basedata.DivisionSelectWindow({
+            initDivision: initDivision,
+            parentWindow: me
+        });
+        win.show();
+    },
+
+    setPlaceData: function(data) {
+        var me = this,
+            view = me.getView(),
+            place = me.lookupReference('place'),
+            record = me.getData();
+        place.setValue(data.text);
+        record.set('place', data.text);
+        record.set('placeId', data.id);
     },
 
     onTabChange: function (tabs, newTab, oldTab) {
