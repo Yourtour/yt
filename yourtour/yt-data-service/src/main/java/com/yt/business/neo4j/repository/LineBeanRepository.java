@@ -3,12 +3,9 @@ package com.yt.business.neo4j.repository;
 import java.util.List;
 
 import org.springframework.data.neo4j.annotation.Query;
-import org.springframework.data.neo4j.annotation.QueryResult;
-import org.springframework.data.neo4j.annotation.ResultColumn;
 import org.springframework.data.neo4j.repository.GraphRepository;
 
 import com.yt.business.bean.LineBean;
-import com.yt.business.bean.PlaceBean;
 
 public interface LineBeanRepository extends GraphRepository<LineBean> {
 	/**
@@ -32,29 +29,4 @@ public interface LineBeanRepository extends GraphRepository<LineBean> {
 	 */
 	@Query("MATCH (line:LineBean)-[:AT]->place RETURN line, place SKIP {0} LIMIT {1}")
 	public List<LinePlaceTuple> getLinesByPage(long skip, long limit);
-
-	@QueryResult
-	public class LinePlaceTuple {
-		@ResultColumn("line")
-		private LineBean line;
-
-		@ResultColumn("place")
-		private PlaceBean place;
-
-		public LineBean getLine() {
-			return line;
-		}
-
-		public void setLine(LineBean line) {
-			this.line = line;
-		}
-
-		public PlaceBean getPlace() {
-			return place;
-		}
-
-		public void setPlace(PlaceBean place) {
-			this.place = place;
-		}
-	}
 }

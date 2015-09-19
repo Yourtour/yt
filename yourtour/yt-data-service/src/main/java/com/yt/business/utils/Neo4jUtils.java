@@ -2,6 +2,8 @@ package com.yt.business.utils;
 
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.neo4j.graphdb.Node;
 import org.springframework.data.neo4j.support.Neo4jTemplate;
 
@@ -10,6 +12,7 @@ import com.yt.rsal.neo4j.bean.INeo4JBaseBean;
 import com.yt.rsal.neo4j.repository.ICrudOperate;
 
 public class Neo4jUtils {
+	private static final Log LOG = LogFactory.getLog(Neo4jUtils.class);
 
 	public static long getGraphIDFromString(String id) {
 		try {
@@ -40,10 +43,24 @@ public class Neo4jUtils {
 							relation, properties);
 				}
 			}
+			if (LOG.isDebugEnabled()) {
+				LOG.debug(String
+						.format("Create a relationship success, %s[%d] %s-[:%s]->%s[%d].",
+								src.getClass().getName(), src.getGraphId(),
+								isBoth ? "<" : "", relation, tar.getClass()
+										.getName(), tar.getGraphId()));
+			}
 		} else {
 			template.deleteRelationshipBetween(nodeSrc, nodeTar, relation);
 			if (isBoth) {
 				template.deleteRelationshipBetween(nodeTar, nodeSrc, relation);
+			}
+			if (LOG.isDebugEnabled()) {
+				LOG.debug(String
+						.format("Remove a relationship success, %s[%d] %s-[:%s]->%s[%d].",
+								src.getClass().getName(), src.getGraphId(),
+								isBoth ? "<" : "", relation, tar.getClass()
+										.getName(), tar.getGraphId()));
 			}
 		}
 	}
@@ -77,10 +94,22 @@ public class Neo4jUtils {
 							relation, properties);
 				}
 			}
+			if (LOG.isDebugEnabled()) {
+				LOG.debug(String
+						.format("Create a relationship success, %s[%d] %s-[:%s]->%s[%d].",
+								srcClass.getName(), gsId, isBoth ? "<" : "",
+								relation, tarClass.getName(), gtId));
+			}
 		} else {
 			template.deleteRelationshipBetween(nodeSrc, nodeTar, relation);
 			if (isBoth) {
 				template.deleteRelationshipBetween(nodeTar, nodeSrc, relation);
+			}
+			if (LOG.isDebugEnabled()) {
+				LOG.debug(String
+						.format("Remove a relationship success, %s[%d] %s-[:%s]->%s[%d].",
+								srcClass.getName(), gsId, isBoth ? "<" : "",
+								relation, tarClass.getName(), gtId));
 			}
 		}
 	}

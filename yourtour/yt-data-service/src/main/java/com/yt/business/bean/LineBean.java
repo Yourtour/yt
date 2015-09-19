@@ -1,5 +1,8 @@
 package com.yt.business.bean;
 
+import java.util.List;
+import java.util.Vector;
+
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.data.neo4j.support.index.IndexType;
@@ -68,11 +71,9 @@ public class LineBean extends Neo4JBaseBean {
 	double recommendIndex; // 推荐指数
 	private @HbaseColumn(name = "cind")
 	double commentIndex; // 点评指数
-	// private @HbaseColumn(name = "plac")
-	// @Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	// String place; // 目的地
 
 	private transient PlaceBean place = null;
+	private transient List<SceneResourceBean> scenes = null;
 
 	private @HbaseColumn(name = "anum")
 	int arriveNum; // 到达人数
@@ -96,6 +97,7 @@ public class LineBean extends Neo4JBaseBean {
 
 	public LineBean() {
 		super();
+		scenes = new Vector<SceneResourceBean>();
 	}
 
 	public String getName() {
@@ -160,6 +162,10 @@ public class LineBean extends Neo4JBaseBean {
 
 	public void setPlace(PlaceBean place) {
 		this.place = place;
+	}
+
+	public List<SceneResourceBean> getScenes() {
+		return scenes;
 	}
 
 	public int getArriveNum() {

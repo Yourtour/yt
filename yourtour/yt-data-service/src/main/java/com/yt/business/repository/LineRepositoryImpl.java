@@ -13,7 +13,7 @@ import com.yt.business.bean.PlaceBean;
 import com.yt.business.bean.SceneResourceBean;
 import com.yt.business.common.Constants.NodeRelationshipEnum;
 import com.yt.business.neo4j.repository.LineBeanRepository;
-import com.yt.business.neo4j.repository.LineBeanRepository.LinePlaceTuple;
+import com.yt.business.neo4j.repository.LinePlaceTuple;
 import com.yt.business.neo4j.repository.RouteBeanRepository;
 import com.yt.business.neo4j.repository.SceneResourceBeanRepository;
 import com.yt.business.utils.Neo4jUtils;
@@ -58,6 +58,13 @@ public class LineRepositoryImpl extends CrudGeneralOperate implements
 		return line;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.yt.rsal.neo4j.repository.CrudGeneralOperate#save(com.yt.rsal.neo4j
+	 * .bean.INeo4JBaseBean, java.lang.String, boolean)
+	 */
 	@Override
 	public INeo4JBaseBean save(INeo4JBaseBean neo4jBean, String operator,
 			boolean saveFail2Hbase) throws Exception {
@@ -70,6 +77,25 @@ public class LineRepositoryImpl extends CrudGeneralOperate implements
 					.getGraphId(), PlaceBean.class);
 			Neo4jUtils.maintainRelation(super.template,
 					NodeRelationshipEnum.AT, line, place, null, true, false);
+		}
+		for (SceneResourceBean scene : line.getScenes()) {
+			// 建立线路到景点的关系
+			if (scene == null) {
+				continue;
+			}
+			SceneResourceBean sceneGet = super.template.findOne(
+					scene.getGraphId(), SceneResourceBean.class);
+			if (sceneGet == null) {
+				if (LOG.isWarnEnabled()) {
+					LOG.warn(String
+							.format("The scene not exist, the relation: Line[%d]-[:CONTAIN]->Scene[%d] can not be created.",
+									line.getGraphId(), scene.getGraphId()));
+				}
+				continue;
+			}
+			Neo4jUtils.maintainRelation(super.template,
+					NodeRelationshipEnum.CONTAIN, line, sceneGet, null, true,
+					false);
 		}
 		return bean;
 	}

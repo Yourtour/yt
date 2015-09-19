@@ -1,11 +1,17 @@
 package com.yt.vo.route;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.yt.business.bean.LineBean;
 import com.yt.business.bean.PlaceBean;
+import com.yt.business.bean.SceneResourceBean;
 import com.yt.business.common.Constants.Status;
 import com.yt.vo.BaseVO;
 
 public class LineVO extends BaseVO {
+	private static final Log LOG = LogFactory.getLog(LineVO.class);
+
 	private String name; // 名称
 	private String imageUrl; // 图片
 	private String intro; // 概述， 线路进行简单介绍
@@ -13,8 +19,6 @@ public class LineVO extends BaseVO {
 	private String reason; // 推荐理由，描述推荐理由
 	private double recommendIndex; // 推荐指数
 	private double commentIndex; // 点评指数
-	private String place; // 目的地
-	private Long placeId; // 目的地对象ID
 	private int arriveNum; // 到达人数
 	private String tags; // 标签
 	private double commentScore; // 点评分数
@@ -22,6 +26,11 @@ public class LineVO extends BaseVO {
 	private int thumbupNum; // 点赞数
 	private int favoriteNum; // 收藏数
 	private int shareNum; // 分享数
+
+	private String place; // 目的地
+	private Long placeId; // 目的地对象ID
+	private String scenes; // 线路包括的景点，逗号分割
+	private String sceneIds; // 线路包括的景点ID，逗号分割
 	private Status status;
 
 	public static LineVO transform(LineBean bean) {
@@ -39,6 +48,14 @@ public class LineVO extends BaseVO {
 		vo.setImageUrl(bean.getImageUrl());
 		vo.setIntro(bean.getIntro());
 		vo.setName(bean.getName());
+		vo.setReason(bean.getReason());
+		vo.setRecommendIndex(bean.getRecommendIndex());
+		vo.setShareNum(bean.getShareNum());
+		vo.setStatus(bean.getStatus());
+		vo.setTags(bean.getTags());
+		vo.setThumbupNum(bean.getThumbupNum());
+
+		// 从目的地对象中获取ID和名称，便于前端显示
 		PlaceBean place = bean.getPlace();
 		if (place != null) {
 			vo.setPlace(place.getName());
@@ -47,12 +64,23 @@ public class LineVO extends BaseVO {
 			vo.setPlace("");
 			vo.setPlaceId(null);
 		}
-		vo.setReason(bean.getReason());
-		vo.setRecommendIndex(bean.getRecommendIndex());
-		vo.setShareNum(bean.getShareNum());
-		vo.setStatus(bean.getStatus());
-		vo.setTags(bean.getTags());
-		vo.setThumbupNum(bean.getThumbupNum());
+
+		// 从景点对象中获取ID和名称，便于前端显示
+		StringBuffer sbSceneName = new StringBuffer(), sbSceneId = new StringBuffer();
+		for (int index = 0, num = bean.getScenes().size(); index < num; index++) {
+			SceneResourceBean scene = bean.getScenes().get(index);
+			if (scene == null) {
+				continue;
+			}
+			sbSceneName.append(scene.getName());
+			sbSceneId.append(scene.getGraphId());
+		}
+		int len = sbSceneName.length();
+		// 去除最后一个逗号
+		len = (len > 0) ? len - 1 : 0;
+		vo.setSceneIds(sbSceneId.substring(0, len));
+		vo.setScenes(sbSceneName.substring(0, len));
+
 		return vo;
 	}
 
@@ -72,14 +100,36 @@ public class LineVO extends BaseVO {
 		bean.setIntro(vo.getIntro());
 		bean.setName(vo.getName());
 		bean.setRowKey(bean.getName());
-		PlaceBean place = new PlaceBean();
-		place.setGraphId(vo.getPlaceId());
+
 		bean.setReason(vo.getReason());
 		bean.setRecommendIndex(vo.getRecommendIndex());
 		bean.setShareNum(vo.getShareNum());
 		bean.setStatus(vo.getStatus());
 		bean.setTags(vo.getTags());
 		bean.setThumbupNum(vo.getThumbupNum());
+
+		// 从VO中取出目的地的ID，并设置到PlaceBean中，便于后续建立关联关系
+		PlaceBean place = new PlaceBean();
+		place.setGraphId(vo.getPlaceId());
+		bean.setPlace(place);
+
+		// 从VO个取出景点的ID，并设置到SceneResourceBean中，便于后续建立关联关系
+		String[] sceneNames = vo.getScenes().split(","), sceneIds = vo
+				.getSceneIds().split(",");
+		int len = Math.min(sceneNames.length, sceneIds.length);
+		if (sceneNames.length != sceneIds.length) {
+			if (LOG.isWarnEnabled()) {
+				LOG.warn(String
+						.format("The input name's size[%d] not equals the id's size[%d], select the minimum[%d].",
+								sceneNames.length, sceneIds.length, len));
+			}
+		}
+		for (int index = 0; index < len; index++) {
+			SceneResourceBean scene = new SceneResourceBean();
+			scene.setGraphId(Long.valueOf(sceneIds[index]));
+			bean.getScenes().add(scene);
+		}
+
 		return bean;
 	}
 
@@ -213,6 +263,22 @@ public class LineVO extends BaseVO {
 
 	public void setShareNum(int shareNum) {
 		this.shareNum = shareNum;
+	}
+
+	public String getScenes() {
+		return scenes;
+	}
+
+	public void setScenes(String scenes) {
+		this.scenes = scenes;
+	}
+
+	public String getSceneIds() {
+		return sceneIds;
+	}
+
+	public void setSceneIds(String sceneIds) {
+		this.sceneIds = sceneIds;
 	}
 
 	public Status getStatus() {

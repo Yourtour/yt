@@ -28,6 +28,7 @@ Ext.define('yt_manager_app.view.main.Main', {
     },
     items: [{
         reference: 'left_panel',
+        alwaysOnTop: true,
         cls: 'treelist-with-nav',
         bind: {
             width: '{toggle.length}'
@@ -71,6 +72,7 @@ Ext.define('yt_manager_app.view.main.Main', {
             }]
         }, {
             xtype: 'container',
+            alwaysOnTop: true,
             cls: 'treelist-with-nav',
             reference: 'tree_list_container',
             layout: {
@@ -82,6 +84,7 @@ Ext.define('yt_manager_app.view.main.Main', {
             flex: 1,
             items: [{
                 xtype: 'treelist',
+                alwaysOnTop: true,
                 reference: 'tree_list',
                 ui: 'navigation',
                 store: {

@@ -11,6 +11,16 @@ import com.yt.business.bean.SceneResourceBean;
 public interface SceneResourceBeanRepository extends
 		GraphRepository<SceneResourceBean> {
 	/**
+	 * 根据GraphId获取指定的景点，并关联查询对应的目的地
+	 * 
+	 * @param graphId
+	 *            图ID
+	 * @return 已经关联了目的地信息的景点
+	 */
+	@Query("START scene=node({0}) MATCH scene-[:AT]->place RETURN scene, place")
+	public SceneResourcePlaceTuple getSceneByGraphId(Long graphId);
+
+	/**
 	 * 根据分页要求查询所有的景点
 	 * 
 	 * @param skip
@@ -19,8 +29,8 @@ public interface SceneResourceBeanRepository extends
 	 *            本页最大记录数
 	 * @return 该页的景点
 	 */
-	@Query("MATCH (scenes:SceneResourceBean) RETURN scenes SKIP {0} LIMIT {1}")
-	public List<SceneResourceBean> getScenesByPage(long skip, long limit);
+	@Query("MATCH (scene:SceneResourceBean)-[:AT]->place RETURN scene, place SKIP {0} LIMIT {1}")
+	public List<SceneResourcePlaceTuple> getScenesByPage(long skip, long limit);
 
 	/**
 	 * 在指定的线路节点中根据指定范围的天数，找出相关的线路
@@ -33,6 +43,7 @@ public interface SceneResourceBeanRepository extends
 	 *            最大的行程天数（单位为秒）
 	 * @return 符合条件行程的关联线路
 	 */
+	// TODO 关联查询出目的地
 	@Query("START line=node({0}) MATCH line-[:RELATED]->(route) WHERE route.period >= {1} AND route.period <= {2} RETURN distinct(line)")
 	public List<LineBean> findLineByLineName(String lineIds,
 			int minPeriodSecond, int maxPeriodSecond);
@@ -48,6 +59,7 @@ public interface SceneResourceBeanRepository extends
 	 *            行程最大天数（单位秒）
 	 * @return 符合条件的线路
 	 */
+	// TODO 关联查询出目的地
 	@Query("START scene=node({0}) MATCH scene<-[:contain]-(route)->[:RELATED]-(line) WHERE route.period >= {1} AND route.period <= {2} RETURN distinct(line)")
 	public List<LineBean> findLineBySceneName(String sceneIds,
 			int minPeriodSecond, int maxPeriodSecond);

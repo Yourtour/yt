@@ -47,6 +47,10 @@ Ext.define('yt_manager_app.model.resource.Resource', {
     }, {
         name: 'tips', type: 'string'
     }, {
+        name: 'place', type: 'string'
+    }, {
+        name: 'placeId', type: 'int'
+    }, {
         name: 'createdUserId', type: 'string'
     }, {
         name: 'createdTime', type: 'int'

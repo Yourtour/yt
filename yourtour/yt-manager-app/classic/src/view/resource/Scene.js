@@ -44,6 +44,11 @@ Ext.define('yt_manager_app.view.resource.Scene', {
             width: 200,
             sortable: false
         }, {
+            text: '目的地',
+            dataIndex: 'place',
+            width: 100,
+            sortable: true
+        }, {
             text: '必游景点',
             dataIndex: 'specialScene',
             width: 200,

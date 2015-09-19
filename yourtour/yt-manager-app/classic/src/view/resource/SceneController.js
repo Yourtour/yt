@@ -23,11 +23,11 @@ Ext.define('yt_manager_app.view.resource.SceneController', {
         return new yt_manager_app.view.resource.SceneWindow();
     },
 
-    createNewRecord: function (data) {
+    dowithRecord: function (data) {
         if (data == null) {
-            return new yt_manager_app.model.resource.Scene();
+            return new yt_manager_app.model.resource.Scene({id: null});
         } else {
-            return new yt_manager_app.model.resource.Scene(data);
+            return data;
         }
     },
 
@@ -35,16 +35,38 @@ Ext.define('yt_manager_app.view.resource.SceneController', {
         yt_manager_app.model.resource.Scene.setProxy(store);
     },
 
-    afterUpdateRecord: function(record) {
+    afterUpdateRecord: function (record) {
         var me = this,
             star = me.lookupReference('star');
         record.set('star', star.getValue());
     },
 
-    afterLoadRecord: function(record) {
+    afterLoadRecord: function (record) {
         var me = this,
             star = me.lookupReference('star');
         star.setValue(record.get('star'));
+    },
+
+    onPopupDivisionSelectWindow: function() {
+        var me = this,
+            division = me.lookupReference('place');
+        // TODO 获取当前设定的区划
+        var initDivision = me.getData().getData().place;
+        var win = new yt_manager_app.view.basedata.DivisionSelectWindow({
+            initDivision: initDivision,
+            parentWindow: me
+        });
+        win.show();
+    },
+
+    setPlaceData: function(data) {
+        var me = this,
+            view = me.getView(),
+            place = me.lookupReference('place'),
+            record = me.getData();
+        place.setValue(data.text);
+        record.set('place', data.text);
+        record.set('placeId', data.id);
     },
 
     onTabChange: function (tabs, newTab, oldTab) {

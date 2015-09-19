@@ -1,8 +1,10 @@
-package com.yt.vo;
+package com.yt.vo.resource;
 
+import com.yt.business.bean.PlaceBean;
 import com.yt.business.bean.ResourceBean;
 import com.yt.business.common.Constants.ResType;
 import com.yt.business.common.Constants.Status;
+import com.yt.vo.BaseVO;
 
 public class ResourceVO extends BaseVO {
 	private String imageUrl; // 图片
@@ -26,6 +28,9 @@ public class ResourceVO extends BaseVO {
 	private String bookingMemo; // 预订须知
 	private String tips; // 贴士
 	private Status status;
+
+	private String place; // 目的地
+	private Long placeId; // 目的地对象ID
 
 	public void fromBean(ResourceBean bean) {
 		if (bean == null) {
@@ -53,6 +58,16 @@ public class ResourceVO extends BaseVO {
 		setTrafficIntro(bean.getTrafficIntro());
 		setType(bean.getType());
 		setWebsite(bean.getWebsite());
+
+		// 从目的地对象中获取ID和名称，便于前端显示
+		PlaceBean place = bean.getPlace();
+		if (place != null) {
+			setPlace(place.getName());
+			setPlaceId(place.getGraphId());
+		} else {
+			setPlace("");
+			setPlaceId(null);
+		}
 	}
 
 	public void toBean(ResourceBean bean) {
@@ -81,6 +96,11 @@ public class ResourceVO extends BaseVO {
 		bean.setTrafficIntro(getTrafficIntro());
 		bean.setType(getType());
 		bean.setWebsite(getWebsite());
+
+		// 从VO中取出目的地的ID，并设置到PlaceBean中，便于后续建立关联关系
+		PlaceBean place = new PlaceBean();
+		place.setGraphId(getPlaceId());
+		bean.setPlace(place);
 	}
 
 	public ResourceVO() {
@@ -253,5 +273,21 @@ public class ResourceVO extends BaseVO {
 
 	public void setStatus(Status status) {
 		this.status = status;
+	}
+
+	public String getPlace() {
+		return place;
+	}
+
+	public void setPlace(String place) {
+		this.place = place;
+	}
+
+	public Long getPlaceId() {
+		return placeId;
+	}
+
+	public void setPlaceId(Long placeId) {
+		this.placeId = placeId;
 	}
 }

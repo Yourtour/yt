@@ -79,6 +79,8 @@ public class ResourceBean extends Neo4JBaseBean {
 	private @HbaseColumn(name = "stat")
 	Status status;
 
+	private transient PlaceBean place = null;
+
 	public ResourceBean() {
 		super();
 	}
@@ -249,5 +251,13 @@ public class ResourceBean extends Neo4JBaseBean {
 
 	public void setStatus(Status status) {
 		this.status = status;
+	}
+
+	public PlaceBean getPlace() {
+		return place;
+	}
+
+	public void setPlace(PlaceBean place) {
+		this.place = place;
 	}
 }
