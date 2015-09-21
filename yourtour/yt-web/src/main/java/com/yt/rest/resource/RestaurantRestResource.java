@@ -20,81 +20,84 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.yt.business.bean.SceneResourceBean;
-import com.yt.business.repository.SceneRepository;
+import com.yt.business.bean.RestaurantResourceBean;
+import com.yt.business.repository.RestaurantRepository;
 import com.yt.business.utils.Neo4jUtils;
 import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponsePagingDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.utils.WebUtils;
-import com.yt.vo.resource.SceneResourceVO;
+import com.yt.vo.resource.RestaurantResourceVO;
 
 @Component
-@Path("scenes")
+@Path("restaurants")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class SceneRestResource {
-	private static final Log LOG = LogFactory.getLog(SceneRestResource.class);
+public class RestaurantRestResource {
+	private static final Log LOG = LogFactory
+			.getLog(RestaurantRestResource.class);
 
 	@Autowired
-	private SceneRepository sceneRepository;
+	private RestaurantRepository restaurantRepository;
 
 	@SuppressWarnings("unchecked")
 	@Path("load")
 	@GET
-	public ResponseDataVO<List<SceneResourceVO>> getAllScenes() {
+	public ResponseDataVO<List<RestaurantResourceVO>> getAllScenes() {
 		if (LOG.isDebugEnabled()) {
-			LOG.debug("Request to fetch all the SceneResourceBean.");
+			LOG.debug("Request to fetch all the RestaurantResourceBean.");
 		}
-		List<SceneResourceVO> list = new ArrayList<SceneResourceVO>();
+		List<RestaurantResourceVO> list = new ArrayList<RestaurantResourceVO>();
 		try {
-			List<SceneResourceBean> result = (List<SceneResourceBean>) sceneRepository
-					.get(SceneResourceBean.class);
-			for (SceneResourceBean bean : result) {
+			List<RestaurantResourceBean> result = (List<RestaurantResourceBean>) restaurantRepository
+					.get(RestaurantResourceBean.class);
+			for (RestaurantResourceBean bean : result) {
 				if (bean == null) {
 					continue;
 				}
-				SceneResourceVO vo = SceneResourceVO.transform(bean);
+				RestaurantResourceVO vo = RestaurantResourceVO.transform(bean);
 				list.add(vo);
 			}
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format(
-						"Fetch SceneResourceBean success, total: %d.",
+						"Fetch RestaurantResourceBean success, total: %d.",
 						list.size()));
 			}
-			return new ResponseDataVO<List<SceneResourceVO>>(list);
+			return new ResponseDataVO<List<RestaurantResourceVO>>(list);
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
-				LOG.error("Fetch all the SceneResourceBean fail.", ex);
+				LOG.error("Fetch all the RestaurantResourceBean fail.", ex);
 			}
-			return new ResponseDataVO<List<SceneResourceVO>>(
+			return new ResponseDataVO<List<RestaurantResourceVO>>(
 					StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
 	}
 
 	@Path("loadPage.json")
 	@GET
-	public ResponsePagingDataVO<List<SceneResourceVO>> loadPage(
+	public ResponsePagingDataVO<List<RestaurantResourceVO>> loadPage(
 			@QueryParam("page") int page, @QueryParam("start") int start,
 			@QueryParam("limit") int limit) {
 		try {
-			long totalSize = sceneRepository.count(SceneResourceBean.class);
+			long totalSize = restaurantRepository
+					.count(RestaurantResourceBean.class);
 			if (start >= totalSize) {
 				if (LOG.isWarnEnabled()) {
 					LOG.warn(String
-							.format("The query parameter is invalid, the total scene: %d, but request: page(%d), start(%d), limit(%d).",
+							.format("The query parameter is invalid, the total restaurant: %d, but request: page(%d), start(%d), limit(%d).",
 									totalSize, page, start, limit));
 				}
-				return new ResponsePagingDataVO<List<SceneResourceVO>>(
+				return new ResponsePagingDataVO<List<RestaurantResourceVO>>(
 						StaticErrorEnum.THE_DATA_NOT_EXIST);
 			}
 
-			Vector<SceneResourceVO> result = new Vector<SceneResourceVO>();
-			List<SceneResourceBean> scenes = sceneRepository.getScenesByPage(
-					start, limit);
-			for (SceneResourceBean scene : scenes) {
-				SceneResourceVO vo = SceneResourceVO.transform(scene);
+			Vector<RestaurantResourceVO> result = new Vector<RestaurantResourceVO>();
+			List<RestaurantResourceBean> restaurants = restaurantRepository
+					.getRestaurantsByPage(start, limit);
+			for (RestaurantResourceBean restaurant : restaurants) {
+				RestaurantResourceVO vo = RestaurantResourceVO
+						.transform(restaurant);
 				if (vo == null) {
 					continue;
 				}
@@ -102,66 +105,67 @@ public class SceneRestResource {
 			}
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String
-						.format("Query a page scene success, total scene: {%d}, request: page(%d), start(%d), limit(%d).",
+						.format("Query a page restaurant success, total restaurant: {%d}, request: page(%d), start(%d), limit(%d).",
 								result.size(), page, start, limit));
 			}
-			return new ResponsePagingDataVO<List<SceneResourceVO>>(totalSize,
-					result);
+			return new ResponsePagingDataVO<List<RestaurantResourceVO>>(
+					totalSize, result);
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
 				LOG.error(
 						String.format(
-								"Query a page scene fail, request: page(%d), start(%d), limit(%d).",
+								"Query a page restaurant fail, request: page(%d), start(%d), limit(%d).",
 								page, start, limit), ex);
 			}
-			return new ResponsePagingDataVO<List<SceneResourceVO>>(
+			return new ResponsePagingDataVO<List<RestaurantResourceVO>>(
 					StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
 	}
 
 	@GET
 	@Path("{id}")
-	public ResponseDataVO<SceneResourceVO> getScene(@PathParam("id") String id) {
+	public ResponseDataVO<RestaurantResourceVO> getRestaurant(
+			@PathParam("id") String id) {
 		long graphId = Neo4jUtils.getGraphIDFromString(id);
 		try {
-			SceneResourceBean bean = null;
+			RestaurantResourceBean bean = null;
 			if (graphId != -1) {
 				// id是GraphID
-				bean = sceneRepository.getSceneByGraphId(graphId);
+				bean = restaurantRepository.getRestaurantByGraphId(graphId);
 			} else {
 				// id 是rowkey
-				bean = (SceneResourceBean) sceneRepository.get(
-						SceneResourceBean.class, id);
+				bean = (RestaurantResourceBean) restaurantRepository.get(
+						RestaurantResourceBean.class, id);
 			}
 			if (bean == null) {
-				return new ResponseDataVO<SceneResourceVO>(
+				return new ResponseDataVO<RestaurantResourceVO>(
 						StaticErrorEnum.THE_DATA_NOT_EXIST);
 			}
-			SceneResourceVO vo = SceneResourceVO.transform(bean);
+			RestaurantResourceVO vo = RestaurantResourceVO.transform(bean);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format(
-						"Fetch SceneResourceBean[id='%s'] success.", id));
+						"Fetch RestaurantResourceBean[id='%s'] success.", id));
 			}
-			return new ResponseDataVO<SceneResourceVO>(vo);
+			return new ResponseDataVO<RestaurantResourceVO>(vo);
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
 				LOG.error(String.format(
-						"Fetch SceneResourceBean[id='%s'] fail.", id), ex);
+						"Fetch RestaurantResourceBean[id='%s'] fail.", id), ex);
 			}
-			return new ResponseDataVO<SceneResourceVO>(
+			return new ResponseDataVO<RestaurantResourceVO>(
 					StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
 	}
 
 	@POST
 	@Path("import")
-	public ResponseVO importData(List<SceneResourceVO> vos) {
-		for (SceneResourceVO vo : vos) {
+	public ResponseVO importData(List<RestaurantResourceVO> vos) {
+		for (RestaurantResourceVO vo : vos) {
 			ResponseVO response = save(null, vo, "admin");
 			if (response.getErrorCode() != 0) {
 				if (LOG.isWarnEnabled()) {
 					LOG.warn(String
-							.format("Import SceneResourceBean fail, error Bean[id=''%s'].",
+							.format("Import RestaurantResourceBean fail, error Bean[id=''%s'].",
 									vo.getRowKey()));
 				}
 				return response;
@@ -169,14 +173,15 @@ public class SceneRestResource {
 		}
 		if (LOG.isDebugEnabled()) {
 			LOG.debug(String.format(
-					"Import SceneResourceBean success, total: %d.", vos.size()));
+					"Import RestaurantResourceBean success, total: %d.",
+					vos.size()));
 		}
 		return new ResponseVO();
 	}
 
 	@POST
 	@Path("save.json")
-	public ResponseVO saveByAdd(SceneResourceVO vo,
+	public ResponseVO saveByAdd(RestaurantResourceVO vo,
 			@Context HttpServletRequest request) {
 		return save(null, vo, WebUtils.getCurrentLoginUser(request));
 	}
@@ -184,19 +189,19 @@ public class SceneRestResource {
 	@POST
 	@Path("save/{id}.json")
 	public ResponseVO saveByUpdate(@PathParam("id") String id,
-			SceneResourceVO vo, @Context HttpServletRequest request) {
+			RestaurantResourceVO vo, @Context HttpServletRequest request) {
 		return save(id, vo, WebUtils.getCurrentLoginUser(request));
 	}
 
-	private ResponseVO save(String id, SceneResourceVO vo, String operator) {
+	private ResponseVO save(String id, RestaurantResourceVO vo, String operator) {
 		if (vo == null) {
 			if (LOG.isWarnEnabled()) {
-				LOG.warn("The SceneResourceVO is null.");
+				LOG.warn("The RestaurantResourceVO is null.");
 			}
 			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
 		}
 		try {
-			SceneResourceBean bean = SceneResourceVO.transform(vo);
+			RestaurantResourceBean bean = RestaurantResourceVO.transform(vo);
 			if (id == null) {
 				// 新增
 				bean.setGraphId(null);
@@ -211,18 +216,18 @@ public class SceneRestResource {
 					bean.setRowKey(id);
 				}
 			}
-			sceneRepository.save(bean, operator, true);
+			restaurantRepository.save(bean, operator, true);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format(
-						"Save SceneResourceBean['%s'] success.", vo.getRowKey()));
+						"Save RestaurantResourceBean['%s'] success.",
+						vo.getRowKey()));
 			}
 			return new ResponseVO();
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
-				LOG.error(
-						String.format(
-								"Save the SceneResourceBean[id='%s'] fail.",
-								vo.getId()), ex);
+				LOG.error(String.format(
+						"Save the RestaurantResourceBean[id='%s'] fail.",
+						vo.getId()), ex);
 			}
 			return new ResponseVO(StaticErrorEnum.DB_OPERATE_FAIL);
 		}
@@ -233,22 +238,22 @@ public class SceneRestResource {
 	public ResponseVO delete(@PathParam("id") String id) {
 		long graphId = Neo4jUtils.getGraphIDFromString(id);
 		try {
-			SceneResourceBean bean = null;
+			RestaurantResourceBean bean = null;
 			if (graphId != -1) {
 				// id是GraphID
-				bean = sceneRepository.getSceneByGraphId(graphId);
+				bean = restaurantRepository.getRestaurantByGraphId(graphId);
 				id = bean.getRowKey();
 			}
-			sceneRepository.delete(SceneResourceBean.class, id);
+			restaurantRepository.delete(RestaurantResourceBean.class, id);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format(
-						"Delete SceneResourceBean['%s'] success.", id));
+						"Delete RestaurantResourceBean['%s'] success.", id));
 			}
 			return new ResponseVO();
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
 				LOG.error(String.format(
-						"Fetch SceneResourceBean[id='%s'] fail.", id), ex);
+						"Fetch RestaurantResourceBean[id='%s'] fail.", id), ex);
 			}
 			return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}

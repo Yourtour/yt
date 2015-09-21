@@ -88,7 +88,7 @@ public class SceneRepositoryImpl extends CrudGeneralOperate implements
 		SceneResourceBean scene = (SceneResourceBean) neo4jBean;
 		// 建立景点和目的地的关联关系
 		if (scene.getPlace() != null && scene.getPlace().getGraphId() != null) {
-			// 建立线路到目的地的关系
+			// 建立景点到目的地的关系
 			PlaceBean place = super.template.findOne(scene.getPlace()
 					.getGraphId(), PlaceBean.class);
 			Neo4jUtils.maintainRelation(super.template,
