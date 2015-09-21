@@ -149,13 +149,13 @@ Ext.define('yt_manager_app.store.NavigationTree', {
                 routeId: 'resource.scene'
             }, {
                 text: '宾馆',
-                //view: 'data.Company',
+                view: 'resource.Hotel',
                 leaf: true,
                 iconCls: 'x-fa fa-file-o',
                 routeId: 'resource.hotel'
             }, {
                 text: '饭店',
-                //view: 'data.Product',
+                view: 'resource.Restaurant',
                 leaf: true,
                 iconCls: 'x-fa fa-file-o',
                 routeId: 'resource.restaurant'
