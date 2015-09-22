@@ -42,7 +42,7 @@ Ext.define('yt_manager_app.view.route.LineWindow', {
                 reference: 'imageUrl',
                 name: 'imageUrl',
                 emptyText: 'Image URL'
-            },{
+            }, {
                 xtype: 'numberfield',
                 minValue: 0,
                 value: 0,
@@ -50,10 +50,10 @@ Ext.define('yt_manager_app.view.route.LineWindow', {
                 reference: 'arriveNum',
                 name: 'arriveNum',
                 emptyText: '到达人数'
-            },{
+            }, {
                 xtype: 'tagfield',
                 name: 'tags',
-                fieldLabel: '选择一种分类',
+                fieldLabel: '分类',
                 store: {
                     data: [{
                         abbr: 'QZY', tag: '亲子游'
@@ -71,14 +71,60 @@ Ext.define('yt_manager_app.view.route.LineWindow', {
                         abbr: 'GW', tag: '购物'
                     }]
                 },
-                //value: ['NA'],
                 reference: 'tags',
                 displayField: 'tag',
                 valueField: 'abbr',
                 filterPickList: true,
                 queryMode: 'local',
                 publishes: 'value'
-            },{
+            }, {
+                xtype: 'tagfield',
+                name: 'scenes',
+                fieldLabel: '景点',
+                store: {
+                    data: [{
+                        abbr: '0', name: '黄山迎客松'
+                    }, {
+                        abbr: '6', name: '西部峡谷'
+                    }]
+                },
+                reference: 'scenes',
+                displayField: 'name',
+                valueField: 'abbr',
+                filterPickList: true,
+                queryMode: 'local',
+                publishes: 'value'
+            }, {
+                xtype: 'tagfield',
+                name: 'hotels',
+                fieldLabel: '宾馆',
+                store: {
+                    data: [{
+                        abbr: '10', name: '黄山宾馆'
+                    }]
+                },
+                reference: 'hotels',
+                displayField: 'name',
+                valueField: 'abbr',
+                filterPickList: true,
+                queryMode: 'local',
+                publishes: 'value'
+            }, {
+                xtype: 'tagfield',
+                name: 'restaurants',
+                fieldLabel: '饭店',
+                store: {
+                    data: [{
+                        abbr: '17', name: '食趣农家乐'
+                    }]
+                },
+                reference: 'restaurants',
+                displayField: 'name',
+                valueField: 'abbr',
+                filterPickList: true,
+                queryMode: 'local',
+                publishes: 'value'
+            }, {
                 xtype: 'combobox',
                 store: {
                     data: [{

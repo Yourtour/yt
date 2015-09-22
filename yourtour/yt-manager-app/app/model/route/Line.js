@@ -29,6 +29,12 @@ Ext.define('yt_manager_app.model.route.Line', {
     }, {
         name: 'tags', type: 'string'
     }, {
+        name: 'scenes', type: 'string'
+    }, {
+        name: 'hotels', type: 'string'
+    }, {
+        name: 'restaurants', type: 'string'
+    }, {
         name: 'commentScore', type: 'number'
     }, {
         name: 'commentNum', type: 'int'

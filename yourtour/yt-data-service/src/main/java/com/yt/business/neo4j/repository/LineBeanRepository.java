@@ -9,6 +9,33 @@ import com.yt.business.bean.LineBean;
 
 public interface LineBeanRepository extends GraphRepository<LineBean> {
 	/**
+	 * 删除指定的线路跟景点之间的关系
+	 * 
+	 * @param lineId
+	 *            线路ID
+	 */
+	@Query("START line=node({0}) MATCH line-[r:CONTAIN]->(s:SceneResourceBean) DELETE r")
+	public void deleteLine2SceneRelationship(Long lineId);
+
+	/**
+	 * 删除指定的线路跟宾馆之间的关系
+	 * 
+	 * @param lineId
+	 *            线路ID
+	 */
+	@Query("START line=node({0}) MATCH line-[r:CONTAIN]->(s:HotelResourceBean) DELETE r")
+	public void deleteLine2HotelRelationship(Long lineId);
+
+	/**
+	 * 删除指定的线路跟饭店之间的关系
+	 * 
+	 * @param lineId
+	 *            线路ID
+	 */
+	@Query("START line=node({0}) MATCH line-[r:CONTAIN]->(s:RestaurantResourceBean) DELETE r")
+	public void deleteLine2RestaurantRelationship(Long lineId);
+
+	/**
 	 * 根据GraphId获取指定的线路，并关联查询对应的目的地
 	 * 
 	 * @param graphId

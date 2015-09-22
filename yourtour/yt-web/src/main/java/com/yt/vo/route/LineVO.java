@@ -1,8 +1,5 @@
 package com.yt.vo.route;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import com.yt.business.bean.LineBean;
 import com.yt.business.bean.PlaceBean;
 import com.yt.business.bean.SceneResourceBean;
@@ -10,8 +7,6 @@ import com.yt.business.common.Constants.Status;
 import com.yt.vo.BaseVO;
 
 public class LineVO extends BaseVO {
-	private static final Log LOG = LogFactory.getLog(LineVO.class);
-
 	private String name; // 名称
 	private String imageUrl; // 图片
 	private String intro; // 概述， 线路进行简单介绍
@@ -29,8 +24,9 @@ public class LineVO extends BaseVO {
 
 	private String place; // 目的地
 	private Long placeId; // 目的地对象ID
-	private String scenes; // 线路包括的景点，逗号分割
-	private String sceneIds; // 线路包括的景点ID，逗号分割
+	private String scenes; // 线路包括的景点ID，逗号分割
+	private String hotels; // 线路中包括的宾馆ID，逗号分割
+	private String restaurants; // 线路中包括的饭店ID，逗号分割
 	private Status status;
 
 	public static LineVO transform(LineBean bean) {
@@ -65,21 +61,21 @@ public class LineVO extends BaseVO {
 			vo.setPlaceId(null);
 		}
 
-		// 从景点对象中获取ID和名称，便于前端显示
-		StringBuffer sbSceneName = new StringBuffer(), sbSceneId = new StringBuffer();
+		// 从景点对象中获取ID，便于前端显示
+		StringBuffer sbSceneId = new StringBuffer();
 		for (int index = 0, num = bean.getScenes().size(); index < num; index++) {
 			SceneResourceBean scene = bean.getScenes().get(index);
 			if (scene == null) {
 				continue;
 			}
-			sbSceneName.append(scene.getName());
 			sbSceneId.append(scene.getGraphId());
 		}
-		int len = sbSceneName.length();
+		int len = sbSceneId.length();
 		// 去除最后一个逗号
 		len = (len > 0) ? len - 1 : 0;
-		vo.setSceneIds(sbSceneId.substring(0, len));
-		vo.setScenes(sbSceneName.substring(0, len));
+		vo.setScenes(sbSceneId.substring(0, len));
+
+		// TODO 从宾馆、饭店对象中获取ID，便于前端显示
 
 		return vo;
 	}
@@ -113,22 +109,15 @@ public class LineVO extends BaseVO {
 		place.setGraphId(vo.getPlaceId());
 		bean.setPlace(place);
 
-		// 从VO个取出景点的ID，并设置到SceneResourceBean中，便于后续建立关联关系
-		String[] sceneNames = vo.getScenes().split(","), sceneIds = vo
-				.getSceneIds().split(",");
-		int len = Math.min(sceneNames.length, sceneIds.length);
-		if (sceneNames.length != sceneIds.length) {
-			if (LOG.isWarnEnabled()) {
-				LOG.warn(String
-						.format("The input name's size[%d] not equals the id's size[%d], select the minimum[%d].",
-								sceneNames.length, sceneIds.length, len));
-			}
-		}
-		for (int index = 0; index < len; index++) {
+		// 从VO中取出景点的ID，并设置到SceneResourceBean中，便于后续建立关联关系
+		String[] sceneIds = vo.getScenes().split(",");
+		for (int index = 0; index < sceneIds.length; index++) {
 			SceneResourceBean scene = new SceneResourceBean();
 			scene.setGraphId(Long.valueOf(sceneIds[index]));
 			bean.getScenes().add(scene);
 		}
+
+		// TODO 从VO取出宾馆、饭店的ID，并设置到相应的ResourceBean中，便于后续建立关联关系
 
 		return bean;
 	}
@@ -273,12 +262,20 @@ public class LineVO extends BaseVO {
 		this.scenes = scenes;
 	}
 
-	public String getSceneIds() {
-		return sceneIds;
+	public String getHotels() {
+		return hotels;
 	}
 
-	public void setSceneIds(String sceneIds) {
-		this.sceneIds = sceneIds;
+	public void setHotels(String hotels) {
+		this.hotels = hotels;
+	}
+
+	public String getRestaurants() {
+		return restaurants;
+	}
+
+	public void setRestaurants(String restaurants) {
+		this.restaurants = restaurants;
 	}
 
 	public Status getStatus() {

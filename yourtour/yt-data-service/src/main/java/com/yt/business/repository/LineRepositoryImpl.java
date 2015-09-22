@@ -8,8 +8,10 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.yt.business.bean.HotelResourceBean;
 import com.yt.business.bean.LineBean;
 import com.yt.business.bean.PlaceBean;
+import com.yt.business.bean.RestaurantResourceBean;
 import com.yt.business.bean.SceneResourceBean;
 import com.yt.business.common.Constants.NodeRelationshipEnum;
 import com.yt.business.neo4j.repository.LineBeanRepository;
@@ -78,6 +80,8 @@ public class LineRepositoryImpl extends CrudGeneralOperate implements
 			Neo4jUtils.maintainRelation(super.template,
 					NodeRelationshipEnum.AT, line, place, null, true, false);
 		}
+		// 删除线路跟景点的所有关系，待后续重建
+		lineRepo.deleteLine2SceneRelationship(line.getGraphId());
 		for (SceneResourceBean scene : line.getScenes()) {
 			// 建立线路到景点的关系
 			if (scene == null) {
@@ -97,6 +101,50 @@ public class LineRepositoryImpl extends CrudGeneralOperate implements
 					NodeRelationshipEnum.CONTAIN, line, sceneGet, null, true,
 					false);
 		}
+		// 删除线路跟宾馆的所有关系，待后续重建
+		lineRepo.deleteLine2HotelRelationship(line.getGraphId());
+		for (HotelResourceBean hotel : line.getHotels()) {
+			// 建立线路到宾馆的关系
+			if (hotel == null) {
+				continue;
+			}
+			HotelResourceBean hotelGet = super.template.findOne(
+					hotel.getGraphId(), HotelResourceBean.class);
+			if (hotelGet == null) {
+				if (LOG.isWarnEnabled()) {
+					LOG.warn(String
+							.format("The hotel not exist, the relation: Line[%d]-[:CONTAIN]->Hotel[%d] can not be created.",
+									line.getGraphId(), hotel.getGraphId()));
+				}
+				continue;
+			}
+			Neo4jUtils.maintainRelation(super.template,
+					NodeRelationshipEnum.CONTAIN, line, hotelGet, null, true,
+					false);
+		}
+
+		// 删除线路跟饭店的所有关系，待后续重建
+		lineRepo.deleteLine2RestaurantRelationship(line.getGraphId());
+		for (RestaurantResourceBean restaurant : line.getRestaurants()) {
+			// 建立线路到饭店的关系
+			if (restaurant == null) {
+				continue;
+			}
+			RestaurantResourceBean restaurantGet = super.template.findOne(
+					restaurant.getGraphId(), RestaurantResourceBean.class);
+			if (restaurantGet == null) {
+				if (LOG.isWarnEnabled()) {
+					LOG.warn(String
+							.format("The hotel not exist, the relation: Line[%d]-[:CONTAIN]->Restaurant[%d] can not be created.",
+									line.getGraphId(), restaurant.getGraphId()));
+				}
+				continue;
+			}
+			Neo4jUtils.maintainRelation(super.template,
+					NodeRelationshipEnum.CONTAIN, line, restaurantGet, null,
+					true, false);
+		}
+
 		return bean;
 	}
 

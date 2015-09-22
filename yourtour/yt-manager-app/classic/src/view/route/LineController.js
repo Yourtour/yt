@@ -55,6 +55,7 @@ Ext.define('yt_manager_app.view.route.LineController', {
         place.setValue(data.text);
         record.set('place', data.text);
         record.set('placeId', data.id);
+        // TODO 根据目的地查询并设置相关景点、宾馆、饭店的store.
     },
 
     onTabChange: function (tabs, newTab, oldTab) {

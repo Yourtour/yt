@@ -72,9 +72,6 @@ public class LineBean extends Neo4JBaseBean {
 	private @HbaseColumn(name = "cind")
 	double commentIndex; // 点评指数
 
-	private transient PlaceBean place = null;
-	private transient List<SceneResourceBean> scenes = null;
-
 	private @HbaseColumn(name = "anum")
 	int arriveNum; // 到达人数
 	private @HbaseColumn(name = "tags")
@@ -94,6 +91,11 @@ public class LineBean extends Neo4JBaseBean {
 
 	private @HbaseColumn(name = "stat")
 	Status status;
+
+	private transient PlaceBean place = null;
+	private transient List<SceneResourceBean> scenes = null;
+	private transient List<HotelResourceBean> hotels = null;
+	private transient List<RestaurantResourceBean> restaurants = null;
 
 	public LineBean() {
 		super();
@@ -166,6 +168,14 @@ public class LineBean extends Neo4JBaseBean {
 
 	public List<SceneResourceBean> getScenes() {
 		return scenes;
+	}
+
+	public List<HotelResourceBean> getHotels() {
+		return hotels;
+	}
+
+	public List<RestaurantResourceBean> getRestaurants() {
+		return restaurants;
 	}
 
 	public int getArriveNum() {
