@@ -8,7 +8,7 @@ import com.yt.business.bean.RestaurantResourceBean;
 
 @QueryResult
 public class RestaurantResourcePlaceTuple {
-	@ResultColumn("hotel")
+	@ResultColumn("restaurant")
 	private RestaurantResourceBean restaurant;
 
 	@ResultColumn("place")

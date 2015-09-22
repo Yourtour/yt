@@ -14,7 +14,5 @@ Ext.define('yt_manager_app.model.resource.Hotel', {
         name: 'roomEquipment', type: 'string'
     }, {
         name: 'networkInfo', type: 'string'
-    }, {
-        name: 'sceneTraffic', type: 'string'
     }]
 });
