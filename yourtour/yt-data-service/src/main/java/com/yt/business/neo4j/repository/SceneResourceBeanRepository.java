@@ -21,6 +21,16 @@ public interface SceneResourceBeanRepository extends
 	public SceneResourcePlaceTuple getSceneByGraphId(Long graphId);
 
 	/**
+	 * 根据指定的目的地ID，获取该目的地下的所有景点
+	 * 
+	 * @param placeId
+	 *            目的地ID
+	 * @return 已经关联了目的地信息的景点列表
+	 */
+	@Query("START place=node({0}) MATCH place<-[:AT]-(scene:SceneResourceBean) RETURN scene, place")
+	public List<SceneResourcePlaceTuple> getSceneByPlace(Long placeId);
+
+	/**
 	 * 根据分页要求查询所有的景点
 	 * 
 	 * @param skip

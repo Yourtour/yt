@@ -20,6 +20,16 @@ public interface RestaurantResourceBeanRepository extends
 	public RestaurantResourcePlaceTuple getRestaurantByGraphId(Long graphId);
 
 	/**
+	 * 根据指定的目的地ID，获取该目的地下的所有饭店
+	 * 
+	 * @param placeId
+	 *            目的地ID
+	 * @return 已经关联了目的地信息的饭店列表
+	 */
+	@Query("START place=node({0}) MATCH place<-[:AT]-(restaurant:RestaurantResourceBean) RETURN restaurant, place")
+	public List<RestaurantResourcePlaceTuple> getRestaurantByPlace(Long placeId);
+
+	/**
 	 * 根据分页要求查询所有的饭店
 	 * 
 	 * @param skip
