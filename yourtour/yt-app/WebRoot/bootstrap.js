@@ -16,7 +16,8 @@ Ext.Loader.addClassPathMappings({
   "Ext.device.sqlite.SQLResultSet": "touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLResultSetRowList": "touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLTransaction": "touch/src/device/sqlite/Sencha.js",
-  "YourTour": "app"
+  "YourTour": "app",
+  "YourTour.store.PlaceStore": "app/store/HotStore.js"
 });
 Ext.ClassManager.addNameAlternateMappings({
   "Ext.AbstractComponent": [],
@@ -665,11 +666,13 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.model.LiveModel": [],
   "YourTour.model.LocalCache": [],
   "YourTour.model.OptionModel": [],
+  "YourTour.model.PlaceCarouselModel": [],
   "YourTour.model.PlaceModel": [],
   "YourTour.model.ResourceModel": [],
   "YourTour.model.RouteModel": [],
   "YourTour.model.ScheduleModel": [],
   "YourTour.model.TalentModel": [],
+  "YourTour.model.TreeModel": [],
   "YourTour.model.UserModel": [],
   "YourTour.store.AjaxStore": [],
   "YourTour.store.LineStore": [],
@@ -685,6 +688,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.SearchMain": [],
   "YourTour.view.common.PlaceView": [],
   "YourTour.view.home.AlongItemView": [],
+  "YourTour.view.home.CarouselItemView": [],
   "YourTour.view.home.ChatItemView": [],
   "YourTour.view.home.HomeMain": [],
   "YourTour.view.home.LiveItemView": [],
@@ -1486,15 +1490,19 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.localCache"
   ],
   "YourTour.model.OptionModel": [],
+  "YourTour.model.PlaceCarouselModel": [],
   "YourTour.model.PlaceModel": [],
   "YourTour.model.ResourceModel": [],
   "YourTour.model.RouteModel": [],
   "YourTour.model.ScheduleModel": [],
   "YourTour.model.TalentModel": [],
+  "YourTour.model.TreeModel": [],
   "YourTour.model.UserModel": [],
   "YourTour.store.AjaxStore": [],
   "YourTour.store.LineStore": [],
-  "YourTour.store.PlaceStore": [],
+  "YourTour.store.PlaceStore": [
+    "widget.hotStore"
+  ],
   "YourTour.store.ResourceSelectionStore": [],
   "YourTour.store.ResourceStore": [],
   "YourTour.store.RouteStore": [],
@@ -1517,6 +1525,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.home.AlongItemView": [
     "widget.AlongItemView"
+  ],
+  "YourTour.view.home.CarouselItemView": [
+    "widget.CarouselItemView"
   ],
   "YourTour.view.home.ChatItemView": [
     "widget.LiveItemView"

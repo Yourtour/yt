@@ -32,7 +32,7 @@ Ext.application({
     ],
     
     models:[
-        'RouteModel','ScheduleModel','LineModel', 'UserModel','OptionModel', 'PlaceModel','LiveModel','ChatModel','AlongModel','TalentModel' 
+        'RouteModel','ScheduleModel','LineModel', 'UserModel','OptionModel', 'PlaceModel','LiveModel','ChatModel','AlongModel','TalentModel','PlaceCarouselModel' 
     ],
     
     stores:[

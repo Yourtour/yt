@@ -1,6 +1,6 @@
 Ext.define('YourTour.controller.home.PlaceMainCtrl', {
     extend: 'YourTour.controller.BaseCtrl',
-    requires:['YourTour.view.home.LiveItemView', 'YourTour.view.home.ChatItemView','YourTour.view.home.AlongItemView','YourTour.view.home.TalentItemView'],
+    requires:['YourTour.view.home.LiveItemView', 'YourTour.view.home.ChatItemView','YourTour.view.home.AlongItemView','YourTour.view.home.TalentItemView','YourTour.view.home.CarouselItemView'],
     config: {
        refs:{
        	   	placeMainView:'#PlaceMainView',
@@ -10,7 +10,8 @@ Ext.define('YourTour.controller.home.PlaceMainCtrl', {
 			liveContent:'#PlaceMainView #liveContent',
 			chatContent:'#PlaceMainView #chatContent',
 			alongs:'#PlaceMainView #alongs',
-			talents:'#PlaceMainView #talents'
+			talents:'#PlaceMainView #talents',
+			placeCarousel:'#PlaceMainView #placeCarousel'
        },
        
        control:{
@@ -33,9 +34,16 @@ Ext.define('YourTour.controller.home.PlaceMainCtrl', {
 		var store = this.store;
 		
 		var success = function(){
-			var model = store.getAt(0);
+			parent.show('PlaceMainView','YourTour.view.home.PlaceMainView');
 			
-    		parent.show('PlaceMainView','YourTour.view.home.PlaceMainView');
+			var model = store.getAt(0);
+			console.log(model);
+			
+			var carousels = model.carousels();
+    		carousels.each(function(carousel){
+ 	 	   		parent.getPlaceCarousel().add(Ext.create('YourTour.view.home.CarouselItemView',{itemId:'carousel', model:carousel}));
+ 	 	   	});
+    		
     		parent.getToolbar().applyTitle(model.get('name'));
     		parent.getLiveTitle().setHtml('目前有' + model.get('liveNum') + '人参与行程直播互动.');
     		parent.getChatTitle().setHtml('目前有' + model.get('chatNum') + '人参与目的地聊天.');

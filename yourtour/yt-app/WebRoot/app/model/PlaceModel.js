@@ -11,6 +11,12 @@ Ext.define('YourTour.model.PlaceModel', {
 	    ],
 	    
 	    associations: [
+	    	{  
+	            type: 'hasMany',   
+	            model: 'YourTour.model.PlaceCarouselModel',   
+	            name:'carousels',
+	            associationKey:'carousels'
+	        },
 		    {  
 	            type: 'hasMany',   
 	            model: 'YourTour.model.LiveModel',   

@@ -1,20 +1,15 @@
 Ext.define('YourTour.store.PlaceStore', {
-	extend: 'Ext.data.Store',
+	extend: 'Ext.data.TreeStore',
     requires: [
-       'YourTour.model.PlaceModel'
+       'YourTour.model.TreeModel'
     ],
+    xtype:'hotStore',
     config:{
-    	model:'YourTour.model.PlaceModel',
+    	model:'YourTour.model.TreeModel',
     	
     	data:[
 			{
 		    	rowKey:"1", name:'上海',liveNum:'2000', chatNum:'2000',
-		    	carousels:[
-		    		{rowKey:"11", imageUrl:"resources/images/guangdong.jpg"},
-			     	{rowKey:"12", imageUrl:"resources/images/beijing.jpg"},
-			     	{rowKey:"13", imageUrl:"resources/images/shanghai.jpg"}
-		    	],
-		    	
 		    	lives:[
 		    		{rowKey:"11", lineName:"九寨沟、黄龙、峨眉、乐山1"},
 			     	{rowKey:"12", lineName:"九寨沟、黄龙、峨眉、乐山2"},

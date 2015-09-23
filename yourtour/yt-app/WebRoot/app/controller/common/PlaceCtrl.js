@@ -3,7 +3,11 @@ Ext.define('YourTour.controller.common.PlaceCtrl', {
     
     config: {
        refs: {
-       	   back:'#placeview #close'
+       	   back:'#placeview #close',
+       	   hot:'#placeview #hot',
+       	   oversea: '#placeview #oversea',
+       	   domestic:'#placeview #domestic',
+       	   placeType:'#placeview #placeType'
        },
        
        control:{
@@ -22,6 +26,8 @@ Ext.define('YourTour.controller.common.PlaceCtrl', {
     showPlaceSelectionView:function(source){
     	this.source = source;
     	this.show('placeview','YourTour.view.common.PlaceView');
+    	
+    	
     },
     
     onBack:function(){

@@ -1,7 +1,7 @@
 Ext.define('YourTour.view.common.PlaceView', {
     extend: 'YourTour.view.widget.XPage',
     xtype: 'placeview',
-    requires:['YourTour.view.widget.XToolbar','Ext.Carousel'],
+    requires:['YourTour.view.widget.XToolbar','Ext.Carousel','Ext.NestedList'],
     config: {
     	itemId:'placeview',
     	id:'placeview',
@@ -22,17 +22,14 @@ Ext.define('YourTour.view.common.PlaceView', {
 					flex:1
 				},
 				items: [
-		            {
-		                text:'国内'
+					{
+		                text:'热门'
 		            },
 		            {
-		                text:'亚洲'
+		                text:'境内'
 		            },
 		            {
-		                text:'欧洲'
-		            },
-		            {
-		                text:'美洲'
+		                text:'境外'
 		            }
 		        ]
 			},
@@ -41,16 +38,22 @@ Ext.define('YourTour.view.common.PlaceView', {
             	itemId:'routeCarousel',
             	indicator:false,
             	flex:1,
-            	items:[{
-            		html:'国内'
-            	},
-            	{
-            		html:'亚洲'
-            	},{
-            		html:'欧洲'
-            	},{
-            		html:'美洲'
-            	}]
+            	items:[
+	            	/*{
+	            		xtype:'nestedlist',
+	            		itemId:'hot',
+	            		store: hotStore
+	            	},{
+	            		xtype:'nestedlist',
+	            		itemId:'domestic',
+	            		store: domesticStore
+	            	},
+	            	{
+	            		xtype:'nestedlist',
+	            		itemId:'oversea',
+	            		store: overseaStore
+	            	}*/
+            	]
             }
         ]
     }

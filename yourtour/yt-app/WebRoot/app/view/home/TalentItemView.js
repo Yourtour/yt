@@ -42,9 +42,6 @@ Ext.define('YourTour.view.home.TalentItemView', {
     
     applyModel:function(model){
     	var me = this;
-       	
-    	console.log(model);
-    	
        	if(model){
        	   var imageUrlEl = me.down('#imageUrl');
 	 	   imageUrlEl.setHtml("<img src='" + model.get('imageUrl') + "' style='width:48px; max-height:48px'>");

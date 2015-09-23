@@ -10,9 +10,6 @@ Ext.define('YourTour.view.home.PlaceMainView', {
     	    direction: 'vertical',
     	    indicators: false	
     	},
-    	defaults:{
-    		padding:'0 5 0 5'
-    	},
         items: [
         	{    
 				xtype: 'xtoolbar',
@@ -32,7 +29,7 @@ Ext.define('YourTour.view.home.PlaceMainView', {
 			{
             	xtype: 'carousel',
             	itemId:'placeCarousel',
-            	height:100,
+            	height:150,
             	cls:'space-bottom'
             },
     	   	
@@ -40,11 +37,13 @@ Ext.define('YourTour.view.home.PlaceMainView', {
     			xtype:'xpanel',
     			layout:'hbox',
     			cls:'underline',
-	    		items:[
+				padding:'0 5 0 5',
+    			items:[
 		    		{
 					   xtype:'xlabel',
 					   style:'height:60px; line-height:60px',
-					   html : '直播室'
+					   html : '直播室',
+					   cls:'font-medium'
 		    		},
 					{
 		    			xtype:'xpanel',
@@ -55,7 +54,7 @@ Ext.define('YourTour.view.home.PlaceMainView', {
     					},
     					items:[
     						{
-    							xtype:'xlabel',
+    							xtype:'xfield',
     							itemId:'liveTitle',
 					   			html : '目前有3000人参与行程直播互动'
     						},
@@ -75,6 +74,10 @@ Ext.define('YourTour.view.home.PlaceMainView', {
     			xtype:'xpanel',
     			layout:'hbox',
     			cls:'underline',
+    			padding:'0 5 0 5',
+    			defaults:{
+    				cls:'font-medium'
+    			},
 	    		items:[
 		    		{
 					   xtype:'xlabel',
@@ -90,7 +93,7 @@ Ext.define('YourTour.view.home.PlaceMainView', {
     					},
     					items:[
     						{
-    							xtype:'xlabel',
+    							xtype:'xfield',
     							itemId:'chatTitle',
 					   			html : '目前有3000人参与目的地聊天'
     						},
@@ -110,10 +113,11 @@ Ext.define('YourTour.view.home.PlaceMainView', {
     			xtype:'xpanel',
     			layut:'vbox',
     			cls:'space-top',
+    			padding:'0 5 0 5',
 	    		items:[
 		    		{
 					   xtype:'xlabel',
-					   cls:'row nav_arrow',
+					   cls:'row nav_arrow font-large',
 					   html : '达人'
 		    		},
 					   		
@@ -135,10 +139,11 @@ Ext.define('YourTour.view.home.PlaceMainView', {
     			xtype:'xpanel',
     			layut:'vbox',
     			cls:'space-top',
+    			padding:'0 5 0 5',
 	    		items:[
 		    		{
 					   xtype:'xlabel',
-					   cls:'row nav_arrow',
+					   cls:'row nav_arrow font-large',
 					   html : '热门游'
 		    		},
 					   		
@@ -156,10 +161,11 @@ Ext.define('YourTour.view.home.PlaceMainView', {
     			xtype:'xpanel',
     			layut:'vbox',
     			cls:'space-top',
+    			padding:'0 5 0 5',
 	    		items:[
 		    		{
 					   xtype:'xlabel',
-					   cls:'row nav_arrow',
+					   cls:'row nav_arrow font-large',
 					   html : '结伴游'
 		    		},
 					   		
