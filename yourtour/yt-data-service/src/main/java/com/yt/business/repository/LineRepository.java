@@ -15,10 +15,10 @@ public interface LineRepository extends ICrudOperate {
 	public List<SceneResourceBean> getScenesByPlace(Long placeId)
 			throws Exception;
 
-	public List<HotelResourceBean> getHotelByPlace(Long placeId)
+	public List<HotelResourceBean> getHotelsByPlace(Long placeId)
 			throws Exception;
 
-	public List<RestaurantResourceBean> getRestaurantByPlace(Long placeId)
+	public List<RestaurantResourceBean> getRestaurantsByPlace(Long placeId)
 			throws Exception;
 
 	public void containScene(String lineId, String sceneId) throws Exception;

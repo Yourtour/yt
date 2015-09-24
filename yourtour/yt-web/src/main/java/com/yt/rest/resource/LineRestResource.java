@@ -20,7 +20,11 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.yt.business.bean.HotelResourceBean;
 import com.yt.business.bean.LineBean;
+import com.yt.business.bean.PlaceBean;
+import com.yt.business.bean.RestaurantResourceBean;
+import com.yt.business.bean.SceneResourceBean;
 import com.yt.business.repository.LineRepository;
 import com.yt.business.utils.Neo4jUtils;
 import com.yt.error.StaticErrorEnum;
@@ -28,6 +32,7 @@ import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponsePagingDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.utils.WebUtils;
+import com.yt.vo.AbbrVO;
 import com.yt.vo.RelationConditionVO;
 import com.yt.vo.route.LineVO;
 import com.yt.vo.route.RecommendConditionVO;
@@ -148,6 +153,148 @@ public class LineRestResource {
 						ex);
 			}
 			return new ResponseDataVO<LineVO>(
+					StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
+	}
+
+	@GET
+	@Path("{id}/scenes")
+	public ResponseDataVO<List<AbbrVO>> getScenesByPlace(
+			@PathParam("id") String placeId) {
+		long graphId = Neo4jUtils.getGraphIDFromString(placeId);
+		try {
+			PlaceBean bean = null;
+			if (graphId != -1) {
+				// id是GraphID
+				bean = (PlaceBean) lineRepository.get(PlaceBean.class, graphId);
+			} else {
+				// id 是rowkey
+				bean = (PlaceBean) lineRepository.get(PlaceBean.class, placeId);
+			}
+			if (bean == null) {
+				return new ResponseDataVO<List<AbbrVO>>(
+						StaticErrorEnum.THE_DATA_NOT_EXIST);
+			}
+			graphId = bean.getGraphId();
+			List<SceneResourceBean> scenes = lineRepository
+					.getScenesByPlace(graphId);
+			List<AbbrVO> list = new Vector<AbbrVO>();
+			for (SceneResourceBean scene : scenes) {
+				if (scene == null) {
+					continue;
+				}
+				AbbrVO vo = new AbbrVO(String.valueOf(scene.getGraphId()),
+						scene.getName());
+				list.add(vo);
+			}
+			if (LOG.isDebugEnabled()) {
+				LOG.debug(String.format(
+						"Fetch all the scenes by PlaceBean[id='%s'] success.",
+						placeId));
+			}
+			return new ResponseDataVO<List<AbbrVO>>(list);
+		} catch (Exception ex) {
+			if (LOG.isErrorEnabled()) {
+				LOG.error(String.format(
+						"Fetch all the scenes by PlaceBean[id='%s'] fail.",
+						placeId), ex);
+			}
+			return new ResponseDataVO<List<AbbrVO>>(
+					StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
+	}
+
+	@GET
+	@Path("{id}/hotels")
+	public ResponseDataVO<List<AbbrVO>> getHotelsByPlace(
+			@PathParam("id") String placeId) {
+		long graphId = Neo4jUtils.getGraphIDFromString(placeId);
+		try {
+			PlaceBean bean = null;
+			if (graphId != -1) {
+				// id是GraphID
+				bean = (PlaceBean) lineRepository.get(PlaceBean.class, graphId);
+			} else {
+				// id 是rowkey
+				bean = (PlaceBean) lineRepository.get(PlaceBean.class, placeId);
+			}
+			if (bean == null) {
+				return new ResponseDataVO<List<AbbrVO>>(
+						StaticErrorEnum.THE_DATA_NOT_EXIST);
+			}
+			graphId = bean.getGraphId();
+			List<HotelResourceBean> hotels = lineRepository
+					.getHotelsByPlace(graphId);
+			List<AbbrVO> list = new Vector<AbbrVO>();
+			for (HotelResourceBean hotel : hotels) {
+				if (hotel == null) {
+					continue;
+				}
+				AbbrVO vo = new AbbrVO(String.valueOf(hotel.getGraphId()),
+						hotel.getName());
+				list.add(vo);
+			}
+			if (LOG.isDebugEnabled()) {
+				LOG.debug(String.format(
+						"Fetch all the hotels by PlaceBean[id='%s'] success.",
+						placeId));
+			}
+			return new ResponseDataVO<List<AbbrVO>>(list);
+		} catch (Exception ex) {
+			if (LOG.isErrorEnabled()) {
+				LOG.error(String.format(
+						"Fetch all the hotels by PlaceBean[id='%s'] fail.",
+						placeId), ex);
+			}
+			return new ResponseDataVO<List<AbbrVO>>(
+					StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
+	}
+
+	@GET
+	@Path("{id}/restaurants")
+	public ResponseDataVO<List<AbbrVO>> getRestaurantsByPlace(
+			@PathParam("id") String placeId) {
+		long graphId = Neo4jUtils.getGraphIDFromString(placeId);
+		try {
+			PlaceBean bean = null;
+			if (graphId != -1) {
+				// id是GraphID
+				bean = (PlaceBean) lineRepository.get(PlaceBean.class, graphId);
+			} else {
+				// id 是rowkey
+				bean = (PlaceBean) lineRepository.get(PlaceBean.class, placeId);
+			}
+			if (bean == null) {
+				return new ResponseDataVO<List<AbbrVO>>(
+						StaticErrorEnum.THE_DATA_NOT_EXIST);
+			}
+			graphId = bean.getGraphId();
+			List<RestaurantResourceBean> restaurants = lineRepository
+					.getRestaurantsByPlace(graphId);
+			List<AbbrVO> list = new Vector<AbbrVO>();
+			for (RestaurantResourceBean restaurant : restaurants) {
+				if (restaurant == null) {
+					continue;
+				}
+				AbbrVO vo = new AbbrVO(String.valueOf(restaurant.getGraphId()),
+						restaurant.getName());
+				list.add(vo);
+			}
+			if (LOG.isDebugEnabled()) {
+				LOG.debug(String
+						.format("Fetch all the restaurants by PlaceBean[id='%s'] success.",
+								placeId));
+			}
+			return new ResponseDataVO<List<AbbrVO>>(list);
+		} catch (Exception ex) {
+			if (LOG.isErrorEnabled()) {
+				LOG.error(
+						String.format(
+								"Fetch all the restaurants by PlaceBean[id='%s'] fail.",
+								placeId), ex);
+			}
+			return new ResponseDataVO<List<AbbrVO>>(
 					StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
 	}

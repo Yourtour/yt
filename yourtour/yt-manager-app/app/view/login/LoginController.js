@@ -29,15 +29,8 @@ Ext.define('yt_manager_app.view.login.LoginController', {
                 'Content-Type': 'application/json'
             },
             success: function (response, opts) {
-                localStorage.setItem('yt_manager_app.login.username', username);
-                localStorage.setItem('yt_manager_app.login.state', true);
-
-                console.log(Ext.String.format('User[{0}] login success.', username));
-
-                view.destroy();
-                Ext.create({
-                    xtype: 'app-main'
-                });
+                var auth = Ext.getStore('yt_manager_app.store.Authentication');
+                auth.login(view, username);
             },
             failure: function (response, opts) {
                 Ext.Boot.debug(Ext.String.format('User[{0}] login fail, status: {1}.', username, response.status));

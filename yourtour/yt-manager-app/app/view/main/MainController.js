@@ -21,7 +21,7 @@ Ext.define('yt_manager_app.view.main.MainController', {
     },
 
     init: function () {
-        var username = localStorage.getItem('yt_manager_app.login.username');
+        var username = sessionStorage.getItem('yt_manager_app.loginName');
         var model = this.getViewModel(),
             data = model.getData();
         data.username = username;
@@ -112,22 +112,8 @@ Ext.define('yt_manager_app.view.main.MainController', {
     },
 
     onLogoutClicked: function () {
-        var me = this;
-        var username = localStorage.getItem('yt_manager_app.login.username');
-        Ext.Ajax.request({
-            asyn: true,
-            url: 'http://localhost:8080/yt-web/rest/users/logout/' + username,
-            success: function (response, opts) {
-                localStorage.removeItem('yt_manager_app.login.state');
-                me.getView().destroy();
-                Ext.create({
-                    xtype: 'login'
-                });
-            },
-            failure: function (response, opts) {
-                Ext.MessageBox.alert('Error', '登出系统失败！错误码： ' + response.status + '。');
-            }
-        });
+        var auth = Ext.getStore('yt_manager_app.store.Authentication');
+        auth.logout(this.getView());
     },
 
     onRouteChange: function (id) {

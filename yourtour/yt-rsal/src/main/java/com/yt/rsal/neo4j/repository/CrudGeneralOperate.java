@@ -78,6 +78,19 @@ public class CrudGeneralOperate implements ICrudOperate {
 	 * (non-Javadoc)
 	 * 
 	 * @see com.yt.rsal.neo4j.repository.ICrudOperate#get(java.lang.Class,
+	 * java.lang.Long)
+	 */
+	@Override
+	public INeo4JBaseBean get(Class<? extends INeo4JBaseBean> clazz,
+			Long graphId) throws Exception {
+		INeo4JBaseBean bean = template.findOne(graphId, clazz);
+		return bean;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.yt.rsal.neo4j.repository.ICrudOperate#get(java.lang.Class,
 	 * java.lang.String)
 	 */
 	@Override

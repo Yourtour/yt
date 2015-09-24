@@ -48,6 +48,20 @@ public interface ICrudOperate {
 	public long count(Class<? extends INeo4JBaseBean> clazz) throws Exception;
 
 	/**
+	 * 获取指定图ID的Neo4J实体对象
+	 * 
+	 * @param clazz
+	 *            对应的Neo4J实体类
+	 * @param graphId
+	 *            图节点ID
+	 * @return Neo4J实体对象，如果不存在，则返回null。
+	 * @throws Exception
+	 *             获取过程中发生的异常
+	 */
+	public INeo4JBaseBean get(Class<? extends INeo4JBaseBean> clazz,
+			Long graphId) throws Exception;
+
+	/**
 	 * 获取指定行键的Neo4J实体对象
 	 * 
 	 * @param clazz

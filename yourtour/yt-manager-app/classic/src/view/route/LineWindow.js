@@ -26,7 +26,10 @@ Ext.define('yt_manager_app.view.route.LineWindow', {
                     margin: '0 0 0 0',
                     name: 'place',
                     flex: 1,
-                    emptyText: '线路目的地'
+                    emptyText: '线路目的地',
+                    listeners: {
+                        change: 'onPlaceChanged'
+                    }
                 }, {
                     xtype: 'button',
                     text: '选择',
@@ -82,11 +85,7 @@ Ext.define('yt_manager_app.view.route.LineWindow', {
                 name: 'scenes',
                 fieldLabel: '景点',
                 store: {
-                    data: [{
-                        abbr: '0', name: '黄山迎客松'
-                    }, {
-                        abbr: '6', name: '西部峡谷'
-                    }]
+                    data: null
                 },
                 reference: 'scenes',
                 displayField: 'name',
@@ -99,9 +98,7 @@ Ext.define('yt_manager_app.view.route.LineWindow', {
                 name: 'hotels',
                 fieldLabel: '宾馆',
                 store: {
-                    data: [{
-                        abbr: '10', name: '黄山宾馆'
-                    }]
+                    data: null
                 },
                 reference: 'hotels',
                 displayField: 'name',
@@ -114,9 +111,7 @@ Ext.define('yt_manager_app.view.route.LineWindow', {
                 name: 'restaurants',
                 fieldLabel: '饭店',
                 store: {
-                    data: [{
-                        abbr: '17', name: '食趣农家乐'
-                    }]
+                    data: null
                 },
                 reference: 'restaurants',
                 displayField: 'name',
@@ -155,7 +150,7 @@ Ext.define('yt_manager_app.view.route.LineWindow', {
                 name: 'intro',
                 emptyText: '行程简介'
             }, {
-                fieldLabel: '特质',
+                fieldLabel: '特点',
                 reference: 'feature',
                 name: 'feature',
                 emptyText: '行程特质'

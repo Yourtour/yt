@@ -1,7 +1,9 @@
 package com.yt.vo.route;
 
+import com.yt.business.bean.HotelResourceBean;
 import com.yt.business.bean.LineBean;
 import com.yt.business.bean.PlaceBean;
+import com.yt.business.bean.RestaurantResourceBean;
 import com.yt.business.bean.SceneResourceBean;
 import com.yt.business.common.Constants.Status;
 import com.yt.vo.BaseVO;
@@ -69,13 +71,43 @@ public class LineVO extends BaseVO {
 				continue;
 			}
 			sbSceneId.append(scene.getGraphId());
+			sbSceneId.append(",");
 		}
 		int len = sbSceneId.length();
 		// 去除最后一个逗号
 		len = (len > 0) ? len - 1 : 0;
 		vo.setScenes(sbSceneId.substring(0, len));
 
-		// TODO 从宾馆、饭店对象中获取ID，便于前端显示
+		// 从宾馆对象中获取ID，便于前端显示
+		StringBuffer sbHotelId = new StringBuffer();
+		for (int index = 0, num = bean.getHotels().size(); index < num; index++) {
+			HotelResourceBean hotel = bean.getHotels().get(index);
+			if (hotel == null) {
+				continue;
+			}
+			sbHotelId.append(hotel.getGraphId());
+			sbHotelId.append(",");
+		}
+		len = sbHotelId.length();
+		// 去除最后一个逗号
+		len = (len > 0) ? len - 1 : 0;
+		vo.setHotels(sbHotelId.substring(0, len));
+
+		// 从饭店对象中获取ID，便于前端显示
+		StringBuffer sbRestaurantId = new StringBuffer();
+		for (int index = 0, num = bean.getRestaurants().size(); index < num; index++) {
+			RestaurantResourceBean restaurant = bean.getRestaurants()
+					.get(index);
+			if (restaurant == null) {
+				continue;
+			}
+			sbRestaurantId.append(restaurant.getGraphId());
+			sbRestaurantId.append(",");
+		}
+		len = sbRestaurantId.length();
+		// 去除最后一个逗号
+		len = (len > 0) ? len - 1 : 0;
+		vo.setRestaurants(sbRestaurantId.substring(0, len));
 
 		return vo;
 	}
@@ -112,12 +144,35 @@ public class LineVO extends BaseVO {
 		// 从VO中取出景点的ID，并设置到SceneResourceBean中，便于后续建立关联关系
 		String[] sceneIds = vo.getScenes().split(",");
 		for (int index = 0; index < sceneIds.length; index++) {
+			if (sceneIds[index].length() <= 0) {
+				continue;
+			}
 			SceneResourceBean scene = new SceneResourceBean();
 			scene.setGraphId(Long.valueOf(sceneIds[index]));
 			bean.getScenes().add(scene);
 		}
 
-		// TODO 从VO取出宾馆、饭店的ID，并设置到相应的ResourceBean中，便于后续建立关联关系
+		// 从VO中取出酒店的ID，并设置到HotelResourceBean中，便于后续建立关联关系
+		String[] hotelIds = vo.getHotels().split(",");
+		for (int index = 0; index < hotelIds.length; index++) {
+			if (hotelIds[index].length() <= 0) {
+				continue;
+			}
+			HotelResourceBean hotel = new HotelResourceBean();
+			hotel.setGraphId(Long.valueOf(hotelIds[index]));
+			bean.getHotels().add(hotel);
+		}
+
+		// 从VO中取出饭店的ID，并设置到RestaurantResourceBean中，便于后续建立关联关系
+		String[] restaurantIds = vo.getRestaurants().split(",");
+		for (int index = 0; index < restaurantIds.length; index++) {
+			if (restaurantIds[index].length() <= 0) {
+				continue;
+			}
+			RestaurantResourceBean restaurant = new RestaurantResourceBean();
+			restaurant.setGraphId(Long.valueOf(restaurantIds[index]));
+			bean.getRestaurants().add(restaurant);
+		}
 
 		return bean;
 	}

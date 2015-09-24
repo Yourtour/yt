@@ -63,10 +63,31 @@ public class LineRepositoryImpl extends CrudGeneralOperate implements
 	@Override
 	public LineBean getLineByGraphId(Long graphId) throws Exception {
 		LinePlaceTuple tuple = lineRepo.getLineByGraphId(graphId);
+		return transfromLineBean(tuple);
+	}
+
+	private LineBean transfromLineBean(LinePlaceTuple tuple) throws Exception {
 		LineBean line = null;
 		if (tuple != null) {
 			line = tuple.getLine();
 			line.setPlace(tuple.getPlace());
+
+			// 根据关系将关联的景点、宾馆、饭店查询出来，并填充到line对象中
+			List<SceneResourceBean> scenes = lineRepo.getScenesByLine(line
+					.getGraphId());
+			if (scenes.size() > 0) {
+				line.getScenes().addAll(scenes);
+			}
+			List<HotelResourceBean> hotels = lineRepo.getHotelsByLine(line
+					.getGraphId());
+			if (hotels.size() > 0) {
+				line.getHotels().addAll(hotels);
+			}
+			List<RestaurantResourceBean> restaurants = lineRepo
+					.getRestaurantsByLine(line.getGraphId());
+			if (restaurants.size() > 0) {
+				line.getRestaurants().addAll(restaurants);
+			}
 		}
 		return line;
 	}
@@ -101,10 +122,11 @@ public class LineRepositoryImpl extends CrudGeneralOperate implements
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.yt.business.repository.LineRepository#getHotelByPlace(java.lang.Long)
+	 * com.yt.business.repository.LineRepository#getHotelsByPlace(java.lang.
+	 * Long)
 	 */
 	@Override
-	public List<HotelResourceBean> getHotelByPlace(Long placeId)
+	public List<HotelResourceBean> getHotelsByPlace(Long placeId)
 			throws Exception {
 		List<HotelResourcePlaceTuple> tuples = hotelRepo
 				.getHotelByPlace(placeId);
@@ -126,11 +148,11 @@ public class LineRepositoryImpl extends CrudGeneralOperate implements
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.yt.business.repository.LineRepository#getRestaurantByPlace(java.lang
+	 * com.yt.business.repository.LineRepository#getRestaurantsByPlace(java.lang
 	 * .Long)
 	 */
 	@Override
-	public List<RestaurantResourceBean> getRestaurantByPlace(Long placeId)
+	public List<RestaurantResourceBean> getRestaurantsByPlace(Long placeId)
 			throws Exception {
 		List<RestaurantResourcePlaceTuple> tuples = restaurantRepo
 				.getRestaurantByPlace(placeId);
@@ -289,9 +311,7 @@ public class LineRepositoryImpl extends CrudGeneralOperate implements
 			if (tuple == null) {
 				continue;
 			}
-			LineBean line = tuple.getLine();
-			line.setPlace(tuple.getPlace());
-			list.add(line);
+			list.add(transfromLineBean(tuple));
 		}
 		return list;
 	}

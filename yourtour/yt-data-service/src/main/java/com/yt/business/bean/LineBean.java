@@ -100,6 +100,8 @@ public class LineBean extends Neo4JBaseBean {
 	public LineBean() {
 		super();
 		scenes = new Vector<SceneResourceBean>();
+		hotels = new Vector<HotelResourceBean>();
+		restaurants = new Vector<RestaurantResourceBean>();
 	}
 
 	public String getName() {
