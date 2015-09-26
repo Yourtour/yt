@@ -14,7 +14,7 @@ Ext.application({
     name: 'YourTour',
 
     requires: [
-        'Ext.MessageBox', 'Ext.form.Hidden','YourTour.util.Context'
+        'Ext.MessageBox', 'Ext.form.Hidden','YourTour.util.Context','YourTour.view.home.BestItemView'
     ],
 
     views: [
@@ -32,7 +32,7 @@ Ext.application({
     ],
     
     models:[
-        'RouteModel','ScheduleModel','LineModel', 'UserModel','OptionModel', 'PlaceModel','LiveModel','ChatModel','AlongModel','TalentModel','PlaceCarouselModel' 
+        'RouteModel','ScheduleModel','LineModel', 'UserModel','OptionModel', 'PlaceModel','LiveModel','ChatModel','AlongModel','TalentModel','PlaceCarouselModel','BestModel' 
     ],
     
     stores:[

@@ -16,8 +16,7 @@ Ext.Loader.addClassPathMappings({
   "Ext.device.sqlite.SQLResultSet": "touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLResultSetRowList": "touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLTransaction": "touch/src/device/sqlite/Sencha.js",
-  "YourTour": "app",
-  "YourTour.store.PlaceStore": "app/store/HotStore.js"
+  "YourTour": "app"
 });
 Ext.ClassManager.addNameAlternateMappings({
   "Ext.AbstractComponent": [],
@@ -660,6 +659,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.controller.user.Main": [],
   "YourTour.controller.user.UserListCtrl": [],
   "YourTour.model.AlongModel": [],
+  "YourTour.model.BestModel": [],
   "YourTour.model.ChatModel": [],
   "YourTour.model.LineItemModel": [],
   "YourTour.model.LineModel": [],
@@ -672,7 +672,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.model.RouteModel": [],
   "YourTour.model.ScheduleModel": [],
   "YourTour.model.TalentModel": [],
-  "YourTour.model.TreeModel": [],
   "YourTour.model.UserModel": [],
   "YourTour.store.AjaxStore": [],
   "YourTour.store.LineStore": [],
@@ -687,7 +686,9 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.MainView": [],
   "YourTour.view.SearchMain": [],
   "YourTour.view.common.PlaceView": [],
+  "YourTour.view.community.Main": [],
   "YourTour.view.home.AlongItemView": [],
+  "YourTour.view.home.BestItemView": [],
   "YourTour.view.home.CarouselItemView": [],
   "YourTour.view.home.ChatItemView": [],
   "YourTour.view.home.HomeMain": [],
@@ -1482,6 +1483,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.controller.user.Main": [],
   "YourTour.controller.user.UserListCtrl": [],
   "YourTour.model.AlongModel": [],
+  "YourTour.model.BestModel": [],
   "YourTour.model.ChatModel": [],
   "YourTour.model.LineItemModel": [],
   "YourTour.model.LineModel": [],
@@ -1496,13 +1498,10 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.model.RouteModel": [],
   "YourTour.model.ScheduleModel": [],
   "YourTour.model.TalentModel": [],
-  "YourTour.model.TreeModel": [],
   "YourTour.model.UserModel": [],
   "YourTour.store.AjaxStore": [],
   "YourTour.store.LineStore": [],
-  "YourTour.store.PlaceStore": [
-    "widget.hotStore"
-  ],
+  "YourTour.store.PlaceStore": [],
   "YourTour.store.ResourceSelectionStore": [],
   "YourTour.store.ResourceStore": [],
   "YourTour.store.RouteStore": [],
@@ -1523,14 +1522,20 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.common.PlaceView": [
     "widget.placeview"
   ],
+  "YourTour.view.community.Main": [
+    "widget.communityview"
+  ],
   "YourTour.view.home.AlongItemView": [
     "widget.AlongItemView"
+  ],
+  "YourTour.view.home.BestItemView": [
+    "widget.BestItemView"
   ],
   "YourTour.view.home.CarouselItemView": [
     "widget.CarouselItemView"
   ],
   "YourTour.view.home.ChatItemView": [
-    "widget.LiveItemView"
+    "widget.ChatItemView"
   ],
   "YourTour.view.home.HomeMain": [
     "widget.HomeMain"

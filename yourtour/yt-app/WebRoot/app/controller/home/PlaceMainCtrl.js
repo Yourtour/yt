@@ -4,14 +4,15 @@ Ext.define('YourTour.controller.home.PlaceMainCtrl', {
     config: {
        refs:{
        	   	placeMainView:'#PlaceMainView',
-       	   	chatTitle:'#PlaceMainView #chatTitle',
+       	   	chatList:'#PlaceMainView #chatList',
        	   	liveTitle:'#PlaceMainView #liveTitle',
        	   	toolbar:'#PlaceMainView #toolbar',
 			liveContent:'#PlaceMainView #liveContent',
-			chatContent:'#PlaceMainView #chatContent',
 			alongs:'#PlaceMainView #alongs',
 			talents:'#PlaceMainView #talents',
+			bestView:'#PlaceMainView #bestView',
 			placeCarousel:'#PlaceMainView #placeCarousel'
+				
        },
        
        control:{
@@ -32,41 +33,27 @@ Ext.define('YourTour.controller.home.PlaceMainCtrl', {
     onSearchTap:function(){
     	var parent = this;
 		var store = this.store;
-		
 		var success = function(){
 			parent.show('PlaceMainView','YourTour.view.home.PlaceMainView');
 			
 			var model = store.getAt(0);
-			console.log(model);
-			
 			var carousels = model.carousels();
     		carousels.each(function(carousel){
  	 	   		parent.getPlaceCarousel().add(Ext.create('YourTour.view.home.CarouselItemView',{itemId:'carousel', model:carousel}));
  	 	   	});
     		
     		parent.getToolbar().applyTitle(model.get('name'));
-    		parent.getLiveTitle().setHtml('目前有' + model.get('liveNum') + '人参与行程直播互动.');
-    		parent.getChatTitle().setHtml('目前有' + model.get('chatNum') + '人参与目的地聊天.');
+
+    		parent.getBestView().removeAll(true, true);
+    		parent.getBestView().setModels(model.bests());
     		
-    		var lives = model.lives();
-    		lives.each(function(live){
- 	 	   		parent.getLiveContent().add(Ext.create('YourTour.view.home.LiveItemView',{itemId:'live', model:live}));
- 	 	   	});
- 	 	   	
- 	 	   	var chats = model.chats();
- 	 	   	chats.each(function(chat){
- 	 	   		parent.getChatContent().add(Ext.create('YourTour.view.home.ChatItemView',{model:chat}));
- 	 	   	});
- 	 	   	
- 	 	   	var alongs = model.alongs();
- 	 	   	alongs.each(function(along){
-				parent.getAlongs().add(Ext.create('YourTour.view.home.AlongItemView',{model:along})); 	 	   	
- 	 	   	});
- 	 	   	
- 	 	   	var talents = model.talents();
- 	 	   	talents.each(function(talent){
-				parent.getTalents().add(Ext.create('YourTour.view.home.TalentItemView',{model:talent})); 	 	   	
- 	 	   	});
+    		parent.getTalents().removeAll(true, true);
+    		parent.getTalents().setModels(model.talents());
+    		
+    		parent.getAlongs().removeAll(true, true);
+    		parent.getAlongs().setModels(model.alongs()); 	 	   	
+    		
+    		parent.getChatList().setStore(model.chatsStore);
 		};
 		
 		store.load(success, this);

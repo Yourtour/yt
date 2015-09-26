@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.home.PlaceMainView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Carousel', 'Ext.Panel','Ext.Img','Ext.DataView', 'YourTour.view.widget.XPanel', 'YourTour.view.widget.XButton','YourTour.view.widget.XField','YourTour.view.widget.XLabel', 'YourTour.view.widget.XToolbar','YourTour.view.line.LineResourceItem'],
+    requires:['Ext.Carousel', 'Ext.Panel','Ext.Img','Ext.DataView', 'YourTour.view.widget.XPanel', 'YourTour.view.widget.XButton','YourTour.view.widget.XField','YourTour.view.widget.XLabel', 'YourTour.view.widget.XToolbar','YourTour.view.line.LineResourceItem','YourTour.view.widget.XGridView'],
     xtype: 'PlaceMainView',
     config: {
     	itemId:'PlaceMainView',
@@ -17,9 +17,16 @@ Ext.define('YourTour.view.home.PlaceMainView', {
 				itemId:'toolbar',
 				items:[
 					{
+						xtype: "toolbutton", 
+					    ui: "normal", 
+						text:'收藏',
+						itemId:'favorite',
+						align:'right'
+					},   
+					{
 	                	xtype: "toolbutton", 
 	                    ui: "normal", 
-	                	text:'咨询',
+	                	text:'点评',
 	                	itemId:'consult',
 	                	align:'right'
 	                }
@@ -29,83 +36,73 @@ Ext.define('YourTour.view.home.PlaceMainView', {
 			{
             	xtype: 'carousel',
             	itemId:'placeCarousel',
-            	height:150,
+            	height:200,
             	cls:'space-bottom'
             },
     	   	
-    	   	{
-    			xtype:'xpanel',
-    			layout:'hbox',
-    			cls:'underline',
-				padding:'0 5 0 5',
-    			items:[
-		    		{
-					   xtype:'xlabel',
-					   style:'height:60px; line-height:60px',
-					   html : '直播室',
-					   cls:'font-medium'
-		    		},
-					{
-		    			xtype:'xpanel',
-    					layout:'vbox',
-    					margin:'0 0 0 30',
-    					defaults:{
-    						style:'height:30px; line-height:30px'
-    					},
-    					items:[
-    						{
-    							xtype:'xfield',
-    							itemId:'liveTitle',
-					   			html : '目前有3000人参与行程直播互动'
-    						},
-    						{
-    							xtype: 'carousel',
-				            	itemId:'liveContent',
-				            	indicator:false,
-            					direction:'verticle',
-				            	height:30
-    						}
-    					]
-		    		}   		
-				]
-    	   	},
+            {
+        		xtype:'toolbar',
+        		id:'navigationBar',
+        		defaults:{
+        			flex:1,
+        			height:'80px',
+        			pack:'center',
+        			padding:'5 0 0 0',
+        			style:'color:grey'
+        		},
+        		baseCls:'navigationBar',
+        		
+        		ui:'light',
+	            items:[
+	            	{
+	            		itemId:'btnHome', 
+		                text:'精选',
+		                iconCls:'home',
+		                iconAlign:'top'
+		            },
+		            {
+		                itemId:'btnRoute',
+		                text:'游玩',
+		                iconCls:'home',
+		                iconAlign:'top'
+		            },
+		            {
+		            	itemId:'btnPersonal',
+		                text:'美食',
+		                iconCls:'user',
+		                iconAlign:'top'
+		            },
+		            {
+		            	itemId:'btnPersonal',
+		                text:'住宿',
+		                iconCls:'user',
+		                iconAlign:'top'
+		            }
+	            ]
+        	},
     	   	
 		    {
     			xtype:'xpanel',
-    			layout:'hbox',
-    			cls:'underline',
+    			layout:'vbox',
+    			cls:'underline space-top',
     			padding:'0 5 0 5',
     			defaults:{
     				cls:'font-medium'
     			},
 	    		items:[
 		    		{
-					   xtype:'xlabel',
-					   style:'height:60px; line-height:60px',
+		    		   xtype:'xlabel',
+					   cls:'row nav_arrow font-large underline',
 					   html : '聊天室'
 		    		},
-					{
-		    			xtype:'xpanel',
-    					layout:'vbox',
-    					margin:'0 0 0 30',
-    					defaults:{
-    						style:'height:30px; line-height:30px'
-    					},
-    					items:[
-    						{
-    							xtype:'xfield',
-    							itemId:'chatTitle',
-					   			html : '目前有3000人参与目的地聊天'
-    						},
-    						{
-    							xtype: 'carousel',
-				            	itemId:'chatContent',
-				            	indicator:false,
-            					direction:'verticle',
-				            	height:30
-    						}
-    					]
-		    		}   		
+		    		
+		    		{
+		    			itemId:'chatList',
+		    			xtype:'dataview',
+		    			scrollable:null,
+				        useComponents: true,
+				        defaultType: 'ChatItemView'
+		    		}		
 				]
     	   	},
 			
@@ -117,20 +114,17 @@ Ext.define('YourTour.view.home.PlaceMainView', {
 	    		items:[
 		    		{
 					   xtype:'xlabel',
-					   cls:'row nav_arrow font-large',
-					   html : '达人'
+					   cls:'row nav_arrow font-large underline',
+					   html : '当地达人'
 		    		},
-					   		
-			   		{
-			   			xtype:'xpanel',
-    					layout:'hbox',
-    					itemId:'talents',
-    					defaults:{
-    						flex:1
-    					},
-    					
-    					items:[
-    					]
+					
+		    		{
+			   			xtype:'xgridview',
+			   			itemId:'talents',
+    					layut:'hbox',
+    					cols:2,
+    					hSpace:5,
+    					item:'YourTour.view.home.TalentItemView'
 			   		}
 				]
     	   	},
@@ -143,16 +137,16 @@ Ext.define('YourTour.view.home.PlaceMainView', {
 	    		items:[
 		    		{
 					   xtype:'xlabel',
-					   cls:'row nav_arrow font-large',
-					   html : '热门游'
+					   cls:'row nav_arrow font-large underline',
+					   html : '当季游'
 		    		},
 					   		
 			   		{
-			   			xtype:'xpanel',
+			   			xtype:'xgridview',
+			   			itemId:'bestView',
     					layut:'hbox',
-    					defaults:{
-    						flex:1
-    					}
+    					cols:2,
+    					item:'YourTour.view.home.BestItemView'
 			   		}
 				]
     	   	},
@@ -165,20 +159,16 @@ Ext.define('YourTour.view.home.PlaceMainView', {
 	    		items:[
 		    		{
 					   xtype:'xlabel',
-					   cls:'row nav_arrow font-large',
+					   cls:'row nav_arrow font-large underline',
 					   html : '结伴游'
 		    		},
-					   		
-			   		{
-			   			xtype:'xpanel',
-    					layout:'hbox',
-    					itemId:'alongs',
-    					defaults:{
-    						flex:1,
-    						padding:5
-    					},
-    					items:[
-    					]
+					 
+		    		{
+			   			xtype:'xgridview',
+			   			itemId:'alongs',
+    					layut:'hbox',
+    					cols:2,
+    					item:'YourTour.view.home.AlongItemView'
 			   		}
 				]
     	   	}	   	

@@ -1,6 +1,6 @@
 Ext.define('YourTour.model.PlaceModel', {
     extend: 'Ext.data.Model',
-    requires:['YourTour.model.LiveModel','YourTour.model.ChatModel','YourTour.model.AlongModel','YourTour.model.TalentModel'],
+    requires:['YourTour.model.LiveModel','YourTour.model.BestModel', 'YourTour.model.ChatModel','YourTour.model.AlongModel','YourTour.model.TalentModel'],
     config:{
     	idProperty:'rowKey',
     	
@@ -34,6 +34,12 @@ Ext.define('YourTour.model.PlaceModel', {
 	            model: 'YourTour.model.AlongModel',   
 	            name:'alongs',
 	            associationKey:'alongs'
+	        },
+	        {  
+	            type: 'hasMany',   
+	            model: 'YourTour.model.BestModel',   
+	            name:'bests',
+	            associationKey:'bests'
 	        },
 	        {  
 	            type: 'hasMany',   

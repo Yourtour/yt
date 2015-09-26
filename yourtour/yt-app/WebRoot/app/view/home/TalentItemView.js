@@ -4,7 +4,8 @@ Ext.define('YourTour.view.home.TalentItemView', {
     xtype: 'TalentItemView',
     config: {
     	model:null,
-      	layout:'vbox',
+      	layout:'hbox',
+      	padding:5,
         items: [
 		   	{
    				itemId : 'imageUrl',
@@ -14,29 +15,39 @@ Ext.define('YourTour.view.home.TalentItemView', {
     		
     		{
     			xtype:'panel',
-    			layout:'hbox',
+    			layout:'vbox',
+    			margin:'0 0 0 5',
     			items:[
-	    			{
-	    				itemId:'nickname',
-	    				xtype:'xfield'
-	    			},
-	    			{
-	    				itemId : 'sexImgUrl',
-						xtype : 'image',
-						mode : 'tag'
-	    			}
+					{
+						xtype:'panel',
+						layout:'hbox',
+						items:[
+							{
+								itemId:'nickname',
+								xtype:'xfield'
+							},
+							{
+								itemId : 'sexImgUrl',
+								xtype : 'image',
+								margin:'0 0 0 5',
+								mode : 'tag'
+							}
+						]
+					},
+					
+					{
+						itemId:'tag1',
+						margin:'5 0 0 0',
+						xtype:'xfield'
+					},
+					
+					{
+						itemId:'tag2',
+						margin:'5 0 0 0',
+						xtype:'xfield'
+					}
     			]
-    		},
-    		
-    		{
-				itemId:'tag1',
-				xtype:'xfield'
-			},
-			
-			{
-				itemId:'tag2',
-				xtype:'xfield'
-			}
+    		}
         ]
     },
     
