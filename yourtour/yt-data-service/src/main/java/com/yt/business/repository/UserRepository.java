@@ -6,8 +6,6 @@ import com.yt.business.bean.UserBean;
 import com.yt.rsal.neo4j.repository.ICrudOperate;
 
 public interface UserRepository extends ICrudOperate {
-	public UserBean getUserByGraphId(Long id) throws Exception;
-
 	public UserBean getUserByRowkey(String rowKey) throws Exception;
 
 	public UserBean getUserByField(String fieldName, String value)

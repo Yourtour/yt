@@ -30,18 +30,6 @@ public class UserRepositoryImpl extends CrudGeneralOperate implements
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.yt.business.repository.UserRepository#getUserByGraphId(java.lang.
-	 * Long)
-	 */
-	@Override
-	public UserBean getUserByGraphId(Long id) throws Exception {
-		return super.template.findOne(id, UserBean.class);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
 	 * com.yt.business.repository.UserRepository#getUserByRowkey(java.lang.String
 	 * )
 	 */

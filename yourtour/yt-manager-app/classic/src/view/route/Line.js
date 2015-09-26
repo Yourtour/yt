@@ -54,7 +54,7 @@ Ext.define('yt_manager_app.view.route.Line', {
             nameEN: 'line',
             nameZHCN: '线路',
             gridName: 'line_crud_grid_paging',
-            icon: '/resources/images/toggle-icon.png',
+            icon: './resources/images/toggle-icon.png',
             gridColumns: lineGridColumns,
             store: generalStore
         });

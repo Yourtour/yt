@@ -6,8 +6,6 @@ import com.yt.business.bean.PlaceBean;
 import com.yt.rsal.neo4j.repository.ICrudOperate;
 
 public interface PlaceRepository extends ICrudOperate {
-	public PlaceBean getPlaceByGraphId(Long graphId) throws Exception;
-
 	public List<PlaceBean> getAllRootPlaces() throws Exception;
 
 	public List<PlaceBean> getAllSubPlaces(Long graphId) throws Exception;

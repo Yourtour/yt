@@ -63,7 +63,7 @@ Ext.define('yt_manager_app.view.resource.Scene', {
             nameEN: 'scene',
             nameZHCN: '景点',
             gridName: 'scene_crud_grid_paging',
-            icon: '/resources/images/toggle-icon.png',
+            icon: './resources/images/toggle-icon.png',
             gridColumns: sceneGridColumns,
             store: generalStore
         });
