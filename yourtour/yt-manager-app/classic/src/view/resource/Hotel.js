@@ -63,7 +63,7 @@ Ext.define('yt_manager_app.view.resource.Hotel', {
             nameEN: 'hotel',
             nameZHCN: '宾馆',
             gridName: 'hotel_crud_grid_paging',
-            icon: '/resources/images/toggle-icon.png',
+            icon: './resources/images/toggle-icon.png',
             gridColumns: hotelGridColumns,
             store: generalStore
         });

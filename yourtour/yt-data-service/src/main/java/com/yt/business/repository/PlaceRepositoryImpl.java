@@ -25,18 +25,6 @@ public class PlaceRepositoryImpl extends CrudGeneralOperate implements
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * com.yt.business.repository.PlaceRespository#getPlaceByGraphId(java.lang
-	 * .Long)
-	 */
-	@Override
-	public PlaceBean getPlaceByGraphId(Long graphId) throws Exception {
-		return super.template.findOne(graphId, PlaceBean.class);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
 	 * @see com.yt.business.repository.PlaceRespository#getAllRootPlaces()
 	 */
 	@Override

@@ -82,7 +82,7 @@ public class UserRestResource {
 			UserBean bean = null;
 			if (graphId != -1) {
 				// id是GraphID
-				bean = userRepository.getUserByGraphId(graphId);
+				bean = (UserBean) userRepository.get(UserBean.class, graphId);
 			} else {
 				// id 是rowkey
 				bean = userRepository.getUserByRowkey(id);
@@ -191,7 +191,7 @@ public class UserRestResource {
 			UserBean bean = null;
 			if (graphId != -1) {
 				// id是GraphID
-				bean = userRepository.getUserByGraphId(graphId);
+				bean = (UserBean) userRepository.get(UserBean.class, graphId);
 				id = bean.getRowKey();
 			}
 			userRepository.delete(UserBean.class, id);

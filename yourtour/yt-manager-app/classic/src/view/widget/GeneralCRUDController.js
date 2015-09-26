@@ -19,6 +19,11 @@ Ext.define('yt_manager_app.view.widget.GeneralCRUDController', {
         return;
     },
 
+    beforeLoadRecord: function(record) {
+        // Do nothing
+        return;
+    },
+
     afterLoadRecord: function(record) {
         // Do nothing
         return;
@@ -26,6 +31,7 @@ Ext.define('yt_manager_app.view.widget.GeneralCRUDController', {
 
     dowithRecord: function (data) {
         // Do nothing
+        return data;
     },
 
     getSelectedRecords: function () {
@@ -54,6 +60,7 @@ Ext.define('yt_manager_app.view.widget.GeneralCRUDController', {
             operateInfo = me.lookupReference('operatedInfo'),
             reset = me.lookupReference('reset'),
             save = me.lookupReference('save');
+        me.beforeLoadRecord(data);
         // fill the data
         this.setData(data);
         if (data) {
@@ -89,7 +96,7 @@ Ext.define('yt_manager_app.view.widget.GeneralCRUDController', {
     onShow: function () {
         var record = this.getSelectedRecords()[0];
         var model = this.dowithRecord(record);
-        if (record) {
+        if (model) {
             this.showPopWindow(Ext.String.format('显示 {0}的详细信息', this.getName()), model, false);
         } else {
             Ext.MessageBox.alert('提示', '在操作之前请先选中一行数据。');

@@ -145,7 +145,8 @@ public class DivisionRestResource {
 			PlaceBean bean = null;
 			if (graphId != -1) {
 				// id是GraphID
-				bean = placeRepository.getPlaceByGraphId(graphId);
+				bean = (PlaceBean) placeRepository
+						.get(PlaceBean.class, graphId);
 				id = bean.getRowKey();
 			}
 			placeRepository.delete(PlaceBean.class, id);

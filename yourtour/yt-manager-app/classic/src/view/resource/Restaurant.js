@@ -63,7 +63,7 @@ Ext.define('yt_manager_app.view.resource.Restaurant', {
             nameEN: 'restaurant',
             nameZHCN: '饭店',
             gridName: 'restaurant_crud_grid_paging',
-            icon: '/resources/images/toggle-icon.png',
+            icon: './resources/images/toggle-icon.png',
             gridColumns: restaurantGridColumns,
             store: generalStore
         });
