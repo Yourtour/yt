@@ -5,12 +5,6 @@ Ext.define('YourTour.store.BestListStore', {
     ],
     config:{
     	model:'YourTour.model.BestModel',
-    	sorters:'',
-    	
-    	getGroupString : function(record) {
-    		return record.get('category');
-    	},
-    	
     	data:[
 			{rowKey:"10", category:'一月', imageUrl:"resources/images/scene_0.jpg",name:'东方明珠1'},
 			{rowKey:"11", category:'一月', imageUrl:"resources/images/scene_0.jpg",name:'东方明珠2'},

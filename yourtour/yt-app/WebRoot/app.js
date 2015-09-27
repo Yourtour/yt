@@ -19,7 +19,7 @@ Ext.application({
 
     views: [
         'MainView','Launch',
-        'home.HomeMain','home.PlaceMainView', 'home.BestListView', 'home.TalentListView', 'SearchMain',
+        'home.HomeMain','home.PlaceMainView', 'home.BestListView', 'home.AlongListView', 'home.TalentListView', 'SearchMain',
         'route.MainView','route.RouteSettingView','common.PlaceView',
         'line.LineRecommendView','line.LineIntroductionView',
         'route.schedule.SchedulePlanListView', 'route.schedule.ScheduleListView','route.schedule.SceneScheduleView','route.schedule.HotelScheduleView','route.schedule.FoodScheduleView',
@@ -29,7 +29,7 @@ Ext.application({
     
     controllers: [
         'Launch', 'Main', 
-        'home.PlaceMainCtrl', 'home.BestMainCtrl','home.TalentMainCtrl',
+        'home.PlaceMainCtrl', 'home.BestMainCtrl','home.TalentMainCtrl','home.AlongMainCtrl',
         'route.MainCtrl','route.RouteSettingCtrl','route.ScheduleListCtrl', 'route.SchedulePlanListCtrl', 'line.LineRecommendCtrl','line.LineIntroductionCtrl','common.PlaceCtrl','user.Main',
         'resource.ResourceSelectionCtrl','route.ScheduleReferenceCtrl','resource.ResourceCtrl','resource.ResourcePlanCtrl','route.ScheduleDetailCtrl',
         'user.UserListCtrl'
@@ -40,7 +40,7 @@ Ext.application({
     ],
     
     stores:[
-        'RouteStore','LineStore','ResourceStore','ResourceSelectionStore', 'UserStore', 'PlaceStore', 'BestListStore','TalentListStore'
+        'RouteStore','LineStore','ResourceStore','ResourceSelectionStore', 'UserStore', 'PlaceStore', 'BestListStore','TalentListStore', 'AlongListStore'
     ],
         
     icon: {

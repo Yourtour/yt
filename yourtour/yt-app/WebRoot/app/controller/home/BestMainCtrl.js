@@ -10,6 +10,10 @@ Ext.define('YourTour.controller.home.BestMainCtrl', {
     	   '#BestListView #toolbar':{
     	   	   tap:'onBackTap'
     	   },
+    	   
+    	   '#BestListView #bestList':{
+    		   itemtap:'onItemTap'
+    	   }
        },
        
        routes:{
@@ -32,6 +36,10 @@ Ext.define('YourTour.controller.home.BestMainCtrl', {
 		};
 		
 		store.load(success, this);
+    },
+    
+    onItemTap:function(dataview, index, item, record,e){
+    	this.redirectTo('/line/introduction/bestListView/1');
     },
     
     onBackTap:function(){

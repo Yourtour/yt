@@ -25,6 +25,10 @@ Ext.define('YourTour.controller.home.PlaceMainCtrl', {
        		
        		'#PlaceMainView #moreTalent':{
        			tap:'onMoreTalentTap'	
+       		},
+       		
+       		'#PlaceMainView #moreAlong':{
+       			tap:'onMoreAlongTap'	
        		}
        },
        
@@ -72,5 +76,9 @@ Ext.define('YourTour.controller.home.PlaceMainCtrl', {
     
     onMoreTalentTap:function(){
     	this.redirectTo('/main/place/talent');
-    } 
+    },
+    
+    onMoreAlongTap:function(){
+    	this.redirectTo('/main/place/along');
+    }
 });

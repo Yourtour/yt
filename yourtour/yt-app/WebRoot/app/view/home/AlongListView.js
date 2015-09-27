@@ -1,10 +1,10 @@
-Ext.define('YourTour.view.home.BestListView', {
+Ext.define('YourTour.view.home.AlongListView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Panel', 'YourTour.view.home.BestListItemView', 'YourTour.view.widget.XPanel','YourTour.view.widget.XField', 'Ext.DataView'],
-    xtype: 'BestListView',
+    requires:['Ext.Panel', 'YourTour.view.home.AlongListItemView', 'YourTour.view.widget.XPanel','YourTour.view.widget.XField', 'Ext.DataView'],
+    xtype: 'AlongListView',
     config: {
     	fullscreen: true,
-    	id:'BestListView',
+    	id:'AlongListView',
     	layout:'fit',
         items: [
 			{    
@@ -12,18 +12,13 @@ Ext.define('YourTour.view.home.BestListView', {
 				itemId:'toolbar',
 				title:'上海',
 				items:[
-					{
-						xtype: "xlabel",
-						align:'center',
-						html:'推荐游'
-					},   
 				]			
 			},
             {
             	xtype:'dataview',
-            	itemId:'bestList',
+            	itemId:'alongList',
 		        useComponents: true,
-		        defaultType: 'BestListItemView',
+		        defaultType: 'AlongListItemView',
 	        	scrollable: {
 	        	    direction: 'vertical',
 	        	    indicators: false	

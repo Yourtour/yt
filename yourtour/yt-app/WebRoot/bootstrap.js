@@ -644,8 +644,10 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.controller.Main": [],
   "YourTour.controller.Welcome": [],
   "YourTour.controller.common.PlaceCtrl": [],
+  "YourTour.controller.home.AlongMainCtrl": [],
   "YourTour.controller.home.BestMainCtrl": [],
   "YourTour.controller.home.PlaceMainCtrl": [],
+  "YourTour.controller.home.TalentMainCtrl": [],
   "YourTour.controller.line.LineIntroductionCtrl": [],
   "YourTour.controller.line.LineRecommendCtrl": [],
   "YourTour.controller.resource.ResourceCtrl": [],
@@ -675,13 +677,15 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.model.TalentModel": [],
   "YourTour.model.UserModel": [],
   "YourTour.store.AjaxStore": [],
-  "YourTour.store.BestStore": [],
+  "YourTour.store.AlongListStore": [],
+  "YourTour.store.BestListStore": [],
   "YourTour.store.LineStore": [],
   "YourTour.store.PlaceStore": [],
   "YourTour.store.ResourceSelectionStore": [],
   "YourTour.store.ResourceStore": [],
   "YourTour.store.RouteStore": [],
   "YourTour.store.SessionStore": [],
+  "YourTour.store.TalentListStore": [],
   "YourTour.store.UserStore": [],
   "YourTour.util.Context": [],
   "YourTour.view.Launch": [],
@@ -690,7 +694,10 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.common.PlaceView": [],
   "YourTour.view.community.Main": [],
   "YourTour.view.home.AlongItemView": [],
+  "YourTour.view.home.AlongListItemView": [],
+  "YourTour.view.home.AlongListView": [],
   "YourTour.view.home.BestItemView": [],
+  "YourTour.view.home.BestListItemView": [],
   "YourTour.view.home.BestListView": [],
   "YourTour.view.home.CarouselItemView": [],
   "YourTour.view.home.ChatItemView": [],
@@ -698,6 +705,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.home.LiveItemView": [],
   "YourTour.view.home.PlaceMainView": [],
   "YourTour.view.home.TalentItemView": [],
+  "YourTour.view.home.TalentListItemView": [],
+  "YourTour.view.home.TalentListView": [],
   "YourTour.view.line.LineIntroductionView": [],
   "YourTour.view.line.LineRecommendItem": [],
   "YourTour.view.line.LineRecommendView": [],
@@ -1471,8 +1480,10 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.controller.Main": [],
   "YourTour.controller.Welcome": [],
   "YourTour.controller.common.PlaceCtrl": [],
+  "YourTour.controller.home.AlongMainCtrl": [],
   "YourTour.controller.home.BestMainCtrl": [],
   "YourTour.controller.home.PlaceMainCtrl": [],
+  "YourTour.controller.home.TalentMainCtrl": [],
   "YourTour.controller.line.LineIntroductionCtrl": [],
   "YourTour.controller.line.LineRecommendCtrl": [],
   "YourTour.controller.resource.ResourceCtrl": [],
@@ -1504,13 +1515,15 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.model.TalentModel": [],
   "YourTour.model.UserModel": [],
   "YourTour.store.AjaxStore": [],
-  "YourTour.store.BestStore": [],
+  "YourTour.store.AlongListStore": [],
+  "YourTour.store.BestListStore": [],
   "YourTour.store.LineStore": [],
   "YourTour.store.PlaceStore": [],
   "YourTour.store.ResourceSelectionStore": [],
   "YourTour.store.ResourceStore": [],
   "YourTour.store.RouteStore": [],
   "YourTour.store.SessionStore": [],
+  "YourTour.store.TalentListStore": [],
   "YourTour.store.UserStore": [],
   "YourTour.util.Context": [
     "Context"
@@ -1533,8 +1546,17 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.home.AlongItemView": [
     "widget.AlongItemView"
   ],
+  "YourTour.view.home.AlongListItemView": [
+    "widget.AlongListItemView"
+  ],
+  "YourTour.view.home.AlongListView": [
+    "widget.AlongListView"
+  ],
   "YourTour.view.home.BestItemView": [
     "widget.BestItemView"
+  ],
+  "YourTour.view.home.BestListItemView": [
+    "widget.BestListItemView"
   ],
   "YourTour.view.home.BestListView": [
     "widget.BestListView"
@@ -1556,6 +1578,12 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.home.TalentItemView": [
     "widget.TalentItemView"
+  ],
+  "YourTour.view.home.TalentListItemView": [
+    "widget.TalentListItemView"
+  ],
+  "YourTour.view.home.TalentListView": [
+    "widget.TalentListView"
   ],
   "YourTour.view.line.LineIntroductionView": [
     "widget.LineIntroductionView"

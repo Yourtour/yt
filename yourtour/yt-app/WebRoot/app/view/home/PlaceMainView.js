@@ -141,7 +141,7 @@ Ext.define('YourTour.view.home.PlaceMainView', {
 					   xtype:'xlabel',
 					   itemId:'moreBest',
 					   cls:'row nav_arrow font-large underline',
-					   html : '当季游',
+					   html : '推荐游',
 					   tappable :true
 		    		},
 					   		
@@ -163,8 +163,10 @@ Ext.define('YourTour.view.home.PlaceMainView', {
 	    		items:[
 		    		{
 					   xtype:'xlabel',
+					   itemId:'moreAlong',
 					   cls:'row nav_arrow font-large underline',
-					   html : '结伴游'
+					   html : '结伴游',
+					   tappable :true
 		    		},
 					 
 		    		{

@@ -18,7 +18,7 @@ Ext.define('YourTour.controller.line.LineIntroductionCtrl', {
        	    * @type 
        	    */
        	   '#LineIntroductionView #toolbar':{
-       	   	   	tap:'backToLineRecommendView'
+       	   	   	tap:'backToPrePage'
        	   },
        	   
        	   resources:{
@@ -35,10 +35,12 @@ Ext.define('YourTour.controller.line.LineIntroductionCtrl', {
        },
        
        routes:{
-        	'/line/introduction/:index':'showIntroduction'
+        	'/line/introduction/:prePage/:index':'showIntroduction'
        },
        
-       store:null
+       store:null,
+       
+       prevPage:null
     },
     
     init: function(){
@@ -61,14 +63,19 @@ Ext.define('YourTour.controller.line.LineIntroductionCtrl', {
     	console.log(record);
     },
     
-    backToLineRecommendView:function(){
-    	this.show('LineRecommendView','YourTour.view.line.LineRecommendView');	
+    backToPrePage:function(){
+    	if(this.prePage == 'bestListView'){
+    		this.show('BestListView','YourTour.view.home.BestListView');
+    	}else{
+    		this.show('LineRecommendView','YourTour.view.line.LineRecommendView');
+    	}
     },
     
     /**
      * 显示线路详细信息
      */
-    showIntroduction:function(index){
+    showIntroduction:function(prePage, index){
+    	this.prePage = prePage;
     	var store = this.store;
     	var record = store.getAt(index);
     	this.show('LineIntroductionView','YourTour.view.line.LineIntroductionView');

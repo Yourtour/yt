@@ -6,7 +6,7 @@ Ext.define('YourTour.view.home.TalentListItemView', {
     	model:null,
       	layout:'hbox',
       	padding:5,
-      	cls:'underline',
+      	cls:'space-bottom',
         items: [
 		   	{
    				itemId : 'imageUrl',

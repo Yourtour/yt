@@ -5,7 +5,7 @@ Ext.define('YourTour.view.home.BestListItemView', {
     config: {
     	layout:'hbox',
     	padding:5,
-      	cls:'underline',
+    	cls:'space-bottom',
         items: [
 		   	{
    				itemId : 'imageUrl',
