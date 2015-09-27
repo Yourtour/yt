@@ -5,7 +5,9 @@ Ext.define('YourTour.model.BestModel', {
     	
 	    fields:[{name:'rowKey', type:'string'},
 	            {name:'imageUrl', type:'string'},
-	    		{name:'name', type:'string'}
+	    		{name:'name', type:'string'},
+	    		{name:'category', type:'string'},
+	    		{name:'type', type:'string'}
 	    ]
     }
 });

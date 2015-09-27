@@ -5,7 +5,9 @@ Ext.define('YourTour.view.widget.XGridView', {
     	cols: 3,
     	models:null,
     	vSpace:0,
+    	vLine:true,
     	hSpace:0,
+    	hLine:true,
     	item:null,
     	layout:'vbox',
         items: [
@@ -19,6 +21,14 @@ Ext.define('YourTour.view.widget.XGridView', {
     
     applyVSpace:function(vSpace){
     	this.vSpace = vSpace;
+    },
+    
+    applyHLine:function(hLine){
+    	this.hLine = hLine;
+    },
+    
+    applyVLine:function(vLine){
+    	this.vLine = vLine;
     },
     
     setCols:function(cols){
@@ -40,18 +50,32 @@ Ext.define('YourTour.view.widget.XGridView', {
     applyModels: function(models){
     	var me = this;
     	models.each(function(model, index){
+    		var panel;
     		if(index % me.getCols() == 0){
-    			me.add(Ext.create("Ext.Panel",{layout:'hbox'}));
-    		}
+    			var config = {layout:'hbox'};
+    			
+    			if(me.hSpace != 0){
+    				config['margin'] = me.hSpace + ' 0 0 0';
+    			}
+    			
+    			if(me.hLine){
+    				config['cls'] = 'underline';
+    			}
     		
-    		var panel = me.getAt(me.getItems().length - 1);
-    		if(index != 0 && me.hSpace != 0){
-    			var margin = me.hSpace + ' 0 0 0';
-    			panel.add(Ext.create(me.getItem(), {margin:margin,model:model, flex:1}));
+    			panel = Ext.create("Ext.Panel",config); 
+    			me.add(panel);
     		}else{
-    			panel.add(Ext.create(me.getItem(), {model:model, flex:1}));
+    			panel = me.getAt(me.getItems().length - 1);
     		}
     		
+    		var itemConfig = {model:model, flex:1};
+    		if(me.vLine){
+    			if(index % me.getCols() > 0){
+    				itemConfig['style'] = 'border-left:1px solid #EDEDED;';
+    			}
+    		}
+    		
+   			panel.add(Ext.create(me.getItem(), itemConfig));
  	   	});
     	
     	var panel = me.getAt(me.getItems().length - 1);

@@ -38,8 +38,8 @@ Ext.define('YourTour.store.PlaceStore', {
 			    ],
 			    
 			    alongs:[
-			     	{rowKey:"11", memberImageUrl:'resources/images/user_logo_32.png', imageUrl:"resources/images/scene_64.jpg",title:'上海哪儿好玩上海哪儿好玩？上海哪儿好玩上海哪儿好玩？',intention:'拼车',deadline:'2015-10-12',alongNum:'3'},
-			     	{rowKey:"12", memberImageUrl:'resources/images/user_logo_32.png', imageUrl:"resources/images/scene_64.jpg",title:'上海最近天气怎么样上海最近天气怎么样上海最近天气怎么样上海最近天气怎么样？',intention:'拼车',deadline:'2015-10-12',alongNum:'3'}
+			     	{rowKey:"11", memberImageUrl:'resources/images/user_logo_32.png', imageUrl:"resources/images/scene_64.jpg",title:'十一上海休闲游',intention:'拼车',deadline:'2015-10-12',alongNum:'3'},
+			     	{rowKey:"12", memberImageUrl:'resources/images/user_logo_32.png', imageUrl:"resources/images/scene_64.jpg",title:'春节上海休闲游',intention:'拼车',deadline:'2015-10-12',alongNum:'3'}
 			    ],
 			    
 			    talents:[

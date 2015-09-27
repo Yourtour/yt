@@ -12,13 +12,20 @@ Ext.define('YourTour.controller.home.PlaceMainCtrl', {
 			talents:'#PlaceMainView #talents',
 			bestView:'#PlaceMainView #bestView',
 			placeCarousel:'#PlaceMainView #placeCarousel'
-				
        },
        
        control:{
        	   	'#HomeMain #btnSearch':{
        	   		tap:'onSearchTap'	
-       	   	}
+       	   	},
+       
+       		'#PlaceMainView #moreBest':{
+       			tap:'onMoreBestTap'	
+       		},
+       		
+       		'#PlaceMainView #moreTalent':{
+       			tap:'onMoreTalentTap'	
+       		}
        },
        
        store : null,
@@ -57,5 +64,13 @@ Ext.define('YourTour.controller.home.PlaceMainCtrl', {
 		};
 		
 		store.load(success, this);
-    }
+    },
+    
+    onMoreBestTap:function(){
+    	this.redirectTo('/main/place/best');
+    },
+    
+    onMoreTalentTap:function(){
+    	this.redirectTo('/main/place/talent');
+    } 
 });

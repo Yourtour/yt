@@ -644,6 +644,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.controller.Main": [],
   "YourTour.controller.Welcome": [],
   "YourTour.controller.common.PlaceCtrl": [],
+  "YourTour.controller.home.BestMainCtrl": [],
   "YourTour.controller.home.PlaceMainCtrl": [],
   "YourTour.controller.line.LineIntroductionCtrl": [],
   "YourTour.controller.line.LineRecommendCtrl": [],
@@ -674,6 +675,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.model.TalentModel": [],
   "YourTour.model.UserModel": [],
   "YourTour.store.AjaxStore": [],
+  "YourTour.store.BestStore": [],
   "YourTour.store.LineStore": [],
   "YourTour.store.PlaceStore": [],
   "YourTour.store.ResourceSelectionStore": [],
@@ -689,6 +691,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.community.Main": [],
   "YourTour.view.home.AlongItemView": [],
   "YourTour.view.home.BestItemView": [],
+  "YourTour.view.home.BestListView": [],
   "YourTour.view.home.CarouselItemView": [],
   "YourTour.view.home.ChatItemView": [],
   "YourTour.view.home.HomeMain": [],
@@ -1468,6 +1471,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.controller.Main": [],
   "YourTour.controller.Welcome": [],
   "YourTour.controller.common.PlaceCtrl": [],
+  "YourTour.controller.home.BestMainCtrl": [],
   "YourTour.controller.home.PlaceMainCtrl": [],
   "YourTour.controller.line.LineIntroductionCtrl": [],
   "YourTour.controller.line.LineRecommendCtrl": [],
@@ -1500,6 +1504,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.model.TalentModel": [],
   "YourTour.model.UserModel": [],
   "YourTour.store.AjaxStore": [],
+  "YourTour.store.BestStore": [],
   "YourTour.store.LineStore": [],
   "YourTour.store.PlaceStore": [],
   "YourTour.store.ResourceSelectionStore": [],
@@ -1530,6 +1535,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.home.BestItemView": [
     "widget.BestItemView"
+  ],
+  "YourTour.view.home.BestListView": [
+    "widget.BestListView"
   ],
   "YourTour.view.home.CarouselItemView": [
     "widget.CarouselItemView"
