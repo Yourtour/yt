@@ -33,6 +33,7 @@ Ext.define('yt_manager_app.view.resource.RestaurantWindow', {
             }, {
                 xtype: 'fieldcontainer',
                 fieldLabel: '星级',
+                reference: 'ratingParent',
                 items: [{
                     xtype: 'rating',
                     scale: '150%',
@@ -41,15 +42,7 @@ Ext.define('yt_manager_app.view.resource.RestaurantWindow', {
                     minimum: 0,
                     limit: 5
                 }]
-            }, /*{
-                xtype: 'numberfield',
-                fieldLabel: '星级',
-                name: 'star',
-                minValue: 0,
-                maxValue: 5,
-                reference: 'star',
-                hidden: false
-            }, */{
+            }, {
                 fieldLabel: '电话',
                 reference: 'phone',
                 allowBlank: true,
@@ -58,6 +51,7 @@ Ext.define('yt_manager_app.view.resource.RestaurantWindow', {
             }, {
                 xtype: 'fieldcontainer',
                 fieldLabel: '目的地',
+                reference: 'placeParent',
                 layout: 'hbox',
                 items: [{
                     xtype: 'textfield',

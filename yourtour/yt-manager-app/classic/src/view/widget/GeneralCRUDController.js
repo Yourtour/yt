@@ -19,12 +19,12 @@ Ext.define('yt_manager_app.view.widget.GeneralCRUDController', {
         return;
     },
 
-    beforeLoadRecord: function(record) {
+    beforeLoadRecord: function(record, editable) {
         // Do nothing
         return;
     },
 
-    afterLoadRecord: function(record) {
+    afterLoadRecord: function(record, editable) {
         // Do nothing
         return;
     },
@@ -60,13 +60,13 @@ Ext.define('yt_manager_app.view.widget.GeneralCRUDController', {
             operateInfo = me.lookupReference('operatedInfo'),
             reset = me.lookupReference('reset'),
             save = me.lookupReference('save');
-        me.beforeLoadRecord(data);
+
+        me.beforeLoadRecord(data, editable);
         // fill the data
         this.setData(data);
         if (data) {
             formWindow.loadRecord(data);
         }
-        me.afterLoadRecord(data);
 
         // set editable
         var disabled = !editable;
@@ -88,6 +88,7 @@ Ext.define('yt_manager_app.view.widget.GeneralCRUDController', {
             save.show();
             baseInfo.focus();
         }
+        me.afterLoadRecord(data, editable);
 
         // show
         win.show();

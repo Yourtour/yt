@@ -35,6 +35,12 @@ Ext.define('yt_manager_app.view.route.LineController', {
         yt_manager_app.model.route.Line.setProxy(store);
     },
 
+    afterUpdateRecord: function (record, editable) {
+        var me = this,
+            placeParent = me.lookupReference('placeParent');
+        placeParent.setDisabled(!editable);
+    },
+
     onPopupDivisionSelectWindow: function () {
         var me = this,
             division = me.lookupReference('place');

@@ -35,10 +35,14 @@ Ext.define('yt_manager_app.view.resource.RestaurantController', {
         yt_manager_app.model.resource.Restaurant.setProxy(store);
     },
 
-    afterUpdateRecord: function (record) {
+    afterUpdateRecord: function (record, editable) {
         var me = this,
-            star = me.lookupReference('star');
+            star = me.lookupReference('star'),
+            ratingParent = me.lookupReference('ratingParent'),
+            placeParent = me.lookupReference('placeParent');
         record.set('star', star.getValue());
+        ratingParent.setDisabled(!editable);
+        placeParent.setDisabled(!editable);
     },
 
     afterLoadRecord: function (record) {

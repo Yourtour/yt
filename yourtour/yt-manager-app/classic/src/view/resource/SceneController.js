@@ -41,10 +41,14 @@ Ext.define('yt_manager_app.view.resource.SceneController', {
         record.set('star', star.getValue());
     },
 
-    afterLoadRecord: function (record) {
+    afterLoadRecord: function (record, editable) {
         var me = this,
-            star = me.lookupReference('star');
+            star = me.lookupReference('star'),
+            ratingParent = me.lookupReference('ratingParent'),
+            placeParent = me.lookupReference('placeParent');
         star.setValue(record.get('star'));
+        ratingParent.setDisabled(!editable);
+        placeParent.setDisabled(!editable);
     },
 
     onPopupDivisionSelectWindow: function() {

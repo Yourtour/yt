@@ -17,6 +17,7 @@ Ext.define('yt_manager_app.view.route.LineWindow', {
             }, {
                 xtype: 'fieldcontainer',
                 fieldLabel: '目的地',
+                reference: 'placeParent',
                 layout: 'hbox',
                 items: [{
                     xtype: 'textfield',
