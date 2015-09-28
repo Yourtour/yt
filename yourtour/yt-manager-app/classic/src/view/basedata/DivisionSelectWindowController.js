@@ -11,7 +11,7 @@ Ext.define('yt_manager_app.view.basedata.DivisionSelectWindowController', {
             initDivision = view.config.initDivision;
         if (initDivision != null) {
             // TODO 选中初始化的行政区划
-            console.log(initDivision);
+            Ext.Boot.debug(initDivision);
         }
     },
 

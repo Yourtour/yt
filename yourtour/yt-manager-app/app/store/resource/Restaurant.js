@@ -13,10 +13,18 @@ Ext.define('yt_manager_app.store.resource.Restaurant', {
         type: 'rest',
         format: 'json',
         api: {
-            create: 'http://localhost:8080/yt-web/rest/restaurants/save',
-            read: 'http://localhost:8080/yt-web/rest/restaurants/loadPage',
-            update: 'http://localhost:8080/yt-web/rest/restaurants/save',
-            destroy: 'http://localhost:8080/yt-web/rest/restaurants/remove'
+            create: (function() {
+                return Ext.Boot.packageUri('rest/restaurants/save');
+            })(),
+            read: (function() {
+                return Ext.Boot.packageUri('rest/restaurants/loadPage');
+            })(),
+            update: (function() {
+                return Ext.Boot.packageUri('rest/restaurants/save');
+            })(),
+            destroy: (function() {
+                return Ext.Boot.packageUri('rest/restaurants/remove')
+            })()
         },
         actionMethods: {
             create: 'POST',

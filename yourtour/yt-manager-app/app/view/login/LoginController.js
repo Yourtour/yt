@@ -7,7 +7,6 @@ Ext.define('yt_manager_app.view.login.LoginController', {
     alias: 'controller.login',
 
     requires: [
-        'yt_manager_app.view.main.Main'
     ],
 
     onClickLogin: function () {
@@ -16,10 +15,10 @@ Ext.define('yt_manager_app.view.login.LoginController', {
             username = form.getValues().username,
             password = form.getValues().password;
 
-        console.log(Ext.String.format('User login: username={0}, password={1}.', username, password));
+        Ext.Boot.debug(Ext.String.format('User login: username={0}, password={1}.', username, password));
 
         var authenticate = {code: username, password: password};
-        var url = localStorage.getItem('yt_manager_app.cors') ? 'http://localhost:8080/yt-web/rest/users/login' : '/rest/users/login';
+        var url = Ext.Boot.packageUri('rest/users/login');
         Ext.Ajax.request({
             url: url,
             async: false,

@@ -88,10 +88,13 @@ Ext.define('yt_manager_app.view.main.MainController', {
             }
         }
 
+        if (node != null && node.parentNode != null) {
+            var item = treeList.getItem(node.parentNode);
+            if (!item.getExpanded()) {
+                item.expand();
+            }
+        }
         treeList.setSelection(node);
-        //if (node != null && node.getParent() != null) {
-        //    node.getParent().setExpanded(true);
-        //}
 
         if (newView.isFocusable(true)) {
             newView.focus();

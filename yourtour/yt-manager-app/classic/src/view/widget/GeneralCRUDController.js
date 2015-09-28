@@ -14,7 +14,7 @@ Ext.define('yt_manager_app.view.widget.GeneralCRUDController', {
     },
 
     afterUpdateRecord: function(record) {
-        // console.log('这是父类方法。。');
+        // Ext.Boot.debug('这是父类方法。。');
         // Do nothing
         return;
     },
@@ -138,10 +138,10 @@ Ext.define('yt_manager_app.view.widget.GeneralCRUDController', {
                 record.erase({
                     success: function () {
                         // TODO 删除数据成功
-                        console.log('delete successful.');
+                        Ext.Boot.debug('delete successful.');
                     },
                     failure: function () {
-                        console.log('delete failure.');
+                        Ext.Boot.debug('delete failure.');
                     }
                 });
             } else {

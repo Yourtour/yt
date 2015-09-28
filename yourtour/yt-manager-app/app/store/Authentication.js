@@ -30,7 +30,9 @@ Ext.define('yt_manager_app.store.Authentication', {
         var username = sessionStorage.getItem('yt_manager_app.loginName');
         Ext.Ajax.request({
             asyn: true,
-            url: 'http://localhost:8080/yt-web/rest/users/logout/' + username,
+            url: (function() {
+                return Ext.Boot.packageUri('rest/users/logout/' + username);
+            })(),
             success: function (response, opts) {
                 sessionStorage.removeItem('yt_manager_app.loginState');
                 view.destroy();

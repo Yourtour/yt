@@ -14,10 +14,18 @@ Ext.define('yt_manager_app.store.basedata.Division', {
         type: 'rest',
         format: 'json',
         api: {
-            create: 'http://localhost:8080/yt-web/rest/divisions/save',
-            read: 'http://localhost:8080/yt-web/rest/divisions/load',
-            update: 'http://localhost:8080/yt-web/rest/divisions/save',
-            destroy: 'http://localhost:8080/yt-web/rest/divisions/remove'
+            create: (function () {
+                return Ext.Boot.packageUri('rest/divisions/save');
+            })(),
+            read: (function () {
+                return Ext.Boot.packageUri('rest/divisions/load');
+            })(),
+            update: (function () {
+                return Ext.Boot.packageUri('rest/divisions/save');
+            })(),
+            destroy: (function () {
+                return Ext.Boot.packageUri('rest/divisions/remove');
+            })()
         },
         actionMethods: {
             create: 'POST',

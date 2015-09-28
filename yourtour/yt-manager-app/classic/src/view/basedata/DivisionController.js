@@ -99,10 +99,10 @@ Ext.define('yt_manager_app.view.basedata.DivisionController', {
             record.set('id', record.getData().id);
             record.erase({
                 success: function () {
-                    console.log('delete success.');
+                    Ext.Boot.debug('delete success.');
                 },
                 failure: function () {
-                    console.log('delete failure.');
+                    Ext.Boot.debug('delete failure.');
                 }
             });
         }
@@ -159,12 +159,12 @@ Ext.define('yt_manager_app.view.basedata.DivisionController', {
                 me.setOperateType('');
                 parent.setHidden(true);
                 // TODO
-                console.log('save the form data.');
+                Ext.Boot.debug('save the form data.');
             },
             failure: function () {
                 Ext.MessageBox.alert('错误', '保存表单数据失败。');
                 // TODO
-                console.log('save failure.');
+                Ext.Boot.debug('save failure.');
             }
         });
     }

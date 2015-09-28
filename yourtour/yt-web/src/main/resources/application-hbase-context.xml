@@ -27,5 +27,5 @@
 	
 	<hdp:configuration>
         
-    </hdp:configuration> <hdp:hbase-configuration zk-quorum="YT-DATABASE" zk-port="2181" /-->
+    </hdp:configuration> <hdp:hbase-configuration zk-quorum="127.0.0.1" zk-port="2181" /-->
 </beans>

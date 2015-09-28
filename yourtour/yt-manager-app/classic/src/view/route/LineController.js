@@ -73,7 +73,9 @@ Ext.define('yt_manager_app.view.route.LineController', {
         // 加载该目的地的景点
         Ext.Ajax.request({
             asyn: true,
-            url: 'http://localhost:8080/yt-web/rest/lines/' + placeId + '/scenes',
+            url: (function() {
+                return Ext.Boot.packageUri('rest/lines/' + placeId + '/scenes');
+            })(),
             success: function (response, opts) {
                 var responseData = Ext.decode(response.responseText);
                 scenes.getStore().setData(responseData.data);
@@ -87,7 +89,9 @@ Ext.define('yt_manager_app.view.route.LineController', {
         // 加载该目的地的宾馆
         Ext.Ajax.request({
             asyn: true,
-            url: 'http://localhost:8080/yt-web/rest/lines/' + placeId + '/hotels',
+            url: (function() {
+                return Ext.Boot.packageUri('rest/lines/' + placeId + '/hotels');
+            })(),
             success: function (response, opts) {
                 var responseData = Ext.decode(response.responseText);
                 hotels.getStore().setData(responseData.data);
@@ -101,7 +105,9 @@ Ext.define('yt_manager_app.view.route.LineController', {
         // 加载该目的地的酒店
         Ext.Ajax.request({
             asyn: true,
-            url: 'http://localhost:8080/yt-web/rest/lines/' + placeId + '/restaurants',
+            url: (function() {
+                return Ext.Boot.packageUri('rest/lines/' + placeId + '/restaurants');
+            })(),
             success: function (response, opts) {
                 var responseData = Ext.decode(response.responseText);
                 restaurants.getStore().setData(responseData.data);

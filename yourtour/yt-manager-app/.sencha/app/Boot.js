@@ -14,6 +14,13 @@ Ext.Boot = Ext.Boot || (function (emptyFn) {
         _emptyArray = [],
         _config = {
             /*
+             * 设置跨域的地址，如果不跨域，则设置为：
+             * corsAddress: './'
+             */
+            //corsAddress: 'http://localhost:8080/yt-web/',
+            corsAddress: './',
+
+            /*
              * @cfg {Boolean} [disableCaching=true]
              * If `true` current timestamp is added to script URL's to prevent caching.
              * In debug builds, adding a "cache" or "disableCacheBuster" query parameter
@@ -49,7 +56,7 @@ Ext.Boot = Ext.Boot || (function (emptyFn) {
              * @cfg {String} charset
              * Optional charset to specify encoding of dynamic content.
              */
-            charset: undefined
+            charset: 'utf-8' //undefined
         },
 
         cssRe = /\.css(?:\?|$)/i,
@@ -117,6 +124,12 @@ Ext.Boot = Ext.Boot || (function (emptyFn) {
             // when loadSync is called, need to cause subsequent load requests to also be loadSync,
             // eg, when Ext.require(...) is called
             syncMode: false,
+
+            packageUri: function(uri) {
+                var puri = _config.corsAddress + uri;
+                this.debug(puri);
+                return puri;
+            },
 
             /*
              * simple helper method for debugging

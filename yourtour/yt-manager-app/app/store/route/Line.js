@@ -13,10 +13,18 @@ Ext.define('yt_manager_app.store.route.Line', {
         type: 'rest',
         format: 'json',
         api: {
-            create: 'http://localhost:8080/yt-web/rest/lines/save',
-            read: 'http://localhost:8080/yt-web/rest/lines/loadPage',
-            update: 'http://localhost:8080/yt-web/rest/lines/save',
-            destroy: 'http://localhost:8080/yt-web/rest/lines/remove'
+            create: (function() {
+                return Ext.Boot.packageUri('rest/lines/save');
+            })(),
+            read: (function() {
+                return Ext.Boot.packageUri('rest/lines/loadPage');
+            })(),
+            update: (function() {
+                return Ext.Boot.packageUri('rest/lines/save');
+            })(),
+            destroy: (function() {
+                return Ext.Boot.packageUri('rest/lines/remove');
+            })()
         },
         actionMethods: {
             create: 'POST',

@@ -13,10 +13,18 @@ Ext.define('yt_manager_app.store.member.User', {
         type: 'rest',
         format: 'json',
         api: {
-            create: 'http://localhost:8080/yt-web/rest/users/save',
-            read: 'http://localhost:8080/yt-web/rest/users/loadPage',
-            update: 'http://localhost:8080/yt-web/rest/users/save',
-            destroy: 'http://localhost:8080/yt-web/rest/users/remove'
+            create: (function () {
+                return Ext.Boot.packageUri('rest/users/save');
+            })(),
+            read: (function () {
+                return Ext.Boot.packageUri('rest/users/loadPage');
+            })(),
+            update: (function() {
+                return Ext.Boot.packageUri('rest/users/save');
+            })(),
+            destroy: (function() {
+                return Ext.Boot.packageUri('rest/users/remove');
+            })()
         },
         actionMethods: {
             create: 'POST',

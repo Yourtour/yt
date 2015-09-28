@@ -6,6 +6,6 @@ Ext.define('yt_manager_app.view.member.ExpertController', {
     alias: 'controller.expert',
 
     init: function() {
-        console.log('Expert controller init............');
+        Ext.Boot.debug('Expert controller init............');
     }
 });

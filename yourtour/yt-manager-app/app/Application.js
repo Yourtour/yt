@@ -14,7 +14,7 @@ Ext.define('yt_manager_app.Application', {
     ],
     
     launch: function () {
-        localStorage.setItem('yt_manager_app.cors', true);
+        localStorage.setItem('yt_manager_app.cors', false);
         var auth = Ext.getStore('yt_manager_app.store.Authentication');
         auth.authenticate();
     },

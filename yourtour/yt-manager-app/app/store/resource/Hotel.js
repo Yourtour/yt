@@ -13,10 +13,18 @@ Ext.define('yt_manager_app.store.resource.Hotel', {
         type: 'rest',
         format: 'json',
         api: {
-            create: 'http://localhost:8080/yt-web/rest/hotels/save',
-            read: 'http://localhost:8080/yt-web/rest/hotels/loadPage',
-            update: 'http://localhost:8080/yt-web/rest/hotels/save',
-            destroy: 'http://localhost:8080/yt-web/rest/hotels/remove'
+            create: (function() {
+                return Ext.Boot.packageUri('rest/hotels/save');
+            })(),
+            read: (function() {
+                return Ext.Boot.packageUri('rest/hotels/loadPage');
+            })(),
+            update: (function() {
+                return Ext.Boot.packageUri('rest/hotels/save');
+            })(),
+            destroy: (function() {
+                return Ext.Boot.packageUri('rest/hotels/remove');
+            })()
         },
         actionMethods: {
             create: 'POST',

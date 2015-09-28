@@ -13,10 +13,18 @@ Ext.define('yt_manager_app.store.resource.Scene', {
         type: 'rest',
         format: 'json',
         api: {
-            create: 'http://localhost:8080/yt-web/rest/scenes/save',
-            read: 'http://localhost:8080/yt-web/rest/scenes/loadPage',
-            update: 'http://localhost:8080/yt-web/rest/scenes/save',
-            destroy: 'http://localhost:8080/yt-web/rest/scenes/remove'
+            create: (function() {
+                return Ext.Boot.packageUri('rest/scenes/save');
+            })(),
+            read: (function() {
+                return Ext.Boot.packageUri('rest/scenes/loadPage');
+            })(),
+            update: (function() {
+                return Ext.Boot.packageUri('rest/scenes/save');
+            })(),
+            destroy: (function() {
+                return Ext.Boot.packageUri('rest/scenes/remove');
+            })()
         },
         actionMethods: {
             create: 'POST',
