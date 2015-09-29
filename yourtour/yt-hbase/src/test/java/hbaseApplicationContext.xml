@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hdp="http://www.springframework.org/schema/hadoop"
+	xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/hadoop
+    http://www.springframework.org/schema/hadoop/spring-hadoop.xsd">
+    
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+
+	<bean id="hbaseTemplate" class="org.springframework.data.hadoop.hbase.HbaseTemplate">
+		<property name="configuration" ref="hbaseConfiguration" />
+	</bean>
+	
+	<bean id="hbaseManager" class="com.yt.hbase.HbaseManager" />
+	
+	<bean id="hbaseDDL" class="com.yt.hbase.DdlGeneralOperate" />
+	<bean id="hbaseCRUD" class="com.yt.hbase.CrudGeneralOperate"  />
+	
+	<bean id="beanDescriptorGeneralCacheImpl" class="com.yt.hbase.cache.BeanDescriptorGeneralCacheImpl">
+		<property name="beanRepositories" value="com.yt.test.hbase.bean" />
+	</bean>
+	
+	<bean id="hbaseStructureSync" class="com.yt.hbase.generator.HbaseStructureSync">
+		<property name="ignoreError" value="true" />
+	</bean>
+	
+	<hdp:configuration>
+        
+    </hdp:configuration> <hdp:hbase-configuration zk-quorum="YT-DATABASE" zk-port="2181" /> </beans>

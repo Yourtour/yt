@@ -7,10 +7,10 @@ import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.data.neo4j.support.index.IndexType;
 
+import com.yt.business.BaseDictBeanImpl;
 import com.yt.business.common.Constants.Status;
-import com.yt.dal.hbase.annotation.HbaseColumn;
-import com.yt.dal.hbase.annotation.HbaseTable;
-import com.yt.rsal.neo4j.bean.Neo4JBaseBean;
+import com.yt.hbase.annotation.HbaseColumn;
+import com.yt.hbase.annotation.HbaseTable;
 
 /**
  * 
@@ -49,48 +49,54 @@ import com.yt.rsal.neo4j.bean.Neo4JBaseBean;
  */
 @HbaseTable(name = "T_LINE_INFO")
 @NodeEntity
-public class LineBean extends Neo4JBaseBean {
+public class LineBean extends BaseDictBeanImpl {
 	private static final long serialVersionUID = -3433522673262851121L;
 	private static final String INDEX_NAME = "line";
 
-	private @HbaseColumn(name = "name")
-	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	String name; // 名称
-	private @HbaseColumn(name = "img")
-	String imageUrl; // 图片
-	private @HbaseColumn(name = "intr")
-	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	String intro; // 概述， 线路进行简单介绍
-	private @HbaseColumn(name = "feat")
-	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	String feature; // 特点， 对线路特点进行简单描述
-	private @HbaseColumn(name = "reas")
-	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	String reason; // 推荐理由，描述推荐理由
-	private @HbaseColumn(name = "rind")
-	double recommendIndex; // 推荐指数
-	private @HbaseColumn(name = "cind")
-	double commentIndex; // 点评指数
+	@HbaseColumn(name = "img")
+	private String imageUrl; // 图片
 
-	private @HbaseColumn(name = "anum")
-	int arriveNum; // 到达人数
-	private @HbaseColumn(name = "tags")
+	@HbaseColumn(name = "intr")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	String tags; // 标签
+	private String intro; // 概述， 线路进行简单介绍
 
-	private @HbaseColumn(name = "cscore")
-	double commentScore; // 点评分数
-	private @HbaseColumn(name = "cnum")
-	int commentNum; // 点评数
-	private @HbaseColumn(name = "tnum")
-	int thumbupNum; // 点赞数
-	private @HbaseColumn(name = "fnum")
-	int favoriteNum; // 收藏数
-	private @HbaseColumn(name = "snum")
-	int shareNum; // 分享数
+	@HbaseColumn(name = "feat")
+	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
+	private String feature; // 特点， 对线路特点进行简单描述
 
-	private @HbaseColumn(name = "stat")
-	Status status;
+	@HbaseColumn(name = "reas")
+	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
+	private String reason; // 推荐理由，描述推荐理由
+
+	@HbaseColumn(name = "rind")
+	private double recommendIndex; // 推荐指数
+
+	@HbaseColumn(name = "cind")
+	private double commentIndex; // 点评指数
+
+	@HbaseColumn(name = "anum")
+	private int arriveNum; // 到达人数
+
+	@HbaseColumn(name = "tags")
+	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
+	private String tags; // 标签
+
+	@HbaseColumn(name = "cscore")
+	private double commentScore; // 点评分数
+	@HbaseColumn(name = "cnum")
+	private int commentNum; // 点评数
+
+	@HbaseColumn(name = "tnum")
+	private int thumbupNum; // 点赞数
+
+	@HbaseColumn(name = "fnum")
+	private int favoriteNum; // 收藏数
+
+	@HbaseColumn(name = "snum")
+	private int shareNum; // 分享数
+
+	@HbaseColumn(name = "stat")
+	private Status status;
 
 	private transient PlaceBean place = null;
 	private transient List<SceneResourceBean> scenes = null;
@@ -102,14 +108,6 @@ public class LineBean extends Neo4JBaseBean {
 		scenes = new Vector<SceneResourceBean>();
 		hotels = new Vector<HotelResourceBean>();
 		restaurants = new Vector<RestaurantResourceBean>();
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getImageUrl() {

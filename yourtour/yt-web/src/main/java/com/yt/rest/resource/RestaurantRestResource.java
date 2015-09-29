@@ -135,7 +135,7 @@ public class RestaurantRestResource {
 			} else {
 				// id 是rowkey
 				bean = (RestaurantResourceBean) restaurantRepository.get(
-						RestaurantResourceBean.class, id);
+						RestaurantResourceBean.class, "rowKey", id);
 			}
 			if (bean == null) {
 				return new ResponseDataVO<RestaurantResourceVO>(
@@ -216,7 +216,7 @@ public class RestaurantRestResource {
 					bean.setRowKey(id);
 				}
 			}
-			restaurantRepository.save(bean, operator, true);
+			restaurantRepository.save(bean, operator);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format(
 						"Save RestaurantResourceBean['%s'] success.",
@@ -242,12 +242,16 @@ public class RestaurantRestResource {
 			if (graphId != -1) {
 				// id是GraphID
 				bean = restaurantRepository.getRestaurantByGraphId(graphId);
-				id = bean.getRowKey();
+			} else {
+				// id是rowkey
+				bean = (RestaurantResourceBean) restaurantRepository.get(
+						RestaurantResourceBean.class, "rowKey", id);
 			}
-			restaurantRepository.delete(RestaurantResourceBean.class, id);
+			id = bean.getRowKey();
+			restaurantRepository.delete(bean);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format(
-						"Delete RestaurantResourceBean['%s'] success.", id));
+						"Delete RestaurantResourceBean[id='%s'] success.", id));
 			}
 			return new ResponseVO();
 		} catch (Exception ex) {

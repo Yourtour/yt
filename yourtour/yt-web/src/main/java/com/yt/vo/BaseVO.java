@@ -1,6 +1,6 @@
 package com.yt.vo;
 
-import com.yt.rsal.neo4j.bean.Neo4JBaseBean;
+import com.yt.business.BaseBeanImpl;
 
 public class BaseVO {
 
@@ -11,7 +11,7 @@ public class BaseVO {
 	private String updatedUserId = "";
 	private long updatedTime;
 
-	public void fromBean(Neo4JBaseBean bean) {
+	public void fromBean(BaseBeanImpl bean) {
 		if (bean == null) {
 			return;
 		}
@@ -23,7 +23,7 @@ public class BaseVO {
 		setUpdatedUserId(bean.getUpdatedUserId());
 	}
 
-	public void toBean(Neo4JBaseBean bean) {
+	public void toBean(BaseBeanImpl bean) {
 		bean.setCreatedTime(getCreatedTime());
 		bean.setCreatedUserId(getCreatedUserId());
 		bean.setGraphId(getId());

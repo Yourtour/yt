@@ -3,38 +3,30 @@ package com.yt.business.bean;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.support.index.IndexType;
 
-import com.yt.dal.hbase.annotation.HbaseColumn;
+import com.yt.hbase.annotation.HbaseColumn;
 
 public class RestaurantResourceBean extends ResourceBean {
 	private static final long serialVersionUID = -7687082317108442937L;
 	private static final String INDEX_NAME = "restaurant";
 
-	private @HbaseColumn(name = "name")
-	@Indexed
-	String name; // 名称
-	private @HbaseColumn(name = "delf")
+	@HbaseColumn(name = "delf")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	String deliciouFood; // 特色菜品
-	private @HbaseColumn(name = "rtst")
+	private String deliciouFood; // 特色菜品
+
+	@HbaseColumn(name = "rtst")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	String foodStandard; // 餐饮标准
-	private @HbaseColumn(name = "tags")
+	private String foodStandard; // 餐饮标准
+
+	@HbaseColumn(name = "tags")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	String foodTags; // 美食标签
-	private @HbaseColumn(name = "neti")
+	private String foodTags; // 美食标签
+
+	@HbaseColumn(name = "neti")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	String networkInfo; // 网络信息
+	private String networkInfo; // 网络信息
 
 	public RestaurantResourceBean() {
 		super();
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getDeliciouFood() {

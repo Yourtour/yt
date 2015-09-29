@@ -19,20 +19,14 @@ import javax.ws.rs.core.MediaType;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.stereotype.Component;
 
-import com.yt.business.bean.LineBean;
 import com.yt.business.bean.RouteBean;
-import com.yt.business.bean.SceneResourceBean;
-import com.yt.business.common.Constants.NodeRelationshipEnum;
+import com.yt.business.repository.RouteRepository;
 import com.yt.business.utils.Neo4jUtils;
 import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponseVO;
-import com.yt.rsal.neo4j.repository.ICrudOperate;
-import com.yt.rsal.neo4j.repository.IFullTextSearchOperate;
 import com.yt.utils.WebUtils;
 import com.yt.vo.RelationConditionVO;
 import com.yt.vo.route.PersonalRouteVO;
@@ -48,14 +42,7 @@ public class RouteRestResource {
 			"yyyy-MM-dd");
 
 	@Autowired
-	private Neo4jTemplate template;
-
-	@Autowired
-	@Qualifier("crudGeneralOperate")
-	private ICrudOperate crudOperate;
-
-	@Autowired
-	private IFullTextSearchOperate ftsOperate;
+	private RouteRepository routeRepository;
 
 	@SuppressWarnings("unchecked")
 	@GET
@@ -65,7 +52,7 @@ public class RouteRestResource {
 		}
 		List<RouteVO> list = new ArrayList<RouteVO>();
 		try {
-			List<RouteBean> result = (List<RouteBean>) crudOperate
+			List<RouteBean> result = (List<RouteBean>) routeRepository
 					.get(RouteBean.class);
 			for (RouteBean bean : result) {
 				if (bean == null) {
@@ -97,15 +84,18 @@ public class RouteRestResource {
 			RouteBean bean = null;
 			if (graphId != -1) {
 				// id是GraphID
-				bean = template.findOne(graphId, RouteBean.class);
+				bean = (RouteBean) routeRepository
+						.get(RouteBean.class, graphId);
 			} else {
 				// id 是rowkey
-				bean = (RouteBean) crudOperate.get(RouteBean.class, id);
+				bean = (RouteBean) routeRepository.get(RouteBean.class,
+						"rowKey", id);
 			}
 			if (bean == null) {
 				return new ResponseDataVO<RouteVO>(
 						StaticErrorEnum.THE_DATA_NOT_EXIST);
 			}
+			id = bean.getRowKey();
 			RouteVO vo = RouteVO.transform(bean);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format("Get RouteBean['%s'] success.", id));
@@ -159,7 +149,7 @@ public class RouteRestResource {
 		}
 		try {
 			RouteBean bean = RouteVO.transform(vo);
-			crudOperate.save(bean, operator, true);
+			routeRepository.save(bean, operator);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format("Save RouteBean['%s'] success.",
 						vo.getRowKey()));
@@ -183,12 +173,18 @@ public class RouteRestResource {
 			RouteBean bean = null;
 			if (graphId != -1) {
 				// id是GraphID
-				bean = template.findOne(graphId, RouteBean.class);
-				id = bean.getRowKey();
+				bean = (RouteBean) routeRepository
+						.get(RouteBean.class, graphId);
+			} else {
+				// id是rowkey
+				bean = (RouteBean) routeRepository.get(RouteBean.class,
+						"rowKey", id);
 			}
-			crudOperate.delete(RouteBean.class, id);
+			id = bean.getRowKey();
+			routeRepository.delete(bean);
 			if (LOG.isDebugEnabled()) {
-				LOG.debug(String.format("Delete RouteBean['%s'] success.", id));
+				LOG.debug(String.format("Delete RouteBean[id='%s'] success.",
+						id));
 			}
 			return new ResponseVO();
 		} catch (Exception ex) {
@@ -209,9 +205,11 @@ public class RouteRestResource {
 		String routeId = condition.getSrcId(), lineId = condition.getTarId();
 		boolean isAdd = condition.isAdd();
 		try {
-			Neo4jUtils.maintainRelateion(template, crudOperate,
-					NodeRelationshipEnum.RELATED, routeId, RouteBean.class,
-					lineId, LineBean.class, null, isAdd, true);
+			if (isAdd) {
+				routeRepository.relateLine(routeId, lineId);
+			} else {
+				routeRepository.unrelateLine(routeId, lineId);
+			}
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String
 						.format("'%s' 'RELATED' from RouteBean['%s'] to LineBean['%s'] success.",
@@ -237,9 +235,11 @@ public class RouteRestResource {
 		String routeId = condition.getSrcId(), sceneId = condition.getTarId();
 		boolean isAdd = condition.isAdd();
 		try {
-			Neo4jUtils.maintainRelateion(template, crudOperate,
-					NodeRelationshipEnum.CONTAIN, routeId, RouteBean.class,
-					sceneId, SceneResourceBean.class, null, isAdd, false);
+			if (isAdd) {
+				routeRepository.containScene(routeId, sceneId);
+			} else {
+				routeRepository.uncontainScene(routeId, sceneId);
+			}
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String
 						.format("'%s' 'CONTAIN' from RouteBean['%s'] to SceneResourceBean['%s'] success.",
@@ -263,7 +263,7 @@ public class RouteRestResource {
 	public ResponseDataVO<List<PersonalRouteVO>> getPersonalRoute() {
 		List<PersonalRouteVO> list = new ArrayList<PersonalRouteVO>();
 		try {
-			List<RouteBean> result = (List<RouteBean>) crudOperate
+			List<RouteBean> result = (List<RouteBean>) routeRepository
 					.get(RouteBean.class);
 			for (RouteBean bean : result) {
 				if (bean == null) {

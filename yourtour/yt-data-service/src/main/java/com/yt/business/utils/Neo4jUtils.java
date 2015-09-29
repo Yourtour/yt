@@ -7,9 +7,10 @@ import org.apache.commons.logging.LogFactory;
 import org.neo4j.graphdb.Node;
 import org.springframework.data.neo4j.support.Neo4jTemplate;
 
+import com.yt.business.BaseBeanImpl;
+import com.yt.business.CrudAllInOneOperate;
 import com.yt.business.common.Constants.NodeRelationshipEnum;
-import com.yt.rsal.neo4j.bean.INeo4JBaseBean;
-import com.yt.rsal.neo4j.repository.ICrudOperate;
+import com.yt.neo4j.bean.Neo4jBaseBean;
 
 public class Neo4jUtils {
 	private static final Log LOG = LogFactory.getLog(Neo4jUtils.class);
@@ -23,8 +24,8 @@ public class Neo4jUtils {
 	}
 
 	public static void maintainRelation(Neo4jTemplate template,
-			NodeRelationshipEnum relateEnum, INeo4JBaseBean src,
-			INeo4JBaseBean tar, Map<String, Object> properties, boolean isAdd,
+			NodeRelationshipEnum relateEnum, BaseBeanImpl src,
+			BaseBeanImpl tar, Map<String, Object> properties, boolean isAdd,
 			boolean isBoth) throws Exception {
 		if (src == null || tar == null) {
 			throw new NullPointerException();
@@ -66,19 +67,19 @@ public class Neo4jUtils {
 	}
 
 	public static void maintainRelateion(Neo4jTemplate template,
-			ICrudOperate crudOperate, NodeRelationshipEnum relateEnum,
-			String srcId, Class<? extends INeo4JBaseBean> srcClass,
-			String tarId, Class<? extends INeo4JBaseBean> tarClass,
+			CrudAllInOneOperate crudOperate, NodeRelationshipEnum relateEnum,
+			String srcId, Class<? extends BaseBeanImpl> srcClass, String tarId,
+			Class<? extends BaseBeanImpl> tarClass,
 			Map<String, Object> properties, boolean isAdd, boolean isBoth)
 			throws Exception {
 		long gsId = getGraphIDFromString(srcId);
 		long gtId = getGraphIDFromString(tarId);
 		if (gsId == -1) {
-			INeo4JBaseBean src = crudOperate.get(srcClass, srcId);
+			Neo4jBaseBean src = crudOperate.get(srcClass, "rowKey", srcId);
 			gsId = src.getGraphId();
 		}
 		if (gtId == -1) {
-			INeo4JBaseBean tar = crudOperate.get(tarClass, tarId);
+			Neo4jBaseBean tar = crudOperate.get(tarClass, "rowKey", tarId);
 			gtId = tar.getGraphId();
 		}
 		Node nodeSrc = template.getNode(gsId), nodeTar = template.getNode(gtId);

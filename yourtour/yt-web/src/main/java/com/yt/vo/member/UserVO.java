@@ -50,13 +50,13 @@ public class UserVO extends BaseVO {
 		vo.setNickName(bean.getNickName());
 		vo.setPassword(bean.getPwd());
 		vo.setRank(bean.getRank());
-		vo.setRealName(bean.getRealName());
+		vo.setRealName(bean.getName());
 		vo.setResidence(bean.getResidence());
 		vo.setRole(bean.getRole());
 		vo.setGender(bean.getGender());
 		vo.setSlogan(bean.getSlogan());
 		vo.setStatus(bean.getStatus());
-		vo.setUserName(bean.getUserName());
+		vo.setUserName(bean.getCode());
 		return vo;
 	}
 
@@ -85,13 +85,13 @@ public class UserVO extends BaseVO {
 		bean.setNickName(vo.getNickName());
 		bean.setPwd(vo.getPassword());
 		bean.setRank(vo.getRank());
-		bean.setRealName(vo.getRealName());
+		bean.setName(vo.getRealName());
 		bean.setResidence(vo.getResidence());
 		bean.setRole(vo.getRole());
 		bean.setGender(vo.getGender());
 		bean.setSlogan(vo.getSlogan());
 		bean.setStatus(vo.getStatus());
-		bean.setUserName(vo.getUserName());
+		bean.setCode(vo.getUserName());
 		return bean;
 	}
 

@@ -7,8 +7,8 @@ import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.data.neo4j.support.index.IndexType;
 
-import com.yt.dal.hbase.annotation.HbaseColumn;
-import com.yt.dal.hbase.annotation.HbaseTable;
+import com.yt.hbase.annotation.HbaseColumn;
+import com.yt.hbase.annotation.HbaseTable;
 
 /**
  * 旅游景点实体对象
@@ -22,32 +22,25 @@ public class SceneResourceBean extends ResourceBean {
 	private static final long serialVersionUID = 563053332776568183L;
 	private static final String INDEX_NAME = "scene";
 
-	private @HbaseColumn(name = "name")
+	@HbaseColumn(name = "intr")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	String name; // 名称
-	private @HbaseColumn(name = "intr")
+	private String intro; // 简介
+
+	@HbaseColumn(name = "tikt")
+	private String ticket; // 门票信息
+
+	@HbaseColumn(name = "map")
+	private String sceneMap; // 景区地图
+
+	@HbaseColumn(name = "spsc")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	String intro; // 简介
-	private @HbaseColumn(name = "tikt")
-	String ticket; // 门票信息
-	private @HbaseColumn(name = "map")
-	String sceneMap; // 景区地图
-	private @HbaseColumn(name = "spsc")
-	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	String specialScene; // 必游特殊景色
-	private @HbaseColumn(name = "'")
-	String sceneTraffic; // 景区交通信息
+	private String specialScene; // 必游特殊景色
+
+	@HbaseColumn(name = "'sctr")
+	private String sceneTraffic; // 景区交通信息
 
 	public SceneResourceBean() {
 		super();
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getIntro() {

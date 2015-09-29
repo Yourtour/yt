@@ -12,13 +12,13 @@ Ext.define('yt_manager_app.view.member.UserWindow', {
                 fieldLabel: '登录名',
                 reference: 'userName',
                 allowBlank: false,
-                name: 'userName',
+                name: 'code',
                 emptyText: '登录名，只能包含半角字母（大小写）、数字和下划线(_)！'
             }, {
                 fieldLabel: '真实名字',
                 reference: 'realName',
                 allowBlank: false,
-                name: 'realName',
+                name: 'name',
                 emptyText: '真实姓名'
             }, {
                 fieldLabel: '昵称',

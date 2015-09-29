@@ -136,7 +136,8 @@ public class LineRestResource {
 				bean = lineRepository.getLineByGraphId(graphId);
 			} else {
 				// id 是rowkey
-				bean = (LineBean) lineRepository.get(LineBean.class, id);
+				bean = (LineBean) lineRepository.get(LineBean.class, "rowKey",
+						id);
 			}
 			if (bean == null) {
 				return new ResponseDataVO<LineVO>(
@@ -169,7 +170,8 @@ public class LineRestResource {
 				bean = (PlaceBean) lineRepository.get(PlaceBean.class, graphId);
 			} else {
 				// id 是rowkey
-				bean = (PlaceBean) lineRepository.get(PlaceBean.class, placeId);
+				bean = (PlaceBean) lineRepository.get(PlaceBean.class,
+						"rowKey", placeId);
 			}
 			if (bean == null) {
 				return new ResponseDataVO<List<AbbrVO>>(
@@ -216,7 +218,8 @@ public class LineRestResource {
 				bean = (PlaceBean) lineRepository.get(PlaceBean.class, graphId);
 			} else {
 				// id 是rowkey
-				bean = (PlaceBean) lineRepository.get(PlaceBean.class, placeId);
+				bean = (PlaceBean) lineRepository.get(PlaceBean.class,
+						"rowKey", placeId);
 			}
 			if (bean == null) {
 				return new ResponseDataVO<List<AbbrVO>>(
@@ -263,7 +266,8 @@ public class LineRestResource {
 				bean = (PlaceBean) lineRepository.get(PlaceBean.class, graphId);
 			} else {
 				// id 是rowkey
-				bean = (PlaceBean) lineRepository.get(PlaceBean.class, placeId);
+				bean = (PlaceBean) lineRepository.get(PlaceBean.class,
+						"rowKey", placeId);
 			}
 			if (bean == null) {
 				return new ResponseDataVO<List<AbbrVO>>(
@@ -359,7 +363,7 @@ public class LineRestResource {
 					bean.setRowKey(id);
 				}
 			}
-			lineRepository.save(bean, operator, true);
+			lineRepository.save(bean, operator);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format("Save LineBean['%d'] success.",
 						bean.getGraphId()));
@@ -383,11 +387,16 @@ public class LineRestResource {
 			if (graphId != -1) {
 				// id是GraphID
 				bean = lineRepository.getLineByGraphId(graphId);
-				id = bean.getRowKey();
+			} else {
+				// id是rowkey
+				bean = (LineBean) lineRepository.get(LineBean.class, "rowKey",
+						id);
 			}
-			lineRepository.delete(LineBean.class, id);
+			id = bean.getRowKey();
+			lineRepository.delete(bean);
 			if (LOG.isDebugEnabled()) {
-				LOG.debug(String.format("Delete LineBean['%s'] success.", id));
+				LOG.debug(String
+						.format("Delete LineBean[id='%s'] success.", id));
 			}
 			return new ResponseVO();
 		} catch (Exception ex) {

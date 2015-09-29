@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yt.business.CrudAllInOneOperate;
 import com.yt.business.bean.UserBean;
-import com.yt.rsal.neo4j.repository.ICrudOperate;
 
 public class AdminUserInitializeService implements InitializingBean {
 	/** 静态变量：系统日志 */
@@ -16,8 +16,8 @@ public class AdminUserInitializeService implements InitializingBean {
 			.getLog(AdminUserInitializeService.class);
 
 	@Autowired
-	@Qualifier("crudGeneralOperate")
-	private ICrudOperate crudOperate;
+	@Qualifier("crudAllInOneOperateImpl")
+	private CrudAllInOneOperate crudOperate;
 
 	/**
 	 * 默认构造方法
@@ -40,16 +40,15 @@ public class AdminUserInitializeService implements InitializingBean {
 			LOG.warn("The admin user is not exist, will initialize it.");
 		}
 		admin = new UserBean();
-		admin.setUserName("admin");
-		admin.setRowKey("admin");
-		admin.setRealName("管理员");
+		admin.setCode("admin");
+		admin.setName("管理员");
 		// TODO 后续将明码的密码更换为摘要加密的密码
 		admin.setPwd("admin");
 		crudOperate.save(admin, "admin");
 		if (LOG.isDebugEnabled()) {
 			LOG.debug(String
 					.format("Initialize admin employee successfully, default code = %s, password = %s.",
-							admin.getUserName(), admin.getPwd()));
+							admin.getCode(), admin.getPwd()));
 		}
 	}
 

@@ -8,17 +8,17 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.yt.business.CrudAllInOneOperateImpl;
 import com.yt.business.bean.PlaceBean;
 import com.yt.business.bean.RestaurantResourceBean;
 import com.yt.business.common.Constants.NodeRelationshipEnum;
 import com.yt.business.neo4j.repository.RestaurantResourceBeanRepository;
 import com.yt.business.neo4j.repository.RestaurantResourcePlaceTuple;
 import com.yt.business.utils.Neo4jUtils;
-import com.yt.rsal.neo4j.bean.INeo4JBaseBean;
-import com.yt.rsal.neo4j.repository.CrudGeneralOperate;
+import com.yt.neo4j.bean.Neo4jBaseBean;
 
 @Component
-public class RestaurantRepositoryImpl extends CrudGeneralOperate implements
+public class RestaurantRepositoryImpl extends CrudAllInOneOperateImpl implements
 		RestaurantRepository {
 	private static final Log LOG = LogFactory
 			.getLog(RestaurantRepositoryImpl.class);
@@ -82,14 +82,14 @@ public class RestaurantRepositoryImpl extends CrudGeneralOperate implements
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.yt.rsal.neo4j.repository.CrudGeneralOperate#save(com.yt.rsal.neo4j
-	 * .bean.INeo4JBaseBean, java.lang.String, boolean)
+	 * com.yt.business.CrudAllInOneOperateImpl#save(com.yt.neo4j.bean.Neo4jBaseBean
+	 * , java.lang.String)
 	 */
 	@Override
-	public INeo4JBaseBean save(INeo4JBaseBean neo4jBean, String operator,
-			boolean saveFail2Hbase) throws Exception {
-		RestaurantResourceBean bean = (RestaurantResourceBean) super.save(
-				neo4jBean, operator, saveFail2Hbase);
+	public void save(Neo4jBaseBean neo4jBean, String operator) throws Exception {
+		super.save(neo4jBean, operator);
+		RestaurantResourceBean bean = (RestaurantResourceBean) super.get(
+				RestaurantResourceBean.class, neo4jBean.getGraphId());
 		RestaurantResourceBean hotel = (RestaurantResourceBean) neo4jBean;
 		// 建立饭店和目的地的关联关系
 		if (hotel.getPlace() != null && hotel.getPlace().getGraphId() != null) {
@@ -99,6 +99,5 @@ public class RestaurantRepositoryImpl extends CrudGeneralOperate implements
 			Neo4jUtils.maintainRelation(super.template,
 					NodeRelationshipEnum.AT, bean, place, null, true, false);
 		}
-		return bean;
 	}
 }

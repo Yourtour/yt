@@ -1,2 +1,1 @@
-
-include "yt-core", "yt-dal", "yt-rsal", "yt-data-service", "yt-web"
+include "yt-core", "yt-hbase", "yt-neo4j", "yt-data-service", "yt-web"

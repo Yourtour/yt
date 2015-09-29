@@ -8,6 +8,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.yt.business.CrudAllInOneOperateImpl;
 import com.yt.business.bean.HotelResourceBean;
 import com.yt.business.bean.LineBean;
 import com.yt.business.bean.PlaceBean;
@@ -24,14 +25,12 @@ import com.yt.business.neo4j.repository.RouteBeanRepository;
 import com.yt.business.neo4j.repository.SceneResourceBeanRepository;
 import com.yt.business.neo4j.repository.SceneResourcePlaceTuple;
 import com.yt.business.utils.Neo4jUtils;
-import com.yt.rsal.neo4j.bean.INeo4JBaseBean;
-import com.yt.rsal.neo4j.bean.Neo4JBaseBean;
-import com.yt.rsal.neo4j.repository.CrudGeneralOperate;
-import com.yt.rsal.neo4j.repository.IFullTextSearchOperate;
-import com.yt.rsal.neo4j.repository.IFullTextSearchOperate.QueryTerm;
+import com.yt.neo4j.bean.Neo4jBaseBean;
+import com.yt.neo4j.repository.FullTextSearchOperate;
+import com.yt.neo4j.repository.FullTextSearchOperate.QueryTerm;
 
 @Component
-public class LineRepositoryImpl extends CrudGeneralOperate implements
+public class LineRepositoryImpl extends CrudAllInOneOperateImpl implements
 		LineRepository {
 	private static final Log LOG = LogFactory.getLog(LineRepositoryImpl.class);
 
@@ -45,7 +44,7 @@ public class LineRepositoryImpl extends CrudGeneralOperate implements
 	private RestaurantResourceBeanRepository restaurantRepo;
 
 	@Autowired
-	private IFullTextSearchOperate ftsOperate;
+	private FullTextSearchOperate ftsOperate;
 
 	@Autowired
 	private RouteBeanRepository routeRepo;
@@ -174,14 +173,12 @@ public class LineRepositoryImpl extends CrudGeneralOperate implements
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.yt.rsal.neo4j.repository.CrudGeneralOperate#save(com.yt.rsal.neo4j
-	 * .bean.INeo4JBaseBean, java.lang.String, boolean)
+	 * com.yt.business.CrudAllInOneOperateImpl#save(com.yt.neo4j.bean.Neo4jBaseBean
+	 * , java.lang.String)
 	 */
 	@Override
-	public INeo4JBaseBean save(INeo4JBaseBean neo4jBean, String operator,
-			boolean saveFail2Hbase) throws Exception {
-		LineBean bean = (LineBean) super.save(neo4jBean, operator,
-				saveFail2Hbase);
+	public void save(Neo4jBaseBean neo4jBean, String operator) throws Exception {
+		super.save(neo4jBean, operator);
 		LineBean line = (LineBean) neo4jBean;
 		if (line.getPlace() != null && line.getPlace().getGraphId() != null) {
 			// 建立线路到目的地的关系
@@ -254,8 +251,6 @@ public class LineRepositoryImpl extends CrudGeneralOperate implements
 					NodeRelationshipEnum.CONTAIN, line, restaurantGet, null,
 					true, false);
 		}
-
-		return bean;
 	}
 
 	/*
@@ -351,7 +346,7 @@ public class LineRepositoryImpl extends CrudGeneralOperate implements
 		for (String scene : scenes) {
 			terms.add(new QueryTerm("name", scene));
 		}
-		List<Neo4JBaseBean> sceneBeans = ftsOperate.query(
+		List<Neo4jBaseBean> sceneBeans = ftsOperate.query(
 				SceneResourceBean.class, terms, false);
 		long[] ids = new long[sceneBeans.size()];
 		for (int index = 0; index < ids.length; index++) {

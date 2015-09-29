@@ -147,9 +147,13 @@ public class DivisionRestResource {
 				// id是GraphID
 				bean = (PlaceBean) placeRepository
 						.get(PlaceBean.class, graphId);
-				id = bean.getRowKey();
+			} else {
+				// id是rowkey
+				bean = (PlaceBean) placeRepository.get(PlaceBean.class,
+						"rowKey", id);
 			}
-			placeRepository.delete(PlaceBean.class, id);
+			id = bean.getRowKey();
+			placeRepository.delete(bean);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format("Delete PlaceBean['%s'] success.", id));
 			}

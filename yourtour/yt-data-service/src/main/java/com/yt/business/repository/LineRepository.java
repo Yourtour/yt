@@ -2,13 +2,13 @@ package com.yt.business.repository;
 
 import java.util.List;
 
+import com.yt.business.CrudAllInOneOperate;
 import com.yt.business.bean.HotelResourceBean;
 import com.yt.business.bean.LineBean;
 import com.yt.business.bean.RestaurantResourceBean;
 import com.yt.business.bean.SceneResourceBean;
-import com.yt.rsal.neo4j.repository.ICrudOperate;
 
-public interface LineRepository extends ICrudOperate {
+public interface LineRepository extends CrudAllInOneOperate {
 
 	public LineBean getLineByGraphId(Long graphId) throws Exception;
 

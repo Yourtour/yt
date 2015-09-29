@@ -131,7 +131,7 @@ public class SceneRestResource {
 			} else {
 				// id 是rowkey
 				bean = (SceneResourceBean) sceneRepository.get(
-						SceneResourceBean.class, id);
+						SceneResourceBean.class, "rowKey", id);
 			}
 			if (bean == null) {
 				return new ResponseDataVO<SceneResourceVO>(
@@ -211,7 +211,7 @@ public class SceneRestResource {
 					bean.setRowKey(id);
 				}
 			}
-			sceneRepository.save(bean, operator, true);
+			sceneRepository.save(bean, operator);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format(
 						"Save SceneResourceBean['%s'] success.", vo.getRowKey()));
@@ -237,12 +237,16 @@ public class SceneRestResource {
 			if (graphId != -1) {
 				// id是GraphID
 				bean = sceneRepository.getSceneByGraphId(graphId);
-				id = bean.getRowKey();
+			} else {
+				// id是rowkey
+				bean = (SceneResourceBean) sceneRepository.get(
+						SceneResourceBean.class, "rowKey", id);
 			}
-			sceneRepository.delete(SceneResourceBean.class, id);
+			id = bean.getRowKey();
+			sceneRepository.delete(bean);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format(
-						"Delete SceneResourceBean['%s'] success.", id));
+						"Delete SceneResourceBean[id='%s'] success.", id));
 			}
 			return new ResponseVO();
 		} catch (Exception ex) {

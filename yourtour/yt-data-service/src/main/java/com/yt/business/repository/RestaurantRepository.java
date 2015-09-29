@@ -2,10 +2,10 @@ package com.yt.business.repository;
 
 import java.util.List;
 
+import com.yt.business.CrudAllInOneOperate;
 import com.yt.business.bean.RestaurantResourceBean;
-import com.yt.rsal.neo4j.repository.ICrudOperate;
 
-public interface RestaurantRepository extends ICrudOperate {
+public interface RestaurantRepository extends CrudAllInOneOperate {
 	public RestaurantResourceBean getRestaurantByGraphId(Long graphId)
 			throws Exception;
 

@@ -167,7 +167,7 @@ public class UserRestResource {
 					bean.setRowKey(id);
 				}
 			}
-			userRepository.save(bean, operator, true);
+			userRepository.save(bean, operator);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format("Save UserBean['%s'] success.",
 						vo.getRowKey()));
@@ -192,11 +192,15 @@ public class UserRestResource {
 			if (graphId != -1) {
 				// id是GraphID
 				bean = (UserBean) userRepository.get(UserBean.class, graphId);
-				id = bean.getRowKey();
+			} else {
+				// id 是rowkey
+				bean = (UserBean) userRepository.get(UserBean.class, "rowKey",
+						id);
 			}
-			userRepository.delete(UserBean.class, id);
+			id = bean.getRowKey();
+			userRepository.delete(bean);
 			if (LOG.isDebugEnabled()) {
-				LOG.debug(String.format("Delete UserBean['%s'] success.", id));
+				LOG.debug(String.format("Delete UserBean[id='%s'] success.", id));
 			}
 			return new ResponseVO();
 		} catch (Exception ex) {

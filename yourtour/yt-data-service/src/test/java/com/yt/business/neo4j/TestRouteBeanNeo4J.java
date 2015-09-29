@@ -19,16 +19,16 @@ import org.springframework.data.neo4j.support.Neo4jTemplate;
 
 import com.yt.business.bean.RouteBean;
 import com.yt.business.common.Constants.Status;
-import com.yt.rsal.neo4j.bean.Neo4JBaseBean;
-import com.yt.rsal.neo4j.repository.CrudGeneralOperate;
-import com.yt.rsal.neo4j.repository.ICrudOperate;
-import com.yt.rsal.neo4j.repository.IFullTextSearchOperate;
-import com.yt.rsal.neo4j.repository.IFullTextSearchOperate.QueryTerm;
+import com.yt.neo4j.bean.Neo4jBaseBean;
+import com.yt.neo4j.repository.CrudGeneralOperate;
+import com.yt.neo4j.repository.CrudOperate;
+import com.yt.neo4j.repository.FullTextSearchOperate;
+import com.yt.neo4j.repository.FullTextSearchOperate.QueryTerm;
 
 public class TestRouteBeanNeo4J {
 
 	private ApplicationContext context;
-	private ICrudOperate neo4jCRUD;
+	private CrudOperate neo4jCRUD;
 
 	@Before
 	public void setUp() throws Exception {
@@ -85,7 +85,7 @@ public class TestRouteBeanNeo4J {
 					neo4jCRUD.count(RouteBean.class), 1l);
 
 			RouteBean route1 = (RouteBean) neo4jCRUD.get(RouteBean.class,
-					route.getRowKey());
+					"rowKey", route.getRowKey());
 			assertNotNull(route1);
 			assertEquals("Assert the rowKey", route.getRowKey(),
 					route1.getRowKey());
@@ -136,9 +136,9 @@ public class TestRouteBeanNeo4J {
 			neo4jCRUD.save(route, "tester");
 
 			// test fulltext search
-			IFullTextSearchOperate search = context
-					.getBean(IFullTextSearchOperate.class);
-			List<Neo4JBaseBean> list = search.query(RouteBean.class,
+			FullTextSearchOperate search = context
+					.getBean(FullTextSearchOperate.class);
+			List<Neo4jBaseBean> list = search.query(RouteBean.class,
 					new QueryTerm("intro", "五台山"));
 			assertTrue(list.size() == 1);
 			RouteBean route1 = (RouteBean) list.get(0);

@@ -8,17 +8,17 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.yt.business.CrudAllInOneOperateImpl;
 import com.yt.business.bean.HotelResourceBean;
 import com.yt.business.bean.PlaceBean;
 import com.yt.business.common.Constants.NodeRelationshipEnum;
 import com.yt.business.neo4j.repository.HotelResourceBeanRepository;
 import com.yt.business.neo4j.repository.HotelResourcePlaceTuple;
 import com.yt.business.utils.Neo4jUtils;
-import com.yt.rsal.neo4j.bean.INeo4JBaseBean;
-import com.yt.rsal.neo4j.repository.CrudGeneralOperate;
+import com.yt.neo4j.bean.Neo4jBaseBean;
 
 @Component
-public class HotelRepositoryImpl extends CrudGeneralOperate implements
+public class HotelRepositoryImpl extends CrudAllInOneOperateImpl implements
 		HotelRepository {
 	private static final Log LOG = LogFactory.getLog(HotelRepositoryImpl.class);
 
@@ -77,14 +77,14 @@ public class HotelRepositoryImpl extends CrudGeneralOperate implements
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.yt.rsal.neo4j.repository.CrudGeneralOperate#save(com.yt.rsal.neo4j
-	 * .bean.INeo4JBaseBean, java.lang.String, boolean)
+	 * com.yt.business.CrudAllInOneOperateImpl#save(com.yt.neo4j.bean.Neo4jBaseBean
+	 * , java.lang.String)
 	 */
 	@Override
-	public INeo4JBaseBean save(INeo4JBaseBean neo4jBean, String operator,
-			boolean saveFail2Hbase) throws Exception {
-		HotelResourceBean bean = (HotelResourceBean) super.save(neo4jBean,
-				operator, saveFail2Hbase);
+	public void save(Neo4jBaseBean neo4jBean, String operator) throws Exception {
+		super.save(neo4jBean, operator);
+		HotelResourceBean bean = (HotelResourceBean) super.get(
+				HotelResourceBean.class, neo4jBean.getGraphId());
 		HotelResourceBean hotel = (HotelResourceBean) neo4jBean;
 		// 建立宾馆和目的地的关联关系
 		if (hotel.getPlace() != null && hotel.getPlace().getGraphId() != null) {
@@ -94,6 +94,5 @@ public class HotelRepositoryImpl extends CrudGeneralOperate implements
 			Neo4jUtils.maintainRelation(super.template,
 					NodeRelationshipEnum.AT, bean, place, null, true, false);
 		}
-		return bean;
 	}
 }

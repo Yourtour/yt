@@ -5,14 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.yt.business.CrudAllInOneOperateImpl;
 import com.yt.business.bean.PlaceBean;
 import com.yt.business.common.Constants.NodeRelationshipEnum;
 import com.yt.business.neo4j.repository.PlaceBeanRepository;
 import com.yt.business.utils.Neo4jUtils;
-import com.yt.rsal.neo4j.repository.CrudGeneralOperate;
 
 @Component
-public class PlaceRepositoryImpl extends CrudGeneralOperate implements
+public class PlaceRepositoryImpl extends CrudAllInOneOperateImpl implements
 		PlaceRepository {
 
 	@Autowired
@@ -72,7 +72,7 @@ public class PlaceRepositoryImpl extends CrudGeneralOperate implements
 			parent = super.template.findOne(parentId, PlaceBean.class);
 			if (parent.isLeaf()) {
 				parent.setLeaf(false);
-				super.save(parent, operator, true);
+				super.save(parent, operator);
 			}
 		}
 		// 没有父节点，则当前节点就是根节点
@@ -84,7 +84,7 @@ public class PlaceRepositoryImpl extends CrudGeneralOperate implements
 			rowkey = String.format("%s-%s", parent.getRowKey(), rowkey);
 		}
 		place.setRowKey(rowkey);
-		super.save(place, operator, true);
+		super.save(place, operator);
 		if (codeChanged) {
 			// 由于代码修改过，因此相关子节点的rowkey也需要同步修改
 			iterateUpdateRowkey(place, operator);
@@ -109,7 +109,7 @@ public class PlaceRepositoryImpl extends CrudGeneralOperate implements
 				.getGraphId());
 		for (PlaceBean child : children) {
 			child.setRowKey(String.format("%s-%s", rowkey, child.getCode()));
-			super.save(child, operator, true);
+			super.save(child, operator);
 			iterateUpdateRowkey(child, operator);
 		}
 	}

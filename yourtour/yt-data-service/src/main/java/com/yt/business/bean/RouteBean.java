@@ -4,10 +4,10 @@ import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.data.neo4j.support.index.IndexType;
 
+import com.yt.business.BaseDictBeanImpl;
 import com.yt.business.common.Constants.Status;
-import com.yt.dal.hbase.annotation.HbaseColumn;
-import com.yt.dal.hbase.annotation.HbaseTable;
-import com.yt.rsal.neo4j.bean.Neo4JBaseBean;
+import com.yt.hbase.annotation.HbaseColumn;
+import com.yt.hbase.annotation.HbaseTable;
 
 /**
  * 行程bean，定义了行程基本信息
@@ -39,53 +39,51 @@ import com.yt.rsal.neo4j.bean.Neo4JBaseBean;
  */
 @HbaseTable(name = "T_ROUTE_INFO")
 @NodeEntity
-public class RouteBean extends Neo4JBaseBean {
+public class RouteBean extends BaseDictBeanImpl {
 	private static final long serialVersionUID = -8980153602025087935L;
 	private static final String INDEX_NAME = "route";
 
-	private @HbaseColumn(name = "name")
-	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	String name; // 名称
-	private @HbaseColumn(name = "iu")
-	String imageUrl; // 行程图片
-	private @HbaseColumn(name = "line")
-	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	String lineName; // 线路名称
-	private @HbaseColumn(name = "step")
-	int step; // 规划步骤
-	private @HbaseColumn(name = "intr")
-	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	String intro; // 概述， 可以针对行程安排中具体某天或者某个景点进行描述
-	private @HbaseColumn(name = "feat")
-	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	String feature; // 特点， 可以针对行程安排中具体某天或者某个景点进行特点描述
-	private @HbaseColumn(name = "reas")
-	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	String reason; // 推荐理由，， 可以针对行程安排中具体某天或者某个景点进行推荐描述
-	private @HbaseColumn(name = "plac")
-	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	String place; // 目的地
-	private @HbaseColumn(name = "st")
-	long startTime; // 安排开始时间，以秒为单位
-	private @HbaseColumn(name = "et")
-	long endTime; // 安排结束时间，以秒为单位
-	private @HbaseColumn(name = "peri")
-	long period; // 安排持续时间， 以秒为单位
+	@HbaseColumn(name = "iu")
+	private String imageUrl; // 行程图片
 
-	private @HbaseColumn(name = "stat")
+	@HbaseColumn(name = "line")
+	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
+	private String lineName; // 线路名称
+
+	@HbaseColumn(name = "step")
+	private int step; // 规划步骤
+
+	@HbaseColumn(name = "intr")
+	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
+	private String intro; // 概述， 可以针对行程安排中具体某天或者某个景点进行描述
+
+	@HbaseColumn(name = "feat")
+	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
+	private String feature; // 特点， 可以针对行程安排中具体某天或者某个景点进行特点描述
+
+	@HbaseColumn(name = "reas")
+	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
+	private String reason; // 推荐理由，， 可以针对行程安排中具体某天或者某个景点进行推荐描述
+
+	@HbaseColumn(name = "plac")
+	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
+	private String place; // 目的地
+
+	@HbaseColumn(name = "st")
+	private long startTime; // 安排开始时间，以秒为单位
+
+	@HbaseColumn(name = "et")
+	private long endTime; // 安排结束时间，以秒为单位
+
+	@HbaseColumn(name = "peri")
+	private long period; // 安排持续时间， 以秒为单位
+
+	@HbaseColumn(name = "stat")
 	@Indexed
-	Status status;
+	private Status status;
 
 	public RouteBean() {
 		super();
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getImageUrl() {

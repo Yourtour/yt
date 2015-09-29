@@ -4,12 +4,12 @@ import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.data.neo4j.support.index.IndexType;
 
+import com.yt.business.BaseDictBeanImpl;
 import com.yt.business.common.Constants.GenderType;
 import com.yt.business.common.Constants.Role;
 import com.yt.business.common.Constants.Status;
-import com.yt.dal.hbase.annotation.HbaseColumn;
-import com.yt.dal.hbase.annotation.HbaseTable;
-import com.yt.rsal.neo4j.bean.Neo4JBaseBean;
+import com.yt.hbase.annotation.HbaseColumn;
+import com.yt.hbase.annotation.HbaseTable;
 
 /**
  * 该实体定义了用户的相关信息
@@ -41,66 +41,65 @@ import com.yt.rsal.neo4j.bean.Neo4JBaseBean;
  */
 @HbaseTable(name = "T_USER_INFO")
 @NodeEntity
-public class UserBean extends Neo4JBaseBean {
+public class UserBean extends BaseDictBeanImpl {
 	private static final long serialVersionUID = -6977525800090683657L;
 	private static final String INDEX_NAME = "user"; // 定义了本实体中全文检索的索引名称。
 
-	private @HbaseColumn(name = "name")
-	@Indexed
-	String userName; // 登录名
-	private @HbaseColumn(name = "pwd")
-	String pwd; // 登录密码
-	private @HbaseColumn(name = "rname")
-	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	String realName; // 真实姓名
-	private @HbaseColumn(name = "nname")
-	@Indexed
-	String nickName; // 昵称
-	private @HbaseColumn(name = "sex")
-	GenderType gender = GenderType.NA; // 性别 F/M
-	private @HbaseColumn(name = "birth")
-	long birthday; // 生日
-	private @HbaseColumn(name = "img")
-	String imageUrl; // 头像
-	private @HbaseColumn(name = "char")
-	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	String character; // 性格
-	private @HbaseColumn(name = "mbno")
-	@Indexed
-	String mobileNo; // 手机号
-	private @HbaseColumn(name = "mail")
-	String email; // 邮箱地址
-	private @HbaseColumn(name = "rpla")
-	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	String residence; // 居住地
-	private @HbaseColumn(name = "npla")
-	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	String nativePlace; // 籍贯
-	private @HbaseColumn(name = "cstl")
-	String constellation; // 星座
-	private @HbaseColumn(name = "role")
-	Role role = Role.MEMBER; // 角色
-	@Indexed
-	private @HbaseColumn(name = "rank")
-	int rank; // 等级
-	private @HbaseColumn(name = "stat")
-	@Indexed
-	Status status = Status.VALIDATED;
+	@HbaseColumn(name = "pwd")
+	private String pwd; // 登录密码
 
-	private @HbaseColumn(name = "slga")
+	@HbaseColumn(name = "nname")
+	@Indexed
+	private String nickName; // 昵称
+
+	@HbaseColumn(name = "sex")
+	private GenderType gender = GenderType.NA; // 性别 F/M
+
+	@HbaseColumn(name = "birth")
+	private long birthday; // 生日
+
+	@HbaseColumn(name = "img")
+	private String imageUrl; // 头像
+
+	@HbaseColumn(name = "char")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	String slogan; // 个人口号
+	private String character; // 性格
+
+	@HbaseColumn(name = "mbno")
+	@Indexed
+	private String mobileNo; // 手机号
+
+	@HbaseColumn(name = "mail")
+	private String email; // 邮箱地址
+
+	@HbaseColumn(name = "rpla")
+	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
+	private String residence; // 居住地
+
+	@HbaseColumn(name = "npla")
+	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
+	private String nativePlace; // 籍贯
+
+	@HbaseColumn(name = "cstl")
+	private String constellation; // 星座
+
+	@HbaseColumn(name = "role")
+	private Role role = Role.MEMBER; // 角色
+
+	@HbaseColumn(name = "rank")
+	@Indexed
+	private int rank; // 等级
+
+	@HbaseColumn(name = "stat")
+	@Indexed
+	private Status status = Status.VALIDATED;
+
+	@HbaseColumn(name = "slga")
+	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
+	private String slogan; // 个人口号
 
 	public UserBean() {
 		super();
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
 	}
 
 	public String getPwd() {
@@ -109,14 +108,6 @@ public class UserBean extends Neo4JBaseBean {
 
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
-	}
-
-	public String getRealName() {
-		return realName;
-	}
-
-	public void setRealName(String realName) {
-		this.realName = realName;
 	}
 
 	public String getNickName() {

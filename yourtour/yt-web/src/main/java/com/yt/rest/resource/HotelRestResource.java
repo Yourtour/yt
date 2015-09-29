@@ -132,7 +132,7 @@ public class HotelRestResource {
 			} else {
 				// id 是rowkey
 				bean = (HotelResourceBean) hotelRepository.get(
-						HotelResourceBean.class, id);
+						HotelResourceBean.class, "rowKey", id);
 			}
 			if (bean == null) {
 				return new ResponseDataVO<HotelResourceVO>(
@@ -212,7 +212,7 @@ public class HotelRestResource {
 					bean.setRowKey(id);
 				}
 			}
-			hotelRepository.save(bean, operator, true);
+			hotelRepository.save(bean, operator);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format(
 						"Save HotelResourceBean['%s'] success.", vo.getRowKey()));
@@ -238,12 +238,16 @@ public class HotelRestResource {
 			if (graphId != -1) {
 				// id是GraphID
 				bean = hotelRepository.getHotelByGraphId(graphId);
-				id = bean.getRowKey();
+			} else {
+				// id是rowkey
+				bean = (HotelResourceBean) hotelRepository.get(
+						HotelResourceBean.class, "rowKey", id);
 			}
-			hotelRepository.delete(HotelResourceBean.class, id);
+			id = bean.getRowKey();
+			hotelRepository.delete(bean);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format(
-						"Delete HotelResourceBean['%s'] success.", id));
+						"Delete HotelResourceBean[id='%s'] success.", id));
 			}
 			return new ResponseVO();
 		} catch (Exception ex) {

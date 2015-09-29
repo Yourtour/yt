@@ -3,10 +3,10 @@ package com.yt.business.bean;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 
+import com.yt.business.BaseDictBeanImpl;
 import com.yt.business.common.Constants.Status;
-import com.yt.dal.hbase.annotation.HbaseColumn;
-import com.yt.dal.hbase.annotation.HbaseTable;
-import com.yt.rsal.neo4j.bean.Neo4JBaseBean;
+import com.yt.hbase.annotation.HbaseColumn;
+import com.yt.hbase.annotation.HbaseTable;
 
 /**
  * 该实体定义目的地数据信息。
@@ -38,42 +38,30 @@ import com.yt.rsal.neo4j.bean.Neo4JBaseBean;
  */
 @HbaseTable(name = "T_SYS_PLACE_INFO")
 @NodeEntity
-public class PlaceBean extends Neo4JBaseBean {
+public class PlaceBean extends BaseDictBeanImpl {
 	private static final long serialVersionUID = -6977525800090683657L;
 
-	private @HbaseColumn(name = "code")
+	@HbaseColumn(name = "shor")
 	@Indexed
-	String code = ""; // 代码
-	private @HbaseColumn(name = "shor")
-	@Indexed
-	String shorter = ""; // 简称
-	private @HbaseColumn(name = "name")
-	@Indexed
-	String name = ""; // 名称
-	private @HbaseColumn(name = "memo")
-	@Indexed
-	String memo = ""; // 备注
-	private @HbaseColumn(name = "recm")
-	int recommended = 0; // 是否推荐 0:不推荐 1：推荐
-	private @HbaseColumn(name = "stat")
-	@Indexed
-	Status status;
+	private String shorter = ""; // 简称
 
-	private @HbaseColumn(name = "root")
-	boolean root = false, leaf = true; // 是否为根节点、叶子节点
+	@HbaseColumn(name = "memo")
+	private String memo = ""; // 备注
+
+	@HbaseColumn(name = "recm")
+	private int recommended = 0; // 是否推荐 0:不推荐 1：推荐
+
+	@HbaseColumn(name = "stat")
+	@Indexed
+	private Status status;
+
+	@HbaseColumn(name = "root")
+	private boolean root = false, leaf = true; // 是否为根节点、叶子节点
 
 	private transient PlaceBean parent = null;
 
 	public PlaceBean() {
 		super();
-	}
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
 	}
 
 	public String getShorter() {
@@ -82,14 +70,6 @@ public class PlaceBean extends Neo4JBaseBean {
 
 	public void setShorter(String shorter) {
 		this.shorter = shorter;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getMemo() {

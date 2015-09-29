@@ -1,9 +1,9 @@
 package com.yt.business.bean;
 
+import com.yt.business.BaseDictBeanImpl;
 import com.yt.business.common.Constants.ResType;
 import com.yt.business.common.Constants.Status;
-import com.yt.dal.hbase.annotation.HbaseColumn;
-import com.yt.rsal.neo4j.bean.Neo4JBaseBean;
+import com.yt.hbase.annotation.HbaseColumn;
 
 /**
  * 资源bean，定义了各类资源的公共信息，不直接创建表，被后续其他资源对象继承（如：景点、宾馆、饭店等）
@@ -33,51 +33,71 @@ import com.yt.rsal.neo4j.bean.Neo4JBaseBean;
  * @version 1.0
  * @since 1.0
  */
-public class ResourceBean extends Neo4JBaseBean {
+public class ResourceBean extends BaseDictBeanImpl {
 	private static final long serialVersionUID = -8980153602025087935L;
 
-	private @HbaseColumn(name = "img")
-	String imageUrl; // 图片
-	private @HbaseColumn(name = "type")
-	ResType type; // 类型
-	private @HbaseColumn(name = "otime")
-	String openTime; // 开放时间 hh24:mi
-	private @HbaseColumn(name = "ctime")
-	String closeTime; // 关闭时间 hh24:mi
-	private @HbaseColumn(name = "tintr")
-	String trafficIntro; // 公交信息
-	private @HbaseColumn(name = "pay")
-	String payment; // 支付信息
-	private @HbaseColumn(name = "star")
-	int star; // 星级
-	private @HbaseColumn(name = "memb")
-	boolean member; // 是否会员
-	private @HbaseColumn(name = "tele")
-	String phone; // 联系电话
-	private @HbaseColumn(name = "addr")
-	String address; // 地址
-	private @HbaseColumn(name = "www")
-	String website; // 网址
-	private @HbaseColumn(name = "pos")
-	String position; // 位置信息
-	private @HbaseColumn(name = "pc")
-	String postCode; // 邮编
-	private @HbaseColumn(name = "anum")
-	int arriveNum; // 到达人数
-	private @HbaseColumn(name = "cscore")
-	double commentScore; // 点评分数
-	private @HbaseColumn(name = "cnum")
-	int commentNum; // 点评数
-	private @HbaseColumn(name = "fnum")
-	int favoriteNum; // 收藏数
-	private @HbaseColumn(name = "snum")
-	int shareNum; // 分享数
-	private @HbaseColumn(name = "bmemo")
-	String bookingMemo; // 预订须知
-	private @HbaseColumn(name = "tips")
-	String tips; // 贴士
-	private @HbaseColumn(name = "stat")
-	Status status;
+	@HbaseColumn(name = "img")
+	private String imageUrl; // 图片
+
+	@HbaseColumn(name = "type")
+	private ResType type; // 类型
+
+	@HbaseColumn(name = "otime")
+	private String openTime; // 开放时间 hh24:mi
+
+	@HbaseColumn(name = "ctime")
+	private String closeTime; // 关闭时间 hh24:mi
+
+	@HbaseColumn(name = "tintr")
+	private String trafficIntro; // 公交信息
+
+	@HbaseColumn(name = "pay")
+	private String payment; // 支付信息
+
+	@HbaseColumn(name = "star")
+	private int star; // 星级
+
+	@HbaseColumn(name = "memb")
+	private boolean member; // 是否会员
+
+	@HbaseColumn(name = "tele")
+	private String phone; // 联系电话
+
+	@HbaseColumn(name = "addr")
+	private String address; // 地址
+
+	@HbaseColumn(name = "www")
+	private String website; // 网址
+
+	@HbaseColumn(name = "pos")
+	private String position; // 位置信息
+
+	@HbaseColumn(name = "pc")
+	private String postCode; // 邮编
+
+	@HbaseColumn(name = "anum")
+	private int arriveNum; // 到达人数
+
+	@HbaseColumn(name = "cscore")
+	private double commentScore; // 点评分数
+
+	@HbaseColumn(name = "cnum")
+	private int commentNum; // 点评数
+
+	@HbaseColumn(name = "fnum")
+	private int favoriteNum; // 收藏数
+
+	@HbaseColumn(name = "snum")
+	private int shareNum; // 分享数
+
+	@HbaseColumn(name = "bmemo")
+	private String bookingMemo; // 预订须知
+
+	@HbaseColumn(name = "tips")
+	private String tips; // 贴士
+
+	@HbaseColumn(name = "stat")
+	private Status status;
 
 	private transient PlaceBean place = null;
 
