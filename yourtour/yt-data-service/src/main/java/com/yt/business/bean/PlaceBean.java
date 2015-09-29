@@ -56,7 +56,10 @@ public class PlaceBean extends BaseDictBeanImpl {
 	private Status status;
 
 	@HbaseColumn(name = "root")
-	private boolean root = false, leaf = true; // 是否为根节点、叶子节点
+	private boolean root = false; // 是否为根节点
+
+	@HbaseColumn(name = "leaf")
+	private boolean leaf = true; // 是否为叶子节点
 
 	private transient PlaceBean parent = null;
 

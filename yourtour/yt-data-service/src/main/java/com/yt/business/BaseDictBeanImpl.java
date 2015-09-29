@@ -10,7 +10,7 @@ public abstract class BaseDictBeanImpl extends BaseBeanImpl implements
 	private static final long serialVersionUID = -6769385550184467649L;
 
 	@HbaseColumn(name = "code")
-	@Indexed(unique = true)
+	@Indexed
 	private String code = "";
 
 	@HbaseColumn(name = "name")
