@@ -221,7 +221,7 @@ public class UserRestResource {
 		}
 		try {
 			UserBean user = (UserBean) userRepository.getUserByField(
-					"userName", auth.getCode());
+					"code", auth.getCode());
 			if (user == null) {
 				if (LOG.isWarnEnabled()) {
 					LOG.warn(String.format(
@@ -259,7 +259,7 @@ public class UserRestResource {
 		}
 		try {
 			UserBean user = (UserBean) userRepository.getUserByField(
-					"userName", username);
+					"code", username);
 			if (user == null) {
 				if (LOG.isWarnEnabled()) {
 					LOG.warn(String.format(

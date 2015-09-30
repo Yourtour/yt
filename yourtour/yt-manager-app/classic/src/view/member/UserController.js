@@ -23,11 +23,11 @@ Ext.define('yt_manager_app.view.member.UserController', {
         return new yt_manager_app.view.member.UserWindow();
     },
 
-    createNewRecord: function (data) {
+    dowithRecord: function (data) {
         if (data == null) {
-            return new yt_manager_app.model.member.User();
+            return new yt_manager_app.model.member.User({id: null});
         } else {
-            return new yt_manager_app.model.member.User(data);
+            return new yt_manager_app.model.member.User(data.getData());
         }
     },
 

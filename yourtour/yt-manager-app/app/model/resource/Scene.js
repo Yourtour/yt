@@ -5,8 +5,6 @@ Ext.define('yt_manager_app.model.resource.Scene', {
     extend: 'yt_manager_app.model.resource.Resource',
 
     fields: [{
-        name: 'name', type: 'string'
-    }, {
         name: 'intro', type: 'string'
     }, {
         name: 'ticket', type: 'string'

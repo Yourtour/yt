@@ -7,6 +7,8 @@ Ext.define('yt_manager_app.model.route.Line', {
     fields: [{
         name: 'id', type: 'int', defaultValue: -1
     }, {
+        name: 'code', type: 'string'
+    }, {
         name: 'name', type: 'string'
     }, {
         name: 'imageUrl', type: 'string'

@@ -23,7 +23,7 @@ Ext.define('yt_manager_app.view.member.User', {
     initComponent: function () {
         var userGridColumns = [{
             text: 'User name',
-            dataIndex: 'code',
+            dataIndex: 'userName',
             width: 120,
             sortable: true
         }, {
@@ -33,7 +33,7 @@ Ext.define('yt_manager_app.view.member.User', {
             sortable: true
         }, {
             text: 'Real name',
-            dataIndex: 'name',
+            dataIndex: 'realName',
             width: 120,
             sortable: true
         }, {

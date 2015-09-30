@@ -7,7 +7,6 @@ import com.yt.business.bean.SceneResourceBean;
 import com.yt.business.common.Constants.ResType;
 
 public class SceneResourceVO extends ResourceVO {
-	private String name; // 名称
 	private String intro; // 简介
 	private String ticket; // 门票信息
 	private String sceneMap; // 景区地图
@@ -20,7 +19,6 @@ public class SceneResourceVO extends ResourceVO {
 		}
 		SceneResourceVO vo = new SceneResourceVO();
 		vo.fromBean(bean);
-		vo.setName(bean.getName());
 		vo.setRowKey(bean.getName());
 		vo.setIntro(bean.getIntro());
 		vo.setTicket(bean.getTicket());
@@ -36,7 +34,6 @@ public class SceneResourceVO extends ResourceVO {
 		}
 		SceneResourceBean bean = new SceneResourceBean();
 		vo.toBean(bean);
-		bean.setName(vo.getName());
 		bean.setRowKey(bean.getName());
 		bean.setIntro(vo.getIntro());
 		bean.setTicket(vo.getTicket());
@@ -49,14 +46,6 @@ public class SceneResourceVO extends ResourceVO {
 	public SceneResourceVO() {
 		super();
 		super.setType(ResType.SCENE);
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getIntro() {

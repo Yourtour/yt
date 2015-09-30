@@ -13,18 +13,18 @@ Ext.define('yt_manager_app.view.widget.GeneralCRUDController', {
         operate: null
     },
 
-    afterUpdateRecord: function(record) {
+    afterUpdateRecord: function (record) {
         // Ext.Boot.debug('这是父类方法。。');
         // Do nothing
         return;
     },
 
-    beforeLoadRecord: function(record, editable) {
+    beforeLoadRecord: function (record, editable) {
         // Do nothing
         return;
     },
 
-    afterLoadRecord: function(record, editable) {
+    afterLoadRecord: function (record, editable) {
         // Do nothing
         return;
     },
@@ -41,7 +41,9 @@ Ext.define('yt_manager_app.view.widget.GeneralCRUDController', {
             return null;
         }
         var model = grid.getSelectionModel();
-        return model.getSelection();
+        var selected = model.getSelection();
+        Ext.Boot.debug(selected);
+        return selected;
     },
 
     showPopWindow: function (title, data, editable) {
@@ -96,8 +98,8 @@ Ext.define('yt_manager_app.view.widget.GeneralCRUDController', {
 
     onShow: function () {
         var record = this.getSelectedRecords()[0];
-        var model = this.dowithRecord(record);
-        if (model) {
+        if (record) {
+            var model = this.dowithRecord(record);
             this.showPopWindow(Ext.String.format('显示 {0}的详细信息', this.getName()), model, false);
         } else {
             Ext.MessageBox.alert('提示', '在操作之前请先选中一行数据。');
@@ -117,8 +119,8 @@ Ext.define('yt_manager_app.view.widget.GeneralCRUDController', {
 
     onModify: function () {
         var record = this.getSelectedRecords()[0];
-        var model = this.dowithRecord(record);
         if (record) {
+            var model = this.dowithRecord(record);
             this.setOperate('edit');
             this.showPopWindow(Ext.String.format('修改 {0}信息', this.getName()), model, true);
         } else {
@@ -187,7 +189,8 @@ Ext.define('yt_manager_app.view.widget.GeneralCRUDController', {
                     var win = me.lookupReference(me.getPopupWindowName());
                     if (win) {
                         win.destroy();
-                    }                },
+                    }
+                },
                 failure: function () {
                     Ext.MessageBox.alert('警告', '保存数据失败。');
                 }

@@ -41,7 +41,9 @@ Ext.define('yt_manager_app.view.resource.HotelController', {
             ratingParent = me.lookupReference('ratingParent'),
             placeParent = me.lookupReference('placeParent');
         record.set('star', star.getValue());
-        ratingParent.setDisabled(!editable);
+        if (ratingParent) {
+            ratingParent.setDisabled(!editable);
+        }
         placeParent.setDisabled(!editable);
     },
 

@@ -2,8 +2,7 @@ package com.yt.business;
 
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.yt.hbase.BaseBean;
 import com.yt.neo4j.bean.Neo4jBaseBean;
@@ -11,12 +10,9 @@ import com.yt.neo4j.repository.CrudGeneralOperate;
 
 public class CrudAllInOneOperateImpl extends CrudGeneralOperate implements
 		CrudAllInOneOperate {
-	private static final Log LOG = LogFactory
-			.getLog(CrudAllInOneOperateImpl.class);
 
-	private com.yt.hbase.CrudOperate hbaseCrud;
-
-	private boolean save2Hbase = true; // 是否同时保存到Hbase中，默认为true。
+	@Autowired
+	private CrudAllInOneConfig config;
 
 	/**
 	 * 默认的构造函数
@@ -25,39 +21,11 @@ public class CrudAllInOneOperateImpl extends CrudGeneralOperate implements
 		super();
 	}
 
-	/**
-	 * 默认的构造函数
-	 * 
-	 * @param save2Hbase
-	 *            设置为true表示同时保存到Hbase中，否则仅仅保存在Neo4J中。
-	 */
-	public CrudAllInOneOperateImpl(boolean save2Hbase) {
-		this();
-		this.setSave2Hbase(save2Hbase);
-	}
-
-	/**
-	 * 设置hbase操作类
-	 * 
-	 * @param hbaseCrud
-	 *            hbase操作类
-	 */
-	public void setHbaseCrud(com.yt.hbase.CrudOperate hbaseCrud) {
-		this.hbaseCrud = hbaseCrud;
-	}
-
-	/**
-	 * 设置是否同时保存到Hbase中
-	 * 
-	 * @param save2Hbase
-	 *            设置为true表示同时保存到Hbase中，否则仅仅保存在Neo4J中。
-	 */
-	public void setSave2Hbase(boolean save2Hbase) {
-		this.save2Hbase = save2Hbase;
-		if (LOG.isDebugEnabled()) {
-			LOG.debug(String.format("The flag is set, save2Hbase = %s",
-					String.valueOf(this.save2Hbase)));
+	private boolean save2Hbase() {
+		if (config == null) {
+			return false;
 		}
+		return config.isSave2Hbase();
 	}
 
 	/*
@@ -70,7 +38,7 @@ public class CrudAllInOneOperateImpl extends CrudGeneralOperate implements
 	public void delete(Neo4jBaseBean bean) throws Exception {
 		super.delete(bean);
 
-		if (save2Hbase && bean instanceof BaseBean) {
+		if (save2Hbase() && bean instanceof BaseBean) {
 			BaseBean hbaseBean = (BaseBean) bean;
 			this.deleteRow(hbaseBean);
 		}
@@ -85,7 +53,7 @@ public class CrudAllInOneOperateImpl extends CrudGeneralOperate implements
 	public void delete(Class<? extends Neo4jBaseBean> clazz) throws Exception {
 		super.delete(clazz);
 
-		if (save2Hbase && clazz.isAssignableFrom(BaseBean.class)) {
+		if (save2Hbase() && clazz.isAssignableFrom(BaseBean.class)) {
 			@SuppressWarnings("unchecked")
 			Class<? extends BaseBean> c = (Class<? extends BaseBean>) clazz;
 			this.deleteRows(c);
@@ -101,14 +69,14 @@ public class CrudAllInOneOperateImpl extends CrudGeneralOperate implements
 	@Override
 	public void save(Neo4jBaseBean neo4jBean, String operator) throws Exception {
 		super.save(neo4jBean, operator);
-		if (save2Hbase && neo4jBean instanceof BaseBean) {
+		if (save2Hbase() && neo4jBean instanceof BaseBean) {
 			BaseBean hbaseBean = (BaseBean) neo4jBean;
 			this.saveRow(hbaseBean);
 		}
 	}
 
 	private void checkHbaseCrud() throws Exception {
-		if (hbaseCrud == null) {
+		if (config == null || config.getHbaseCrud() == null) {
 			throw new Exception("The Hbase CRUD Operate is null!");
 		}
 	}
@@ -121,7 +89,7 @@ public class CrudAllInOneOperateImpl extends CrudGeneralOperate implements
 	@Override
 	public void saveRow(BaseBean bean) throws Exception {
 		checkHbaseCrud();
-		hbaseCrud.saveRow(bean);
+		config.getHbaseCrud().saveRow(bean);
 	}
 
 	/*
@@ -132,7 +100,7 @@ public class CrudAllInOneOperateImpl extends CrudGeneralOperate implements
 	@Override
 	public void saveRows(List<? extends BaseBean> beans) throws Exception {
 		checkHbaseCrud();
-		hbaseCrud.saveRows(beans);
+		config.getHbaseCrud().saveRows(beans);
 	}
 
 	/*
@@ -143,7 +111,7 @@ public class CrudAllInOneOperateImpl extends CrudGeneralOperate implements
 	@Override
 	public void deleteRow(BaseBean bean) throws Exception {
 		checkHbaseCrud();
-		hbaseCrud.deleteRow(bean);
+		config.getHbaseCrud().deleteRow(bean);
 	}
 
 	/*
@@ -154,7 +122,7 @@ public class CrudAllInOneOperateImpl extends CrudGeneralOperate implements
 	@Override
 	public void deleteRows(Class<? extends BaseBean> clazz) throws Exception {
 		checkHbaseCrud();
-		hbaseCrud.deleteRows(clazz);
+		config.getHbaseCrud().deleteRows(clazz);
 	}
 
 	/*
@@ -165,7 +133,7 @@ public class CrudAllInOneOperateImpl extends CrudGeneralOperate implements
 	@Override
 	public BaseBean getRow(String className, String rowkey) throws Exception {
 		checkHbaseCrud();
-		return hbaseCrud.getRow(className, rowkey);
+		return config.getHbaseCrud().getRow(className, rowkey);
 	}
 
 	/*
@@ -177,7 +145,7 @@ public class CrudAllInOneOperateImpl extends CrudGeneralOperate implements
 	public BaseBean getRow(Class<? extends BaseBean> clazz, String rowKey)
 			throws Exception {
 		checkHbaseCrud();
-		return hbaseCrud.getRow(clazz, rowKey);
+		return config.getHbaseCrud().getRow(clazz, rowKey);
 	}
 
 	/*
@@ -189,7 +157,7 @@ public class CrudAllInOneOperateImpl extends CrudGeneralOperate implements
 	public List<? extends BaseBean> getRows(Class<? extends BaseBean> clazz)
 			throws Exception {
 		checkHbaseCrud();
-		return hbaseCrud.getRows(clazz);
+		return config.getHbaseCrud().getRows(clazz);
 	}
 
 	/*
@@ -201,7 +169,7 @@ public class CrudAllInOneOperateImpl extends CrudGeneralOperate implements
 	public List<? extends BaseBean> getRows(Class<? extends BaseBean> clazz,
 			long ts1, long ts2) throws Exception {
 		checkHbaseCrud();
-		return hbaseCrud.getRows(clazz, ts1, ts2);
+		return config.getHbaseCrud().getRows(clazz, ts1, ts2);
 	}
 
 }

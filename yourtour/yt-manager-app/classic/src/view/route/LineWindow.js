@@ -9,6 +9,12 @@ Ext.define('yt_manager_app.view.route.LineWindow', {
     config: {
         base: {
             items: [{
+                fieldLabel: '代码',
+                reference: 'code',
+                allowBlank: false,
+                name: 'code',
+                emptyText: '线路唯一代码'
+            }, {
                 fieldLabel: '名称',
                 reference: 'name',
                 allowBlank: false,

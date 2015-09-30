@@ -13,6 +13,12 @@ Ext.define('yt_manager_app.view.resource.RestaurantWindow', {
     config: {
         base: {
             items: [{
+                fieldLabel: '代码',
+                reference: 'code',
+                allowBlank: false,
+                name: 'code',
+                emptyText: '饭店唯一编码'
+            }, {
                 fieldLabel: '名称',
                 reference: 'name',
                 allowBlank: false,

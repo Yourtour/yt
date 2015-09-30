@@ -36,11 +36,12 @@
 	<!-- 初始化admin账户的service -->
 	<bean id="initAdminUserService" class="com.yt.business.utils.AdminUserInitializeService" />
 
-	<!-- 注入包装了hbase和neo4j操作的实现类 -->
-	<bean id="crudAllInOneOperate" class="com.yt.business.CrudAllInOneOperateImpl">
+	<!-- 注入包装了hbase和neo4j操作的配置类 -->
+	<bean id="crudAllInOneConfig" class="com.yt.business.CrudAllInOneConfig">
 		<property name="save2Hbase" value="false" />
-		<property name="hbaseCrud" ref="hbaseCrud" />
+		<!--property name="hbaseCrud" ref="hbaseCrud" /-->
 	</bean>
+	
+	<bean id="crudAllInOneOperate" class="com.yt.business.CrudAllInOneOperateImpl" />
 
 </beans>
-

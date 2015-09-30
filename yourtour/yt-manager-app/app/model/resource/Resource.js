@@ -9,6 +9,10 @@ Ext.define('yt_manager_app.model.resource.Resource', {
     fields: [{
         name: 'id', type: 'int', defaultValue: -1
     }, {
+        name: 'code', type: 'string'
+    }, {
+        name: 'name', type: 'string'
+    }, {
         name: 'imageUrl', type: 'string'
     }, {
         name: 'openTime', type: 'string'

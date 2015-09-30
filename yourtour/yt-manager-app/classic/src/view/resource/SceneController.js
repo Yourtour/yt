@@ -47,11 +47,13 @@ Ext.define('yt_manager_app.view.resource.SceneController', {
             ratingParent = me.lookupReference('ratingParent'),
             placeParent = me.lookupReference('placeParent');
         star.setValue(record.get('star'));
-        ratingParent.setDisabled(!editable);
+        if (ratingParent) {
+            ratingParent.setDisabled(!editable);
+        }
         placeParent.setDisabled(!editable);
     },
 
-    onPopupDivisionSelectWindow: function() {
+    onPopupDivisionSelectWindow: function () {
         var me = this,
             division = me.lookupReference('place');
         // TODO 获取当前设定的区划
@@ -63,7 +65,7 @@ Ext.define('yt_manager_app.view.resource.SceneController', {
         win.show();
     },
 
-    setPlaceData: function(data) {
+    setPlaceData: function (data) {
         var me = this,
             view = me.getView(),
             place = me.lookupReference('place'),

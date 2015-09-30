@@ -7,6 +7,8 @@ import com.yt.business.common.Constants.Status;
 import com.yt.vo.BaseVO;
 
 public class ResourceVO extends BaseVO {
+	private String code;
+	private String name;
 	private String imageUrl; // 图片
 	private ResType type; // 类型
 	private String openTime; // 开放时间 hh24:mi
@@ -37,6 +39,8 @@ public class ResourceVO extends BaseVO {
 			return;
 		}
 		super.fromBean(bean);
+		setCode(bean.getCode());
+		setName(bean.getName());
 		setAddress(bean.getAddress());
 		setArriveNum(bean.getArriveNum());
 		setBookingMemo(bean.getBookingMemo());
@@ -75,6 +79,8 @@ public class ResourceVO extends BaseVO {
 			return;
 		}
 		super.toBean(bean);
+		bean.setCode(getCode());
+		bean.setName(getName());
 		bean.setAddress(getAddress());
 		bean.setArriveNum(getArriveNum());
 		bean.setBookingMemo(getBookingMemo());
@@ -105,6 +111,29 @@ public class ResourceVO extends BaseVO {
 
 	public ResourceVO() {
 		super();
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name
+	 *            the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getImageUrl() {

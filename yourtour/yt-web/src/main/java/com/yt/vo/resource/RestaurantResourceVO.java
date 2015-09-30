@@ -7,7 +7,6 @@ import com.yt.business.bean.RestaurantResourceBean;
 import com.yt.business.common.Constants.ResType;
 
 public class RestaurantResourceVO extends ResourceVO {
-	private String name; // 名称
 	private String deliciouFood; // 特色菜品
 	private String foodStandard; // 餐饮标准
 	private String foodTags; // 美食标签
@@ -19,7 +18,6 @@ public class RestaurantResourceVO extends ResourceVO {
 		}
 		RestaurantResourceVO vo = new RestaurantResourceVO();
 		vo.fromBean(bean);
-		vo.setName(bean.getName());
 		vo.setRowKey(bean.getName());
 		vo.setDeliciouFood(bean.getDeliciouFood());
 		vo.setFoodStandard(bean.getFoodStandard());
@@ -34,7 +32,6 @@ public class RestaurantResourceVO extends ResourceVO {
 		}
 		RestaurantResourceBean bean = new RestaurantResourceBean();
 		vo.toBean(bean);
-		bean.setName(vo.getName());
 		bean.setRowKey(bean.getName());
 		bean.setDeliciouFood(vo.getDeliciouFood());
 		bean.setFoodStandard(vo.getFoodStandard());
@@ -46,14 +43,6 @@ public class RestaurantResourceVO extends ResourceVO {
 	public RestaurantResourceVO() {
 		super();
 		super.setType(ResType.FOOD);
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getDeliciouFood() {

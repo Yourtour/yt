@@ -9,6 +9,7 @@ import com.yt.business.common.Constants.Status;
 import com.yt.vo.BaseVO;
 
 public class LineVO extends BaseVO {
+	private String code;
 	private String name; // 名称
 	private String imageUrl; // 图片
 	private String intro; // 概述， 线路进行简单介绍
@@ -37,6 +38,7 @@ public class LineVO extends BaseVO {
 		}
 		LineVO vo = new LineVO();
 		vo.fromBean(bean);
+		vo.setCode(bean.getCode());
 		vo.setArriveNum(bean.getArriveNum());
 		vo.setCommentIndex(bean.getCommentIndex());
 		vo.setCommentNum(bean.getCommentNum());
@@ -118,6 +120,7 @@ public class LineVO extends BaseVO {
 		}
 		LineBean bean = new LineBean();
 		vo.toBean(bean);
+		bean.setCode(vo.getCode());
 		bean.setArriveNum(vo.getArriveNum());
 		bean.setCommentIndex(vo.getCommentIndex());
 		bean.setCommentNum(vo.getCommentNum());
@@ -179,6 +182,14 @@ public class LineVO extends BaseVO {
 
 	public LineVO() {
 		super();
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public String getName() {

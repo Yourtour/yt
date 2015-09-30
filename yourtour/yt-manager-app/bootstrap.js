@@ -19,8 +19,8 @@ Ext.Boot = Ext.Boot || (function (emptyFn) {
              * 设置跨域的地址，如果不跨域，则设置为：
              * corsAddress: './'
              */
-            //corsAddress: 'http://localhost:8080/yt-web/',
-            corsAddress: './',
+            corsAddress: 'http://localhost:8080/yt-web/',
+            //corsAddress: './',
 
             /*
              * @cfg {Boolean} [disableCaching=true]
@@ -58,7 +58,7 @@ Ext.Boot = Ext.Boot || (function (emptyFn) {
              * @cfg {String} charset
              * Optional charset to specify encoding of dynamic content.
              */
-            charset: undefined
+            charset: 'utf-8' //undefined
         },
 
         cssRe = /\.css(?:\?|$)/i,

@@ -28,6 +28,11 @@ Ext.define('yt_manager_app.view.login.LoginController', {
                 'Content-Type': 'application/json'
             },
             success: function (response, opts) {
+                var res = Ext.decode(response.responseText);
+                if (res.errorCode > 0) {
+                    Ext.MessageBox.alert('登录失败', res.errorText);
+                    return;
+                }
                 var auth = Ext.getStore('yt_manager_app.store.Authentication');
                 auth.login(view, username);
             },

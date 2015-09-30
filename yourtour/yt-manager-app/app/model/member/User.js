@@ -7,11 +7,11 @@ Ext.define('yt_manager_app.model.member.User', {
     fields: [{
         name: 'id', type: 'int', defaultValue: -1
     }, {
-        name: 'code', type: 'string'
+        name: 'userName', type: 'string'
     }, {
         name: 'password', type: 'string'
     }, {
-        name: 'name', type: 'string'
+        name: 'realName', type: 'string'
     }, {
         name: 'nickName', type: 'string'
     }, {
