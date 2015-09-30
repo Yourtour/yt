@@ -11,7 +11,6 @@ import org.neo4j.graphdb.index.Index;
 import org.neo4j.graphdb.index.IndexHits;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.neo4j.support.Neo4jTemplate;
-import org.springframework.stereotype.Component;
 
 import com.yt.neo4j.bean.Neo4jBaseBean;
 
@@ -38,7 +37,6 @@ import com.yt.neo4j.bean.Neo4jBaseBean;
  * @version 1.0
  * @since 1.0
  */
-@Component
 public class FullTextSearchGeneralOperate implements FullTextSearchOperate {
 
 	/** 静态变量：系统日志 */

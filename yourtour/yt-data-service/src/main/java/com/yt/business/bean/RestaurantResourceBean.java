@@ -1,10 +1,14 @@
 package com.yt.business.bean;
 
 import org.springframework.data.neo4j.annotation.Indexed;
+import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.data.neo4j.support.index.IndexType;
 
 import com.yt.hbase.annotation.HbaseColumn;
+import com.yt.hbase.annotation.HbaseTable;
 
+@HbaseTable(name = "T_RESTAURANT_INFO")
+@NodeEntity
 public class RestaurantResourceBean extends ResourceBean {
 	private static final long serialVersionUID = -7687082317108442937L;
 	private static final String INDEX_NAME = "restaurant";

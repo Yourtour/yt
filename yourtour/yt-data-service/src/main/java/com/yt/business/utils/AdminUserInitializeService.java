@@ -16,7 +16,7 @@ public class AdminUserInitializeService implements InitializingBean {
 			.getLog(AdminUserInitializeService.class);
 
 	@Autowired
-	@Qualifier("crudAllInOneOperateImpl")
+	@Qualifier("crudAllInOneOperate")
 	private CrudAllInOneOperate crudOperate;
 
 	/**
@@ -29,7 +29,7 @@ public class AdminUserInitializeService implements InitializingBean {
 	@Transactional
 	private void initializeAdminEmployee() throws Exception {
 		// 检测默认的admin账户是否存在
-		UserBean admin = (UserBean) crudOperate.get(UserBean.class, "userName",
+		UserBean admin = (UserBean) crudOperate.get(UserBean.class, "code",
 				"admin");
 		if (admin != null) {
 			// admin账户已经存在，返回

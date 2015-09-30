@@ -36,7 +36,7 @@ import com.yt.hbase.annotation.HbaseTable;
  * @version 1.0
  * @since 1.0
  */
-@HbaseTable(name = "T_SYS_PLACE_INFO")
+@HbaseTable(name = "T_PLACE_INFO")
 @NodeEntity
 public class PlaceBean extends BaseDictBeanImpl {
 	private static final long serialVersionUID = -6977525800090683657L;

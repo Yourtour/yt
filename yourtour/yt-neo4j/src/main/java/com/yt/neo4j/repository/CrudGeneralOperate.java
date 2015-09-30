@@ -15,7 +15,6 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.neo4j.conversion.Result;
 import org.springframework.data.neo4j.support.Neo4jTemplate;
-import org.springframework.stereotype.Component;
 
 import com.yt.neo4j.bean.Neo4jBaseBean;
 import com.yt.neo4j.bean.Neo4jBaseDictBean;
@@ -51,7 +50,6 @@ import com.yt.neo4j.bean.Neo4jBaseDictBean;
  * @author john
  * 
  */
-@Component
 public class CrudGeneralOperate implements CrudOperate {
 	/** 静态变量：系统日志 */
 	private static final Log LOG = LogFactory.getLog(CrudGeneralOperate.class);

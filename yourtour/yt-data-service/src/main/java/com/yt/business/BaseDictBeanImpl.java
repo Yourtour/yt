@@ -1,10 +1,12 @@
 package com.yt.business;
 
 import org.springframework.data.neo4j.annotation.Indexed;
+import org.springframework.data.neo4j.annotation.NodeEntity;
 
 import com.yt.hbase.annotation.HbaseColumn;
 import com.yt.neo4j.bean.Neo4jBaseDictBean;
 
+@NodeEntity
 public abstract class BaseDictBeanImpl extends BaseBeanImpl implements
 		Neo4jBaseDictBean {
 	private static final long serialVersionUID = -6769385550184467649L;

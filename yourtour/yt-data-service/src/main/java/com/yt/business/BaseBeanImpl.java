@@ -4,11 +4,13 @@ import java.io.Serializable;
 
 import org.springframework.data.neo4j.annotation.GraphId;
 import org.springframework.data.neo4j.annotation.Indexed;
+import org.springframework.data.neo4j.annotation.NodeEntity;
 
 import com.yt.hbase.BaseBean;
 import com.yt.hbase.annotation.HbaseColumn;
 import com.yt.neo4j.bean.Neo4jBaseBean;
 
+@NodeEntity
 public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean {
 	private static final long serialVersionUID = -916424014919620404L;
 
