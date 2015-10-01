@@ -75,17 +75,20 @@ Ext.define('YourTour.view.widget.XGridView', {
     			}
     		}
     		
-   			panel.add(Ext.create(me.getItem(), itemConfig));
+    		var item = Ext.create(me.getItem(), itemConfig);
+    		item.element.on({
+				scope : item,
+				tap : function(e, t) {
+					me.fireEvent('onGridItemTap', index, model);
+				}
+			});
+   			panel.add(item);
  	   	});
     	
     	var panel = me.getAt(me.getItems().length - 1);
     	for(var index = panel.getItems().length; index < me.getCols(); index++){
     		panel.add(Ext.create("Ext.Panel", {flex:1}));
     	}
-    },
-    
-    onTap:function(index, model){
-    	
     }
 });
 

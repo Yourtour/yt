@@ -4,6 +4,7 @@ Ext.define('YourTour.view.widget.XToolbar', {
     requires:['Ext.Img','Ext.Label','Ext.Spacer','YourTour.view.widget.ToolButton'],
     config: {
     	title:null,
+    	backButton:true,
     	docked: 'top',
     	items:[]
     },
@@ -39,6 +40,12 @@ Ext.define('YourTour.view.widget.XToolbar', {
 				}
 			});
     	}
+    },
+    
+    applyBackButton:function(backButton){
+    	var me = this;
+    	
+    	me.backButton = backButton;
     },
     
     applyTitle:function(title){

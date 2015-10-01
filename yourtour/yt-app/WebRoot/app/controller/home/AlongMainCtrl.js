@@ -24,17 +24,15 @@ Ext.define('YourTour.controller.home.AlongMainCtrl', {
     },
     
     showPage:function(){
+    	var page = Ext.create('YourTour.view.home.AlongListView');
+		Ext.ComponentManager.get('MainView').push(page);
+		
     	var parent = this;
 		var store = this.store;
 		var success = function(){
-			parent.show('AlongListView','YourTour.view.home.AlongListView');
 			parent.getAlongList().setStore(store);
 		};
 		
 		store.load(success, this);
-    },
-    
-    onBackTap:function(){
-    	this.show('PlaceMainView','YourTour.view.home.PlaceMainView');
     },
 });

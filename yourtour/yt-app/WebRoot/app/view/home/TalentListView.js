@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.home.TalentListView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Panel', 'YourTour.view.home.TalentListItemView', 'YourTour.view.widget.XPanel','YourTour.view.widget.XField', 'Ext.DataView'],
+    requires:['YourTour.view.home.TalentListItemView','Ext.DataView','YourTour.view.widget.XHeaderBar'],
     xtype: 'TalentListView',
     config: {
     	fullscreen: true,
@@ -8,18 +8,17 @@ Ext.define('YourTour.view.home.TalentListView', {
     	layout:'fit',
         items: [
 			{    
-				xtype: 'xtoolbar',
-				itemId:'toolbar',
-				title:'上海',
-				items:[
-				]			
-			},
+				xtype: 'xheaderbar',
+				itemId:'headerbar',
+				title:'达人'
+			}, 
+			
             {
             	xtype:'dataview',
             	itemId:'talentList',
 		        useComponents: true,
 		        defaultType: 'TalentListItemView',
-	        	scrollable: {
+		        scrollable: {
 	        	    direction: 'vertical',
 	        	    indicators: false	
 	        	}  	

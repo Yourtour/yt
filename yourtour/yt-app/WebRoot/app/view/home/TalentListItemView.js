@@ -1,9 +1,8 @@
 Ext.define('YourTour.view.home.TalentListItemView', {
-    extend: 'Ext.Panel',
+	extend: 'Ext.dataview.component.DataItem',
     requires:['Ext.Panel', 'YourTour.view.widget.XField','YourTour.view.widget.XPanel'],
     xtype: 'TalentListItemView',
     config: {
-    	model:null,
       	layout:'hbox',
       	padding:5,
       	cls:'space-bottom',
@@ -25,7 +24,7 @@ Ext.define('YourTour.view.home.TalentListItemView', {
 						items:[
 							{
 								itemId:'nickname',
-								xtype:'xfield'
+								xtype:'xlabel'
 							},
 							{
 								itemId : 'sexImgUrl',

@@ -6,12 +6,6 @@ Ext.define('YourTour.controller.home.TalentMainCtrl', {
     	   talentList:'#TalentListView #talentList',
        },
        
-       control:{
-    	   '#TalentListView #toolbar':{
-    	   	   tap:'onBackTap'
-    	   },
-       },
-       
        routes:{
        	'/main/place/talent':'showPage'
        },
@@ -20,21 +14,19 @@ Ext.define('YourTour.controller.home.TalentMainCtrl', {
     },
     
     init: function(){
-    	this.store = Ext.create('YourTour.store.TalentListStore'); 
+    	this.store = Ext.create('YourTour.store.TalentListStore');
     },
     
     showPage:function(){
-    	var parent = this;
+		var page = Ext.create('YourTour.view.home.TalentListView');
+		Ext.ComponentManager.get('MainView').push(page);
+		
+		var parent = this;
 		var store = this.store;
 		var success = function(){
-			parent.show('TalentListView','YourTour.view.home.TalentListView');
 			parent.getTalentList().setStore(store);
 		};
 		
 		store.load(success, this);
-    },
-    
-    onBackTap:function(){
-    	this.show('PlaceMainView','YourTour.view.home.PlaceMainView');
-    },
+    }
 });

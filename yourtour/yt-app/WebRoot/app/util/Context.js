@@ -22,6 +22,8 @@ Ext.define('YourTour.util.Context', {
     
     getUserId:function(){
     	return '3333';
-    }
+    },
+    
+    mainview:null
 });
 

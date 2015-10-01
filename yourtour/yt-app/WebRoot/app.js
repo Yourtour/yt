@@ -19,18 +19,19 @@ Ext.application({
 
     views: [
         'MainView','Launch',
-        'home.HomeMain','home.PlaceMainView', 'home.BestListView', 'home.AlongListView', 'home.TalentListView', 'SearchMain',
-        'route.MainView','route.RouteSettingView','common.PlaceView',
+        'home.HomeMainView', 'home.BestListView', 'home.AlongListView', 'home.TalentListView', 'SearchMain',
+        'route.RouteMainView','route.RouteSettingView','common.PlaceView',
         'line.LineRecommendView','line.LineIntroductionView',
         'route.schedule.SchedulePlanListView', 'route.schedule.ScheduleListView','route.schedule.SceneScheduleView','route.schedule.HotelScheduleView','route.schedule.FoodScheduleView',
         'user.LoginMainView','user.UserListView',
-        'resource.SelectionListView','resource.SceneResourceDetailView','resource.SceneResourcePlanView','route.schedule.ScheduleReferenceListView'
+        'resource.SelectionListView','resource.SceneResourceDetailView','resource.SceneResourcePlanView','route.schedule.ScheduleReferenceListView',
+        'personal.PersonalMainView'
     ],
     
     controllers: [
-        'Launch', 'Main', 
-        'home.PlaceMainCtrl', 'home.BestMainCtrl','home.TalentMainCtrl','home.AlongMainCtrl',
-        'route.MainCtrl','route.RouteSettingCtrl','route.ScheduleListCtrl', 'route.SchedulePlanListCtrl', 'line.LineRecommendCtrl','line.LineIntroductionCtrl','common.PlaceCtrl','user.Main',
+        'Launch', 'MainCtrl', 
+        'home.HomeMainCtrl', 'home.BestMainCtrl','home.TalentMainCtrl','home.AlongMainCtrl',
+        'route.RouteMainCtrl','route.RouteSettingCtrl','route.ScheduleListCtrl', 'route.SchedulePlanListCtrl', 'line.LineRecommendCtrl','line.LineIntroductionCtrl','common.PlaceCtrl','user.Main',
         'resource.ResourceSelectionCtrl','route.ScheduleReferenceCtrl','resource.ResourceCtrl','resource.ResourcePlanCtrl','route.ScheduleDetailCtrl',
         'user.UserListCtrl'
     ],

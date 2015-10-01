@@ -1,24 +1,18 @@
 Ext.define('YourTour.view.home.BestListView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Panel', 'YourTour.view.home.BestListItemView', 'YourTour.view.widget.XPanel','YourTour.view.widget.XField', 'Ext.DataView'],
+    requires:['YourTour.view.home.BestListItemView', 'Ext.DataView','YourTour.view.widget.XHeaderBar'],
     xtype: 'BestListView',
     config: {
-    	fullscreen: true,
     	id:'BestListView',
+    	fullscreen: true,
     	layout:'fit',
         items: [
 			{    
-				xtype: 'xtoolbar',
-				itemId:'toolbar',
-				title:'上海',
-				items:[
-					{
-						xtype: "xlabel",
-						align:'center',
-						html:'推荐游'
-					},   
-				]			
-			},
+				xtype: 'xheaderbar',
+				itemId:'headerbar',
+				title:'达人'
+			}, 
+			
             {
             	xtype:'dataview',
             	itemId:'bestList',

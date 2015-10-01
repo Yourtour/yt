@@ -28,10 +28,12 @@ Ext.define('YourTour.controller.home.BestMainCtrl', {
     },
     
     showPage:function(){
+    	var page = Ext.create('YourTour.view.home.BestListView');
+		Ext.ComponentManager.get('MainView').push(page);
+		
     	var parent = this;
 		var store = this.store;
 		var success = function(){
-			parent.show('BestListView','YourTour.view.home.BestListView');
 			parent.getBestList().setStore(store);
 		};
 		

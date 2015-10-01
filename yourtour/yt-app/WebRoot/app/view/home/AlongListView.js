@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.home.AlongListView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Panel', 'YourTour.view.home.AlongListItemView', 'YourTour.view.widget.XPanel','YourTour.view.widget.XField', 'Ext.DataView'],
+    requires:['YourTour.view.home.AlongListItemView', 'Ext.DataView','YourTour.view.widget.XHeaderBar'],
     xtype: 'AlongListView',
     config: {
     	fullscreen: true,
@@ -8,12 +8,10 @@ Ext.define('YourTour.view.home.AlongListView', {
     	layout:'fit',
         items: [
 			{    
-				xtype: 'xtoolbar',
-				itemId:'toolbar',
-				title:'上海',
-				items:[
-				]			
-			},
+				xtype: 'xheaderbar',
+				itemId:'headerbar',
+				title:'达人'
+			}, 
             {
             	xtype:'dataview',
             	itemId:'alongList',

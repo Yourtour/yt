@@ -50,10 +50,10 @@ Ext.define('YourTour.controller.user.Main', {
     },
     
     onRegisterDoneTap:function(){
-    	this.redirectTo('homepage');
+    	this.redirectTo('/mainpage');
     },
     
     onLoginTap:function(){
-    	this.redirectTo('homepage');
+    	this.redirectTo('/mainpage');
     }
 });

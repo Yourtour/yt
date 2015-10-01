@@ -641,19 +641,19 @@ Ext.ClassManager.addNameAlternateMappings({
   ],
   "YourTour.controller.BaseCtrl": [],
   "YourTour.controller.Launch": [],
-  "YourTour.controller.Main": [],
+  "YourTour.controller.MainCtrl": [],
   "YourTour.controller.Welcome": [],
   "YourTour.controller.common.PlaceCtrl": [],
   "YourTour.controller.home.AlongMainCtrl": [],
   "YourTour.controller.home.BestMainCtrl": [],
-  "YourTour.controller.home.PlaceMainCtrl": [],
+  "YourTour.controller.home.HomeMainCtrl": [],
   "YourTour.controller.home.TalentMainCtrl": [],
   "YourTour.controller.line.LineIntroductionCtrl": [],
   "YourTour.controller.line.LineRecommendCtrl": [],
   "YourTour.controller.resource.ResourceCtrl": [],
   "YourTour.controller.resource.ResourcePlanCtrl": [],
   "YourTour.controller.resource.ResourceSelectionCtrl": [],
-  "YourTour.controller.route.MainCtrl": [],
+  "YourTour.controller.route.RouteMainCtrl": [],
   "YourTour.controller.route.RouteSettingCtrl": [],
   "YourTour.controller.route.ScheduleDetailCtrl": [],
   "YourTour.controller.route.ScheduleListCtrl": [],
@@ -702,8 +702,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.home.CarouselItemView": [],
   "YourTour.view.home.ChatItemView": [],
   "YourTour.view.home.HomeMain": [],
+  "YourTour.view.home.HomeMainView": [],
   "YourTour.view.home.LiveItemView": [],
-  "YourTour.view.home.PlaceMainView": [],
   "YourTour.view.home.TalentItemView": [],
   "YourTour.view.home.TalentListItemView": [],
   "YourTour.view.home.TalentListView": [],
@@ -711,13 +711,13 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.line.LineRecommendItem": [],
   "YourTour.view.line.LineRecommendView": [],
   "YourTour.view.line.LineResourceItem": [],
-  "YourTour.view.personal.Main": [],
+  "YourTour.view.personal.PersonalMainView": [],
   "YourTour.view.resource.SceneResourceDetailView": [],
   "YourTour.view.resource.SceneResourcePlanView": [],
   "YourTour.view.resource.SelectionListItem": [],
   "YourTour.view.resource.SelectionListView": [],
   "YourTour.view.route.MainItem": [],
-  "YourTour.view.route.MainView": [],
+  "YourTour.view.route.RouteMainView": [],
   "YourTour.view.route.RouteSettingView": [],
   "YourTour.view.route.Schedule": [],
   "YourTour.view.route.schedule.FoodScheduleView": [],
@@ -749,6 +749,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.XDataView": [],
   "YourTour.view.widget.XField": [],
   "YourTour.view.widget.XGridView": [],
+  "YourTour.view.widget.XHeaderBar": [],
   "YourTour.view.widget.XLabel": [],
   "YourTour.view.widget.XPage": [],
   "YourTour.view.widget.XPanel": [],
@@ -1477,19 +1478,19 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.WindowsPhone": [],
   "YourTour.controller.BaseCtrl": [],
   "YourTour.controller.Launch": [],
-  "YourTour.controller.Main": [],
+  "YourTour.controller.MainCtrl": [],
   "YourTour.controller.Welcome": [],
   "YourTour.controller.common.PlaceCtrl": [],
   "YourTour.controller.home.AlongMainCtrl": [],
   "YourTour.controller.home.BestMainCtrl": [],
-  "YourTour.controller.home.PlaceMainCtrl": [],
+  "YourTour.controller.home.HomeMainCtrl": [],
   "YourTour.controller.home.TalentMainCtrl": [],
   "YourTour.controller.line.LineIntroductionCtrl": [],
   "YourTour.controller.line.LineRecommendCtrl": [],
   "YourTour.controller.resource.ResourceCtrl": [],
   "YourTour.controller.resource.ResourcePlanCtrl": [],
   "YourTour.controller.resource.ResourceSelectionCtrl": [],
-  "YourTour.controller.route.MainCtrl": [],
+  "YourTour.controller.route.RouteMainCtrl": [],
   "YourTour.controller.route.RouteSettingCtrl": [],
   "YourTour.controller.route.ScheduleDetailCtrl": [],
   "YourTour.controller.route.ScheduleListCtrl": [],
@@ -1570,11 +1571,11 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.home.HomeMain": [
     "widget.HomeMain"
   ],
+  "YourTour.view.home.HomeMainView": [
+    "widget.HomeMainView"
+  ],
   "YourTour.view.home.LiveItemView": [
     "widget.LiveItemView"
-  ],
-  "YourTour.view.home.PlaceMainView": [
-    "widget.PlaceMainView"
   ],
   "YourTour.view.home.TalentItemView": [
     "widget.TalentItemView"
@@ -1597,8 +1598,8 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.line.LineResourceItem": [
     "widget.LineResourceItem"
   ],
-  "YourTour.view.personal.Main": [
-    "widget.personalmain"
+  "YourTour.view.personal.PersonalMainView": [
+    "widget.PersonalMainView"
   ],
   "YourTour.view.resource.SceneResourceDetailView": [
     "widget.SceneResourceDetailView"
@@ -1615,8 +1616,8 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.route.MainItem": [
     "widget.routemainitem"
   ],
-  "YourTour.view.route.MainView": [
-    "widget.routemainview"
+  "YourTour.view.route.RouteMainView": [
+    "widget.RouteMainView"
   ],
   "YourTour.view.route.RouteSettingView": [
     "widget.RouteSettingView"
@@ -1706,6 +1707,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.widget.XGridView": [
     "widget.xgridview"
+  ],
+  "YourTour.view.widget.XHeaderBar": [
+    "widget.xheaderbar"
   ],
   "YourTour.view.widget.XLabel": [
     "widget.xlabel"
