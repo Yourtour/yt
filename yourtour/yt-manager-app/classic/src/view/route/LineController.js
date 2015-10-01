@@ -80,7 +80,7 @@ Ext.define('yt_manager_app.view.route.LineController', {
         Ext.Ajax.request({
             asyn: true,
             url: (function() {
-                return Ext.Boot.packageUri('rest/lines/' + placeId + '/scenes');
+                return yt_manager_app.utils.Uri.packageUri('rest/lines/' + placeId + '/scenes');
             })(),
             success: function (response, opts) {
                 var responseData = Ext.decode(response.responseText);
@@ -96,7 +96,7 @@ Ext.define('yt_manager_app.view.route.LineController', {
         Ext.Ajax.request({
             asyn: true,
             url: (function() {
-                return Ext.Boot.packageUri('rest/lines/' + placeId + '/hotels');
+                return yt_manager_app.utils.Uri.packageUri('rest/lines/' + placeId + '/hotels');
             })(),
             success: function (response, opts) {
                 var responseData = Ext.decode(response.responseText);
@@ -112,7 +112,7 @@ Ext.define('yt_manager_app.view.route.LineController', {
         Ext.Ajax.request({
             asyn: true,
             url: (function() {
-                return Ext.Boot.packageUri('rest/lines/' + placeId + '/restaurants');
+                return yt_manager_app.utils.Uri.packageUri('rest/lines/' + placeId + '/restaurants');
             })(),
             success: function (response, opts) {
                 var responseData = Ext.decode(response.responseText);

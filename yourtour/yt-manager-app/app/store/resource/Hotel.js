@@ -14,16 +14,16 @@ Ext.define('yt_manager_app.store.resource.Hotel', {
         format: 'json',
         api: {
             create: (function() {
-                return Ext.Boot.packageUri('rest/hotels/save');
+                return yt_manager_app.utils.Uri.packageUri('rest/hotels/save');
             })(),
             read: (function() {
-                return Ext.Boot.packageUri('rest/hotels/loadPage');
+                return yt_manager_app.utils.Uri.packageUri('rest/hotels/loadPage');
             })(),
             update: (function() {
-                return Ext.Boot.packageUri('rest/hotels/save');
+                return yt_manager_app.utils.Uri.packageUri('rest/hotels/save');
             })(),
             destroy: (function() {
-                return Ext.Boot.packageUri('rest/hotels/remove');
+                return yt_manager_app.utils.Uri.packageUri('rest/hotels/remove');
             })()
         },
         actionMethods: {

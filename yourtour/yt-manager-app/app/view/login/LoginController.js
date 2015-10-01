@@ -18,7 +18,7 @@ Ext.define('yt_manager_app.view.login.LoginController', {
         Ext.Boot.debug(Ext.String.format('User login: username={0}, password={1}.', username, password));
 
         var authenticate = {code: username, password: password};
-        var url = Ext.Boot.packageUri('rest/users/login');
+        var url = yt_manager_app.utils.Uri.packageUri('rest/users/login');
         Ext.Ajax.request({
             url: url,
             async: false,
@@ -33,8 +33,7 @@ Ext.define('yt_manager_app.view.login.LoginController', {
                     Ext.MessageBox.alert('登录失败', res.errorText);
                     return;
                 }
-                var auth = Ext.getStore('yt_manager_app.store.Authentication');
-                auth.login(view, username);
+                yt_manager_app.utils.Authenticate.login(view, username);
             },
             failure: function (response, opts) {
                 Ext.Boot.debug(Ext.String.format('User[{0}] login fail, status: {1}.', username, response.status));

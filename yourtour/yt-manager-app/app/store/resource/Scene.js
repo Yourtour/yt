@@ -14,16 +14,16 @@ Ext.define('yt_manager_app.store.resource.Scene', {
         format: 'json',
         api: {
             create: (function() {
-                return Ext.Boot.packageUri('rest/scenes/save');
+                return yt_manager_app.utils.Uri.packageUri('rest/scenes/save');
             })(),
             read: (function() {
-                return Ext.Boot.packageUri('rest/scenes/loadPage');
+                return yt_manager_app.utils.Uri.packageUri('rest/scenes/loadPage');
             })(),
             update: (function() {
-                return Ext.Boot.packageUri('rest/scenes/save');
+                return yt_manager_app.utils.Uri.packageUri('rest/scenes/save');
             })(),
             destroy: (function() {
-                return Ext.Boot.packageUri('rest/scenes/remove');
+                return yt_manager_app.utils.Uri.packageUri('rest/scenes/remove');
             })()
         },
         actionMethods: {

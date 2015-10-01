@@ -15,16 +15,16 @@ Ext.define('yt_manager_app.store.basedata.Division', {
         format: 'json',
         api: {
             create: (function () {
-                return Ext.Boot.packageUri('rest/divisions/save');
+                return yt_manager_app.utils.Uri.packageUri('rest/divisions/save');
             })(),
             read: (function () {
-                return Ext.Boot.packageUri('rest/divisions/load');
+                return yt_manager_app.utils.Uri.packageUri('rest/divisions/load');
             })(),
             update: (function () {
-                return Ext.Boot.packageUri('rest/divisions/save');
+                return yt_manager_app.utils.Uri.packageUri('rest/divisions/save');
             })(),
             destroy: (function () {
-                return Ext.Boot.packageUri('rest/divisions/remove');
+                return yt_manager_app.utils.Uri.packageUri('rest/divisions/remove');
             })()
         },
         actionMethods: {

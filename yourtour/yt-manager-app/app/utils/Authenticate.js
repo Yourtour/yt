@@ -1,9 +1,8 @@
 /**
- * Created by john on 15-9-24.
+ * Created by john on 15-10-1.
  */
-Ext.define('yt_manager_app.store.Authentication', {
-    extend: 'Ext.data.Store',
-    alias: 'store.authentication',
+Ext.define('yt_manager_app.utils.Authenticate', {
+    singleton: true,
 
     authenticate: function () {
         var loginState = sessionStorage.getItem('yt_manager_app.loginState');
@@ -31,7 +30,7 @@ Ext.define('yt_manager_app.store.Authentication', {
         Ext.Ajax.request({
             asyn: true,
             url: (function() {
-                return Ext.Boot.packageUri('rest/users/logout/' + username);
+                return yt_manager_app.utils.Uri.packageUri('rest/users/logout/' + username);
             })(),
             success: function (response, opts) {
                 sessionStorage.removeItem('yt_manager_app.loginState');

@@ -14,16 +14,16 @@ Ext.define('yt_manager_app.store.route.Line', {
         format: 'json',
         api: {
             create: (function() {
-                return Ext.Boot.packageUri('rest/lines/save');
+                return yt_manager_app.utils.Uri.packageUri('rest/lines/save');
             })(),
             read: (function() {
-                return Ext.Boot.packageUri('rest/lines/loadPage');
+                return yt_manager_app.utils.Uri.packageUri('rest/lines/loadPage');
             })(),
             update: (function() {
-                return Ext.Boot.packageUri('rest/lines/save');
+                return yt_manager_app.utils.Uri.packageUri('rest/lines/save');
             })(),
             destroy: (function() {
-                return Ext.Boot.packageUri('rest/lines/remove');
+                return yt_manager_app.utils.Uri.packageUri('rest/lines/remove');
             })()
         },
         actionMethods: {

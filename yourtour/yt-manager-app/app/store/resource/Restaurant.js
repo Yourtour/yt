@@ -14,16 +14,16 @@ Ext.define('yt_manager_app.store.resource.Restaurant', {
         format: 'json',
         api: {
             create: (function() {
-                return Ext.Boot.packageUri('rest/restaurants/save');
+                return yt_manager_app.utils.Uri.packageUri('rest/restaurants/save');
             })(),
             read: (function() {
-                return Ext.Boot.packageUri('rest/restaurants/loadPage');
+                return yt_manager_app.utils.Uri.packageUri('rest/restaurants/loadPage');
             })(),
             update: (function() {
-                return Ext.Boot.packageUri('rest/restaurants/save');
+                return yt_manager_app.utils.Uri.packageUri('rest/restaurants/save');
             })(),
             destroy: (function() {
-                return Ext.Boot.packageUri('rest/restaurants/remove')
+                return yt_manager_app.utils.Uri.packageUri('rest/restaurants/remove')
             })()
         },
         actionMethods: {

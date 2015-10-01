@@ -115,8 +115,7 @@ Ext.define('yt_manager_app.view.main.MainController', {
     },
 
     onLogoutClicked: function () {
-        var auth = Ext.getStore('yt_manager_app.store.Authentication');
-        auth.logout(this.getView());
+        yt_manager_app.utils.Authenticate.logout(this.getView());
     },
 
     onRouteChange: function (id) {

@@ -10,13 +10,11 @@ Ext.define('yt_manager_app.Application', {
 
     stores: [
         // TODO: add global / shared stores here
-        'yt_manager_app.store.Authentication'
     ],
     
     launch: function () {
         localStorage.setItem('yt_manager_app.cors', true);
-        var auth = Ext.getStore('yt_manager_app.store.Authentication');
-        auth.authenticate();
+        yt_manager_app.utils.Authenticate.authenticate();
     },
 
     onAppUpdate: function () {

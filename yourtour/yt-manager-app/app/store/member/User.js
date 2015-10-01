@@ -14,16 +14,16 @@ Ext.define('yt_manager_app.store.member.User', {
         format: 'json',
         api: {
             create: (function () {
-                return Ext.Boot.packageUri('rest/users/save');
+                return yt_manager_app.utils.Uri.packageUri('rest/users/save');
             })(),
             read: (function () {
-                return Ext.Boot.packageUri('rest/users/loadPage');
+                return yt_manager_app.utils.Uri.packageUri('rest/users/loadPage');
             })(),
             update: (function() {
-                return Ext.Boot.packageUri('rest/users/save');
+                return yt_manager_app.utils.Uri.packageUri('rest/users/save');
             })(),
             destroy: (function() {
-                return Ext.Boot.packageUri('rest/users/remove');
+                return yt_manager_app.utils.Uri.packageUri('rest/users/remove');
             })()
         },
         actionMethods: {

@@ -9,7 +9,8 @@ Ext.application({
     extend: 'yt_manager_app.Application',
 
     requires: [
-        //'yt_manager_app.view.main.Main'
+        'yt_manager_app.utils.Uri',
+        'yt_manager_app.utils.Authenticate'
     ]//,
 
     // The name of the initial view to create. With the classic toolkit this class
