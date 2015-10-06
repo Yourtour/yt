@@ -185,7 +185,7 @@ Ext.define('YourTour.view.home.AlongListItemView', {
 	 	   readNumEl.setHtml(record.get('readNum'));
 	 	   
 	 	   var commentNumEl = me.down('#commentNum');
-	 	  commentNumEl.setHtml(record.get('commentNum'));
+	 	   commentNumEl.setHtml(record.get('commentNum'));
 	 	}
     }
 });

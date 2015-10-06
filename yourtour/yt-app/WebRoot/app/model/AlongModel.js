@@ -1,5 +1,6 @@
 Ext.define('YourTour.model.AlongModel', {
     extend: 'Ext.data.Model',
+    requires:['YourTour.model.LiveModel'],
     config:{
     	idProperty:'rowKey',
     	
@@ -19,6 +20,15 @@ Ext.define('YourTour.model.AlongModel', {
 	            {name:'commentNum', type:'string'},
 	    		{name:'deadline', type:'string'},
 	    		{name:'alongNum', type:'string'}
+	    ],
+	    
+	    associations: [
+   	    	{  
+   	            type: 'hasMany',   
+   	            model: 'YourTour.model.CommentModel',   
+   	            name:'comments',
+   	            associationKey:'comments'
+   	        }
 	    ]
     }
 });

@@ -82,7 +82,7 @@ Ext.define('YourTour.controller.home.HomeMainCtrl', {
     },
     
     onMoreBestTap:function(){
-    	this.redirectTo('/main/place/best');
+    	this.redirectTo('/home/best/list');
     },
     
     onTalentGridItemTap:function(index, record){
@@ -96,6 +96,6 @@ Ext.define('YourTour.controller.home.HomeMainCtrl', {
     },
     
     onMoreAlongTap:function(){
-    	this.redirectTo('/main/place/along');
+    	this.redirectTo('/home/along/list');
     }
 });

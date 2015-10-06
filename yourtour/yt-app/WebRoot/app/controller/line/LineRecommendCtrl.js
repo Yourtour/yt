@@ -4,19 +4,10 @@ Ext.define('YourTour.controller.line.LineRecommendCtrl', {
     config: {
        refs:{
     	   lineList:'#LineRecommendView #lineList',
-    	   closeBtn:'#LineRecommendView #close',
     	   newBtn:'#LineRecommendView #new'
        },
        
        control:{
-       	   	/**
-       	    * 线路推荐列表返回按钮事件定义
-       	    * @type 
-       	    */
-       	   	'#LineRecommendView #toolbar':{
-       	   	   tap:'onBackTap'
-       	   	},
-       	   
        	   /**
        	    * 线路推荐列表详情按钮事件定义
        	    * @type 
@@ -49,12 +40,8 @@ Ext.define('YourTour.controller.line.LineRecommendCtrl', {
     	this.redirectTo("/route/schedule/1");
     },
    
-    onBackTap:function(){
-    	this.show("RouteSettingView","YourTour.view.route.RouteSettingView");
-    },
-    
     showView:function(){
-    	this.show('LineRecommendView','YourTour.view.line.LineRecommendView');
+		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.line.LineRecommendView'));
     	
     	var store = this.store;
     	var lines = this.getLineList();

@@ -2,22 +2,17 @@ Ext.define('YourTour.controller.home.BestMainCtrl', {
     extend: 'YourTour.controller.BaseCtrl',
     config: {
        refs:{
-    	   bestListView:'#BestListView',
     	   bestList:'#BestListView #bestList',
        },
        
        control:{
-    	   '#BestListView #toolbar':{
-    	   	   tap:'onBackTap'
-    	   },
-    	   
     	   '#BestListView #bestList':{
     		   itemtap:'onItemTap'
     	   }
        },
        
        routes:{
-       	'/main/place/best':'showPage'
+       	'/home/best/list':'showListView'
        },
       
        store : null,
@@ -27,7 +22,7 @@ Ext.define('YourTour.controller.home.BestMainCtrl', {
     	this.store = Ext.create('YourTour.store.BestListStore'); 
     },
     
-    showPage:function(){
+    showListView:function(){
     	var page = Ext.create('YourTour.view.home.BestListView');
 		Ext.ComponentManager.get('MainView').push(page);
 		
@@ -41,10 +36,6 @@ Ext.define('YourTour.controller.home.BestMainCtrl', {
     },
     
     onItemTap:function(dataview, index, item, record,e){
-    	this.redirectTo('/line/introduction/bestListView/1');
-    },
-    
-    onBackTap:function(){
-    	this.show('PlaceMainView','YourTour.view.home.PlaceMainView');
-    },
+    	this.redirectTo('/line/introduction/1');
+    }
 });

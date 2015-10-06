@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.route.RouteSettingView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.form.Panel', 'Ext.field.DatePicker','Ext.field.Select', 'YourTour.view.widget.SubTitleBar', 'YourTour.view.widget.XToolbar', 'YourTour.view.widget.ToolButton', 'YourTour.view.widget.XLabel', 'YourTour.view.widget.XField', 'Ext.field.Text'],
+    requires:['Ext.form.Panel', 'Ext.field.DatePicker','Ext.field.Select', 'YourTour.view.widget.SubTitleBar', 'YourTour.view.widget.XToolbar','YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XLabel', 'YourTour.view.widget.XField', 'Ext.field.Text'],
     xtype: 'RouteSettingView',
     config: {
     	id:'RouteSettingView',
@@ -12,7 +12,7 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 		},
         items: [
             {    
-				xtype: 'xtoolbar',
+				xtype: 'xheaderbar',
 				title: '行程规划'		
 			},
 			

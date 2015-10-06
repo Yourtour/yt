@@ -31,8 +31,6 @@ Ext.define('YourTour.controller.route.RouteSettingCtrl', {
     routeStore:Ext.create('YourTour.store.RouteStore'),
     
     addDestinationPlace:function(){
-    	console.log('addDestinationPlace');
-    	
     	this.redirectTo('/place/selection/1');
     },
     
@@ -49,6 +47,7 @@ Ext.define('YourTour.controller.route.RouteSettingCtrl', {
     },
     
     showNewRouteView:function(){
-    	this.show("RouteSettingView","YourTour.view.route.RouteSettingView");
+    	var page = Ext.create('YourTour.view.route.RouteSettingView');
+		Ext.ComponentManager.get('MainView').push(page);
     }
 });

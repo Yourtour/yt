@@ -8,7 +8,7 @@ Ext.define('YourTour.store.LineStore', {
     	
     	data:[
 			{
-		    	rowKey:"1", imageUrl:"resources/images/scene_8.jpg", name:"九寨沟、黄龙、峨眉、乐山---1",
+		    	rowKey:"1", imageUrl:"resources/images/scene_8.jpg", name:"九寨沟、黄龙、峨眉、乐山",
 		     	feature:"迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘，驿站背负着古道的岁月。如此辽阔的原野，如此美丽的风景，驾车出行，将会真正感受到悠远、壮美和自在。南疆太大了，景点又很分散，不知道从哪里开始最好......",
 		     	reason:"迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘，驿站背负着古道的岁月。如此辽阔的原野，如此美丽的风景，驾车出行，将会真正感受到悠远、壮美和自在。南疆太大了，景点又很分散，不知道从哪里开始最好......", 
 		     	routes:[
@@ -25,7 +25,7 @@ Ext.define('YourTour.store.LineStore', {
 		    },
 	     
 			{
-				rowKey:"2", imageUrl:"resources/images/scene_1.jpg", name:"九寨沟、黄龙、峨眉、乐山----0", 
+				rowKey:"2", imageUrl:"resources/images/scene_1.jpg", name:"九寨沟、黄龙、峨眉、乐山", 
 				feature:"迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘......",
 		     	reason:"迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘......",					
 				routes:[
@@ -43,7 +43,7 @@ Ext.define('YourTour.store.LineStore', {
 			},
 	     
 			{
-				rowKey:"3", imageUrl:"resources/images/scene_3.jpg", name:"九寨沟、黄龙、峨眉、乐山----3", 
+				rowKey:"3", imageUrl:"resources/images/scene_3.jpg", name:"九寨沟、黄龙、峨眉、乐山", 
 				feature:"迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘......",
 		     	reason:"迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘......",					
 				routes:[
@@ -61,7 +61,7 @@ Ext.define('YourTour.store.LineStore', {
 			},
 	     
 			{
-				rowKey:"4", imageUrl:"resources/images/scene_1.jpg", name:"九寨沟、黄龙、峨眉、乐山----4", 
+				rowKey:"4", imageUrl:"resources/images/scene_1.jpg", name:"九寨沟、黄龙、峨眉、乐山", 
 				feature:"迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘......",
 		     	reason:"迢迢丝绸路，绵绵帕米尔，驼铃摇荡着张骞的风尘......",					
 				routes:[

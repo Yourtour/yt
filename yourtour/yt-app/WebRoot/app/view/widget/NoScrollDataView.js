@@ -1,14 +1,11 @@
 Ext.define('YourTour.view.widget.NoScrollDataView', {
     extend: 'Ext.DataView',
     xtype: 'noscrollabledataview',
-    config: {
-
-    },
     
-    doAdd:function(item){
-    	this.callParent(item);
+    doRefresh:function(me) {
+    	this.callParent(me);
     	
-		console.log(item);    	
+    	console.log(this.getViewItems().length);
     }
 });
 

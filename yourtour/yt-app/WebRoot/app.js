@@ -19,7 +19,7 @@ Ext.application({
 
     views: [
         'MainView','Launch',
-        'home.HomeMainView', 'home.BestListView', 'home.AlongListView', 'home.TalentListView', 'SearchMain',
+        'home.HomeMainView', 'home.BestListView', 'home.AlongListView', 'home.AlongDetailView', 'home.TalentListView', 'SearchMain',
         'route.RouteMainView','route.RouteSettingView','common.PlaceView',
         'line.LineRecommendView','line.LineIntroductionView',
         'route.schedule.SchedulePlanListView', 'route.schedule.ScheduleListView','route.schedule.SceneScheduleView','route.schedule.HotelScheduleView','route.schedule.FoodScheduleView',
@@ -37,11 +37,11 @@ Ext.application({
     ],
     
     models:[
-        'RouteModel','ScheduleModel','LineModel', 'UserModel','OptionModel', 'PlaceModel','LiveModel','ChatModel','AlongModel','TalentModel','PlaceCarouselModel','BestModel' 
+        'RouteModel','ScheduleModel','LineModel', 'UserModel','OptionModel', 'PlaceModel','LiveModel','ChatModel','AlongModel','TalentModel','PlaceCarouselModel','CommentModel' 
     ],
     
     stores:[
-        'RouteStore','LineStore','ResourceStore','ResourceSelectionStore', 'UserStore', 'PlaceStore', 'BestListStore','TalentListStore', 'AlongListStore'
+        'RouteStore','LineStore','ResourceStore','ResourceSelectionStore', 'UserStore', 'PlaceStore', 'BestListStore','TalentListStore', 'AlongListStore','CommentStore'
     ],
         
     icon: {

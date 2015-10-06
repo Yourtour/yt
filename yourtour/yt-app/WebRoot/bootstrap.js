@@ -664,6 +664,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.model.AlongModel": [],
   "YourTour.model.BestModel": [],
   "YourTour.model.ChatModel": [],
+  "YourTour.model.CommentModel": [],
   "YourTour.model.LineItemModel": [],
   "YourTour.model.LineModel": [],
   "YourTour.model.LiveModel": [],
@@ -679,6 +680,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.store.AjaxStore": [],
   "YourTour.store.AlongListStore": [],
   "YourTour.store.BestListStore": [],
+  "YourTour.store.CommentStore": [],
   "YourTour.store.LineStore": [],
   "YourTour.store.PlaceStore": [],
   "YourTour.store.ResourceSelectionStore": [],
@@ -691,8 +693,10 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.Launch": [],
   "YourTour.view.MainView": [],
   "YourTour.view.SearchMain": [],
+  "YourTour.view.common.CommentListItemView": [],
   "YourTour.view.common.PlaceView": [],
   "YourTour.view.community.Main": [],
+  "YourTour.view.home.AlongDetailView": [],
   "YourTour.view.home.AlongItemView": [],
   "YourTour.view.home.AlongListItemView": [],
   "YourTour.view.home.AlongListView": [],
@@ -744,6 +748,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.ToolButton": [],
   "YourTour.view.widget.VDataItem": [],
   "YourTour.view.widget.XBack": [],
+  "YourTour.view.widget.XBlock": [],
   "YourTour.view.widget.XBoldLabel": [],
   "YourTour.view.widget.XButton": [],
   "YourTour.view.widget.XDataView": [],
@@ -753,6 +758,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.XLabel": [],
   "YourTour.view.widget.XPage": [],
   "YourTour.view.widget.XPanel": [],
+  "YourTour.view.widget.XPlainButton": [],
   "YourTour.view.widget.XSceneResource": [],
   "YourTour.view.widget.XTextField": [],
   "YourTour.view.widget.XTitleBar": [],
@@ -1501,6 +1507,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.model.AlongModel": [],
   "YourTour.model.BestModel": [],
   "YourTour.model.ChatModel": [],
+  "YourTour.model.CommentModel": [],
   "YourTour.model.LineItemModel": [],
   "YourTour.model.LineModel": [],
   "YourTour.model.LiveModel": [],
@@ -1518,6 +1525,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.store.AjaxStore": [],
   "YourTour.store.AlongListStore": [],
   "YourTour.store.BestListStore": [],
+  "YourTour.store.CommentStore": [],
   "YourTour.store.LineStore": [],
   "YourTour.store.PlaceStore": [],
   "YourTour.store.ResourceSelectionStore": [],
@@ -1538,12 +1546,16 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.SearchMain": [
     "widget.searchmain"
   ],
+  "YourTour.view.common.CommentListItemView": [
+    "widget.CommentListItemView"
+  ],
   "YourTour.view.common.PlaceView": [
     "widget.placeview"
   ],
   "YourTour.view.community.Main": [
     "widget.communityview"
   ],
+  "YourTour.view.home.AlongDetailView": [],
   "YourTour.view.home.AlongItemView": [
     "widget.AlongItemView"
   ],
@@ -1693,6 +1705,9 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.widget.XBack": [
     "widget.xback"
   ],
+  "YourTour.view.widget.XBlock": [
+    "widget.xblock"
+  ],
   "YourTour.view.widget.XBoldLabel": [
     "widget.xlabel"
   ],
@@ -1719,6 +1734,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.widget.XPanel": [
     "widget.xpanel"
+  ],
+  "YourTour.view.widget.XPlainButton": [
+    "widget.xplainbutton"
   ],
   "YourTour.view.widget.XSceneResource": [
     "widget.xsceneresource"

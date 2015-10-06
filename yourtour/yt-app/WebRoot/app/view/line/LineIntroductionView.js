@@ -1,9 +1,8 @@
 Ext.define('YourTour.view.line.LineIntroductionView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Panel','Ext.Img','Ext.DataView', 'YourTour.view.widget.XPanel', 'YourTour.view.widget.XButton','YourTour.view.widget.XField','YourTour.view.widget.XLabel', 'YourTour.view.widget.XToolbar','YourTour.view.line.LineResourceItem'],
+    requires:['Ext.Panel','Ext.Img','Ext.DataView', 'YourTour.view.widget.XPanel', 'YourTour.view.widget.XButton','YourTour.view.widget.XField','YourTour.view.widget.XLabel', ,'YourTour.view.widget.XHeaderBar', 'YourTour.view.line.LineResourceItem'],
     xtype: 'LineIntroductionView',
     config: {
-    	itemId:'LineIntroductionView',
     	id:'LineIntroductionView',
       	layout:'vbox',
     	scrollable: {
@@ -12,10 +11,9 @@ Ext.define('YourTour.view.line.LineIntroductionView', {
     	},
         items: [
         	{    
-				xtype: 'xtoolbar',
-				title:'线路介绍',
-				itemId:'toolbar',
-				items:[
+				xtype: 'xheaderbar',
+				title:'线路介绍'
+				/*items:[
 					{
 	                	xtype: "toolbutton", 
 	                    ui: "normal", 
@@ -31,7 +29,7 @@ Ext.define('YourTour.view.line.LineIntroductionView', {
 	                	itemId:'comment',
 	                	align:'right'
 	                }
-				]			
+				]		*/	
 			},
 			
 			{

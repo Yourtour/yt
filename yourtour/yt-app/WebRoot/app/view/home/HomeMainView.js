@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.home.HomeMainView', {
 	extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Carousel', 'Ext.Panel','Ext.Img','Ext.DataView', 'YourTour.view.widget.XPanel', 'YourTour.view.widget.XButton','YourTour.view.widget.XField','YourTour.view.widget.XLabel', 'YourTour.view.widget.XHeaderBar','YourTour.view.line.LineResourceItem','YourTour.view.widget.XGridView'],
+    requires:['Ext.Carousel', 'Ext.Panel','Ext.Img','Ext.DataView', 'YourTour.view.widget.XPanel', 'YourTour.view.widget.XPlainButton','YourTour.view.widget.XField','YourTour.view.widget.XLabel', 'YourTour.view.widget.XHeaderBar','YourTour.view.line.LineResourceItem','YourTour.view.widget.XGridView'],
     xtype: 'HomeMainView',
     config: {
     	id:'HomeMainView',
@@ -13,7 +13,16 @@ Ext.define('YourTour.view.home.HomeMainView', {
 			{    
 				xtype: 'xheaderbar',
 				itemId:'headerbar',
-				title:'上海'
+				title:'上海',
+				backButton:false,
+				items:[
+					{
+						xtype: "xplainbutton", 
+						text:'切换',
+						itemId:'change',
+						align:'right'
+					}
+				]
 			},    
         	{
             	xtype: 'carousel',

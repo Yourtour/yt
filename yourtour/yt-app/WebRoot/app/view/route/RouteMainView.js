@@ -15,6 +15,7 @@ Ext.define('YourTour.view.route.RouteMainView', {
 				items:[
 			       {
 			    	   xtype:'button',
+			    	   itemId:'new',
 			    	   text:'新建',
 			    	   align:'right'
 			       }

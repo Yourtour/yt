@@ -1,9 +1,12 @@
 Ext.define('YourTour.view.MainView', {
 	extend: 'Ext.Container',
+	//extend: 'Ext.NavigationView',
     requires:['Ext.tab.Panel'],
     xtype: 'MainView',
     config: {
     	id:'MainView',
+    	
+    	navigationBar:false,
     	layout: {
             type: 'card',
             animation: {
