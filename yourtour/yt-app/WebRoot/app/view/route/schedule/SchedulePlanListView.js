@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.route.schedule.SchedulePlanListView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['YourTour.view.route.schedule.SchedulePlanListItem','Ext.Panel','YourTour.view.widget.XToolbar','YourTour.view.route.schedule.ScheduleDataView'],
+    requires:['YourTour.view.route.schedule.SchedulePlanListItem','Ext.Panel','YourTour.view.widget.XHeaderBar','YourTour.view.route.schedule.ScheduleDataView'],
     xtype: 'SchedulePlanListView',
     config: {
     	itemId:'SchedulePlanListView',
@@ -12,18 +12,8 @@ Ext.define('YourTour.view.route.schedule.SchedulePlanListView', {
     	},    	
     	items:[
     		{    
-				xtype: 'xtoolbar',
-				itemId:'toolbar',
-				title:'行程调整',
-				items:[
-					{
-	                	xtype: "toolbutton", 
-	                    ui: "normal", 
-	                	text:'保存',
-	                	itemId:'save',
-	                	align:'right'
-	                }
-				]			
+				xtype: 'xheaderbar',
+				title:'行程调整'
 			},
 	    	
     		{

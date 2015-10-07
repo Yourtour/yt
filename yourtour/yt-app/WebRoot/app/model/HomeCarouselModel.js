@@ -1,4 +1,4 @@
-Ext.define('YourTour.model.PlaceCarouselModel', {
+Ext.define('YourTour.model.HomeCarouselModel', {
     extend: 'Ext.data.Model',
     config:{
     	idProperty:'rowKey',

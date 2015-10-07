@@ -4,16 +4,12 @@ Ext.define('YourTour.view.line.LineRecommendView', {
     xtype: 'LineRecommendView',
     config: {
     	id:'LineRecommendView',
-    	itemId:'LineRecommendView',
     	layout:'fit',
         items: [
         	{    
 				xtype: 'xheaderbar',
 				title:'线路推荐',
 				items:[
-					{
-						xtype:'spacer'
-					},
 					{
 	                	xtype: "toolbutton", 
 	                    ui: "normal", 

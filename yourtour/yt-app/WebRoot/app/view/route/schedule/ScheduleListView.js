@@ -1,9 +1,8 @@
 Ext.define('YourTour.view.route.schedule.ScheduleListView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['YourTour.view.route.schedule.ScheduleListItem','Ext.Panel','YourTour.view.widget.XToolbar','YourTour.view.route.schedule.ScheduleDataView'],
+    requires:['YourTour.view.route.schedule.ScheduleListItem','Ext.Panel','YourTour.view.widget.XHeaderBar','YourTour.view.route.schedule.ScheduleDataView'],
     xtype: 'ScheduleListView',
     config: {
-    	itemId:'ScheduleListView',
     	id:'ScheduleListView',
     	layout:'vbox',
 		scrollable: {
@@ -12,8 +11,7 @@ Ext.define('YourTour.view.route.schedule.ScheduleListView', {
     	},    	
     	items:[
     		{    
-				xtype: 'xtoolbar',
-				itemId:'toolbar',
+				xtype: 'xheaderbar',
 				title:'行程安排',
 				items:[
 					{

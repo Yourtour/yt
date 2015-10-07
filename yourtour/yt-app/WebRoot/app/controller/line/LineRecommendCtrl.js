@@ -41,6 +41,9 @@ Ext.define('YourTour.controller.line.LineRecommendCtrl', {
     },
    
     showView:function(){
+    	/*var page = Ext.create('YourTour.view.line.LineRecommendView');
+		Ext.ComponentManager.get('MainView').push(page);*/
+    	
 		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.line.LineRecommendView'));
     	
     	var store = this.store;

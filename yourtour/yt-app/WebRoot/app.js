@@ -18,9 +18,9 @@ Ext.application({
     ],
 
     views: [
-        'MainView','Launch',
+        'MainView','Launch','common.PlaceChangeView','common.PlaceListView',
         'home.HomeMainView', 'home.BestListView', 'home.AlongListView', 'home.AlongDetailView', 'home.TalentListView', 'SearchMain',
-        'route.RouteMainView','route.RouteSettingView','common.PlaceView',
+        'route.RouteMainView','route.RouteSettingView',
         'line.LineRecommendView','line.LineIntroductionView',
         'route.schedule.SchedulePlanListView', 'route.schedule.ScheduleListView','route.schedule.SceneScheduleView','route.schedule.HotelScheduleView','route.schedule.FoodScheduleView',
         'user.LoginMainView','user.UserListView',
@@ -31,17 +31,17 @@ Ext.application({
     controllers: [
         'Launch', 'MainCtrl', 
         'home.HomeMainCtrl', 'home.BestMainCtrl','home.TalentMainCtrl','home.AlongMainCtrl',
-        'route.RouteMainCtrl','route.RouteSettingCtrl','route.ScheduleListCtrl', 'route.SchedulePlanListCtrl', 'line.LineRecommendCtrl','line.LineIntroductionCtrl','common.PlaceCtrl','user.Main',
+        'route.RouteMainCtrl','route.RouteSettingCtrl','route.ScheduleListCtrl', 'route.SchedulePlanListCtrl', 'line.LineRecommendCtrl','line.LineIntroductionCtrl','common.PlaceChangeCtrl','user.Main',
         'resource.ResourceSelectionCtrl','route.ScheduleReferenceCtrl','resource.ResourceCtrl','resource.ResourcePlanCtrl','route.ScheduleDetailCtrl',
         'user.UserListCtrl'
     ],
     
     models:[
-        'RouteModel','ScheduleModel','LineModel', 'UserModel','OptionModel', 'PlaceModel','LiveModel','ChatModel','AlongModel','TalentModel','PlaceCarouselModel','CommentModel' 
+        'RouteModel','ScheduleModel','LineModel', 'UserModel','OptionModel', 'HomeModel','LiveModel','ChatModel','AlongModel','TalentModel','HomeCarouselModel','CommentModel' 
     ],
     
     stores:[
-        'RouteStore','LineStore','ResourceStore','ResourceSelectionStore', 'UserStore', 'PlaceStore', 'BestListStore','TalentListStore', 'AlongListStore','CommentStore'
+        'RouteStore','LineStore','ResourceStore','ResourceSelectionStore', 'UserStore', 'HomeStore', 'BestListStore','TalentListStore', 'AlongListStore','CommentStore'
     ],
         
     icon: {

@@ -47,7 +47,7 @@ Ext.define('YourTour.controller.route.RouteSettingCtrl', {
     },
     
     showNewRouteView:function(){
-    	var page = Ext.create('YourTour.view.route.RouteSettingView');
-		Ext.ComponentManager.get('MainView').push(page);
+    	//var page = Ext.create('YourTour.view.route.RouteSettingView');
+		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteSettingView'));
     }
 });

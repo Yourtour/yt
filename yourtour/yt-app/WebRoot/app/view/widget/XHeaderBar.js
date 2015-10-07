@@ -3,7 +3,7 @@ Ext.define('YourTour.view.widget.XHeaderBar', {
     xtype: 'xheaderbar',
     requires:['YourTour.view.widget.XBack', 'YourTour.view.widget.XPlainButton'],
     config: {
-    	docked: 'top',
+    	docked: 'top'
     },
     
     constructor: function(config) {
@@ -21,7 +21,6 @@ Ext.define('YourTour.view.widget.XHeaderBar', {
         });
         
         var backButton = config['backButton'] == undefined || config['backButton']?true:false;
-        
         if(! found && backButton){
 	        config.items.push({
 	            xtype: 'xplainbutton',

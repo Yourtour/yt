@@ -12,7 +12,7 @@ Ext.define('YourTour.view.widget.XDataView', {
 	    		height += Ext.get(items[index].getId()).getHeight();
 	    	}
 	    	
-	    	this.setHeight(height);
+	    	// this.setHeight(height);
     	}
     }
 });

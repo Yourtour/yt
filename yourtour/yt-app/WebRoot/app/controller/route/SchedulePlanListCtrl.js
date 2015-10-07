@@ -11,10 +11,6 @@ Ext.define('YourTour.controller.route.SchedulePlanListCtrl', {
        control:{
     	   schedulePlanList:{
     	   	   itemtap:'onItemTap'
-    	   },
-    	   
-    	   '#SchedulePlanListView #toolbar':{
-    	   	   tap:'onBackTap'
     	   }
        },
        
@@ -49,7 +45,7 @@ Ext.define('YourTour.controller.route.SchedulePlanListCtrl', {
     },
     
     showPage:function(routeId){
-    	this.show('SchedulePlanListView','YourTour.view.route.schedule.SchedulePlanListView');
+    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.schedule.SchedulePlanListView'));
 		
     	var store = this.store, page=this.getPage();
     	var showView=function(){

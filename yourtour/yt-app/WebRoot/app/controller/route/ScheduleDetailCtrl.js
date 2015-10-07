@@ -9,20 +9,6 @@ Ext.define('YourTour.controller.route.ScheduleDetailCtrl', {
        		hotelSchedulePage:'HotelScheduleView'
        },
        
-       control:{
-    	   '#FoodScheduleView #toolbar':{
-    	   	   tap:'onBackTap'
-    	   },
-    	   
-    	   '#HotelScheduleView #toolbar':{
-    	   	   tap:'onBackTap'
-    	   },
-    	   
-    	   '#SceneScheduleView #toolbar':{
-    	   	   tap:'onBackTap'
-    	   }
-       },
-       
        routes:{
         	'/route/schedule/scene/:index':'showSceneSchedulePage',
         	'/route/schedule/food/:index':'showFoodSchedulePage',
@@ -37,7 +23,7 @@ Ext.define('YourTour.controller.route.ScheduleDetailCtrl', {
     },
     
     showSceneSchedulePage:function(index){
-    	this.show('SceneScheduleView','YourTour.view.route.schedule.SceneScheduleView');
+    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.schedule.SceneScheduleView'));
     	
     	var store = this.store;
     	
@@ -58,14 +44,13 @@ Ext.define('YourTour.controller.route.ScheduleDetailCtrl', {
     },
     
     showFoodSchedulePage:function(index){
-    	this.show('FoodScheduleView','YourTour.view.route.schedule.FoodScheduleView');
+    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.schedule.FoodScheduleView'));
     	
     	var store = this.store;
     	var record = store.getAt(0).schedulesStore.getAt(index);
     	
     	var page = this.getFoodSchedulePage();
     	var imageUrlEl = page.down('#imageUrl');
-    	console.log(record.get('imageUrl'));
     	imageUrlEl.setHtml("<img src='" + record.get('imageUrl') + "' style='width:100%; max-height:150px'>");
     	
     	var resNameEl = page.down('#resName');
@@ -79,8 +64,8 @@ Ext.define('YourTour.controller.route.ScheduleDetailCtrl', {
     },
     
     showHotelSchedulePage:function(index){
-    	this.show('HotelScheduleView','YourTour.view.route.schedule.HotelScheduleView');
-    	
+    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.schedule.HotelScheduleView'));
+
     	var store = this.store;
     	var record = store.getAt(0).schedulesStore.getAt(index);
     	
@@ -96,9 +81,5 @@ Ext.define('YourTour.controller.route.ScheduleDetailCtrl', {
     	
     	var phoneEl = page.down('#phone');
     	phoneEl.setHtml(record.get('phone'));
-    },
-    
-    onBackTap:function(){
-    	this.show('ScheduleListView','YourTour.view.route.schedule.ScheduleListView');
     }
 });

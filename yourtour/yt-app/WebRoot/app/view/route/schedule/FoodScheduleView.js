@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.route.schedule.FoodScheduleView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Panel','YourTour.view.widget.XLabel','YourTour.view.widget.XField','YourTour.view.widget.ToggleField','YourTour.view.widget.XToolbar'],
+    requires:['Ext.Panel','YourTour.view.widget.XLabel','YourTour.view.widget.XField','YourTour.view.widget.ToggleField','YourTour.view.widget.XHeaderBar'],
     xtype:'FoodScheduleView',
     config: {
     	itemId:'FoodScheduleView',
@@ -11,8 +11,7 @@ Ext.define('YourTour.view.route.schedule.FoodScheduleView', {
     	},
     	items:[
     		{    
-				xtype: 'xtoolbar',
-				itemId:'toolbar',					
+				xtype: 'xheaderbar',
 				title: '餐饮安排',
 				items:[
                 ]

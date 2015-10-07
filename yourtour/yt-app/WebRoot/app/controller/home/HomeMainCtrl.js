@@ -18,6 +18,10 @@ Ext.define('YourTour.controller.home.HomeMainCtrl', {
     			onGridItemTap:'onBestGridItemTap'	
     		},
     		
+    		'#HomeMainView #change':{
+    			tap:'onPlaceTap'
+       		},
+       
        		'#HomeMainView #moreBest':{
        			tap:'onMoreBestTap'	
        		},
@@ -49,7 +53,7 @@ Ext.define('YourTour.controller.home.HomeMainCtrl', {
     },
     
     init: function(){
-    	this.store = Ext.create('YourTour.store.PlaceStore');
+    	this.store = Ext.create('YourTour.store.HomeStore');
     },
     
     showPage:function(){
@@ -97,5 +101,9 @@ Ext.define('YourTour.controller.home.HomeMainCtrl', {
     
     onMoreAlongTap:function(){
     	this.redirectTo('/home/along/list');
+    },
+    
+    onPlaceTap:function(){
+    	this.redirectTo('/place/change');
     }
 });

@@ -150,8 +150,6 @@ Ext.define('YourTour.view.route.schedule.ScheduleListItem', {
        var me = this;
        
        if(record){
-       		var dataview = me.dataview || this.getDataview();
-       		
        		var type = record.get('type');
        		if(type == 'prepare'){
        			var panel = me.down('#preparePanel');

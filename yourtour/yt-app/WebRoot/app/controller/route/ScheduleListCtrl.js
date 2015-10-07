@@ -21,24 +21,8 @@ Ext.define('YourTour.controller.route.ScheduleListCtrl', {
     	   	   itemtap:'onItemTap'
     	   },
     	   
-    	   '#ScheduleListView #toolbar':{
-    	   	   tap:'onBackTap'
-    	   },
-    	   
     	   '#ScheduleListView #plan':{
-    	   	   tap:'onPlanTap'
-    	   },
-    	   
-    	   '#FoodScheduleView #toolbar':{
-    	   	   tap:'onBackTap'
-    	   },
-    	   
-    	   '#HotelScheduleView #toolbar':{
-    	   	   tap:'onBackTap'
-    	   },
-    	   
-    	   '#SceneScheduleView #toolbar':{
-    	   	   tap:'onBackTap'
+    		   tap:'onPlanTap'
     	   }
        },
        
@@ -55,10 +39,6 @@ Ext.define('YourTour.controller.route.ScheduleListCtrl', {
     
     onPlanTap:function(){
     	this.redirectTo("/route/schedule/plan/1");	
-    },
-    
-    onBackTap:function(){
-    	this.show('LineRecommendView','YourTour.view.line.LineRecommendView');
     },
     
     onEdit:function(dataview, record){
@@ -81,7 +61,7 @@ Ext.define('YourTour.controller.route.ScheduleListCtrl', {
     },
     
     showPage:function(routeId){
-    	this.show('ScheduleListView','YourTour.view.route.schedule.ScheduleListView');
+    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.schedule.ScheduleListView'));
 		
     	var store = this.store, page=this.getPage();
     	var showView=function(){

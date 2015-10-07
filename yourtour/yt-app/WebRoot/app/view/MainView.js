@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.MainView', {
-	extend: 'Ext.Container',
-	//extend: 'Ext.NavigationView',
+	//extend: 'Ext.Container',
+	extend: 'Ext.NavigationView',
     requires:['Ext.tab.Panel'],
     xtype: 'MainView',
     config: {
@@ -55,15 +55,17 @@ Ext.define('YourTour.view.MainView', {
         ]
     },
     
-    push:function(item){
+    /*push:function(item){
     	this.add(item);
     	this.setActiveItem(item);
     },
     
     pop:function(){
+    	console.log('before');
     	var currentItem = this.getActiveItem(), prevItem = this.getAt(this.items.length - 2);
     	
     	this.remove(currentItem);
     	this.setActiveItem(prevItem);
-    }
+    	console.log('after');
+    }*/
 });
