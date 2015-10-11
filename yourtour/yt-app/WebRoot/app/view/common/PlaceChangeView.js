@@ -27,11 +27,9 @@ Ext.define('YourTour.view.common.PlaceChangeView', {
 					},
 					
 					{
-						xtype:'dataview',
+						xtype:'panel',
 						itemId:'placeList',
 					    flex:7,
-					    useComponents: true,
-				        defaultType: 'PlaceListItemView',
 			        	scrollable: {
 			        	    direction: 'vertical',
 			        	    indicators: false	

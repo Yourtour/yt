@@ -4,7 +4,6 @@ Ext.define('YourTour.model.PlaceModel', {
     	idProperty:'rowKey',
     	
 	    fields:[{name:'rowKey', type:'string'},
-	            {name:'parent', type:'string'},
 	    		{name:'name', type:'string'},
 	    		{name:'cityCount', type:'string'}
 	    ],

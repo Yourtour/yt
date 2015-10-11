@@ -4,6 +4,7 @@ Ext.define('YourTour.view.common.PlaceListItemView', {
     xtype: 'PlaceListItemView',
     config: {
       	layout:'vbox',
+      	target:null,
         items: [
             {
             	xtype:'panel',
@@ -48,8 +49,25 @@ Ext.define('YourTour.view.common.PlaceListItemView', {
         ]
     },
     
+    initialize : function(){
+    	this.callParent(arguments);
+    	
+    	var cities = this.down('#cities');
+    	cities.addListener('itemtap', this.onGridViewTap, this);
+    },
+    
+    
+    onGridViewTap:function(record){
+    	this.target.fireEvent('itemtap', record);
+    },
+    
+    updateTarget:function(target){
+    	this.target = target;
+    },
+    
     updateRecord: function(record){
     	var me = this;
+    	
        	if(record){
        		var typeEl = me.down('#name');
        		typeEl.setHtml(record.get('name'));
@@ -57,21 +75,30 @@ Ext.define('YourTour.view.common.PlaceListItemView', {
        		var cityCountEl = me.down('#cityCount');
        		var moreCitiesEl = me.down('#moreCities');
        		var cities = me.down('#cities');
+       		var provinceEl = me.down('#province');
+       		provinceEl.element.on({
+				scope : me,
+				tap : function(e, t) {
+					if(record.get('cityCount') == '0'){
+						me.target.fireEvent('itemtap', record);
+					}else{
+						if(moreCitiesEl.getSrc() == 'resources/icons/icon_arrow_down.png'){
+	           				moreCitiesEl.setSrc('resources/icons/icon_arrow_up.png');
+	           				cities.show();
+	           			}else{
+	           				moreCitiesEl.setSrc('resources/icons/icon_arrow_down.png');
+	           				cities.hide();
+	           			}
+					}
+				}
+			});
+       		
        		if(record.get('cityCount') == '0'){
        			cityCountEl.hide();
        			moreCitiesEl.hide();
        		}else{
        			cityCountEl.setHtml(record.get('cityCount'));
            		cities.setModels(record.cities());
-           		moreCitiesEl.on('tap', function(){
-           			if(moreCitiesEl.getSrc() == 'resources/icons/icon_arrow_down.png'){
-           				moreCitiesEl.setSrc('resources/icons/icon_arrow_up.png');
-           				cities.show();
-           			}else{
-           				moreCitiesEl.setSrc('resources/icons/icon_arrow_down.png');
-           				cities.hide();
-           			}
-           		});
        		}
        		cities.hide();
 	 	}

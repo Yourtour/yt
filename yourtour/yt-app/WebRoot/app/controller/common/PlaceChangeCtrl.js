@@ -1,6 +1,6 @@
 Ext.define('YourTour.controller.common.PlaceChangeCtrl', {
     extend: 'YourTour.controller.BaseCtrl',
-    
+    requires:['YourTour.view.common.PlaceListItemView'],
     config: {
        refs: {
        	   placeType:'#PlaceChangeView #placeType',
@@ -54,10 +54,13 @@ Ext.define('YourTour.controller.common.PlaceChangeCtrl', {
     },
     
     onItemTap4PlaceType: function(obj, index, target, record, e, eOpts){
-    	this.getPlaceList().setStore(this.placeStore);
+    	var placeList = this.getPlaceList();
+    	this.placeStore.getData().each(function(model){
+    		placeList.add(Ext.create('YourTour.view.common.PlaceListItemView',{target:placeList, record:model}));
+    	});
     },
     
-    onItemTap4PlaceList: function(obj, index, target, record, e, eOpts){
-    	console.log(target);
+    onItemTap4PlaceList: function(record, e, eOpts){
+    	console.log(record);
     }
 });

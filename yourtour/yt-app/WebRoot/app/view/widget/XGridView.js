@@ -69,7 +69,7 @@ Ext.define('YourTour.view.widget.XGridView', {
 	    			panel = me.getAt(me.getItems().length - 1);
 	    		}
 	    		
-	    		var itemConfig = {model:model, flex:1};
+	    		var itemConfig = {model:model, flex:1, gridview:me};
 	    		if(me.vLine){
 	    			if(index % me.getCols() > 0){
 	    				itemConfig['style'] = 'border-left:1px solid #EDEDED;';
