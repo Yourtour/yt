@@ -49,45 +49,49 @@ Ext.define('YourTour.view.widget.XGridView', {
     
     applyModels: function(models){
     	var me = this;
-    	models.each(function(model, index){
-    		var panel;
-    		if(index % me.getCols() == 0){
-    			var config = {layout:'hbox'};
-    			
-    			if(me.hSpace != 0){
-    				config['margin'] = me.hSpace + ' 0 0 0';
-    			}
-    			
-    			if(me.hLine){
-    				config['cls'] = 'underline';
-    			}
-    		
-    			panel = Ext.create("Ext.Panel",config); 
-    			me.add(panel);
-    		}else{
-    			panel = me.getAt(me.getItems().length - 1);
-    		}
-    		
-    		var itemConfig = {model:model, flex:1};
-    		if(me.vLine){
-    			if(index % me.getCols() > 0){
-    				itemConfig['style'] = 'border-left:1px solid #EDEDED;';
-    			}
-    		}
-    		
-    		var item = Ext.create(me.getItem(), itemConfig);
-    		item.element.on({
-				scope : item,
-				tap : function(e, t) {
-					me.fireEvent('onGridItemTap', index, model);
-				}
-			});
-   			panel.add(item);
- 	   	});
-    	
-    	var panel = me.getAt(me.getItems().length - 1);
-    	for(var index = panel.getItems().length; index < me.getCols(); index++){
-    		panel.add(Ext.create("Ext.Panel", {flex:1}));
+    	if(models){
+	    	models.each(function(model, index){
+	    		var panel;
+	    		if(index % me.getCols() == 0){
+	    			var config = {layout:'hbox'};
+	    			
+	    			if(me.hSpace != 0){
+	    				config['margin'] = me.hSpace + ' 0 0 0';
+	    			}
+	    			
+	    			if(me.hLine){
+	    				config['cls'] = 'underline';
+	    			}
+	    		
+	    			panel = Ext.create("Ext.Panel",config); 
+	    			me.add(panel);
+	    		}else{
+	    			panel = me.getAt(me.getItems().length - 1);
+	    		}
+	    		
+	    		var itemConfig = {model:model, flex:1};
+	    		if(me.vLine){
+	    			if(index % me.getCols() > 0){
+	    				itemConfig['style'] = 'border-left:1px solid #EDEDED;';
+	    			}
+	    		}
+	    		
+	    		var item = Ext.create(me.getItem(), itemConfig);
+	    		item.element.on({
+					scope : item,
+					tap : function(e, t) {
+						me.fireEvent('onGridItemTap', index, model);
+					}
+				});
+	   			panel.add(item);
+	 	   	});
+	    	
+	    	var panel = me.getAt(me.getItems().length - 1);
+	    	if(panel){
+		    	for(var index = panel.getItems().length; index < me.getCols(); index++){
+		    		panel.add(Ext.create("Ext.Panel", {flex:1}));
+		    	}
+	    	}
     	}
     }
 });

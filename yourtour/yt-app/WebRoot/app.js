@@ -14,11 +14,11 @@ Ext.application({
     name: 'YourTour',
 
     requires: [
-        'Ext.MessageBox', 'Ext.form.Hidden','YourTour.util.Context','YourTour.view.home.BestItemView'
+        'Ext.MessageBox', 'Ext.form.Hidden','YourTour.util.Context','YourTour.view.home.BestItemView','YourTour.view.common.PlaceGridItemView'
     ],
 
     views: [
-        'MainView','Launch','common.PlaceChangeView','common.PlaceListView',
+        'MainView','Launch','common.PlaceChangeView',
         'home.HomeMainView', 'home.BestListView', 'home.AlongListView', 'home.AlongDetailView', 'home.TalentListView', 'SearchMain',
         'route.RouteMainView','route.RouteSettingView',
         'line.LineRecommendView','line.LineIntroductionView',
@@ -37,11 +37,11 @@ Ext.application({
     ],
     
     models:[
-        'RouteModel','ScheduleModel','LineModel', 'UserModel','OptionModel', 'HomeModel','LiveModel','ChatModel','AlongModel','TalentModel','HomeCarouselModel','CommentModel' 
+        'RouteModel','ScheduleModel','LineModel', 'UserModel','OptionModel', 'HomeModel','LiveModel','ChatModel','AlongModel','TalentModel','HomeCarouselModel','CommentModel', 'PlaceModel' 
     ],
     
     stores:[
-        'RouteStore','LineStore','ResourceStore','ResourceSelectionStore', 'UserStore', 'HomeStore', 'BestListStore','TalentListStore', 'AlongListStore','CommentStore'
+        'RouteStore','LineStore','ResourceStore','ResourceSelectionStore', 'UserStore', 'HomeStore', 'BestListStore','TalentListStore', 'AlongListStore','CommentStore', 'PlaceStore'
     ],
         
     icon: {

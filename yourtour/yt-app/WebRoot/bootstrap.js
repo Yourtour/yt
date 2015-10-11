@@ -643,7 +643,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.controller.Launch": [],
   "YourTour.controller.MainCtrl": [],
   "YourTour.controller.Welcome": [],
-  "YourTour.controller.common.PlaceCtrl": [],
+  "YourTour.controller.common.PlaceChangeCtrl": [],
   "YourTour.controller.home.AlongMainCtrl": [],
   "YourTour.controller.home.BestMainCtrl": [],
   "YourTour.controller.home.HomeMainCtrl": [],
@@ -665,12 +665,13 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.model.BestModel": [],
   "YourTour.model.ChatModel": [],
   "YourTour.model.CommentModel": [],
+  "YourTour.model.HomeCarouselModel": [],
+  "YourTour.model.HomeModel": [],
   "YourTour.model.LineItemModel": [],
   "YourTour.model.LineModel": [],
   "YourTour.model.LiveModel": [],
   "YourTour.model.LocalCache": [],
   "YourTour.model.OptionModel": [],
-  "YourTour.model.PlaceCarouselModel": [],
   "YourTour.model.PlaceModel": [],
   "YourTour.model.ResourceModel": [],
   "YourTour.model.RouteModel": [],
@@ -681,6 +682,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.store.AlongListStore": [],
   "YourTour.store.BestListStore": [],
   "YourTour.store.CommentStore": [],
+  "YourTour.store.HomeStore": [],
   "YourTour.store.LineStore": [],
   "YourTour.store.PlaceStore": [],
   "YourTour.store.ResourceSelectionStore": [],
@@ -694,7 +696,10 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.MainView": [],
   "YourTour.view.SearchMain": [],
   "YourTour.view.common.CommentListItemView": [],
-  "YourTour.view.common.PlaceView": [],
+  "YourTour.view.common.PlaceChangeView": [],
+  "YourTour.view.common.PlaceGridItemView": [],
+  "YourTour.view.common.PlaceListItemView": [],
+  "YourTour.view.common.PlaceTypeListItemView": [],
   "YourTour.view.community.Main": [],
   "YourTour.view.home.AlongDetailView": [],
   "YourTour.view.home.AlongItemView": [],
@@ -1486,7 +1491,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.controller.Launch": [],
   "YourTour.controller.MainCtrl": [],
   "YourTour.controller.Welcome": [],
-  "YourTour.controller.common.PlaceCtrl": [],
+  "YourTour.controller.common.PlaceChangeCtrl": [],
   "YourTour.controller.home.AlongMainCtrl": [],
   "YourTour.controller.home.BestMainCtrl": [],
   "YourTour.controller.home.HomeMainCtrl": [],
@@ -1508,6 +1513,8 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.model.BestModel": [],
   "YourTour.model.ChatModel": [],
   "YourTour.model.CommentModel": [],
+  "YourTour.model.HomeCarouselModel": [],
+  "YourTour.model.HomeModel": [],
   "YourTour.model.LineItemModel": [],
   "YourTour.model.LineModel": [],
   "YourTour.model.LiveModel": [],
@@ -1515,7 +1522,6 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.localCache"
   ],
   "YourTour.model.OptionModel": [],
-  "YourTour.model.PlaceCarouselModel": [],
   "YourTour.model.PlaceModel": [],
   "YourTour.model.ResourceModel": [],
   "YourTour.model.RouteModel": [],
@@ -1526,6 +1532,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.store.AlongListStore": [],
   "YourTour.store.BestListStore": [],
   "YourTour.store.CommentStore": [],
+  "YourTour.store.HomeStore": [],
   "YourTour.store.LineStore": [],
   "YourTour.store.PlaceStore": [],
   "YourTour.store.ResourceSelectionStore": [],
@@ -1549,8 +1556,17 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.common.CommentListItemView": [
     "widget.CommentListItemView"
   ],
-  "YourTour.view.common.PlaceView": [
-    "widget.placeview"
+  "YourTour.view.common.PlaceChangeView": [
+    "widget.PlaceChangeView"
+  ],
+  "YourTour.view.common.PlaceGridItemView": [
+    "widget.PlaceGridItemView"
+  ],
+  "YourTour.view.common.PlaceListItemView": [
+    "widget.PlaceListItemView"
+  ],
+  "YourTour.view.common.PlaceTypeListItemView": [
+    "widget.PlaceTypeListItemView"
   ],
   "YourTour.view.community.Main": [
     "widget.communityview"

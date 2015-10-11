@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.common.PlaceChangeView', {
 	extend: 'YourTour.view.widget.XPage',
-	requires:['Ext.Panel', 'Ext.NestedList','YourTour.view.widget.XHeaderBar'],
+	requires:['Ext.Panel', 'Ext.DataView','YourTour.view.widget.XHeaderBar','YourTour.view.common.PlaceTypeListItemView', 'YourTour.view.common.PlaceListItemView'],
     xtype:'PlaceChangeView',
     config: {
     	id:'PlaceChangeView',
@@ -17,25 +17,25 @@ Ext.define('YourTour.view.common.PlaceChangeView', {
 				layout:'hbox',
 				items:[
 					{
-						xtype:'nestedlist',
-						itemId:'placeList',
-					    useComponents: true,
-					    defaultType: 'AlongListItemView',
-						scrollable: {
-						    direction: 'vertical',
-						    indicators: false	
-						}  	
+						xtype:'dataview',
+						itemId:'placeType',
+						style:'background:silver',
+						useComponents: true,
+				        defaultType: 'PlaceTypeListItemView',
+			        	scrollable:false,
+					    flex:2
 					},
 					
 					{
 						xtype:'dataview',
-						itemId:'alongList',
+						itemId:'placeList',
+					    flex:7,
 					    useComponents: true,
-					    defaultType: 'AlongListItemView',
-						scrollable: {
-						    direction: 'vertical',
-						    indicators: false	
-						}  	
+				        defaultType: 'PlaceListItemView',
+			        	scrollable: {
+			        	    direction: 'vertical',
+			        	    indicators: false	
+			        	}
 					}
 				]
 			}
