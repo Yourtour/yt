@@ -9,7 +9,10 @@ Ext.define('YourTour.view.common.PlaceChangeView', {
 			{    
 				xtype: 'xheaderbar',
 				itemId:'headerbar',
-				title:'目的地'
+				title:'目的地',
+				items:[
+					
+				]
 			}, 
 			
 			{

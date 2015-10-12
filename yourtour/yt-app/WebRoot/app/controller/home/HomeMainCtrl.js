@@ -4,6 +4,7 @@ Ext.define('YourTour.controller.home.HomeMainCtrl', {
     config: {
        refs:{
        	   	homeMainView:'#HomeMainView',
+       	   	headerbar:'#HomeMainView #headerbar',
        	   	chatList:'#HomeMainView #chatList',
        	   	liveTitle:'#HomeMainView #liveTitle',
 			liveContent:'#HomeMainView #liveContent',
@@ -80,6 +81,10 @@ Ext.define('YourTour.controller.home.HomeMainCtrl', {
 		};
 		
 		store.load(success, this);
+    },
+    
+    onCallback:function(record){
+    	this.getHeaderbar().setTitle(record.get('name'));
     },
     
     onBestGridItemTap:function(index, record){

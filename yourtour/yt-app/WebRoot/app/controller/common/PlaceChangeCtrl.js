@@ -24,9 +24,9 @@ Ext.define('YourTour.controller.common.PlaceChangeCtrl', {
        placeStore : null
     },
     
-    init:function(){
-    },
-    
+    /**
+     * 显示页面
+     */
     showPage:function(){
 		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.common.PlaceChangeView'));
 		
@@ -53,6 +53,9 @@ Ext.define('YourTour.controller.common.PlaceChangeCtrl', {
     	this.placeStore.load();
     },
     
+    /**
+     * 
+     */
     onItemTap4PlaceType: function(obj, index, target, record, e, eOpts){
     	var placeList = this.getPlaceList();
     	this.placeStore.getData().each(function(model){
@@ -60,7 +63,13 @@ Ext.define('YourTour.controller.common.PlaceChangeCtrl', {
     	});
     },
     
+    /**
+     * 
+     */
     onItemTap4PlaceList: function(record, e, eOpts){
-    	console.log(record);
+    	var mainview = Ext.ComponentManager.get('MainView');
+    	mainview.pop();
+    	
+    	this.getApplication().getController('home.HomeMainCtrl').onCallback(record);
     }
 });

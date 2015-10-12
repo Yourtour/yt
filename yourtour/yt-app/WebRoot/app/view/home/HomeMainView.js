@@ -10,6 +10,11 @@ Ext.define('YourTour.view.home.HomeMainView', {
     	    indicators: false	
     	},
         items: [
+            {
+                xtype: 'hiddenfield',
+                name: 'placeId'
+            },
+            
 			{    
 				xtype: 'xheaderbar',
 				itemId:'headerbar',
@@ -45,12 +50,6 @@ Ext.define('YourTour.view.home.HomeMainView', {
         		
         		ui:'light',
 	            items:[
-	            	{
-	            		itemId:'btnHome', 
-		                text:'精选',
-		                iconCls:'home',
-		                iconAlign:'top'
-		            },
 		            {
 		                itemId:'btnRoute',
 		                text:'游玩',
