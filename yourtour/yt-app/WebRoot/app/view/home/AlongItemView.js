@@ -1,11 +1,9 @@
 Ext.define('YourTour.view.home.AlongItemView', {
-    extend: 'Ext.Panel',
+	extend: 'YourTour.view.widget.XGridItem',
     requires:['Ext.Panel', 'YourTour.view.widget.XField','YourTour.view.widget.XPanel'],
     xtype: 'AlongItemView',
     config: {
-    	model:null,
     	padding:5,
-      	layout:'vbox',
         items: [
 		   	{
    				itemId : 'imageUrl',

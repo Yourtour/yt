@@ -18,7 +18,7 @@ Ext.application({
     ],
 
     views: [
-        'MainView','Launch','common.PlaceChangeView',
+        'MainView','Launch','common.PlaceChangeView','common.PlaceSelectionView',
         'home.HomeMainView', 'home.BestListView', 'home.AlongListView', 'home.AlongDetailView', 'home.TalentListView', 'SearchMain',
         'route.RouteMainView','route.RouteSettingView',
         'line.LineRecommendView','line.LineIntroductionView',
@@ -29,15 +29,15 @@ Ext.application({
     ],
     
     controllers: [
-        'Launch', 'MainCtrl', 
+        'Launch', 'MainCtrl', 'common.PlaceChangeCtrl','common.PlaceSelectionCtrl',
         'home.HomeMainCtrl', 'home.BestMainCtrl','home.TalentMainCtrl','home.AlongMainCtrl',
-        'route.RouteMainCtrl','route.RouteSettingCtrl','route.ScheduleListCtrl', 'route.SchedulePlanListCtrl', 'line.LineRecommendCtrl','line.LineIntroductionCtrl','common.PlaceChangeCtrl','user.Main',
+        'route.RouteMainCtrl','route.RouteSettingCtrl','route.ScheduleListCtrl', 'route.SchedulePlanListCtrl', 'line.LineRecommendCtrl','line.LineIntroductionCtrl','user.Main',
         'resource.ResourceSelectionCtrl','route.ScheduleReferenceCtrl','resource.ResourceCtrl','resource.ResourcePlanCtrl','route.ScheduleDetailCtrl',
         'user.UserListCtrl'
     ],
     
     models:[
-        'RouteModel','ScheduleModel','LineModel', 'UserModel','OptionModel', 'HomeModel','LiveModel','ChatModel','AlongModel','TalentModel','HomeCarouselModel','CommentModel', 'PlaceModel' 
+        'RouteModel','ScheduleModel','SchedulePlanModel', 'LineModel', 'UserModel','OptionModel', 'HomeModel','LiveModel','ChatModel','AlongModel','TalentModel','HomeCarouselModel','CommentModel', 'PlaceModel' 
     ],
     
     stores:[

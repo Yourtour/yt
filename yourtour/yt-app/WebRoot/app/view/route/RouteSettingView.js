@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.route.RouteSettingView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.form.Panel', 'Ext.field.DatePicker','Ext.field.Select', 'YourTour.view.widget.SubTitleBar', 'YourTour.view.widget.XToolbar','YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XLabel', 'YourTour.view.widget.XField', 'Ext.field.Text'],
+    requires:['Ext.form.Panel', 'Ext.DataView', 'YourTour.view.route.RouteSettingItem', 'YourTour.view.widget.ToolButton', 'Ext.field.DatePicker','Ext.field.Select', 'YourTour.view.widget.SubTitleBar', 'YourTour.view.widget.XToolbar','YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XLabel', 'YourTour.view.widget.XField', 'Ext.field.Text'],
     xtype: 'RouteSettingView',
     config: {
     	id:'RouteSettingView',
@@ -13,7 +13,15 @@ Ext.define('YourTour.view.route.RouteSettingView', {
         items: [
             {    
 				xtype: 'xheaderbar',
-				title: '行程规划'		
+				title: '行程规划',
+				items:[
+					{
+					   xtype:'toolbutton',
+					   itemId:'next',
+					   text:'下一步',
+					   align:'right'
+					}
+				]
 			},
 			
 			{  
@@ -76,7 +84,7 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 					{
 						xtype:'label',
 						html: '出发日期',
-						style:'width:50px'
+						style:'width:60px'
 					},
 					{  
 					    xtype: 'datepickerfield',  
@@ -100,7 +108,7 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 					{
 						xtype:'label',
 						html: '返回日期',
-						style:'width:50px'
+						style:'width:60px'
 					},
 					{  
 					    xtype: 'datepickerfield',  
@@ -129,11 +137,13 @@ Ext.define('YourTour.view.route.RouteSettingView', {
             		}
             	]
             },
+            
             {
-            	xtype:'xbutton',
-            	margin:'10 0 0 0',
-            	itemId:'next',
-            	text:'下一步'
+            	xtype:'dataview',
+            	margin:'5 0 5 0',
+            	flex:1,
+				useComponents:true,
+		    	defaultType:'RouteSettingItem'
             }
         ]
     }

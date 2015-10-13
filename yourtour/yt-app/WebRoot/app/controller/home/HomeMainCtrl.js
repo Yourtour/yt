@@ -8,35 +8,35 @@ Ext.define('YourTour.controller.home.HomeMainCtrl', {
        	   	chatList:'#HomeMainView #chatList',
        	   	liveTitle:'#HomeMainView #liveTitle',
 			liveContent:'#HomeMainView #liveContent',
-			alongs:'#HomeMainView #alongs',
-			talents:'#HomeMainView #talents',
+			alongView:'#HomeMainView #alongs',
+			talentView:'#HomeMainView #talents',
 			bestView:'#HomeMainView #bests',
 			placeCarousel:'#HomeMainView #placeCarousel'
        },
        
        control:{
-       	   	bestView:{
-    			onGridItemTap:'onBestGridItemTap'	
-    		},
-    		
     		'#HomeMainView #change':{
     			tap:'onPlaceTap'
        		},
-       
+       		
+       		bestView:{
+    			itemtap:'onItemTap4Best'	
+    		},
+    		
        		'#HomeMainView #moreBest':{
        			tap:'onMoreBestTap'	
        		},
        		
-       		talents:{
-       			onGridItemTap:'onTalentGridItemTap'	
+       		talentView:{
+       			itemtap:'onItemTap4Talents'	
        		},
        		
        		'#HomeMainView #moreTalent':{
        			tap:'onMoreTalentTap'	
        		},
        		
-       		alongs:{
-       			onGridItemTap:'onAlongGridItemTap'	
+       		alongView:{
+       			itemtap:'onItemTap4Along'	
        		},
        		
        		'#HomeMainView #moreAlong':{
@@ -63,6 +63,7 @@ Ext.define('YourTour.controller.home.HomeMainCtrl', {
 		var store = this.store;
 		var success = function(){
 			var model = store.getAt(0);
+			
 			var carousels = model.carousels();
     		carousels.each(function(carousel){
  	 	   		parent.getPlaceCarousel().add(Ext.create('YourTour.view.home.CarouselItemView',{itemId:'carousel', model:carousel}));
@@ -71,11 +72,11 @@ Ext.define('YourTour.controller.home.HomeMainCtrl', {
     		parent.getBestView().removeAll(true, true);
     		parent.getBestView().setModels(model.bests());
     		
-    		parent.getTalents().removeAll(true, true);
-    		parent.getTalents().setModels(model.talents());
+    		parent.getTalentView().removeAll(true, true);
+    		parent.getTalentView().setModels(model.talents());
     		
-    		parent.getAlongs().removeAll(true, true);
-    		parent.getAlongs().setModels(model.alongs()); 	 	   	
+    		parent.getAlongView().removeAll(true, true);
+    		parent.getAlongView().setModels(model.alongs()); 	 	   	
     		
     		parent.getChatList().setStore(model.chatsStore);
 		};
@@ -87,25 +88,28 @@ Ext.define('YourTour.controller.home.HomeMainCtrl', {
     	this.getHeaderbar().setTitle(record.get('name'));
     },
     
-    onBestGridItemTap:function(index, record){
+    onItemTap4Best:function(record){
+    	this.redirectTo('/line/introduction/1');
     },
     
     onMoreBestTap:function(){
     	this.redirectTo('/home/best/list');
     },
     
-    onTalentGridItemTap:function(index, record){
+    onItemTap4Talents:function(record){
+    	this.redirectTo('/main/talent/list');
     },
     
     onMoreTalentTap:function(){
-    	this.redirectTo('/main/place/talent');
+    	this.redirectTo('/main/talent/list');
     },
 
-    onAlongGridItemTap:function(index, record){
+    onItemTap4Along:function(record){
+    	this.redirectTo('/along/detail/1');
     },
     
     onMoreAlongTap:function(){
-    	this.redirectTo('/home/along/list');
+    	this.redirectTo('/along/list');
     },
     
     onPlaceTap:function(){

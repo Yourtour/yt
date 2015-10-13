@@ -1,10 +1,8 @@
 Ext.define('YourTour.view.home.BestItemView', {
-    extend: 'Ext.Panel',
+    extend: 'YourTour.view.widget.XGridItem',
     requires:['Ext.Panel', 'YourTour.view.widget.XPanel','YourTour.view.widget.XField'],
     xtype: 'BestItemView',
     config: {
-    	model:null,
-    	layout:'vbox',
     	padding:5,
         items: [
 			{

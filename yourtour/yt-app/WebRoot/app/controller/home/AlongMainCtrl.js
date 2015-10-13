@@ -10,15 +10,12 @@ Ext.define('YourTour.controller.home.AlongMainCtrl', {
        control:{
     	   alongList:{
     		   itemtap:'onItemTap'
-    	   },
-    	   
-    	   commentList:{
-    		   refresh:'onRefresh'
     	   }
        },
        
        routes:{
-       		'/home/along/list':'showListView'
+       		'/along/list':'showListView',
+       		'/along/detail/:alongId':'showDetailView',
        },
       
        store : null,
@@ -40,8 +37,23 @@ Ext.define('YourTour.controller.home.AlongMainCtrl', {
 		store.load(success, this);
     },
     
+    showDetailView:function(alongId){
+		var me = this;
+		var store = this.store;
+		var success = function(){
+			var record = store.getAt(0);
+			me.showAlongDetail(record);
+		};
+		
+		store.load(success, this);
+    },
+    
     onItemTap:function(dataview, index, item, record,e){
-		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.home.AlongDetailView'));
+		this.showAlongDetail(record);
+    },
+    
+    showAlongDetail:function(record){
+    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.home.AlongDetailView'));
 		
 		if(record){
 			var alongDetailView = this.getAlongDetailView();
@@ -82,9 +94,5 @@ Ext.define('YourTour.controller.home.AlongMainCtrl', {
 	 	   	var commentEl = alongDetailView.down('#commentList');
 	 	   	commentEl.setStore(record.commentsStore);
 		}
-    },
-    
-    onRefresh:function(){
-    	console.log(this.getAlongDetailView().down('#commentList').getViewItems());
     }
 });

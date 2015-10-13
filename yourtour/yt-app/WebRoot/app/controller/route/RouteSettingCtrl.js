@@ -24,30 +24,29 @@ Ext.define('YourTour.controller.route.RouteSettingCtrl', {
        },
        
        routes:{
-        	'/route/new':'showNewRouteView'
-       }
+        	'/route/new':'showPage'
+       },
+       
+       store:Ext.create('YourTour.store.RouteStore'),
     },
     
-    routeStore:Ext.create('YourTour.store.RouteStore'),
+    showPage:function(){
+		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteSettingView'));
+    },
     
     addDestinationPlace:function(){
-    	this.redirectTo('/place/selection/1');
-    },
-    
-    OnCloseClick:function(){
-    	this.show('routemainview','YourTour.view.route.MainView');
+    	this.redirectTo('/place/selection');
     },
     
     addStartPlace:function(){
-    	this.redirectTo('/place/selection/2');
+    	this.redirectTo('/place/selection');
     },
     
     OnNextClick:function(){
     	this.redirectTo('/line/recommend');
     },
     
-    showNewRouteView:function(){
-    	//var page = Ext.create('YourTour.view.route.RouteSettingView');
-		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteSettingView'));
+    addPlace:function(place){
+    	this.store.add(place);
     }
 });

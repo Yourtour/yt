@@ -7,7 +7,7 @@ Ext.define('YourTour.controller.home.TalentMainCtrl', {
        },
        
        routes:{
-       	'/main/place/talent':'showPage'
+       	'/main/talent/list':'showPage'
        },
       
        store : null,
