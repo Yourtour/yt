@@ -29,6 +29,7 @@ Ext.define('YourTour.view.line.LineRecommendItem', {
     		{
     			xtype:'panel',
     			layut:'vbox',
+    			padding:5,
     			itemId:'lineInfo',
 	    		items:[
 			   		{

@@ -12,7 +12,16 @@ Ext.define('YourTour.view.line.LineIntroductionView', {
         items: [
         	{    
 				xtype: 'xheaderbar',
-				title:'线路介绍'
+				title:'线路介绍',
+				items:[
+					{
+						itemId:'more',
+						xtype:'image',
+						mode : 'tag',
+						align:'right',
+						src:'resources/icons/icon_more.png'
+					}       
+				]
 				/*items:[
 					{
 	                	xtype: "toolbutton", 

@@ -140,7 +140,7 @@ Ext.define('YourTour.view.route.RouteSettingView', {
             
             {
             	xtype:'dataview',
-            	margin:'5 0 5 0',
+            	itemId:'placeList',
             	flex:1,
 				useComponents:true,
 		    	defaultType:'RouteSettingItem'

@@ -5,7 +5,8 @@ Ext.define('YourTour.controller.line.LineIntroductionCtrl', {
        refs:{
        	   lineIntro:'#LineIntroductionView',
        	   talent:'#LineIntroductionView #talent',
-       	   resources:'#LineIntroductionView #resources'
+       	   resources:'#LineIntroductionView #resources',
+       	   buttons:'#LineIntroductionView #buttons'	   
        },
        
        control:{
@@ -17,8 +18,8 @@ Ext.define('YourTour.controller.line.LineIntroductionCtrl', {
        	    * 线路推荐列表返回按钮事件定义
        	    * @type 
        	    */
-       	   '#LineIntroductionView #toolbar':{
-       	   	   	tap:'backToPrePage'
+       	   '#LineIntroductionView #more':{
+       	   	   	tap:'onMoreTap'
        	   },
        	   
        	   resources:{
@@ -45,10 +46,6 @@ Ext.define('YourTour.controller.line.LineIntroductionCtrl', {
     	this.store = Ext.create('YourTour.store.LineStore');
     },
     
-    onConsultTap:function(){ 	
-    	this.redirectTo('/user/list');
-    },
-    
     onResourceInfoTap:function(dataView, index, target, record, e, eOpts){
     	this.redirectTo('/resource/detail/' + record.get('rowKey'));	
     },
@@ -59,6 +56,10 @@ Ext.define('YourTour.controller.line.LineIntroductionCtrl', {
     
     showResource:function(record){
     	console.log(record);
+    },
+    
+    onMoreTap:function(){
+    	this.getButtons().show();
     },
     
     /**

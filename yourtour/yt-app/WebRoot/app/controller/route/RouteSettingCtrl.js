@@ -3,6 +3,7 @@ Ext.define('YourTour.controller.route.RouteSettingCtrl', {
     requires:['YourTour.store.RouteStore', 'YourTour.model.RouteModel'],
     config: {
        refs:{
+    	   placeList:'#RouteSettingView #placeList'
        },
        
        control:{
@@ -10,6 +11,10 @@ Ext.define('YourTour.controller.route.RouteSettingCtrl', {
        	   	   tap:"addDestinationPlace"	
        	   },
        	   
+       	   placeList:{
+       		   itemdel:'onPlaceItemDelete'	
+       	   },
+       	
     	   "#RouteSettingView #close":{
     		   tap:"OnCloseClick"
     	   },
@@ -27,15 +32,30 @@ Ext.define('YourTour.controller.route.RouteSettingCtrl', {
         	'/route/new':'showPage'
        },
        
-       store:Ext.create('YourTour.store.RouteStore'),
+       store:null
+    },
+    
+    init: function(){
+    	this.store = Ext.create('YourTour.store.RouteStore');
+    	var model = Ext.create('YourTour.model.RouteModel',{rowKey:'-1'});
+    	this.store.add(model);
     },
     
     showPage:function(){
 		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteSettingView'));
+		
+		var route = this.store.getAt(0);
+    	var store = route.schedulesStore;
+		this.getPlaceList().setStore(store);
     },
     
     addDestinationPlace:function(){
     	this.redirectTo('/place/selection');
+    },
+    
+    onPlaceItemDelete:function(record){
+    	var store = this.getPlaceList().getStore();
+    	store.remove(record);
     },
     
     addStartPlace:function(){
@@ -47,6 +67,9 @@ Ext.define('YourTour.controller.route.RouteSettingCtrl', {
     },
     
     addPlace:function(place){
-    	this.store.add(place);
+    	var store = this.getPlaceList().getStore();
+    	
+    	var schedule = Ext.create('YourTour.model.ScheduleModel',{name:place.get('name')});
+    	store.add(schedule);
     }
 });

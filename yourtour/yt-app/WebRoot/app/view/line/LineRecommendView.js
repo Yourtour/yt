@@ -25,7 +25,11 @@ Ext.define('YourTour.view.line.LineRecommendView', {
 		    	itemId:'lineList',
 				flex:1,
 				useComponents:true,
-		    	defaultType:'LineRecommendItem'
+		    	defaultType:'LineRecommendItem',
+		    	scrollable: {
+		    	    direction: 'vertical',
+		    	    indicators: false	
+		    	}
 		    }
         ]
     }

@@ -51,10 +51,10 @@ Ext.define('YourTour.view.common.PlaceSelectionView', {
 							{
 								xtype:'panel',
 								itemId:'selection',
-								style:'height:30px;line-height:30px',
+								style:'height:50px',
 								layout:'hbox',
 								defaults:{
-									margin:'0 0 0 10'
+									margin:'10 0 10 10'
 								}
 							}
 					    ]
