@@ -5,6 +5,7 @@ Ext.define('YourTour.store.AjaxStore', {
     	
 	    proxy:{
 			type: 'ajax',
+			useDefaultXhrHeader:false,
 			noCache: false,
 			actionMethods : {
 				create : 'POST', //新增
@@ -19,7 +20,7 @@ Ext.define('YourTour.store.AjaxStore', {
 			},
 			
 			headers:{
-				//user_id:YourTour.util.Context.getUserId()
+				//'Origin':'http://192.168.0.5'
 			}
 	    }
     }

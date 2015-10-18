@@ -362,4 +362,9 @@ public class LineRepositoryImpl extends CrudAllInOneOperateImpl implements
 		List<LineBean> recommendLines = routeRepo.query(places, min, max, ids);
 		return recommendLines;
 	}
+
+	@Override
+	public List<LineBean> queryLinesByPlace(long placeId) throws Exception {
+		return lineRepo.getLinesByPlace(placeId);
+	}
 }

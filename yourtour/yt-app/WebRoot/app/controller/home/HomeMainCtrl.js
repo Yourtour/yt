@@ -62,25 +62,29 @@ Ext.define('YourTour.controller.home.HomeMainCtrl', {
     	var parent = this;
 		var store = this.store;
 		var success = function(){
-			var model = store.getAt(0);
+			console.log('loaded');
 			
-			var carousels = model.carousels();
+			var model = store.getAt(0);
+			console.log(model);
+			
+			/*var carousels = model.carousels();
     		carousels.each(function(carousel){
  	 	   		parent.getPlaceCarousel().add(Ext.create('YourTour.view.home.CarouselItemView',{itemId:'carousel', model:carousel}));
- 	 	   	});
+ 	 	   	});*/
     		
     		parent.getBestView().removeAll(true, true);
-    		parent.getBestView().setModels(model.bests());
+    		parent.getBestView().setModels(model.lines());
     		
-    		parent.getTalentView().removeAll(true, true);
+    		/*parent.getTalentView().removeAll(true, true);
     		parent.getTalentView().setModels(model.talents());
     		
     		parent.getAlongView().removeAll(true, true);
     		parent.getAlongView().setModels(model.alongs()); 	 	   	
-    		
+*/    		
     		parent.getChatList().setStore(model.chatsStore);
 		};
 		
+		console.log('before loading......');
 		store.load(success, this);
     },
     

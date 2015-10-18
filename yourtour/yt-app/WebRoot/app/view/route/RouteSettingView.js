@@ -39,7 +39,7 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 				cls:'row underline',
 				items:[
 					{
-						xtype:'label',
+						xtype:'xlabel',
 						html: '名称',
 						style:'width:50px'
 					},
@@ -59,7 +59,7 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 				cls:'row underline',
 				items:[
 					{
-						xtype:'label',
+						xtype:'xlabel',
 						html: '出发地',
 						style:'width:50px'
 					},
@@ -82,7 +82,7 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 				cls:'row underline',
 				items:[
 					{
-						xtype:'label',
+						xtype:'xlabel',
 						html: '出发日期',
 						style:'width:60px'
 					},
@@ -106,7 +106,7 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 				cls:'row underline',
 				items:[
 					{
-						xtype:'label',
+						xtype:'xlabel',
 						html: '返回日期',
 						style:'width:60px'
 					},

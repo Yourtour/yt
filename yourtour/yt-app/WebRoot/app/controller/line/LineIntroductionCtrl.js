@@ -32,6 +32,10 @@ Ext.define('YourTour.controller.line.LineIntroductionCtrl', {
        	   
        	   '#LineIntroductionView #consult':{
        	   		tap:'onConsultTap'
+       	   },
+       	   
+       	   '#LineIntroductionView #users':{
+       		   tap:'onUsersTap'
        	   }
        },
        
@@ -50,6 +54,10 @@ Ext.define('YourTour.controller.line.LineIntroductionCtrl', {
     	this.redirectTo('/resource/detail/' + record.get('rowKey'));	
     },
     
+    onUsersTap:function(){
+    	console.log('onUsersTap');
+    },
+    
     onPlanTap:function(){
     	this.redirectTo("/route/schedule/0");
     },
@@ -59,7 +67,11 @@ Ext.define('YourTour.controller.line.LineIntroductionCtrl', {
     },
     
     onMoreTap:function(){
-    	this.getButtons().show();
+    	if(this.getButtons().isHidden()){
+    		this.getButtons().show();
+    	}else{
+    		this.getButtons().hide();
+    	}
     },
     
     /**

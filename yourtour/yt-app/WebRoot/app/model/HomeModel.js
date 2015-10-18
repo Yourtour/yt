@@ -38,8 +38,8 @@ Ext.define('YourTour.model.HomeModel', {
 	        {  
 	            type: 'hasMany',   
 	            model: 'YourTour.model.LineModel',   
-	            name:'bests',
-	            associationKey:'bests'
+	            name:'lines',
+	            associationKey:'lines'
 	        },
 	        {  
 	            type: 'hasMany',   

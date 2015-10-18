@@ -32,4 +32,12 @@ public interface LineRepository extends CrudAllInOneOperate {
 
 	public List<LineBean> queryRecommandLine2(String[] places, int dayNum,
 			String[] scenes) throws Exception;
+	
+	/**
+	 * 根据目的地查询线路信息
+	 * @param placeId
+	 * @return
+	 * @throws Exception
+	 */
+	public List<LineBean> queryLinesByPlace(long placeId) throws Exception;
 }

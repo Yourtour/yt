@@ -165,4 +165,19 @@ public interface Constants {
 			this.name = name;
 		}
 	}
+	
+	// 结伴枚举
+	public static enum AlongIntentionType {
+		TOGETHER_CAR("TOGETHER_CAR", "拼车"), 
+		TOGETHER_EAT("TOGETHER_EAT", "拼吃"), 
+		TOGETHER_TRAVEL("TOGETHER_TRAVEL","拼玩");
+
+		public String code;
+		public String name;
+
+		private AlongIntentionType(String code, String name) {
+			this.code = code;
+			this.name = name;
+		}
+	}
 }

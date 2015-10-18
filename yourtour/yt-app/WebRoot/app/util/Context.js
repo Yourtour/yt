@@ -10,14 +10,12 @@ Ext.define('YourTour.util.Context', {
     },
     
     getContext:function(url){
-    	var s;
-    	if(url.substr(0,1) == '/'){
-    		s = 'http://120.55.76.201:8080/yt-web/rest' + url;
-    	}else{
-    		s = 'http://120.55.76.201::8080/yt-web/rest/' + url;
+    	var s = 'http://localhost:8080/yt-web/rest';
+    	if(url.substr(0,1) != '/'){
+    		s += '/';
     	}
     	
-    	return s;
+    	return s + url;
     },
     
     getUserId:function(){

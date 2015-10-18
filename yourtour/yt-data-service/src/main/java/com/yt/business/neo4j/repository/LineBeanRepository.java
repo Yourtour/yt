@@ -89,4 +89,12 @@ public interface LineBeanRepository extends GraphRepository<LineBean> {
 	 */
 	@Query("START line=node({0}) MATCH line-[:CONTAIN]->(restaurant:RestaurantResourceBean) return restaurant")
 	public List<RestaurantResourceBean> getRestaurantsByLine(Long lineId);
+	
+	/**
+	 * 根据目的地在图中查询线路数据
+	 * @param placeId
+	 * @return
+	 */
+	@Query("START place=node({0}) MATCH place<-[:AT]-(line:LineBean) return line")
+	public List<LineBean> getLinesByPlace(Long placeId);
 }

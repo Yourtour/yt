@@ -5,10 +5,10 @@ Ext.define('YourTour.view.home.HomeMainView', {
     config: {
     	id:'HomeMainView',
       	layout:'vbox',
-      	scrollable: {
+      	/*scrollable: {
     	    direction: 'vertical',
     	    indicators: false	
-    	},
+    	},*/
         items: [
             {
                 xtype: 'hiddenfield',

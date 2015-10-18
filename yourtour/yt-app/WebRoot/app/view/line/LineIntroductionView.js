@@ -22,23 +22,6 @@ Ext.define('YourTour.view.line.LineIntroductionView', {
 						src:'resources/icons/icon_more.png'
 					}       
 				]
-				/*items:[
-					{
-	                	xtype: "toolbutton", 
-	                    ui: "normal", 
-	                	text:'咨询',
-	                	itemId:'consult',
-	                	align:'right'
-	                },
-	                
-	                {
-	                	xtype: "toolbutton", 
-	                    ui: "normal", 
-	                	text:'评论',
-	                	itemId:'comment',
-	                	align:'right'
-	                }
-				]		*/	
 			},
 			
 			{
@@ -50,7 +33,37 @@ Ext.define('YourTour.view.line.LineIntroductionView', {
 		   				itemId : 'imageUrl',
 						xtype : 'image',
 						mode : 'tag'
-		    		}
+		    		},
+		    		
+		    		{
+						xtype:'panel',
+						layout:'hbox',
+						itemId:'buttons',
+						style:'background:grey;opacity:0.5; color:#fff; font-size:14px; font-weight:bold; width:100%; height:45px; line-height:40px; text-align:center',
+						left:0,
+						top:0,
+						docked:'top',
+						defaults:{
+							flex:1
+						},
+						items:[
+							{
+			                	xtype: "toolbutton", 
+			                    ui: "normal", 
+			                	text:'咨询',
+			                	itemId:'consult',
+			                	align:'right'
+			                },
+			                
+			                {
+			                	xtype: "toolbutton", 
+			                    ui: "normal", 
+			                	text:'评论',
+			                	itemId:'comment',
+			                	align:'right'
+			                }
+						]			
+					},
 		    	]
     		},
 				    

@@ -1,12 +1,12 @@
 Ext.define('YourTour.store.HomeStore', {
-	extend: 'Ext.data.Store',
+	extend: 'YourTour.store.AjaxStore',
     requires: [
        'YourTour.model.HomeModel'
     ],
     config:{
     	model:'YourTour.model.HomeModel',
     	
-    	data:[
+    	/*data:[
 			{
 		    	rowKey:"1", name:'上海',liveNum:'2000', chatNum:'2000',
 		    	carousels:[
@@ -30,7 +30,7 @@ Ext.define('YourTour.store.HomeStore', {
 			     	{rowKey:"12", logoUrl:"resources/images/user_logo_32.png",content:'上海最近天气怎么样？'}
 			    ],
 			    
-			    bests:[
+			    lines:[
 			        {rowKey:"11", imageUrl:"resources/images/scene_0.jpg",name:'东方明珠'},
 				    {rowKey:"12", imageUrl:"resources/images/scene_1.jpg",name:'上海"东方明珠" + "船游黄浦江" + "外滩"'},
 				    {rowKey:"13", imageUrl:"resources/images/scene_3.jpg",name:'泰晤士小镇'},
@@ -48,14 +48,15 @@ Ext.define('YourTour.store.HomeStore', {
 			     	{rowKey:"13", imageUrl:'resources/images/member_logo_64.png', nickname:"张学友",sex:'M',tag1:'行程达人',tag2:'当地通'}
 			    ]
 		    }
-    	]
-    	/*proxy:{
+    	]*/
+    	
+    	proxy:{
 	    	api:{
-				 read: YourTour.util.Context.getContext('/line/Match.action'),
+				 read: YourTour.util.Context.getContext('/home/place/9/query'),
 				 create: YourTour.util.Context.getContext('/route/Save.action'),
 				 update: YourTour.util.Context.getContext('/route/Update.action'),
 				 destroy: YourTour.util.Context.getContext('/route/Delete.action')
 			}
-    	}*/
+    	}
     }
 });
