@@ -22,7 +22,7 @@ public class Neo4jUtils {
 			return -1;
 		}
 	}
-
+	
 	public static void maintainRelation(Neo4jTemplate template,
 			NodeRelationshipEnum relateEnum, BaseBeanImpl src,
 			BaseBeanImpl tar, Map<String, Object> properties, boolean isAdd,

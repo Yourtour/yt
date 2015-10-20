@@ -18,5 +18,6 @@ public class HomeVO implements Serializable {
 
 	public void setLines(List<LineVO> lines) {
 		this.lines = lines;
-	}	
+	}
+	
 }

@@ -5,15 +5,15 @@ Ext.define('YourTour.model.PlaceModel', {
     	
 	    fields:[{name:'rowKey', type:'string'},
 	    		{name:'name', type:'string'},
-	    		{name:'cityCount', type:'string'}
+	    		{name:'nums', type:'string'}
 	    ],
 	    
 	    associations: [
 	        {  
 	            type: 'hasMany',   
 	            model: 'YourTour.model.PlaceModel',   
-	            name:'cities',   
-	            associationKey:'cities'  
+	            name:'subs',   
+	            associationKey:'subs'  
 	        }
         ]  
     }

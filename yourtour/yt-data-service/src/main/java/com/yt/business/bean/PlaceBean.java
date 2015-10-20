@@ -1,5 +1,7 @@
 package com.yt.business.bean;
 
+import java.util.List;
+
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 
@@ -40,11 +42,11 @@ import com.yt.hbase.annotation.HbaseTable;
 @NodeEntity
 public class PlaceBean extends BaseDictBeanImpl {
 	private static final long serialVersionUID = -6977525800090683657L;
-
+	
 	@HbaseColumn(name = "shor")
 	@Indexed
 	private String shorter = ""; // 简称
-
+	
 	@HbaseColumn(name = "memo")
 	private String memo = ""; // 备注
 
@@ -62,6 +64,8 @@ public class PlaceBean extends BaseDictBeanImpl {
 	private boolean leaf = true; // 是否为叶子节点
 
 	private transient PlaceBean parent = null;
+	
+	private transient List<PlaceBean> subs = null;
 
 	public PlaceBean() {
 		super();
@@ -113,6 +117,14 @@ public class PlaceBean extends BaseDictBeanImpl {
 
 	public void setParent(PlaceBean parent) {
 		this.parent = parent;
+	}
+
+	public List<PlaceBean> getSubs() {
+		return subs;
+	}
+
+	public void setSubs(List<PlaceBean> subs) {
+		this.subs = subs;
 	}
 
 	public boolean isLeaf() {

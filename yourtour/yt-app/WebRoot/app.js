@@ -37,11 +37,11 @@ Ext.application({
     ],
     
     models:[
-        'RouteModel','ScheduleModel','SchedulePlanModel', 'LineModel', 'UserModel','OptionModel', 'HomeModel','LiveModel','ChatModel','AlongModel','TalentModel','HomeCarouselModel','CommentModel', 'PlaceModel' 
+        'LaunchModel','RouteModel','ScheduleModel','SchedulePlanModel', 'LineModel', 'UserModel','OptionModel', 'HomeModel','LiveModel','ChatModel','AlongModel','TalentModel','HomeCarouselModel','CommentModel', 'PlaceModel' 
     ],
     
     stores:[
-        'RouteStore','LineStore','ResourceStore','ResourceSelectionStore', 'UserStore', 'HomeStore', 'BestListStore','TalentListStore', 'AlongListStore','CommentStore', 'PlaceStore'
+        'LaunchStore','RouteStore','LineStore','ResourceStore','ResourceSelectionStore', 'UserStore', 'HomeStore', 'BestListStore','TalentListStore', 'AlongListStore','CommentStore', 'PlaceStore'
     ],
         
     icon: {

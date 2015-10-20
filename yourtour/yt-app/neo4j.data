@@ -1,0 +1,1 @@
+﻿create (fan:AlongBean {imageUrl:'resources/images/scene_64.jpg',name:'十一上海休闲游',intention:'拼车',groupDesc:'团队计划10人，目前有4个妹子，4个爷们，再希望有2个妹子', requestDesc:'妹子，性格温和', alongDesc:'机票已经订好，周末飞上海，然后计划在上海及其附近游玩10天，目前独身一人在旅行，希望能捡个90后妹子同游。。。。。', longLat:'', address:'浙江杭州西湖景区', readNum:'500', commentNum:'210', deadline:'2015-10-12',alongNum:'3'}) return fan

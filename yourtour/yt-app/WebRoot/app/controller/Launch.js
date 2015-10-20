@@ -9,18 +9,26 @@ Ext.define('YourTour.controller.Launch', {
         	'#launch #enter':{
         		tap:'doEnter'
         	}
-        }
+        },
+        
+        store : null
     },
     
     launch:function(){
     	Ext.fly('appLoadingIndicator').destroy();
-        
         Ext.Viewport.add(Ext.create('YourTour.view.Launch'));
         
-        var launch = this.getLaunch();
-        Ext.defer(function () { 
+        console.log("app initializing");
+        this.store = Ext.create('YourTour.store.LaunchStore', {itemId:'lanuchStore'});
+        
+        var me = this;
+        
+        var success = function(){
+        	var launch = me.getLaunch();
         	launch.setActiveItem(1);
-        },2000);
+        };
+        
+        this.store.load(success, this);
     },
     
     doEnter:function(){

@@ -79,7 +79,7 @@ Ext.define('YourTour.view.common.PlaceListItemView', {
        		provinceEl.element.on({
 				scope : me,
 				tap : function(e, t) {
-					if(record.get('cityCount') == '0'){
+					if(record.get('num') == '0'){
 						me.target.fireEvent('itemtap', record);
 					}else{
 						if(moreCitiesEl.getSrc() == 'resources/icons/icon_arrow_down.png'){
@@ -93,12 +93,12 @@ Ext.define('YourTour.view.common.PlaceListItemView', {
 				}
 			});
        		
-       		if(record.get('cityCount') == '0'){
+       		if(record.get('num') == '0'){
        			cityCountEl.hide();
        			moreCitiesEl.hide();
        		}else{
-       			cityCountEl.setHtml(record.get('cityCount'));
-           		cities.setModels(record.cities());
+       			cityCountEl.setHtml(record.get('num'));
+           		cities.setModels(record.subs());
        		}
        		cities.hide();
 	 	}

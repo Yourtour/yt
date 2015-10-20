@@ -15,6 +15,7 @@ Ext.define('YourTour.view.common.PlaceTypeListItemView', {
     },
     
     updateRecord: function(record){
+    	console.log(record);
     	var me = this;
        	if(record){
 	 	   var typeEl = me.down('#type');

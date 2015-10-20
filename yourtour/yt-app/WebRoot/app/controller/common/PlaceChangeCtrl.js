@@ -19,9 +19,7 @@ Ext.define('YourTour.controller.common.PlaceChangeCtrl', {
        
        routes:{
         	'/place/change':'showPage'
-       },
-       
-       placeStore : null
+       }
     },
     
     /**
@@ -30,27 +28,8 @@ Ext.define('YourTour.controller.common.PlaceChangeCtrl', {
     showPage:function(){
 		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.common.PlaceChangeView'));
 		
-		var store = Ext.create('Ext.data.Store',{
-			data:[
-			      {code:'1', name:'国内'},
-			      {code:'2', name:'港澳台'},
-			      {code:'3', name:'亚洲'},
-			      {code:'4', name:'欧洲'},
-			      {code:'5', name:'非洲'},
-			      {code:'6', name:'美洲'},
-			      {code:'7', name:'大洋洲'}
-			],
-			
-			fields:[
-			      {name:'code', type:'string'},
-			      {name:'name', type:'string'}    
-			]
-		});
-		
-		this.getPlaceType().setStore(store);
-		
-		this.placeStore = Ext.create('YourTour.store.PlaceStore');
-    	this.placeStore.load();
+		var launchStore = this.getApplication().getController("Launch").store;
+		this.getPlaceType().setStore(launchStore.getAt(0).placesStore);
     },
     
     /**
@@ -58,9 +37,15 @@ Ext.define('YourTour.controller.common.PlaceChangeCtrl', {
      */
     onItemTap4PlaceType: function(obj, index, target, record, e, eOpts){
     	var placeList = this.getPlaceList();
-    	this.placeStore.getData().each(function(model){
-    		placeList.add(Ext.create('YourTour.view.common.PlaceListItemView',{target:placeList, record:model}));
-    	});
+    	
+    	var placeStore = Ext.create('YourTour.store.PlaceStore');
+    	var onLoaded = function(){
+    		placeStore.getData().each(function(model){
+        		placeList.add(Ext.create('YourTour.view.common.PlaceListItemView',{target:placeList, record:model}));
+        	});
+    	};
+    	
+    	placeStore.load(onLoaded);
     },
     
     /**
