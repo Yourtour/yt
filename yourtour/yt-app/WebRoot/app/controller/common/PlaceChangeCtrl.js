@@ -37,15 +37,17 @@ Ext.define('YourTour.controller.common.PlaceChangeCtrl', {
      */
     onItemTap4PlaceType: function(obj, index, target, record, e, eOpts){
     	var placeList = this.getPlaceList();
+    	placeList.removeAll();
     	
+    	var url = YourTour.util.Context.getContext('/place/' + record.get('rowKey') + '/query');
     	var placeStore = Ext.create('YourTour.store.PlaceStore');
-    	var onLoaded = function(){
+    	placeStore.getProxy().setUrl(url);
+    	
+    	placeStore.load(function(records, operation, success){
     		placeStore.getData().each(function(model){
         		placeList.add(Ext.create('YourTour.view.common.PlaceListItemView',{target:placeList, record:model}));
         	});
-    	};
-    	
-    	placeStore.load(onLoaded);
+    	});
     },
     
     /**

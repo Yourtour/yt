@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.data.neo4j.annotation.NodeEntity;
 
-import com.yt.business.BaseDictBeanImpl;
+import com.yt.business.BaseBeanImpl;
 import com.yt.business.common.Constants.AlongIntentionType;
 import com.yt.business.common.Constants.Status;
 import com.yt.hbase.annotation.HbaseColumn;
@@ -18,9 +18,12 @@ import com.yt.hbase.annotation.HbaseTable;
  */
 @HbaseTable(name = "T_ROUTE_ALONG_INFO")
 @NodeEntity
-public class AlongBean extends BaseDictBeanImpl {
+public class AlongBean extends BaseBeanImpl {
 	private static final long serialVersionUID = -3433522673262851121L;
 
+	@HbaseColumn(name = "name")
+	private String name;
+	
 	@HbaseColumn(name = "img")
 	private String imageUrl; // 图片
 
@@ -61,6 +64,14 @@ public class AlongBean extends BaseDictBeanImpl {
 	
 	public AlongBean() {
 		super();
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getImageUrl() {

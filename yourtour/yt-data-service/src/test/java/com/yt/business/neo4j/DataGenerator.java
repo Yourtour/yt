@@ -45,7 +45,9 @@ public class DataGenerator {
 			Date now = new Date();
 			
 			AlongBean along = new AlongBean();
-			
+
+			along.setRowKey(String.valueOf(new Date().getTime()));
+			along.setName("十一上海休闲游3");
 			along.setAddress("浙江杭州西湖景区");
 			along.setAlongDesc("机票已经订好，周末飞上海，然后计划在上海及其附近游玩10天，目前独身一人在旅行，希望能捡个90后妹子同游。。。");
 			along.setCommentNum(13);
@@ -54,7 +56,6 @@ public class DataGenerator {
 			along.setGroupDesc("团队计划10人，目前有4个妹子，4个爷们，再希望有2个妹子");
 			along.setImageUrl("resources/images/scene_64.jpg");
 			along.setIntention(AlongIntentionType.TOGETHER_CAR);
-			along.setName("十一上海休闲游4");
 			along.setReadNum(200);
 			along.setRequestDesc("妹子，性格温和");
 			

@@ -41,13 +41,9 @@ public class PlaceRestResource {
 	public ResponseDataVO<List<PlaceVO>> getPlaces(@PathParam("parentId")  String parentId) {
 		List<PlaceVO> list = new ArrayList<PlaceVO>();
 		try {
-			List<PlaceBean> result = (List<PlaceBean>) placeRepository.getAllSubPlaces(Long.valueOf(parentId));
-			for (PlaceBean bean : result) {
-				if (bean == null) {
-					continue;
-				}
-				
-				list.add(new PlaceVO(bean));
+			List<PlaceBean> places = placeRepository.getPlaces(Long.valueOf(parentId));
+			for (PlaceBean place : places) {
+				list.add(new PlaceVO(place));
 			}
 			
 			return new ResponseDataVO<List<PlaceVO>>(list);

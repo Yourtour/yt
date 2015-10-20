@@ -1,5 +1,6 @@
 package com.yt.business.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.neo4j.annotation.Indexed;
@@ -65,7 +66,7 @@ public class PlaceBean extends BaseDictBeanImpl {
 
 	private transient PlaceBean parent = null;
 	
-	private transient List<PlaceBean> subs = null;
+	private transient List<PlaceBean> subs = new ArrayList();
 
 	public PlaceBean() {
 		super();
@@ -133,5 +134,9 @@ public class PlaceBean extends BaseDictBeanImpl {
 
 	public void setLeaf(boolean leaf) {
 		this.leaf = leaf;
+	}
+	
+	public void addSub(PlaceBean sub){
+		this.subs.add(sub);
 	}
 }

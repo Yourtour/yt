@@ -10,6 +10,7 @@ public class PlaceVO implements Serializable {
 	private static final long serialVersionUID = 7353580902980438916L;
 	
 	private PlaceBean  bean;
+	
 	public PlaceVO(PlaceBean bean) {
 		this.bean = bean;
 	}
@@ -26,15 +27,15 @@ public class PlaceVO implements Serializable {
 		return bean.getSubs() == null?"0":String.valueOf(bean.getSubs().size());
 	}
 	
-	public List<PlaceVO> getSubs(){
-		List<PlaceVO> subs = new ArrayList<PlaceVO>();
-		
-		List<PlaceBean> subBeans = this.bean.getSubs();
-		if(subBeans != null){
-			for(PlaceBean sub : subBeans){
-				subs.add(new PlaceVO(sub));
+	public List<PlaceVO> geSubs(){
+		List<PlaceVO> subVO = new ArrayList<PlaceVO>();
+		List<PlaceBean> subs = bean.getSubs();
+		if(subs != null){
+			for(PlaceBean sub : subs){
+				subVO.add(new PlaceVO(sub));
 			}
 		}
-		return subs;
+		
+		return subVO;
 	}
 }
