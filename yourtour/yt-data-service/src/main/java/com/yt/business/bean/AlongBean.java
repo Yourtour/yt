@@ -7,6 +7,7 @@ import org.springframework.data.neo4j.annotation.NodeEntity;
 import com.yt.business.BaseBeanImpl;
 import com.yt.business.common.Constants.AlongIntentionType;
 import com.yt.business.common.Constants.Status;
+import com.yt.business.neo4j.repository.CommentTuple;
 import com.yt.hbase.annotation.HbaseColumn;
 import com.yt.hbase.annotation.HbaseTable;
 
@@ -59,7 +60,7 @@ public class AlongBean extends BaseBeanImpl {
 	
 	private transient RouteBean route;  //结伴信息关联的行程
 	private transient UserBean  publisher;  //结伴信息发布者信息
-	private transient List<CommentBean> comments; //评论信息
+	private transient List<CommentTuple> comments; //评论信息
 	private transient List<UserBean> following; //关注人员
 	
 	public AlongBean() {
@@ -178,11 +179,11 @@ public class AlongBean extends BaseBeanImpl {
 		this.publisher = publisher;
 	}
 
-	public List<CommentBean> getComments() {
+	public List<CommentTuple> getComments() {
 		return comments;
 	}
 
-	public void setComments(List<CommentBean> comments) {
+	public void setComments(List<CommentTuple> comments) {
 		this.comments = comments;
 	}
 

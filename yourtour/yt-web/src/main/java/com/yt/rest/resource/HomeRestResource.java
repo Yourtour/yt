@@ -15,12 +15,16 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.yt.business.bean.AlongBean;
 import com.yt.business.bean.LineBean;
+import com.yt.business.repository.AlongRepository;
 import com.yt.business.repository.LineRepository;
+import com.yt.core.utils.CollectionUtils;
 import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
+import com.yt.vo.AlongVO;
+import com.yt.vo.LineVO;
 import com.yt.vo.home.HomeVO;
-import com.yt.vo.home.LineVO;
 
 @Component
 @Path("home")
@@ -30,6 +34,8 @@ public class HomeRestResource {
 	private static final Log LOG = LogFactory.getLog(HomeRestResource.class);
 	
 	private @Autowired LineRepository lineRepository;
+	
+	private @Autowired AlongRepository alongRepository;
 	
 	@SuppressWarnings("unchecked")
 	@Path("place/{placeId}/query")
@@ -46,6 +52,15 @@ public class HomeRestResource {
 				}
 			}
 			homeVO.setLines(lines);
+			
+			List<AlongVO> alongs = new ArrayList();
+			List<AlongBean> alongBeans = alongRepository.getAlongsByPlace(Long.parseLong(placeId), 0, 5);
+			if(CollectionUtils.isNotNullOrEmpty(alongBeans)){
+				for(AlongBean along : alongBeans){
+					alongs.add(new AlongVO(along));
+				}
+			}
+			homeVO.setAlongs(alongs);
 		}catch(Exception exc){
 			if (LOG.isErrorEnabled()) {
 				LOG.error("Fetch home infoes failed.", exc);

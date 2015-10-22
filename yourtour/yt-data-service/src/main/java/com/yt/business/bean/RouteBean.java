@@ -1,5 +1,7 @@
 package com.yt.business.bean;
 
+import java.util.List;
+
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.data.neo4j.support.index.IndexType;
@@ -81,7 +83,9 @@ public class RouteBean extends BaseDictBeanImpl {
 	@HbaseColumn(name = "stat")
 	@Indexed
 	private Status status;
-
+	
+	List<RouteSection> sections;
+	
 	public RouteBean() {
 		super();
 	}
@@ -164,6 +168,14 @@ public class RouteBean extends BaseDictBeanImpl {
 
 	public void setPeriod(long period) {
 		this.period = period;
+	}
+
+	public List<RouteSection> getSections() {
+		return sections;
+	}
+
+	public void setSections(List<RouteSection> sections) {
+		this.sections = sections;
 	}
 
 	public Status getStatus() {
