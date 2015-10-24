@@ -142,7 +142,7 @@ public class BeanDescriptorGeneralCacheImpl implements BeanDescriptorCache,
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.yt.dal.hbase.cache.IBeanDescriptorCache#put(java.lang.Class)
+	 * @see com.yt.hbase.cache.BeanDescriptorCache#put(java.lang.Class)
 	 */
 	@Override
 	public BeanDescriptor put(Class<? extends BaseBean> clazz) {
@@ -169,7 +169,7 @@ public class BeanDescriptorGeneralCacheImpl implements BeanDescriptorCache,
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.yt.dal.hbase.cache.IBeanDescriptorCache#get(java.lang.Class)
+	 * @see com.yt.hbase.cache.BeanDescriptorCache#get(java.lang.Class)
 	 */
 	@Override
 	public BeanDescriptor get(Class<? extends BaseBean> clazz) {
@@ -189,7 +189,7 @@ public class BeanDescriptorGeneralCacheImpl implements BeanDescriptorCache,
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.yt.dal.hbase.cache.IBeanDescriptorCache#get(java.lang.String)
+	 * @see com.yt.hbase.cache.BeanDescriptorCache#get(java.lang.String)
 	 */
 	@Override
 	public BeanDescriptor get(String beanClassName) {
@@ -204,7 +204,7 @@ public class BeanDescriptorGeneralCacheImpl implements BeanDescriptorCache,
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.yt.dal.hbase.cache.IBeanDescriptorCache#get()
+	 * @see com.yt.hbase.cache.BeanDescriptorCache#get()
 	 */
 	@Override
 	public List<BeanDescriptor> get() {

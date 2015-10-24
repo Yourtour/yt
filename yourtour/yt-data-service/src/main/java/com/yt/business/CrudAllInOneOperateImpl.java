@@ -21,7 +21,8 @@ public class CrudAllInOneOperateImpl extends CrudGeneralOperate implements
 		super();
 	}
 
-	private boolean save2Hbase() {
+	// 判断是否要保存到Hbase中
+	private boolean isSave2Hbase() {
 		if (config == null) {
 			return false;
 		}
@@ -38,7 +39,7 @@ public class CrudAllInOneOperateImpl extends CrudGeneralOperate implements
 	public void delete(Neo4jBaseBean bean) throws Exception {
 		super.delete(bean);
 
-		if (save2Hbase() && bean instanceof BaseBean) {
+		if (isSave2Hbase() && bean instanceof BaseBean) {
 			BaseBean hbaseBean = (BaseBean) bean;
 			this.deleteRow(hbaseBean);
 		}
@@ -53,7 +54,7 @@ public class CrudAllInOneOperateImpl extends CrudGeneralOperate implements
 	public void delete(Class<? extends Neo4jBaseBean> clazz) throws Exception {
 		super.delete(clazz);
 
-		if (save2Hbase() && clazz.isAssignableFrom(BaseBean.class)) {
+		if (isSave2Hbase() && clazz.isAssignableFrom(BaseBean.class)) {
 			@SuppressWarnings("unchecked")
 			Class<? extends BaseBean> c = (Class<? extends BaseBean>) clazz;
 			this.deleteRows(c);
@@ -69,12 +70,13 @@ public class CrudAllInOneOperateImpl extends CrudGeneralOperate implements
 	@Override
 	public void save(Neo4jBaseBean neo4jBean, String operator) throws Exception {
 		super.save(neo4jBean, operator);
-		if (save2Hbase() && neo4jBean instanceof BaseBean) {
+		if (isSave2Hbase() && neo4jBean instanceof BaseBean) {
 			BaseBean hbaseBean = (BaseBean) neo4jBean;
 			this.saveRow(hbaseBean);
 		}
 	}
 
+	// 检测Hbase的CRUD操作类是否注入
 	private void checkHbaseCrud() throws Exception {
 		if (config == null || config.getHbaseCrud() == null) {
 			throw new Exception("The Hbase CRUD Operate is null!");

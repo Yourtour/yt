@@ -82,4 +82,27 @@ public abstract class Neo4jBaseDictBeanImpl extends Neo4jBaseBeanImpl implements
 		this.name = name;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.yt.neo4j.bean.Neo4jBaseBeanImpl#compareTo(com.yt.neo4j.bean.Neo4jBaseBean
+	 * )
+	 */
+	@Override
+	public int compareTo(Neo4jBaseBean o) {
+		if (o == null) {
+			return 1;
+		}
+		String src = this.getCode();
+		String tar = ((Neo4jBaseDictBean) o).getCode();
+		if (src == null && tar == null) {
+			return 0;
+		} else if (src != null) {
+			return src.compareTo(tar);
+		} else {
+			return -tar.compareTo(src);
+		}
+	}
+
 }

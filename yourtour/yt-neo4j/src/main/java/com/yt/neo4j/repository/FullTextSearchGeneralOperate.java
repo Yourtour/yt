@@ -57,12 +57,12 @@ public class FullTextSearchGeneralOperate implements FullTextSearchOperate {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.yt.rsal.neo4j.repository.IFullTextSearchOperate#query(java.lang.Class
-	 * , com.yt.rsal.neo4j.repository.IFullTextSearchOperate.QueryTerm)
+	 * com.yt.rsal.neo4j.repository.IFullTextSearchOperate#search(java.lang.
+	 * Class , com.yt.rsal.neo4j.repository.IFullTextSearchOperate.SearchTerm)
 	 */
 	@Override
-	public List<Neo4jBaseBean> query(Class<? extends Neo4jBaseBean> clazz,
-			QueryTerm term) throws Exception {
+	public List<Neo4jBaseBean> search(Class<? extends Neo4jBaseBean> clazz,
+			SearchTerm term) throws Exception {
 		String indexName = getIndexName(clazz);
 		Index<Node> index = template.getIndex(indexName, clazz);
 		if (LOG.isDebugEnabled()) {
@@ -108,25 +108,25 @@ public class FullTextSearchGeneralOperate implements FullTextSearchOperate {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.yt.rsal.neo4j.repository.IFullTextSearchOperate#query(java.lang.Class
+	 * com.yt.rsal.neo4j.repository.IFullTextSearchOperate#search(java.lang.Class
 	 * , java.util.List)
 	 */
 	@Override
-	public List<Neo4jBaseBean> query(Class<? extends Neo4jBaseBean> clazz,
-			List<QueryTerm> terms) throws Exception {
-		return query(clazz, terms, true);
+	public List<Neo4jBaseBean> search(Class<? extends Neo4jBaseBean> clazz,
+			List<SearchTerm> terms) throws Exception {
+		return search(clazz, terms, true);
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.yt.rsal.neo4j.repository.IFullTextSearchOperate#query(java.lang.Class
+	 * com.yt.rsal.neo4j.repository.IFullTextSearchOperate#search(java.lang.Class
 	 * , java.util.List, boolean)
 	 */
 	@Override
-	public List<Neo4jBaseBean> query(Class<? extends Neo4jBaseBean> clazz,
-			List<QueryTerm> terms, boolean andJoin) throws Exception {
+	public List<Neo4jBaseBean> search(Class<? extends Neo4jBaseBean> clazz,
+			List<SearchTerm> terms, boolean andJoin) throws Exception {
 		String indexName = getIndexName(clazz);
 		Index<Node> index = template.getIndex(indexName, clazz);
 		String joinFlag = andJoin ? " AND " : " OR ";
@@ -136,7 +136,7 @@ public class FullTextSearchGeneralOperate implements FullTextSearchOperate {
 			if (i > 0) {
 				sb.append(joinFlag);
 			}
-			QueryTerm term = terms.get(i);
+			SearchTerm term = terms.get(i);
 			sb.append(term.key);
 			sb.append(":");
 			sb.append(String.format("*%s*", term.value));

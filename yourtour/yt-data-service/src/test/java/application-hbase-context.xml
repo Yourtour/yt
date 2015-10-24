@@ -8,23 +8,26 @@
     
     <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
 
-	<bean id="hbaseTemplate" class="org.springframework.data.hadoop.hbase.HbaseTemplate">
+	<!--bean id="hbaseTemplate" class="org.springframework.data.hadoop.hbase.HbaseTemplate">
 		<property name="configuration" ref="hbaseConfiguration" />
 	</bean>
 	
-	<bean id="hbaseManager" class="com.yt.dal.hbase.HbaseManager" />
+	<bean id="hbaseManager" class="com.yt.hbase.HbaseManager" />
 	
-	<bean id="hbaseDDL" class="com.yt.dal.hbase.DdlGeneralOperate" />
-	<bean id="hbaseCRUD" class="com.yt.dal.hbase.CrudGeneralOperate"  />
+	<bean id="hbaseDdl" class="com.yt.hbase.DdlGeneralOperate" />
+	<bean id="hbaseCrud" class="com.yt.hbase.CrudGeneralOperate"  />
 	
-	<bean id="beanDescriptorGeneralCacheImpl" class="com.yt.dal.hbase.cache.BeanDescriptorGeneralCacheImpl">
-		<property name="beanRepositories" value="com.yt.business.bean" />
+	<bean id="beanDescriptorGeneralCacheImpl" class="com.yt.hbase.cache.BeanDescriptorGeneralCacheImpl">
+		<property name="beanRepositories" value="com.yt.business.bean,com.yt.neo4j.bean" />
 	</bean>
 	
-	<!--bean id="hbaseStructureSync" class="com.yt.dal.hbase.generator.HbaseStructureSync">
+	<bean id="hbaseStructureSync" class="com.yt.hbase.generator.HbaseStructureSync">
 		<property name="ignoreError" value="true" />
-	</bean-->
+	</bean>
 	
 	<hdp:configuration>
         
-    </hdp:configuration> <hdp:hbase-configuration zk-quorum="YT-DATABASE" zk-port="2181" /> </beans>
+    </hdp:configuration>
+    
+    <hdp:hbase-configuration zk-quorum="yt-database" zk-port="2181" /-->
+</beans>

@@ -7,9 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.yt.business.CrudAllInOneOperateImpl;
 import com.yt.business.bean.PlaceBean;
-import com.yt.business.common.Constants.NodeRelationshipEnum;
 import com.yt.business.neo4j.repository.PlaceBeanRepository;
-import com.yt.business.utils.Neo4jUtils;
 
 @Component
 public class PlaceRepositoryImpl extends CrudAllInOneOperateImpl implements
@@ -47,12 +45,12 @@ public class PlaceRepositoryImpl extends CrudAllInOneOperateImpl implements
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.yt.business.repository.PlaceRepository#save(java.lang.Long,
-	 * com.yt.business.bean.PlaceBean, java.lang.String)
+	 * @see
+	 * com.yt.business.repository.PlaceRepository#save(com.yt.business.bean.
+	 * PlaceBean, java.lang.String)
 	 */
 	@Override
-	public void save(Long parentId, PlaceBean place, String operator)
-			throws Exception {
+	public void save(PlaceBean place, String operator) throws Exception {
 		boolean codeChanged = false;
 		PlaceBean orient = null;
 		if (place.getGraphId() != null) {
@@ -67,9 +65,10 @@ public class PlaceRepositoryImpl extends CrudAllInOneOperateImpl implements
 			codeChanged = true;
 		}
 
-		PlaceBean parent = null;
-		if (parentId != null && parentId >= 0) {
-			parent = super.template.findOne(parentId, PlaceBean.class);
+		PlaceBean parent = place.getParent();
+		if (parent != null && parent.getGraphId() != null) {
+			parent = (PlaceBean) super.template.findOne(parent.getGraphId(),
+					PlaceBean.class);
 			if (parent.isLeaf()) {
 				parent.setLeaf(false);
 				super.save(parent, operator);
@@ -88,17 +87,6 @@ public class PlaceRepositoryImpl extends CrudAllInOneOperateImpl implements
 		if (codeChanged) {
 			// 由于代码修改过，因此相关子节点的rowkey也需要同步修改
 			iterateUpdateRowkey(place, operator);
-		}
-		if (parent != null && orient == null) {
-			// 只有parent不为空且待保存节点不存在的情况，才需要建立关系。
-			// 建立PARENT关系
-			Neo4jUtils.maintainRelation(super.template,
-					NodeRelationshipEnum.PARENT, place, parent, null, true,
-					false);
-			// 建立CHILDREN关系
-			Neo4jUtils.maintainRelation(super.template,
-					NodeRelationshipEnum.CHILDREN, parent, place, null, true,
-					false);
 		}
 	}
 

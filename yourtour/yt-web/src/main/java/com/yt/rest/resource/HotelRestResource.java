@@ -73,6 +73,7 @@ public class HotelRestResource {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Path("loadPage.json")
 	@GET
 	public ResponsePagingDataVO<List<HotelResourceVO>> loadPage(
@@ -91,8 +92,8 @@ public class HotelRestResource {
 			}
 
 			Vector<HotelResourceVO> result = new Vector<HotelResourceVO>();
-			List<HotelResourceBean> hotels = hotelRepository.getHotelsByPage(
-					start, limit);
+			List<HotelResourceBean> hotels = (List<HotelResourceBean>) hotelRepository
+					.getByPage(HotelResourceBean.class, start, limit);
 			for (HotelResourceBean restaurant : hotels) {
 				HotelResourceVO vo = HotelResourceVO.transform(restaurant);
 				if (vo == null) {
@@ -128,7 +129,8 @@ public class HotelRestResource {
 			HotelResourceBean bean = null;
 			if (graphId != -1) {
 				// id是GraphID
-				bean = hotelRepository.getHotelByGraphId(graphId);
+				bean = (HotelResourceBean) hotelRepository.get(
+						HotelResourceBean.class, graphId);
 			} else {
 				// id 是rowkey
 				bean = (HotelResourceBean) hotelRepository.get(
@@ -237,7 +239,8 @@ public class HotelRestResource {
 			HotelResourceBean bean = null;
 			if (graphId != -1) {
 				// id是GraphID
-				bean = hotelRepository.getHotelByGraphId(graphId);
+				bean = (HotelResourceBean) hotelRepository.get(
+						HotelResourceBean.class, graphId);
 			} else {
 				// id是rowkey
 				bean = (HotelResourceBean) hotelRepository.get(

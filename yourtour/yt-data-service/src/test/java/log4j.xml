@@ -12,8 +12,7 @@
 		</layout>
 	</appender>
 
-	<appender name="RollingFile" class=" org.apache.log4j.RollingFileAppender"
-		Encoding=”UTF-8”>
+	<appender name="RollingFile" class=" org.apache.log4j.RollingFileAppender">
 		<param name="File" value=" /var/log/yt-web/yt.log " />
 		<param name=" FilePattern "
 			value="/var/log/yt-web/yt-%d{yyyy-MM-dd}-%i.log.gz " />
@@ -28,13 +27,13 @@
 	<!-- All category -->
 	<category name="com.yt" additivity="false">
 		<level class="org.apache.log4j.Level" value="debug" />
-		<appender-ref ref="RollingFile" />
+		<appender-ref ref="Console" />
 	</category>
 
 	<!-- Root -->
 	<root>
 		<level class="org.apache.log4j.Level" value="info" />
-		<appender-ref ref=RollingFile />
+		<appender-ref ref="Console" />
 	</root>
 
 </log4j:configuration>

@@ -35,8 +35,6 @@ import com.yt.utils.WebUtils;
 import com.yt.vo.AbbrVO;
 import com.yt.vo.RelationConditionVO;
 import com.yt.vo.route.LineVO;
-import com.yt.vo.route.RecommendConditionVO;
-import com.yt.vo.route.RecommendLineVO;
 
 @Component
 @Path("lines")
@@ -81,6 +79,7 @@ public class LineRestResource {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Path("loadPage.json")
 	@GET
 	public ResponsePagingDataVO<List<LineVO>> loadPage(
@@ -99,7 +98,8 @@ public class LineRestResource {
 			}
 
 			Vector<LineVO> result = new Vector<LineVO>();
-			List<LineBean> lines = lineRepository.getLinesByPage(start, limit);
+			List<LineBean> lines = (List<LineBean>) lineRepository.getByPage(
+					LineBean.class, start, limit);
 			for (LineBean line : lines) {
 				LineVO vo = LineVO.transform(line);
 				if (vo == null) {
@@ -133,7 +133,7 @@ public class LineRestResource {
 			LineBean bean = null;
 			if (graphId != -1) {
 				// id是GraphID
-				bean = lineRepository.getLineByGraphId(graphId);
+				bean = (LineBean) lineRepository.get(LineBean.class, graphId);
 			} else {
 				// id 是rowkey
 				bean = (LineBean) lineRepository.get(LineBean.class, "rowKey",
@@ -386,7 +386,7 @@ public class LineRestResource {
 			LineBean bean = null;
 			if (graphId != -1) {
 				// id是GraphID
-				bean = lineRepository.getLineByGraphId(graphId);
+				bean = (LineBean) lineRepository.get(LineBean.class, graphId);
 			} else {
 				// id是rowkey
 				bean = (LineBean) lineRepository.get(LineBean.class, "rowKey",
@@ -416,12 +416,56 @@ public class LineRestResource {
 		}
 		String lineId = condition.getSrcId(), sceneId = condition.getTarId();
 		boolean isAdd = condition.isAdd();
+
 		try {
-			if (isAdd) {
-				lineRepository.containScene(lineId, sceneId);
+			LineBean line = null;
+			long graphId = Neo4jUtils.getGraphIDFromString(lineId);
+			if (graphId != -1) {
+				// id是GraphID
+				line = (LineBean) lineRepository.get(LineBean.class, graphId);
 			} else {
-				lineRepository.uncontainScene(lineId, sceneId);
+				// id是rowkey
+				line = (LineBean) lineRepository.get(LineBean.class, "rowKey",
+						lineId);
 			}
+			SceneResourceBean scene = null;
+			graphId = Neo4jUtils.getGraphIDFromString(sceneId);
+			if (graphId != -1) {
+				// id是GraphID
+				scene = (SceneResourceBean) lineRepository.get(
+						SceneResourceBean.class, graphId);
+			} else {
+				// id是rowkey
+				scene = (SceneResourceBean) lineRepository.get(
+						SceneResourceBean.class, "rowKey", lineId);
+			}
+			if (line == null || scene == null) {
+				if (LOG.isWarnEnabled()) {
+					LOG.warn(String
+							.format("The LineBean(%s) or SceneResourceBean(%s) is null.",
+									lineId, sceneId));
+				}
+				return new ResponseVO(StaticErrorEnum.THE_DATA_NOT_EXIST);
+			}
+
+			int found = -1;
+			for (int index = 0; index < line.getScenes().size(); index++) {
+				if (line.getScenes().get(index).getGraphId().longValue() == scene
+						.getGraphId().longValue()) {
+					found = index;
+					break;
+				}
+			}
+			if (isAdd) {
+				if (found != -1) {
+					line.getScenes().add(scene);
+				}
+			} else {
+				if (found != -1) {
+					line.getScenes().remove(found);
+				}
+			}
+			lineRepository.saveRelationsOnly(line);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String
 						.format("'%s' contain from LineBean['%s'] to SceneResourceBean['%s'] success.",
@@ -439,101 +483,4 @@ public class LineRestResource {
 		}
 	}
 
-	@POST
-	@Path("recommend")
-	public ResponseDataVO<List<RecommendLineVO>> queryRecommendLine(
-			RecommendConditionVO condition) {
-		if (condition == null) {
-			return new ResponseDataVO<List<RecommendLineVO>>(
-					StaticErrorEnum.THE_INPUT_IS_NULL);
-		}
-		if (condition.getPlaces() == null) {
-			condition.setPlaces("");
-		}
-		if (condition.getScenes() == null) {
-			condition.setScenes("");
-		}
-		String[] places = condition.getPlaces().split(",");
-		int dayNum = condition.getDayNum();
-		String[] scenes = condition.getScenes().split(",");
-		try {
-			List<LineBean> result = lineRepository.queryRecommandLine(places,
-					dayNum, scenes);
-			List<RecommendLineVO> list = new Vector<RecommendLineVO>(
-					result.size());
-			for (LineBean bean : result) {
-				RecommendLineVO vo = RecommendLineVO.transform(bean);
-				if (vo == null) {
-					continue;
-				}
-				list.add(vo);
-			}
-			if (LOG.isDebugEnabled()) {
-				LOG.debug(String
-						.format("Fetch the recommand line success, total: %d, condition: places['%s'], dayNum[%d], scenes[’%s'].",
-								list.size(), condition.getPlaces(),
-								condition.getDayNum(), condition.getScenes()));
-			}
-			return new ResponseDataVO<List<RecommendLineVO>>(list);
-		} catch (Exception ex) {
-			if (LOG.isErrorEnabled()) {
-				LOG.error(
-						String.format(
-								"Fetch data fail, condition[places='%s', dayNum=%d, scenes='%s'].",
-								condition.getPlaces(), condition.getDayNum(),
-								condition.getScenes()), ex);
-			}
-			return new ResponseDataVO<List<RecommendLineVO>>(
-					StaticErrorEnum.FETCH_DB_DATA_FAIL);
-		}
-	}
-
-	@POST
-	@Path("recommend2")
-	public ResponseDataVO<List<RecommendLineVO>> queryRecommendLine2(
-			RecommendConditionVO condition) {
-		if (condition == null) {
-			return new ResponseDataVO<List<RecommendLineVO>>(
-					StaticErrorEnum.THE_INPUT_IS_NULL);
-		}
-		if (condition.getPlaces() == null) {
-			condition.setPlaces("");
-		}
-		if (condition.getScenes() == null) {
-			condition.setScenes("");
-		}
-		String[] places = condition.getPlaces().split(",");
-		int dayNum = condition.getDayNum();
-		String[] scenes = condition.getScenes().split(",");
-		try {
-			List<LineBean> result = lineRepository.queryRecommandLine2(places,
-					dayNum, scenes);
-			List<RecommendLineVO> list = new Vector<RecommendLineVO>(
-					result.size());
-			for (LineBean bean : result) {
-				RecommendLineVO vo = RecommendLineVO.transform(bean);
-				if (vo == null) {
-					continue;
-				}
-				list.add(vo);
-			}
-			if (LOG.isDebugEnabled()) {
-				LOG.debug(String
-						.format("Fetch the recommand line success, total: %d, condition: places['%s'], dayNum[%d], scenes[’%s'].",
-								list.size(), condition.getPlaces(),
-								condition.getDayNum(), condition.getScenes()));
-			}
-			return new ResponseDataVO<List<RecommendLineVO>>(list);
-		} catch (Exception ex) {
-			if (LOG.isErrorEnabled()) {
-				LOG.error(
-						String.format(
-								"Fetch data fail, condition[places='%s', dayNum=%d, scenes='%s'].",
-								condition.getPlaces(), condition.getDayNum(),
-								condition.getScenes()), ex);
-			}
-			return new ResponseDataVO<List<RecommendLineVO>>(
-					StaticErrorEnum.FETCH_DB_DATA_FAIL);
-		}
-	}
 }

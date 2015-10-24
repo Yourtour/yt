@@ -22,7 +22,8 @@
 		base-package="com.yt.business.repository,com.yt.business.neo4j.repository" />
 	<bean id="graphDatabaseService"
 		class="org.springframework.data.neo4j.rest.SpringRestGraphDatabase">
-		<constructor-arg index="0" value="http://yt-database:7474/db/data" />
+		<constructor-arg index="0"
+			value="http://yt-database:7474/db/data" />
 	</bean>
 	<!--neo4j:config storeDirectory="data/yt.db" base-package="com.yt.business.bean" 
 		/ -->
@@ -33,15 +34,22 @@
 	<bean id="neo4jCrud" class="com.yt.neo4j.repository.CrudGeneralOperate" />
 	<bean id="neo4jFts" class="com.yt.neo4j.repository.FullTextSearchGeneralOperate" />
 
+	<!-- 初始化Neo4j相关的关系实体缓存 -->
+	<bean id="neo4jBeanDescriptorGeneralCacheImpl" class="com.yt.neo4j.cache.Neo4jBeanDescriptorGeneralCacheImpl">
+		<property name="beanRepositories" value="com.yt.business.bean,com.yt.neo4j.bean" />
+	</bean>
+
 	<!-- 初始化admin账户的service -->
-	<bean id="initAdminUserService" class="com.yt.business.utils.AdminUserInitializeService" />
+	<bean id="initAdminUserService" class="com.yt.business.utils.AdminUserInitializeService">
+		<property name="algorithm" value="SHA-256" />
+	</bean>
 
 	<!-- 注入包装了hbase和neo4j操作的配置类 -->
 	<bean id="crudAllInOneConfig" class="com.yt.business.CrudAllInOneConfig">
 		<property name="save2Hbase" value="false" />
-		<!--property name="hbaseCrud" ref="hbaseCrud" /-->
+		<!--property name="hbaseCrud" ref="hbaseCrud" / -->
 	</bean>
-	
+
 	<bean id="crudAllInOneOperate" class="com.yt.business.CrudAllInOneOperateImpl" />
 
 </beans>

@@ -23,7 +23,7 @@ import com.yt.neo4j.bean.Neo4jBaseBean;
 import com.yt.neo4j.repository.CrudGeneralOperate;
 import com.yt.neo4j.repository.CrudOperate;
 import com.yt.neo4j.repository.FullTextSearchOperate;
-import com.yt.neo4j.repository.FullTextSearchOperate.QueryTerm;
+import com.yt.neo4j.repository.FullTextSearchOperate.SearchTerm;
 
 public class TestRouteBeanNeo4J {
 
@@ -138,18 +138,18 @@ public class TestRouteBeanNeo4J {
 			// test fulltext search
 			FullTextSearchOperate search = context
 					.getBean(FullTextSearchOperate.class);
-			List<Neo4jBaseBean> list = search.query(RouteBean.class,
-					new QueryTerm("intro", "五台山"));
+			List<Neo4jBaseBean> list = search.search(RouteBean.class,
+					new SearchTerm("intro", "五台山"));
 			assertTrue(list.size() == 1);
 			RouteBean route1 = (RouteBean) list.get(0);
 			assertNotNull(route1);
 			assertEquals("Assert the name.", route.getName(), route1.getName());
 			assertTrue(route1.getIntro().indexOf("五台山") >= 0);
 
-			Vector<QueryTerm> query = new Vector<QueryTerm>();
-			query.add(new QueryTerm("intro", "五台山"));
-			query.add(new QueryTerm("feature", "东汉永平"));
-			list = search.query(RouteBean.class, query);
+			Vector<SearchTerm> query = new Vector<SearchTerm>();
+			query.add(new SearchTerm("intro", "五台山"));
+			query.add(new SearchTerm("feature", "东汉永平"));
+			list = search.search(RouteBean.class, query);
 			assertTrue(list.size() == 1);
 			RouteBean route2 = (RouteBean) list.get(0);
 			assertNotNull(route2);
@@ -161,7 +161,7 @@ public class TestRouteBeanNeo4J {
 			r1.setFeature("中华人民共和国");
 			neo4jCRUD.save(r1, "tester");
 
-			list = search.query(RouteBean.class, new QueryTerm("intro", "五台山"));
+			list = search.search(RouteBean.class, new SearchTerm("intro", "五台山"));
 			assertTrue(list.size() == 2);
 			RouteBean r11 = (RouteBean) list.get(0);
 			assertNotNull(r11);
@@ -172,20 +172,20 @@ public class TestRouteBeanNeo4J {
 			assertEquals("Assert the name.", r1.getName(), r12.getName());
 			assertTrue(r12.getIntro().indexOf("五台山") >= 0);
 
-			query = new Vector<QueryTerm>();
-			query.add(new QueryTerm("intro", "五台山"));
-			query.add(new QueryTerm("feature", "东汉永平"));
-			list = search.query(RouteBean.class, query);
+			query = new Vector<SearchTerm>();
+			query.add(new SearchTerm("intro", "五台山"));
+			query.add(new SearchTerm("feature", "东汉永平"));
+			list = search.search(RouteBean.class, query);
 			assertTrue(list.size() == 1);
 			RouteBean r21 = (RouteBean) list.get(0);
 			assertNotNull(r21);
 			assertEquals("Assert the name.", route.getName(), r21.getName());
 			assertTrue(r21.getFeature().indexOf("东汉永平") >= 0);
 
-			query = new Vector<QueryTerm>();
-			query.add(new QueryTerm("intro", "五台山"));
-			query.add(new QueryTerm("feature", "共和国"));
-			list = search.query(RouteBean.class, query);
+			query = new Vector<SearchTerm>();
+			query.add(new SearchTerm("intro", "五台山"));
+			query.add(new SearchTerm("feature", "共和国"));
+			list = search.search(RouteBean.class, query);
 			assertTrue(list.size() == 1);
 			RouteBean r22 = (RouteBean) list.get(0);
 			assertNotNull(r22);

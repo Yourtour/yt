@@ -11,7 +11,8 @@ import com.yt.hbase.annotation.HbaseColumn;
 import com.yt.neo4j.bean.Neo4jBaseBean;
 
 @NodeEntity
-public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean {
+public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
+		Comparable<BaseBeanImpl> {
 	private static final long serialVersionUID = -916424014919620404L;
 
 	@Indexed(unique = true)
@@ -37,6 +38,27 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean {
 	 */
 	public BaseBeanImpl() {
 		super();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
+	@Override
+	public int compareTo(BaseBeanImpl o) {
+		if (o == null) {
+			return 1;
+		}
+		Long src = this.getGraphId();
+		Long tar = o.getGraphId();
+		if (src == null && tar == null) {
+			return 0;
+		} else if (src != null) {
+			return src.compareTo(tar);
+		} else {
+			return -tar.compareTo(src);
+		}
 	}
 
 	/*

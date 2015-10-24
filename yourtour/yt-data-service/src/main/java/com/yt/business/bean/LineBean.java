@@ -3,14 +3,17 @@ package com.yt.business.bean;
 import java.util.List;
 import java.util.Vector;
 
+import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.data.neo4j.support.index.IndexType;
 
 import com.yt.business.BaseDictBeanImpl;
+import com.yt.business.common.Constants;
 import com.yt.business.common.Constants.Status;
 import com.yt.hbase.annotation.HbaseColumn;
 import com.yt.hbase.annotation.HbaseTable;
+import com.yt.neo4j.annotation.Neo4jRelationship;
 
 /**
  * 
@@ -98,9 +101,13 @@ public class LineBean extends BaseDictBeanImpl {
 	@HbaseColumn(name = "stat")
 	private Status status;
 
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_AT, type = PlaceBean.class, direction = Direction.OUTGOING)
 	private transient PlaceBean place = null;
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_CONTAIN, type = SceneResourceBean.class, direction = Direction.OUTGOING, isSet = true)
 	private transient List<SceneResourceBean> scenes = null;
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_CONTAIN, type = HotelResourceBean.class, direction = Direction.OUTGOING, isSet = true)
 	private transient List<HotelResourceBean> hotels = null;
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_CONTAIN, type = RestaurantResourceBean.class, direction = Direction.OUTGOING, isSet = true)
 	private transient List<RestaurantResourceBean> restaurants = null;
 
 	public LineBean() {

@@ -74,6 +74,7 @@ public class RestaurantRestResource {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Path("loadPage.json")
 	@GET
 	public ResponsePagingDataVO<List<RestaurantResourceVO>> loadPage(
@@ -93,8 +94,8 @@ public class RestaurantRestResource {
 			}
 
 			Vector<RestaurantResourceVO> result = new Vector<RestaurantResourceVO>();
-			List<RestaurantResourceBean> restaurants = restaurantRepository
-					.getRestaurantsByPage(start, limit);
+			List<RestaurantResourceBean> restaurants = (List<RestaurantResourceBean>) restaurantRepository
+					.getByPage(RestaurantResourceBean.class, start, limit);
 			for (RestaurantResourceBean restaurant : restaurants) {
 				RestaurantResourceVO vo = RestaurantResourceVO
 						.transform(restaurant);
@@ -131,7 +132,8 @@ public class RestaurantRestResource {
 			RestaurantResourceBean bean = null;
 			if (graphId != -1) {
 				// id是GraphID
-				bean = restaurantRepository.getRestaurantByGraphId(graphId);
+				bean = (RestaurantResourceBean) restaurantRepository.get(
+						RestaurantResourceBean.class, graphId);
 			} else {
 				// id 是rowkey
 				bean = (RestaurantResourceBean) restaurantRepository.get(
@@ -241,7 +243,8 @@ public class RestaurantRestResource {
 			RestaurantResourceBean bean = null;
 			if (graphId != -1) {
 				// id是GraphID
-				bean = restaurantRepository.getRestaurantByGraphId(graphId);
+				bean = (RestaurantResourceBean) restaurantRepository.get(
+						RestaurantResourceBean.class, graphId);
 			} else {
 				// id是rowkey
 				bean = (RestaurantResourceBean) restaurantRepository.get(

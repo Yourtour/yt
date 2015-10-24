@@ -26,6 +26,11 @@ public class DivisionVO {
 		bean.setMemo(vo.getMemo());
 		bean.setShorter(vo.getShorter());
 		bean.setStatus(vo.getStatus());
+		if (vo.getParentId() != null && vo.getParentId().longValue() != -1l) {
+			PlaceBean parent = new PlaceBean();
+			parent.setGraphId(vo.getParentId());
+			bean.setParent(parent);
+		}
 		return bean;
 	}
 

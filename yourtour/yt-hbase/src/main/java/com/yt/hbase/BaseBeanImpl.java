@@ -27,8 +27,8 @@ import com.yt.hbase.annotation.HbaseColumn;
  * @version 1.0
  * @since 1.0
  */
-public abstract class BaseBeanImpl implements Serializable,
-		Comparable<BaseBeanImpl>, BaseBean {
+public abstract class BaseBeanImpl implements Serializable, BaseBean,
+		Comparable<BaseBean> {
 	private static final long serialVersionUID = -1098345715801304322L;
 
 	private String rowKey;
@@ -158,7 +158,7 @@ public abstract class BaseBeanImpl implements Serializable,
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
 	@Override
-	public int compareTo(BaseBeanImpl o) {
+	public int compareTo(BaseBean o) {
 		if (o == null) {
 			return 1;
 		}

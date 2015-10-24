@@ -28,32 +28,35 @@ import com.yt.vo.home.LineVO;
 @Consumes(MediaType.APPLICATION_JSON)
 public class HomeRestResource {
 	private static final Log LOG = LogFactory.getLog(HomeRestResource.class);
-	
-	private @Autowired LineRepository lineRepository;
-	
-	@SuppressWarnings("unchecked")
+
+	private @Autowired
+	LineRepository lineRepository;
+
 	@Path("place/{placeId}/query")
 	@GET
-	public ResponseDataVO<HomeVO> getHomeInfo(@PathParam("placeId") String placeId) {
+	public ResponseDataVO<HomeVO> getHomeInfo(
+			@PathParam("placeId") String placeId) {
 		HomeVO homeVO = new HomeVO();
-		
-		try{
-			List<LineVO> lines = new ArrayList();
-			List<LineBean> lineBeans = lineRepository.queryLinesByPlace(Long.parseLong(placeId));
-			if(lineBeans != null){
-				for(LineBean line : lineBeans){
+
+		try {
+			List<LineVO> lines = new ArrayList<LineVO>();
+			List<LineBean> lineBeans = lineRepository.getLinesByPlace(Long
+					.parseLong(placeId));
+			if (lineBeans != null) {
+				for (LineBean line : lineBeans) {
 					lines.add(new LineVO(line));
 				}
 			}
 			homeVO.setLines(lines);
-		}catch(Exception exc){
+		} catch (Exception exc) {
 			if (LOG.isErrorEnabled()) {
 				LOG.error("Fetch home infoes failed.", exc);
 			}
-			
-			return new ResponseDataVO<HomeVO>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+
+			return new ResponseDataVO<HomeVO>(
+					StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
-		
+
 		return new ResponseDataVO<HomeVO>(homeVO);
 	}
 }

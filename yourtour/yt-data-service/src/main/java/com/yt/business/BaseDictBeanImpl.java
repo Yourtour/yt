@@ -29,6 +29,27 @@ public abstract class BaseDictBeanImpl extends BaseBeanImpl implements
 	/*
 	 * (non-Javadoc)
 	 * 
+	 * @see com.yt.business.BaseBeanImpl#compareTo(com.yt.business.BaseBeanImpl)
+	 */
+	@Override
+	public int compareTo(BaseBeanImpl o) {
+		if (o == null) {
+			return 1;
+		}
+		String src = this.getCode();
+		String tar = ((BaseDictBeanImpl) o).getCode();
+		if (src == null && tar == null) {
+			return 0;
+		} else if (src != null) {
+			return src.compareTo(tar);
+		} else {
+			return -tar.compareTo(src);
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.yt.hbase.BaseDictBean#getCode()
 	 */
 	@Override

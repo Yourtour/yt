@@ -28,7 +28,6 @@ import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.utils.WebUtils;
-import com.yt.vo.RelationConditionVO;
 import com.yt.vo.route.PersonalRouteVO;
 import com.yt.vo.route.RouteVO;
 
@@ -193,67 +192,6 @@ public class RouteRestResource {
 						ex);
 			}
 			return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
-		}
-	}
-
-	@POST
-	@Path("relate")
-	public ResponseVO relateLine(RelationConditionVO condition) {
-		if (condition == null) {
-			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
-		}
-		String routeId = condition.getSrcId(), lineId = condition.getTarId();
-		boolean isAdd = condition.isAdd();
-		try {
-			if (isAdd) {
-				routeRepository.relateLine(routeId, lineId);
-			} else {
-				routeRepository.unrelateLine(routeId, lineId);
-			}
-			if (LOG.isDebugEnabled()) {
-				LOG.debug(String
-						.format("'%s' 'RELATED' from RouteBean['%s'] to LineBean['%s'] success.",
-								isAdd ? "Add" : "Remove", routeId, lineId));
-			}
-			return new ResponseVO();
-		} catch (Exception ex) {
-			if (LOG.isDebugEnabled()) {
-				LOG.error(String.format(
-						"Relate from RouteBean['%s'] to LineBean['%s'] fail.",
-						routeId, lineId), ex);
-			}
-			return new ResponseVO(StaticErrorEnum.DB_OPERATE_FAIL);
-		}
-	}
-
-	@POST
-	@Path("contain")
-	public ResponseVO containScene(RelationConditionVO condition) {
-		if (condition == null) {
-			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
-		}
-		String routeId = condition.getSrcId(), sceneId = condition.getTarId();
-		boolean isAdd = condition.isAdd();
-		try {
-			if (isAdd) {
-				routeRepository.containScene(routeId, sceneId);
-			} else {
-				routeRepository.uncontainScene(routeId, sceneId);
-			}
-			if (LOG.isDebugEnabled()) {
-				LOG.debug(String
-						.format("'%s' 'CONTAIN' from RouteBean['%s'] to SceneResourceBean['%s'] success.",
-								isAdd ? "Add" : "Remove", routeId, sceneId));
-			}
-			return new ResponseVO();
-		} catch (Exception ex) {
-			if (LOG.isDebugEnabled()) {
-				LOG.error(
-						String.format(
-								"Relate from RouteBean['%s'] to SceneResourceBean['%s'] fail.",
-								routeId, sceneId), ex);
-			}
-			return new ResponseVO(StaticErrorEnum.DB_OPERATE_FAIL);
 		}
 	}
 

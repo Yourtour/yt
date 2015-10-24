@@ -73,6 +73,7 @@ public class SceneRestResource {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Path("loadPage.json")
 	@GET
 	public ResponsePagingDataVO<List<SceneResourceVO>> loadPage(
@@ -91,8 +92,8 @@ public class SceneRestResource {
 			}
 
 			Vector<SceneResourceVO> result = new Vector<SceneResourceVO>();
-			List<SceneResourceBean> scenes = sceneRepository.getScenesByPage(
-					start, limit);
+			List<SceneResourceBean> scenes = (List<SceneResourceBean>) sceneRepository
+					.getByPage(SceneResourceBean.class, start, limit);
 			for (SceneResourceBean scene : scenes) {
 				SceneResourceVO vo = SceneResourceVO.transform(scene);
 				if (vo == null) {
@@ -127,7 +128,8 @@ public class SceneRestResource {
 			SceneResourceBean bean = null;
 			if (graphId != -1) {
 				// id是GraphID
-				bean = sceneRepository.getSceneByGraphId(graphId);
+				bean = (SceneResourceBean) sceneRepository.get(
+						SceneResourceBean.class, graphId);
 			} else {
 				// id 是rowkey
 				bean = (SceneResourceBean) sceneRepository.get(
@@ -236,7 +238,8 @@ public class SceneRestResource {
 			SceneResourceBean bean = null;
 			if (graphId != -1) {
 				// id是GraphID
-				bean = sceneRepository.getSceneByGraphId(graphId);
+				bean = (SceneResourceBean) sceneRepository.get(
+						SceneResourceBean.class, graphId);
 			} else {
 				// id是rowkey
 				bean = (SceneResourceBean) sceneRepository.get(

@@ -36,10 +36,10 @@ import com.yt.neo4j.bean.Neo4jBaseBean;
  */
 public interface FullTextSearchOperate {
 
-	public class QueryTerm {
+	public class SearchTerm {
 		public String key = "", value = "*";
 
-		public QueryTerm(String key, String value) {
+		public SearchTerm(String key, String value) {
 			super();
 			this.key = key;
 			this.value = value;
@@ -57,8 +57,8 @@ public interface FullTextSearchOperate {
 	 * @throws Exception
 	 *             查询过程中发生的异常
 	 */
-	public List<Neo4jBaseBean> query(Class<? extends Neo4jBaseBean> clazz,
-			QueryTerm term) throws Exception;
+	public List<Neo4jBaseBean> search(Class<? extends Neo4jBaseBean> clazz,
+			SearchTerm term) throws Exception;
 
 	/**
 	 * 根据指定的全文检索条件在指定的实体上进行全文检索，可以使用多组条件，默认条件连接符为“AND”。
@@ -71,8 +71,8 @@ public interface FullTextSearchOperate {
 	 * @throws Exception
 	 *             查询过程中发生的异常
 	 */
-	public List<Neo4jBaseBean> query(Class<? extends Neo4jBaseBean> clazz,
-			List<QueryTerm> terms) throws Exception;
+	public List<Neo4jBaseBean> search(Class<? extends Neo4jBaseBean> clazz,
+			List<SearchTerm> terms) throws Exception;
 
 	/**
 	 * 根据指定的全文检索条件在指定的实体上进行全文检索，可以使用多组条件，采用指定的条件连接符。
@@ -87,7 +87,7 @@ public interface FullTextSearchOperate {
 	 * @throws Exception
 	 *             查询过程中发生的异常
 	 */
-	public List<Neo4jBaseBean> query(Class<? extends Neo4jBaseBean> clazz,
-			List<QueryTerm> terms, boolean andJoin) throws Exception;
+	public List<Neo4jBaseBean> search(Class<? extends Neo4jBaseBean> clazz,
+			List<SearchTerm> terms, boolean andJoin) throws Exception;
 
 }

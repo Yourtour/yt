@@ -121,7 +121,7 @@ public class DivisionRestResource {
 		}
 		try {
 			PlaceBean bean = DivisionVO.transform(vo);
-			placeRepository.save(vo.getParentId(), bean, operator);
+			placeRepository.save(bean, operator);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format("Save PlaceBean['%s'] success.",
 						vo.getId()));

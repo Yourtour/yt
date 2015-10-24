@@ -22,13 +22,13 @@ import org.springframework.stereotype.Component;
 
 import com.yt.business.bean.UserBean;
 import com.yt.business.repository.UserRepository;
+import com.yt.business.utils.AdminUserInitializeService;
 import com.yt.business.utils.Neo4jUtils;
 import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponsePagingDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.utils.WebUtils;
-import com.yt.vo.RelationConditionVO;
 import com.yt.vo.member.AuthenticationVO;
 import com.yt.vo.member.UserVO;
 
@@ -41,6 +41,9 @@ public class UserRestResource {
 
 	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	private AdminUserInitializeService userService;
 
 	@SuppressWarnings("unchecked")
 	@GET
@@ -85,7 +88,8 @@ public class UserRestResource {
 				bean = (UserBean) userRepository.get(UserBean.class, graphId);
 			} else {
 				// id 是rowkey
-				bean = userRepository.getUserByRowkey(id);
+				bean = (UserBean) userRepository.get(UserBean.class, "rowKey",
+						id);
 			}
 			if (bean == null) {
 				return new ResponseDataVO<UserVO>(
@@ -200,7 +204,8 @@ public class UserRestResource {
 			id = bean.getRowKey();
 			userRepository.delete(bean);
 			if (LOG.isDebugEnabled()) {
-				LOG.debug(String.format("Delete UserBean[id='%s'] success.", id));
+				LOG.debug(String
+						.format("Delete UserBean[id='%s'] success.", id));
 			}
 			return new ResponseVO();
 		} catch (Exception ex) {
@@ -220,7 +225,7 @@ public class UserRestResource {
 			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
 		}
 		try {
-			UserBean user = (UserBean) userRepository.getUserByField(
+			UserBean user = (UserBean) userRepository.get(UserBean.class,
 					"code", auth.getCode());
 			if (user == null) {
 				if (LOG.isWarnEnabled()) {
@@ -230,7 +235,7 @@ public class UserRestResource {
 				}
 				return new ResponseVO(StaticErrorEnum.USER_NOT_EXIST);
 			}
-			if (auth.getPassword().equals(user.getPwd())) {
+			if (userService.checkPassword(auth.getPassword(), user.getPwd())) {
 				// 认证成功
 				if (LOG.isDebugEnabled()) {
 					LOG.debug(String.format("The user[%s] login success.",
@@ -258,7 +263,7 @@ public class UserRestResource {
 			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
 		}
 		try {
-			UserBean user = (UserBean) userRepository.getUserByField(
+			UserBean user = (UserBean) userRepository.get(UserBean.class,
 					"code", username);
 			if (user == null) {
 				if (LOG.isWarnEnabled()) {
@@ -283,66 +288,7 @@ public class UserRestResource {
 		}
 	}
 
-	@POST
-	@Path("follow")
-	public ResponseVO followUser(RelationConditionVO condition) {
-		if (condition == null) {
-			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
-		}
-		String srcId = condition.getSrcId(), tarId = condition.getTarId();
-		boolean isAdd = condition.isAdd();
-		try {
-			if (isAdd) {
-				userRepository.followUser(srcId, tarId);
-			} else {
-				userRepository.unfollowUser(srcId, tarId);
-			}
-			if (LOG.isDebugEnabled()) {
-				LOG.debug(String
-						.format("'%s' 'FOLLOW' from UserBean['%s'] to UserBean['%s'] success.",
-								isAdd ? "Add" : "Remove", srcId, tarId));
-			}
-			return new ResponseVO();
-		} catch (Exception ex) {
-			if (LOG.isDebugEnabled()) {
-				LOG.error(String.format(
-						"Follow from UserBean['%s'] to UserBean['%s'] fail.",
-						srcId, tarId), ex);
-			}
-			return new ResponseVO(StaticErrorEnum.DB_OPERATE_FAIL);
-		}
-	}
-
-	@POST
-	@Path("watch")
-	public ResponseVO watchUser(RelationConditionVO condition) {
-		if (condition == null) {
-			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
-		}
-		String srcId = condition.getSrcId(), tarId = condition.getTarId();
-		boolean isAdd = condition.isAdd();
-		try {
-			if (isAdd) {
-				userRepository.watchUser(srcId, tarId);
-			} else {
-				userRepository.unwatchUser(srcId, tarId);
-			}
-			if (LOG.isDebugEnabled()) {
-				LOG.debug(String
-						.format("'%s' 'WATCH' from UserBean['%s'] to UserBean['%s'] success.",
-								isAdd ? "Add" : "Remove", srcId, tarId));
-			}
-			return new ResponseVO();
-		} catch (Exception ex) {
-			if (LOG.isDebugEnabled()) {
-				LOG.error(String.format(
-						"Follow from UserBean['%s'] to UserBean['%s'] fail.",
-						srcId, tarId), ex);
-			}
-			return new ResponseVO(StaticErrorEnum.DB_OPERATE_FAIL);
-		}
-	}
-
+	@SuppressWarnings("unchecked")
 	@Path("loadPage.json")
 	@GET
 	public ResponsePagingDataVO<List<UserVO>> loadPage(
@@ -361,7 +307,8 @@ public class UserRestResource {
 			}
 
 			Vector<UserVO> result = new Vector<UserVO>();
-			List<UserBean> users = userRepository.getUsersByPage(start, limit);
+			List<UserBean> users = (List<UserBean>) userRepository.getByPage(
+					UserBean.class, start, limit);
 			for (UserBean user : users) {
 				UserVO vo = UserVO.transform(user);
 				if (vo == null) {

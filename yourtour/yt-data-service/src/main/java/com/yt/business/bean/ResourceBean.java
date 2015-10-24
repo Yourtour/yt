@@ -1,9 +1,14 @@
 package com.yt.business.bean;
 
+import org.neo4j.graphdb.Direction;
+import org.springframework.data.neo4j.annotation.NodeEntity;
+
 import com.yt.business.BaseDictBeanImpl;
+import com.yt.business.common.Constants;
 import com.yt.business.common.Constants.ResType;
 import com.yt.business.common.Constants.Status;
 import com.yt.hbase.annotation.HbaseColumn;
+import com.yt.neo4j.annotation.Neo4jRelationship;
 
 /**
  * 资源bean，定义了各类资源的公共信息，不直接创建表，被后续其他资源对象继承（如：景点、宾馆、饭店等）
@@ -33,6 +38,7 @@ import com.yt.hbase.annotation.HbaseColumn;
  * @version 1.0
  * @since 1.0
  */
+@NodeEntity
 public class ResourceBean extends BaseDictBeanImpl {
 	private static final long serialVersionUID = -8980153602025087935L;
 
@@ -99,6 +105,7 @@ public class ResourceBean extends BaseDictBeanImpl {
 	@HbaseColumn(name = "stat")
 	private Status status;
 
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_AT, type = PlaceBean.class, direction = Direction.OUTGOING)
 	private transient PlaceBean place = null;
 
 	public ResourceBean() {

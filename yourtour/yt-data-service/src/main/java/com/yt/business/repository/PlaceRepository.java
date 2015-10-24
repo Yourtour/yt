@@ -10,6 +10,5 @@ public interface PlaceRepository extends CrudAllInOneOperate {
 
 	public List<PlaceBean> getAllSubPlaces(Long graphId) throws Exception;
 
-	public void save(Long parentId, PlaceBean place, String operator)
-			throws Exception;
+	public void save(PlaceBean place, String operator) throws Exception;
 }

@@ -3,12 +3,15 @@
  */
 package com.yt.business.bean;
 
+import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.data.neo4j.support.index.IndexType;
 
+import com.yt.business.common.Constants;
 import com.yt.hbase.annotation.HbaseColumn;
 import com.yt.hbase.annotation.HbaseTable;
+import com.yt.neo4j.annotation.Neo4jRelationship;
 
 /**
  * 旅游景点实体对象
@@ -38,6 +41,9 @@ public class SceneResourceBean extends ResourceBean {
 
 	@HbaseColumn(name = "'sctr")
 	private String sceneTraffic; // 景区交通信息
+	
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_CONTAIN, type = LineBean.class, direction = Direction.INCOMING)
+	private transient LineBean line = null; // 关联的线路
 
 	public SceneResourceBean() {
 		super();
@@ -81,5 +87,13 @@ public class SceneResourceBean extends ResourceBean {
 
 	public void setSceneTraffic(String sceneTraffic) {
 		this.sceneTraffic = sceneTraffic;
+	}
+
+	public LineBean getLine() {
+		return line;
+	}
+
+	public void setLine(LineBean line) {
+		this.line = line;
 	}
 }

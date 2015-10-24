@@ -2,30 +2,34 @@ package com.yt.business.common;
 
 public interface Constants {
 	// 图节点关系
-	public static enum NodeRelationshipEnum {
-		/**
-		 * 关联到
-		 */
-		RELATED, /**
-		 * 包含
-		 */
-		CONTAIN, /**
-		 * 跟随
-		 */
-		FOLLOW, /**
-		 * 关注
-		 */
-		WATCH, /**
-		 * 父
-		 */
-		PARENT, /**
-		 * 子
-		 */
-		CHILDREN, /**
-		 * 在...
-		 */
-		AT;
-	}
+	/**
+	 * 关联
+	 */
+	public static final String RELATION_TYPE_RELATED = "RELATED";
+	/**
+	 * 包括
+	 */
+	public static final String RELATION_TYPE_CONTAIN = "CONTAIN";
+	/**
+	 * 跟随
+	 */
+	public static final String RELATION_TYPE_FOLLOW = "FOLLOW";
+	/**
+	 * 关注
+	 */
+	public static final String RELATION_TYPE_WATCH = "WATCH";
+	/**
+	 * 父
+	 */
+	public static final String RELATION_TYPE_PARENT = "PARENT";
+	/**
+	 * 拥有
+	 */
+	public static final String RELATION_TYPE_HAS = "HAS";
+	/**
+	 * 在
+	 */
+	public static final String RELATION_TYPE_AT = "AT";
 
 	// 资源枚举
 	public static enum GenderType {
@@ -165,12 +169,11 @@ public interface Constants {
 			this.name = name;
 		}
 	}
-	
+
 	// 结伴枚举
 	public static enum AlongIntentionType {
-		TOGETHER_CAR("TOGETHER_CAR", "拼车"), 
-		TOGETHER_EAT("TOGETHER_EAT", "拼吃"), 
-		TOGETHER_TRAVEL("TOGETHER_TRAVEL","拼玩");
+		TOGETHER_CAR("TOGETHER_CAR", "拼车"), TOGETHER_EAT("TOGETHER_EAT", "拼吃"), TOGETHER_TRAVEL(
+				"TOGETHER_TRAVEL", "拼玩");
 
 		public String code;
 		public String name;

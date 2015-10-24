@@ -30,10 +30,10 @@ import org.springframework.data.neo4j.annotation.NodeEntity;
  * @since 1.0
  */
 @NodeEntity
-public class Neo4jBaseBeanImpl implements Serializable,
-		Comparable<Neo4jBaseBeanImpl>, Neo4jBaseBean {
+public class Neo4jBaseBeanImpl implements Serializable, Neo4jBaseBean,
+		Comparable<Neo4jBaseBean> {
 	private static final long serialVersionUID = -1255893864343425738L;
-	
+
 	@GraphId
 	private Long graphid = null;
 
@@ -158,7 +158,7 @@ public class Neo4jBaseBeanImpl implements Serializable,
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
 	@Override
-	public int compareTo(Neo4jBaseBeanImpl o) {
+	public int compareTo(Neo4jBaseBean o) {
 		if (o == null) {
 			return 1;
 		}

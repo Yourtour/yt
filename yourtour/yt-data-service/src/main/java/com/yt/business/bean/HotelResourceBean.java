@@ -1,11 +1,14 @@
 package com.yt.business.bean;
 
+import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.data.neo4j.support.index.IndexType;
 
+import com.yt.business.common.Constants;
 import com.yt.hbase.annotation.HbaseColumn;
 import com.yt.hbase.annotation.HbaseTable;
+import com.yt.neo4j.annotation.Neo4jRelationship;
 
 @HbaseTable(name = "T_HOTEL_INFO")
 @NodeEntity
@@ -28,6 +31,9 @@ public class HotelResourceBean extends ResourceBean {
 	@HbaseColumn(name = "neti")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
 	private String networkInfo; // 网络信息
+
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_CONTAIN, type = LineBean.class, direction = Direction.INCOMING)
+	private transient LineBean line = null; // 关联的线路
 
 	public HotelResourceBean() {
 		super();
@@ -63,5 +69,13 @@ public class HotelResourceBean extends ResourceBean {
 
 	public void setNetworkInfo(String networkInfo) {
 		this.networkInfo = networkInfo;
+	}
+
+	public LineBean getLine() {
+		return line;
+	}
+
+	public void setLine(LineBean line) {
+		this.line = line;
 	}
 }

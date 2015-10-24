@@ -48,17 +48,4 @@ public interface UserBeanRepository extends GraphRepository<UserBean> {
 	 */
 	@Query("START u=node({0}) MATCH u-[:watchRoute]->(route)<-[:watchRoute]-(users) RETURN users")
 	public List<UserBean> getUsersWatchSameRoutes(UserBean user);
-
-	/**
-	 * 根据分页要求查询所有的用户
-	 * 
-	 * @param skip
-	 *            分页起始记录数
-	 * @param limit
-	 *            本页最大记录数
-	 * @return 该页的用户
-	 */
-	@Query("MATCH (users:UserBean) RETURN users SKIP {0} LIMIT {1}")
-	public List<UserBean> getUsersByPage(long skip, long limit);
-
 }

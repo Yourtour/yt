@@ -1,12 +1,15 @@
 package com.yt.business.bean;
 
+import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 
 import com.yt.business.BaseDictBeanImpl;
+import com.yt.business.common.Constants;
 import com.yt.business.common.Constants.Status;
 import com.yt.hbase.annotation.HbaseColumn;
 import com.yt.hbase.annotation.HbaseTable;
+import com.yt.neo4j.annotation.Neo4jRelationship;
 
 /**
  * 该实体定义目的地数据信息。
@@ -61,6 +64,7 @@ public class PlaceBean extends BaseDictBeanImpl {
 	@HbaseColumn(name = "leaf")
 	private boolean leaf = true; // 是否为叶子节点
 
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_PARENT, type = PlaceBean.class, direction = Direction.OUTGOING)
 	private transient PlaceBean parent = null;
 
 	public PlaceBean() {
