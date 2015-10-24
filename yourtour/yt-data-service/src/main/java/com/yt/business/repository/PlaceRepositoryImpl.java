@@ -1,5 +1,6 @@
 package com.yt.business.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Component;
 import com.yt.business.CrudAllInOneOperateImpl;
 import com.yt.business.bean.PlaceBean;
 import com.yt.business.neo4j.repository.PlaceBeanRepository;
+import com.yt.business.neo4j.repository.PlaceTuple;
 
 @Component
 public class PlaceRepositoryImpl extends CrudAllInOneOperateImpl implements
@@ -100,5 +102,30 @@ public class PlaceRepositoryImpl extends CrudAllInOneOperateImpl implements
 			super.save(child, operator);
 			iterateUpdateRowkey(child, operator);
 		}
+	}
+
+	@Override
+	public List<PlaceBean> getPlaces(Long graphId) {
+		List<PlaceTuple> tuples = this.repository.getPlaces(graphId);
+
+		List<PlaceBean> places = new ArrayList<PlaceBean>();
+		PlaceBean parent = null, child = null;
+		for (PlaceTuple tuple : tuples) {
+			parent = tuple.getParent();
+			child = tuple.getChild();
+
+			if (places.contains(parent)) {
+				for (PlaceBean p : places) {
+					if (p.equals(parent)) {
+						p.addSub(child);
+					}
+				}
+			} else {
+				parent.addSub(child);
+				places.add(parent);
+			}
+		}
+
+		return places;
 	}
 }

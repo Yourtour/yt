@@ -62,11 +62,7 @@ Ext.define('YourTour.controller.home.HomeMainCtrl', {
     	var parent = this;
 		var store = this.store;
 		var success = function(){
-			console.log('loaded');
-			
 			var model = store.getAt(0);
-			console.log(model);
-			
 			/*var carousels = model.carousels();
     		carousels.each(function(carousel){
  	 	   		parent.getPlaceCarousel().add(Ext.create('YourTour.view.home.CarouselItemView',{itemId:'carousel', model:carousel}));
@@ -84,7 +80,6 @@ Ext.define('YourTour.controller.home.HomeMainCtrl', {
     		parent.getChatList().setStore(model.chatsStore);
 		};
 		
-		console.log('before loading......');
 		store.load(success, this);
     },
     

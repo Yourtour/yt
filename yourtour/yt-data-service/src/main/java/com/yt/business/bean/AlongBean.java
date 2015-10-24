@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.springframework.data.neo4j.annotation.NodeEntity;
 
-import com.yt.business.BaseDictBeanImpl;
+import com.yt.business.BaseBeanImpl;
 import com.yt.business.common.Constants.AlongIntentionType;
 import com.yt.business.common.Constants.Status;
+import com.yt.business.neo4j.repository.CommentTuple;
 import com.yt.hbase.annotation.HbaseColumn;
 import com.yt.hbase.annotation.HbaseTable;
 
@@ -18,9 +19,12 @@ import com.yt.hbase.annotation.HbaseTable;
  */
 @HbaseTable(name = "T_ROUTE_ALONG_INFO")
 @NodeEntity
-public class AlongBean extends BaseDictBeanImpl {
+public class AlongBean extends BaseBeanImpl {
 	private static final long serialVersionUID = -3433522673262851121L;
 
+	@HbaseColumn(name = "name")
+	private String name;
+	
 	@HbaseColumn(name = "img")
 	private String imageUrl; // 图片
 
@@ -56,11 +60,19 @@ public class AlongBean extends BaseDictBeanImpl {
 	
 	private transient RouteBean route;  //结伴信息关联的行程
 	private transient UserBean  publisher;  //结伴信息发布者信息
-	private transient List<CommentBean> comments; //评论信息
+	private transient List<CommentTuple> comments; //评论信息
 	private transient List<UserBean> following; //关注人员
 	
 	public AlongBean() {
 		super();
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getImageUrl() {
@@ -167,11 +179,11 @@ public class AlongBean extends BaseDictBeanImpl {
 		this.publisher = publisher;
 	}
 
-	public List<CommentBean> getComments() {
+	public List<CommentTuple> getComments() {
 		return comments;
 	}
 
-	public void setComments(List<CommentBean> comments) {
+	public void setComments(List<CommentTuple> comments) {
 		this.comments = comments;
 	}
 

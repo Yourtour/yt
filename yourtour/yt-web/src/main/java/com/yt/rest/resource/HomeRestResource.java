@@ -15,12 +15,14 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.yt.business.bean.LineBean;
+import com.yt.business.bean.AlongBean;
+import com.yt.business.repository.AlongRepository;
 import com.yt.business.repository.LineRepository;
+import com.yt.core.utils.CollectionUtils;
 import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
+import com.yt.vo.AlongVO;
 import com.yt.vo.home.HomeVO;
-import com.yt.vo.home.LineVO;
 
 @Component
 @Path("home")
@@ -32,6 +34,9 @@ public class HomeRestResource {
 	private @Autowired
 	LineRepository lineRepository;
 
+	private @Autowired
+	AlongRepository alongRepository;
+
 	@Path("place/{placeId}/query")
 	@GET
 	public ResponseDataVO<HomeVO> getHomeInfo(
@@ -39,15 +44,15 @@ public class HomeRestResource {
 		HomeVO homeVO = new HomeVO();
 
 		try {
-			List<LineVO> lines = new ArrayList<LineVO>();
-			List<LineBean> lineBeans = lineRepository.getLinesByPlace(Long
-					.parseLong(placeId));
-			if (lineBeans != null) {
-				for (LineBean line : lineBeans) {
-					lines.add(new LineVO(line));
+			List<AlongVO> alongs = new ArrayList<AlongVO>();
+			List<AlongBean> alongBeans = alongRepository.getAlongsByPlace(
+					Long.parseLong(placeId), 0, 5);
+			if (CollectionUtils.isNotNullOrEmpty(alongBeans)) {
+				for (AlongBean along : alongBeans) {
+					alongs.add(new AlongVO(along));
 				}
 			}
-			homeVO.setLines(lines);
+			homeVO.setAlongs(alongs);
 		} catch (Exception exc) {
 			if (LOG.isErrorEnabled()) {
 				LOG.error("Fetch home infoes failed.", exc);

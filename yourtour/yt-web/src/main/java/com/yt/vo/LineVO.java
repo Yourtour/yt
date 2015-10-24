@@ -1,4 +1,4 @@
-package com.yt.vo.home;
+package com.yt.vo;
 
 import java.io.Serializable;
 

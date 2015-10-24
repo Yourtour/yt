@@ -1,5 +1,8 @@
 package com.yt.business.bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
@@ -43,11 +46,11 @@ import com.yt.neo4j.annotation.Neo4jRelationship;
 @NodeEntity
 public class PlaceBean extends BaseDictBeanImpl {
 	private static final long serialVersionUID = -6977525800090683657L;
-
+	
 	@HbaseColumn(name = "shor")
 	@Indexed
 	private String shorter = ""; // 简称
-
+	
 	@HbaseColumn(name = "memo")
 	private String memo = ""; // 备注
 
@@ -66,6 +69,8 @@ public class PlaceBean extends BaseDictBeanImpl {
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_PARENT, type = PlaceBean.class, direction = Direction.OUTGOING)
 	private transient PlaceBean parent = null;
+	
+	private transient List<PlaceBean> subs = new ArrayList<PlaceBean>();
 
 	public PlaceBean() {
 		super();
@@ -119,11 +124,23 @@ public class PlaceBean extends BaseDictBeanImpl {
 		this.parent = parent;
 	}
 
+	public List<PlaceBean> getSubs() {
+		return subs;
+	}
+
+	public void setSubs(List<PlaceBean> subs) {
+		this.subs = subs;
+	}
+
 	public boolean isLeaf() {
 		return leaf;
 	}
 
 	public void setLeaf(boolean leaf) {
 		this.leaf = leaf;
+	}
+	
+	public void addSub(PlaceBean sub){
+		this.subs.add(sub);
 	}
 }

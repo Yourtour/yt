@@ -183,4 +183,18 @@ public interface Constants {
 			this.name = name;
 		}
 	}
+	
+	// 结伴枚举
+	public static enum RouteSectionType {
+		ROUTE_PREPARATION("ROUTE_PREPARATION", "准备"), 
+		ROUTE_SCHEDULE("ROUTE_SCHEDULE", "日程");
+
+		public String code;
+		public String name;
+
+		private RouteSectionType(String code, String name) {
+			this.code = code;
+			this.name = name;
+		}
+	}
 }

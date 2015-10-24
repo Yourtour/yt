@@ -2,7 +2,7 @@ Ext.define('YourTour.store.AjaxStore', {
     extend: 'Ext.data.Store',
     config:{
     	useDefaultXhrHeader: false,
-    	
+    	autoLoad: false,
 	    proxy:{
 			type: 'ajax',
 			useDefaultXhrHeader:false,
