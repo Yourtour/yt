@@ -16,7 +16,14 @@ Ext.application({
     requires: [
         'Ext.MessageBox', 'Ext.form.Hidden','YourTour.util.Context','YourTour.view.home.BestItemView','YourTour.view.common.PlaceGridItemView'
     ],
-
+    
+    /**
+     * APP 本地缓存。
+     * this.getApplication().localStorage.setItem('user', this.model.rowKey);
+     * this.getApplication().localStorage.getItem('user');
+     */
+    localStorage : window.localStorage,  
+    
     views: [
         'MainView','Launch','common.PlaceChangeView','common.PlaceSelectionView',
         'home.HomeMainView', 'home.BestListView', 'home.AlongListView', 'home.AlongDetailView', 'home.TalentListView', 'SearchMain',
@@ -31,13 +38,14 @@ Ext.application({
     controllers: [
         'Launch', 'MainCtrl', 'common.PlaceChangeCtrl','common.PlaceSelectionCtrl',
         'home.HomeMainCtrl', 'home.BestMainCtrl','home.TalentMainCtrl','home.AlongMainCtrl',
-        'route.RouteMainCtrl','route.RouteSettingCtrl','route.ScheduleListCtrl', 'route.SchedulePlanListCtrl', 'line.LineRecommendCtrl','line.LineIntroductionCtrl','user.Main',
+        'route.RouteMainCtrl','route.RouteSettingCtrl','route.ScheduleListCtrl', 'route.SchedulePlanListCtrl', 'line.LineRecommendCtrl','line.LineIntroductionCtrl','user.AccountMainCtrl',
         'resource.ResourceSelectionCtrl','route.ScheduleReferenceCtrl','resource.ResourceCtrl','resource.ResourcePlanCtrl','route.ScheduleDetailCtrl',
         'user.UserListCtrl'
     ],
     
     models:[
-        'LaunchModel','RouteModel','ScheduleModel','SchedulePlanModel', 'LineModel', 'UserModel','OptionModel', 'HomeModel','LiveModel','ChatModel','AlongModel','TalentModel','HomeCarouselModel','CommentModel', 'PlaceModel' 
+        'LaunchModel','RouteModel','ScheduleModel','SchedulePlanModel', 'LineModel', 'UserModel','OptionModel', 'HomeModel','LiveModel','ChatModel','AlongModel','TalentModel','HomeCarouselModel','CommentModel', 'PlaceModel',
+        'UserAccountModel'
     ],
     
     stores:[

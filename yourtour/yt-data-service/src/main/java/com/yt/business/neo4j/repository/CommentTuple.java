@@ -4,7 +4,6 @@ import org.springframework.data.neo4j.annotation.QueryResult;
 import org.springframework.data.neo4j.annotation.ResultColumn;
 
 import com.yt.business.bean.CommentBean;
-import com.yt.business.bean.PlaceBean;
 import com.yt.business.bean.UserBean;
 
 @QueryResult

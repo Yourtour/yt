@@ -42,7 +42,7 @@ public class RouteContent extends BaseBeanImpl {
 	private ScheduleType type;
 	
 	private String name;
-	
+
 	private String startTime;
 	
 	private String endTime;
@@ -52,11 +52,13 @@ public class RouteContent extends BaseBeanImpl {
 	private String memo;
 	
 	private Integer seq;
-
+	
+	private ResourceBean resource;
+	
 	public RouteContent() {
 		super();
 	}
-
+	
 	public ScheduleType getType() {
 		return type;
 	}
@@ -111,6 +113,14 @@ public class RouteContent extends BaseBeanImpl {
 
 	public void setSeq(Integer seq) {
 		this.seq = seq;
+	}
+
+	public ResourceBean getResource() {
+		return resource;
+	}
+
+	public void setResource(ResourceBean resource) {
+		this.resource = resource;
 	}
 
 	

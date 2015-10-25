@@ -1,10 +1,9 @@
 Ext.define('YourTour.view.user.RegisterAccountView', {
     extend: 'YourTour.view.widget.XPage',
     requires:['Ext.Panel','YourTour.view.widget.HSpacer', 'YourTour.view.widget.XTitleBar', 'Ext.field.Password','YourTour.view.widget.XTextField', 'YourTour.view.widget.XButton', 'YourTour.view.widget.ToolButton'],
-    xtype: 'xregisteraccount',
+    xtype: 'RegisterAccountView',
     config: {
     	itemId:'RegisterAccountView',
-    	id:'RegisterAccountView',
     	layout:'vbox',
     	defaults:{
     		padding:'0 10 0 10'

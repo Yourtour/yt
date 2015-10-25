@@ -18,7 +18,6 @@ Ext.define('YourTour.controller.Launch', {
     	Ext.fly('appLoadingIndicator').destroy();
         Ext.Viewport.add(Ext.create('YourTour.view.Launch'));
         
-        console.log("app initializing");
         this.store = Ext.create('YourTour.store.LaunchStore', {itemId:'lanuchStore'});
         
         var me = this;

@@ -48,8 +48,8 @@ public class RouteSection extends BaseBeanImpl {
 	private Long   date;
 	
 	private String memo;
-
-	List<RouteContent> contents;
+	
+	private List<RouteContent> contents;
 	
 	private Integer seq;
 	

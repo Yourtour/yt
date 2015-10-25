@@ -1,9 +1,8 @@
 Ext.define('YourTour.view.user.LoginView', {
     extend: 'YourTour.view.widget.XPage',
     requires:['Ext.Panel','YourTour.view.widget.HSpacer', 'YourTour.view.widget.XTitleBar', 'Ext.field.Password','YourTour.view.widget.XTextField', 'YourTour.view.widget.XButton', 'YourTour.view.widget.ToolButton'],
-    xtype:'xloginview',
+    xtype:'LoginView',
     config: {
-    	itemId:'LoginView',
     	id:'LoginView',
     	layout:'vbox',
     	defaults:{
