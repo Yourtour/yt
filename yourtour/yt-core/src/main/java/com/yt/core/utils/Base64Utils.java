@@ -9,10 +9,11 @@ public class Base64Utils {
 	}
 
 	public static String encode(byte[] value) throws Exception {
-		return Base64.encodeToString(value, Base64.DEFAULT);
+		return Base64.encodeToString(value, Base64.DEFAULT | Base64.NO_WRAP);
 	}
 
 	public static byte[] decode(String base64) throws Exception {
-		return Base64.decode(base64.getBytes(), Base64.DEFAULT);
+		return Base64
+				.decode(base64.getBytes(), Base64.DEFAULT | Base64.NO_WRAP);
 	}
 }

@@ -1,27 +1,59 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
 
-<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/"
-	threshold="null" debug="true">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+  <appender name="CONSOLE"  class="org.apache.log4j.ConsoleAppender">
+	<layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="[%d{yyyyMMdd HH:mm:ss} %-5p] [%c:%L] - %m%n" />
+	</layout>
+	
+	<filter class="org.apache.log4j.varia.LevelRangeFilter">
+		<param name="LevelMax" value="INFO" />
+		<param name="LevelMin" value="DEBUG" />
+	</filter>
+  </appender>
+  <appender name="yt" class="org.apache.log4j.RollingFileAppender">
+     <param name="Append" value="true"/>
+     <param name="MaxFileSize" value="10MB"/> 
+     <param name="File" value="/var/log/yt-web/yt.log"/> 
+     <param name="MaxBackupIndex" value="5"/> 
+     <layout class="org.apache.log4j.PatternLayout">
+        <param name="ConversionPattern" value="%d{yyyy-MM-dd hh:mm:ss}:%p %t %c - %m%n"/>
+     </layout>
+  </appender>
 
-	<!-- All appender-->
-	<appender name="Console" class="org.apache.log4j.ConsoleAppender">
-		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="%-d{yyyy-MM-dd HH:mm:ss} [%t]-[%p]-[%l] %m%n" />
-		</layout>
-	</appender>
+  <appender name="spring" class="org.apache.log4j.RollingFileAppender">
+     <param name="Append" value="true"/>
+     <param name="MaxFileSize" value="10MB"/> 
+     <param name="File" value="/var/log/yt-web/spring.log"/> 
+     <param name="MaxBackupIndex" value="5"/> 
+     <layout class="org.apache.log4j.PatternLayout">
+        <param name="ConversionPattern" value="%d{yyyy-MM-dd hh:mm:ss}:%p %t %c - %m%n"/>
+     </layout>
+  </appender>
 
-	<!-- All category -->
-	<category name="com.yt" additivity="false">
-		<level class="org.apache.log4j.Level" value="debug" />
-		<appender-ref ref="Console" />
-	</category>
+  <appender name="root" class="org.apache.log4j.RollingFileAppender">
+     <param name="Append" value="true"/>
+     <param name="MaxFileSize" value="10MB"/> 
+     <param name="File" value="/var/log/yt-web/root.log"/> 
+     <param name="MaxBackupIndex" value="5"/> 
+     <layout class="org.apache.log4j.PatternLayout">
+        <param name="ConversionPattern" value="%d{yyyy-MM-dd hh:mm:ss}:%p %t %c - %m%n"/>
+     </layout>
+  </appender>
+  
+  <category name="com.yt">      
+    <level value="DEBUG" />    
+    <appender-ref ref="CONSOLE" />   
+  </category> 
+  
+  <category name="org.springframework">      
+    <level value="INFO" />    
+    <appender-ref ref="CONSOLE" />   
+  </category> 
 
-	<!-- Root -->
-	<root>
-		<level class="org.apache.log4j.Level" value="info" />
-		<appender-ref ref="Console" />
-	</root>
-
+  <root>
+     <level value="WARN" />
+     <appender-ref ref="CONSOLE"/>
+  </root>
 </log4j:configuration>

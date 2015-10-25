@@ -67,7 +67,8 @@ public class AdminUserInitializeService implements InitializingBean {
 	 *             判断过程中发生的异常
 	 */
 	public boolean checkPassword(String origin, String base64) throws Exception {
-		return base64.equals(MessageDigestUtils.digest(algorithm, origin));
+		String target = MessageDigestUtils.digest(algorithm, origin);
+		return base64.equals(target);
 	}
 
 	@Transactional

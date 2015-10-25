@@ -25,5 +25,5 @@ public class MessageDigestUtils {
 		byte[] tar = md.digest(value.getBytes("UTF-8"));
 		return Base64Utils.encode(tar);
 	}
-
+	
 }
