@@ -381,7 +381,7 @@ public class TestLineBean {
 			l1.getHotels().remove(1);
 			l1.getHotels().remove(0);
 			l1.getHotels().add(h4);
-			repo.saveRelationsOnly(l1);
+			repo.saveRelationsOnly(l1, new String[] {"hotels"});
 			LineBean l1_2 = (LineBean) repo
 					.get(LineBean.class, l1.getGraphId());
 			assertNotNull(l1_2);

@@ -217,4 +217,17 @@ public interface CrudOperate {
 	 */
 	public void saveRelationsOnly(Neo4jBaseBean neo4jBean) throws Exception;
 
+	/**
+	 * 仅仅保存指定的Neo4J实体对象中的指定的关系，本方法不会保存该实体对象中的其他属性。
+	 * 
+	 * @param neo4jBean
+	 *            Neo4j实体对象
+	 * @param relationshipFieldNames
+	 *            指定要保存的关系字段列表
+	 * @throws Exception
+	 *             保存过程中发生的异常
+	 */
+	public void saveRelationsOnly(Neo4jBaseBean neo4jBean,
+			String[] relationshipFieldNames) throws Exception;
+
 }

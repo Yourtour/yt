@@ -11,6 +11,7 @@ import java.lang.reflect.Field;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.Vector;
 
 import org.apache.commons.logging.Log;
@@ -431,22 +432,43 @@ public class CrudGeneralOperate implements CrudOperate {
 	}
 
 	// 保存关系数据
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void saveRelations(Neo4jBaseBean bean) throws Exception {
+		saveRelationsOnly(bean, null);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.yt.neo4j.repository.CrudOperate#saveRelationsOnly(com.yt.neo4j.bean
+	 * .Neo4jBaseBean, java.lang.String[])
+	 */
+	@Override
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public void saveRelationsOnly(Neo4jBaseBean neo4jBean,
+			String[] relationshipFieldNames) throws Exception {
 		if (LOG.isDebugEnabled()) {
-			LOG.debug(String.format("Save the relations node for %s[%d].", bean
-					.getClass().getSimpleName(), bean.getGraphId()));
+			LOG.debug(String.format("Save the relations node for %s[%d].",
+					neo4jBean.getClass().getSimpleName(),
+					neo4jBean.getGraphId()));
 		}
 		// 取出现有的关系
-		Neo4jBaseBean ori = this.get(bean.getClass(), bean.getGraphId());
-		Neo4jBeanDescriptor nbd = cache.get(bean.getClass());
+		Neo4jBaseBean ori = this.get(neo4jBean.getClass(),
+				neo4jBean.getGraphId());
+		Neo4jBeanDescriptor nbd = cache.get(neo4jBean.getClass());
 		if (nbd != null) {
-			for (RelationDescriptor rd : nbd.getRelations().values()) {
+			// 找出需要维护的关系字段列表
+			if (relationshipFieldNames == null) {
+				Set<String> keys = nbd.getRelations().keySet();
+				relationshipFieldNames = keys.toArray(new String[0]);
+			}
+			for (String fieldName : relationshipFieldNames) {
+				RelationDescriptor rd = nbd.getRelation(fieldName);
 				Field field = rd.getField();
 				if (!field.isAccessible()) {
 					field.setAccessible(true);
 				}
-				Object tar = field.get(bean);
+				Object tar = field.get(neo4jBean);
 				if (tar == null) {
 					// 关系指定的字段内容为空，则不创建任何关系。
 					continue;
@@ -480,19 +502,19 @@ public class CrudGeneralOperate implements CrudOperate {
 					}
 					for (Object obj : insert) {
 						// 建立新的关系
-						createRelation(bean, (Neo4jBaseBean) obj,
+						createRelation(neo4jBean, (Neo4jBaseBean) obj,
 								rd.getRelationship(), rd.getDirection());
 					}
 					for (Object obj : oriList) {
 						// 删除需要删除的关系，源列表中剩余的就是需要删除的关系
 						if (rd.getDirection() == Direction.INCOMING
 								|| rd.getDirection() == Direction.BOTH) {
-							template.deleteRelationshipBetween(obj, bean,
+							template.deleteRelationshipBetween(obj, neo4jBean,
 									rd.getRelationship());
 						}
 						if (rd.getDirection() == Direction.OUTGOING
 								|| rd.getDirection() == Direction.BOTH) {
-							template.deleteRelationshipBetween(bean, obj,
+							template.deleteRelationshipBetween(neo4jBean, obj,
 									rd.getRelationship());
 						}
 					}
@@ -505,28 +527,28 @@ public class CrudGeneralOperate implements CrudOperate {
 							if (rd.getDirection() == Direction.INCOMING
 									|| rd.getDirection() == Direction.BOTH) {
 								template.deleteRelationshipBetween(oriBean,
-										bean, rd.getRelationship());
+										neo4jBean, rd.getRelationship());
 							}
 							if (rd.getDirection() == Direction.OUTGOING
 									|| rd.getDirection() == Direction.BOTH) {
-								template.deleteRelationshipBetween(bean,
+								template.deleteRelationshipBetween(neo4jBean,
 										oriBean, rd.getRelationship());
 							}
 							// 创建关系
-							createRelation(bean, (Neo4jBaseBean) tar,
+							createRelation(neo4jBean, (Neo4jBaseBean) tar,
 									rd.getRelationship(), rd.getDirection());
 						}
 					} else {
 						// 否则只要创建一个关系即可。
-						createRelation(bean, (Neo4jBaseBean) tar,
+						createRelation(neo4jBean, (Neo4jBaseBean) tar,
 								rd.getRelationship(), rd.getDirection());
 					}
 				}
 			}
 		} else {
 			if (LOG.isWarnEnabled()) {
-				LOG.warn(String.format("The %s has not any relations.", bean
-						.getClass().getSimpleName()));
+				LOG.warn(String.format("The %s has not any relations.",
+						neo4jBean.getClass().getSimpleName()));
 			}
 		}
 	}
