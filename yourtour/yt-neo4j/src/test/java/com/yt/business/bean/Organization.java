@@ -23,10 +23,10 @@ public class Organization extends Neo4jBaseDictBeanImpl {
 	@Neo4jRelationship(relationship="MANAGED", type=Account.class, direction = Direction.OUTGOING)
 	private transient Account manager;
 
-	@Neo4jRelationship(relationship = "HAS", type = Role.class, direction = Direction.OUTGOING, isSet = true)
+	@Neo4jRelationship(relationship = "HAS", type = Role.class, direction = Direction.OUTGOING, isList = true)
 	private transient List<Role> roles;
 	
-	@Neo4jRelationship(relationship="HAS", type=Account.class, direction = Direction.INCOMING, isSet = true)
+	@Neo4jRelationship(relationship="HAS", type=Account.class, direction = Direction.INCOMING, isList = true)
 	private transient List<Account> accounts;
 
 	public Organization() {

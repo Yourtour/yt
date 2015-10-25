@@ -24,7 +24,7 @@ public class Account extends Neo4jBaseDictBeanImpl {
 	@Neo4jRelationship(relationship = "ASSIGNED", type = Person.class, direction=Direction.INCOMING)
 	private transient Person person;
 
-	@Neo4jRelationship(relationship = "HAS", type = Role.class, direction = Direction.BOTH, isSet = true)
+	@Neo4jRelationship(relationship = "HAS", type = Role.class, direction = Direction.BOTH, isList = true)
 	private transient List<Role> roles;
 
 	public Account() {

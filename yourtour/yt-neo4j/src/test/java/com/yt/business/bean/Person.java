@@ -31,7 +31,7 @@ public class Person extends Neo4jBaseDictBeanImpl {
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
 	private String address;
 	
-	@Neo4jRelationship(relationship="ASSIGNED", type=Account.class, direction = Direction.OUTGOING, isSet=true)
+	@Neo4jRelationship(relationship="ASSIGNED", type=Account.class, direction = Direction.OUTGOING, isList=true)
 	private transient List<Account> accounts;
 
 	public Person() {

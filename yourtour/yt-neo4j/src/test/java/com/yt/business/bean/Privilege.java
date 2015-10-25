@@ -21,7 +21,7 @@ public class Privilege extends Neo4jBaseDictBeanImpl {
 	@Indexed(indexName=INDEX_NAME, indexType=IndexType.FULLTEXT)
 	private String memo;
 
-	@Neo4jRelationship(relationship = "HAS", type = Role.class, direction = Direction.BOTH, isSet = true)
+	@Neo4jRelationship(relationship = "HAS", type = Role.class, direction = Direction.BOTH, isList = true)
 	private transient List<Role> roles;
 
 	public Privilege() {

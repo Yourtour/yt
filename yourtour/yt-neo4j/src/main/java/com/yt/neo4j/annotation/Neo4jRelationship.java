@@ -15,7 +15,7 @@ public @interface Neo4jRelationship {
 
 	Class<?> type();
 
-	boolean isSet() default false;
+	boolean isList() default false;
 
 	Direction direction() default Direction.OUTGOING;
 }

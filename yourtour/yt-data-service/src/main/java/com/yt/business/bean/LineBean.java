@@ -103,11 +103,11 @@ public class LineBean extends BaseDictBeanImpl {
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_AT, type = PlaceBean.class, direction = Direction.OUTGOING)
 	private transient PlaceBean place = null;
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_CONTAIN, type = SceneResourceBean.class, direction = Direction.OUTGOING, isSet = true)
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_CONTAIN, type = SceneResourceBean.class, direction = Direction.OUTGOING, isList = true)
 	private transient List<SceneResourceBean> scenes = null;
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_CONTAIN, type = HotelResourceBean.class, direction = Direction.OUTGOING, isSet = true)
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_CONTAIN, type = HotelResourceBean.class, direction = Direction.OUTGOING, isList = true)
 	private transient List<HotelResourceBean> hotels = null;
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_CONTAIN, type = RestaurantResourceBean.class, direction = Direction.OUTGOING, isSet = true)
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_CONTAIN, type = RestaurantResourceBean.class, direction = Direction.OUTGOING, isList = true)
 	private transient List<RestaurantResourceBean> restaurants = null;
 
 	public LineBean() {

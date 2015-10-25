@@ -21,10 +21,10 @@ public class Role extends Neo4jBaseDictBeanImpl {
 	@Indexed(indexName=INDEX_NAME, indexType=IndexType.FULLTEXT)
 	private String memo;
 
-	@Neo4jRelationship(relationship = "HAS", type = Account.class, direction = Direction.BOTH, isSet = true)
+	@Neo4jRelationship(relationship = "HAS", type = Account.class, direction = Direction.BOTH, isList = true)
 	private transient List<Account> accounts;
 	
-	@Neo4jRelationship(relationship = "HAS", type = Privilege.class, direction = Direction.BOTH, isSet = true)
+	@Neo4jRelationship(relationship = "HAS", type = Privilege.class, direction = Direction.BOTH, isList = true)
 	private transient List<Privilege> privileges;
 
 	public Role() {

@@ -1,15 +1,21 @@
 package com.yt.business.bean;
 
+import java.util.List;
+import java.util.Vector;
+
+import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.data.neo4j.support.index.IndexType;
 
 import com.yt.business.BaseDictBeanImpl;
+import com.yt.business.common.Constants;
 import com.yt.business.common.Constants.GenderType;
 import com.yt.business.common.Constants.Role;
 import com.yt.business.common.Constants.Status;
 import com.yt.hbase.annotation.HbaseColumn;
 import com.yt.hbase.annotation.HbaseTable;
+import com.yt.neo4j.annotation.Neo4jRelationship;
 
 /**
  * 该实体定义了用户的相关信息
@@ -97,9 +103,21 @@ public class UserBean extends BaseDictBeanImpl {
 	@HbaseColumn(name = "slga")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
 	private String slogan; // 个人口号
+	
+	@Neo4jRelationship(relationship=Constants.RELATION_TYPE_FOLLOW, type = UserBean.class, direction = Direction.OUTGOING, isList = true)
+	private transient List<UserBean> followers;
+	
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_WATCH, type = UserBean.class, direction = Direction.OUTGOING, isList = true)
+	private transient List<UserBean> watchers;
+	
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_WATCH, type = LineBean.class, direction = Direction.OUTGOING, isList = true)
+	private transient List<LineBean> watchedLines;
 
 	public UserBean() {
 		super();
+		this.followers = new Vector<UserBean>();
+		this.watchers = new Vector<UserBean>();
+		this.watchedLines = new Vector<LineBean>();
 	}
 
 	public String getPwd() {

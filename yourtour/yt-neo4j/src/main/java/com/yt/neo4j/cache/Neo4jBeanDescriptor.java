@@ -44,7 +44,7 @@ public class Neo4jBeanDescriptor {
 				}
 				RelationDescriptor rd = nbd.createRelation(field.getName(),
 						relationship.relationship(), relationship.type(),
-						relationship.isSet(), relationship.direction(), field);
+						relationship.isList(), relationship.direction(), field);
 				nbd.getRelations().put(rd.getFieldName(), rd);
 			}
 			clazz = clazz.getSuperclass();
