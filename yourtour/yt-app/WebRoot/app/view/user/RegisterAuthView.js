@@ -1,9 +1,8 @@
 Ext.define('YourTour.view.user.RegisterAuthView', {
     extend: 'Ext.Panel',
-    xtype: 'xregisterauth',
+    xtype: 'RegisterAuthView',
     requires:['Ext.Panel','Ext.TitleBar', 'Ext.Img','YourTour.view.widget.HSpacer', 'YourTour.view.widget.XTitleBar', 'Ext.field.Password','YourTour.view.widget.XTextField', 'YourTour.view.widget.XButton', 'YourTour.view.widget.ToolButton'],
     config: {
-    	itemId:'RegisterAuthView',
     	id:'RegisterAuthView',
     	layout:'vbox',
     	defaults:{
@@ -45,9 +44,9 @@ Ext.define('YourTour.view.user.RegisterAuthView', {
             	   },
             	   {
             		   xtype:'xtextfield', 
+            		   itmeId: 'mobile',
             		   flex:1,
-            		   placeHolder:'请输入手机号码(11位数字)',
-            		   name: 'mobile'
+            		   placeHolder:'请输入手机号码(11位数字)'
             	   } 
             	]
             },
@@ -74,13 +73,14 @@ Ext.define('YourTour.view.user.RegisterAuthView', {
 		            	flex:1,
 		            	items:[
 							{
-								   xtype:'passwordfield', 
+								   xtype:'xtextfield', 
 								   flex:3,
 								   placeHolder:'请输入验证码',
-								   name: 'userName'
+								   itemId: 'authcode'
 							},
 							{
 								   xtype:'xbutton', 
+								   itemId:'getCode',
 								   flex:2,
 								   html: '获取验证码'
 							}

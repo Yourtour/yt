@@ -1,9 +1,8 @@
 Ext.define('YourTour.view.user.RegisterProfileView', {
     extend: 'YourTour.view.widget.XPage',
-    xtype: 'xregisterprofile',
+    xtype: 'RegisterProfileView',
     requires:['Ext.Panel','Ext.field.Radio','YourTour.view.widget.XLabel', 'YourTour.view.widget.HSpacer', 'YourTour.view.widget.XTitleBar', 'Ext.field.Password','YourTour.view.widget.XTextField', 'YourTour.view.widget.XButton', 'YourTour.view.widget.ToolButton'],
     config: {
-    	itemId:'RegisterProfileView',
     	id:'RegisterProfileView',
     	layout:'vbox',
         items: [

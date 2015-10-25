@@ -7,19 +7,19 @@ Ext.define('YourTour.view.user.LoginMainView', {
     	layout:'card',
         items: [
             {
-            	xtype: 'xloginview',
+            	xtype: 'LoginView',
                 itemId:'LoginView'	
             },
             {
-            	xtype: 'xregisterauth',
+            	xtype: 'RegisterAuthView',
                 itemId:'RegisterAuthView'
             },
             {
-            	xtype: 'xregisteraccount',
+            	xtype: 'RegisterAccountView',
                 itemId:'RegisterAccountView'	
             },
             {
-            	xtype: 'xregisterprofile',
+            	xtype: 'RegisterProfileView',
                 itemId:'RegisterProfileView'	
             }            
         ]
