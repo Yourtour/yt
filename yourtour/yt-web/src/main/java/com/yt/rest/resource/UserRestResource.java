@@ -30,6 +30,7 @@ import com.yt.response.ResponsePagingDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.utils.WebUtils;
 import com.yt.vo.member.AuthenticationVO;
+import com.yt.vo.member.RegisterVO;
 import com.yt.vo.member.UserVO;
 
 @Component
@@ -332,5 +333,13 @@ public class UserRestResource {
 			return new ResponsePagingDataVO<List<UserVO>>(
 					StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Path("/account/register")
+	@POST
+	public ResponseDataVO<RegisterVO> register(RegisterVO registervo,@QueryParam("step") int step){
+		registervo.setGraphId(1111l);
+		return new ResponseDataVO<RegisterVO>(registervo);
 	}
 }

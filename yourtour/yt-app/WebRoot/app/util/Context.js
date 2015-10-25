@@ -3,6 +3,7 @@ Ext.define('YourTour.util.Context', {
 	alias:'Context',
 	
     config : {
+    	userKey:'user'
     },
     
     constructor : function(config) {

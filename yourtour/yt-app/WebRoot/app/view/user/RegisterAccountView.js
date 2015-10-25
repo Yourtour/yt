@@ -107,7 +107,7 @@ Ext.define('YourTour.view.user.RegisterAccountView', {
             
             {
             	xtype:'xbutton',
-            	id:'btnRegisterProfile',
+            	id:'btnNext',
             	text:'下一步'
             }
         ]
