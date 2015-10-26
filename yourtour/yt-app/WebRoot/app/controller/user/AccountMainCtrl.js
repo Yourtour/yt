@@ -5,8 +5,8 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     	   loginMainView:'#LoginMainView',
     	   registerAuthView:'#RegisterAuthView',
     	   rgisterAccountView:'#RegisterAccountView',
-    	   registerProfileView:'#RegisterProfileView'
-    		   
+    	   registerProfileView:'#RegisterProfileView',
+    	   portraitOptions:'#RegisterProfileView #portraitOptions'	   
        },
        
        control:{
@@ -32,7 +32,12 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     	   
     	   '#RegisterProfileView #btnRegisterDone':{
     		   tap:'onRegisterDoneTap'
+    	   },
+    	   
+    	   '#RegisterProfileView #portrait':{
+    		   tap:'onPortraitTap'
     	   }
+    	   
        },
        
        routes:{
@@ -65,16 +70,19 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
      * 
      */
     onRegisterAuthTap:function(){
-    	var me = this.getRegisterAuthView();
+    	var me = this;
     	
-    	this.model.set('mobile','13601951704');
-    	this.model.set('authcode','121212');
+    	var authview = me.getRegisterAuthView();
+    	var values = authview.getValues(); 
+    	this.model.set('mobile',values.mobile);
+    	this.model.set('authcode',values.authcode);
     	
     	var proxy = this.model.getProxy();
     	proxy.setExtraParams({'step':'1'});
     	proxy.setUrl(YourTour.util.Context.getContext('/users/account/register'));
     	var success = function(){
-    		me.getLoginMainView().setActiveItem('#RegisterAccountView');
+    		//me.model = proxy.getModel();
+    		me.getLoginMainView().setActiveItem(me.getRgisterAccountView());
     	};
     	this.model.save({success:success});
     },
@@ -82,17 +90,19 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     /**
      * 
      */
-    onRegisterProfileTap:function(){
-    	var me = this.getRegisterAccountView();
+    onRegisterAccountTap:function(){
+    	var me = this;
     	
-    	this.model.set('userName',me.down('#userName'));
-    	this.model.set('password',me.down('#password'));
+    	var accountview = this.getRgisterAccountView();
+    	var values = accountview.getValues(); 
+    	this.model.set('userName',values.userName);
+    	this.model.set('password',values.password);
     	
     	var proxy = this.model.getProxy();
     	proxy.setExtraParams('step', 2);
-    	proxy.setUrl(YourTour.util.Context.getContext('/account/register'));
+    	proxy.setUrl(YourTour.util.Context.getContext('/users/account/register'));
     	var success = function(){
-    		me.getLoginMainView().setActiveItem('#RegisterProfileView');
+    		me.getLoginMainView().setActiveItem(me.getRegisterProfileView());
     	};
     	this.model.save({success:success});
     },
@@ -109,7 +119,7 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     	this.model.set('step', 3);
     	
     	var proxy = this.model.getProxy();
-    	proxy.setUrl(YourTour.util.Context.getContext('/account/register'));
+    	proxy.setUrl(YourTour.util.Context.getContext('/users/account/register'));
     	var success = function(){
     		//本地缓存
     		me.getApplication().localStorage.setItem(YourTour.util.Context.getUserKey(),model.rowKey);  
@@ -121,6 +131,10 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     		console.log('failure');
     	};
     	this.model.save({success:success, failure:failure});
+    },
+    
+    onPortraitTap:function(){
+    	this.getPortraitOptions().show();
     },
     
     onLoginTap:function(){

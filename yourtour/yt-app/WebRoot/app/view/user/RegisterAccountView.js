@@ -1,9 +1,9 @@
 Ext.define('YourTour.view.user.RegisterAccountView', {
-    extend: 'YourTour.view.widget.XPage',
+	extend: 'Ext.form.Panel',
     requires:['Ext.Panel','YourTour.view.widget.HSpacer', 'YourTour.view.widget.XTitleBar', 'Ext.field.Password','YourTour.view.widget.XTextField', 'YourTour.view.widget.XButton', 'YourTour.view.widget.ToolButton'],
     xtype: 'RegisterAccountView',
     config: {
-    	itemId:'RegisterAccountView',
+    	id:'RegisterAccountView',
     	layout:'vbox',
     	defaults:{
     		padding:'0 10 0 10'
@@ -32,6 +32,7 @@ Ext.define('YourTour.view.user.RegisterAccountView', {
             	xtype:'panel',
             	layout:'hbox',
             	cls:'row underline',
+            	style:'background:white',
             	items:[
             	   {
             		   xtype:'image', 
@@ -57,6 +58,7 @@ Ext.define('YourTour.view.user.RegisterAccountView', {
             	xtype:'panel',
             	layout:'hbox',
             	cls:'row underline',
+            	style:'background:white',
             	items:[
 					{
 						   xtype:'image', 
@@ -80,6 +82,7 @@ Ext.define('YourTour.view.user.RegisterAccountView', {
             	xtype:'panel',
             	layout:'hbox',
             	cls:'row underline',
+            	style:'background:white',
             	items:[
 					{
 						   xtype:'image', 

@@ -1,5 +1,5 @@
 Ext.define('YourTour.view.user.RegisterProfileView', {
-    extend: 'YourTour.view.widget.XPage',
+	extend: 'Ext.form.Panel',
     xtype: 'RegisterProfileView',
     requires:['Ext.Panel','Ext.field.Radio','YourTour.view.widget.XLabel', 'YourTour.view.widget.HSpacer', 'YourTour.view.widget.XTitleBar', 'Ext.field.Password','YourTour.view.widget.XTextField', 'YourTour.view.widget.XButton', 'YourTour.view.widget.ToolButton'],
     config: {
@@ -29,6 +29,7 @@ Ext.define('YourTour.view.user.RegisterProfileView', {
             	xtype:'panel',
             	layout:'hbox',
             	cls:'row underline',
+            	style:'background:white',
             	padding:'0 10 0 10',
             	items:[
             	   {
@@ -36,7 +37,6 @@ Ext.define('YourTour.view.user.RegisterProfileView', {
             		   src:'resources/icons/icon_nickname.png',
             		   mode : 'tag'
             	   },
-            	   
             	   {
             		   xtype:'label',
             		   html:'|',
@@ -47,24 +47,38 @@ Ext.define('YourTour.view.user.RegisterProfileView', {
             		   flex:1,
             		   placeHolder:'请输入昵称',
             		   name: 'nickName'
-            	   },
-            	   
-            	   {
-                       xtype: 'xlabel',
-                       name : 'gender',
-                       value: 'M',
-                       label: '男',
-                       margin:'0 10 0 10',
-                       checked: true
-                   },
-                   {
-                       xtype: 'radiofield',
-                       name : 'gender',
-                       value: 'F',
-                       margin:'0 10 0 10',
-                       label: '女'
-                   }
+            	   }
             	]
+            },
+            
+            {
+            	xtype:'panel',
+            	layout:'hbox',
+            	cls:'row underline',
+            	style:'background:white',
+            	padding:'0 10 0 10',
+            	items:[
+					{
+						   xtype:'image', 
+						   src:'resources/icons/icon_nickname.png',
+						   mode : 'tag'
+					},
+					{
+						   xtype:'label',
+						   html:'|',
+						   margin:'0 10 0 10'
+					},    
+					{
+            		   xtype:'selectfield',                     
+                       displayField:"text",
+                       valueField:"value",
+                       placeHolder:'请选择性别',
+                       options:[
+							{text: '男',  value: 'M'},
+							{text: '女', value: 'F'}
+                       ]
+					}
+				]
             },
             
             {
@@ -72,20 +86,34 @@ Ext.define('YourTour.view.user.RegisterProfileView', {
             	layout:'hbox',
             	cls:'textfield',
             	padding:'0 10 0 10',
-            	style:'height:100px',
+            	style:'height:75px',
             	items:[
 					{
             		   xtype:'image', 
             		   src:'resources/icons/icon_portrait.png',
-            		   mode : 'tag',
-            		   margin:'0 10 0 0'
+            		   mode : 'tag'
             	    },
+					
+            	    {
+					   xtype:'label',
+					   html:'|',
+					   margin:'0 10 0 10'
+					},   
 					
 					{
             	       xtype:'image', 
              		   src:'resources/icons/icon_portrait_demo.png',
+             		   itemId:'portrait',
              		   mode : 'tag',
-             		   maxHeight:50
+             		   maxHeight:50,
+					},
+					
+					{
+						xtype: 'filefield',
+						name: 'file',
+						hidden:true,
+						accept: 'image',
+						multiple: true
 					}
             	]
             },
@@ -124,39 +152,6 @@ Ext.define('YourTour.view.user.RegisterProfileView', {
             },
             
             {
-				xtype:'panel',
-				layout: 'vbox',
-				style:'height:100px;background:white',
-				defaults: {
-					flex: 1,
-					width: '100%',
-					padding: 10,
-					defaults: {
-						flex: 1,
-						height: '100%',
-						margin: 10
-					}   
-				},
-				items:[{
-					xtype: 'panel',
-					layout: 'hbox',
-					items:[
-						{xtype:'label',html:'海滨主题'},
-						{xtype:'label',html:'登山主题'},
-						{xtype:'label',html:'滑雪主题'}
-					]
-				},{
-					xtype: 'panel',
-					layout: 'hbox',
-					items:[
-						{xtype:'label',html:'亲子主题'},
-						{xtype:'label',html:'古镇主题'},
-						{xtype:'label',html:'蜜月主题'}
-					]
-				}]
-            },
-            
-            {
             	xtype:'hspacer'
             },
             
@@ -164,7 +159,27 @@ Ext.define('YourTour.view.user.RegisterProfileView', {
             	xtype:'xbutton',
             	id:'btnRegisterDone',
             	text:'注册'
-            }
+            },
+            
+            {
+            	xtype: 'panel',
+                docked: 'bottom',
+                itemId:'portraitOptions',
+                layout:'vbox',
+                hidden:true,
+            	items:[{
+                	xtype: "xlabel", 
+                	itemId:'photo',
+                	cls:'row underline',
+                	html:'照片'
+                },
+                {
+                	xtype: "xlabel", 
+                	itemId:'takePhoto',
+                	cls:'row',
+                	html:'照相'
+                }]	
+            },
         ]
     }
 });
