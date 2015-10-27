@@ -16,6 +16,7 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     	   
     	   '#LoginView #btnLogin':{
     		   tap:'onLoginTap'
+    			   
     	   },
     	   
     	   '#RegisterAuthView #btnNext':{
