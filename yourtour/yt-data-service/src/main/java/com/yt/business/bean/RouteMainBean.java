@@ -40,6 +40,9 @@ public class RouteMainBean extends BaseBeanImpl {
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = RouteProvisionBean.class, direction = Direction.OUTGOING, isList = true)
 	private transient List<RouteProvisionBean> provisions = null; // 行程包含的准备
 
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = UserBean.class, direction = Direction.OUTGOING)
+	private transient UserBean owner = null; // 行程所有者
+
 	public RouteMainBean() {
 		super();
 		schedules = new Vector<RouteScheduleBean>();
@@ -85,6 +88,14 @@ public class RouteMainBean extends BaseBeanImpl {
 
 	public List<RouteProvisionBean> getProvisions() {
 		return provisions;
+	}
+
+	public UserBean getOwner() {
+		return owner;
+	}
+
+	public void setOwner(UserBean owner) {
+		this.owner = owner;
 	}
 
 }
