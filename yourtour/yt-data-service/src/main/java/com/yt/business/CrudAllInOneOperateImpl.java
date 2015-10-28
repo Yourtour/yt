@@ -2,14 +2,19 @@ package com.yt.business;
 
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.yt.hbase.BaseBean;
 import com.yt.neo4j.bean.Neo4jBaseBean;
+import com.yt.neo4j.bean.Neo4jBaseDictBean;
 import com.yt.neo4j.repository.CrudGeneralOperate;
 
 public class CrudAllInOneOperateImpl extends CrudGeneralOperate implements
 		CrudAllInOneOperate {
+	private static final Log LOG = LogFactory
+			.getLog(CrudAllInOneOperateImpl.class);
 
 	@Autowired
 	private CrudAllInOneConfig config;
@@ -69,7 +74,51 @@ public class CrudAllInOneOperateImpl extends CrudGeneralOperate implements
 	 */
 	@Override
 	public void save(Neo4jBaseBean neo4jBean, String operator) throws Exception {
-		super.save(neo4jBean, operator);
+		// 对CrudGeneralOperate中的save方法的完善，支持hbase。
+		if (neo4jBean == null) {
+			String msg = "The Neo4jBean is null.";
+			if (LOG.isWarnEnabled()) {
+				LOG.warn(msg);
+			}
+			throw new NullPointerException("The Neo4jBean is null.");
+		}
+		Class<? extends Neo4jBaseBean> clazz = neo4jBean.getClass();
+		// 判断该图节点是否存在
+		Neo4jBaseBean bean = neo4jBean;
+		if (neo4jBean instanceof Neo4jBaseDictBean) {
+			// 如果是字典类型的节点，则通过代码来判断该bean是否已经存在
+			bean = get(clazz, "code", ((Neo4jBaseDictBean) neo4jBean).getCode());
+		} else if (neo4jBean instanceof BaseBeanImpl) {
+			// 否则根据rowKey来判断
+			bean = get(clazz, "rowKey", ((BaseBeanImpl) neo4jBean).getRowKey());
+		}
+		if (bean == null) {
+			// 该记录不存在，更新Create时间
+			neo4jBean.setCreatedTime(System.currentTimeMillis());
+			neo4jBean.setGraphId(null);
+			neo4jBean.setCreatedUserId(operator);
+		} else {
+			// 该记录已经存在，更新Update时间
+			neo4jBean.setGraphId(bean.getGraphId());
+			neo4jBean.setUpdatedTime(System.currentTimeMillis());
+			neo4jBean.setUpdatedUserId(operator);
+		}
+
+		// 先保存指定的节点
+		Neo4jBaseBean tar = template.save(neo4jBean);
+		// 再保存关系
+		super.saveRelationsOnly(neo4jBean);
+		if (LOG.isDebugEnabled()) {
+			if (neo4jBean instanceof Neo4jBaseDictBean) {
+				LOG.debug(String.format(
+						"Save Neo4jBean(Dict) success, code: %s, graphId: %d.",
+						((Neo4jBaseDictBean) tar).getCode(), tar.getGraphId()));
+			} else {
+				LOG.debug(String.format("Save Neo4jBean success, graphId: %d.",
+						tar.getGraphId()));
+			}
+		}
+
 		if (isSave2Hbase() && neo4jBean instanceof BaseBean) {
 			BaseBean hbaseBean = (BaseBean) neo4jBean;
 			this.saveRow(hbaseBean);
