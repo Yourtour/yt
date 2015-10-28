@@ -117,7 +117,7 @@ public class CrudGeneralOperate implements CrudOperate {
 
 	// 加载关系数据
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private Neo4jBaseBean loadRelations(Neo4jBaseBean bean) throws Exception {
+	protected Neo4jBaseBean loadRelations(Neo4jBaseBean bean) throws Exception {
 		if (LOG.isDebugEnabled()) {
 			LOG.debug(String.format("Load the relations node for %s[%d].", bean
 					.getClass().getSimpleName(), bean.getGraphId()));
