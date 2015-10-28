@@ -6,14 +6,14 @@ import java.util.Vector;
 import com.yt.business.bean.PlaceBean;
 import com.yt.business.common.Constants.Status;
 
-public class DivisionVO {
+public class PlaceVO {
 	private Long graphId = -1l, parentId = null;
 	private String code, shorter, text, memo;
 	private boolean expanded = false, leaf = false;
 	private Status status = Status.ACTIVED;
-	private List<DivisionVO> children;
+	private List<PlaceVO> children;
 
-	public static PlaceBean transform(DivisionVO vo) {
+	public static PlaceBean transform(PlaceVO vo) {
 		if (vo == null) {
 			return null;
 		}
@@ -34,11 +34,11 @@ public class DivisionVO {
 		return bean;
 	}
 
-	public static DivisionVO transform(PlaceBean bean) {
+	public static PlaceVO transform(PlaceBean bean) {
 		if (bean == null) {
 			return null;
 		}
-		DivisionVO vo = new DivisionVO();
+		PlaceVO vo = new PlaceVO();
 		vo.setCode(bean.getCode());
 		vo.setExpanded(false);
 		vo.setId(bean.getGraphId());
@@ -50,9 +50,9 @@ public class DivisionVO {
 		return vo;
 	}
 
-	public DivisionVO() {
+	public PlaceVO() {
 		super();
-		this.children = new Vector<DivisionVO>();
+		this.children = new Vector<PlaceVO>();
 	}
 
 	public Long getGraphId() {
@@ -89,6 +89,10 @@ public class DivisionVO {
 
 	public void setShorter(String shorter) {
 		this.shorter = shorter;
+	}
+
+	public String getName() {
+		return shorter;
 	}
 
 	public String getText() {
@@ -131,7 +135,7 @@ public class DivisionVO {
 		this.leaf = leaf;
 	}
 
-	public List<DivisionVO> getChildren() {
+	public List<PlaceVO> getChildren() {
 		return children;
 	}
 }

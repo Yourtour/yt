@@ -19,7 +19,7 @@ import com.yt.business.repository.PlaceRepository;
 import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
 import com.yt.vo.LaunchVO;
-import com.yt.vo.PlaceVO;
+import com.yt.vo.basedata.PlaceVO;
 
 @Component
 @Path("app")
@@ -36,16 +36,17 @@ public class LaunchRestResource {
 	public ResponseDataVO<LaunchVO> launchApp() {
 		LaunchVO valueObject = new LaunchVO();
 		try {
-			List<PlaceBean> placeBeans = (List<PlaceBean>) placeRepository.getAllRootPlaces();
-			if(placeBeans != null){
+			List<PlaceBean> placeBeans = (List<PlaceBean>) placeRepository
+					.getAllRootPlaces();
+			if (placeBeans != null) {
 				List<PlaceVO> places = new ArrayList<PlaceVO>();
 				for (PlaceBean bean : placeBeans) {
-					places.add(new PlaceVO(bean));
+					places.add(PlaceVO.transform(bean));
 				}
-				
+
 				valueObject.setPlaces(places);
 			}
-			
+
 			return new ResponseDataVO<LaunchVO>(valueObject);
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {

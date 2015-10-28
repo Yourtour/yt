@@ -19,7 +19,7 @@ import com.yt.business.bean.PlaceBean;
 import com.yt.business.repository.PlaceRepository;
 import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
-import com.yt.vo.PlaceVO;
+import com.yt.vo.basedata.PlaceVO;
 
 @Component
 @Path("place")
@@ -33,19 +33,22 @@ public class PlaceRestResource {
 
 	/**
 	 * 根据目的地分类进行查询
+	 * 
 	 * @param category
 	 * @return
 	 */
 	@GET
 	@Path("/{parentId}/query")
-	public ResponseDataVO<List<PlaceVO>> getPlaces(@PathParam("parentId")  String parentId) {
+	public ResponseDataVO<List<PlaceVO>> getPlaces(
+			@PathParam("parentId") String parentId) {
 		List<PlaceVO> list = new ArrayList<PlaceVO>();
 		try {
-			List<PlaceBean> places = placeRepository.getPlaces(Long.valueOf(parentId));
+			List<PlaceBean> places = placeRepository.getPlaces(Long
+					.valueOf(parentId));
 			for (PlaceBean place : places) {
-				list.add(new PlaceVO(place));
+				list.add(PlaceVO.transform(place));
 			}
-			
+
 			return new ResponseDataVO<List<PlaceVO>>(list);
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {

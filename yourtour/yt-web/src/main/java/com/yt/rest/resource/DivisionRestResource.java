@@ -25,7 +25,7 @@ import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.utils.WebUtils;
-import com.yt.vo.basedata.DivisionVO;
+import com.yt.vo.basedata.PlaceVO;
 
 @Component
 @Path("divisions")
@@ -39,9 +39,9 @@ public class DivisionRestResource {
 
 	@Path("load/{id}.json")
 	@GET
-	public ResponseDataVO<List<DivisionVO>> getDivision(
+	public ResponseDataVO<List<PlaceVO>> getDivision(
 			@PathParam("id") String id) {
-		List<DivisionVO> children = new Vector<DivisionVO>();
+		List<PlaceVO> children = new Vector<PlaceVO>();
 		try {
 			long graphId = Neo4jUtils.getGraphIDFromString(id);
 			if (graphId < 0) {
@@ -49,7 +49,7 @@ public class DivisionRestResource {
 			}
 			List<PlaceBean> beans = placeRepository.getAllSubPlaces(graphId);
 			for (PlaceBean bean : beans) {
-				DivisionVO vo = DivisionVO.transform(bean);
+				PlaceVO vo = PlaceVO.transform(bean);
 				if (vo == null) {
 					continue;
 				}
@@ -60,25 +60,25 @@ public class DivisionRestResource {
 						"Found all the sub places, id: %d, total: %d.",
 						graphId, children.size()));
 			}
-			return new ResponseDataVO<List<DivisionVO>>(children);
+			return new ResponseDataVO<List<PlaceVO>>(children);
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
 				LOG.error(String.format(
 						"Query all the sub places fail, id: %s.", id), ex);
 			}
-			return new ResponseDataVO<List<DivisionVO>>(
+			return new ResponseDataVO<List<PlaceVO>>(
 					StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
 	}
 
 	@Path("load/root.json")
 	@GET
-	public ResponseDataVO<List<DivisionVO>> getAllDivisions() {
-		List<DivisionVO> roots = new Vector<DivisionVO>();
+	public ResponseDataVO<List<PlaceVO>> getAllDivisions() {
+		List<PlaceVO> roots = new Vector<PlaceVO>();
 		try {
 			List<PlaceBean> beans = placeRepository.getAllRootPlaces();
 			for (PlaceBean bean : beans) {
-				DivisionVO vo = DivisionVO.transform(bean);
+				PlaceVO vo = PlaceVO.transform(bean);
 				if (vo == null) {
 					continue;
 				}
@@ -88,31 +88,31 @@ public class DivisionRestResource {
 				LOG.debug(String.format(
 						"Found all the root places, total: %d.", roots.size()));
 			}
-			return new ResponseDataVO<List<DivisionVO>>(roots);
+			return new ResponseDataVO<List<PlaceVO>>(roots);
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
 				LOG.error("Query all the root places fail.", ex);
 			}
-			return new ResponseDataVO<List<DivisionVO>>(
+			return new ResponseDataVO<List<PlaceVO>>(
 					StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
 	}
 
 	@POST
 	@Path("save.json")
-	public ResponseVO saveByAdd(DivisionVO vo,
+	public ResponseVO saveByAdd(PlaceVO vo,
 			@Context HttpServletRequest request) {
 		return save(null, vo, WebUtils.getCurrentLoginUser(request));
 	}
 
 	@POST
 	@Path("save/{id}.json")
-	public ResponseVO saveByUpdate(@PathParam("id") String id, DivisionVO vo,
+	public ResponseVO saveByUpdate(@PathParam("id") String id, PlaceVO vo,
 			@Context HttpServletRequest request) {
 		return save(id, vo, WebUtils.getCurrentLoginUser(request));
 	}
 
-	private ResponseVO save(String id, DivisionVO vo, String operator) {
+	private ResponseVO save(String id, PlaceVO vo, String operator) {
 		if (vo == null) {
 			if (LOG.isWarnEnabled()) {
 				LOG.warn("The DivisionVO is null.");
@@ -120,7 +120,7 @@ public class DivisionRestResource {
 			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
 		}
 		try {
-			PlaceBean bean = DivisionVO.transform(vo);
+			PlaceBean bean = PlaceVO.transform(vo);
 			placeRepository.save(bean, operator);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format("Save PlaceBean['%s'] success.",
