@@ -380,15 +380,14 @@ public class CrudGeneralOperate implements CrudOperate {
 		}
 		Class<? extends Neo4jBaseBean> clazz = neo4jBean.getClass();
 		// 判断该图节点是否存在
-		Neo4jBaseBean bean = neo4jBean;
-		if (neo4jBean instanceof Neo4jBaseDictBean) {
+		Neo4jBaseBean bean = null;
+		if (neo4jBean.getGraphId() != null) {
+			// 以ID是否存在为最优先
+			bean = get(clazz, neo4jBean.getGraphId());
+		}
+		if (bean == null && neo4jBean instanceof Neo4jBaseDictBean) {
 			// 如果是字典类型的节点，则通过代码来判断该bean是否已经存在
 			bean = get(clazz, "code", ((Neo4jBaseDictBean) neo4jBean).getCode());
-		} else if (neo4jBean instanceof Neo4jBaseBean) {
-			// 否则根据graphId来判断
-			if (neo4jBean.getGraphId() != null) {
-				bean = get(clazz, neo4jBean.getGraphId());
-			}
 		}
 		if (bean == null) {
 			// 该记录不存在，更新Create时间

@@ -84,11 +84,16 @@ public class CrudAllInOneOperateImpl extends CrudGeneralOperate implements
 		}
 		Class<? extends Neo4jBaseBean> clazz = neo4jBean.getClass();
 		// 判断该图节点是否存在
-		Neo4jBaseBean bean = neo4jBean;
-		if (neo4jBean instanceof Neo4jBaseDictBean) {
+		Neo4jBaseBean bean = null;
+		if (neo4jBean.getGraphId() != null) {
+			// 以ID为最优先判断
+			bean = get(clazz, neo4jBean.getGraphId());
+		}
+		if (bean == null && neo4jBean instanceof Neo4jBaseDictBean) {
 			// 如果是字典类型的节点，则通过代码来判断该bean是否已经存在
 			bean = get(clazz, "code", ((Neo4jBaseDictBean) neo4jBean).getCode());
-		} else if (neo4jBean instanceof BaseBeanImpl) {
+		}
+		if (bean == null && neo4jBean instanceof BaseBeanImpl) {
 			// 否则根据rowKey来判断
 			bean = get(clazz, "rowKey", ((BaseBeanImpl) neo4jBean).getRowKey());
 		}
