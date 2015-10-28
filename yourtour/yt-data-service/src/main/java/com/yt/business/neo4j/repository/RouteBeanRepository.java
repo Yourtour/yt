@@ -6,9 +6,9 @@ import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.neo4j.repository.GraphRepository;
 
 import com.yt.business.bean.LineBean;
-import com.yt.business.bean.RouteBean;
+import com.yt.business.bean.RouteMainBean;
 
-public interface RouteBeanRepository extends GraphRepository<RouteBean> {
+public interface RouteBeanRepository extends GraphRepository<RouteMainBean> {
 	/**
 	 * 根据指定的线路目的地和景点名称，查询符合条件的线路。
 	 * 

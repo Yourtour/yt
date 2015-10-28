@@ -30,6 +30,10 @@ public interface Constants {
 	 * 在
 	 */
 	public static final String RELATION_TYPE_AT = "AT";
+	/**
+	 * 从
+	 */
+	public static final String RELATION_TYPE_FROM = "FROM";
 
 	// 资源枚举
 	public static enum GenderType {
@@ -183,11 +187,11 @@ public interface Constants {
 			this.name = name;
 		}
 	}
-	
+
 	// 结伴枚举
 	public static enum RouteSectionType {
-		ROUTE_PREPARATION("ROUTE_PREPARATION", "准备"), 
-		ROUTE_SCHEDULE("ROUTE_SCHEDULE", "日程");
+		ROUTE_PREPARATION("ROUTE_PREPARATION", "准备"), ROUTE_SCHEDULE(
+				"ROUTE_SCHEDULE", "日程");
 
 		public String code;
 		public String name;

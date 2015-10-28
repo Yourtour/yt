@@ -4,7 +4,7 @@ import org.springframework.data.neo4j.annotation.QueryResult;
 import org.springframework.data.neo4j.annotation.ResultColumn;
 
 import com.yt.business.bean.AlongBean;
-import com.yt.business.bean.RouteBean;
+import com.yt.business.bean.RouteMainBean;
 
 @QueryResult
 public class AlongTuple {
@@ -12,7 +12,7 @@ public class AlongTuple {
 	private AlongBean along;
 
 	@ResultColumn("route")
-	private RouteBean route;
+	private RouteMainBean route;
 	
 	public AlongTuple(){
 	}
@@ -25,11 +25,11 @@ public class AlongTuple {
 		this.along = along;
 	}
 
-	public RouteBean getRoute() {
+	public RouteMainBean getRoute() {
 		return route;
 	}
 
-	public void setRoute(RouteBean route) {
+	public void setRoute(RouteMainBean route) {
 		this.route = route;
 	}
 }

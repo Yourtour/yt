@@ -53,6 +53,7 @@ public class PlaceRepositoryImpl extends CrudAllInOneOperateImpl implements
 	 */
 	@Override
 	public void save(PlaceBean place, String operator) throws Exception {
+		// 由于目的地是一棵树，保存操作可能涉及到其他节点的rowKey的变更，因此在原有方法是进行扩展。
 		boolean codeChanged = false;
 		PlaceBean orient = null;
 		if (place.getGraphId() != null) {

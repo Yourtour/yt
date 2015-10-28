@@ -15,7 +15,7 @@ import com.yt.hbase.annotation.HbaseTable;
  * 该实体定义了系统中的行程的结伴信息。结伴信息和行程以及结伴发布者之间的关系通过图状数据库Neo4j存储
  * 
  * @author Tony.Zhang
- *
+ * 
  */
 @HbaseTable(name = "T_ROUTE_ALONG_INFO")
 @NodeEntity
@@ -24,31 +24,37 @@ public class AlongBean extends BaseBeanImpl {
 
 	@HbaseColumn(name = "name")
 	private String name;
-	
+
 	@HbaseColumn(name = "img")
 	private String imageUrl; // 图片
 
 	@HbaseColumn(name = "itnt")
 	private AlongIntentionType intention; // 结伴目的
-	
-	@HbaseColumn(name = "dline") //截止期限
-	private long deadLine;
-	
-	@HbaseColumn(name = "gdesc") //团队描述
-	private String	groupDesc;
-	
-	@HbaseColumn(name = "rdesc") //要求描述
-	private String	requestDesc;
-	
-	@HbaseColumn(name = "adesc") //结伴描述
-	private String	alongDesc;
 
-	@HbaseColumn(name = "lnla") //经纬度
+	@HbaseColumn(name = "dline")
+	// 截止期限
+	private long deadLine;
+
+	@HbaseColumn(name = "gdesc")
+	// 团队描述
+	private String groupDesc;
+
+	@HbaseColumn(name = "rdesc")
+	// 要求描述
+	private String requestDesc;
+
+	@HbaseColumn(name = "adesc")
+	// 结伴描述
+	private String alongDesc;
+
+	@HbaseColumn(name = "lnla")
+	// 经纬度
 	private String longLat;
-	
-	@HbaseColumn(name = "addr") //位置描述
+
+	@HbaseColumn(name = "addr")
+	// 位置描述
 	private String address;
-	
+
 	@HbaseColumn(name = "rnum")
 	private int readNum; // 阅读数
 
@@ -57,12 +63,12 @@ public class AlongBean extends BaseBeanImpl {
 
 	@HbaseColumn(name = "stat")
 	private Status status;
-	
-	private transient RouteBean route;  //结伴信息关联的行程
-	private transient UserBean  publisher;  //结伴信息发布者信息
-	private transient List<CommentTuple> comments; //评论信息
-	private transient List<UserBean> following; //关注人员
-	
+
+	private transient RouteMainBean route; // 结伴信息关联的行程
+	private transient UserBean publisher; // 结伴信息发布者信息
+	private transient List<CommentTuple> comments; // 评论信息
+	private transient List<UserBean> following; // 关注人员
+
 	public AlongBean() {
 		super();
 	}
@@ -163,11 +169,11 @@ public class AlongBean extends BaseBeanImpl {
 		this.status = status;
 	}
 
-	public RouteBean getRoute() {
+	public RouteMainBean getRoute() {
 		return route;
 	}
 
-	public void setRoute(RouteBean route) {
+	public void setRoute(RouteMainBean route) {
 		this.route = route;
 	}
 
