@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.yt.business.CrudAllInOneOperateImpl;
 import com.yt.business.bean.RouteMainBean;
+import com.yt.business.bean.RouteScheduleBean;
 import com.yt.business.neo4j.repository.RouteBeanRepository;
 
 @Component
@@ -40,6 +41,31 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 					list.size(), userId));
 		}
 		return list;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.yt.business.repository.RouteRepository#saveRouteMainAndSchedules(
+	 * com.yt.business.bean.RouteMainBean, java.lang.String)
+	 */
+	@Override
+	public void saveRouteMainAndSchedules(RouteMainBean route, String operator)
+			throws Exception {
+		// 如果存在日程，则先保存日程信息
+		for (RouteScheduleBean scheduleBean : route.getSchedules()) {
+			super.save(scheduleBean, operator);
+			if (LOG.isDebugEnabled()) {
+				LOG.debug(String.format("Save RouteScheduleBean[%d] success.",
+						scheduleBean.getGraphId()));
+			}
+		}
+		super.save(route, operator);
+		if (LOG.isDebugEnabled()) {
+			LOG.debug(String.format("Save RouteMainBean[%d] success.",
+					route.getGraphId()));
+		}
 	}
 
 }

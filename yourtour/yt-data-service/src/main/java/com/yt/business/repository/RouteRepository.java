@@ -16,4 +16,17 @@ public interface RouteRepository extends CrudAllInOneOperate {
 	 *             获取数据过程中发生的异常
 	 */
 	public List<RouteMainBean> getRoutesByOwner(Long userId) throws Exception;
+
+	/**
+	 * 同时保存传输进来的行程基本信息和其中包含的日程信息
+	 * 
+	 * @param route
+	 *            行程对象，其中包括了要保存的日程信息
+	 * @param operator
+	 *            保存操作者ID
+	 * @throws Exception
+	 *             保存过程中发生的异常
+	 */
+	public void saveRouteMainAndSchedules(RouteMainBean route, String operator)
+			throws Exception;
 }
