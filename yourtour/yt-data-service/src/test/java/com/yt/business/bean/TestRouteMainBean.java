@@ -1,6 +1,11 @@
 package com.yt.business.bean;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.junit.After;
 import org.junit.Before;
@@ -73,6 +78,7 @@ public class TestRouteMainBean {
 			assertFalse(rm2.getUpdatedTime() > 0);
 			assertEquals(rm2.getUpdatedUserId(), rm.getUpdatedUserId());
 			assertNull(rm2.getFromPlace());
+			assertNull(rm2.getOwner());
 			assertNotNull(rm2.getSchedules());
 			assertEquals(rm2.getSchedules().size(), 0);
 			assertNotNull(rm2.getProvisions());
@@ -93,6 +99,7 @@ public class TestRouteMainBean {
 			assertEquals(rm2_11.getGraphId(), rm.getGraphId());
 			assertEquals(rm2_11.getName(), rm.getName());
 			assertNull(rm2_11.getFromPlace());
+			assertNull(rm2_11.getOwner());
 			assertNotNull(rm2_11.getSchedules());
 			assertEquals(rm2_11.getSchedules().size(), 0);
 			assertNotNull(rm2_11.getProvisions());
@@ -115,6 +122,7 @@ public class TestRouteMainBean {
 			assertFalse(rm2_2.getGraphId().longValue() == rm.getGraphId()
 					.longValue());
 			assertNull(rm2_22.getFromPlace());
+			assertNull(rm2_22.getOwner());
 			assertNotNull(rm2_22.getSchedules());
 			assertEquals(rm2_22.getSchedules().size(), 0);
 			assertNotNull(rm2_22.getProvisions());
@@ -140,6 +148,7 @@ public class TestRouteMainBean {
 			assertTrue(rm3.getUpdatedTime() > 0);
 			assertEquals(rm2.getUpdatedUserId(), rm3.getUpdatedUserId());
 			assertNull(rm3.getFromPlace());
+			assertNull(rm3.getOwner());
 			assertNotNull(rm3.getSchedules());
 			assertEquals(rm3.getSchedules().size(), 0);
 			assertNotNull(rm3.getProvisions());
@@ -151,7 +160,337 @@ public class TestRouteMainBean {
 			fail(e.getMessage());
 		}
 	}
-	
-	// TODO 相关的关系单元测试
+
+	@Test
+	public void testRelationFromPlace() {
+		CrudOperate repo = context.getBean("crudAllInOneOperate",
+				CrudOperate.class);
+		assertNotNull(repo);
+
+		try {
+			repo.delete(PlaceBean.class);
+			assertEquals(repo.count(PlaceBean.class), 0);
+			repo.delete(RouteMainBean.class);
+			assertEquals(repo.count(RouteMainBean.class), 0);
+
+			PlaceBean p1 = new PlaceBean();
+			p1.setCode("place 1");
+			repo.save(p1, "john");
+			PlaceBean p2 = new PlaceBean();
+			p2.setCode("place 2");
+			repo.save(p2, "john");
+			assertEquals(repo.count(PlaceBean.class), 2);
+
+			RouteMainBean rm1 = new RouteMainBean();
+			rm1.setName("route 1");
+			repo.save(rm1, "john");
+			assertEquals(repo.count(RouteMainBean.class), 1);
+			RouteMainBean rm1_1 = (RouteMainBean) repo.get(RouteMainBean.class,
+					rm1.getGraphId());
+			assertNotNull(rm1_1);
+			assertNull(rm1_1.getFromPlace());
+			rm1_1.setFromPlace(p1);
+			repo.saveRelationsOnly(rm1_1);
+			assertEquals(repo.count(RouteMainBean.class), 1);
+			RouteMainBean rm1_2 = (RouteMainBean) repo.get(RouteMainBean.class,
+					rm1.getGraphId());
+			assertNotNull(rm1_2);
+			assertNotNull(rm1_2.getFromPlace());
+			assertEquals(rm1_2.getFromPlace().getGraphId(), p1.getGraphId());
+
+			RouteMainBean rm2 = new RouteMainBean();
+			rm2.setName("route 2");
+			rm2.setFromPlace(p2);
+			repo.save(rm2, "john");
+			assertEquals(repo.count(RouteMainBean.class), 2);
+			RouteMainBean rm2_1 = (RouteMainBean) repo.get(RouteMainBean.class,
+					rm2.getGraphId());
+			assertNotNull(rm2_1);
+			assertNotNull(rm2_1.getFromPlace());
+			assertEquals(rm2_1.getFromPlace().getGraphId(), p2.getGraphId());
+
+			rm1_2.setFromPlace(p2);
+			repo.saveRelationsOnly(rm1_2);
+			assertEquals(repo.count(RouteMainBean.class), 2);
+			assertEquals(repo.count(PlaceBean.class), 2);
+			RouteMainBean rm1_3 = (RouteMainBean) repo.get(RouteMainBean.class,
+					rm1.getGraphId());
+			assertNotNull(rm1_3);
+			assertNotNull(rm1_3.getFromPlace());
+			assertEquals(rm1_3.getFromPlace().getGraphId(), p2.getGraphId());
+
+			repo.delete(PlaceBean.class);
+			assertEquals(repo.count(PlaceBean.class), 0);
+			repo.delete(RouteMainBean.class);
+			assertEquals(repo.count(RouteMainBean.class), 0);
+		} catch (Exception e) {
+			fail(e.getMessage());
+		}
+	}
+
+	@Test
+	public void testRelationOwner() {
+		CrudOperate repo = context.getBean("crudAllInOneOperate",
+				CrudOperate.class);
+		assertNotNull(repo);
+
+		try {
+			repo.delete(UserBean.class);
+			assertEquals(repo.count(UserBean.class), 0);
+			repo.delete(RouteMainBean.class);
+			assertEquals(repo.count(RouteMainBean.class), 0);
+
+			UserBean u1 = new UserBean();
+			u1.setCode("user 1");
+			repo.save(u1, "john");
+			UserBean u2 = new UserBean();
+			u2.setCode("user 2");
+			repo.save(u2, "john");
+			assertEquals(repo.count(UserBean.class), 2);
+
+			RouteMainBean rm1 = new RouteMainBean();
+			rm1.setName("route 1");
+			repo.save(rm1, "john");
+			assertEquals(repo.count(RouteMainBean.class), 1);
+			RouteMainBean rm1_1 = (RouteMainBean) repo.get(RouteMainBean.class,
+					rm1.getGraphId());
+			assertNotNull(rm1_1);
+			assertNull(rm1_1.getOwner());
+			rm1_1.setOwner(u1);
+			repo.saveRelationsOnly(rm1_1);
+			assertEquals(repo.count(RouteMainBean.class), 1);
+			RouteMainBean rm1_2 = (RouteMainBean) repo.get(RouteMainBean.class,
+					rm1.getGraphId());
+			assertNotNull(rm1_2);
+			assertNotNull(rm1_2.getOwner());
+			assertEquals(rm1_2.getOwner().getGraphId(), u1.getGraphId());
+
+			RouteMainBean rm2 = new RouteMainBean();
+			rm2.setName("route 2");
+			rm2.setOwner(u2);
+			repo.save(rm2, "john");
+			assertEquals(repo.count(RouteMainBean.class), 2);
+			RouteMainBean rm2_1 = (RouteMainBean) repo.get(RouteMainBean.class,
+					rm2.getGraphId());
+			assertNotNull(rm2_1);
+			assertNotNull(rm2_1.getOwner());
+			assertEquals(rm2_1.getOwner().getGraphId(), u2.getGraphId());
+
+			rm1_2.setOwner(u2);
+			repo.saveRelationsOnly(rm1_2);
+			assertEquals(repo.count(RouteMainBean.class), 2);
+			assertEquals(repo.count(UserBean.class), 2);
+			RouteMainBean rm1_3 = (RouteMainBean) repo.get(RouteMainBean.class,
+					rm1.getGraphId());
+			assertNotNull(rm1_3);
+			assertNotNull(rm1_3.getOwner());
+			assertEquals(rm1_3.getOwner().getGraphId(), u2.getGraphId());
+
+			repo.delete(UserBean.class);
+			assertEquals(repo.count(UserBean.class), 0);
+			repo.delete(RouteMainBean.class);
+			assertEquals(repo.count(RouteMainBean.class), 0);
+		} catch (Exception e) {
+			fail(e.getMessage());
+		}
+	}
+
+	@Test
+	public void testRelationSchedules() {
+		CrudOperate repo = context.getBean("crudAllInOneOperate",
+				CrudOperate.class);
+		assertNotNull(repo);
+		try {
+			repo.delete(RouteScheduleBean.class);
+			assertEquals(repo.count(RouteScheduleBean.class), 0);
+			repo.delete(RouteMainBean.class);
+			assertEquals(repo.count(RouteMainBean.class), 0);
+
+			RouteScheduleBean rs1 = new RouteScheduleBean();
+			rs1.setDate(1000);
+			rs1.setDescription("route schedule 1");
+			repo.save(rs1, "john");
+			RouteScheduleBean rs2 = new RouteScheduleBean();
+			rs2.setDate(1001);
+			rs2.setDescription("route schedule 2");
+			repo.save(rs2, "john");
+			RouteScheduleBean rs3 = new RouteScheduleBean();
+			rs3.setDate(1002);
+			rs3.setDescription("route schedule 3");
+			repo.save(rs3, "john");
+			RouteScheduleBean rs4 = new RouteScheduleBean();
+			rs4.setDate(1003);
+			rs4.setDescription("route schedule 4");
+			repo.save(rs4, "john");
+			assertEquals(repo.count(RouteScheduleBean.class), 4);
+
+			RouteMainBean rm1 = new RouteMainBean();
+			rm1.setName("route 1");
+			rm1.getSchedules().add(rs1);
+			rm1.getSchedules().add(rs2);
+			repo.save(rm1, "john");
+			assertEquals(repo.count(RouteMainBean.class), 1);
+			RouteMainBean rm1_1 = (RouteMainBean) repo.get(RouteMainBean.class,
+					rm1.getGraphId());
+			assertNotNull(rm1_1);
+			assertNotNull(rm1_1.getSchedules());
+			assertEquals(rm1_1.getSchedules().size(), 2);
+			assertEquals(rm1_1.getSchedules().get(0).getGraphId(),
+					rs1.getGraphId());
+			assertEquals(rm1_1.getSchedules().get(1).getGraphId(),
+					rs2.getGraphId());
+			RouteScheduleBean rs1_1 = (RouteScheduleBean) repo.get(
+					RouteScheduleBean.class, rs1.getGraphId());
+			assertNotNull(rs1_1);
+			assertNotNull(rs1_1.getRouteMain());
+			assertEquals(rs1_1.getRouteMain().getGraphId(), rm1_1.getGraphId());
+			RouteScheduleBean rs2_1 = (RouteScheduleBean) repo.get(
+					RouteScheduleBean.class, rs2.getGraphId());
+			assertNotNull(rs2_1);
+			assertNotNull(rs2_1.getRouteMain());
+			assertEquals(rs2_1.getRouteMain().getGraphId(), rm1_1.getGraphId());
+
+			rm1_1.getSchedules().remove(1);
+			rm1_1.getSchedules().add(rs3);
+			rm1_1.getSchedules().add(rs4);
+			repo.saveRelationsOnly(rm1_1);
+			assertEquals(repo.count(RouteMainBean.class), 1);
+			assertEquals(repo.count(RouteScheduleBean.class), 4);
+			RouteMainBean rm1_2 = (RouteMainBean) repo.get(RouteMainBean.class,
+					rm1_1.getGraphId());
+			assertNotNull(rm1_2);
+			assertNotNull(rm1_2.getSchedules());
+			assertEquals(rm1_2.getSchedules().size(), 3);
+			assertEquals(rm1_2.getSchedules().get(0).getGraphId(),
+					rs1.getGraphId());
+			assertEquals(rm1_2.getSchedules().get(1).getGraphId(),
+					rs3.getGraphId());
+			assertEquals(rm1_2.getSchedules().get(2).getGraphId(),
+					rs4.getGraphId());
+			RouteScheduleBean rs1_2 = (RouteScheduleBean) repo.get(
+					RouteScheduleBean.class, rs1.getGraphId());
+			assertNotNull(rs1_2);
+			assertNotNull(rs1_2.getRouteMain());
+			assertEquals(rs1_2.getRouteMain().getGraphId(), rm1_1.getGraphId());
+			RouteScheduleBean rs2_2 = (RouteScheduleBean) repo.get(
+					RouteScheduleBean.class, rs2.getGraphId());
+			assertNotNull(rs2_2);
+			assertNull(rs2_2.getRouteMain());
+			RouteScheduleBean rs3_2 = (RouteScheduleBean) repo.get(
+					RouteScheduleBean.class, rs3.getGraphId());
+			assertNotNull(rs3_2);
+			assertNotNull(rs3_2.getRouteMain());
+			assertEquals(rs3_2.getRouteMain().getGraphId(), rm1_1.getGraphId());
+			RouteScheduleBean rs4_2 = (RouteScheduleBean) repo.get(
+					RouteScheduleBean.class, rs4.getGraphId());
+			assertNotNull(rs4_2);
+			assertNotNull(rs4_2.getRouteMain());
+			assertEquals(rs4_2.getRouteMain().getGraphId(), rm1_1.getGraphId());
+
+			repo.delete(RouteScheduleBean.class);
+			assertEquals(repo.count(RouteScheduleBean.class), 0);
+			repo.delete(RouteMainBean.class);
+			assertEquals(repo.count(RouteMainBean.class), 0);
+		} catch (Exception e) {
+			fail(e.getMessage());
+		}
+	}
+
+	@Test
+	public void testRelationProvisions() {
+		CrudOperate repo = context.getBean("crudAllInOneOperate",
+				CrudOperate.class);
+		assertNotNull(repo);
+		try {
+			repo.delete(RouteProvisionBean.class);
+			assertEquals(repo.count(RouteProvisionBean.class), 0);
+			repo.delete(RouteMainBean.class);
+			assertEquals(repo.count(RouteMainBean.class), 0);
+
+			RouteProvisionBean rp1 = new RouteProvisionBean();
+			rp1.setName("provision 1");
+			repo.save(rp1, "john");
+			RouteProvisionBean rp2 = new RouteProvisionBean();
+			rp2.setName("provision 2");
+			repo.save(rp2, "john");
+			RouteProvisionBean rp3 = new RouteProvisionBean();
+			rp3.setName("provision 3");
+			repo.save(rp3, "john");
+			RouteProvisionBean rp4 = new RouteProvisionBean();
+			rp4.setName("provision 4");
+			repo.save(rp4, "john");
+			assertEquals(repo.count(RouteProvisionBean.class), 4);
+
+			RouteMainBean rm1 = new RouteMainBean();
+			rm1.setName("route 1");
+			rm1.getProvisions().add(rp1);
+			rm1.getProvisions().add(rp2);
+			repo.save(rm1, "john");
+			assertEquals(repo.count(RouteMainBean.class), 1);
+			RouteMainBean rm1_1 = (RouteMainBean) repo.get(RouteMainBean.class,
+					rm1.getGraphId());
+			assertNotNull(rm1_1);
+			assertNotNull(rm1_1.getProvisions());
+			assertEquals(rm1_1.getProvisions().size(), 2);
+			assertEquals(rm1_1.getProvisions().get(0).getGraphId(),
+					rp1.getGraphId());
+			assertEquals(rm1_1.getProvisions().get(1).getGraphId(),
+					rp2.getGraphId());
+			RouteScheduleBean rp1_1 = (RouteScheduleBean) repo.get(
+					RouteScheduleBean.class, rp1.getGraphId());
+			assertNotNull(rp1_1);
+			assertNotNull(rp1_1.getRouteMain());
+			assertEquals(rp1_1.getRouteMain().getGraphId(), rm1_1.getGraphId());
+			RouteProvisionBean rp2_1 = (RouteProvisionBean) repo.get(
+					RouteProvisionBean.class, rp2.getGraphId());
+			assertNotNull(rp2_1);
+			assertNotNull(rp2_1.getRouteMain());
+			assertEquals(rp2_1.getRouteMain().getGraphId(), rm1_1.getGraphId());
+
+			rm1_1.getProvisions().remove(1);
+			rm1_1.getProvisions().add(rp3);
+			rm1_1.getProvisions().add(rp4);
+			repo.saveRelationsOnly(rm1_1);
+			assertEquals(repo.count(RouteMainBean.class), 1);
+			assertEquals(repo.count(RouteProvisionBean.class), 4);
+			RouteMainBean rm1_2 = (RouteMainBean) repo.get(RouteMainBean.class,
+					rm1_1.getGraphId());
+			assertNotNull(rm1_2);
+			assertNotNull(rm1_2.getProvisions());
+			assertEquals(rm1_2.getProvisions().size(), 3);
+			assertEquals(rm1_2.getProvisions().get(0).getGraphId(),
+					rp1.getGraphId());
+			assertEquals(rm1_2.getProvisions().get(1).getGraphId(),
+					rp3.getGraphId());
+			assertEquals(rm1_2.getProvisions().get(2).getGraphId(),
+					rp4.getGraphId());
+			RouteProvisionBean rp1_2 = (RouteProvisionBean) repo.get(
+					RouteProvisionBean.class, rp1.getGraphId());
+			assertNotNull(rp1_2);
+			assertNotNull(rp1_2.getRouteMain());
+			assertEquals(rp1_2.getRouteMain().getGraphId(), rm1_1.getGraphId());
+			RouteProvisionBean rp2_2 = (RouteProvisionBean) repo.get(
+					RouteProvisionBean.class, rp2.getGraphId());
+			assertNotNull(rp2_2);
+			assertNull(rp2_2.getRouteMain());
+			RouteProvisionBean rp3_2 = (RouteProvisionBean) repo.get(
+					RouteProvisionBean.class, rp3.getGraphId());
+			assertNotNull(rp3_2);
+			assertNotNull(rp3_2.getRouteMain());
+			assertEquals(rp3_2.getRouteMain().getGraphId(), rm1_1.getGraphId());
+			RouteProvisionBean rp4_2 = (RouteProvisionBean) repo.get(
+					RouteProvisionBean.class, rp4.getGraphId());
+			assertNotNull(rp4_2);
+			assertNotNull(rp4_2.getRouteMain());
+			assertEquals(rp4_2.getRouteMain().getGraphId(), rm1_1.getGraphId());
+
+			repo.delete(RouteProvisionBean.class);
+			assertEquals(repo.count(RouteProvisionBean.class), 0);
+			repo.delete(RouteMainBean.class);
+			assertEquals(repo.count(RouteMainBean.class), 0);
+		} catch (Exception e) {
+			fail(e.getMessage());
+		}
+	}
 
 }
