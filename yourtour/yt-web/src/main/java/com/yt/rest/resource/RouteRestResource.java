@@ -18,6 +18,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.yt.business.bean.RouteActivityBean;
 import com.yt.business.bean.RouteMainBean;
 import com.yt.business.bean.RouteProvisionBean;
 import com.yt.business.bean.RouteScheduleBean;
@@ -28,6 +29,7 @@ import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.utils.WebUtils;
+import com.yt.vo.route.RouteActivityVO;
 import com.yt.vo.route.RouteProvisionVO;
 import com.yt.vo.route.RouteScheduleVO;
 import com.yt.vo.route.RouteVO;
@@ -137,7 +139,56 @@ public class RouteRestResource {
 	}
 
 	/**
-	 * 保存行程值对象到图数据库
+	 * 保存行程基本信息和日程信息值对象到图数据库
+	 * 
+	 * @param vo
+	 *            行程值对象，其中包括了行程日程信息
+	 * @param request
+	 *            本次的HttpServletRequest对象
+	 * @return 统一的ResponseVO对象
+	 */
+	@POST
+	@Path("main_schedule/save")
+	public ResponseVO saveMainAndSchedules(RouteVO vo,
+			@Context HttpServletRequest request) {
+		if (vo == null) {
+			if (LOG.isWarnEnabled()) {
+				LOG.warn("The RouteVO is null.");
+			}
+			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
+		}
+		try {
+			RouteMainBean bean = RouteVO.transform(vo);
+			// 详细转换日程对象，并填充到基本对象中
+			bean.getSchedules().clear();
+			for (RouteScheduleVO scheduleVO : vo.getSchedules()) {
+				RouteScheduleBean scheduleBean = RouteScheduleVO
+						.transform(scheduleVO);
+				if (scheduleBean == null) {
+					continue;
+				}
+				bean.getSchedules().add(scheduleBean);
+			}
+			routeRepository.saveRouteMainAndSchedules(bean,
+					WebUtils.getCurrentLoginUser(request));
+			if (LOG.isDebugEnabled()) {
+				LOG.debug(String
+						.format("Save RouteMainBean['%s'] and some RouteSchedules(%d items) success.",
+								vo.getRowKey(), bean.getSchedules().size()));
+			}
+			return new ResponseVO();
+		} catch (Exception ex) {
+			if (LOG.isErrorEnabled()) {
+				LOG.error(
+						String.format("Save the RouteMainBean[id='%s'] fail.",
+								vo.getRowKey()), ex);
+			}
+			return new ResponseVO(StaticErrorEnum.DB_OPERATE_FAIL);
+		}
+	}
+
+	/**
+	 * 保存行程基本值对象到图数据库
 	 * 
 	 * @param vo
 	 *            行程值对象
@@ -173,16 +224,16 @@ public class RouteRestResource {
 	}
 
 	/**
-	 * 保存行程安排值对象到图数据库
+	 * 保存行程日程值对象到图数据库
 	 * 
 	 * @param vo
-	 *            行程安排值对象
+	 *            行程日程值对象
 	 * @param request
 	 *            本次的HttpServletRequest对象
 	 * @return 统一的ResponseVO对象
 	 */
 	@POST
-	@Path("arrange/save")
+	@Path("schedule/save")
 	public ResponseVO saveSchedule(RouteScheduleVO vo,
 			@Context HttpServletRequest request) {
 		if (vo == null) {
@@ -203,6 +254,43 @@ public class RouteRestResource {
 			if (LOG.isErrorEnabled()) {
 				LOG.error(String.format(
 						"Save the RouteScheduleBean[id='%s'] fail.",
+						vo.getRowKey()), ex);
+			}
+			return new ResponseVO(StaticErrorEnum.DB_OPERATE_FAIL);
+		}
+	}
+
+	/**
+	 * 保存行程活动值对象到图数据库
+	 * 
+	 * @param vo
+	 *            行程活动值对象
+	 * @param request
+	 *            本次的HttpServletRequest对象
+	 * @return 统一的ResponseVO对象
+	 */
+	@POST
+	@Path("activity/save")
+	public ResponseVO saveActivity(RouteActivityVO vo,
+			@Context HttpServletRequest request) {
+		if (vo == null) {
+			if (LOG.isWarnEnabled()) {
+				LOG.warn("The RouteActivityVO is null.");
+			}
+			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
+		}
+		try {
+			RouteActivityBean bean = RouteActivityVO.transform(vo);
+			routeRepository.save(bean, WebUtils.getCurrentLoginUser(request));
+			if (LOG.isDebugEnabled()) {
+				LOG.debug(String.format(
+						"Save RouteActivityBean['%s'] success.", vo.getRowKey()));
+			}
+			return new ResponseVO();
+		} catch (Exception ex) {
+			if (LOG.isErrorEnabled()) {
+				LOG.error(String.format(
+						"Save the RouteActivityBean[id='%s'] fail.",
 						vo.getRowKey()), ex);
 			}
 			return new ResponseVO(StaticErrorEnum.DB_OPERATE_FAIL);
@@ -287,10 +375,10 @@ public class RouteRestResource {
 	}
 
 	/**
-	 * 根据指定的行程安排ID删除行程安排
+	 * 根据指定的行程日程ID删除行程安排
 	 * 
 	 * @param id
-	 *            行程安排ID，该ID可能是GrphId，也可能是RowKey
+	 *            行程日程ID，该ID可能是GrphId，也可能是RowKey
 	 * @return 统一的ResponseVO对象
 	 */
 	@GET
@@ -319,6 +407,82 @@ public class RouteRestResource {
 			if (LOG.isErrorEnabled()) {
 				LOG.error(String.format(
 						"Fetch RouteScheduleBean[id='%s'] fail.", id), ex);
+			}
+			return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
+	}
+
+	/**
+	 * 根据指定的行程活动ID删除行程安排
+	 * 
+	 * @param id
+	 *            行程活动ID，该ID可能是GrphId，也可能是RowKey
+	 * @return 统一的ResponseVO对象
+	 */
+	@GET
+	@Path("activity/{id}/delete")
+	public ResponseVO deleteActivity(@PathParam("id") String id) {
+		long graphId = Neo4jUtils.getGraphIDFromString(id);
+		try {
+			RouteActivityBean bean = null;
+			if (graphId != -1) {
+				// id是GraphID
+				bean = (RouteActivityBean) routeRepository.get(
+						RouteActivityBean.class, graphId);
+			} else {
+				// id是rowkey
+				bean = (RouteActivityBean) routeRepository.get(
+						RouteActivityBean.class, "rowKey", id);
+			}
+			id = bean.getRowKey();
+			routeRepository.delete(bean);
+			if (LOG.isDebugEnabled()) {
+				LOG.debug(String.format(
+						"Delete RouteActivityBean[id='%s'] success.", id));
+			}
+			return new ResponseVO();
+		} catch (Exception ex) {
+			if (LOG.isErrorEnabled()) {
+				LOG.error(String.format(
+						"Fetch RouteActivityBean[id='%s'] fail.", id), ex);
+			}
+			return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
+	}
+
+	/**
+	 * 根据指定的行程准备ID删除行程安排
+	 * 
+	 * @param id
+	 *            行程准备ID，该ID可能是GrphId，也可能是RowKey
+	 * @return 统一的ResponseVO对象
+	 */
+	@GET
+	@Path("provision/{id}/delete")
+	public ResponseVO deleteProvision(@PathParam("id") String id) {
+		long graphId = Neo4jUtils.getGraphIDFromString(id);
+		try {
+			RouteProvisionBean bean = null;
+			if (graphId != -1) {
+				// id是GraphID
+				bean = (RouteProvisionBean) routeRepository.get(
+						RouteProvisionBean.class, graphId);
+			} else {
+				// id是rowkey
+				bean = (RouteProvisionBean) routeRepository.get(
+						RouteProvisionBean.class, "rowKey", id);
+			}
+			id = bean.getRowKey();
+			routeRepository.delete(bean);
+			if (LOG.isDebugEnabled()) {
+				LOG.debug(String.format(
+						"Delete RouteProvisionBean[id='%s'] success.", id));
+			}
+			return new ResponseVO();
+		} catch (Exception ex) {
+			if (LOG.isErrorEnabled()) {
+				LOG.error(String.format(
+						"Fetch RouteProvisionBean[id='%s'] fail.", id), ex);
 			}
 			return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
