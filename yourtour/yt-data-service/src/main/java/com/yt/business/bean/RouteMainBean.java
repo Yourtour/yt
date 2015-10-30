@@ -55,7 +55,6 @@ public class RouteMainBean extends BaseBeanImpl {
 
 	public void setName(String name) {
 		this.name = name;
-		super.setRowKey(name);
 	}
 
 	public long getStartDate() {

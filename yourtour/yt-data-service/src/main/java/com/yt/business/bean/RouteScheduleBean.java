@@ -59,7 +59,6 @@ public class RouteScheduleBean extends BaseBeanImpl {
 
 	public void setDate(long date) {
 		this.date = date;
-		super.setRowKey(String.valueOf(date));
 	}
 
 	public String getDescription() {

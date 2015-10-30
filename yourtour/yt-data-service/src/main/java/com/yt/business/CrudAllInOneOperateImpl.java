@@ -109,6 +109,19 @@ public class CrudAllInOneOperateImpl extends CrudGeneralOperate implements
 			neo4jBean.setUpdatedUserId(operator);
 		}
 
+		String rowKey = ((BaseBeanImpl) neo4jBean).getRowKey();
+		if (rowKey == null || rowKey.length() <= 0) {
+			// rowKey为空
+			if (bean != null) {
+				// 如果ID不为空，则将rowKey设置为ID
+				rowKey = ((BaseBeanImpl) bean).getRowKey();
+			} else {
+				// 否则设置为hashCode
+				rowKey = String.valueOf(neo4jBean.hashCode());
+			}
+			((BaseBeanImpl) neo4jBean).setRowKey(rowKey);
+		}
+
 		// 先保存指定的节点
 		Neo4jBaseBean tar = template.save(neo4jBean);
 		// 再保存关系

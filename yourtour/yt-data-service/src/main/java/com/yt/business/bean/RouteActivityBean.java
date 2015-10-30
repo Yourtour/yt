@@ -51,7 +51,6 @@ public class RouteActivityBean extends BaseBeanImpl {
 
 	public void setName(String name) {
 		this.name = name;
-		super.setRowKey(name);
 	}
 
 	public String getMemo() {

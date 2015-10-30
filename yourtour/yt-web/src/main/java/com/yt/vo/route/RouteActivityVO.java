@@ -6,6 +6,7 @@ import com.yt.business.bean.RestaurantResourceBean;
 import com.yt.business.bean.RouteActivityBean;
 import com.yt.business.bean.RouteScheduleBean;
 import com.yt.business.bean.SceneResourceBean;
+import com.yt.business.common.Constants.ResType;
 import com.yt.vo.BaseVO;
 import com.yt.vo.resource.HotelResourceVO;
 import com.yt.vo.resource.ResourceVO;
@@ -40,11 +41,11 @@ public class RouteActivityVO extends BaseVO {
 		ResourceBean resourceBean = bean.getResource();
 		if (resourceBean != null) {
 			ResourceVO resourceVO = null;
-			if (resourceBean instanceof SceneResourceBean) {
+			if (resourceBean.getType() == ResType.SCENE) {
 				resourceVO = new SceneResourceVO();
-			} else if (resourceBean instanceof HotelResourceBean) {
+			} else if (resourceBean.getType() == ResType.HOTEL) {
 				resourceVO = new HotelResourceVO();
-			} else if (resourceBean instanceof RestaurantResourceBean) {
+			} else if (resourceBean.getType() == ResType.FOOD) {
 				resourceVO = new RestaurantResourceVO();
 			}
 			if (resourceVO != null) {
@@ -76,11 +77,11 @@ public class RouteActivityVO extends BaseVO {
 		ResourceVO resourceVO = vo.getResource();
 		if (resourceVO != null) {
 			ResourceBean resourceBean = null;
-			if (resourceVO instanceof SceneResourceVO) {
+			if (resourceVO.getType() == ResType.SCENE) {
 				resourceBean = new SceneResourceBean();
-			} else if (resourceVO instanceof HotelResourceVO) {
+			} else if (resourceVO.getType() == ResType.HOTEL) {
 				resourceBean = new HotelResourceBean();
-			} else if (resourceVO instanceof RestaurantResourceVO) {
+			} else if (resourceVO.getType() == ResType.FOOD) {
 				resourceBean = new RestaurantResourceBean();
 			}
 			if (resourceBean != null) {

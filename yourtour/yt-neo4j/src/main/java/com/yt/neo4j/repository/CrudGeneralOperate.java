@@ -154,7 +154,7 @@ public class CrudGeneralOperate implements CrudOperate {
 						list.add(tar);
 					}
 					// 按照ID或者Code或者RowKey排序
-					Collections.sort(list);
+					Collections.sort(list, null);
 					value = list;
 				} else {
 					// 不是集合数据，返回第一条数据
@@ -259,6 +259,7 @@ public class CrudGeneralOperate implements CrudOperate {
 					"Fetch Neo4j[class='%s'] success, total: %d.",
 					clazz.getSimpleName(), list.size()));
 		}
+		Collections.sort(list, null);
 		return list;
 	}
 
@@ -294,6 +295,7 @@ public class CrudGeneralOperate implements CrudOperate {
 			bean = loadRelations(bean);
 			list.add(bean);
 		}
+		Collections.sort(list, null);
 		return list;
 	}
 
