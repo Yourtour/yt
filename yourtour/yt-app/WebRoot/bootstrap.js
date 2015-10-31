@@ -660,7 +660,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.controller.route.ScheduleListCtrl": [],
   "YourTour.controller.route.SchedulePlanListCtrl": [],
   "YourTour.controller.route.ScheduleReferenceCtrl": [],
-  "YourTour.controller.user.Main": [],
+  "YourTour.controller.user.AccountMainCtrl": [],
   "YourTour.controller.user.UserListCtrl": [],
   "YourTour.model.AlongModel": [],
   "YourTour.model.BestModel": [],
@@ -668,6 +668,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.model.CommentModel": [],
   "YourTour.model.HomeCarouselModel": [],
   "YourTour.model.HomeModel": [],
+  "YourTour.model.LaunchModel": [],
   "YourTour.model.LineItemModel": [],
   "YourTour.model.LineModel": [],
   "YourTour.model.LiveModel": [],
@@ -679,12 +680,15 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.model.ScheduleModel": [],
   "YourTour.model.SchedulePlanModel": [],
   "YourTour.model.TalentModel": [],
+  "YourTour.model.UserAccountModel": [],
   "YourTour.model.UserModel": [],
   "YourTour.store.AjaxStore": [],
   "YourTour.store.AlongListStore": [],
   "YourTour.store.BestListStore": [],
   "YourTour.store.CommentStore": [],
+  "YourTour.store.DummyStore": [],
   "YourTour.store.HomeStore": [],
+  "YourTour.store.LaunchStore": [],
   "YourTour.store.LineStore": [],
   "YourTour.store.PlaceStore": [],
   "YourTour.store.ResourceSelectionStore": [],
@@ -692,6 +696,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.store.RouteStore": [],
   "YourTour.store.SessionStore": [],
   "YourTour.store.TalentListStore": [],
+  "YourTour.store.UserAccountStore": [],
   "YourTour.store.UserStore": [],
   "YourTour.util.Context": [],
   "YourTour.view.Launch": [],
@@ -1514,7 +1519,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.controller.route.ScheduleListCtrl": [],
   "YourTour.controller.route.SchedulePlanListCtrl": [],
   "YourTour.controller.route.ScheduleReferenceCtrl": [],
-  "YourTour.controller.user.Main": [],
+  "YourTour.controller.user.AccountMainCtrl": [],
   "YourTour.controller.user.UserListCtrl": [],
   "YourTour.model.AlongModel": [],
   "YourTour.model.BestModel": [],
@@ -1522,6 +1527,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.model.CommentModel": [],
   "YourTour.model.HomeCarouselModel": [],
   "YourTour.model.HomeModel": [],
+  "YourTour.model.LaunchModel": [],
   "YourTour.model.LineItemModel": [],
   "YourTour.model.LineModel": [],
   "YourTour.model.LiveModel": [],
@@ -1535,12 +1541,15 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.model.ScheduleModel": [],
   "YourTour.model.SchedulePlanModel": [],
   "YourTour.model.TalentModel": [],
+  "YourTour.model.UserAccountModel": [],
   "YourTour.model.UserModel": [],
   "YourTour.store.AjaxStore": [],
   "YourTour.store.AlongListStore": [],
   "YourTour.store.BestListStore": [],
   "YourTour.store.CommentStore": [],
+  "YourTour.store.DummyStore": [],
   "YourTour.store.HomeStore": [],
+  "YourTour.store.LaunchStore": [],
   "YourTour.store.LineStore": [],
   "YourTour.store.PlaceStore": [],
   "YourTour.store.ResourceSelectionStore": [],
@@ -1548,6 +1557,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.store.RouteStore": [],
   "YourTour.store.SessionStore": [],
   "YourTour.store.TalentListStore": [],
+  "YourTour.store.UserAccountStore": [],
   "YourTour.store.UserStore": [],
   "YourTour.util.Context": [
     "Context"
@@ -1696,16 +1706,16 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.user.LoginMainView": [],
   "YourTour.view.user.LoginView": [
-    "widget.xloginview"
+    "widget.LoginView"
   ],
   "YourTour.view.user.RegisterAccountView": [
-    "widget.xregisteraccount"
+    "widget.RegisterAccountView"
   ],
   "YourTour.view.user.RegisterAuthView": [
-    "widget.xregisterauth"
+    "widget.RegisterAuthView"
   ],
   "YourTour.view.user.RegisterProfileView": [
-    "widget.xregisterprofile"
+    "widget.RegisterProfileView"
   ],
   "YourTour.view.user.UserListItem": [
     "widget.UserListItem"

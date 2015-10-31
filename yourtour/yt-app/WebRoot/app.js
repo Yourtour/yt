@@ -49,7 +49,7 @@ Ext.application({
     ],
     
     stores:[
-        'LaunchStore','RouteStore','LineStore','ResourceStore','ResourceSelectionStore', 'UserStore', 'HomeStore', 'BestListStore','TalentListStore', 'AlongListStore','CommentStore', 'PlaceStore'
+        'LaunchStore','RouteStore','LineStore','ResourceStore','ResourceSelectionStore', 'UserStore', 'HomeStore', 'BestListStore','TalentListStore', 'AlongListStore','CommentStore', 'PlaceStore'  ,'UserAccountStore'
     ],
         
     icon: {
@@ -71,7 +71,6 @@ Ext.application({
     },
 
     launch: function() {
-        
     },
 
     onUpdated: function() {

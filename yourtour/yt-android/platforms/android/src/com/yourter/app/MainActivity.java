@@ -21,6 +21,8 @@ package com.yourter.app;
 
 import android.os.Bundle;
 
+import org.apache.cordova.CordovaActivity;
+
 public class MainActivity extends CordovaActivity
 {
     @Override
@@ -28,6 +30,17 @@ public class MainActivity extends CordovaActivity
     {
         super.onCreate(savedInstanceState);
         // Set by <content src="index.html" /> in config.xml
+
+            int osVersion;
+            try
+            {
+                osVersion = Integer.valueOf(android.os.Build.VERSION.SDK);
+            }
+            catch (NumberFormatException e)
+            {
+                osVersion = 0;
+            }
+        System.out.println(osVersion);
         loadUrl(launchUrl);
     }
 }

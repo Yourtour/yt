@@ -1,7 +1,7 @@
 Ext.define('YourTour.view.user.RegisterProfileView', {
 	extend: 'Ext.form.Panel',
     xtype: 'RegisterProfileView',
-    requires:['Ext.Panel','Ext.field.Radio','YourTour.view.widget.XLabel', 'YourTour.view.widget.HSpacer', 'YourTour.view.widget.XTitleBar', 'Ext.field.Password','YourTour.view.widget.XTextField', 'YourTour.view.widget.XButton', 'YourTour.view.widget.ToolButton'],
+    requires:['Ext.Panel','Ext.field.Radio','Ext.field.File', 'YourTour.view.widget.XLabel', 'YourTour.view.widget.HSpacer', 'YourTour.view.widget.XTitleBar', 'Ext.field.Password','YourTour.view.widget.XTextField', 'YourTour.view.widget.XButton', 'YourTour.view.widget.ToolButton'],
     config: {
     	id:'RegisterProfileView',
     	layout:'vbox',
@@ -91,6 +91,7 @@ Ext.define('YourTour.view.user.RegisterProfileView', {
 					{
             		   xtype:'image', 
             		   src:'resources/icons/icon_portrait.png',
+            		   itemId:'portrait',
             		   mode : 'tag'
             	    },
 					
@@ -166,17 +167,18 @@ Ext.define('YourTour.view.user.RegisterProfileView', {
                 docked: 'bottom',
                 itemId:'portraitOptions',
                 layout:'vbox',
-                hidden:true,
             	items:[{
                 	xtype: "xlabel", 
-                	itemId:'photo',
+                	itemId:'btnPhoto',
                 	cls:'row underline',
+                	tappable:true,
                 	html:'照片'
                 },
                 {
                 	xtype: "xlabel", 
-                	itemId:'takePhoto',
+                	itemId:'btnCamera',
                 	cls:'row',
+                	tappable:true,
                 	html:'照相'
                 }]	
             },

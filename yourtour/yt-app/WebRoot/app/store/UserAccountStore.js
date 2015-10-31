@@ -4,12 +4,6 @@ Ext.define('YourTour.store.UserAccountStore', {
        'YourTour.model.UserAccountModel'
     ],
     config:{
-    	model:'YourTour.model.UserAccountModel',
-    	
-    	proxy:{
-	    	api:{
-				 create: YourTour.util.Context.getContext('/acount/register')
-			}
-    	}
+    	model:'YourTour.model.UserAccountModel'
     }
 });

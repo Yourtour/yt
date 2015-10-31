@@ -1,0 +1,7 @@
+.metadata
+.idea
+/bin
+/build
+/WebRoot/resources/sass/.sass-cache
+
+

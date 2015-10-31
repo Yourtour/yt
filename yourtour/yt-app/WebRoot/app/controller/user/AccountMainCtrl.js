@@ -37,8 +37,15 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     	   
     	   '#RegisterProfileView #portrait':{
     		   tap:'onPortraitTap'
-    	   }
+    	   },
     	   
+    	   '#RegisterProfileView #btnCamera':{
+    		   tap:'onBtnCameralTap'
+    	   },
+    	   
+    	   '#RegisterProfileView #btnPhoto':{
+    		   tap:'onBtnPhotoTap'
+    	   }
        },
        
        routes:{
@@ -51,7 +58,7 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     },
     
     init:function(){
-    	this.model = Ext.create('YourTour.model.UserAccountModel',{graphId:'-1'});
+    	this.model = Ext.create('YourTour.model.UserAccountModel',{graphId:-1});
     },
     
     showLoginView:function(){
@@ -78,14 +85,7 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     	this.model.set('mobile',values.mobile);
     	this.model.set('authcode',values.authcode);
     	
-    	var proxy = this.model.getProxy();
-    	proxy.setExtraParams({'step':'1'});
-    	proxy.setUrl(YourTour.util.Context.getContext('/users/account/register'));
-    	var success = function(){
-    		//me.model = proxy.getModel();
-    		me.getLoginMainView().setActiveItem(me.getRgisterAccountView());
-    	};
-    	this.model.save({success:success});
+   		me.getLoginMainView().setActiveItem(me.getRgisterAccountView());
     },
     
     /**
@@ -100,9 +100,10 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     	this.model.set('password',values.password);
     	
     	var proxy = this.model.getProxy();
-    	proxy.setExtraParams('step', 2);
+    	proxy.setExtraParams({'step':2});
     	proxy.setUrl(YourTour.util.Context.getContext('/users/account/register'));
     	var success = function(){
+    		alert('adfasdfa');
     		me.getLoginMainView().setActiveItem(me.getRegisterProfileView());
     	};
     	this.model.save({success:success});
@@ -140,5 +141,35 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     
     onLoginTap:function(){
     	this.redirectTo('/mainpage');
+    },
+    
+    onBtnCameralTap:function(){
+    	console.log('onBtnCameralTap');
+    	this.getPhoto(navigator.camera.PictureSourceType.CAMERA);
+    },
+    
+    onBtnPhotoTap:function(){
+    	console.log('onBtnPhotoTap');
+    	this.getPhoto(navigator.camera.PictureSourceType.PHOTOLIBRARY);
+    },
+    
+    getPhoto: function(source) {
+        var me = this;
+
+        navigator.camera.getPicture(me.success, me.failure, {
+            quality: 50,
+            destinationType: navigator.camera.DestinationType.FILE_URI,
+            sourceType: source 
+        });
+    },
+
+    success: function(image_uri) {
+    	var view = this.getRegisterProfileView();
+    	
+        var img = view.down('#portrait');
+        img.setSrc(image_uri);
+    },
+
+    failure: function(message) {
     }
 });
