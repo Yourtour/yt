@@ -219,10 +219,10 @@ public class CordovaActivity extends Activity {
         if (appView == null) {
             init();
         }
-
+				
         // If keepRunning
         this.keepRunning = preferences.getBoolean("KeepRunning", true);
-
+        
         appView.loadUrlIntoView(url, true);
     }
 

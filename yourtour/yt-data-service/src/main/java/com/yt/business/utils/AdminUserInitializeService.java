@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yt.business.CrudAllInOneOperate;
-import com.yt.business.bean.UserBean;
+import com.yt.business.bean.UserProfileBean;
 import com.yt.core.utils.MessageDigestUtils;
 
 public class AdminUserInitializeService implements InitializingBean {
@@ -74,7 +74,7 @@ public class AdminUserInitializeService implements InitializingBean {
 	@Transactional
 	private void initializeAdminEmployee() throws Exception {
 		// 检测默认的admin账户是否存在
-		UserBean admin = (UserBean) crudOperate.get(UserBean.class, "code",
+		UserProfileBean admin = (UserProfileBean) crudOperate.get(UserProfileBean.class, "code",
 				"admin");
 		if (admin != null) {
 			// admin账户已经存在，返回
@@ -84,7 +84,7 @@ public class AdminUserInitializeService implements InitializingBean {
 		if (LOG.isWarnEnabled()) {
 			LOG.warn("The admin user is not exist, will initialize it.");
 		}
-		admin = new UserBean();
+		admin = new UserProfileBean();
 		admin.setCode("admin");
 		admin.setName("管理员");
 		// 将明码的密码更换为摘要加密的密码

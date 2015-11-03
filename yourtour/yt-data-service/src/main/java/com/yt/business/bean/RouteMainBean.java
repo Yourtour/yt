@@ -40,8 +40,8 @@ public class RouteMainBean extends BaseBeanImpl {
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = RouteProvisionBean.class, direction = Direction.OUTGOING, isList = true)
 	private transient List<RouteProvisionBean> provisions = null; // 行程包含的准备
 
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = UserBean.class, direction = Direction.OUTGOING)
-	private transient UserBean owner = null; // 行程所有者
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = UserProfileBean.class, direction = Direction.OUTGOING)
+	private transient UserProfileBean owner = null; // 行程所有者
 
 	public RouteMainBean() {
 		super();
@@ -89,11 +89,11 @@ public class RouteMainBean extends BaseBeanImpl {
 		return provisions;
 	}
 
-	public UserBean getOwner() {
+	public UserProfileBean getOwner() {
 		return owner;
 	}
 
-	public void setOwner(UserBean owner) {
+	public void setOwner(UserProfileBean owner) {
 		this.owner = owner;
 	}
 

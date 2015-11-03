@@ -235,18 +235,18 @@ public class TestRouteMainBean {
 		assertNotNull(repo);
 
 		try {
-			repo.delete(UserBean.class);
-			assertEquals(repo.count(UserBean.class), 0);
+			repo.delete(UserProfileBean.class);
+			assertEquals(repo.count(UserProfileBean.class), 0);
 			repo.delete(RouteMainBean.class);
 			assertEquals(repo.count(RouteMainBean.class), 0);
 
-			UserBean u1 = new UserBean();
+			UserProfileBean u1 = new UserProfileBean();
 			u1.setCode("user 1");
 			repo.save(u1, "john");
-			UserBean u2 = new UserBean();
+			UserProfileBean u2 = new UserProfileBean();
 			u2.setCode("user 2");
 			repo.save(u2, "john");
-			assertEquals(repo.count(UserBean.class), 2);
+			assertEquals(repo.count(UserProfileBean.class), 2);
 
 			RouteMainBean rm1 = new RouteMainBean();
 			rm1.setName("route 1");
@@ -279,15 +279,15 @@ public class TestRouteMainBean {
 			rm1_2.setOwner(u2);
 			repo.saveRelationsOnly(rm1_2);
 			assertEquals(repo.count(RouteMainBean.class), 2);
-			assertEquals(repo.count(UserBean.class), 2);
+			assertEquals(repo.count(UserProfileBean.class), 2);
 			RouteMainBean rm1_3 = (RouteMainBean) repo.get(RouteMainBean.class,
 					rm1.getGraphId());
 			assertNotNull(rm1_3);
 			assertNotNull(rm1_3.getOwner());
 			assertEquals(rm1_3.getOwner().getGraphId(), u2.getGraphId());
 
-			repo.delete(UserBean.class);
-			assertEquals(repo.count(UserBean.class), 0);
+			repo.delete(UserProfileBean.class);
+			assertEquals(repo.count(UserProfileBean.class), 0);
 			repo.delete(RouteMainBean.class);
 			assertEquals(repo.count(RouteMainBean.class), 0);
 		} catch (Exception e) {

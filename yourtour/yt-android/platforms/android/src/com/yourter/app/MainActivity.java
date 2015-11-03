@@ -19,6 +19,7 @@
 
 package com.yourter.app;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import org.apache.cordova.CordovaActivity;
@@ -41,6 +42,10 @@ public class MainActivity extends CordovaActivity
                 osVersion = 0;
             }
         System.out.println(osVersion);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            this.appView.setWebContentsDebuggingEnabled(true);
+        }
         loadUrl(launchUrl);
     }
 }

@@ -40,6 +40,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.webkit.WebSettings;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 
@@ -186,6 +187,10 @@ public class CordovaActivity extends Activity {
             appView.getView().setBackgroundColor(backgroundColor);
         }
 
+        WebSettings settings = appView.getView().getView().getSettings();
+        settings.setJavaScriptEnabled(true);
+        settings.setAllowFileAccessFromFileURLs(true); //Maybe you don't need this rule
+        settings.setAllowUniversalAccessFromFileURLs(true);
         appView.getView().requestFocusFromTouch();
     }
 

@@ -45,12 +45,15 @@ import com.yt.neo4j.annotation.Neo4jRelationship;
  * @version 1.0
  * @since 1.0
  */
-@HbaseTable(name = "T_USER_INFO")
+@HbaseTable(name = "T_USER_PROFILE_INFO")
 @NodeEntity
-public class UserBean extends BaseDictBeanImpl {
+public class UserProfileBean extends BaseDictBeanImpl {
 	private static final long serialVersionUID = -6977525800090683657L;
 	private static final String INDEX_NAME = "user"; // 定义了本实体中全文检索的索引名称。
-
+	
+	@HbaseColumn(name = "uname")
+	private String userName; // 登录账号
+	
 	@HbaseColumn(name = "pwd")
 	private String pwd; // 登录密码
 
@@ -104,19 +107,19 @@ public class UserBean extends BaseDictBeanImpl {
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
 	private String slogan; // 个人口号
 	
-	@Neo4jRelationship(relationship=Constants.RELATION_TYPE_FOLLOW, type = UserBean.class, direction = Direction.OUTGOING, isList = true)
-	private transient List<UserBean> followers;
+	@Neo4jRelationship(relationship=Constants.RELATION_TYPE_FOLLOW, type = UserProfileBean.class, direction = Direction.OUTGOING, isList = true)
+	private transient List<UserProfileBean> followers;
 	
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_WATCH, type = UserBean.class, direction = Direction.OUTGOING, isList = true)
-	private transient List<UserBean> watchers;
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_WATCH, type = UserProfileBean.class, direction = Direction.OUTGOING, isList = true)
+	private transient List<UserProfileBean> watchers;
 	
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_WATCH, type = LineBean.class, direction = Direction.OUTGOING, isList = true)
 	private transient List<LineBean> watchedLines;
 
-	public UserBean() {
+	public UserProfileBean() {
 		super();
-		this.followers = new Vector<UserBean>();
-		this.watchers = new Vector<UserBean>();
+		this.followers = new Vector<UserProfileBean>();
+		this.watchers = new Vector<UserProfileBean>();
 		this.watchedLines = new Vector<LineBean>();
 	}
 
@@ -182,6 +185,14 @@ public class UserBean extends BaseDictBeanImpl {
 
 	public void setMobileNo(String mobileNo) {
 		this.mobileNo = mobileNo;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getEmail() {

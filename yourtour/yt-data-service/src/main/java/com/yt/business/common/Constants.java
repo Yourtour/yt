@@ -30,10 +30,16 @@ public interface Constants {
 	 * 在
 	 */
 	public static final String RELATION_TYPE_AT = "AT";
+	
 	/**
 	 * 从
 	 */
 	public static final String RELATION_TYPE_FROM = "FROM";
+	
+	/**
+	 * 属于
+	 */
+	public static final String RELATION_TYPE_BELONG = "BELONG";
 
 	// 资源枚举
 	public static enum GenderType {

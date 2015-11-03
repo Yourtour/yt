@@ -4,7 +4,7 @@ import org.springframework.data.neo4j.annotation.QueryResult;
 import org.springframework.data.neo4j.annotation.ResultColumn;
 
 import com.yt.business.bean.CommentBean;
-import com.yt.business.bean.UserBean;
+import com.yt.business.bean.UserProfileBean;
 
 @QueryResult
 public class CommentTuple {
@@ -12,7 +12,7 @@ public class CommentTuple {
 	private CommentBean comment;
 
 	@ResultColumn("user")
-	private UserBean user;
+	private UserProfileBean user;
 	
 	public CommentTuple(){
 	}
@@ -25,11 +25,11 @@ public class CommentTuple {
 		this.comment = comment;
 	}
 
-	public UserBean getUser() {
+	public UserProfileBean getUser() {
 		return user;
 	}
 
-	public void setUser(UserBean user) {
+	public void setUser(UserProfileBean user) {
 		this.user = user;
 	}
 }

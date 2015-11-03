@@ -65,9 +65,9 @@ public class AlongBean extends BaseBeanImpl {
 	private Status status;
 
 	private transient RouteMainBean route; // 结伴信息关联的行程
-	private transient UserBean publisher; // 结伴信息发布者信息
+	private transient UserProfileBean publisher; // 结伴信息发布者信息
 	private transient List<CommentTuple> comments; // 评论信息
-	private transient List<UserBean> following; // 关注人员
+	private transient List<UserProfileBean> following; // 关注人员
 
 	public AlongBean() {
 		super();
@@ -177,11 +177,11 @@ public class AlongBean extends BaseBeanImpl {
 		this.route = route;
 	}
 
-	public UserBean getPublisher() {
+	public UserProfileBean getPublisher() {
 		return publisher;
 	}
 
-	public void setPublisher(UserBean publisher) {
+	public void setPublisher(UserProfileBean publisher) {
 		this.publisher = publisher;
 	}
 
@@ -193,11 +193,11 @@ public class AlongBean extends BaseBeanImpl {
 		this.comments = comments;
 	}
 
-	public List<UserBean> getFollowing() {
+	public List<UserProfileBean> getFollowing() {
 		return following;
 	}
 
-	public void setFollowing(List<UserBean> following) {
+	public void setFollowing(List<UserProfileBean> following) {
 		this.following = following;
 	}
 }

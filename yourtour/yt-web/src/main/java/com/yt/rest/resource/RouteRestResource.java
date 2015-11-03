@@ -22,7 +22,7 @@ import com.yt.business.bean.RouteActivityBean;
 import com.yt.business.bean.RouteMainBean;
 import com.yt.business.bean.RouteProvisionBean;
 import com.yt.business.bean.RouteScheduleBean;
-import com.yt.business.bean.UserBean;
+import com.yt.business.bean.UserProfileBean;
 import com.yt.business.repository.RouteRepository;
 import com.yt.business.utils.Neo4jUtils;
 import com.yt.error.StaticErrorEnum;
@@ -58,14 +58,14 @@ public class RouteRestResource {
 			@PathParam("id") String userId) {
 		long graphId = Neo4jUtils.getGraphIDFromString(userId);
 		try {
-			UserBean bean = null;
+			UserProfileBean bean = null;
 			if (graphId != -1) {
 				// id是GraphID
-				bean = (UserBean) routeRepository.get(RouteMainBean.class,
+				bean = (UserProfileBean) routeRepository.get(RouteMainBean.class,
 						graphId, false);
 			} else {
 				// id 是rowkey
-				bean = (UserBean) routeRepository.get(UserBean.class, "rowKey",
+				bean = (UserProfileBean) routeRepository.get(UserProfileBean.class, "rowKey",
 						userId, false);
 			}
 			if (bean == null) {

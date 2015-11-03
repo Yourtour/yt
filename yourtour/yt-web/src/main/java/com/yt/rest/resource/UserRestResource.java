@@ -20,7 +20,8 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.yt.business.bean.UserBean;
+import com.yt.business.bean.UserAccountBean;
+import com.yt.business.bean.UserProfileBean;
 import com.yt.business.repository.UserRepository;
 import com.yt.business.utils.AdminUserInitializeService;
 import com.yt.business.utils.Neo4jUtils;
@@ -37,7 +38,7 @@ import com.yt.vo.member.UserVO;
 @Path("users")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class UserRestResource {
+public class UserRestResource extends BaseRestResource{
 	private static final Log LOG = LogFactory.getLog(UserRestResource.class);
 
 	@Autowired
@@ -54,9 +55,9 @@ public class UserRestResource {
 		}
 		List<UserVO> list = new ArrayList<UserVO>();
 		try {
-			List<UserBean> result = (List<UserBean>) userRepository
-					.get(UserBean.class);
-			for (UserBean bean : result) {
+			List<UserProfileBean> result = (List<UserProfileBean>) userRepository
+					.get(UserProfileBean.class);
+			for (UserProfileBean bean : result) {
 				if (bean == null) {
 					continue;
 				}
@@ -83,13 +84,13 @@ public class UserRestResource {
 	public ResponseDataVO<UserVO> getUser(@PathParam("id") String id) {
 		long graphId = Neo4jUtils.getGraphIDFromString(id);
 		try {
-			UserBean bean = null;
+			UserProfileBean bean = null;
 			if (graphId != -1) {
 				// id是GraphID
-				bean = (UserBean) userRepository.get(UserBean.class, graphId);
+				bean = (UserProfileBean) userRepository.get(UserProfileBean.class, graphId);
 			} else {
 				// id 是rowkey
-				bean = (UserBean) userRepository.get(UserBean.class, "rowKey",
+				bean = (UserProfileBean) userRepository.get(UserProfileBean.class, "rowKey",
 						id);
 			}
 			if (bean == null) {
@@ -157,7 +158,7 @@ public class UserRestResource {
 			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
 		}
 		try {
-			UserBean bean = UserVO.transform(vo);
+			UserProfileBean bean = UserVO.transform(vo);
 			if (id == null) {
 				// 新增
 				bean.setGraphId(null);
@@ -193,13 +194,13 @@ public class UserRestResource {
 	public ResponseVO delete(@PathParam("id") String id) {
 		long graphId = Neo4jUtils.getGraphIDFromString(id);
 		try {
-			UserBean bean = null;
+			UserProfileBean bean = null;
 			if (graphId != -1) {
 				// id是GraphID
-				bean = (UserBean) userRepository.get(UserBean.class, graphId);
+				bean = (UserProfileBean) userRepository.get(UserProfileBean.class, graphId);
 			} else {
 				// id 是rowkey
-				bean = (UserBean) userRepository.get(UserBean.class, "rowKey",
+				bean = (UserProfileBean) userRepository.get(UserProfileBean.class, "rowKey",
 						id);
 			}
 			id = bean.getRowKey();
@@ -226,7 +227,7 @@ public class UserRestResource {
 			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
 		}
 		try {
-			UserBean user = (UserBean) userRepository.get(UserBean.class,
+			UserProfileBean user = (UserProfileBean) userRepository.get(UserProfileBean.class,
 					"code", auth.getCode());
 			if (user == null) {
 				if (LOG.isWarnEnabled()) {
@@ -264,7 +265,7 @@ public class UserRestResource {
 			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
 		}
 		try {
-			UserBean user = (UserBean) userRepository.get(UserBean.class,
+			UserProfileBean user = (UserProfileBean) userRepository.get(UserProfileBean.class,
 					"code", username);
 			if (user == null) {
 				if (LOG.isWarnEnabled()) {
@@ -296,7 +297,7 @@ public class UserRestResource {
 			@QueryParam("page") int page, @QueryParam("start") int start,
 			@QueryParam("limit") int limit) {
 		try {
-			long totalSize = userRepository.count(UserBean.class);
+			long totalSize = userRepository.count(UserProfileBean.class);
 			if (start >= totalSize) {
 				if (LOG.isWarnEnabled()) {
 					LOG.warn(String
@@ -308,9 +309,9 @@ public class UserRestResource {
 			}
 
 			Vector<UserVO> result = new Vector<UserVO>();
-			List<UserBean> users = (List<UserBean>) userRepository.getByPage(
-					UserBean.class, start, limit);
-			for (UserBean user : users) {
+			List<UserProfileBean> users = (List<UserProfileBean>) userRepository.getByPage(
+					UserProfileBean.class, start, limit);
+			for (UserProfileBean user : users) {
 				UserVO vo = UserVO.transform(user);
 				if (vo == null) {
 					continue;
@@ -334,12 +335,48 @@ public class UserRestResource {
 					StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
 	}
-	
-	@SuppressWarnings("unchecked")
-	@Path("/account/register")
+
 	@POST
-	public ResponseDataVO<RegisterVO> register(RegisterVO registervo,@QueryParam("step") int step){
-		registervo.setGraphId(1111l);
-		return new ResponseDataVO<RegisterVO>(registervo);
+	@Path("/account/register")
+	public ResponseDataVO<RegisterVO> registerUserAccount(RegisterVO registervo){
+		try{
+			UserAccountBean account = userRepository.getUserAccount(registervo.getUserName());
+			if(account != null){
+				return new ResponseDataVO<RegisterVO>(StaticErrorEnum.USER_EXIST);
+			}
+			
+			account = new UserAccountBean();
+			account.setUserName(registervo.getUserName());
+			account.setPwd(registervo.getPassword());
+			this.userRepository.save(account, String.valueOf(account.getGraphId()));
+			return new ResponseDataVO<RegisterVO>(registervo);
+		} catch (Exception ex) {
+			LOG.error("Exception raised when registering user account.", ex);
+			return new ResponseDataVO<RegisterVO>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
 	}
+	
+	/*@POST
+	@Path("/profile/register")
+	@Consumes(MediaType.MULTIPART_FORM_DATA)  
+	public ResponseDataVO<RegisterVO> registerProfile(RegisterVO registervo, @FormDataParam("file") InputStream fileInputStream,  
+	        @FormDataParam("file") FormDataContentDisposition disposition){
+		try{
+			String fileName = disposition.getFileName(); 
+			UserAccountBean account = userRepository.getUserAccount(registervo.getUserName());
+			if(account == null){
+				return new ResponseDataVO<RegisterVO>(StaticErrorEnum.USER_NOT_EXIST);
+			}
+			
+			UserProfileBean profile = account.getProfile();
+			profile.setNickName(registervo.getNickname());
+			profile.setGender(GenderType.valueOf(registervo.getSex()));
+			
+			this.userRepository.save(profile, String.valueOf(account.getGraphId()));
+			return new ResponseDataVO<RegisterVO>(registervo);
+		} catch (Exception ex) {
+			LOG.error("Exception raised when registering user account.", ex);
+			return new ResponseDataVO<RegisterVO>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
+	}*/
 }

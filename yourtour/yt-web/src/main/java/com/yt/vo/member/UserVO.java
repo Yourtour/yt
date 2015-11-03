@@ -6,7 +6,7 @@ import java.util.Date;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.yt.business.bean.UserBean;
+import com.yt.business.bean.UserProfileBean;
 import com.yt.business.common.Constants.GenderType;
 import com.yt.business.common.Constants.Role;
 import com.yt.business.common.Constants.Status;
@@ -34,7 +34,7 @@ public class UserVO extends BaseVO {
 	private Status status;
 	private String slogan; // 个人口号
 
-	public static UserVO transform(UserBean bean) {
+	public static UserVO transform(UserProfileBean bean) {
 		if (bean == null) {
 			return null;
 		}
@@ -60,11 +60,11 @@ public class UserVO extends BaseVO {
 		return vo;
 	}
 
-	public static UserBean transform(UserVO vo) {
+	public static UserProfileBean transform(UserVO vo) {
 		if (vo == null) {
 			return null;
 		}
-		UserBean bean = new UserBean();
+		UserProfileBean bean = new UserProfileBean();
 		vo.toBean(bean);
 		bean.setRowKey(vo.getUserName());
 		vo.setUserName(vo.getUserName());

@@ -98,12 +98,11 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     	var values = accountview.getValues(); 
     	this.model.set('userName',values.userName);
     	this.model.set('password',values.password);
-    	
+
     	var proxy = this.model.getProxy();
     	proxy.setExtraParams({'step':2});
     	proxy.setUrl(YourTour.util.Context.getContext('/users/account/register'));
     	var success = function(){
-    		alert('adfasdfa');
     		me.getLoginMainView().setActiveItem(me.getRegisterProfileView());
     	};
     	this.model.save({success:success});
@@ -164,8 +163,9 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     },
 
     success: function(image_uri) {
-    	var view = this.getRegisterProfileView();
+    	alert(image_uri);
     	
+    	var view = this.getRegisterProfileView();
         var img = view.down('#portrait');
         img.setSrc(image_uri);
     },

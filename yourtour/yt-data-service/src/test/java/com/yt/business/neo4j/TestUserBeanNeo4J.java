@@ -12,7 +12,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.yt.business.bean.UserBean;
+import com.yt.business.bean.UserProfileBean;
 import com.yt.business.common.Constants.GenderType;
 import com.yt.business.common.Constants.Role;
 import com.yt.business.common.Constants.Status;
@@ -45,11 +45,11 @@ public class TestUserBeanNeo4J {
 	@Test
 	public void testCRUDUserBean() {
 		try {
-			neo4jCRUD.delete(UserBean.class);
+			neo4jCRUD.delete(UserProfileBean.class);
 			assertEquals("Assert the count when clean.",
-					neo4jCRUD.count(UserBean.class), 0l);
+					neo4jCRUD.count(UserProfileBean.class), 0l);
 
-			UserBean user = new UserBean();
+			UserProfileBean user = new UserProfileBean();
 			assertNull(user.getGraphId());
 			user.setRowKey("user001");
 			user.setBirthday(System.currentTimeMillis());
@@ -73,8 +73,8 @@ public class TestUserBeanNeo4J {
 			neo4jCRUD.save(user, "tester");
 			assertNotNull(user.getGraphId());
 			assertEquals("Assert the count when save.",
-					neo4jCRUD.count(UserBean.class), 1l);
-			UserBean user1 = (UserBean) neo4jCRUD.get(UserBean.class, "rowKey",
+					neo4jCRUD.count(UserProfileBean.class), 1l);
+			UserProfileBean user1 = (UserProfileBean) neo4jCRUD.get(UserProfileBean.class, "rowKey",
 					user.getRowKey());
 			assertNotNull(user1);
 			assertEquals("Assert the rowKey of the UserBean.",
@@ -89,8 +89,8 @@ public class TestUserBeanNeo4J {
 					user1.getEmail());
 			assertNull(user1.getPwd());
 
-			neo4jCRUD.delete(UserBean.class);
-			assertTrue(neo4jCRUD.count(UserBean.class) == 0l);
+			neo4jCRUD.delete(UserProfileBean.class);
+			assertTrue(neo4jCRUD.count(UserProfileBean.class) == 0l);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			fail(ex.getMessage());

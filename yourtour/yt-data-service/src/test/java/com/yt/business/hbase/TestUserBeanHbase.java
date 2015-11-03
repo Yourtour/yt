@@ -19,7 +19,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.yt.business.bean.UserBean;
+import com.yt.business.bean.UserProfileBean;
 import com.yt.business.common.Constants.GenderType;
 import com.yt.business.common.Constants.Role;
 import com.yt.business.common.Constants.Status;
@@ -63,13 +63,13 @@ public class TestUserBeanHbase {
 	@Test
 	public void testCrudUserBean() {
 		try {
-			if (ddlOperate.tableExist(UserBean.class)) {
-				ddlOperate.dropTable(UserBean.class);
+			if (ddlOperate.tableExist(UserProfileBean.class)) {
+				ddlOperate.dropTable(UserProfileBean.class);
 			}
-			ddlOperate.createTable(UserBean.class);
-			assertEquals(crudOperate.getRows(UserBean.class).size(), 0);
+			ddlOperate.createTable(UserProfileBean.class);
+			assertEquals(crudOperate.getRows(UserProfileBean.class).size(), 0);
 
-			UserBean bean = new UserBean();
+			UserProfileBean bean = new UserProfileBean();
 			bean.setBirthday(System.currentTimeMillis());
 			bean.setCharacter("character");
 			bean.setConstellation("constellation");
@@ -91,9 +91,9 @@ public class TestUserBeanHbase {
 			bean.setUpdatedUserId("update user");
 			bean.setCode("user name");
 			crudOperate.saveRow(bean);
-			assertEquals(crudOperate.getRows(UserBean.class).size(), 1);
+			assertEquals(crudOperate.getRows(UserProfileBean.class).size(), 1);
 
-			UserBean bean1 = (UserBean) crudOperate.getRow(UserBean.class,
+			UserProfileBean bean1 = (UserProfileBean) crudOperate.getRow(UserProfileBean.class,
 					bean.getRowKey());
 			assertNotNull(bean1);
 			assertEquals(bean1.getBirthday(), bean.getBirthday());
@@ -121,8 +121,8 @@ public class TestUserBeanHbase {
 			bean1.setUpdatedTime(System.currentTimeMillis() + 1000);
 			bean1.setCode("new user name");
 			crudOperate.saveRow(bean1);
-			assertEquals(crudOperate.getRows(UserBean.class).size(), 1);
-			UserBean bean11 = (UserBean) crudOperate.getRow(UserBean.class,
+			assertEquals(crudOperate.getRows(UserProfileBean.class).size(), 1);
+			UserProfileBean bean11 = (UserProfileBean) crudOperate.getRow(UserProfileBean.class,
 					bean1.getRowKey());
 			assertNotNull(bean11);
 			assertEquals(bean1.getCharacter(), bean11.getCharacter());
@@ -136,23 +136,23 @@ public class TestUserBeanHbase {
 
 			bean.setRowKey("row key 002");
 			crudOperate.saveRow(bean);
-			assertEquals(crudOperate.getRows(UserBean.class).size(), 2);
-			UserBean bean12 = (UserBean) crudOperate.getRow(UserBean.class,
+			assertEquals(crudOperate.getRows(UserProfileBean.class).size(), 2);
+			UserProfileBean bean12 = (UserProfileBean) crudOperate.getRow(UserProfileBean.class,
 					"row key 002");
 			assertNotNull(bean12);
 			assertEquals(bean.getBirthday(), bean12.getBirthday());
 			assertEquals(bean.getName(), bean12.getName());
 
 			crudOperate.deleteRow(bean);
-			assertEquals(crudOperate.getRows(UserBean.class).size(), 1);
-			UserBean bean2 = (UserBean) crudOperate.getRow(UserBean.class,
+			assertEquals(crudOperate.getRows(UserProfileBean.class).size(), 1);
+			UserProfileBean bean2 = (UserProfileBean) crudOperate.getRow(UserProfileBean.class,
 					bean.getRowKey());
 			assertNull(bean2);
 
-			if (ddlOperate.tableExist(UserBean.class)) {
-				ddlOperate.dropTable(UserBean.class);
+			if (ddlOperate.tableExist(UserProfileBean.class)) {
+				ddlOperate.dropTable(UserProfileBean.class);
 			}
-			assertFalse(ddlOperate.tableExist(UserBean.class));
+			assertFalse(ddlOperate.tableExist(UserProfileBean.class));
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			fail(ex.getMessage());
