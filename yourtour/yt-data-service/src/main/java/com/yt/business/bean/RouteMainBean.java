@@ -30,6 +30,8 @@ public class RouteMainBean extends BaseBeanImpl {
 
 	@HbaseColumn(name = "edt")
 	private long endDate = 0; // 行程结束日期
+	
+	private String imageUrl;
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_FROM, type = PlaceBean.class, direction = Direction.OUTGOING)
 	private transient PlaceBean fromPlace = null; // 行程出发地点
@@ -55,6 +57,14 @@ public class RouteMainBean extends BaseBeanImpl {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 	public long getStartDate() {

@@ -35,12 +35,13 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
     },
     
     showPage:function(){
-    	YourTour.util.Context.mainview = this.getRouteMainView();
-    	
     	var me = this;
+    	
+    	YourTour.util.Context.mainview = me.getRouteMainView();
+    	
     	var routeCarousel = me.getRouteCarousel();
+    	var store = me.store;
     	var handler = function(){
-			var store = Ext.getStore('routemainstore');
     		routeCarousel.removeAll(true, false);
         	store.each(function(item){
         		var routePanel = Ext.create('YourTour.view.route.MainItem');
@@ -50,8 +51,11 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
         	
         	routeCarousel.setActiveItem(0);
     	};
-    	
-    	this.store.load(handler, this);
+
+    	var userId = YourTour.util.Context.getUserId();
+    	var proxy = store.getProxy();
+    	proxy.setUrl(YourTour.util.Context.getContext('/routes/user/' + userId +'/query'));
+    	store.load(handler, this);
     },
     
     onRouteTap:function(){

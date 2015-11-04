@@ -348,7 +348,7 @@ public class UserRestResource extends BaseRestResource{
 			account = new UserAccountBean();
 			account.setUserName(registervo.getUserName());
 			account.setPwd(registervo.getPassword());
-			this.userRepository.save(account, String.valueOf(account.getGraphId()));
+			//this.userRepository.save(account, String.valueOf(account.getGraphId()));
 			return new ResponseDataVO<RegisterVO>(registervo);
 		} catch (Exception ex) {
 			LOG.error("Exception raised when registering user account.", ex);

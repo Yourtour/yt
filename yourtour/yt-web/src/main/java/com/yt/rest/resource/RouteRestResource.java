@@ -30,6 +30,7 @@ import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.utils.WebUtils;
 import com.yt.vo.route.RouteActivityVO;
+import com.yt.vo.route.RouteOverViewVO;
 import com.yt.vo.route.RouteProvisionVO;
 import com.yt.vo.route.RouteScheduleVO;
 import com.yt.vo.route.RouteVO;
@@ -54,43 +55,39 @@ public class RouteRestResource {
 	 */
 	@GET
 	@Path("user/{id}/query")
-	public ResponseDataVO<List<RouteVO>> getRoutesByUser(
+	public ResponseDataVO<List<RouteOverViewVO>> getRoutesByUser(
 			@PathParam("id") String userId) {
-		long graphId = Neo4jUtils.getGraphIDFromString(userId);
+		long userGraphId = Neo4jUtils.getGraphIDFromString(userId);
 		try {
-			UserProfileBean bean = null;
-			if (graphId != -1) {
+			UserProfileBean profileBean = null;
+			if (userGraphId != -1) {
 				// id是GraphID
-				bean = (UserProfileBean) routeRepository.get(RouteMainBean.class,
-						graphId, false);
+				profileBean = (UserProfileBean) routeRepository.get(UserProfileBean.class,
+						userGraphId, false);
 			} else {
 				// id 是rowkey
-				bean = (UserProfileBean) routeRepository.get(UserProfileBean.class, "rowKey",
-						userId, false);
+				profileBean = (UserProfileBean) routeRepository.get(UserProfileBean.class, "rowKey",userId, false);
 			}
-			if (bean == null) {
-				return new ResponseDataVO<List<RouteVO>>(
-						StaticErrorEnum.THE_DATA_NOT_EXIST);
+			if (profileBean == null) {
+				return new ResponseDataVO<List<RouteOverViewVO>>(StaticErrorEnum.THE_DATA_NOT_EXIST);
 			}
 			// 根据用户ID获取对应的行程列表
-			List<RouteMainBean> routes = routeRepository.getRoutesByOwner(bean
-					.getGraphId());
-			List<RouteVO> list = new Vector<RouteVO>(routes.size());
+			List<RouteMainBean> routes = routeRepository.getRoutesByOwner(profileBean.getGraphId());
+			List<RouteOverViewVO> list = new Vector<RouteOverViewVO>(routes.size());
 			for (RouteMainBean route : routes) {
-				RouteVO vo = RouteVO.transform(route);
-				if (vo == null) {
-					continue;
-				}
+				if(route == null) continue;
+				
+				RouteOverViewVO vo = new RouteOverViewVO(route);
 				list.add(vo);
 			}
-			return new ResponseDataVO<List<RouteVO>>(list);
+			return new ResponseDataVO<List<RouteOverViewVO>>(list);
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
 				LOG.error(String.format(
 						"Fetch RouteMainBean by UserBean[id='%s'] fail.",
 						userId), ex);
 			}
-			return new ResponseDataVO<List<RouteVO>>(
+			return new ResponseDataVO<List<RouteOverViewVO>>(
 					StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
 	}
