@@ -26,10 +26,6 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
        store:null
     },
     
-    init: function(){
-    	this.store = Ext.create('YourTour.store.RouteStore',{storeId:'routemainstore'});	
-    },
-    
     newRoute:function(){
     	this.redirectTo("/route/new");
     },
@@ -40,7 +36,7 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
     	YourTour.util.Context.mainview = me.getRouteMainView();
     	
     	var routeCarousel = me.getRouteCarousel();
-    	var store = me.store;
+    	var store = me.store = Ext.create('YourTour.store.RouteStore',{storeId:'routemainstore'});	
     	var handler = function(){
     		routeCarousel.removeAll(true, false);
         	store.each(function(item){

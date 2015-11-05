@@ -351,6 +351,7 @@ public class UserRestResource extends BaseRestResource{
 			//this.userRepository.save(account, String.valueOf(account.getGraphId()));
 			return new ResponseDataVO<RegisterVO>(registervo);
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			LOG.error("Exception raised when registering user account.", ex);
 			return new ResponseDataVO<RegisterVO>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}

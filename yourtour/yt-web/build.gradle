@@ -6,27 +6,27 @@ configurations{
 }
 
 dependencies {
-	compile "org.springframework:spring-context:${springVersion}",
+	compile  "org.springframework:spring-context:${springVersion}",
 					 "org.springframework:spring-web:${springVersion}",
 					 "org.springframework:spring-tx:${springVersion}",
 					 "org.springframework:spring-aspects:${springVersion}",
 					 "com.sun.jersey:jersey-core:1.19",
-				     "com.sun.jersey:jersey-json:1.19",
-				     "com.sun.jersey:jersey-servlet:1.19",
-				     "com.sun.jersey:jersey-server:1.19",
-				     "com.sun.jersey.contribs:jersey-spring:1.19",
+				   "com.sun.jersey:jersey-json:1.19",
+				   "com.sun.jersey:jersey-servlet:1.19",
+				   "com.sun.jersey:jersey-server:1.19",
+				   "com.sun.jersey.contribs:jersey-spring:1.19",
 					 "org.ebaysf.web:cors-filter:1.0.1",
 					 "org.springframework.data:spring-data-hadoop:2.1.2.RELEASE",
-			         "org.springframework.data:spring-data-commons:1.9.2.RELEASE",
-			         "org.apache.hbase:hbase-client:1.0.0",
-			         "javax.persistence:persistence-api:1.0.2",
+			     "org.springframework.data:spring-data-commons:1.9.2.RELEASE",
+			     "org.apache.hbase:hbase-client:1.0.0",
+			     "javax.persistence:persistence-api:1.0.2",
 					 "org.springframework.data:spring-data-neo4j:3.2.0.RELEASE",
-		             "org.springframework.data:spring-data-neo4j-tx:3.2.0.RELEASE",
-		             "org.springframework.data:spring-data-neo4j-rest:3.2.0.RELEASE",
-		             "org.neo4j:neo4j-cypher-dsl:2.1.4",
-		             "javax.validation:validation-api:1.1.0.Final",
-		              "dom4j:dom4j:1.6.1",
-				project(":yt-data-service")	
+		       "org.springframework.data:spring-data-neo4j-tx:3.2.0.RELEASE",
+		       "org.springframework.data:spring-data-neo4j-rest:3.2.0.RELEASE",
+		       "org.neo4j:neo4j-cypher-dsl:2.1.4",
+		       "javax.validation:validation-api:1.1.0.Final",
+		       "dom4j:dom4j:1.6.1",
+					 project(":yt-data-service")	
 				
 	 providedCompile "javax.servlet:servlet-api:2.5"
 }
