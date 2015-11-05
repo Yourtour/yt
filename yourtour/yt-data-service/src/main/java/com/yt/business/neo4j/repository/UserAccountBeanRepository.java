@@ -9,7 +9,6 @@ package com.yt.business.neo4j.repository;
 
 import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.neo4j.repository.GraphRepository;
-import org.springframework.data.repository.query.Param;
 
 import com.yt.business.bean.UserAccountBean;
 
@@ -24,7 +23,6 @@ public interface UserAccountBeanRepository extends GraphRepository<UserAccountBe
 	 * @param userName
 	 * @return
 	 */
-	@Query("MATCH n=(UserAccountBean{userName:'13601951704'}) RETURN n")
-	//@Query("start n=node(24) return n")
-	public UserAccountBean getUserAccountInfo(@Param("userName") String userName);
+	@Query("MATCH (u:UserAccountBean) WHERE u.userName={0} RETURN u")
+	public UserAccountBean getUserAccountInfo(String userName);
 }
