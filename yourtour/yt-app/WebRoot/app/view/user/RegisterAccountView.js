@@ -8,6 +8,8 @@ Ext.define('YourTour.view.user.RegisterAccountView', {
     	defaults:{
     		padding:'0 10 0 10'
     	},
+    	scrollable:'none',
+    	
         items: [
         	{
             	xtype: 'xtitlebar',
@@ -36,22 +38,61 @@ Ext.define('YourTour.view.user.RegisterAccountView', {
             	items:[
             	   {
             		   xtype:'image', 
-            		   src:'resources/icons/icon_user.png',
+            		   src:'resources/icons/icon_mobile.png',
             		   mode : 'tag'
             	   },
             	   
             	   {
-            		   xtype:'label',
+            		   xtype:'xlabel',
             		   html:'|',
             		   margin:'0 10 0 10'
             	   },
             	   {
-            		   xtype:'textfield', 
+            		   xtype:'xtextfield', 
+            		   name: 'mobile',
             		   flex:1,
-            		   placeHolder:'请输入用户名(邮箱)',
-            		   name: 'userName'
+            		   placeHolder:'请输入手机号码(11位数字)'
             	   } 
             	]
+            },
+        
+            {
+            	xtype:'panel',
+            	layout:'hbox',
+            	cls:'row underline',
+            	style:'background:white',
+            	items:[
+    				{
+    					   xtype:'image', 
+    					   src:'resources/icons/icon_code.png',
+                       	   mode : 'tag'
+    				},
+    				
+    				{
+    					   xtype:'xlabel',
+                		   html:'|',
+                		   margin:'0 10 0 10'
+    				},
+    				{
+    					xtype:'panel',
+    	            	layout:'hbox',
+    	            	flex:1,
+    	            	items:[
+    						{
+    							   xtype:'xtextfield', 
+    							   flex:3,
+    							   placeHolder:'请输入验证码',
+    							   name: 'authcode'
+    						},
+    						{
+    							   xtype:'xbutton', 
+    							   itemId:'getCode',
+    							   flex:2,
+    							   html: '获取验证码'
+    						}
+    	            	]
+    				}
+    	        ]
             },
             
             {

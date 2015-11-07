@@ -49,7 +49,7 @@ Ext.application({
     ],
     
     stores:[
-        'LaunchStore','RouteStore','LineStore','ResourceStore','ResourceSelectionStore', 'UserStore', 'HomeStore', 'BestListStore','TalentListStore', 'AlongListStore','CommentStore', 'PlaceStore'  ,'UserAccountStore'
+        'LaunchStore','RouteStore','LineStore','ResourceStore','ResourceSelectionStore', 'UserStore', 'HomeStore', 'BestListStore','TalentListStore', 'AlongListStore','CommentStore', 'PlaceStore'  ,'UserAccountStore', 'LocalStore'
     ],
         
     icon: {

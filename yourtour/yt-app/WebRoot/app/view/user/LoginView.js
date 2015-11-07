@@ -45,7 +45,7 @@ Ext.define('YourTour.view.user.LoginView', {
             		   xtype:'xtextfield', 
             		   placeHolder:'请输入用户名(邮箱或者手机号)',
             		   flex:1,
-            		   name: 'userName'
+            		   itemId: 'mobile'
             	   }
             	]
             },
@@ -71,7 +71,7 @@ Ext.define('YourTour.view.user.LoginView', {
 						   placeHolder:'请输入密码(8-16位字母、数字)',
 						   inputCls:'borderless',
 						   flex:1,
-						   name: 'password'
+						   itemId: 'password'
 					}
             	]
             },

@@ -1,5 +1,5 @@
 Ext.define('YourTour.model.UserAccountModel', {
-    extend: 'Ext.data.Model',
+	extend: 'Ext.data.Model',
     config:{
     	idProperty:'graphId',
     	
@@ -20,8 +20,7 @@ Ext.define('YourTour.model.UserAccountModel', {
 	    	url : 'account/register',
 	    	noCache: false,
 	    	reader: {
-		    	type: 'json',
-		    	root: 'data'
+		    	type: 'json'
 	    	}
 	    }
     }

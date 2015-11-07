@@ -23,6 +23,6 @@ public interface UserAccountBeanRepository extends GraphRepository<UserAccountBe
 	 * @param userName
 	 * @return
 	 */
-	@Query("MATCH (u:UserAccountBean) WHERE u.userName={0} RETURN u")
-	public UserAccountBean getUserAccountInfo(String userName);
+	@Query("MATCH (u:UserAccountBean) WHERE u.mobile={0} RETURN u")
+	public UserAccountBean getUserAccountInfo(String mobile);
 }

@@ -21,16 +21,33 @@ Ext.define('YourTour.controller.Launch', {
         this.store = Ext.create('YourTour.store.LaunchStore', {itemId:'lanuchStore'});
         
         var me = this;
-        
         var success = function(){
-        	var launch = me.getLaunch();
-        	launch.setActiveItem(1);
+        	var localStore =  Ext.getStore('LocalStore');
+        	localStore.load();
+        	
+        	var index = localStore.find('key', 'welcome.visited'); //检查是否访问过welcome页
+        	if(index < 0){
+        		var launch = me.getLaunch();
+            	launch.setActiveItem(1);
+        	}else{
+        		//检查是否登录过
+        		index = localStore.find('key', 'account.authenticated');
+        		if(index >= 0){
+        			me.redirectTo('/mainpage');
+        		}else{
+        			me.redirectTo('/login');
+        		}
+        	}
         };
         
         this.store.load(success, this);
     },
     
     doEnter:function(){
+    	var localStore =  Ext.getStore('LocalStore');
+    	localStore.add({key:'welcome.visited', value:'1'});
+    	localStore.sync();
+    	
     	this.redirectTo('/login');
     }
 });

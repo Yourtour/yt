@@ -3,7 +3,7 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     config: {
        refs:{
     	   loginMainView:'#LoginMainView',
-    	   registerAuthView:'#RegisterAuthView',
+    	   loginView:'#LoginView',
     	   rgisterAccountView:'#RegisterAccountView',
     	   registerProfileView:'#RegisterProfileView',
     	   portraitOptions:'#RegisterProfileView #portraitOptions'	   
@@ -17,10 +17,6 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     	   '#LoginView #btnLogin':{
     		   tap:'onLoginTap'
     			   
-    	   },
-    	   
-    	   '#RegisterAuthView #btnNext':{
-    		   tap:'onRegisterAuthTap'
     	   },
     	   
     	   '#RegisterAuthView #getCode':{
@@ -67,25 +63,11 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     },
     
     onRegisterTap:function(){
-    	this.getLoginMainView().setActiveItem('#RegisterAuthView');
+    	this.getLoginMainView().setActiveItem('#RegisterAccountView');
     },
     
     onGetAuthCode:function(){
     	
-    },
-    
-    /**
-     * 
-     */
-    onRegisterAuthTap:function(){
-    	var me = this;
-    	
-    	var authview = me.getRegisterAuthView();
-    	var values = authview.getValues(); 
-    	this.model.set('mobile',values.mobile);
-    	this.model.set('authcode',values.authcode);
-    	
-   		me.getLoginMainView().setActiveItem(me.getRgisterAccountView());
     },
     
     /**
@@ -96,16 +78,54 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     	
     	var accountview = this.getRgisterAccountView();
     	var values = accountview.getValues(); 
-    	this.model.set('userName',values.userName);
-    	this.model.set('password',values.password);
-
-    	var proxy = this.model.getProxy();
-    	proxy.setExtraParams({'step':2});
-    	proxy.setUrl(YourTour.util.Context.getContext('/users/account/register'));
-    	var success = function(){
-    		me.getLoginMainView().setActiveItem(me.getRegisterProfileView());
-    	};
-    	this.model.save({success:success});
+    	
+    	var mobile = values.mobile;
+    	if(mobile == ''){
+    		Ext.Msg.alert('请输入手机号码。');
+    		return;
+    	}
+    	
+    	var authcode = values.authcode;
+    	if(authcode == ''){
+    		Ext.Msg.alert('请输入验证码。');
+    		return;
+    	}
+    	
+    	var pass = values.password, confirm = values.confirmPassword;
+    	if(pass == '' || confirm == ''){
+    		Ext.Msg.alert('请输入密码或者验证密码。');
+    		return;
+    	}
+    	
+    	if(pass != confirm){
+    		Ext.Msg.alert('两次输入的密码不一致，请重新输入。');
+    		return;
+    	}
+    	
+    	delete values['confirmPassword'];
+    	
+    	var data = Ext.JSON.encode(values);
+    	Ext.Ajax.request({
+    	    url : YourTour.util.Context.getContext('/users/account/register'),
+    	    method : "POST",
+    	    headers: {
+    	        'Content-Type': 'application/json'
+    	    },
+    	    params : data,
+    	    success : function(response) {
+    	    	var data = Ext.JSON.decode(response.responseText);
+    	    	if(data.errorCode != '0'){
+    	    		Ext.Msg.alert(data.errorText);
+    	    		return;
+    	    	};
+    	    	
+    	    	me.getLoginMainView().setActiveItem(me.getRegisterProfileView());
+    	    },
+    	    failure : function(response) {
+    	        var respObj = Ext.JSON.decode(response.responseText);
+    	        Ext.Msg.alert("Error", respObj.status.statusMessage);
+    	    }
+    	});
     },
     
     /**
@@ -139,7 +159,50 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     },
     
     onLoginTap:function(){
-    	this.redirectTo('/mainpage');
+    	var me = this;
+    	var loginInfo = {};
+    	
+    	var page = this.getLoginView();
+    	var mobileEl = page.down('#mobile');
+    	loginInfo.mobile=mobileEl.getValue();
+    	if(loginInfo.mobile == ''){
+    		Ext.Msg.alert('请输入登录手机号');
+    		return;
+    	}
+    	
+    	var passwordEl = page.down('#password');
+    	loginInfo.password=passwordEl.getValue();
+    	if(loginInfo.password == ''){
+    		Ext.Msg.alert('请输入登录密码。');
+    		return;
+    	}
+    	
+    	var data = Ext.JSON.encode(loginInfo);
+    	Ext.Ajax.request({
+    	    url : YourTour.util.Context.getContext('/users/account/login'),
+    	    method : "POST",
+    	    headers: {
+    	        'Content-Type': 'application/json'
+    	    },
+    	    params : data,
+    	    success : function(response) {
+    	    	var data = Ext.JSON.decode(response.responseText);
+    	    	if(data.errorCode != '0'){
+    	    		Ext.Msg.alert(data.errorText);
+    	    		return;
+    	    	};
+    	    	
+    	    	var localStore =  Ext.getStore('LocalStore');
+    	    	localStore.add({key:'account.authenticated', value:'1'});
+    	    	localStore.sync();
+    	    	
+    	    	me.redirectTo('/mainpage');
+    	    },
+    	    failure : function(response) {
+    	        var respObj = Ext.JSON.decode(response.responseText);
+    	        Ext.Msg.alert("Error", respObj.status.statusMessage);
+    	    }
+    	});
     },
     
     onBtnCameralTap:function(){

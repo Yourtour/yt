@@ -86,8 +86,8 @@ if(Ext.util.Format){
 }
 
 if(Ext.MessageBox){
-    Ext.MessageBox.OK.text = 'OK';
-    Ext.MessageBox.CANCEL.text = 'Cancel';
+    Ext.MessageBox.OK.text = '确定';
+    Ext.MessageBox.CANCEL.text = '取消';
     Ext.MessageBox.YES.text = 'Yes';
     Ext.MessageBox.NO.text = 'No';
 }

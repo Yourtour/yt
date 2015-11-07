@@ -44,9 +44,9 @@ import com.yt.neo4j.annotation.Neo4jRelationship;
 public class UserAccountBean extends BaseBeanImpl {
 	private static final long serialVersionUID = 6231921514683196684L;
 
-	@HbaseColumn(name = "uname")
+	@HbaseColumn(name = "mobile")
 	@Indexed
-	private String userName; // 登录账号
+	private String mobile; // 手机
 	
 	@HbaseColumn(name = "pwd")
 	private String pwd; // 登录密码
@@ -62,20 +62,20 @@ public class UserAccountBean extends BaseBeanImpl {
 		super();
 	}
 
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
 	public String getPwd() {
 		return pwd;
 	}
 
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
 	}
 
 	public UserProfileBean getProfile() {

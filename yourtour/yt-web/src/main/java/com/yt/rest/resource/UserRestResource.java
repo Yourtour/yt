@@ -340,18 +340,37 @@ public class UserRestResource extends BaseRestResource{
 	@Path("/account/register")
 	public ResponseDataVO<RegisterVO> registerUserAccount(RegisterVO registervo){
 		try{
-			UserAccountBean account = userRepository.getUserAccount(registervo.getUserName());
+			UserAccountBean account = userRepository.getUserAccount(registervo.getMobile());
 			if(account != null){
 				return new ResponseDataVO<RegisterVO>(StaticErrorEnum.USER_EXIST);
 			}
 			
 			account = new UserAccountBean();
-			account.setUserName(registervo.getUserName());
+			account.setMobile(registervo.getMobile());
 			account.setPwd(registervo.getPassword());
-			//this.userRepository.save(account, String.valueOf(account.getGraphId()));
+			this.userRepository.save(account, String.valueOf(account.getGraphId()));
 			return new ResponseDataVO<RegisterVO>(registervo);
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			LOG.error("Exception raised when registering user account.", ex);
+			return new ResponseDataVO<RegisterVO>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
+	}
+	
+	@POST
+	@Path("/account/login")
+	public ResponseDataVO<RegisterVO> login(RegisterVO registervo){
+		try{
+			UserAccountBean account = userRepository.getUserAccount(registervo.getMobile());
+			if(account == null){
+				return new ResponseDataVO<RegisterVO>(StaticErrorEnum.AUTHENTICATE_FAIL);
+			}
+			
+			if(! account.getPwd().equals(registervo.getPassword())){
+				return new ResponseDataVO<RegisterVO>(StaticErrorEnum.AUTHENTICATE_FAIL);
+			}
+			
+			return new ResponseDataVO<RegisterVO>();
+		} catch (Exception ex) {
 			LOG.error("Exception raised when registering user account.", ex);
 			return new ResponseDataVO<RegisterVO>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}

@@ -8,7 +8,6 @@ public class RegisterVO implements Serializable{
 	private Long graphId;
 	private String mobile;
 	private String authcode;
-	private String userName;
 	private String password;
 	private String nickname;
 	private String sex;
@@ -33,14 +32,6 @@ public class RegisterVO implements Serializable{
 
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
 	}
 
 	public String getPassword() {

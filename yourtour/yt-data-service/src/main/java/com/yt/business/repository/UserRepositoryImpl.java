@@ -26,7 +26,7 @@ public class UserRepositoryImpl extends CrudAllInOneOperateImpl implements
 	}
 
 	@Override
-	public UserAccountBean getUserAccount(String userName) throws Exception {
-		return accountRepository.getUserAccountInfo(userName);
+	public UserAccountBean getUserAccount(String mobile) throws Exception {
+		return accountRepository.getUserAccountInfo(mobile);
 	}
 }
