@@ -45,7 +45,7 @@ Ext.application({
     
     models:[
         'LaunchModel','RouteModel','ScheduleModel','SchedulePlanModel', 'LineModel', 'UserModel','OptionModel', 'HomeModel','LiveModel','ChatModel','AlongModel','TalentModel','HomeCarouselModel','CommentModel', 'PlaceModel',
-        'UserAccountModel'
+        'UserAccountModel','CacheModel'
     ],
     
     stores:[
@@ -71,6 +71,11 @@ Ext.application({
     },
 
     launch: function() {
+    	Ext.Ajax.on('beforerequest', (function(conn, options, eOpts) {  
+    	    options.headers = {
+    	    	'User-Token':'1234567890'
+    	    };
+    	}), this);
     },
 
     onUpdated: function() {

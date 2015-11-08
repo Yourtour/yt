@@ -192,7 +192,7 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     	    		return;
     	    	};
     	    	
-    	    	var localStore =  Ext.getStore('LocalStore');
+    	    	var localStore =  Ext.StoreManager.get('LocalStore');
     	    	localStore.add({key:'account.authenticated', value:'1'});
     	    	localStore.sync();
     	    	

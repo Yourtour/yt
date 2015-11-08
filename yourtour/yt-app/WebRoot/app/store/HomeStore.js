@@ -52,10 +52,7 @@ Ext.define('YourTour.store.HomeStore', {
     	
     	proxy:{
 	    	api:{
-				 read: YourTour.util.Context.getContext('/home/place/9/query'),
-				 create: YourTour.util.Context.getContext('/route/Save.action'),
-				 update: YourTour.util.Context.getContext('/route/Update.action'),
-				 destroy: YourTour.util.Context.getContext('/route/Delete.action')
+				 read: YourTour.util.Context.getContext('/home/place/9/query')
 			}
     	}
     }

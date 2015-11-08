@@ -1,11 +1,9 @@
 Ext.define('YourTour.store.AjaxStore', {
     extend: 'Ext.data.Store',
     config:{
-    	useDefaultXhrHeader: false,
     	autoLoad: false,
 	    proxy:{
 			type: 'ajax',
-			useDefaultXhrHeader:false,
 			noCache: false,
 			actionMethods : {
 				create : 'POST', //新增
@@ -17,10 +15,6 @@ Ext.define('YourTour.store.AjaxStore', {
 			reader:{
 				type:'json',
 				rootProperty:'data'
-			},
-			
-			headers:{
-				//'Origin':'http://192.168.0.5'
 			}
 	    }
     }

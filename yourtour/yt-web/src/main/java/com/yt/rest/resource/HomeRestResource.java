@@ -3,11 +3,13 @@ package com.yt.rest.resource;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import org.apache.commons.logging.Log;
@@ -39,11 +41,11 @@ public class HomeRestResource {
 
 	@Path("place/{placeId}/query")
 	@GET
-	public ResponseDataVO<HomeVO> getHomeInfo(
-			@PathParam("placeId") String placeId) {
+	public ResponseDataVO<HomeVO> getHomeInfo(@PathParam("placeId") String placeId, @Context HttpServletRequest request) {
 		HomeVO homeVO = new HomeVO();
 
 		try {
+			String userToken = request.getHeader("User-Token");
 			List<AlongVO> alongs = new ArrayList<AlongVO>();
 			List<AlongBean> alongBeans = alongRepository.getAlongsByPlace(
 					Long.parseLong(placeId), 0, 5);

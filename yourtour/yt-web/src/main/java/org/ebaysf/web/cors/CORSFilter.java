@@ -144,7 +144,7 @@ public final class CORSFilter implements Filter {
         }
 
         // Safe to downcast at this point.
-        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        HttpServletRequest request = new HttpServletRequestWrapper((HttpServletRequest) servletRequest);
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
         // Determines the CORS request type.
@@ -602,6 +602,7 @@ public final class CORSFilter implements Filter {
             throw new IllegalArgumentException(
                     "HttpServletRequest object is null");
         }
+        
         String originHeader = request.getHeader(REQUEST_HEADER_ORIGIN);
         //originHeader = null;
         // Section 6.1.1 and Section 6.2.1
@@ -1175,3 +1176,4 @@ public final class CORSFilter implements Filter {
     public static final String PARAM_CORS_REQUEST_DECORATE =
             "cors.request.decorate";
 }
+

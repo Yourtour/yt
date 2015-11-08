@@ -41,10 +41,15 @@
 			<param-name>cors.allowed.origins</param-name>
 			<param-value>*</param-value>
 		</init-param>
+		
+		<init-param>
+		    <param-name>cors.allowed.headers</param-name>
+		    <param-value>Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers, User-Token</param-value>
+		</init-param>
 	</filter>
 	<filter-mapping>
 		<filter-name>CorsFilter</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/rest/*</url-pattern>
 	</filter-mapping>
 	
 	<filter>
