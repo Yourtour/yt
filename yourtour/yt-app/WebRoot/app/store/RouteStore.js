@@ -108,7 +108,7 @@ Ext.define('YourTour.store.RouteStore', {
     	
     	proxy:{
 	    	api:{
-				 read: YourTour.util.Context.getContext('/routes/personal')
+				 read: YourTour.util.Context.getContext('/routes/personal/query')
 			}
     	}
     }

@@ -39,7 +39,7 @@ import com.yt.vo.route.RouteVO;
 @Path("routes")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class RouteRestResource {
+public class RouteRestResource extends BaseRestResource{
 	private static final Log LOG = LogFactory.getLog(RouteRestResource.class);
 
 	// spring自动装配的行程操作库
@@ -54,11 +54,13 @@ public class RouteRestResource {
 	 * @return 统一的ResponseVO数据对象，其中的data字段包括了行程数据列表。
 	 */
 	@GET
-	@Path("user/{id}/query")
-	public ResponseDataVO<List<RouteOverViewVO>> getRoutesByUser(
-			@PathParam("id") String userId) {
-		long userGraphId = Neo4jUtils.getGraphIDFromString(userId);
+	@Path("/personal/query")
+	public ResponseDataVO<List<RouteOverViewVO>> getRoutesByUser(@Context HttpServletRequest request) {
+		String userId = null;
 		try {
+			userId = super.getCurrentUserId(request);
+			long userGraphId = Neo4jUtils.getGraphIDFromString(userId);
+			
 			UserProfileBean profileBean = null;
 			if (userGraphId != -1) {
 				// id是GraphID

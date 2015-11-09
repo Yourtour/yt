@@ -6,13 +6,11 @@ Ext.define('YourTour.model.RouteModel', {
     	
 	    fields:[{name:'rowKey', type:'string'},
 	            {name:'imageUrl', type:'string'},
-	            {name:'imageUrls', type:'string'},
 	    		{name:'name', type:'string'},
-	    		{name:'place', type:'string'},
 	    		{name:'lineName', type:'string'},
 	    		{name:'impression', type:'string'},
-	    		{name:'startTime', type:'string'},
-	    		{name:'endTime', type:'string'},
+	    		{name:'startDate', type:'string'},
+	    		{name:'endDate', type:'string'},
 	    		{name:'period', type:'string'},
 	    		{name:'feature', type:'string'}
 	    ],
@@ -22,6 +20,6 @@ Ext.define('YourTour.model.RouteModel', {
             model: 'YourTour.model.ScheduleModel',   
             name:'schedules',
             associationKey:'schedules'
-        }]  
+        }],
     }
 });

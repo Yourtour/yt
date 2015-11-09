@@ -38,7 +38,7 @@ Ext.application({
     controllers: [
         'Launch', 'MainCtrl', 'common.PlaceChangeCtrl','common.PlaceSelectionCtrl',
         'home.HomeMainCtrl', 'home.BestMainCtrl','home.TalentMainCtrl','home.AlongMainCtrl',
-        'route.RouteMainCtrl','route.RouteSettingCtrl','route.ScheduleListCtrl', 'route.SchedulePlanListCtrl', 'line.LineRecommendCtrl','line.LineIntroductionCtrl','user.AccountMainCtrl',
+        'route.RouteMainCtrl','route.RouteEditCtrl','route.ScheduleListCtrl', 'route.SchedulePlanListCtrl', 'line.LineRecommendCtrl','line.LineIntroductionCtrl','user.AccountMainCtrl',
         'resource.ResourceSelectionCtrl','route.ScheduleReferenceCtrl','resource.ResourceCtrl','resource.ResourcePlanCtrl','route.ScheduleDetailCtrl',
         'user.UserListCtrl'
     ],
@@ -71,9 +71,22 @@ Ext.application({
     },
 
     launch: function() {
-    	Ext.Ajax.on('beforerequest', (function(conn, options, eOpts) {  
+    	//设置AJAX请求公用信息
+    	Ext.Ajax.on('beforerequest', (function(conn, options, eOpts) {
+    		var localStore =  Ext.StoreManager.get('LocalStore');
+        	localStore.load();
+        	
+        	var userToken = '';
+        	var index = localStore.find('key', 'user.profile'); 
+        	if(index >= 0){
+        		var userProfile = localStore.getAt(index);
+        		var profile = Ext.JSON.decode(userProfile.get('value'));
+        		userToken = profile.id;
+        	}
+    		
     	    options.headers = {
-    	    	'User-Token':'1234567890'
+    	    	'User-Token':userToken,
+    	    	'Content-Type':'application/json'
     	    };
     	}), this);
     },

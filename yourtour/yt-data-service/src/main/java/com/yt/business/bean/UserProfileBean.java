@@ -51,19 +51,16 @@ public class UserProfileBean extends BaseDictBeanImpl {
 	private static final long serialVersionUID = -6977525800090683657L;
 	private static final String INDEX_NAME = "user"; // 定义了本实体中全文检索的索引名称。
 	
-	@HbaseColumn(name = "uname")
-	private String userName; // 登录账号
-	
-	@HbaseColumn(name = "pwd")
-	private String pwd; // 登录密码
-
 	@HbaseColumn(name = "nname")
 	@Indexed
 	private String nickName; // 昵称
 
 	@HbaseColumn(name = "sex")
 	private GenderType gender = GenderType.NA; // 性别 F/M
-
+	
+	@HbaseColumn(name = "token")
+	private String token;
+	
 	@HbaseColumn(name = "birth")
 	private long birthday; // 生日
 
@@ -123,20 +120,20 @@ public class UserProfileBean extends BaseDictBeanImpl {
 		this.watchedLines = new Vector<LineBean>();
 	}
 
-	public String getPwd() {
-		return pwd;
-	}
-
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
-	}
-
 	public String getNickName() {
 		return nickName;
 	}
 
 	public void setNickName(String nickName) {
 		this.nickName = nickName;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 	public GenderType getGender() {
@@ -185,14 +182,6 @@ public class UserProfileBean extends BaseDictBeanImpl {
 
 	public void setMobileNo(String mobileNo) {
 		this.mobileNo = mobileNo;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
 	}
 
 	public String getEmail() {

@@ -81,6 +81,4 @@ public class RegisterVO implements Serializable{
 	public void setAuthcode(String authcode) {
 		this.authcode = authcode;
 	}
-
-
 }

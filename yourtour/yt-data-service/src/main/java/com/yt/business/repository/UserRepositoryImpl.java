@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.yt.business.CrudAllInOneOperateImpl;
-import com.yt.business.bean.UserAccountBean;
 import com.yt.business.neo4j.repository.UserAccountBeanRepository;
 import com.yt.business.neo4j.repository.UserProfileBeanRepository;
+import com.yt.business.neo4j.repository.UserTuple;
 
 @Component
 public class UserRepositoryImpl extends CrudAllInOneOperateImpl implements
@@ -26,7 +26,7 @@ public class UserRepositoryImpl extends CrudAllInOneOperateImpl implements
 	}
 
 	@Override
-	public UserAccountBean getUserAccount(String mobile) throws Exception {
-		return accountRepository.getUserAccountInfo(mobile);
+	public UserTuple getUserAccount(String userName) throws Exception {
+		return accountRepository.getUserAccountInfo(userName);
 	}
 }

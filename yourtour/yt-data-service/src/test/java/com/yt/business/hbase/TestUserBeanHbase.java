@@ -80,7 +80,7 @@ public class TestUserBeanHbase {
 			bean.setMobileNo("modile no");
 			bean.setNativePlace("nateive place");
 			bean.setNickName("nick name");
-			bean.setPwd("password");
+			//bean.setPwd("password");
 			bean.setRole(Role.EXPERT);
 			bean.setName("real name");
 			bean.setResidence("residence");
@@ -106,7 +106,7 @@ public class TestUserBeanHbase {
 			assertEquals(bean1.getMobileNo(), bean.getMobileNo());
 			assertEquals(bean1.getNativePlace(), bean.getNativePlace());
 			assertEquals(bean1.getNickName(), bean.getNickName());
-			assertEquals(bean1.getPwd(), bean.getPwd());
+			//assertEquals(bean1.getPwd(), bean.getPwd());
 			assertEquals(bean1.getRole(), bean.getRole());
 			assertEquals(bean1.getName(), bean.getName());
 			assertEquals(bean1.getResidence(), bean.getResidence());

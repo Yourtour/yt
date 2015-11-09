@@ -1,17 +1,12 @@
 package com.yt.rest.resource;
 
-import com.yt.business.bean.UserAccountBean;
+import javax.servlet.http.HttpServletRequest;
 
 public class BaseRestResource {
-
 	public BaseRestResource() {
-		// TODO Auto-generated constructor stub
 	}
 	
-	protected UserAccountBean getCurrentUserAccount(String userId) throws Exception{
-		UserAccountBean account = new UserAccountBean();
-		
-		return account;
+	protected String getCurrentUserId(HttpServletRequest request) throws Exception{
+		return request.getHeader("User-Token");
 	}
-
 }

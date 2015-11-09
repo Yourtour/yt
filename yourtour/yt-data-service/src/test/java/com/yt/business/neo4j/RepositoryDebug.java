@@ -19,9 +19,9 @@ public class RepositoryDebug {
 	
 	@Test
 	public void testOperation() {
-		UserAccountBean bean = accountRepository.getUserAccountInfo("13601951704");
+		/*UserAccountBean bean = accountRepository.getUserAccountInfo("13601951704");
 		
-		System.out.println(bean.getPwd());
+		System.out.println(bean.getPwd());*/
 	}
 
 }

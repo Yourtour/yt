@@ -11,8 +11,13 @@ import com.yt.vo.basedata.PlaceVO;
 
 public class RouteVO extends BaseVO {
 	private String name; // 行程名称
+	private String lineName;
+	private String imageUrl;
 	private long startDate; // 行程开始日期
 	private long endDate; // 行程结束日期
+	private	String impression;
+	private String feature;
+	private int 	period;
 	private PlaceVO fromPlace; // 行程出发地点
 	private List<RouteScheduleVO> schedules; // 行程日程列表
 	private List<RouteProvisionVO> provisions; // 行程准备列表
@@ -109,6 +114,46 @@ public class RouteVO extends BaseVO {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getLineName() {
+		return lineName;
+	}
+
+	public void setLineName(String lineName) {
+		this.lineName = lineName;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	public String getImpression() {
+		return impression;
+	}
+
+	public void setImpression(String impression) {
+		this.impression = impression;
+	}
+
+	public String getFeature() {
+		return feature;
+	}
+
+	public void setFeature(String feature) {
+		this.feature = feature;
+	}
+
+	public int getPeriod() {
+		return period;
+	}
+
+	public void setPeriod(int period) {
+		this.period = period;
 	}
 
 	public long getStartDate() {

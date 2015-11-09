@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yt.business.CrudAllInOneOperate;
-import com.yt.business.bean.UserProfileBean;
+import com.yt.business.bean.UserAccountBean;
+import com.yt.business.neo4j.repository.UserTuple;
+import com.yt.business.repository.UserRepository;
 import com.yt.core.utils.MessageDigestUtils;
 
 public class AdminUserInitializeService implements InitializingBean {
@@ -19,6 +21,9 @@ public class AdminUserInitializeService implements InitializingBean {
 	@Autowired
 	@Qualifier("crudAllInOneOperate")
 	private CrudAllInOneOperate crudOperate;
+	
+	@Autowired
+	private UserRepository userRepository;
 
 	// 密码进行签名的算法
 	private String algorithm = "SHA-1";
@@ -74,8 +79,7 @@ public class AdminUserInitializeService implements InitializingBean {
 	@Transactional
 	private void initializeAdminEmployee() throws Exception {
 		// 检测默认的admin账户是否存在
-		UserProfileBean admin = (UserProfileBean) crudOperate.get(UserProfileBean.class, "code",
-				"admin");
+		UserTuple admin = userRepository.getUserAccount("admin");
 		if (admin != null) {
 			// admin账户已经存在，返回
 			return;
@@ -84,16 +88,16 @@ public class AdminUserInitializeService implements InitializingBean {
 		if (LOG.isWarnEnabled()) {
 			LOG.warn("The admin user is not exist, will initialize it.");
 		}
-		admin = new UserProfileBean();
-		admin.setCode("admin");
-		admin.setName("管理员");
+		
+		UserAccountBean adminBean = new UserAccountBean();
+		adminBean.setUserName("admin");
 		// 将明码的密码更换为摘要加密的密码
-		admin.setPwd(MessageDigestUtils.digest(this.algorithm, "admin"));
-		crudOperate.save(admin, "admin");
+		adminBean.setPwd(MessageDigestUtils.digest(this.algorithm, "admin"));
+		userRepository.save(adminBean, "admin");
 		if (LOG.isDebugEnabled()) {
 			LOG.debug(String
 					.format("Initialize admin employee successfully, default code = %s, password = %s.",
-							admin.getCode(), admin.getPwd()));
+							adminBean.getUserName(), adminBean.getPwd()));
 		}
 	}
 

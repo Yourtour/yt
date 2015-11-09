@@ -17,7 +17,7 @@ Ext.define('YourTour.model.UserAccountModel', {
 	    
 	    proxy: {
 	    	type: 'ajax',
-	    	url : 'account/register',
+	    	url : 'account/main/save',
 	    	noCache: false,
 	    	reader: {
 		    	type: 'json'

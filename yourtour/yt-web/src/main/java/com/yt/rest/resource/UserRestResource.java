@@ -22,16 +22,20 @@ import org.springframework.stereotype.Component;
 
 import com.yt.business.bean.UserAccountBean;
 import com.yt.business.bean.UserProfileBean;
+import com.yt.business.neo4j.repository.UserTuple;
 import com.yt.business.repository.UserRepository;
 import com.yt.business.utils.AdminUserInitializeService;
 import com.yt.business.utils.Neo4jUtils;
+import com.yt.core.utils.Base64Utils;
 import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponsePagingDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.utils.WebUtils;
 import com.yt.vo.member.AuthenticationVO;
+import com.yt.vo.member.LoginVO;
 import com.yt.vo.member.RegisterVO;
+import com.yt.vo.member.UserProfileVO;
 import com.yt.vo.member.UserVO;
 
 @Component
@@ -227,7 +231,7 @@ public class UserRestResource extends BaseRestResource{
 			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
 		}
 		try {
-			UserProfileBean user = (UserProfileBean) userRepository.get(UserProfileBean.class,
+			UserAccountBean user = (UserAccountBean) userRepository.get(UserAccountBean.class,
 					"code", auth.getCode());
 			if (user == null) {
 				if (LOG.isWarnEnabled()) {
@@ -340,14 +344,18 @@ public class UserRestResource extends BaseRestResource{
 	@Path("/account/register")
 	public ResponseDataVO<RegisterVO> registerUserAccount(RegisterVO registervo){
 		try{
-			UserAccountBean account = userRepository.getUserAccount(registervo.getMobile());
-			if(account != null){
+			UserTuple tuple = userRepository.getUserAccount(registervo.getMobile());
+			if(tuple != null){
 				return new ResponseDataVO<RegisterVO>(StaticErrorEnum.USER_EXIST);
 			}
 			
-			account = new UserAccountBean();
-			account.setMobile(registervo.getMobile());
-			account.setPwd(registervo.getPassword());
+			UserAccountBean account = new UserAccountBean();
+			account.setUserName(registervo.getMobile());
+			account.setPwd(Base64Utils.MD5(registervo.getPassword()));
+			
+			UserProfileBean profile = new UserProfileBean();
+			profile.setMobileNo(registervo.getMobile());
+			account.setProfile(profile);
 			this.userRepository.save(account, String.valueOf(account.getGraphId()));
 			return new ResponseDataVO<RegisterVO>(registervo);
 		} catch (Exception ex) {
@@ -358,21 +366,22 @@ public class UserRestResource extends BaseRestResource{
 	
 	@POST
 	@Path("/account/login")
-	public ResponseDataVO<RegisterVO> login(RegisterVO registervo){
+	public ResponseDataVO<UserProfileVO> login(LoginVO loginVO){
 		try{
-			UserAccountBean account = userRepository.getUserAccount(registervo.getMobile());
-			if(account == null){
-				return new ResponseDataVO<RegisterVO>(StaticErrorEnum.AUTHENTICATE_FAIL);
+			UserTuple user = userRepository.getUserAccount(loginVO.getMobile());
+			if(user == null){
+				return new ResponseDataVO<UserProfileVO>(StaticErrorEnum.AUTHENTICATE_FAIL);
 			}
 			
-			if(! account.getPwd().equals(registervo.getPassword())){
-				return new ResponseDataVO<RegisterVO>(StaticErrorEnum.AUTHENTICATE_FAIL);
+			if(! user.getAccount().getPwd().equals(Base64Utils.MD5(loginVO.getPassword().trim()))){
+				return new ResponseDataVO<UserProfileVO>(StaticErrorEnum.AUTHENTICATE_FAIL);
 			}
 			
-			return new ResponseDataVO<RegisterVO>();
+			UserProfileVO profile = new UserProfileVO(user.getProfile());
+			return new ResponseDataVO<UserProfileVO>(profile);
 		} catch (Exception ex) {
 			LOG.error("Exception raised when registering user account.", ex);
-			return new ResponseDataVO<RegisterVO>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+			return new ResponseDataVO<UserProfileVO>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
 	}
 	

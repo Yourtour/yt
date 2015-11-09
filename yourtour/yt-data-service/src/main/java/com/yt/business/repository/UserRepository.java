@@ -1,7 +1,7 @@
 package com.yt.business.repository;
 
 import com.yt.business.CrudAllInOneOperate;
-import com.yt.business.bean.UserAccountBean;
+import com.yt.business.neo4j.repository.UserTuple;
 
 public interface UserRepository extends CrudAllInOneOperate {
 	/**
@@ -10,5 +10,5 @@ public interface UserRepository extends CrudAllInOneOperate {
 	 * @return
 	 * @throws Exception
 	 */
-	public UserAccountBean getUserAccount(String mobile) throws Exception;
+	public UserTuple getUserAccount(String userName) throws Exception;
 }

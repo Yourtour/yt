@@ -48,9 +48,8 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
         	routeCarousel.setActiveItem(0);
     	};
 
-    	var userId = YourTour.util.Context.getUserId();
     	var proxy = store.getProxy();
-    	proxy.setUrl(YourTour.util.Context.getContext('/routes/user/' + userId +'/query'));
+    	proxy.setUrl(YourTour.util.Context.getContext('/routes/personal/query'));
     	store.load(handler, this);
     },
     

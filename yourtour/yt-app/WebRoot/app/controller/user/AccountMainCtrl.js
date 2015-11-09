@@ -108,9 +108,6 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     	Ext.Ajax.request({
     	    url : YourTour.util.Context.getContext('/users/account/register'),
     	    method : "POST",
-    	    headers: {
-    	        'Content-Type': 'application/json'
-    	    },
     	    params : data,
     	    success : function(response) {
     	    	var data = Ext.JSON.decode(response.responseText);
@@ -143,8 +140,6 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     	proxy.setUrl(YourTour.util.Context.getContext('/users/account/register'));
     	var success = function(){
     		//本地缓存
-    		me.getApplication().localStorage.setItem(YourTour.util.Context.getUserKey(),model.rowKey);  
-    		
     		me.redirectTo('/mainpage');
     	};
     	
@@ -181,9 +176,6 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     	Ext.Ajax.request({
     	    url : YourTour.util.Context.getContext('/users/account/login'),
     	    method : "POST",
-    	    headers: {
-    	        'Content-Type': 'application/json'
-    	    },
     	    params : data,
     	    success : function(response) {
     	    	var data = Ext.JSON.decode(response.responseText);
@@ -194,6 +186,7 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     	    	
     	    	var localStore =  Ext.StoreManager.get('LocalStore');
     	    	localStore.add({key:'account.authenticated', value:'1'});
+    	    	localStore.add({key:'user.profile', value:Ext.JSON.encode(data.data)});
     	    	localStore.sync();
     	    	
     	    	me.redirectTo('/mainpage');

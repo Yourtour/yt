@@ -61,7 +61,7 @@ public class TestUserBeanNeo4J {
 			user.setMobileNo("mobile");
 			user.setNativePlace("native place");
 			user.setNickName("nick name");
-			user.setPwd("password");
+			//user.setPwd("password");
 			user.setRole(Role.EXPERT);
 			user.setName("real name");
 			user.setResidence("residence");
@@ -87,7 +87,7 @@ public class TestUserBeanNeo4J {
 					user.getNickName(), user1.getNickName());
 			assertEquals("Assert the email of the UserBean.", user.getEmail(),
 					user1.getEmail());
-			assertNull(user1.getPwd());
+			//assertNull(user1.getPwd());
 
 			neo4jCRUD.delete(UserProfileBean.class);
 			assertTrue(neo4jCRUD.count(UserProfileBean.class) == 0l);

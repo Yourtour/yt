@@ -1,10 +1,11 @@
-Ext.define('YourTour.controller.route.RouteSettingCtrl', {
+Ext.define('YourTour.controller.route.RouteEditCtrl', {
     extend: 'YourTour.controller.BaseCtrl',
     requires:['YourTour.store.RouteStore', 'YourTour.model.RouteModel'],
     config: {
        refs:{
+    	   settingView:'#RouteSettingView',
+    		   
     	   placeList:'#RouteSettingView #placeList',
-    	   view:'#RouteSettingView'	   
        },
        
        control:{
@@ -58,19 +59,29 @@ Ext.define('YourTour.controller.route.RouteSettingCtrl', {
     },
     
     OnNextClick:function(){
-    	this.store = Ext.create('YourTour.store.RouteStore',{itemId:'newRouteStore',data:[]});
-    	
-    	var me = this.getView();
+    	var me = this.getSettingView();
     	var name = me.down('#name').getValue();
-    	var place = me.down('#place').getValue();
-    	var model = Ext.create('YourTour.model.RouteModel',{rowKey:'-1', name:name, place:place});
-    	model.schedules = this.getPlaceList().getStore();
-    	model.schedules.sync();
+    	var model = Ext.create('YourTour.model.RouteModel',{graphid:'-1', name:name});
     	
-    	this.store.add(model);
-    	console.log(this.store);
-    	
-    	this.redirectTo('/line/recommend');
+    	var data = Ext.JSON.encode(model.data);
+    	Ext.Ajax.request({
+    	    url : YourTour.util.Context.getContext('/routes/main/save'),
+    	    method : "POST",
+    	    params : data,
+    	    success : function(response) {
+    	    	var data = Ext.JSON.decode(response.responseText);
+    	    	if(data.errorCode != '0'){
+    	    		Ext.Msg.alert(data.errorText);
+    	    		return;
+    	    	};
+    	    	
+    	    	me.redirectTo('/line/recommend');
+    	    },
+    	    failure : function(response) {
+    	        var respObj = Ext.JSON.decode(response.responseText);
+    	        Ext.Msg.alert("Error", respObj.status.statusMessage);
+    	    }
+    	});
     },
     
     addPlace:function(place){
