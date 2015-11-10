@@ -98,7 +98,7 @@ Ext.define('YourTour.view.common.PlaceListItemView', {
        			moreCitiesEl.hide();
        		}else{
        			cityCountEl.setHtml(record.get('num'));
-           		cities.setModels(record.subs());
+           		cities.setModels(record.children());
        		}
        		cities.hide();
 	 	}

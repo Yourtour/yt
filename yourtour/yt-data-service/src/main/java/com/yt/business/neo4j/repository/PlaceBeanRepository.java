@@ -16,4 +16,7 @@ public interface PlaceBeanRepository extends GraphRepository<PlaceBean> {
 	
 	@Query("START p=node({0}) MATCH p-[:CHILDREN]->parent-[:CHILDREN]->child RETURN parent, child")
 	public List<PlaceTuple> getPlaces(Long graphId);
+	
+	@Query("MATCH(p:PlaceBean) <-[:PARENT]-parent<-[:PARENT]-child WHERE p.code={0} RETURN parent, child")
+	public List<PlaceTuple> getPlaces(String code);
 }

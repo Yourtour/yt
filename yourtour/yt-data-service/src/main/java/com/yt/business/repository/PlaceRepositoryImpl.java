@@ -129,4 +129,29 @@ public class PlaceRepositoryImpl extends CrudAllInOneOperateImpl implements
 
 		return places;
 	}
+	
+	@Override
+	public List<PlaceBean> getPlaces(String parentCode) {
+		List<PlaceTuple> tuples = this.repository.getPlaces(parentCode);
+
+		List<PlaceBean> places = new ArrayList<PlaceBean>();
+		PlaceBean parent = null, child = null;
+		for (PlaceTuple tuple : tuples) {
+			parent = tuple.getParent();
+			child = tuple.getChild();
+
+			if (places.contains(parent)) {
+				for (PlaceBean p : places) {
+					if (p.equals(parent)) {
+						p.addSub(child);
+					}
+				}
+			} else {
+				parent.addSub(child);
+				places.add(parent);
+			}
+		}
+
+		return places;
+	}
 }

@@ -4,6 +4,7 @@ Ext.define('YourTour.model.PlaceModel', {
     	idProperty:'rowKey',
     	
 	    fields:[{name:'rowKey', type:'string'},
+	            {name:'code', type:'string'},
 	    		{name:'name', type:'string'},
 	    		{name:'num', type:'string'}
 	    ],
@@ -12,8 +13,8 @@ Ext.define('YourTour.model.PlaceModel', {
 	        {  
 	            type: 'hasMany',   
 	            model: 'YourTour.model.PlaceModel',   
-	            name:'subs',   
-	            associationKey:'subs'  
+	            name:'children',   
+	            associationKey:'children'  
 	        }
         ]  
     }

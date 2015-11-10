@@ -1,5 +1,5 @@
 Ext.define('YourTour.store.PlaceStore', {
-	extend: 'YourTour.store.DummyStore',
+	extend: 'YourTour.store.AjaxStore',
     requires: [
        'YourTour.model.PlaceModel'
     ],

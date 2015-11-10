@@ -47,6 +47,12 @@ public class PlaceVO {
 		vo.setShorter(bean.getShorter());
 		vo.setStatus(bean.getStatus());
 		vo.setText(bean.getName());
+		
+		if(bean.getSubs() != null){
+			for(PlaceBean sub : bean.getSubs()){
+				vo.children.add(transform(sub));
+			}
+		}
 		return vo;
 	}
 
@@ -137,5 +143,9 @@ public class PlaceVO {
 
 	public List<PlaceVO> getChildren() {
 		return children;
+	}
+	
+	public int getNum(){
+		return this.children.size();
 	}
 }

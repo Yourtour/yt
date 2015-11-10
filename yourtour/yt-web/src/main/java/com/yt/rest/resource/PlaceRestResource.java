@@ -38,13 +38,11 @@ public class PlaceRestResource {
 	 * @return
 	 */
 	@GET
-	@Path("/{parentId}/query")
-	public ResponseDataVO<List<PlaceVO>> getPlaces(
-			@PathParam("parentId") String parentId) {
+	@Path("/{parentCode}/query")
+	public ResponseDataVO<List<PlaceVO>> getPlaces(@PathParam("parentCode") String parentCode) {
 		List<PlaceVO> list = new ArrayList<PlaceVO>();
 		try {
-			List<PlaceBean> places = placeRepository.getPlaces(Long
-					.valueOf(parentId));
+			List<PlaceBean> places = placeRepository.getPlaces(parentCode);
 			for (PlaceBean place : places) {
 				list.add(PlaceVO.transform(place));
 			}
