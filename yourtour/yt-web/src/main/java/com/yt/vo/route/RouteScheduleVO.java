@@ -12,6 +12,7 @@ import com.yt.vo.basedata.PlaceVO;
 public class RouteScheduleVO extends BaseVO {
 	private int index;
 	private long date;
+	private int  days;
 	private String description;
 	private PlaceVO place;
 	private RouteVO route;
@@ -25,6 +26,7 @@ public class RouteScheduleVO extends BaseVO {
 		vo.fromBean(bean);
 		vo.setIndex(bean.getIndex());
 		vo.setDate(bean.getDate());
+		vo.setDays(bean.getDays());
 		vo.setDescription(bean.getDescription());
 		if (bean.getPlace() != null) {
 			PlaceVO placeVO = new PlaceVO();
@@ -60,6 +62,7 @@ public class RouteScheduleVO extends BaseVO {
 		bean.setIndex(vo.getIndex());
 		bean.setDate(vo.getDate());
 		bean.setDescription(vo.getDescription());
+		bean.setDays(vo.getDays());
 		if (vo.getPlace() != null) {
 			PlaceBean place = new PlaceBean();
 			place.setGraphId(vo.getPlace().getId());
@@ -90,6 +93,14 @@ public class RouteScheduleVO extends BaseVO {
 
 	public void setIndex(int index) {
 		this.index = index;
+	}
+
+	public int getDays() {
+		return days;
+	}
+
+	public void setDays(int days) {
+		this.days = days;
 	}
 
 	public long getDate() {

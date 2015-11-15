@@ -27,6 +27,8 @@ public class RouteScheduleBean extends BaseBeanImpl {
 	@HbaseColumn(name = "dt")
 	private long date = 0; // 行程日程日期
 	
+	private int days = 0;
+	
 	@HbaseColumn(name = "desc")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
 	private String description; // 行程日程描述
@@ -43,6 +45,14 @@ public class RouteScheduleBean extends BaseBeanImpl {
 	public RouteScheduleBean() {
 		super();
 		activities = new Vector<RouteActivityBean>();
+	}
+
+	public int getDays() {
+		return days;
+	}
+
+	public void setDays(int days) {
+		this.days = days;
 	}
 
 	public int getIndex() {

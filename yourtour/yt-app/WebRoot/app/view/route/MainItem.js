@@ -111,7 +111,6 @@ Ext.define('YourTour.view.route.MainItem', {
     
     setRecord: function(record) {
         var me = this;
-        
         if(record){
  	 	   var imageUrl = me.down('#imageUrl');
  	 	   imageUrl.setHtml("<img src='" + record.get('imageUrl') + "' style='width:100%; max-height:150px'>");
@@ -120,7 +119,7 @@ Ext.define('YourTour.view.route.MainItem', {
  	 	   name.setHtml(record.get('name'));
  	 	   
  	 	   var time = me.down('#time');
- 	 	   time.setHtml(record.get('startTime') +'-' + record.get('endTime') + '(' + record.get('period')+')');
+ 	 	   time.setHtml(record.get('startDate') +'-' + record.get('endDate') + '(' + record.get('period')+')');
  	 	   
  	 	   var lineName = me.down('#lineName');
  	 	   lineName.setHtml(record.get('lineName'));

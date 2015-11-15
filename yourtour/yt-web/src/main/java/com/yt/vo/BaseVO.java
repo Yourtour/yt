@@ -41,7 +41,7 @@ public class BaseVO {
 	}
 
 	public void setId(Long graphid) {
-		this.graphid = graphid;
+		this.graphid = graphid == 0 ? null : graphid;
 	}
 
 	public String getRowKey() {

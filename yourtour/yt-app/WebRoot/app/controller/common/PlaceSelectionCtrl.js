@@ -103,7 +103,7 @@ Ext.define('YourTour.controller.common.PlaceSelectionCtrl', {
     	var selection = this.getSelection();
     	Ext.ComponentManager.get('MainView').pop();
     	selection.getItems().each(function(item){
-    		me.getApplication().getController('route.RouteSettingCtrl').addPlace(item.model);
+    		me.getApplication().getController('route.RouteEditCtrl').addPlace(item.model);
     	});
     },
     

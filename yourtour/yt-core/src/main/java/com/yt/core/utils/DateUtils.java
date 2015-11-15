@@ -7,7 +7,9 @@ public class DateUtils {
 	public static final String DATE_FORMAT_DEFAULT="yyyy-MM-dd";
 	
 	public static String formatDate(long millisecond){
-		return formatDate(millisecond, DATE_FORMAT_DEFAULT);
+		String s = formatDate(millisecond, DATE_FORMAT_DEFAULT);
+		System.out.println("s=" + s);
+		return s;
 	}
 	
 	public static String formatDate(long millisecond, String format){

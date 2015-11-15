@@ -206,6 +206,15 @@ public class RouteRestResource extends BaseRestResource{
 		}
 		try {
 			RouteMainBean bean = RouteVO.transform(vo);
+			
+			UserProfileBean profileBean = null;
+			long userGraphId = Neo4jUtils.getGraphIDFromString(super.getCurrentUserId(request));
+			if (userGraphId != -1) {
+				profileBean = (UserProfileBean) routeRepository.get(UserProfileBean.class,
+						userGraphId, false);
+				bean.setOwner(profileBean);
+			}
+			
 			routeRepository.save(bean, WebUtils.getCurrentLoginUser(request));
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format("Save RouteMainBean['%s'] success.",

@@ -40,7 +40,7 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
     	var handler = function(){
     		routeCarousel.removeAll(true, false);
         	store.each(function(item){
-        		var routePanel = Ext.create('YourTour.view.route.MainItem');
+        		var routePanel = Ext.create('YourTour.view.route.MainItem',{itemId:item.get('Id')});
         		routePanel.setRecord(item);
         		routeCarousel.add(routePanel);
         	});

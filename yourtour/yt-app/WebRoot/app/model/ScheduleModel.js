@@ -2,13 +2,14 @@ Ext.define('YourTour.model.ScheduleModel', {
     extend: 'Ext.data.Model',
     requires:['YourTour.model.SchedulePlanModel'],
     config:{
-    	idProperty:'rowKey',
+    	idProperty:'id',
     	
 	    fields:[
-	    	{name:'rowKey', type:'string'},
+	    	{name:'id', type:'string'},
             {name:'type', type:'string'},
     		{name:'name', type:'string'},
             {name:'date', type:'string'},
+            {name:'days', type:'string'},
     		{name:'places', type:'string'},
     		{name:'memo', type:'string'}
 	    ],
@@ -18,6 +19,6 @@ Ext.define('YourTour.model.ScheduleModel', {
             model: 'YourTour.model.SchedulePlanModel',   
             name:'plans',
             associationKey:'plans'
-        }]  
+        }]
     }
 });

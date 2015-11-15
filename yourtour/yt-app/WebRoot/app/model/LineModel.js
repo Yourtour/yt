@@ -2,14 +2,13 @@ Ext.define('YourTour.model.LineModel', {
     extend: 'Ext.data.Model',
     requires:['YourTour.model.UserModel','YourTour.model.ResourceModel'],
     config:{
-    	idProperty:'rowKey',
+    	idProperty:'id',
     	
-	    fields:[{name:'rowKey', type:'string'},
+	    fields:[{name:'id', type:'string'},
 	            {name:'imageUrl', type:'string'},
 	    		{name:'name', type:'string'},
 	    		{name:'feature', type:'string'},
 	    		{name:'reason', type:'string'},
-	    		
 	    		{name:'rank', type:'string'},
 	    		{name:'rankScore', type:'string'},
 	    		{name:'thumbupNum', type:'string'},
@@ -24,11 +23,6 @@ Ext.define('YourTour.model.LineModel', {
 	            model: 'YourTour.model.ResourceModel',   
 	            name:'resources',   
 	            associationKey:'resources'  
-	        },{  
-	            type: 'hasMany',   
-	            model: 'YourTour.model.RouteModel',   
-	            name:'routes',   
-	            associationKey:'routes'  
 	        }
         ]  
     }

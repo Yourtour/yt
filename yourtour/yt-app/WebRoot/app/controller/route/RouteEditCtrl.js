@@ -60,22 +60,36 @@ Ext.define('YourTour.controller.route.RouteEditCtrl', {
     
     OnNextClick:function(){
     	var me = this.getSettingView();
+    	var data = {};
     	var name = me.down('#name').getValue();
-    	var model = Ext.create('YourTour.model.RouteModel',{graphid:'-1', name:name});
+    	var startDate = new Date(me.down('#startDate').getValue());
+    	var endDate = new Date(me.down('#endDate').getValue());
+    	data.id='0';
+    	data.name = name;
+    	data.endDate = endDate.getTime();
+    	data.startDate = startDate.getTime();
+    	data.schedules = [];
     	
-    	var data = Ext.JSON.encode(model.data);
+    	var store = this.getPlaceList().getStore();
+    	store.each(function(item){
+    		var schedule = {};
+    		schedule.id = '0';
+    		schedule.days = item.days;
+    		schedule.place = item.place;
+    		data.schedules.push(schedule);
+    	});
+    	console.log(data);
+    	
     	Ext.Ajax.request({
     	    url : YourTour.util.Context.getContext('/routes/main/save'),
     	    method : "POST",
-    	    params : data,
+    	    params : Ext.JSON.encode(data),
     	    success : function(response) {
     	    	var data = Ext.JSON.decode(response.responseText);
     	    	if(data.errorCode != '0'){
     	    		Ext.Msg.alert(data.errorText);
     	    		return;
     	    	};
-    	    	
-    	    	me.redirectTo('/line/recommend');
     	    },
     	    failure : function(response) {
     	        var respObj = Ext.JSON.decode(response.responseText);

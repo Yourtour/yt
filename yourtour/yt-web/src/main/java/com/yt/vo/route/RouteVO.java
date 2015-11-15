@@ -1,5 +1,6 @@
 package com.yt.vo.route;
 
+import java.util.Date;
 import java.util.List;
 
 import com.yt.business.bean.PlaceBean;
@@ -29,8 +30,8 @@ public class RouteVO extends BaseVO {
 		RouteVO vo = new RouteVO();
 		vo.fromBean(bean);
 		vo.setName(bean.getName());
-		vo.setStartDate(bean.getStartDate());
-		vo.setEndDate(bean.getEndDate());
+		vo.setStartDate(new Date(bean.getStartDate()));
+		vo.setEndDate(new Date(bean.getEndDate()));
 		if (bean.getFromPlace() != null) {
 			PlaceVO placeVO = new PlaceVO();
 			placeVO.setId(bean.getFromPlace().getGraphId());
@@ -160,16 +161,16 @@ public class RouteVO extends BaseVO {
 		return startDate;
 	}
 
-	public void setStartDate(long startDate) {
-		this.startDate = startDate;
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate.getTime();
 	}
 
 	public long getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(long endDate) {
-		this.endDate = endDate;
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate.getTime();
 	}
 
 	public PlaceVO getFromPlace() {

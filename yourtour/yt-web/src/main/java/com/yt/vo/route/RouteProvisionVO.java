@@ -1,5 +1,8 @@
 package com.yt.vo.route;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import com.yt.business.bean.RouteMainBean;
 import com.yt.business.bean.RouteProvisionBean;
 import com.yt.vo.BaseVO;
@@ -22,8 +25,8 @@ public class RouteProvisionVO extends BaseVO {
 			RouteVO routeVO = new RouteVO();
 			routeVO.setId(bean.getRouteMain().getGraphId());
 			routeVO.setName(bean.getRouteMain().getName());
-			routeVO.setStartDate(bean.getRouteMain().getStartDate());
-			routeVO.setEndDate(bean.getRouteMain().getEndDate());
+			routeVO.setStartDate(new Date(bean.getRouteMain().getStartDate()));
+			routeVO.setEndDate(new Date(bean.getRouteMain().getEndDate()));
 			vo.setRoute(routeVO);
 		}
 		return vo;
@@ -80,5 +83,12 @@ public class RouteProvisionVO extends BaseVO {
 
 	public void setRoute(RouteVO route) {
 		this.route = route;
+	}
+	
+	public static void main(String[] args) throws Exception{
+		String s = "Wed Nov 11 2015 22:14:41 GMT+0800 (中国标准时间)";
+		
+		SimpleDateFormat sdf = new SimpleDateFormat();
+		sdf.parse(s);
 	}
 }
