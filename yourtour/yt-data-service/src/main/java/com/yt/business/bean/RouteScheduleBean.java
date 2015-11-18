@@ -27,14 +27,13 @@ public class RouteScheduleBean extends BaseBeanImpl {
 	@HbaseColumn(name = "dt")
 	private long date = 0; // 行程日程日期
 	
-	private int days = 0;
+	private int days = 1;
 	
 	@HbaseColumn(name = "desc")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
 	private String description; // 行程日程描述
 
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_AT, type = PlaceBean.class, direction = Direction.OUTGOING)
-	private transient PlaceBean place = null; // 行程日程目的地
+	private String places;
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = RouteMainBean.class, direction = Direction.INCOMING)
 	private transient RouteMainBean routeMain = null; // 行程日程关联的行程
@@ -71,20 +70,20 @@ public class RouteScheduleBean extends BaseBeanImpl {
 		this.date = date;
 	}
 
+	public String getPlaces() {
+		return places;
+	}
+
+	public void setPlaces(String places) {
+		this.places = places;
+	}
+
 	public String getDescription() {
 		return description;
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public PlaceBean getPlace() {
-		return place;
-	}
-
-	public void setPlace(PlaceBean place) {
-		this.place = place;
 	}
 
 	public RouteMainBean getRouteMain() {

@@ -8,7 +8,7 @@ Ext.define('YourTour.view.route.RouteSettingItem', {
     	padding:'5 10 5 10',
         items: [
 			{
-				itemId:'name',
+				itemId:'place',
 				xtype:'xfield',
 				flex:1
 			},
@@ -40,6 +40,14 @@ Ext.define('YourTour.view.route.RouteSettingItem', {
     	
     	var delEl = this.down('#del');
     	delEl.addListener('tap', this.onDeleteTap, this);
+    	
+    	var spinEl = this.down('#num');
+    	spinEl.addListener('spin', this.onSpin, this);
+    },
+    
+    onSpin:function(spin, value, direction, eOpts){
+    	var record = this.getRecord();
+    	record.set('days', value);
     },
     
     onDeleteTap:function(record){
@@ -50,8 +58,8 @@ Ext.define('YourTour.view.route.RouteSettingItem', {
 	    var me = this;
 	    
 	    if(record){
-	 	   var nameEl = me.down('#name');
-	 	   nameEl.setHtml(record.get('name'));
+	 	   var placeEl = me.down('#place');
+	 	   placeEl.setHtml(record.get('places'));
 	 	}
 	 }   
 });

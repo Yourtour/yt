@@ -148,26 +148,25 @@ public class RouteRestResource extends BaseRestResource{
 	 */
 	@POST
 	@Path("main_schedule/save")
-	public ResponseVO saveMainAndSchedules(RouteVO vo,
-			@Context HttpServletRequest request) {
+	public ResponseVO saveMainAndSchedules(RouteVO vo,	@Context HttpServletRequest request) {
 		if (vo == null) {
 			if (LOG.isWarnEnabled()) {
 				LOG.warn("The RouteVO is null.");
 			}
 			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
 		}
+		
 		try {
 			RouteMainBean bean = RouteVO.transform(vo);
-			// 详细转换日程对象，并填充到基本对象中
-			bean.getSchedules().clear();
-			for (RouteScheduleVO scheduleVO : vo.getSchedules()) {
-				RouteScheduleBean scheduleBean = RouteScheduleVO
-						.transform(scheduleVO);
-				if (scheduleBean == null) {
-					continue;
-				}
-				bean.getSchedules().add(scheduleBean);
+			
+			UserProfileBean profileBean = null;
+			long userGraphId = Neo4jUtils.getGraphIDFromString(super.getCurrentUserId(request));
+			if (userGraphId != -1) {
+				profileBean = (UserProfileBean) routeRepository.get(UserProfileBean.class,
+						userGraphId, false);
+				bean.setOwner(profileBean);
 			}
+			
 			routeRepository.saveRouteMainAndSchedules(bean,
 					WebUtils.getCurrentLoginUser(request));
 			if (LOG.isDebugEnabled()) {
@@ -222,6 +221,7 @@ public class RouteRestResource extends BaseRestResource{
 			}
 			return new ResponseVO();
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			if (LOG.isErrorEnabled()) {
 				LOG.error(
 						String.format("Save the RouteMainBean[id='%s'] fail.",

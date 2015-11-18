@@ -16,7 +16,7 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 	private static final long serialVersionUID = -916424014919620404L;
 
 	@Indexed(unique = true)
-	private String rowKey = "";
+	private String rowKey = null;
 
 	@GraphId
 	private Long graphId = null;

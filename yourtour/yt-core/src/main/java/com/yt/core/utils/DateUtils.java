@@ -8,7 +8,6 @@ public class DateUtils {
 	
 	public static String formatDate(long millisecond){
 		String s = formatDate(millisecond, DATE_FORMAT_DEFAULT);
-		System.out.println("s=" + s);
 		return s;
 	}
 	

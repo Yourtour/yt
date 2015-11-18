@@ -57,7 +57,7 @@ Ext.define('YourTour.controller.route.SchedulePlanListCtrl', {
 	 	   		schedules.push(schedule.data);
 	 	   	});
 	 	   	
-	 	   	var scheduleStore = Ext.create('Ext.data.Store',{model:'YourTour.model.ScheduleModel', data:schedules});
+	 	   	var scheduleStore = Ext.create('Ext.data.Store',{model:'YourTour.model.RouteScheduleModel', data:schedules});
 	 	   	scheduleList.setStore(scheduleStore);
     	};
  	   	

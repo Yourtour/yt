@@ -1,9 +1,9 @@
 Ext.define('YourTour.model.PlaceModel', {
     extend: 'Ext.data.Model',
     config:{
-    	idProperty:'rowKey',
+    	idProperty:'graphId',
     	
-	    fields:[{name:'rowKey', type:'string'},
+	    fields:[{name:'graphId', type:'string'},
 	            {name:'code', type:'string'},
 	    		{name:'name', type:'string'},
 	    		{name:'num', type:'string'}

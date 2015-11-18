@@ -44,7 +44,7 @@ Ext.application({
     ],
     
     models:[
-        'LaunchModel','RouteModel','ScheduleModel','SchedulePlanModel', 'LineModel', 'UserModel','OptionModel', 'HomeModel','LiveModel','ChatModel','AlongModel','TalentModel','HomeCarouselModel','CommentModel', 'PlaceModel',
+        'LaunchModel','RouteModel','RouteScheduleModel','RouteActivityModel', 'LineModel', 'UserModel','OptionModel', 'HomeModel','LiveModel','ChatModel','AlongModel','TalentModel','HomeCarouselModel','CommentModel', 'PlaceModel',
         'UserAccountModel','CacheModel'
     ],
     

@@ -51,6 +51,8 @@ public class PlaceBean extends BaseDictBeanImpl {
 	@Indexed
 	private String shorter = ""; // 简称
 	
+	private String imageUrl;
+	
 	@HbaseColumn(name = "memo")
 	private String memo = ""; // 备注
 
@@ -82,6 +84,14 @@ public class PlaceBean extends BaseDictBeanImpl {
 
 	public void setShorter(String shorter) {
 		this.shorter = shorter;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 	public String getMemo() {
@@ -142,5 +152,20 @@ public class PlaceBean extends BaseDictBeanImpl {
 	
 	public void addSub(PlaceBean sub){
 		this.subs.add(sub);
+	}
+
+	@Override
+	public int hashCode() {
+		return super.getGraphId().hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == null) return false;
+		
+		if(obj == this) return true;
+		
+		PlaceBean target =(PlaceBean) obj;
+		return target.getGraphId().equals(super.getGraphId());
 	}
 }

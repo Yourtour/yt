@@ -11,11 +11,12 @@ import com.yt.vo.basedata.PlaceVO;
 
 public class RouteScheduleVO extends BaseVO {
 	private int index;
+	private String name;
 	private long date;
 	private int  days;
+	private String placeIds;
+	private String places;
 	private String description;
-	private PlaceVO place;
-	private RouteVO route;
 	private List<RouteActivityVO> activities;
 
 	public static RouteScheduleVO transform(RouteScheduleBean bean) {
@@ -28,20 +29,7 @@ public class RouteScheduleVO extends BaseVO {
 		vo.setDate(bean.getDate());
 		vo.setDays(bean.getDays());
 		vo.setDescription(bean.getDescription());
-		if (bean.getPlace() != null) {
-			PlaceVO placeVO = new PlaceVO();
-			placeVO.setId(bean.getPlace().getGraphId());
-			placeVO.setCode(bean.getPlace().getCode());
-			placeVO.setShorter(bean.getPlace().getShorter());
-			placeVO.setText(bean.getPlace().getMemo());
-			vo.setPlace(placeVO);
-		}
-		if (bean.getRouteMain() != null) {
-			RouteVO routeVO = new RouteVO();
-			routeVO.setId(bean.getRouteMain().getGraphId());
-			routeVO.setName(bean.getRouteMain().getName());
-			vo.setRoute(routeVO);
-		}
+		vo.setPlaces(bean.getPlaces());
 		if (bean.getActivities() != null && bean.getActivities().size() > 0) {
 			for (RouteActivityBean activity : bean.getActivities()) {
 				RouteActivityVO activityVO = new RouteActivityVO();
@@ -63,16 +51,7 @@ public class RouteScheduleVO extends BaseVO {
 		bean.setDate(vo.getDate());
 		bean.setDescription(vo.getDescription());
 		bean.setDays(vo.getDays());
-		if (vo.getPlace() != null) {
-			PlaceBean place = new PlaceBean();
-			place.setGraphId(vo.getPlace().getId());
-			bean.setPlace(place);
-		}
-		if (vo.getRoute() != null) {
-			RouteMainBean route = new RouteMainBean();
-			route.setGraphId(vo.getRoute().getId());
-			bean.setRouteMain(route);
-		}
+		bean.setPlaces(vo.getPlaces());
 		if (vo.getActivities() != null && vo.getActivities().size() > 0) {
 			for (RouteActivityVO activityVO : vo.getActivities()) {
 				RouteActivityBean activity = new RouteActivityBean();
@@ -119,20 +98,28 @@ public class RouteScheduleVO extends BaseVO {
 		this.description = description;
 	}
 
-	public PlaceVO getPlace() {
-		return place;
+	public String getName() {
+		return name;
 	}
 
-	public void setPlace(PlaceVO place) {
-		this.place = place;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public RouteVO getRoute() {
-		return route;
+	public String getPlaceIds() {
+		return placeIds;
 	}
 
-	public void setRoute(RouteVO route) {
-		this.route = route;
+	public void setPlaceIds(String placeIds) {
+		this.placeIds = placeIds;
+	}
+
+	public String getPlaces() {
+		return places;
+	}
+
+	public void setPlaces(String places) {
+		this.places = places;
 	}
 
 	public List<RouteActivityVO> getActivities() {

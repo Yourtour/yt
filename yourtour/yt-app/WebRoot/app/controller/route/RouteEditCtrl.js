@@ -63,10 +63,8 @@ Ext.define('YourTour.controller.route.RouteEditCtrl', {
     	var data = {};
     	var name = me.down('#name').getValue();
     	var startDate = new Date(me.down('#startDate').getValue());
-    	var endDate = new Date(me.down('#endDate').getValue());
     	data.id='0';
     	data.name = name;
-    	data.endDate = endDate.getTime();
     	data.startDate = startDate.getTime();
     	data.schedules = [];
     	
@@ -74,14 +72,14 @@ Ext.define('YourTour.controller.route.RouteEditCtrl', {
     	store.each(function(item){
     		var schedule = {};
     		schedule.id = '0';
-    		schedule.days = item.days;
-    		schedule.place = item.place;
+    		schedule.days = item.get('days');
+    		schedule.places = item.get('places');
+    		schedule.placeIds = item.get('placeIds');
     		data.schedules.push(schedule);
     	});
-    	console.log(data);
     	
     	Ext.Ajax.request({
-    	    url : YourTour.util.Context.getContext('/routes/main/save'),
+    	    url : YourTour.util.Context.getContext('/routes/main_schedule/save'),
     	    method : "POST",
     	    params : Ext.JSON.encode(data),
     	    success : function(response) {
@@ -101,11 +99,12 @@ Ext.define('YourTour.controller.route.RouteEditCtrl', {
     addPlace:function(place){
     	var store = this.getPlaceList().getStore();
     	if(! store){
-    		store = Ext.create("Ext.data.Store",{itemId:'schedulesStore', model:'YourTour.model.ScheduleModel'});
+    		store = Ext.create("Ext.data.Store",{itemId:'schedulesStore', model:'YourTour.model.RouteScheduleModel'});
     		this.getPlaceList().setStore(store);
     	}
     	
-    	var schedule = Ext.create('YourTour.model.ScheduleModel',{name:place.get('name')});
+    	var schedule = Ext.create('YourTour.model.RouteScheduleModel',{placeIds:place.get('graphId'), days:'1', places:place.get('name')});
+    	
     	store.add(schedule);
     }
 });

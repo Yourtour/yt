@@ -1,12 +1,13 @@
 Ext.define('YourTour.model.RouteModel', {
     extend: 'Ext.data.Model',
-    requires:['YourTour.model.ScheduleModel'],
+    requires:['YourTour.model.RouteScheduleModel'],
     config:{
     	idProperty:'id',
     	
 	    fields:[{name:'id', type:'string'},
 	            {name:'imageUrl', type:'string'},
 	    		{name:'name', type:'string'},
+	    		{name:'lineName', type:'string'},
 	    		{name:'impression', type:'string'},
 	    		{name:'startDate', type:'string'},
 	    		{name:'endDate', type:'string'},
@@ -16,7 +17,7 @@ Ext.define('YourTour.model.RouteModel', {
 	    
 	    associations: [{  
             type: 'hasMany',   
-            model: 'YourTour.model.ScheduleModel',   
+            model: 'YourTour.model.RouteScheduleModel',   
             name:'schedules',
             associationKey:'schedules'
         }],

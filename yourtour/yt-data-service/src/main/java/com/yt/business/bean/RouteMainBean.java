@@ -1,7 +1,7 @@
 package com.yt.business.bean;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.Indexed;
@@ -24,17 +24,21 @@ public class RouteMainBean extends BaseBeanImpl {
 	@HbaseColumn(name = "name")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
 	private String name; // 行程名称
-
+	
+	private String lineName;
+	
 	@HbaseColumn(name = "sdt")
 	private long startDate = 0; // 行程开始日期
-
-	@HbaseColumn(name = "edt")
-	private long endDate = 0; // 行程结束日期
 	
+	private int duration;
+
 	private String imageUrl;
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_FROM, type = PlaceBean.class, direction = Direction.OUTGOING)
 	private transient PlaceBean fromPlace = null; // 行程出发地点
+	
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_TO, type = PlaceBean.class, direction = Direction.OUTGOING, isList = true)
+	private transient List<PlaceBean> destinations = null; //目的地
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = RouteScheduleBean.class, direction = Direction.OUTGOING, isList = true)
 	private transient List<RouteScheduleBean> schedules = null; // 行程包含的日程
@@ -47,12 +51,18 @@ public class RouteMainBean extends BaseBeanImpl {
 
 	public RouteMainBean() {
 		super();
-		schedules = new Vector<RouteScheduleBean>();
-		provisions = new Vector<RouteProvisionBean>();
 	}
 
 	public String getName() {
 		return name;
+	}
+
+	public String getLineName() {
+		return lineName;
+	}
+
+	public void setLineName(String lineName) {
+		this.lineName = lineName;
 	}
 
 	public void setName(String name) {
@@ -75,12 +85,12 @@ public class RouteMainBean extends BaseBeanImpl {
 		this.startDate = startDate;
 	}
 
-	public long getEndDate() {
-		return endDate;
+	public int getDuration() {
+		return duration;
 	}
 
-	public void setEndDate(long endDate) {
-		this.endDate = endDate;
+	public void setDuration(int duration) {
+		this.duration = duration;
 	}
 
 	public PlaceBean getFromPlace() {
@@ -91,11 +101,23 @@ public class RouteMainBean extends BaseBeanImpl {
 		this.fromPlace = fromPlace;
 	}
 
+	public List<PlaceBean> getDestinations() {
+		return destinations;
+	}
+
+	public void setDestinations(List<PlaceBean> destinations) {
+		this.destinations = destinations;
+	}
+
 	public List<RouteScheduleBean> getSchedules() {
+		if(schedules == null) schedules = new ArrayList<>();
+		
 		return schedules;
 	}
 
 	public List<RouteProvisionBean> getProvisions() {
+		if(provisions == null) provisions = new ArrayList<>();
+		
 		return provisions;
 	}
 

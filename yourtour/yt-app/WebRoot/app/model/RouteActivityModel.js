@@ -1,4 +1,4 @@
-Ext.define('YourTour.model.SchedulePlanModel', {
+Ext.define('YourTour.model.RouteActivityModel', {
     extend: 'Ext.data.Model',
     config:{
     	idProperty:'rowKey',

@@ -26,7 +26,6 @@ public class RouteProvisionVO extends BaseVO {
 			routeVO.setId(bean.getRouteMain().getGraphId());
 			routeVO.setName(bean.getRouteMain().getName());
 			routeVO.setStartDate(new Date(bean.getRouteMain().getStartDate()));
-			routeVO.setEndDate(new Date(bean.getRouteMain().getEndDate()));
 			vo.setRoute(routeVO);
 		}
 		return vo;

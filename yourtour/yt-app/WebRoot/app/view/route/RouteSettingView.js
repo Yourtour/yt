@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.route.RouteSettingView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.form.Panel', 'Ext.DataView', 'YourTour.view.route.RouteSettingItem', 'YourTour.view.widget.ToolButton', 'Ext.field.DatePicker','Ext.field.Select', 'YourTour.view.widget.SubTitleBar', 'YourTour.view.widget.XToolbar','YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XLabel', 'YourTour.view.widget.XField', 'Ext.field.Text'],
+    requires:['Ext.form.Panel', 'Ext.DataView','Ext.field.Spinner', 'YourTour.view.route.RouteSettingItem', 'YourTour.view.widget.ToolButton', 'Ext.field.DatePicker','Ext.field.Select', 'YourTour.view.widget.SubTitleBar', 'YourTour.view.widget.XToolbar','YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XLabel', 'YourTour.view.widget.XField', 'Ext.field.Text'],
     xtype: 'RouteSettingView',
     config: {
     	id:'RouteSettingView',
@@ -75,6 +75,7 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 				]
 			},
 			
+			
 			{
 				xtype:'panel',
 				layout:'hbox',
@@ -90,30 +91,6 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 					    xtype: 'datepickerfield',  
 					    name : 'startDate',
 					    itemId:'startDate',
-					    flex:1,
-					    value:new Date(),
-					    dateFormat:'Y/m/d',
-					    clearIcon: true,
-					    cls:'nav_arrow'
-					}
-				]
-			},
-			
-			{
-				xtype:'panel',
-				layout:'hbox',
-				padding:'0 0 0 10',
-				cls:'row underline',
-				items:[
-					{
-						xtype:'xlabel',
-						html: '返回日期',
-						style:'width:60px'
-					},
-					{  
-					    xtype: 'datepickerfield',  
-					    name : 'endDate',
-					    itemId:'endDate',
 					    flex:1,
 					    value:new Date(),
 					    dateFormat:'Y/m/d',
