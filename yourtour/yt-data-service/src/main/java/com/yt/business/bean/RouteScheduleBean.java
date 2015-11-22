@@ -17,7 +17,6 @@ import com.yt.neo4j.annotation.Neo4jRelationship;
 @HbaseTable(name = "T_ROUTE_SCHEDULE")
 @NodeEntity
 public class RouteScheduleBean extends BaseBeanImpl {
-
 	private static final long serialVersionUID = 8074543232974381934L;
 	private static final String INDEX_NAME = "routeSchedule";
 
@@ -31,7 +30,7 @@ public class RouteScheduleBean extends BaseBeanImpl {
 	
 	@HbaseColumn(name = "desc")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	private String description; // 行程日程描述
+	private String memo; // 行程日程描述
 
 	private String places;
 
@@ -78,12 +77,12 @@ public class RouteScheduleBean extends BaseBeanImpl {
 		this.places = places;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getMemo() {
+		return memo;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setMemo(String memo) {
+		this.memo = memo;
 	}
 
 	public RouteMainBean getRouteMain() {

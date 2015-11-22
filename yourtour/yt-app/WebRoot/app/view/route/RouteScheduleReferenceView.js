@@ -1,10 +1,9 @@
-Ext.define('YourTour.view.route.schedule.ScheduleReferenceListView', {
+Ext.define('YourTour.view.route.RouteScheduleReferenceView', {
     extend: 'Ext.Container',
-    requires:['YourTour.view.route.schedule.ScheduleListItem','YourTour.view.route.schedule.ScheduleDataView','Ext.Panel','Ext.Toolbar'],
-    xtype: 'schedulereference',
+    requires:['Ext.Panel','Ext.Toolbar'],
+    xtype: 'RouteScheduleReferenceView',
     config: {
-    	itemId:'schedulereference',
-    	id:'schedulereference',
+    	id:'RouteScheduleReferenceView',
     	fullscreen:true,
     	layout:'vbox',
     	baseCls:'page',
@@ -66,11 +65,11 @@ Ext.define('YourTour.view.route.schedule.ScheduleReferenceListView', {
 	    		mode : 'tag'
 	    	},
 	    	
-    		{
-    			itemId:'scheduleList',
-    			xtype:'ScheduleDataView',
-    			readonly:true,
-    			flex:1,
+	    	{
+    			itemId:'routeActivitiesList',
+    			xtype:'ActivityDataView',
+    			readonly:false,
+    			scrollable:null,
     			
 		    	/**
 		         * Tell the dataview to use components for each item
@@ -81,7 +80,7 @@ Ext.define('YourTour.view.route.schedule.ScheduleReferenceListView', {
 		         * Set the default item for this component list to be the {@link Example.view.KittensListItem}
 		         * class.
 		         */
-		        defaultType: 'scheduleListItem'
+		        defaultType: 'ActivityDataListItem'
     		}
         ]
     }

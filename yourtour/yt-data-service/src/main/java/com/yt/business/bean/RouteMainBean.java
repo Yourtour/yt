@@ -3,6 +3,7 @@ package com.yt.business.bean;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.codehaus.jackson.map.annotate.JsonRootName;
 import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
@@ -16,6 +17,7 @@ import com.yt.neo4j.annotation.Neo4jRelationship;
 
 @HbaseTable(name = "T_ROUTE_MAIN")
 @NodeEntity
+@JsonRootName("route")
 public class RouteMainBean extends BaseBeanImpl {
 
 	private static final long serialVersionUID = -2071225440268179136L;

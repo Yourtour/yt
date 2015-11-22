@@ -1,6 +1,6 @@
-Ext.define('YourTour.view.route.schedule.ScheduleDataView', {
+Ext.define('YourTour.view.route.RouteScheduleDataView', {
     extend: 'YourTour.view.widget.XDataView',
-    xtype: 'ScheduleDataView',
+    xtype: 'RouteScheduleDataView',
     config: {
     	readonly:null
     },

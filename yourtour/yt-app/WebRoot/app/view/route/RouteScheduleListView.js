@@ -1,13 +1,13 @@
-Ext.define('YourTour.view.route.schedule.ScheduleListView', {
+Ext.define('YourTour.view.route.RouteScheduleListView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['YourTour.view.route.schedule.ScheduleListItem','Ext.Panel','YourTour.view.widget.XHeaderBar','YourTour.view.route.schedule.ScheduleDataView'],
-    xtype: 'ScheduleListView',
+    requires:['Ext.Panel', 'YourTour.view.route.RouteScheduleDataView', 'YourTour.view.route.RouteScheduleDataListItem', 'YourTour.view.widget.XHeaderBar'],
+    xtype: 'RouteScheduleListView',
     config: {
-    	id:'ScheduleListView',
+    	id:'RouteScheduleListView',
     	layout:'vbox',
 		scrollable: {
     	    direction: 'vertical',
-    	    indicators: false	
+    	    indicators: false	,
     	},    	
     	items:[
     		{    
@@ -18,7 +18,7 @@ Ext.define('YourTour.view.route.schedule.ScheduleListView', {
 	                	xtype: "toolbutton", 
 	                    ui: "normal", 
 	                	text:'编辑',
-	                	itemId:'plan',
+	                	itemId:'edit',
 	                	align:'right'
 	                },
 					{
@@ -60,8 +60,8 @@ Ext.define('YourTour.view.route.schedule.ScheduleListView', {
 			},
 	    	
     		{
-    			itemId:'scheduleList',
-    			xtype:'ScheduleDataView',
+    			itemId:'RouteScheduleList',
+    			xtype:'RouteScheduleDataView',
     			readonly:false,
     			scrollable:null,
     			
@@ -74,7 +74,7 @@ Ext.define('YourTour.view.route.schedule.ScheduleListView', {
 		         * Set the default item for this component list to be the {@link Example.view.KittensListItem}
 		         * class.
 		         */
-		        defaultType: 'scheduleListItem'
+		        defaultType: 'RouteScheduleDataListItem'
     		}
         ]
     }

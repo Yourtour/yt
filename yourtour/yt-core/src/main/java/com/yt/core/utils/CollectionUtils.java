@@ -9,7 +9,7 @@ public class CollectionUtils {
 	 * @param values
 	 * @return
 	 */
-	public static boolean isNullOrEmpty(Collection values){
+	public static boolean isEmpty(Collection values){
 		return values == null || values.isEmpty();
 	}
 	
@@ -18,8 +18,8 @@ public class CollectionUtils {
 	 * @param values
 	 * @return
 	 */
-	public static boolean isNotNullOrEmpty(Collection values){
-		return ! isNullOrEmpty(values);
+	public static boolean isNotEmpty(Collection values){
+		return ! isEmpty(values);
 	}
 
 	/**
@@ -27,11 +27,11 @@ public class CollectionUtils {
 	 * @param values
 	 * @return
 	 */
-	public static boolean isNullOrEmpty(Map values){
+	public static boolean isEmpty(Map values){
 		return values == null || values.isEmpty();
 	}
 	
-	public static boolean isNotNullOrEmpty(Map values){
-		return ! isNullOrEmpty(values);
+	public static boolean isNotEmpty(Map values){
+		return ! isEmpty(values);
 	}
 }

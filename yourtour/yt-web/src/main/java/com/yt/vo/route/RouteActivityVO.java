@@ -35,7 +35,6 @@ public class RouteActivityVO extends BaseVO {
 			RouteScheduleVO scheduleVO = new RouteScheduleVO();
 			scheduleVO.setId(bean.getSchedule().getGraphId());
 			scheduleVO.setDate(bean.getSchedule().getDate());
-			scheduleVO.setDescription(bean.getSchedule().getDescription());
 			vo.setSchedule(scheduleVO);
 		}
 		ResourceBean resourceBean = bean.getResource();

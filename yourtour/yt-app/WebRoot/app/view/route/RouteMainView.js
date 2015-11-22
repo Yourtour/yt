@@ -22,17 +22,12 @@ Ext.define('YourTour.view.route.RouteMainView', {
 				]			
 			},      
             {
-            	xtype:'panel',
-            	title:'旅行',
-            	items:[
-            	   {
-                       	xtype: 'carousel',
-                       	itemId:'routeCarousel',
-                       	indicator:false,
-                       	direction:'verticle',
-                       	style:'height:100%;weight:100%'
-                   }
-            	]
+            	
+               	xtype: 'carousel',
+               	itemId:'routeCarousel',
+               	indicator:false,
+               	direction:'verticle',
+               	style:'height:100%;weight:100%'
             }
         ]
     }

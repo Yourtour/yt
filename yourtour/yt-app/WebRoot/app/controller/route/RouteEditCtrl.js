@@ -1,6 +1,6 @@
 Ext.define('YourTour.controller.route.RouteEditCtrl', {
     extend: 'YourTour.controller.BaseCtrl',
-    requires:['YourTour.store.RouteStore', 'YourTour.model.RouteModel'],
+    requires:['YourTour.store.RouteStore', 'YourTour.model.RouteModel','YourTour.model.RouteScheduleModel'],
     config: {
        refs:{
     	   settingView:'#RouteSettingView',
@@ -59,16 +59,18 @@ Ext.define('YourTour.controller.route.RouteEditCtrl', {
     },
     
     OnNextClick:function(){
-    	var me = this.getSettingView();
+    	var me = this;
+    	var view = this.getSettingView();
     	var data = {};
-    	var name = me.down('#name').getValue();
-    	var startDate = new Date(me.down('#startDate').getValue());
+    	
+    	var name = view.down('#name').getValue();
+    	var startDate = new Date(view.down('#startDate').getValue());
     	data.id='0';
     	data.name = name;
     	data.startDate = startDate.getTime();
-    	data.schedules = [];
     	
-    	var store = this.getPlaceList().getStore();
+    	data.schedules=[];
+    	var store = me.getPlaceList().getStore();
     	store.each(function(item){
     		var schedule = {};
     		schedule.id = '0';
@@ -88,6 +90,10 @@ Ext.define('YourTour.controller.route.RouteEditCtrl', {
     	    		Ext.Msg.alert(data.errorText);
     	    		return;
     	    	};
+    	    	
+    	    	var routeId = data.data;
+    	    	
+    	    	me.redirectTo('/route/activities/' + routeId);
     	    },
     	    failure : function(response) {
     	        var respObj = Ext.JSON.decode(response.responseText);

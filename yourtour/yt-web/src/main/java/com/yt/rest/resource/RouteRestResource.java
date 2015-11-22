@@ -30,6 +30,7 @@ import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.utils.WebUtils;
 import com.yt.vo.route.RouteActivityVO;
+import com.yt.vo.route.RouteLoadVO;
 import com.yt.vo.route.RouteOverViewVO;
 import com.yt.vo.route.RouteProvisionVO;
 import com.yt.vo.route.RouteScheduleVO;
@@ -103,7 +104,7 @@ public class RouteRestResource extends BaseRestResource{
 	 */
 	@GET
 	@Path("{id}/query")
-	public ResponseDataVO<RouteVO> getRoute(@PathParam("id") String id) {
+	public ResponseDataVO<RouteLoadVO> getRoute(@PathParam("id") String id) {
 		long graphId = Neo4jUtils.getGraphIDFromString(id);
 		try {
 			RouteMainBean bean = null;
@@ -117,22 +118,22 @@ public class RouteRestResource extends BaseRestResource{
 						"rowKey", id);
 			}
 			if (bean == null) {
-				return new ResponseDataVO<RouteVO>(
+				return new ResponseDataVO<RouteLoadVO>(
 						StaticErrorEnum.THE_DATA_NOT_EXIST);
 			}
 			id = bean.getRowKey();
-			RouteVO vo = RouteVO.transform(bean);
+			RouteLoadVO vo = new RouteLoadVO(bean);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format("Get RouteMainBean['%s'] success.", id));
 			}
-			return new ResponseDataVO<RouteVO>(vo);
+			return new ResponseDataVO<RouteLoadVO>(vo);
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
 				LOG.error(
 						String.format("Fetch RouteMainBean[id='%s'] fail.", id),
 						ex);
 			}
-			return new ResponseDataVO<RouteVO>(
+			return new ResponseDataVO<RouteLoadVO>(
 					StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
 	}
@@ -148,12 +149,12 @@ public class RouteRestResource extends BaseRestResource{
 	 */
 	@POST
 	@Path("main_schedule/save")
-	public ResponseVO saveMainAndSchedules(RouteVO vo,	@Context HttpServletRequest request) {
+	public ResponseDataVO<Long> saveMainAndSchedules(RouteVO vo,	@Context HttpServletRequest request) {
 		if (vo == null) {
 			if (LOG.isWarnEnabled()) {
 				LOG.warn("The RouteVO is null.");
 			}
-			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
+			return new ResponseDataVO<Long>(StaticErrorEnum.THE_INPUT_IS_NULL);
 		}
 		
 		try {
@@ -174,14 +175,14 @@ public class RouteRestResource extends BaseRestResource{
 						.format("Save RouteMainBean['%s'] and some RouteSchedules(%d items) success.",
 								vo.getRowKey(), bean.getSchedules().size()));
 			}
-			return new ResponseVO();
+			return new ResponseDataVO<Long>(bean.getGraphId());
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
 				LOG.error(
 						String.format("Save the RouteMainBean[id='%s'] fail.",
 								vo.getRowKey()), ex);
 			}
-			return new ResponseVO(StaticErrorEnum.DB_OPERATE_FAIL);
+			return new ResponseDataVO<Long>(StaticErrorEnum.DB_OPERATE_FAIL);
 		}
 	}
 

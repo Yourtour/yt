@@ -1,9 +1,11 @@
 Ext.define('YourTour.view.route.MainItem', {
     extend: 'Ext.Panel',
-    xtype: 'routemainitem',
+    xtype: 'MainItem',
     requires:['Ext.Label', 'Ext.Img','Ext.Toolbar', 'YourTour.view.widget.MarkedLabel', 'YourTour.view.widget.XLabel', 'YourTour.view.widget.XField'],
     config: {
-    	itemId:'routemainitem',
+    	itemId:'MainItem',
+    	record:null,
+    	carousel:null,
     	layout:'vbox',
         items: [
 			{
@@ -109,8 +111,24 @@ Ext.define('YourTour.view.route.MainItem', {
         ]
     },
     
+    initialize : function(){
+    	this.callParent(arguments);
+    	
+    	var btnRoute = this.down('#btnRoute');
+    	btnRoute.addListener('tap', this.onRouteBtnTap, this);
+    },
+    
+    onRouteBtnTap:function(){
+    	this.carousel.fireEvent("onRouteTap", this.record);
+    },
+    
+    setCarousel:function(carousel){
+    	this.carousel = carousel;
+    },
+    
     setRecord: function(record) {
         var me = this;
+        me.record = record;
         if(record){
  	 	   var imageUrl = me.down('#imageUrl');
  	 	   imageUrl.setHtml("<img src='" + record.get('imageUrl') + "' style='width:100%; max-height:150px'>");

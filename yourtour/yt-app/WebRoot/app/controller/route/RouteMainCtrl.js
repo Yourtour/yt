@@ -14,8 +14,8 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
     		   	tap:'newRoute'
     	   },
     	   
-    	   '#routemainitem #btnRoute':{
-    	   		tap:'onRouteTap'	
+    	   routeCarousel:{
+    		   onRouteTap:'onRouteTap'
     	   }
        },
        
@@ -36,12 +36,11 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
     	YourTour.util.Context.mainview = me.getRouteMainView();
     	
     	var routeCarousel = me.getRouteCarousel();
-    	var store = me.store = Ext.create('YourTour.store.RouteStore',{storeId:'routemainstore'});	
+    	var store = me.store = Ext.create('YourTour.store.RouteStore',{storeId:'RouteMainStore'});	
     	var handler = function(){
     		routeCarousel.removeAll(true, false);
         	store.each(function(item){
-        		var routePanel = Ext.create('YourTour.view.route.MainItem',{itemId:item.get('Id')});
-        		routePanel.setRecord(item);
+        		var routePanel = Ext.create('YourTour.view.route.MainItem',{itemId:item.get('Id'), carousel:routeCarousel, record:item});
         		routeCarousel.add(routePanel);
         	});
         	
@@ -53,10 +52,7 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
     	store.load(handler, this);
     },
     
-    onRouteTap:function(){
-    	var routeCarousel = this.getRouteCarousel();
-    	var index = routeCarousel.getActiveIndex();
-    	var record = this.store.getAt(index);
-   		this.redirectTo('/route/schedule/' + record.get('rowKey'));
+    onRouteTap:function(record){
+   		this.redirectTo('/route/load/' + record.get('id'));
     }
 });

@@ -6,17 +6,17 @@ import com.yt.business.bean.PlaceBean;
 import com.yt.business.bean.RouteActivityBean;
 import com.yt.business.bean.RouteMainBean;
 import com.yt.business.bean.RouteScheduleBean;
+import com.yt.core.utils.DateUtils;
 import com.yt.vo.BaseVO;
 import com.yt.vo.basedata.PlaceVO;
 
 public class RouteScheduleVO extends BaseVO {
 	private int index;
-	private String name;
 	private long date;
 	private int  days;
 	private String placeIds;
 	private String places;
-	private String description;
+	private String memo;
 	private List<RouteActivityVO> activities;
 
 	public static RouteScheduleVO transform(RouteScheduleBean bean) {
@@ -28,16 +28,8 @@ public class RouteScheduleVO extends BaseVO {
 		vo.setIndex(bean.getIndex());
 		vo.setDate(bean.getDate());
 		vo.setDays(bean.getDays());
-		vo.setDescription(bean.getDescription());
 		vo.setPlaces(bean.getPlaces());
-		if (bean.getActivities() != null && bean.getActivities().size() > 0) {
-			for (RouteActivityBean activity : bean.getActivities()) {
-				RouteActivityVO activityVO = new RouteActivityVO();
-				activityVO.setId(activity.getGraphId());
-				activityVO.setName(activity.getName());
-				vo.getActivities().add(activityVO);
-			}
-		}
+		
 		return vo;
 	}
 
@@ -49,7 +41,7 @@ public class RouteScheduleVO extends BaseVO {
 		vo.toBean(bean);
 		bean.setIndex(vo.getIndex());
 		bean.setDate(vo.getDate());
-		bean.setDescription(vo.getDescription());
+		bean.setMemo(vo.getMemo());
 		bean.setDays(vo.getDays());
 		bean.setPlaces(vo.getPlaces());
 		if (vo.getActivities() != null && vo.getActivities().size() > 0) {
@@ -90,20 +82,16 @@ public class RouteScheduleVO extends BaseVO {
 		this.date = date;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getMemo() {
+		return memo;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setMemo(String memo) {
+		this.memo = memo;
 	}
 
 	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+		return DateUtils.formatDate(this.date);
 	}
 
 	public String getPlaceIds() {
@@ -126,4 +114,7 @@ public class RouteScheduleVO extends BaseVO {
 		return activities;
 	}
 
+	public String getType(){
+		return "day";
+	}
 }

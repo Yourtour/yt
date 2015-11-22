@@ -49,7 +49,7 @@ public class HomeRestResource {
 			List<AlongVO> alongs = new ArrayList<AlongVO>();
 			List<AlongBean> alongBeans = alongRepository.getAlongsByPlace(
 					Long.parseLong(placeId), 0, 5);
-			if (CollectionUtils.isNotNullOrEmpty(alongBeans)) {
+			if (CollectionUtils.isNotEmpty(alongBeans)) {
 				for (AlongBean along : alongBeans) {
 					alongs.add(new AlongVO(along));
 				}

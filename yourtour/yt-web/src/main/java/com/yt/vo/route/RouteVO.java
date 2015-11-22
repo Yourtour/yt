@@ -25,7 +25,6 @@ public class RouteVO extends BaseVO {
 	
 	private PlaceVO fromPlace; // 行程出发地点
 	private List<RouteScheduleVO> schedules; // 行程日程列表
-	private List<RouteProvisionVO> provisions; // 行程准备列表
 
 	public static RouteVO transform(RouteMainBean bean) {
 		if (bean == null) {
@@ -60,8 +59,6 @@ public class RouteVO extends BaseVO {
 				if (provisionBean == null) {
 					continue;
 				}
-				RouteProvisionVO provisionVO = RouteProvisionVO.transform(provisionBean);
-				vo.getProvisions().add(provisionVO);
 			}
 		}
 		
@@ -190,18 +187,13 @@ public class RouteVO extends BaseVO {
 	}
 
 	public List<RouteScheduleVO> getSchedules() {
+		if(schedules == null){
+			schedules = new ArrayList<>();
+		}
 		return schedules;
 	}
 
 	public void setSchedules(List<RouteScheduleVO> schedules) {
 		this.schedules = schedules;
-	}
-
-	public List<RouteProvisionVO> getProvisions() {
-		return provisions;
-	}
-
-	public void setProvisions(List<RouteProvisionVO> provisions) {
-		this.provisions = provisions;
 	}
 }

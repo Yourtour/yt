@@ -1,6 +1,6 @@
-Ext.define('YourTour.view.route.schedule.ScheduleListItem', {
+Ext.define('YourTour.view.route.RouteScheduleDataListItem', {
     extend: 'Ext.dataview.component.DataItem',
-    xtype: 'scheduleListItem',
+    xtype: 'RouteScheduleDataListItem',
     requires:['Ext.Label','Ext.field.Select','Ext.Panel'],
     config: {
 		defaults:{
@@ -24,7 +24,7 @@ Ext.define('YourTour.view.route.schedule.ScheduleListItem', {
     				},
     				{
     					xtype:'label',
-    					itemId:'name',
+    					itemId:'title',
     					flex:1,
     					margin:'0 0 0 5'
     				}
@@ -50,8 +50,8 @@ Ext.define('YourTour.view.route.schedule.ScheduleListItem', {
     					items:[
 		    				{
 		    					xtype:'label',
-		    					itemId:'name',
-		    					cls:'name'
+		    					itemId:'title',
+		    					cls:'title'
 		    				},
 		    				{
 		    					xtype:'label',
@@ -78,7 +78,7 @@ Ext.define('YourTour.view.route.schedule.ScheduleListItem', {
     				},
     				{
     					xtype:'label',
-    					itemId:'name',
+    					itemId:'title',
     					flex:1,
     					margin:'0 0 0 5'
     				}
@@ -107,8 +107,8 @@ Ext.define('YourTour.view.route.schedule.ScheduleListItem', {
     					items:[
 		    				{
 		    					xtype:'label',
-		    					itemId:'name',
-		    					cls:'name'
+		    					itemId:'title',
+		    					cls:'title'
 		    				},
 		    				{
 		    					xtype:'label',
@@ -151,14 +151,14 @@ Ext.define('YourTour.view.route.schedule.ScheduleListItem', {
        
        if(record){
        		var type = record.get('type');
-       		if(type == 'prepare'){
+       		if(type == 'Provision'){
        			var panel = me.down('#preparePanel');
        			panel.addCls('space-bottom');
        			panel.show();
        			
-       			var name = panel.down('#name');
-       			name.setHtml(record.get('name'));
-       		}else if(type == 'prepareItem'){
+       			var title = panel.down('#title');
+       			title.setHtml(record.get('title'));
+       		}else if(type == 'ProvisionItem'){
        			var panel = me.down('#prepareItemPanel');
        			panel.show();
        			
@@ -166,18 +166,18 @@ Ext.define('YourTour.view.route.schedule.ScheduleListItem', {
        				panel.getAt(1).addCls('horizentalLine');
        			}
        			
-       			var name = panel.down('#name');
-       			name.setHtml(record.get('name'));
+       			var title = panel.down('#title');
+       			title.setHtml(record.get('title'));
        			
        			var desc = panel.down('#desc');
        			desc.setHtml(record.get('desc'));
-       		}else if(type == 'day'){
+       		}else if(type == 'Schedule'){
        			var panel = me.down('#dayPanel');
        			panel.addCls('space-both');
        			panel.show();
        			
-       			var name = panel.down('#name');
-       			name.setHtml(record.get('name'));
+       			var title = panel.down('#title');
+       			title.setHtml(record.get('title'));
        		}else{
        			var panel = me.down('#dayItemPanel');
        			panel.show();
@@ -197,8 +197,8 @@ Ext.define('YourTour.view.route.schedule.ScheduleListItem', {
 					dayItemIcon.setSrc('resources/icons/icon_traffic.png');
 				}
        			
-       			var name = panel.down('#name');
-       			name.setHtml(record.get('name'));
+       			var title = panel.down('#title');
+       			title.setHtml(record.get('title'));
        			
        			var desc = panel.down('#desc');
        			desc.setHtml(record.get('desc'));

@@ -7,12 +7,12 @@ Ext.define('YourTour.model.RouteScheduleModel', {
 	    fields:[
 	    	{name:'id', type:'string'},
             {name:'type', type:'string'},
-    		{name:'name', type:'string'},
+    		{name:'title', type:'string'},
+    		{name:'memo', type:'string'},
             {name:'date', type:'string'},
             {name:'days', type:'string'},
             {name:'placeIds', type:'string'},
-            {name:'places', type:'string'},
-    		{name:'memo', type:'string'}
+            {name:'places', type:'string'}
 	    ],
 	    
 	    associations: [{  

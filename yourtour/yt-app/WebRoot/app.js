@@ -28,23 +28,25 @@ Ext.application({
         'MainView','Launch','common.PlaceChangeView','common.PlaceSelectionView',
         'home.HomeMainView', 'home.BestListView', 'home.AlongListView', 'home.AlongDetailView', 'home.TalentListView', 'SearchMain',
         'route.RouteMainView','route.RouteSettingView',
-        'line.LineRecommendView','line.LineIntroductionView',
-        'route.schedule.SchedulePlanListView', 'route.schedule.ScheduleListView','route.schedule.SceneScheduleView','route.schedule.HotelScheduleView','route.schedule.FoodScheduleView',
+        'route.RouteScheduleListView', 'route.RouteSchedulePlanView',,'route.RouteScheduleReferenceView','route.RouteScheduleView','route.schedule.SceneScheduleView','route.schedule.HotelScheduleView','route.schedule.FoodScheduleView',
+        'route.RouteProvisionView',
         'user.LoginMainView','user.UserListView',
-        'resource.SelectionListView','resource.SceneResourceDetailView','resource.SceneResourcePlanView','route.schedule.ScheduleReferenceListView',
+        'line.LineRecommendView','line.LineIntroductionView','resource.SelectionListView','resource.SceneResourceDetailView','resource.SceneResourcePlanView',
         'personal.PersonalMainView'
     ],
     
     controllers: [
         'Launch', 'MainCtrl', 'common.PlaceChangeCtrl','common.PlaceSelectionCtrl',
         'home.HomeMainCtrl', 'home.BestMainCtrl','home.TalentMainCtrl','home.AlongMainCtrl',
-        'route.RouteMainCtrl','route.RouteEditCtrl','route.ScheduleListCtrl', 'route.SchedulePlanListCtrl', 'line.LineRecommendCtrl','line.LineIntroductionCtrl','user.AccountMainCtrl',
+        'route.RouteMainCtrl','route.RouteEditCtrl','route.ScheduleListCtrl', 'route.RouteScheduleCtrl',
+        'route.RouteSchedulePlanCtrl','route.RouteProvisionCtrl', 'route.RouteActivityCtrl',
+        'line.LineRecommendCtrl','line.LineIntroductionCtrl','user.AccountMainCtrl',
         'resource.ResourceSelectionCtrl','route.ScheduleReferenceCtrl','resource.ResourceCtrl','resource.ResourcePlanCtrl','route.ScheduleDetailCtrl',
         'user.UserListCtrl'
     ],
     
     models:[
-        'LaunchModel','RouteModel','RouteScheduleModel','RouteActivityModel', 'LineModel', 'UserModel','OptionModel', 'HomeModel','LiveModel','ChatModel','AlongModel','TalentModel','HomeCarouselModel','CommentModel', 'PlaceModel',
+        'LaunchModel','RouteModel','RouteActivityModel', 'LineModel', 'UserModel','OptionModel', 'HomeModel','LiveModel','ChatModel','AlongModel','TalentModel','HomeCarouselModel','CommentModel', 'PlaceModel',
         'UserAccountModel','CacheModel'
     ],
     
