@@ -45,11 +45,13 @@ Ext.define('YourTour.view.route.RouteSchedulePlanView', {
  			   		{itemId:'newProvision', text: '添加准备事项' , hidden:true}, 
  			   		
  			   		{itemId:'insertProvisiion', text: '插入准备事项' , hidden:true},
+ 			   		{itemId:'editProvisiion', text: '编辑准备事项' , hidden:true},
  			   		
  			   		{itemId:'insertShcedule', text: '插入行程', hidden:true },
  			   		{itemId:'newActivity', text: '添加日程安排', hidden:true },
 
  			   		{itemId:'insertActivity', text: '插入日程安排', hidden:true },
+ 			   		{itemId:'editActivity', text: '编辑日程安排' , hidden:true},
  			   ]
  		    }
         ]

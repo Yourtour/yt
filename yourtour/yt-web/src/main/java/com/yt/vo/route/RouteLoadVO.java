@@ -52,7 +52,7 @@ public class RouteLoadVO extends BaseVO {
 		
 		for(RouteProvisionBean provisionBean : this.route.getProvisions()){
 			RouteSchedule provision = new RouteSchedule();
-			provision.setTitle(provisionBean.getName());
+			provision.setTitle(provisionBean.getTitle());
 			provision.setMemo(provisionBean.getMemo());
 			provision.setType(TYPE.ProvisionItem);
 			provision.setId(provisionBean.getGraphId().toString());

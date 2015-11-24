@@ -55,7 +55,7 @@ Ext.define('YourTour.view.route.RouteScheduleDataListItem', {
 		    				},
 		    				{
 		    					xtype:'label',
-		    					itemId:'desc',
+		    					itemId:'memo',
 		    					cls:'multilineinfo'
 		    				}
 		    			]
@@ -112,7 +112,7 @@ Ext.define('YourTour.view.route.RouteScheduleDataListItem', {
 		    				},
 		    				{
 		    					xtype:'label',
-		    					itemId:'desc',
+		    					itemId:'memo',
 		    					cls:'multilineinfo'
 		    				},
 		    				{
@@ -169,8 +169,8 @@ Ext.define('YourTour.view.route.RouteScheduleDataListItem', {
        			var title = panel.down('#title');
        			title.setHtml(record.get('title'));
        			
-       			var desc = panel.down('#desc');
-       			desc.setHtml(record.get('desc'));
+       			var memo = panel.down('#memo');
+       			memo.setHtml(record.get('memo'));
        		}else if(type == 'Schedule'){
        			var panel = me.down('#dayPanel');
        			panel.addCls('space-both');
@@ -200,8 +200,8 @@ Ext.define('YourTour.view.route.RouteScheduleDataListItem', {
        			var title = panel.down('#title');
        			title.setHtml(record.get('title'));
        			
-       			var desc = panel.down('#desc');
-       			desc.setHtml(record.get('desc'));
+       			var memo = panel.down('#memo');
+       			memo.setHtml(record.get('memo'));
        			
        			var time = panel.down('#time');
        			time.setHtml(record.get('time'));

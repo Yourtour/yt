@@ -8,28 +8,9 @@ import com.yt.business.bean.RouteProvisionBean;
 import com.yt.vo.BaseVO;
 
 public class RouteProvisionVO extends BaseVO {
-	private String name, memo;
+	private String title, memo;
 	private int index;
-	private RouteVO route;
-
-	public static RouteProvisionVO transform(RouteProvisionBean bean) {
-		if (bean == null) {
-			return null;
-		}
-		RouteProvisionVO vo = new RouteProvisionVO();
-		vo.fromBean(bean);
-		vo.setName(bean.getName());
-		vo.setMemo(bean.getMemo());
-		vo.setIndex(bean.getIndex());
-		if (bean.getRouteMain() != null) {
-			RouteVO routeVO = new RouteVO();
-			routeVO.setId(bean.getRouteMain().getGraphId());
-			routeVO.setName(bean.getRouteMain().getName());
-			routeVO.setStartDate(new Date(bean.getRouteMain().getStartDate()));
-			vo.setRoute(routeVO);
-		}
-		return vo;
-	}
+	private Long routeId;
 
 	public static RouteProvisionBean transform(RouteProvisionVO vo) {
 		if (vo == null) {
@@ -37,14 +18,14 @@ public class RouteProvisionVO extends BaseVO {
 		}
 		RouteProvisionBean bean = new RouteProvisionBean();
 		vo.toBean(bean);
-		bean.setName(vo.getName());
+		bean.setTitle(vo.getTitle());
 		bean.setMemo(vo.getMemo());
 		bean.setIndex(vo.getIndex());
-		if (vo.getRoute() != null) {
-			RouteMainBean route = new RouteMainBean();
-			route.setGraphId(vo.getRoute().getId());
-			bean.setRouteMain(route);
-		}
+		
+		RouteMainBean route = new RouteMainBean();
+		route.setGraphId(vo.getRouteId());
+		bean.setRouteMain(route);
+		
 		return bean;
 	}
 
@@ -52,12 +33,12 @@ public class RouteProvisionVO extends BaseVO {
 		super();
 	}
 
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getMemo() {
@@ -75,15 +56,16 @@ public class RouteProvisionVO extends BaseVO {
 	public void setIndex(int index) {
 		this.index = index;
 	}
-
-	public RouteVO getRoute() {
-		return route;
-	}
-
-	public void setRoute(RouteVO route) {
-		this.route = route;
-	}
 	
+	
+	public Long getRouteId() {
+		return routeId;
+	}
+
+	public void setRouteId(Long routeId) {
+		this.routeId = routeId;
+	}
+
 	public static void main(String[] args) throws Exception{
 		String s = "Wed Nov 11 2015 22:14:41 GMT+0800 (中国标准时间)";
 		

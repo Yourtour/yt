@@ -4,7 +4,7 @@ import com.yt.business.BaseBeanImpl;
 
 public class BaseVO {
 
-	private Long graphid;
+	private Long graphId;
 	private String rowKey;
 	private String createdUserId = "";
 	private long createdTime;
@@ -37,11 +37,11 @@ public class BaseVO {
 	}
 
 	public Long getId() {
-		return graphid;
+		return graphId;
 	}
 
 	public void setId(Long graphid) {
-		this.graphid = graphid == 0 ? null : graphid;
+		this.graphId = graphid == 0 ? null : graphid;
 	}
 
 	public String getRowKey() {

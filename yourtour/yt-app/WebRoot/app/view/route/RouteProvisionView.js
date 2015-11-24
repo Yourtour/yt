@@ -63,6 +63,13 @@ Ext.define('YourTour.view.route.RouteProvisionView', {
 					}
 				]
 			},
+			
+			{
+            	xtype:'xbutton',
+            	id:'btnDelete',
+            	docked: 'bottom',
+            	text:'删除'
+            },
         ]
     }
 });

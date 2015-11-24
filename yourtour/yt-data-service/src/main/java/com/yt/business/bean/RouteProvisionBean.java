@@ -18,9 +18,9 @@ public class RouteProvisionBean extends BaseBeanImpl {
 	private static final long serialVersionUID = 5125188883896673886L;
 	private static final String INDEX_NAME = "routeProvision";
 
-	@HbaseColumn(name = "name")
+	@HbaseColumn(name = "title")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	private String name; // 行程准备名称
+	private String title; // 行程准备名称
 
 	@HbaseColumn(name = "memo")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
@@ -36,12 +36,12 @@ public class RouteProvisionBean extends BaseBeanImpl {
 		super();
 	}
 
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getMemo() {

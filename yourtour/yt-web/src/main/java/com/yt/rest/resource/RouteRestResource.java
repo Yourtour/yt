@@ -317,13 +317,13 @@ public class RouteRestResource extends BaseRestResource{
 	 */
 	@POST
 	@Path("provision/save")
-	public ResponseVO saveProvision(RouteProvisionVO vo,
+	public ResponseDataVO<Long> saveProvision(RouteProvisionVO vo,
 			@Context HttpServletRequest request) {
 		if (vo == null) {
 			if (LOG.isWarnEnabled()) {
 				LOG.warn("The RouteProvisionVO is null.");
 			}
-			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
+			return new ResponseDataVO<>(StaticErrorEnum.THE_INPUT_IS_NULL);
 		}
 		try {
 			RouteProvisionBean bean = RouteProvisionVO.transform(vo);
@@ -333,14 +333,14 @@ public class RouteRestResource extends BaseRestResource{
 						"Save RouteProvisionBean['%s'] success.",
 						vo.getRowKey()));
 			}
-			return new ResponseVO();
+			return new ResponseDataVO<>(bean.getGraphId());
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
 				LOG.error(String.format(
 						"Save the RouteProvisionBean[id='%s'] fail.",
 						vo.getRowKey()), ex);
 			}
-			return new ResponseVO(StaticErrorEnum.DB_OPERATE_FAIL);
+			return new ResponseDataVO<>(StaticErrorEnum.DB_OPERATE_FAIL);
 		}
 	}
 
