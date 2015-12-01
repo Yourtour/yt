@@ -6,12 +6,15 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
        refs: {
     	   routeSchedulePlanView:'#RouteSchedulePlanView',
     	   routeScheduleList:'#RouteSchedulePlanView #RouteScheduleList',
-    	   toolbar:'#RouteSchedulePlanView #toolbar'
+    	   toolbar:'#RouteSchedulePlanView #toolbar',
+    	   
+    	   routeActivityEditView:'#RouteActivityEditView'
        },
        
        control:{
     	   routeScheduleList:{
-    		   itemtap:'onItemTap'
+    		   itemtap:'onItemTap',
+    		   itemlongtap:'onItemLongTap'
     	   },
     	   
     	   toolbar:{
@@ -32,6 +35,10 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     	   
     	   '#toolbar #insertShcedule':{
     		   tap : 'onInsertScheduleTap'
+    	   },
+    	   
+    	   '#toolbar #editShcedule':{
+    		   tap : 'onEditScheduleTap'
     	   },
     	   
     	   '#toolbar #newActivity':{
@@ -65,7 +72,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     	this.routeId = routeId;
     	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteSchedulePlanView'));
     	
-    	this.store = this.getApplication().getController('route.RouteScheduleCtrl').store;
+    	this.store = this.getApplication().getController('route.RouteScheduleListCtrl').store;
     	var record = this.store.getAt(0);
     	
     	this.getRouteScheduleList().setStore(record.schedulesStore);
@@ -74,27 +81,30 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     onItemTap:function(dataview, index, item, record,e){
     	this.index = index;
     	
-    	this.getToolbar().show();
-    	this.getToolbar().getAt(0).hide();
-		this.getToolbar().getAt(1).hide();
-		this.getToolbar().getAt(2).hide();
-		this.getToolbar().getAt(3).hide();
-		this.getToolbar().getAt(4).hide();
-		this.getToolbar().getAt(5).hide();
-		this.getToolbar().getAt(6).hide();
-		
-    	if(record.get('type') == 'Provision'){
-    		this.getToolbar().getAt(0).show();
-    	}else if(record.get('type') == 'ProvisionItem'){
-    		this.getToolbar().getAt(1).show();
-    		this.getToolbar().getAt(2).show();
-    	}else if(record.get('type') == 'Schedule'){
-    		this.getToolbar().getAt(3).show();
-    		this.getToolbar().getAt(4).show();
-    	}else if(record.get('type') == 'ScheduleItem'){
-    		this.getToolbar().getAt(5).show();
-    		this.getToolbar().getAt(6).show();
+    	if(item.longpressed){
+    		item.longpressed = false;
+    		return;
     	}
+    	
+    	var type = record.get('type');
+    	if(type == 'ProvisionItem'){
+    		this.redirectTo('/route/provision/' + this.routeId + '/' + this.index + '/edit');
+    	}else if(type == 'Schedule'){
+    		this.redirectTo('/route/schedule/' + this.routeId + '/' + this.index + '/edit');
+    	}else if(type == 'ScheduleItem'){
+    		this.redirectTo('/route/schedule/' + this.routeId + '/' + this.index + '/edit');
+    	}
+    },
+    
+    onItemLongTap:function(dataview, index, item, record, e){
+    	this.getToolbar().show();
+		this.getToolbar().getItems().each(function(item){
+			if(item.attr == record.get('type')){
+				item.show();
+			}else{
+				item.hide();
+			}	
+		});
     },
     
     onNewProvisionTap:function(){
@@ -114,19 +124,47 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     	this.redirectTo('/route/provision/' + this.routeId + '/' + this.index + '/new');
     },
     
-    onEditProvisionTap:function(){
-    	this.redirectTo('/route/provision/' + this.routeId + '/' + this.index + '/edit');
-    },
-    
     onInsertScheduleTap:function(){
-    	this.redirectTo('/route/schedule/insert');
+    	this.redirectTo('/route/schedule/' + this.routeId + '/' + this.index + '/new');
     },
     
     onNewActivityTap:function(){
-    	this.redirectTo('/route/activity/new');
+    	
+    	this.redirectTo('/resource/selection/' + this.routeId + '/' + this.index);
     },
     
     onInsertActivityTap:function(){
-    	this.redirectTo('/route/activity/insert');
+    	this.redirectTo('/resource/selection/' + this.routeId + '/' + this.index);
+    },
+    
+    onActivityEdit:function(resource){
+    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteActivityEditView'));
+    	
+    	/*var hourOptions = [], minOptions = [];
+    	var value;
+    	for(var index = 1; index < 24; index++){
+    		if(index < 10){
+    			value = '0' + index;
+    		}else{
+    			value = '' + index;
+    		}
+    		
+    		hourOptions.push({text:value, value:value});
+    	}
+    	var hourSelect = this.getRouteActivityEditView().down('#hourSelect');
+    	hourSelect.options = hourOptions;
+    	
+    	for(var index = 1; index < 60; index++){
+    		if(index < 10){
+    			value = '0' + index;
+    		}else{
+    			value = '' + index;
+    		}
+    		
+    		minOptions.push({text:value, value:value});
+    	}
+    	var minSelect = this.getRouteActivityEditView().down('#minSelect');
+    	minSelect.options = minOptions;*/
     }
 });
+

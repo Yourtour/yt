@@ -1,7 +1,7 @@
-Ext.define('YourTour.view.widget.XSceneResource', {
+Ext.define('YourTour.view.resource.SceneResourceView', {
     extend: 'Ext.Panel',
     requires:['Ext.Panel','Ext.Img', 'YourTour.view.widget.XLabel','YourTour.view.widget.XField'],
-    xtype: 'xsceneresource',
+    xtype: 'SceneResourceView',
     config: {
     	record:null,
 

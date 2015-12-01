@@ -1,8 +1,8 @@
-Ext.define('YourTour.view.route.RouteScheduleView', {
+Ext.define('YourTour.view.route.RouteProvisionEditView', {
     extend: 'YourTour.view.widget.XPage',
     requires:['Ext.Panel', 'YourTour.view.widget.XHeaderBar'],
     config: {
-    	id:'RouteScheduleView',
+    	id:'RouteProvisionEditView',
     	layout:'vbox',
 		scrollable: {
     	    direction: 'vertical',
@@ -62,6 +62,13 @@ Ext.define('YourTour.view.route.RouteScheduleView', {
 					}
 				]
 			},
+			
+			{
+            	xtype:'xbutton',
+            	id:'btnDelete',
+            	docked: 'bottom',
+            	text:'删除'
+            },
         ]
     }
 });

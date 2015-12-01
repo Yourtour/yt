@@ -2,13 +2,10 @@ package com.yt.vo.route;
 
 import java.util.List;
 
-import com.yt.business.bean.PlaceBean;
 import com.yt.business.bean.RouteActivityBean;
-import com.yt.business.bean.RouteMainBean;
 import com.yt.business.bean.RouteScheduleBean;
 import com.yt.core.utils.DateUtils;
 import com.yt.vo.BaseVO;
-import com.yt.vo.basedata.PlaceVO;
 
 public class RouteScheduleVO extends BaseVO {
 	private int index;

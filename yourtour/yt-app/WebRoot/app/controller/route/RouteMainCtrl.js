@@ -6,7 +6,8 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
        refs: {
        	    routeMainView:'#RouteMainView',
         	routeCarousel:'#RouteMainView #routeCarousel',
-       		newRoute:'#RouteMainView #new'
+       		newRoute:'#RouteMainView #new',
+       		deleteRoute:'#RouteMainView #delete'
        },
        
        control:{
@@ -14,6 +15,9 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
     		   	tap:'newRoute'
     	   },
     	   
+    	   deleteRoute:{
+   		   	tap:'deleteRoute'
+    	   },
     	   routeCarousel:{
     		   onRouteTap:'onRouteTap'
     	   }
@@ -28,6 +32,32 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
     
     newRoute:function(){
     	this.redirectTo("/route/new");
+    },
+    
+    deleteRoute:function(){
+    	var me = this;
+    	var routeCarousel = me.getRouteCarousel();
+    	var index = routeCarousel.getActiveIndex();
+    	
+    	var model = me.store.getAt(index);
+    	
+    	Ext.Ajax.request({
+    		url : YourTour.util.Context.getContext('/routes/' + model.get('id') + '/delete'),
+    	    method : "GET",
+    	    success : function(response) {
+    	    	var respObj = Ext.JSON.decode(response.responseText);
+    	    	if(respObj.errorCode != '0'){
+    	    		Ext.Msg.alert(resp.errorText);
+    	    		return;
+    	    	};
+    	    	
+    	    	Ext.Msg.alert('删除成功。');
+    	    	
+    	    	me.store.removeAt(index);
+    	    	
+    	    	routeCarousel.removeAt(index);
+    	    }
+    	});
     },
     
     showPage:function(){

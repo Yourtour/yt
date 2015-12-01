@@ -1,9 +1,8 @@
-Ext.define('YourTour.view.resource.SelectionListItem', {
+Ext.define('YourTour.view.resource.ResourcePlayDataItem', {
     extend: 'Ext.dataview.component.DataItem',
-    xtype: 'SelectionListItem',
+    xtype: 'ResourcePlayDataItem',
     requires:['Ext.Img','YourTour.view.widget.XLabel','YourTour.view.widget.XField'],
     config: {
-    	itemId:'SelectionListItem',
     	layout:'vbox',
     	cls:'listitem space-bottom',
     	style:'background:#fff',

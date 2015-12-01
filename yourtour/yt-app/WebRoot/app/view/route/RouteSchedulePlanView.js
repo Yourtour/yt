@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.route.RouteSchedulePlanView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Panel', 'YourTour.view.route.RouteScheduleDataView', 'YourTour.view.route.RouteScheduleDataListItem', 'YourTour.view.widget.XHeaderBar'],
+    requires:['Ext.Panel', 'YourTour.view.route.RouteScheduleDataView', 'YourTour.view.route.RouteScheduleDataListItem', 'YourTour.view.widget.XHeaderBar','YourTour.view.widget.XButton'],
     xtype: 'RouteSchedulePlanView',
     config: {
     	id:'RouteSchedulePlanView',
@@ -12,7 +12,14 @@ Ext.define('YourTour.view.route.RouteSchedulePlanView', {
     	items:[
     		{    
 				xtype: 'xheaderbar',
-				title:'行程安排'
+				title:'行程安排',
+				items:[{
+                	xtype: "toolbutton", 
+                    ui: "normal", 
+                	text:'设置',
+                	itemId:'setting',
+                	align:'right'
+                }]
 			},
 			
 			{
@@ -42,16 +49,14 @@ Ext.define('YourTour.view.route.RouteSchedulePlanView', {
  				   flex:1
  			   },
  			   items:[
- 			   		{itemId:'newProvision', text: '添加准备事项' , hidden:true}, 
+ 			   		{xtype: 'xbutton', baseCls:Ext.baseCSSPrefix + 'button', ui: 'drastic',itemId:'newProvision', text: '添加准备事项' , hidden:true, attr:'Provision'}, 
  			   		
- 			   		{itemId:'insertProvisiion', text: '插入准备事项' , hidden:true},
- 			   		{itemId:'editProvisiion', text: '编辑准备事项' , hidden:true},
+ 			   		{xtype: 'xbutton', baseCls:Ext.baseCSSPrefix + 'button', ui: 'drastic', itemId:'insertProvisiion', text: '插入准备事项' , hidden:true, attr:'ProvisionItem'},
  			   		
- 			   		{itemId:'insertShcedule', text: '插入行程', hidden:true },
- 			   		{itemId:'newActivity', text: '添加日程安排', hidden:true },
+ 			   		{xtype: 'xbutton', baseCls:Ext.baseCSSPrefix + 'button', ui:'drastic', itemId:'insertShcedule', text: '插入日程', hidden:true, attr:'Schedule' },
+ 			   		{xtype: 'xbutton', baseCls:Ext.baseCSSPrefix + 'button', ui:'drastic', itemId:'newActivity', text: '日程安排', hidden:true, attr:'Schedule' },
 
- 			   		{itemId:'insertActivity', text: '插入日程安排', hidden:true },
- 			   		{itemId:'editActivity', text: '编辑日程安排' , hidden:true},
+ 			   		{xtype: 'xbutton', baseCls:Ext.baseCSSPrefix + 'button', ui:'drastic', itemId:'insertActivity', text: '插入安排', hidden:true, attr:'ScheduleItem' },
  			   ]
  		    }
         ]

@@ -74,9 +74,9 @@ public class SceneRestResource {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Path("loadPage.json")
+	@Path("query")
 	@GET
-	public ResponsePagingDataVO<List<SceneResourceVO>> loadPage(
+	public ResponsePagingDataVO<List<SceneResourceVO>> query(@QueryParam("name") String name, @QueryParam("placeId") String placeId,
 			@QueryParam("page") int page, @QueryParam("start") int start,
 			@QueryParam("limit") int limit) {
 		try {

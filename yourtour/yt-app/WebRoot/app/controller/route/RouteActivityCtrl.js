@@ -4,22 +4,14 @@ Ext.define('YourTour.controller.route.RouteActivityCtrl', {
     
     config: {
        refs: {
-    	   routeScheduleListView:'#RouteScheduleListView',
+    	   routeActivityEditView:'#RouteActivityEditView',
        },
        
        control:{
-    	   schedulePlanList:{
-    	   	   itemtap:'onItemTap'
-    	   },
-    	   
-    	   '#RouteScheduleListView #edit':{
-    		   tap:'onEditTap'
-    	   }
-    	   
        },
        
        routes:{
-        	//'/route/load/:routeId':'showPage'
+        	'/route/activity/:routeId/:index/:resourceId':'showPage'
        },
        
        store:null,
@@ -33,8 +25,7 @@ Ext.define('YourTour.controller.route.RouteActivityCtrl', {
     onEditTap:function(){
     },
     
-    showPage:function(routeId){
-    	
+    showPage:function(routeId, index, resourceId){
+    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.resource.SelectionListView'));
     }
-    
 });

@@ -3,6 +3,8 @@ Ext.define('YourTour.view.route.RouteScheduleDataListItem', {
     xtype: 'RouteScheduleDataListItem',
     requires:['Ext.Label','Ext.field.Select','Ext.Panel'],
     config: {
+    	longpressed:false,
+    	
 		defaults:{
 			style:'background:#fff',
 			padding:'0 5 0 5'
@@ -69,7 +71,8 @@ Ext.define('YourTour.view.route.RouteScheduleDataListItem', {
     			hidden:true,
     			layout:'hbox',
     			cls:'day',
-    			height:50,
+    			/*minHeight:50,
+    			maxHeight:200,*/
     			items:[
     				{
 		    			xtype : 'image',
@@ -77,10 +80,21 @@ Ext.define('YourTour.view.route.RouteScheduleDataListItem', {
 		    			src :'resources/icons/icon_day.png'
     				},
     				{
-    					xtype:'label',
-    					itemId:'title',
+    					xtype:'panel',
+    					layout:'vbox',
     					flex:1,
-    					margin:'0 0 0 5'
+    					margin:'0 0 0 5',
+    					items:[
+		    				{
+		    					xtype:'label',
+		    					itemId:'title'
+		    				},
+		    				{
+		    					xtype:'label',
+		    					itemId:'memo',
+		    					cls:'multilineinfo'
+		    				}
+		    			]
     				}
     			]
     		},
@@ -142,6 +156,10 @@ Ext.define('YourTour.view.route.RouteScheduleDataListItem', {
     	]
     },
     
+    updateLongpressed:function(longpressed){
+    	this.longpressed = longpressed;
+    },
+    
    	/**
    	 * 
    	 * @param {} record
@@ -149,17 +167,20 @@ Ext.define('YourTour.view.route.RouteScheduleDataListItem', {
     updateRecord: function(record) {
        var me = this;
        
+       var dataview = this.dataview || this.getDataview();
+       
        if(record){
-       		var type = record.get('type');
+    	   var panel;
+       	   var type = record.get('type');
        		if(type == 'Provision'){
-       			var panel = me.down('#preparePanel');
+       			panel = me.down('#preparePanel');
        			panel.addCls('space-bottom');
        			panel.show();
        			
        			var title = panel.down('#title');
        			title.setHtml(record.get('title'));
        		}else if(type == 'ProvisionItem'){
-       			var panel = me.down('#prepareItemPanel');
+       			panel = me.down('#prepareItemPanel');
        			panel.show();
        			
        			if(record.get('isLast') != '1'){
@@ -172,14 +193,19 @@ Ext.define('YourTour.view.route.RouteScheduleDataListItem', {
        			var memo = panel.down('#memo');
        			memo.setHtml(record.get('memo'));
        		}else if(type == 'Schedule'){
-       			var panel = me.down('#dayPanel');
+       			panel = me.down('#dayPanel');
        			panel.addCls('space-both');
        			panel.show();
        			
        			var title = panel.down('#title');
        			title.setHtml(record.get('title'));
+       			
+       			if(record.get('memo') != undefined){
+       				var memo = panel.down('#memo');
+       				memo.setHtml(record.get('memo'));
+       			}
        		}else{
-       			var panel = me.down('#dayItemPanel');
+       			panel = me.down('#dayItemPanel');
        			panel.show();
        			
        			if(record.get('isLast') != '1'){
@@ -209,7 +235,13 @@ Ext.define('YourTour.view.route.RouteScheduleDataListItem', {
        			var period = panel.down('#period');
        			period.setHtml(record.get('period'));
        		}
-       }	
+       		
+       		me.element.on('longpress', function(e){
+       			me.longpressed = true;
+       			
+       			dataview.fireEvent('itemlongtap', dataview, dataview.items.length, me, record);
+       		});
+       }
     }   
 });
 

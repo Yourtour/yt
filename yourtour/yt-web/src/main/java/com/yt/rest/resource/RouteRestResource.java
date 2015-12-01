@@ -242,8 +242,8 @@ public class RouteRestResource extends BaseRestResource{
 	 * @return 统一的ResponseVO对象
 	 */
 	@POST
-	@Path("schedule/save")
-	public ResponseVO saveSchedule(RouteScheduleVO vo,
+	@Path("/{routeId}/schedule/save")
+	public ResponseVO saveSchedule(@PathParam("routeId") String routeId, RouteScheduleVO vo,
 			@Context HttpServletRequest request) {
 		if (vo == null) {
 			if (LOG.isWarnEnabled()) {
@@ -252,7 +252,14 @@ public class RouteRestResource extends BaseRestResource{
 			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
 		}
 		try {
-			RouteScheduleBean bean = RouteScheduleVO.transform(vo);
+			RouteScheduleBean bean = null;
+			if(vo.getId() == null){
+				bean = RouteScheduleVO.transform(vo);
+			}else{
+				bean = (RouteScheduleBean) routeRepository.get(RouteScheduleBean.class, vo.getId());
+				bean.setMemo(vo.getMemo());
+			}
+			
 			routeRepository.save(bean, WebUtils.getCurrentLoginUser(request));
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format(

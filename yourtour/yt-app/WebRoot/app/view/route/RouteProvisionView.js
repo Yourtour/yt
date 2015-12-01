@@ -1,7 +1,6 @@
 Ext.define('YourTour.view.route.RouteProvisionView', {
     extend: 'YourTour.view.widget.XPage',
     requires:['Ext.Panel', 'YourTour.view.widget.XHeaderBar'],
-    xtype: 'RouteProvisionView',
     config: {
     	id:'RouteProvisionView',
     	layout:'vbox',

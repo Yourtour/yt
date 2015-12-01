@@ -651,13 +651,15 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.controller.line.LineIntroductionCtrl": [],
   "YourTour.controller.line.LineRecommendCtrl": [],
   "YourTour.controller.resource.ResourceCtrl": [],
-  "YourTour.controller.resource.ResourcePlanCtrl": [],
-  "YourTour.controller.resource.ResourceSelectionCtrl": [],
+  "YourTour.controller.route.RouteActivityCtrl": [],
+  "YourTour.controller.route.RouteEditCtrl": [],
   "YourTour.controller.route.RouteMainCtrl": [],
-  "YourTour.controller.route.RouteSettingCtrl": [],
+  "YourTour.controller.route.RouteProvisionCtrl": [],
+  "YourTour.controller.route.RouteScheduleCtrl": [],
+  "YourTour.controller.route.RouteScheduleListCtrl": [],
+  "YourTour.controller.route.RouteSchedulePlanCtrl": [],
   "YourTour.controller.route.ScheduleDetailCtrl": [],
   "YourTour.controller.route.ScheduleListCtrl": [],
-  "YourTour.controller.route.SchedulePlanListCtrl": [],
   "YourTour.controller.route.ScheduleReferenceCtrl": [],
   "YourTour.controller.user.AccountMainCtrl": [],
   "YourTour.controller.user.UserListCtrl": [],
@@ -676,9 +678,9 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.model.OptionModel": [],
   "YourTour.model.PlaceModel": [],
   "YourTour.model.ResourceModel": [],
+  "YourTour.model.RouteActivityModel": [],
   "YourTour.model.RouteModel": [],
-  "YourTour.model.ScheduleModel": [],
-  "YourTour.model.SchedulePlanModel": [],
+  "YourTour.model.RouteScheduleModel": [],
   "YourTour.model.TalentModel": [],
   "YourTour.model.UserAccountModel": [],
   "YourTour.model.UserModel": [],
@@ -693,7 +695,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.store.LineStore": [],
   "YourTour.store.LocalStore": [],
   "YourTour.store.PlaceStore": [],
-  "YourTour.store.ResourceSelectionStore": [],
+  "YourTour.store.ResourceFoodStore": [],
+  "YourTour.store.ResourcePlayStore": [],
   "YourTour.store.ResourceStore": [],
   "YourTour.store.RouteStore": [],
   "YourTour.store.SessionStore": [],
@@ -731,24 +734,32 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.line.LineRecommendView": [],
   "YourTour.view.line.LineResourceItem": [],
   "YourTour.view.personal.PersonalMainView": [],
-  "YourTour.view.resource.SceneResourceDetailView": [],
-  "YourTour.view.resource.SceneResourcePlanView": [],
-  "YourTour.view.resource.SelectionListItem": [],
-  "YourTour.view.resource.SelectionListView": [],
+  "YourTour.view.resource.ResourceDetailView": [],
+  "YourTour.view.resource.ResourceFoodDataItem": [],
+  "YourTour.view.resource.ResourceFoodListView": [],
+  "YourTour.view.resource.ResourcePlayDataItem": [],
+  "YourTour.view.resource.ResourcePlayListView": [],
+  "YourTour.view.resource.ResourceSelectionView": [],
+  "YourTour.view.resource.SceneResourceView": [],
   "YourTour.view.route.MainItem": [],
+  "YourTour.view.route.RouteActivityEditView": [],
   "YourTour.view.route.RouteMainView": [],
+  "YourTour.view.route.RouteProvisionEditView": [],
+  "YourTour.view.route.RouteProvisionView": [],
+  "YourTour.view.route.RouteScheduleDataListItem": [],
+  "YourTour.view.route.RouteScheduleDataView": [],
+  "YourTour.view.route.RouteScheduleEditView": [],
+  "YourTour.view.route.RouteScheduleListView": [],
+  "YourTour.view.route.RouteSchedulePlanView": [],
+  "YourTour.view.route.RouteScheduleReferenceView": [],
+  "YourTour.view.route.RouteScheduleView": [],
   "YourTour.view.route.RouteSettingItem": [],
   "YourTour.view.route.RouteSettingView": [],
   "YourTour.view.route.Schedule": [],
   "YourTour.view.route.schedule.FoodScheduleView": [],
   "YourTour.view.route.schedule.HotelScheduleView": [],
   "YourTour.view.route.schedule.SceneScheduleView": [],
-  "YourTour.view.route.schedule.ScheduleDataView": [],
-  "YourTour.view.route.schedule.ScheduleListItem": [],
-  "YourTour.view.route.schedule.ScheduleListView": [],
   "YourTour.view.route.schedule.SchedulePlanListItem": [],
-  "YourTour.view.route.schedule.SchedulePlanListView": [],
-  "YourTour.view.route.schedule.ScheduleReferenceListView": [],
   "YourTour.view.user.LoginMainView": [],
   "YourTour.view.user.LoginView": [],
   "YourTour.view.user.RegisterAccountView": [],
@@ -776,7 +787,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.XPage": [],
   "YourTour.view.widget.XPanel": [],
   "YourTour.view.widget.XPlainButton": [],
-  "YourTour.view.widget.XSceneResource": [],
   "YourTour.view.widget.XSelecion": [],
   "YourTour.view.widget.XTextField": [],
   "YourTour.view.widget.XTitleBar": [],
@@ -1512,13 +1522,15 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.controller.line.LineIntroductionCtrl": [],
   "YourTour.controller.line.LineRecommendCtrl": [],
   "YourTour.controller.resource.ResourceCtrl": [],
-  "YourTour.controller.resource.ResourcePlanCtrl": [],
-  "YourTour.controller.resource.ResourceSelectionCtrl": [],
+  "YourTour.controller.route.RouteActivityCtrl": [],
+  "YourTour.controller.route.RouteEditCtrl": [],
   "YourTour.controller.route.RouteMainCtrl": [],
-  "YourTour.controller.route.RouteSettingCtrl": [],
+  "YourTour.controller.route.RouteProvisionCtrl": [],
+  "YourTour.controller.route.RouteScheduleCtrl": [],
+  "YourTour.controller.route.RouteScheduleListCtrl": [],
+  "YourTour.controller.route.RouteSchedulePlanCtrl": [],
   "YourTour.controller.route.ScheduleDetailCtrl": [],
   "YourTour.controller.route.ScheduleListCtrl": [],
-  "YourTour.controller.route.SchedulePlanListCtrl": [],
   "YourTour.controller.route.ScheduleReferenceCtrl": [],
   "YourTour.controller.user.AccountMainCtrl": [],
   "YourTour.controller.user.UserListCtrl": [],
@@ -1539,9 +1551,9 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.model.OptionModel": [],
   "YourTour.model.PlaceModel": [],
   "YourTour.model.ResourceModel": [],
+  "YourTour.model.RouteActivityModel": [],
   "YourTour.model.RouteModel": [],
-  "YourTour.model.ScheduleModel": [],
-  "YourTour.model.SchedulePlanModel": [],
+  "YourTour.model.RouteScheduleModel": [],
   "YourTour.model.TalentModel": [],
   "YourTour.model.UserAccountModel": [],
   "YourTour.model.UserModel": [],
@@ -1556,7 +1568,8 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.store.LineStore": [],
   "YourTour.store.LocalStore": [],
   "YourTour.store.PlaceStore": [],
-  "YourTour.store.ResourceSelectionStore": [],
+  "YourTour.store.ResourceFoodStore": [],
+  "YourTour.store.ResourcePlayStore": [],
   "YourTour.store.ResourceStore": [],
   "YourTour.store.RouteStore": [],
   "YourTour.store.SessionStore": [],
@@ -1654,24 +1667,51 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.personal.PersonalMainView": [
     "widget.PersonalMainView"
   ],
-  "YourTour.view.resource.SceneResourceDetailView": [
-    "widget.SceneResourceDetailView"
+  "YourTour.view.resource.ResourceDetailView": [],
+  "YourTour.view.resource.ResourceFoodDataItem": [
+    "widget.ResourceFoodDataItem"
   ],
-  "YourTour.view.resource.SceneResourcePlanView": [
-    "widget.SceneResourcePlanView"
+  "YourTour.view.resource.ResourceFoodListView": [
+    "widget.ResourceFoodListView"
   ],
-  "YourTour.view.resource.SelectionListItem": [
-    "widget.SelectionListItem"
+  "YourTour.view.resource.ResourcePlayDataItem": [
+    "widget.ResourcePlayDataItem"
   ],
-  "YourTour.view.resource.SelectionListView": [
+  "YourTour.view.resource.ResourcePlayListView": [
+    "widget.ResourcePlayListView"
+  ],
+  "YourTour.view.resource.ResourceSelectionView": [
     "widget.SelectionListView"
   ],
-  "YourTour.view.route.MainItem": [
-    "widget.routemainitem"
+  "YourTour.view.resource.SceneResourceView": [
+    "widget.SceneResourceView"
   ],
+  "YourTour.view.route.MainItem": [
+    "widget.MainItem"
+  ],
+  "YourTour.view.route.RouteActivityEditView": [],
   "YourTour.view.route.RouteMainView": [
     "widget.RouteMainView"
   ],
+  "YourTour.view.route.RouteProvisionEditView": [],
+  "YourTour.view.route.RouteProvisionView": [],
+  "YourTour.view.route.RouteScheduleDataListItem": [
+    "widget.RouteScheduleDataListItem"
+  ],
+  "YourTour.view.route.RouteScheduleDataView": [
+    "widget.RouteScheduleDataView"
+  ],
+  "YourTour.view.route.RouteScheduleEditView": [],
+  "YourTour.view.route.RouteScheduleListView": [
+    "widget.RouteScheduleListView"
+  ],
+  "YourTour.view.route.RouteSchedulePlanView": [
+    "widget.RouteSchedulePlanView"
+  ],
+  "YourTour.view.route.RouteScheduleReferenceView": [
+    "widget.RouteScheduleReferenceView"
+  ],
+  "YourTour.view.route.RouteScheduleView": [],
   "YourTour.view.route.RouteSettingItem": [
     "widget.RouteSettingItem"
   ],
@@ -1690,23 +1730,8 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.route.schedule.SceneScheduleView": [
     "widget.SceneScheduleView"
   ],
-  "YourTour.view.route.schedule.ScheduleDataView": [
-    "widget.ScheduleDataView"
-  ],
-  "YourTour.view.route.schedule.ScheduleListItem": [
-    "widget.scheduleListItem"
-  ],
-  "YourTour.view.route.schedule.ScheduleListView": [
-    "widget.ScheduleListView"
-  ],
   "YourTour.view.route.schedule.SchedulePlanListItem": [
     "widget.SchedulePlanListItem"
-  ],
-  "YourTour.view.route.schedule.SchedulePlanListView": [
-    "widget.SchedulePlanListView"
-  ],
-  "YourTour.view.route.schedule.ScheduleReferenceListView": [
-    "widget.schedulereference"
   ],
   "YourTour.view.user.LoginMainView": [],
   "YourTour.view.user.LoginView": [
@@ -1782,9 +1807,6 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.widget.XPlainButton": [
     "widget.xplainbutton"
-  ],
-  "YourTour.view.widget.XSceneResource": [
-    "widget.xsceneresource"
   ],
   "YourTour.view.widget.XSelecion": [],
   "YourTour.view.widget.XTextField": [

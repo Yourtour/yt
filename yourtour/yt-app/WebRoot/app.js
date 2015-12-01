@@ -28,21 +28,23 @@ Ext.application({
         'MainView','Launch','common.PlaceChangeView','common.PlaceSelectionView',
         'home.HomeMainView', 'home.BestListView', 'home.AlongListView', 'home.AlongDetailView', 'home.TalentListView', 'SearchMain',
         'route.RouteMainView','route.RouteSettingView',
-        'route.RouteScheduleListView', 'route.RouteSchedulePlanView',,'route.RouteScheduleReferenceView','route.RouteScheduleView','route.schedule.SceneScheduleView','route.schedule.HotelScheduleView','route.schedule.FoodScheduleView',
-        'route.RouteProvisionView',
+        'route.RouteScheduleListView', 'route.RouteSchedulePlanView','route.RouteScheduleReferenceView','route.schedule.SceneScheduleView','route.schedule.HotelScheduleView','route.schedule.FoodScheduleView',
+        'route.RouteProvisionView','route.RouteProvisionEditView','route.RouteScheduleEditView','route.RouteScheduleView',
+        'route.RouteActivityEditView',
         'user.LoginMainView','user.UserListView',
-        'line.LineRecommendView','line.LineIntroductionView','resource.SelectionListView','resource.SceneResourceDetailView','resource.SceneResourcePlanView',
+        'line.LineRecommendView','line.LineIntroductionView',
+        'resource.ResourceSelectionView','resource.ResourceDetailView',
         'personal.PersonalMainView'
     ],
     
     controllers: [
         'Launch', 'MainCtrl', 'common.PlaceChangeCtrl','common.PlaceSelectionCtrl',
         'home.HomeMainCtrl', 'home.BestMainCtrl','home.TalentMainCtrl','home.AlongMainCtrl',
-        'route.RouteMainCtrl','route.RouteEditCtrl','route.ScheduleListCtrl', 'route.RouteScheduleCtrl',
-        'route.RouteSchedulePlanCtrl','route.RouteProvisionCtrl', 'route.RouteActivityCtrl',
+        'route.RouteMainCtrl','route.RouteEditCtrl','route.RouteScheduleListCtrl',
+        'route.RouteSchedulePlanCtrl','route.RouteProvisionCtrl', 'route.RouteScheduleCtrl', 'route.RouteActivityCtrl',
         'line.LineRecommendCtrl','line.LineIntroductionCtrl','user.AccountMainCtrl',
-        'resource.ResourceSelectionCtrl','route.ScheduleReferenceCtrl','resource.ResourceCtrl','resource.ResourcePlanCtrl','route.ScheduleDetailCtrl',
-        'user.UserListCtrl'
+        'route.ScheduleReferenceCtrl','route.ScheduleDetailCtrl',
+        'resource.ResourceCtrl','user.UserListCtrl'
     ],
     
     models:[
@@ -51,7 +53,7 @@ Ext.application({
     ],
     
     stores:[
-        'LaunchStore','RouteStore','LineStore','ResourceStore','ResourceSelectionStore', 'UserStore', 'HomeStore', 'BestListStore','TalentListStore', 'AlongListStore','CommentStore', 'PlaceStore'  ,'UserAccountStore', 'LocalStore'
+        'LaunchStore','RouteStore','LineStore','ResourcePlayStore','ResourceFoodStore','UserStore', 'HomeStore', 'BestListStore','TalentListStore', 'AlongListStore','CommentStore', 'PlaceStore'  ,'UserAccountStore', 'LocalStore'
     ],
         
     icon: {
@@ -74,6 +76,13 @@ Ext.application({
 
     launch: function() {
     	//设置AJAX请求公用信息
+    	Ext.Ajax.failure = function(response) {
+	    	alert('failure=' + response.responseText);
+	    	
+	        var respObj = Ext.JSON.decode(response.responseText);
+	        Ext.Msg.alert("Error", respObj.status.statusMessage);
+	    };
+	    
     	Ext.Ajax.on('beforerequest', (function(conn, options, eOpts) {
     		var localStore =  Ext.StoreManager.get('LocalStore');
         	localStore.load();

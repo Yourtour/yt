@@ -1,5 +1,6 @@
 package com.yt.vo.route;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,9 +10,10 @@ import com.yt.business.bean.RouteProvisionBean;
 import com.yt.business.bean.RouteScheduleBean;
 import com.yt.core.utils.CollectionUtils;
 import com.yt.core.utils.DateUtils;
-import com.yt.vo.BaseVO;
 
-public class RouteLoadVO extends BaseVO {
+public class RouteLoadVO implements Serializable {
+	private static final long serialVersionUID = -5772201577521181151L;
+
 	private static enum TYPE{Provision, ProvisionItem, Schedule, ScheduleItem};
 	
 	private RouteMainBean route;
@@ -19,7 +21,11 @@ public class RouteLoadVO extends BaseVO {
 	public RouteLoadVO(RouteMainBean route) {
 		this.route = route;
 	}
-
+	
+	public String getId(){
+		return this.route.getGraphId().toString();
+	}
+	
 	public String getName() {
 		return route.getName();
 	}
@@ -46,6 +52,7 @@ public class RouteLoadVO extends BaseVO {
 		List<RouteSchedule> provisions = new ArrayList<>();
 		
 		RouteSchedule group = new RouteSchedule();
+		group.setId("0");
 		group.setTitle("游前准备");
 		group.setType(TYPE.Provision);
 		provisions.add(group);
@@ -66,7 +73,9 @@ public class RouteLoadVO extends BaseVO {
 		
 		for(RouteScheduleBean scheduleBean : this.route.getSchedules()){
 			RouteSchedule group = new RouteSchedule();
+			group.setId(scheduleBean.getGraphId().toString());
 			group.setTitle(DateUtils.formatDate(scheduleBean.getDate()));
+			group.setStartTime(DateUtils.formatDate(scheduleBean.getDate()));
 			group.setPlaces(scheduleBean.getPlaces());
 			group.setMemo(scheduleBean.getMemo());
 			group.setType(TYPE.Schedule);

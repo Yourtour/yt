@@ -1,8 +1,8 @@
-Ext.define('YourTour.view.route.RouteScheduleView', {
+Ext.define('YourTour.view.route.RouteScheduleEditView', {
     extend: 'YourTour.view.widget.XPage',
     requires:['Ext.Panel', 'YourTour.view.widget.XHeaderBar'],
     config: {
-    	id:'RouteScheduleView',
+    	id:'RouteScheduleEditView',
     	layout:'vbox',
 		scrollable: {
     	    direction: 'vertical',
@@ -11,7 +11,7 @@ Ext.define('YourTour.view.route.RouteScheduleView', {
     	items:[
     		{    
 				xtype: 'xheaderbar',
-				title:'行程准备事项',
+				title:'日程编辑',
 				items:[
 					{
 	                	xtype: "toolbutton", 
@@ -31,11 +31,11 @@ Ext.define('YourTour.view.route.RouteScheduleView', {
 				items:[
 					{
 						xtype:'xlabel',
-						html: '标题',
+						html: '日期',
 						style:'width:50px'
 					},
 					{  
-					    xtype: 'textfield',  
+					    xtype: 'xlabel',  
 					    itemId:'title',
 					    flex:1,
 					    clearIcon: true,

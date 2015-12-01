@@ -18,6 +18,12 @@ Ext.define('YourTour.view.route.RouteMainView', {
 			    	   itemId:'new',
 			    	   text:'新建',
 			    	   align:'right'
+			       },
+			       {
+			    	   xtype:'toolbutton',
+			    	   itemId:'delete',
+			    	   text:'删除',
+			    	   align:'right'
 			       }
 				]			
 			},      

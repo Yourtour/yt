@@ -1,10 +1,8 @@
-Ext.define('YourTour.view.resource.SceneResourceDetailView', {
+Ext.define('YourTour.view.resource.ResourceDetailView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Panel','Ext.Img', 'YourTour.view.widget.XToolbar','YourTour.view.widget.XSceneResource'],
-    xtype: 'SceneResourceDetailView',
+    requires:['Ext.Panel','Ext.Img',  'YourTour.view.widget.XHeaderBar','YourTour.view.widget.XToolbar','YourTour.view.resource.SceneResourceView'],
     config: {
-    	itemId:'SceneResourceDetailView',
-    	id:'SceneResourceDetailView',
+    	id:'ResourceDetailView',
     	layout:'vbox',
     	scrollable: {
     	    direction: 'vertical',
@@ -12,9 +10,8 @@ Ext.define('YourTour.view.resource.SceneResourceDetailView', {
     	},
     	items:[
     		{    
-				xtype: 'xtoolbar',
-				title: '景点资源',
-				itemId:'toolbar',
+    			xtype: 'xheaderbar',
+				title:'行程安排',
 				items:[
 					{
 	                	xtype: "toolbutton", 
@@ -48,9 +45,17 @@ Ext.define('YourTour.view.resource.SceneResourceDetailView', {
 			},
 			
     		{
-	    		xtype : 'xsceneresource',
-	    		itemId: 'sceneresource'
-	    	}
+	    		xtype : 'panel',
+	    		flex:1,
+	    		itemId: 'detailview'
+	    	},
+	    	
+	    	{
+            	xtype:'xbutton',
+            	id:'btnAdd',
+            	docked:'bottom',
+            	text:'加入日程'
+            },
         ]
     }
 });

@@ -42,7 +42,7 @@ public class AlongRepositoryImpl extends CrudAllInOneOperateImpl implements
 	throws Exception {
 		List<AlongBean> alongBeans = new ArrayList();
 		List<AlongTuple> alongTuples = alongRepo.getAlongByPlace(placeId, startIndex, limit);
-		if(CollectionUtils.isNotNullOrEmpty(alongTuples)){
+		if(CollectionUtils.isNotEmpty(alongTuples)){
 			for(AlongTuple tuple : alongTuples){
 				AlongBean alongBean = tuple.getAlong();
 				alongBean.setRoute(tuple.getRoute());
