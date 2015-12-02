@@ -18,9 +18,9 @@ public class RouteActivityBean extends BaseBeanImpl {
 	private static final long serialVersionUID = 6259294378320824143L;
 	private static final String INDEX_NAME = "routeActivity";
 
-	@HbaseColumn(name = "name")
+	@HbaseColumn(name = "title")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	private String name; // 行程活动名称
+	private String title; // 行程活动名称
 
 	@HbaseColumn(name = "memo")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
@@ -30,10 +30,10 @@ public class RouteActivityBean extends BaseBeanImpl {
 	private int index = 1; // 行程活动排序号
 
 	@HbaseColumn(name = "stm")
-	private long startTime = 0; // 行程活动始时间
+	private String startTime = "00:00"; // 行程活动始时间
 
 	@HbaseColumn(name = "etm")
-	private long endTime = 0; // 行程活动结束时间
+	private String endTime = "00:00"; // 行程活动结束时间
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = RouteScheduleBean.class, direction = Direction.INCOMING)
 	private transient RouteScheduleBean schedule = null; // 行程活动关联的行程日程
@@ -45,12 +45,12 @@ public class RouteActivityBean extends BaseBeanImpl {
 		super();
 	}
 
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getMemo() {
@@ -69,19 +69,19 @@ public class RouteActivityBean extends BaseBeanImpl {
 		this.index = index;
 	}
 
-	public long getStartTime() {
+	public String getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(long startTime) {
+	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
 
-	public long getEndTime() {
+	public String getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(long endTime) {
+	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
 
