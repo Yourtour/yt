@@ -110,10 +110,8 @@ Ext.define('YourTour.controller.resource.ResourceCtrl', {
     },
     
     onAddTap:function(){
-    	Ext.ComponentManager.get('MainView').pop();
-    	
     	var planController = this.getApplication().getController('route.RouteSchedulePlanCtrl');
-    	planController.onActivityEdit(this.record);
+    	planController.addActivity(this.record);
     },
     
 	onPlayItemTap:function(dataview, index, item, record,e){

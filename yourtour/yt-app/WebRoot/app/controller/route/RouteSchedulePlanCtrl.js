@@ -8,13 +8,17 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     	   routeScheduleList:'#RouteSchedulePlanView #RouteScheduleList',
     	   toolbar:'#RouteSchedulePlanView #toolbar',
     	   
-    	   routeActivityEditView:'#RouteActivityEditView'
+    	   routeActivityEditView:'#RouteActivityEditView',
        },
        
        control:{
     	   routeScheduleList:{
     		   itemtap:'onItemTap',
     		   itemlongtap:'onItemLongTap'
+    	   },
+    	   
+    	   '#RouteActivityEditView #btnSave':{
+    		   tap:'onSaveTap'
     	   },
     	   
     	   toolbar:{
@@ -129,7 +133,6 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     },
     
     onNewActivityTap:function(){
-    	
     	this.redirectTo('/resource/selection/' + this.routeId + '/' + this.index);
     },
     
@@ -137,34 +140,128 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     	this.redirectTo('/resource/selection/' + this.routeId + '/' + this.index);
     },
     
-    onActivityEdit:function(resource){
+    editActivity:function(record){
     	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteActivityEditView'));
     	
-    	/*var hourOptions = [], minOptions = [];
-    	var value;
-    	for(var index = 1; index < 24; index++){
-    		if(index < 10){
-    			value = '0' + index;
-    		}else{
-    			value = '' + index;
-    		}
-    		
-    		hourOptions.push({text:value, value:value});
-    	}
-    	var hourSelect = this.getRouteActivityEditView().down('#hourSelect');
-    	hourSelect.options = hourOptions;
+    	var view = this.getRouteActivityEditView();
     	
-    	for(var index = 1; index < 60; index++){
-    		if(index < 10){
-    			value = '0' + index;
-    		}else{
-    			value = '' + index;
+    	var id = view.down('#id');
+    	id.setValue(record.get('id'));
+    	
+    	var imageUrl = view.down('#imageUrl');
+ 	   	imageUrl.setHtml("<img src='" + record.get('imageUrl') + "' style='width:100%; max-height:150px'>");
+ 	   
+ 	   	var title = view.down('#title');
+ 	    title.setValue(record.get('title'));
+    },
+    
+    addActivity:function(resource){
+    	console.log(resource);
+    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteActivityEditView'));
+    	
+    	var view = this.getRouteActivityEditView();
+    	
+    	var resourceId = view.down('#resourceId');
+    	resourceId.setValue(resource.get('id'));
+    	
+    	var resourceType = view.down('#resourceType');
+    	resourceType.setValue(resource.get('type'));
+    	
+    	var imageUrl = view.down('#imageUrl');
+ 	   	imageUrl.setHtml("<img src='" + resource.get('imageUrl') + "' style='width:100%; max-height:150px'>");
+ 	   
+ 	   	var title = view.down('#title');
+ 	    title.setValue(resource.get('name'));
+    },
+    
+    /**
+     * 保存日程安排
+     */
+    onSaveTap:function(){
+    	var data = {};
+    	
+    	var store = this.getRouteScheduleList().getStore();
+    	var schedule = store.getAt(this.index);
+    	
+    	var length = store.getTotalCount();
+    	
+    	data.schedule = {};
+    	if(schedule.get('type') == 'Schedule'){
+    		data.schedule.id = schedule.get('id');
+    		
+    		var count = 1;
+    		var item;
+    		for(var i = this.index; i < length; i++){
+    			item = store.getAt(i);
+    			if(item.get('id') != data.schedule.id && item.get('parentId') != data.schedule.id){
+    				break;
+    			}
+    			
+    			count += 1;
     		}
     		
-    		minOptions.push({text:value, value:value});
+    		data.index = count; 
+    	}else{
+    		data.schedule.id = schedule.get('parentId');
+    		data.index = schedule.get('index');
+    		
+    		var item;
+    		for(var i = this.index; i < length; i++){
+    			item = store.getAt(i);
+    			
+    			if(item.get('parentId') != data.schedule.id) break;
+    			
+    			item.set('index', item.get('index') + 1);
+    		}
     	}
-    	var minSelect = this.getRouteActivityEditView().down('#minSelect');
-    	minSelect.options = minOptions;*/
+    	
+    	var view = this.getRouteActivityEditView();
+    	
+    	var id = view.down('#id');
+    	console.log(id);
+    	data.id=id.getValue();
+    	
+    	data.resource = {};
+    	var resourceId = view.down('#resourceId');
+    	data.resource.id = resourceId.getValue();
+    	
+    	var resourceType = view.down('#resourceType');
+    	data.resource.type = resourceType.getValue();
+    	 
+    	var title = view.down('#title');
+    	data.title = title.getValue();
+
+    	var memo = view.down('#memo');
+    	data.memo = memo.getValue();
+    	
+    	var startHour = view.down('#startHourSelect');
+    	var startMin = view.down('#startMinSelect');
+    	data.startTime = startHour.getValue() + ':' + startMin.getValue();
+    	
+    	var endHour = view.down('#endHourSelect');
+    	var endMin = view.down('#endMinSelect');
+    	data.endTime = endHour.getValue() + ':' + endMin.getValue();
+    	
+    	Ext.Ajax.request({
+    	    url : YourTour.util.Context.getContext('/routes/activity/save'),
+    	    method : "POST",
+    	    params : Ext.JSON.encode(data),
+    	    success : function(response) {
+    	    	var data = Ext.JSON.decode(response.responseText);
+    	    	if(data.errorCode != '0'){
+    	    		Ext.Msg.alert(data.errorText);
+    	    		return;
+    	    	};
+    	    	
+    	    	var activityId = data.data;
+    	    	
+    	    	Ext.ComponentManager.get('MainView').pop(2);
+    	    },
+    	    failure : function(response) {
+    	        var respObj = Ext.JSON.decode(response.responseText);
+    	        Ext.Msg.alert("Error", respObj.status.statusMessage);
+    	    }
+    	});
     }
 });
 

@@ -1,12 +1,13 @@
 Ext.define('YourTour.model.ResourceModel', {
     extend: 'Ext.data.Model',
     config:{
-    	idProperty:'rowKey',
+    	idProperty:'id',
     	
-	    fields:[{name:'rowKey', type:'string'},
+	    fields:[{name:'id', type:'string'},
 	    		{name:'imageUrls', type:'string'},
 	            {name:'imageUrl', type:'string'},
 	    		{name:'name', type:'string'},
+	    		{name:'type', type:'string'},
 	    		{name:'intro', type:'string'},
 	    		{name:'address', type:'string'},
 	    		{name:'phone', type:'string'},

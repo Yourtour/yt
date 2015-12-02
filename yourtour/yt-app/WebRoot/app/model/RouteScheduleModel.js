@@ -6,11 +6,13 @@ Ext.define('YourTour.model.RouteScheduleModel', {
     	
 	    fields:[
 	    	{name:'id', type:'string'},
+	    	{name:'parentId', type:'string'},
             {name:'type', type:'string'},
     		{name:'title', type:'string'},
     		{name:'memo', type:'string'},
             {name:'date', type:'string'},
             {name:'days', type:'string'},
+            {name:'index', type:'string'},
             {name:'placeIds', type:'string'},
             {name:'places', type:'string'}
 	    ],

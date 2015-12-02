@@ -4,15 +4,37 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
     config: {
     	id:'RouteActivityEditView',
     	layout:'vbox',
+    	resource:null,
     	scrollable: {
     	    direction: 'vertical'
     	},
     	items:[
+			{    
+				xtype: 'hiddenfield',
+				itemId:'id'	,
+				value:'0'
+			},
+			
+			{    
+				xtype: 'hiddenfield',
+				itemId:'resourceId'
+			},
+			
+			{    
+				xtype: 'hiddenfield',
+				itemId:'resourceType'
+			},
+			
     		{    
 				xtype: 'xheaderbar',
-				title: '餐饮安排',
-				items:[
-                ]
+				title: '日程安排',
+				items:[{
+                	xtype: "toolbutton", 
+                    ui: "normal", 
+                	text:'保存',
+                	itemId:'btnSave',
+                	align:'right'
+                }]
 			},
 			
     		{
@@ -101,7 +123,7 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 					},   
 					{  
 					    xtype: 'textareafield',  
-					    itemId:'desc',
+					    itemId:'memo',
 					    flex:1,
 					    maxRows:4,
 					    clearIcon: true
@@ -195,7 +217,7 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 					    name:'endMinSelect',
 					    width:40,
 					    options:[
-					             {text:'00',value:'00'},{text:'15',value:'15'},{text:'30',value:'30'},{text:'45',value:'45'}
+					        {text:'00',value:'00'},{text:'15',value:'15'},{text:'30',value:'30'},{text:'45',value:'45'}
 					    ]
 					}
 				]
@@ -204,9 +226,13 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
             {
             	xtype:'subtitlebar',
             	margin:'5 0 5 0',
-            	html:'备注'
+            	html:'事项'
             }
         ]
+    },
+    
+    updateResource:function(resource){
+    	this.resource = resource;
     }
 });
 
