@@ -59,6 +59,7 @@ public class RouteLoadVO implements Serializable {
 		
 		for(RouteProvisionBean provisionBean : this.route.getProvisions()){
 			RouteSchedule provision = new RouteSchedule();
+			provision.setParentId(group.getId());
 			provision.setTitle(provisionBean.getTitle());
 			provision.setMemo(provisionBean.getMemo());
 			provision.setType(TYPE.ProvisionItem);
@@ -85,9 +86,10 @@ public class RouteLoadVO implements Serializable {
 			if(CollectionUtils.isNotEmpty(scheduleBean.getActivities())){
 				for(RouteActivityBean activityBean : scheduleBean.getActivities()){
 					RouteSchedule activity = new RouteSchedule();
-					activity.setTitle(activityBean.getName());
+					activity.setTitle(activityBean.getTitle());
 					activity.setMemo(activityBean.getMemo());
-					group.setType(TYPE.ScheduleItem);
+					activity.setType(TYPE.ScheduleItem);
+					activity.setParentId(group.getId());
 					activity.setId(activityBean.getGraphId().toString());
 					schedules.add(activity);
 				}
@@ -99,6 +101,8 @@ public class RouteLoadVO implements Serializable {
 	
 	private class RouteSchedule{
 		private String 	id;
+		private String  parentId;
+		private String  resourceId;
 		private String 	title;
 		private String	memo;
 		private String  places;
@@ -117,6 +121,22 @@ public class RouteLoadVO implements Serializable {
 
 		public void setId(String id) {
 			this.id = id;
+		}
+
+		public String getParentId() {
+			return parentId;
+		}
+
+		public void setParentId(String parentId) {
+			this.parentId = parentId;
+		}
+
+		public String getResourceId() {
+			return resourceId;
+		}
+
+		public void setResourceId(String resourceId) {
+			this.resourceId = resourceId;
 		}
 
 		public String getTitle() {

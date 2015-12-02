@@ -14,11 +14,11 @@ import com.yt.vo.resource.RestaurantResourceVO;
 import com.yt.vo.resource.SceneResourceVO;
 
 public class RouteActivityVO extends BaseVO {
-	private String name, memo;
+	private String title, memo;
 	private int index;
-	private long startTime, endTime;
-	private RouteScheduleVO schedule;
-	private ResourceVO resource;
+	private String startTime, endTime;
+	private RouteScheduleVO schedule = new RouteScheduleVO();
+	private ResourceVO resource = new ResourceVO();
 
 	public static RouteActivityVO transform(RouteActivityBean bean) {
 		if (bean == null) {
@@ -26,7 +26,7 @@ public class RouteActivityVO extends BaseVO {
 		}
 		RouteActivityVO vo = new RouteActivityVO();
 		vo.fromBean(bean);
-		vo.setName(bean.getName());
+		vo.setTitle(bean.getTitle());
 		vo.setMemo(bean.getMemo());
 		vo.setIndex(bean.getIndex());
 		vo.setStartTime(bean.getStartTime());
@@ -63,7 +63,7 @@ public class RouteActivityVO extends BaseVO {
 		}
 		RouteActivityBean bean = new RouteActivityBean();
 		vo.toBean(bean);
-		bean.setName(vo.getName());
+		bean.setTitle(vo.getTitle());
 		bean.setMemo(vo.getMemo());
 		bean.setIndex(vo.getIndex());
 		bean.setStartTime(vo.getStartTime());
@@ -95,12 +95,12 @@ public class RouteActivityVO extends BaseVO {
 		super();
 	}
 
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getMemo() {
@@ -119,19 +119,19 @@ public class RouteActivityVO extends BaseVO {
 		this.index = index;
 	}
 
-	public long getStartTime() {
+	public String getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(long startTime) {
+	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
 
-	public long getEndTime() {
+	public String getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(long endTime) {
+	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
 
