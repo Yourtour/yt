@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.yt.business.CrudAllInOneOperateImpl;
+import com.yt.business.bean.RouteActivityBean;
 import com.yt.business.bean.RouteMainBean;
 import com.yt.business.bean.RouteScheduleBean;
 import com.yt.business.neo4j.repository.RouteBeanRepository;
@@ -25,6 +26,48 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 		super();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.yt.business.repository.RouteRepository#getCompleteRoute(java.lang
+	 * .Long)
+	 */
+	@Override
+	public RouteMainBean getCompleteRoute(Long routeId) throws Exception {
+		RouteMainBean route = (RouteMainBean)super.get(RouteMainBean.class, routeId);
+		if (route != null) {
+			List<RouteScheduleBean> schedules = route.getSchedules();
+			if (schedules != null && schedules.size() > 0) {
+				List<RouteScheduleBean> newSchedules = new Vector<RouteScheduleBean>(schedules.size());
+				for (RouteScheduleBean schedule : schedules) {
+					RouteScheduleBean newSchedule = (RouteScheduleBean)super.get(RouteScheduleBean.class, schedule.getGraphId());
+					List<RouteActivityBean> activities = newSchedule.getActivities();
+					if (activities != null && activities.size()>0) {
+						List<RouteActivityBean> newActivities = new Vector<RouteActivityBean>(activities.size());
+						for (RouteActivityBean activity : activities) {
+							RouteActivityBean newActivity = (RouteActivityBean)super.get(RouteActivityBean.class, activity.getGraphId());
+							newActivities.add(newActivity);
+						}
+						newSchedule.getActivities().clear();
+						newSchedule.getActivities().addAll(newActivities);
+					}
+					newSchedules.add(newSchedule);
+				}
+				route.getSchedules().clear();
+				route.getSchedules().addAll(newSchedules);
+			}
+		}
+		return route;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.yt.business.repository.RouteRepository#getRoutesByOwner(java.lang
+	 * .Long)
+	 */
 	@Override
 	public List<RouteMainBean> getRoutesByOwner(Long userId) throws Exception {
 		List<RouteMainBean> routes = repository.getRoutesByOwner(userId);

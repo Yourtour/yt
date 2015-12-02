@@ -7,6 +7,17 @@ import com.yt.business.bean.RouteMainBean;
 
 public interface RouteRepository extends CrudAllInOneOperate {
 	/**
+	 * 根据指定的行程ID，返回完整的行程对象。
+	 * 
+	 * @param routeId
+	 *            行程ID
+	 * @return 完整的行程对象
+	 * @throws Exception
+	 *             获取数据过程中发生的异常
+	 */
+	public RouteMainBean getCompleteRoute(Long routeId) throws Exception;
+
+	/**
 	 * /** 根据指定的用户，返回该用户拥有的行程
 	 * 
 	 * @param userId
