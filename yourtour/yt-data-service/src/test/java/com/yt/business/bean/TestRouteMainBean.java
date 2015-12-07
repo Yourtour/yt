@@ -54,7 +54,6 @@ public class TestRouteMainBean {
 			rm.setName("name 1");
 			rm.setRowKey("rowkey 1");
 			rm.setStartDate(1000);
-			rm.setEndDate(1001);
 			assertNull(rm.getGraphId());
 			crud.save(rm, "john");
 			assertEquals(crud.count(RouteMainBean.class), 1);
@@ -73,7 +72,6 @@ public class TestRouteMainBean {
 			assertEquals(rm2.getCreatedUserId(), "john");
 			assertEquals(rm2.getName(), rm.getName());
 			assertEquals(rm2.getStartDate(), rm.getStartDate());
-			assertEquals(rm2.getEndDate(), rm.getEndDate());
 			assertEquals(rm2.getUpdatedTime(), rm.getUpdatedTime());
 			assertFalse(rm2.getUpdatedTime() > 0);
 			assertEquals(rm2.getUpdatedUserId(), rm.getUpdatedUserId());
@@ -130,14 +128,12 @@ public class TestRouteMainBean {
 
 			// TEST UPDATE
 			rm2.setName(rm2.getName() + " modified.");
-			rm2.setEndDate(9999);
 			crud.save(rm2, "john peng");
 			assertEquals(crud.count(RouteMainBean.class), 2);
 			RouteMainBean rm3 = (RouteMainBean) crud.get(RouteMainBean.class,
 					rm2.getGraphId());
 			assertNotNull(rm3);
 			assertNotNull(rm2.getGraphId());
-			assertEquals(rm2.getEndDate(), rm3.getEndDate());
 			assertEquals(rm2.getCreatedTime(), rm3.getCreatedTime());
 			assertTrue(rm3.getCreatedTime() > 0);
 			assertEquals(rm2.getCreatedUserId(), rm3.getCreatedUserId());
@@ -308,19 +304,15 @@ public class TestRouteMainBean {
 
 			RouteScheduleBean rs1 = new RouteScheduleBean();
 			rs1.setDate(1000);
-			rs1.setDescription("route schedule 1");
 			repo.save(rs1, "john");
 			RouteScheduleBean rs2 = new RouteScheduleBean();
 			rs2.setDate(1001);
-			rs2.setDescription("route schedule 2");
 			repo.save(rs2, "john");
 			RouteScheduleBean rs3 = new RouteScheduleBean();
 			rs3.setDate(1002);
-			rs3.setDescription("route schedule 3");
 			repo.save(rs3, "john");
 			RouteScheduleBean rs4 = new RouteScheduleBean();
 			rs4.setDate(1003);
-			rs4.setDescription("route schedule 4");
 			repo.save(rs4, "john");
 			assertEquals(repo.count(RouteScheduleBean.class), 4);
 
@@ -408,16 +400,12 @@ public class TestRouteMainBean {
 			assertEquals(repo.count(RouteMainBean.class), 0);
 
 			RouteProvisionBean rp1 = new RouteProvisionBean();
-			rp1.setName("provision 1");
 			repo.save(rp1, "john");
 			RouteProvisionBean rp2 = new RouteProvisionBean();
-			rp2.setName("provision 2");
 			repo.save(rp2, "john");
 			RouteProvisionBean rp3 = new RouteProvisionBean();
-			rp3.setName("provision 3");
 			repo.save(rp3, "john");
 			RouteProvisionBean rp4 = new RouteProvisionBean();
-			rp4.setName("provision 4");
 			repo.save(rp4, "john");
 			assertEquals(repo.count(RouteProvisionBean.class), 4);
 

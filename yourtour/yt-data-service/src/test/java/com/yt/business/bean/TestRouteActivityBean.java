@@ -51,12 +51,12 @@ public class TestRouteActivityBean {
 
 			// TEST INSERT
 			RouteActivityBean ra = new RouteActivityBean();
-			ra.setEndTime(1001);
+			ra.setEndTime("10:01");
 			ra.setIndex(5);
 			ra.setMemo("memo 1");
-			ra.setName("name 1");
+			ra.setTitle("name 1");
 			ra.setRowKey("rowkey 1");
-			ra.setStartTime(1000);
+			ra.setStartTime("10:00");
 			assertNull(ra.getGraphId());
 			crud.save(ra, "john");
 			assertEquals(crud.count(RouteActivityBean.class), 1);
@@ -75,7 +75,7 @@ public class TestRouteActivityBean {
 			assertEquals(ra2.getCreatedUserId(), "john");
 			assertEquals(ra2.getIndex(), ra.getIndex());
 			assertEquals(ra2.getMemo(), ra.getMemo());
-			assertEquals(ra2.getName(), ra.getName());
+			assertEquals(ra2.getTitle(), ra.getTitle());
 			assertEquals(ra2.getEndTime(), ra.getEndTime());
 			assertEquals(ra2.getStartTime(), ra.getStartTime());
 			assertEquals(ra2.getUpdatedTime(), ra.getUpdatedTime());
@@ -97,7 +97,7 @@ public class TestRouteActivityBean {
 			assertEquals(ra2_1.getGraphId(), ra2_11.getGraphId());
 			assertEquals(ra2_1.getRowKey(), ra2_11.getRowKey());
 			assertEquals(ra2_11.getGraphId(), ra.getGraphId());
-			assertEquals(ra2_11.getName(), ra.getName());
+			assertEquals(ra2_11.getTitle(), ra.getTitle());
 
 			// TEST GRAPHID = NULL AND NOT SAME ROWKEY
 			ra2_1.setGraphId(null);
@@ -108,7 +108,7 @@ public class TestRouteActivityBean {
 					RouteActivityBean.class, ra2_1.getGraphId());
 			assertEquals(ra2_2.getGraphId(), ra2_1.getGraphId());
 			assertEquals(ra2_2.getRowKey(), ra2_1.getRowKey());
-			assertEquals(ra2_2.getName(), ra2_1.getName());
+			assertEquals(ra2_2.getTitle(), ra2_1.getTitle());
 			RouteActivityBean ra2_22 = (RouteActivityBean) crud.get(
 					RouteActivityBean.class, "rowKey", ra2_1.getRowKey());
 			assertNotNull(ra2_22);
@@ -118,7 +118,7 @@ public class TestRouteActivityBean {
 
 			// TEST UPDATE
 			ra2.setMemo(ra2.getMemo() + " modified");
-			ra2.setEndTime(9999);
+			ra2.setEndTime("99:99");
 			crud.save(ra2, "john peng");
 			assertEquals(crud.count(RouteActivityBean.class), 2);
 			RouteActivityBean ra3 = (RouteActivityBean) crud.get(
@@ -131,7 +131,7 @@ public class TestRouteActivityBean {
 			assertEquals(ra2.getCreatedUserId(), ra3.getCreatedUserId());
 			assertEquals(ra3.getCreatedUserId(), "john");
 			assertEquals(ra2.getMemo(), ra3.getMemo());
-			assertEquals(ra2.getName(), ra3.getName());
+			assertEquals(ra2.getTitle(), ra3.getTitle());
 			assertEquals(ra2.getStartTime(), ra3.getStartTime());
 			assertEquals(ra2.getEndTime(), ra3.getEndTime());
 			assertEquals(ra2.getRowKey(), ra3.getRowKey());
@@ -141,7 +141,7 @@ public class TestRouteActivityBean {
 			assertNull(ra3.getResource());
 			assertNull(ra3.getSchedule());
 
-			ra3.setName(ra3.getName() + " modified.");
+			ra3.setTitle(ra3.getTitle() + " modified.");
 			crud.save(ra3, "john peng");
 			assertEquals(crud.count(RouteActivityBean.class), 2);
 
@@ -191,8 +191,8 @@ public class TestRouteActivityBean {
 			assertEquals(repo.count(RestaurantResourceBean.class), 2);
 
 			RouteActivityBean ra = new RouteActivityBean();
-			ra.setName("route activity 1");
-			ra.setRowKey(ra.getName());
+			ra.setTitle("route activity 1");
+			ra.setRowKey(ra.getTitle());
 			repo.save(ra, "john");
 			assertEquals(repo.count(RouteActivityBean.class), 1);
 			RouteActivityBean ra1 = (RouteActivityBean) repo.get(
@@ -220,14 +220,14 @@ public class TestRouteActivityBean {
 
 			// TEST SAVE ENTITY AND RELATIONS
 			RouteActivityBean ra2 = new RouteActivityBean();
-			ra2.setName("activity 2");
+			ra2.setTitle("activity 2");
 			ra2.setResource(h1);
 			repo.save(ra2, "john");
 			assertEquals(repo.count(RouteActivityBean.class), 2);
 			RouteActivityBean ra2_1 = (RouteActivityBean) repo.get(
 					RouteActivityBean.class, ra2.getGraphId());
 			assertNotNull(ra2_1);
-			assertEquals(ra2_1.getName(), ra2.getName());
+			assertEquals(ra2_1.getTitle(), ra2.getTitle());
 			assertNotNull(ra2_1.getResource());
 			assertEquals(ra2_1.getResource().getGraphId(), h1.getGraphId());
 
@@ -267,16 +267,16 @@ public class TestRouteActivityBean {
 
 			RouteScheduleBean rs1 = new RouteScheduleBean();
 			rs1.setDate(1000);
-			rs1.setDescription("route schedule 1");
+			rs1.setMemo("route schedule 1");
 			repo.save(rs1, "john");
 			RouteScheduleBean rs2 = new RouteScheduleBean();
 			rs2.setDate(2000);
-			rs2.setDescription("route schedule 2");
+			rs2.setMemo("route schedule 2");
 			repo.save(rs2, "john");
 			assertEquals(repo.count(RouteScheduleBean.class), 2);
 
 			RouteActivityBean ra = new RouteActivityBean();
-			ra.setName("route activity 1");
+			ra.setTitle("route activity 1");
 			repo.save(ra, "john");
 			assertEquals(repo.count(RouteActivityBean.class), 1);
 			RouteActivityBean ra1 = (RouteActivityBean) repo.get(
@@ -324,14 +324,14 @@ public class TestRouteActivityBean {
 
 			// TEST SAVE ENTITY AND RELATIONS
 			RouteActivityBean ra2 = new RouteActivityBean();
-			ra2.setName("activity 2");
+			ra2.setTitle("activity 2");
 			ra2.setSchedule(rs1);
 			repo.save(ra2, "john");
 			assertEquals(repo.count(RouteActivityBean.class), 2);
 			RouteActivityBean ra2_1 = (RouteActivityBean) repo.get(
 					RouteActivityBean.class, ra2.getGraphId());
 			assertNotNull(ra2_1);
-			assertEquals(ra2_1.getName(), ra2.getName());
+			assertEquals(ra2_1.getTitle(), ra2.getTitle());
 			assertNotNull(ra2_1.getSchedule());
 			assertEquals(ra2_1.getSchedule().getGraphId(), rs1.getGraphId());
 			RouteScheduleBean rs1_3 = (RouteScheduleBean) repo.get(

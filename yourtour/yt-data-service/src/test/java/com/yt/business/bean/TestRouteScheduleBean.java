@@ -54,7 +54,7 @@ public class TestRouteScheduleBean {
 			rm.setIndex(3);
 			rm.setRowKey("rowkey 1");
 			rm.setDate(1000);
-			rm.setDescription("description 1");
+			rm.setMemo("description 1");
 			assertNull(rm.getGraphId());
 			crud.save(rm, "john");
 			assertEquals(crud.count(RouteScheduleBean.class), 1);
@@ -71,13 +71,12 @@ public class TestRouteScheduleBean {
 			assertTrue(rm2.getCreatedTime() > 0);
 			assertEquals(rm2.getCreatedUserId(), rm.getCreatedUserId());
 			assertEquals(rm2.getCreatedUserId(), "john");
-			assertEquals(rm2.getDescription(), rm.getDescription());
+			assertEquals(rm2.getMemo(), rm.getMemo());
 			assertEquals(rm2.getDate(), rm.getDate());
 			assertEquals(rm2.getIndex(), rm.getIndex());
 			assertEquals(rm2.getUpdatedTime(), rm.getUpdatedTime());
 			assertFalse(rm2.getUpdatedTime() > 0);
 			assertEquals(rm2.getUpdatedUserId(), rm.getUpdatedUserId());
-			assertNull(rm2.getPlace());
 			assertNull(rm2.getRouteMain());
 			assertNotNull(rm2.getActivities());
 			assertEquals(rm2.getActivities().size(), 0);
@@ -95,8 +94,7 @@ public class TestRouteScheduleBean {
 			assertEquals(rm2_1.getGraphId(), rm2_11.getGraphId());
 			assertEquals(rm2_1.getRowKey(), rm2_11.getRowKey());
 			assertEquals(rm2_11.getGraphId(), rm.getGraphId());
-			assertEquals(rm2_11.getDescription(), rm.getDescription());
-			assertNull(rm2_11.getPlace());
+			assertEquals(rm2_11.getMemo(), rm.getMemo());
 			assertNull(rm2_11.getRouteMain());
 			assertNotNull(rm2_11.getActivities());
 			assertEquals(rm2_11.getActivities().size(), 0);
@@ -117,13 +115,12 @@ public class TestRouteScheduleBean {
 			assertEquals(rm2_2.getGraphId(), rm2_22.getGraphId());
 			assertFalse(rm2_2.getGraphId().longValue() == rm.getGraphId()
 					.longValue());
-			assertNull(rm2_22.getPlace());
 			assertNull(rm2_22.getRouteMain());
 			assertNotNull(rm2_22.getActivities());
 			assertEquals(rm2_22.getActivities().size(), 0);
 
 			// TEST UPDATE
-			rm2.setDescription(rm2.getDescription() + " modified.");
+			rm2.setMemo(rm2.getMemo() + " modified.");
 			crud.save(rm2, "john peng");
 			assertEquals(crud.count(RouteScheduleBean.class), 2);
 			RouteScheduleBean rm3 = (RouteScheduleBean) crud.get(
@@ -131,7 +128,7 @@ public class TestRouteScheduleBean {
 			assertNotNull(rm3);
 			assertNotNull(rm2.getGraphId());
 			assertEquals(rm2.getDate(), rm3.getDate());
-			assertEquals(rm2.getDescription(), rm3.getDescription());
+			assertEquals(rm2.getMemo(), rm3.getMemo());
 			assertEquals(rm2.getCreatedTime(), rm3.getCreatedTime());
 			assertTrue(rm3.getCreatedTime() > 0);
 			assertEquals(rm2.getCreatedUserId(), rm3.getCreatedUserId());
@@ -140,7 +137,6 @@ public class TestRouteScheduleBean {
 			assertEquals(rm2.getUpdatedTime(), rm3.getUpdatedTime());
 			assertTrue(rm3.getUpdatedTime() > 0);
 			assertEquals(rm2.getUpdatedUserId(), rm3.getUpdatedUserId());
-			assertNull(rm3.getPlace());
 			assertNull(rm3.getRouteMain());
 			assertNotNull(rm3.getActivities());
 			assertEquals(rm3.getActivities().size(), 0);
@@ -183,36 +179,19 @@ public class TestRouteScheduleBean {
 			RouteScheduleBean rs1_1 = (RouteScheduleBean) repo.get(
 					RouteScheduleBean.class, rs1.getGraphId());
 			assertNotNull(rs1_1);
-			assertNull(rs1_1.getPlace());
-			rs1_1.setPlace(p1);
 			repo.saveRelationsOnly(rs1_1);
 			assertEquals(repo.count(RouteScheduleBean.class), 1);
 			RouteScheduleBean rs1_2 = (RouteScheduleBean) repo.get(
 					RouteScheduleBean.class, rs1.getGraphId());
 			assertNotNull(rs1_2);
-			assertNotNull(rs1_2.getPlace());
-			assertEquals(rs1_2.getPlace().getGraphId(), p1.getGraphId());
 
 			RouteScheduleBean rs2 = new RouteScheduleBean();
 			rs2.setDate(2000);
-			rs2.setPlace(p2);
 			repo.save(rs2, "john");
 			assertEquals(repo.count(RouteScheduleBean.class), 2);
 			RouteScheduleBean rs2_1 = (RouteScheduleBean) repo.get(
 					RouteScheduleBean.class, rs2.getGraphId());
 			assertNotNull(rs2_1);
-			assertNotNull(rs2_1.getPlace());
-			assertEquals(rs2_1.getPlace().getGraphId(), p2.getGraphId());
-
-			rs1_2.setPlace(p2);
-			repo.saveRelationsOnly(rs1_2);
-			assertEquals(repo.count(RouteScheduleBean.class), 2);
-			assertEquals(repo.count(PlaceBean.class), 2);
-			RouteScheduleBean rs1_3 = (RouteScheduleBean) repo.get(
-					RouteScheduleBean.class, rs1.getGraphId());
-			assertNotNull(rs1_3);
-			assertNotNull(rs1_3.getPlace());
-			assertEquals(rs1_3.getPlace().getGraphId(), p2.getGraphId());
 
 			repo.delete(PlaceBean.class);
 			assertEquals(repo.count(PlaceBean.class), 0);
@@ -245,7 +224,7 @@ public class TestRouteScheduleBean {
 
 			RouteScheduleBean rs1 = new RouteScheduleBean();
 			rs1.setDate(1000);
-			rs1.setDescription("route schedule 1");
+			rs1.setMemo("route schedule 1");
 			repo.save(rs1, "john");
 			assertEquals(repo.count(RouteScheduleBean.class), 1);
 			RouteScheduleBean rs1_1 = (RouteScheduleBean) repo.get(
@@ -339,22 +318,22 @@ public class TestRouteScheduleBean {
 			assertEquals(repo.count(RouteScheduleBean.class), 0);
 			
 			RouteActivityBean ra1 = new RouteActivityBean();
-			ra1.setName("route activity 1");
+			ra1.setTitle("route activity 1");
 			repo.save(ra1, "john");
 			RouteActivityBean ra2 = new RouteActivityBean();
-			ra2.setName("activity 2");
+			ra2.setTitle("activity 2");
 			repo.save(ra2, "john");
 			RouteActivityBean ra3 = new RouteActivityBean();
-			ra3.setName("activity 3");
+			ra3.setTitle("activity 3");
 			repo.save(ra3, "john");
 			RouteActivityBean ra4 = new RouteActivityBean();
-			ra4.setName("activity 4");
+			ra4.setTitle("activity 4");
 			repo.save(ra4, "john");
 			assertEquals(repo.count(RouteActivityBean.class), 4);
 			
 			RouteScheduleBean rs1 = new RouteScheduleBean();
 			rs1.setDate(1000);
-			rs1.setDescription("route schedule 1");
+			rs1.setMemo("route schedule 1");
 			rs1.getActivities().add(ra1);
 			rs1.getActivities().add(ra2);
 			repo.save(rs1, "john");
