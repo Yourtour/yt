@@ -1,10 +1,13 @@
 package com.yt.business.repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.neo4j.graphdb.Direction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +15,9 @@ import com.yt.business.CrudAllInOneOperateImpl;
 import com.yt.business.bean.RouteActivityBean;
 import com.yt.business.bean.RouteMainBean;
 import com.yt.business.bean.RouteScheduleBean;
+import com.yt.business.bean.UserAccountBean;
+import com.yt.business.common.Constants;
+import com.yt.business.common.Constants.GroupRole;
 import com.yt.business.neo4j.repository.RouteBeanRepository;
 
 @Component
@@ -35,18 +41,25 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 	 */
 	@Override
 	public RouteMainBean getCompleteRoute(Long routeId) throws Exception {
-		RouteMainBean route = (RouteMainBean)super.get(RouteMainBean.class, routeId);
+		RouteMainBean route = (RouteMainBean) super.get(RouteMainBean.class,
+				routeId);
 		if (route != null) {
 			List<RouteScheduleBean> schedules = route.getSchedules();
 			if (schedules != null && schedules.size() > 0) {
-				List<RouteScheduleBean> newSchedules = new Vector<RouteScheduleBean>(schedules.size());
+				List<RouteScheduleBean> newSchedules = new Vector<RouteScheduleBean>(
+						schedules.size());
 				for (RouteScheduleBean schedule : schedules) {
-					RouteScheduleBean newSchedule = (RouteScheduleBean)super.get(RouteScheduleBean.class, schedule.getGraphId());
-					List<RouteActivityBean> activities = newSchedule.getActivities();
-					if (activities != null && activities.size()>0) {
-						List<RouteActivityBean> newActivities = new Vector<RouteActivityBean>(activities.size());
+					RouteScheduleBean newSchedule = (RouteScheduleBean) super
+							.get(RouteScheduleBean.class, schedule.getGraphId());
+					List<RouteActivityBean> activities = newSchedule
+							.getActivities();
+					if (activities != null && activities.size() > 0) {
+						List<RouteActivityBean> newActivities = new Vector<RouteActivityBean>(
+								activities.size());
 						for (RouteActivityBean activity : activities) {
-							RouteActivityBean newActivity = (RouteActivityBean)super.get(RouteActivityBean.class, activity.getGraphId());
+							RouteActivityBean newActivity = (RouteActivityBean) super
+									.get(RouteActivityBean.class,
+											activity.getGraphId());
 							newActivities.add(newActivity);
 						}
 						newSchedule.getActivities().clear();
@@ -59,6 +72,19 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 			}
 		}
 		return route;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.yt.business.repository.RouteRepository#getRoutePeople(java.lang.Long,
+	 * com.yt.business.common.Constants.GroupRole)
+	 */
+	@Override
+	public List<UserAccountBean> getRoutePeople(Long routeId,
+			GroupRole groupRole) throws Exception {
+		return repository.getRoutePeople(routeId, groupRole.code);
 	}
 
 	/*
@@ -109,6 +135,23 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 			LOG.debug(String.format("Save RouteMainBean[%d] success.",
 					route.getGraphId()));
 		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.yt.business.repository.RouteRepository#saveRoutePersonRelation(com
+	 * .yt.business.bean.RouteMainBean, com.yt.business.bean.UserAccountBean,
+	 * com.yt.business.common.Constants.GroupRole)
+	 */
+	@Override
+	public void saveRoutePersonRelation(RouteMainBean route,
+			UserAccountBean user, GroupRole groupRole) throws Exception {
+		Map<String, Object> properties = new HashMap<String, Object>();
+		properties.put("groupRole", groupRole.code);
+		super.createRelation(route, user, Constants.RELATION_TYPE_HAS,
+				Direction.OUTGOING, properties);
 	}
 
 }
