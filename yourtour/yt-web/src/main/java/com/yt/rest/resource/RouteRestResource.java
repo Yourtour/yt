@@ -110,12 +110,7 @@ public class RouteRestResource extends BaseRestResource{
 			RouteMainBean bean = null;
 			if (graphId != -1) {
 				// id是GraphID
-				bean = (RouteMainBean) routeRepository.get(RouteMainBean.class,
-						graphId);
-			} else {
-				// id 是rowkey
-				bean = (RouteMainBean) routeRepository.get(RouteMainBean.class,
-						"rowKey", id);
+				bean = (RouteMainBean) routeRepository.getCompleteRoute(graphId);
 			}
 			if (bean == null) {
 				return new ResponseDataVO<RouteLoadVO>(

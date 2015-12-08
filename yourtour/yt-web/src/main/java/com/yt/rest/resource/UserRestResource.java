@@ -117,31 +117,6 @@ public class UserRestResource extends BaseRestResource{
 	}
 
 	@POST
-	@Path("import")
-	public ResponseVO importData(List<UserVO> vos) {
-		if (LOG.isDebugEnabled()) {
-			LOG.debug("Request import UserBean data.");
-		}
-		for (UserVO vo : vos) {
-			// 默认全部采用admin账户导入数据
-			ResponseVO response = save(null, vo, "admin");
-			if (response.getErrorCode() != 0) {
-				if (LOG.isWarnEnabled()) {
-					LOG.warn(String.format(
-							"Import UserBean data fail, error: id = '%s'.",
-							vo.getRowKey()));
-				}
-				return response;
-			}
-		}
-		if (LOG.isDebugEnabled()) {
-			LOG.debug(String.format("Import UserBean data success, total: %d.",
-					vos.size()));
-		}
-		return new ResponseVO();
-	}
-
-	@POST
 	@Path("save.json")
 	public ResponseVO saveByAdd(UserVO vo, @Context HttpServletRequest request) {
 		return save(null, vo, WebUtils.getCurrentLoginUser(request));
@@ -294,8 +269,7 @@ public class UserRestResource extends BaseRestResource{
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	@Path("loadPage.json")
+	@Path("query")
 	@GET
 	public ResponsePagingDataVO<List<UserVO>> loadPage(
 			@QueryParam("page") int page, @QueryParam("start") int start,

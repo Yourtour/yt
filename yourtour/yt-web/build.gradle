@@ -10,6 +10,7 @@ dependencies {
 					 "org.springframework:spring-web:${springVersion}",
 					 "org.springframework:spring-tx:${springVersion}",
 					 "org.springframework:spring-aspects:${springVersion}",
+					 "org.springframework:spring-test:${springVersion}",
 					 "com.sun.jersey:jersey-core:1.19",
 				   "com.sun.jersey:jersey-json:1.19",
 				   "com.sun.jersey:jersey-servlet:1.19",

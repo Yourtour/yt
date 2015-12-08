@@ -6,7 +6,7 @@ public class StringUtils {
 	 * @param value
 	 * @return
 	 */
-	public static boolean isNullOrBlank(String value){
+	public static boolean isNull(String value){
 		return value == null || value.trim().length() == 0;
 	}
 	
@@ -15,7 +15,7 @@ public class StringUtils {
 	 * @param value
 	 * @return
 	 */
-	public static boolean isNotNullOrBlank(String value){
-		return isNullOrBlank(value);
+	public static boolean isNotNull(String value){
+		return ! isNull(value);
 	}
 }

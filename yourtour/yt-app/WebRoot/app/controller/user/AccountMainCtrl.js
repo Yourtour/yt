@@ -54,7 +54,7 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     },
     
     init:function(){
-    	this.model = Ext.create('YourTour.model.UserAccountModel',{graphId:-1});
+    	this.model = Ext.create('YourTour.model.UserModel',{graphId:-1});
     },
     
     showLoginView:function(){

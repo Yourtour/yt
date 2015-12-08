@@ -4,12 +4,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.yt.business.bean.ResourceBean;
 import com.yt.business.bean.RouteActivityBean;
 import com.yt.business.bean.RouteMainBean;
 import com.yt.business.bean.RouteProvisionBean;
 import com.yt.business.bean.RouteScheduleBean;
 import com.yt.core.utils.CollectionUtils;
 import com.yt.core.utils.DateUtils;
+import com.yt.core.utils.StringUtils;
 
 public class RouteLoadVO implements Serializable {
 	private static final long serialVersionUID = -5772201577521181151L;
@@ -35,7 +37,9 @@ public class RouteLoadVO implements Serializable {
 	}
 
 	public String getImageUrl() {
-		return route.getImageUrl();
+		//return route.getImageUrl();
+		
+		return "/resources/images/yunnan.jpg";
 	}
 	
 	public List<RouteSchedule> getSchedules(){
@@ -53,7 +57,7 @@ public class RouteLoadVO implements Serializable {
 		
 		RouteSchedule group = new RouteSchedule();
 		group.setId("0");
-		group.setTitle("游前准备");
+		group.setTitle("准备事项");
 		group.setType(TYPE.Provision);
 		provisions.add(group);
 		
@@ -63,6 +67,7 @@ public class RouteLoadVO implements Serializable {
 			provision.setTitle(provisionBean.getTitle());
 			provision.setMemo(provisionBean.getMemo());
 			provision.setType(TYPE.ProvisionItem);
+			provision.setIndex(provisionBean.getIndex());
 			provision.setId(provisionBean.getGraphId().toString());
 			provisions.add(provision);
 		}
@@ -80,7 +85,7 @@ public class RouteLoadVO implements Serializable {
 			group.setPlaces(scheduleBean.getPlaces());
 			group.setMemo(scheduleBean.getMemo());
 			group.setType(TYPE.Schedule);
-			
+			group.setDate(scheduleBean.getDate());
 			schedules.add(group);
 			
 			if(CollectionUtils.isNotEmpty(scheduleBean.getActivities())){
@@ -91,6 +96,16 @@ public class RouteLoadVO implements Serializable {
 					activity.setType(TYPE.ScheduleItem);
 					activity.setParentId(group.getId());
 					activity.setId(activityBean.getGraphId().toString());
+					activity.setStartTime(activityBean.getStartTime());
+					activity.setEndTime(activityBean.getEndTime());
+					activity.setIndex(activityBean.getIndex());
+					
+					ResourceBean resource = activityBean.getResource();
+					if(resource != null){
+						activity.setResourceId(resource.getGraphId().toString());
+						activity.setResourceType(resource.getType().toString());
+					}
+					
 					schedules.add(activity);
 				}
 			}
@@ -103,15 +118,17 @@ public class RouteLoadVO implements Serializable {
 		private String 	id;
 		private String  parentId;
 		private String  resourceId;
+		private String  resourceType;
 		private String 	title;
 		private String	memo;
 		private String  places;
 		private TYPE 	type;
 		private String 	status;
+		private long    date;
 		private String 	startTime;
 		private String 	endTime;
-		private String 	duration;
 		private String 	address;
+		private int 	index;
 		
 		public RouteSchedule(){}
 
@@ -139,12 +156,28 @@ public class RouteLoadVO implements Serializable {
 			this.resourceId = resourceId;
 		}
 
+		public String getResourceType() {
+			return resourceType;
+		}
+
+		public void setResourceType(String resourceType) {
+			this.resourceType = resourceType;
+		}
+
 		public String getTitle() {
 			return title;
 		}
 
 		public void setTitle(String title) {
 			this.title = title;
+		}
+
+		public int getIndex() {
+			return index;
+		}
+
+		public void setIndex(int index) {
+			this.index = index;
 		}
 
 		public String getType() {
@@ -163,6 +196,14 @@ public class RouteLoadVO implements Serializable {
 			this.status = status;
 		}
 
+		public long getDate() {
+			return date;
+		}
+
+		public void setDate(long date) {
+			this.date = date;
+		}
+
 		public String getStartTime() {
 			return startTime;
 		}
@@ -177,14 +218,6 @@ public class RouteLoadVO implements Serializable {
 
 		public void setEndTime(String endTime) {
 			this.endTime = endTime;
-		}
-
-		public String getDuration() {
-			return duration;
-		}
-
-		public void setDuration(String duration) {
-			this.duration = duration;
 		}
 
 		public String getAddress() {
@@ -204,7 +237,7 @@ public class RouteLoadVO implements Serializable {
 		}
 
 		public String getMemo() {
-			return memo;
+			return StringUtils.isNull(memo)?"":memo;
 		}
 
 		public void setMemo(String memo) {

@@ -18,8 +18,10 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
     	   deleteRoute:{
    		   	tap:'deleteRoute'
     	   },
+    	   
     	   routeCarousel:{
-    		   onRouteTap:'onRouteTap'
+    		   onRouteTap:'onRouteTap',
+    		   onMemberTap:'onMemberTap'
     	   }
        },
        
@@ -84,5 +86,9 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
     
     onRouteTap:function(record){
    		this.redirectTo('/route/load/' + record.get('id'));
+    },
+    
+    onMemberTap:function(record){
+    	this.redirectTo('/routes/' + record.get('id') + '/members');
     }
 });

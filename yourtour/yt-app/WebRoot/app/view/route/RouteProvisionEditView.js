@@ -23,6 +23,17 @@ Ext.define('YourTour.view.route.RouteProvisionEditView', {
 		        ]
 			},
 			
+			{    
+				xtype: 'hiddenfield',
+				itemId:'id'	,
+				value:'0'
+			},
+			
+			{    
+				xtype: 'hiddenfield',
+				itemId:'routeId'
+			},
+			
 			{
 				xtype:'panel',
 				layout:'hbox',

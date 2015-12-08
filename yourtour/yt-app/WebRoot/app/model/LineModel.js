@@ -1,6 +1,6 @@
 Ext.define('YourTour.model.LineModel', {
     extend: 'Ext.data.Model',
-    requires:['YourTour.model.UserModel','YourTour.model.ResourceModel'],
+    requires:['YourTour.model.ResourceModel'],
     config:{
     	idProperty:'id',
     	

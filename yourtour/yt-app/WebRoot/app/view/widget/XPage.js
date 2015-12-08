@@ -7,6 +7,8 @@ Ext.define('YourTour.view.widget.XPage', {
     	    indicators: false	
     	},
     	
+    	//style:'background-color:#EDEDED',
+    	
     	fullscreen: true
     },
 

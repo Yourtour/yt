@@ -47,6 +47,7 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 						List<RouteActivityBean> newActivities = new Vector<RouteActivityBean>(activities.size());
 						for (RouteActivityBean activity : activities) {
 							RouteActivityBean newActivity = (RouteActivityBean)super.get(RouteActivityBean.class, activity.getGraphId());
+							
 							newActivities.add(newActivity);
 						}
 						newSchedule.getActivities().clear();

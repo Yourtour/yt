@@ -1,6 +1,7 @@
 package com.yt.business;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 import org.springframework.data.neo4j.annotation.GraphId;
 import org.springframework.data.neo4j.annotation.Indexed;
@@ -16,7 +17,7 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 	private static final long serialVersionUID = -916424014919620404L;
 
 	@Indexed(unique = true)
-	private String rowKey = null;
+	private String rowKey = UUID.randomUUID().toString();
 
 	@GraphId
 	private Long graphId = null;
@@ -88,7 +89,7 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 	 */
 	@Override
 	public String getRowKey() {
-		return rowKey;
+		return UUID.randomUUID().toString();
 	}
 
 	/*

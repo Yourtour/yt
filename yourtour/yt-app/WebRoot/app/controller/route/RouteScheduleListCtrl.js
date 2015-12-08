@@ -8,6 +8,10 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
        },
        
        control:{
+    	   routeScheduleListView:{
+    		   destroy:'onRouteScheduleViewDestroy'
+    	   },
+    	   
     	   schedulePlanList:{
     	   	   itemtap:'onItemTap'
     	   },
@@ -47,13 +51,17 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
     		var record = store.first();
     		
     		var imageEl = view.down('#imageUrl');
-    		imageEl.setHtml("<img src='" + record.get('imageUrl') + "' style='width:100%; max-height:150px'>");
-	    	
+    		imageEl.setHtml("<img src='" + YourTour.util.Context.getImageResource(record.get('imageUrl')) + "' style='width:100%; max-height:150px'>");
+    		
 	    	var scheduleList = view.down('#RouteScheduleList');
 	    	scheduleList.setStore(record.schedulesStore);
     	};
  	   	
     	store.getProxy().setUrl(YourTour.util.Context.getContext('/routes/' + routeId +'/query'));
  	   	store.load(showView,this);
+    },
+    
+    onRouteScheduleViewDestroy:function(){
+    	this.store.setData('');
     }
 });

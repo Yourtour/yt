@@ -93,7 +93,7 @@ Ext.define('YourTour.controller.route.RouteEditCtrl', {
     	    	
     	    	var routeId = data.data;
     	    	
-    	    	me.redirectTo('/route/activities/' + routeId);
+    	    	me.redirectTo('/route/edit/' + routeId);
     	    },
     	    failure : function(response) {
     	        var respObj = Ext.JSON.decode(response.responseText);

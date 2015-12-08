@@ -57,4 +57,7 @@ public interface UserProfileBeanRepository extends GraphRepository<UserProfileBe
 	 */
 	@Query("START u=node({0}) MATCH u-[:watchRoute]->(route)<-[:watchRoute]-(users) RETURN users")
 	public List<UserProfileBean> getUsersWatchSameRoutes(UserProfileBean user);
+	
+	@Query("match (account:UserAccountBean)-[:BELONG]->(profile:UserProfileBean) where account.userName={0} or profile.nickName={0} or profile.mobileNo={0} RETURN profile;")
+	public List<UserProfileBean> getUsers(String searchWords);
 }

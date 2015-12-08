@@ -23,8 +23,6 @@ Ext.define('YourTour.controller.user.UserListCtrl', {
     
     showPage:function(){
     	var me = this;
-    	
-    	me.show('UserListView','YourTour.view.user.UserListView');
     	var userList = me.getUserList();
     	
     	var store = me.store;

@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    
+    <!--添加下面的meta标签： -->
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />  
+	
     <title>YourTour</title>
     <style type="text/css">
          /**
@@ -193,28 +197,46 @@
 			border-top:5px solid #EDEDED;
 		}
 		
-		.ScheduleListItem .prepare{
-			height:50px;
-			line-height:40px;
+		/** 行程列表CSS 定义**/
+		.ScheduleListItem{
 			font-size:14px;
-			font-weight:bold;
-			border-bottom:5px solid #EDEDED;
-			border-top:5px solid #EDEDED;
+			border-bottom:1px solid #EDEDED;
 		}
 		
-		.ScheduleListItem .name{
+		.ScheduleListItem .content{
+			font-size:14px;
+			color:grey;
+			line-height:25px;
+			min-height:25px;
+		}
+		
+		.ScheduleListItem .content.memo{
+			font-size:14px;
+			color:grey;
+			line-height:25px;
+			min-height:25px;
+		}
+		
+		.ScheduleListItem .title{
 			height:40px;
 			line-height:40px;
-			font-size:14px;
-			color:grey
 		}
 		
-		.ScheduleListItem .time{
-			height:30px;
-			line-height:30px;
-			font-size:13px;
-			color:grey
+		.ScheduleListItem .title.strong{
+			font-weight:bold;
+			line-height:50px;
 		}
+		
+		.ScheduleListItem .schedule{
+			background-color:silver !important;
+			height:50px;
+		}
+		
+		.ScheduleListItem .icon{
+			margin-top:5px;
+			margin-right:10px;
+		}
+		/** End 行程列表CSS 定义**/
 		
 		.verticledataitem .info{
 			height:40px;
@@ -282,7 +304,9 @@
 		}
     </style>
     
-    <!-- include the js for cordova -->
+	<!--添加引入百度Map的javascript-->
+	<script src="http://api.map.baidu.com/api?v=1.4" type="text/javascript"></script>
+
     <script type="text/javascript" charset="utf-8" src="./cordova.js"></script>
      
     <!-- The line below must be kept intact for Sencha Command to build your application -->

@@ -16,6 +16,7 @@ import com.yt.vo.resource.SceneResourceVO;
 public class RouteActivityVO extends BaseVO {
 	private String title, memo;
 	private int index;
+	private long date;
 	private String startTime, endTime;
 	private RouteScheduleVO schedule = new RouteScheduleVO();
 	private ResourceVO resource = new ResourceVO();
@@ -31,6 +32,7 @@ public class RouteActivityVO extends BaseVO {
 		vo.setIndex(bean.getIndex());
 		vo.setStartTime(bean.getStartTime());
 		vo.setEndTime(bean.getEndTime());
+		vo.setDate(bean.getDate());
 		if (bean.getSchedule() != null) {
 			RouteScheduleVO scheduleVO = new RouteScheduleVO();
 			scheduleVO.setId(bean.getSchedule().getGraphId());
@@ -68,6 +70,7 @@ public class RouteActivityVO extends BaseVO {
 		bean.setIndex(vo.getIndex());
 		bean.setStartTime(vo.getStartTime());
 		bean.setEndTime(vo.getEndTime());
+		bean.setDate(vo.getDate());
 		if (vo.getSchedule() != null) {
 			RouteScheduleBean schedule = new RouteScheduleBean();
 			schedule.setGraphId(vo.getSchedule().getId());
@@ -117,6 +120,14 @@ public class RouteActivityVO extends BaseVO {
 
 	public void setIndex(int index) {
 		this.index = index;
+	}
+
+	public long getDate() {
+		return date;
+	}
+
+	public void setDate(long date) {
+		this.date = date;
 	}
 
 	public String getStartTime() {

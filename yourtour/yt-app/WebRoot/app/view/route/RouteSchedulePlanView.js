@@ -13,13 +13,22 @@ Ext.define('YourTour.view.route.RouteSchedulePlanView', {
     		{    
 				xtype: 'xheaderbar',
 				title:'行程安排',
-				items:[{
-                	xtype: "toolbutton", 
-                    ui: "normal", 
-                	text:'设置',
-                	itemId:'setting',
-                	align:'right'
-                }]
+				items:[
+						{
+		                	xtype: "toolbutton", 
+		                    ui: "normal", 
+		                	text:'咨询',
+		                	itemId:'consult',
+		                	align:'right'
+		                },
+				        {
+				    	   xtype: "toolbutton", 
+				    	   ui: "normal", 
+				    	   text:'设置',
+				    	   itemId:'setting',
+				    	   align:'right'
+				        }
+				]
 			},
 			
 			{
@@ -50,13 +59,8 @@ Ext.define('YourTour.view.route.RouteSchedulePlanView', {
  			   },
  			   items:[
  			   		{xtype: 'xbutton', baseCls:Ext.baseCSSPrefix + 'button', ui: 'drastic',itemId:'newProvision', text: '添加准备事项' , hidden:true, attr:'Provision'}, 
- 			   		
- 			   		{xtype: 'xbutton', baseCls:Ext.baseCSSPrefix + 'button', ui: 'drastic', itemId:'insertProvisiion', text: '插入准备事项' , hidden:true, attr:'ProvisionItem'},
- 			   		
  			   		{xtype: 'xbutton', baseCls:Ext.baseCSSPrefix + 'button', ui:'drastic', itemId:'insertShcedule', text: '插入日程', hidden:true, attr:'Schedule' },
  			   		{xtype: 'xbutton', baseCls:Ext.baseCSSPrefix + 'button', ui:'drastic', itemId:'newActivity', text: '日程安排', hidden:true, attr:'Schedule' },
-
- 			   		{xtype: 'xbutton', baseCls:Ext.baseCSSPrefix + 'button', ui:'drastic', itemId:'insertActivity', text: '插入安排', hidden:true, attr:'ScheduleItem' },
  			   ]
  		    }
         ]

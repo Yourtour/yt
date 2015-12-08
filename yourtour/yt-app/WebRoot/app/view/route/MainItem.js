@@ -116,10 +116,17 @@ Ext.define('YourTour.view.route.MainItem', {
     	
     	var btnRoute = this.down('#btnRoute');
     	btnRoute.addListener('tap', this.onRouteBtnTap, this);
+    	
+    	var btnMember = this.down('#btnMember');
+    	btnMember.addListener('tap', this.onMemberBtnTap, this);
     },
     
     onRouteBtnTap:function(){
     	this.carousel.fireEvent("onRouteTap", this.record);
+    },
+    
+    onMemberBtnTap:function(){
+    	this.carousel.fireEvent("onMemberTap", this.record);
     },
     
     setCarousel:function(carousel){

@@ -28,6 +28,8 @@ public class RouteActivityBean extends BaseBeanImpl {
 
 	@HbaseColumn(name = "idx")
 	private int index = 1; // 行程活动排序号
+	
+	private long date;
 
 	@HbaseColumn(name = "stm")
 	private String startTime = "00:00"; // 行程活动始时间
@@ -67,6 +69,14 @@ public class RouteActivityBean extends BaseBeanImpl {
 
 	public void setIndex(int index) {
 		this.index = index;
+	}
+
+	public long getDate() {
+		return date;
+	}
+
+	public void setDate(long date) {
+		this.date = date;
 	}
 
 	public String getStartTime() {

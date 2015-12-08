@@ -27,7 +27,7 @@ Ext.define('YourTour.controller.resource.ResourceCtrl', {
        },
        
        routes:{
-        	'/resource/selection/:routeId/:index':'showPage'
+        	'/resource/selection':'showPage'
        },
        
        playStore:null,
@@ -39,7 +39,7 @@ Ext.define('YourTour.controller.resource.ResourceCtrl', {
     init: function(){
     },
     
-    showPage:function(routeId, index){
+    showPage:function(){
     	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.resource.ResourceSelectionView'));
     	
     	if(this.playStore != null){
@@ -111,7 +111,7 @@ Ext.define('YourTour.controller.resource.ResourceCtrl', {
     
     onAddTap:function(){
     	var planController = this.getApplication().getController('route.RouteSchedulePlanCtrl');
-    	planController.addActivity(this.record);
+    	planController.addScheduleActivity(this.record);
     },
     
 	onPlayItemTap:function(dataview, index, item, record,e){

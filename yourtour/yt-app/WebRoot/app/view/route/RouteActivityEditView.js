@@ -114,27 +114,6 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 				xtype:'panel',
 				layout:'hbox',
 				padding:'0 5 0 5',
-				cls:'underline',
-				items:[
-					{
-						xtype:'xlabel',
-						html: '活动概述',
-						margin:'0 10 0 0'
-					},   
-					{  
-					    xtype: 'textareafield',  
-					    itemId:'memo',
-					    flex:1,
-					    maxRows:4,
-					    clearIcon: true
-					}
-				]
-			},
-			
-    		{
-				xtype:'panel',
-				layout:'hbox',
-				padding:'0 5 0 5',
 				cls:'row underline',
 				items:[
 					{
@@ -223,11 +202,40 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 				]
 			},
 			
+			{
+				xtype:'panel',
+				layout:'hbox',
+				padding:'0 5 0 5',
+				cls:'underline',
+				height:200,
+				items:[
+					{
+						xtype:'xlabel',
+						html: '活动概述',
+						margin:'0 10 0 0'
+					},   
+					{  
+					    xtype: 'xtextarea',  
+					    itemId:'memo',
+					    flex:1,
+					    height:195,
+					    clearIcon: true
+					}
+				]
+			},
+			
             {
             	xtype:'subtitlebar',
             	margin:'5 0 5 0',
             	html:'事项'
-            }
+            },
+            
+            {
+            	xtype:'xbutton',
+            	id:'btnDelete',
+            	docked: 'bottom',
+            	text:'删除'
+            },
         ]
     },
     

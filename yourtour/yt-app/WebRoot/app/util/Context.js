@@ -3,7 +3,9 @@ Ext.define('YourTour.util.Context', {
 	alias:'Context',
 	
     config : {
-    	userKey:'user'
+    	userKey:'user',
+    	
+    	server:'192.168.2.100'
     },
     
     constructor : function(config) {
@@ -11,7 +13,7 @@ Ext.define('YourTour.util.Context', {
     },
     
     getContext:function(url){
-    	var s = 'http://192.168.2.100:8080/yt-web/rest';
+    	var s = 'http://' + this.getServer() + ':8080/yt-web/rest';
     	if(url.substr(0,1) != '/'){
     		s += '/';
     	}
@@ -21,6 +23,17 @@ Ext.define('YourTour.util.Context', {
     
     getUserId:function(){
     	return '3333';
+    },
+    
+    getImageResource:function(url){
+    	var s = 'http://' + this.getServer() + ':8080/yt-app';
+    	if(url.substr(0,1) != '/'){
+    		s += '/';
+    	}
+    	
+    	return s + url;
     }
+    
+    
 });
 

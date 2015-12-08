@@ -14,7 +14,7 @@ Ext.application({
     name: 'YourTour',
 
     requires: [
-        'Ext.MessageBox', 'Ext.form.Hidden','YourTour.util.Context','YourTour.view.home.BestItemView','YourTour.view.common.PlaceGridItemView'
+        'Ext.MessageBox', 'YourTour.view.widget.XTextArea', 'Ext.form.Hidden','YourTour.util.Context','YourTour.view.home.BestItemView','YourTour.view.common.PlaceGridItemView'
     ],
     
     /**
@@ -34,26 +34,28 @@ Ext.application({
         'user.LoginMainView','user.UserListView',
         'line.LineRecommendView','line.LineIntroductionView',
         'resource.ResourceSelectionView','resource.ResourceDetailView',
-        'personal.PersonalMainView'
+        'personal.PersonalMainView',
+        'member.MemberMainView','member.MemberAddView','member.MemberPositionView','member.MemberSearchView'
     ],
     
     controllers: [
         'Launch', 'MainCtrl', 'common.PlaceChangeCtrl','common.PlaceSelectionCtrl',
         'home.HomeMainCtrl', 'home.BestMainCtrl','home.TalentMainCtrl','home.AlongMainCtrl',
-        'route.RouteMainCtrl','route.RouteEditCtrl','route.RouteScheduleListCtrl',
-        'route.RouteSchedulePlanCtrl','route.RouteProvisionCtrl', 'route.RouteScheduleCtrl', 'route.RouteActivityCtrl',
+        'route.RouteMainCtrl','route.RouteEditCtrl',
+        'route.RouteScheduleListCtrl','route.RouteSchedulePlanCtrl',
         'line.LineRecommendCtrl','line.LineIntroductionCtrl','user.AccountMainCtrl',
         'route.ScheduleReferenceCtrl','route.ScheduleDetailCtrl',
-        'resource.ResourceCtrl','user.UserListCtrl'
+        'resource.ResourceCtrl','user.UserListCtrl',
+        'MemberCtrl',
     ],
     
     models:[
         'LaunchModel','RouteModel','RouteActivityModel', 'LineModel', 'UserModel','OptionModel', 'HomeModel','LiveModel','ChatModel','AlongModel','TalentModel','HomeCarouselModel','CommentModel', 'PlaceModel',
-        'UserAccountModel','CacheModel'
+        'CacheModel'
     ],
     
     stores:[
-        'LaunchStore','RouteStore','LineStore','ResourcePlayStore','ResourceFoodStore','UserStore', 'HomeStore', 'BestListStore','TalentListStore', 'AlongListStore','CommentStore', 'PlaceStore'  ,'UserAccountStore', 'LocalStore'
+        'LaunchStore','RouteStore','LineStore','ResourcePlayStore','ResourceFoodStore','UserStore', 'HomeStore', 'BestListStore','TalentListStore', 'AlongListStore','CommentStore', 'PlaceStore','LocalStore'
     ],
         
     icon: {

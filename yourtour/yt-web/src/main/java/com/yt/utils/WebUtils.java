@@ -15,7 +15,7 @@ public class WebUtils {
 	public static String getCurrentLoginUser(HttpServletRequest request) {
 		String value = request.getHeader("User-Token");
 		
-		if(StringUtils.isNullOrBlank(value)){
+		if(StringUtils.isNull(value)){
 			HttpSession session = request.getSession(true);
 			value = (String) session.getAttribute(LOGIN_USERNAME);
 		}
