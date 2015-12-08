@@ -53,7 +53,7 @@ public class TestRouteProvisionBean {
 			RouteProvisionBean rp = new RouteProvisionBean();
 			rp.setIndex(5);
 			rp.setMemo("memo 1");
-			rp.setName("name 1");
+			rp.setTitle("name 1");
 			rp.setRowKey("rowkey 1");
 			assertNull(rp.getGraphId());
 			crud.save(rp, "john");
@@ -73,7 +73,7 @@ public class TestRouteProvisionBean {
 			assertEquals(rp2.getCreatedUserId(), "john");
 			assertEquals(rp2.getIndex(), rp.getIndex());
 			assertEquals(rp2.getMemo(), rp.getMemo());
-			assertEquals(rp2.getName(), rp.getName());
+			assertEquals(rp2.getTitle(), rp.getTitle());
 			assertEquals(rp2.getUpdatedTime(), rp.getUpdatedTime());
 			assertFalse(rp2.getUpdatedTime() > 0);
 			assertEquals(rp2.getUpdatedUserId(), rp.getUpdatedUserId());
@@ -92,7 +92,7 @@ public class TestRouteProvisionBean {
 			assertEquals(rp2_1.getGraphId(), rp2_11.getGraphId());
 			assertEquals(rp2_1.getRowKey(), rp2_11.getRowKey());
 			assertEquals(rp2_11.getGraphId(), rp.getGraphId());
-			assertEquals(rp2_11.getName(), rp.getName());
+			assertEquals(rp2_11.getTitle(), rp.getTitle());
 
 			// TEST GRAPHID = NULL AND NOT SAME ROWKEY
 			rp2_1.setGraphId(null);
@@ -103,7 +103,7 @@ public class TestRouteProvisionBean {
 					RouteProvisionBean.class, rp2_1.getGraphId());
 			assertEquals(rp2_2.getGraphId(), rp2_1.getGraphId());
 			assertEquals(rp2_2.getRowKey(), rp2_1.getRowKey());
-			assertEquals(rp2_2.getName(), rp2_1.getName());
+			assertEquals(rp2_2.getTitle(), rp2_1.getTitle());
 			RouteProvisionBean ra2_22 = (RouteProvisionBean) crud.get(
 					RouteProvisionBean.class, "rowKey", rp2_1.getRowKey());
 			assertNotNull(ra2_22);
@@ -126,14 +126,14 @@ public class TestRouteProvisionBean {
 			assertEquals(rp2.getCreatedUserId(), rp3.getCreatedUserId());
 			assertEquals(rp3.getCreatedUserId(), "john");
 			assertEquals(rp2.getMemo(), rp3.getMemo());
-			assertEquals(rp2.getName(), rp3.getName());
+			assertEquals(rp2.getTitle(), rp3.getTitle());
 			assertEquals(rp2.getRowKey(), rp3.getRowKey());
 			assertEquals(rp2.getUpdatedTime(), rp3.getUpdatedTime());
 			assertTrue(rp3.getUpdatedTime() > 0);
 			assertEquals(rp2.getUpdatedUserId(), rp3.getUpdatedUserId());
 			assertNull(rp3.getRouteMain());
 			
-			rp3.setName(rp3.getName() + " modified.");
+			rp3.setTitle(rp3.getTitle() + " modified.");
 			crud.save(rp3, "john");
 			assertEquals(crud.count(RouteProvisionBean.class), 2);
 
@@ -165,7 +165,7 @@ public class TestRouteProvisionBean {
 			assertEquals(repo.count(RouteMainBean.class), 2);
 
 			RouteProvisionBean rp1 = new RouteProvisionBean();
-			rp1.setName("route provision 1");
+			rp1.setTitle("route provision 1");
 			repo.save(rp1, "john");
 			assertEquals(repo.count(RouteProvisionBean.class), 1);
 			RouteProvisionBean rp1_1 = (RouteProvisionBean) repo.get(
@@ -207,14 +207,14 @@ public class TestRouteProvisionBean {
 
 			// TEST SAVE ENTITY AND RELATIONS
 			RouteProvisionBean rp2 = new RouteProvisionBean();
-			rp2.setName("activity 2");
+			rp2.setTitle("activity 2");
 			rp2.setRouteMain(rm2);
 			repo.save(rp2, "john");
 			assertEquals(repo.count(RouteProvisionBean.class), 2);
 			RouteProvisionBean rp2_1 = (RouteProvisionBean) repo.get(
 					RouteProvisionBean.class, rp2.getGraphId());
 			assertNotNull(rp2_1);
-			assertEquals(rp2_1.getName(), rp2.getName());
+			assertEquals(rp2_1.getTitle(), rp2.getTitle());
 			assertNotNull(rp2_1.getRouteMain());
 			assertEquals(rp2_1.getRouteMain().getGraphId(), rm2.getGraphId());
 			RouteMainBean rm2_2 = (RouteMainBean)repo.get(RouteMainBean.class, rm1.getGraphId());

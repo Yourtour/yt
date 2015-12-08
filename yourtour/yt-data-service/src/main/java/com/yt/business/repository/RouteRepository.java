@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.yt.business.CrudAllInOneOperate;
 import com.yt.business.bean.RouteMainBean;
+import com.yt.business.bean.UserAccountBean;
+import com.yt.business.common.Constants.GroupRole;
 
 public interface RouteRepository extends CrudAllInOneOperate {
 	/**
@@ -16,6 +18,20 @@ public interface RouteRepository extends CrudAllInOneOperate {
 	 *             获取数据过程中发生的异常
 	 */
 	public RouteMainBean getCompleteRoute(Long routeId) throws Exception;
+
+	/**
+	 * 根据指定的行程ID，返回该行程中指定成员角色的用户。
+	 * 
+	 * @param routeId
+	 *            行程ID
+	 * @param groupRole
+	 *            成员角色
+	 * @return 用户列表
+	 * @throws Exception
+	 *             获取数据过程中发生的异常
+	 */
+	public List<UserAccountBean> getRoutePeople(Long routeId,
+			GroupRole groupRole) throws Exception;
 
 	/**
 	 * /** 根据指定的用户，返回该用户拥有的行程
@@ -40,4 +56,20 @@ public interface RouteRepository extends CrudAllInOneOperate {
 	 */
 	public void saveRouteMainAndSchedules(RouteMainBean route, String operator)
 			throws Exception;
+
+	/**
+	 * 保存行程和用户之间的关系，目前在关系中保存成员角色。
+	 * 
+	 * @param route
+	 *            行程
+	 * @param user
+	 *            用户
+	 * @param groupRole
+	 *            成员角色
+	 * @throws Exception
+	 *             保存关系过程中发生的异常
+	 */
+	public void saveRoutePersonRelation(RouteMainBean route,
+			UserAccountBean user, GroupRole groupRole) throws Exception;
+
 }

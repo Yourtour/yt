@@ -8,6 +8,9 @@
 package com.yt.neo4j.repository;
 
 import java.util.List;
+import java.util.Map;
+
+import org.neo4j.graphdb.Direction;
 
 import com.yt.neo4j.bean.Neo4jBaseBean;
 
@@ -229,5 +232,44 @@ public interface CrudOperate {
 	 */
 	public void saveRelationsOnly(Neo4jBaseBean neo4jBean,
 			String[] relationshipFieldNames) throws Exception;
+
+	/**
+	 * 仅仅保存最简单的Neo4J实体对象之间的关系，本方法建立的关系不包括属性。<br>
+	 * 如果该关系原来存在，则不会重新建立该关系。
+	 * 
+	 * @param src
+	 *            关系的源节点
+	 * @param tar
+	 *            关系的目标节点
+	 * @param relationship
+	 *            关系
+	 * @param direction
+	 *            关系的方向
+	 * @throws Exception
+	 *             建立关系过程中发生的异常
+	 */
+	public void createRelation(Neo4jBaseBean src, Neo4jBaseBean tar,
+			String relationship, Direction direction) throws Exception;
+
+	/**
+	 * 保存Neo4J实体对象之间的关系，本方法建立的关系包括属性。<br>
+	 * 如果该关系原来存在，则删除该关系后重新建立该关系。
+	 * 
+	 * @param src
+	 *            关系的源节点
+	 * @param tar
+	 *            关系的目标节点
+	 * @param relationship
+	 *            关系
+	 * @param direction
+	 *            关系的方向
+	 * @param propertes
+	 *            关系的附加属性
+	 * @throws Exception
+	 *             建立关系过程中发生的异常
+	 */
+	public void createRelation(Neo4jBaseBean src, Neo4jBaseBean tar,
+			String relationship, Direction direction,
+			Map<String, Object> propertes) throws Exception;
 
 }

@@ -17,6 +17,7 @@ import java.util.Vector;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.neo4j.graphdb.Direction;
+import org.neo4j.graphdb.Node;
 import org.neo4j.graphdb.Relationship;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.neo4j.conversion.Result;
@@ -560,7 +561,15 @@ public class CrudGeneralOperate implements CrudOperate {
 		}
 	}
 
-	private void createRelation(Neo4jBaseBean src, Neo4jBaseBean tar,
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.yt.neo4j.repository.CrudOperate#createRelation(com.yt.neo4j.bean.
+	 * Neo4jBaseBean, com.yt.neo4j.bean.Neo4jBaseBean, java.lang.String,
+	 * org.neo4j.graphdb.Direction)
+	 */
+	public void createRelation(Neo4jBaseBean src, Neo4jBaseBean tar,
 			String relationship, Direction direction) throws Exception {
 		// 注意：CREATE语句创建关系只能有一个方向，因此如果direction = Direction.BOTH，那么需要执行两次语句
 		if (direction == Direction.BOTH || direction == Direction.OUTGOING) {
@@ -604,6 +613,46 @@ public class CrudGeneralOperate implements CrudOperate {
 											.getGraphId()));
 				}
 			}
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.yt.neo4j.repository.CrudOperate#createRelation(com.yt.neo4j.bean.
+	 * Neo4jBaseBean, com.yt.neo4j.bean.Neo4jBaseBean, java.lang.String,
+	 * org.neo4j.graphdb.Direction, java.util.Map)
+	 */
+	public void createRelation(Neo4jBaseBean src, Neo4jBaseBean tar,
+			String relationship, Direction direction,
+			Map<String, Object> properties) throws Exception {
+		if (src == null || tar == null) {
+			if (LOG.isWarnEnabled()) {
+				LOG.warn("Any Neo4jBaseBean is null, can not create the relationship.");
+			}
+			return;
+		}
+		// 取出原始的节点
+		Node oriSrc = template.getNode(src.getGraphId());
+		Node oriTar = template.getNode(tar.getGraphId());
+		if (oriSrc == null || oriTar == null) {
+			if (LOG.isWarnEnabled()) {
+				LOG.warn("Any Node is null, can not create the relationship.");
+			}
+			return;
+		}
+		// 删除原有关系
+		template.deleteRelationshipBetween(src, tar, relationship);
+		template.deleteRelationshipBetween(tar, src, relationship);
+		// 建立新的关系
+		if (direction == Direction.OUTGOING || direction == Direction.BOTH) {
+			template.createRelationshipBetween(oriSrc, oriTar, relationship,
+					properties);
+		}
+		if (direction == Direction.INCOMING || direction == Direction.BOTH) {
+			template.createRelationshipBetween(oriTar, oriSrc, relationship,
+					properties);
 		}
 	}
 
