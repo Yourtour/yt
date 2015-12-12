@@ -640,8 +640,8 @@ public class CrudGeneralOperate implements CrudOperate {
 			return;
 		}
 		// 删除原有关系
-		template.deleteRelationshipBetween(src, tar, relationship);
-		template.deleteRelationshipBetween(tar, src, relationship);
+		this.deleteRelation(src, tar, relationship);
+
 		// 建立新的关系
 		if (direction == Direction.OUTGOING || direction == Direction.BOTH) {
 			template.createRelationshipBetween(oriSrc, oriTar, relationship,
@@ -682,6 +682,8 @@ public class CrudGeneralOperate implements CrudOperate {
 			return;
 		}
 		template.deleteRelationshipBetween(src, tar, relationship);
+		// TODO 需要验证一下，删除时是否有方向性，如果没有，则可以删除掉一句语句。
+		template.deleteRelationshipBetween(tar, src, relationship);
 		if (LOG.isDebugEnabled()) {
 			LOG.debug(String.format(
 					"Delete relationship success: %s(%d)-[r:%s]-%s(%d).", src
