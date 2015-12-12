@@ -583,14 +583,6 @@ public class CrudGeneralOperate implements CrudOperate {
 								src.getGraphId(), tar.getGraphId(),
 								relationship);
 				template.query(createRelationQuery, null);
-				if (LOG.isDebugEnabled()) {
-					LOG.debug(String
-							.format("Create relationship successed: %s(%d)-[:%s]->%s(%d).",
-									src.getClass().getSimpleName(), src
-											.getGraphId(), relationship, tar
-											.getClass().getSimpleName(), tar
-											.getGraphId()));
-				}
 			}
 		}
 
@@ -604,15 +596,20 @@ public class CrudGeneralOperate implements CrudOperate {
 								src.getGraphId(), tar.getGraphId(),
 								relationship);
 				template.query(createRelationQuery, null);
-				if (LOG.isDebugEnabled()) {
-					LOG.debug(String
-							.format("Create relationship successed: %s(%d)<-[:%s]-%s(%d).",
-									src.getClass().getSimpleName(), src
-											.getGraphId(), relationship, tar
-											.getClass().getSimpleName(), tar
-											.getGraphId()));
-				}
 			}
+		}
+
+		if (LOG.isDebugEnabled()) {
+			LOG.debug(String
+					.format("Create the relationship success: %s(%d)%s-[r:%s]-%s%s(%d)",
+							src.getClass().getSimpleName(), src.getGraphId(),
+							direction == Direction.BOTH
+									|| direction == Direction.INCOMING ? "<"
+									: "", relationship,
+							direction == Direction.BOTH
+									|| direction == Direction.OUTGOING ? ">"
+									: "", tar.getClass().getSimpleName(), tar
+									.getGraphId()));
 		}
 	}
 
@@ -653,6 +650,44 @@ public class CrudGeneralOperate implements CrudOperate {
 		if (direction == Direction.INCOMING || direction == Direction.BOTH) {
 			template.createRelationshipBetween(oriTar, oriSrc, relationship,
 					properties);
+		}
+		if (LOG.isDebugEnabled()) {
+			LOG.debug(String
+					.format("Create the relationship success: %s(%d)%s-[r:%s]-%s%s(%d)",
+							src.getClass().getSimpleName(), src.getGraphId(),
+							direction == Direction.BOTH
+									|| direction == Direction.INCOMING ? "<"
+									: "", relationship,
+							direction == Direction.BOTH
+									|| direction == Direction.OUTGOING ? ">"
+									: "", tar.getClass().getSimpleName(), tar
+									.getGraphId()));
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.yt.neo4j.repository.CrudOperate#deleteRelation(com.yt.neo4j.bean.
+	 * Neo4jBaseBean, com.yt.neo4j.bean.Neo4jBaseBean, java.lang.String)
+	 */
+	@Override
+	public void deleteRelation(Neo4jBaseBean src, Neo4jBaseBean tar,
+			String relationship) throws Exception {
+		if (src == null || tar == null) {
+			if (LOG.isWarnEnabled()) {
+				LOG.warn("Any Neo4jBaseBean is null, can not delete the relationship.");
+			}
+			return;
+		}
+		template.deleteRelationshipBetween(src, tar, relationship);
+		if (LOG.isDebugEnabled()) {
+			LOG.debug(String.format(
+					"Delete relationship success: %s(%d)-[r:%s]-%s(%d).", src
+							.getClass().getSimpleName(), src.getGraphId(),
+					relationship, tar.getClass().getSimpleName(), tar
+							.getGraphId()));
 		}
 	}
 

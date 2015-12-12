@@ -272,4 +272,19 @@ public interface CrudOperate {
 			String relationship, Direction direction,
 			Map<String, Object> propertes) throws Exception;
 
+	/**
+	 * 删除指定两个节点之间指定名称的关系，包括关系的属性。
+	 * 
+	 * @param src
+	 *            关系开始节点对象
+	 * @param tar
+	 *            关系结束节点对象
+	 * @param relationship
+	 *            关系名称
+	 * @throws Exception
+	 *             删除关系过程中发生的异常
+	 */
+	public void deleteRelation(Neo4jBaseBean src, Neo4jBaseBean tar,
+			String relationship) throws Exception;
+
 }
