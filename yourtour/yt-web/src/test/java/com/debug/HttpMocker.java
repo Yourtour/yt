@@ -81,7 +81,7 @@ public class HttpMocker {
 	private static String getData() throws Exception{
 		RegisterVO vo = new RegisterVO();
 		
-		vo.setMobile("13601951707");
+		vo.setMobile("13601951711");
 		vo.setPassword("123456");
 		
 		ObjectMapper  objectMapper = new ObjectMapper();

@@ -6,7 +6,7 @@ import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.neo4j.repository.GraphRepository;
 
 import com.yt.business.bean.RouteMainBean;
-import com.yt.business.bean.UserAccountBean;
+import com.yt.business.bean.UserProfileBean;
 
 public interface RouteBeanRepository extends GraphRepository<RouteMainBean> {
 	/**
@@ -28,6 +28,6 @@ public interface RouteBeanRepository extends GraphRepository<RouteMainBean> {
 	 *            成员角色
 	 * @return 用户列表
 	 */
-	@Query("START route=node({0}) MATCH route-[r:HAS]->(user:UserAccountBean) WHERE r.groupRole = {1} RETURN user")
-	public List<UserAccountBean> getRoutePeople(Long routeId, String groupRole);
+	@Query("START route=node({0}) MATCH route <-- (user:UserProfileBean) RETURN user")
+	public List<UserProfileBean> getRouteMember(Long routeId);
 }

@@ -45,6 +45,12 @@ public interface Constants {
 	 * 属于
 	 */
 	public static final String RELATION_TYPE_BELONG = "BELONG";
+	
+	/**
+	 * 参与
+	 */
+	public static final String RELATION_TYPE_PARTICIPATE = "PARTICIPATE";
+	
 
 	// 资源枚举
 	public static enum GenderType {

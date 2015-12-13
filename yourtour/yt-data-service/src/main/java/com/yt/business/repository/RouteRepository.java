@@ -5,6 +5,7 @@ import java.util.List;
 import com.yt.business.CrudAllInOneOperate;
 import com.yt.business.bean.RouteMainBean;
 import com.yt.business.bean.UserAccountBean;
+import com.yt.business.bean.UserProfileBean;
 import com.yt.business.common.Constants.GroupRole;
 
 public interface RouteRepository extends CrudAllInOneOperate {
@@ -30,8 +31,7 @@ public interface RouteRepository extends CrudAllInOneOperate {
 	 * @throws Exception
 	 *             获取数据过程中发生的异常
 	 */
-	public List<UserAccountBean> getRoutePeople(Long routeId,
-			GroupRole groupRole) throws Exception;
+	public List<UserProfileBean> getRouteMember(Long routeId) throws Exception;
 
 	/**
 	 * /** 根据指定的用户，返回该用户拥有的行程

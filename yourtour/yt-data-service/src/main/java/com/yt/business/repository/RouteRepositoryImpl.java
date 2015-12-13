@@ -16,6 +16,7 @@ import com.yt.business.bean.RouteActivityBean;
 import com.yt.business.bean.RouteMainBean;
 import com.yt.business.bean.RouteScheduleBean;
 import com.yt.business.bean.UserAccountBean;
+import com.yt.business.bean.UserProfileBean;
 import com.yt.business.common.Constants;
 import com.yt.business.common.Constants.GroupRole;
 import com.yt.business.neo4j.repository.RouteBeanRepository;
@@ -80,9 +81,8 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 	 * com.yt.business.common.Constants.GroupRole)
 	 */
 	@Override
-	public List<UserAccountBean> getRoutePeople(Long routeId,
-			GroupRole groupRole) throws Exception {
-		return repository.getRoutePeople(routeId, groupRole.code);
+	public List<UserProfileBean> getRouteMember(Long routeId) throws Exception {
+		return repository.getRouteMember(routeId);
 	}
 
 	/*
