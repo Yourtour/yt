@@ -1,17 +1,18 @@
 Ext.define('YourTour.model.UserModel', {
 	extend: 'Ext.data.Model',
     config:{
-    	idProperty:'graphId',
+    	idProperty:'id',
     	
 	    fields:[
-            {name:'graphId', type:'string'},
+            {name:'id', type:'string'},
             {name:'mobile', type:'string'},
             {name:'authcode', type:'string'},
             {name:'userName', type:'string'},
             {name:'password', type:'string'},
-    		{name:'nickname', type:'string'},
+    		{name:'nickName', type:'string'},
     		{name:'sex', type:'string'},
-    		{name:'imageurl', type:'string'},
+    		{name:'role', type:'string'},
+    		{name:'imageUrl', type:'string'},
     		{name:'tags', type:'string'}
 	    ],
 	    

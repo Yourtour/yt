@@ -1,4 +1,4 @@
-Ext.define('YourTour.store.RouteMemberStore', {
+Ext.define('YourTour.store.UserStore', {
 	extend: 'YourTour.store.AjaxStore',
     requires: [
        'YourTour.model.UserModel'

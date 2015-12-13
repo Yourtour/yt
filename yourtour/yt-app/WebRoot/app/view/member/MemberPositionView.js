@@ -8,7 +8,7 @@ Ext.define('YourTour.view.member.MemberPositionView', {
         items: [
 			{    
 				xtype: 'xheaderbar',
-				title:'伙伴位置'
+				title:'位置'
 			},
 			
 			{

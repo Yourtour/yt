@@ -7,17 +7,30 @@ Ext.define('YourTour.view.member.MemberMainView', {
         items: [
 			{    
 				xtype: 'xheaderbar',
-				title:'伙伴'
+				title:'伙伴',
+				items:[
+					{
+					   xtype:'toolbutton',
+					   itemId:'management',
+					   text:'管理',
+					   align:'right'
+					},
+					{
+					   xtype:'toolbutton',
+					   itemId:'finished',
+					   text:'完成',
+					   hidden:true,
+					   align:'right'
+					}
+				]
 			},
 			
 			{
-	   			xtype:'xgridview',
-	   			itemId:'members',
-				layut:'hbox',
-				cols:2,
-				hSpace:5,
+				itemId:'members',
+				xtype:'dataview',
 				flex:1,
-				item:'YourTour.view.member.MemberItemView'
+		        useComponents: true,
+		        defaultType: 'MemberItemView'
 	   		},
 			
 			{	
@@ -33,6 +46,13 @@ Ext.define('YourTour.view.member.MemberMainView', {
                 },
         	    items:[
 					{
+						itemId:'btnAdd',
+						title:'加人',
+					    iconCls:'user',
+					    iconAlign:'top'
+					},
+					
+					{
 						itemId:'btnMessage', 
 					    title:'聊天',
 					    iconCls:'home',
@@ -42,12 +62,6 @@ Ext.define('YourTour.view.member.MemberMainView', {
 					    itemId:'btnPosition',
 					    title:'位置',
 					    iconCls:'home',
-					    iconAlign:'top'
-					},
-					{
-						itemId:'btnAdd',
-						title:'加人',
-					    iconCls:'user',
 					    iconAlign:'top'
 					}
         	    ]

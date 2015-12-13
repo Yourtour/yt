@@ -1,9 +1,8 @@
-Ext.define('YourTour.view.route.MainItem', {
+Ext.define('YourTour.view.route.RouteMainItem', {
     extend: 'Ext.Panel',
-    xtype: 'MainItem',
+    xtype: 'RouteMainItem',
     requires:['Ext.Label', 'Ext.Img','Ext.Toolbar', 'YourTour.view.widget.MarkedLabel', 'YourTour.view.widget.XLabel', 'YourTour.view.widget.XField'],
     config: {
-    	itemId:'MainItem',
     	record:null,
     	carousel:null,
     	layout:'vbox',
@@ -138,7 +137,7 @@ Ext.define('YourTour.view.route.MainItem', {
         me.record = record;
         if(record){
  	 	   var imageUrl = me.down('#imageUrl');
- 	 	   imageUrl.setHtml("<img src='" + record.get('imageUrl') + "' style='width:100%; max-height:150px'>");
+ 	 	   imageUrl.setHtml("<img src='" + YourTour.util.Context.getImageResource(record.get('imageUrl')) + "' style='width:100%; max-height:150px'>");
  	 	   
  	 	   var name = me.down('#routeName');
  	 	   name.setHtml(record.get('name'));

@@ -31,11 +31,11 @@ Ext.application({
         'route.RouteScheduleListView', 'route.RouteSchedulePlanView','route.RouteScheduleReferenceView','route.schedule.SceneScheduleView','route.schedule.HotelScheduleView','route.schedule.FoodScheduleView',
         'route.RouteProvisionView','route.RouteProvisionEditView','route.RouteScheduleEditView','route.RouteScheduleView',
         'route.RouteActivityEditView',
-        'user.LoginMainView','user.UserListView',
+        'user.LoginMainView','user.UserListView','user.UserMainView',
         'line.LineRecommendView','line.LineIntroductionView',
         'resource.ResourceSelectionView','resource.ResourceDetailView',
-        'personal.PersonalMainView',
-        'member.MemberMainView','member.MemberAddView','member.MemberPositionView','member.MemberSearchView'
+        'member.MemberMainView','member.MemberAddView','member.MemberPositionView','member.MemberSearchView',
+        'expert.ExpertMainView','expert.ExpertApplyView'
     ],
     
     controllers: [
@@ -46,7 +46,7 @@ Ext.application({
         'line.LineRecommendCtrl','line.LineIntroductionCtrl','user.AccountMainCtrl',
         'route.ScheduleReferenceCtrl','route.ScheduleDetailCtrl',
         'resource.ResourceCtrl','user.UserListCtrl',
-        'MemberCtrl',
+        'MemberMainCtrl','UserMainCtrl', 'ExpertMainCtrl'
     ],
     
     models:[
@@ -55,7 +55,7 @@ Ext.application({
     ],
     
     stores:[
-        'LaunchStore','RouteStore','LineStore','ResourcePlayStore','ResourceFoodStore','UserStore', 'HomeStore', 'BestListStore','TalentListStore', 'AlongListStore','CommentStore', 'PlaceStore','LocalStore'
+        'LaunchStore','RouteStore','RouteMemberStore', 'LineStore','ResourcePlayStore','ResourceFoodStore','UserStore', 'HomeStore', 'BestListStore','TalentListStore', 'AlongListStore','CommentStore', 'PlaceStore','LocalStore'
     ],
         
     icon: {

@@ -43,7 +43,7 @@ Ext.define('YourTour.view.MainView', {
 					    iconAlign:'top'
 					},
 					{
-						xtype:'PersonalMainView',
+						xtype:'UserMainView',
 						itemId:'btnPersonal',
 						title:'个人',
 					    iconCls:'user',
@@ -52,19 +52,5 @@ Ext.define('YourTour.view.MainView', {
         	    ]
         	}
         ]
-    },
-    
-    /*push:function(item){
-    	this.add(item);
-    	this.setActiveItem(item);
-    },
-    
-    pop:function(){
-    	console.log('before');
-    	var currentItem = this.getActiveItem(), prevItem = this.getAt(this.items.length - 2);
-    	
-    	this.remove(currentItem);
-    	this.setActiveItem(prevItem);
-    	console.log('after');
-    }*/
+    }
 });

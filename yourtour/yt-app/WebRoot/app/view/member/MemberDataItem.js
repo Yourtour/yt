@@ -3,28 +3,75 @@ Ext.define('YourTour.view.member.MemberDataItem', {
     xtype:'MemberDataItem',
     config: {
 	    layout:'hbox',
-	    padding:5,
+	    padding:'5 5 5 5',
 	    height:75,
 	    cls:'underline',
         items: [
 			{
-				xtype:'image',
-				itemId:'imageUrl',
-				mode:'tag'
-			}, 
+				xtype:'panel',
+				layout:'vbox',
+				items:[
+					{
+						   xtype:'spacer',
+						   flex:1
+					},    
+					{
+						xtype:'image',
+						itemId:'imageUrl',
+						mode:'tag'
+					}, 
+			       {
+					   xtype:'spacer',
+					   flex:1
+			       },
+				]
+			},    
+			
+			{
+				xtype:'panel',
+				layout:'vbox',
+				margin:'0 10 0 10',
+				flex:1,
+				items:[
+			       {
+			    	   xtype:'label',
+			    	   itemId:'nickName'
+			       }
+				]
+			},
 			
 			{
 				xtype:'panel',
 				layout:'vbox',
 				items:[
-				       {
-				    	   xtype:'label',
-				    	   itemId:'nickname',
-				    	   html:'afadsfads'	   
-				       }
+					{
+						   xtype:'spacer',
+						   flex:1
+					},    
+					{  
+						xtype : 'image',
+	    				mode : 'tag',
+	    				src:'resources/icons/icon_add.png',
+		              	itemId:'btnAdd'  
+					},
+			       {
+					   xtype:'spacer',
+					   flex:1
+			       },
 				]
 			}
         ]
+    },
+    
+    initialize : function(){
+    	var me = this;
+    	
+    	var dataview = me.dataview || me.getDataview();
+    	
+    	var btnAdd = me.down('#btnAdd');
+    	btnAdd.on('tap', function(){
+    		dataview.fireEvent('addTap', dataview, me.getRecord());
+    	});
     },
     
     updateRecord: function(record) {
@@ -32,10 +79,10 @@ Ext.define('YourTour.view.member.MemberDataItem', {
         
         if(record){
         	var imageUrl = me.down('#imageUrl');
-  	 	   	imageUrl.setHtml("<img src='" + record.get('imageUrl') + "' style='width:100%; max-height:150px'>");
+  	 	   	imageUrl.setHtml("<img src='" + YourTour.util.Context.getImageResource(record.get('imageUrl')) + "' style='width:100%; max-height:150px'>");
   	 	   
-  	 	   	var nickname = me.down('#nickname');
-  	 	   	nickname.setHtml(record.get('nickname'));
+  	 	   	var nickName = me.down('#nickName');
+  	 	   	nickName.setHtml(record.get('nickName'));
         }
     }   
 });

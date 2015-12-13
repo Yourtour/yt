@@ -10,7 +10,7 @@ Ext.define('YourTour.view.route.RouteMainView', {
 			{    
 				xtype: 'xheaderbar',
 				itemId:'headerbar',
-				title:'旅行',
+				title:'我的旅行',
 				backButton:false,
 				items:[
 			       {

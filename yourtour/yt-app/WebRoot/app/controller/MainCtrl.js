@@ -27,6 +27,8 @@ Ext.define('YourTour.controller.MainCtrl', {
     		this.doForward('/main/home');
     	}else if(newTab.getItemId() == 'btnRoute'){
     		this.doForward('/main/route');
+    	}else if(newTab.getItemId() == 'btnPersonal'){
+    		this.doForward('/main/user');
     	}
     },
     

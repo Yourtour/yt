@@ -1,10 +1,11 @@
 Ext.define('YourTour.view.member.MemberItemView', {
-    extend: 'Ext.Panel',
-    requires:['Ext.Panel', 'YourTour.view.widget.XField','YourTour.view.widget.XPanel'],
+	extend: 'Ext.dataview.component.DataItem',
+    requires:['Ext.Panel', 'YourTour.view.widget.XLabel'],
     xtype: 'MemberItemView',
     config: {
-    	model:null,
       	layout:'hbox',
+      	height:50,
+      	cls:'underline',
       	padding:5,
         items: [
 		   	{
@@ -14,42 +15,47 @@ Ext.define('YourTour.view.member.MemberItemView', {
     		},
     		
     		{
-    			xtype:'panel',
-    			layout:'vbox',
-    			margin:'0 0 0 5',
-    			items:[
-					{
-						xtype:'panel',
-						layout:'hbox',
-						items:[
-							{
-								itemId:'nickname',
-								xtype:'xfield'
-							},
-							{
-								itemId : 'sexImgUrl',
-								xtype : 'image',
-								margin:'0 0 0 5',
-								mode : 'tag'
-							}
-						]
-					}
-    			]
+				itemId:'nickName',
+				margin:'0 10 0 10',
+				style:'line-height:40px',
+				flex:1,
+				xtype:'xlabel'
+			},
+			
+			{
+   				itemId : 'imageRole',
+				xtype : 'image',
+				mode : 'tag'
+    		},
+    		
+    		{
+   				itemId : 'imageDel',
+				xtype : 'image',
+				hidden:true,
+				src:'resources/icons/icon_delete.png',
+				mode : 'tag'
+					
     		}
-        ]
+		]
     },
     
-    applyModel:function(model){
+    updateRecord:function(record){
     	var me = this;
-       	if(model){
+    	
+       	if(record){
        	   var imageUrlEl = me.down('#imageUrl');
-	 	   imageUrlEl.setHtml("<img src='" + model.get('imageUrl') + "' style='width:48px; max-height:48px'>");
+	 	   imageUrlEl.setHtml("<img src='" + YourTour.util.Context.getImageResource(record.get('imageUrl')) + "' style='width:40px; max-height:40px'>");
 	 	   
-	 	   var nicknameEl = me.down('#nickname');
-	 	   nicknameEl.setHtml(model.get('nickname'));
+	 	   var nickName = me.down('#nickName');
+	 	   nickName.setHtml(record.get('nickName'));
 	 	   
-	 	   var sexImgUrlEl = me.down('#sexImgUrl');
-	 	   sexImgUrlEl.setHtml("<img src='resources/icons/" + (model.get('sex')=='M'?"icon_male.png":"icon_female.png") + "'>");
+	 	   var role = record.get('role');
+	 	   var roleEl = me.down('#imageRole');
+	 	   if(role == 'leader'){
+	 		  roleEl.setHtml("<img src='resources/icons/icon_leader.png'/>");
+	 	   }else if(role == 'expert'){
+	 		  roleEl.setHtml("<img src='resources/icons/icon_expert.png'/>");
+	 	   }	   
 	 	}
     }
 });

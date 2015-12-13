@@ -1,6 +1,6 @@
 Ext.define('YourTour.controller.route.RouteMainCtrl', {
     extend: 'YourTour.controller.BaseCtrl',
-    requires:['YourTour.store.RouteStore','YourTour.view.route.MainItem'],
+    requires:['YourTour.store.RouteStore','YourTour.view.route.RouteMainItem'],
     
     config: {
        refs: {
@@ -72,7 +72,7 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
     	var handler = function(){
     		routeCarousel.removeAll(true, false);
         	store.each(function(item){
-        		var routePanel = Ext.create('YourTour.view.route.MainItem',{itemId:item.get('Id'), carousel:routeCarousel, record:item});
+        		var routePanel = Ext.create('YourTour.view.route.RouteMainItem',{itemId:item.get('Id'), carousel:routeCarousel, record:item});
         		routeCarousel.add(routePanel);
         	});
         	

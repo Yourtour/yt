@@ -27,6 +27,8 @@ Ext.define('YourTour.util.Context', {
     
     getImageResource:function(url){
     	var s = 'http://' + this.getServer() + ':8080/yt-app';
+    	if(url == null || url == '') return s;
+    	
     	if(url.substr(0,1) != '/'){
     		s += '/';
     	}
