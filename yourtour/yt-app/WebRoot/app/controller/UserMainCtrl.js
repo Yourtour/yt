@@ -22,7 +22,12 @@ Ext.define('YourTour.controller.UserMainCtrl', {
     showPage:function(){
     	var me = this;
     	
-    	YourTour.util.Context.mainview = me.getUserMainView();		
+    	YourTour.util.Context.mainview = me.getUserMainView();
+    	
+    	var userMainView = this.getUserMainView();
+    	
+    	var userLogo = userMainView.down('#userLogo');
+    	userLogo.setHtml("<img src='" + YourTour.util.Context.getImageResource('/resources/images/user_logo_64.png') + "' style='width:64px; height:64px'>");
     },
     
     onExpertTap:function(){

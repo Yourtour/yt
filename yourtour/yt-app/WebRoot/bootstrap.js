@@ -646,6 +646,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.controller.Launch": [],
   "YourTour.controller.MainCtrl": [],
   "YourTour.controller.MemberMainCtrl": [],
+  "YourTour.controller.MessageMainCtrl": [],
   "YourTour.controller.UserMainCtrl": [],
   "YourTour.controller.common.PlaceChangeCtrl": [],
   "YourTour.controller.common.PlaceSelectionCtrl": [],
@@ -677,6 +678,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.model.LineModel": [],
   "YourTour.model.LiveModel": [],
   "YourTour.model.LocalCache": [],
+  "YourTour.model.MessageContentModel": [],
+  "YourTour.model.MessageSessionModel": [],
   "YourTour.model.OptionModel": [],
   "YourTour.model.PlaceModel": [],
   "YourTour.model.ResourceModel": [],
@@ -695,6 +698,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.store.LaunchStore": [],
   "YourTour.store.LineStore": [],
   "YourTour.store.LocalStore": [],
+  "YourTour.store.MessageContentStore": [],
+  "YourTour.store.MessageSessionStore": [],
   "YourTour.store.PlaceStore": [],
   "YourTour.store.ResourceFoodStore": [],
   "YourTour.store.ResourcePlayStore": [],
@@ -709,14 +714,15 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.MainView": [],
   "YourTour.view.SearchMain": [],
   "YourTour.view.common.CommentListItemView": [],
+  "YourTour.view.common.MessageDataItemView": [],
+  "YourTour.view.common.MessageGroupView": [],
   "YourTour.view.common.MessageMainView": [],
-  "YourTour.view.common.MessageView": [],
   "YourTour.view.common.PlaceChangeView": [],
   "YourTour.view.common.PlaceGridItemView": [],
   "YourTour.view.common.PlaceListItemView": [],
   "YourTour.view.common.PlaceSelectionView": [],
   "YourTour.view.common.PlaceTypeListItemView": [],
-  "YourTour.view.community.Main": [],
+  "YourTour.view.community.LiveMainView": [],
   "YourTour.view.expert.ExpertApplyView": [],
   "YourTour.view.expert.ExpertIntroView": [],
   "YourTour.view.expert.ExpertListView": [],
@@ -754,7 +760,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.resource.ResourceSelectionView": [],
   "YourTour.view.resource.SceneResourceView": [],
   "YourTour.view.route.RouteActivityEditView": [],
-  "YourTour.view.route.RouteDiscussView": [],
   "YourTour.view.route.RouteImpressionView": [],
   "YourTour.view.route.RouteMainItem": [],
   "YourTour.view.route.RouteMainView": [],
@@ -1531,6 +1536,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.controller.Launch": [],
   "YourTour.controller.MainCtrl": [],
   "YourTour.controller.MemberMainCtrl": [],
+  "YourTour.controller.MessageMainCtrl": [],
   "YourTour.controller.UserMainCtrl": [],
   "YourTour.controller.common.PlaceChangeCtrl": [],
   "YourTour.controller.common.PlaceSelectionCtrl": [],
@@ -1564,6 +1570,8 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.model.LocalCache": [
     "widget.localCache"
   ],
+  "YourTour.model.MessageContentModel": [],
+  "YourTour.model.MessageSessionModel": [],
   "YourTour.model.OptionModel": [],
   "YourTour.model.PlaceModel": [],
   "YourTour.model.ResourceModel": [],
@@ -1582,6 +1590,8 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.store.LaunchStore": [],
   "YourTour.store.LineStore": [],
   "YourTour.store.LocalStore": [],
+  "YourTour.store.MessageContentStore": [],
+  "YourTour.store.MessageSessionStore": [],
   "YourTour.store.PlaceStore": [],
   "YourTour.store.ResourceFoodStore": [],
   "YourTour.store.ResourcePlayStore": [],
@@ -1606,9 +1616,12 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.common.CommentListItemView": [
     "widget.CommentListItemView"
   ],
-  "YourTour.view.common.MessageMainView": [],
-  "YourTour.view.common.MessageView": [
-    "widget.MessageView"
+  "YourTour.view.common.MessageDataItemView": [
+    "widget.MessageDataItemView"
+  ],
+  "YourTour.view.common.MessageGroupView": [],
+  "YourTour.view.common.MessageMainView": [
+    "widget.MessageMainView"
   ],
   "YourTour.view.common.PlaceChangeView": [
     "widget.PlaceChangeView"
@@ -1625,8 +1638,8 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.common.PlaceTypeListItemView": [
     "widget.PlaceTypeListItemView"
   ],
-  "YourTour.view.community.Main": [
-    "widget.communityview"
+  "YourTour.view.community.LiveMainView": [
+    "widget.LiveMainView"
   ],
   "YourTour.view.expert.ExpertApplyView": [
     "widget.ExpertApplyView"
@@ -1729,7 +1742,6 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.SceneResourceView"
   ],
   "YourTour.view.route.RouteActivityEditView": [],
-  "YourTour.view.route.RouteDiscussView": [],
   "YourTour.view.route.RouteImpressionView": [],
   "YourTour.view.route.RouteMainItem": [
     "widget.RouteMainItem"

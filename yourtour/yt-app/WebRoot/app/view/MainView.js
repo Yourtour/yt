@@ -43,6 +43,13 @@ Ext.define('YourTour.view.MainView', {
 					    iconAlign:'top'
 					},
 					{
+						xtype:'LiveMainView',
+					    itemId:'btnView',
+					    title:'微视',
+					    iconCls:'home',
+					    iconAlign:'top'
+					},
+					{
 						xtype:'UserMainView',
 						itemId:'btnPersonal',
 						title:'个人',

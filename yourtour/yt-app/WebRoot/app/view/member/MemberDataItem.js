@@ -51,7 +51,7 @@ Ext.define('YourTour.view.member.MemberDataItem', {
 					{  
 						xtype : 'image',
 	    				mode : 'tag',
-	    				src:'resources/icons/icon_add.png',
+	    				src:'resources/icons/icon_add_48.png',
 		              	itemId:'btnAdd'  
 					},
 			       {

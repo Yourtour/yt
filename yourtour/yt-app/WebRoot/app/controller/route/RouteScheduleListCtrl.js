@@ -54,8 +54,6 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
     		imageEl.setHtml("<img src='" + YourTour.util.Context.getImageResource(record.get('imageUrl')) + "' style='width:100%; max-height:150px'>");
     		
 	    	var scheduleList = view.down('#RouteScheduleList');
-	    	console.log(record.schedulesStore.getData());
-	    	
 	    	scheduleList.setStore(record.schedulesStore);
     	};
  	   	

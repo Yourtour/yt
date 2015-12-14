@@ -25,9 +25,9 @@ Ext.application({
     localStorage : window.localStorage,  
     
     views: [
-        'MainView','Launch','common.PlaceChangeView','common.PlaceSelectionView',
+        'MainView','Launch','common.PlaceChangeView','common.PlaceSelectionView','common.MessageMainView','common.MessageGroupView',
         'home.HomeMainView', 'home.BestListView', 'home.AlongListView', 'home.AlongDetailView', 'home.TalentListView', 'SearchMain',
-        'route.RouteMainView','route.RouteSettingView','route.RouteImpressionView','route.RouteDiscussView',
+        'route.RouteMainView','route.RouteSettingView','route.RouteImpressionView',
         'route.RouteScheduleListView', 'route.RouteSchedulePlanView','route.RouteScheduleReferenceView','route.schedule.SceneScheduleView','route.schedule.HotelScheduleView','route.schedule.FoodScheduleView',
         'route.RouteProvisionView','route.RouteProvisionEditView','route.RouteScheduleEditView','route.RouteScheduleView',
         'route.RouteActivityEditView',
@@ -35,7 +35,8 @@ Ext.application({
         'line.LineRecommendView','line.LineIntroductionView',
         'resource.ResourceSelectionView','resource.ResourceDetailView',
         'member.MemberMainView','member.MemberAddView','member.MemberPositionView','member.MemberSearchView',
-        'expert.ExpertMainView','expert.ExpertApplyView','expert.ExpertIntroView','expert.ExpertListView'
+        'expert.ExpertMainView','expert.ExpertApplyView','expert.ExpertIntroView','expert.ExpertListView',
+        'community.LiveMainView'
     ],
     
     controllers: [
@@ -46,7 +47,7 @@ Ext.application({
         'line.LineRecommendCtrl','line.LineIntroductionCtrl','user.AccountMainCtrl',
         'route.ScheduleReferenceCtrl','route.ScheduleDetailCtrl',
         'resource.ResourceCtrl','user.UserListCtrl',
-        'MemberMainCtrl','UserMainCtrl', 'ExpertMainCtrl'
+        'MemberMainCtrl','UserMainCtrl', 'ExpertMainCtrl', 'MessageMainCtrl'
     ],
     
     models:[

@@ -11315,7 +11315,7 @@ Ext.define('Ext.env.Feature', {
     Ext.feature.registerTest({
         Canvas: function() {
             var element = this.getTestElement('canvas');
-            return !!(element && element.getContext && element.getContext('2d'));
+            return !!(element && element.getRestResource && element.getRestResource('2d'));
         },
 
         Svg: function() {

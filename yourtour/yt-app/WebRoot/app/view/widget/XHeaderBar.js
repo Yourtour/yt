@@ -3,7 +3,11 @@ Ext.define('YourTour.view.widget.XHeaderBar', {
     xtype: 'xheaderbar',
     requires:['YourTour.view.widget.XBack', 'YourTour.view.widget.XPlainButton'],
     config: {
-    	docked: 'top'
+    	docked: 'top',
+    	style:'background-color:#6C7B8B',
+    	defaults:{
+    		style:'color:white'
+    	}
     },
     
     constructor: function(config) {

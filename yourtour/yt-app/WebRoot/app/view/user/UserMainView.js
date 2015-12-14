@@ -14,12 +14,26 @@ Ext.define('YourTour.view.user.UserMainView', {
 				title:'个人中心',	
             },
             
-        	{
-   				itemId : 'imageUrl',
-				xtype : 'image',
-				height:200,
-				width:'100%',
-				src:'resources/images/personal_view_image.jpg',
+            {
+    			xtype:'panel',
+    			layout:'hbox',
+    			itemId:'profile',
+    			style:'background-color:white',
+    			cls:'nav_arrow',
+    			padding:10,
+    			items:[
+					{
+						itemId : 'userLogo',
+						xtype : 'image',
+						model:'tag'
+					},   
+		    		{
+		    			 xtype:'xlabel',
+		    			 html : '我是达人',
+		    			 flex:1,
+		    			 tappable :true
+		    		}
+		    	]
     		},
     		
     		{
@@ -44,7 +58,7 @@ Ext.define('YourTour.view.user.UserMainView', {
     			items:[
 					{
 						xtype:'xlabel',
-						itemId:'order',
+						itemId:'message',
 						cls:'row nav_arrow font-large underline',
 						html : '我的消息',
 						padding:'0 10 0 10',
@@ -53,7 +67,7 @@ Ext.define('YourTour.view.user.UserMainView', {
 					
 					{
 						xtype:'xlabel',
-						itemId:'order',
+						itemId:'comment',
 						cls:'row nav_arrow font-large underline',
 						html : '我的点评',
 						padding:'0 10 0 10',
@@ -62,12 +76,21 @@ Ext.define('YourTour.view.user.UserMainView', {
 					
 					{
 						xtype:'xlabel',
-						itemId:'order',
+						itemId:'favorite',
 						cls:'row nav_arrow font-large underline',
 						html : '我的收藏',
 						padding:'0 10 0 10',
 						tappable :true
 					},
+					
+					{
+						xtype:'xlabel',
+						itemId:'share',
+						cls:'row nav_arrow font-large underline',
+						html : '我的分享',
+						padding:'0 10 0 10',
+						tappable :true
+					}
     			]
     		},
     		

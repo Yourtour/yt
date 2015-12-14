@@ -74,7 +74,7 @@ Ext.define('YourTour.controller.MemberMainCtrl', {
     
     onActiveItemChange:function(tabBar, newTab, oldTab){
     	if(newTab.getItemId() == 'btnMessage'){
-    		
+    		this.showMessagePage();
     	}else if(newTab.getItemId() == 'btnPosition'){
     		this.showPositionPage();
     	}else if(newTab.getItemId() == 'btnAdd'){
@@ -84,6 +84,11 @@ Ext.define('YourTour.controller.MemberMainCtrl', {
     
     showAddPage:function(){
     	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.member.MemberAddView'));
+    },
+    
+    showMessagePage:function(){
+    	var sessionId = '1111';
+    	this.redirectTo('/message/session/' + sessionId);
     },
     
     /**

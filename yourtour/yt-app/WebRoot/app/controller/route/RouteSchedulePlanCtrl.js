@@ -523,10 +523,8 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     	var schedule = store.getAt(this.index);
     	
     	var length = store.getData().length;
-    	console.log(length);
     	
     	var parentId;
-    	
     	if(schedule.get('type') == 'Schedule' || schedule.get('type') == 'Provision'){
     		parentId = schedule.get('id');
     		
@@ -564,6 +562,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     },
     
     onRouteDiscuss:function(){
-    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteDiscussView'));
+    	var sessionId = '111';
+    	this.redirectTo('/message/session/' + sessionId);
     }
 });
