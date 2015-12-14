@@ -271,6 +271,27 @@ public interface CrudOperate {
 	public void createRelation(Neo4jBaseBean src, Neo4jBaseBean tar,
 			String relationship, Direction direction,
 			Map<String, Object> propertes) throws Exception;
+	
+	/**
+	 * 保存Neo4J实体对象之间的关系，本方法建立的关系包括属性。<br>
+	 * 如果该关系原来存在，则删除该关系后重新建立该关系。
+	 * 
+	 * @param src
+	 *            关系的源节点
+	 * @param tar
+	 *            关系的目标节点
+	 * @param relationship
+	 *            关系
+	 * @param direction
+	 *            关系的方向
+	 * @param propertes
+	 *            关系的附加属性
+	 * @throws Exception
+	 *             建立关系过程中发生的异常
+	 */
+	public Map<String, Object> getRelation(Neo4jBaseBean src, Neo4jBaseBean tar,
+			String relationshipType
+			) throws Exception;
 
 	/**
 	 * 删除指定两个节点之间指定名称的关系，包括关系的属性。

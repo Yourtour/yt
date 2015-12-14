@@ -8,6 +8,7 @@ import java.util.Vector;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.neo4j.graphdb.Direction;
+import org.neo4j.graphdb.Relationship;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -94,13 +95,22 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 	 */
 	@Override
 	public List<RouteMainBean> getRoutesByOwner(Long userId) throws Exception {
+		UserProfileBean profileBean = (UserProfileBean) super.get(UserProfileBean.class,
+				userId, false);
 		List<RouteMainBean> routes = repository.getRoutesByOwner(userId);
 		List<RouteMainBean> list = new Vector<RouteMainBean>(routes.size());
+		Map<String, Object> relation = null;
 		for (RouteMainBean bean : routes) {
-			bean = (RouteMainBean) super.loadRelations(bean);
-			if (bean == null) {
-				continue;
+			relation = super.getRelation(bean, profileBean,Constants.RELATION_TYPE_HAS);
+			if(relation != null){
+				if(relation.get("imageUrl") != null){
+					bean.setImageUrl(relation.get("imageUrl").toString());
+				}
+				
+				if(relation.get("impression") != null)
+					bean.setImpression(relation.get("impression").toString());
 			}
+					
 			list.add(bean);
 		}
 		if (LOG.isDebugEnabled()) {

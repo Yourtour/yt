@@ -11,7 +11,9 @@ Ext.define('YourTour.controller.ExpertMainCtrl', {
        
        routes:{
         	'/expert':'showMainPage',
-        	'/expert/apply':'showApplyPage'
+        	'/expert/apply':'showApplyPage',
+        	'/expert/:userId':'showIntroPage',
+        	'/experts/:placeId':'showListPage'
        }
     },
     
@@ -28,5 +30,17 @@ Ext.define('YourTour.controller.ExpertMainCtrl', {
     	var me = this;
     	
     	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.expert.ExpertApplyView'));
+    },
+    
+    showIntroPage:function(userId){
+    	var me = this;
+    	
+    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.expert.ExpertIntroView'));
+    },
+    
+    showListPage:function(placeId){
+    	var me = this;
+    	
+    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.expert.ExpertListView'));
     }
 });

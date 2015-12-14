@@ -33,6 +33,10 @@ Ext.define('YourTour.controller.MemberMainCtrl', {
      	  
      	 '#MemberAddView #btnSearch':{
     		  tap:'onSearch'
+    	  },
+     	  
+    	  memberList:{
+    		  itemdelete:'onItemDelete'
     	  }
        },
        
@@ -196,6 +200,34 @@ Ext.define('YourTour.controller.MemberMainCtrl', {
     	
     	this.getManagementBtn().show();
     	this.getFinishedBtn().hide();
-    }
+    },
     
+    onItemDelete:function(dataview, record){
+    	var list = this.getMemberList();
+    	var store = list.getStore();
+    	var index = store.indexOf(record);
+    	
+    	var data = {};
+    	data.routeId = this.routeId;
+    	data.userId = record.get('id');
+    	
+    	Ext.Ajax.request({
+    	    url : YourTour.util.Context.getContext('route/members/' + this.routeId + '/' + record.get('id') + '/delete'),
+    	    method : "GET",
+    	    success : function(response) {
+    	    	var respObj = Ext.JSON.decode(response.responseText);
+    	    	if(respObj.errorCode != '0'){
+    	    		Ext.Msg.alert(respObj.errorText);
+    	    		return;
+    	    	};
+    	    	
+    	    	store.removeAt(index);
+    	    },
+    	    
+    	    failure : function(response) {
+    	        var respObj = Ext.JSON.decode(response.responseText);
+    	        Ext.Msg.alert("Error", respObj.status.statusMessage);
+    	    }
+    	});
+    }
 });

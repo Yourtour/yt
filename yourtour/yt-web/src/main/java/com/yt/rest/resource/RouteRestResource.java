@@ -62,20 +62,8 @@ public class RouteRestResource extends BaseRestResource{
 			userId = super.getCurrentUserId(request);
 			long userGraphId = Neo4jUtils.getGraphIDFromString(userId);
 			
-			UserProfileBean profileBean = null;
-			if (userGraphId != -1) {
-				// id是GraphID
-				profileBean = (UserProfileBean) routeRepository.get(UserProfileBean.class,
-						userGraphId, false);
-			} else {
-				// id 是rowkey
-				profileBean = (UserProfileBean) routeRepository.get(UserProfileBean.class, "rowKey",userId, false);
-			}
-			if (profileBean == null) {
-				return new ResponseDataVO<List<RouteOverViewVO>>(StaticErrorEnum.THE_DATA_NOT_EXIST);
-			}
 			// 根据用户ID获取对应的行程列表
-			List<RouteMainBean> routes = routeRepository.getRoutesByOwner(profileBean.getGraphId());
+			List<RouteMainBean> routes = routeRepository.getRoutesByOwner(userGraphId);
 			List<RouteOverViewVO> list = new Vector<RouteOverViewVO>(routes.size());
 			for (RouteMainBean route : routes) {
 				if(route == null) continue;

@@ -152,9 +152,7 @@ Ext.define('YourTour.view.route.RouteScheduleDataListItem', {
    	 */
     updateRecord: function(record) {
        var me = this;
-       
        var dataview = this.dataview || this.getDataview();
-       
        if(record){
     	   var panel;
        	   var type = record.get('type');

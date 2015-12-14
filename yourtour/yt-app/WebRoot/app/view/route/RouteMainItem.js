@@ -62,24 +62,27 @@ Ext.define('YourTour.view.route.RouteMainItem', {
 			
 		    {
 		    	xtype:'panel',
-		    	padding:'10 10 10 10',
+		    	margin:'10 0 10 0',
+		    	defaults:{
+		    		padding:'0 5 0 5'
+		    	},
 		    	items:[
 				    {
 		    		   	xtype:'xlabel',
-		    		   	cls:'font-bold font-large',
+		    		   	cls:'font-bold font-medium',
 						html:'旅行线路:'
 		    		},
 		            
 					{
 		    		   xtype:'xfield',
 		    		   itemId:'lineName',
-		    		   cls:'multilineinfo',
-		    		   margin:'5 0 0 0'
+		    		   cls:'multilineinfo underline',
+		    		   padding:'5 0 0 10'
 		            },
 		            
 		            {
 		    		   	xtype:'xlabel',
-		    		   	cls:'font-bold font-large',
+		    		   	cls:'font-bold font-medium',
 						html:'旅行时间:',
 						margin:'10 0 0 0'
 		    		},
@@ -87,13 +90,16 @@ Ext.define('YourTour.view.route.RouteMainItem', {
 					{
 		    		   xtype:'xfield',
 		    		   itemId:'time',
-		    		   margin:'5 0 0 0'
+		    		   cls:'row underline',
+		    		   padding:'5 0 0 10'
 		            },
 		            
 		            {
 		    		   	xtype:'xlabel',
-		    		   	cls:'font-bold font-large',
+		    		   	itemId:'impressionEdit',
+		    		   	cls:'font-bold font-medium nav_arrow',
 						html:'旅行印象:',
+						tappable:true,
 						margin:'10 0 0 0'
 		    		},
 		            
@@ -101,7 +107,7 @@ Ext.define('YourTour.view.route.RouteMainItem', {
 		    		   xtype:'xfield',
 		    		   itemId:'impression',
 		    		   cls:'multilineinfo',
-		    		   margin:'5 0 0 0',
+		    		   padding:'5 0 0 10',
 		    		   minHeight:20,
 		    		   maxHeight:40
 		            }
@@ -118,6 +124,9 @@ Ext.define('YourTour.view.route.RouteMainItem', {
     	
     	var btnMember = this.down('#btnMember');
     	btnMember.addListener('tap', this.onMemberBtnTap, this);
+    	
+    	var impressionEdit = this.down('#impressionEdit');
+    	impressionEdit.addListener('tap', this.onImpressionEdit, this);
     },
     
     onRouteBtnTap:function(){
@@ -126,6 +135,10 @@ Ext.define('YourTour.view.route.RouteMainItem', {
     
     onMemberBtnTap:function(){
     	this.carousel.fireEvent("onMemberTap", this.record);
+    },
+    
+    onImpressionEdit:function(){
+    	this.carousel.fireEvent("onImpressionEdit", this.record);
     },
     
     setCarousel:function(carousel){

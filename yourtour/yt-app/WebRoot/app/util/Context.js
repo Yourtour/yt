@@ -5,7 +5,7 @@ Ext.define('YourTour.util.Context', {
     config : {
     	userKey:'user',
     	
-    	server:'192.168.2.100'
+    	server:'172.16.1.191'
     },
     
     constructor : function(config) {
@@ -19,10 +19,6 @@ Ext.define('YourTour.util.Context', {
     	}
     	
     	return s + url;
-    },
-    
-    getUserId:function(){
-    	return '3333';
     },
     
     getImageResource:function(url){

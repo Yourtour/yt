@@ -199,12 +199,10 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     },
     
     onBtnCameralTap:function(){
-    	console.log('onBtnCameralTap');
     	this.getPhoto(navigator.camera.PictureSourceType.CAMERA);
     },
     
     onBtnPhotoTap:function(){
-    	console.log('onBtnPhotoTap');
     	this.getPhoto(navigator.camera.PictureSourceType.PHOTOLIBRARY);
     },
     

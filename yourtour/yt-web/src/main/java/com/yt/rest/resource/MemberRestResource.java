@@ -28,8 +28,8 @@ import com.yt.business.repository.RouteRepository;
 import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponseVO;
-import com.yt.vo.member.UserVO;
 import com.yt.vo.route.RouteMemberVO;
+import com.yt.vo.route.RouteSettingVO;
 
 @Component
 @Path("route/members")
@@ -119,9 +119,61 @@ public class MemberRestResource extends BaseRestResource{
 	 * @return
 	 */
 	@GET
-	@Path("/{routeId}/{memberId}/delete")
-	public ResponseVO deleteRouteMember(@Context HttpServletRequest request, RouteMemberVO member){
-		return null;
+	@Path("/{routeId}/{userId}/delete")
+	public ResponseVO deleteRouteMember(@Context HttpServletRequest request, @PathParam("userId") String userId, @PathParam("routeId") String routeId){
+		try{
+			RouteMainBean route = (RouteMainBean) routeRepository.get(RouteMainBean.class, Long.valueOf(routeId), false);
+			if(route == null){
+				return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+			}
+			
+			UserProfileBean user = (UserProfileBean)routeRepository.get(UserProfileBean.class, Long.valueOf(userId), false);
+			if(user == null){
+				return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+			}
+			
+			routeRepository.deleteRelation(route, user, Constants.RELATION_TYPE_PARTICIPATE);
+			
+			return new ResponseVO();
+		} catch (Exception ex) {
+			LOG.error("Exception raised when registering user account.", ex);
+			return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
+	}
+	
+	/**
+	 * 添加伙伴
+	 * @param request
+	 * @param member
+	 * @return
+	 */
+	@POST
+	@Path("/setting/save")
+	public ResponseVO saveRouteSetting(@Context HttpServletRequest request, RouteSettingVO setting){
+		try{
+			long routeId = setting.getRouteId();
+			RouteMainBean route = (RouteMainBean) routeRepository.get(RouteMainBean.class, routeId, false);
+			if(route == null){
+				return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+			}
+			
+			long userId = setting.getUserId();
+			UserProfileBean user = (UserProfileBean)routeRepository.get(UserProfileBean.class, userId, false);
+			if(user == null){
+				return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+			}	
+			
+			Map<String,Object> props = routeRepository.getRelation(user, route, Constants.RELATION_TYPE_PARTICIPATE);
+			if(props == null) props = new HashMap();
+			
+			props.put(setting.getAttr(), setting.getAttrValue());
+			routeRepository.createRelation(route, user, Constants.RELATION_TYPE_HAS, Direction.OUTGOING,props);
+			
+			return new ResponseVO();
+		} catch (Exception ex) {
+			LOG.error("Exception raised when registering user account.", ex);
+			return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
 	}
 }
 

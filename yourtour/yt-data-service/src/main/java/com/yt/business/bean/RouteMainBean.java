@@ -35,6 +35,8 @@ public class RouteMainBean extends BaseBeanImpl {
 	private int duration;
 
 	private String imageUrl;
+	
+	private transient String impression;
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_FROM, type = PlaceBean.class, direction = Direction.OUTGOING)
 	private transient PlaceBean fromPlace = null; // 行程出发地点
@@ -69,6 +71,14 @@ public class RouteMainBean extends BaseBeanImpl {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getImpression() {
+		return impression;
+	}
+
+	public void setImpression(String impression) {
+		this.impression = impression;
 	}
 
 	public String getImageUrl() {

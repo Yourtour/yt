@@ -17,8 +17,8 @@ Ext.define('YourTour.view.route.RouteSchedulePlanView', {
 						{
 		                	xtype: "toolbutton", 
 		                    ui: "normal", 
-		                	text:'咨询',
-		                	itemId:'consult',
+		                	text:'讨论',
+		                	itemId:'discuss',
 		                	align:'right'
 		                },
 				        {

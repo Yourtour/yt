@@ -74,4 +74,5 @@ public class RouteMemberVO implements Serializable{
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
+	
 }

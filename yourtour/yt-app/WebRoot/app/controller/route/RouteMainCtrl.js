@@ -7,21 +7,28 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
        	    routeMainView:'#RouteMainView',
         	routeCarousel:'#RouteMainView #routeCarousel',
        		newRoute:'#RouteMainView #new',
-       		deleteRoute:'#RouteMainView #delete'
+       		deleteRoute:'#RouteMainView #delete',
+       		
+       		routeImpressionView:'#RouteImpressionView'
        },
        
        control:{
     	   newRoute:{
-    		   	tap:'newRoute'
+    		   	tap:'onRouteNew'
     	   },
     	   
     	   deleteRoute:{
-   		   	tap:'deleteRoute'
+   		   		tap:'onRouteDelete'
     	   },
     	   
     	   routeCarousel:{
     		   onRouteTap:'onRouteTap',
-    		   onMemberTap:'onMemberTap'
+    		   onMemberTap:'onMemberTap',
+    		   onImpressionEdit:'onImpressionEdit'
+    	   },
+    	   
+    	   '#RouteImpressionView #save':{
+    		   tap:'onImpressionSave'
     	   }
        },
        
@@ -32,11 +39,36 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
        store:null
     },
     
-    newRoute:function(){
+    showPage:function(){
+    	var me = this;
+    	
+    	YourTour.util.Context.mainview = me.getRouteMainView();
+    	
+    	var routeCarousel = me.getRouteCarousel();
+    	var store = me.store = Ext.create('YourTour.store.RouteStore',{storeId:'RouteMainStore'});	
+    	var handler = function(){
+    		routeCarousel.removeAll(true, false);
+        	store.each(function(item){
+        		var routePanel = Ext.create('YourTour.view.route.RouteMainItem',{itemId:item.get('Id'), carousel:routeCarousel, record:item});
+        		routeCarousel.add(routePanel);
+        	});
+        	
+        	routeCarousel.setActiveItem(0);
+    	};
+
+    	var proxy = store.getProxy();
+    	proxy.setUrl(YourTour.util.Context.getContext('/routes/personal/query'));
+    	store.load(handler, this);
+    },
+    
+    onRouteNew:function(){
     	this.redirectTo("/route/new");
     },
     
-    deleteRoute:function(){
+    /**
+     * 
+     */
+    onRouteDelete:function(){
     	var me = this;
     	var routeCarousel = me.getRouteCarousel();
     	var index = routeCarousel.getActiveIndex();
@@ -62,33 +94,61 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
     	});
     },
     
-    showPage:function(){
-    	var me = this;
-    	
-    	YourTour.util.Context.mainview = me.getRouteMainView();
-    	
-    	var routeCarousel = me.getRouteCarousel();
-    	var store = me.store = Ext.create('YourTour.store.RouteStore',{storeId:'RouteMainStore'});	
-    	var handler = function(){
-    		routeCarousel.removeAll(true, false);
-        	store.each(function(item){
-        		var routePanel = Ext.create('YourTour.view.route.RouteMainItem',{itemId:item.get('Id'), carousel:routeCarousel, record:item});
-        		routeCarousel.add(routePanel);
-        	});
-        	
-        	routeCarousel.setActiveItem(0);
-    	};
-
-    	var proxy = store.getProxy();
-    	proxy.setUrl(YourTour.util.Context.getContext('/routes/personal/query'));
-    	store.load(handler, this);
-    },
-    
     onRouteTap:function(record){
    		this.redirectTo('/route/load/' + record.get('id'));
     },
     
     onMemberTap:function(record){
     	this.redirectTo('/routes/' + record.get('id') + '/members');
+    },
+    
+    /**
+     * 
+     */
+    onImpressionEdit:function(route){
+    	var me = this;
+    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteImpressionView'));
+    	
+    	var impressionView = me.getRouteImpressionView();
+    	var impression = impressionView.down('#impression');
+    	
+    	impression.setValue(route.get('impression'));
+    },
+    
+    /**
+     * 
+     */
+    onImpressionSave:function(){
+    	var me = this;
+    	
+    	var data = {};
+    	data.attr = 'impression';
+    	
+    	var impressionView = me.getRouteImpressionView();
+    	var impression = impressionView.down('#impression');
+    	data.attrValue = impression.getValue();
+    	
+    	var routeCarousel = me.getRouteCarousel();
+    	var index = routeCarousel.getActiveIndex();
+    	var model = me.store.getAt(index);
+    	data.routeId = model.get('id');
+    	
+    	var userId =  me.getApplication().getUserId();
+    	data.userId = userId;
+    	
+    	Ext.Ajax.request({
+    		url : YourTour.util.Context.getContext('/route/members/setting/save'),
+    	    method : "POST",
+    	    data:Ext.JSON.encode(data),
+    	    success : function(response) {
+    	    	var respObj = Ext.JSON.decode(response.responseText);
+    	    	if(respObj.errorCode != '0'){
+    	    		Ext.Msg.alert(respObj.errorText);
+    	    		return;
+    	    	};
+    	    	
+    	    	Ext.ComponentManager.get('MainView').pop();
+    	    }
+    	});
     }
 });

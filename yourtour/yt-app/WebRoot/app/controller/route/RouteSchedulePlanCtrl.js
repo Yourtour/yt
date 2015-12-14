@@ -12,12 +12,18 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     	   
     	   routeProvisionEditView:'#RouteProvisionEditView',
     		   
-    	   routeScheduleEditView:'#RouteScheduleEditView'	   
+    	   routeScheduleEditView:'#RouteScheduleEditView',
+    	   
+    	   routeDiscussView:'#RouteDiscussView'
        },
        
        control:{
     	   RouteSchedulePlanView:{
     		 destroy:'onRouteSchedulePlanViewDestroy'  
+    	   },
+    	   
+    	   '#RouteSchedulePlanView #discuss':{
+    		   tap:'onRouteDiscuss'
     	   },
     	   
     	   routeScheduleList:{
@@ -555,5 +561,9 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     
     onRouteSchedulePlanViewDestroy:function(){
     	this.store.setData('');
+    },
+    
+    onRouteDiscuss:function(){
+    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteDiscussView'));
     }
 });

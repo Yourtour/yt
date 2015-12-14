@@ -709,6 +709,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.MainView": [],
   "YourTour.view.SearchMain": [],
   "YourTour.view.common.CommentListItemView": [],
+  "YourTour.view.common.MessageMainView": [],
+  "YourTour.view.common.MessageView": [],
   "YourTour.view.common.PlaceChangeView": [],
   "YourTour.view.common.PlaceGridItemView": [],
   "YourTour.view.common.PlaceListItemView": [],
@@ -716,6 +718,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.common.PlaceTypeListItemView": [],
   "YourTour.view.community.Main": [],
   "YourTour.view.expert.ExpertApplyView": [],
+  "YourTour.view.expert.ExpertIntroView": [],
+  "YourTour.view.expert.ExpertListView": [],
   "YourTour.view.expert.ExpertMainView": [],
   "YourTour.view.home.AlongDetailView": [],
   "YourTour.view.home.AlongItemView": [],
@@ -750,6 +754,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.resource.ResourceSelectionView": [],
   "YourTour.view.resource.SceneResourceView": [],
   "YourTour.view.route.RouteActivityEditView": [],
+  "YourTour.view.route.RouteDiscussView": [],
+  "YourTour.view.route.RouteImpressionView": [],
   "YourTour.view.route.RouteMainItem": [],
   "YourTour.view.route.RouteMainView": [],
   "YourTour.view.route.RouteProvisionEditView": [],
@@ -1600,6 +1606,10 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.common.CommentListItemView": [
     "widget.CommentListItemView"
   ],
+  "YourTour.view.common.MessageMainView": [],
+  "YourTour.view.common.MessageView": [
+    "widget.MessageView"
+  ],
   "YourTour.view.common.PlaceChangeView": [
     "widget.PlaceChangeView"
   ],
@@ -1620,6 +1630,12 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.expert.ExpertApplyView": [
     "widget.ExpertApplyView"
+  ],
+  "YourTour.view.expert.ExpertIntroView": [
+    "widget.ExpertIntroView"
+  ],
+  "YourTour.view.expert.ExpertListView": [
+    "widget.ExpertListView"
   ],
   "YourTour.view.expert.ExpertMainView": [
     "widget.ExpertMainView"
@@ -1713,6 +1729,8 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.SceneResourceView"
   ],
   "YourTour.view.route.RouteActivityEditView": [],
+  "YourTour.view.route.RouteDiscussView": [],
+  "YourTour.view.route.RouteImpressionView": [],
   "YourTour.view.route.RouteMainItem": [
     "widget.RouteMainItem"
   ],

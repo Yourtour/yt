@@ -27,7 +27,7 @@ Ext.application({
     views: [
         'MainView','Launch','common.PlaceChangeView','common.PlaceSelectionView',
         'home.HomeMainView', 'home.BestListView', 'home.AlongListView', 'home.AlongDetailView', 'home.TalentListView', 'SearchMain',
-        'route.RouteMainView','route.RouteSettingView',
+        'route.RouteMainView','route.RouteSettingView','route.RouteImpressionView','route.RouteDiscussView',
         'route.RouteScheduleListView', 'route.RouteSchedulePlanView','route.RouteScheduleReferenceView','route.schedule.SceneScheduleView','route.schedule.HotelScheduleView','route.schedule.FoodScheduleView',
         'route.RouteProvisionView','route.RouteProvisionEditView','route.RouteScheduleEditView','route.RouteScheduleView',
         'route.RouteActivityEditView',
@@ -35,7 +35,7 @@ Ext.application({
         'line.LineRecommendView','line.LineIntroductionView',
         'resource.ResourceSelectionView','resource.ResourceDetailView',
         'member.MemberMainView','member.MemberAddView','member.MemberPositionView','member.MemberSearchView',
-        'expert.ExpertMainView','expert.ExpertApplyView'
+        'expert.ExpertMainView','expert.ExpertApplyView','expert.ExpertIntroView','expert.ExpertListView'
     ],
     
     controllers: [
@@ -77,6 +77,12 @@ Ext.application({
     },
 
     launch: function() {
+    	try{
+    		document.addEventListener("deviceready", this.onDeviceReady, false);
+    	}catch(e){
+    		alert(e.name + ":" + e.message);
+    	}   
+    	
     	//设置AJAX请求公用信息
     	Ext.Ajax.failure = function(response) {
 	    	alert('failure=' + response.responseText);
@@ -103,7 +109,36 @@ Ext.application({
     	    };
     	}), this);
     },
-
+    
+    onDeviceReady:function() {
+    	try{
+    		document.addEventListener("backbutton", function(){
+    	        var canPop = false;
+    	        var id = Ext.Viewport.getActiveItem().id;
+    	        
+    	        if (id.indexOf("MainView") != -1) {
+    	          var mainview = Ext.Viewport.getActiveItem();
+    	          var length = mainview.getItems().length;
+    	          if (length > 2) {
+    	            canPop = true;
+    	          }
+    	        }
+    	        
+    	        if (canPop) {
+    	        	Ext.ComponentManager.get('MainView').pop();
+    	        } else {
+    	        	Ext.Msg.confirm("提示", "您确定要退出应用吗?", function(e) {
+    	        		if (e == "yes") {
+    	        			navigator.app.exitApp();
+    	        		}
+    	        	}, this);
+    	        }
+    		}, false);
+    	}catch(e){
+    		alert(e.name + ":" + e.message);
+    	}
+    },
+    
     onUpdated: function() {
         Ext.Msg.confirm(
             "Application Update",
@@ -114,5 +149,19 @@ Ext.application({
                 }
             }
         );
+    },
+    
+    getUserId:function(){
+    	var localStore =  Ext.StoreManager.get('LocalStore');
+    	localStore.load();
+    	
+    	var index = localStore.find('key', 'user.profile'); 
+    	if(index >= 0){
+    		var userProfile = localStore.getAt(index);
+    		var profile = Ext.JSON.decode(userProfile.get('value'));
+    		return profile.id;
+    	}
+    	
+    	return '';
     }
 });

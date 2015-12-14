@@ -9,6 +9,8 @@ package com.yt.neo4j.repository;
 
 import java.lang.reflect.Field;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -691,6 +693,28 @@ public class CrudGeneralOperate implements CrudOperate {
 					relationship, tar.getClass().getSimpleName(), tar
 							.getGraphId()));
 		}
+	}
+
+	@Override
+	public Map<String, Object> getRelation(Neo4jBaseBean src,
+			Neo4jBaseBean tar, String relationshipType) throws Exception {
+		Relationship relationship = this.template.getRelationshipBetween(src, tar, relationshipType);
+		if(relationship != null){
+			Map<String, Object> props = new HashMap();
+			
+			Iterable<String> keys = relationship.getPropertyKeys();
+			if(keys != null){
+				Iterator itKeys = keys.iterator();
+				String key = null;
+				while(itKeys.hasNext()){
+					key = itKeys.next().toString();
+					props.put(key, relationship.getProperty(key));
+				}
+			}
+			
+			return props;
+		}
+		return null;
 	}
 
 }

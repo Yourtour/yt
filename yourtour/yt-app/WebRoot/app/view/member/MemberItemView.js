@@ -39,6 +39,16 @@ Ext.define('YourTour.view.member.MemberItemView', {
 		]
     },
     
+    initialize : function(){
+    	var me = this;
+    	
+    	var dataview = me.dataview || me.getDataview();
+    	var imageDel = me.down('#imageDel');
+    	imageDel.on('tap', function(){
+    		dataview.fireEvent('itemdelete', dataview, me.getRecord());
+    	});
+    },
+    
     updateRecord:function(record){
     	var me = this;
     	
