@@ -89,7 +89,8 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 	 */
 	@Override
 	public String getRowKey() {
-		return UUID.randomUUID().toString();
+		this.rowKey = UUID.randomUUID().toString();
+		return this.rowKey;
 	}
 
 	/*

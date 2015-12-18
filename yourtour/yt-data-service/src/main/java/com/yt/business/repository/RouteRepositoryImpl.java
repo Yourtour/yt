@@ -8,7 +8,6 @@ import java.util.Vector;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.neo4j.graphdb.Direction;
-import org.neo4j.graphdb.Relationship;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +19,8 @@ import com.yt.business.bean.UserAccountBean;
 import com.yt.business.bean.UserProfileBean;
 import com.yt.business.common.Constants;
 import com.yt.business.common.Constants.GroupRole;
+import com.yt.business.neo4j.repository.RouteActivityRepository;
+import com.yt.business.neo4j.repository.RouteActivityTuple;
 import com.yt.business.neo4j.repository.RouteBeanRepository;
 
 @Component
@@ -29,6 +30,9 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 
 	@Autowired
 	private RouteBeanRepository repository;
+	
+	@Autowired
+	private RouteActivityRepository activityRepository;
 
 	public RouteRepositoryImpl() {
 		super();
@@ -162,4 +166,12 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 				Direction.OUTGOING, properties);
 	}
 
+	@Override
+	public RouteActivityBean getRouteActivity(Long activityId) throws Exception {
+		RouteActivityTuple tuple = activityRepository.getRouteActivity(activityId);
+		
+		tuple.getActivity().setResource(tuple.getResource());
+		
+		return tuple.getActivity();
+	}
 }

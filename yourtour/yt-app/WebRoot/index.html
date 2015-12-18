@@ -59,6 +59,14 @@
 			background:#FFFFFF url(./resources/icons/arrow_right.png) no-repeat right center !important; 
 		}
 		
+		.icon_map{
+			background:#FFFFFF url(./resources/icons/arrow_right.png) no-repeat right center !important; 
+		}
+		
+		.icon_phone{
+			background:#FFFFFF url(./resources/icons/icon_phone.png) no-repeat right center !important; 
+		}
+		
 		.back_arrow{
 			background:#FFFFFF url(./resources/icons/icon_back.png) no-repeat left center !important; 
 		}
@@ -173,8 +181,9 @@
 			min-height:25px;
 		}
 		
-		.linespace{
-			line-height:30px;
+		.spacer{
+			height:10px;
+			background:#EDEDED !important;
 		}
 		
 		.horizentalLine{
@@ -262,9 +271,18 @@
 			font-weight:bold;
 		}
 		
+		.font-grey{
+			color:grey;
+		}
+		
+		.x-button-normal .x-button-label{
+			font-size:14px !important;
+			color:grey !important;
+		}
+		
 		.row{
-			height:45px;
-			line-height:45px;
+			height:40px;
+			line-height:40px;
 		}
 		
 		.title-row{
@@ -283,11 +301,6 @@
 		
 		.borderless{
 			border:none;
-		}
-		
-		.spacer{
-			height:5px;
-			background:#EDEDED !important
 		}
 		
 		input:{
@@ -314,8 +327,6 @@
     <script id="microloader" type="text/javascript" src=".sencha/app/microloader/development.js"></script>
 </head>
 <body>
-	<input type='hidden' id="user_id" name="user_id" value='2222'/>
-	
     <div id="appLoadingIndicator">
         <div></div>
         <div></div>

@@ -604,7 +604,10 @@ public final class CORSFilter implements Filter {
         }
         
         String originHeader = request.getHeader(REQUEST_HEADER_ORIGIN);
-        //originHeader = null;
+        if(originHeader.startsWith("file")){
+        	originHeader = null;
+        }
+        
         // Section 6.1.1 and Section 6.2.1
         if (originHeader != null) {
             if (originHeader.isEmpty()) {

@@ -19,13 +19,6 @@ Ext.define('YourTour.model.RouteScheduleModel', {
             {name:'resourceType', type:'string'},
             {name:'placeIds', type:'string'},
             {name:'places', type:'string'}
-	    ],
-	    
-	    associations: [{  
-            type: 'hasMany',   
-            model: 'YourTour.model.RouteActivityModel',   
-            name:'activities',
-            associationKey:'activities'
-        }]
+	    ]
     }
 });

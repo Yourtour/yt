@@ -295,6 +295,20 @@ public class RouteRestResource extends BaseRestResource{
 			return new ResponseVO(StaticErrorEnum.DB_OPERATE_FAIL);
 		}
 	}
+	
+	@GET
+	@Path("activity/{activityId}")
+	public ResponseDataVO<RouteActivityVO> saveActivity(@PathParam("activityId")  String activityId,@Context HttpServletRequest request) {
+		try {
+			RouteActivityBean activity = routeRepository.getRouteActivity(Long.valueOf(activityId));
+			return new ResponseDataVO<>(RouteActivityVO.transform(activity));
+		} catch (Exception ex) {
+			if (LOG.isErrorEnabled()) {
+				LOG.error(String.format("Get the RouteActivity[id='%s'] fail.",activityId), ex);
+			}
+			return new ResponseDataVO<>(StaticErrorEnum.DB_OPERATE_FAIL);
+		}
+	}
 
 	/**
 	 * 保存行程准备值对象到图数据库

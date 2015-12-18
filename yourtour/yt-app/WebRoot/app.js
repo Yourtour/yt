@@ -27,27 +27,29 @@ Ext.application({
     views: [
         'MainView','Launch','common.PlaceChangeView','common.PlaceSelectionView','common.MessageMainView','common.MessageGroupView',
         'home.HomeMainView', 'home.BestListView', 'home.AlongListView', 'home.AlongDetailView', 'home.TalentListView', 'SearchMain',
-        'route.RouteMainView','route.RouteSettingView','route.RouteImpressionView',
+        'route.RouteMainView','route.RouteSettingView','route.RouteImpressionView','route.RouteImageView',
         'route.RouteScheduleListView', 'route.RouteSchedulePlanView','route.RouteScheduleReferenceView','route.schedule.SceneScheduleView','route.schedule.HotelScheduleView','route.schedule.FoodScheduleView',
         'route.RouteProvisionView','route.RouteProvisionEditView','route.RouteScheduleEditView','route.RouteScheduleView',
         'route.RouteActivityEditView',
         'user.LoginMainView','user.UserListView','user.UserMainView',
         'line.LineRecommendView','line.LineIntroductionView',
-        'resource.ResourceSelectionView','resource.ResourceDetailView',
+        
+        'resource.ResourceSelectionView','resource.ResourceDetailView','resource.ResourceSceneView',
         'member.MemberMainView','member.MemberAddView','member.MemberPositionView','member.MemberSearchView',
         'expert.ExpertMainView','expert.ExpertApplyView','expert.ExpertIntroView','expert.ExpertListView',
-        'community.LiveMainView'
+        'community.LiveMainView',
+        'place.PlaceMainView'
     ],
     
     controllers: [
         'Launch', 'MainCtrl', 'common.PlaceChangeCtrl','common.PlaceSelectionCtrl',
         'home.HomeMainCtrl', 'home.BestMainCtrl','home.TalentMainCtrl','home.AlongMainCtrl',
-        'route.RouteMainCtrl','route.RouteEditCtrl',
+        'route.RouteMainCtrl',
         'route.RouteScheduleListCtrl','route.RouteSchedulePlanCtrl',
         'line.LineRecommendCtrl','line.LineIntroductionCtrl','user.AccountMainCtrl',
         'route.ScheduleReferenceCtrl','route.ScheduleDetailCtrl',
-        'resource.ResourceCtrl','user.UserListCtrl',
-        'MemberMainCtrl','UserMainCtrl', 'ExpertMainCtrl', 'MessageMainCtrl'
+        'ResourceMainCtrl','user.UserListCtrl',
+        'MemberMainCtrl','UserMainCtrl', 'ExpertMainCtrl', 'MessageMainCtrl','PlaceMainCtrl'
     ],
     
     models:[
@@ -106,7 +108,8 @@ Ext.application({
     		
     	    options.headers = {
     	    	'User-Token':userToken,
-    	    	'Content-Type':'application/json'
+    	    	'Content-Type':'application/json',
+    	    	
     	    };
     	}), this);
     },

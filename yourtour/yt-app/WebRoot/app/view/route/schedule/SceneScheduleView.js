@@ -3,253 +3,204 @@ Ext.define('YourTour.view.route.schedule.SceneScheduleView', {
     requires:['Ext.Panel','YourTour.view.widget.XLabel','YourTour.view.widget.XField','YourTour.view.widget.ToggleField','YourTour.view.widget.XHeaderBar'],
     xtype: 'SceneScheduleView',
     config: {
-    	itemId:'SceneScheduleView',
     	id:'SceneScheduleView',
     	layout:'vbox',
-    	scrollable: {
-    	    direction: 'vertical'
-    	},
     	items:[
     		{    
 				xtype: 'xheaderbar',
-				title: '游玩安排',
-				items:[
-                ]
-			},
-			
-    		{
-    	   		itemId : 'imageUrl',
-	    		xtype : 'image',
-	    		mode : 'tag'
-	    	},
-	    	
-	    	{
-	    		xtype : 'panel',
-	    		layout:'hbox',
-	    		padding:'0 5 0 5',
-	    		cls:'textfield raty',
-	    		items:[
-		    		{
-		    			xtype:'label',
-		    			flex:1,
-		    			html:'推荐指数',
-		    			style:'font-weight:bold'
-		    			
-		    		},
-		    		{
-		    			xtype:'image',
-		    			src:'resources/images/raty_32.png',
-		    			flex:2,
-		    			mode:'tag'
-		    		},
-		    		{
-		    			xtype:'label',
-		    			flex:1,
-		    			html:'综合评分',
-		    			style:'font-weight:bold'
-		    		},
-		    		{
-		    			xtype:'image',
-		    			flex:2,
-		    			mode:'tag',
-		    			src:'resources/images/raty_32.png'
-		    		}
-	    		]
-	    	},
-	    	
-	    	{
-		    	xtype:'panel',
-		    	layout:'vbox',
-		    	padding:'5',
-		    	style:'background:#fff; border-bottom:1px solid #EDEDED;',
-		    	items:[
-			    	{
-		    			xtype:'label',
-		    			itemId:'resName',
-		    			style:'font-weight:bold; line-height:40px;font-size:16px'
-		    		},
-			    	{
-		    			xtype:'label',
-		    			itemId:'address',
-		    			style:'line-height:40px;font-size:14px'
-		    		},{
-		    			xtype:'label',
-		    			itemId:'phone',
-		    			style:'line-height:40px;font-size:14px'
-		    		}
-	    		]
-	    	},
-	    	
-	    	{
-            	xtype:'subtitlebar',
-            	margin:'5 0 5 0',
-            	html:'概述'
-            },
-            
-    		{
-				xtype:'panel',
-				layout:'hbox',
-				padding:'0 5 0 5',
-				cls:'textfield',
-				items:[
-					{
-						xtype:'label',
-						html: '活动名称'
-					},
-					{
-						xtype:'spacer',
-						flex:1
-					},
-					{  
-					    xtype: 'label',  
-					    name : 'name',
-					    itemId:'name',
-					    clearIcon: true,
-					    cls:'nav_arrow',
-					    inputCls:'align-right'
-					}
-				]
+				itemId:'headerbar'
 			},
 			
 			{
 				xtype:'panel',
-				layout:'hbox',
-				padding:'0 5 0 5',
-				cls:'textfield',
+				layout:'vbox',
+				flex:1,
+				scrollable: {
+	        	    direction: 'vertical',
+	        	    indicators: false	
+	        	},
 				items:[
+		    		{
+		    	   		itemId : 'image',
+			    		xtype : 'image',
+			    		mode : 'tag'
+			    	},
+			    	
+			    	{
+			    		xtype : 'panel',
+			    		layout:'hbox',
+			    		padding:'0 5 0 5',
+			    		cls:'row underline raty',
+			    		items:[
+				    		{
+				    			xtype:'label',
+				    			flex:1,
+				    			cls:'font-medium font-grey',
+				    			html:'推荐指数'
+				    			
+				    		},
+				    		{
+				    			xtype:'image',
+				    			src:'resources/images/raty_32.png',
+				    			flex:2,
+				    			mode:'tag'
+				    		},
+				    		{
+				    			xtype:'label',
+				    			flex:1,
+				    			cls:'font-medium font-grey',
+				    			html:'综合评分'
+				    		},
+				    		{
+				    			xtype:'image',
+				    			flex:2,
+				    			mode:'tag',
+				    			src:'resources/images/raty_32.png'
+				    		}
+			    		]
+			    	},
+			    	
+			    	{
+						xtype:'panel',
+						layout:'hbox',
+						cls:'row underline',
+						items:[
+							{
+								xtype:'xlabel',
+								html: '景点',
+								cls:'font-medium font-grey',
+								margin:'0 10 0 5'
+							},
+							{  
+							    xtype: 'xlabel',  
+							    itemId:'resName',
+							    tappable:true,
+							    cls:'font-medium font-grey nav_arrow',
+							    flex:1,
+							    margin:'0 5 0 10'
+							}
+						]
+					},
+					
+			    	{
+						xtype:'panel',
+						layout:'hbox',
+						cls:'row underline',
+						items:[
+							{
+								xtype:'label',
+								html: '地址',
+								cls:'font-medium font-grey',
+								margin:'0 10 0 5'
+							},
+							{  
+							    xtype: 'label',  
+							    itemId:'address',
+							    cls:'font-medium font-grey icon_map',
+							    flex:1,
+							    margin:'0 5 0 10'
+							}
+						]
+					},
+					
+			    	{
+						xtype:'panel',
+						layout:'hbox',
+						cls:'row underline',
+						items:[
+							{
+								xtype:'label',
+								html: '电话',
+								cls:'font-medium font-grey',
+								margin:'0 10 0 5'
+							},
+							{  
+							    xtype: 'label',  
+							    itemId:'phone',
+							    cls:'font-medium font-grey icon_phone',
+							    flex:1,
+							    margin:'0 5 0 10'
+							}
+						]
+					},
+					
+		            {
+			    		xtype:'panel',
+			    		cls:'spacer'
+		            },
+					
 					{
+						xtype:'panel',
+						layout:'hbox',
+						cls:'row underline',
+						items:[
+							{
+								xtype:'label',
+								html: '时间',
+								cls:'font-medium font-grey',
+								margin:'0 10 0 5'
+							},
+							{  
+							    xtype: 'label',  
+							    itemId:'time',
+							    cls:'font-medium font-grey',
+							    margin:'0 5 0 10'
+							}
+						]
+					},
+					
+					{
+						xtype:'panel',
+						layout:'hbox',
+						items:[
+							{
+								xtype:'label',
+								html: '描述',
+								cls:'row font-medium font-grey',
+								margin:'0 10 0 5'
+							},
+							{  
+							    xtype: 'label',  
+							    itemId:'memo',
+							    flex:1,
+							    cls:'font-medium font-grey multilineinfo',
+							    margin:'9 5 9 10'
+							}
+						]
+					},
+					
+					{
+			    		xtype:'panel',
+			    		cls:'spacer'
+		            },
+		            
+		            {
 						xtype:'label',
-						html: '活动描述'
-					},
-					{
-						xtype:'spacer',
-						flex:1
-					},
-					{  
-					    xtype: 'label',  
-					    name : 'desc',
-					    itemId:'desc',
-					    clearIcon: true,
-					    cls:'nav_arrow',
-					    inputCls:'align-right'
+						html: '服务',
+						cls:'row font-medium font-grey',
+						margin:'0 10 0 5'
 					}
 				]
 			},
-			
-    		{
-            	xtype:'subtitlebar',
-            	margin:'5 0 5 0',
-            	html:'安排'
-            },
             
             {
-    			xtype:'panel',
-    			cls:'underline',
-    			layout:'hbox',
-    			pack: 'center',
-    			padding:'0 5 0 5',
-    			items:[
-    				{
-    					xtype:'label',
-    					html:'活动性质',
-    					style:'line-height:40px'
-    				},
-    				{
-						xtype:'spacer',
-						flex:1
-					},
-    				{
-    					xtype:'yttogglefield',
-    					texts:['可选','必须']
-    				}
-    			]
-    		},
-    		
-    		{
-				xtype:'panel',
-				layout:'hbox',
-				padding:'0 5 0 5',
-				cls:'textfield',
-				items:[
-					{
-						xtype:'label',
-						html: '开始时间'
-					},
-					{
-						xtype:'spacer',
-						flex:1
-					},
-					{  
-					    xtype: 'datepickerfield',  
-					    name : 'startDate',
-					    itemId:'startDate',
-					    value:new Date(),
-					    dateFormat:'Y/m/d',
-					    clearIcon: true,
-					    cls:'nav_arrow',
-					    inputCls:'align-right'
-					}
-				]
-			},
-			
-			{
-				xtype:'panel',
-				layout:'hbox',
-				padding:'0 5 0 5',
-				cls:'textfield',
-				items:[
-					{
-						xtype:'label',
-						html: '结束时间'
-					},
-					{
-						xtype:'spacer',
-						flex:1
-					},
-					{  
-					    xtype: 'datepickerfield',  
-					    name : 'endDate',
-					    itemId:'endDate',
-					    value:new Date(),
-					    dateFormat:'Y/m/d',
-					    clearIcon: true,
-					    cls:'nav_arrow',
-					    inputCls:'align-right'
-					}
-				]
-			},
-			
-			{
-				xtype:'panel',
-				layout:'hbox',
-				padding:'0 5 0 5',
-				cls:'textfield',
-				items:[
-					{
-						xtype:'label',
-						html: '持续时间'
-					},
-					{
-						xtype:'spacer',
-						flex:1
-					},
-					{  
-					    xtype: 'datepickerfield',  
-					    name : 'endDate',
-					    itemId:'endDate',
-					    value:new Date(),
-					    dateFormat:'Y/m/d',
-					    clearIcon: true,
-					    cls:'nav_arrow',
-					    inputCls:'align-right'
-					}
-				]
-			},
-			
-            {
-            	xtype:'subtitlebar',
-            	margin:'5 0 5 0',
-            	html:'事项'
+                xtype: 'toolbar',
+                docked: 'bottom',
+                items: [
+	                {
+	                    xtype: 'spacer',
+	                    flex:1
+	                },{
+	                    xtype: 'button',
+	                    text: '联系达人',
+	                    ui: 'normal',
+	                    iconCls:'action',
+	                    itemId: 'backToPlaces'
+	                },{
+	                    xtype: 'spacer',
+	                    flex:1
+	                }
+	            ]
             }
         ]
     }

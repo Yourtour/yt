@@ -647,6 +647,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.controller.MainCtrl": [],
   "YourTour.controller.MemberMainCtrl": [],
   "YourTour.controller.MessageMainCtrl": [],
+  "YourTour.controller.PlaceMainCtrl": [],
+  "YourTour.controller.ResourceMainCtrl": [],
   "YourTour.controller.UserMainCtrl": [],
   "YourTour.controller.common.PlaceChangeCtrl": [],
   "YourTour.controller.common.PlaceSelectionCtrl": [],
@@ -656,8 +658,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.controller.home.TalentMainCtrl": [],
   "YourTour.controller.line.LineIntroductionCtrl": [],
   "YourTour.controller.line.LineRecommendCtrl": [],
-  "YourTour.controller.resource.ResourceCtrl": [],
-  "YourTour.controller.route.RouteEditCtrl": [],
   "YourTour.controller.route.RouteMainCtrl": [],
   "YourTour.controller.route.RouteScheduleListCtrl": [],
   "YourTour.controller.route.RouteSchedulePlanCtrl": [],
@@ -752,14 +752,20 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.member.MemberMainView": [],
   "YourTour.view.member.MemberPositionView": [],
   "YourTour.view.member.MemberSearchView": [],
+  "YourTour.view.place.PlaceExpertView": [],
+  "YourTour.view.place.PlaceFoodView": [],
+  "YourTour.view.place.PlaceMainView": [],
+  "YourTour.view.place.PlaceOverviewView": [],
+  "YourTour.view.place.PlaceSceneView": [],
   "YourTour.view.resource.ResourceDetailView": [],
   "YourTour.view.resource.ResourceFoodDataItem": [],
   "YourTour.view.resource.ResourceFoodListView": [],
   "YourTour.view.resource.ResourcePlayDataItem": [],
   "YourTour.view.resource.ResourcePlayListView": [],
+  "YourTour.view.resource.ResourceSceneView": [],
   "YourTour.view.resource.ResourceSelectionView": [],
-  "YourTour.view.resource.SceneResourceView": [],
   "YourTour.view.route.RouteActivityEditView": [],
+  "YourTour.view.route.RouteImageView": [],
   "YourTour.view.route.RouteImpressionView": [],
   "YourTour.view.route.RouteMainItem": [],
   "YourTour.view.route.RouteMainView": [],
@@ -798,6 +804,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.XBlock": [],
   "YourTour.view.widget.XBoldLabel": [],
   "YourTour.view.widget.XButton": [],
+  "YourTour.view.widget.XCheckbox": [],
   "YourTour.view.widget.XDataView": [],
   "YourTour.view.widget.XField": [],
   "YourTour.view.widget.XGridItem": [],
@@ -1537,6 +1544,8 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.controller.MainCtrl": [],
   "YourTour.controller.MemberMainCtrl": [],
   "YourTour.controller.MessageMainCtrl": [],
+  "YourTour.controller.PlaceMainCtrl": [],
+  "YourTour.controller.ResourceMainCtrl": [],
   "YourTour.controller.UserMainCtrl": [],
   "YourTour.controller.common.PlaceChangeCtrl": [],
   "YourTour.controller.common.PlaceSelectionCtrl": [],
@@ -1546,8 +1555,6 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.controller.home.TalentMainCtrl": [],
   "YourTour.controller.line.LineIntroductionCtrl": [],
   "YourTour.controller.line.LineRecommendCtrl": [],
-  "YourTour.controller.resource.ResourceCtrl": [],
-  "YourTour.controller.route.RouteEditCtrl": [],
   "YourTour.controller.route.RouteMainCtrl": [],
   "YourTour.controller.route.RouteScheduleListCtrl": [],
   "YourTour.controller.route.RouteSchedulePlanCtrl": [],
@@ -1722,6 +1729,21 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.MemberPositionView"
   ],
   "YourTour.view.member.MemberSearchView": [],
+  "YourTour.view.place.PlaceExpertView": [
+    "widget.PlaceExpertView"
+  ],
+  "YourTour.view.place.PlaceFoodView": [
+    "widget.PlaceFoodView"
+  ],
+  "YourTour.view.place.PlaceMainView": [
+    "widget.PlaceMainView"
+  ],
+  "YourTour.view.place.PlaceOverviewView": [
+    "widget.PlaceOverviewView"
+  ],
+  "YourTour.view.place.PlaceSceneView": [
+    "widget.PlaceSceneView"
+  ],
   "YourTour.view.resource.ResourceDetailView": [],
   "YourTour.view.resource.ResourceFoodDataItem": [
     "widget.ResourceFoodDataItem"
@@ -1735,13 +1757,14 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.resource.ResourcePlayListView": [
     "widget.ResourcePlayListView"
   ],
+  "YourTour.view.resource.ResourceSceneView": [
+    "widget.ResourceSceneView"
+  ],
   "YourTour.view.resource.ResourceSelectionView": [
     "widget.SelectionListView"
   ],
-  "YourTour.view.resource.SceneResourceView": [
-    "widget.SceneResourceView"
-  ],
   "YourTour.view.route.RouteActivityEditView": [],
+  "YourTour.view.route.RouteImageView": [],
   "YourTour.view.route.RouteImpressionView": [],
   "YourTour.view.route.RouteMainItem": [
     "widget.RouteMainItem"
@@ -1841,6 +1864,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.widget.XButton": [
     "widget.xbutton"
+  ],
+  "YourTour.view.widget.XCheckbox": [
+    "widget.xcheckbox"
   ],
   "YourTour.view.widget.XDataView": [
     "widget.xdataview"

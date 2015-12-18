@@ -9,7 +9,9 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
        		newRoute:'#RouteMainView #new',
        		deleteRoute:'#RouteMainView #delete',
        		
-       		routeImpressionView:'#RouteImpressionView'
+       		routeImpressionView:'#RouteImpressionView',
+       			
+       		routeImageView:'#RouteImageView'
        },
        
        control:{
@@ -24,11 +26,16 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
     	   routeCarousel:{
     		   onRouteTap:'onRouteTap',
     		   onMemberTap:'onMemberTap',
-    		   onImpressionEdit:'onImpressionEdit'
+    		   onImpressionEdit:'onImpressionEdit',
+    		   onImageTap:'onImageTap'
     	   },
     	   
     	   '#RouteImpressionView #save':{
     		   tap:'onImpressionSave'
+    	   },
+    	   
+    	   '#RouteImageView #save':{
+    		   tap:'onImageSave'
     	   }
        },
        
@@ -102,6 +109,33 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
     	this.redirectTo('/routes/' + record.get('id') + '/members');
     },
     
+    onImageTap:function(route){
+    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteImageView'));
+    	
+    	this.getPhoto(navigator.camera.PictureSourceType.PHOTOLIBRARY);
+    },
+    
+    getPhoto: function(source) {
+        var me = this;
+
+        navigator.camera.getPicture(me.success, me.failure, {
+            quality: 50,
+            destinationType: navigator.camera.DestinationType.FILE_URI,
+            sourceType: source 
+        });
+    },
+    
+    success: function(image_uri) {
+    	alert(image_uri);
+    	
+    	var view = this.getRegisterProfileView();
+        var img = view.down('#portrait');
+        img.setSrc(image_uri);
+    },
+
+    failure: function(message) {
+    },
+    
     /**
      * 
      */
@@ -150,5 +184,11 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
     	    	Ext.ComponentManager.get('MainView').pop();
     	    }
     	});
+    },
+    
+    onImageSave:function(){
+    	var routeImageView = this.getRouteImageView();
+    	
+    	var imageSize = routeImageView.down('#imageSize');
     }
 });

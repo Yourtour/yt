@@ -90,7 +90,7 @@ Ext.define('YourTour.view.route.RouteMainItem', {
 					{
 		    		   xtype:'xfield',
 		    		   itemId:'time',
-		    		   cls:'row underline',
+		    		   cls:'row underline field',
 		    		   padding:'5 0 0 10'
 		            },
 		            
@@ -127,6 +127,9 @@ Ext.define('YourTour.view.route.RouteMainItem', {
     	
     	var impressionEdit = this.down('#impressionEdit');
     	impressionEdit.addListener('tap', this.onImpressionEdit, this);
+    	
+    	var image = this.down('#imageUrl');
+    	image.addListener('tap', this.onImageTap, this);
     },
     
     onRouteBtnTap:function(){
@@ -135,6 +138,10 @@ Ext.define('YourTour.view.route.RouteMainItem', {
     
     onMemberBtnTap:function(){
     	this.carousel.fireEvent("onMemberTap", this.record);
+    },
+    
+    onImageTap:function(){
+    	this.carousel.fireEvent("onImageTap", this.record);
     },
     
     onImpressionEdit:function(){

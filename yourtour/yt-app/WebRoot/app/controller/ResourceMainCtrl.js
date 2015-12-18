@@ -1,4 +1,4 @@
-Ext.define('YourTour.controller.resource.ResourceCtrl', {
+Ext.define('YourTour.controller.ResourceMainCtrl', {
     extend: 'YourTour.controller.BaseCtrl',
     config: {
        refs:{
@@ -27,7 +27,8 @@ Ext.define('YourTour.controller.resource.ResourceCtrl', {
        },
        
        routes:{
-        	'/resource/selection':'showPage'
+        	'/resource/selection':'showPage',
+        	'/resource/:resourceType/:resourceId':'showResourcePage',
        },
        
        playStore:null,
@@ -53,6 +54,21 @@ Ext.define('YourTour.controller.resource.ResourceCtrl', {
     	}
     	
     	this.getResourceCategory().fireEvent('activeitemchange',this.getResourceCategory(), this.getResourceCategory().getAt(0),this.getResourceCategory().getAt(0));
+    },
+    
+    showResourcePage:function(resourceType, resourceId){
+    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.resource.ResourceDetailView'));
+		
+		var resourceDetailView = this.getResourceDetailView();
+		var panel = resourceDetailView.down('#detailview');
+		panel.removeAll(true,false);
+		
+		var toolbar = resourceDetailView.down('#toolbar');
+		toolbar.getAt(1).hide();
+		
+		if(resourceType == 'SCENE'){
+    		this.loadSceneResource(resourceId, panel);
+    	}
     },
     
     onActiveItemChange:function(tabBar, newTab, oldTab){
@@ -123,7 +139,23 @@ Ext.define('YourTour.controller.resource.ResourceCtrl', {
 		var panel = resourceDetailView.down('#detailview');
 		panel.removeAll(true,false);
 		
-		var playView = Ext.create('YourTour.view.resource.SceneResourceView',{record:record});
+		var playView = Ext.create('YourTour.view.resource.ResourceSceneView',{record:record});
 		panel.add(playView);
     },
+    
+    loadSceneResource:function(resourceId, panel){
+    	var resourceDetailView = this.getResourceDetailView();
+    	
+    	var store = Ext.create('YourTour.store.AjaxStore', {model: 'YourTour.model.ResourceModel'});
+    	store.getProxy().setUrl(YourTour.util.Context.getContext('/scenes/' + resourceId));
+    	store.load(function(){
+    		var resource = store.first();
+    		
+    		var headerbar = resourceDetailView.down('#headerbar');
+    		headerbar.setTitle(resource.get('name'));
+    		
+    		var playView = Ext.create('YourTour.view.resource.ResourceSceneView',{record:resource});
+    		panel.add(playView);
+    	});
+    }
 });

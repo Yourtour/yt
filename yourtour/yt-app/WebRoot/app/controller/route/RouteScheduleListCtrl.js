@@ -5,6 +5,9 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
     config: {
        refs: {
     	   routeScheduleListView:'#RouteScheduleListView',
+    	   schedulePlanList:'#RouteScheduleListView #RouteScheduleList',
+    	   
+    	   sceneScheduleView:'#SceneScheduleView'	   
        },
        
        control:{
@@ -18,6 +21,10 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
     	   
     	   '#RouteScheduleListView #edit':{
     		   tap:'onEditTap'
+    	   },
+    	   
+    	   '#SceneScheduleView #resName':{
+    		   tap:'onSceneResourceView'
     	   }
     	   
        },
@@ -28,7 +35,9 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
        
        store:null,
        
-       routeId : null
+       routeId : null,
+       
+       resource:null,
     },
     
     init:function(){
@@ -61,7 +70,75 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
  	   	store.load(showView,this);
     },
     
-    onRouteScheduleViewDestroy:function(){
+    onItemTap:function(dataview, index, item, record,e){
+    	var type = record.get('resourceType');
+    	if(type == 'SCENE'){
+    		this.onSceneResourceTap(record);
+    	}else if(type == 'food'){
+    		this.onFoodResourceTap(record);
+    	}else if(type == 'hotel'){
+    		this.onHotelResourceTap(record);
+    	}
+    },
+    
+    onRouteScheduleViewDestroy:function(){ 
     	this.store.setData('');
+    },
+    
+    onSceneResourceTap:function(record){
+    	var me = this;
+    	
+    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.schedule.SceneScheduleView'));
+    	
+    	var store = Ext.create('YourTour.store.AjaxStore', {
+    	    model: 'YourTour.model.RouteActivityModel',
+    	    
+    	});
+    	
+    	store.getProxy().setUrl(YourTour.util.Context.getContext('/routes/activity/' + record.get('id')));
+    	store.load(function(){
+    		var activity = store.first();
+
+    		var scheduleView = me.getSceneScheduleView();
+    		
+        	var headerbar = scheduleView.down('#headerbar');
+        	headerbar.setTitle(activity.get('title'));
+        	
+        	var memoEl = scheduleView.down('#memo');
+        	memoEl.setHtml(activity.get('memo'));
+        	
+        	var timeEl = scheduleView.down('#time');
+        	timeEl.setHtml(activity.get('startTime') + ' - ' + record.get('endTime'));
+        	
+        	var resource = activity.resource().getAt(0);
+        	me.resource = resource;
+        	
+        	var imageEl = scheduleView.down('#image');
+        	imageEl.setHtml("<img src='" + YourTour.util.Context.getImageResource(resource.get('imageUrl')) + "' style='width:100%; max-height:150px'>");
+        	
+        	var addressEl = scheduleView.down('#address');
+        	addressEl.setHtml(resource.get('address'));
+        	
+        	var phoneEl = scheduleView.down('#phone');
+        	phoneEl.setHtml(resource.get('phone'));
+        	
+        	var resNameEl = scheduleView.down('#resName');
+        	resNameEl.setHtml(resource.get('name'));
+    	});
+    },
+    
+    onFoodResourceTap:function(record){
+    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.schedule.FoodScheduleView'));
+    },
+    
+    onHotelResourceTap:function(record){
+    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.schedule.HotelScheduleView'));
+    },
+    
+    onSceneResourceView:function(){
+    	var resType = this.resource.get('type');
+    	var resId = this.resource.get('id');
+    	
+    	this.redirectTo('/resource/' + resType + '/' + resId);
     }
 });

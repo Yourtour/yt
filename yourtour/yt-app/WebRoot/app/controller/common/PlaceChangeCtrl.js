@@ -19,7 +19,13 @@ Ext.define('YourTour.controller.common.PlaceChangeCtrl', {
        
        routes:{
         	'/place/change':'showPage'
-       }
+       },
+       
+       placeStore : null
+    },
+    
+    init: function() {
+        this.placeStore = Ext.create('YourTour.store.PlaceStore');
     },
     
     /**
@@ -28,35 +34,50 @@ Ext.define('YourTour.controller.common.PlaceChangeCtrl', {
     showPage:function(){
 		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.common.PlaceChangeView'));
 		
-		var launchStore = this.getApplication().getController("Launch").store;
-		this.getPlaceType().setStore(launchStore.getAt(0).placesStore);
+		var store = Ext.create('Ext.data.Store',{
+			data:[
+			      {code:'China', name:'国内'},
+			      {code:'GAT', name:'港澳台'},
+			      {code:'Aisa', name:'亚洲'},
+			      {code:'Europe', name:'欧洲'},
+			      {code:'Africa', name:'非洲'},
+			      {code:'America', name:'美洲'},
+			      {code:'Ocean', name:'大洋洲'}
+			],
+			
+			fields:[
+			      {name:'code', type:'string'},
+			      {name:'name', type:'string'}    
+			]
+		});
+		
+		this.getPlaceType().setStore(store);
     },
     
     /**
      * 
      */
     onItemTap4PlaceType: function(obj, index, target, record, e, eOpts){
-    	var placeList = this.getPlaceList();
-    	placeList.removeAll();
+    	var me = this;
     	
-    	var url = YourTour.util.Context.getContext('/place/' + record.get('rowKey') + '/query');
-    	var placeStore = Ext.create('YourTour.store.PlaceStore');
-    	placeStore.getProxy().setUrl(url);
+    	var placeList = me.getPlaceList();
+    	var proxy = this.placeStore.getProxy();
+    	proxy.setUrl(YourTour.util.Context.getContext('/place/' +record.get('code') + '/query'));
+    	this.placeStore.setProxy(proxy);
     	
-    	placeStore.load(function(records, operation, success){
-    		placeStore.getData().each(function(model){
-        		placeList.add(Ext.create('YourTour.view.common.PlaceListItemView',{target:placeList, record:model}));
-        	});
-    	});
+    	var success = function(){
+    		me.placeStore.getData().each(function(model){
+    			placeList.add(Ext.create('YourTour.view.common.PlaceListItemView',{target:placeList, record:model}));
+    		});
+    	};
+    		
+    	this.placeStore.load(success);
     },
     
     /**
      * 
      */
     onItemTap4PlaceList: function(record, e, eOpts){
-    	var mainview = Ext.ComponentManager.get('MainView');
-    	mainview.pop();
-    	
-    	this.getApplication().getController('home.HomeMainCtrl').onCallback(record);
+    	this.redirectTo('/place/' + record.get('id'));
     }
 });

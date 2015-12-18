@@ -44,7 +44,6 @@ public class ResourceVO extends BaseVO {
 		setAddress(bean.getAddress());
 		setArriveNum(bean.getArriveNum());
 		setBookingMemo(bean.getBookingMemo());
-		setCloseTime(bean.getCloseTime());
 		setCommentNum(bean.getCommentNum());
 		setCommentScore(bean.getCommentScore());
 		setFavoriteNum(bean.getFavoriteNum());
@@ -84,7 +83,6 @@ public class ResourceVO extends BaseVO {
 		bean.setAddress(getAddress());
 		bean.setArriveNum(getArriveNum());
 		bean.setBookingMemo(getBookingMemo());
-		bean.setCloseTime(getCloseTime());
 		bean.setCommentNum(getCommentNum());
 		bean.setCommentScore(getCommentScore());
 		bean.setFavoriteNum(getFavoriteNum());

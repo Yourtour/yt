@@ -53,6 +53,9 @@ public class RouteActivityVO extends BaseVO {
 				resourceVO.setId(resourceBean.getGraphId());
 				resourceVO.setCode(resourceBean.getCode());
 				resourceVO.setName(resourceBean.getName());
+				resourceVO.setImageUrl(resourceBean.getImageUrl());
+				resourceVO.setAddress(resourceBean.getAddress());
+				resourceVO.setPhone(resourceBean.getPhone());
 				vo.setResource(resourceVO);
 			}
 		}

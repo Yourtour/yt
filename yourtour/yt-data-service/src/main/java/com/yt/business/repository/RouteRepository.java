@@ -3,6 +3,7 @@ package com.yt.business.repository;
 import java.util.List;
 
 import com.yt.business.CrudAllInOneOperate;
+import com.yt.business.bean.RouteActivityBean;
 import com.yt.business.bean.RouteMainBean;
 import com.yt.business.bean.UserAccountBean;
 import com.yt.business.bean.UserProfileBean;
@@ -71,5 +72,13 @@ public interface RouteRepository extends CrudAllInOneOperate {
 	 */
 	public void saveRoutePersonRelation(RouteMainBean route,
 			UserAccountBean user, GroupRole groupRole) throws Exception;
+	
+	/**
+	 * 
+	 * @param activityId
+	 * @return
+	 * @throws Exception
+	 */
+	public RouteActivityBean getRouteActivity(Long activityId) throws Exception;
 
 }

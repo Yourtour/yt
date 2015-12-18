@@ -1,21 +1,25 @@
 Ext.define('YourTour.model.RouteActivityModel', {
     extend: 'Ext.data.Model',
     config:{
-    	idProperty:'rowKey',
+    	idProperty:'id',
     	
 	    fields:[
-	    	{name:'rowKey', type:'string'},
+	    	{name:'id', type:'string'},
             {name:'type', type:'string'},
-    		{name:'name', type:'string'},
-    		{name:'resName', type:'string'},
-    		{name:'imageUrl', type:'string'},
-    		{name:'address', type:'string'},
-    		{name:'phone', type:'string'},
-    		{name:'desc', type:'string'},
-    		{name:'time', type:'string'},
-    		{name:'period', type:'string'},
-    		{name:'lines', type:'string'},
-    		{name:'isLast', type:'string'}
-	    ]
+    		{name:'title', type:'string'},
+    		{name:'memo', type:'string'},
+    		{name:'startTime', type:'string'},
+    		{name:'endTime', type:'string'},
+    		{name:'period', type:'string'}
+	    ],
+	    
+	    associations: [
+  	        {  
+  	            type: 'hasMany',   
+  	            model: 'YourTour.model.ResourceModel',   
+  	            name:'resource',   
+  	            associationKey:'resource'  
+  	        }
+   	    ],
     }
 });

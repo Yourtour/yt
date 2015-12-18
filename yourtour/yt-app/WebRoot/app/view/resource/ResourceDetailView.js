@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.resource.ResourceDetailView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Panel','Ext.Img',  'YourTour.view.widget.XHeaderBar','YourTour.view.widget.XToolbar','YourTour.view.resource.SceneResourceView'],
+    requires:['Ext.Panel','Ext.Img',  'YourTour.view.widget.XHeaderBar','YourTour.view.widget.XToolbar','YourTour.view.resource.ResourceSceneView'],
     config: {
     	id:'ResourceDetailView',
     	layout:'vbox',
@@ -11,38 +11,8 @@ Ext.define('YourTour.view.resource.ResourceDetailView', {
     	items:[
     		{    
     			xtype: 'xheaderbar',
-				title:'行程安排',
-				items:[
-					{
-	                	xtype: "toolbutton", 
-	                    ui: "normal", 
-	                	text:'周边',
-	                	itemId:'around',
-	                	align:'right'
-	                },
-	                {
-	                	xtype: "toolbutton", 
-	                    ui: "normal", 
-	                	text:'达人',
-	                	itemId:'expert',
-	                	align:'right'
-	                },
-	                {
-	                	xtype: "toolbutton", 
-	                    ui: "normal", 
-	                	text:'线路',
-	                	itemId:'line',
-	                	align:'right'
-	                },
-	                {
-	                	xtype: "toolbutton", 
-	                    ui: "normal", 
-	                	text:'游客',
-	                	itemId:'travler',
-	                	align:'right'
-	                }
-                ]
-			},
+    			itemId:'headerbar'
+    		},		
 			
     		{
 	    		xtype : 'panel',
@@ -51,11 +21,40 @@ Ext.define('YourTour.view.resource.ResourceDetailView', {
 	    	},
 	    	
 	    	{
-            	xtype:'xbutton',
-            	id:'btnAdd',
-            	docked:'bottom',
-            	text:'加入日程'
-            },
+                xtype: 'toolbar',
+                docked: 'bottom',
+                itemId:'toolbar',
+                items: [
+	                {
+	                    xtype: 'spacer',
+	                    flex:1
+	                },{
+	                    xtype: 'button',
+	                    text: '加入日程',
+	                    ui: 'normal',
+	                    iconCls:'action',
+	                    itemId: 'btnAdd'
+	                },{
+	                    xtype: 'button',
+	                    text: '收藏',
+	                    ui: 'normal',
+	                    iconCls:'favorites',
+	                    itemId: 'btnFavorite'
+	                },{
+	                    xtype: 'button',
+	                    text: '评论',
+	                    ui: 'normal',
+	                    iconCls:'compose',
+	                    itemId: 'btnComment'
+	                },{
+	                    xtype: 'button',
+	                    text: '分享',
+	                    ui: 'normal',
+	                    iconCls:'action',
+	                    itemId: 'btnShare'
+	                }
+	            ]
+            }
         ]
     }
 });

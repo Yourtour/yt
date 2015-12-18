@@ -27,10 +27,10 @@ Ext.define('YourTour.view.widget.XHeaderBar', {
         var backButton = config['backButton'] == undefined || config['backButton']?true:false;
         if(! found && backButton){
 	        config.items.push({
-	            xtype: 'xplainbutton',
+	            xtype: 'button',
 	            itemId:'back',
-	 		   	text:'返回',
-	            ui: 'back'
+	            iconCls:'arrow_left',
+	            ui: 'normal'
 	        });
         }
         

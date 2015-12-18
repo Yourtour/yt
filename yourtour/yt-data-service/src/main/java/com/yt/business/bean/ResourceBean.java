@@ -51,9 +51,6 @@ public class ResourceBean extends BaseDictBeanImpl {
 	@HbaseColumn(name = "otime")
 	private String openTime; // 开放时间 hh24:mi
 
-	@HbaseColumn(name = "ctime")
-	private String closeTime; // 关闭时间 hh24:mi
-
 	@HbaseColumn(name = "tintr")
 	private String trafficIntro; // 公交信息
 
@@ -134,14 +131,6 @@ public class ResourceBean extends BaseDictBeanImpl {
 
 	public void setOpenTime(String openTime) {
 		this.openTime = openTime;
-	}
-
-	public String getCloseTime() {
-		return closeTime;
-	}
-
-	public void setCloseTime(String closeTime) {
-		this.closeTime = closeTime;
 	}
 
 	public String getTrafficIntro() {

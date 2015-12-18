@@ -5,7 +5,7 @@ Ext.define('YourTour.util.Context', {
     config : {
     	userKey:'user',
     	
-    	server:'172.16.1.191'
+    	server:'172.16.1.159'
     },
     
     constructor : function(config) {
