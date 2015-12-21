@@ -22,6 +22,7 @@ import com.yt.business.common.Constants.GroupRole;
 import com.yt.business.neo4j.repository.RouteActivityRepository;
 import com.yt.business.neo4j.repository.RouteActivityTuple;
 import com.yt.business.neo4j.repository.RouteBeanRepository;
+import com.yt.business.neo4j.repository.RouteBeanRepository.OwnerRouteTuple;
 
 @Component
 public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
@@ -63,7 +64,9 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 						List<RouteActivityBean> newActivities = new Vector<RouteActivityBean>(
 								activities.size());
 						for (RouteActivityBean activity : activities) {
-							RouteActivityBean newActivity = (RouteActivityBean)super.get(RouteActivityBean.class, activity.getGraphId());
+							RouteActivityBean newActivity = (RouteActivityBean) super
+									.get(RouteActivityBean.class,
+											activity.getGraphId());
 							newActivities.add(newActivity);
 						}
 						newSchedule.getActivities().clear();
@@ -99,23 +102,15 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 	 */
 	@Override
 	public List<RouteMainBean> getRoutesByOwner(Long userId) throws Exception {
-		UserProfileBean profileBean = (UserProfileBean) super.get(UserProfileBean.class,
-				userId, false);
-		List<RouteMainBean> routes = repository.getRoutesByOwner(userId);
+		List<OwnerRouteTuple> routes = repository.getRoutesByOwner(userId);
 		List<RouteMainBean> list = new Vector<RouteMainBean>(routes.size());
-		Map<String, Object> relation = null;
-		for (RouteMainBean bean : routes) {
-			relation = super.getRelation(bean, profileBean,Constants.RELATION_TYPE_HAS);
-			if(relation != null){
-				if(relation.get("imageUrl") != null){
-					bean.setImageUrl(relation.get("imageUrl").toString());
-				}
-				
-				if(relation.get("impression") != null)
-					bean.setImpression(relation.get("impression").toString());
+		for (OwnerRouteTuple bean : routes) {
+			if (bean.route == null) {
+				continue;
 			}
-					
-			list.add(bean);
+			bean.route.setImageUrl(bean.imageUrl);
+			bean.route.setImpression(bean.impression);
+			list.add(bean.route);
 		}
 		if (LOG.isDebugEnabled()) {
 			LOG.debug(String.format("Found %d RouteMainBean by UserBean(%d)",
