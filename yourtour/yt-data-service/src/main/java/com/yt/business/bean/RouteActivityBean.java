@@ -1,5 +1,7 @@
 package com.yt.business.bean;
 
+import java.util.List;
+
 import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
@@ -42,6 +44,8 @@ public class RouteActivityBean extends BaseBeanImpl {
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RELATED, type = ResourceBean.class, direction = Direction.OUTGOING)
 	private transient ResourceBean resource = null; // 行程活动关联的资源
+	
+	private transient List<RouteServiceBean> services = null;
 
 	public RouteActivityBean() {
 		super();
@@ -111,4 +115,13 @@ public class RouteActivityBean extends BaseBeanImpl {
 		this.resource = resource;
 	}
 
+	public List<RouteServiceBean> getServices() {
+		return services;
+	}
+
+	public void setServices(List<RouteServiceBean> services) {
+		this.services = services;
+	}
+
+	
 }

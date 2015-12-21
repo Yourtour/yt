@@ -1,9 +1,8 @@
-Ext.define('YourTour.view.route.schedule.SceneScheduleView', {
+Ext.define('YourTour.view.route.ScheduleFormView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Panel','YourTour.view.widget.XLabel','YourTour.view.widget.XField','YourTour.view.widget.ToggleField','YourTour.view.widget.XHeaderBar'],
-    xtype: 'SceneScheduleView',
+    requires:['Ext.Panel','YourTour.view.widget.XLabel','YourTour.view.common.ServiceDataItem','YourTour.view.widget.XHeaderBar'],
     config: {
-    	id:'SceneScheduleView',
+    	id:'ScheduleFormView',
     	layout:'vbox',
     	items:[
     		{    
@@ -94,10 +93,11 @@ Ext.define('YourTour.view.route.schedule.SceneScheduleView', {
 								margin:'0 10 0 5'
 							},
 							{  
-							    xtype: 'label',  
+							    xtype: 'xlabel',  
 							    itemId:'address',
 							    cls:'font-medium font-grey icon_map',
 							    flex:1,
+							    tappable:true,
 							    margin:'0 5 0 10'
 							}
 						]
@@ -175,10 +175,25 @@ Ext.define('YourTour.view.route.schedule.SceneScheduleView', {
 		            },
 		            
 		            {
-						xtype:'label',
-						html: '服务',
-						cls:'row font-medium font-grey',
-						margin:'0 10 0 5'
+						xtype:'panel',
+						layout:'hbox',
+						items:[
+							{
+								xtype:'label',
+								html: '服务',
+								cls:'row font-medium font-grey',
+								margin:'0 10 0 5'
+							},
+							{  
+							    xtype: 'dataview',  
+							    itemId:'services',
+							    flex:1,
+							    scrollable:null,
+						        useComponents: true,
+						        defaultType: 'ServiceDataItem',
+						        margin:'0 5 0 10'
+							}
+						]
 					}
 				]
 			},
@@ -197,8 +212,17 @@ Ext.define('YourTour.view.route.schedule.SceneScheduleView', {
 	                    iconCls:'action',
 	                    itemId: 'backToPlaces'
 	                },{
-	                    xtype: 'spacer',
-	                    flex:1
+	                    xtype: 'button',
+	                    text: '签到',
+	                    ui: 'normal',
+	                    iconCls:'locate',
+	                    itemId: 'checkin'
+	                },{
+	                    xtype: 'button',
+	                    text: '随记',
+	                    ui: 'normal',
+	                    iconCls:'compose',
+	                    itemId: 'notes'
 	                }
 	            ]
             }

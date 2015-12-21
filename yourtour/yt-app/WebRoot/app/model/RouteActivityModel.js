@@ -19,6 +19,13 @@ Ext.define('YourTour.model.RouteActivityModel', {
   	            model: 'YourTour.model.ResourceModel',   
   	            name:'resource',   
   	            associationKey:'resource'  
+  	        },
+  	        
+  	        {  
+  	            type: 'hasMany',   
+  	            model: 'YourTour.model.ServiceModel',   
+  	            name:'services',   
+  	            associationKey:'services'  
   	        }
    	    ],
     }

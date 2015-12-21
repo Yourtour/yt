@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/yt-app/yt-app.iml" filepath="$PROJECT_DIR$/yt-app/yt-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yt-core/yt-core.iml" filepath="$PROJECT_DIR$/yt-core/yt-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yt-data-service/yt-data-service.iml" filepath="$PROJECT_DIR$/yt-data-service/yt-data-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yt-hbase/yt-hbase.iml" filepath="$PROJECT_DIR$/yt-hbase/yt-hbase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yt-neo4j/yt-neo4j.iml" filepath="$PROJECT_DIR$/yt-neo4j/yt-neo4j.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yt-web/yt-web.iml" filepath="$PROJECT_DIR$/yt-web/yt-web.iml" />
+    </modules>
+  </component>
+</project>

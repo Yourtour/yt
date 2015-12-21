@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="EclipseModuleManager">
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-neo4j/3.2.0.RELEASE/720afe917875cac3bc21263949127dbd26dd1424/spring-data-neo4j-3.2.0.RELEASE.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-neo4j-rest/3.2.0.RELEASE/a359b4be018afb6218ce181b8078b262be89a0d1/spring-data-neo4j-rest-3.2.0.RELEASE.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-neo4j-tx/3.2.0.RELEASE/a5f11b3b2108c8e2c6a0f14beab07dfa599dc748/spring-data-neo4j-tx-3.2.0.RELEASE.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-cypher-dsl/2.1.4/bb6f7bbde246b431f387759f8dfea191b01e9407/neo4j-cypher-dsl-2.1.4.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.validation/validation-api/1.1.0.Final/8613ae82954779d518631e05daa73a6a954817d5/validation-api-1.1.0.Final.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.8.2/c94f54227b08100974c36170dcb53329435fe5ad/junit-4.8.2.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/log4j/log4j/1.2.17/5af35056b4d257e4b64b9e8069c0746e8b08629f/log4j-1.2.17.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.aspectj/aspectjweaver/1.8.6/7108cf65148f29a55ebf23db2c46224ea9d086dc/aspectjweaver-1.8.6.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-tx/4.0.7.RELEASE/756d9d0451804e534820ce7c0d1c7de75583685/spring-tx-4.0.7.RELEASE.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aspects/4.0.7.RELEASE/9405844d4a2c7c13b749af33151a62ca48f60eae/spring-aspects-4.0.7.RELEASE.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.aspectj/aspectjrt/1.8.2/7dede91c0c36b1265fc99c55283b90ed2be144c8/aspectjrt-1.8.2.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-commons/1.9.0.RELEASE/bd987e587167b4757b5762051323515442ad25d2/spring-data-commons-1.9.0.RELEASE.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j/2.1.2/de24992e14593667756c8042f6a26c6c6ff41271/neo4j-2.1.2.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-cypher/2.1.2/a8f4bf2d79c39ea30c0d5120eb0aba8e55182d7d/neo4j-cypher-2.1.2.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.7/2b8019b6249bb05d81d3a3094e468753e2b21311/slf4j-api-1.7.7.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/jcl-over-slf4j/1.7.7/56003dcd0a31deea6391b9e2ef2f2dc90b205a92/jcl-over-slf4j-1.7.7.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-kernel/2.1.2/e2bbb6b32473699db10419ef6fc80d89f58fbde9/neo4j-kernel-2.1.2.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-rest-graphdb/2.0.1/4aeff1d6f56930e690f62955742795e5899cd67c/neo4j-rest-graphdb-2.0.1.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-jaxrs/1.9.7/75d542679f6dca4e0ab4304437b78ab20baf5eb1/jackson-jaxrs-1.9.7.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-mapper-asl/1.9.7/3bc2efad5ceb9e24e44f731d4282b5df3ea6d23f/jackson-mapper-asl-1.9.7.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sun.jersey/jersey-client/1.9/d3c4b2b5f89db32c96ceddcb863684821910a7bb/jersey-client-1.9.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-lucene-index/2.1.2/55cf6e2d44f4fdbd1c6488d0e8fc7884ae3fb18d/neo4j-lucene-index-2.1.2.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-graph-algo/2.1.2/bfbde2567435495cf06c9a0b35748a4c85ce9cec/neo4j-graph-algo-2.1.2.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-udc/2.1.2/1946d6205e94e9bc6d7b3de801cc73a354574717/neo4j-udc-2.1.2.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-graph-matching/2.1.2/2c8114a07b9f5114740a62ada7c98980880e4b77/neo4j-graph-matching-2.1.2.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-jmx/2.1.2/d62f28bc80893977e3dcbb23a87410e39655c1a1/neo4j-jmx-2.1.2.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-cypher-commons/2.1.2/527540d55a933a446f0c327bcb0e5e27c6c0ca39/neo4j-cypher-commons-2.1.2.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-cypher-compiler-1.9/2.0.3/d25359b1a0484a9d7d08c6d14781d3505f2ed5e9/neo4j-cypher-compiler-1.9-2.0.3.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-cypher-compiler-2.0/2.0.3/6436391790d18a7a0de551af1dd367f8b012a07/neo4j-cypher-compiler-2.0-2.0.3.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-cypher-compiler-2.1/2.1.2/ca3442c8780f7a90f2d445db4ffe2a4814006c18/neo4j-cypher-compiler-2.1-2.1.2.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.googlecode.concurrentlinkedhashmap/concurrentlinkedhashmap-lru/1.3.1/584a998286ec5b62a3ee115e29410e4233b76346/concurrentlinkedhashmap-lru-1.3.1.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.scala-lang/scala-library/2.10.4/9aae4cb1802537d604e03688cab744ff47b31a7d/scala-library-2.10.4.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/235ba8b489512805ac13a8f9ea77a1ca5ebe3e8/aopalliance-1.0.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-primitive-collections/2.1.2/c6c16875e2da2048a04ec29243fd0b0357541023/neo4j-primitive-collections-2.1.2.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.geronimo.specs/geronimo-jta_1.1_spec/1.1.1/aabab3165b8ea936b9360abbf448459c0d04a5a4/geronimo-jta_1.1_spec-1.1.1.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-core-asl/1.9.7/2dd41e7570f5c73e63a6a1311671a60c817e1989/jackson-core-asl-1.9.7.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sun.jersey/jersey-core/1.9/8341846f18187013bb9e27e46b7ee00a6395daf4/jersey-core-1.9.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.lucene/lucene-core/3.6.2/9ec77e2507f9cc01756964c71d91efd8154a8c47/lucene-core-3.6.2.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.parboiled/parboiled-scala_2.10/1.1.6/bc93b215151f7dc42653f3eb0243b3130a7e1e11/parboiled-scala_2.10-1.1.6.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.parboiled/parboiled-core/1.1.6/11bd0c34fc6ac3c3cbf440ab8180cc6422c044e9/parboiled-core-1.1.6.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/4.1.6.RELEASE/15f0b22bf89ed468badbc4eec759af2b916d33e4/spring-context-4.1.6.RELEASE.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.sf.opencsv/opencsv/2.3/c23708cdb9e80a144db433e23344a788a1fd6599/opencsv-2.3.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/4.1.6.RELEASE/686c13ba57d9423dede9c5d580dcadc5c67a2761/spring-aop-4.1.6.RELEASE.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-beans/4.1.6.RELEASE/ce2d409d470948f11fad41ffdf37dcff4d28cd7c/spring-beans-4.1.6.RELEASE.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/4.1.6.RELEASE/e2f486124d5dea2d91a9c2ea7d4456bc343ca2cc/spring-core-4.1.6.RELEASE.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/4.1.6.RELEASE/8bf70887c2c883a6f6e552dbe46eec35c07adf6a/spring-expression-4.1.6.RELEASE.jar!/" />
+    <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.2/4bfc12adfe4842bf07b657f0369c4cb522955686/commons-logging-1.2.jar!/" />
+    <conelement value="org.eclipse.jst.j2ee.internal.module.container" />
+    <src_description expected_position="0">
+      <src_folder value="file://$MODULE_DIR$/src/main/java" expected_position="0" />
+      <src_folder value="file://$MODULE_DIR$/src/test/java" expected_position="1" />
+    </src_description>
+  </component>
+  <component name="FacetManager">
+    <facet type="Spring" name="Spring">
+      <configuration>
+        <fileset id="fileset" name="Spring Application Context" removed="false">
+          <file>file://$MODULE_DIR$/src/test/java/application-neo4j-context.xml</file>
+        </fileset>
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="false">
+    <output url="file://$MODULE_DIR$/bin" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="false" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="jdk" jdkName="1.7" jdkType="JavaSDK" />
+    <orderEntry type="module" module-name="yt-core" exported="" />
+    <orderEntry type="module-library" exported="">
+      <library name="spring-data-neo4j-3.2.0.RELEASE.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-neo4j/3.2.0.RELEASE/720afe917875cac3bc21263949127dbd26dd1424/spring-data-neo4j-3.2.0.RELEASE.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-neo4j/3.2.0.RELEASE/c58358b18aa4ca52eae7fe03583c5d8d5e3878b/spring-data-neo4j-3.2.0.RELEASE-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="spring-data-neo4j-rest-3.2.0.RELEASE.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-neo4j-rest/3.2.0.RELEASE/a359b4be018afb6218ce181b8078b262be89a0d1/spring-data-neo4j-rest-3.2.0.RELEASE.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-neo4j-rest/3.2.0.RELEASE/e2c1ca8fcdc19ba5de4bda45948039f2bb9832af/spring-data-neo4j-rest-3.2.0.RELEASE-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="spring-data-neo4j-tx-3.2.0.RELEASE.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-neo4j-tx/3.2.0.RELEASE/a5f11b3b2108c8e2c6a0f14beab07dfa599dc748/spring-data-neo4j-tx-3.2.0.RELEASE.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-neo4j-tx/3.2.0.RELEASE/4619a110381d7c8b38ee953992f9cda2e2e36458/spring-data-neo4j-tx-3.2.0.RELEASE-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="neo4j-cypher-dsl-2.1.4.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-cypher-dsl/2.1.4/bb6f7bbde246b431f387759f8dfea191b01e9407/neo4j-cypher-dsl-2.1.4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="validation-api-1.1.0.Final.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.validation/validation-api/1.1.0.Final/8613ae82954779d518631e05daa73a6a954817d5/validation-api-1.1.0.Final.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.validation/validation-api/1.1.0.Final/7d49b53caed9bd81d172807c3e096d24f3c57090/validation-api-1.1.0.Final-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="junit-4.8.2.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.8.2/c94f54227b08100974c36170dcb53329435fe5ad/junit-4.8.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.8.2/cccca612a66b8387c399be31d69daf000de2ac9e/junit-4.8.2-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="log4j-1.2.17.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/log4j/log4j/1.2.17/5af35056b4d257e4b64b9e8069c0746e8b08629f/log4j-1.2.17.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/log4j/log4j/1.2.17/677abe279b68c5e7490d6d50c6951376238d7d3e/log4j-1.2.17-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="aspectjweaver-1.8.6.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.aspectj/aspectjweaver/1.8.6/7108cf65148f29a55ebf23db2c46224ea9d086dc/aspectjweaver-1.8.6.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.aspectj/aspectjweaver/1.8.6/a361b303ca34e33bfdb96cb4e93d516e854366bb/aspectjweaver-1.8.6-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="spring-tx-4.0.7.RELEASE.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-tx/4.0.7.RELEASE/756d9d0451804e534820ce7c0d1c7de75583685/spring-tx-4.0.7.RELEASE.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-tx/4.0.7.RELEASE/8989d6c17280871d266808ab861d0feccf230a2d/spring-tx-4.0.7.RELEASE-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="spring-aspects-4.0.7.RELEASE.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aspects/4.0.7.RELEASE/9405844d4a2c7c13b749af33151a62ca48f60eae/spring-aspects-4.0.7.RELEASE.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aspects/4.0.7.RELEASE/ba3bd1bf3c3f10aecc4bf11a25861885ff4de37c/spring-aspects-4.0.7.RELEASE-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="aspectjrt-1.8.2.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.aspectj/aspectjrt/1.8.2/7dede91c0c36b1265fc99c55283b90ed2be144c8/aspectjrt-1.8.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.aspectj/aspectjrt/1.8.2/a77b22e3a955cfd274639e2bfbcbcf32d562f6e/aspectjrt-1.8.2-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="spring-data-commons-1.9.0.RELEASE.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-commons/1.9.0.RELEASE/bd987e587167b4757b5762051323515442ad25d2/spring-data-commons-1.9.0.RELEASE.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-commons/1.9.0.RELEASE/63820e1f6f5735440f994e0ced4e6fa0a5a70074/spring-data-commons-1.9.0.RELEASE-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="neo4j-2.1.2.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j/2.1.2/de24992e14593667756c8042f6a26c6c6ff41271/neo4j-2.1.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j/2.1.2/b4916b1d0303c561e6c0943da8a3bf4c4f1dc8a7/neo4j-2.1.2-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="neo4j-cypher-2.1.2.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-cypher/2.1.2/a8f4bf2d79c39ea30c0d5120eb0aba8e55182d7d/neo4j-cypher-2.1.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-cypher/2.1.2/bc5a31076b3dfa018ddd861be9858cb771d8b71/neo4j-cypher-2.1.2-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="slf4j-api-1.7.7.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.7/2b8019b6249bb05d81d3a3094e468753e2b21311/slf4j-api-1.7.7.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.7/acd62e31cc314266e73eebed0b6dd7ea974a0ed/slf4j-api-1.7.7-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="jcl-over-slf4j-1.7.7.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/jcl-over-slf4j/1.7.7/56003dcd0a31deea6391b9e2ef2f2dc90b205a92/jcl-over-slf4j-1.7.7.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/jcl-over-slf4j/1.7.7/b5a646b81b899e930f8600c5f45766dd82743d93/jcl-over-slf4j-1.7.7-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="neo4j-kernel-2.1.2.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-kernel/2.1.2/e2bbb6b32473699db10419ef6fc80d89f58fbde9/neo4j-kernel-2.1.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-kernel/2.1.2/7fcd2ebbbe6ebdbc02b0c8f46e194b1b1905da9c/neo4j-kernel-2.1.2-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="neo4j-rest-graphdb-2.0.1.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-rest-graphdb/2.0.1/4aeff1d6f56930e690f62955742795e5899cd67c/neo4j-rest-graphdb-2.0.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-rest-graphdb/2.0.1/d147a46aaa5c10f539786e79cbc28d568c806cb6/neo4j-rest-graphdb-2.0.1-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="jackson-jaxrs-1.9.7.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-jaxrs/1.9.7/75d542679f6dca4e0ab4304437b78ab20baf5eb1/jackson-jaxrs-1.9.7.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-jaxrs/1.9.7/bea361962292c543176f1dadca728155b7bfdc77/jackson-jaxrs-1.9.7-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="jackson-mapper-asl-1.9.7.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-mapper-asl/1.9.7/3bc2efad5ceb9e24e44f731d4282b5df3ea6d23f/jackson-mapper-asl-1.9.7.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-mapper-asl/1.9.7/2cd1eab1c1104c3abd518497167f521905e57238/jackson-mapper-asl-1.9.7-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="jersey-client-1.9.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sun.jersey/jersey-client/1.9/d3c4b2b5f89db32c96ceddcb863684821910a7bb/jersey-client-1.9.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sun.jersey/jersey-client/1.9/fcd4ed548c23e5036fe9628cbb36e7b440a6a090/jersey-client-1.9-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="neo4j-lucene-index-2.1.2.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-lucene-index/2.1.2/55cf6e2d44f4fdbd1c6488d0e8fc7884ae3fb18d/neo4j-lucene-index-2.1.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-lucene-index/2.1.2/463cff5c2ab4bc892f5447a91a5af77d8d96686f/neo4j-lucene-index-2.1.2-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="neo4j-graph-algo-2.1.2.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-graph-algo/2.1.2/bfbde2567435495cf06c9a0b35748a4c85ce9cec/neo4j-graph-algo-2.1.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-graph-algo/2.1.2/98a0afb130341c2f0c7054f41077fffe8aaad3d8/neo4j-graph-algo-2.1.2-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="neo4j-udc-2.1.2.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-udc/2.1.2/1946d6205e94e9bc6d7b3de801cc73a354574717/neo4j-udc-2.1.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-udc/2.1.2/6d9682ed9241acad269f3a8892b1f6e651f2457e/neo4j-udc-2.1.2-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="neo4j-graph-matching-2.1.2.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-graph-matching/2.1.2/2c8114a07b9f5114740a62ada7c98980880e4b77/neo4j-graph-matching-2.1.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-graph-matching/2.1.2/6de25b59b718380522374ed397a2ef4581fbe57d/neo4j-graph-matching-2.1.2-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="neo4j-jmx-2.1.2.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-jmx/2.1.2/d62f28bc80893977e3dcbb23a87410e39655c1a1/neo4j-jmx-2.1.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-jmx/2.1.2/a880e9614d25b8c9728bf679bf8265961ee9a1d7/neo4j-jmx-2.1.2-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="neo4j-cypher-commons-2.1.2.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-cypher-commons/2.1.2/527540d55a933a446f0c327bcb0e5e27c6c0ca39/neo4j-cypher-commons-2.1.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-cypher-commons/2.1.2/2bee0d82fa1aebe0f2e63da90cd8b025f15b104b/neo4j-cypher-commons-2.1.2-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="neo4j-cypher-compiler-1.9-2.0.3.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-cypher-compiler-1.9/2.0.3/d25359b1a0484a9d7d08c6d14781d3505f2ed5e9/neo4j-cypher-compiler-1.9-2.0.3.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-cypher-compiler-1.9/2.0.3/4af5001f504fd2fade458c2b14eca94bb4fcc790/neo4j-cypher-compiler-1.9-2.0.3-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="neo4j-cypher-compiler-2.0-2.0.3.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-cypher-compiler-2.0/2.0.3/6436391790d18a7a0de551af1dd367f8b012a07/neo4j-cypher-compiler-2.0-2.0.3.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-cypher-compiler-2.0/2.0.3/a029a0a75383e4066cbde84ddba040aecd368af0/neo4j-cypher-compiler-2.0-2.0.3-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="neo4j-cypher-compiler-2.1-2.1.2.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-cypher-compiler-2.1/2.1.2/ca3442c8780f7a90f2d445db4ffe2a4814006c18/neo4j-cypher-compiler-2.1-2.1.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-cypher-compiler-2.1/2.1.2/c85fae10e6b04cf449b06d3ee625eafff56ea902/neo4j-cypher-compiler-2.1-2.1.2-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="concurrentlinkedhashmap-lru-1.3.1.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.googlecode.concurrentlinkedhashmap/concurrentlinkedhashmap-lru/1.3.1/584a998286ec5b62a3ee115e29410e4233b76346/concurrentlinkedhashmap-lru-1.3.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.googlecode.concurrentlinkedhashmap/concurrentlinkedhashmap-lru/1.3.1/d6f47e53a017b9275801b7fa8cd497e51bc94bf5/concurrentlinkedhashmap-lru-1.3.1-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="scala-library-2.10.4.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.scala-lang/scala-library/2.10.4/9aae4cb1802537d604e03688cab744ff47b31a7d/scala-library-2.10.4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.scala-lang/scala-library/2.10.4/59908ab93978c1f546d3db5e05b42994b63ad515/scala-library-2.10.4-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="aopalliance-1.0.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/235ba8b489512805ac13a8f9ea77a1ca5ebe3e8/aopalliance-1.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/4a4b6d692e17846a9f3da036438a7ac491d3c814/aopalliance-1.0-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="neo4j-primitive-collections-2.1.2.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-primitive-collections/2.1.2/c6c16875e2da2048a04ec29243fd0b0357541023/neo4j-primitive-collections-2.1.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.neo4j/neo4j-primitive-collections/2.1.2/733acf97b564d78016ad2649394a2af2f3259ad0/neo4j-primitive-collections-2.1.2-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="geronimo-jta_1.1_spec-1.1.1.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.geronimo.specs/geronimo-jta_1.1_spec/1.1.1/aabab3165b8ea936b9360abbf448459c0d04a5a4/geronimo-jta_1.1_spec-1.1.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.geronimo.specs/geronimo-jta_1.1_spec/1.1.1/a84978fba1f1916bf2931e44d961705a9e64aec7/geronimo-jta_1.1_spec-1.1.1-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="jackson-core-asl-1.9.7.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-core-asl/1.9.7/2dd41e7570f5c73e63a6a1311671a60c817e1989/jackson-core-asl-1.9.7.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-core-asl/1.9.7/78c0b2fee8552de1830be13ed320369bbf067b5c/jackson-core-asl-1.9.7-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="jersey-core-1.9.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sun.jersey/jersey-core/1.9/8341846f18187013bb9e27e46b7ee00a6395daf4/jersey-core-1.9.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sun.jersey/jersey-core/1.9/56cafb409f0468aef023b327f25daa54b284fe8d/jersey-core-1.9-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="lucene-core-3.6.2.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.lucene/lucene-core/3.6.2/9ec77e2507f9cc01756964c71d91efd8154a8c47/lucene-core-3.6.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.lucene/lucene-core/3.6.2/95e4667afb0ecd4f5b4136a24d3df3767c0d572c/lucene-core-3.6.2-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="parboiled-scala_2.10-1.1.6.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.parboiled/parboiled-scala_2.10/1.1.6/bc93b215151f7dc42653f3eb0243b3130a7e1e11/parboiled-scala_2.10-1.1.6.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.parboiled/parboiled-scala_2.10/1.1.6/9112b659511f65e52b6f65a18c7fe8386e0e5e28/parboiled-scala_2.10-1.1.6-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="parboiled-core-1.1.6.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.parboiled/parboiled-core/1.1.6/11bd0c34fc6ac3c3cbf440ab8180cc6422c044e9/parboiled-core-1.1.6.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.parboiled/parboiled-core/1.1.6/e2e4949bc8206467a8826a9344b9f1cc671a4602/parboiled-core-1.1.6-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="spring-context-4.1.6.RELEASE.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/4.1.6.RELEASE/15f0b22bf89ed468badbc4eec759af2b916d33e4/spring-context-4.1.6.RELEASE.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/4.1.6.RELEASE/90d95c820dabd0187ff5be4a854b912741e8fd36/spring-context-4.1.6.RELEASE-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="opencsv-2.3.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.sf.opencsv/opencsv/2.3/c23708cdb9e80a144db433e23344a788a1fd6599/opencsv-2.3.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.sf.opencsv/opencsv/2.3/235993117036d44d126f76db9ea2202ee4884682/opencsv-2.3-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="spring-aop-4.1.6.RELEASE.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/4.1.6.RELEASE/686c13ba57d9423dede9c5d580dcadc5c67a2761/spring-aop-4.1.6.RELEASE.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/4.1.6.RELEASE/b27f6ddfa82527ab2be92b11d3e1c50b6e7993e9/spring-aop-4.1.6.RELEASE-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="spring-beans-4.1.6.RELEASE.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-beans/4.1.6.RELEASE/ce2d409d470948f11fad41ffdf37dcff4d28cd7c/spring-beans-4.1.6.RELEASE.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-beans/4.1.6.RELEASE/708d354f5210f253d345b3cb65013410cc770554/spring-beans-4.1.6.RELEASE-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="spring-core-4.1.6.RELEASE.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/4.1.6.RELEASE/e2f486124d5dea2d91a9c2ea7d4456bc343ca2cc/spring-core-4.1.6.RELEASE.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/4.1.6.RELEASE/a09f8d7c0c2b861f0d9e256de451c78b55aec0cf/spring-core-4.1.6.RELEASE-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="spring-expression-4.1.6.RELEASE.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/4.1.6.RELEASE/8bf70887c2c883a6f6e552dbe46eec35c07adf6a/spring-expression-4.1.6.RELEASE.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/4.1.6.RELEASE/ee7d75b5f8328cb46f965fd4f07b12691bedea6a/spring-expression-4.1.6.RELEASE-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library name="commons-logging-1.2.jar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.2/4bfc12adfe4842bf07b657f0369c4cb522955686/commons-logging-1.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.2/ecf26c7507d67782a3bbd148d170b31dfad001aa/commons-logging-1.2-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="org.eclipse.jst.j2ee.internal.module.container" level="application" />
+  </component>
+</module>

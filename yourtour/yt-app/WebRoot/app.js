@@ -25,16 +25,17 @@ Ext.application({
     localStorage : window.localStorage,  
     
     views: [
-        'MainView','Launch','common.PlaceChangeView','common.PlaceSelectionView','common.MessageMainView','common.MessageGroupView',
+        'MainView','Launch',
+        'common.PlaceChangeView','common.PlaceSelectionView','common.MessageMainView','common.MessageGroupView','common.ServiceFormView',
         'home.HomeMainView', 'home.BestListView', 'home.AlongListView', 'home.AlongDetailView', 'home.TalentListView', 'SearchMain',
         'route.RouteMainView','route.RouteSettingView','route.RouteImpressionView','route.RouteImageView',
-        'route.RouteScheduleListView', 'route.RouteSchedulePlanView','route.RouteScheduleReferenceView','route.schedule.SceneScheduleView','route.schedule.HotelScheduleView','route.schedule.FoodScheduleView',
+        'route.RouteScheduleListView', 'route.RouteSchedulePlanView','route.RouteScheduleReferenceView','route.ScheduleFormView',
         'route.RouteProvisionView','route.RouteProvisionEditView','route.RouteScheduleEditView','route.RouteScheduleView',
         'route.RouteActivityEditView',
         'user.LoginMainView','user.UserListView','user.UserMainView',
         'line.LineRecommendView','line.LineIntroductionView',
         
-        'resource.ResourceSelectionView','resource.ResourceDetailView','resource.ResourceSceneView',
+        'resource.ResourceSelectionView','resource.ResourceDetailView','resource.ResourceSceneView','resource.ResourceMapView',
         'member.MemberMainView','member.MemberAddView','member.MemberPositionView','member.MemberSearchView',
         'expert.ExpertMainView','expert.ExpertApplyView','expert.ExpertIntroView','expert.ExpertListView',
         'community.LiveMainView',
@@ -49,12 +50,12 @@ Ext.application({
         'line.LineRecommendCtrl','line.LineIntroductionCtrl','user.AccountMainCtrl',
         'route.ScheduleReferenceCtrl','route.ScheduleDetailCtrl',
         'ResourceMainCtrl','user.UserListCtrl',
-        'MemberMainCtrl','UserMainCtrl', 'ExpertMainCtrl', 'MessageMainCtrl','PlaceMainCtrl'
+        'MemberMainCtrl','UserMainCtrl', 'ExpertMainCtrl', 'MessageMainCtrl','PlaceMainCtrl','ServiceMainCtrl'
     ],
     
     models:[
         'LaunchModel','RouteModel','RouteActivityModel', 'LineModel', 'UserModel','OptionModel', 'HomeModel','LiveModel','ChatModel','AlongModel','TalentModel','HomeCarouselModel','CommentModel', 'PlaceModel',
-        'CacheModel'
+        'CacheModel','ServiceModel'
     ],
     
     stores:[

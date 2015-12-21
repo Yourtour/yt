@@ -28,6 +28,6 @@ public interface RouteBeanRepository extends GraphRepository<RouteMainBean> {
 	 *            成员角色
 	 * @return 用户列表
 	 */
-	@Query("START route=node({0}) MATCH route <-- (user:UserProfileBean) RETURN user")
+	@Query("START route=node({0}) MATCH route -- (user:UserProfileBean) RETURN user")
 	public List<UserProfileBean> getRouteMember(Long routeId);
 }

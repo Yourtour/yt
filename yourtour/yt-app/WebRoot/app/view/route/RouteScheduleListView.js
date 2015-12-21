@@ -57,16 +57,7 @@ Ext.define('YourTour.view.route.RouteScheduleListView', {
     			xtype:'RouteScheduleDataView',
     			readonly:false,
     			scrollable:null,
-    			
-		    	/**
-		         * Tell the dataview to use components for each item
-		         */
 		        useComponents: true,
-		        
-		        /**
-		         * Set the default item for this component list to be the {@link Example.view.KittensListItem}
-		         * class.
-		         */
 		        defaultType: 'RouteScheduleDataListItem'
     		}
         ]

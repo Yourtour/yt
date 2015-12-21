@@ -7,7 +7,7 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
     	   routeScheduleListView:'#RouteScheduleListView',
     	   schedulePlanList:'#RouteScheduleListView #RouteScheduleList',
     	   
-    	   sceneScheduleView:'#SceneScheduleView'	   
+    	   scheduleFormView:'#ScheduleFormView'	   
        },
        
        control:{
@@ -23,10 +23,17 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
     		   tap:'onEditTap'
     	   },
     	   
-    	   '#SceneScheduleView #resName':{
+    	   '#ScheduleFormView #resName':{
     		   tap:'onSceneResourceView'
-    	   }
+    	   },
     	   
+    	   '#ScheduleFormView #address':{
+    		   tap:'onShowResourceMap'
+    	   },
+    	   
+    	   '#ScheduleFormView #services':{
+    		   itemtap:'onScheduleServiceTap'
+    	   }
        },
        
        routes:{
@@ -88,7 +95,7 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
     onSceneResourceTap:function(record){
     	var me = this;
     	
-    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.schedule.SceneScheduleView'));
+    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.ScheduleFormView'));
     	
     	var store = Ext.create('YourTour.store.AjaxStore', {
     	    model: 'YourTour.model.RouteActivityModel',
@@ -99,7 +106,7 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
     	store.load(function(){
     		var activity = store.first();
 
-    		var scheduleView = me.getSceneScheduleView();
+    		var scheduleView = me.getScheduleFormView();
     		
         	var headerbar = scheduleView.down('#headerbar');
         	headerbar.setTitle(activity.get('title'));
@@ -124,15 +131,16 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
         	
         	var resNameEl = scheduleView.down('#resName');
         	resNameEl.setHtml(resource.get('name'));
+        	
+        	var serviceEl = scheduleView.down('#services');
+        	serviceEl.setStore(activity.servicesStore);
     	});
     },
     
     onFoodResourceTap:function(record){
-    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.schedule.FoodScheduleView'));
     },
     
     onHotelResourceTap:function(record){
-    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.schedule.HotelScheduleView'));
     },
     
     onSceneResourceView:function(){
@@ -140,5 +148,22 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
     	var resId = this.resource.get('id');
     	
     	this.redirectTo('/resource/' + resType + '/' + resId);
-    }
+    },
+    
+    onShowResourceMap:function(){
+    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.resource.ResourceMapView'));
+    	
+    	var map = new BMap.Map('map');//指向map的容器
+        map.centerAndZoom(new BMap.Point(121.491, 31.233), 11);
+        window.setTimeout(function(){  
+        		map.panTo(new BMap.Point(121.488032,31.239148));
+        }, 
+        2000);
+    },
+    
+    onScheduleServiceTap:function(dataview, index, item, record,e){
+    	var serviceId = record.get('id');
+    	
+    	this.redirectTo('/service/' + serviceId);
+    },
 });

@@ -16,9 +16,6 @@ Ext.define('YourTour.view.resource.ResourceSceneView', {
 	    	{
 	    		xtype:'panel',
 	    		layout:'vbox',
-	    		defaults:{
-	    			padding:'0 5 0 5'
-	    		},
 		    	items:[
 		    		{
 			    		xtype : 'panel',
@@ -28,8 +25,8 @@ Ext.define('YourTour.view.resource.ResourceSceneView', {
 				    		{
 				    			xtype:'xlabel',
 				    			flex:1,
-				    			html:'推荐指数'
-				    			
+				    			html:'推荐指数',
+				    			margin:'0 10 0 5'
 				    		},
 				    		{
 				    			xtype:'image',

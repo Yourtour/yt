@@ -649,6 +649,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.controller.MessageMainCtrl": [],
   "YourTour.controller.PlaceMainCtrl": [],
   "YourTour.controller.ResourceMainCtrl": [],
+  "YourTour.controller.ServiceMainCtrl": [],
   "YourTour.controller.UserMainCtrl": [],
   "YourTour.controller.common.PlaceChangeCtrl": [],
   "YourTour.controller.common.PlaceSelectionCtrl": [],
@@ -686,6 +687,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.model.RouteActivityModel": [],
   "YourTour.model.RouteModel": [],
   "YourTour.model.RouteScheduleModel": [],
+  "YourTour.model.ServiceModel": [],
   "YourTour.model.TalentModel": [],
   "YourTour.model.UserModel": [],
   "YourTour.model.common.ResponseModel": [],
@@ -722,6 +724,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.common.PlaceListItemView": [],
   "YourTour.view.common.PlaceSelectionView": [],
   "YourTour.view.common.PlaceTypeListItemView": [],
+  "YourTour.view.common.ServiceDataItem": [],
+  "YourTour.view.common.ServiceFormView": [],
   "YourTour.view.community.LiveMainView": [],
   "YourTour.view.expert.ExpertApplyView": [],
   "YourTour.view.expert.ExpertIntroView": [],
@@ -760,6 +764,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.resource.ResourceDetailView": [],
   "YourTour.view.resource.ResourceFoodDataItem": [],
   "YourTour.view.resource.ResourceFoodListView": [],
+  "YourTour.view.resource.ResourceMapView": [],
   "YourTour.view.resource.ResourcePlayDataItem": [],
   "YourTour.view.resource.ResourcePlayListView": [],
   "YourTour.view.resource.ResourceSceneView": [],
@@ -781,10 +786,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.route.RouteSettingItem": [],
   "YourTour.view.route.RouteSettingView": [],
   "YourTour.view.route.Schedule": [],
-  "YourTour.view.route.schedule.FoodScheduleView": [],
-  "YourTour.view.route.schedule.HotelScheduleView": [],
-  "YourTour.view.route.schedule.SceneScheduleView": [],
-  "YourTour.view.route.schedule.SchedulePlanListItem": [],
+  "YourTour.view.route.ScheduleFormView": [],
   "YourTour.view.user.LoginMainView": [],
   "YourTour.view.user.LoginView": [],
   "YourTour.view.user.RegisterAccountView": [],
@@ -1546,6 +1548,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.controller.MessageMainCtrl": [],
   "YourTour.controller.PlaceMainCtrl": [],
   "YourTour.controller.ResourceMainCtrl": [],
+  "YourTour.controller.ServiceMainCtrl": [],
   "YourTour.controller.UserMainCtrl": [],
   "YourTour.controller.common.PlaceChangeCtrl": [],
   "YourTour.controller.common.PlaceSelectionCtrl": [],
@@ -1585,6 +1588,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.model.RouteActivityModel": [],
   "YourTour.model.RouteModel": [],
   "YourTour.model.RouteScheduleModel": [],
+  "YourTour.model.ServiceModel": [],
   "YourTour.model.TalentModel": [],
   "YourTour.model.UserModel": [],
   "YourTour.model.common.ResponseModel": [],
@@ -1645,6 +1649,10 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.common.PlaceTypeListItemView": [
     "widget.PlaceTypeListItemView"
   ],
+  "YourTour.view.common.ServiceDataItem": [
+    "widget.ServiceDataItem"
+  ],
+  "YourTour.view.common.ServiceFormView": [],
   "YourTour.view.community.LiveMainView": [
     "widget.LiveMainView"
   ],
@@ -1751,6 +1759,9 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.resource.ResourceFoodListView": [
     "widget.ResourceFoodListView"
   ],
+  "YourTour.view.resource.ResourceMapView": [
+    "widget.ResourceMapView"
+  ],
   "YourTour.view.resource.ResourcePlayDataItem": [
     "widget.ResourcePlayDataItem"
   ],
@@ -1800,18 +1811,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.route.Schedule": [
     "widget.routenew"
   ],
-  "YourTour.view.route.schedule.FoodScheduleView": [
-    "widget.FoodScheduleView"
-  ],
-  "YourTour.view.route.schedule.HotelScheduleView": [
-    "widget.HotelScheduleView"
-  ],
-  "YourTour.view.route.schedule.SceneScheduleView": [
-    "widget.SceneScheduleView"
-  ],
-  "YourTour.view.route.schedule.SchedulePlanListItem": [
-    "widget.SchedulePlanListItem"
-  ],
+  "YourTour.view.route.ScheduleFormView": [],
   "YourTour.view.user.LoginMainView": [],
   "YourTour.view.user.LoginView": [
     "widget.LoginView"
