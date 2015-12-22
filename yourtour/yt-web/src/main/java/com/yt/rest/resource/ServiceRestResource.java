@@ -1,20 +1,18 @@
 package com.yt.rest.resource;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import com.yt.business.bean.*;
+import com.yt.business.repository.RouteServiceRepository;
+import com.yt.utils.WebUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.yt.business.bean.RouteMainBean;
-import com.yt.business.bean.UserProfileBean;
 import com.yt.business.common.Constants;
 import com.yt.business.repository.RouteRepository;
 import com.yt.error.StaticErrorEnum;
@@ -32,31 +30,110 @@ public class ServiceRestResource {
 	@Autowired
 	private RouteRepository routeRepository;
 
+	@Autowired
+	private RouteServiceRepository serviceRepository;
+
 	/**
-	 * 删除伙伴
+	 *
 	 * @param request
-	 * @param member
+	 * @param service
 	 * @return
 	 */
-	@GET
-	@Path("/delete")
-	public ResponseVO save(@Context HttpServletRequest request, RouteServiceVO service){
+	@POST
+	@Path("/route/save")
+	public ResponseVO saveRouteService(@Context HttpServletRequest request, RouteServiceVO serviceVO){
 		try{
-			/*RouteMainBean route = (RouteMainBean) routeRepository.get(RouteMainBean.class, Long.valueOf(routeId), false);
+			RouteMainBean route = (RouteMainBean) routeRepository.get(RouteMainBean.class, Long.valueOf(serviceVO.getRouteId()), false);
 			if(route == null){
 				return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
 			}
-			
-			UserProfileBean user = (UserProfileBean)routeRepository.get(UserProfileBean.class, Long.valueOf(userId), false);
-			if(user == null){
+
+			ExpertServiceBean service = (ExpertServiceBean) routeRepository.get(ExpertServiceBean.class, Long.valueOf(serviceVO.getServiceId()), false);
+			if(service == null){
 				return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
 			}
-			
-			routeRepository.deleteRelation(route, user, Constants.RELATION_TYPE_PARTICIPATE);*/
-			
+
+			RouteServiceBean serviceBean = new RouteServiceBean();
+			serviceBean.setRoute(route);
+			serviceBean.setService(service);
+			serviceBean.setTitle(serviceVO.getTitle());
+			serviceBean.setMemo(serviceVO.getMemo());
+
+			this.serviceRepository.save(serviceBean,  WebUtils.getCurrentLoginUser(request));
+
 			return new ResponseVO();
 		} catch (Exception ex) {
-			LOG.error("Exception raised when registering user account.", ex);
+			LOG.error("Exception raised when saving service.", ex);
+			return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
+	}
+
+	/**
+	 *
+	 * @param request
+	 * @param service
+	 * @return
+	 */
+	@POST
+	@Path("/schedule/save")
+	public ResponseVO saveScheduleService(@Context HttpServletRequest request, RouteServiceVO serviceVO){
+		try{
+			RouteScheduleBean schedule = (RouteScheduleBean) routeRepository.get(RouteScheduleBean.class, Long.valueOf(serviceVO.getScheduleId()), false);
+			if(schedule == null){
+				return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+			}
+
+			ExpertServiceBean service = (ExpertServiceBean) routeRepository.get(ExpertServiceBean.class, Long.valueOf(serviceVO.getServiceId()), false);
+			if(service == null){
+				return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+			}
+
+			RouteServiceBean serviceBean = new RouteServiceBean();
+			serviceBean.setSchedule(schedule);
+			serviceBean.setService(service);
+			serviceBean.setTitle(serviceVO.getTitle());
+			serviceBean.setMemo(serviceVO.getMemo());
+
+			this.serviceRepository.save(serviceBean,  WebUtils.getCurrentLoginUser(request));
+
+			return new ResponseVO();
+		} catch (Exception ex) {
+			LOG.error("Exception raised when saving service.", ex);
+			return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
+	}
+
+	/**
+	 *
+	 * @param request
+	 * @param service
+	 * @return
+	 */
+	@POST
+	@Path("/activity/save")
+	public ResponseVO saveActivityService(@Context HttpServletRequest request, RouteServiceVO serviceVO){
+		try{
+			RouteActivityBean activity = (RouteActivityBean) routeRepository.get(RouteActivityBean.class, Long.valueOf(serviceVO.getScheduleId()), false);
+			if(activity == null){
+				return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+			}
+
+			ExpertServiceBean service = (ExpertServiceBean) routeRepository.get(ExpertServiceBean.class, Long.valueOf(serviceVO.getServiceId()), false);
+			if(service == null){
+				return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+			}
+
+			RouteServiceBean serviceBean = new RouteServiceBean();
+			serviceBean.setActivity(activity);
+			serviceBean.setService(service);
+			serviceBean.setTitle(serviceVO.getTitle());
+			serviceBean.setMemo(serviceVO.getMemo());
+
+			this.serviceRepository.save(serviceBean,  WebUtils.getCurrentLoginUser(request));
+
+			return new ResponseVO();
+		} catch (Exception ex) {
+			LOG.error("Exception raised when saving service.", ex);
 			return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
 	}

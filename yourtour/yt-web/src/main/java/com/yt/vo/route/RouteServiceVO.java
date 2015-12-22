@@ -4,8 +4,10 @@ import com.yt.business.bean.RouteServiceBean;
 import com.yt.vo.BaseVO;
 
 public class RouteServiceVO extends BaseVO {
+	private String  serviceId;
 	private String 	title;
 	private String	memo;
+	private String  scheduleId;
 	private String  routeId;
 
 	public static RouteServiceVO transform(RouteServiceBean bean) {
@@ -21,6 +23,14 @@ public class RouteServiceVO extends BaseVO {
 
 	public RouteServiceVO() {
 		super();
+	}
+
+	public String getServiceId() {
+		return serviceId;
+	}
+
+	public void setServiceId(String serviceId) {
+		this.serviceId = serviceId;
 	}
 
 	public String getTitle() {
@@ -46,6 +56,12 @@ public class RouteServiceVO extends BaseVO {
 	public void setRouteId(String routeId) {
 		this.routeId = routeId;
 	}
-	
-	
+
+	public String getScheduleId() {
+		return scheduleId;
+	}
+
+	public void setScheduleId(String scheduleId) {
+		this.scheduleId = scheduleId;
+	}
 }

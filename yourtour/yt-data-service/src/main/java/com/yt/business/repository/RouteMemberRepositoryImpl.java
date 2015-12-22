@@ -18,12 +18,11 @@ public class RouteMemberRepositoryImpl extends CrudAllInOneOperateImpl implement
 			.getLog(RouteMemberRepositoryImpl.class);
 
 	@Autowired
-	private RouteMemberBeanRepository routeMemberRepo;
+	private RouteServiceRepository routeServiceRepo;
 
 	@Override
 	public List<RouteMemberBean> getRouteMembers(Long routeId) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

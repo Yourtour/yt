@@ -20,6 +20,9 @@ public class RouteServiceBean extends BaseBeanImpl {
 	@HbaseColumn(name = "memo")
 	private String memo; // 行程活动备注
 
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_BELONG, type = RouteMainBean.class, direction = Direction.INCOMING)
+	private transient ExpertServiceBean service = null; // 行程活动关联的行程日程
+
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = RouteMainBean.class, direction = Direction.INCOMING)
 	private transient RouteMainBean route = null; // 行程活动关联的行程日程
 	
@@ -73,6 +76,12 @@ public class RouteServiceBean extends BaseBeanImpl {
 	public void setActivity(RouteActivityBean activity) {
 		this.activity = activity;
 	}
-	
-	
+
+	public ExpertServiceBean getService() {
+		return service;
+	}
+
+	public void setService(ExpertServiceBean service) {
+		this.service = service;
+	}
 }
