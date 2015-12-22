@@ -75,7 +75,7 @@ public class RouteActivityVO extends BaseVO {
 		/*List<RouteServiceBean> serviceBeans = bean.getServices();
 		if(serviceBeans != null){
 			for(RouteServiceBean service : serviceBeans){
-				vo.services.add(RouteServiceVO.transform(service));
+				vo.services.add(ExpertServiceVO.transform(service));
 			}
 		}*/
 		

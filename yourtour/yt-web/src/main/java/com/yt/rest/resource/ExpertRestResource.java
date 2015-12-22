@@ -1,40 +1,121 @@
 package com.yt.rest.resource;
 
+import java.io.InputStream;
 import java.util.List;
 import java.util.Vector;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import com.sun.jersey.multipart.FormDataParam;
+import com.yt.business.bean.ExpertServiceBean;
+import com.yt.business.bean.RouteMainBean;
+import com.yt.business.bean.RouteServiceBean;
+import com.yt.error.StaticErrorEnum;
+import com.yt.response.ResponseDataVO;
+import com.yt.response.ResponseVO;
+import com.yt.utils.WebUtils;
+import com.yt.vo.member.ExpertApplicationVO;
+import com.yt.vo.member.ExpertServiceVO;
+import com.yt.vo.route.RouteServiceVO;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Component;
 
 import com.yt.response.ResponsePagingDataVO;
 import com.yt.vo.member.ExpertVO;
 
 @Component
-@Path("experts")
+@Path("/expert")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class ExpertRestResource {
-	@Path("loadPage.json")
-	@GET
-	public ResponsePagingDataVO<List<ExpertVO>> loadPage(
-			@QueryParam("page") int page, @QueryParam("start") int start,
-			@QueryParam("limit") int limit) {
-		System.out.println(String.format("Expert restfule page(%d), start(%d), limit(%d).",
-				page, start, limit));
-		Vector<ExpertVO> result = new Vector<ExpertVO>();
-		for (int index = 1; index < 10; index++) {
-			ExpertVO vo = new ExpertVO();
-			vo.setCode("code " + index);
-			vo.setName("name " + index);
-			vo.setAge(index + index % 13 * 10);
-			result.add(vo);
+	private static final Log Logger = LogFactory.getLog(ExpertRestResource.class);
+
+	/**
+	 * 保存达人申请
+	 * @param userId
+	 * @param applicationVO
+	 * @param fileInputStream
+	 * @return
+	 */
+	@POST
+	@Path("/application/{userId}")
+	public ResponseVO saveApplication(@PathParam("userId") String userId, ExpertApplicationVO applicationVO,@FormDataParam("file") InputStream fileInputStream) {
+		try{
+			return new ResponseVO();
+		}catch(Exception exc){
+			Logger.error("Expert Application Exception.", exc);
+			return new ResponseVO(StaticErrorEnum.DB_OPERATE_FAIL);
 		}
-		return new ResponsePagingDataVO<List<ExpertVO>>(1000, result);
+	}
+
+	@POST
+	@Path("/application/{applicationId}/approve")
+	public ResponseVO saveApprovement(@PathParam("applicationId") String applicationId) {
+		try{
+
+			return new ResponseVO();
+		}catch(Exception exc){
+			Logger.error("Expert Application Exception.", exc);
+			return new ResponseVO(StaticErrorEnum.DB_OPERATE_FAIL);
+		}
+	}
+
+	/**
+	 * 保存达人服务
+	 * @param request
+	 * @param serviceVO
+	 * @param fileInputStream
+	 * @return
+	 */
+	@POST
+	@Path("/service/save")
+	public ResponseVO saveService(@Context HttpServletRequest request, ExpertServiceVO serviceVO, @FormDataParam("file") InputStream fileInputStream){
+		try{
+			return new ResponseVO();
+		} catch (Exception ex) {
+			Logger.error("Exception raised when saving service.", ex);
+			return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
+	}
+
+	/**
+	 * 删除达人服务
+	 * @param request
+	 * @param serviceId
+	 * @return
+	 */
+	@GET
+	@Path("/service/{serviceId}/delete")
+	public ResponseVO deleteService(@Context HttpServletRequest request, @PathParam("serviceId") String serviceId){
+		try{
+
+
+			return new ResponseVO();
+		} catch (Exception ex) {
+			Logger.error("Exception raised when saving service.", ex);
+			return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
+	}
+
+	/**
+	 * 获取达人服务
+	 * @param request
+	 * @param expertId
+	 * @return
+	 */
+	@GET
+	@Path("/services/{expertId}")
+	public ResponseDataVO<List<ExpertServiceVO>> getServices(@Context HttpServletRequest request, @PathParam("expertId") String expertId){
+		try{
+
+			return new ResponseDataVO<List<ExpertServiceVO>>();
+		} catch (Exception ex) {
+			Logger.error("Exception raised when saving service.", ex);
+			return new ResponseDataVO<List<ExpertServiceVO>>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
 	}
 }
