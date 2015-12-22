@@ -8,9 +8,9 @@ import com.yt.neo4j.annotation.Neo4jRelationship;
 import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 
-@HbaseTable(name = "T_EXPERT_SERVICE")
+@HbaseTable(name = "T_EXPERT_APPROVEMENT")
 @NodeEntity
-public class ExpertServiceBean extends BaseBeanImpl {
+public class ExpertApprovementBean extends BaseBeanImpl {
 	private static final long serialVersionUID = 6259294378320824143L;
 
 	@HbaseColumn(name = "title")
@@ -22,7 +22,7 @@ public class ExpertServiceBean extends BaseBeanImpl {
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = UserProfileBean.class, direction = Direction.INCOMING)
 	private transient UserProfileBean user = null; // 服务相关达人
 
-	public ExpertServiceBean() {
+	public ExpertApprovementBean() {
 		super();
 	}
 
