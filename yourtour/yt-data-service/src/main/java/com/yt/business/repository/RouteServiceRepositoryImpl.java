@@ -14,10 +14,13 @@ import java.util.List;
 @Component
 public class RouteServiceRepositoryImpl extends CrudAllInOneOperateImpl implements
 		RouteServiceRepository {
-	private static final Log LOG = LogFactory
-			.getLog(RouteServiceRepositoryImpl.class);
+	private static final Log LOG = LogFactory.getLog(RouteServiceRepositoryImpl.class);
 
 	@Autowired
-	private RouteMemberBeanRepository routeMemberRepo;
+	private RouteServiceRepository routeServiceRepo;
 
+	@Override
+	public List<RouteServiceBean> getServices(Long expertId) throws Exception {
+		return routeServiceRepo.getServices(expertId);
+	}
 }

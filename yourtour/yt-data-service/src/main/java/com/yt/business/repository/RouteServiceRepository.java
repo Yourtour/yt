@@ -7,5 +7,11 @@ import com.yt.business.common.Constants.GroupRole;
 import java.util.List;
 
 public interface RouteServiceRepository extends CrudAllInOneOperate {
-
+    /**
+     *
+     * @param expertId
+     * @return
+     * @throws Exception
+     */
+    public List<RouteServiceBean> getServices(Long expertId) throws Exception;
 }
