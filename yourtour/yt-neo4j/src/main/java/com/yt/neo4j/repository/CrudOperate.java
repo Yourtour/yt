@@ -211,6 +211,20 @@ public interface CrudOperate {
 	public void save(Neo4jBaseBean neo4jBean, String operator) throws Exception;
 
 	/**
+	 * 保存一个指定的Neo4J实体对象
+	 *
+	 * @param neo4jBean
+	 *            Neo4J实体对象
+	 * @param operator
+	 *            当前操作者
+	 * @throws Exception
+	 *             保存过程中发生的异常
+	 */
+	public void save(Neo4jBaseBean neo4jBean, boolean saveRelation, String operator) throws Exception;
+
+
+
+	/**
 	 * 仅仅保存指定的Neo4J实体对象中的所有关系，本方法不会保存该实体对象中的其他属性。
 	 * 
 	 * @param neo4jBean

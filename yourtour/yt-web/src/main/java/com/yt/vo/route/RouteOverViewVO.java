@@ -1,6 +1,8 @@
 package com.yt.vo.route;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 
 import com.yt.business.bean.RouteMainBean;
 import com.yt.core.utils.DateUtils;
@@ -29,11 +31,26 @@ public class RouteOverViewVO implements Serializable{
 		return DateUtils.formatDate(route.getStartDate());
 	}
 
+	public String getEndDate(){
+		Date endDate = DateUtils.add(route.getStartDate(), route.getDuration(), Calendar.DAY_OF_MONTH);
+		if(endDate != null){
+			return DateUtils.formatDate(endDate.getTime());
+		}else{
+			return getStartDate();
+		}
+	}
+
 	public String getImageUrl(){
 		return route.getImageUrl();
 	}
 	
 	public String getImpression(){
 		return route.getImpression();
+	}
+
+	public Long getLeaderId(){ return route.getLeaderId();}
+
+	public String getLeader(){
+		return route.getLeader();
 	}
 }

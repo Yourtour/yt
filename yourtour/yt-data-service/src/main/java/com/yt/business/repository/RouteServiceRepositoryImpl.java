@@ -4,6 +4,7 @@ import com.yt.business.CrudAllInOneOperateImpl;
 import com.yt.business.bean.RouteMemberBean;
 import com.yt.business.bean.RouteServiceBean;
 import com.yt.business.neo4j.repository.RouteMemberBeanRepository;
+import com.yt.business.neo4j.repository.RouteServiceBeanRepository;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,10 @@ public class RouteServiceRepositoryImpl extends CrudAllInOneOperateImpl implemen
 	private static final Log LOG = LogFactory.getLog(RouteServiceRepositoryImpl.class);
 
 	@Autowired
-	private RouteServiceRepository routeServiceRepo;
+	private RouteServiceBeanRepository routeServiceBeanRepository;
 
 	@Override
 	public List<RouteServiceBean> getServices(Long expertId) throws Exception {
-		return routeServiceRepo.getServices(expertId);
+		return routeServiceBeanRepository.getServices(expertId);
 	}
 }

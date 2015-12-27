@@ -27,6 +27,10 @@ public interface Constants {
 	 */
 	public static final String RELATION_TYPE_HAS = "HAS";
 	/**
+	 * 拥有
+	 */
+	public static final String RELATION_TYPE_IS = "IS";
+	/**
 	 * 在
 	 */
 	public static final String RELATION_TYPE_AT = "AT";

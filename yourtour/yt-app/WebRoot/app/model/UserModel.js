@@ -10,6 +10,7 @@ Ext.define('YourTour.model.UserModel', {
             {name:'userName', type:'string'},
             {name:'password', type:'string'},
     		{name:'nickName', type:'string'},
+			{name:'isExpert', type:'string'},
     		{name:'sex', type:'string'},
     		{name:'role', type:'string'},
     		{name:'imageUrl', type:'string'},

@@ -10,7 +10,7 @@ import org.springframework.data.neo4j.repository.GraphRepository;
 
 import java.util.List;
 
-public interface RouteServiceRepository extends GraphRepository<RouteServiceBean> {
+public interface RouteServiceBeanRepository extends GraphRepository<RouteServiceBean> {
     /**
      *
      * @param expertId

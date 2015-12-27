@@ -32,12 +32,12 @@ Ext.application({
         'route.RouteScheduleListView', 'route.RouteSchedulePlanView','route.RouteScheduleReferenceView','route.ScheduleFormView',
         'route.RouteProvisionView','route.RouteProvisionEditView','route.RouteScheduleEditView','route.RouteScheduleView',
         'route.RouteActivityEditView',
-        'user.LoginMainView','user.UserListView','user.UserMainView',
+        'user.LoginMainView','user.UserListView','user.UserMainView','user.UserProfileView',
         'line.LineRecommendView','line.LineIntroductionView',
         
         'resource.ResourceSelectionView','resource.ResourceDetailView','resource.ResourceSceneView','resource.ResourceMapView',
         'member.MemberMainView','member.MemberAddView','member.MemberPositionView','member.MemberSearchView',
-        'expert.ExpertMainView','expert.ExpertApplyView','expert.ExpertIntroView','expert.ExpertListView',
+        'expert.ExpertMainView','expert.ExpertApplyView','expert.ExpertIntroView','expert.ExpertListView','expert.ExpertServiceEditView',
         'community.LiveMainView',
         'place.PlaceMainView'
     ],
@@ -168,5 +168,30 @@ Ext.application({
     	}
     	
     	return '';
+    },
+
+    getUserProfile:function(){
+        var localStore =  Ext.StoreManager.get('LocalStore');
+        localStore.load();
+
+        var index = localStore.find('key', 'user.profile');
+        if(index >= 0){
+            var userProfile = localStore.getAt(index);
+            var profile = Ext.JSON.decode(userProfile.get('value'));
+            return profile;
+        }
+
+        return '';
+    },
+
+    quit:function(){
+        var me = this;
+        Ext.Msg.confirm("提示", "您确定要退出应用吗?", function(e) {
+            if (e == "yes") {
+                me.localStorage.clear();
+
+                navigator.app.exitApp();
+            }
+        }, this);
     }
 });

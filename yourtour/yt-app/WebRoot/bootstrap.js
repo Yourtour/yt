@@ -731,6 +731,9 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.expert.ExpertIntroView": [],
   "YourTour.view.expert.ExpertListView": [],
   "YourTour.view.expert.ExpertMainView": [],
+  "YourTour.view.expert.ExpertRouteDataItem": [],
+  "YourTour.view.expert.ExpertServiceDataItem": [],
+  "YourTour.view.expert.ExpertServiceEditView": [],
   "YourTour.view.home.AlongDetailView": [],
   "YourTour.view.home.AlongItemView": [],
   "YourTour.view.home.AlongListItemView": [],
@@ -795,6 +798,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.user.UserListItem": [],
   "YourTour.view.user.UserListView": [],
   "YourTour.view.user.UserMainView": [],
+  "YourTour.view.user.UserProfileView": [],
   "YourTour.view.widget.HSpacer": [],
   "YourTour.view.widget.MarkedLabel": [],
   "YourTour.view.widget.NoScrollDataView": [],
@@ -809,6 +813,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.XCheckbox": [],
   "YourTour.view.widget.XDataView": [],
   "YourTour.view.widget.XField": [],
+  "YourTour.view.widget.XGenderPicker": [],
   "YourTour.view.widget.XGridItem": [],
   "YourTour.view.widget.XGridView": [],
   "YourTour.view.widget.XHeaderBar": [],
@@ -820,7 +825,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.XTextArea": [],
   "YourTour.view.widget.XTextField": [],
   "YourTour.view.widget.XTitleBar": [],
-  "YourTour.view.widget.XToolbar": []
+  "YourTour.view.widget.XToolbar": [],
+  "YourTour.view.widget.XVerticalLine": []
 });
 Ext.ClassManager.addNameAliasMappings({
   "Ext.AbstractComponent": [],
@@ -1668,6 +1674,13 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.expert.ExpertMainView": [
     "widget.ExpertMainView"
   ],
+  "YourTour.view.expert.ExpertRouteDataItem": [
+    "widget.ExpertRouteDataItem"
+  ],
+  "YourTour.view.expert.ExpertServiceDataItem": [
+    "widget.ExpertServiceDataItem"
+  ],
+  "YourTour.view.expert.ExpertServiceEditView": [],
   "YourTour.view.home.AlongDetailView": [],
   "YourTour.view.home.AlongItemView": [
     "widget.AlongItemView"
@@ -1834,6 +1847,9 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.user.UserMainView": [
     "widget.UserMainView"
   ],
+  "YourTour.view.user.UserProfileView": [
+    "widget.UserProfileView"
+  ],
   "YourTour.view.widget.HSpacer": [
     "widget.hspacer"
   ],
@@ -1874,6 +1890,9 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.widget.XField": [
     "widget.xfield"
   ],
+  "YourTour.view.widget.XGenderPicker": [
+    "widget.xgenderpicker"
+  ],
   "YourTour.view.widget.XGridItem": [],
   "YourTour.view.widget.XGridView": [
     "widget.xgridview"
@@ -1905,5 +1924,8 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.widget.XToolbar": [
     "widget.xtoolbar"
+  ],
+  "YourTour.view.widget.XVerticalLine": [
+    "widget.xvline"
   ]
 });

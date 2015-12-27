@@ -1,37 +1,70 @@
 package com.yt.vo.member;
 
+import com.yt.business.bean.ExpertApplicationBean;
+import com.yt.business.bean.ExpertServiceBean;
+
 /**
- * ´ïÈËÉêÇë
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  */
 public class ExpertApplicationVO {
-	private String code, name;
-	private int age;
+	private String realName;
+	private String certType;
+	private String certNo;
+	private String address;
+	private	String tags;
 
 	public ExpertApplicationVO() {
 		super();
 	}
 
-	public String getCode() {
-		return code;
+	public static ExpertApplicationBean getBean(ExpertApplicationVO vo){
+		ExpertApplicationBean bean = new ExpertApplicationBean();
+
+		bean.setRealName(vo.getRealName());
+		bean.setCertNo(vo.getCertNo());
+		bean.setCertType(vo.getCertType());
+		bean.setTags(vo.getTags());
+
+		return bean;
 	}
 
-	public void setCode(String code) {
-		this.code = code;
+	public String getRealName() {
+		return realName;
 	}
 
-	public String getName() {
-		return name;
+	public void setRealName(String realName) {
+		this.realName = realName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public String getCertType() {
+		return certType;
 	}
 
-	public int getAge() {
-		return age;
+	public void setCertType(String certType) {
+		this.certType = certType;
 	}
 
-	public void setAge(int age) {
-		this.age = age;
+	public String getCertNo() {
+		return certNo;
+	}
+
+	public void setCertNo(String certNo) {
+		this.certNo = certNo;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getTags() {
+		return tags;
+	}
+
+	public void setTags(String tags) {
+		this.tags = tags;
 	}
 }

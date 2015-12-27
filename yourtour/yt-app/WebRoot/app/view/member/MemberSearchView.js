@@ -39,7 +39,39 @@ Ext.define('YourTour.view.member.MemberSearchView', {
     			flex:1,
 		        useComponents: true,
 		        defaultType: 'MemberDataItem'
-    		}
+    		},
+
+			{
+				xtype: 'toolbar',
+				itemId:'addToolbar',
+				docked: 'bottom',
+				defaults:{
+					flex:1
+				},
+				items: [
+					{
+						xtype: 'button',
+						text: '添加为领队',
+						ui: 'normal',
+						iconCls:'add',
+						itemId: 'btnAddAsLeader'
+					},
+					{
+						xtype: 'button',
+						text: '添加为达人',
+						ui: 'normal',
+						iconCls:'add',
+						itemId: 'btnAddAsExpert'
+					},
+					{
+						xtype: 'button',
+						text: '添加为组员',
+						ui: 'normal',
+						iconCls:'add',
+						itemId: 'btnAddAsMember'
+					},
+				]
+			}
         ]
     }
 });

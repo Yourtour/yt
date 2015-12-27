@@ -38,40 +38,12 @@ Ext.define('YourTour.view.member.MemberDataItem', {
 			    	   itemId:'nickName'
 			       }
 				]
-			},
-			
-			{
-				xtype:'panel',
-				layout:'vbox',
-				items:[
-					{
-						   xtype:'spacer',
-						   flex:1
-					},    
-					{  
-						xtype : 'image',
-	    				mode : 'tag',
-	    				src:'resources/icons/icon_add_48.png',
-		              	itemId:'btnAdd'  
-					},
-			       {
-					   xtype:'spacer',
-					   flex:1
-			       },
-				]
 			}
         ]
     },
     
     initialize : function(){
     	var me = this;
-    	
-    	var dataview = me.dataview || me.getDataview();
-    	
-    	var btnAdd = me.down('#btnAdd');
-    	btnAdd.on('tap', function(){
-    		dataview.fireEvent('addTap', dataview, me.getRecord());
-    	});
     },
     
     updateRecord: function(record) {

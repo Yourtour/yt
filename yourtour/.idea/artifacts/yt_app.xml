@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="yt-app">
+    <output-path>$PROJECT_DIR$/out/artifacts/yt_app</output-path>
+    <root id="root">
+      <element id="dir-copy" path="$PROJECT_DIR$/yt-app/WebRoot" />
+    </root>
+  </artifact>
+</component>

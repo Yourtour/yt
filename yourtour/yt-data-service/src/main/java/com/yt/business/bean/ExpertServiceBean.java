@@ -15,11 +15,15 @@ public class ExpertServiceBean extends BaseBeanImpl {
 
 	@HbaseColumn(name = "title")
 	private String title; // 服务名称
+	private String free;
+	private String feeIncluding;
+	private String feeExcluding;
+	private String withdraw;
 
 	@HbaseColumn(name = "memo")
 	private String memo; // 服务描述
 
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = UserProfileBean.class, direction = Direction.INCOMING)
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_BELONG, type = UserProfileBean.class, direction = Direction.OUTGOING)
 	private transient UserProfileBean user = null; // 服务相关达人
 
 	public ExpertServiceBean() {
@@ -34,12 +38,44 @@ public class ExpertServiceBean extends BaseBeanImpl {
 		this.title = title;
 	}
 
+	public String getFeeIncluding() {
+		return feeIncluding;
+	}
+
+	public void setFeeIncluding(String feeIncluding) {
+		this.feeIncluding = feeIncluding;
+	}
+
+	public String getFeeExcluding() {
+		return feeExcluding;
+	}
+
+	public void setFeeExcluding(String feeExcluding) {
+		this.feeExcluding = feeExcluding;
+	}
+
+	public String getWithdraw() {
+		return withdraw;
+	}
+
+	public void setWithdraw(String withdraw) {
+		this.withdraw = withdraw;
+	}
+
 	public String getMemo() {
 		return memo;
 	}
 
 	public void setMemo(String memo) {
 		this.memo = memo;
+	}
+
+	public String getFree() {
+		return free;
+	}
+
+	public void setFree(String free) {
+		this.free = free;
 	}
 
 	public UserProfileBean getUser() {

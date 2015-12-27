@@ -20,6 +20,30 @@ public interface RouteBeanRepository extends GraphRepository<RouteMainBean> {
 		public String impression;
 		@ResultColumn("route")
 		public RouteMainBean route;
+
+		public String getImageUrl() {
+			return imageUrl;
+		}
+
+		public void setImageUrl(String imageUrl) {
+			this.imageUrl = imageUrl;
+		}
+
+		public String getImpression() {
+			return impression;
+		}
+
+		public void setImpression(String impression) {
+			this.impression = impression;
+		}
+
+		public RouteMainBean getRoute() {
+			return route;
+		}
+
+		public void setRoute(RouteMainBean route) {
+			this.route = route;
+		}
 	}
 
 	/**

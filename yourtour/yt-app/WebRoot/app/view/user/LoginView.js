@@ -1,17 +1,14 @@
 Ext.define('YourTour.view.user.LoginView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Panel','YourTour.view.widget.HSpacer', 'YourTour.view.widget.XTitleBar', 'Ext.field.Password','YourTour.view.widget.XTextField', 'YourTour.view.widget.XButton', 'YourTour.view.widget.ToolButton'],
+    requires:['Ext.Panel','YourTour.view.widget.HSpacer', 'YourTour.view.widget.XHeaderBar', 'Ext.field.Password','YourTour.view.widget.XTextField', 'YourTour.view.widget.XButton', 'YourTour.view.widget.ToolButton'],
     xtype:'LoginView',
     config: {
     	id:'LoginView',
     	layout:'vbox',
-    	defaults:{
-    		padding:'0 10 0 10'
-    	},
+		scrollable:false,
         items: [
             {
-            	xtype: 'xtitlebar',
-                docked: 'top',
+            	xtype: 'xheaderbar',
                 title: '会员登录',
                 items:[{
                 	xtype: "toolbutton", 
@@ -29,6 +26,7 @@ Ext.define('YourTour.view.user.LoginView', {
             	xtype:'panel',
             	layout:'hbox',
             	cls:'row underline',
+				padding:'0 10 0 10',
             	items:[
             	   {
             		   xtype:'image', 
@@ -54,6 +52,7 @@ Ext.define('YourTour.view.user.LoginView', {
             	xtype:'panel',
             	layout:'hbox',
             	cls:'row underline',
+				padding:'0 10 0 10',
             	items:[
 					{
 						   xtype:'image', 

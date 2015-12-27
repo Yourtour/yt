@@ -13,11 +13,11 @@ import org.springframework.data.neo4j.annotation.NodeEntity;
 public class ExpertApplicationBean extends BaseBeanImpl {
 	private static final long serialVersionUID = 6259294378320824143L;
 
-	@HbaseColumn(name = "title")
-	private String title; // 服务名称
-
-	@HbaseColumn(name = "memo")
-	private String memo; // 服务描述
+	private String realName;
+	private String certType;
+	private String certNo;
+	private String tags;
+	private String address;
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = UserProfileBean.class, direction = Direction.INCOMING)
 	private transient UserProfileBean user = null; // 服务相关达人
@@ -26,20 +26,40 @@ public class ExpertApplicationBean extends BaseBeanImpl {
 		super();
 	}
 
-	public String getTitle() {
-		return title;
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public String getRealName() {
+		return realName;
 	}
 
-	public String getMemo() {
-		return memo;
+	public void setRealName(String realName) {
+		this.realName = realName;
 	}
 
-	public void setMemo(String memo) {
-		this.memo = memo;
+	public String getCertType() {
+		return certType;
+	}
+
+	public void setCertType(String certType) {
+		this.certType = certType;
+	}
+
+	public String getCertNo() {
+		return certNo;
+	}
+
+	public void setCertNo(String certNo) {
+		this.certNo = certNo;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public UserProfileBean getUser() {
@@ -48,5 +68,13 @@ public class ExpertApplicationBean extends BaseBeanImpl {
 
 	public void setUser(UserProfileBean user) {
 		this.user = user;
+	}
+
+	public String getTags() {
+		return tags;
+	}
+
+	public void setTags(String tags) {
+		this.tags = tags;
 	}
 }

@@ -50,7 +50,11 @@ import com.yt.neo4j.annotation.Neo4jRelationship;
 public class UserProfileBean extends BaseDictBeanImpl {
 	private static final long serialVersionUID = -6977525800090683657L;
 	private static final String INDEX_NAME = "user"; // 定义了本实体中全文检索的索引名称。
-	
+
+	public static final String EXPERT_NOT = "-1";
+	public static final String EXPERT_APPLY = "0";
+	public static final String EXPERT_APPROVED = "1";
+
 	@HbaseColumn(name = "nname")
 	@Indexed
 	private String nickName; // 昵称
@@ -63,6 +67,8 @@ public class UserProfileBean extends BaseDictBeanImpl {
 	
 	@HbaseColumn(name = "birth")
 	private long birthday; // 生日
+
+	private String expert = EXPERT_NOT;
 
 	@HbaseColumn(name = "img")
 	private String imageUrl; // 头像
@@ -134,6 +140,14 @@ public class UserProfileBean extends BaseDictBeanImpl {
 
 	public void setToken(String token) {
 		this.token = token;
+	}
+
+	public String getExpert() {
+		return expert;
+	}
+
+	public void setExpert(String expert) {
+		this.expert = expert;
 	}
 
 	public GenderType getGender() {

@@ -15,12 +15,13 @@ Ext.define('YourTour.view.user.UserMainView', {
             },
             
             {
-    			xtype:'panel',
+    			xtype:'xpanel',
     			layout:'hbox',
     			itemId:'profile',
     			style:'background-color:white',
     			cls:'nav_arrow',
     			padding:10,
+				tappable:true,
     			items:[
 					{
 						itemId : 'userLogo',
@@ -30,8 +31,7 @@ Ext.define('YourTour.view.user.UserMainView', {
 		    		{
 		    			 xtype:'xlabel',
 		    			 html : '我是达人',
-		    			 flex:1,
-		    			 tappable :true
+		    			 flex:1
 		    		}
 		    	]
     		},

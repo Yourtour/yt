@@ -16,7 +16,7 @@ Ext.define('YourTour.controller.MemberMainCtrl', {
      	   },
      	   
      	  memberSearchList:{
-     		 addTap:'onMemberAddTap'
+			  itemtap:'onSearchListItemtap'
      	  },
      	  
      	  '#MemberMainView #management':{
@@ -34,7 +34,18 @@ Ext.define('YourTour.controller.MemberMainCtrl', {
      	 '#MemberAddView #btnSearch':{
     		  tap:'onSearch'
     	  },
-     	  
+
+		 '#MemberSearchView #btnAddAsExpert':{
+			 tap:'onAddAsExpertTap'
+		  },
+
+		   '#MemberSearchView #btnAddAsMember':{
+			   tap:'onAddAsMemberTap'
+		   },
+
+		   '#MemberSearchView #btnAddAsLeader':{
+			   tap:'onAddAsLeaderTap'
+		   },
     	  memberList:{
     		  itemdelete:'onItemDelete'
     	  }
@@ -49,6 +60,8 @@ Ext.define('YourTour.controller.MemberMainCtrl', {
        searchStore : null,
        
        memberStore : null,
+
+	   selectedMember:null
     },
     
     init:function(){
@@ -140,16 +153,35 @@ Ext.define('YourTour.controller.MemberMainCtrl', {
     	};
  	   	store.load(onLoaded,this);
     },
-    
+
+	onSearchListItemtap:function(dataview, index, item, record,e){
+		this.selectedMember = record;
+	},
+
+	onAddAsMemberTap:function(){
+		this.onMemberAdd('MEMBER');
+	},
+
+	onAddAsLeaderTap:function(){
+		this.onMemberAdd('LEADER');
+	},
+
+	onAddAsExpertTap:function(){
+		this.onMemberAdd('EXPERT');
+	},
+
     /**
      * 
      */
-    onMemberAddTap:function(dataview, record, e){
+    onMemberAdd:function(role){
     	var data = {};
-    	
+
+		var record = this.selectedMember;
+
     	data.routeId = this.routeId;
     	data.userId = record.get('id');
-    	
+    	data.role = role;
+
     	Ext.Ajax.request({
     	    url : YourTour.util.Context.getContext('route/members/save'),
     	    method : "POST",

@@ -1,6 +1,7 @@
 package com.yt.core.utils;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class DateUtils {
@@ -17,5 +18,36 @@ public class DateUtils {
 		Date date = new Date(millisecond);
 		SimpleDateFormat sdf = new SimpleDateFormat(format);
 		return sdf.format(date);
+	}
+
+	/**
+	 * 日期增加或减少
+	 * @param milliseconds
+	 * @param value
+	 * @param field
+	 * @return
+	 */
+	public static Date add(Long milliseconds, int value, int field){
+		Date current = new Date(milliseconds);
+
+		return add(current, value, field);
+	}
+
+	/**
+	 * 日期增加或减少
+	 * @param current
+	 * @param value
+	 * @param field
+	 * @return
+	 */
+	public static Date add(Date current, int value, int field){
+		if(current == null || value == 0) return current;
+
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(current);
+
+		calendar.add(value, field);
+
+		return calendar.getTime();
 	}
 }

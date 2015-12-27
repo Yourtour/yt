@@ -171,7 +171,9 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     		Ext.Msg.alert('请输入登录密码。');
     		return;
     	}
-    	
+
+		alert(YourTour.util.Context.getContext('/users/account/login'));
+
     	var data = Ext.JSON.encode(loginInfo);
     	Ext.Ajax.request({
     	    url : YourTour.util.Context.getContext('/users/account/login'),
@@ -183,7 +185,7 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     	    		Ext.Msg.alert(data.errorText);
     	    		return;
     	    	};
-    	    	
+
     	    	var localStore =  Ext.StoreManager.get('LocalStore');
     	    	localStore.add({key:'account.authenticated', value:'1'});
     	    	localStore.add({key:'user.profile', value:Ext.JSON.encode(data.data)});

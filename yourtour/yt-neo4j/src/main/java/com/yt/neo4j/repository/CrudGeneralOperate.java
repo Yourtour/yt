@@ -376,6 +376,11 @@ public class CrudGeneralOperate implements CrudOperate {
 	 */
 	@Override
 	public void save(Neo4jBaseBean neo4jBean, String operator) throws Exception {
+		this.save(neo4jBean, true, operator);
+	}
+
+	@Override
+	public void save(Neo4jBaseBean neo4jBean, boolean saveRelation, String operator) throws Exception {
 		if (neo4jBean == null) {
 			String msg = "The Neo4jBean is null.";
 			if (LOG.isWarnEnabled()) {
@@ -408,8 +413,12 @@ public class CrudGeneralOperate implements CrudOperate {
 
 		// 先保存指定的节点
 		Neo4jBaseBean tar = template.save(neo4jBean);
-		// 再保存关系
-		saveRelations(neo4jBean);
+
+		if(saveRelation) {
+			// 再保存关系
+			saveRelations(neo4jBean);
+		}
+
 		if (LOG.isDebugEnabled()) {
 			if (neo4jBean instanceof Neo4jBaseDictBean) {
 				LOG.debug(String.format(
@@ -423,12 +432,12 @@ public class CrudGeneralOperate implements CrudOperate {
 	}
 
 	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.yt.neo4j.repository.CrudOperate#saveRelationsOnly(com.yt.neo4j.bean
-	 * .Neo4jBaseBean)
-	 */
+         * (non-Javadoc)
+         *
+         * @see
+         * com.yt.neo4j.repository.CrudOperate#saveRelationsOnly(com.yt.neo4j.bean
+         * .Neo4jBaseBean)
+         */
 	@Override
 	public void saveRelationsOnly(Neo4jBaseBean neo4jBean) throws Exception {
 		if (neo4jBean == null) {

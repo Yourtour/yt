@@ -38,6 +38,10 @@ public class RouteMainBean extends BaseBeanImpl {
 	
 	private transient String impression;
 
+	private Long leaderId;
+
+	private String leader;
+
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_FROM, type = PlaceBean.class, direction = Direction.OUTGOING)
 	private transient PlaceBean fromPlace = null; // 行程出发地点
 	
@@ -71,6 +75,22 @@ public class RouteMainBean extends BaseBeanImpl {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Long getLeaderId() {
+		return leaderId;
+	}
+
+	public void setLeaderId(Long leaderId) {
+		this.leaderId = leaderId;
+	}
+
+	public String getLeader() {
+		return leader;
+	}
+
+	public void setLeader(String leader) {
+		this.leader = leader;
 	}
 
 	public String getImpression() {
