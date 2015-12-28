@@ -1,22 +1,12 @@
 Ext.define('YourTour.view.widget.XGenderPicker', {
-    extend: 'Ext.Picker',
+    extend: 'YourTour.view.widget.XPicker',
     xtype: 'xgenderpicker',
     config:{
-        stretchX:true,
-        stretchY:false,
-        centered:true,
-        docked:'bottom',
-        slots:[
-            {
-                name:'value',
-                title: 'text',
-                align: 'center',
-                data:[
-                    {text:'男', value:'M'},
-                    {text:'女', value:'F'},
-                    {text:'未知', value:'U'}
-                ]
-            }
+        text:'未知',
+        data:[
+            {text:'未知', value:''},
+            {text:'男', value:'M'},
+            {text:'女', value:'F'}
         ]
     }
 });

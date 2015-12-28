@@ -3,7 +3,9 @@ Ext.define('YourTour.view.widget.XField', {
     xtype: 'xfield',
     config:{
     	cls:'field',
-    	tappable:false
+    	tappable:false,
+		padding:'0 10 0 0',
+		style:'text-align:right'
     },
     
     initialize : function(){

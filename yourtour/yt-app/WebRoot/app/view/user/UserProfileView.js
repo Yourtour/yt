@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.user.UserProfileView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:[ 'YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XLabel','YourTour.view.widget.XGenderPicker', 'YourTour.view.widget.XButton'],
+    requires:[ 'YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XField', 'YourTour.view.widget.XPickerField', 'YourTour.view.widget.XLabel','YourTour.view.widget.XGenderPicker', 'YourTour.view.widget.XButton'],
     xtype:'UserProfileView',
     config: {
     	id:'UserProfileView',
@@ -50,13 +50,9 @@ Ext.define('YourTour.view.user.UserProfileView', {
 					},
 
 					{
-						xtype:'spacer',
-						flex:1
-					},
-
-					{
 						itemId : 'nickname',
-						xtype : 'xlabel',
+						flex:1,
+						xtype : 'xfield',
 					}
 				]
 			},
@@ -109,8 +105,6 @@ Ext.define('YourTour.view.user.UserProfileView', {
 
 			{
 				xtype:'xpanel',
-				itemId:'gender',
-				tappable:true,
 				layout:'hbox',
 				padding:'0 10 0 10',
 				cls:'nav_arrow row underline font-medium font-grey',
@@ -121,13 +115,10 @@ Ext.define('YourTour.view.user.UserProfileView', {
 					},
 
 					{
-						xtype:'spacer',
-						flex:1
-					},
-
-					{
-						itemId : 'sex',
-						xtype : 'xlabel',
+						itemId : 'gender',
+						flex:1,
+						xtype : 'xpickerfield',
+						padding:'0 10 0 0'
 					}
 				]
 			},
@@ -157,8 +148,7 @@ Ext.define('YourTour.view.user.UserProfileView', {
 
 			{
 				xtype:'xgenderpicker',
-				itemId:'genderPicker',
-				hidden:true
+				itemId:'genderPicker'
 			},
 
 			{

@@ -26,7 +26,7 @@ Ext.define('YourTour.controller.UserMainCtrl', {
            },
 
            genderPicker:{
-               change:'onGenderChange'
+               DoneTap:'onGenderDoneTap'
            }
 
        },
@@ -84,7 +84,10 @@ Ext.define('YourTour.controller.UserMainCtrl', {
         this.getGenderPicker().show();
     },
 
-    onGenderChange:function( picker, value, eOpts){
-        console.log(picker.getValue());
+    onGenderDoneTap:function( picker, value, text, eOpts){
+        var userProfileView = this.getUserProfileView();
+        var gender = userProfileView.down('#gender');
+        gender.setValue(value);
+        gender.setText(text);
     }
 });
