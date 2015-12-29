@@ -13,29 +13,22 @@ Ext.define('YourTour.view.user.UserProfileView', {
 				title:'编辑个人信息',
             },
 
-            {
-    			xtype:'panel',
-    			layout:'hbox',
-    			cls:'nav_arrow underline',
-				padding:'0 10 0 10',
-    			items:[
+			{
+				xtype:'xpanel',
+				layout:'hbox',
+				itemId:'profile',
+				style:'background-color:white',
+				cls:'nav_arrow',
+				padding:10,
+				tappable:true,
+				items:[
 					{
-						xtype:'xlabel',
-						html : '头像',
-					},
-
-					{
-						xtype:'spacer',
-						flex:1
-					},
-
-					{
-						itemId : 'image',
+						itemId : 'userLogo',
 						xtype : 'image',
 						model:'tag'
 					}
-		    	]
-    		},
+									]
+			},
 
 			{
 				xtype:'panel',
@@ -50,9 +43,11 @@ Ext.define('YourTour.view.user.UserProfileView', {
 					},
 
 					{
-						itemId : 'nickname',
-						flex:1,
+						itemId : 'nickName',
 						xtype : 'xfield',
+						tappable:true,
+						flex:1,
+						style:'text-align:right'
 					}
 				]
 			},
@@ -65,17 +60,17 @@ Ext.define('YourTour.view.user.UserProfileView', {
 				items:[
 					{
 						xtype:'xlabel',
-						html : '年龄',
+						html : '生日',
 					},
 
 					{
-						xtype:'spacer',
-						flex:1
-					},
-
-					{
-						itemId : 'age',
-						xtype : 'xlabel',
+						itemId : 'birthday',
+						xtype : 'datepickerfield',
+						flex:1,
+						value:new Date(),
+						dateFormat:'Y年m月d日',
+						clearIcon: true,
+						inputCls:'text_right font-medium font-grey'
 					}
 				]
 			},
@@ -84,7 +79,7 @@ Ext.define('YourTour.view.user.UserProfileView', {
 				xtype:'panel',
 				layout:'hbox',
 				padding:'0 10 0 10',
-				cls:'nav_arrow row underline font-medium font-grey',
+				cls:'bg_white row underline font-medium font-grey',
 				items:[
 					{
 						xtype:'xlabel',
@@ -92,13 +87,10 @@ Ext.define('YourTour.view.user.UserProfileView', {
 					},
 
 					{
-						xtype:'spacer',
-						flex:1
-					},
-
-					{
 						itemId : 'constellation',
-						xtype : 'xlabel',
+						xtype : 'xfield',
+						flex:1,
+						style:'text-align:right'
 					}
 				]
 			},
@@ -116,9 +108,9 @@ Ext.define('YourTour.view.user.UserProfileView', {
 
 					{
 						itemId : 'gender',
-						flex:1,
 						xtype : 'xpickerfield',
-						padding:'0 10 0 0'
+						flex:1,
+						style:'text-align:right'
 					}
 				]
 			},
@@ -135,13 +127,11 @@ Ext.define('YourTour.view.user.UserProfileView', {
 					},
 
 					{
-						xtype:'spacer',
-						flex:1
-					},
-
-					{
 						itemId : 'state',
-						xtype : 'xlabel',
+						xtype : 'xfield',
+						flex:1,
+						tappable:true,
+						style:'text-align:right'
 					}
 				]
 			},

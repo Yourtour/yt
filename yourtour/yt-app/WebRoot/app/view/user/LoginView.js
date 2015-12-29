@@ -42,6 +42,7 @@ Ext.define('YourTour.view.user.LoginView', {
             	   {
             		   xtype:'xtextfield', 
             		   placeHolder:'请输入用户名(邮箱或者手机号)',
+					   inputCls:'font-large font-grey',
             		   flex:1,
             		   itemId: 'mobile'
             	   }

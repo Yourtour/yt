@@ -39,4 +39,6 @@ public class UserProfileVO implements Serializable{
 	public String getBirthday(){
 		return DateUtils.formatDate(bean.getBirthday());
 	}
+
+	public String getImageUrl(){return bean.getImageUrl(); }
 }

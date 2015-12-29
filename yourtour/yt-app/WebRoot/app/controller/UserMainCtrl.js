@@ -6,6 +6,10 @@ Ext.define('YourTour.controller.UserMainCtrl', {
 
            userProfileView:'#UserProfileView',
            genderPicker:'#UserProfileView #genderPicker',
+
+           fieldEditView:'#FieldEditView',
+
+           placeList:'#PlaceChangeView #placeList'
        },
        
        control:{
@@ -23,6 +27,14 @@ Ext.define('YourTour.controller.UserMainCtrl', {
 
            '#UserProfileView #gender':{
                tap:'onGenderTap'
+           },
+
+           '#UserProfileView #nickName':{
+               tap:'onNickNameFieldTap'
+           },
+
+           '#UserProfileView #state':{
+               tap:'onStateFieldTap'
            },
 
            genderPicker:{
@@ -43,37 +55,38 @@ Ext.define('YourTour.controller.UserMainCtrl', {
     	var me = this;
     	
     	YourTour.util.Context.mainview = me.getUserMainView();
-    	
     	var userMainView = this.getUserMainView();
-    	
+
+        var profile = this.getApplication().getUserProfile();
     	var userLogo = userMainView.down('#userLogo');
-    	userLogo.setHtml("<img src='" + YourTour.util.Context.getImageResource('/resources/images/user_logo_64.png') + "' style='width:64px; height:64px'>");
+    	userLogo.setHtml("<img src='" + YourTour.util.Context.getImageResource(profile.imageUrl) + "' style='width:64px; height:64px'>");
     },
-    
+
     onExpertTap:function(){
     	this.redirectTo('/expert');
     },
 
     onUserProfileTap:function(){
+        var me = this;
+
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.user.UserProfileView'));
 
-        var localStore =  Ext.StoreManager.get('LocalStore');
-        localStore.load();
+        var profile = this.getApplication().getUserProfile();
+        me.fillProfileInfo(profile);
+    },
 
-        var index = localStore.find('key', 'user.profile');
-        if(index >= 0){
-            var userProfile = localStore.getAt(index);
-            var profile = Ext.JSON.decode(userProfile.get('value'));
+    /**
+     *
+     * @param profile
+     */
+    fillProfileInfo:function(profile){
+        var userProfileView = this.getUserProfileView();
 
-            var userProfileView = this.getUserProfileView();
+        var imageEl = userProfileView.down('#userLogo');
+        imageEl.setHtml("<img src='" + YourTour.util.Context.getImageResource(profile.imageUrl) + "'>");
 
-            var imageEl = userProfileView.down('#image');
-            imageEl.setHtml("<img src='" + YourTour.util.Context.getImageResource(profile.imageUrl) + "'>");
-
-            var nickNameEl = userProfileView.down('#nickname');
-            nickNameEl.setHtml(profile.nickname);
-
-        }
+        var nickNameEl = userProfileView.down('#nickName');
+        nickNameEl.setHtml(profile.nickName);
     },
 
     onUserQuitTap:function(){
@@ -89,5 +102,37 @@ Ext.define('YourTour.controller.UserMainCtrl', {
         var gender = userProfileView.down('#gender');
         gender.setValue(value);
         gender.setText(text);
+    },
+
+    onNickNameFieldTap:function(){
+        var userProfileView = this.getUserProfileView();
+        var nickNameEl = userProfileView.down('#nickName');
+        var nickName = nickNameEl.getHtml();
+
+        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.common.FieldEditView'));
+
+        var fieldEditView = this.getFieldEditView();
+        var field = fieldEditView.down('#field');
+        field.setValue(nickName);
+
+        var btnSave = fieldEditView.down('#btnSave');
+        btnSave.on('tap', function(){
+            nickNameEl.setHtml(field.getValue());
+            Ext.ComponentManager.get('MainView').pop();
+        })
+    },
+
+    onStateFieldTap:function(){
+        var me = this;
+
+        me.redirectTo('/place/change');
+        me.getPlaceList().on('itemtap', function(record, e, eOpts){
+            Ext.ComponentManager.get('MainView').pop();
+
+            var userProfileView = me.getUserProfileView();
+            var stateEl = userProfileView.down('#state');
+            stateEl.setValue(record.get('id'));
+            stateEl.setText(record.get('name'));
+        });
     }
 });

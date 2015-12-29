@@ -4,9 +4,7 @@ Ext.define('YourTour.view.widget.XPickerField', {
     config:{
         tappable:true,
         value:'',
-        style:'text-align:right',
-        padding:'0 10 0 0',
-        html:'asfdasf'
+        padding:'0 10 0 10'
     },
 
     setValue:function(value){

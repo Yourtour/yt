@@ -26,7 +26,7 @@ Ext.application({
     
     views: [
         'MainView','Launch',
-        'common.PlaceChangeView','common.PlaceSelectionView','common.MessageMainView','common.MessageGroupView','common.ServiceFormView',
+        'common.PlaceChangeView','common.PlaceSelectionView','common.MessageMainView','common.MessageGroupView','common.ServiceFormView','common.FieldEditView',
         'home.HomeMainView', 'home.BestListView', 'home.AlongListView', 'home.AlongDetailView', 'home.TalentListView', 'SearchMain',
         'route.RouteMainView','route.RouteSettingView','route.RouteImpressionView','route.RouteImageView',
         'route.RouteScheduleListView', 'route.RouteSchedulePlanView','route.RouteScheduleReferenceView','route.ScheduleFormView',

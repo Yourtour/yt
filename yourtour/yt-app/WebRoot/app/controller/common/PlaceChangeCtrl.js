@@ -10,10 +10,6 @@ Ext.define('YourTour.controller.common.PlaceChangeCtrl', {
        control	:{
     	   placeType:{
     		   itemtap:'onItemTap4PlaceType'
-    	   },
-    	   
-    	   placeList:{
-    		   itemtap:'onItemTap4PlaceList'
     	   }
        },
        
@@ -72,12 +68,5 @@ Ext.define('YourTour.controller.common.PlaceChangeCtrl', {
     	};
     		
     	this.placeStore.load(success);
-    },
-    
-    /**
-     * 
-     */
-    onItemTap4PlaceList: function(record, e, eOpts){
-    	this.redirectTo('/place/' + record.get('id'));
     }
 });

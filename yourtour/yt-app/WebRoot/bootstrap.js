@@ -716,6 +716,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.MainView": [],
   "YourTour.view.SearchMain": [],
   "YourTour.view.common.CommentListItemView": [],
+  "YourTour.view.common.FieldEditView": [],
   "YourTour.view.common.MessageDataItemView": [],
   "YourTour.view.common.MessageGroupView": [],
   "YourTour.view.common.MessageMainView": [],
@@ -820,6 +821,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.XLabel": [],
   "YourTour.view.widget.XPage": [],
   "YourTour.view.widget.XPanel": [],
+  "YourTour.view.widget.XPicker": [],
+  "YourTour.view.widget.XPickerField": [],
   "YourTour.view.widget.XPlainButton": [],
   "YourTour.view.widget.XSelecion": [],
   "YourTour.view.widget.XTextArea": [],
@@ -1633,6 +1636,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.common.CommentListItemView": [
     "widget.CommentListItemView"
   ],
+  "YourTour.view.common.FieldEditView": [],
   "YourTour.view.common.MessageDataItemView": [
     "widget.MessageDataItemView"
   ],
@@ -1908,6 +1912,12 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.widget.XPanel": [
     "widget.xpanel"
+  ],
+  "YourTour.view.widget.XPicker": [
+    "widget.xpicker"
+  ],
+  "YourTour.view.widget.XPickerField": [
+    "widget.xpickerfield"
   ],
   "YourTour.view.widget.XPlainButton": [
     "widget.xplainbutton"
