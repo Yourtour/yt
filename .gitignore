@@ -5,9 +5,9 @@
 **/target/
 
 # eclipse project and classpath
-#**/.project
-#**/.classpath
-#**/.settings/
+**/.project
+**/.classpath
+**/.settings/
 **/.myeclipse/
 
 # gradle
