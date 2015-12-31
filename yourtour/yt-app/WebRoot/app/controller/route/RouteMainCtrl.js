@@ -36,7 +36,11 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
     	   
     	   '#RouteImageView #save':{
     		   tap:'onImageSave'
-    	   }
+    	   },
+
+		   '#RouteMainView #share':{
+			   tap:'onShareTap'
+		   }
        },
        
        routes:{
@@ -69,7 +73,8 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
     },
     
     onRouteNew:function(){
-    	this.redirectTo("/route/new");
+		var controller = this.getApplication().getController('route.RouteSchedulePlanCtrl')
+		controller.createNewRoute();
     },
     
     /**
@@ -93,16 +98,23 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
     	    	};
     	    	
     	    	Ext.Msg.alert('删除成功。');
-    	    	
+
     	    	me.store.removeAt(index);
-    	    	
+
     	    	routeCarousel.removeAt(index);
     	    }
     	});
     },
     
     onRouteTap:function(record){
-   		this.redirectTo('/route/load/' + record.get('id'));
+		var me = this;
+		var step = record.get('step');
+		if(step == '0'){
+			var controller = me.getApplication().getController('route.RouteSchedulePlanCtrl')
+			controller.loadStep1Info(record);
+		}else{
+			this.redirectTo('/route/load/' + record.get('id'));
+		}
     },
     
     onMemberTap:function(record){
@@ -190,5 +202,9 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
     	var routeImageView = this.getRouteImageView();
     	
     	var imageSize = routeImageView.down('#imageSize');
-    }
+    },
+
+	onShareTap:function(){
+		window.plugins.socialsharing.share(null, null, 'http://www.baidu.com/img/bdlogo.gif', null);
+	}
 });

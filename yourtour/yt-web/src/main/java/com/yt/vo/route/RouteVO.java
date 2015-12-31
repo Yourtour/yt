@@ -11,6 +11,7 @@ import com.yt.business.bean.PlaceBean;
 import com.yt.business.bean.RouteMainBean;
 import com.yt.business.bean.RouteProvisionBean;
 import com.yt.business.bean.RouteScheduleBean;
+import com.yt.core.utils.StringUtils;
 import com.yt.vo.BaseVO;
 import com.yt.vo.basedata.PlaceVO;
 
@@ -19,11 +20,21 @@ public class RouteVO extends BaseVO {
 	private String 	lineName;
 	private String 	imageUrl;
 	private long 	startDate; // 行程开始日期
-	private int 	duration;
+	private long    endDate;
+
+	private int  adultNum;
+	private int  childNum;
+	private int  olderNum;
+
 	private	String 	impression;
 	private String 	feature;
-	
-	private PlaceVO fromPlace; // 行程出发地点
+
+	//作为请求参数时，格式为id, 作为相应参数时格式为：id,name
+	private String fromPlace; // 行程出发地点
+
+	//作为请求参数时，格式为id1,id2..., 作为相应参数时格式为：id1,id2|name1,name2
+	private String toPlaces;
+
 	private List<RouteScheduleVO> schedules; // 行程日程列表
 
 	public static RouteVO transform(RouteMainBean bean) {
@@ -35,15 +46,8 @@ public class RouteVO extends BaseVO {
 		vo.fromBean(bean);
 		vo.setName(bean.getName());
 		vo.setLineName(bean.getLineName());
-		vo.setStartDate(new Date(bean.getStartDate()));
-		vo.setDuration(bean.getDuration());
-		
-		if (bean.getFromPlace() != null) {
-			PlaceVO placeVO = new PlaceVO();
-			placeVO.setId(bean.getFromPlace().getGraphId());
-			vo.setFromPlace(placeVO);
-		}
-		
+		vo.setStartDate(new Date(bean.getStartDate()).getTime());
+
 		if (bean.getSchedules() != null && bean.getSchedules().size() > 0) {
 			for (RouteScheduleBean scheduleBean : bean.getSchedules()) {
 				if (scheduleBean == null) {
@@ -74,45 +78,29 @@ public class RouteVO extends BaseVO {
 		vo.toBean(bean);
 		bean.setName(vo.getName());
 		bean.setStartDate(vo.getStartDate());
-		bean.setDuration(vo.getDuration());
+		bean.setEndDate(vo.getEndDate());
+		bean.setFromPlace(vo.getFromPlace());
+		bean.setToPlaces(vo.getToPlaces());
 
-		if (vo.getFromPlace() != null) {
+		bean.setAdultNum(vo.getAdultNum());
+		bean.setChildNum(vo.getChildNum());
+		bean.setOlderNum(vo.getOlderNum());
+
+		if (StringUtils.isNotNull(vo.getFromPlace())) {
 			PlaceBean placeBean = new PlaceBean();
-			placeBean.setGraphId(vo.getFromPlace().getId());
-			bean.setFromPlace(placeBean);
+			placeBean.setGraphId(Long.valueOf(vo.getFromPlace().split(",")[0]));
+			bean.setFromPlaceBean(placeBean);
 		}
-		
+
 		Set<PlaceBean> destinations = new HashSet<>();
-		int duration = 0;
-		if (vo.getSchedules() != null && vo.getSchedules().size() > 0) {
-			Calendar calendar = Calendar.getInstance();
-			calendar.setTimeInMillis(bean.getStartDate());
-			
-			for (RouteScheduleVO scheduleVO : vo.getSchedules()) {
-				if (scheduleVO == null) {
-					continue;
-				}
-				
-				PlaceBean destination = new PlaceBean();
-				destination.setGraphId(Long.valueOf(scheduleVO.getPlaceIds()));
-				destinations.add(destination);
-				
-				duration += scheduleVO.getDays();
-				for(int index = 0; index < scheduleVO.getDays(); index++){
-					RouteScheduleBean scheduleBean = new RouteScheduleBean();
-					
-					scheduleBean.setGraphId(scheduleVO.getId());
-					scheduleBean.setDate(calendar.getTimeInMillis());
-					scheduleBean.setPlaces(scheduleVO.getPlaces());
-					bean.getSchedules().add(scheduleBean);
-					
-					calendar.add(Calendar.DAY_OF_MONTH, 1);
-				}
-			}
+		String[] places = vo.getToPlaces().split("[|]");
+		for(String place : places){
+			PlaceBean destination = new PlaceBean();
+			destination.setGraphId(Long.valueOf(place.split(",")[0]));
+			destinations.add(destination);
 		}
-		
-		bean.setDuration(duration);
-		bean.setDestinations(new ArrayList<>(destinations));
+
+		bean.setToPlaceBeans(new ArrayList<>(destinations));
 		
 		return bean;
 	}
@@ -161,28 +149,27 @@ public class RouteVO extends BaseVO {
 		this.feature = feature;
 	}
 
-
 	public long getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate.getTime();
+	public void setStartDate(long startDate) {
+		this.startDate = startDate;
 	}
 
-	public int getDuration() {
-		return duration;
+	public long getEndDate() {
+		return endDate;
 	}
 
-	public void setDuration(int duration) {
-		this.duration = duration;
+	public void setEndDate(long endDate) {
+		this.endDate = endDate;
 	}
 
-	public PlaceVO getFromPlace() {
+	public String getFromPlace() {
 		return fromPlace;
 	}
 
-	public void setFromPlace(PlaceVO fromPlace) {
+	public void setFromPlace(String fromPlace) {
 		this.fromPlace = fromPlace;
 	}
 
@@ -191,6 +178,38 @@ public class RouteVO extends BaseVO {
 			schedules = new ArrayList<>();
 		}
 		return schedules;
+	}
+
+	public int getAdultNum() {
+		return adultNum;
+	}
+
+	public void setAdultNum(int adultNum) {
+		this.adultNum = adultNum;
+	}
+
+	public int getChildNum() {
+		return childNum;
+	}
+
+	public void setChildNum(int childNum) {
+		this.childNum = childNum;
+	}
+
+	public int getOlderNum() {
+		return olderNum;
+	}
+
+	public void setOlderNum(int olderNum) {
+		this.olderNum = olderNum;
+	}
+
+	public String getToPlaces() {
+		return toPlaces;
+	}
+
+	public void setToPlaces(String toPlaces) {
+		this.toPlaces = toPlaces;
 	}
 
 	public void setSchedules(List<RouteScheduleVO> schedules) {

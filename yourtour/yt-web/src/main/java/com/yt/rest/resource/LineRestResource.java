@@ -80,47 +80,31 @@ public class LineRestResource {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Path("loadPage.json")
+	@Path("match/{placeIds}")
 	@GET
-	public ResponsePagingDataVO<List<LineVO>> loadPage(
-			@QueryParam("page") int page, @QueryParam("start") int start,
-			@QueryParam("limit") int limit) {
+	public ResponseDataVO<List<LineVO>> getAllMatchedLines(@PathParam("placeIds") String placeIds) {
+		List<LineVO> list = new ArrayList<LineVO>();
 		try {
-			long totalSize = lineRepository.count(LineBean.class);
-			if (start >= totalSize) {
-				if (LOG.isWarnEnabled()) {
-					LOG.warn(String
-							.format("The query parameter is invalid, the total line: %d, but request: page(%d), start(%d), limit(%d).",
-									totalSize, page, start, limit));
-				}
-				return new ResponsePagingDataVO<List<LineVO>>(
-						StaticErrorEnum.THE_DATA_NOT_EXIST);
-			}
-
-			Vector<LineVO> result = new Vector<LineVO>();
-			List<LineBean> lines = (List<LineBean>) lineRepository.getByPage(
-					LineBean.class, start, limit);
-			for (LineBean line : lines) {
-				LineVO vo = LineVO.transform(line);
-				if (vo == null) {
+			List<LineBean> result = (List<LineBean>) lineRepository
+					.get(LineBean.class);
+			for (LineBean bean : result) {
+				if (bean == null) {
 					continue;
 				}
-				result.add(vo);
+				LineVO vo = LineVO.transform(bean);
+				list.add(vo);
 			}
 			if (LOG.isDebugEnabled()) {
-				LOG.debug(String
-						.format("Query a page line success, total line: {%d}, request: page(%d), start(%d), limit(%d).",
-								result.size(), page, start, limit));
+				LOG.debug(String.format(
+						"Fetch all the LineBean success, total: %d.",
+						list.size()));
 			}
-			return new ResponsePagingDataVO<List<LineVO>>(totalSize, result);
+			return new ResponseDataVO<List<LineVO>>(list);
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
-				LOG.error(
-						String.format(
-								"Query a page line fail, request: page(%d), start(%d), limit(%d).",
-								page, start, limit), ex);
+				LOG.error("Fetch all the LineBean fail.", ex);
 			}
-			return new ResponsePagingDataVO<List<LineVO>>(
+			return new ResponseDataVO<List<LineVO>>(
 					StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
 	}

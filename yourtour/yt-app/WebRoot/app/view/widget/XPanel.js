@@ -3,7 +3,8 @@ Ext.define('YourTour.view.widget.XPanel', {
     xtype: 'xpanel',
     
     config:{
-    	tappable:false
+    	tappable:false,
+		xtyle:'background-color:white'
     },
     
     initialize : function(){

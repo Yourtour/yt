@@ -1,6 +1,6 @@
-Ext.define('YourTour.view.line.LineRecommendItem', {
+Ext.define('YourTour.view.line.LineRecommendDataItem', {
     extend: 'YourTour.view.widget.VDataItem',
-    xtype: 'LineRecommendItem',
+    xtype: 'LineRecommendDataItem',
     requires:['Ext.Panel', 'Ext.Img', 'YourTour.view.widget.XField','YourTour.view.widget.XLabel'],
     config: {
     	items:[
@@ -48,13 +48,13 @@ Ext.define('YourTour.view.line.LineRecommendItem', {
 				    			flex:1,
 				    			mode:'tag'
 				   			},
-				   			
+
 				   			{
 				   				xtype:'xlabel',
 				   				html:'评价指数:',
 				   				flex:1
 				   			},
-				   			
+
 				   			{
 				   				xtype:'image',
 				    			src:'resources/images/raty_32.png',

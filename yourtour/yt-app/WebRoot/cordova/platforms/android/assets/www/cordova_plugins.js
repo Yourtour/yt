@@ -39,6 +39,13 @@ module.exports = [
         "clobbers": [
             "cordova.plugins.barcodeScanner"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
+        "id": "cordova-plugin-x-socialsharing.SocialSharing",
+        "clobbers": [
+            "window.plugins.socialsharing"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -46,7 +53,8 @@ module.exports.metadata =
 {
     "cordova-plugin-whitelist": "1.0.0",
     "cordova-plugin-camera": "1.2.0",
-    "phonegap-plugin-barcodescanner": "4.0.1"
+    "phonegap-plugin-barcodescanner": "4.0.1",
+    "cordova-plugin-x-socialsharing": "5.0.8-dev"
 }
 // BOTTOM OF METADATA
 });

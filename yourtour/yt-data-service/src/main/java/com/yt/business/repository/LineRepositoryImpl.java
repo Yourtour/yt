@@ -130,7 +130,7 @@ public class LineRepositoryImpl extends CrudAllInOneOperateImpl implements
 	 * @see com.yt.business.repository.LineRepository#getLinesByPlace(long)
 	 */
 	@Override
-	public List<LineBean> getLinesByPlace(long placeId) throws Exception {
-		return lineRepo.getLinesByPlace(placeId);
+	public List<LineBean> getLinesByPlace(long[] placeIds) throws Exception {
+		return (List<LineBean>) this.get(LineBean.class);
 	}
 }

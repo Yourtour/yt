@@ -28,5 +28,5 @@ public interface LineRepository extends CrudAllInOneOperate {
 	 * @throws Exception
 	 *             查询过程中发生的异常
 	 */
-	public List<LineBean> getLinesByPlace(long placeId) throws Exception;
+	public List<LineBean> getLinesByPlace(long[] placeIds) throws Exception;
 }

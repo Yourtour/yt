@@ -2,7 +2,7 @@ Ext.define('YourTour.view.widget.XPicker', {
     extend: 'Ext.Picker',
     xtype: 'xpicker',
     config:{
-        text:'',
+        selectedIndex:0,
         stretchX:true,
         stretchY:false,
         enter:'bottom',
@@ -13,13 +13,14 @@ Ext.define('YourTour.view.widget.XPicker', {
 
         listeners:{
             pick:function(picker, The, slot, eOpts ){
-                var data = picker.getData();
-                var selectedIndex = slot.selectedIndex;
-                picker.text = data[selectedIndex].text;
+                picker.setSelectedIndex(slot.selectedIndex);
             },
 
             change:function(picker, value, eOpts){
-                this.fireEvent('DoneTap', picker, value.value, picker.getText(), eOpts);
+                var datas = picker.getData();
+                var data = datas[picker.getSelectedIndex()];
+
+                this.fireEvent('donetap', picker, data.value, data.text, eOpts);
             }
         }
     },
@@ -36,12 +37,12 @@ Ext.define('YourTour.view.widget.XPicker', {
         );
     },
 
-    getText:function(){
-        return this.text;
+    setSelectedIndex:function(selectedIndex){
+        this.selectedIndex = selectedIndex;
     },
 
-    setText:function(text){
-        this.text = text;
+    getSelectedIndex:function(){
+        return this.selectedIndex;
     }
 });
 

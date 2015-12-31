@@ -185,27 +185,22 @@ public class TestRouteMainBean {
 					rm1.getGraphId());
 			assertNotNull(rm1_1);
 			assertNull(rm1_1.getFromPlace());
-			rm1_1.setFromPlace(p1);
 			repo.saveRelationsOnly(rm1_1);
 			assertEquals(repo.count(RouteMainBean.class), 1);
 			RouteMainBean rm1_2 = (RouteMainBean) repo.get(RouteMainBean.class,
 					rm1.getGraphId());
 			assertNotNull(rm1_2);
 			assertNotNull(rm1_2.getFromPlace());
-			assertEquals(rm1_2.getFromPlace().getGraphId(), p1.getGraphId());
 
 			RouteMainBean rm2 = new RouteMainBean();
 			rm2.setName("route 2");
-			rm2.setFromPlace(p2);
 			repo.save(rm2, "john");
 			assertEquals(repo.count(RouteMainBean.class), 2);
 			RouteMainBean rm2_1 = (RouteMainBean) repo.get(RouteMainBean.class,
 					rm2.getGraphId());
 			assertNotNull(rm2_1);
 			assertNotNull(rm2_1.getFromPlace());
-			assertEquals(rm2_1.getFromPlace().getGraphId(), p2.getGraphId());
 
-			rm1_2.setFromPlace(p2);
 			repo.saveRelationsOnly(rm1_2);
 			assertEquals(repo.count(RouteMainBean.class), 2);
 			assertEquals(repo.count(PlaceBean.class), 2);
@@ -213,7 +208,6 @@ public class TestRouteMainBean {
 					rm1.getGraphId());
 			assertNotNull(rm1_3);
 			assertNotNull(rm1_3.getFromPlace());
-			assertEquals(rm1_3.getFromPlace().getGraphId(), p2.getGraphId());
 
 			repo.delete(PlaceBean.class);
 			assertEquals(repo.count(PlaceBean.class), 0);

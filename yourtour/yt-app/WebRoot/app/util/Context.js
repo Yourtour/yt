@@ -31,7 +31,5 @@ Ext.define('YourTour.util.Context', {
     	
     	return s + url;
     }
-    
-    
 });
 

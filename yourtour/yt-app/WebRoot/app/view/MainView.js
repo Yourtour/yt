@@ -45,7 +45,7 @@ Ext.define('YourTour.view.MainView', {
 					{
 						xtype:'LiveMainView',
 					    itemId:'btnView',
-					    title:'微视',
+					    title:'发现',
 					    iconCls:'home',
 					    iconAlign:'top'
 					},

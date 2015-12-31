@@ -83,8 +83,7 @@ Ext.define('YourTour.view.route.RouteMainItem', {
 		            {
 		    		   	xtype:'xlabel',
 		    		   	cls:'font-bold font-medium',
-						html:'旅行时间:',
-						margin:'10 0 0 0'
+						html:'旅行时间:'
 		    		},
 		            
 					{
@@ -163,7 +162,7 @@ Ext.define('YourTour.view.route.RouteMainItem', {
  	 	   name.setHtml(record.get('name'));
  	 	   
  	 	   var time = me.down('#time');
- 	 	   time.setHtml(record.get('startDate') +'-' + record.get('endDate') + '(' + record.get('period')+')');
+ 	 	   time.setHtml(record.get('startDate') +'-' + record.get('endDate') + '  合计：' + record.get('duration')+'天');
  	 	   
  	 	   var lineName = me.down('#lineName');
  	 	   lineName.setHtml(record.get('lineName'));

@@ -1,14 +1,13 @@
-Ext.define('YourTour.view.line.LineRecommendView', {
+Ext.define('YourTour.view.line.LineRecommendListView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Panel','Ext.Img', 'Ext.DataView','YourTour.view.widget.XHeaderBar', 'Ext.Spacer','YourTour.view.widget.XBack','YourTour.view.widget.ToolButton','YourTour.view.line.LineRecommendItem'],
-    xtype: 'LineRecommendView',
+    requires:['Ext.Panel','Ext.Img', 'Ext.DataView','YourTour.view.widget.XHeaderBar', 'Ext.Spacer','YourTour.view.widget.XBack','YourTour.view.widget.ToolButton','YourTour.view.line.LineRecommendDataItem'],
     config: {
-    	id:'LineRecommendView',
+    	id:'LineRecommendListView',
     	layout:'fit',
         items: [
         	{    
 				xtype: 'xheaderbar',
-				title:'线路推荐',
+				title:'达人推荐',
 				items:[
 					{
 	                	xtype: "toolbutton", 
@@ -25,7 +24,7 @@ Ext.define('YourTour.view.line.LineRecommendView', {
 		    	itemId:'lineList',
 				flex:1,
 				useComponents:true,
-		    	defaultType:'LineRecommendItem',
+		    	defaultType:'LineRecommendDataItem',
 		    	scrollable: {
 		    	    direction: 'vertical',
 		    	    indicators: false	

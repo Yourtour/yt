@@ -25,19 +25,23 @@ public class RouteOverViewVO implements Serializable{
 	}
 
 	public String getLineName(){
-		return "";
+		return route.getLineName();
 	}
+
 	public String getStartDate() {
 		return DateUtils.formatDate(route.getStartDate());
 	}
 
 	public String getEndDate(){
-		Date endDate = DateUtils.add(route.getStartDate(), route.getDuration(), Calendar.DAY_OF_MONTH);
-		if(endDate != null){
-			return DateUtils.formatDate(endDate.getTime());
-		}else{
-			return getStartDate();
-		}
+		return DateUtils.formatDate(route.getEndDate());
+	}
+
+	public String getFromPlace(){return route.getFromPlace();}
+
+	public String getToPlaces(){return route.getToPlaces();}
+
+	public String getDuration(){
+		return String.valueOf(((route.getEndDate() - route.getStartDate())/(1000 * 3600 * 24)));
 	}
 
 	public String getImageUrl(){
@@ -53,4 +57,6 @@ public class RouteOverViewVO implements Serializable{
 	public String getLeader(){
 		return route.getLeader();
 	}
+
+	public int getStep() {return route.getStep();}
 }

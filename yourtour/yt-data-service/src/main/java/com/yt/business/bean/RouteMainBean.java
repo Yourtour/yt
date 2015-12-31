@@ -19,34 +19,37 @@ import com.yt.neo4j.annotation.Neo4jRelationship;
 @NodeEntity
 @JsonRootName("route")
 public class RouteMainBean extends BaseBeanImpl {
-
 	private static final long serialVersionUID = -2071225440268179136L;
 	private static final String INDEX_NAME = "route";
 
 	@HbaseColumn(name = "name")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
 	private String name; // 行程名称
-	
 	private String lineName;
+	private int    step = 0;
 	
 	@HbaseColumn(name = "sdt")
 	private long startDate = 0; // 行程开始日期
-	
-	private int duration;
+	private long endDate = 0;
+
+	private String fromPlace;
+	private String toPlaces;
+
+	private int  adultNum;
+	private int  childNum;
+	private int  olderNum;
 
 	private String imageUrl;
-	
 	private transient String impression;
 
 	private Long leaderId;
-
 	private String leader;
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_FROM, type = PlaceBean.class, direction = Direction.OUTGOING)
-	private transient PlaceBean fromPlace = null; // 行程出发地点
+	private transient PlaceBean fromPlaceBean = null; // 行程出发地点
 	
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_TO, type = PlaceBean.class, direction = Direction.OUTGOING, isList = true)
-	private transient List<PlaceBean> destinations = null; //目的地
+	private transient List<PlaceBean> toPlaceBeans = null; //目的地
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = RouteScheduleBean.class, direction = Direction.OUTGOING, isList = true)
 	private transient List<RouteScheduleBean> schedules = null; // 行程包含的日程
@@ -117,28 +120,20 @@ public class RouteMainBean extends BaseBeanImpl {
 		this.startDate = startDate;
 	}
 
-	public int getDuration() {
-		return duration;
+	public PlaceBean getFromPlaceBean() {
+		return fromPlaceBean;
 	}
 
-	public void setDuration(int duration) {
-		this.duration = duration;
+	public void setFromPlaceBean(PlaceBean fromPlaceBean) {
+		this.fromPlaceBean = fromPlaceBean;
 	}
 
-	public PlaceBean getFromPlace() {
-		return fromPlace;
+	public List<PlaceBean> getToPlaceBeans() {
+		return toPlaceBeans;
 	}
 
-	public void setFromPlace(PlaceBean fromPlace) {
-		this.fromPlace = fromPlace;
-	}
-
-	public List<PlaceBean> getDestinations() {
-		return destinations;
-	}
-
-	public void setDestinations(List<PlaceBean> destinations) {
-		this.destinations = destinations;
+	public void setToPlaceBeans(List<PlaceBean> toPlaceBeans) {
+		this.toPlaceBeans = toPlaceBeans;
 	}
 
 	public List<RouteScheduleBean> getSchedules() {
@@ -161,4 +156,59 @@ public class RouteMainBean extends BaseBeanImpl {
 		this.owner = owner;
 	}
 
+	public long getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(long endDate) {
+		this.endDate = endDate;
+	}
+
+	public int getAdultNum() {
+		return adultNum;
+	}
+
+	public void setAdultNum(int adultNum) {
+		this.adultNum = adultNum;
+	}
+
+	public int getChildNum() {
+		return childNum;
+	}
+
+	public void setChildNum(int childNum) {
+		this.childNum = childNum;
+	}
+
+	public int getOlderNum() {
+		return olderNum;
+	}
+
+	public void setOlderNum(int olderNum) {
+		this.olderNum = olderNum;
+	}
+
+	public int getStep() {
+		return step;
+	}
+
+	public void setStep(int step) {
+		this.step = step;
+	}
+
+	public String getFromPlace() {
+		return fromPlace;
+	}
+
+	public void setFromPlace(String fromPlace) {
+		this.fromPlace = fromPlace;
+	}
+
+	public String getToPlaces() {
+		return toPlaces;
+	}
+
+	public void setToPlaces(String toPlaces) {
+		this.toPlaces = toPlaces;
+	}
 }

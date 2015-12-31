@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.user.UserProfileView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:[ 'YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XField', 'YourTour.view.widget.XPickerField', 'YourTour.view.widget.XLabel','YourTour.view.widget.XGenderPicker', 'YourTour.view.widget.XButton'],
+    requires:[ 'YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XField', 'YourTour.view.widget.XPickerField', 'YourTour.view.widget.XImagePicker','YourTour.view.widget.XLabel','YourTour.view.widget.XGenderPicker', 'YourTour.view.widget.XButton'],
     xtype:'UserProfileView',
     config: {
     	id:'UserProfileView',
@@ -16,7 +16,7 @@ Ext.define('YourTour.view.user.UserProfileView', {
 			{
 				xtype:'xpanel',
 				layout:'hbox',
-				itemId:'profile',
+				itemId:'userLogoPanel',
 				style:'background-color:white',
 				cls:'nav_arrow',
 				padding:10,
@@ -27,7 +27,7 @@ Ext.define('YourTour.view.user.UserProfileView', {
 						xtype : 'image',
 						model:'tag'
 					}
-									]
+				]
 			},
 
 			{
@@ -142,11 +142,11 @@ Ext.define('YourTour.view.user.UserProfileView', {
 			},
 
 			{
-				xtype: 'xbutton',
-				docked: 'bottom',
-				itemId:'btnQuit',
-				text:'退出'
-			}
+				xtype:'ximagepicker',
+				itemId:'imagePicker'
+			},
+
+
         ]
     }
 });

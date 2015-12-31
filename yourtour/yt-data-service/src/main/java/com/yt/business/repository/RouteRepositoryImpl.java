@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
+import com.yt.core.utils.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.neo4j.graphdb.Direction;
@@ -108,7 +109,10 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 			if (bean.route == null) {
 				continue;
 			}
-			bean.route.setImageUrl(bean.imageUrl);
+
+			if(StringUtils.isNotNull(bean.getImageUrl())) {
+				bean.route.setImageUrl(bean.imageUrl);
+			}
 			bean.route.setImpression(bean.impression);
 			list.add(bean.route);
 		}

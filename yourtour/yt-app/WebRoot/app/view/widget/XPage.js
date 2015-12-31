@@ -2,10 +2,11 @@ Ext.define('YourTour.view.widget.XPage', {
     extend: 'Ext.Panel',
     xtype: 'xpage',
     config:{
-    	scrollable: {
+    	scrollable: 'none',
+		/*scrollable:{
     	    direction: 'vertical',
     	    indicators: false	
-    	},
+    	},*/
     	
     	fullscreen: true
     },

@@ -5,7 +5,7 @@ Ext.define('YourTour.view.Launch', {
     config: {
     	layout:'card',
     	fullscreen: true,
-    	itemId:'launch',
+    	id:'launch',
         items: [
             {
             	xtype: 'image',

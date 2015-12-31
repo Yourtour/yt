@@ -11,7 +11,7 @@ Ext.define('YourTour.view.community.LiveMainView', {
             	xtype: 'xheaderbar',
 				itemId:'headerbar',
 				backButton:false,
-                title: '微视'
+                title: '发现'
             }
         ]
     }

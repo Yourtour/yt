@@ -189,7 +189,6 @@ public class RouteRestResource extends BaseRestResource{
 			}
 			return new ResponseVO();
 		} catch (Exception ex) {
-			ex.printStackTrace();
 			if (LOG.isErrorEnabled()) {
 				LOG.error(
 						String.format("Save the RouteMainBean[id='%s'] fail.",

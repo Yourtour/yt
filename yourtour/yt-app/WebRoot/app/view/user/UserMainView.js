@@ -11,7 +11,16 @@ Ext.define('YourTour.view.user.UserMainView', {
             	xtype: 'xheaderbar',
 				itemId:'headerbar',
 				backButton:false,
-				title:'个人中心',	
+				title:'个人中心',
+				items:[
+					{
+						xtype: "toolbutton",
+						ui: "normal",
+						text: '设置',
+						itemId: 'btnSetting',
+						align: 'right'
+					}
+				]
             },
             
             {
@@ -79,15 +88,6 @@ Ext.define('YourTour.view.user.UserMainView', {
 						itemId:'favorite',
 						cls:'row nav_arrow font-large underline',
 						html : '我的收藏',
-						padding:'0 10 0 10',
-						tappable :true
-					},
-					
-					{
-						xtype:'xlabel',
-						itemId:'share',
-						cls:'row nav_arrow font-large underline',
-						html : '我的分享',
 						padding:'0 10 0 10',
 						tappable :true
 					}

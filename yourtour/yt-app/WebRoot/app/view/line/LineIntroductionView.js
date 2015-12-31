@@ -1,14 +1,9 @@
 Ext.define('YourTour.view.line.LineIntroductionView', {
     extend: 'YourTour.view.widget.XPage',
     requires:['Ext.Panel','Ext.Img','Ext.DataView', 'YourTour.view.widget.XPanel', 'YourTour.view.widget.XButton','YourTour.view.widget.XField','YourTour.view.widget.XLabel', ,'YourTour.view.widget.XHeaderBar', 'YourTour.view.line.LineResourceItem'],
-    xtype: 'LineIntroductionView',
     config: {
     	id:'LineIntroductionView',
       	layout:'vbox',
-    	scrollable: {
-    	    direction: 'vertical',
-    	    indicators: false	
-    	},
         items: [
         	{    
 				xtype: 'xheaderbar',
@@ -227,9 +222,8 @@ Ext.define('YourTour.view.line.LineIntroductionView', {
             	xtype:'xbutton',
             	itemId:'btnPlan',
             	docked:'bottom',
-            	text:'行程规划'
+            	text:'开始规划'
             }
-		    
         ]
     }
 });

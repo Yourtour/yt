@@ -3,7 +3,8 @@ Ext.define('YourTour.view.widget.XLabel', {
     xtype: 'xlabel',
     config:{
     	tappable : false,
-    	cls:'label'
+    	cls:'label',
+		style:'background-color:white'
     },
     
     initialize : function(){

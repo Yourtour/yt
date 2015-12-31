@@ -1,34 +1,29 @@
-Ext.define('YourTour.controller.common.PlaceSelectionCtrl', {
+Ext.define('YourTour.controller.PlaceSelectionCtrl', {
     extend: 'YourTour.controller.BaseCtrl',
     requires:['YourTour.view.common.PlaceListItemView','YourTour.view.widget.XSelecion'],
     config: {
        refs: {
+		   placeSelectionView:'#PlaceSelectionView',
+
        	   placeType:'#PlaceSelectionView #placeType',
        	   placeList:'#PlaceSelectionView #placeList',
        	   selection:'#PlaceSelectionView #selection',
-       	   btnOk:	'#PlaceSelectionView #btnOk',
+		   btnOk:'#PlaceSelectionView #btnOk'
        },
        
        control	:{
     	   placeType:{
     		   itemtap:'onItemTap4PlaceType'
     	   },
-    	   
-    	   placeList:{
-    		   itemtap:'onItemTap4PlaceList'
-    	   },
-    	   
-    	   btnOk:{
-    		   tap:'onTap4BtnOk'
-    	   },
-    	   
+
     	   selection:{
     		   itemtap:'onItemTap4Selection'
     	   }
        },
        
        routes:{
-        	'/place/selection':'showPage'
+        	'/place/singleSelection':'showPageAsSingleSelection',
+		   	'/place/multiSelection':'showPageAsMultiSelection'
        },
        
        placeStore : null
@@ -41,9 +36,32 @@ Ext.define('YourTour.controller.common.PlaceSelectionCtrl', {
     /**
      * 显示页面
      */
+	showPageAsSingleSelection:function(){
+		var me = this;
+
+		me.showPage();
+		me.getSelection().hide();
+		me.getBtnOk().hide();
+	},
+
+	showPageAsMultiSelection:function(){
+		var me = this;
+
+		me.showPage();
+		me.getSelection().show();
+		me.getBtnOk().show();
+
+		me.getPlaceList().on('itemtap', function(record, e, eOpts){
+				var selection = me.getSelection();
+				var selectionItem = Ext.create('YourTour.view.widget.XSelecion',{selection:selection, model:record});
+				selection.add(selectionItem);
+			}
+		);
+	},
+
     showPage:function(){
 		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.common.PlaceSelectionView'));
-		
+
 		var store = Ext.create('Ext.data.Store',{
 			data:[
 			      {code:'China', name:'国内'},
@@ -87,17 +105,6 @@ Ext.define('YourTour.controller.common.PlaceSelectionCtrl', {
     /**
      * 
      */
-    onItemTap4PlaceList: function(record, e, eOpts){
-    	var selection = this.getSelection();
-    	
-    	var selectionItem = Ext.create('YourTour.view.widget.XSelecion',{selection:selection, model:record});
-    	
-    	selection.add(selectionItem);
-    },
-    
-    /**
-     * 
-     */
     onTap4BtnOk:function(){
     	var me = this;
     	var selection = this.getSelection();
@@ -112,5 +119,31 @@ Ext.define('YourTour.controller.common.PlaceSelectionCtrl', {
      */
     onItemTap4Selection:function(item, model){
     	this.getSelection().remove(item);
-    }
+    },
+
+	/**
+	 *
+	 * @returns {*|Array|Selection}
+	 */
+	getSelectedPlaces:function(){
+		return 	this.getSelection();
+	},
+
+	/**
+	 *
+	 * @param element
+	 * @param event
+	 * @param handler
+	 */
+	bindHandler:function(element, event, handler){
+		var placeSelectionView = this.getPlaceSelectionView();
+
+		var target;
+		if(element.substr(0,1) == '#'){
+			target = placeSelectionView.down(element);
+		}else{
+			target = placeSelectionView.down('#' + element);
+		}
+		target.on(event, handler);
+	}
 });

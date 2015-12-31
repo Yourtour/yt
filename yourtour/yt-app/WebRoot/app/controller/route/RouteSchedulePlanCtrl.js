@@ -7,18 +7,18 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     	   routeSchedulePlanView:'#RouteSchedulePlanView',
     	   routeScheduleList:'#RouteSchedulePlanView #RouteScheduleList',
     	   toolbar:'#RouteSchedulePlanView #toolbar',
-    	   
+
     	   routeActivityEditView:'#RouteActivityEditView',
-    	   
+
     	   routeProvisionEditView:'#RouteProvisionEditView',
-    		   
+
     	   routeScheduleEditView:'#RouteScheduleEditView',
-    	   
+
     	   routeDiscussView:'#RouteDiscussView',
-    	   
+
     	   settingView:'#RouteSettingView',
-		   
-    	   placeList:'#RouteSettingView #placeList',
+
+		   placeChangeView:'#PlaceChangeView',
        },
        
        control:{
@@ -70,82 +70,127 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     	   '#RouteActivityEditView #btnSave':{
      		   tap:'onSaveScheduleActivity'
      	   },
-     	   
-     	  '#RouteSettingView #add':{
-      	   	   tap:"onDestinationAdd"	
-      	   },
-      	   
-      	   placeList:{
-      		   itemdel:'onDestinationDelete'	
-      	   },
-	   	   
-	   	   '#RouteSettingView #place':{
-	   		   focus:"addStartPlace"
+
+	   	   '#RouteSettingView #fromPlace':{
+	   		   tap:"onFromPlaceTap"
 	   	   },
+
+		   '#RouteSettingView #toPlaces':{
+			   tap:"onToPlacesTap"
+		   },
 	   	   
 	   	   '#RouteSettingView #next':{
-	   		   tap:'OnNextClick'
+	   		   tap:'OnNextTap'
 	   	   }
        },
        
-       routes:{
-        	'/route/edit/:routeId':'showSchedulePage',
-        	'/route/new':'showPage'
-       },
+       	store:null,
        
-       store:null,
+       	index:0,
        
-       index:0,
-       
-       routeId:null
+       	routeId:null,
+
+		route:null
     },
     
-    init:function(){
-    },
-    
-    showPage:function(){
+	createNewRoute:function(){
 		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteSettingView'));
+	},
+
+	loadStep1Info:function(
+		info){
+		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteSettingView'));
+		var view = this.getSettingView();
+
+		var name = view.down('#name');
+		name.setValue(info.get('name'));
+
+		var fromPlace = view.down('#fromPlace');
+		fromPlace.setPair(info.get('fromPlace'));
+
+		var toPlaces = view.down('#toPlaces');
+		toPlaces.setPair(info.get('toPlaces'));
+	},
+
+	getRoute:function(){
+		return this.route;
+	},
+
+	/**
+	 * 目的地选择
+	 */
+	onToPlacesTap:function(){
+		var me = this;
+
+    	this.redirectTo('/place/multiSelection');
+
+		var controller = me.getApplication().getController('PlaceSelectionCtrl');
+		controller.bindHandler('#btnOk','tap',function(){
+			var ids = '', names = '';
+			var selections = controller.getSelectedPlaces();
+			selections.getItems().each(function(item){
+				if(ids != ''){
+					ids = ids + ',';
+					names = names + ",";
+				}
+
+				ids = ids + item.model.get('id');
+				names = names + item.model.get('name');
+			});
+
+			var toPlaces = me.getSettingView().down('#toPlaces');
+			toPlaces.setValue(ids);
+			toPlaces.setText(names);
+
+			Ext.ComponentManager.get('MainView').pop();
+		});
     },
-    
-    onDestinationAdd:function(){
-    	this.redirectTo('/place/selection');
+
+	/**
+	 * 出发地选择
+	 */
+	onFromPlaceTap:function(){
+		var me = this;
+    	me.redirectTo('/place/singleSelection');
+
+		var controller = me.getApplication().getController('PlaceSelectionCtrl');
+		controller.bindHandler('#placeList','itemtap',function(record, e, eOpts){
+			var fromPlace = me.getSettingView().down('#fromPlace');
+			fromPlace.setText(record.get('name'));
+			fromPlace.setValue(record.get('id'));
+
+			Ext.ComponentManager.get('MainView').pop();
+		});
     },
-    
-    onDestinationDelete:function(record){
-    	var store = this.getPlaceList().getStore();
-    	store.remove(record);
-    },
-    
-    addStartPlace:function(){
-    	this.redirectTo('/place/selection');
-    },
-    
-    OnNextClick:function(){
+
+	OnNextTap:function(){
     	var me = this;
-    	var view = this.getSettingView();
-    	var data = {};
+    	var view = me.getSettingView();
+    	route = {};
     	
     	var name = view.down('#name').getValue();
     	var startDate = new Date(view.down('#startDate').getValue());
-    	data.id='0';
-    	data.name = name;
-    	data.startDate = startDate.getTime();
-    	
-    	data.schedules=[];
-    	var store = me.getPlaceList().getStore();
-    	store.each(function(item){
-    		var schedule = {};
-    		schedule.id = '0';
-    		schedule.days = item.get('days');
-    		schedule.places = item.get('places');
-    		schedule.placeIds = item.get('placeIds');
-    		data.schedules.push(schedule);
-    	});
-    	
+		var endDate = new Date(view.down('#endDate').getValue());
+		var fromPlace = view.down('#fromPlace');
+		var toPlaces = view.down('#toPlaces');
+		var adultNum = view.down('#adultNum');
+		var childNum = view.down('#childNum');
+		var olderNum = view.down('#olderNum');
+
+		route.id='0';
+		route.name = name;
+		route.startDate = startDate.getTime();
+		route.endDate = endDate.getTime();
+		route.fromPlace = fromPlace.getPair();
+		route.toPlaces = toPlaces.getPair();
+		route.adultNum = adultNum.getValue();
+		route.childNum = childNum.getValue();
+		route.olderNum = olderNum.getValue();
+
     	Ext.Ajax.request({
-    	    url : YourTour.util.Context.getContext('/routes/main_schedule/save'),
+    	    url : YourTour.util.Context.getContext('/routes/main/save'),
     	    method : "POST",
-    	    params : Ext.JSON.encode(data),
+    	    params : Ext.JSON.encode(route),
     	    success : function(response) {
     	    	var data = Ext.JSON.decode(response.responseText);
     	    	if(data.errorCode != '0'){
@@ -153,9 +198,8 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     	    		return;
     	    	};
     	    	
-    	    	var routeId = data.data;
-    	    	
-    	    	me.redirectTo('/route/edit/' + routeId);
+				var lineMainCtrl = me.getApplication().getController('LineMainCtrl');
+				lineMainCtrl.getRecommendLineList();
     	    },
     	    failure : function(response) {
     	        var respObj = Ext.JSON.decode(response.responseText);
@@ -163,48 +207,47 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     	    }
     	});
     },
-    
-    /**
-     * 添加目的地
-     */
-    addPlace:function(place){
-    	var store = this.getPlaceList().getStore();
-    	if(! store){
-    		store = Ext.create("Ext.data.Store",{itemId:'schedulesStore', model:'YourTour.model.RouteScheduleModel'});
-    		this.getPlaceList().setStore(store);
-    	}
-    	
-    	var schedule = Ext.create('YourTour.model.RouteScheduleModel',{placeIds:place.get('id'), days:'1', places:place.get('name')});
-    	
-    	store.add(schedule);
-    },
-    
+
+	/**
+	 *
+	 */
+	copyRouteSchedule:function(referedRouteId){
+		var me = this;
+
+		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteSchedulePlanView'));
+	},
+
+	/**
+	 *
+	 */
+	createRouteSchedule:function(routeId){
+		var me = this;
+
+		me.routeId = routeId;
+		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteSchedulePlanView'));
+		var showView=function(){
+			var record = me.store.first();
+
+			var scheduleList = me.getRouteScheduleList();
+			scheduleList.setStore(record.schedulesStore);
+		};
+
+		var store = Ext.create('YourTour.store.AjaxStore', {model:'YourTour.model.RouteModel'});
+		store.getProxy().setUrl(YourTour.util.Context.getContext('/routes/' + routeId +'/query'));
+		store.load(showView,this);
+	},
+
     /**
      * 
      */
-    showSchedulePage:function(routeId){
-    	var me = this;
-    	
-    	me.routeId = routeId;
+    updateRouteSchedule:function(){
     	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteSchedulePlanView'));
-    	
+
+		var me = this;
     	me.store = this.getApplication().getController('route.RouteScheduleListCtrl').store;
-    	if(me.store.getData().length == 0){
-    		var showView=function(){
-        		var record = me.store.first();
-        		
-    	    	var scheduleList = me.getRouteScheduleList();
-    	    	scheduleList.setStore(record.schedulesStore);
-        	};
-     	   	
-        	me.store = Ext.create('YourTour.store.RouteStore');
-        	me.store.getProxy().setUrl(YourTour.util.Context.getContext('/routes/' + routeId +'/query'));
-     	   	me.store.load(showView,this);
-    	}else{
-    		var record = me.store.first();
-	    	var scheduleList = me.getRouteScheduleList();
-	    	scheduleList.setStore(record.schedulesStore);
-    	}
+		var record = me.store.first();
+		var scheduleList = me.getRouteScheduleList();
+		scheduleList.setStore(record.schedulesStore);
     },
     
     /**

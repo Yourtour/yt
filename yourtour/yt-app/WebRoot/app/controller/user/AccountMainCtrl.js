@@ -219,8 +219,6 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     },
 
     success: function(image_uri) {
-    	alert(image_uri);
-    	
     	var view = this.getRegisterProfileView();
         var img = view.down('#portrait');
         img.setSrc(image_uri);

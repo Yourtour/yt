@@ -35,7 +35,7 @@ Ext.define('YourTour.controller.Launch', {
 	        		if(index >= 0){
 	        			me.redirectTo('/mainpage');
 	        		}else{
-	        			me.redirectTo('/login');
+	        			me.doLogin();
 	        		}
 	        	}
         	}catch(e){
@@ -46,7 +46,7 @@ Ext.define('YourTour.controller.Launch', {
         this.store.load(success, this);
     },
     
-    doEnter:function(){
+    doLogin:function(){
     	var localStore =  Ext.StoreManager.get('LocalStore');
     	localStore.add({key:'welcome.visited', value:'1'});
     	localStore.sync();

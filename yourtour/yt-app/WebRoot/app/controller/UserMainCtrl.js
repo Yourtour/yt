@@ -6,6 +6,7 @@ Ext.define('YourTour.controller.UserMainCtrl', {
 
            userProfileView:'#UserProfileView',
            genderPicker:'#UserProfileView #genderPicker',
+           imagePicker:'#UserProfileView #imagePicker',
 
            fieldEditView:'#FieldEditView',
 
@@ -21,8 +22,8 @@ Ext.define('YourTour.controller.UserMainCtrl', {
                tap:'onUserProfileTap'
            },
 
-           '#UserProfileView #btnQuit':{
-                tap:'onUserQuitTap'
+           '#UserMainView #btnSetting':{
+                tap:'onSettingTap'
            },
 
            '#UserProfileView #gender':{
@@ -37,8 +38,16 @@ Ext.define('YourTour.controller.UserMainCtrl', {
                tap:'onStateFieldTap'
            },
 
+           '#UserProfileView #userLogoPanel':{
+               tap:'onUserLogoTap'
+           },
+
            genderPicker:{
-               DoneTap:'onGenderDoneTap'
+               donetap:'onGenderPick'
+           },
+
+           imagePicker:{
+               donetap:'onImagePick'
            }
 
        },
@@ -89,19 +98,22 @@ Ext.define('YourTour.controller.UserMainCtrl', {
         nickNameEl.setHtml(profile.nickName);
     },
 
-    onUserQuitTap:function(){
-        this.getApplication().quit();
+    onSettingTap:function(){
+        this.redirectTo('/user/setting');
     },
 
     onGenderTap:function(){
         this.getGenderPicker().show();
     },
 
-    onGenderDoneTap:function( picker, value, text, eOpts){
+    onGenderPick:function(picker, value, text, eOpts ){
         var userProfileView = this.getUserProfileView();
         var gender = userProfileView.down('#gender');
+
         gender.setValue(value);
         gender.setText(text);
+
+        this.getGenderPicker().hide();
     },
 
     onNickNameFieldTap:function(){
@@ -134,5 +146,23 @@ Ext.define('YourTour.controller.UserMainCtrl', {
             stateEl.setValue(record.get('id'));
             stateEl.setText(record.get('name'));
         });
+    },
+
+    onUserLogoTap:function(){
+        this.getImagePicker().show();
+    },
+
+    onImagePick:function(picker, value, text, eOpts ){
+        if(value == 'PhotoLib'){
+            this.getApplication().getPhoto(navigator.camera.PictureSourceType.PHOTOLIBRARY,onImagePickSuccess);
+        }else{
+            this.getApplication().getPhoto(navigator.camera.PictureSourceType.CAMERA,onImagePickSuccess);
+        }
+    },
+
+    onImagePickSuccess:function(image_uri) {
+        var userProfileView = this.getUserProfileView();
+        var img = view.down('#portrait');
+        img.setSrc(image_uri);
     }
 });

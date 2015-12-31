@@ -4,7 +4,7 @@ Ext.define('YourTour.view.widget.XHeaderBar', {
     requires:['YourTour.view.widget.XBack', 'YourTour.view.widget.XPlainButton'],
     config: {
     	docked: 'top',
-    	style:'background-color:#6C7B8B',
+    	style:'background-color:#3CB371',
     	defaults:{
     		style:'color:white'
     	}

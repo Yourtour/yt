@@ -25,15 +25,15 @@ Ext.application({
     localStorage : window.localStorage,  
     
     views: [
-        'MainView','Launch',
-        'common.PlaceChangeView','common.PlaceSelectionView','common.MessageMainView','common.MessageGroupView','common.ServiceFormView','common.FieldEditView',
+        'MainView','Launch','setting.UserSettingView',
+        'common.PlaceSelectionView','common.MessageMainView','common.MessageGroupView','common.ServiceFormView','common.FieldEditView',
         'home.HomeMainView', 'home.BestListView', 'home.AlongListView', 'home.AlongDetailView', 'home.TalentListView', 'SearchMain',
         'route.RouteMainView','route.RouteSettingView','route.RouteImpressionView','route.RouteImageView',
-        'route.RouteScheduleListView', 'route.RouteSchedulePlanView','route.RouteScheduleReferenceView','route.ScheduleFormView',
+        'route.RouteScheduleListView', 'route.RouteSchedulePlanView','route.RouteScheduleReferenceListView','route.ScheduleFormView',
         'route.RouteProvisionView','route.RouteProvisionEditView','route.RouteScheduleEditView','route.RouteScheduleView',
         'route.RouteActivityEditView',
         'user.LoginMainView','user.UserListView','user.UserMainView','user.UserProfileView',
-        'line.LineRecommendView','line.LineIntroductionView',
+        'line.LineRecommendListView','line.LineIntroductionView',
         
         'resource.ResourceSelectionView','resource.ResourceDetailView','resource.ResourceSceneView','resource.ResourceMapView',
         'member.MemberMainView','member.MemberAddView','member.MemberPositionView','member.MemberSearchView',
@@ -43,14 +43,14 @@ Ext.application({
     ],
     
     controllers: [
-        'Launch', 'MainCtrl', 'common.PlaceChangeCtrl','common.PlaceSelectionCtrl',
+        'Launch', 'MainCtrl','SettingMainCtrl',
         'home.HomeMainCtrl', 'home.BestMainCtrl','home.TalentMainCtrl','home.AlongMainCtrl',
         'route.RouteMainCtrl',
         'route.RouteScheduleListCtrl','route.RouteSchedulePlanCtrl',
-        'line.LineRecommendCtrl','line.LineIntroductionCtrl','user.AccountMainCtrl',
+        'user.AccountMainCtrl',
         'route.ScheduleReferenceCtrl','route.ScheduleDetailCtrl',
-        'ResourceMainCtrl','user.UserListCtrl',
-        'MemberMainCtrl','UserMainCtrl', 'ExpertMainCtrl', 'MessageMainCtrl','PlaceMainCtrl','ServiceMainCtrl'
+        'ResourceMainCtrl','user.UserListCtrl','PlaceSelectionCtrl',
+        'LineMainCtrl','MemberMainCtrl','UserMainCtrl', 'ExpertMainCtrl', 'MessageMainCtrl','PlaceMainCtrl','ServiceMainCtrl'
     ],
     
     models:[
@@ -193,5 +193,20 @@ Ext.application({
                 navigator.app.exitApp();
             }
         }, this);
-    }
+    },
+
+    getPhoto: function(source, successFn) {
+        var me = this;
+
+        navigator.camera.getPicture(
+            successFn,
+            function() {
+            },
+            {
+                quality: 50,
+                destinationType: navigator.camera.DestinationType.FILE_URI,
+                sourceType: source
+            }
+        );
+    },
 });
