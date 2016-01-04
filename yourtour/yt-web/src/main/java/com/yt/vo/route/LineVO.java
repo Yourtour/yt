@@ -80,37 +80,6 @@ public class LineVO extends BaseVO {
 		len = (len > 0) ? len - 1 : 0;
 		vo.setScenes(sbSceneId.substring(0, len));
 
-		// 从宾馆对象中获取ID，便于前端显示
-		StringBuffer sbHotelId = new StringBuffer();
-		for (int index = 0, num = bean.getHotels().size(); index < num; index++) {
-			HotelResourceBean hotel = bean.getHotels().get(index);
-			if (hotel == null) {
-				continue;
-			}
-			sbHotelId.append(hotel.getGraphId());
-			sbHotelId.append(",");
-		}
-		len = sbHotelId.length();
-		// 去除最后一个逗号
-		len = (len > 0) ? len - 1 : 0;
-		vo.setHotels(sbHotelId.substring(0, len));
-
-		// 从饭店对象中获取ID，便于前端显示
-		StringBuffer sbRestaurantId = new StringBuffer();
-		for (int index = 0, num = bean.getRestaurants().size(); index < num; index++) {
-			RestaurantResourceBean restaurant = bean.getRestaurants()
-					.get(index);
-			if (restaurant == null) {
-				continue;
-			}
-			sbRestaurantId.append(restaurant.getGraphId());
-			sbRestaurantId.append(",");
-		}
-		len = sbRestaurantId.length();
-		// 去除最后一个逗号
-		len = (len > 0) ? len - 1 : 0;
-		vo.setRestaurants(sbRestaurantId.substring(0, len));
-
 		return vo;
 	}
 
@@ -153,28 +122,6 @@ public class LineVO extends BaseVO {
 			SceneResourceBean scene = new SceneResourceBean();
 			scene.setGraphId(Long.valueOf(sceneIds[index]));
 			bean.getScenes().add(scene);
-		}
-
-		// 从VO中取出酒店的ID，并设置到HotelResourceBean中，便于后续建立关联关系
-		String[] hotelIds = vo.getHotels().split(",");
-		for (int index = 0; index < hotelIds.length; index++) {
-			if (hotelIds[index].length() <= 0) {
-				continue;
-			}
-			HotelResourceBean hotel = new HotelResourceBean();
-			hotel.setGraphId(Long.valueOf(hotelIds[index]));
-			bean.getHotels().add(hotel);
-		}
-
-		// 从VO中取出饭店的ID，并设置到RestaurantResourceBean中，便于后续建立关联关系
-		String[] restaurantIds = vo.getRestaurants().split(",");
-		for (int index = 0; index < restaurantIds.length; index++) {
-			if (restaurantIds[index].length() <= 0) {
-				continue;
-			}
-			RestaurantResourceBean restaurant = new RestaurantResourceBean();
-			restaurant.setGraphId(Long.valueOf(restaurantIds[index]));
-			bean.getRestaurants().add(restaurant);
 		}
 
 		return bean;

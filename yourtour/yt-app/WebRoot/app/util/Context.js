@@ -21,14 +21,20 @@ Ext.define('YourTour.util.Context', {
     	return s + url;
     },
     
-    getImageResource:function(url){
+    getImageResource:function(url, size){
+		if(size){
+			var index = url.lastIndexOf('.');
+			url = url.substr(0, index) + '_' + size + url.substr(index);
+			console.log(url);
+		}
+
     	var s = 'http://' + this.getServer() + ':8080/yt-app';
     	if(url == null || url == '') return s;
-    	
+
     	if(url.substr(0,1) != '/'){
     		s += '/';
     	}
-    	
+
     	return s + url;
     }
 });

@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -34,13 +35,11 @@ public class RouteRestResource extends BaseRestResource{
 	/**
 	 * 根据指定的用户ID，获取该用户的行程列表
 	 * 
-	 * @param userId
-	 *            用户ID，该ID可能是GrphId，也可能是RowKey
 	 * @return 统一的ResponseVO数据对象，其中的data字段包括了行程数据列表。
 	 */
 	@GET
 	@Path("/personal/query")
-	public ResponseDataVO<List<RouteOverViewVO>> getRoutesByUser(@Context HttpServletRequest request) {
+	public ResponseDataVO<List<RouteItemVO>> getRoutesByUser(@Context HttpServletRequest request) {
 		String userId = null;
 		try {
 			userId = super.getCurrentUserId(request);
@@ -48,21 +47,21 @@ public class RouteRestResource extends BaseRestResource{
 			
 			// 根据用户ID获取对应的行程列表
 			List<RouteMainBean> routes = routeRepository.getRoutesByOwner(userGraphId);
-			List<RouteOverViewVO> list = new Vector<RouteOverViewVO>(routes.size());
+			List<RouteItemVO> list = new Vector<RouteItemVO>(routes.size());
 			for (RouteMainBean route : routes) {
 				if(route == null) continue;
 				
-				RouteOverViewVO vo = new RouteOverViewVO(route);
+				RouteItemVO vo = new RouteItemVO(route);
 				list.add(vo);
 			}
-			return new ResponseDataVO<List<RouteOverViewVO>>(list);
+			return new ResponseDataVO<List<RouteItemVO>>(list);
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
 				LOG.error(String.format(
 						"Fetch RouteMainBean by UserBean[id='%s'] fail.",
 						userId), ex);
 			}
-			return new ResponseDataVO<List<RouteOverViewVO>>(
+			return new ResponseDataVO<List<RouteItemVO>>(
 					StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
 	}
@@ -164,12 +163,12 @@ public class RouteRestResource extends BaseRestResource{
 	 */
 	@POST
 	@Path("main/save")
-	public ResponseVO saveMain(RouteVO vo, @Context HttpServletRequest request) {
+	public ResponseDataVO<Long> saveMain(RouteVO vo, @Context HttpServletRequest request) {
 		if (vo == null) {
 			if (LOG.isWarnEnabled()) {
 				LOG.warn("The RouteVO is null.");
 			}
-			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
+			return new ResponseDataVO<Long>(StaticErrorEnum.THE_INPUT_IS_NULL);
 		}
 		try {
 			RouteMainBean bean = RouteVO.transform(vo);
@@ -182,19 +181,19 @@ public class RouteRestResource extends BaseRestResource{
 				bean.setOwner(profileBean);
 			}
 			
-			routeRepository.save(bean, WebUtils.getCurrentLoginUser(request));
+			routeRepository.saveRouteMainAndSchedules(bean, WebUtils.getCurrentLoginUser(request));
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format("Save RouteMainBean['%s'] success.",
-						vo.getRowKey()));
+						vo.getRowKey()));return new ResponseDataVO<Long>(bean.getGraphId());
 			}
-			return new ResponseVO();
+			return new ResponseDataVO<Long>(bean.getGraphId());
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
 				LOG.error(
 						String.format("Save the RouteMainBean[id='%s'] fail.",
 								vo.getRowKey()), ex);
 			}
-			return new ResponseVO(StaticErrorEnum.DB_OPERATE_FAIL);
+			return new ResponseDataVO<Long>(StaticErrorEnum.DB_OPERATE_FAIL);
 		}
 	}
 
@@ -252,8 +251,8 @@ public class RouteRestResource extends BaseRestResource{
 	 * @return 统一的ResponseVO对象
 	 */
 	@POST
-	@Path("activity/save")
-	public ResponseVO saveActivity(RouteActivityVO vo,
+	@Path("/{routeId}/activity/save")
+	public ResponseVO saveActivity(@PathParam("routeId") String routeId, RouteActivityVO vo,
 			@Context HttpServletRequest request) {
 		if (vo == null) {
 			if (LOG.isWarnEnabled()) {
@@ -261,6 +260,7 @@ public class RouteRestResource extends BaseRestResource{
 			}
 			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
 		}
+
 		try {
 			RouteActivityBean bean = RouteActivityVO.transform(vo);
 			routeRepository.save(bean, WebUtils.getCurrentLoginUser(request));
@@ -303,8 +303,8 @@ public class RouteRestResource extends BaseRestResource{
 	 * @return 统一的ResponseVO对象
 	 */
 	@POST
-	@Path("provision/save")
-	public ResponseDataVO<Long> saveProvision(RouteProvisionVO vo,
+	@Path("/{routeId}/provision/save")
+	public ResponseDataVO<Long> saveProvision(@PathParam("routeId") String routeId, RouteProvisionVO vo,
 			@Context HttpServletRequest request) {
 		if (vo == null) {
 			if (LOG.isWarnEnabled()) {
@@ -484,4 +484,51 @@ public class RouteRestResource extends BaseRestResource{
 		}
 	}
 
+	@SuppressWarnings("unchecked")
+	@Path("/recommend/{placeIds}")
+	@GET
+	public ResponseDataVO<List<RouteRecommendItemVO>> getRecommendedRoutes(@PathParam("placeIds") String placeIds) {
+		List<RouteRecommendItemVO> list = new ArrayList<RouteRecommendItemVO>();
+		try {
+			String[] ids = placeIds.split(",");
+			Long[] lIds = new Long[ids.length];
+			for(int index = 0; index < ids.length; index++){
+				lIds[index] = Long.valueOf(ids[index]);
+			}
+
+			List<RouteMainBean> result = (List<RouteMainBean>) routeRepository.getRecommendRoutes(lIds);
+			for (RouteMainBean bean : result) {
+				if (bean == null) {
+					continue;
+				}
+				RouteRecommendItemVO vo = RouteRecommendItemVO.transform(bean);
+				list.add(vo);
+			}
+
+			return new ResponseDataVO<List<RouteRecommendItemVO>>(list);
+		} catch (Exception ex) {
+			if (LOG.isErrorEnabled()) {
+				LOG.error("Fetch all the LineBean fail.", ex);
+			}
+			return new ResponseDataVO<List<RouteRecommendItemVO>>(
+					StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
+	}
+
+	@Path("/recommend/{routeId}")
+	@GET
+	public ResponseDataVO<RouteRecommendVO> getRecommendedRoute(@PathParam("routeId") String routeId) {
+		try {
+			RouteMainBean bean = (RouteMainBean) routeRepository.getRecommendRoute(Long.valueOf(routeId));
+
+			RouteRecommendVO vo = RouteRecommendVO.transform(bean);
+			return new ResponseDataVO<RouteRecommendVO>(vo);
+		} catch (Exception ex) {
+			if (LOG.isErrorEnabled()) {
+				LOG.error("Fetch all the LineBean fail.", ex);
+			}
+			return new ResponseDataVO<RouteRecommendVO>(
+					StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
+	}
 }

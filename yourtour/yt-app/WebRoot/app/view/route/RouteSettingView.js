@@ -11,7 +11,7 @@ Ext.define('YourTour.view.route.RouteSettingView', {
         items: [
             {    
 				xtype: 'xheaderbar',
-				title: '行程规划',
+				title: '行程设置',
 				items:[
 					{
 					   xtype:'toolbutton',
@@ -24,7 +24,7 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 			
 			{  
 			    xtype: 'hiddenfield',  
-			    itemId:'routeId',
+			    itemId:'id',
 			    value:'0'
 			},
 

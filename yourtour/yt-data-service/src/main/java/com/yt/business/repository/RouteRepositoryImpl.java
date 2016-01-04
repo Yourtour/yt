@@ -1,10 +1,9 @@
 package com.yt.business.repository;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Vector;
+import java.util.*;
 
+import com.yt.business.bean.*;
+import com.yt.business.neo4j.repository.RouteTuple;
 import com.yt.core.utils.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -13,11 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.yt.business.CrudAllInOneOperateImpl;
-import com.yt.business.bean.RouteActivityBean;
-import com.yt.business.bean.RouteMainBean;
-import com.yt.business.bean.RouteScheduleBean;
-import com.yt.business.bean.UserAccountBean;
-import com.yt.business.bean.UserProfileBean;
 import com.yt.business.common.Constants;
 import com.yt.business.common.Constants.GroupRole;
 import com.yt.business.neo4j.repository.RouteActivityRepository;
@@ -123,17 +117,53 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 		return list;
 	}
 
+	@Override
+	public void saveScheduleActivity(Long routeId, RouteActivityBean activity, String operator) throws Exception {
+		RouteMainBean route = (RouteMainBean)this.get(RouteMainBean.class, routeId);
+		if(route == null){
+			throw new Exception("No Route found for id=" + routeId);
+		}
+
+		route.setStep(1);
+		super.save(route, false, operator);
+
+		super.save(activity, operator);
+	}
+
+	@Override
+	public void saveRouteProvision(Long routeId, RouteProvisionBean provision, String operator) throws Exception {
+		RouteMainBean route = (RouteMainBean)this.get(RouteMainBean.class, routeId);
+		if(route == null){
+			throw new Exception("No Route found for id=" + routeId);
+		}
+
+		route.setStep(1);
+		super.save(route, false, operator);
+
+		super.save(provision, operator);
+	}
+
 	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.yt.business.repository.RouteRepository#saveRouteMainAndSchedules(
-	 * com.yt.business.bean.RouteMainBean, java.lang.String)
-	 */
+             * (non-Javadoc)
+             *
+             * @see
+             * com.yt.business.repository.RouteRepository#saveRouteMainAndSchedules(
+             * com.yt.business.bean.RouteMainBean, java.lang.String)
+             */
 	@Override
 	public void saveRouteMainAndSchedules(RouteMainBean route, String operator)
 			throws Exception {
 		// 如果存在日程，则先保存日程信息
+		if(! route.isNew()) {
+			Long routeId = route.getGraphId();
+			List<RouteScheduleBean> schedules = repository.getRouteSchedules(routeId);
+			if(schedules != null){
+				for(RouteScheduleBean schedule : schedules){
+					super.delete(schedule);
+				}
+			}
+		}
+
 		for (RouteScheduleBean scheduleBean : route.getSchedules()) {
 			super.save(scheduleBean, operator);
 			if (LOG.isDebugEnabled()) {
@@ -141,6 +171,7 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 						scheduleBean.getGraphId()));
 			}
 		}
+
 		super.save(route, operator);
 		if (LOG.isDebugEnabled()) {
 			LOG.debug(String.format("Save RouteMainBean[%d] success.",
@@ -172,5 +203,28 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 		tuple.getActivity().setResource(tuple.getResource());
 		
 		return tuple.getActivity();
+	}
+
+	@Override
+	public List<RouteMainBean> getRecommendRoutes(Long[] placeIds) throws Exception {
+		List<RouteMainBean> routes = new ArrayList<>();
+
+		List<RouteTuple> tuples = this.repository.getRecommendRoutes(placeIds);
+		if(tuples != null){
+			RouteMainBean route = null;
+			for(RouteTuple tuple : tuples){
+				route = tuple.getRoute();
+				route.setOwner(tuple.getOwner());
+
+				routes.add(route);
+			}
+		}
+
+		return routes;
+	}
+
+	@Override
+	public List<RouteMainBean> getRecommendRoute(Long routeId) throws Exception {
+		return null;
 	}
 }

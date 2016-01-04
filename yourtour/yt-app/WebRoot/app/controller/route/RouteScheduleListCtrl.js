@@ -52,9 +52,9 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
     },
     
     onEditTap:function(){
-    	this.redirectTo('/route/edit/' + this.routeId);
+		var editController = this.getApplication().getController('route.RouteSchedulePlanCtrl');
+		editController.updateRouteSchedule();
     },
-    
     showPage:function(routeId){
     	this.routeId = routeId;
     	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteScheduleListView'));

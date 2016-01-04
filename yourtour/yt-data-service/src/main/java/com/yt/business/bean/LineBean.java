@@ -101,20 +101,19 @@ public class LineBean extends BaseDictBeanImpl {
 	@HbaseColumn(name = "stat")
 	private Status status;
 
+
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_AT, type = PlaceBean.class, direction = Direction.OUTGOING)
 	private transient PlaceBean place = null;
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_CONTAIN, type = SceneResourceBean.class, direction = Direction.OUTGOING, isList = true)
 	private transient List<SceneResourceBean> scenes = null;
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_CONTAIN, type = HotelResourceBean.class, direction = Direction.OUTGOING, isList = true)
-	private transient List<HotelResourceBean> hotels = null;
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_CONTAIN, type = RestaurantResourceBean.class, direction = Direction.OUTGOING, isList = true)
-	private transient List<RestaurantResourceBean> restaurants = null;
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RECOMMEND, type = ExpertBean.class, direction = Direction.OUTGOING, isList = true)
+	private transient List<ExpertBean> experts = null;
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RECOMMEND, type = RouteMainBean.class, direction = Direction.OUTGOING, isList = true)
+	private transient List<RouteMainBean> routes = null;
 
 	public LineBean() {
 		super();
 		scenes = new Vector<SceneResourceBean>();
-		hotels = new Vector<HotelResourceBean>();
-		restaurants = new Vector<RestaurantResourceBean>();
 	}
 
 	public String getImageUrl() {
@@ -175,14 +174,6 @@ public class LineBean extends BaseDictBeanImpl {
 
 	public List<SceneResourceBean> getScenes() {
 		return scenes;
-	}
-
-	public List<HotelResourceBean> getHotels() {
-		return hotels;
-	}
-
-	public List<RestaurantResourceBean> getRestaurants() {
-		return restaurants;
 	}
 
 	public int getArriveNum() {

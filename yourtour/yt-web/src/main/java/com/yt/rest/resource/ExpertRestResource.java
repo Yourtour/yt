@@ -1,18 +1,14 @@
 package com.yt.rest.resource;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
-import com.sun.jersey.multipart.FormDataParam;
 import com.yt.business.bean.*;
-import com.yt.business.neo4j.repository.ExpertServiceRepository;
 import com.yt.business.repository.ExpertRepository;
 import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
@@ -20,15 +16,11 @@ import com.yt.response.ResponseVO;
 import com.yt.utils.WebUtils;
 import com.yt.vo.member.ExpertApplicationVO;
 import com.yt.vo.member.ExpertServiceVO;
-import com.yt.vo.route.RouteOverViewVO;
-import com.yt.vo.route.RouteServiceVO;
+import com.yt.vo.route.RouteItemVO;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.yt.response.ResponsePagingDataVO;
-import com.yt.vo.member.ExpertVO;
 
 @Component
 @Path("/expert")
@@ -170,20 +162,20 @@ public class ExpertRestResource {
 	 */
 	@GET
 	@Path("/routes/{expertId}")
-	public ResponseDataVO<List<RouteOverViewVO>> getRoutes(@Context HttpServletRequest request, @PathParam("expertId") String expertId){
+	public ResponseDataVO<List<RouteItemVO>> getRoutes(@Context HttpServletRequest request, @PathParam("expertId") String expertId){
 		try{
 			List<RouteMainBean> routes = this.expertRepository.getRoutes(Long.valueOf(expertId));
-			List<RouteOverViewVO> valueobjects = new ArrayList<>();
+			List<RouteItemVO> valueobjects = new ArrayList<>();
 
 			if(routes != null){
 				for(RouteMainBean route : routes){
-					valueobjects.add(new RouteOverViewVO(route));
+					valueobjects.add(new RouteItemVO(route));
 				}
 			}
-			return new ResponseDataVO<List<RouteOverViewVO>>(valueobjects);
+			return new ResponseDataVO<List<RouteItemVO>>(valueobjects);
 		} catch (Exception ex) {
 			Logger.error("Exception raised when saving service.", ex);
-			return new ResponseDataVO<List<RouteOverViewVO>>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+			return new ResponseDataVO<List<RouteItemVO>>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
 	}
 }

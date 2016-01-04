@@ -649,12 +649,11 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.controller.MemberMainCtrl": [],
   "YourTour.controller.MessageMainCtrl": [],
   "YourTour.controller.PlaceMainCtrl": [],
+  "YourTour.controller.PlaceSelectionCtrl": [],
   "YourTour.controller.ResourceMainCtrl": [],
   "YourTour.controller.ServiceMainCtrl": [],
   "YourTour.controller.SettingMainCtrl": [],
   "YourTour.controller.UserMainCtrl": [],
-  "YourTour.controller.common.PlaceChangeCtrl": [],
-  "YourTour.controller.common.PlaceSelectionCtrl": [],
   "YourTour.controller.home.AlongMainCtrl": [],
   "YourTour.controller.home.BestMainCtrl": [],
   "YourTour.controller.home.HomeMainCtrl": [],
@@ -720,7 +719,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.common.MessageDataItemView": [],
   "YourTour.view.common.MessageGroupView": [],
   "YourTour.view.common.MessageMainView": [],
-  "YourTour.view.common.PlaceChangeView": [],
   "YourTour.view.common.PlaceGridItemView": [],
   "YourTour.view.common.PlaceListItemView": [],
   "YourTour.view.common.PlaceSelectionView": [],
@@ -821,6 +819,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.XGridView": [],
   "YourTour.view.widget.XHeaderBar": [],
   "YourTour.view.widget.XImagePicker": [],
+  "YourTour.view.widget.XKVField": [],
   "YourTour.view.widget.XLabel": [],
   "YourTour.view.widget.XPage": [],
   "YourTour.view.widget.XPanel": [],
@@ -1561,12 +1560,11 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.controller.MemberMainCtrl": [],
   "YourTour.controller.MessageMainCtrl": [],
   "YourTour.controller.PlaceMainCtrl": [],
+  "YourTour.controller.PlaceSelectionCtrl": [],
   "YourTour.controller.ResourceMainCtrl": [],
   "YourTour.controller.ServiceMainCtrl": [],
   "YourTour.controller.SettingMainCtrl": [],
   "YourTour.controller.UserMainCtrl": [],
-  "YourTour.controller.common.PlaceChangeCtrl": [],
-  "YourTour.controller.common.PlaceSelectionCtrl": [],
   "YourTour.controller.home.AlongMainCtrl": [],
   "YourTour.controller.home.BestMainCtrl": [],
   "YourTour.controller.home.HomeMainCtrl": [],
@@ -1647,9 +1645,6 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.common.MessageGroupView": [],
   "YourTour.view.common.MessageMainView": [
     "widget.MessageMainView"
-  ],
-  "YourTour.view.common.PlaceChangeView": [
-    "widget.PlaceChangeView"
   ],
   "YourTour.view.common.PlaceGridItemView": [
     "widget.PlaceGridItemView"
@@ -1910,6 +1905,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.widget.XImagePicker": [
     "widget.ximagepicker"
+  ],
+  "YourTour.view.widget.XKVField": [
+    "widget.xkvfield"
   ],
   "YourTour.view.widget.XLabel": [
     "widget.xlabel"

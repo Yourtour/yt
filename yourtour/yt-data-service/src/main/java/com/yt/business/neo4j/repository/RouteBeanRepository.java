@@ -2,6 +2,7 @@ package com.yt.business.neo4j.repository;
 
 import java.util.List;
 
+import com.yt.business.bean.RouteScheduleBean;
 import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.neo4j.annotation.QueryResult;
 import org.springframework.data.neo4j.annotation.ResultColumn;
@@ -48,7 +49,7 @@ public interface RouteBeanRepository extends GraphRepository<RouteMainBean> {
 
 	/**
 	 * 根据指定的用户，返回该用户拥有的行程，同时返回包含在关系中的imageUrl和impression属性。
-	 * 
+	 *
 	 * @param userId
 	 *            用户Id
 	 * @return 指定用户拥有的行程、关系属性元组列表
@@ -58,7 +59,7 @@ public interface RouteBeanRepository extends GraphRepository<RouteMainBean> {
 
 	/**
 	 * 根据指定的行程和成员角色，返回该行程中的用户。
-	 * 
+	 *
 	 * @param routeId
 	 *            行程ID
 	 * @param groupRole
@@ -67,4 +68,36 @@ public interface RouteBeanRepository extends GraphRepository<RouteMainBean> {
 	 */
 	@Query("START route=node({0}) MATCH route -- (user:UserProfileBean) RETURN user")
 	public List<UserProfileBean> getRouteMember(Long routeId);
+
+	/**
+	 *
+	 * @param routeId
+	 * @return
+	 */
+	@Query("START route=node({0}) MATCH route -- (schedule:RouteScheduleBean) delete schedule")
+	public void deleteRouteSchedule(Long routeId);
+
+	/**
+	 *
+	 * @param routeId
+	 * @return
+	 */
+	@Query("START route=node({0}) MATCH route -- (schedules:RouteScheduleBean) return schedules")
+	public List<RouteScheduleBean> getRouteSchedules(Long routeId);
+
+	/**
+	 *
+	 * @param placeIds
+	 * @return
+	 */
+	@Query("START place=node({0}) MATCH place<-[:AT]-(owner:UserProfileBean)-[:RECOMMEND]->(route:RouteMainBean) RETURN owner, route")
+	public List<RouteTuple> getRecommendRoutes(Long[] placeIds);
+
+	/**
+	 *
+	 * @param routeId
+	 * @return
+	 */
+	@Query("START route=node({0}) MATCH (owner:UserProfileBean)-[:RECOMMEND]->(route) RETURN owner, route")
+	public RouteTuple getRecommendRoute(Long routeId);
 }

@@ -7,13 +7,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.yt.business.bean.PlaceBean;
-import com.yt.business.bean.RouteMainBean;
-import com.yt.business.bean.RouteProvisionBean;
-import com.yt.business.bean.RouteScheduleBean;
+import com.yt.business.bean.*;
+import com.yt.core.utils.DateUtils;
 import com.yt.core.utils.StringUtils;
+import com.yt.utils.WebUtils;
 import com.yt.vo.BaseVO;
-import com.yt.vo.basedata.PlaceVO;
+import com.yt.vo.member.UserVO;
 
 public class RouteVO extends BaseVO {
 	private String 	name; // 行程名称
@@ -37,16 +36,18 @@ public class RouteVO extends BaseVO {
 
 	private List<RouteScheduleVO> schedules; // 行程日程列表
 
+	private UserVO expert;
+
 	public static RouteVO transform(RouteMainBean bean) {
 		if (bean == null) {
 			return null;
 		}
 		
-		RouteVO vo = new RouteVO();
-		vo.fromBean(bean);
-		vo.setName(bean.getName());
-		vo.setLineName(bean.getLineName());
-		vo.setStartDate(new Date(bean.getStartDate()).getTime());
+		RouteVO routeVO = new RouteVO();
+		routeVO.fromBean(bean);
+		routeVO.setName(bean.getName());
+		routeVO.setLineName(bean.getLineName());
+		routeVO.setStartDate(new Date(bean.getStartDate()).getTime());
 
 		if (bean.getSchedules() != null && bean.getSchedules().size() > 0) {
 			for (RouteScheduleBean scheduleBean : bean.getSchedules()) {
@@ -54,7 +55,7 @@ public class RouteVO extends BaseVO {
 					continue;
 				}
 				RouteScheduleVO scheduleVO = RouteScheduleVO.transform(scheduleBean);
-				vo.getSchedules().add(scheduleVO);
+				routeVO.getSchedules().add(scheduleVO);
 			}
 		}
 		
@@ -65,9 +66,10 @@ public class RouteVO extends BaseVO {
 				}
 			}
 		}
-		
-		return vo;
+
+		return routeVO;
 	}
+
 
 	public static RouteMainBean transform(RouteVO vo) {
 		if (vo == null) {
@@ -92,6 +94,7 @@ public class RouteVO extends BaseVO {
 			bean.setFromPlaceBean(placeBean);
 		}
 
+		//保存目的地
 		Set<PlaceBean> destinations = new HashSet<>();
 		String[] places = vo.getToPlaces().split("[|]");
 		for(String place : places){
@@ -99,9 +102,29 @@ public class RouteVO extends BaseVO {
 			destination.setGraphId(Long.valueOf(place.split(",")[0]));
 			destinations.add(destination);
 		}
-
 		bean.setToPlaceBeans(new ArrayList<>(destinations));
-		
+
+		//保存日程安排
+		Date start = new Date(bean.getStartDate()), scheduleDate = null;
+		int duration = DateUtils.getDaySub(bean.getStartDate(), bean.getEndDate()) + 2;
+
+		List<RouteScheduleBean> scheduleBeans = new ArrayList<>();
+		for(int index = 0; index < duration; index++){
+			scheduleDate = DateUtils.add(start, index, Calendar.DATE);
+
+			RouteScheduleBean scheduleBean = new RouteScheduleBean();
+			scheduleBean.setIndex(DateUtils.getDateNumber(scheduleDate.getTime()) * 1000);
+			scheduleBean.setDate(scheduleDate.getTime());
+			scheduleBean.setRouteMain(bean);
+			scheduleBean.setCreatedUserId(WebUtils.getCurrentLoginUser());
+			scheduleBean.setUpdatedUserId(WebUtils.getCurrentLoginUser());
+			scheduleBean.setCreatedTime(DateUtils.getCurrentTimeMillis());
+			scheduleBean.setUpdatedTime(DateUtils.getCurrentTimeMillis());
+
+			scheduleBeans.add(scheduleBean);
+		}
+		bean.setSchedules(scheduleBeans);
+
 		return bean;
 	}
 

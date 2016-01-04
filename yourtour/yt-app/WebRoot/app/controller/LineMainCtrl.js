@@ -5,7 +5,7 @@ Ext.define('YourTour.controller.LineMainCtrl', {
            lineRecommendListView:'#LineRecommendListView',
     	   lineList:'#LineRecommendListView #lineList',
 
-           lineIntroductionView:'#LineIntroductionView'
+           lineIntroductionView:'#LineIntroductionView',
        },
        
        control:{
@@ -15,8 +15,18 @@ Ext.define('YourTour.controller.LineMainCtrl', {
 
 			lineList:{
     	   	   itemtap:'onLinesTap'	
-    	   	}
-       }
+    	   	},
+
+           '#LineIntroductionView #featureTitle':{
+               tap:'onFeatureTitleTap'
+           },
+
+           '#LineIntroductionView #reasonTitle':{
+               tap:'onReasonTitleTap'
+           }
+       },
+
+        record:null
     },
 
     /**
@@ -36,6 +46,30 @@ Ext.define('YourTour.controller.LineMainCtrl', {
     },
 
     onLinesTap:function(dataView, index, target, record, e, eOpts){
-        this.redirectTo('/line/introduction/' + index);
+        this.record = record;
+        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.line.LineIntroductionView'));
+
+        var view = this.getLineIntroductionView();
+        var image = view.down('#image');
+        image.setHtml("<img src='" + YourTour.util.Context.getImageResource(record.get('imageUrl')) + "' style='width:100%; max-height:150px'>");
+
+        var name = view.down('#name');
+        name.setHtml(record.get('name'));
+
+        var feature = view.down('#feature');
+        feature.setHtml(Ext.String.ellipsis(record.get('feature'),70,false));
+
+        var reason = view.down('#reason');
+        reason.setHtml(Ext.String.ellipsis(record.get('reason'),70,false));
+    },
+
+    onFeatureTitleTap:function(){
+        var controller = this.getApplication().getController('CommonMainCtrl');
+        controller.showContentReadView('线路特点', this.record.get('feature'));
+    },
+
+    onReasonTitleTap:function(){
+        var controller = this.getApplication().getController('CommonMainCtrl');
+        controller.showContentReadView('推荐理由', this.record.get('reason'));
     }
 });

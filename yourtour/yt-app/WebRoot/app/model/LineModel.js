@@ -23,7 +23,14 @@ Ext.define('YourTour.model.LineModel', {
 	            model: 'YourTour.model.ResourceModel',   
 	            name:'resources',   
 	            associationKey:'resources'  
-	        }
+	        },
+
+			{
+				type: 'hasMany',
+				model: 'YourTour.model.ExpertModel',
+				name:'experts',
+				associationKey:'experts'
+			}
         ]  
     }
 });

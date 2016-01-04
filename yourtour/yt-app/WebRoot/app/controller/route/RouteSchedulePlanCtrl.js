@@ -9,16 +9,14 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     	   toolbar:'#RouteSchedulePlanView #toolbar',
 
     	   routeActivityEditView:'#RouteActivityEditView',
-
     	   routeProvisionEditView:'#RouteProvisionEditView',
-
     	   routeScheduleEditView:'#RouteScheduleEditView',
-
     	   routeDiscussView:'#RouteDiscussView',
-
     	   settingView:'#RouteSettingView',
-
 		   placeChangeView:'#PlaceChangeView',
+
+		   routeRecommendListView:'#RouteRecommendListView',
+		   recommendRouteList:'#RouteRecommendListView #recommendRouteList'
        },
        
        control:{
@@ -81,7 +79,15 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 	   	   
 	   	   '#RouteSettingView #next':{
 	   		   tap:'OnNextTap'
-	   	   }
+	   	   },
+
+		   '#LineRecommendListView #btnCustomize':{
+			   tap:'onRouteCustomizeTap'
+		   },
+
+		   '#RouteRecommendListView #recommendRouteList':{
+			   itemtap:'onRecommendRouteTap'
+		   }
        },
        
        	store:null,
@@ -97,10 +103,12 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteSettingView'));
 	},
 
-	loadStep1Info:function(
-		info){
+	loadStep1Info:function(info){
 		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteSettingView'));
 		var view = this.getSettingView();
+
+		var id = view.down('#id');
+		id.setValue(info.get('id'));
 
 		var name = view.down('#name');
 		name.setValue(info.get('name'));
@@ -110,6 +118,15 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 
 		var toPlaces = view.down('#toPlaces');
 		toPlaces.setPair(info.get('toPlaces'));
+
+		var adultNum = view.down('#adultNum');
+		adultNum.setValue(info.get('adultNum'));
+
+		var childNum = view.down('#childNum');
+		childNum.setValue(info.get('childNum'));
+
+		var olderNum = view.down('#olderNum');
+		olderNum.setValue(info.get('olderNum'));
 	},
 
 	getRoute:function(){
@@ -167,7 +184,8 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     	var me = this;
     	var view = me.getSettingView();
     	route = {};
-    	
+
+		var id = view.down('#id').getValue();
     	var name = view.down('#name').getValue();
     	var startDate = new Date(view.down('#startDate').getValue());
 		var endDate = new Date(view.down('#endDate').getValue());
@@ -177,7 +195,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 		var childNum = view.down('#childNum');
 		var olderNum = view.down('#olderNum');
 
-		route.id='0';
+		route.id=id;
 		route.name = name;
 		route.startDate = startDate.getTime();
 		route.endDate = endDate.getTime();
@@ -197,9 +215,11 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     	    		Ext.Msg.alert(data.errorText);
     	    		return;
     	    	};
-    	    	
-				var lineMainCtrl = me.getApplication().getController('LineMainCtrl');
-				lineMainCtrl.getRecommendLineList();
+
+				me.routeId = data.data;
+
+				route.id=data.data;
+				me.getRecommendRoutes(5, route.toPlaces);
     	    },
     	    failure : function(response) {
     	        var respObj = Ext.JSON.decode(response.responseText);
@@ -208,31 +228,60 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     	});
     },
 
-	/**
-	 *
-	 */
-	copyRouteSchedule:function(referedRouteId){
-		var me = this;
+	getRecommendRoutes:function(duration, places){
+		var ids = '', names = '';
+		var pArray = places.split('|');
+		for(var index = 0; index < pArray.length; index++){
+			if(index > 0){
+				ids = ids + ',';
+				names = names + ',';
+			}
 
-		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteSchedulePlanView'));
+			var array = pArray[index].split(',');
+			ids = ids + array[0];
+			names = names + array[1];
+		}
+
+		var me = this;
+		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteRecommendListView'));
+
+		var view = this.getRouteRecommendListView();
+		var headerbar = view.down('#headerbar');
+		headerbar.setTitle(names);
+
+		var store = Ext.create('YourTour.store.AjaxStore', {model:'YourTour.model.RouteModel'});
+		var proxy = store.getProxy();
+		proxy.setUrl(YourTour.util.Context.getContext('/routes/recommend/' + ids));
+		store.load(function(){
+			me.getRecommendRouteList().setStore(store);
+		})
+	},
+
+	onRecommendRouteTap:function(dataview, index, item, record,e){
+		var me = this;
+		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteRecommendIntroductionView'));
 	},
 
 	/**
 	 *
 	 */
-	createRouteSchedule:function(routeId){
+	onRouteCustomizeTap:function(){
 		var me = this;
+		var store = null;
 
-		me.routeId = routeId;
+		var routeId = route.id;
 		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteSchedulePlanView'));
 		var showView=function(){
-			var record = me.store.first();
+			var record = store.first();
 
 			var scheduleList = me.getRouteScheduleList();
 			scheduleList.setStore(record.schedulesStore);
 		};
 
-		var store = Ext.create('YourTour.store.AjaxStore', {model:'YourTour.model.RouteModel'});
+		store = Ext.create('YourTour.store.AjaxStore', {model:'YourTour.model.RouteModel'});
+		if(store.schedulesStore) store.schedulesStore.setData('');
+		store.setData(' ');
+
 		store.getProxy().setUrl(YourTour.util.Context.getContext('/routes/' + routeId +'/query'));
 		store.load(showView,this);
 	},
@@ -391,7 +440,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     	
     	try{
 	    	Ext.Ajax.request({
-	    		url : YourTour.util.Context.getContext('/routes/provision/save'),
+	    		url : YourTour.util.Context.getContext('/routes/' + this.routeId + '/provision/save'),
 	    	    method : "POST",
 	    	    data:Ext.JSON.encode(data),
 	    	    success : function(response) {
@@ -603,7 +652,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     	data.endTime = endHour.getValue() + ':' + endMin.getValue();
     	
     	Ext.Ajax.request({
-    	    url : YourTour.util.Context.getContext('/routes/activity/save'),
+    	    url : YourTour.util.Context.getContext('/routes/' + this.routeId + '/activity/save'),
     	    method : "POST",
     	    params : Ext.JSON.encode(data),
     	    success : function(response) {
@@ -707,7 +756,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     },
     
     onRouteSchedulePlanViewDestroy:function(){
-    	this.store.setData('');
+    	//this.store.setData('');
     },
     
     onRouteDiscuss:function(){

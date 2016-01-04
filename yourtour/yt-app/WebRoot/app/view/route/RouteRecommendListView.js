@@ -1,8 +1,8 @@
-Ext.define('YourTour.view.line.LineRecommendListView', {
+Ext.define('YourTour.view.route.RouteRecommendListView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Panel','Ext.Img', 'Ext.DataView','YourTour.view.widget.XHeaderBar', 'Ext.Spacer','YourTour.view.widget.XBack','YourTour.view.widget.ToolButton','YourTour.view.line.LineRecommendDataItem'],
+    requires:['Ext.Panel','Ext.Img', 'Ext.DataView','YourTour.view.widget.XHeaderBar', 'Ext.Spacer','YourTour.view.widget.XBack','YourTour.view.widget.ToolButton','YourTour.view.route.RouteRecommendDataItem'],
     config: {
-    	id:'LineRecommendListView',
+    	id:'RouteRecommendListView',
     	layout:'fit',
         items: [
         	{    
@@ -12,8 +12,8 @@ Ext.define('YourTour.view.line.LineRecommendListView', {
 					{
 	                	xtype: "toolbutton", 
 	                    ui: "normal", 
-	                	text:'新建',
-	                	itemId:'new',
+	                	text:'定制',
+	                	itemId:'btnCustomize',
 	                	align:'right'
 	                }
                 ]
@@ -21,10 +21,10 @@ Ext.define('YourTour.view.line.LineRecommendListView', {
             
             {
             	xtype:'dataview',
-		    	itemId:'lineList',
+		    	itemId:'recommendRouteList',
 				flex:1,
 				useComponents:true,
-		    	defaultType:'LineRecommendDataItem',
+		    	defaultType:'RouteRecommendDataItem',
 		    	scrollable: {
 		    	    direction: 'vertical',
 		    	    indicators: false	

@@ -26,15 +26,15 @@ Ext.application({
     
     views: [
         'MainView','Launch','setting.UserSettingView',
-        'common.PlaceSelectionView','common.MessageMainView','common.MessageGroupView','common.ServiceFormView','common.FieldEditView',
+        'common.PlaceSelectionView','common.MessageMainView','common.MessageGroupView','common.ServiceFormView','common.FieldEditView','common.ContentReadView',
+
         'home.HomeMainView', 'home.BestListView', 'home.AlongListView', 'home.AlongDetailView', 'home.TalentListView', 'SearchMain',
         'route.RouteMainView','route.RouteSettingView','route.RouteImpressionView','route.RouteImageView',
         'route.RouteScheduleListView', 'route.RouteSchedulePlanView','route.RouteScheduleReferenceListView','route.ScheduleFormView',
         'route.RouteProvisionView','route.RouteProvisionEditView','route.RouteScheduleEditView','route.RouteScheduleView',
         'route.RouteActivityEditView',
+        'route.RouteRecommendListView','route.RouteRecommendIntroductionView',
         'user.LoginMainView','user.UserListView','user.UserMainView','user.UserProfileView',
-        'line.LineRecommendListView','line.LineIntroductionView',
-        
         'resource.ResourceSelectionView','resource.ResourceDetailView','resource.ResourceSceneView','resource.ResourceMapView',
         'member.MemberMainView','member.MemberAddView','member.MemberPositionView','member.MemberSearchView',
         'expert.ExpertMainView','expert.ExpertApplyView','expert.ExpertIntroView','expert.ExpertListView','expert.ExpertServiceEditView',
@@ -49,7 +49,7 @@ Ext.application({
         'route.RouteScheduleListCtrl','route.RouteSchedulePlanCtrl',
         'user.AccountMainCtrl',
         'route.ScheduleReferenceCtrl','route.ScheduleDetailCtrl',
-        'ResourceMainCtrl','user.UserListCtrl','PlaceSelectionCtrl',
+        'ResourceMainCtrl','user.UserListCtrl','PlaceSelectionCtrl','CommonMainCtrl',
         'LineMainCtrl','MemberMainCtrl','UserMainCtrl', 'ExpertMainCtrl', 'MessageMainCtrl','PlaceMainCtrl','ServiceMainCtrl'
     ],
     

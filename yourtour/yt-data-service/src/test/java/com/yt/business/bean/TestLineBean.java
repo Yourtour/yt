@@ -108,8 +108,6 @@ public class TestLineBean {
 			assertFalse(l2.getUpdatedTime() > 0);
 			assertEquals(line.getUpdatedUserId(), l2.getUpdatedUserId());
 			assertNull(l2.getPlace());
-			assertEquals(l2.getHotels().size(), 0);
-			assertEquals(l2.getRestaurants().size(), 0);
 			assertEquals(l2.getScenes().size(), 0);
 
 			// TEST GRAPHID = NULL AND SAME CODE
@@ -184,8 +182,6 @@ public class TestLineBean {
 			assertEquals(l3.getUpdatedUserId(), l2.getUpdatedUserId());
 			assertEquals(l3.getUpdatedUserId(), "john peng");
 			assertNull(l3.getPlace());
-			assertEquals(l3.getHotels().size(), 0);
-			assertEquals(l3.getRestaurants().size(), 0);
 			assertEquals(l3.getScenes().size(), 0);
 
 			crud.delete(LineBean.class);
@@ -364,45 +360,24 @@ public class TestLineBean {
 
 			LineBean l1 = new LineBean();
 			l1.setCode("line1");
-			l1.getHotels().add(h1);
-			l1.getHotels().add(h2);
-			l1.getHotels().add(h3);
 			repo.save(l1, "john");
 			assertEquals(repo.count(LineBean.class), 1);
 			assertEquals(repo.count(HotelResourceBean.class), 5);
 			LineBean l1_1 = (LineBean) repo
 					.get(LineBean.class, l1.getGraphId());
 			assertNotNull(l1_1);
-			assertEquals(l1_1.getHotels().size(), 3);
-			assertEquals(l1_1.getHotels().get(0).getCode(), h1.getCode());
-			assertEquals(l1_1.getHotels().get(1).getCode(), h2.getCode());
-			assertEquals(l1_1.getHotels().get(2).getCode(), h3.getCode());
-
-			l1.getHotels().remove(1);
-			l1.getHotels().remove(0);
-			l1.getHotels().add(h4);
 			repo.saveRelationsOnly(l1, new String[] {"hotels"});
 			LineBean l1_2 = (LineBean) repo
 					.get(LineBean.class, l1.getGraphId());
 			assertNotNull(l1_2);
-			assertEquals(l1_2.getHotels().size(), 2);
-			assertEquals(l1_2.getHotels().get(0).getCode(), h3.getCode());
-			assertEquals(l1_2.getHotels().get(1).getCode(), h4.getCode());
 
 			LineBean l2 = new LineBean();
 			l2.setCode("line2");
-			l2.getHotels().add(h1);
-			l2.getHotels().add(h2);
-			l2.getHotels().add(h5);
 			repo.save(l2, "john");
 			assertEquals(repo.count(LineBean.class), 2);
 			LineBean l2_1 = (LineBean) repo
 					.get(LineBean.class, l2.getGraphId());
 			assertNotNull(l2_1);
-			assertEquals(l2_1.getHotels().size(), 3);
-			assertEquals(l2_1.getHotels().get(0).getCode(), h1.getCode());
-			assertEquals(l2_1.getHotels().get(1).getCode(), h2.getCode());
-			assertEquals(l2_1.getHotels().get(2).getCode(), h5.getCode());
 
 			repo.delete(LineBean.class);
 			assertEquals(repo.count(LineBean.class), 0);
@@ -444,45 +419,25 @@ public class TestLineBean {
 
 			LineBean l1 = new LineBean();
 			l1.setCode("line1");
-			l1.getRestaurants().add(r1);
-			l1.getRestaurants().add(r2);
-			l1.getRestaurants().add(r3);
 			repo.save(l1, "john");
 			assertEquals(repo.count(LineBean.class), 1);
 			assertEquals(repo.count(RestaurantResourceBean.class), 5);
 			LineBean l1_1 = (LineBean) repo
 					.get(LineBean.class, l1.getGraphId());
 			assertNotNull(l1_1);
-			assertEquals(l1_1.getRestaurants().size(), 3);
-			assertEquals(l1_1.getRestaurants().get(0).getCode(), r1.getCode());
-			assertEquals(l1_1.getRestaurants().get(1).getCode(), r2.getCode());
-			assertEquals(l1_1.getRestaurants().get(2).getCode(), r3.getCode());
 
-			l1.getRestaurants().remove(1);
-			l1.getRestaurants().remove(0);
-			l1.getRestaurants().add(r4);
 			repo.saveRelationsOnly(l1);
 			LineBean l1_2 = (LineBean) repo
 					.get(LineBean.class, l1.getGraphId());
 			assertNotNull(l1_2);
-			assertEquals(l1_2.getRestaurants().size(), 2);
-			assertEquals(l1_2.getRestaurants().get(0).getCode(), r3.getCode());
-			assertEquals(l1_2.getRestaurants().get(1).getCode(), r4.getCode());
 
 			LineBean l2 = new LineBean();
 			l2.setCode("line2");
-			l2.getRestaurants().add(r1);
-			l2.getRestaurants().add(r2);
-			l2.getRestaurants().add(r5);
 			repo.save(l2, "john");
 			assertEquals(repo.count(LineBean.class), 2);
 			LineBean l2_1 = (LineBean) repo
 					.get(LineBean.class, l2.getGraphId());
 			assertNotNull(l2_1);
-			assertEquals(l2_1.getRestaurants().size(), 3);
-			assertEquals(l2_1.getRestaurants().get(0).getCode(), r1.getCode());
-			assertEquals(l2_1.getRestaurants().get(1).getCode(), r2.getCode());
-			assertEquals(l2_1.getRestaurants().get(2).getCode(), r5.getCode());
 
 			repo.delete(LineBean.class);
 			assertEquals(repo.count(LineBean.class), 0);

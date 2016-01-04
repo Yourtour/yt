@@ -6,13 +6,15 @@ import java.util.Date;
 
 import com.yt.business.bean.RouteMainBean;
 import com.yt.core.utils.DateUtils;
+import com.yt.vo.member.UserBriefVO;
+import org.apache.hadoop.hbase.security.User;
 
-public class RouteOverViewVO implements Serializable{
+public class RouteItemVO implements Serializable{
 	private static final long serialVersionUID = 8326191052746173505L;
 
 	private RouteMainBean route;
 	
-	public RouteOverViewVO(RouteMainBean route){
+	public RouteItemVO(RouteMainBean route){
 		this.route = route;
 	}
 	
@@ -47,7 +49,7 @@ public class RouteOverViewVO implements Serializable{
 	public String getImageUrl(){
 		return route.getImageUrl();
 	}
-	
+
 	public String getImpression(){
 		return route.getImpression();
 	}
@@ -58,5 +60,5 @@ public class RouteOverViewVO implements Serializable{
 		return route.getLeader();
 	}
 
-	public int getStep() {return route.getStep();}
+	public int getStep(){return route.getStep();}
 }

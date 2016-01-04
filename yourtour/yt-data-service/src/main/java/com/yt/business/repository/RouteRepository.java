@@ -3,10 +3,7 @@ package com.yt.business.repository;
 import java.util.List;
 
 import com.yt.business.CrudAllInOneOperate;
-import com.yt.business.bean.RouteActivityBean;
-import com.yt.business.bean.RouteMainBean;
-import com.yt.business.bean.UserAccountBean;
-import com.yt.business.bean.UserProfileBean;
+import com.yt.business.bean.*;
 import com.yt.business.common.Constants.GroupRole;
 
 public interface RouteRepository extends CrudAllInOneOperate {
@@ -81,4 +78,35 @@ public interface RouteRepository extends CrudAllInOneOperate {
 	 */
 	public RouteActivityBean getRouteActivity(Long activityId) throws Exception;
 
+	/**
+	 *
+	 * @param routeId
+	 * @param activity
+	 * @throws Exception
+	 */
+	public void saveScheduleActivity(Long routeId, RouteActivityBean activity, String operator) throws Exception;
+
+	/**
+	 *
+	 * @param routeId
+	 * @param provision
+	 * @throws Exception
+	 */
+	public void saveRouteProvision(Long routeId, RouteProvisionBean provision, String operator) throws Exception;
+
+	/**
+	 *
+	 * @param placeIds
+	 * @return
+	 * @throws Exception
+	 */
+	public List<RouteMainBean> getRecommendRoutes(Long[] placeIds) throws Exception;
+
+	/**
+	 *
+	 * @param routeId
+	 * @return
+	 * @throws Exception
+	 */
+	public List<RouteMainBean> getRecommendRoute(Long routeId) throws Exception;
 }

@@ -7,10 +7,21 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.yt.core.utils.StringUtils;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 public class WebUtils {
 	private static final Log LOG = LogFactory.getLog(WebUtils.class);
 	public static final String LOGIN_USERNAME = "login.username";
+
+	public static HttpServletRequest getHttpServletRequest(){
+		return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+	}
+
+	public static String getCurrentLoginUser() {
+		HttpServletRequest request = getHttpServletRequest();
+		return getCurrentLoginUser(request);
+	}
 
 	public static String getCurrentLoginUser(HttpServletRequest request) {
 		String value = request.getHeader("User-Token");
@@ -22,7 +33,13 @@ public class WebUtils {
 		
 		return value;
 	}
-	
+
+	public static void setCurrentLoginUser(String username){
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+
+		setCurrentLoginUser(request, username);
+	}
+
 	public static void setCurrentLoginUser(HttpServletRequest request,
 			String username) {
 		HttpSession session = request.getSession(true);

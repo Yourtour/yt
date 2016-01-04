@@ -21,13 +21,13 @@ public class RouteScheduleBean extends BaseBeanImpl {
 	private static final String INDEX_NAME = "routeSchedule";
 
 	@HbaseColumn(name = "idx")
-	private int index = 1; // 行程日程排序号
+	private long index = 1; // 行程日程排序号
 
 	@HbaseColumn(name = "dt")
 	private long date = 0; // 行程日程日期
 	
 	private int days = 1;
-	
+
 	@HbaseColumn(name = "desc")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
 	private String memo; // 行程日程描述
@@ -53,11 +53,11 @@ public class RouteScheduleBean extends BaseBeanImpl {
 		this.days = days;
 	}
 
-	public int getIndex() {
+	public long getIndex() {
 		return index;
 	}
 
-	public void setIndex(int index) {
+	public void setIndex(long index) {
 		this.index = index;
 	}
 

@@ -1,17 +1,35 @@
 package com.yt.core.utils;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 public class DateUtils {
+	private static final Log logger = LogFactory.getLog(DateUtils.class);
+
 	public static final String DATE_FORMAT_DEFAULT="yyyy-MM-dd";
-	
-	public static String formatDate(long millisecond){
-		String s = formatDate(millisecond, DATE_FORMAT_DEFAULT);
-		return s;
+
+	//private static SimpleDateFormat formatter = new java.text.SimpleDateFormat(DATE_FORMAT_DEFAULT);
+
+	public static long getCurrentTimeMillis(){
+		return System.currentTimeMillis();
 	}
-	
+
+	public static String formatDate(long millisecond){
+		return formatDate(millisecond, DATE_FORMAT_DEFAULT);
+	}
+
+	public static int getDateNumber(long millisecond){
+		if(millisecond == 0) return 0;
+
+		Date date = new Date(millisecond);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		return Integer.valueOf(sdf.format(date));
+	}
+
 	public static String formatDate(long millisecond, String format){
 		if(millisecond == 0) return "";
 			
@@ -20,6 +38,16 @@ public class DateUtils {
 		return sdf.format(date);
 	}
 
+	public static int getDaySub(long beginDate,long endDate){
+		int day=0;
+		try {
+			day=(int)((endDate-beginDate)/(24*60*60*1000));
+		} catch (Exception e) {
+			logger.error("System Exception", e);
+		}
+
+		return day;
+	}
 	/**
 	 * 日期增加或减少
 	 * @param milliseconds
@@ -46,8 +74,23 @@ public class DateUtils {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(current);
 
-		calendar.add(value, field);
+		calendar.add(field, value);
 
 		return calendar.getTime();
+	}
+
+	public static Calendar getCalendar(long milliseconds){
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(milliseconds);
+
+		return calendar;
+	}
+
+	public static void main(String[] args) throws Exception{
+		Date now = new Date();
+
+		for(int index = 0; index < 10; index++){
+			System.out.println(add(now, index, Calendar.DATE));
+		}
 	}
 }

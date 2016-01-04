@@ -83,5 +83,4 @@ public class BaseVO {
 	public void setUpdatedTime(long updatedTime) {
 		this.updatedTime = updatedTime;
 	}
-
 }

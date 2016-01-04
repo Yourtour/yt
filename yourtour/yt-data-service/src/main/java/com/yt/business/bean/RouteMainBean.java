@@ -27,7 +27,9 @@ public class RouteMainBean extends BaseBeanImpl {
 	private String name; // 行程名称
 	private String lineName;
 	private int    step = 0;
-	
+	private String reason;
+	private String feature;
+
 	@HbaseColumn(name = "sdt")
 	private long startDate = 0; // 行程开始日期
 	private long endDate = 0;
@@ -44,6 +46,12 @@ public class RouteMainBean extends BaseBeanImpl {
 
 	private Long leaderId;
 	private String leader;
+
+	private float rankScore;
+	private int thumbupNum;
+	private int favoriteNum;
+	private int shareNum;
+	private int commentNum;
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_FROM, type = PlaceBean.class, direction = Direction.OUTGOING)
 	private transient PlaceBean fromPlaceBean = null; // 行程出发地点
@@ -136,10 +144,18 @@ public class RouteMainBean extends BaseBeanImpl {
 		this.toPlaceBeans = toPlaceBeans;
 	}
 
+	public void setSchedules(List<RouteScheduleBean> schedules) {
+		this.schedules = schedules;
+	}
+
 	public List<RouteScheduleBean> getSchedules() {
 		if(schedules == null) schedules = new ArrayList<>();
 		
 		return schedules;
+	}
+
+	public void setProvisions(List<RouteProvisionBean> provisions) {
+		this.provisions = provisions;
 	}
 
 	public List<RouteProvisionBean> getProvisions() {
@@ -210,5 +226,61 @@ public class RouteMainBean extends BaseBeanImpl {
 
 	public void setToPlaces(String toPlaces) {
 		this.toPlaces = toPlaces;
+	}
+
+	public float getRankScore() {
+		return rankScore;
+	}
+
+	public void setRankScore(float rankScore) {
+		this.rankScore = rankScore;
+	}
+
+	public int getThumbupNum() {
+		return thumbupNum;
+	}
+
+	public void setThumbupNum(int thumbupNum) {
+		this.thumbupNum = thumbupNum;
+	}
+
+	public int getFavoriteNum() {
+		return favoriteNum;
+	}
+
+	public void setFavoriteNum(int favoriteNum) {
+		this.favoriteNum = favoriteNum;
+	}
+
+	public int getShareNum() {
+		return shareNum;
+	}
+
+	public void setShareNum(int shareNum) {
+		this.shareNum = shareNum;
+	}
+
+	public int getCommentNum() {
+		return commentNum;
+	}
+
+	public void setCommentNum(int commentNum) {
+		this.commentNum = commentNum;
+	}
+
+	public String getReason() {
+		return reason;
+	}
+
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
+
+	public String getFeature() {
+		return feature;
+	}
+
+	public void setFeature(String feature) {
+		this.feature = feature;
 	}
 }

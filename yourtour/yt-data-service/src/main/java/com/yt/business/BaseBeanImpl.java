@@ -183,4 +183,8 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 		this.updatedTime = updatedTime;
 	}
 
+	public boolean isNew(){
+		return this.graphId == null || this.graphId.longValue() == 0;
+	}
+
 }

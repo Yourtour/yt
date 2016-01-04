@@ -51,9 +51,14 @@ public interface Constants {
 	public static final String RELATION_TYPE_BELONG = "BELONG";
 	
 	/**
-	 * 参与
+	 * 参与关系
 	 */
 	public static final String RELATION_TYPE_PARTICIPATE = "PARTICIPATE";
+
+	/**
+	 * 推荐关系
+	 */
+	public static final String RELATION_TYPE_RECOMMEND = "RECOMMEND";
 	
 
 	// 资源枚举
