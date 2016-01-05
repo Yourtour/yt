@@ -93,6 +93,8 @@ public class ResourceBean extends BaseDictBeanImpl {
 	@HbaseColumn(name = "snum")
 	private int shareNum; // 分享数
 
+	private float rankScore;
+
 	@HbaseColumn(name = "bmemo")
 	private String bookingMemo; // 预订须知
 
@@ -104,6 +106,9 @@ public class ResourceBean extends BaseDictBeanImpl {
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_AT, type = PlaceBean.class, direction = Direction.OUTGOING)
 	private transient PlaceBean place = null;
+
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RECOMMEND, type = UserProfileBean.class, direction = Direction.OUTGOING)
+	private transient UserProfileBean user = null;
 
 	public ResourceBean() {
 		super();
@@ -275,5 +280,13 @@ public class ResourceBean extends BaseDictBeanImpl {
 
 	public void setPlace(PlaceBean place) {
 		this.place = place;
+	}
+
+	public float getRankScore() {
+		return rankScore;
+	}
+
+	public void setRankScore(float rankScore) {
+		this.rankScore = rankScore;
 	}
 }

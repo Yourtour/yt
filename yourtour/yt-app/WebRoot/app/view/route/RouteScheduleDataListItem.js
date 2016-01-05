@@ -4,12 +4,12 @@ Ext.define('YourTour.view.route.RouteScheduleDataListItem', {
     requires:['Ext.Label','Ext.field.Select','Ext.Panel'],
     config: {
     	longpressed:false,
-    	
+
 		defaults:{
 			style:'background:#fff;font-size:14px',
 			padding:'0 5 0 5'
 		},
-		
+
 		cls:'ScheduleListItem',
     	items:[
     		{
@@ -101,6 +101,40 @@ Ext.define('YourTour.view.route.RouteScheduleDataListItem', {
 		    					itemId:'title',
 		    					cls:'title'
 		    				},
+
+							{
+								xtype:'panel',
+								layout:'hbox',
+								cls:'content',
+								items:[
+									{
+										xtype: 'image',
+										src: 'resources/images/raty_32.png',
+										mode: 'tag'
+									},
+									{
+										xtype: 'label',
+										itemId: 'commentNum',
+										html:'120条点评'
+									},
+									{
+										xtype:'spacer',
+										flex:1
+									},
+									{
+										xtype: 'label',
+										itemId: 'price',
+										html:'¥ 450元/人/天'
+									}
+								]
+							},
+
+							{
+								xtype : 'image',
+								itemId:'resImage',
+								mode : 'tag'
+							},
+
 		    				{
     							xtype:'label',
     							itemId:'time',
@@ -111,29 +145,6 @@ Ext.define('YourTour.view.route.RouteScheduleDataListItem', {
 		    					itemId:'memo',
 		    					hidden:true,
 		    					cls:'content strong'
-		    				},
-    						
-    						{
-		    					xtype:'panel',
-		    					layout:'hbox',
-		    					items:[
-		    					       {
-											   xtype:'spacer',
-											   flex:1
-		    					       },
-		    					       {
-		    					    	   xtype : 'image',
-		    					    	   mode : 'tag',
-		    					    	   src :'resources/icons/icon_thumbup.png'
-		    					       },{
-		    					    	   xtype : 'image',
-		    					    	   mode : 'tag',
-		    					    	   src :'resources/icons/icon_thumbup.png'
-		    					       },{
-		    					    	   xtype:'spacer',
-		    					    	   width:10
-		    					       }
-		    					]
 		    				}
 		    			]
     				}
@@ -194,13 +205,22 @@ Ext.define('YourTour.view.route.RouteScheduleDataListItem', {
 				}else if(type == 'traffic'){
 					dayItemIcon.setSrc('resources/icons/icon_traffic.png');
 				}
-       			
-       			var title = panel.down('#title');
+
+				var resImage = panel.down('#resImage');
+				resImage.setHtml("<img src='" + record.get('imageUrl') + "' style='width:100%; max-height:100px'>");
+
+				var title = panel.down('#title');
        			title.setHtml(record.get('title'));
-       			
+
+				var price = panel.down('#price');
+				price.setHtml(record.get('price'));
+
+				var commentNum = panel.down('#commentNum');
+				commentNum.setHtml(record.get('commentNum'));
+
        			if(record.get('memo') != ''){
 	       			var memo = panel.down('#memo');
-	       			memo.setHtml(record.get('memo'));
+	       			memo.setHtml(Ext.String.ellipsis(record.get('memo'),70,false));
 	       			memo.show();
        			}
        			

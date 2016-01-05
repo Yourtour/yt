@@ -2,6 +2,7 @@ package com.yt.business.bean;
 
 import java.util.List;
 
+import com.yt.core.utils.DateUtils;
 import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
@@ -15,8 +16,7 @@ import com.yt.neo4j.annotation.Neo4jRelationship;
 
 @HbaseTable(name = "T_ROUTE_ACTIVITY")
 @NodeEntity
-public class RouteActivityBean extends BaseBeanImpl {
-
+public class RouteActivityBean extends BaseBeanImpl implements Cloneable{
 	private static final long serialVersionUID = 6259294378320824143L;
 	private static final String INDEX_NAME = "routeActivity";
 
@@ -32,6 +32,10 @@ public class RouteActivityBean extends BaseBeanImpl {
 	private int index = 1; // 行程活动排序号
 	
 	private long date;
+
+	private String price;
+
+	private String currency;
 
 	@HbaseColumn(name = "stm")
 	private String startTime = "00:00"; // 行程活动始时间
@@ -123,5 +127,34 @@ public class RouteActivityBean extends BaseBeanImpl {
 		this.services = services;
 	}
 
-	
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
+	public String getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(String currency) {
+		this.currency = currency;
+	}
+
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		RouteActivityBean activity = new RouteActivityBean();
+
+		activity.setTitle(this.getTitle());
+		activity.setIndex(this.getIndex());
+		activity.setStartTime(this.getStartTime());
+		activity.setEndTime(this.getEndTime());
+		activity.setUpdatedTime(DateUtils.getCurrentTimeMillis());
+		activity.setCreatedTime(DateUtils.getCurrentTimeMillis());
+		activity.setResource(this.getResource());
+
+		return activity;
+	}
 }

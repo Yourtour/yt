@@ -17,7 +17,9 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 
 		   routeRecommendListView:'#RouteRecommendListView',
 		   recommendRouteList:'#RouteRecommendListView #recommendRouteList',
-		   routeRecommendIntroductionView:'#RouteRecommendIntroductionView'
+		   routeRecommendIntroductionView:'#RouteRecommendIntroductionView',
+		   recommendCarousel:'#RouteRecommendIntroductionView #recommendCarousel',
+		   scheduleList:'#RouteRecommendIntroductionView #scheduleList',
        },
        
        control:{
@@ -88,6 +90,14 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 
 		   '#RouteRecommendListView #recommendRouteList':{
 			   itemtap:'onRecommendRouteItemTap'
+		   },
+
+		   '#RouteRecommendIntroductionView #recommendCarousel':{
+			   activeitemchange:'onRecommendCarouselItemChange'
+		   },
+
+		   '#RouteRecommendIntroductionView #btnClone':{
+			   tap:'onRouteCloneTap'
 		   }
        },
        
@@ -275,6 +285,8 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 	onRecommendRouteItemTap:function(dataview, index, item, record,e){
 		var me = this;
 		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteRecommendIntroductionView'));
+		var view = me.getRouteRecommendIntroductionView();
+		view.setAttrs({record:record});
 
 		var store = Ext.create('YourTour.store.AjaxStore', {storeId:'recommend', model:'YourTour.model.RouteModel'});
 		var proxy = store.getProxy();
@@ -283,7 +295,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 			var record = store.first();
 			var expertRecord = record.userStore.first();
 
-			var view = me.getRouteRecommendIntroductionView();
+
 			var image = view.down('#image');
 			image.setHtml("<img src='" + YourTour.util.Context.getImageResource(record.get('imageUrl')) + "' style='width:100%; max-height:150px'>");
 
@@ -325,12 +337,13 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     /**
      * 
      */
-    updateRouteSchedule:function(){
+    updateRouteSchedule:function(store){
     	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteSchedulePlanView'));
 
 		var me = this;
-    	me.store = this.getApplication().getController('route.RouteScheduleListCtrl').store;
-		var record = me.store.first();
+		me.store = store;
+
+		var record = store.first();
 		var scheduleList = me.getRouteScheduleList();
 		scheduleList.setStore(record.schedulesStore);
     },
@@ -798,5 +811,64 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     onRouteDiscuss:function(){
     	var sessionId = '111';
     	this.redirectTo('/message/session/' + sessionId);
-    }
+    },
+
+	onRecommendCarouselItemChange:function(carousel, value, oldValue, eOpts){
+		var me = this;
+		var view = me.getRouteRecommendIntroductionView();
+		var headerbar = view.down('#headerbar');
+
+		if(value.getItemId() == 'scheduleList') {
+			headerbar.setTitle('行程安排');
+			var record = view.getAttrs().record;
+			var routeId = record.get('id');
+
+			var store = me.getScheduleList().getStore();
+			if (!store) {
+				var showView=function(){
+					var record = store.first();
+
+					var scheduleList = me.getScheduleList();
+					scheduleList.setStore(record.schedulesStore);
+				};
+
+				store = Ext.create('YourTour.store.AjaxStore', {storeId:'recommendItem', model:'YourTour.model.RouteModel'});
+				store.getProxy().setUrl(YourTour.util.Context.getContext('/routes/' + routeId +'/query'));
+				store.load(showView,this);
+			}
+		}else{
+			headerbar.setTitle('行程概要');
+		}
+	},
+
+	onRouteCloneTap:function(){
+		var me = this;
+		var view = me.getRouteRecommendIntroductionView();
+		var record = view.getAttrs().record;
+		var sourceId = record.get('id');
+
+		Ext.Ajax.request({
+			url : YourTour.util.Context.getContext('/routes/clone/' + sourceId + '/' + me.routeId),
+			method : "GET",
+			success : function(response) {
+				var respObj = Ext.JSON.decode(response.responseText);
+				if(respObj.errorCode != '0'){
+					Ext.Msg.alert(resp.errorText);
+					return;
+				};
+
+				var store = Ext.create('YourTour.store.AjaxStore', {model:'YourTour.model.RouteModel'});
+				store.getProxy().setUrl(YourTour.util.Context.getContext('/routes/' + me.routeId +'/query'));
+				store.load(function(){
+					me.updateRouteSchedule(store);
+				},this);
+			},
+
+			failure : function(response) {
+				var respObj = Ext.JSON.decode(response.responseText);
+				Ext.Msg.alert("Error", respObj.status.statusMessage);
+			}
+		});
+
+	}
 });

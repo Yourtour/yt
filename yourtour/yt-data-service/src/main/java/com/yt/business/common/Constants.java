@@ -34,22 +34,22 @@ public interface Constants {
 	 * 在
 	 */
 	public static final String RELATION_TYPE_AT = "AT";
-	
+
 	/**
 	 * 从
 	 */
 	public static final String RELATION_TYPE_FROM = "FROM";
-	
+
 	/**
 	 * 从
 	 */
 	public static final String RELATION_TYPE_TO = "TO";
-	
+
 	/**
 	 * 属于
 	 */
 	public static final String RELATION_TYPE_BELONG = "BELONG";
-	
+
 	/**
 	 * 参与关系
 	 */
@@ -59,7 +59,7 @@ public interface Constants {
 	 * 推荐关系
 	 */
 	public static final String RELATION_TYPE_RECOMMEND = "RECOMMEND";
-	
+
 
 	// 资源枚举
 	public static enum GenderType {
@@ -227,4 +227,26 @@ public interface Constants {
 			this.name = name;
 		}
 	}
+
+	// 资源枚举
+	public static enum Currency {
+		RMB("RMB", "人民币","¥","元");
+
+		public String code;
+		public String name;
+		public String symbol;
+		public String unit;
+
+		private Currency(String code, String name,String symbol, String unit) {
+			this.code = code;
+			this.name = name;
+			this.symbol = symbol;
+			this.unit = unit;
+		}
+
+		public static Currency getCurrency(String code){
+			return Currency.valueOf(code);
+		}
+	}
+
 }

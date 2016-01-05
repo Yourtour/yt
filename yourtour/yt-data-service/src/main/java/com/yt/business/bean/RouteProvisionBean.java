@@ -1,5 +1,6 @@
 package com.yt.business.bean;
 
+import com.yt.core.utils.DateUtils;
 import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
@@ -13,7 +14,7 @@ import com.yt.neo4j.annotation.Neo4jRelationship;
 
 @HbaseTable(name = "T_ROUTE_PROVISION")
 @NodeEntity
-public class RouteProvisionBean extends BaseBeanImpl {
+public class RouteProvisionBean extends BaseBeanImpl implements Cloneable{
 
 	private static final long serialVersionUID = 5125188883896673886L;
 	private static final String INDEX_NAME = "routeProvision";
@@ -68,4 +69,16 @@ public class RouteProvisionBean extends BaseBeanImpl {
 		this.routeMain = routeMain;
 	}
 
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		RouteProvisionBean provision = new RouteProvisionBean();
+
+		provision.setTitle(getTitle());
+		provision.setMemo(getMemo());
+		provision.setIndex(getIndex());
+		provision.setUpdatedTime(DateUtils.getCurrentTimeMillis());
+		provision.setCreatedTime(DateUtils.getCurrentTimeMillis());
+
+		return provision;
+	}
 }

@@ -20,6 +20,8 @@ public class RouteScheduleBean extends BaseBeanImpl {
 	private static final long serialVersionUID = 8074543232974381934L;
 	private static final String INDEX_NAME = "routeSchedule";
 
+	private String title;
+
 	@HbaseColumn(name = "idx")
 	private long index = 1; // 行程日程排序号
 
@@ -43,6 +45,14 @@ public class RouteScheduleBean extends BaseBeanImpl {
 	public RouteScheduleBean() {
 		super();
 		activities = new Vector<RouteActivityBean>();
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public int getDays() {
@@ -97,4 +107,7 @@ public class RouteScheduleBean extends BaseBeanImpl {
 		return activities;
 	}
 
+	public void setActivities(List<RouteActivityBean> activities) {
+		this.activities = activities;
+	}
 }

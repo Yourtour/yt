@@ -9,6 +9,7 @@ import com.yt.business.bean.RouteActivityBean;
 import com.yt.business.bean.RouteMainBean;
 import com.yt.business.bean.RouteProvisionBean;
 import com.yt.business.bean.RouteScheduleBean;
+import com.yt.business.common.Constants;
 import com.yt.core.utils.CollectionUtils;
 import com.yt.core.utils.DateUtils;
 import com.yt.core.utils.StringUtils;
@@ -80,7 +81,7 @@ public class RouteLoadVO implements Serializable {
 		for(RouteScheduleBean scheduleBean : this.route.getSchedules()){
 			RouteSchedule group = new RouteSchedule();
 			group.setId(scheduleBean.getGraphId().toString());
-			group.setTitle(DateUtils.formatDate(scheduleBean.getDate()));
+			group.setTitle(scheduleBean.getTitle());
 			group.setStartTime(DateUtils.formatDate(scheduleBean.getDate()));
 			group.setPlaces(scheduleBean.getPlaces());
 			group.setMemo(scheduleBean.getMemo());
@@ -99,14 +100,26 @@ public class RouteLoadVO implements Serializable {
 					activity.setStartTime(activityBean.getStartTime());
 					activity.setEndTime(activityBean.getEndTime());
 					activity.setIndex(activityBean.getIndex());
-					
+
+					if(StringUtils.isNull(activityBean.getPrice()) || StringUtils.isNull(activityBean.getCurrency())){
+						activity.setPrice("无价格信息。");
+					}else{
+						Constants.Currency currency = Constants.Currency.getCurrency(activityBean.getCurrency());
+						activity.setPrice(currency.symbol + " " + activityBean.getPrice() + currency.unit + "/人");
+					}
+
 					ResourceBean resource = activityBean.getResource();
 					if(resource != null){
+						activity.setImageUrl(activityBean.getResource().getImageUrl());
 						activity.setResourceId(resource.getGraphId().toString());
 						activity.setResourceType(resource.getType().toString());
-					}
-					
-					schedules.add(activity);
+						activity.setCommentNum(resource.getCommentNum());
+						activity.setShareNum(resource.getShareNum());
+						activity.setFavoriteNum(resource.getFavoriteNum());
+						activity.setRankScore(resource.getRankScore());
+				}
+
+				schedules.add(activity);
 				}
 			}
 		}
@@ -119,6 +132,7 @@ public class RouteLoadVO implements Serializable {
 		private String  parentId;
 		private String  resourceId;
 		private String  resourceType;
+		private String  imageUrl;
 		private String 	title;
 		private String	memo;
 		private String  places;
@@ -129,7 +143,13 @@ public class RouteLoadVO implements Serializable {
 		private String 	endTime;
 		private String 	address;
 		private int 	index;
-		
+		private String 	price;
+		private float rankScore;
+		private int thumbupNum;
+		private int favoriteNum;
+		private int shareNum;
+		private int commentNum;
+
 		public RouteSchedule(){}
 
 		public String getId() {
@@ -243,6 +263,61 @@ public class RouteLoadVO implements Serializable {
 		public void setMemo(String memo) {
 			this.memo = memo;
 		}
-		
+
+		public String getImageUrl() {
+			return imageUrl;
+		}
+
+		public void setImageUrl(String imageUrl) {
+			this.imageUrl = imageUrl;
+		}
+
+		public float getRankScore() {
+			return rankScore;
+		}
+
+		public void setRankScore(float rankScore) {
+			this.rankScore = rankScore;
+		}
+
+		public int getThumbupNum() {
+			return thumbupNum;
+		}
+
+		public void setThumbupNum(int thumbupNum) {
+			this.thumbupNum = thumbupNum;
+		}
+
+		public int getFavoriteNum() {
+			return favoriteNum;
+		}
+
+		public void setFavoriteNum(int favoriteNum) {
+			this.favoriteNum = favoriteNum;
+		}
+
+		public int getShareNum() {
+			return shareNum;
+		}
+
+		public void setShareNum(int shareNum) {
+			this.shareNum = shareNum;
+		}
+
+		public int getCommentNum() {
+			return commentNum;
+		}
+
+		public void setCommentNum(int commentNum) {
+			this.commentNum = commentNum;
+		}
+
+		public String getPrice() {
+			return price;
+		}
+
+		public void setPrice(String price) {
+			this.price = price;
+		}
 	}
 }

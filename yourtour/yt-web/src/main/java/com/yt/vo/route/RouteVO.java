@@ -115,6 +115,7 @@ public class RouteVO extends BaseVO {
 			RouteScheduleBean scheduleBean = new RouteScheduleBean();
 			scheduleBean.setIndex(DateUtils.getDateNumber(scheduleDate.getTime()) * 1000);
 			scheduleBean.setDate(scheduleDate.getTime());
+			scheduleBean.setTitle(String.format("第%s天-%s", index+1, DateUtils.formatDate(scheduleDate.getTime())));
 			scheduleBean.setRouteMain(bean);
 			scheduleBean.setCreatedUserId(WebUtils.getCurrentLoginUser());
 			scheduleBean.setUpdatedUserId(WebUtils.getCurrentLoginUser());

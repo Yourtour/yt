@@ -105,54 +105,6 @@ public class RouteRestResource extends BaseRestResource{
 	}
 
 	/**
-	 * 保存行程基本信息和日程信息值对象到图数据库
-	 * 
-	 * @param vo
-	 *            行程值对象，其中包括了行程日程信息
-	 * @param request
-	 *            本次的HttpServletRequest对象
-	 * @return 统一的ResponseVO对象
-	 */
-	@POST
-	@Path("main_schedule/save")
-	public ResponseDataVO<Long> saveMainAndSchedules(RouteVO vo,	@Context HttpServletRequest request) {
-		if (vo == null) {
-			if (LOG.isWarnEnabled()) {
-				LOG.warn("The RouteVO is null.");
-			}
-			return new ResponseDataVO<Long>(StaticErrorEnum.THE_INPUT_IS_NULL);
-		}
-		
-		try {
-			RouteMainBean bean = RouteVO.transform(vo);
-			
-			UserProfileBean profileBean = null;
-			long userGraphId = Neo4jUtils.getGraphIDFromString(super.getCurrentUserId(request));
-			if (userGraphId != -1) {
-				profileBean = (UserProfileBean) routeRepository.get(UserProfileBean.class,
-						userGraphId, false);
-				bean.setOwner(profileBean);
-			}
-			
-			routeRepository.saveRouteMainAndSchedules(bean,
-					WebUtils.getCurrentLoginUser(request));
-			if (LOG.isDebugEnabled()) {
-				LOG.debug(String
-						.format("Save RouteMainBean['%s'] and some RouteSchedules(%d items) success.",
-								vo.getRowKey(), bean.getSchedules().size()));
-			}
-			return new ResponseDataVO<Long>(bean.getGraphId());
-		} catch (Exception ex) {
-			if (LOG.isErrorEnabled()) {
-				LOG.error(
-						String.format("Save the RouteMainBean[id='%s'] fail.",
-								vo.getRowKey()), ex);
-			}
-			return new ResponseDataVO<Long>(StaticErrorEnum.DB_OPERATE_FAIL);
-		}
-	}
-
-	/**
 	 * 保存行程基本值对象到图数据库
 	 * 
 	 * @param vo
@@ -194,6 +146,28 @@ public class RouteRestResource extends BaseRestResource{
 								vo.getRowKey()), ex);
 			}
 			return new ResponseDataVO<Long>(StaticErrorEnum.DB_OPERATE_FAIL);
+		}
+	}
+
+	/**
+	 *
+	 * @return
+	 */
+	@GET
+	@Path("clone/{sourceId}/{targetId}")
+	public ResponseDataVO<RouteLoadVO> cloneRoute(@PathParam("sourceId") String sourceId, @PathParam("targetId") String targetId) {
+		try {
+			String userId = super.getCurrentUserId();
+
+			RouteMainBean route = routeRepository.cloneRoute(Long.valueOf(sourceId), Long.valueOf(targetId), userId);
+			RouteLoadVO vo = new RouteLoadVO(route);
+
+			return new ResponseDataVO<RouteLoadVO>(vo);
+		} catch (Exception ex) {
+			if (LOG.isErrorEnabled()) {
+				LOG.error("System Exception.", ex);
+			}
+			return new ResponseDataVO<RouteLoadVO>(StaticErrorEnum.DB_OPERATE_FAIL);
 		}
 	}
 

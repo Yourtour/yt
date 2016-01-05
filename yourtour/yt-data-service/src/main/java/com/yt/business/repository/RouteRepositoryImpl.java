@@ -4,6 +4,7 @@ import java.util.*;
 
 import com.yt.business.bean.*;
 import com.yt.business.neo4j.repository.RouteTuple;
+import com.yt.core.utils.DateUtils;
 import com.yt.core.utils.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -234,5 +235,62 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 		}
 
 		return null;
+	}
+
+	@Override
+	public RouteMainBean cloneRoute(Long sourceId, Long targetId, String userId) throws Exception {
+		RouteMainBean source = this.getCompleteRoute(sourceId);
+		if(source == null){
+			throw new Exception("No route found for id=" + sourceId);
+		}
+
+		RouteMainBean target = this.getCompleteRoute(targetId);
+		if(target == null){
+			throw new Exception("No route found for id=" + targetId);
+		}
+
+		List<RouteProvisionBean> sProvisions = source.getProvisions();
+		List<RouteProvisionBean> tProvisions = new ArrayList<>();
+		if(sProvisions != null){
+			for(RouteProvisionBean sProvision : sProvisions){
+				RouteProvisionBean tProvision = (RouteProvisionBean) sProvision.clone();
+				tProvision.setUpdatedUserId(userId);
+				tProvision.setCreatedUserId(userId);
+				tProvision.setRouteMain(target);
+
+				this.save(tProvision, userId);
+				tProvisions.add(tProvision);
+			}
+
+			target.setProvisions(tProvisions);
+		}
+
+		List<RouteScheduleBean> sSchedules = source.getSchedules();
+		List<RouteScheduleBean> tSchedules = target.getSchedules();
+
+		if(sSchedules != null){
+			int len = tSchedules.size();
+			for(int index = 0; index < len && index < sSchedules.size(); index++){
+				List<RouteActivityBean> sActivities = sSchedules.get(index).getActivities();
+				List<RouteActivityBean> tActivities = new ArrayList<>();
+
+				for(RouteActivityBean sActivity : sActivities){
+					RouteActivityBean tActivity = (RouteActivityBean) sActivity.clone();
+					tActivity.setUpdatedUserId(userId);
+					tActivity.setCreatedUserId(userId);
+					tActivity.setSchedule(tSchedules.get(index));
+
+					this.save(tActivity, userId);
+					tActivities.add(tActivity);
+				}
+
+				tSchedules.get(index).setActivities(tActivities);
+			}
+		}
+
+		target.setStep(1);
+		this.save(target, userId);
+
+		return target;
 	}
 }
