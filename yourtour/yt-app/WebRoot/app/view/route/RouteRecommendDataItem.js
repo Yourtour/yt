@@ -23,8 +23,6 @@ Ext.define('YourTour.view.route.RouteRecommendDataItem', {
 						left:5,
 					},
 
-
-
 					{
 						xtype: 'panel',
 						layout: 'hbox',
@@ -32,12 +30,12 @@ Ext.define('YourTour.view.route.RouteRecommendDataItem', {
 						padding: '0 10 0 10',
 						docked: 'bottom',
 						bottom: 0,
-						style: 'background:black;opacity:0.2; width:100%; text-align:center',
+						style: 'background-color:grey;opacity:0.2; width:100%; text-align:center',
 						items: [
 							{
-								itemId: 'name',
+								itemId: 'lineName',
 								xtype: 'label',
-								style:'color:black;font-size:14px; font-weight:bold;',
+								style:'color:#FFFFFF;font-size:14px; font-weight:bold;'
 							},
 
 							{
@@ -45,12 +43,6 @@ Ext.define('YourTour.view.route.RouteRecommendDataItem', {
 								flex:1
 							},
 
-							{
-								xtype: 'xlabel',
-								html: '推荐指数',
-								style:'color:black',
-								margin:'0 10 0 0',
-							},
 							{
 								xtype: 'image',
 								src: 'resources/images/raty_32.png',
@@ -96,14 +88,12 @@ Ext.define('YourTour.view.route.RouteRecommendDataItem', {
     
     updateRecord: function(record) {
        var me = this;
-
-		console.log(record);
        if(record){
        	   var imageUrlEl = me.down('#imageUrl');
 	 	   imageUrlEl.setHtml("<img src='" + YourTour.util.Context.getImageResource(record.get('imageUrl')) + "' style='width:100%; max-height:150px'>");
 	 	   
-	 	   var nameEl = me.down('#name');
-	 	   nameEl.setHtml(record.get('name'));
+	 	   var lineName = me.down('#lineName');
+		   lineName.setHtml(record.get('lineName'));
 
 		   var expert = record.userStore.first();
 		   var expertImage = me.down('#expertImage');

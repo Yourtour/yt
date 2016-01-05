@@ -108,5 +108,5 @@ public interface RouteRepository extends CrudAllInOneOperate {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<RouteMainBean> getRecommendRoute(Long routeId) throws Exception;
+	public RouteMainBean getRecommendRoute(Long routeId) throws Exception;
 }

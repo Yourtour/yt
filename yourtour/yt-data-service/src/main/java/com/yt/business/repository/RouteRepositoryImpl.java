@@ -224,7 +224,15 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 	}
 
 	@Override
-	public List<RouteMainBean> getRecommendRoute(Long routeId) throws Exception {
+	public RouteMainBean getRecommendRoute(Long routeId) throws Exception {
+		RouteTuple tuple = this.repository.getRecommendRoute(routeId);
+		if(tuple != null){
+			RouteMainBean route = tuple.getRoute();
+			route.setOwner(tuple.getOwner());
+
+			return route;
+		}
+
 		return null;
 	}
 }

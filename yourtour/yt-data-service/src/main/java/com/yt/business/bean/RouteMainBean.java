@@ -25,10 +25,14 @@ public class RouteMainBean extends BaseBeanImpl {
 	@HbaseColumn(name = "name")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
 	private String name; // 行程名称
-	private String lineName;
-	private int    step = 0;
-	private String reason;
-	private String feature;
+	private String 	lineName;
+	private int    	step = 0;
+	private String 	reason; //推荐理由
+	private String 	feature; //行程特点
+	private String 	chargeMemo; //费用说明
+	private String	withdrawMemo; //退改说明
+	private String  useMemo; //使用说明
+	private String  orderMemo; //预订须知
 
 	@HbaseColumn(name = "sdt")
 	private long startDate = 0; // 行程开始日期
@@ -282,5 +286,37 @@ public class RouteMainBean extends BaseBeanImpl {
 
 	public void setFeature(String feature) {
 		this.feature = feature;
+	}
+
+	public String getChargeMemo() {
+		return chargeMemo;
+	}
+
+	public void setChargeMemo(String chargeMemo) {
+		this.chargeMemo = chargeMemo;
+	}
+
+	public String getWithdrawMemo() {
+		return withdrawMemo;
+	}
+
+	public void setWithdrawMemo(String withdrawMemo) {
+		this.withdrawMemo = withdrawMemo;
+	}
+
+	public String getUseMemo() {
+		return useMemo;
+	}
+
+	public void setUseMemo(String useMemo) {
+		this.useMemo = useMemo;
+	}
+
+	public String getOrderMemo() {
+		return orderMemo;
+	}
+
+	public void setOrderMemo(String orderMemo) {
+		this.orderMemo = orderMemo;
 	}
 }

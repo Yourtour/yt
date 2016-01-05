@@ -485,9 +485,9 @@ public class RouteRestResource extends BaseRestResource{
 	}
 
 	@SuppressWarnings("unchecked")
-	@Path("/recommend/{placeIds}")
+	@Path("/recommend/{placeIds}/{duration}")
 	@GET
-	public ResponseDataVO<List<RouteRecommendItemVO>> getRecommendedRoutes(@PathParam("placeIds") String placeIds) {
+	public ResponseDataVO<List<RouteRecommendItemVO>> getRecommendedRoutes(@PathParam("placeIds") String placeIds, @PathParam("duration") String duration) {
 		List<RouteRecommendItemVO> list = new ArrayList<RouteRecommendItemVO>();
 		try {
 			String[] ids = placeIds.split(",");

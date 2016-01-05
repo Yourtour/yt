@@ -16,7 +16,8 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 		   placeChangeView:'#PlaceChangeView',
 
 		   routeRecommendListView:'#RouteRecommendListView',
-		   recommendRouteList:'#RouteRecommendListView #recommendRouteList'
+		   recommendRouteList:'#RouteRecommendListView #recommendRouteList',
+		   routeRecommendIntroductionView:'#RouteRecommendIntroductionView'
        },
        
        control:{
@@ -86,7 +87,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 		   },
 
 		   '#RouteRecommendListView #recommendRouteList':{
-			   itemtap:'onRecommendRouteTap'
+			   itemtap:'onRecommendRouteItemTap'
 		   }
        },
        
@@ -228,7 +229,13 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     	});
     },
 
+	/**
+	 *
+	 * @param duration
+	 * @param places
+	 */
 	getRecommendRoutes:function(duration, places){
+		duration = 5;
 		var ids = '', names = '';
 		var pArray = places.split('|');
 		for(var index = 0; index < pArray.length; index++){
@@ -249,17 +256,49 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 		var headerbar = view.down('#headerbar');
 		headerbar.setTitle(names);
 
-		var store = Ext.create('YourTour.store.AjaxStore', {model:'YourTour.model.RouteModel'});
+		var store = Ext.create('YourTour.store.AjaxStore', {storeId:'recommendItem',model:'YourTour.model.RouteModel'});
 		var proxy = store.getProxy();
-		proxy.setUrl(YourTour.util.Context.getContext('/routes/recommend/' + ids));
+		proxy.setUrl(YourTour.util.Context.getContext('/routes/recommend/' + ids + '/' + duration));
 		store.load(function(){
 			me.getRecommendRouteList().setStore(store);
 		})
 	},
 
-	onRecommendRouteTap:function(dataview, index, item, record,e){
+	/**
+	 *
+	 * @param dataview
+	 * @param index
+	 * @param item
+	 * @param record
+	 * @param e
+	 */
+	onRecommendRouteItemTap:function(dataview, index, item, record,e){
 		var me = this;
 		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteRecommendIntroductionView'));
+
+		var store = Ext.create('YourTour.store.AjaxStore', {storeId:'recommend', model:'YourTour.model.RouteModel'});
+		var proxy = store.getProxy();
+		proxy.setUrl(YourTour.util.Context.getContext('/routes/recommend/' + record.get('id')));
+		store.load(function(){
+			var record = store.first();
+			var expertRecord = record.userStore.first();
+
+			var view = me.getRouteRecommendIntroductionView();
+			var image = view.down('#image');
+			image.setHtml("<img src='" + YourTour.util.Context.getImageResource(record.get('imageUrl')) + "' style='width:100%; max-height:150px'>");
+
+			var lineName = view.down('#lineName');
+			lineName.setHtml(record.get('lineName'));
+
+			var expertImage = view.down('#expertImage');
+			expertImage.setHtml("<img src='" + YourTour.util.Context.getImageResource(expertRecord.get('imageUrl'), 'medium') + "' style='width:64px; height:px'>");
+
+			var feature = view.down('#feature');
+			feature.setHtml(Ext.String.ellipsis(record.get('feature'),70,false));
+
+			var reason = view.down('#reason');
+			reason.setHtml(Ext.String.ellipsis(record.get('reason'),70,false));
+		})
 	},
 
 	/**
@@ -278,10 +317,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 			scheduleList.setStore(record.schedulesStore);
 		};
 
-		store = Ext.create('YourTour.store.AjaxStore', {model:'YourTour.model.RouteModel'});
-		if(store.schedulesStore) store.schedulesStore.setData('');
-		store.setData(' ');
-
+		store = Ext.create('YourTour.store.AjaxStore', {storeId:'recommendItem', model:'YourTour.model.RouteModel'});
 		store.getProxy().setUrl(YourTour.util.Context.getContext('/routes/' + routeId +'/query'));
 		store.load(showView,this);
 	},
