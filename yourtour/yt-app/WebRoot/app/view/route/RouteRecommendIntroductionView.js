@@ -156,12 +156,10 @@ Ext.define('YourTour.view.route.RouteRecommendIntroductionView', {
 			{
 				xtype:'hspacer'
 			},
+
 		    {
 		    	xtype:'dataview',
-		    	itemId:'resources',
-		    	cls:'space-top',
-				scrollable:null,
-				flex:1,
+		    	itemId:'scheduleList',
 		    	useComponents:true,
 		    	defaultType:'LineResourceItem'
 		    },
