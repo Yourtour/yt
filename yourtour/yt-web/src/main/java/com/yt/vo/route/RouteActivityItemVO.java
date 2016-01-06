@@ -1,0 +1,90 @@
+package com.yt.vo.route;
+
+import com.yt.business.bean.*;
+import com.yt.business.common.Constants.ResType;
+import com.yt.vo.BaseVO;
+import com.yt.vo.resource.HotelResourceVO;
+import com.yt.vo.resource.ResourceVO;
+import com.yt.vo.resource.RestaurantResourceVO;
+import com.yt.vo.resource.SceneResourceVO;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class RouteActivityItemVO extends BaseVO {
+	private String title, memo, option, imageUrl;
+	private int index;
+
+	public static RouteActivityItemVO transform(RouteActivityItemBean bean) {
+		if (bean == null) {
+			return null;
+		}
+		RouteActivityItemVO vo = new RouteActivityItemVO();
+		vo.fromBean(bean);
+		vo.setTitle(bean.getTitle());
+		vo.setMemo(bean.getMemo());
+		vo.setIndex(bean.getIndex());
+		vo.setOption(bean.getOption());
+		vo.setImageUrl(bean.getImageUrl());
+
+		return vo;
+	}
+
+	public static RouteActivityItemBean transform(RouteActivityItemVO vo) {
+		if (vo == null) {
+			return null;
+		}
+		RouteActivityItemBean bean = new RouteActivityItemBean();
+		vo.toBean(bean);
+		bean.setTitle(vo.getTitle());
+		bean.setMemo(vo.getMemo());
+		bean.setIndex(vo.getIndex());
+		bean.setOption(vo.getOption());
+
+		return bean;
+	}
+
+	public RouteActivityItemVO() {
+		super();
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getMemo() {
+		return memo;
+	}
+
+	public void setMemo(String memo) {
+		this.memo = memo;
+	}
+
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
+	}
+
+	public String getOption() {
+		return option;
+	}
+
+	public void setOption(String option) {
+		this.option = option;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+}

@@ -97,7 +97,7 @@ public class ExpertRestResource {
 			String userId = WebUtils.getCurrentLoginUser(request);
 			UserProfileBean user = (UserProfileBean) this.expertRepository.get(UserProfileBean.class, Long.valueOf(userId), false);
 
-			ExpertServiceBean service = ExpertServiceVO.getBean(serviceVO);
+			ExpertServiceBean service = ExpertServiceVO.transform(serviceVO);
 			service.setUser(user);
 			this.expertRepository.save(service, userId);
 
@@ -144,7 +144,7 @@ public class ExpertRestResource {
 
 			if(services != null){
 				for(ExpertServiceBean service : services){
-					valueobjects.add(ExpertServiceVO.getValueObject(service));
+					valueobjects.add(ExpertServiceVO.transform(service));
 				}
 			}
 			return new ResponseDataVO<List<ExpertServiceVO>>(valueobjects);

@@ -33,6 +33,7 @@ Ext.define('YourTour.view.route.RouteScheduleDataListItem', {
     			xtype:'panel',
     			hidden:true,
     			layout:'hbox',
+				cls:'scheduleItem',
     			items:[
     				{
 		    			xtype : 'image',
@@ -80,28 +81,22 @@ Ext.define('YourTour.view.route.RouteScheduleDataListItem', {
     		{
     			itemId:'dayItemPanel',
     			xtype:'panel',
-    			layout:'hbox',
+    			layout:'vbox',
     			hidden:true,
     			cls:'scheduleItem',
     			items:[
-    				{
-		    			xtype : 'image',
-		    			mode : 'tag',
-		    			cls:'icon',
-		    			src :'resources/icons/icon_day.png'
-    				},
-    				
+					{
+						xtype:'label',
+						itemId:'title',
+						cls:'title',
+						padding:'0 0 0 50'
+					},
+
     				{
     					xtype:'panel',
     					layout:'vbox',
-    					flex:1,
+						padding:'0 0 0 50',
     					items:[
-		    				{
-		    					xtype:'label',
-		    					itemId:'title',
-		    					cls:'title'
-		    				},
-
 							{
 								xtype:'panel',
 								layout:'hbox',
@@ -114,6 +109,7 @@ Ext.define('YourTour.view.route.RouteScheduleDataListItem', {
 									},
 									{
 										xtype: 'label',
+										margin:'0 0 0 10',
 										itemId: 'commentNum',
 										html:'120条点评'
 									},
@@ -124,6 +120,7 @@ Ext.define('YourTour.view.route.RouteScheduleDataListItem', {
 									{
 										xtype: 'label',
 										itemId: 'price',
+										cls:'font-remark',
 										html:'¥ 450元/人/天'
 									}
 								]
@@ -194,29 +191,28 @@ Ext.define('YourTour.view.route.RouteScheduleDataListItem', {
        		}else{
        			panel = me.down('#dayItemPanel');
        			panel.show();
-       			
-       			var dayItemIcon = panel.down('#dayItemIcon');
-				if(type == 'scene'){
-       				dayItemIcon.setSrc('resources/icons/icon_scene.png');
-				}else if(type == 'residence'){
-					dayItemIcon.setSrc('resources/icons/icon_hotel.png');
-				}else if(type == 'food'){
-					dayItemIcon.setSrc('resources/icons/icon_food.png');
-				}else if(type == 'traffic'){
-					dayItemIcon.setSrc('resources/icons/icon_traffic.png');
+
+				var title = panel.down('#title');
+				title.setHtml(record.get('title'));
+				var resourceType = record.get('resourceType');
+				if(resourceType == 'SCENE'){
+					title.addCls('icon_scene');
+				}else if(resourceType == 'HOTEL'){
+					title.addCls('icon_hotel');
+				}else if(resourceType == 'FOOD'){
+					title.addCls('icon_food');
+				}else if(resourceType == 'traffic'){
+					title.addCls('icon_restaurant');
 				}
 
 				var resImage = panel.down('#resImage');
 				resImage.setHtml("<img src='" + record.get('imageUrl') + "' style='width:100%; max-height:100px'>");
 
-				var title = panel.down('#title');
-       			title.setHtml(record.get('title'));
-
 				var price = panel.down('#price');
 				price.setHtml(record.get('price'));
 
 				var commentNum = panel.down('#commentNum');
-				commentNum.setHtml(record.get('commentNum'));
+				commentNum.setHtml(record.get('commentNum') + '条点评');
 
        			if(record.get('memo') != ''){
 	       			var memo = panel.down('#memo');

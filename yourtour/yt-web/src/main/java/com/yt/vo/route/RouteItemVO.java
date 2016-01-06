@@ -6,6 +6,7 @@ import java.util.Date;
 
 import com.yt.business.bean.RouteMainBean;
 import com.yt.core.utils.DateUtils;
+import com.yt.core.utils.StringUtils;
 import com.yt.vo.member.UserBriefVO;
 import org.apache.hadoop.hbase.security.User;
 
@@ -27,7 +28,7 @@ public class RouteItemVO implements Serializable{
 	}
 
 	public String getLineName(){
-		return route.getLineName();
+		return StringUtils.isNull(route.getLineName())?route.getName():route.getLineName();
 	}
 
 	public String getStartDate() {

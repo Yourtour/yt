@@ -3,14 +3,10 @@ package com.yt.vo.route;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.yt.business.bean.HotelResourceBean;
-import com.yt.business.bean.ResourceBean;
-import com.yt.business.bean.RestaurantResourceBean;
-import com.yt.business.bean.RouteActivityBean;
-import com.yt.business.bean.RouteScheduleBean;
-import com.yt.business.bean.SceneResourceBean;
+import com.yt.business.bean.*;
 import com.yt.business.common.Constants.ResType;
 import com.yt.vo.BaseVO;
+import com.yt.vo.member.ExpertServiceVO;
 import com.yt.vo.resource.HotelResourceVO;
 import com.yt.vo.resource.ResourceVO;
 import com.yt.vo.resource.RestaurantResourceVO;
@@ -24,6 +20,7 @@ public class RouteActivityVO extends BaseVO {
 	private RouteScheduleVO schedule = new RouteScheduleVO();
 	private ResourceVO resource = new ResourceVO();
 	private List<RouteServiceVO> services = new ArrayList<>();
+	private List<RouteActivityItemVO> items = new ArrayList<>();
 
 	public static RouteActivityVO transform(RouteActivityBean bean) {
 		if (bean == null) {
@@ -64,20 +61,24 @@ public class RouteActivityVO extends BaseVO {
 				vo.setResource(resourceVO);
 			}
 		}
-		
-		for(int index = 0; index < 3; index++){
-			RouteServiceVO service = new RouteServiceVO();
-			service.setId(Long.valueOf(String.valueOf(index + 1)));
-			service.setTitle("服务项目- " + index);
-			vo.services.add(service);
-		}
-		
-		/*List<RouteServiceBean> serviceBeans = bean.getServices();
-		if(serviceBeans != null){
-			for(RouteServiceBean service : serviceBeans){
-				vo.services.add(ExpertServiceVO.transform(service));
+
+		List<RouteActivityItemBean> items = bean.getItems();
+		if(items != null){
+			List<RouteActivityItemVO> voes = new ArrayList<>();
+			for(RouteActivityItemBean item : items){
+				voes.add(RouteActivityItemVO.transform(item));
 			}
-		}*/
+			vo.setItems(voes);
+		}
+
+		List<RouteServiceBean> serviceBeans = bean.getServices();
+		if(serviceBeans != null){
+			List<RouteServiceVO> voes = new ArrayList<>();
+			for(RouteServiceBean service : serviceBeans){
+				voes.add(RouteServiceVO.transform(service));
+			}
+			vo.setServices(voes);
+		}
 		
 		return vo;
 	}
@@ -94,6 +95,7 @@ public class RouteActivityVO extends BaseVO {
 		bean.setStartTime(vo.getStartTime());
 		bean.setEndTime(vo.getEndTime());
 		bean.setDate(vo.getDate());
+
 		if (vo.getSchedule() != null) {
 			RouteScheduleBean schedule = new RouteScheduleBean();
 			schedule.setGraphId(vo.getSchedule().getId());
@@ -191,5 +193,13 @@ public class RouteActivityVO extends BaseVO {
 
 	public void setServices(List<RouteServiceVO> services) {
 		this.services = services;
+	}
+
+	public List<RouteActivityItemVO> getItems() {
+		return items;
+	}
+
+	public void setItems(List<RouteActivityItemVO> items) {
+		this.items = items;
 	}
 }

@@ -23,13 +23,7 @@ Ext.define('YourTour.view.route.RouteMainView', {
 			    	   itemId:'delete',
 			    	   text:'删除',
 			    	   align:'right'
-			       },
-					{
-						xtype:'toolbutton',
-						itemId:'share',
-						text:'分享',
-						align:'right'
-					}
+			       }
 				]
 			},
             {

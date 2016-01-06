@@ -33,9 +33,9 @@ public class RouteActivityBean extends BaseBeanImpl implements Cloneable{
 	
 	private long date;
 
-	private String price;
+	private String price; //价格信息
 
-	private String currency;
+	private String currency; //币种
 
 	@HbaseColumn(name = "stm")
 	private String startTime = "00:00"; // 行程活动始时间
@@ -48,8 +48,12 @@ public class RouteActivityBean extends BaseBeanImpl implements Cloneable{
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RELATED, type = ResourceBean.class, direction = Direction.OUTGOING)
 	private transient ResourceBean resource = null; // 行程活动关联的资源
-	
+
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = RouteServiceBean.class, direction = Direction.OUTGOING, isList = true)
 	private transient List<RouteServiceBean> services = null;
+
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = RouteActivityItemBean.class, direction = Direction.OUTGOING, isList = true)
+	private transient List<RouteActivityItemBean> items = null;
 
 	public RouteActivityBean() {
 		super();
@@ -141,6 +145,14 @@ public class RouteActivityBean extends BaseBeanImpl implements Cloneable{
 
 	public void setCurrency(String currency) {
 		this.currency = currency;
+	}
+
+	public List<RouteActivityItemBean> getItems() {
+		return items;
+	}
+
+	public void setItems(List<RouteActivityItemBean> items) {
+		this.items = items;
 	}
 
 	@Override

@@ -81,7 +81,12 @@ public class RouteLoadVO implements Serializable {
 		for(RouteScheduleBean scheduleBean : this.route.getSchedules()){
 			RouteSchedule group = new RouteSchedule();
 			group.setId(scheduleBean.getGraphId().toString());
-			group.setTitle(scheduleBean.getTitle());
+			if(StringUtils.isNull(scheduleBean.getTitle())){
+				group.setTitle(DateUtils.formatDate(scheduleBean.getDate()));
+			}else {
+				group.setTitle(scheduleBean.getTitle() + "-" + DateUtils.formatDate(scheduleBean.getDate()));
+			}
+
 			group.setStartTime(DateUtils.formatDate(scheduleBean.getDate()));
 			group.setPlaces(scheduleBean.getPlaces());
 			group.setMemo(scheduleBean.getMemo());
@@ -141,6 +146,7 @@ public class RouteLoadVO implements Serializable {
 		private long    date;
 		private String 	startTime;
 		private String 	endTime;
+		private String  duration;
 		private String 	address;
 		private int 	index;
 		private String 	price;
@@ -318,6 +324,14 @@ public class RouteLoadVO implements Serializable {
 
 		public void setPrice(String price) {
 			this.price = price;
+		}
+
+		public String getDuration() {
+			return duration;
+		}
+
+		public void setDuration(String duration) {
+			this.duration = duration;
 		}
 	}
 }

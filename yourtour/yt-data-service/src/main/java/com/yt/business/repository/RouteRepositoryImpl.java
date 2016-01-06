@@ -199,11 +199,7 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 
 	@Override
 	public RouteActivityBean getRouteActivity(Long activityId) throws Exception {
-		RouteActivityTuple tuple = activityRepository.getRouteActivity(activityId);
-		
-		tuple.getActivity().setResource(tuple.getResource());
-		
-		return tuple.getActivity();
+		return (RouteActivityBean) this.get(RouteActivityBean.class, activityId);
 	}
 
 	@Override

@@ -255,9 +255,9 @@ public class RouteRestResource extends BaseRestResource{
 	
 	@GET
 	@Path("activity/{activityId}")
-	public ResponseDataVO<RouteActivityVO> saveActivity(@PathParam("activityId")  String activityId,@Context HttpServletRequest request) {
+	public ResponseDataVO<RouteActivityVO> getActivity(@PathParam("activityId")  String activityId,@Context HttpServletRequest request) {
 		try {
-			RouteActivityBean activity = routeRepository.getRouteActivity(Long.valueOf(activityId));
+			RouteActivityBean activity = (RouteActivityBean) routeRepository.get(RouteActivityBean.class, Long.valueOf(activityId));
 			return new ResponseDataVO<>(RouteActivityVO.transform(activity));
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {

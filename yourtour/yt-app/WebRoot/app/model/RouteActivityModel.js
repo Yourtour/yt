@@ -1,8 +1,6 @@
 Ext.define('YourTour.model.RouteActivityModel', {
-    extend: 'Ext.data.Model',
+	extend: 'YourTour.model.BaseModel',
     config:{
-    	idProperty:'id',
-    	
 	    fields:[
 	    	{name:'id', type:'string'},
             {name:'type', type:'string'},
@@ -26,7 +24,14 @@ Ext.define('YourTour.model.RouteActivityModel', {
   	            model: 'YourTour.model.ServiceModel',   
   	            name:'services',   
   	            associationKey:'services'  
-  	        }
-   	    ],
+  	        },
+
+			{
+				type: 'hasMany',
+				model: 'YourTour.model.RouteActivityItemModel',
+				name:'items',
+				associationKey:'items'
+			}
+   	    ]
     }
 });

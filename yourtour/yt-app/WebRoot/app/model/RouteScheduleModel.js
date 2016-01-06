@@ -21,7 +21,7 @@ Ext.define('YourTour.model.RouteScheduleModel', {
             {name:'placeIds', type:'string'},
             {name:'places', type:'string'},
             {name:'price', type:'string'},
-            {name:'rankScore', type:'string'},
+            {name:'commentScore', type:'string'},
             {name:'thumbupNum', type:'string'},
             {name:'favoriteNum', type:'string'},
             {name:'shareNum', type:'string'},

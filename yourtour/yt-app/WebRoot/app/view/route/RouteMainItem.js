@@ -59,59 +59,56 @@ Ext.define('YourTour.view.route.RouteMainItem', {
 		            }     
 			   ]
 		    },
-			
-		    {
-		    	xtype:'panel',
-		    	margin:'10 0 10 0',
-		    	defaults:{
-		    		padding:'0 5 0 5'
-		    	},
-		    	items:[
-				    {
-		    		   	xtype:'xlabel',
-		    		   	cls:'font-bold font-medium',
-						html:'旅行线路:'
-		    		},
-		            
+
+			{
+				xtype:'panel',
+				layout:'hbox',
+				padding:'0 0 0 10',
+				cls:'underline icon_memo',
+				items:[
 					{
-		    		   xtype:'xfield',
-		    		   itemId:'lineName',
-		    		   cls:'multilineinfo underline',
-		    		   padding:'5 0 0 10'
-		            },
-		            
-		            {
-		    		   	xtype:'xlabel',
-		    		   	cls:'font-bold font-medium',
-						html:'旅行时间:'
-		    		},
-		            
+						xtype: 'xlabel',
+						itemId:'lineName',
+						cls:'font-medium font-grey multilineinfo',
+						flex:1,
+						margin:'0 5 0 30'
+					}
+				]
+			},
+
+			{
+				xtype:'panel',
+				layout:'hbox',
+				padding:'0 0 0 10',
+				cls:'row underline icon_time',
+				items:[
 					{
-		    		   xtype:'xfield',
-		    		   itemId:'time',
-		    		   cls:'row underline field',
-		    		   padding:'5 0 0 10'
-		            },
-		            
-		            {
-		    		   	xtype:'xlabel',
-		    		   	itemId:'impressionEdit',
-		    		   	cls:'font-bold font-medium nav_arrow',
-						html:'旅行印象:',
+						xtype: 'xlabel',
+						itemId:'time',
+						cls:'font-medium font-grey',
+						flex:1,
+						margin:'0 5 0 30'
+					}
+				]
+			},
+
+			{
+				xtype:'panel',
+				itemId:'impressionEdit',
+				layout:'hbox',
+				padding:'0 0 0 10',
+				cls:'underline icon_impression',
+				items:[
+					{
+						xtype: 'xlabel',
+						itemId:'impression',
+						cls:'font-medium font-grey multilineinfo',
+						flex:1,
 						tappable:true,
-						margin:'10 0 0 0'
-		    		},
-		            
-					{
-		    		   xtype:'xfield',
-		    		   itemId:'impression',
-		    		   cls:'multilineinfo',
-		    		   padding:'5 0 0 10',
-		    		   minHeight:20,
-		    		   maxHeight:40
-		            }
-		    	]
-		    }
+						margin:'0 5 0 30'
+					}
+				]
+			}
         ]
     },
     
@@ -168,7 +165,11 @@ Ext.define('YourTour.view.route.RouteMainItem', {
  	 	   lineName.setHtml(record.get('lineName'));
  	 	   
  	 	   var impression = me.down('#impression');
- 	 	   impression.setHtml(Ext.String.ellipsis(record.get('impression'),70,false));
+			if(record.get('impression') == '' || record.get('impression') == null){
+				impression.setHtml('赶快记录下你的旅行印象吧.........');
+			}else {
+				impression.setHtml(Ext.String.ellipsis(record.get('impression'), 70, false));
+			}
  	 	}
      }   
 });

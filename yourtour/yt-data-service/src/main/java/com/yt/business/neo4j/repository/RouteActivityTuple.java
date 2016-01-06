@@ -32,6 +32,4 @@ public class RouteActivityTuple {
 	public void setResource(ResourceBean resource) {
 		this.resource = resource;
 	}
-	
-	
 }

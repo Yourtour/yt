@@ -15,7 +15,7 @@ public class ExpertServiceVO extends BaseVO {
     public ExpertServiceVO() {
     }
 
-    public static ExpertServiceBean getBean(ExpertServiceVO vo){
+    public static ExpertServiceBean transform(ExpertServiceVO vo){
         ExpertServiceBean bean = new ExpertServiceBean();
         bean.setGraphId(vo.getId());
         bean.setTitle(vo.getTitle());
@@ -28,7 +28,7 @@ public class ExpertServiceVO extends BaseVO {
         return bean;
     }
 
-    public static ExpertServiceVO getValueObject(ExpertServiceBean bean){
+    public static ExpertServiceVO transform(ExpertServiceBean bean){
         ExpertServiceVO valueObject = new ExpertServiceVO();
 
         valueObject.setId(bean.getGraphId());

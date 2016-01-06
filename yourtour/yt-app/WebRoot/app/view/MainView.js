@@ -21,6 +21,7 @@ Ext.define('YourTour.view.MainView', {
         		xtype:'tabpanel',
         		itemId:'menuTab',
         		ui:'dark',
+				cls:'tabbar',
         		tabBarPosition:'bottom',
         		tabBar : {
                     defaults: {

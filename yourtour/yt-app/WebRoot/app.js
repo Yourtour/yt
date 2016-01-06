@@ -55,7 +55,7 @@ Ext.application({
     
     models:[
         'LaunchModel','RouteModel','RouteActivityModel', 'LineModel', 'UserModel','OptionModel', 'HomeModel','LiveModel','ChatModel','AlongModel','TalentModel','HomeCarouselModel','CommentModel', 'PlaceModel',
-        'CacheModel','ServiceModel'
+        'CacheModel','ServiceModel','RouteActivityItemModel'
     ],
     
     stores:[

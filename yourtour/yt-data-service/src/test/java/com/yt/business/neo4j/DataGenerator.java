@@ -5,6 +5,11 @@ import static org.junit.Assert.fail;
 
 import java.util.Date;
 
+import com.yt.business.bean.RouteActivityBean;
+import com.yt.business.bean.RouteActivityItemBean;
+import com.yt.business.bean.RouteServiceBean;
+import com.yt.business.neo4j.repository.UserAccountBeanRepository;
+import com.yt.business.repository.RouteRepository;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,13 +24,13 @@ import com.yt.neo4j.repository.CrudOperate;
 public class DataGenerator {
 
 	private ApplicationContext context;
-	private CrudOperate neo4jCRUD;
+	private RouteRepository repository;
 
 	@Before
 	public void setUp() throws Exception {
 		context = new ClassPathXmlApplicationContext(new String[] {
-				"neo4jApplicationContext.xml" });
-		neo4jCRUD = context.getBean(CrudGeneralOperate.class);
+				"application-hbase-context.xml", "application-neo4j-context.xml" });
+		repository = context.getBean(RouteRepository.class);
 	}
 
 	@After
@@ -36,30 +41,23 @@ public class DataGenerator {
 	@Test
 	public void testContext() {
 		assertNotNull(context);
-		assertNotNull(neo4jCRUD);
+		assertNotNull(repository);
 	}
 
 	@Test
 	public void testCRUDRouteBean() {
 		try {
 			Date now = new Date();
-			
-			AlongBean along = new AlongBean();
 
-			along.setRowKey(String.valueOf(new Date().getTime()));
-			along.setName("十一上海休闲游3");
-			along.setAddress("浙江杭州西湖景区");
-			along.setAlongDesc("机票已经订好，周末飞上海，然后计划在上海及其附近游玩10天，目前独身一人在旅行，希望能捡个90后妹子同游。。。");
-			along.setCommentNum(13);
-			along.setCreatedTime(now.getTime());
-			along.setCreatedUserId("111");
-			along.setGroupDesc("团队计划10人，目前有4个妹子，4个爷们，再希望有2个妹子");
-			along.setImageUrl("resources/images/scene_64.jpg");
-			along.setIntention(AlongIntentionType.TOGETHER_CAR);
-			along.setReadNum(200);
-			along.setRequestDesc("妹子，性格温和");
-			
-			neo4jCRUD.save(along, "tester");
+			RouteServiceBean service = new RouteServiceBean();
+			service.setTitle("买票服务");
+			service.setMemo("买票服务");
+
+			RouteActivityBean activity = new RouteActivityBean();
+			activity.setGraphId(526l);
+			service.setActivity(activity);
+
+			repository.save(service, "tester");
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			fail(ex.getMessage());

@@ -7,6 +7,7 @@ public class RouteServiceVO extends BaseVO {
 	private String  serviceId;
 	private String 	title;
 	private String	memo;
+	private String  imageUrl;
 	private String  scheduleId;
 	private String  routeId;
 
@@ -18,6 +19,7 @@ public class RouteServiceVO extends BaseVO {
 		vo.fromBean(bean);
 		vo.setTitle(bean.getTitle());
 		vo.setMemo(bean.getMemo());
+		vo.setImageUrl(bean.getImageUrl());
 		return vo;
 	}
 
@@ -63,5 +65,13 @@ public class RouteServiceVO extends BaseVO {
 
 	public void setScheduleId(String scheduleId) {
 		this.scheduleId = scheduleId;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 }

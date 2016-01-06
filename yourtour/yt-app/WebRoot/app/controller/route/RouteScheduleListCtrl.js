@@ -24,7 +24,7 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
     	   },
     	   
     	   '#ScheduleFormView #resName':{
-    		   tap:'onSceneResourceView'
+    		   tap:'onShowResourceView'
     	   },
     	   
     	   '#ScheduleFormView #address':{
@@ -53,7 +53,7 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
     
     onEditTap:function(){
 		var editController = this.getApplication().getController('route.RouteSchedulePlanCtrl');
-		editController.updateRouteSchedule();
+		editController.updateRouteSchedule(this.store);
     },
     showPage:function(routeId){
     	this.routeId = routeId;
@@ -99,7 +99,6 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
     	
     	var store = Ext.create('YourTour.store.AjaxStore', {
     	    model: 'YourTour.model.RouteActivityModel',
-    	    
     	});
     	
     	store.getProxy().setUrl(YourTour.util.Context.getContext('/routes/activity/' + record.get('id')));
@@ -107,6 +106,7 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
     		var activity = store.first();
 
     		var scheduleView = me.getScheduleFormView();
+			scheduleView.setAttrs({activity:activity});
     		
         	var headerbar = scheduleView.down('#headerbar');
         	headerbar.setTitle(activity.get('title'));
@@ -134,20 +134,19 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
         	
         	var serviceEl = scheduleView.down('#services');
         	serviceEl.setStore(activity.servicesStore);
+
+			var items = scheduleView.down('#items');
+			items.setStore(activity.itemsStore);
     	});
     },
     
-    onFoodResourceTap:function(record){
-    },
-    
-    onHotelResourceTap:function(record){
-    },
-    
-    onSceneResourceView:function(){
-    	var resType = this.resource.get('type');
-    	var resId = this.resource.get('id');
-    	
-    	this.redirectTo('/resource/' + resType + '/' + resId);
+    onShowResourceView:function(){
+		var view = this.getScheduleFormView();
+		var activity = view.getAttrs().activity;
+		var resource = activity.resourceStore.first();
+		console.log(resource);
+		var resourceController = this.getApplication().getController('ResourceMainCtrl');
+		resourceController.showResourcePage(resource.get('type'), resource.get('id'));
     },
     
     onShowResourceMap:function(){

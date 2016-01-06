@@ -668,6 +668,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.controller.user.AccountMainCtrl": [],
   "YourTour.controller.user.UserListCtrl": [],
   "YourTour.model.AlongModel": [],
+  "YourTour.model.BaseModel": [],
   "YourTour.model.BestModel": [],
   "YourTour.model.CacheModel": [],
   "YourTour.model.ChatModel": [],
@@ -684,6 +685,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.model.OptionModel": [],
   "YourTour.model.PlaceModel": [],
   "YourTour.model.ResourceModel": [],
+  "YourTour.model.RouteActivityItemModel": [],
   "YourTour.model.RouteActivityModel": [],
   "YourTour.model.RouteModel": [],
   "YourTour.model.RouteScheduleModel": [],
@@ -771,6 +773,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.resource.ResourcePlayListView": [],
   "YourTour.view.resource.ResourceSceneView": [],
   "YourTour.view.resource.ResourceSelectionView": [],
+  "YourTour.view.route.ActivityItemDataItem": [],
   "YourTour.view.route.RouteActivityEditView": [],
   "YourTour.view.route.RouteImageView": [],
   "YourTour.view.route.RouteImpressionView": [],
@@ -1582,6 +1585,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.controller.user.AccountMainCtrl": [],
   "YourTour.controller.user.UserListCtrl": [],
   "YourTour.model.AlongModel": [],
+  "YourTour.model.BaseModel": [],
   "YourTour.model.BestModel": [],
   "YourTour.model.CacheModel": [],
   "YourTour.model.ChatModel": [],
@@ -1600,6 +1604,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.model.OptionModel": [],
   "YourTour.model.PlaceModel": [],
   "YourTour.model.ResourceModel": [],
+  "YourTour.model.RouteActivityItemModel": [],
   "YourTour.model.RouteActivityModel": [],
   "YourTour.model.RouteModel": [],
   "YourTour.model.RouteScheduleModel": [],
@@ -1783,11 +1788,12 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.resource.ResourcePlayListView": [
     "widget.ResourcePlayListView"
   ],
-  "YourTour.view.resource.ResourceSceneView": [
-    "widget.ResourceSceneView"
-  ],
+  "YourTour.view.resource.ResourceSceneView": [],
   "YourTour.view.resource.ResourceSelectionView": [
     "widget.SelectionListView"
+  ],
+  "YourTour.view.route.ActivityItemDataItem": [
+    "widget.ActivityItemDataItem"
   ],
   "YourTour.view.route.RouteActivityEditView": [],
   "YourTour.view.route.RouteImageView": [],

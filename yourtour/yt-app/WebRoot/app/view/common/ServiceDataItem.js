@@ -3,14 +3,37 @@ Ext.define('YourTour.view.common.ServiceDataItem', {
     xtype: 'ServiceDataItem',
     requires:['Ext.Label','Ext.field.Select','Ext.Panel'],
     config: {
-    	cls:'row underline nav_arrow',
-    	items:[
+		cls:'underline',
+		layout:'hbox',
+		padding:'5 5 5 5',
+		items:[
 			{
-				xtype:'label',
-				cls:'font-medium font-grey',
-				itemId:'title',
-			}   
-    	]
+				itemId : 'image',
+				xtype : 'image',
+				mode : 'tag',
+				margin:'0 10 0 0'
+			},
+
+			{
+				xtype:'panel',
+				layout:'vbox',
+				fit:1,
+				items:[
+					{
+						xtype:'label',
+						itemId:'title',
+						cls:'font-medium font-grey',
+					} ,
+
+					{
+						xtype:'label',
+						cls:'font-medium font-grey multilineinfo',
+						flex:1,
+						itemId:'memo',
+					}
+				]
+			}
+		]
     },
     
    	/**
@@ -20,8 +43,14 @@ Ext.define('YourTour.view.common.ServiceDataItem', {
     updateRecord: function(record) {
        var me = this;
        if(record){
-    	   var titleEl = me.down('#title');
-    	   titleEl.setHtml(record.get('title'));
+		   var image = me.down('#image');
+		   image.setHtml("<img src='" + YourTour.util.Context.getImageResource(record.get('imageUrl')) + "' style='height:75px'>");
+
+		   var title = me.down('#title');
+		   title.setHtml(record.get('title'));
+
+		   var memo = me.down('#memo');
+		   memo.setHtml(Ext.String.ellipsis(record.get('memo'),40,false));
        }
     }   
 });
