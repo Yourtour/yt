@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.route.RouteScheduleListView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Panel', 'YourTour.view.route.RouteScheduleDataView', 'YourTour.view.route.RouteScheduleDataListItem', 'YourTour.view.widget.XHeaderBar'],
+    requires:['Ext.Panel', 'YourTour.view.route.RouteScheduleListDataItem', 'YourTour.view.widget.XHeaderBar'],
     xtype: 'RouteScheduleListView',
     config: {
     	id:'RouteScheduleListView',
@@ -54,11 +54,10 @@ Ext.define('YourTour.view.route.RouteScheduleListView', {
 	    	
     		{
     			itemId:'RouteScheduleList',
-    			xtype:'RouteScheduleDataView',
-    			readonly:false,
+    			xtype:'dataview',
     			scrollable:null,
 		        useComponents: true,
-		        defaultType: 'RouteScheduleDataListItem'
+		        defaultType: 'RouteScheduleListDataItem'
     		}
         ]
     }

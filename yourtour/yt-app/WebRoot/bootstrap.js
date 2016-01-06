@@ -634,6 +634,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.ux.parse.Store": [],
   "Ext.ux.parse.association.Pointer": [],
   "Ext.ux.parse.association.Relation": [],
+  "Ext.ux.picker.Time": [],
   "Ext.viewport.Android": [],
   "Ext.viewport.Default": [],
   "Ext.viewport.Ios": [],
@@ -784,10 +785,11 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.route.RouteRecommendDataItem": [],
   "YourTour.view.route.RouteRecommendIntroductionView": [],
   "YourTour.view.route.RouteRecommendListView": [],
-  "YourTour.view.route.RouteScheduleDataListItem": [],
   "YourTour.view.route.RouteScheduleDataView": [],
   "YourTour.view.route.RouteScheduleEditView": [],
+  "YourTour.view.route.RouteScheduleListDataItem": [],
   "YourTour.view.route.RouteScheduleListView": [],
+  "YourTour.view.route.RouteSchedulePlanDataItem": [],
   "YourTour.view.route.RouteSchedulePlanView": [],
   "YourTour.view.route.RouteScheduleReferenceListView": [],
   "YourTour.view.route.RouteScheduleView": [],
@@ -836,6 +838,12 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.XShare": [],
   "YourTour.view.widget.XTextArea": [],
   "YourTour.view.widget.XTextField": [],
+  "YourTour.view.widget.XTimeField": [
+    "Ext.form.TimePicker"
+  ],
+  "YourTour.view.widget.XTimePicker": [
+    "Ext.TimePicker"
+  ],
   "YourTour.view.widget.XTitleBar": [],
   "YourTour.view.widget.XToolbar": [],
   "YourTour.view.widget.XVerticalLine": []
@@ -1551,6 +1559,9 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.ux.parse.association.Relation": [
     "association.relation"
   ],
+  "Ext.ux.picker.Time": [
+    "widget.timepicker"
+  ],
   "Ext.viewport.Android": [],
   "Ext.viewport.Default": [
     "widget.viewport"
@@ -1811,15 +1822,18 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.route.RouteRecommendIntroductionView": [],
   "YourTour.view.route.RouteRecommendListView": [],
-  "YourTour.view.route.RouteScheduleDataListItem": [
-    "widget.RouteScheduleDataListItem"
-  ],
   "YourTour.view.route.RouteScheduleDataView": [
     "widget.RouteScheduleDataView"
   ],
   "YourTour.view.route.RouteScheduleEditView": [],
+  "YourTour.view.route.RouteScheduleListDataItem": [
+    "widget.RouteScheduleListDataItem"
+  ],
   "YourTour.view.route.RouteScheduleListView": [
     "widget.RouteScheduleListView"
+  ],
+  "YourTour.view.route.RouteSchedulePlanDataItem": [
+    "widget.RouteSchedulePlanDataItem"
   ],
   "YourTour.view.route.RouteSchedulePlanView": [
     "widget.RouteSchedulePlanView"
@@ -1950,6 +1964,12 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.widget.XTextField": [
     "widget.xtextfield"
+  ],
+  "YourTour.view.widget.XTimeField": [
+    "widget.timepickerfield"
+  ],
+  "YourTour.view.widget.XTimePicker": [
+    "widget.timepicker"
   ],
   "YourTour.view.widget.XTitleBar": [
     "widget.xtitlebar"

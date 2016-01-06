@@ -1,6 +1,6 @@
-Ext.define('YourTour.view.route.RouteScheduleDataListItem', {
+Ext.define('YourTour.view.route.RouteSchedulePlanDataItem', {
     extend: 'Ext.dataview.component.DataItem',
-    xtype: 'RouteScheduleDataListItem',
+    xtype: 'RouteSchedulePlanDataItem',
     requires:['Ext.Label','Ext.field.Select','Ext.Panel'],
     config: {
     	longpressed:false,
@@ -35,30 +35,12 @@ Ext.define('YourTour.view.route.RouteScheduleDataListItem', {
     			layout:'hbox',
 				cls:'scheduleItem',
     			items:[
-    				{
-		    			xtype : 'image',
-		    			mode : 'tag',
-		    			cls:'icon',
-		    			src :'resources/icons/icon_prepare_item.png'
-    				},
-    				{
-    					xtype:'panel',
-    					layout:'vbox',
-    					flex:1,
-    					items:[
-		    				{
-		    					xtype:'label',
-		    					itemId:'title',
-		    					cls:'title'
-		    				},
-		    				{
-		    					xtype:'label',
-		    					itemId:'memo',
-		    					hidden:true,
-		    					cls:'content memo'
-		    				}
-		    			]
-    				}
+					{
+						xtype:'label',
+						itemId:'title',
+						cls:'title icon_todo',
+						padding:'0 0 0 50'
+					}
     			]
     		},
     		
@@ -72,7 +54,6 @@ Ext.define('YourTour.view.route.RouteScheduleDataListItem', {
     				{
     					xtype:'label',
     					itemId:'title',
-    					flex:1,
     					cls:'title strong'
     				}
     			]
@@ -90,61 +71,7 @@ Ext.define('YourTour.view.route.RouteScheduleDataListItem', {
 						itemId:'title',
 						cls:'title',
 						padding:'0 0 0 50'
-					},
-
-    				{
-    					xtype:'panel',
-    					layout:'vbox',
-						padding:'0 0 0 50',
-    					items:[
-							{
-								xtype:'panel',
-								layout:'hbox',
-								cls:'content',
-								items:[
-									{
-										xtype: 'image',
-										src: 'resources/images/raty_32.png',
-										mode: 'tag'
-									},
-									{
-										xtype: 'label',
-										margin:'0 0 0 10',
-										itemId: 'commentNum',
-										html:'120条点评'
-									},
-									{
-										xtype:'spacer',
-										flex:1
-									},
-									{
-										xtype: 'label',
-										itemId: 'price',
-										cls:'font-remark',
-										html:'¥ 450元/人/天'
-									}
-								]
-							},
-
-							{
-								xtype : 'image',
-								itemId:'resImage',
-								mode : 'tag'
-							},
-
-		    				{
-    							xtype:'label',
-    							itemId:'time',
-    							cls:'content'
-    						},
-		    				{
-		    					xtype:'label',
-		    					itemId:'memo',
-		    					hidden:true,
-		    					cls:'content strong'
-		    				}
-		    			]
-    				}
+					}
     			]
     		}
     	]
@@ -176,12 +103,6 @@ Ext.define('YourTour.view.route.RouteScheduleDataListItem', {
        			
        			var title = panel.down('#title');
        			title.setHtml(record.get('title'));
-       			
-       			if(record.get('memo') != ''){
-	       			var memo = panel.down('#memo');
-	       			memo.setHtml(record.get('memo'));
-	       			memo.show();
-       			}
        		}else if(type == 'Schedule'){
        			panel = me.down('#dayPanel');
        			panel.show();
@@ -204,24 +125,6 @@ Ext.define('YourTour.view.route.RouteScheduleDataListItem', {
 				}else if(resourceType == 'traffic'){
 					title.addCls('icon_restaurant');
 				}
-
-				var resImage = panel.down('#resImage');
-				resImage.setHtml("<img src='" + record.get('imageUrl') + "' style='width:100%; max-height:100px'>");
-
-				var price = panel.down('#price');
-				price.setHtml(record.get('price'));
-
-				var commentNum = panel.down('#commentNum');
-				commentNum.setHtml(record.get('commentNum') + '条点评');
-
-       			if(record.get('memo') != ''){
-	       			var memo = panel.down('#memo');
-	       			memo.setHtml(Ext.String.ellipsis(record.get('memo'),70,false));
-	       			memo.show();
-       			}
-       			
-       			var time = panel.down('#time');
-       			time.setHtml(record.get('startTime') + '至' + record.get('endTime'));
        		}
        		
        		me.element.on('longpress', function(e){

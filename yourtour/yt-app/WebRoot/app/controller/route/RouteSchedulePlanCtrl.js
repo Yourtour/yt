@@ -604,26 +604,15 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     	var resourceType = view.down('#resourceType');
     	resourceType.setValue(record.get('resourceType'));
     	
-    	var imageUrl = view.down('#imageUrl');
- 	   	imageUrl.setHtml("<img src='" + record.get('imageUrl') + "' style='width:100%; max-height:150px'>");
- 	   
  	   	var title = view.down('#title');
  	    title.setValue(record.get('title'));
  	    
  	    var memo = view.down('#memo');
  	    memo.setValue(record.get('memo'));
  	    
- 	    var startHour = view.down('#startHourSelect');
- 	    var startMin = view.down('#startMinSelect');
  	    var startTime = record.get('startTime');
- 	    startHour.setValue(startTime.substring(0,2));
- 	    startMin.setValue(startTime.substring(3));
- 	    
- 	    var endHour = view.down('#endHourSelect');
- 	    var endMin = view.down('#endMinSelect');
+
  	    var endTime = record.get('endTime');
- 	    endHour.setValue(endTime.substring(0,2));
- 	    endMin.setValue(endTime.substring(3));
     },
     
     /**

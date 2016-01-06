@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.route.RouteRecommendIntroductionView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Panel','Ext.Img','Ext.DataView','YourTour.view.route.RouteScheduleDataListItem','YourTour.view.widget.HSpacer', 'YourTour.view.widget.XPanel', 'YourTour.view.widget.XButton','YourTour.view.widget.XField','YourTour.view.widget.XLabel', ,'YourTour.view.widget.XHeaderBar', 'YourTour.view.line.LineResourceItem'],
+    requires:['Ext.Panel','Ext.Img','Ext.DataView','YourTour.view.route.RouteScheduleListDataItem','YourTour.view.widget.HSpacer', 'YourTour.view.widget.XPanel', 'YourTour.view.widget.XButton','YourTour.view.widget.XField','YourTour.view.widget.XLabel', ,'YourTour.view.widget.XHeaderBar', 'YourTour.view.line.LineResourceItem'],
     config: {
     	id:'RouteRecommendIntroductionView',
       	layout:'vbox',
@@ -171,7 +171,7 @@ Ext.define('YourTour.view.route.RouteRecommendIntroductionView', {
 						itemId:'scheduleList',
 						flex:1,
 						useComponents:true,
-						defaultType:'RouteScheduleDataListItem',
+						defaultType:'RouteScheduleListDataItem',
 						scrollable: {
 							direction: 'vertical',
 							indicators: false

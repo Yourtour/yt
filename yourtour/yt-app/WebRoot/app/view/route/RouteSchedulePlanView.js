@@ -1,14 +1,10 @@
 Ext.define('YourTour.view.route.RouteSchedulePlanView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Panel', 'YourTour.view.route.RouteScheduleDataView', 'YourTour.view.route.RouteScheduleDataListItem', 'YourTour.view.widget.XHeaderBar','YourTour.view.widget.XButton'],
+    requires:['Ext.Panel', 'YourTour.view.route.RouteSchedulePlanDataItem', 'YourTour.view.widget.XHeaderBar','YourTour.view.widget.XButton'],
     xtype: 'RouteSchedulePlanView',
     config: {
     	id:'RouteSchedulePlanView',
     	layout:'vbox',
-		scrollable: {
-    	    direction: 'vertical',
-    	    indicators: false	
-    	},    	
     	items:[
     		{    
 				xtype: 'xheaderbar',
@@ -33,11 +29,14 @@ Ext.define('YourTour.view.route.RouteSchedulePlanView', {
 			
 			{
     			itemId:'RouteScheduleList',
-    			xtype:'RouteScheduleDataView',
-    			readonly:false,
-    			scrollable:null,
+    			xtype:'dataview',
+				flex:1,
+				scrollable: {
+					direction: 'vertical',
+					indicators: false	,
+				},
 		        useComponents: true,
-		        defaultType: 'RouteScheduleDataListItem'
+		        defaultType: 'RouteSchedulePlanDataItem'
     		},
     		
     		{
