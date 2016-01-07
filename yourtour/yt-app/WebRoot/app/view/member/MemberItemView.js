@@ -32,7 +32,7 @@ Ext.define('YourTour.view.member.MemberItemView', {
    				itemId : 'imageDel',
 				xtype : 'image',
 				hidden:true,
-				src:'resources/icons/icon_delete.png',
+				src:'resources/icons/icon-delete.png',
 				mode : 'tag'
 					
     		}

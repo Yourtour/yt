@@ -36,7 +36,7 @@ Ext.define('YourTour.view.route.RouteScheduleListDataItem', {
 					{
 						xtype:'label',
 						itemId:'title',
-						cls:'title icon_todo',
+						cls:'title icon-todo',
 						padding:'0 0 0 50'
 					},
 
@@ -175,11 +175,11 @@ Ext.define('YourTour.view.route.RouteScheduleListDataItem', {
 				title.setHtml(record.get('title'));
 				var resourceType = record.get('resourceType');
 				if(resourceType == 'SCENE'){
-					title.addCls('icon_scene');
+					title.addCls('icon-scene');
 				}else if(resourceType == 'HOTEL'){
-					title.addCls('icon_hotel');
+					title.addCls('icon-hotel');
 				}else if(resourceType == 'FOOD'){
-					title.addCls('icon_food');
+					title.addCls('icon-food');
 				}else if(resourceType == 'traffic'){
 					title.addCls('icon_restaurant');
 				}

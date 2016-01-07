@@ -1,6 +1,7 @@
 package com.yt.business.repository;
 
 import com.yt.business.CrudAllInOneOperateImpl;
+import com.yt.business.bean.ExpertServiceBean;
 import com.yt.business.bean.RouteMemberBean;
 import com.yt.business.bean.RouteServiceBean;
 import com.yt.business.neo4j.repository.RouteMemberBeanRepository;
@@ -21,7 +22,7 @@ public class RouteServiceRepositoryImpl extends CrudAllInOneOperateImpl implemen
 	private RouteServiceBeanRepository routeServiceBeanRepository;
 
 	@Override
-	public List<RouteServiceBean> getServices(Long expertId) throws Exception {
+	public List<ExpertServiceBean> getServices(Long expertId) throws Exception {
 		return routeServiceBeanRepository.getServices(expertId);
 	}
 }

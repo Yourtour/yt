@@ -27,21 +27,21 @@ Ext.define('YourTour.view.setting.UserSettingView', {
 					{
 						xtype:'xlabel',
 						padding:'0 10 0 40',
-						cls:'row underline font-medium font-grey nav_arrow',
+						cls:'row underline font-medium font-grey nav-arrow',
 						html:'推送设置',
 					},
 
 					{
 						xtype:'xlabel',
 						padding:'0 10 0 40',
-						cls:'row underline font-medium font-grey nav_arrow',
+						cls:'row underline font-medium font-grey nav-arrow',
 						html:'位置分享',
 					},
 
 					{
 						xtype:'xlabel',
 						padding:'0 10 0 40',
-						cls:'row underline font-medium font-grey nav_arrow',
+						cls:'row underline font-medium font-grey nav-arrow',
 						html:'清除缓存',
 					},
 				]
@@ -63,35 +63,35 @@ Ext.define('YourTour.view.setting.UserSettingView', {
 					{
 						xtype:'xlabel',
 						padding:'0 10 0 40',
-						cls:'row underline font-medium font-grey nav_arrow',
+						cls:'row underline font-medium font-grey nav-arrow',
 						html:'版本检查',
 					},
 
 					{
 						xtype:'xlabel',
 						padding:'0 10 0 40',
-						cls:'row underline font-medium font-grey nav_arrow',
+						cls:'row underline font-medium font-grey nav-arrow',
 						html:'意见反馈',
 					},
 
 					{
 						xtype:'xlabel',
 						padding:'0 10 0 40',
-						cls:'row underline font-medium font-grey nav_arrow',
+						cls:'row underline font-medium font-grey nav-arrow',
 						html:'游徒评价',
 					},
 
 					{
 						xtype:'xlabel',
 						padding:'0 10 0 40',
-						cls:'row underline font-medium font-grey nav_arrow',
+						cls:'row underline font-medium font-grey nav-arrow',
 						html:'游徒分享',
 					},
 
 					{
 						xtype:'xlabel',
 						padding:'0 10 0 40',
-						cls:'row underline font-medium font-grey nav_arrow',
+						cls:'row underline font-medium font-grey nav-arrow',
 						html:'关于游徒',
 					},
 				]

@@ -28,7 +28,7 @@ Ext.define('YourTour.view.route.RouteSettingItem', {
 				xtype:'image',
 				mode : 'tag',
 				margin:'0 0 0 10',
-				src:'resources/icons/icon_delete.png',
+				src:'resources/icons/icon-delete.png',
 				width:24,
 				height:24
 			}

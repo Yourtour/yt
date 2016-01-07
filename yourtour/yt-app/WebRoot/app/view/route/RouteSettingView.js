@@ -70,7 +70,7 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 					    value:new Date(),
 					    dateFormat:'Y/m/d',
 					    clearIcon: true,
-					    cls:'nav_arrow'
+					    cls:'nav-arrow'
 					}
 				]
 			},
@@ -93,7 +93,7 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 						value:new Date(),
 						dateFormat:'Y/m/d',
 						clearIcon: true,
-						cls:'nav_arrow'
+						cls:'nav-arrow'
 					}
 				]
 			},

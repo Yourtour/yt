@@ -72,6 +72,18 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
      		   tap:'onSaveScheduleActivity'
      	   },
 
+		   '#RouteActivityEditView #btnItemAdd':{
+			   tap:'onActivityItemAddTap'
+		   },
+
+		   '#RouteActivityEditView #btnServiceAdd':{
+			   tap:'onActivityServiceAddTap'
+		   },
+
+		   '#RouteActivityEditView #serviceList':{
+			   itemtap:'onActivityServiceItemTap'
+		   },
+
 	   	   '#RouteSettingView #fromPlace':{
 	   		   tap:"onFromPlaceTap"
 	   	   },
@@ -594,25 +606,40 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteActivityEditView'));
     	
     	var view = this.getRouteActivityEditView();
-    	
-    	var id = view.down('#id');
-    	id.setValue(record.get('id'));
-    	
-    	var resourceId = view.down('#resourceId');
-    	resourceId.setValue(record.get('resourceId'));
-    	
-    	var resourceType = view.down('#resourceType');
-    	resourceType.setValue(record.get('resourceType'));
-    	
- 	   	var title = view.down('#title');
- 	    title.setValue(record.get('title'));
- 	    
- 	    var memo = view.down('#memo');
- 	    memo.setValue(record.get('memo'));
- 	    
- 	    var startTime = record.get('startTime');
+		var store = Ext.create('YourTour.store.AjaxStore', {
+			model: 'YourTour.model.RouteActivityModel',
+		});
 
- 	    var endTime = record.get('endTime');
+		store.getProxy().setUrl(YourTour.util.Context.getContext('/routes/activity/' + record.get('id')));
+		store.load(function(){
+			var activity = store.first();
+			view.setAttrs({activity:activity});
+
+			var id = view.down('#id');
+			id.setValue(activity.get('id'));
+
+			var resourceId = view.down('#resourceId');
+			resourceId.setValue(activity.get('resourceId'));
+
+			var resourceType = view.down('#resourceType');
+			resourceType.setValue(activity.get('resourceType'));
+
+			var title = view.down('#title');
+			title.setValue(activity.get('title'));
+
+			var memo = view.down('#memo');
+			memo.setValue(activity.get('memo'));
+
+			var startTime = activity.get('startTime');
+
+			var endTime = activity.get('endTime');
+
+			var serviceEl = view.down('#serviceList');
+			serviceEl.setStore(activity.servicesStore);
+
+			var items = view.down('#itemList');
+			items.setStore(activity.itemsStore);
+		}, this);
     },
     
     /**
@@ -859,5 +886,76 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 			}
 		});
 
+	},
+
+	onActivityServiceAddTap:function(){
+		var serviceController = this.getApplication().getController('ServiceMainCtrl');
+
+		serviceController.showExpertServices();
+	},
+
+	onActivityItemAddTap:function(){
+		var view = this.getRouteActivityEditView();
+		var activity = view.getAttrs().activity;
+		var resource = activity.resourceStore.first();
+		var resourceId = resource.get('id');
+		var title = resource.get('title');
+
+		var controller = this.getApplication().getController('ResourceMainCtrl');
+
+		controller.showResourceActivities(title, resourceId);
+	},
+
+	onActivityServiceItemTap:function(dataview, index, item, record,e){
+		var serviceController = this.getApplication().getController('ServiceMainCtrl');
+
+		serviceController.showExpertService(record, 'cancel');
+	},
+
+	/**
+	 * 保存服务
+	 * @param service
+	 * @param handler
+	 */
+	bookService:function(service, handler){
+		var view = this.getRouteActivityEditView();
+		var activity = view.getAttrs().activity;
+		var activityId = activity.get('id');
+
+		var serviceId = service.get('id');
+
+		this.getApplication().callService({
+			url : '/routes/service/activity/' + activityId + '/' + serviceId +'/save',
+			method : "POST",
+			success : function(data) {
+				var serviceList = view.down('#serviceList');
+				var store = serviceList.getStore();
+				store.add(service);
+
+				handler();
+			},
+		});
+	},
+
+	/**
+	 * 取消服务
+	 * @param service
+	 * @param handler
+	 */
+	cancelService:function(service, handler){
+		var view = this.getRouteActivityEditView();
+
+		var serviceId = service.get('id');
+		this.getApplication().callService({
+			url : '/routes/service/' + serviceId +'/delete',
+			method : "POST",
+			success : function(data) {
+				var serviceList = view.down('#serviceList');
+				var store = serviceList.getStore();
+				store.remove(service);
+
+				handler();
+			},
+		});
 	}
 });

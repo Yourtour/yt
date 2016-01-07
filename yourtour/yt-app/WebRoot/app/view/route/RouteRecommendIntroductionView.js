@@ -116,7 +116,7 @@ Ext.define('YourTour.view.route.RouteRecommendIntroductionView', {
 								tappable:true,
 								layout:'hbox',
 								padding:'0 10 0 10',
-								cls:'underline font-grey font-medium nav_arrow',
+								cls:'underline font-grey font-medium nav-arrow',
 								items:[
 									{
 										itemId : 'expertImage',
@@ -136,7 +136,7 @@ Ext.define('YourTour.view.route.RouteRecommendIntroductionView', {
 								html:'线路特点',
 								tappable:true,
 								padding:'0 10 0 10',
-								cls:'row underline font-bold font-medium nav_arrow'
+								cls:'row underline font-bold font-medium nav-arrow'
 							},
 
 							{
@@ -156,7 +156,7 @@ Ext.define('YourTour.view.route.RouteRecommendIntroductionView', {
 								html:'推荐理由',
 								tappable:true,
 								padding:'0 10 0 10',
-								cls:'row underline font-bold font-medium nav_arrow'
+								cls:'row underline font-bold font-medium nav-arrow'
 							},
 
 							{

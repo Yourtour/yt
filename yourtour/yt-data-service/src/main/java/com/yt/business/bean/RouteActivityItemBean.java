@@ -34,6 +34,9 @@ public class RouteActivityItemBean extends BaseBeanImpl implements Cloneable{
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = RouteActivityBean.class, direction = Direction.INCOMING)
 	private transient RouteActivityBean activity = null;
 
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RELATED, type = ActivityItemBean.class, direction = Direction.OUTGOING)
+	private transient ActivityItemBean item = null;
+
 	public RouteActivityItemBean() {
 		super();
 	}
@@ -84,6 +87,14 @@ public class RouteActivityItemBean extends BaseBeanImpl implements Cloneable{
 
 	public void setActivity(RouteActivityBean activity) {
 		this.activity = activity;
+	}
+
+	public ActivityItemBean getItem() {
+		return item;
+	}
+
+	public void setItem(ActivityItemBean item) {
+		this.item = item;
 	}
 
 	@Override

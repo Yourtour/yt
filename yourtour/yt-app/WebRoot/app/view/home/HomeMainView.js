@@ -78,7 +78,7 @@ Ext.define('YourTour.view.home.HomeMainView', {
 	    		items:[
 		    		{
 		    		   xtype:'xlabel',
-					   cls:'row nav_arrow font-large underline',
+					   cls:'row nav-arrow font-large underline',
 					   html : '聊天室'
 		    		},
 		    		
@@ -101,7 +101,7 @@ Ext.define('YourTour.view.home.HomeMainView', {
 		    		{
 					   xtype:'xlabel',
 					   itemId:'moreTalent',
-					   cls:'row nav_arrow font-large underline',
+					   cls:'row nav-arrow font-large underline',
 					   html : '推荐达人',
 					   tappable :true
 		    		},
@@ -126,7 +126,7 @@ Ext.define('YourTour.view.home.HomeMainView', {
 		    		{
 					   xtype:'xlabel',
 					   itemId:'moreBest',
-					   cls:'row nav_arrow font-large underline',
+					   cls:'row nav-arrow font-large underline',
 					   html : '推荐游',
 					   tappable :true
 		    		},
@@ -150,7 +150,7 @@ Ext.define('YourTour.view.home.HomeMainView', {
 		    		{
 					   xtype:'xlabel',
 					   itemId:'moreAlong',
-					   cls:'row nav_arrow font-large underline',
+					   cls:'row nav-arrow font-large underline',
 					   html : '结伴游',
 					   tappable :true
 		    		},

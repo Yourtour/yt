@@ -1,12 +1,13 @@
 Ext.define('YourTour.view.route.RouteActivityEditView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Panel','YourTour.view.widget.XLabel','YourTour.view.widget.XTimeField','YourTour.view.widget.XField','YourTour.view.widget.ToggleField','YourTour.view.widget.XHeaderBar'],
+    requires:['Ext.Panel','YourTour.view.widget.XLabel','YourTour.view.route.RouteActivityItemDataItem','YourTour.view.route.RouteActivityItemDataItem','YourTour.view.widget.XTimeField','YourTour.view.widget.XField','YourTour.view.widget.ToggleField','YourTour.view.widget.XHeaderBar'],
     config: {
     	id:'RouteActivityEditView',
     	layout:'vbox',
-    	scrollable: {
-    	    direction: 'vertical'
-    	},
+		scrollable:{
+			direction: 'vertical',
+			indicators: false
+		},
     	items:[
 			{    
 				xtype: 'hiddenfield',
@@ -39,14 +40,14 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 			{
 				xtype:'panel',
 				layout:'hbox',
-				cls:'row underline icon_name',
+				cls:'row underline icon-name',
 				padding:'0 0 0 10',
 				items:[
 					{
 						xtype: 'xlabel',
 						itemId:'resName',
 						tappable:true,
-						cls:'font-medium font-grey nav_arrow',
+						cls:'font-medium font-grey nav-arrow',
 						flex:1,
 						margin:'0 5 0 30'
 					}
@@ -61,13 +62,13 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 			{
 				xtype:'panel',
 				layout:'hbox',
-				cls:'row underline icon_name',
+				cls:'row underline icon-name',
 				padding:'0 0 0 10',
 				items:[
 					{
 						xtype: 'xtextfield',
 						itemId:'title',
-						cls:'font-medium font-grey nav_arrow',
+						cls:'font-medium font-grey nav-arrow',
 						flex:1,
 						placeHolder:'输入活动名称',
 						margin:'0 5 0 30'
@@ -78,7 +79,7 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 			{
 				xtype:'panel',
 				layout:'hbox',
-				cls:'row underline icon_time',
+				cls:'row underline icon-time',
 				padding:'0 0 0 10',
 				items:[
 					{
@@ -109,30 +110,74 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 			{
 				xtype:'panel',
 				layout:'hbox',
-				padding:'0 5 0 5',
-				cls:'underline',
-				height:200,
+				cls:'underline icon-memo',
+				padding:'0 0 0 10',
 				items:[
 					{
-						xtype:'xlabel',
-						html: '活动概述',
-						margin:'0 10 0 0'
-					},   
-					{  
-					    xtype: 'xtextarea',  
-					    itemId:'memo',
-					    flex:1,
-					    height:195,
-					    clearIcon: true
+						xtype: 'xtextarea',
+						itemId:'memo',
+						height:195,
+						clearIcon: true,
+						flex:1,
+						cls:'font-medium font-grey multilineinfo',
+						margin:'0 5 0 30'
 					}
 				]
 			},
-			
-            {
-            	xtype:'subtitlebar',
-            	margin:'5 0 5 0',
-            	html:'事项'
-            },
+
+			{
+				xtype:'panel',
+				cls:'spacer'
+			},
+
+			{
+				xtype:'panel',
+				layout:'vbox',
+				items:[
+					{
+						xtype:'xlabel',
+						html: '安排',
+						itemId:'btnItemAdd',
+						tappable:true,
+						cls:'row underline font-medium font-grey icon-add',
+						padding:'0 0 0 5'
+					},
+					{
+						xtype: 'dataview',
+						itemId:'itemList',
+						scrollable:null,
+						useComponents: true,
+						defaultType: 'RouteActivityItemDataItem',
+					}
+				]
+			},
+
+			{
+				xtype:'panel',
+				cls:'spacer'
+			},
+
+			{
+				xtype:'panel',
+				layout:'vbox',
+				items:[
+					{
+						xtype:'xlabel',
+						itemId:'btnServiceAdd',
+						html: '服务',
+						tappable:true,
+						cls:'row underline font-medium font-grey icon-add',
+						padding:'0 0 0 5'
+					},
+					{
+						xtype: 'dataview',
+						itemId:'serviceList',
+						scrollable:null,
+						useComponents: true,
+						defaultType: 'ExpertServiceListDataItem',
+					}
+				]
+			},
             
             {
             	xtype:'xbutton',

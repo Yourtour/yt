@@ -13,5 +13,5 @@ public interface RouteServiceRepository extends CrudAllInOneOperate {
      * @return
      * @throws Exception
      */
-    public List<RouteServiceBean> getServices(Long expertId) throws Exception;
+    public List<ExpertServiceBean> getServices(Long expertId) throws Exception;
 }

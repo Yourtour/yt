@@ -28,7 +28,7 @@ Ext.define('YourTour.view.user.UserMainView', {
     			layout:'hbox',
     			itemId:'profile',
     			style:'background-color:white',
-    			cls:'nav_arrow',
+    			cls:'nav-arrow',
     			padding:10,
 				tappable:true,
     			items:[
@@ -54,7 +54,7 @@ Ext.define('YourTour.view.user.UserMainView', {
 		    			 xtype:'xlabel',
 		    			 itemId:'expert',
 		    			 padding:'0 10 0 10',
-		    			 cls:'row nav_arrow font-large underline',
+		    			 cls:'row nav-arrow font-large underline',
 		    			 html : '我是达人',
 		    			 tappable :true
 		    		},
@@ -68,7 +68,7 @@ Ext.define('YourTour.view.user.UserMainView', {
 					{
 						xtype:'xlabel',
 						itemId:'message',
-						cls:'row nav_arrow font-large underline',
+						cls:'row nav-arrow font-large underline',
 						html : '我的消息',
 						padding:'0 10 0 10',
 						tappable :true
@@ -77,7 +77,7 @@ Ext.define('YourTour.view.user.UserMainView', {
 					{
 						xtype:'xlabel',
 						itemId:'comment',
-						cls:'row nav_arrow font-large underline',
+						cls:'row nav-arrow font-large underline',
 						html : '我的点评',
 						padding:'0 10 0 10',
 						tappable :true
@@ -86,7 +86,7 @@ Ext.define('YourTour.view.user.UserMainView', {
 					{
 						xtype:'xlabel',
 						itemId:'favorite',
-						cls:'row nav_arrow font-large underline',
+						cls:'row nav-arrow font-large underline',
 						html : '我的收藏',
 						padding:'0 10 0 10',
 						tappable :true
@@ -103,7 +103,7 @@ Ext.define('YourTour.view.user.UserMainView', {
 		    			 xtype:'xlabel',
 		    			 itemId:'equity',
 		    			 padding:'0 10 0 10',
-		    			 cls:'row nav_arrow font-large underline',
+		    			 cls:'row nav-arrow font-large underline',
 		    			 html : '我的权益',
 		    			 tappable :true
 		    		},
@@ -111,7 +111,7 @@ Ext.define('YourTour.view.user.UserMainView', {
 		    		{
 			   			xtype:'xlabel',
 			   			itemId:'order',
-			   			cls:'row nav_arrow font-large underline',
+			   			cls:'row nav-arrow font-large underline',
 			   			html : '我的订单',
 			   			padding:'0 10 0 10',
 			   			tappable :true
@@ -120,7 +120,7 @@ Ext.define('YourTour.view.user.UserMainView', {
 		    		{
 			   			xtype:'xlabel',
 			   			itemId:'footprint',
-			   			cls:'row nav_arrow font-large underline',
+			   			cls:'row nav-arrow font-large underline',
 			   			html : '我的足迹',
 			   			padding:'0 10 0 10',
 			   			tappable :true
@@ -129,7 +129,7 @@ Ext.define('YourTour.view.user.UserMainView', {
 		    		{
 			   			xtype:'xlabel',
 			   			itemId:'charge',
-			   			cls:'row nav_arrow font-large underline',
+			   			cls:'row nav-arrow font-large underline',
 			   			html : '我的费用',
 			   			padding:'0 10 0 10',
 			   			tappable :true

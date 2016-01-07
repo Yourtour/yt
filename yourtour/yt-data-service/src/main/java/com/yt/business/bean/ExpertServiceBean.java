@@ -15,19 +15,27 @@ public class ExpertServiceBean extends BaseBeanImpl {
 
 	@HbaseColumn(name = "title")
 	private String title; // 服务名称
-	private String free;
+	private String category;
+	private String imageUrl;
+	private String fee;
+	private String currency;
 	private String feeIncluding;
 	private String feeExcluding;
 	private String withdraw;
+	private String imageUrls;
 
 	@HbaseColumn(name = "memo")
 	private String memo; // 服务描述
 
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_BELONG, type = UserProfileBean.class, direction = Direction.OUTGOING)
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = UserProfileBean.class, direction = Direction.INCOMING)
 	private transient UserProfileBean user = null; // 服务相关达人
 
 	public ExpertServiceBean() {
 		super();
+	}
+
+	public ExpertServiceBean(String userId) {
+		super(userId);
 	}
 
 	public String getTitle() {
@@ -70,12 +78,44 @@ public class ExpertServiceBean extends BaseBeanImpl {
 		this.memo = memo;
 	}
 
-	public String getFree() {
-		return free;
+	public String getCurrency() {
+		return currency;
 	}
 
-	public void setFree(String free) {
-		this.free = free;
+	public void setCurrency(String currency) {
+		this.currency = currency;
+	}
+
+	public String getFee() {
+		return fee;
+	}
+
+	public void setFee(String fee) {
+		this.fee = fee;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	public String getImageUrls() {
+		return imageUrls;
+	}
+
+	public void setImageUrls(String imageUrls) {
+		this.imageUrls = imageUrls;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public UserProfileBean getUser() {

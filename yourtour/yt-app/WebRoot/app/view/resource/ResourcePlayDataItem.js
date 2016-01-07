@@ -29,7 +29,7 @@ Ext.define('YourTour.view.resource.ResourcePlayDataItem', {
 								xtype: "xfield", 
 								itemId:'name',
 								height:20,
-								cls:'font-bold font-medium nav_arrow'
+								cls:'font-bold font-medium nav-arrow'
 							},
 							{
 								xtype: "xfield", 

@@ -11,16 +11,10 @@ import com.yt.neo4j.annotation.Neo4jRelationship;
 
 @HbaseTable(name = "T_ROUTE_SERVICE")
 @NodeEntity
-public class RouteServiceBean extends BaseBeanImpl {
+public class RouteServiceBean extends ExpertServiceBean {
 	private static final long serialVersionUID = 6259294378320824143L;
 
-	@HbaseColumn(name = "title")
-	private String title; // 行程活动名称
-
-	@HbaseColumn(name = "memo")
-	private String memo; // 行程活动备注
-
-	private String imageUrl;
+	private String status;
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RELATED, type = RouteMainBean.class, direction = Direction.OUTGOING)
 	private transient ExpertServiceBean service = null; // 行程活动关联的行程日程
@@ -38,28 +32,8 @@ public class RouteServiceBean extends BaseBeanImpl {
 		super();
 	}
 
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getMemo() {
-		return memo;
-	}
-
-	public void setMemo(String memo) {
-		this.memo = memo;
-	}
-
-	public String getImageUrl() {
-		return imageUrl;
-	}
-
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
+	public RouteServiceBean(String userId) {
+		super(userId);
 	}
 
 	public RouteMainBean getRoute() {
@@ -92,5 +66,13 @@ public class RouteServiceBean extends BaseBeanImpl {
 
 	public void setService(ExpertServiceBean service) {
 		this.service = service;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

@@ -5,9 +5,7 @@ import static org.junit.Assert.fail;
 
 import java.util.Date;
 
-import com.yt.business.bean.RouteActivityBean;
-import com.yt.business.bean.RouteActivityItemBean;
-import com.yt.business.bean.RouteServiceBean;
+import com.yt.business.bean.*;
 import com.yt.business.neo4j.repository.UserAccountBeanRepository;
 import com.yt.business.repository.RouteRepository;
 import org.junit.After;
@@ -16,7 +14,6 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.yt.business.bean.AlongBean;
 import com.yt.business.common.Constants.AlongIntentionType;
 import com.yt.neo4j.repository.CrudGeneralOperate;
 import com.yt.neo4j.repository.CrudOperate;
@@ -49,13 +46,17 @@ public class DataGenerator {
 		try {
 			Date now = new Date();
 
-			RouteServiceBean service = new RouteServiceBean();
-			service.setTitle("买票服务");
-			service.setMemo("买票服务");
+			ExpertServiceBean service = new ExpertServiceBean();
+			service.setTitle("包车");
+			service.setImageUrl("resources/icons/icon_service.png");
+			service.setFee("1280元/天");
+			service.setFeeIncluding("接送机没有固定服务时间，根据您的航班时间和上下车地址来决定|小费油费，停车费，过路费，高速费，车辆使用费");
+			service.setFeeExcluding("个人消费及其他未提及的费用，因提前或延后接送产生的费用");
+			service.setWithdraw("到达日之前3天取消预订，退全款");
 
-			RouteActivityBean activity = new RouteActivityBean();
-			activity.setGraphId(526l);
-			service.setActivity(activity);
+			UserProfileBean user = new UserProfileBean();
+			user.setGraphId(282l);
+			service.setUser(user);
 
 			repository.save(service, "tester");
 		} catch (Exception ex) {

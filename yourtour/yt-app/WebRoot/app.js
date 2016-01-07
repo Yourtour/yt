@@ -26,16 +26,17 @@ Ext.application({
     
     views: [
         'MainView','Launch','setting.UserSettingView',
-        'common.PlaceSelectionView','common.MessageMainView','common.MessageGroupView','common.ServiceFormView','common.FieldEditView','common.ContentReadView',
+        'common.PlaceSelectionView','common.MessageMainView','common.MessageGroupView','common.FieldEditView','common.ContentReadView',
+        'common.ExpertServiceListView','common.ExpertServiceFormView',
 
         'home.HomeMainView', 'home.BestListView', 'home.AlongListView', 'home.AlongDetailView', 'home.TalentListView', 'SearchMain',
         'route.RouteMainView','route.RouteSettingView','route.RouteImpressionView','route.RouteImageView',
-        'route.RouteScheduleListView', 'route.RouteSchedulePlanView','route.RouteScheduleReferenceListView','route.ScheduleFormView',
+        'route.RouteScheduleListView', 'route.RouteSchedulePlanView','route.RouteScheduleReferenceListView','route.RouteScheduleFormView',
         'route.RouteProvisionView','route.RouteProvisionEditView','route.RouteScheduleEditView','route.RouteScheduleView',
         'route.RouteActivityEditView',
         'route.RouteRecommendListView','route.RouteRecommendIntroductionView',
         'user.LoginMainView','user.UserListView','user.UserMainView','user.UserProfileView',
-        'resource.ResourceSelectionView','resource.ResourceDetailView','resource.ResourceSceneView','resource.ResourceMapView',
+        'resource.ResourceSelectionView','resource.ResourceDetailView','resource.ResourceSceneView','resource.ResourceMapView','resource.ResourceActivityItemListView',
         'member.MemberMainView','member.MemberAddView','member.MemberPositionView','member.MemberSearchView',
         'expert.ExpertMainView','expert.ExpertApplyView','expert.ExpertIntroView','expert.ExpertListView','expert.ExpertServiceEditView',
         'community.LiveMainView',
@@ -55,7 +56,7 @@ Ext.application({
     
     models:[
         'LaunchModel','RouteModel','RouteActivityModel', 'LineModel', 'UserModel','OptionModel', 'HomeModel','LiveModel','ChatModel','AlongModel','TalentModel','HomeCarouselModel','CommentModel', 'PlaceModel',
-        'CacheModel','ServiceModel','RouteActivityItemModel'
+        'CacheModel','RouteActivityItemModel','ExpertServiceModel'
     ],
     
     stores:[
@@ -86,15 +87,7 @@ Ext.application({
     	}catch(e){
     		alert(e.name + ":" + e.message);
     	}   
-    	
-    	//设置AJAX请求公用信息
-    	Ext.Ajax.failure = function(response) {
-	    	alert('failure=' + response.responseText);
-	    	
-	        var respObj = Ext.JSON.decode(response.responseText);
-	        Ext.Msg.alert("Error", respObj.status.statusMessage);
-	    };
-	    
+
     	Ext.Ajax.on('beforerequest', (function(conn, options, eOpts) {
     		var localStore =  Ext.StoreManager.get('LocalStore');
         	localStore.load();
@@ -209,4 +202,31 @@ Ext.application({
             }
         );
     },
+
+    callService:function(options){
+        var request = {
+            url : YourTour.util.Context.getContext(options.url),
+            method : options.method,
+            success : function(response) {
+                var respObj = Ext.JSON.decode(response.responseText);
+                if(respObj.errorCode != '0'){
+                    Ext.Msg.alert(resp.errorText);
+                    return;
+                };
+
+                options.success(respObj.data)
+            },
+
+            failure : function(response) {
+                var respObj = Ext.JSON.decode(response.responseText);
+                Ext.Msg.alert("Error", respObj.status.statusMessage);
+            }
+        };
+
+        if(options.data){
+            request.push({param: Ext.JSON.encode(request.data)})
+        }
+
+        Ext.Ajax.request(request);
+    }
 });

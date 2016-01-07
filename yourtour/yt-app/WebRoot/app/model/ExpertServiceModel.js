@@ -1,17 +1,18 @@
-Ext.define('YourTour.model.ServiceModel', {
-    extend: 'Ext.data.Model',
+Ext.define('YourTour.model.ExpertServiceModel', {
+    extend: 'YourTour.model.BaseModel',
     config:{
-    	idProperty:'id',
-    	
 	    fields:[
 			{name:'id', type:'string'},
 			{name:'title', type:'string'},
 			{name:'imageUrl', type:'string'},
-			{name:'free', type:'string'},
+			{name:'imageUrls', type:'string'},
+			{name:'fee', type:'string'},
 			{name:'withdraw', type:'string'},
 			{name:'feeIncluding', type:'string'},
 			{name:'feeExcluding', type:'string'},
-			{name:'memo', type:'string'}
+			{name:'memo', type:'string'},
+			{name:'status', type:'string'},
+			{name:'serviceId', type:'string'}
 	    ]
     }
 });

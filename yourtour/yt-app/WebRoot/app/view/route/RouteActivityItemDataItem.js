@@ -1,11 +1,11 @@
-Ext.define('YourTour.view.route.ActivityItemDataItem', {
+Ext.define('YourTour.view.route.RouteActivityItemDataItem', {
     extend: 'Ext.dataview.component.DataItem',
-    xtype: 'ActivityItemDataItem',
+    xtype: 'RouteActivityItemDataItem',
     requires:['Ext.Label','Ext.field.Select','Ext.Panel'],
     config: {
-    	cls:'underline',
 		layout:'hbox',
-		padding:'5 5 5 5',
+		padding:'10 5 10 5',
+		cls:'underline',
     	items:[
 			{
 				itemId : 'image',
@@ -17,7 +17,7 @@ Ext.define('YourTour.view.route.ActivityItemDataItem', {
 			{
 				xtype:'panel',
 				layout:'vbox',
-				fit:1,
+				flex:1,
 				items:[
 					{
 						xtype:'label',
@@ -27,9 +27,8 @@ Ext.define('YourTour.view.route.ActivityItemDataItem', {
 
 					{
 						xtype:'label',
-						cls:'font-medium font-grey multilineinfo',
-						flex:1,
 						itemId:'memo',
+						cls:'font-medium font-grey multilineinfo'
 					}
 				]
 			}
@@ -50,7 +49,7 @@ Ext.define('YourTour.view.route.ActivityItemDataItem', {
     	   title.setHtml(record.get('title'));
 
 		   var memo = me.down('#memo');
-		   memo.setHtml(Ext.String.ellipsis(record.get('memo'),40,false));
+		   memo.setHtml(Ext.String.ellipsis(record.get('memo'),30,false));
        }
     }   
 });

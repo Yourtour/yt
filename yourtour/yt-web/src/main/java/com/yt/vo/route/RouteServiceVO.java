@@ -2,12 +2,10 @@ package com.yt.vo.route;
 
 import com.yt.business.bean.RouteServiceBean;
 import com.yt.vo.BaseVO;
+import com.yt.vo.member.ExpertServiceVO;
 
-public class RouteServiceVO extends BaseVO {
+public class RouteServiceVO extends ExpertServiceVO {
 	private String  serviceId;
-	private String 	title;
-	private String	memo;
-	private String  imageUrl;
 	private String  scheduleId;
 	private String  routeId;
 
@@ -15,12 +13,18 @@ public class RouteServiceVO extends BaseVO {
 		if (bean == null) {
 			return null;
 		}
-		RouteServiceVO vo = new RouteServiceVO();
-		vo.fromBean(bean);
-		vo.setTitle(bean.getTitle());
-		vo.setMemo(bean.getMemo());
-		vo.setImageUrl(bean.getImageUrl());
-		return vo;
+		RouteServiceVO valueObject = new RouteServiceVO();
+		valueObject.setId(bean.getGraphId());
+		valueObject.setFee(bean.getFee());
+		valueObject.setTitle(bean.getTitle());
+		valueObject.setMemo(bean.getMemo());
+		valueObject.setWithdraw(bean.getWithdraw());
+		valueObject.setFeeExcluding(bean.getFeeExcluding());
+		valueObject.setFeeIncluding(bean.getFeeIncluding());
+		valueObject.setImageUrl(bean.getImageUrl());
+		valueObject.setImageUrls(bean.getImageUrls());
+
+		return valueObject;
 	}
 
 	public RouteServiceVO() {
@@ -33,22 +37,6 @@ public class RouteServiceVO extends BaseVO {
 
 	public void setServiceId(String serviceId) {
 		this.serviceId = serviceId;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getMemo() {
-		return memo;
-	}
-
-	public void setMemo(String memo) {
-		this.memo = memo;
 	}
 
 	public String getRouteId() {
@@ -65,13 +53,5 @@ public class RouteServiceVO extends BaseVO {
 
 	public void setScheduleId(String scheduleId) {
 		this.scheduleId = scheduleId;
-	}
-
-	public String getImageUrl() {
-		return imageUrl;
-	}
-
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
 	}
 }

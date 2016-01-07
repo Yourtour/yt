@@ -1,8 +1,8 @@
-Ext.define('YourTour.view.route.ScheduleFormView', {
+Ext.define('YourTour.view.route.RouteScheduleFormView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Panel','YourTour.view.widget.XLabel','YourTour.view.route.ActivityItemDataItem','YourTour.view.widget.XVerticalLine','YourTour.view.common.ServiceDataItem','YourTour.view.widget.XHeaderBar'],
+    requires:['Ext.Panel','YourTour.view.widget.XLabel','YourTour.view.route.RouteActivityItemDataItem','YourTour.view.widget.XVerticalLine','YourTour.view.common.ExpertServiceListDataItem','YourTour.view.widget.XHeaderBar'],
     config: {
-    	id:'ScheduleFormView',
+    	id:'RouteScheduleFormView',
     	layout:'vbox',
 		scrollable:{
 			direction: 'vertical',
@@ -23,14 +23,14 @@ Ext.define('YourTour.view.route.ScheduleFormView', {
 			{
 				xtype:'panel',
 				layout:'hbox',
-				cls:'row underline icon_name',
+				cls:'row underline icon-name',
 				padding:'0 0 0 10',
 				items:[
 					{
 						xtype: 'xlabel',
 						itemId:'resName',
 						tappable:true,
-						cls:'font-medium font-grey nav_arrow',
+						cls:'font-medium font-grey nav-arrow',
 						flex:1,
 						margin:'0 5 0 30'
 					}
@@ -41,12 +41,12 @@ Ext.define('YourTour.view.route.ScheduleFormView', {
 				xtype:'panel',
 				layout:'hbox',
 				padding:'0 0 0 10',
-				cls:'row underline icon_position',
+				cls:'row underline icon-position',
 				items:[
 					{
 						xtype: 'xlabel',
 						itemId:'address',
-						cls:'font-medium font-grey nav_arrow',
+						cls:'font-medium font-grey nav-arrow',
 						flex:1,
 						tappable:true,
 						margin:'0 5 0 30'
@@ -57,13 +57,13 @@ Ext.define('YourTour.view.route.ScheduleFormView', {
 			{
 				xtype:'panel',
 				layout:'hbox',
-				cls:'row underline icon_phone',
+				cls:'row underline icon-phone',
 				padding:'0 0 0 10',
 				items:[
 					{
 						xtype: 'label',
 						itemId:'phone',
-						cls:'font-medium font-grey nav_arrow',
+						cls:'font-medium font-grey nav-arrow',
 						flex:1,
 						margin:'0 5 0 30'
 					}
@@ -78,14 +78,15 @@ Ext.define('YourTour.view.route.ScheduleFormView', {
 			{
 				xtype:'panel',
 				layout:'hbox',
-				cls:'row underline icon_time',
+				cls:'row underline icon-time',
 				padding:'0 0 0 10',
 				items:[
 					{
 						xtype: 'label',
 						itemId:'time',
 						cls:'font-medium font-grey',
-						margin:'0 5 0 30'
+						margin:'0 5 0 30',
+						flex:1
 					}
 				]
 			},
@@ -93,19 +94,15 @@ Ext.define('YourTour.view.route.ScheduleFormView', {
 			{
 				xtype:'panel',
 				layout:'hbox',
+				cls:'underline icon-memo',
+				padding:'0 0 0 10',
 				items:[
-					{
-						xtype:'label',
-						html: '描述',
-						cls:'row font-medium font-grey',
-						padding:'0 10 0 5'
-					},
 					{
 						xtype: 'label',
 						itemId:'memo',
 						flex:1,
 						cls:'font-medium font-grey multilineinfo',
-						margin:'9 5 9 10'
+						margin:'0 5 0 30'
 					}
 				]
 			},
@@ -130,7 +127,7 @@ Ext.define('YourTour.view.route.ScheduleFormView', {
 						itemId:'items',
 						scrollable:null,
 						useComponents: true,
-						defaultType: 'ActivityItemDataItem',
+						defaultType: 'RouteActivityItemDataItem',
 					}
 				]
 			},
@@ -155,7 +152,7 @@ Ext.define('YourTour.view.route.ScheduleFormView', {
 						itemId:'services',
 						scrollable:null,
 						useComponents: true,
-						defaultType: 'ServiceDataItem',
+						defaultType: 'ExpertServiceListDataItem',
 					}
 				]
 			},

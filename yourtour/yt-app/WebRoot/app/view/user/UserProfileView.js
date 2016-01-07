@@ -18,7 +18,7 @@ Ext.define('YourTour.view.user.UserProfileView', {
 				layout:'hbox',
 				itemId:'userLogoPanel',
 				style:'background-color:white',
-				cls:'nav_arrow',
+				cls:'nav-arrow',
 				padding:10,
 				tappable:true,
 				items:[
@@ -35,7 +35,7 @@ Ext.define('YourTour.view.user.UserProfileView', {
 				layout:'hbox',
 				margin:'10 0 0 0',
 				padding:'0 10 0 10',
-				cls:'nav_arrow row underline font-medium font-grey',
+				cls:'nav-arrow row underline font-medium font-grey',
 				items:[
 					{
 						xtype:'xlabel',
@@ -56,7 +56,7 @@ Ext.define('YourTour.view.user.UserProfileView', {
 				xtype:'panel',
 				layout:'hbox',
 				padding:'0 10 0 10',
-				cls:'nav_arrow row underline font-medium font-grey',
+				cls:'nav-arrow row underline font-medium font-grey',
 				items:[
 					{
 						xtype:'xlabel',
@@ -99,7 +99,7 @@ Ext.define('YourTour.view.user.UserProfileView', {
 				xtype:'xpanel',
 				layout:'hbox',
 				padding:'0 10 0 10',
-				cls:'nav_arrow row underline font-medium font-grey',
+				cls:'nav-arrow row underline font-medium font-grey',
 				items:[
 					{
 						xtype:'xlabel',
@@ -119,7 +119,7 @@ Ext.define('YourTour.view.user.UserProfileView', {
 				xtype:'panel',
 				layout:'hbox',
 				padding:'0 10 0 10',
-				cls:'nav_arrow row underline font-medium font-grey',
+				cls:'nav-arrow row underline font-medium font-grey',
 				items:[
 					{
 						xtype:'xlabel',

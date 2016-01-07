@@ -57,7 +57,7 @@ Ext.define('YourTour.view.resource.ResourceSceneView', {
 						xtype:'panel',
 						layout:'hbox',
 						padding:'0 0 0 10',
-						cls:'underline icon_memo',
+						cls:'underline icon-memo',
 						items:[
 							{
 								xtype: 'xlabel',
@@ -73,12 +73,12 @@ Ext.define('YourTour.view.resource.ResourceSceneView', {
 						xtype:'panel',
 						layout:'hbox',
 						padding:'0 0 0 10',
-						cls:'row underline icon_position',
+						cls:'row underline icon-position',
 						items:[
 							{
 								xtype: 'xlabel',
 								itemId:'address',
-								cls:'font-medium font-grey nav_arrow',
+								cls:'font-medium font-grey nav-arrow',
 								flex:1,
 								tappable:true,
 								margin:'0 5 0 30'
@@ -89,7 +89,7 @@ Ext.define('YourTour.view.resource.ResourceSceneView', {
 			    	{
 						xtype:'panel',
 						layout:'hbox',
-						cls:'row underline icon_phone',
+						cls:'row underline icon-phone',
 						items:[
 							{
 							    xtype: 'label',  
@@ -105,7 +105,7 @@ Ext.define('YourTour.view.resource.ResourceSceneView', {
 						xtype:'panel',
 						layout:'hbox',
 						padding:'0 0 0 10',
-						cls:'underline icon_open',
+						cls:'underline icon-open',
 						items:[
 							{
 								xtype: 'xlabel',

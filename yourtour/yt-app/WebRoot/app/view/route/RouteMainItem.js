@@ -64,7 +64,7 @@ Ext.define('YourTour.view.route.RouteMainItem', {
 				xtype:'panel',
 				layout:'hbox',
 				padding:'0 0 0 10',
-				cls:'underline icon_memo',
+				cls:'underline icon-memo',
 				items:[
 					{
 						xtype: 'xlabel',
@@ -80,7 +80,7 @@ Ext.define('YourTour.view.route.RouteMainItem', {
 				xtype:'panel',
 				layout:'hbox',
 				padding:'0 0 0 10',
-				cls:'row underline icon_time',
+				cls:'row underline icon-time',
 				items:[
 					{
 						xtype: 'xlabel',
@@ -97,7 +97,7 @@ Ext.define('YourTour.view.route.RouteMainItem', {
 				itemId:'impressionEdit',
 				layout:'hbox',
 				padding:'0 0 0 10',
-				cls:'underline icon_impression',
+				cls:'underline icon-impression',
 				items:[
 					{
 						xtype: 'xlabel',

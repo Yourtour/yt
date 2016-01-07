@@ -2,7 +2,7 @@ Ext.define('YourTour.view.widget.XKVField', {
     extend: 'Ext.Label',
     xtype: 'xkvfield',
     config:{
-    	cls:'field nav_arrow',
+    	cls:'field nav-arrow',
 		padding:'0 20 0 0',
 		value:''
     },

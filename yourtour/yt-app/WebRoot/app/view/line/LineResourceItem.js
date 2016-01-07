@@ -10,7 +10,7 @@ Ext.define('YourTour.view.line.LineResourceItem', {
     	    {
     	   		itemId : 'name',
 	    		xtype : 'xlabel',
-	    		cls:'row nav_arrow font-medium horizentalLine'
+	    		cls:'row nav-arrow font-medium horizentalLine'
 	    	},
 	    	
 	    	{	xtype:'panel',

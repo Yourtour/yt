@@ -7,6 +7,7 @@ Ext.define('YourTour.model.RouteActivityItemModel', {
     		{name:'option', type:'string'},
 			{name:'imageUrl', type:'string'},
 			{name:'memo', type:'string'},
+			{name:'thumbupNum', type:'string'}
 	    ]
     }
 });

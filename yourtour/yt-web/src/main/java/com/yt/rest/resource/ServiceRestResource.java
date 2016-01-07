@@ -11,6 +11,7 @@ import com.yt.business.utils.Neo4jUtils;
 import com.yt.response.ResponseDataVO;
 import com.yt.utils.WebUtils;
 import com.yt.vo.AbbrVO;
+import com.yt.vo.member.ExpertServiceVO;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -111,7 +112,6 @@ public class ServiceRestResource {
 	/**
 	 *
 	 * @param request
-	 * @param service
 	 * @return
 	 */
 	@POST
@@ -143,24 +143,24 @@ public class ServiceRestResource {
 		}
 	}
 
-    @POST
+	@GET
     @Path("/expert/{expertId}")
-    public ResponseDataVO<List<RouteServiceVO>> getServices(@Context HttpServletRequest request, @PathParam("expertId")  String expertId){
+    public ResponseDataVO<List<ExpertServiceVO>> getServices(@PathParam("expertId")  String expertId){
         try {
             Long userId = Neo4jUtils.getGraphIDFromString(expertId);
 
-            List<RouteServiceVO> services = new ArrayList<>();
-            List<RouteServiceBean> serviceBeans = serviceRepository.getServices(userId);
+            List<ExpertServiceVO> services = new ArrayList<>();
+            List<ExpertServiceBean> serviceBeans = serviceRepository.getServices(userId);
             if(serviceBeans != null){
-                for(RouteServiceBean serviceBean : serviceBeans){
-                    services.add(RouteServiceVO.transform(serviceBean));
+                for(ExpertServiceBean serviceBean : serviceBeans){
+                    services.add(ExpertServiceVO.transform(serviceBean));
                 }
             }
 
-            return new ResponseDataVO<List<RouteServiceVO>>(services);
+            return new ResponseDataVO<List<ExpertServiceVO>>(services);
         } catch (Exception ex) {
             LOG.error("Exception raised.", ex);
-            return new ResponseDataVO<List<RouteServiceVO>>(
+            return new ResponseDataVO<List<ExpertServiceVO>>(
                     StaticErrorEnum.FETCH_DB_DATA_FAIL);
         }
     }

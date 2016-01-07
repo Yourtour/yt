@@ -1,5 +1,6 @@
 package com.yt.business.neo4j.repository;
 
+import com.yt.business.bean.ExpertServiceBean;
 import com.yt.business.bean.RouteMainBean;
 import com.yt.business.bean.RouteServiceBean;
 import com.yt.business.bean.UserProfileBean;
@@ -16,6 +17,6 @@ public interface RouteServiceBeanRepository extends GraphRepository<RouteService
      * @param expertId
      * @return
      */
-    @Query("START user=UserProfileBean({0}) MATCH user--[:RELATION_TYPE_HAS]-->(services:RouteServiceBean) RETURN services")
-    public List<RouteServiceBean> getServices(Long expertId);
+    @Query("START user=node({0}) MATCH user-[:HAS]->(services:ExpertServiceBean) RETURN services")
+    public List<ExpertServiceBean> getServices(Long expertId);
 }

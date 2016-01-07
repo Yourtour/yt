@@ -7,7 +7,7 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
     	   routeScheduleListView:'#RouteScheduleListView',
     	   schedulePlanList:'#RouteScheduleListView #RouteScheduleList',
     	   
-    	   scheduleFormView:'#ScheduleFormView'	   
+    	   scheduleFormView:'#RouteScheduleFormView'
        },
        
        control:{
@@ -23,15 +23,15 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
     		   tap:'onEditTap'
     	   },
     	   
-    	   '#ScheduleFormView #resName':{
+    	   '#RouteScheduleFormView #resName':{
     		   tap:'onShowResourceView'
     	   },
     	   
-    	   '#ScheduleFormView #address':{
+    	   '#RouteScheduleFormView #address':{
     		   tap:'onShowResourceMap'
     	   },
     	   
-    	   '#ScheduleFormView #services':{
+    	   '#RouteScheduleFormView #services':{
     		   itemtap:'onScheduleServiceTap'
     	   }
        },
@@ -95,7 +95,7 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
     onSceneResourceTap:function(record){
     	var me = this;
     	
-    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.ScheduleFormView'));
+    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteScheduleFormView'));
     	
     	var store = Ext.create('YourTour.store.AjaxStore', {
     	    model: 'YourTour.model.RouteActivityModel',
@@ -144,7 +144,6 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
 		var view = this.getScheduleFormView();
 		var activity = view.getAttrs().activity;
 		var resource = activity.resourceStore.first();
-		console.log(resource);
 		var resourceController = this.getApplication().getController('ResourceMainCtrl');
 		resourceController.showResourcePage(resource.get('type'), resource.get('id'));
     },
@@ -161,8 +160,7 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
     },
     
     onScheduleServiceTap:function(dataview, index, item, record,e){
-    	var serviceId = record.get('id');
-    	
-    	this.redirectTo('/service/' + serviceId);
+		var controller = this.getApplication().getController('ServiceMainCtrl');
+		controller.showExpertService(record, 'cancel')
     },
 });

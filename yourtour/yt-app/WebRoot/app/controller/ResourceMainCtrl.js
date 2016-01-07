@@ -11,7 +11,10 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
     	   	resourceFoodListView:'#ResourceSelectionView #ResourceFoodListView #ResourceList',
     	   	
     	   	resourceDetailView:'#ResourceDetailView',
-    	   	btnAddResource:'#ResourceDetailView #btnAdd'
+    	   	btnAddResource:'#ResourceDetailView #btnAdd',
+
+		    resourceActivityItemListView:'#ResourceActivityItemListView',
+		    activityList:'#ResourceActivityItemListView #activityList'
        },
        
        control:{
@@ -162,6 +165,12 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
 		var playView = Ext.create('YourTour.view.resource.ResourceSceneView',{record:record});
 		panel.add(playView);
     },
-    
 
+	showResourceActivities:function(title, resourceId, expertId){
+		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.resource.ResourceActivityItemListView'));
+
+		var view = this.getResourceActivityItemListView();
+		var headerbar = view.down('#headerbar');
+		headerbar.setTitle(title);
+	}
 });

@@ -3,6 +3,7 @@ package com.yt.business;
 import java.io.Serializable;
 import java.util.UUID;
 
+import com.yt.core.utils.DateUtils;
 import org.springframework.data.neo4j.annotation.GraphId;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
@@ -39,6 +40,20 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 	 */
 	public BaseBeanImpl() {
 		super();
+	}
+
+	/**
+	 * 默认的构造函数
+	 */
+	public BaseBeanImpl(String userId)
+	{
+		super();
+
+		this.createdTime = DateUtils.getCurrentTimeMillis();
+		this.updatedTime = DateUtils.getCurrentTimeMillis();
+
+		this.createdUserId = userId;
+		this.updatedUserId = userId;
 	}
 
 	/*

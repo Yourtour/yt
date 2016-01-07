@@ -5,12 +5,15 @@ import com.yt.vo.BaseVO;
 
 public class ExpertServiceVO extends BaseVO {
     private String title;
-    private String free;
+    private String fee;
     private String feeIncluding;
     private String feeExcluding;
     private String withdraw;
     private String memo;
 
+    private String category;
+    private String imageUrl;
+    private String imageUrls;
 
     public ExpertServiceVO() {
     }
@@ -19,7 +22,7 @@ public class ExpertServiceVO extends BaseVO {
         ExpertServiceBean bean = new ExpertServiceBean();
         bean.setGraphId(vo.getId());
         bean.setTitle(vo.getTitle());
-        bean.setFree(vo.getFree());
+        bean.setFee(vo.getFee());
         bean.setMemo(vo.getMemo());
         bean.setWithdraw(vo.getWithdraw());
         bean.setFeeExcluding(vo.getFeeExcluding());
@@ -32,12 +35,14 @@ public class ExpertServiceVO extends BaseVO {
         ExpertServiceVO valueObject = new ExpertServiceVO();
 
         valueObject.setId(bean.getGraphId());
-        valueObject.setFree(bean.getFree());
+        valueObject.setFee(bean.getFee());
         valueObject.setTitle(bean.getTitle());
         valueObject.setMemo(bean.getMemo());
         valueObject.setWithdraw(bean.getWithdraw());
         valueObject.setFeeExcluding(bean.getFeeExcluding());
         valueObject.setFeeIncluding(bean.getFeeIncluding());
+        valueObject.setImageUrl(bean.getImageUrl());
+        valueObject.setImageUrls(bean.getImageUrls());
 
         return valueObject;
     }
@@ -82,11 +87,35 @@ public class ExpertServiceVO extends BaseVO {
         this.withdraw = withdraw;
     }
 
-    public String getFree() {
-        return free;
+    public String getFee() {
+        return fee;
     }
 
-    public void setFree(String free) {
-        this.free = free;
+    public void setFee(String fee) {
+        this.fee = fee;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getImageUrls() {
+        return imageUrls;
+    }
+
+    public void setImageUrls(String imageUrls) {
+        this.imageUrls = imageUrls;
     }
 }

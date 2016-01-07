@@ -51,7 +51,7 @@ Ext.define('YourTour.view.common.MessageMainView', {
 					{  
 						xtype : 'image',
 	    				mode : 'tag',
-	    				src:'resources/icons/icon_add_48.png',
+	    				src:'resources/icons/icon-add_48.png',
 		              	itemId:'btnAdd'  
 					},
 				]	

@@ -10,6 +10,8 @@ import com.yt.business.common.Constants.Status;
 import com.yt.hbase.annotation.HbaseColumn;
 import com.yt.neo4j.annotation.Neo4jRelationship;
 
+import java.util.List;
+
 /**
  * 资源bean，定义了各类资源的公共信息，不直接创建表，被后续其他资源对象继承（如：景点、宾馆、饭店等）
  * 
@@ -53,6 +55,10 @@ public class ResourceBean extends BaseDictBeanImpl {
 
 	@HbaseColumn(name = "tintr")
 	private String trafficIntro; // 公交信息
+
+	private String price;
+
+	private String currency;
 
 	@HbaseColumn(name = "pay")
 	private String payment; // 支付信息
@@ -109,6 +115,9 @@ public class ResourceBean extends BaseDictBeanImpl {
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RECOMMEND, type = UserProfileBean.class, direction = Direction.OUTGOING)
 	private transient UserProfileBean user = null;
+
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = ActivityItemBean.class, direction = Direction.OUTGOING, isList = true)
+	private transient List<ActivityItemBean> activities = null;
 
 	public ResourceBean() {
 		super();
@@ -288,5 +297,21 @@ public class ResourceBean extends BaseDictBeanImpl {
 
 	public void setRankScore(float rankScore) {
 		this.rankScore = rankScore;
+	}
+
+	public UserProfileBean getUser() {
+		return user;
+	}
+
+	public void setUser(UserProfileBean user) {
+		this.user = user;
+	}
+
+	public List<ActivityItemBean> getActivities() {
+		return activities;
+	}
+
+	public void setActivities(List<ActivityItemBean> activities) {
+		this.activities = activities;
 	}
 }

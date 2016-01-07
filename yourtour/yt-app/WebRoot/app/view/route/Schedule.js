@@ -59,7 +59,7 @@ Ext.define('YourTour.view.route.Schedule', {
 			    value:new Date(),
 			    dateFormat:'Y/m/d',
 			    clearIcon: true,
-			    cls:'textfield nav_arrow'
+			    cls:'textfield nav-arrow'
 			},
 			{  
 			    xtype: 'datepickerfield',  
@@ -68,7 +68,7 @@ Ext.define('YourTour.view.route.Schedule', {
 			    value:new Date(),
 			    dateFormat:'Y/m/d',
 			    clearIcon: true,
-			    cls:'textfield nav_arrow'
+			    cls:'textfield nav-arrow'
 			},
 			{  
 			    xtype: 'textfield',  
@@ -79,7 +79,7 @@ Ext.define('YourTour.view.route.Schedule', {
 			    readOnly: true,
 			    value:'wwww',
 			    clearIcon: true,
-			    cls:'textfield nav_arrow'
+			    cls:'textfield nav-arrow'
 			}
         ]
     }

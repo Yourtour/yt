@@ -674,6 +674,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.model.CacheModel": [],
   "YourTour.model.ChatModel": [],
   "YourTour.model.CommentModel": [],
+  "YourTour.model.ExpertServiceModel": [],
   "YourTour.model.HomeCarouselModel": [],
   "YourTour.model.HomeModel": [],
   "YourTour.model.LaunchModel": [],
@@ -690,7 +691,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.model.RouteActivityModel": [],
   "YourTour.model.RouteModel": [],
   "YourTour.model.RouteScheduleModel": [],
-  "YourTour.model.ServiceModel": [],
   "YourTour.model.TalentModel": [],
   "YourTour.model.UserModel": [],
   "YourTour.model.common.ResponseModel": [],
@@ -720,6 +720,9 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.SearchMain": [],
   "YourTour.view.common.CommentListItemView": [],
   "YourTour.view.common.ContentReadView": [],
+  "YourTour.view.common.ExpertServiceFormView": [],
+  "YourTour.view.common.ExpertServiceListDataItem": [],
+  "YourTour.view.common.ExpertServiceListView": [],
   "YourTour.view.common.FieldEditView": [],
   "YourTour.view.common.MessageDataItemView": [],
   "YourTour.view.common.MessageGroupView": [],
@@ -728,8 +731,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.common.PlaceListItemView": [],
   "YourTour.view.common.PlaceSelectionView": [],
   "YourTour.view.common.PlaceTypeListItemView": [],
-  "YourTour.view.common.ServiceDataItem": [],
-  "YourTour.view.common.ServiceFormView": [],
   "YourTour.view.community.LiveMainView": [],
   "YourTour.view.expert.ExpertApplyView": [],
   "YourTour.view.expert.ExpertDataItem": [],
@@ -774,8 +775,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.resource.ResourcePlayListView": [],
   "YourTour.view.resource.ResourceSceneView": [],
   "YourTour.view.resource.ResourceSelectionView": [],
-  "YourTour.view.route.ActivityItemDataItem": [],
   "YourTour.view.route.RouteActivityEditView": [],
+  "YourTour.view.route.RouteActivityItemDataItem": [],
   "YourTour.view.route.RouteImageView": [],
   "YourTour.view.route.RouteImpressionView": [],
   "YourTour.view.route.RouteMainItem": [],
@@ -787,6 +788,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.route.RouteRecommendListView": [],
   "YourTour.view.route.RouteScheduleDataView": [],
   "YourTour.view.route.RouteScheduleEditView": [],
+  "YourTour.view.route.RouteScheduleFormView": [],
   "YourTour.view.route.RouteScheduleListDataItem": [],
   "YourTour.view.route.RouteScheduleListView": [],
   "YourTour.view.route.RouteSchedulePlanDataItem": [],
@@ -796,7 +798,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.route.RouteSettingItem": [],
   "YourTour.view.route.RouteSettingView": [],
   "YourTour.view.route.Schedule": [],
-  "YourTour.view.route.ScheduleFormView": [],
   "YourTour.view.setting.UserSettingView": [],
   "YourTour.view.user.LoginMainView": [],
   "YourTour.view.user.LoginView": [],
@@ -826,6 +827,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.XGridView": [],
   "YourTour.view.widget.XHeaderBar": [],
   "YourTour.view.widget.XIcon": [],
+  "YourTour.view.widget.XImage": [],
   "YourTour.view.widget.XImagePicker": [],
   "YourTour.view.widget.XKVField": [],
   "YourTour.view.widget.XLabel": [],
@@ -1601,6 +1603,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.model.CacheModel": [],
   "YourTour.model.ChatModel": [],
   "YourTour.model.CommentModel": [],
+  "YourTour.model.ExpertServiceModel": [],
   "YourTour.model.HomeCarouselModel": [],
   "YourTour.model.HomeModel": [],
   "YourTour.model.LaunchModel": [],
@@ -1619,7 +1622,6 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.model.RouteActivityModel": [],
   "YourTour.model.RouteModel": [],
   "YourTour.model.RouteScheduleModel": [],
-  "YourTour.model.ServiceModel": [],
   "YourTour.model.TalentModel": [],
   "YourTour.model.UserModel": [],
   "YourTour.model.common.ResponseModel": [],
@@ -1659,6 +1661,11 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.CommentListItemView"
   ],
   "YourTour.view.common.ContentReadView": [],
+  "YourTour.view.common.ExpertServiceFormView": [],
+  "YourTour.view.common.ExpertServiceListDataItem": [
+    "widget.ExpertServiceListDataItem"
+  ],
+  "YourTour.view.common.ExpertServiceListView": [],
   "YourTour.view.common.FieldEditView": [],
   "YourTour.view.common.MessageDataItemView": [
     "widget.MessageDataItemView"
@@ -1679,10 +1686,6 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.common.PlaceTypeListItemView": [
     "widget.PlaceTypeListItemView"
   ],
-  "YourTour.view.common.ServiceDataItem": [
-    "widget.ServiceDataItem"
-  ],
-  "YourTour.view.common.ServiceFormView": [],
   "YourTour.view.community.LiveMainView": [
     "widget.LiveMainView"
   ],
@@ -1803,10 +1806,10 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.resource.ResourceSelectionView": [
     "widget.SelectionListView"
   ],
-  "YourTour.view.route.ActivityItemDataItem": [
-    "widget.ActivityItemDataItem"
-  ],
   "YourTour.view.route.RouteActivityEditView": [],
+  "YourTour.view.route.RouteActivityItemDataItem": [
+    "widget.RouteActivityItemDataItem"
+  ],
   "YourTour.view.route.RouteImageView": [],
   "YourTour.view.route.RouteImpressionView": [],
   "YourTour.view.route.RouteMainItem": [
@@ -1826,6 +1829,7 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.RouteScheduleDataView"
   ],
   "YourTour.view.route.RouteScheduleEditView": [],
+  "YourTour.view.route.RouteScheduleFormView": [],
   "YourTour.view.route.RouteScheduleListDataItem": [
     "widget.RouteScheduleListDataItem"
   ],
@@ -1849,7 +1853,6 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.route.Schedule": [
     "widget.routenew"
   ],
-  "YourTour.view.route.ScheduleFormView": [],
   "YourTour.view.setting.UserSettingView": [
     "widget.UserSettingView"
   ],
@@ -1930,6 +1933,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.widget.XIcon": [
     "widget.xicon"
+  ],
+  "YourTour.view.widget.XImage": [
+    "widget.ximage"
   ],
   "YourTour.view.widget.XImagePicker": [
     "widget.ximagepicker"

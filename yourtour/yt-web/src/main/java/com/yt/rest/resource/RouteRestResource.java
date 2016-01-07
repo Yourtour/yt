@@ -216,6 +216,68 @@ public class RouteRestResource extends BaseRestResource{
 	}
 
 	/**
+	 *
+	 * @param subType
+	 * @param subId
+	 * @param serviceId
+	 * @return
+	 */
+	@POST
+	@Path("/service/{subType}/{subId}/{serviceId}/save")
+	public ResponseDataVO<Long> saveService(@PathParam("subType") String subType, @PathParam("subId") String subId, @PathParam("serviceId") String serviceId){
+		try{
+			RouteServiceBean routeService = new RouteServiceBean();
+
+			ExpertServiceBean service = (ExpertServiceBean) routeRepository.get(ExpertServiceBean.class, Long.valueOf(serviceId), false);
+			if(service == null){
+				return new ResponseDataVO<Long>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+			}
+			routeService.setService(service);
+
+			routeService.setImageUrl(service.getImageUrl());
+			routeService.setImageUrls(service.getImageUrls());
+			routeService.setWithdraw(service.getWithdraw());
+			routeService.setCategory(service.getCategory());
+			routeService.setFee(service.getFee());
+			routeService.setFeeIncluding(service.getFeeIncluding());
+			routeService.setFeeExcluding(service.getFeeExcluding());
+			routeService.setMemo(service.getMemo());
+
+			if(subType.equals("route")){
+				RouteMainBean route = (RouteMainBean) routeRepository.get(RouteMainBean.class, Long.valueOf(subId), false);
+				if(route == null){
+					return new ResponseDataVO<Long>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+				}
+
+				routeService.setRoute(route);
+			}else if(subType.equals("schedule")){
+				RouteScheduleBean schedule = (RouteScheduleBean) routeRepository.get(RouteScheduleBean.class, Long.valueOf(subId), false);
+				if(schedule == null){
+					return new ResponseDataVO<Long>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+				}
+
+				routeService.setSchedule(schedule);
+			}else if(subType.equals("activity")){
+				RouteActivityBean activity = (RouteActivityBean) routeRepository.get(RouteActivityBean.class, Long.valueOf(subId), false);
+				if(activity == null){
+					return new ResponseDataVO<Long>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+				}
+
+				routeService.setActivity(activity);
+			}else{
+				return new ResponseDataVO<Long>(StaticErrorEnum.DB_OPERATE_FAIL);
+			}
+
+			this.routeRepository.save(routeService, WebUtils.getCurrentLoginUser());
+
+			return new ResponseDataVO<Long>(routeService.getGraphId());
+		} catch (Exception ex) {
+			LOG.error("Exception raised when saving service.", ex);
+			return new ResponseDataVO<Long>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
+	}
+
+	/**
 	 * 保存行程活动值对象到图数据库
 	 * 
 	 * @param vo
@@ -455,6 +517,28 @@ public class RouteRestResource extends BaseRestResource{
 						"Fetch RouteProvisionBean[id='%s'] fail.", id), ex);
 			}
 			return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
+	}
+
+	/**
+	 *
+	 * @param subType
+	 * @param subId
+	 * @param serviceId
+	 * @return
+	 */
+	@POST
+	@Path("/service/{serviceId}/delete")
+	public ResponseDataVO<Long> deleteService(@PathParam("serviceId") String serviceId){
+		try{
+			RouteServiceBean routeService = (RouteServiceBean) routeRepository.get(RouteServiceBean.class, Long.valueOf(serviceId), false);
+
+			this.routeRepository.delete(routeService);
+
+			return new ResponseDataVO<Long>(routeService.getGraphId());
+		} catch (Exception ex) {
+			LOG.error("Exception raised when saving service.", ex);
+			return new ResponseDataVO<Long>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
 	}
 
