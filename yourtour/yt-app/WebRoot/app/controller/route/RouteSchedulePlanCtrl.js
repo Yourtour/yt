@@ -232,25 +232,14 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 		route.childNum = childNum.getValue();
 		route.olderNum = olderNum.getValue();
 
-    	Ext.Ajax.request({
+    	this.getApplication().callService({
     	    url : YourTour.util.Context.getContext('/routes/main/save'),
     	    method : "POST",
-    	    params : Ext.JSON.encode(route),
+    	    params : route,
     	    success : function(response) {
-    	    	var data = Ext.JSON.decode(response.responseText);
-    	    	if(data.errorCode != '0'){
-    	    		Ext.Msg.alert(data.errorText);
-    	    		return;
-    	    	};
-
-				me.routeId = data.data;
-
-				route.id=data.data;
+				me.routeId = response;
+				route.id=response;
 				me.getRecommendRoutes(5, route.toPlaces);
-    	    },
-    	    failure : function(response) {
-    	        var respObj = Ext.JSON.decode(response.responseText);
-    	        Ext.Msg.alert("Error", respObj.status.statusMessage);
     	    }
     	});
     },
@@ -540,19 +529,13 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     	var memo = view.down('#memo');
     	memo.setValue(record.get('memo'));
     	
-    	Ext.Ajax.request({
+    	this.getApplication().callService({
     	    url : YourTour.util.Context.getContext('/routes/' + me.getRouteId() + '/schedule/save'),
     	    method : "POST",
-    	    params : Ext.JSON.encode(data),
+    	    params : data,
     	    success : function(response) {
-    	    	var respObj = Ext.JSON.decode(response.responseText);
-    	    	if(respObj.errorCode != '0'){
-    	    		Ext.Msg.alert(respObj.errorText);
-    	    		return;
-    	    	};
-    	    	
     	    	if(data.id == '0'){
-	    	    	data.id = respObj.data;
+	    	    	data.id = response;
 	    	    	data.type='ScheduleItem';
 	    	    	var schedule = Ext.create('YourTour.model.RouteScheduleModel',data);
 			    	scheduleStore.insert(data.index,schedule);
@@ -563,10 +546,6 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 	    	    	activity.set('memo',data.memo);
 	    	    	Ext.ComponentManager.get('MainView').pop();
 	    	    }
-    	    },
-    	    failure : function(response) {
-    	        var respObj = Ext.JSON.decode(response.responseText);
-    	        Ext.Msg.alert("Error", respObj.status.statusMessage);
     	    }
     	});
     },
@@ -593,7 +572,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
      */
     editScheduleActivity:function(record){
     	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteActivityEditView'));
-    	
+
     	var view = this.getRouteActivityEditView();
 		var store = Ext.create('YourTour.store.AjaxStore', {
 			model: 'YourTour.model.RouteActivityModel',
@@ -629,7 +608,6 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 			var serviceEl = view.down('#serviceList');
 			serviceEl.setStore(activity.servicesStore);
 
-			console.log('editScheduleActivity3');
 			var items = view.down('#itemList');
 			items.setStore(activity.itemsStore);
 		}, this);
@@ -662,12 +640,12 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 		data.resource.type = resource.get('type');
 
 		this.saveScheduleActivity(data, function(response){
+			Ext.ComponentManager.get('MainView').pop(2);
+
 			data.id = response;
 			data.type='ScheduleItem';
 			var schedule = Ext.create('YourTour.model.RouteScheduleModel',data);
 			scheduleStore.insert(data.index,schedule);
-			Ext.ComponentManager.get('MainView').pop(2);
-
 			me.editScheduleActivity(schedule);
 		});
     },
@@ -747,26 +725,13 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     	var store = me.getRouteScheduleList().getStore();
     	var schedule = store.getAt(me.index);
     	
-    	Ext.Ajax.request({
+    	this.getApplication().callService({
     	    url : YourTour.util.Context.getContext('/routes/activity/' + schedule.get('id') + '/delete'),
     	    method : "GET",
     	    success : function(response) {
-    	    	var respObj = Ext.JSON.decode(response.responseText);
-    	    	if(respObj.errorCode != '0'){
-    	    		Ext.Msg.alert(resp.errorText);
-    	    		return;
-    	    	};
-	    	    
-    	    	var scheduleStore = me.getRouteScheduleList().getStore();
-    	    	var activity = scheduleStore.getAt(me.index);
-	    	    scheduleStore.remove(activity);
+				store.remove(schedule);
     	    	
     	    	Ext.ComponentManager.get('MainView').pop();
-    	    },
-    	    
-    	    failure : function(response) {
-    	        var respObj = Ext.JSON.decode(response.responseText);
-    	        Ext.Msg.alert("Error", respObj.status.statusMessage);
     	    }
     	});
     },
@@ -859,29 +824,17 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 		var record = view.getRecord();
 		var sourceId = record.get('id');
 
-		Ext.Ajax.request({
+		this.getApplication().callService({
 			url : YourTour.util.Context.getContext('/routes/clone/' + sourceId + '/' + me.routeId),
 			method : "GET",
 			success : function(response) {
-				var respObj = Ext.JSON.decode(response.responseText);
-				if(respObj.errorCode != '0'){
-					Ext.Msg.alert(resp.errorText);
-					return;
-				};
-
 				var store = Ext.create('YourTour.store.AjaxStore', {model:'YourTour.model.RouteModel'});
 				store.getProxy().setUrl(YourTour.util.Context.getContext('/routes/' + me.routeId +'/query'));
 				store.load(function(){
 					me.updateRouteSchedule(store);
 				},this);
-			},
-
-			failure : function(response) {
-				var respObj = Ext.JSON.decode(response.responseText);
-				Ext.Msg.alert("Error", respObj.status.statusMessage);
 			}
 		});
-
 	},
 
 	/**

@@ -220,7 +220,12 @@ Ext.application({
 
             failure : function(response) {
                 var respObj = Ext.JSON.decode(response.responseText);
-                Ext.Msg.alert("Error", respObj.status.statusMessage);
+
+                if(options.failure){
+                    options.failure(respObj)
+                }else {
+                    Ext.Msg.alert("Error", respObj.status.statusMessage);
+                }
             }
         };
 
