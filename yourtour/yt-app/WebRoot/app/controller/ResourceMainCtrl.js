@@ -166,11 +166,35 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
 		panel.add(playView);
     },
 
-	showResourceActivities:function(title, resourceId, expertId){
-		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.resource.ResourceActivityItemListView'));
+	showResourceActivities:function(title, resource, expertId){
+		var me = this;
+		var resId = resource.get('id');
+		var resType = resource.get('type');
 
+		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.resource.ResourceActivityItemListView'));
 		var view = this.getResourceActivityItemListView();
 		var headerbar = view.down('#headerbar');
 		headerbar.setTitle(title);
+
+		var store = this.getResourceStore(resId, resType);
+		store.load(function(){
+			var resource = store.first();
+
+			var activityList = me.getActivityList();
+			var activityStore = resource.activityItemsStore;
+			activityStore.each(function(item){
+				var itemPanel = Ext.create('YourTour.view.resource.ResourceActivityItem',{itemId:item.get('Id'), record:item});
+				activityList.add(itemPanel);
+			});
+		}, this);
+	},
+
+	getResourceStore:function(resId, resType){
+		var store = Ext.create('YourTour.store.AjaxStore', {model: 'YourTour.model.ResourceModel'});
+		if(resType == 'SCENE'){
+			store.getProxy().setUrl(YourTour.util.Context.getContext('/scenes/' + resId));
+		}
+
+		return store;
 	}
 });

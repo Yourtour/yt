@@ -1,10 +1,15 @@
 package com.yt.vo.resource;
 
+import com.yt.business.bean.ActivityItemBean;
 import com.yt.business.bean.PlaceBean;
 import com.yt.business.bean.ResourceBean;
 import com.yt.business.common.Constants.ResType;
 import com.yt.business.common.Constants.Status;
 import com.yt.vo.BaseVO;
+import com.yt.vo.route.RouteActivityItemVO;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ResourceVO extends BaseVO {
 	private String code;
@@ -33,6 +38,8 @@ public class ResourceVO extends BaseVO {
 
 	private String place; // 目的地
 	private Long placeId; // 目的地对象ID
+
+	private List<ActivityItemVO> activityItems = null;
 
 	public void fromBean(ResourceBean bean) {
 		if (bean == null) {
@@ -70,6 +77,16 @@ public class ResourceVO extends BaseVO {
 		} else {
 			setPlace("");
 			setPlaceId(null);
+		}
+
+		List<ActivityItemBean> items = bean.getActivities();
+		if(items != null){
+			List<ActivityItemVO> voes = new ArrayList<>();
+			for(ActivityItemBean item: items){
+				voes.add(ActivityItemVO.transform(item));
+			}
+
+			this.setActivityItems(voes);
 		}
 	}
 
@@ -316,5 +333,13 @@ public class ResourceVO extends BaseVO {
 
 	public void setPlaceId(Long placeId) {
 		this.placeId = placeId;
+	}
+
+	public List<ActivityItemVO> getActivityItems() {
+		return activityItems;
+	}
+
+	public void setActivityItems(List<ActivityItemVO> activityItems) {
+		this.activityItems = activityItems;
 	}
 }

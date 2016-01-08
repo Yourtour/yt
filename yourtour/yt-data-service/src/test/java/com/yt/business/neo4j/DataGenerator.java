@@ -44,21 +44,16 @@ public class DataGenerator {
 	@Test
 	public void testCRUDRouteBean() {
 		try {
-			Date now = new Date();
+			ActivityItemBean bean = new ActivityItemBean();
+			bean.setTitle("玉屏景区");
+			bean.setImageUrl("resources/icons/icon_service.png");
+			bean.setMemo("黄山玉屏景区以玉屏楼为中心，莲花峰和天都峰为主体，前山就是指这一景区。沿途有“蓬莱三岛”、“百步云梯”、“一线天”、“新一线天”、“鳌鱼洞”等景观。。");
 
-			ExpertServiceBean service = new ExpertServiceBean();
-			service.setTitle("包车");
-			service.setImageUrl("resources/icons/icon_service.png");
-			service.setFee("1280元/天");
-			service.setFeeIncluding("接送机没有固定服务时间，根据您的航班时间和上下车地址来决定|小费油费，停车费，过路费，高速费，车辆使用费");
-			service.setFeeExcluding("个人消费及其他未提及的费用，因提前或延后接送产生的费用");
-			service.setWithdraw("到达日之前3天取消预订，退全款");
+			SceneResourceBean resource  = new SceneResourceBean();
+			resource.setGraphId(8l);
+			bean.setResource(resource);
 
-			UserProfileBean user = new UserProfileBean();
-			user.setGraphId(282l);
-			service.setUser(user);
-
-			repository.save(service, "tester");
+			repository.save(bean, "tester");
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			fail(ex.getMessage());

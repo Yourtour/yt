@@ -41,7 +41,7 @@ public class SceneResourceBean extends ResourceBean {
 
 	@HbaseColumn(name = "'sctr")
 	private String sceneTraffic; // 景区交通信息
-	
+
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_CONTAIN, type = LineBean.class, direction = Direction.INCOMING)
 	private transient LineBean line = null; // 关联的线路
 

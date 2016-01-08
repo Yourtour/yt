@@ -16,6 +16,15 @@ Ext.define('YourTour.model.ResourceModel', {
 	    		{name:'recommendIndex', type:'string'},
 	    		{name:'assessmentIndex', type:'string'},
 	    		{name:'desc', type:'string'}
-	    ]
+	    ],
+
+		associations: [
+			{
+				type: 'hasMany',
+				model: 'YourTour.model.RouteActivityItemModel',
+				name:'activityItems',
+				associationKey:'activityItems'
+			}
+		]
     }
 });

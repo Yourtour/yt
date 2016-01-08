@@ -903,7 +903,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 
 		var controller = this.getApplication().getController('ResourceMainCtrl');
 
-		controller.showResourceActivities(title, resourceId);
+		controller.showResourceActivities(title, resource);
 	},
 
 	onActivityServiceItemTap:function(dataview, index, item, record,e){

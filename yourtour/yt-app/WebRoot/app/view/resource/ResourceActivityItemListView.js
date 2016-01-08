@@ -14,10 +14,26 @@ Ext.define('YourTour.view.resource.ResourceActivityItemListView', {
 
 			{
 				itemId:'activityList',
-				xtype:'dataview',
-				flex:1,
-			    useComponents: true,
-			    defaultType: 'ResourcePlayDataItem'
+				xtype:'carousel',
+				flex:1
+			},
+
+			{
+				xtype: 'toolbar',
+				docked: 'bottom',
+				items: [
+					{
+						xtype: 'spacer',
+						flex:1
+					},{
+						xtype: 'button',
+						text: '加入日程',
+						ui: 'normal',
+						baseCls:'button',
+						itemId: 'btnAdd',
+						padding:'0 40 0 40'
+					}
+				]
 			}
         ]
     }

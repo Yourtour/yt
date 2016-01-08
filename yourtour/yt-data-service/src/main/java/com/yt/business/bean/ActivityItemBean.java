@@ -1,5 +1,6 @@
 package com.yt.business.bean;
 
+import com.yt.business.BaseBeanImpl;
 import com.yt.business.BaseDictBeanImpl;
 import com.yt.business.common.Constants;
 import com.yt.business.common.Constants.ResType;
@@ -40,35 +41,31 @@ import java.util.List;
  * @since 1.0
  */
 @NodeEntity
-public class ActivityItemBean extends BaseDictBeanImpl {
+public class ActivityItemBean extends BaseBeanImpl {
 	private static final long serialVersionUID = -8980153602025087935L;
 
 	@HbaseColumn(name = "img")
 	private String imageUrl; // 图片
 
-	private String imageUrls; // 图片
-
-	private String name;
+	private String title;
 
 	private String memo;
 
 	private int thumbupNum; // 点评数
 
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = ResourceBean.class, direction = Direction.INCOMING)
-	private transient ResourceBean resource = null;
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = SceneResourceBean.class, direction = Direction.INCOMING)
+	private transient SceneResourceBean resource = null;
 
 	public ActivityItemBean() {
 		super();
 	}
 
-	@Override
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
 
-	@Override
-	public void setName(String name) {
-		this.name = name;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getMemo() {
@@ -87,14 +84,6 @@ public class ActivityItemBean extends BaseDictBeanImpl {
 		this.imageUrl = imageUrl;
 	}
 
-	public String getImageUrls() {
-		return imageUrls;
-	}
-
-	public void setImageUrls(String imageUrls) {
-		this.imageUrls = imageUrls;
-	}
-
 	public int getThumbupNum() {
 		return thumbupNum;
 	}
@@ -103,11 +92,11 @@ public class ActivityItemBean extends BaseDictBeanImpl {
 		this.thumbupNum = thumbupNum;
 	}
 
-	public ResourceBean getResource() {
+	public SceneResourceBean getResource() {
 		return resource;
 	}
 
-	public void setResource(ResourceBean resource) {
+	public void setResource(SceneResourceBean resource) {
 		this.resource = resource;
 	}
 }

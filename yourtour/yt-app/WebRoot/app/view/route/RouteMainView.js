@@ -31,6 +31,7 @@ Ext.define('YourTour.view.route.RouteMainView', {
                	xtype: 'carousel',
                	itemId:'routeCarousel',
                	indicator:false,
+
                	direction:'verticle',
                	style:'height:100%;weight:100%'
             }

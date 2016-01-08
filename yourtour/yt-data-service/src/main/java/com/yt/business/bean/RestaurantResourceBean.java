@@ -31,7 +31,7 @@ public class RestaurantResourceBean extends ResourceBean {
 	@HbaseColumn(name = "neti")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
 	private String networkInfo; // 网络信息
-	
+
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_CONTAIN, type = LineBean.class, direction = Direction.INCOMING)
 	private transient LineBean line = null; // 关联的线路
 
