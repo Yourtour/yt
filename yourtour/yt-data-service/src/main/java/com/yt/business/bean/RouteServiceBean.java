@@ -14,8 +14,6 @@ import com.yt.neo4j.annotation.Neo4jRelationship;
 public class RouteServiceBean extends ExpertServiceBean {
 	private static final long serialVersionUID = 6259294378320824143L;
 
-	private String status;
-
 	private Long  expertServiceId;
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RELATED, type = ExpertServiceBean.class, direction = Direction.OUTGOING)
@@ -76,13 +74,5 @@ public class RouteServiceBean extends ExpertServiceBean {
 
 	public void setService(ExpertServiceBean service) {
 		this.service = service;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
 	}
 }

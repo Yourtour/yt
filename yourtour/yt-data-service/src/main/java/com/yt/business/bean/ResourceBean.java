@@ -107,9 +107,6 @@ public class ResourceBean extends BaseDictBeanImpl {
 	@HbaseColumn(name = "tips")
 	private String tips; // 贴士
 
-	@HbaseColumn(name = "stat")
-	private Status status;
-
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_AT, type = PlaceBean.class, direction = Direction.OUTGOING)
 	private transient PlaceBean place = null;
 
@@ -273,14 +270,6 @@ public class ResourceBean extends BaseDictBeanImpl {
 
 	public void setWebsite(String website) {
 		this.website = website;
-	}
-
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
 	}
 
 	public PlaceBean getPlace() {

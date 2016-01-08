@@ -1,9 +1,9 @@
-Ext.define('YourTour.view.widget.XLabel', {
+Ext.define('YourTour.view.widget.XMultiLabel', {
     extend: 'Ext.Label',
-    xtype: 'xlabel',
+    xtype: 'Xmultilabel',
     config:{
     	tappable : false,
-    	cls:'label',
+    	cls:'font-medium font-grey multilineinfo',
 		style:'background-color:white'
     },
     
@@ -23,6 +23,14 @@ Ext.define('YourTour.view.widget.XLabel', {
 
     setTappable:function(tappable){
     	this.tappable = tappable;
-    }
+    },
+
+	setHtml:function(html){
+		this.callParent(arguments);
+
+		if(html == '' || html == null){
+			this.addCls('row');
+		}
+	}
 });
 

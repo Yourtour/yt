@@ -102,6 +102,7 @@ public class RouteLoadVO implements Serializable {
 					activity.setType(TYPE.ScheduleItem);
 					activity.setParentId(group.getId());
 					activity.setId(activityBean.getGraphId().toString());
+					activity.setDate(activityBean.getDate());
 					activity.setStartTime(activityBean.getStartTime());
 					activity.setEndTime(activityBean.getEndTime());
 					activity.setIndex(activityBean.getIndex());

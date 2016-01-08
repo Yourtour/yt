@@ -102,10 +102,6 @@ public class UserProfileBean extends BaseDictBeanImpl {
 	@Indexed
 	private int rank; // 等级
 
-	@HbaseColumn(name = "stat")
-	@Indexed
-	private Status status = Status.VALIDATED;
-
 	@HbaseColumn(name = "slga")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
 	private String slogan; // 个人口号
@@ -245,13 +241,4 @@ public class UserProfileBean extends BaseDictBeanImpl {
 	public void setRank(int rank) {
 		this.rank = rank;
 	}
-
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
-	}
-
 }

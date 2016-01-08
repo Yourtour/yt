@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.yt.business.bean.*;
+import com.yt.business.common.Constants;
 import com.yt.business.common.Constants.ResType;
 import com.yt.vo.BaseVO;
 import com.yt.vo.member.ExpertServiceVO;
@@ -16,6 +17,7 @@ public class RouteActivityVO extends BaseVO {
 	private String title, memo;
 	private int index;
 	private long date;
+	private String status;
 	private String startTime, endTime;
 	private RouteScheduleVO schedule = new RouteScheduleVO();
 	private ResourceVO resource = new ResourceVO();
@@ -96,6 +98,7 @@ public class RouteActivityVO extends BaseVO {
 		bean.setStartTime(vo.getStartTime());
 		bean.setEndTime(vo.getEndTime());
 		bean.setDate(vo.getDate());
+		bean.setStatus(Constants.Status.valueOf(vo.getStatus()));
 
 		if (vo.getSchedule() != null) {
 			RouteScheduleBean schedule = new RouteScheduleBean();
@@ -202,5 +205,13 @@ public class RouteActivityVO extends BaseVO {
 
 	public void setItems(List<RouteActivityItemVO> items) {
 		this.items = items;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

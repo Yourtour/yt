@@ -63,7 +63,7 @@ Ext.define('YourTour.controller.ServiceMainCtrl', {
     showExpertService:function(record, action){
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.common.ExpertServiceFormView'));
         var view = this.getExpertServiceFormView();
-        view.setAttrs({'service':record});
+        view.updateRecord(record);
 
         var headerbar = view.down('#headerbar');
         headerbar.setTitle(record.get('title'));
@@ -110,7 +110,7 @@ Ext.define('YourTour.controller.ServiceMainCtrl', {
      */
     onServiceBookTap:function(){
         var view = this.getExpertServiceFormView();
-        var service = view.getAttrs().service;
+        var service = view.getRecord();
 
         var controller = this.getApplication().getController('route.RouteSchedulePlanCtrl');
         controller.bookService(service, function(){
@@ -123,7 +123,7 @@ Ext.define('YourTour.controller.ServiceMainCtrl', {
      */
     onServiceCancelTap:function(){
         var view = this.getExpertServiceFormView();
-        var service = view.getAttrs().service;
+        var service = view.getRecord();
 
         var controller = this.getApplication().getController('route.RouteSchedulePlanCtrl');
         controller.cancelService(service, function(){

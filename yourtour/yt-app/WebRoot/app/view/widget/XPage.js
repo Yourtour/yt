@@ -10,7 +10,9 @@ Ext.define('YourTour.view.widget.XPage', {
     	
     	fullscreen: true,
 
-		attrs:null
+		attrs:null,
+
+		record:null
     },
 
 	initialize : function(){
@@ -22,12 +24,12 @@ Ext.define('YourTour.view.widget.XPage', {
 		});
 	},
 
-	setAttrs:function(attrs){
-		this.attrs = attrs;
+	updateRecord:function(record){
+		this.record = record;
 	},
 
-	getAttrs:function(){
-		return this.attrs;
+	getRecord:function(){
+		return this.record;
 	}
 });
 

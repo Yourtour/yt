@@ -59,10 +59,6 @@ public class PlaceBean extends BaseDictBeanImpl {
 	@HbaseColumn(name = "recm")
 	private int recommended = 0; // 是否推荐 0:不推荐 1：推荐
 
-	@HbaseColumn(name = "stat")
-	@Indexed
-	private Status status;
-
 	@HbaseColumn(name = "root")
 	private boolean root = false; // 是否为根节点
 
@@ -108,14 +104,6 @@ public class PlaceBean extends BaseDictBeanImpl {
 
 	public void setRecommended(int recommended) {
 		this.recommended = recommended;
-	}
-
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
 	}
 
 	public boolean isRoot() {

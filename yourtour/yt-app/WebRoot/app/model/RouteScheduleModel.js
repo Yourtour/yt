@@ -26,6 +26,7 @@ Ext.define('YourTour.model.RouteScheduleModel', {
             {name:'favoriteNum', type:'string'},
             {name:'shareNum', type:'string'},
             {name:'commentNum', type:'string'},
+            {name:'status', type:'string'}
 	    ]
     }
 });

@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.route.RouteScheduleFormView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Panel','YourTour.view.widget.XLabel','YourTour.view.route.RouteActivityItemDataItem','YourTour.view.widget.XVerticalLine','YourTour.view.common.ExpertServiceListDataItem','YourTour.view.widget.XHeaderBar'],
+    requires:['Ext.Panel','YourTour.view.widget.XLabel','YourTour.view.widget.XMultiLabel', 'YourTour.view.route.RouteActivityItemDataItem','YourTour.view.widget.XVerticalLine','YourTour.view.common.ExpertServiceListDataItem','YourTour.view.widget.XHeaderBar'],
     config: {
     	id:'RouteScheduleFormView',
     	layout:'vbox',
@@ -98,10 +98,9 @@ Ext.define('YourTour.view.route.RouteScheduleFormView', {
 				padding:'0 0 0 10',
 				items:[
 					{
-						xtype: 'label',
+						xtype: 'Xmultilabel',
 						itemId:'memo',
 						flex:1,
-						cls:'font-medium font-grey multilineinfo',
 						margin:'0 5 0 30'
 					}
 				]

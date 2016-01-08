@@ -98,10 +98,6 @@ public class LineBean extends BaseDictBeanImpl {
 	@HbaseColumn(name = "snum")
 	private int shareNum; // 分享数
 
-	@HbaseColumn(name = "stat")
-	private Status status;
-
-
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_AT, type = PlaceBean.class, direction = Direction.OUTGOING)
 	private transient PlaceBean place = null;
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_CONTAIN, type = SceneResourceBean.class, direction = Direction.OUTGOING, isList = true)
@@ -230,13 +226,5 @@ public class LineBean extends BaseDictBeanImpl {
 
 	public void setShareNum(int shareNum) {
 		this.shareNum = shareNum;
-	}
-
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
 	}
 }

@@ -226,13 +226,13 @@ public class RouteRestResource extends BaseRestResource{
 	 */
 	@POST
 	@Path("/{routeId}/activity/save")
-	public ResponseVO saveScheduleActivity(@PathParam("routeId") String routeId, RouteActivityVO vo,
+	public ResponseDataVO<Long> saveScheduleActivity(@PathParam("routeId") String routeId, RouteActivityVO vo,
 								   @Context HttpServletRequest request) {
 		if (vo == null) {
 			if (LOG.isWarnEnabled()) {
 				LOG.warn("The RouteActivityVO is null.");
 			}
-			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
+			return new ResponseDataVO<Long>(StaticErrorEnum.THE_INPUT_IS_NULL);
 		}
 
 		try {
@@ -242,14 +242,14 @@ public class RouteRestResource extends BaseRestResource{
 				LOG.debug(String.format(
 						"Save RouteActivityBean['%s'] success.", vo.getRowKey()));
 			}
-			return new ResponseVO();
+			return new ResponseDataVO<Long>(bean.getGraphId());
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
 				LOG.error(String.format(
 						"Save the RouteActivityBean[id='%s'] fail.",
 						vo.getRowKey()), ex);
 			}
-			return new ResponseVO(StaticErrorEnum.DB_OPERATE_FAIL);
+			return new ResponseDataVO<Long>(StaticErrorEnum.DB_OPERATE_FAIL);
 		}
 	}
 

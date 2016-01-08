@@ -14,17 +14,17 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 				itemId:'id'	,
 				value:'0'
 			},
-			
-			{    
+
+			{
 				xtype: 'hiddenfield',
 				itemId:'resourceId'
 			},
-			
-			{    
+
+			{
 				xtype: 'hiddenfield',
 				itemId:'resourceType'
 			},
-			
+
     		{    
 				xtype: 'xheaderbar',
 				title:'行程安排',

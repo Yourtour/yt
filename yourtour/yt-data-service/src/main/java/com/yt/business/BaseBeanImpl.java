@@ -3,6 +3,7 @@ package com.yt.business;
 import java.io.Serializable;
 import java.util.UUID;
 
+import com.yt.business.common.Constants;
 import com.yt.core.utils.DateUtils;
 import org.springframework.data.neo4j.annotation.GraphId;
 import org.springframework.data.neo4j.annotation.Indexed;
@@ -34,6 +35,10 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 
 	@HbaseColumn(name = "ut")
 	private long updatedTime = 0l;
+
+	@HbaseColumn(name = "stat")
+	@Indexed
+	private Constants.Status status = Constants.Status.VALIDATED;
 
 	/**
 	 * 默认的构造函数
@@ -196,6 +201,14 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 	@Override
 	public void setUpdatedTime(long updatedTime) {
 		this.updatedTime = updatedTime;
+	}
+
+	public Constants.Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Constants.Status status) {
+		this.status = status;
 	}
 
 	public boolean isNew(){

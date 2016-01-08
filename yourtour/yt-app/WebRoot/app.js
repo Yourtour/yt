@@ -224,8 +224,8 @@ Ext.application({
             }
         };
 
-        if(options.data){
-            request.push({param: Ext.JSON.encode(request.data)})
+        if(options.params){
+            request.params = Ext.JSON.encode(options.params);
         }
 
         Ext.Ajax.request(request);

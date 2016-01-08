@@ -302,7 +302,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 		var me = this;
 		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteRecommendIntroductionView'));
 		var view = me.getRouteRecommendIntroductionView();
-		view.setAttrs({record:record});
+		view.updateRecord(record);
 
 		var store = Ext.create('YourTour.store.AjaxStore', {storeId:'recommend', model:'YourTour.model.RouteModel'});
 		var proxy = store.getProxy();
@@ -374,7 +374,10 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     		item.longpressed = false;
     		return;
     	}
-    	
+
+		var view = this.getRouteSchedulePlanView();
+		view.updateRecord(record);
+
     	this.getToolbar().hide();
     	var type = record.get('type');
     	if(type == 'ProvisionItem'){
@@ -395,7 +398,10 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     		this.getToolbar().hide();
     		return;
     	}
-    	
+
+		var view = this.getRouteSchedulePlanView();
+		view.updateRecord(record);
+
     	this.getToolbar().show();
 		this.getToolbar().getItems().each(function(item){
 			item.show();
@@ -596,16 +602,17 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 		store.getProxy().setUrl(YourTour.util.Context.getContext('/routes/activity/' + record.get('id')));
 		store.load(function(){
 			var activity = store.first();
-			view.setAttrs({activity:activity});
+			view.updateRecord(activity);
 
 			var id = view.down('#id');
 			id.setValue(activity.get('id'));
 
+			var resource = activity.resourceStore.first();
 			var resourceId = view.down('#resourceId');
-			resourceId.setValue(activity.get('resourceId'));
+			resourceId.setValue(resource.get('id'));
 
 			var resourceType = view.down('#resourceType');
-			resourceType.setValue(activity.get('resourceType'));
+			resourceType.setValue(resource.get('type'));
 
 			var title = view.down('#title');
 			title.setValue(activity.get('title'));
@@ -613,41 +620,56 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 			var memo = view.down('#memo');
 			memo.setValue(activity.get('memo'));
 
-			var startTime = activity.get('startTime');
+			var startTime = view.down('#startTime');
+			startTime.setValue(record.get('startTime'));
 
-			var endTime = activity.get('endTime');
+			var endTime = view.down('#startTime');
+			endTime.setValue(record.get('endTime'));
 
 			var serviceEl = view.down('#serviceList');
 			serviceEl.setStore(activity.servicesStore);
 
+			console.log('editScheduleActivity3');
 			var items = view.down('#itemList');
 			items.setStore(activity.itemsStore);
 		}, this);
     },
-    
-    /**
+
+	onNewScheduleActivity:function(){
+		this.redirectTo('/resource/selection');
+	},
+
+	/**
      * 新增日程安排
      */
     addScheduleActivity:function(resource){
-    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteActivityEditView'));
-    	
-    	var view = this.getRouteActivityEditView();
-    	
-    	var resourceId = view.down('#resourceId');
-    	resourceId.setValue(resource.get('id'));
-    	
-    	var resourceType = view.down('#resourceType');
-    	resourceType.setValue(resource.get('type'));
-    	
-    	var imageUrl = view.down('#imageUrl');
- 	   	imageUrl.setHtml("<img src='" + resource.get('imageUrl') + "' style='width:100%; max-height:150px'>");
- 	   
- 	   	var title = view.down('#title');
- 	    title.setValue(resource.get('name'));
-    },
-    
-    onNewScheduleActivity:function(){
-    	this.redirectTo('/resource/selection');
+		var me = this;
+		var scheduleStore = me.getRouteScheduleList().getStore();
+
+		var planView = this.getRouteSchedulePlanView();
+		var schedule = planView.getRecord();
+
+		var data = {};
+		data.index = me.getNewIndex();
+		data.title = resource.get('name');
+		data.status ='DRAFT';
+
+		data.schedule = {};
+		data.schedule.id = schedule.get('id');
+
+		data.resource = {};
+		data.resource.id = resource.get('id');
+		data.resource.type = resource.get('type');
+
+		this.saveScheduleActivity(data, function(response){
+			data.id = response;
+			data.type='ScheduleItem';
+			var schedule = Ext.create('YourTour.model.RouteScheduleModel',data);
+			scheduleStore.insert(data.index,schedule);
+			Ext.ComponentManager.get('MainView').pop(2);
+
+			me.editScheduleActivity(schedule);
+		});
     },
     
     /**
@@ -658,15 +680,16 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     	var scheduleStore = me.getRouteScheduleList().getStore();
     	
     	var data = {};
+		data.status ='VALIDATED';
     	data.schedule = {};
-    	
-    	var item = scheduleStore.getAt(me.index);
+
+		var planView = this.getRouteSchedulePlanView();
+		var item = planView.getRecord();
     	if(item.get('type') == 'Schedule'){
     		data.schedule.id = item.get('id');
     	}else{
     		data.schedule.id = item.get('parentId');
     	}
-    	
     	data.date = item.get('date');
     	
     	var view = this.getRouteActivityEditView();
@@ -679,56 +702,44 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     	
     	var id = view.down('#id');
     	data.id=id.getValue();
-    	if(data.id == '0'){
-    		data.index = me.getNewIndex();
-    	}else{
-    		data.index = me.getIndex();
-    	}
-    	
+		data.index = item.get('index');
+
     	var title = view.down('#title');
     	data.title = title.getValue();
 
     	var memo = view.down('#memo');
     	data.memo = memo.getValue();
     	
-    	var startHour = view.down('#startHourSelect');
-    	var startMin = view.down('#startMinSelect');
-    	data.startTime = startHour.getValue() + ':' + startMin.getValue();
+    	var startTime = view.down('#startTime');
+    	data.startTime = startTime.getValue();
     	
-    	var endHour = view.down('#endHourSelect');
-    	var endMin = view.down('#endMinSelect');
-    	data.endTime = endHour.getValue() + ':' + endMin.getValue();
-    	
-    	Ext.Ajax.request({
-    	    url : YourTour.util.Context.getContext('/routes/' + this.routeId + '/activity/save'),
-    	    method : "POST",
-    	    params : Ext.JSON.encode(data),
-    	    success : function(response) {
-    	    	var respObj = Ext.JSON.decode(response.responseText);
-    	    	if(respObj.errorCode != '0'){
-    	    		Ext.Msg.alert(respObj.errorText);
-    	    		return;
-    	    	};
-    	    	
-    	    	if(data.id == '0'){
-	    	    	data.id = respObj.data;
-	    	    	data.type='ScheduleItem';
-	    	    	var schedule = Ext.create('YourTour.model.RouteScheduleModel',data);
-			    	scheduleStore.insert(data.index,schedule);
-			    	Ext.ComponentManager.get('MainView').pop(2);
-	    	    }else{
-	    	    	var activity = scheduleStore.getAt(me.index);
-	    	    	activity.set('title',data.title);
-	    	    	activity.set('memo',data.memo);
-	    	    	Ext.ComponentManager.get('MainView').pop();
-	    	    }
-    	    },
-    	    failure : function(response) {
-    	        var respObj = Ext.JSON.decode(response.responseText);
-    	        Ext.Msg.alert("Error", respObj.status.statusMessage);
-    	    }
-    	});
+    	var endTime = view.down('#endTime');
+    	data.endTime = endTime.getValue();
+
+		this.saveScheduleActivity(data, function(response){
+			var activity = scheduleStore.getAt(me.index);
+			activity.set('title',data.title);
+			activity.set('memo',data.memo);
+			Ext.ComponentManager.get('MainView').pop();
+		});
     },
+
+	/**
+	 * 保存日程安排
+	 */
+	saveScheduleActivity:function(data, handle){
+		var store = this.store;
+		var routeId = store.first().get('id');
+
+		this.getApplication().callService({
+			url : '/routes/' + routeId + '/activity/save',
+			method : "POST",
+			params : data,
+			success : function(response) {
+				handle(response);
+			}
+		});
+	},
     
     onDeleteScheduleActivity:function(){
     	var me = this;
@@ -764,19 +775,22 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
      * 获取新增项目的位置索引
      */
     getNewIndex:function(){
-    	var newIndex = 0; 
+    	var newIndex = 0;
     	var store = this.getRouteScheduleList().getStore();
-    	var schedule = store.getAt(this.index);
-    	
-    	var length = store.getData().length;
-    	
+		var length = store.getData().length;
+
+		var planView = this.getRouteSchedulePlanView();
+		var schedule = planView.getRecord();
+
+		var index = store.indexOf(schedule);
+
     	var parentId;
     	if(schedule.get('type') == 'Schedule' || schedule.get('type') == 'Provision'){
     		parentId = schedule.get('id');
     		
-    		var count = this.index;
+    		var count = index;
     		var item;
-    		for(var i = this.index; i < length; i++){
+    		for(var i = index; i < length; i++){
     			item = store.getAt(i);
     			if(item.get('id') != parentId && item.get('parentId') != parentId){
     				break;
@@ -791,7 +805,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     		newIndex = schedule.get('index');
     		
     		var item;
-    		for(var i = this.index; i < length; i++){
+    		for(var i = index; i < length; i++){
     			item = store.getAt(i);
     			
     			if(item.get('parentId') != parentId) break;
@@ -801,10 +815,6 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     	}
     	
     	return newIndex;
-    },
-    
-    onRouteSchedulePlanViewDestroy:function(){
-    	//this.store.setData('');
     },
     
     onRouteDiscuss:function(){
@@ -819,7 +829,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 
 		if(value.getItemId() == 'scheduleList') {
 			headerbar.setTitle('行程安排');
-			var record = view.getAttrs().record;
+			var record = view.getRecord();
 			var routeId = record.get('id');
 
 			var store = me.getScheduleList().getStore();
@@ -840,10 +850,13 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 		}
 	},
 
+	/**
+	 * 行程复制
+	 */
 	onRouteCloneTap:function(){
 		var me = this;
 		var view = me.getRouteRecommendIntroductionView();
-		var record = view.getAttrs().record;
+		var record = view.getRecord();
 		var sourceId = record.get('id');
 
 		Ext.Ajax.request({
@@ -871,12 +884,18 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 
 	},
 
+	/**
+	 * 日程编辑页面点击添加服务项触发函数
+	 */
 	onActivityServiceAddTap:function(){
 		var serviceController = this.getApplication().getController('ServiceMainCtrl');
 
 		serviceController.showExpertServices();
 	},
 
+	/**
+	 * 日程编辑页面点击添加服务项触发函数
+	 */
 	onActivityServiceItemTap:function(dataview, index, item, record,e){
 		var serviceController = this.getApplication().getController('ServiceMainCtrl');
 
@@ -884,13 +903,13 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 	},
 
 	/**
-	 * 保存服务
+	 * 预订服务项
 	 * @param service
 	 * @param handler
 	 */
 	bookService:function(service, handler){
 		var view = this.getRouteActivityEditView();
-		var activity = view.getAttrs().activity;
+		var activity = view.getRecord();
 		var activityId = activity.get('id');
 
 		var serviceId = service.get('id');
@@ -910,7 +929,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 	},
 
 	/**
-	 * 取消服务
+	 * 取消服务项
 	 * @param service
 	 * @param handler
 	 */
@@ -931,10 +950,14 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 		});
 	},
 
+	/**
+	 * 日程编辑页面点击添加活动项触发函数
+	 */
 	onActivityItemAddTap:function(){
 		var view = this.getRouteActivityEditView();
-		var activity = view.getAttrs().activity;
+		var activity = view.getRecord();
 		var resource = activity.resourceStore.first();
+
 		var title = resource.get('name');
 
 		var controller = this.getApplication().getController('ResourceMainCtrl');
@@ -942,9 +965,13 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 		controller.showResourceActivities(title, resource);
 	},
 
-	addScheduleActivityItem:function(resourceActivityItem){
+	/**
+	 * 添加日程中的活动项目
+	 * @param resourceActivityItem
+	 */
+	addScheduleActivityItem:function(resourceActivityItem, handler){
 		var view = this.getRouteActivityEditView();
-		var activity = view.getAttrs().activity;
+		var activity = view.getRecord();
 		var activityId = activity.get('id');
 
 		var resourceActivityItemId = resourceActivityItem.get('id');
@@ -965,6 +992,10 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 		});
 	},
 
+	/**
+	 * 删除日程中的活动项目
+	 * @param activityItem
+	 */
 	cancelScheduleActivityItem:function(activityItem){
 		var view = this.getRouteActivityEditView();
 
@@ -982,6 +1013,14 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 		});
 	},
 
+	/**
+	 * 日程页面活动项点击出发函数
+	 * @param dataview
+	 * @param index
+	 * @param item
+	 * @param record
+	 * @param e
+	 */
 	onActivityItemTap:function(dataview, index, item, record,e){
 		var controller = this.getApplication().getController('ResourceMainCtrl');
 

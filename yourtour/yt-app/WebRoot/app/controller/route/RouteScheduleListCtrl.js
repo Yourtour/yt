@@ -83,20 +83,12 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
     
     onItemTap:function(dataview, index, item, record,e){
     	var type = record.get('resourceType');
-    	if(type == 'SCENE'){
-    		this.onSceneResourceTap(record);
-    	}else if(type == 'food'){
-    		this.onFoodResourceTap(record);
-    	}else if(type == 'hotel'){
-    		this.onHotelResourceTap(record);
+    	if(type == 'SCENE' || type == 'FOOD' ||type == 'HOTEL'){
+    		this.showRouteActivityInfo(record);
     	}
     },
-    
-    onRouteScheduleViewDestroy:function(){ 
-    	this.store.setData('');
-    },
-    
-    onSceneResourceTap:function(record){
+
+    showRouteActivityInfo:function(record){
     	var me = this;
     	
     	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteScheduleFormView'));
@@ -110,34 +102,34 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
     		var activity = store.first();
 
     		var scheduleView = me.getScheduleFormView();
-			scheduleView.setAttrs({activity:activity});
+			scheduleView.updateRecord(activity);
     		
         	var headerbar = scheduleView.down('#headerbar');
         	headerbar.setTitle(activity.get('title'));
         	
-        	var memoEl = scheduleView.down('#memo');
-        	memoEl.setHtml(activity.get('memo'));
+        	var memo = scheduleView.down('#memo');
+			memo.setHtml(activity.get('memo'));
         	
-        	var timeEl = scheduleView.down('#time');
-        	timeEl.setHtml(activity.get('startTime') + ' - ' + record.get('endTime'));
+        	var time = scheduleView.down('#time');
+			time.setHtml(activity.get('startTime') + ' - ' + record.get('endTime'));
         	
         	var resource = activity.resource().getAt(0);
         	me.resource = resource;
         	
-        	var imageEl = scheduleView.down('#image');
-        	imageEl.setHtml("<img src='" + YourTour.util.Context.getImageResource(resource.get('imageUrl')) + "' style='width:100%; max-height:150px'>");
+        	var image = scheduleView.down('#image');
+			image.setHtml("<img src='" + YourTour.util.Context.getImageResource(resource.get('imageUrl')) + "' style='width:100%; max-height:150px'>");
         	
-        	var addressEl = scheduleView.down('#address');
-        	addressEl.setHtml(resource.get('address'));
+        	var address = scheduleView.down('#address');
+			address.setHtml(resource.get('address'));
         	
-        	var phoneEl = scheduleView.down('#phone');
-        	phoneEl.setHtml(resource.get('phone'));
+        	var phone = scheduleView.down('#phone');
+			phone.setHtml(resource.get('phone'));
         	
-        	var resNameEl = scheduleView.down('#resName');
-        	resNameEl.setHtml(resource.get('name'));
+        	var resName = scheduleView.down('#resName');
+			resName.setHtml(resource.get('name'));
         	
-        	var serviceEl = scheduleView.down('#services');
-        	serviceEl.setStore(activity.servicesStore);
+        	var services = scheduleView.down('#services');
+			services.setStore(activity.servicesStore);
 
 			var items = scheduleView.down('#items');
 			items.setStore(activity.itemsStore);
@@ -146,7 +138,7 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
     
     onShowResourceView:function(){
 		var view = this.getScheduleFormView();
-		var activity = view.getAttrs().activity;
+		var activity = view.getRecord();
 		var resource = activity.resourceStore.first();
 		var resourceController = this.getApplication().getController('ResourceMainCtrl');
 		resourceController.showResourcePage(resource.get('type'), resource.get('id'));
@@ -170,6 +162,6 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
 
 	onScheduleActivityItemTap:function(dataview, index, item, record,e){
 		var controller = this.getApplication().getController('ResourceMainCtrl');
-		controller.showResourceActivity(record);cd
+		controller.showResourceActivity(record);
 	}
 });

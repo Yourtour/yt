@@ -11,7 +11,7 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
             resourceFoodListView: '#ResourceSelectionView #ResourceFoodListView #ResourceList',
 
             resourceFormView: '#ResourceFormView',
-            btnAddResource: '#ResourceFormView #btnAddToRoute',
+            btnResourceAddTap: '#ResourceFormView #btnResourceAddTap',
 
             resourceActivityItemListView: '#ResourceActivityItemListView',
             activityList: '#ResourceActivityItemListView #activityList',
@@ -26,6 +26,10 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
 
             resourcePlayListView: {
                 itemtap: 'onPlayItemTap'
+            },
+
+            btnResourceAddTap:{
+                tap:'onResourceAddTap'
             },
 
             '#ResourceActivityItemListView #btnAddToRoute': {
@@ -90,6 +94,8 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
         store.getProxy().setUrl(YourTour.util.Context.getContext('/scenes/' + resourceId));
         store.load(function () {
             var resource = store.first();
+            view.updateRecord(resource);
+
             var form = Ext.create('YourTour.view.resource.ResourceSceneView', {record:resource});
             view.insert(1, form);
         });
@@ -153,6 +159,16 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
         this.showSceneResource(record.get('id'));
     },
 
+    onResourceAddTap:function(){
+        var view = this.getResourceFormView();
+        var resource = view.getRecord();
+
+        var controller = this.getApplication().getController('route.RouteSchedulePlanCtrl');
+        controller.addScheduleActivity(resource, function () {
+            Ext.ComponentManager.get('MainView').pop();
+        });
+    },
+
     /**
      * 显示某项资源的活动项信息
      * @param title
@@ -203,7 +219,7 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
 
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.resource.ResourceActivityItemFormView'));
         var view = this.getResourceActivityItemFormView();
-        view.setAttrs({item: record});
+        view.updateRecord(record);
 
         var headerbar = view.down('#headerbar');
         headerbar.setTitle(record.get('title'));

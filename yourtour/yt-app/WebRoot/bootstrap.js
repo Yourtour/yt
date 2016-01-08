@@ -770,14 +770,15 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.resource.ResourceActivityItem": [],
   "YourTour.view.resource.ResourceActivityItemFormView": [],
   "YourTour.view.resource.ResourceActivityItemListView": [],
-  "YourTour.view.resource.ResourceDetailView": [],
   "YourTour.view.resource.ResourceFoodDataItem": [],
   "YourTour.view.resource.ResourceFoodListView": [],
+  "YourTour.view.resource.ResourceFormView": [],
   "YourTour.view.resource.ResourceMapView": [],
   "YourTour.view.resource.ResourcePlayDataItem": [],
   "YourTour.view.resource.ResourcePlayListView": [],
   "YourTour.view.resource.ResourceSceneView": [],
   "YourTour.view.resource.ResourceSelectionView": [],
+  "YourTour.view.resource.ResourceView": [],
   "YourTour.view.route.RouteActivityEditView": [],
   "YourTour.view.route.RouteActivityItemDataItem": [],
   "YourTour.view.route.RouteImageView": [],
@@ -1798,13 +1799,13 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.resource.ResourceActivityItemListView": [
     "widget.ResourceActivityItemListView"
   ],
-  "YourTour.view.resource.ResourceDetailView": [],
   "YourTour.view.resource.ResourceFoodDataItem": [
     "widget.ResourceFoodDataItem"
   ],
   "YourTour.view.resource.ResourceFoodListView": [
     "widget.ResourceFoodListView"
   ],
+  "YourTour.view.resource.ResourceFormView": [],
   "YourTour.view.resource.ResourceMapView": [
     "widget.ResourceMapView"
   ],
@@ -1818,6 +1819,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.resource.ResourceSelectionView": [
     "widget.SelectionListView"
   ],
+  "YourTour.view.resource.ResourceView": [],
   "YourTour.view.route.RouteActivityEditView": [],
   "YourTour.view.route.RouteActivityItemDataItem": [
     "widget.RouteActivityItemDataItem"
