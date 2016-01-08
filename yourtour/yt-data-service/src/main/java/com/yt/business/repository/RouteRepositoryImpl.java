@@ -3,7 +3,7 @@ package com.yt.business.repository;
 import java.util.*;
 
 import com.yt.business.bean.*;
-import com.yt.business.neo4j.repository.RouteTuple;
+import com.yt.business.neo4j.repository.*;
 import com.yt.core.utils.DateUtils;
 import com.yt.core.utils.StringUtils;
 import org.apache.commons.logging.Log;
@@ -15,9 +15,6 @@ import org.springframework.stereotype.Component;
 import com.yt.business.CrudAllInOneOperateImpl;
 import com.yt.business.common.Constants;
 import com.yt.business.common.Constants.GroupRole;
-import com.yt.business.neo4j.repository.RouteActivityRepository;
-import com.yt.business.neo4j.repository.RouteActivityTuple;
-import com.yt.business.neo4j.repository.RouteBeanRepository;
 import com.yt.business.neo4j.repository.RouteBeanRepository.OwnerRouteTuple;
 
 @Component
@@ -30,6 +27,12 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 	
 	@Autowired
 	private RouteActivityRepository activityRepository;
+
+	@Autowired
+	private ResourceActivityItemRepository resourceActivityItemRepository;
+
+	@Autowired
+	private ExpertServiceRepository expertServiceRepository;
 
 	public RouteRepositoryImpl() {
 		super();
@@ -77,13 +80,39 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 		return route;
 	}
 
+	@Override
+	public RouteActivityBean getCompleteActivity(Long activityId) throws Exception {
+		RouteActivityBean activity = (RouteActivityBean) super.get(RouteActivityBean.class,activityId);
+
+		if(activity != null){
+			List<RouteServiceBean> services = activity.getServices();
+			if(services != null){
+				for(RouteServiceBean service : services){
+					if(service.getExpertServiceId() == null) continue;
+					service.setService((ExpertServiceBean) this.get(ExpertServiceBean.class, service.getExpertServiceId(), false));
+				}
+			}
+
+			List<RouteActivityItemBean> items = activity.getItems();
+			if(items != null){
+				for(RouteActivityItemBean item : items){
+					if(item.getResourceActivityItemId() == null) continue;
+					item.setResourceActivityItem((ResourceActivityItemBean) this.get(ResourceActivityItemBean.class, item.getResourceActivityItemId(), false));
+				}
+			}
+
+		}
+
+		return activity;
+	}
+
 	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.yt.business.repository.RouteRepository#getRoutePeople(java.lang.Long,
-	 * com.yt.business.common.Constants.GroupRole)
-	 */
+             * (non-Javadoc)
+             *
+             * @see
+             * com.yt.business.repository.RouteRepository#getRoutePeople(java.lang.Long,
+             * com.yt.business.common.Constants.GroupRole)
+             */
 	@Override
 	public List<UserProfileBean> getRouteMember(Long routeId) throws Exception {
 		return repository.getRouteMember(routeId);

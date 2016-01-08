@@ -21,7 +21,7 @@ Ext.define('YourTour.model.ResourceModel', {
 		associations: [
 			{
 				type: 'hasMany',
-				model: 'YourTour.model.RouteActivityItemModel',
+				model: 'YourTour.model.ActivityItemModel',
 				name:'activityItems',
 				associationKey:'activityItems'
 			}

@@ -14,6 +14,7 @@ import java.util.List;
 public class RouteActivityItemVO extends BaseVO {
 	private String title, memo, option, imageUrl;
 	private int index;
+	private Long resourceActivityItemId;
 
 	public static RouteActivityItemVO transform(RouteActivityItemBean bean) {
 		if (bean == null) {
@@ -21,8 +22,11 @@ public class RouteActivityItemVO extends BaseVO {
 		}
 		RouteActivityItemVO vo = new RouteActivityItemVO();
 		vo.fromBean(bean);
-		vo.setTitle(bean.getTitle());
-		vo.setMemo(bean.getMemo());
+
+		vo.setResourceActivityItemId(bean.getResourceActivityItemId());
+		ResourceActivityItemBean resourceActivityItem = bean.getResourceActivityItem();
+		vo.setTitle(resourceActivityItem.getTitle());
+		vo.setMemo(resourceActivityItem.getMemo());
 		vo.setIndex(bean.getIndex());
 		vo.setOption(bean.getOption());
 		vo.setImageUrl(bean.getImageUrl());
@@ -46,6 +50,14 @@ public class RouteActivityItemVO extends BaseVO {
 
 	public RouteActivityItemVO() {
 		super();
+	}
+
+	public Long getResourceActivityItemId() {
+		return resourceActivityItemId;
+	}
+
+	public void setResourceActivityItemId(Long resourceActivityItemId) {
+		this.resourceActivityItemId = resourceActivityItemId;
 	}
 
 	public String getTitle() {

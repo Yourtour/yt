@@ -54,7 +54,7 @@ public class ServiceRestResource {
 				return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
 			}
 
-			ExpertServiceBean service = (ExpertServiceBean) routeRepository.get(ExpertServiceBean.class, Long.valueOf(serviceVO.getServiceId()), false);
+			ExpertServiceBean service = (ExpertServiceBean) routeRepository.get(ExpertServiceBean.class, Long.valueOf(serviceVO.getExpertServiceId()), false);
 			if(service == null){
 				return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
 			}
@@ -89,7 +89,7 @@ public class ServiceRestResource {
 				return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
 			}
 
-			ExpertServiceBean service = (ExpertServiceBean) routeRepository.get(ExpertServiceBean.class, Long.valueOf(serviceVO.getServiceId()), false);
+			ExpertServiceBean service = (ExpertServiceBean) routeRepository.get(ExpertServiceBean.class, Long.valueOf(serviceVO.getExpertServiceId()), false);
 			if(service == null){
 				return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
 			}
@@ -123,7 +123,7 @@ public class ServiceRestResource {
 				return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
 			}
 
-			ExpertServiceBean service = (ExpertServiceBean) routeRepository.get(ExpertServiceBean.class, Long.valueOf(serviceVO.getServiceId()), false);
+			ExpertServiceBean service = (ExpertServiceBean) routeRepository.get(ExpertServiceBean.class, Long.valueOf(serviceVO.getExpertServiceId()), false);
 			if(service == null){
 				return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
 			}

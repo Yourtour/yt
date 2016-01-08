@@ -30,7 +30,7 @@ Ext.define('YourTour.view.resource.ResourceActivityItemListView', {
 						text: '加入日程',
 						ui: 'normal',
 						baseCls:'button',
-						itemId: 'btnAdd',
+						itemId: 'btnAddToRoute',
 						padding:'0 40 0 40'
 					}
 				]

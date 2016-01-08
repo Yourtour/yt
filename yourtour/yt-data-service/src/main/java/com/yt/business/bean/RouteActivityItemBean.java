@@ -7,11 +7,7 @@ import com.yt.hbase.annotation.HbaseColumn;
 import com.yt.hbase.annotation.HbaseTable;
 import com.yt.neo4j.annotation.Neo4jRelationship;
 import org.neo4j.graphdb.Direction;
-import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
-import org.springframework.data.neo4j.support.index.IndexType;
-
-import java.util.List;
 
 @HbaseTable(name = "T_ROUTE_ACTIVITY_ITEM")
 @NodeEntity
@@ -28,17 +24,23 @@ public class RouteActivityItemBean extends BaseBeanImpl implements Cloneable{
 
 	private String option; //0：可选 1：必须
 
+	private Long   resourceActivityItemId;
+
 	@HbaseColumn(name = "idx")
 	private int index = 1; // 行程活动排序号
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = RouteActivityBean.class, direction = Direction.INCOMING)
 	private transient RouteActivityBean activity = null;
 
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RELATED, type = ActivityItemBean.class, direction = Direction.OUTGOING)
-	private transient ActivityItemBean item = null;
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RELATED, type = ResourceActivityItemBean.class, direction = Direction.OUTGOING)
+	private transient ResourceActivityItemBean resourceActivityItem = null;
 
 	public RouteActivityItemBean() {
 		super();
+	}
+
+	public RouteActivityItemBean(String userId) {
+		super(userId);
 	}
 
 	public String getTitle() {
@@ -47,6 +49,14 @@ public class RouteActivityItemBean extends BaseBeanImpl implements Cloneable{
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public Long getResourceActivityItemId() {
+		return resourceActivityItemId;
+	}
+
+	public void setResourceActivityItemId(Long resourceActivityItemId) {
+		this.resourceActivityItemId = resourceActivityItemId;
 	}
 
 	public String getMemo() {
@@ -89,12 +99,12 @@ public class RouteActivityItemBean extends BaseBeanImpl implements Cloneable{
 		this.activity = activity;
 	}
 
-	public ActivityItemBean getItem() {
-		return item;
+	public ResourceActivityItemBean getResourceActivityItem() {
+		return resourceActivityItem;
 	}
 
-	public void setItem(ActivityItemBean item) {
-		this.item = item;
+	public void setResourceActivityItem(ResourceActivityItemBean resourceActivityItem) {
+		this.resourceActivityItem = resourceActivityItem;
 	}
 
 	@Override

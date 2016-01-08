@@ -36,7 +36,7 @@ Ext.application({
         'route.RouteActivityEditView',
         'route.RouteRecommendListView','route.RouteRecommendIntroductionView',
         'user.LoginMainView','user.UserListView','user.UserMainView','user.UserProfileView',
-        'resource.ResourceSelectionView','resource.ResourceDetailView','resource.ResourceSceneView','resource.ResourceMapView','resource.ResourceActivityItemListView',
+        'resource.ResourceSelectionView','resource.ResourceFormView','resource.ResourceMapView','resource.ResourceActivityItemListView',
         'resource.ResourceActivityItemFormView',
         'member.MemberMainView','member.MemberAddView','member.MemberPositionView','member.MemberSearchView',
         'expert.ExpertMainView','expert.ExpertApplyView','expert.ExpertIntroView','expert.ExpertListView','expert.ExpertServiceEditView',
@@ -57,7 +57,7 @@ Ext.application({
     
     models:[
         'LaunchModel','RouteModel','RouteActivityModel', 'LineModel', 'UserModel','OptionModel', 'HomeModel','LiveModel','ChatModel','AlongModel','TalentModel','HomeCarouselModel','CommentModel', 'PlaceModel',
-        'CacheModel','RouteActivityItemModel','ExpertServiceModel'
+        'CacheModel','ActivityItemModel','ServiceModel'
     ],
     
     stores:[

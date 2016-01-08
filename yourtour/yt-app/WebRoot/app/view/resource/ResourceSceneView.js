@@ -1,19 +1,8 @@
 Ext.define('YourTour.view.resource.ResourceSceneView', {
-	extend: 'YourTour.view.widget.XPage',
+	extend: 'YourTour.view.resource.ResourceView',
     requires:['Ext.Panel','Ext.Img','YourTour.view.widget.XHeaderBar','YourTour.view.widget.XToolbar', 'YourTour.view.widget.XLabel','YourTour.view.widget.XField'],
     config: {
-		id: 'ResourceSceneView',
-    	layout:'vbox',
-		scrollable:{
-			direction: 'vertical',
-			indicators: false
-		},
     	items:[
-			{
-				xtype: 'xheaderbar',
-				itemId:'headerbar'
-			},
-
 			{
 				xtype:'panel',
 				layout:'vbox',
@@ -118,57 +107,11 @@ Ext.define('YourTour.view.resource.ResourceSceneView', {
 					}
 	    		]
 	    	},
-
-			{
-				xtype: 'toolbar',
-				docked: 'bottom',
-				itemId:'toolbar',
-				items: [
-					{
-						xtype: 'spacer',
-						flex:1
-					},{
-						xtype: 'button',
-						text: '加入日程',
-						ui: 'normal',
-						iconCls:'action',
-						itemId: 'btnAdd'
-					},{
-						xtype: 'button',
-						text: '收藏',
-						ui: 'normal',
-						iconCls:'favorites',
-						itemId: 'btnFavorite'
-					},{
-						xtype: 'button',
-						text: '评论',
-						ui: 'normal',
-						iconCls:'compose',
-						itemId: 'btnComment'
-					},{
-						xtype: 'button',
-						text: '分享',
-						ui: 'normal',
-						iconCls:'action',
-						itemId: 'btnShare'
-					}
-				]
-			}
         ]
     },
     
-    setRecord:function(record){
-    	var me = this;
-    	if(record != null){
-    		var image = me.down('#image');
-			image.setHtml("<img src='" + record.get('imageUrl') + "' style='width:100%; max-height:150px'>");
- 	 	   	
- 	 	   	var address = me.down('#address');
- 	 	   	address.setHtml(record.get('address'));
- 	 	   	
- 	 	   	var intro = me.down('#intro');
- 	 	   	intro.setHtml(record.get('intro'));
-    	}
+    updateRecord:function(record){
+		this.fillRecord(this, record);
     }
 });
 

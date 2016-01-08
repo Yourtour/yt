@@ -21,14 +21,14 @@ Ext.define('YourTour.model.RouteActivityModel', {
   	        
   	        {  
   	            type: 'hasMany',   
-  	            model: 'YourTour.model.ExpertServiceModel',
+  	            model: 'YourTour.model.ServiceModel',
   	            name:'services',   
   	            associationKey:'services'  
   	        },
 
 			{
 				type: 'hasMany',
-				model: 'YourTour.model.RouteActivityItemModel',
+				model: 'YourTour.model.ActivityItemModel',
 				name:'items',
 				associationKey:'items'
 			}

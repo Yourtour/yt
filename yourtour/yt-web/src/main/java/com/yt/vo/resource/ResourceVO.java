@@ -1,12 +1,11 @@
 package com.yt.vo.resource;
 
-import com.yt.business.bean.ActivityItemBean;
+import com.yt.business.bean.ResourceActivityItemBean;
 import com.yt.business.bean.PlaceBean;
 import com.yt.business.bean.ResourceBean;
 import com.yt.business.common.Constants.ResType;
 import com.yt.business.common.Constants.Status;
 import com.yt.vo.BaseVO;
-import com.yt.vo.route.RouteActivityItemVO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,10 +78,10 @@ public class ResourceVO extends BaseVO {
 			setPlaceId(null);
 		}
 
-		List<ActivityItemBean> items = bean.getActivities();
+		List<ResourceActivityItemBean> items = bean.getActivities();
 		if(items != null){
 			List<ActivityItemVO> voes = new ArrayList<>();
-			for(ActivityItemBean item: items){
+			for(ResourceActivityItemBean item: items){
 				voes.add(ActivityItemVO.transform(item));
 			}
 

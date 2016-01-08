@@ -140,7 +140,7 @@ Ext.define('YourTour.controller.ExpertMainCtrl', {
         me.showTab(1);
         me.getExpertCarousel().setActiveItem(1);
 
-        var store = Ext.create('YourTour.store.AjaxStore', {model:'YourTour.model.ExpertServiceModel'});
+        var store = Ext.create('YourTour.store.AjaxStore', {model:'YourTour.model.ServiceModel'});
         store.getProxy().setUrl(YourTour.util.Context.getContext('/expert/services/' + me.getApplication().getUserId()));
         store.load(function(){
             me.getExpertServiceList().setStore(store);
@@ -198,7 +198,7 @@ Ext.define('YourTour.controller.ExpertMainCtrl', {
 
                 data.id = respObj.data;
 
-                me.getExpertServiceList().getStore().add(Ext.create('YourTour.model.ExpertServiceModel', data));
+                me.getExpertServiceList().getStore().add(Ext.create('YourTour.model.ServiceModel', data));
 
                 Ext.ComponentManager.get('MainView').pop();
             },

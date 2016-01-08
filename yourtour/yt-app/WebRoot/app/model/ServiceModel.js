@@ -1,4 +1,4 @@
-Ext.define('YourTour.model.ExpertServiceModel', {
+Ext.define('YourTour.model.ServiceModel', {
     extend: 'YourTour.model.BaseModel',
     config:{
 	    fields:[
@@ -12,7 +12,7 @@ Ext.define('YourTour.model.ExpertServiceModel', {
 			{name:'feeExcluding', type:'string'},
 			{name:'memo', type:'string'},
 			{name:'status', type:'string'},
-			{name:'serviceId', type:'string'}
+			{name:'expertServiceId', type:'string'}
 	    ]
     }
 });

@@ -33,7 +33,11 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
     	   
     	   '#RouteScheduleFormView #services':{
     		   itemtap:'onScheduleServiceTap'
-    	   }
+    	   },
+
+		   '#RouteScheduleFormView #items':{
+			   itemtap:'onScheduleActivityItemTap'
+		   }
        },
        
        routes:{
@@ -163,4 +167,9 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
 		var controller = this.getApplication().getController('ServiceMainCtrl');
 		controller.showExpertService(record, 'cancel')
     },
+
+	onScheduleActivityItemTap:function(dataview, index, item, record,e){
+		var controller = this.getApplication().getController('ResourceMainCtrl');
+		controller.showResourceActivity(record);cd
+	}
 });

@@ -216,6 +216,80 @@ public class RouteRestResource extends BaseRestResource{
 	}
 
 	/**
+	 * 保存行程活动值对象到图数据库
+	 *
+	 * @param vo
+	 *            行程活动值对象
+	 * @param request
+	 *            本次的HttpServletRequest对象
+	 * @return 统一的ResponseVO对象
+	 */
+	@POST
+	@Path("/{routeId}/activity/save")
+	public ResponseVO saveScheduleActivity(@PathParam("routeId") String routeId, RouteActivityVO vo,
+								   @Context HttpServletRequest request) {
+		if (vo == null) {
+			if (LOG.isWarnEnabled()) {
+				LOG.warn("The RouteActivityVO is null.");
+			}
+			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
+		}
+
+		try {
+			RouteActivityBean bean = RouteActivityVO.transform(vo);
+			routeRepository.save(bean, WebUtils.getCurrentLoginUser(request));
+			if (LOG.isDebugEnabled()) {
+				LOG.debug(String.format(
+						"Save RouteActivityBean['%s'] success.", vo.getRowKey()));
+			}
+			return new ResponseVO();
+		} catch (Exception ex) {
+			if (LOG.isErrorEnabled()) {
+				LOG.error(String.format(
+						"Save the RouteActivityBean[id='%s'] fail.",
+						vo.getRowKey()), ex);
+			}
+			return new ResponseVO(StaticErrorEnum.DB_OPERATE_FAIL);
+		}
+	}
+
+	/**
+	 *
+	 * @param activityId
+	 * @param itemId
+	 * @return
+	 */
+	@POST
+	@Path("/activity/{activityId}/item/{itemId}/save")
+	public ResponseDataVO<Long> saveScheduleActivityItem(@PathParam("activityId") String activityId, @PathParam("itemId") String itemId) {
+		try {
+			RouteActivityBean activity = (RouteActivityBean) routeRepository.get(RouteActivityBean.class, Neo4jUtils.getGraphIDFromString(activityId));
+			if(activity == null){
+				return new ResponseDataVO<Long>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+			}
+
+			ResourceActivityItemBean item = (ResourceActivityItemBean) routeRepository.get(ResourceActivityItemBean.class, Neo4jUtils.getGraphIDFromString(itemId));
+			if(item == null){
+				return new ResponseDataVO<Long>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+			}
+
+			RouteActivityItemBean activityItem = new RouteActivityItemBean(WebUtils.getCurrentLoginUser());
+			activityItem.setActivity(activity);
+			activityItem.setResourceActivityItem(item);
+			activityItem.setResourceActivityItemId(item.getGraphId());
+
+			routeRepository.save(activityItem, WebUtils.getCurrentLoginUser());
+
+			return new ResponseDataVO<Long>(activityItem.getGraphId());
+		} catch (Exception ex) {
+			if (LOG.isErrorEnabled()) {
+				LOG.error("System Exception", ex);
+			}
+			return new ResponseDataVO<Long>(StaticErrorEnum.DB_OPERATE_FAIL);
+		}
+	}
+
+	/**
 	 *
 	 * @param subType
 	 * @param subId
@@ -234,6 +308,7 @@ public class RouteRestResource extends BaseRestResource{
 			}
 			routeService.setService(service);
 
+			routeService.setExpertServiceId(service.getGraphId());
 			routeService.setImageUrl(service.getImageUrl());
 			routeService.setImageUrls(service.getImageUrls());
 			routeService.setWithdraw(service.getWithdraw());
@@ -277,49 +352,13 @@ public class RouteRestResource extends BaseRestResource{
 		}
 	}
 
-	/**
-	 * 保存行程活动值对象到图数据库
-	 * 
-	 * @param vo
-	 *            行程活动值对象
-	 * @param request
-	 *            本次的HttpServletRequest对象
-	 * @return 统一的ResponseVO对象
-	 */
-	@POST
-	@Path("/{routeId}/activity/save")
-	public ResponseVO saveActivity(@PathParam("routeId") String routeId, RouteActivityVO vo,
-			@Context HttpServletRequest request) {
-		if (vo == null) {
-			if (LOG.isWarnEnabled()) {
-				LOG.warn("The RouteActivityVO is null.");
-			}
-			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
-		}
 
-		try {
-			RouteActivityBean bean = RouteActivityVO.transform(vo);
-			routeRepository.save(bean, WebUtils.getCurrentLoginUser(request));
-			if (LOG.isDebugEnabled()) {
-				LOG.debug(String.format(
-						"Save RouteActivityBean['%s'] success.", vo.getRowKey()));
-			}
-			return new ResponseVO();
-		} catch (Exception ex) {
-			if (LOG.isErrorEnabled()) {
-				LOG.error(String.format(
-						"Save the RouteActivityBean[id='%s'] fail.",
-						vo.getRowKey()), ex);
-			}
-			return new ResponseVO(StaticErrorEnum.DB_OPERATE_FAIL);
-		}
-	}
 	
 	@GET
 	@Path("activity/{activityId}")
 	public ResponseDataVO<RouteActivityVO> getActivity(@PathParam("activityId")  String activityId,@Context HttpServletRequest request) {
 		try {
-			RouteActivityBean activity = (RouteActivityBean) routeRepository.get(RouteActivityBean.class, Long.valueOf(activityId));
+			RouteActivityBean activity = routeRepository.getCompleteActivity(Long.valueOf(activityId));
 			return new ResponseDataVO<>(RouteActivityVO.transform(activity));
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
@@ -520,6 +559,20 @@ public class RouteRestResource extends BaseRestResource{
 		}
 	}
 
+	@POST
+	@Path("/activity/item/{itemId}/delete")
+	public ResponseDataVO<Long> deleteActivityItem(@PathParam("itemId") String itemId){
+		try{
+			RouteActivityItemBean itemBean = (RouteActivityItemBean) routeRepository.get(RouteActivityItemBean.class, Neo4jUtils.getGraphIDFromString(itemId), false);
+
+			this.routeRepository.delete(itemBean);
+
+			return new ResponseDataVO<Long>(itemBean.getGraphId());
+		} catch (Exception ex) {
+			LOG.error("Exception raised when saving service.", ex);
+			return new ResponseDataVO<Long>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
+	}
 	/**
 	 *
 	 * @param subType

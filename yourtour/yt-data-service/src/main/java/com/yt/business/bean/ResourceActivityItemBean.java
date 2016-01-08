@@ -41,7 +41,7 @@ import java.util.List;
  * @since 1.0
  */
 @NodeEntity
-public class ActivityItemBean extends BaseBeanImpl {
+public class ResourceActivityItemBean extends BaseBeanImpl {
 	private static final long serialVersionUID = -8980153602025087935L;
 
 	@HbaseColumn(name = "img")
@@ -56,7 +56,7 @@ public class ActivityItemBean extends BaseBeanImpl {
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = SceneResourceBean.class, direction = Direction.INCOMING)
 	private transient SceneResourceBean resource = null;
 
-	public ActivityItemBean() {
+	public ResourceActivityItemBean() {
 		super();
 	}
 

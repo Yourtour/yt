@@ -116,8 +116,8 @@ public class ResourceBean extends BaseDictBeanImpl {
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RECOMMEND, type = UserProfileBean.class, direction = Direction.OUTGOING)
 	private transient UserProfileBean user = null;
 
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = ActivityItemBean.class, direction = Direction.OUTGOING, isList = true)
-	private transient List<ActivityItemBean> activities = null;
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = ResourceActivityItemBean.class, direction = Direction.OUTGOING, isList = true)
+	private transient List<ResourceActivityItemBean> activities = null;
 
 	public ResourceBean() {
 		super();
@@ -307,11 +307,11 @@ public class ResourceBean extends BaseDictBeanImpl {
 		this.user = user;
 	}
 
-	public List<ActivityItemBean> getActivities() {
+	public List<ResourceActivityItemBean> getActivities() {
 		return activities;
 	}
 
-	public void setActivities(List<ActivityItemBean> activities) {
+	public void setActivities(List<ResourceActivityItemBean> activities) {
 		this.activities = activities;
 	}
 }

@@ -76,6 +76,10 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 			   tap:'onActivityItemAddTap'
 		   },
 
+		   '#RouteActivityEditView #itemList':{
+			   itemtap:'onActivityItemTap'
+		   },
+
 		   '#RouteActivityEditView #btnServiceAdd':{
 			   tap:'onActivityServiceAddTap'
 		   },
@@ -452,26 +456,15 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     onDeleteProvisionItem:function(){
     	var me = this;
     	
-    	Ext.Ajax.request({
+    	this.getApplication().callService({
     	    url : YourTour.util.Context.getContext('/routes/provision/' + me.provision.get('id') + '/delete'),
     	    method : "GET",
     	    success : function(response) {
-    	    	var respObj = Ext.JSON.decode(response.responseText);
-    	    	if(respObj.errorCode != '0'){
-    	    		Ext.Msg.alert(resp.errorText);
-    	    		return;
-    	    	};
-    	    	
     	    	var scheduleStore = me.getRouteScheduleList().getStore();
     	    	var provision = scheduleStore.getAt(me.index);
 	    	    scheduleStore.remove(provision);
     	    	
     	    	Ext.ComponentManager.get('MainView').pop();
-    	    },
-    	    
-    	    failure : function(response) {
-    	        var respObj = Ext.JSON.decode(response.responseText);
-    	        Ext.Msg.alert("Error", respObj.status.statusMessage);
     	    }
     	});
     },
@@ -499,36 +492,26 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     	data.title = title.getValue();
     	data.memo = memo.getValue();
     	
-    	try{
-	    	Ext.Ajax.request({
-	    		url : YourTour.util.Context.getContext('/routes/' + this.routeId + '/provision/save'),
-	    	    method : "POST",
-	    	    data:Ext.JSON.encode(data),
-	    	    success : function(response) {
-	    	    	var respObj = Ext.JSON.decode(response.responseText);
-	    	    	if(respObj.errorCode != '0'){
-	    	    		Ext.Msg.alert(resp.errorText);
-	    	    		return;
-	    	    	};
-	    	    	
-	    	    	var scheduleStore = me.getRouteScheduleList().getStore();
-	    	    	if(data.id == '0'){
-		    	    	data.id = respObj.data;
-		    	    	data.type='ProvisionItem';
-		    	    	var schedule = Ext.create('YourTour.model.RouteScheduleModel',data);
-				    	scheduleStore.insert(data.index,schedule);
-		    	    }else{
-		    	    	var provision = scheduleStore.getAt(me.index);
-		    	    	provision.set('title',data.title);
-		    	    	provision.set('memo',data.memo);
-		    	    }
-	    	    	
-	    	    	Ext.ComponentManager.get('MainView').pop();
-	    	    }
-	    	});
-    	}catch(e){
-    		alert('错误' + e.message + '发生在' +   e.lineNumber + '行');
-    	}
+		this.getApplication().callService({
+			url : YourTour.util.Context.getContext('/routes/' + this.routeId + '/provision/save'),
+			method : "POST",
+			data:Ext.JSON.encode(data),
+			success : function(response) {
+				var scheduleStore = me.getRouteScheduleList().getStore();
+				if(data.id == '0'){
+					data.id = response;
+					data.type='ProvisionItem';
+					var schedule = Ext.create('YourTour.model.RouteScheduleModel',data);
+					scheduleStore.insert(data.index,schedule);
+				}else{
+					var provision = scheduleStore.getAt(me.index);
+					provision.set('title',data.title);
+					provision.set('memo',data.memo);
+				}
+
+				Ext.ComponentManager.get('MainView').pop();
+			}
+		});
     },
     
     onInsertSchedule:function(){
@@ -894,18 +877,6 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 		serviceController.showExpertServices();
 	},
 
-	onActivityItemAddTap:function(){
-		var view = this.getRouteActivityEditView();
-		var activity = view.getAttrs().activity;
-		var resource = activity.resourceStore.first();
-		var resourceId = resource.get('id');
-		var title = resource.get('title');
-
-		var controller = this.getApplication().getController('ResourceMainCtrl');
-
-		controller.showResourceActivities(title, resource);
-	},
-
 	onActivityServiceItemTap:function(dataview, index, item, record,e){
 		var serviceController = this.getApplication().getController('ServiceMainCtrl');
 
@@ -928,6 +899,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 			url : '/routes/service/activity/' + activityId + '/' + serviceId +'/save',
 			method : "POST",
 			success : function(data) {
+				service.set
 				var serviceList = view.down('#serviceList');
 				var store = serviceList.getStore();
 				store.add(service);
@@ -957,5 +929,62 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 				handler();
 			},
 		});
+	},
+
+	onActivityItemAddTap:function(){
+		var view = this.getRouteActivityEditView();
+		var activity = view.getAttrs().activity;
+		var resource = activity.resourceStore.first();
+		var title = resource.get('name');
+
+		var controller = this.getApplication().getController('ResourceMainCtrl');
+
+		controller.showResourceActivities(title, resource);
+	},
+
+	addScheduleActivityItem:function(resourceActivityItem){
+		var view = this.getRouteActivityEditView();
+		var activity = view.getAttrs().activity;
+		var activityId = activity.get('id');
+
+		var resourceActivityItemId = resourceActivityItem.get('id');
+
+		this.getApplication().callService({
+			url : '/routes/activity/' + activityId + '/item/' + resourceActivityItemId +'/save',
+			method : "POST",
+			success : function(data) {
+				resourceActivityItem.set('resourceActivityItemId', resourceActivityItemId);
+				resourceActivityItem.set('id', data);
+
+				var itemList = view.down('#itemList');
+				var store = itemList.getStore();
+				store.add(resourceActivityItem);
+
+				handler();
+			},
+		});
+	},
+
+	cancelScheduleActivityItem:function(activityItem){
+		var view = this.getRouteActivityEditView();
+
+		var activityItemId = activityItem.get('id');
+		this.getApplication().callService({
+			url : '/routes/activity/item/' + activityItemId +'/delete',
+			method : "POST",
+			success : function(data) {
+				var itemList = view.down('#itemList');
+				var store = itemList.getStore();
+				store.remove(activityItem);
+
+				handler();
+			},
+		});
+	},
+
+	onActivityItemTap:function(dataview, index, item, record,e){
+		var controller = this.getApplication().getController('ResourceMainCtrl');
+
+		controller.showResourceActivity(record);
 	}
 });

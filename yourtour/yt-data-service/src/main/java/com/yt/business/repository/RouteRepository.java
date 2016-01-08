@@ -19,6 +19,17 @@ public interface RouteRepository extends CrudAllInOneOperate {
 	public RouteMainBean getCompleteRoute(Long routeId) throws Exception;
 
 	/**
+	 * 根据指定的行程ID，返回完整的行程对象。
+	 *
+	 * @param routeId
+	 *            行程ID
+	 * @return 完整的行程对象
+	 * @throws Exception
+	 *             获取数据过程中发生的异常
+	 */
+	public RouteActivityBean getCompleteActivity(Long activityId) throws Exception;
+
+	/**
 	 * 根据指定的行程ID，返回该行程中指定成员角色的用户。
 	 * 
 	 * @param routeId

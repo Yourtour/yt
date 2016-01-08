@@ -35,7 +35,7 @@ Ext.define('YourTour.controller.ServiceMainCtrl', {
         expertId = 282;
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.common.ExpertServiceListView'));
 
-        var store = Ext.create('YourTour.store.AjaxStore', {model:'YourTour.model.ExpertServiceModel'});
+        var store = Ext.create('YourTour.store.AjaxStore', {model:'YourTour.model.ServiceModel'});
         var proxy = store.getProxy();
         proxy.setUrl(YourTour.util.Context.getContext('/services/expert/' + expertId));
         store.load(function(){

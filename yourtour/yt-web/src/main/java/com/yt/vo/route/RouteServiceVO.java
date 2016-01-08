@@ -5,7 +5,7 @@ import com.yt.vo.BaseVO;
 import com.yt.vo.member.ExpertServiceVO;
 
 public class RouteServiceVO extends ExpertServiceVO {
-	private String  serviceId;
+	private String  expertServiceId;
 	private String  scheduleId;
 	private String  routeId;
 
@@ -14,6 +14,7 @@ public class RouteServiceVO extends ExpertServiceVO {
 			return null;
 		}
 		RouteServiceVO valueObject = new RouteServiceVO();
+		valueObject.setExpertServiceId(String.valueOf(bean.getExpertServiceId()));
 		valueObject.setId(bean.getGraphId());
 		valueObject.setFee(bean.getFee());
 		valueObject.setTitle(bean.getTitle());
@@ -31,12 +32,12 @@ public class RouteServiceVO extends ExpertServiceVO {
 		super();
 	}
 
-	public String getServiceId() {
-		return serviceId;
+	public String getExpertServiceId() {
+		return expertServiceId;
 	}
 
-	public void setServiceId(String serviceId) {
-		this.serviceId = serviceId;
+	public void setExpertServiceId(String expertServiceId) {
+		this.expertServiceId = expertServiceId;
 	}
 
 	public String getRouteId() {

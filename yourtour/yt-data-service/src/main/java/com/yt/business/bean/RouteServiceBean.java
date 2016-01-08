@@ -16,7 +16,9 @@ public class RouteServiceBean extends ExpertServiceBean {
 
 	private String status;
 
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RELATED, type = RouteMainBean.class, direction = Direction.OUTGOING)
+	private Long  expertServiceId;
+
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RELATED, type = ExpertServiceBean.class, direction = Direction.OUTGOING)
 	private transient ExpertServiceBean service = null; // 行程活动关联的行程日程
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = RouteMainBean.class, direction = Direction.INCOMING)
@@ -34,6 +36,14 @@ public class RouteServiceBean extends ExpertServiceBean {
 
 	public RouteServiceBean(String userId) {
 		super(userId);
+	}
+
+	public Long getExpertServiceId() {
+		return expertServiceId;
+	}
+
+	public void setExpertServiceId(Long expertServiceId) {
+		this.expertServiceId = expertServiceId;
 	}
 
 	public RouteMainBean getRoute() {

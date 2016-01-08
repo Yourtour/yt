@@ -26,6 +26,7 @@ public class RouteActivityVO extends BaseVO {
 		if (bean == null) {
 			return null;
 		}
+
 		RouteActivityVO vo = new RouteActivityVO();
 		vo.fromBean(bean);
 		vo.setTitle(bean.getTitle());
