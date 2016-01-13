@@ -91,11 +91,14 @@ Ext.define('YourTour.controller.UserMainCtrl', {
     fillProfileInfo:function(profile){
         var userProfileView = this.getUserProfileView();
 
-        var imageEl = userProfileView.down('#userLogo');
-        imageEl.setHtml("<img src='" + YourTour.util.Context.getImageResource(profile.imageUrl) + "'>");
+        var userLogo = userProfileView.down('#userLogo');
+        userLogo.setHtml("<img src='" + YourTour.util.Context.getImageResource(profile.imageUrl) + "'>");
 
-        var nickNameEl = userProfileView.down('#nickName');
-        nickNameEl.setHtml(profile.nickName);
+        var nickName = userProfileView.down('#nickName');
+        nickName.setValue(profile.nickName);
+
+        var slogan = userProfileView.down('#slogan');
+        slogan.setValue('喜欢一个事物光有自己的勇气是不行的，一定要让别人觉得你喜欢的东西是世界上最好的，而且要大声地说，大胆地说，理直气壮的说。');
     },
 
     onSettingTap:function(){

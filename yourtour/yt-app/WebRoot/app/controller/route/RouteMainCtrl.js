@@ -24,10 +24,8 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
     	   },
     	   
     	   routeCarousel:{
-    		   onRouteTap:'onRouteTap',
-    		   onMemberTap:'onMemberTap',
-    		   onImpressionEdit:'onImpressionEdit',
-    		   onImageTap:'onImageTap'
+			   activeitemchange: 'onActiveItemChange',
+			   tap:'onCarouselItemTap'
     	   },
     	   
     	   '#RouteImpressionView #save':{
@@ -38,8 +36,16 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
     		   tap:'onImageSave'
     	   },
 
-		   '#RouteMainView #share':{
-			   tap:'onShareTap'
+		   '#RouteMainView #btnRoute':{
+			   tap:'onRouteTap'
+		   },
+
+		   '#RouteMainView #btnMember':{
+			   tap:'onMemberTap'
+		   },
+
+		   '#RouteMainView #impression':{
+			   tap:'onImpressionEdit'
 		   }
        },
        
@@ -54,17 +60,24 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
     	var me = this;
     	
     	YourTour.util.Context.mainview = me.getRouteMainView();
-    	
     	var routeCarousel = me.getRouteCarousel();
     	var store = me.store = Ext.create('YourTour.store.RouteStore',{storeId:'RouteMainStore'});	
     	var handler = function(){
-    		routeCarousel.removeAll(true, false);
-        	store.each(function(item){
-        		var routePanel = Ext.create('YourTour.view.route.RouteMainItem',{itemId:item.get('Id'), carousel:routeCarousel, record:item});
-        		routeCarousel.add(routePanel);
-        	});
-        	
-        	routeCarousel.setActiveItem(0);
+			if(routeCarousel) {
+				routeCarousel.removeAll(true, false);
+
+				store.each(function (item) {
+					var routePanel = Ext.create('YourTour.view.route.RouteMainItem', {
+						carousel: routeCarousel,
+						record: item
+					});
+					routeCarousel.add(routePanel);
+				});
+
+				routeCarousel.setActiveItem(0);
+
+				me.fillRouteInfo(store.getAt(0));
+			}
     	};
 
     	var proxy = store.getProxy();
@@ -108,6 +121,10 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
     
     onRouteTap:function(record){
 		var me = this;
+		var routeCarousel = me.getRouteCarousel();
+		var index = routeCarousel.getActiveIndex();
+		var record = me.store.getAt(index);
+
 		var step = record.get('step');
 		if(step == '0'){
 			var controller = me.getApplication().getController('route.RouteSchedulePlanCtrl')
@@ -118,10 +135,44 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
     },
     
     onMemberTap:function(record){
-    	this.redirectTo('/routes/' + record.get('id') + '/members');
+		var me = this;
+		var routeCarousel = me.getRouteCarousel();
+		var index = routeCarousel.getActiveIndex();
+		var record = me.store.getAt(index);
+
+		this.redirectTo('/routes/' + record.get('id') + '/members');
     },
-    
-    onImageTap:function(route){
+
+	onActiveItemChange: function (carousel, value, oldValue, eOpts) {
+		var index = carousel.getActiveIndex();
+		var record = this.store.getAt(index);
+
+		this.fillRouteInfo(record);
+	},
+
+	fillRouteInfo:function(record){
+		var view = this.getRouteMainView();
+		var name = view.down('#routeName');
+		name.setHtml(record.get('name'));
+
+		var time = view.down('#time');
+		time.setText(record.get('startDate') +'-' + record.get('endDate') + '  合计：' + record.get('duration')+'天');
+
+		var lineName = view.down('#lineName');
+		lineName.setText(record.get('lineName'));
+
+		var impression = view.down('#impression');
+		if(record.get('impression') == '' || record.get('impression') == null){
+			impression.setText('赶快记录下你的旅行印象吧.........');
+		}else {
+			impression.setText(record.get('impression'));
+		}
+	},
+
+	onCarouselItemTap:function(){
+		var index = this.getRouteCarousel().getActiveIndex();
+		var route = this.store.getAt(index);
+
     	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteImageView'));
     	
     	this.getPhoto(navigator.camera.PictureSourceType.PHOTOLIBRARY);

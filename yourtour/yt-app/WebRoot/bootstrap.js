@@ -675,6 +675,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.model.CacheModel": [],
   "YourTour.model.ChatModel": [],
   "YourTour.model.CommentModel": [],
+  "YourTour.model.ExpertModel": [],
   "YourTour.model.HomeCarouselModel": [],
   "YourTour.model.HomeModel": [],
   "YourTour.model.LaunchModel": [],
@@ -734,9 +735,12 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.community.LiveMainView": [],
   "YourTour.view.expert.ExpertApplyView": [],
   "YourTour.view.expert.ExpertDataItem": [],
-  "YourTour.view.expert.ExpertIntroView": [],
+  "YourTour.view.expert.ExpertIntroFormView": [],
   "YourTour.view.expert.ExpertListView": [],
   "YourTour.view.expert.ExpertMainView": [],
+  "YourTour.view.expert.ExpertRecommendDataItem": [],
+  "YourTour.view.expert.ExpertRecommendIntroView": [],
+  "YourTour.view.expert.ExpertRecommendListView": [],
   "YourTour.view.expert.ExpertRouteDataItem": [],
   "YourTour.view.expert.ExpertServiceDataItem": [],
   "YourTour.view.expert.ExpertServiceEditView": [],
@@ -835,6 +839,10 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.XImagePicker": [],
   "YourTour.view.widget.XKVField": [],
   "YourTour.view.widget.XLabel": [],
+  "YourTour.view.widget.XLabelField": [],
+  "YourTour.view.widget.XMultiField": [],
+  "YourTour.view.widget.XMultiLabel": [],
+  "YourTour.view.widget.XMultiLabelField": [],
   "YourTour.view.widget.XPage": [],
   "YourTour.view.widget.XPanel": [],
   "YourTour.view.widget.XPicker": [],
@@ -1608,6 +1616,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.model.CacheModel": [],
   "YourTour.model.ChatModel": [],
   "YourTour.model.CommentModel": [],
+  "YourTour.model.ExpertModel": [],
   "YourTour.model.HomeCarouselModel": [],
   "YourTour.model.HomeModel": [],
   "YourTour.model.LaunchModel": [],
@@ -1699,15 +1708,18 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.expert.ExpertDataItem": [
     "widget.ExpertDataItem"
   ],
-  "YourTour.view.expert.ExpertIntroView": [
-    "widget.ExpertIntroView"
-  ],
+  "YourTour.view.expert.ExpertIntroFormView": [],
   "YourTour.view.expert.ExpertListView": [
     "widget.ExpertListView"
   ],
   "YourTour.view.expert.ExpertMainView": [
     "widget.ExpertMainView"
   ],
+  "YourTour.view.expert.ExpertRecommendDataItem": [
+    "widget.ExpertRecommendDataItem"
+  ],
+  "YourTour.view.expert.ExpertRecommendIntroView": [],
+  "YourTour.view.expert.ExpertRecommendListView": [],
   "YourTour.view.expert.ExpertRouteDataItem": [
     "widget.ExpertRouteDataItem"
   ],
@@ -1959,6 +1971,18 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.widget.XLabel": [
     "widget.xlabel"
+  ],
+  "YourTour.view.widget.XLabelField": [
+    "widget.xlabelfield"
+  ],
+  "YourTour.view.widget.XMultiField": [
+    "widget.xmultifield"
+  ],
+  "YourTour.view.widget.XMultiLabel": [
+    "widget.xmultilabel"
+  ],
+  "YourTour.view.widget.XMultiLabelField": [
+    "widget.xmultilabelfield"
   ],
   "YourTour.view.widget.XPage": [
     "widget.xpage"

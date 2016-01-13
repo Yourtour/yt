@@ -39,7 +39,9 @@ Ext.application({
         'resource.ResourceSelectionView','resource.ResourceFormView','resource.ResourceMapView','resource.ResourceActivityItemListView',
         'resource.ResourceActivityItemFormView',
         'member.MemberMainView','member.MemberAddView','member.MemberPositionView','member.MemberSearchView',
-        'expert.ExpertMainView','expert.ExpertApplyView','expert.ExpertIntroView','expert.ExpertListView','expert.ExpertServiceEditView',
+        'expert.ExpertMainView','expert.ExpertApplyView','expert.ExpertIntroFormView','expert.ExpertListView','expert.ExpertServiceEditView',
+        'expert.ExpertRecommendListView','expert.ExpertRecommendIntroView',
+
         'community.LiveMainView',
         'place.PlaceMainView'
     ],
@@ -57,7 +59,7 @@ Ext.application({
     
     models:[
         'LaunchModel','RouteModel','RouteActivityModel', 'LineModel', 'UserModel','OptionModel', 'HomeModel','LiveModel','ChatModel','AlongModel','TalentModel','HomeCarouselModel','CommentModel', 'PlaceModel',
-        'CacheModel','ActivityItemModel','ServiceModel'
+        'CacheModel','ActivityItemModel','ServiceModel', 'ExpertModel'
     ],
     
     stores:[
@@ -104,7 +106,6 @@ Ext.application({
     	    options.headers = {
     	    	'User-Token':userToken,
     	    	'Content-Type':'application/json',
-    	    	
     	    };
     	}), this);
     },
@@ -204,35 +205,62 @@ Ext.application({
         );
     },
 
+    /**
+     *
+     * @param options
+     */
     callService:function(options){
-        var request = {
-            url : YourTour.util.Context.getContext(options.url),
-            method : options.method,
-            success : function(response) {
-                var respObj = Ext.JSON.decode(response.responseText);
-                if(respObj.errorCode != '0'){
-                    Ext.Msg.alert(resp.errorText);
-                    return;
-                };
+        try {
+            var request = {
+                url: YourTour.util.Context.getContext(options.url),
+                method: options.method,
+                success: function (response) {
+                    var respObj = Ext.JSON.decode(response.responseText);
+                    if (respObj.errorCode != '0') {
+                        Ext.Msg.alert(respObj.errorText);
+                        return;
+                    };
+                    options.success(respObj.data)
+                },
 
-                options.success(respObj.data)
-            },
+                failure: function (response) {
+                    var respObj = Ext.JSON.decode(response.responseText);
 
-            failure : function(response) {
-                var respObj = Ext.JSON.decode(response.responseText);
-
-                if(options.failure){
-                    options.failure(respObj)
-                }else {
-                    Ext.Msg.alert("Error", respObj.status.statusMessage);
+                    if (options.failure) {
+                        options.failure(respObj)
+                    } else {
+                        Ext.Msg.alert("Error", respObj.status.statusMessage);
+                    }
                 }
+            };
+
+            if (options.params) {
+                request.params = Ext.JSON.encode(options.params);
             }
-        };
 
-        if(options.params){
-            request.params = Ext.JSON.encode(options.params);
+            Ext.Ajax.request(request);
+        }catch(e){
+            this.toast(e.name + ":" + e.message);
         }
+    },
 
-        Ext.Ajax.request(request);
+    /**
+     *
+     * @param options
+     */
+    query:function(options){
+        try {
+            var store = Ext.create('YourTour.store.AjaxStore', {model:options.model});
+            store.getProxy().setUrl(YourTour.util.Context.getContext(options.url));
+            store.load(function(){
+                options.success(store);
+            })
+        }catch(e){
+            this.toast(e.name + ":" + e.message);
+        }
+    },
+
+    toast:function(msg){
+        Ext.Msg.alert(msg);
     }
 });

@@ -168,34 +168,21 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     	var passwordEl = page.down('#password');
     	loginInfo.password=passwordEl.getValue();
     	if(loginInfo.password == ''){
-    		Ext.Msg.alert('请输入登录密码。');
+    		Ext.Msg.alert('请输入登录密码');
     		return;
     	}
 
-		alert(YourTour.util.Context.getContext('/users/account/login'));
-
-    	var data = Ext.JSON.encode(loginInfo);
-    	Ext.Ajax.request({
-    	    url : YourTour.util.Context.getContext('/users/account/login'),
+    	this.getApplication().callService({
+    	    url : '/users/account/login',
     	    method : "POST",
-    	    params : data,
+    	    params : loginInfo,
     	    success : function(response) {
-    	    	var data = Ext.JSON.decode(response.responseText);
-    	    	if(data.errorCode != '0'){
-    	    		Ext.Msg.alert(data.errorText);
-    	    		return;
-    	    	};
-
     	    	var localStore =  Ext.StoreManager.get('LocalStore');
     	    	localStore.add({key:'account.authenticated', value:'1'});
-    	    	localStore.add({key:'user.profile', value:Ext.JSON.encode(data.data)});
+    	    	localStore.add({key:'user.profile', value:Ext.JSON.encode(response)});
     	    	localStore.sync();
-    	    	
+
     	    	me.redirectTo('/mainpage');
-    	    },
-    	    failure : function(response) {
-    	        var respObj = Ext.JSON.decode(response.responseText);
-    	        Ext.Msg.alert("Error", respObj.status.statusMessage);
     	    }
     	});
     },

@@ -98,7 +98,7 @@ Ext.define('YourTour.view.route.RouteScheduleFormView', {
 				padding:'0 0 0 10',
 				items:[
 					{
-						xtype: 'Xmultilabel',
+						xtype: 'xmultilabel',
 						itemId:'memo',
 						flex:1,
 						margin:'0 5 0 30'

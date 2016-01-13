@@ -33,6 +33,13 @@ public class UserVO extends BaseVO {
 	private int rank; // 等级
 	private Status status;
 	private String slogan; // 个人口号
+	private String  identity;
+	private String  age;
+	private String memo;
+	private String tags;
+	private int snsAuthenticate;
+	private int mobileAuthenticate;
+	private int idAuthenticate;
 
 	public static UserVO transform(UserProfileBean bean) {
 		if (bean == null) {
@@ -231,5 +238,61 @@ public class UserVO extends BaseVO {
 
 	public void setSlogan(String slogan) {
 		this.slogan = slogan;
+	}
+
+	public String getIdentity() {
+		return identity;
+	}
+
+	public void setIdentity(String identity) {
+		this.identity = identity;
+	}
+
+	public String getAge() {
+		return age;
+	}
+
+	public void setAge(String age) {
+		this.age = age;
+	}
+
+	public String getMemo() {
+		return memo;
+	}
+
+	public void setMemo(String memo) {
+		this.memo = memo;
+	}
+
+	public String getTags() {
+		return tags;
+	}
+
+	public void setTags(String tags) {
+		this.tags = tags;
+	}
+
+	public int getSnsAuthenticate() {
+		return snsAuthenticate;
+	}
+
+	public void setSnsAuthenticate(int snsAuthenticate) {
+		this.snsAuthenticate = snsAuthenticate;
+	}
+
+	public int getMobileAuthenticate() {
+		return mobileAuthenticate;
+	}
+
+	public void setMobileAuthenticate(int mobileAuthenticate) {
+		this.mobileAuthenticate = mobileAuthenticate;
+	}
+
+	public int getIdAuthenticate() {
+		return idAuthenticate;
+	}
+
+	public void setIdAuthenticate(int idAuthenticate) {
+		this.idAuthenticate = idAuthenticate;
 	}
 }

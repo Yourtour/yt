@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.user.UserProfileView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:[ 'YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XField', 'YourTour.view.widget.XPickerField', 'YourTour.view.widget.XImagePicker','YourTour.view.widget.XLabel','YourTour.view.widget.XGenderPicker', 'YourTour.view.widget.XButton'],
+    requires:[ 'YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XField','YourTour.view.widget.XMultiField', 'YourTour.view.widget.XPickerField', 'YourTour.view.widget.XImagePicker','YourTour.view.widget.XLabel','YourTour.view.widget.XMultiLabel','YourTour.view.widget.XGenderPicker', 'YourTour.view.widget.XButton'],
     xtype:'UserProfileView',
     config: {
     	id:'UserProfileView',
@@ -10,7 +10,7 @@ Ext.define('YourTour.view.user.UserProfileView', {
             {
             	xtype: 'xheaderbar',
 				itemId:'headerbar',
-				title:'编辑个人信息',
+				title:'个人信息',
             },
 
 			{
@@ -29,27 +29,28 @@ Ext.define('YourTour.view.user.UserProfileView', {
 					}
 				]
 			},
-
 			{
 				xtype:'panel',
-				layout:'hbox',
-				margin:'10 0 0 0',
-				padding:'0 10 0 10',
-				cls:'nav-arrow row underline font-medium font-grey',
-				items:[
-					{
-						xtype:'xlabel',
-						html : '昵称',
-					},
+				cls:'spacer'
+			},
 
-					{
-						itemId : 'nickName',
-						xtype : 'xfield',
-						tappable:true,
-						flex:1,
-						style:'text-align:right'
-					}
-				]
+			{
+				itemId : 'slogan',
+				xtype : 'xmultifield',
+				label : '个性',
+				showMore:true,
+				fieldCls:'x-field-more',
+				padding:'0 10 0 10',
+				tappable:true,
+			},
+
+			{
+				itemId : 'nickName',
+				xtype : 'xfield',
+				label : '昵称',
+				fieldCls:'x-field-right',
+				padding:'0 10 0 10',
+				tappable:true
 			},
 
 			{
@@ -76,23 +77,10 @@ Ext.define('YourTour.view.user.UserProfileView', {
 			},
 
 			{
-				xtype:'panel',
-				layout:'hbox',
+				itemId : 'constellation',
+				xtype : 'xfield',
 				padding:'0 10 0 10',
-				cls:'bg_white row underline font-medium font-grey',
-				items:[
-					{
-						xtype:'xlabel',
-						html : '星座',
-					},
-
-					{
-						itemId : 'constellation',
-						xtype : 'xfield',
-						flex:1,
-						style:'text-align:right'
-					}
-				]
+				label : '星座'
 			},
 
 			{
@@ -116,24 +104,25 @@ Ext.define('YourTour.view.user.UserProfileView', {
 			},
 
 			{
-				xtype:'panel',
-				layout:'hbox',
+				itemId : 'state',
+				xtype : 'xfield',
 				padding:'0 10 0 10',
-				cls:'nav-arrow row underline font-medium font-grey',
-				items:[
-					{
-						xtype:'xlabel',
-						html : '地区',
-					},
+				label : '地区',
+				tappable:true
+			},
 
-					{
-						itemId : 'state',
-						xtype : 'xfield',
-						flex:1,
-						tappable:true,
-						style:'text-align:right'
-					}
-				]
+			{
+				xtype:'panel',
+				cls:'spacer'
+			},
+
+			{
+				itemId : 'tags',
+				xtype : 'xmultifield',
+				label : '标签',
+				fieldCls:'x-field-right',
+				padding:'0 10 0 10',
+				tappable:true,
 			},
 
 			{
@@ -144,9 +133,7 @@ Ext.define('YourTour.view.user.UserProfileView', {
 			{
 				xtype:'ximagepicker',
 				itemId:'imagePicker'
-			},
-
-
+			}
         ]
     }
 });

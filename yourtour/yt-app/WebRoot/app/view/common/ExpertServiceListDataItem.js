@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.common.ExpertServiceListDataItem', {
 	extend: 'Ext.dataview.component.DataItem',
-    requires:['Ext.Panel', 'YourTour.view.widget.XField','YourTour.view.widget.XPanel'],
+    requires:['Ext.Panel','YourTour.view.widget.XPanel'],
     xtype: 'ExpertServiceListDataItem',
     config: {
       	layout:'hbox',

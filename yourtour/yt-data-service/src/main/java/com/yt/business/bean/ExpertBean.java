@@ -21,25 +21,35 @@ import java.util.List;
  */
 @HbaseTable(name = "T_USER_EXPERT_INFO")
 @NodeEntity
-public class ExpertBean extends UserProfileBean {
+public class ExpertBean extends BaseBeanImpl {
 	private static final long serialVersionUID = -3433522673262851121L;
 
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_AT, type = PlaceBean.class, direction = Direction.OUTGOING)
-	private PlaceBean place = null;
+	private String  memo;
+
+	private String  tags;
+	private String  places;
+	private String  result; //审批结果
+
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_IS, type = UserProfileBean.class, direction = Direction.INCOMING)
+	private UserProfileBean profile = null;
+
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_SERVICE, type = PlaceBean.class, direction = Direction.OUTGOING, isList = true)
+	private List<PlaceBean> placeList = null;
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RECOMMEND, type = RouteMainBean.class, direction = Direction.OUTGOING, isList = true)
 	private List<RouteMainBean> recommendRoutes = null;
 
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = ExpertServiceBean.class, direction = Direction.OUTGOING, isList = true)
+	private List<ExpertServiceBean> services = null;
+
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_COMMENTED, type = CommentBean.class, direction = Direction.OUTGOING, isList = true)
+	private List<CommentBean> comments = null;
+
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_EXPERT, type = RouteMainBean.class, direction = Direction.INCOMING, isList = true)
+	private List<RouteMainBean> routes = null;
+
 	public ExpertBean() {
 		super();
-	}
-
-	public PlaceBean getPlace() {
-		return place;
-	}
-
-	public void setPlace(PlaceBean place) {
-		this.place = place;
 	}
 
 	public List<RouteMainBean> getRecommendRoutes() {
@@ -48,5 +58,77 @@ public class ExpertBean extends UserProfileBean {
 
 	public void setRecommendRoutes(List<RouteMainBean> recommendRoutes) {
 		this.recommendRoutes = recommendRoutes;
+	}
+
+	public String getPlaces() {
+		return places;
+	}
+
+	public void setPlaces(String places) {
+		this.places = places;
+	}
+
+	public List<PlaceBean> getPlaceList() {
+		return placeList;
+	}
+
+	public void setPlaceList(List<PlaceBean> placeList) {
+		this.placeList = placeList;
+	}
+
+	public String getMemo() {
+		return memo;
+	}
+
+	public void setMemo(String memo) {
+		this.memo = memo;
+	}
+
+	public List<ExpertServiceBean> getServices() {
+		return services;
+	}
+
+	public void setServices(List<ExpertServiceBean> services) {
+		this.services = services;
+	}
+
+	public List<CommentBean> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<CommentBean> comments) {
+		this.comments = comments;
+	}
+
+	public List<RouteMainBean> getRoutes() {
+		return routes;
+	}
+
+	public void setRoutes(List<RouteMainBean> routes) {
+		this.routes = routes;
+	}
+
+	public UserProfileBean getProfile() {
+		return profile;
+	}
+
+	public void setProfile(UserProfileBean profile) {
+		this.profile = profile;
+	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
+
+	public String getTags() {
+		return tags;
+	}
+
+	public void setTags(String tags) {
+		this.tags = tags;
 	}
 }

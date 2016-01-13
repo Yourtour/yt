@@ -9,7 +9,11 @@ Ext.define('YourTour.controller.ExpertMainCtrl', {
            expertCarousel:'#ExpertApplyView #expertCarousel',
            expertServiceList:'#ExpertApplyView #ServiceList',
 
-           expertServiceEditView:'#ExpertServiceEditView'
+           expertServiceEditView:'#ExpertServiceEditView',
+
+           expertRecommendListView:'#ExpertRecommendListView',
+           expertRecommendList:' #ExpertRecommendListView #expertList',
+           expertRecommendIntroView:'#ExpertRecommendIntroView'
        },
        
        control:{
@@ -47,6 +51,10 @@ Ext.define('YourTour.controller.ExpertMainCtrl', {
 
            '#ExpertServiceEditView #btnDelete':{
                tap:'onServiceDeleteTap'
+           },
+
+           expertRecommendList:{
+
            }
        },
        
@@ -83,6 +91,101 @@ Ext.define('YourTour.controller.ExpertMainCtrl', {
                 })
             }
         }
+    },
+
+    /**
+     * 显示推荐达人页面
+     * @param duration
+     * @param places
+     */
+    showRecommendPage:function(duration, places){
+        duration = 5;
+        var ids = '', names = '';
+        var pArray = places.split('|');
+        for(var index = 0; index < pArray.length; index++){
+            if(index > 0){
+                ids = ids + ',';
+                names = names + ',';
+            }
+
+            var array = pArray[index].split(',');
+            ids = ids + array[0];
+            names = names + array[1];
+        }
+
+        var me = this;
+
+        var options = {
+            model:'YourTour.model.ExpertModel',
+            url:'/expert/' + ids + '/' + duration,
+            success:function(store){
+                Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.expert.ExpertRecommendListView'));
+                var view = me.getExpertRecommendListView();
+
+                var headerbar = view.down('#headerbar');
+                headerbar.setTitle(names);
+
+                store.each(function(expert){
+                    var item = Ext.create('YourTour.view.expert.ExpertRecommendDataItem',{record:expert});
+                    item.on('tap', function(record){
+                        me.showRecommendIntroPage(record);
+                    });
+                    view.add(item);
+                });
+            }
+        };
+        me.getApplication().query(options);
+    },
+
+    showRecommendIntroPage:function(record){
+        var me = this;
+
+        var options = {
+            model:'YourTour.model.ExpertModel',
+            url:'/expert/' + record.get('id'),
+            success:function(store){
+                Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.expert.ExpertRecommendIntroView'));
+                var view = me.getExpertRecommendIntroView();
+
+                var record = store.first();
+
+                var image = view.down('#image');
+                image.setHtml("<img src='" + YourTour.util.Context.getImageResource(record.get('imageUrl')) + "' style='width:64px; height:64px'>");
+
+                var nickName = view.down('#nickName');
+                nickName.setHtml(record.get('nickName'));
+
+                var identity = view.down('#identity');
+                identity.setText(record.get('identity'));
+
+                var age = view.down('#age');
+                age.setText(record.get('age'));
+
+                var idAuthenticate = view.down('#idAuthenticate');
+                idAuthenticate.addCls(record.get('idAuthenticate') == 1?'icon-checked':'icon-unchecked');
+
+                var snsAuthenticate = view.down('#snsAuthenticate');
+                snsAuthenticate.addCls(record.get('snsAuthenticate') == 1?'icon-checked':'icon-unchecked');
+
+                var mobileAuthenticate = view.down('#mobileAuthenticate');
+                mobileAuthenticate.addCls(record.get('mobileAuthenticate') == 1?'icon-checked':'icon-unchecked');
+
+                var memo = view.down('#memo');
+                memo.setText(record.get('memo'));
+
+                var routeStore = record.routesStore;
+                var routes = view.down('#routes');
+                routeStore.each(function(route){
+                    var item = Ext.create('YourTour.view.route.RouteRecommendDataItem',{record:route});
+                    item.on('tap', function(record){
+                        var controller = me.getApplication().getController('RouteSchedulePlanCtrl');
+                        contoller.showRecommendRouteInfo(record);
+                    });
+                    routes.add(item);
+                });
+            }
+        };
+        me.getApplication().query(options);
     },
 
     onExpertApplyTap:function(){

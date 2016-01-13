@@ -17,12 +17,18 @@ Ext.define('YourTour.view.route.RouteScheduleEditView', {
 	                	xtype: "toolbutton", 
 	                    ui: "normal", 
 	                	text:'保存',
-	                	itemId:'save',
+	                	itemId:'btnSave',
 	                	align:'right'
 	                }
 		        ]
 			},
-			
+
+			{
+				xtype: 'hiddenfield',
+				itemId:'id'	,
+				value:'0'
+			},
+
 			{
 				xtype:'panel',
 				layout:'hbox',

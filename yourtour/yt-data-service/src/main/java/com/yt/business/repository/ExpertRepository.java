@@ -7,19 +7,21 @@ import com.yt.business.neo4j.repository.UserTuple;
 import java.util.List;
 
 public interface ExpertRepository extends CrudAllInOneOperate {
-	/**
-	 *
-	 * @param expertId
-	 * @return
-	 */
-	public List<ExpertServiceBean> getServices(Long expertId);
+	public List<ExpertBean> getExperts(String placeIds, String duration) throws Exception;
 
 	/**
 	 *
 	 * @param expertId
 	 * @return
 	 */
-	public List<RouteMainBean> getRoutes(Long expertId);
+	public List<ExpertServiceBean> getServices(Long expertId) throws Exception;
+
+	/**
+	 *
+	 * @param expertId
+	 * @return
+	 */
+	public List<RouteMainBean> getRoutes(Long expertId) throws Exception;
 
 	/**
 	 *

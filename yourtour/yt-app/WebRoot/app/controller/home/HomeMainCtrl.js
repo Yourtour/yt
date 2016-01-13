@@ -68,8 +68,8 @@ Ext.define('YourTour.controller.home.HomeMainCtrl', {
  	 	   		parent.getPlaceCarousel().add(Ext.create('YourTour.view.home.CarouselItemView',{itemId:'carousel', model:carousel}));
  	 	   	});*/
     		
-    		parent.getBestView().removeAll(true, true);
-    		parent.getBestView().setModels(model.lines());
+    		/*parent.getBestView().removeAll(true, true);
+    		parent.getBestView().setModels(model.lines());*/
     		
     		/*parent.getTalentView().removeAll(true, true);
     		parent.getTalentView().setModels(model.talents());
@@ -77,7 +77,7 @@ Ext.define('YourTour.controller.home.HomeMainCtrl', {
     		parent.getAlongView().removeAll(true, true);
     		parent.getAlongView().setModels(model.alongs()); 	 	   	
 */    		
-    		parent.getChatList().setStore(model.chatsStore);
+    		//parent.getChatList().setStore(model.chatsStore);
 		};
 		
 		store.load(success, this);

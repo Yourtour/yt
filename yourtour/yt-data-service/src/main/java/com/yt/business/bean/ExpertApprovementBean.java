@@ -13,25 +13,27 @@ import org.springframework.data.neo4j.annotation.NodeEntity;
 public class ExpertApprovementBean extends BaseBeanImpl {
 	private static final long serialVersionUID = 6259294378320824143L;
 
-	@HbaseColumn(name = "title")
-	private String title; // 服务名称
+	public static final String RESULT_PASS = "pass";
+	public static final String RESULT_REJECT = "reject";
+
+	private String result;
 
 	@HbaseColumn(name = "memo")
-	private String memo; // 服务描述
+	private String memo; // 描述
 
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = UserProfileBean.class, direction = Direction.INCOMING)
-	private transient UserProfileBean user = null; // 服务相关达人
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_APPROVED, type = ExpertApplicationBean.class, direction = Direction.OUTGOING)
+	private transient ExpertApplicationBean application = null; // 服务相关达人
 
 	public ExpertApprovementBean() {
 		super();
 	}
 
-	public String getTitle() {
-		return title;
+	public String getResult() {
+		return result;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setResult(String result) {
+		this.result = result;
 	}
 
 	public String getMemo() {
@@ -42,11 +44,11 @@ public class ExpertApprovementBean extends BaseBeanImpl {
 		this.memo = memo;
 	}
 
-	public UserProfileBean getUser() {
-		return user;
+	public ExpertApplicationBean getApplication() {
+		return application;
 	}
 
-	public void setUser(UserProfileBean user) {
-		this.user = user;
+	public void setApplication(ExpertApplicationBean application) {
+		this.application = application;
 	}
 }

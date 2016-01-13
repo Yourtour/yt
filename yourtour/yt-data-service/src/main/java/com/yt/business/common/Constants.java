@@ -60,6 +60,37 @@ public interface Constants {
 	 */
 	public static final String RELATION_TYPE_RECOMMEND = "RECOMMEND";
 
+	/**
+	 * 服务关系
+	 */
+	public static final String RELATION_TYPE_SERVICE = "SERVICE";
+
+	/**
+	 * 点评关系
+	 */
+	public static final String RELATION_TYPE_COMMENTED = "COMMENTED";
+
+	/**
+	 * 成员关系
+	 */
+	public static final String RELATION_TYPE_MEMBER = "MEMBER";
+
+	/**
+	 * 领队关系
+	 */
+	public static final String RELATION_TYPE_LEADER = "LEADER";
+
+	/**
+	 * 达人关系
+	 */
+	public static final String RELATION_TYPE_EXPERT = "EXPERT";
+
+	/**
+	 * 审批关系
+	 */
+	public static final String RELATION_TYPE_APPROVED = "APPROVED";
+
+
 
 	// 资源枚举
 	public static enum GenderType {

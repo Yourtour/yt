@@ -1,8 +1,10 @@
 package com.yt.business.bean;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
+import com.yt.core.utils.DateUtils;
 import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
@@ -59,6 +61,8 @@ public class UserProfileBean extends BaseDictBeanImpl {
 	@Indexed
 	private String nickName; // 昵称
 
+	private String identity; //身份
+
 	@HbaseColumn(name = "sex")
 	private GenderType gender = GenderType.NA; // 性别 F/M
 	
@@ -67,8 +71,6 @@ public class UserProfileBean extends BaseDictBeanImpl {
 	
 	@HbaseColumn(name = "birth")
 	private long birthday; // 生日
-
-	private String expert = EXPERT_NOT;
 
 	@HbaseColumn(name = "img")
 	private String imageUrl; // 头像
@@ -105,6 +107,15 @@ public class UserProfileBean extends BaseDictBeanImpl {
 	@HbaseColumn(name = "slga")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
 	private String slogan; // 个人口号
+
+	private int snsAuthenticate = 0;
+
+	private int mobileAuthenticate = 0;
+
+	private int idAuthenticate = 0;
+
+	@Neo4jRelationship(relationship=Constants.RELATION_TYPE_HAS, type = ExpertBean.class, direction = Direction.OUTGOING)
+	private transient ExpertBean expert;
 	
 	@Neo4jRelationship(relationship=Constants.RELATION_TYPE_FOLLOW, type = UserProfileBean.class, direction = Direction.OUTGOING, isList = true)
 	private transient List<UserProfileBean> followers;
@@ -130,20 +141,20 @@ public class UserProfileBean extends BaseDictBeanImpl {
 		this.nickName = nickName;
 	}
 
+	public String getIdentity() {
+		return identity;
+	}
+
+	public void setIdentity(String identity) {
+		this.identity = identity;
+	}
+
 	public String getToken() {
 		return token;
 	}
 
 	public void setToken(String token) {
 		this.token = token;
-	}
-
-	public String getExpert() {
-		return expert;
-	}
-
-	public void setExpert(String expert) {
-		this.expert = expert;
 	}
 
 	public GenderType getGender() {
@@ -240,5 +251,45 @@ public class UserProfileBean extends BaseDictBeanImpl {
 
 	public void setRank(int rank) {
 		this.rank = rank;
+	}
+
+	public int getSnsAuthenticate() {
+		return snsAuthenticate;
+	}
+
+	public void setSnsAuthenticate(int snsAuthenticate) {
+		this.snsAuthenticate = snsAuthenticate;
+	}
+
+	public int getMobileAuthenticate() {
+		return mobileAuthenticate;
+	}
+
+	public void setMobileAuthenticate(int mobileAuthenticate) {
+		this.mobileAuthenticate = mobileAuthenticate;
+	}
+
+	public int getIdAuthenticate() {
+		return idAuthenticate;
+	}
+
+	public void setIdAuthenticate(int idAuthenticate) {
+		this.idAuthenticate = idAuthenticate;
+	}
+
+	public ExpertBean getExpert() {
+		return expert;
+	}
+
+	public void setExpert(ExpertBean expert) {
+		this.expert = expert;
+	}
+
+	public String getAge(){
+		if(this.getBirthday() != 0){
+			return DateUtils.formatDate(this.birthday,"yy") +"后  " + this.getConstellation();
+		}
+
+		return "";
 	}
 }

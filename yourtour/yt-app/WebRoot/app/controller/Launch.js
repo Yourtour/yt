@@ -31,11 +31,12 @@ Ext.define('YourTour.controller.Launch', {
 	            	launch.setActiveItem(1);
 	        	}else{
 	        		//检查是否登录过
+					console.log('Login Check');
 	        		index = localStore.find('key', 'account.authenticated');
 	        		if(index >= 0){
 	        			me.redirectTo('/mainpage');
 	        		}else{
-	        			me.doLogin();
+	        			me.doEnter();
 	        		}
 	        	}
         	}catch(e){
@@ -45,8 +46,9 @@ Ext.define('YourTour.controller.Launch', {
         
         this.store.load(success, this);
     },
-    
-    doLogin:function(){
+
+	doEnter:function(){
+		console.log('doLogin');
     	var localStore =  Ext.StoreManager.get('LocalStore');
     	localStore.add({key:'welcome.visited', value:'1'});
     	localStore.sync();

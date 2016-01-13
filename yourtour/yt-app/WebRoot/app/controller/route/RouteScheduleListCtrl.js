@@ -11,10 +11,6 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
        },
        
        control:{
-    	   routeScheduleListView:{
-    		   destroy:'onRouteScheduleViewDestroy'
-    	   },
-    	   
     	   schedulePlanList:{
     	   	   itemtap:'onItemTap'
     	   },

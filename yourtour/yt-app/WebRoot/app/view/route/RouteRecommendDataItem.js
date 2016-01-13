@@ -1,8 +1,10 @@
 Ext.define('YourTour.view.route.RouteRecommendDataItem', {
-    extend: 'YourTour.view.widget.VDataItem',
+    extend: 'Ext.Panel',
     xtype: 'RouteRecommendDataItem',
     requires:['Ext.Panel', 'Ext.Img', 'YourTour.view.widget.XIcon', 'YourTour.view.widget.XField','YourTour.view.widget.XLabel','YourTour.view.widget.HSpacer'],
     config: {
+		record:null,
+
     	items:[
     		{
     			xtype:'panel',
@@ -85,20 +87,36 @@ Ext.define('YourTour.view.route.RouteRecommendDataItem', {
 			}
     	]
     },
-    
-    updateRecord: function(record) {
+
+	initialize : function(){
+		var me = this;
+
+		me.element.on({
+			scope : me,
+			tap : function(e, t) {
+				me.fireEvent('tap', me.record);
+			}
+		});
+	},
+
+	updateRecord: function (record) {
+		this.setRecord(record);
+	},
+
+	setRecord: function(record) {
        var me = this;
+		me.record = record;
        if(record){
        	   var imageUrlEl = me.down('#imageUrl');
 	 	   imageUrlEl.setHtml("<img src='" + YourTour.util.Context.getImageResource(record.get('imageUrl')) + "' style='width:100%; max-height:150px'>");
 	 	   
 	 	   var lineName = me.down('#lineName');
 		   lineName.setHtml(record.get('lineName'));
-
-		   var expert = record.userStore.first();
-		   var expertImage = me.down('#expertImage');
-		   expertImage.setHtml("<img src='" + YourTour.util.Context.getImageResource(expert.get('imageUrl'), 'medium') + "' style='width:64px; height:64px'>");
 	 	}
-    }   
+    },
+
+	getRecord:function(){
+		return this.record;
+	}
 });
 

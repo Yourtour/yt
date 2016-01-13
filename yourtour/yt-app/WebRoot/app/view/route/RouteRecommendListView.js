@@ -3,33 +3,44 @@ Ext.define('YourTour.view.route.RouteRecommendListView', {
     requires:['Ext.Panel','Ext.Img', 'Ext.DataView','YourTour.view.widget.XHeaderBar', 'Ext.Spacer','YourTour.view.widget.XBack','YourTour.view.widget.ToolButton','YourTour.view.route.RouteRecommendDataItem'],
     config: {
     	id:'RouteRecommendListView',
-    	layout:'fit',
+    	layout:'vbox',
+		scrollable: {
+			direction: 'vertical',
+			indicators: false
+		},
         items: [
         	{    
 				xtype: 'xheaderbar',
-				title:'达人推荐',
 				items:[
 					{
-	                	xtype: "toolbutton", 
-	                    ui: "normal", 
+	                	xtype: "toolbutton",
+	                    ui: "normal",
 	                	text:'定制',
 	                	itemId:'btnCustomize',
 	                	align:'right'
 	                }
                 ]
 			},
-            
-            {
-            	xtype:'dataview',
-		    	itemId:'recommendRouteList',
-				flex:1,
-				useComponents:true,
-		    	defaultType:'RouteRecommendDataItem',
-		    	scrollable: {
-		    	    direction: 'vertical',
-		    	    indicators: false	
-		    	}
-		    }
+
+			{
+				xtype:'panel',
+				height:150,
+				items:[
+					{
+						itemId : 'image',
+						xtype : 'image',
+						mode : 'tag',
+						src:'resources/icons/expert.jpg',
+						width:'100%',
+						height:150
+					}
+				]
+			},
+
+			{
+				xtype:'panel',
+				cls:'spacer'
+			}
         ]
     }
 });

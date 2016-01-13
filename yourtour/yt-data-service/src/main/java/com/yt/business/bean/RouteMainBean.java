@@ -48,9 +48,6 @@ public class RouteMainBean extends BaseBeanImpl {
 	private String imageUrl;
 	private transient String impression;
 
-	private Long leaderId;
-	private String leader;
-
 	private float rankScore;
 	private int thumbupNum;
 	private int favoriteNum;
@@ -72,6 +69,15 @@ public class RouteMainBean extends BaseBeanImpl {
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = UserProfileBean.class, direction = Direction.OUTGOING)
 	private transient UserProfileBean owner = null; // 行程所有者
 
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_EXPERT, type = ExpertBean.class, direction = Direction.OUTGOING)
+	private transient ExpertBean expert = null; // 行程所有者
+
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_LEADER, type = UserProfileBean.class, direction = Direction.OUTGOING)
+	private transient UserProfileBean leader = null; // 行程所有者
+
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_MEMBER, type = UserProfileBean.class, direction = Direction.OUTGOING, isList = true)
+	private transient List<UserProfileBean> members = null; // 行程所有者
+
 	public RouteMainBean() {
 		super();
 	}
@@ -92,20 +98,28 @@ public class RouteMainBean extends BaseBeanImpl {
 		this.name = name;
 	}
 
-	public Long getLeaderId() {
-		return leaderId;
+	public ExpertBean getExpert() {
+		return expert;
 	}
 
-	public void setLeaderId(Long leaderId) {
-		this.leaderId = leaderId;
+	public void setExpert(ExpertBean expert) {
+		this.expert = expert;
 	}
 
-	public String getLeader() {
+	public UserProfileBean getLeader() {
 		return leader;
 	}
 
-	public void setLeader(String leader) {
+	public void setLeader(UserProfileBean leader) {
 		this.leader = leader;
+	}
+
+	public List<UserProfileBean> getMembers() {
+		return members;
+	}
+
+	public void setMembers(List<UserProfileBean> members) {
+		this.members = members;
 	}
 
 	public String getImpression() {

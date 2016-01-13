@@ -42,7 +42,6 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
         },
 
         routes: {
-            '/resource/selection': 'showPage',
             '/resource/:resourceType/:resourceId': 'showResourcePage',
         },
 
@@ -55,7 +54,7 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
     init: function () {
     },
 
-    showPage: function () {
+    showSelectionPage: function () {
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.resource.ResourceSelectionView'));
 
         if (this.playStore != null) {

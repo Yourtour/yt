@@ -30,6 +30,11 @@ public class DateUtils {
 		return Integer.valueOf(sdf.format(date));
 	}
 
+	public static Date parseDate(String value) throws Exception{
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		return sdf.parse(value);
+	}
+
 	public static String formatDate(long millisecond, String format){
 		if(millisecond == 0) return "";
 			
@@ -87,10 +92,6 @@ public class DateUtils {
 	}
 
 	public static void main(String[] args) throws Exception{
-		Date now = new Date();
-
-		for(int index = 0; index < 10; index++){
-			System.out.println(add(now, index, Calendar.DATE));
-		}
+		System.out.println(parseDate("1980-01-01").getTime());
 	}
 }

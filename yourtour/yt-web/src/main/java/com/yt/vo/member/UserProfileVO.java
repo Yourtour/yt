@@ -22,10 +22,6 @@ public class UserProfileVO implements Serializable{
 		return bean.getGraphId().toString();
 	}
 
-	public String getExpert(){
-		return bean.getExpert();
-	}
-
 	public String getNickName(){
 		return bean.getNickName();
 	}

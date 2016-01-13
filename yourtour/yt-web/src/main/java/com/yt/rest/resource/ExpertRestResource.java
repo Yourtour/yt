@@ -10,12 +10,16 @@ import javax.ws.rs.core.MediaType;
 
 import com.yt.business.bean.*;
 import com.yt.business.repository.ExpertRepository;
+import com.yt.business.utils.Neo4jUtils;
+import com.yt.core.utils.CollectionUtils;
 import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.utils.WebUtils;
 import com.yt.vo.member.ExpertApplicationVO;
+import com.yt.vo.member.ExpertApprovementVO;
 import com.yt.vo.member.ExpertServiceVO;
+import com.yt.vo.member.ExpertVO;
 import com.yt.vo.route.RouteItemVO;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -34,16 +38,62 @@ public class ExpertRestResource {
 
 	/**
 	 *
+	 * @param placeIds
+	 * @param duration
+	 * @return
+	 */
+	@GET
+	@Path("/{placeIds}/{duration}")
+	public ResponseDataVO<List<ExpertVO>> query(@PathParam("placeIds") String placeIds, @PathParam("duration") String duration){
+		try{
+			List<ExpertVO> experts = new ArrayList<>();
+			List<ExpertBean> beans = this.expertRepository.getExperts(placeIds, duration);
+			if(CollectionUtils.isNotEmpty(beans)){
+				for(ExpertBean expert : beans){
+					experts.add(ExpertVO.transform(expert));
+				}
+			}
+
+			return new ResponseDataVO<List<ExpertVO>>(experts);
+		} catch (Exception ex) {
+			Logger.error("Exception raised when saving service.", ex);
+			return new ResponseDataVO<List<ExpertVO>>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
+	}
+
+	/**
+	 *
+	 * @param expertId
+	 * @return
+	 */
+	@GET
+	@Path("/{expertId}")
+	public ResponseDataVO<ExpertVO> get(@PathParam("expertId") String expertId){
+		try{
+			ExpertBean bean = (ExpertBean) this.expertRepository.get(ExpertBean.class, Neo4jUtils.getGraphIDFromString(expertId));
+
+			ExpertVO expert = ExpertVO.transform(bean);
+
+			return new ResponseDataVO<ExpertVO>(expert);
+		} catch (Exception ex) {
+			Logger.error("Exception raised when saving service.", ex);
+			return new ResponseDataVO<ExpertVO>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
+	}
+
+	/**
+	 * 达人申请
 	 * @param applicationVO
 	 * @param request
 	 * @return
 	 */
 	@POST
-	@Path("/application/save")
+	@Path("/application")
 	public ResponseVO saveApplication(ExpertApplicationVO applicationVO,@Context HttpServletRequest request) {
 		try{
 			String userId = WebUtils.getCurrentLoginUser(request);
 			UserProfileBean user = (UserProfileBean) this.expertRepository.get(UserProfileBean.class, Long.valueOf(userId), false);
+			ExpertBean expert = user.getExpert();
 
 			ExpertApplicationBean application = this.expertRepository.getApplication(Long.valueOf(userId));
 			if(application == null){
@@ -55,8 +105,9 @@ public class ExpertRestResource {
 				application.setTags(applicationVO.getTags());
 			}
 
-			application.setUser(user);
-			this.expertRepository.save(application, WebUtils.getCurrentLoginUser(request));
+			application.setExpert(expert);
+
+			this.expertRepository.saveApplication(application, WebUtils.getCurrentLoginUser(request));
 			return new ResponseVO();
 		}catch(Exception exc){
 			Logger.error("Expert Application Exception.", exc);
@@ -64,18 +115,24 @@ public class ExpertRestResource {
 		}
 	}
 
+	/**
+	 *
+	 * @param applicationId
+	 * @param approvementVO
+	 * @return
+	 */
 	@POST
-	@Path("/approve/{applicationId}/save")
-	public ResponseVO saveApprovement(@PathParam("applicationId") String applicationId,@Context HttpServletRequest request) {
+	@Path("/{expertId}/{applicationId}/approve")
+	public ResponseVO saveApprovement(@PathParam("expertId") String expertId, @PathParam("applicationId") String applicationId, ExpertApprovementVO approvementVO) {
 		try{
-			String userId = WebUtils.getCurrentLoginUser(request);
+			String userId = WebUtils.getCurrentLoginUser();
 
 			ExpertApplicationBean application = (ExpertApplicationBean) this.expertRepository.get(ExpertApplicationBean.class, Long.valueOf(applicationId), false);
-			String applicantId = application.getCreatedUserId();
 
-			UserProfileBean applicant = (UserProfileBean) this.expertRepository.get(UserProfileBean.class, Long.valueOf(applicantId), false);
-			applicant.setExpert(UserProfileBean.EXPERT_APPROVED);
-			this.expertRepository.save(applicant, false, userId);
+			ExpertApprovementBean approvement = ExpertApprovementVO.transform(approvementVO);
+			approvement.setApplication(application);
+
+			this.expertRepository.saveApprovement(approvement, userId);
 
 			return new ResponseVO();
 		}catch(Exception exc){
@@ -95,10 +152,10 @@ public class ExpertRestResource {
 	public ResponseDataVO<Long> saveService(@Context HttpServletRequest request, ExpertServiceVO serviceVO){
 		try{
 			String userId = WebUtils.getCurrentLoginUser(request);
-			UserProfileBean user = (UserProfileBean) this.expertRepository.get(UserProfileBean.class, Long.valueOf(userId), false);
+			ExpertBean expert = (ExpertBean) this.expertRepository.get(ExpertBean.class, Long.valueOf(userId), false);
 
 			ExpertServiceBean service = ExpertServiceVO.transform(serviceVO);
-			service.setUser(user);
+			service.setExpert(expert);
 			this.expertRepository.save(service, userId);
 
 			return new ResponseDataVO<Long>(service.getGraphId());

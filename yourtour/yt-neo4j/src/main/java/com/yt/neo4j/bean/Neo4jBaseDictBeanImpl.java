@@ -104,5 +104,4 @@ public abstract class Neo4jBaseDictBeanImpl extends Neo4jBaseBeanImpl implements
 			return -tar.compareTo(src);
 		}
 	}
-
 }

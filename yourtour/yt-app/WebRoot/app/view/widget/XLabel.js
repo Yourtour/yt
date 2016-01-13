@@ -6,10 +6,10 @@ Ext.define('YourTour.view.widget.XLabel', {
     	cls:'label',
 		style:'background-color:white'
     },
-    
+
     initialize : function(){
     	this.callParent(arguments);
-    	
+
     	if(this.tappable){
 	    	var me = this;
 	    	me.element.on({

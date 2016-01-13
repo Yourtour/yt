@@ -5,15 +5,15 @@
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
 
     <!--添加下面的meta标签： -->
-	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />  
-	
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+
     <title>YourTour</title>
     <style type="text/css">
-         /**
-         * Example of an initial loading indicator.
-         * It is recommended to keep this as minimal as possible to provide instant feedback
-         * while other resources are still being loaded for the first time
-         */
+        /**
+        * Example of an initial loading indicator.
+        * It is recommended to keep this as minimal as possible to provide instant feedback
+        * while other resources are still being loaded for the first time
+        */
         html, body {
             height: 100%;
             background-color: #1985D0
@@ -42,7 +42,7 @@
             opacity: 0.8;
         }
 
-        @-webkit-keyframes appLoadingIndicator{
+        @-webkit-keyframes appLoadingIndicator {
             0% {
                 opacity: 0.8
             }
@@ -53,389 +53,442 @@
                 opacity: 0.8
             }
         }
-        
-		
-		.nav-arrow{
-			background:#FFFFFF url(./resources/icons/arrow_right.png) no-repeat right center !important; 
-		}
-		
-		.icon-position{
-			background-image: url(./resources/icons/icon_position.png);
-			background-repeat: no-repeat;
-			background-position: 5px center;
-		}
-		
-		.icon-phone{
-			background-image: url(./resources/icons/icon_phone.png);
-			background-repeat: no-repeat;
-			background-position: 5px center;
-		}
-		
-		.icon-name{
-			background-image: url(./resources/icons/icon_name.png);
-			background-repeat: no-repeat;
-			background-position: 5px center;
-		}
 
-		 .icon-time{
-			 background-image: url(./resources/icons/icon_time.png);
-			 background-repeat: no-repeat;
-			 background-position: 5px center;
-		 }
+        .nav-arrow {
+            background: #FFFFFF url(./resources/icons/arrow_right.png) no-repeat right center !important;
+        }
 
-		 .icon-memo{
-			 background-image: url(./resources/icons/icon_memo.png);
-			 background-repeat: no-repeat;
-			 background-position: 5px center;
-		 }
+        .icon-position {
+            background-image: url(./resources/icons/icon_position.png);
+            background-repeat: no-repeat;
+            background-position: 5px center;
+        }
 
-		 .icon-impression{
-			 background-image: url(./resources/icons/icon_impression.png);
-			 background-repeat: no-repeat;
-			 background-position: 5px center;
-		 }
+        .icon-phone {
+            background-image: url(./resources/icons/icon_phone.png);
+            background-repeat: no-repeat;
+            background-position: 5px center;
+        }
 
-		 .icon-open{
-			 background-image: url(./resources/icons/icon_open.png);
-			 background-repeat: no-repeat;
-			 background-position: 5px center;
-		 }
+        .icon-name {
+            background-image: url(./resources/icons/icon_name.png);
+            background-repeat: no-repeat;
+            background-position: 5px center;
+        }
 
-		 .icon-scene{
-			 background-image: url(./resources/icons/icon_scene.png);
-			 background-repeat: no-repeat;
-			 background-position: 5px center;
-		 }
+        .icon-time {
+            background-image: url(./resources/icons/icon_time.png);
+            background-repeat: no-repeat;
+            background-position: 5px center;
+        }
 
-		 .icon-hotel{
-			 background-image: url(./resources/icons/icon_hotel.png);
-			 background-repeat: no-repeat;
-			 background-position: 5px center;
-		 }
+        .icon-memo {
+            background-image: url(./resources/icons/icon_memo.png);
+            background-repeat: no-repeat;
+            background-position: 5px center;
+        }
 
-		 .icon-food{
-			 background-image: url(./resources/icons/icon_food.png);
-			 background-repeat: no-repeat;
-			 background-position: 5px center;
-		 }
+        .icon-impression {
+            background-image: url(./resources/icons/icon_impression.png);
+            background-repeat: no-repeat;
+            background-position: 5px center;
+        }
 
-		 .icon-todo{
-			 background-image: url(./resources/icons/icon_todo.png);
-			 background-repeat: no-repeat;
-			 background-position: 5px center;
-		 }
+        .icon-open {
+            background-image: url(./resources/icons/icon_open.png);
+            background-repeat: no-repeat;
+            background-position: 5px center;
+        }
 
-		 .icon-add{
-			 background-image: url(./resources/icons/icon_add_32.png);
-			 background-repeat: no-repeat;
-			 background-position: right center;
-		 }
+        .icon-scene {
+            background-image: url(./resources/icons/icon_scene.png);
+            background-repeat: no-repeat;
+            background-position: 5px center;
+        }
 
-		 .icon-delete{
-			 background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAmCAYAAACoPemuAAAACXBI…w9uZwp9NBp9NBr9fDcDjEZDJZ8hTdHI7FYkT7Nmrs/T8A+9sqBa/UMfkAAAAASUVORK5CYII=');
-			 background-repeat: no-repeat;
-			 background-position: right center;
-		 }
+        .icon-hotel {
+            background-image: url(./resources/icons/icon_hotel.png);
+            background-repeat: no-repeat;
+            background-position: 5px center;
+        }
 
-		.textfield{
-			height:38px;
-			background:white;
-			line-height:38px;
-			border-bottom:1px solid #EDEDED;
-			font-size:14px;
-		}
-		
-		.textfield span{
-			margin:10px 0px 10px 0px;
-			vertical-align:middle;
-		}
-		
-		.subtitlebar{
-			height:50px;
-			background:white;
-			line-height:40px;
-			color:#fff;
-			font-size:14px;
-			border-bottom:5px solid #EDEDED;
-			border-top:5px solid #EDEDED;
-		}
+        .icon-food {
+            background-image: url(./resources/icons/icon_food.png);
+            background-repeat: no-repeat;
+            background-position: 5px center;
+        }
 
-		.icon{
-			width:16px;
-			height:16px;
-		}
+        .icon-todo {
+            background-image: url(./resources/icons/icon_todo.png);
+            background-repeat: no-repeat;
+            background-position: 5px center;
+        }
 
-		.page{
-			background:#EDEDED !important
-		}
-		
-		.bg{
-			background:#EDEDED !important
-		}
+        .icon-add {
+            background-image: url(./resources/icons/icon_add_32.png);
+            background-repeat: no-repeat;
+            background-position: right center;
+        }
 
-		 .bg_white{
-			 background:#FFFFFF !important
-		 }
+        .icon-delete {
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAmCAYAAACoPemuAAAACXBI…w9uZwp9NBp9NBr9fDcDjEZDJZ8hTdHI7FYkT7Nmrs/T8A+9sqBa/UMfkAAAAASUVORK5CYII=');
+            background-repeat: no-repeat;
+            background-position: right center;
+        }
 
-		 .text_right{
-			 text-align:right!important
-		 }
+        .icon-checked {
+            background-image: url(./resources/icons/icon_checked_24.png);
+            background-repeat: no-repeat;
+            background-position: 0px center;
+        }
 
-		 .marked{
-			 background: #FF6100 !important;
-			 height:45px;
-			 line-height:45px;
-		 }
+        .icon-unchecked {
+            background-image: url(./resources/icons/icon_unchecked_24.png);
+            background-repeat: no-repeat;
+            background-position: 0px center;
+        }
 
-		.button{
-			text-align:center; 
-			background: #FF6100;
-			height:45px; 
-			font-size:14px;
-			line-height:45px;
-		}
-		 
-		.toolbar .x-button-label{
-			color:grey !important;
-			margin:0px 0px 0px 5px;
-			font-size:14px !important;
-		}
+        .icon-arrow-down{
+            background-image: url(./resources/icons/icon_arrow_down.png);
+            background-repeat: no-repeat;
+            background-position: bottom center;
+        }
 
-		 .tabbar .x-button-label{
-			 color:grey !important;
-			 font-size:12px !important;
-		 }
+        .icon-arrow-up{
+            background-image: url(./resources/icons/icon_arrow_up.png);
+            background-repeat: no-repeat;
+            background-position: bottom center;
+        }
 
-		 .headerbar .x-button-label{
-			 color:black !important;
-			 padding:0px 10px 0px 10px;
-			 font-size:14px !important;
-		 }
-		
-		.subtitle{
-			font-size:16px;
-			font-weight:bold
-		}
-		
-		.markedlabel{
-			background: #FF6100;
-			width:100%;
-			height:40px;
-			line-height:40px;
-			text-align:center;
-			color:white;
-		}
-		
-		.overlay{
-			opacity:0.2;
-			width:100%;
-			color:#fff;
-			font-weight:bold;
-			font-size:14px;
-		}
-		
-		.overlay .x-panel-inner{
-			background:#000 !important;
-		}
-		
-		.navigationBar{
-			border-top:1px solid #EDEDED;
-		}
-		
-		.togglefield .x-button{
-			border:1px solid #EDEDED;
-		}
-		
-		.togglefield .active{
-			background: #4A708B !important;
-			color:white;
-		}
-		
-		.align-right{
-			text-align:right !important;
-		}
-		
-		.raty img{
-			width:80% !important;
-			margin-top:5px;
-		}
-		
-		.multilineinfo{
-			padding:10px 0px 10px 0px !important;
-			font-size:14px;
-			color:grey;
-			line-height:25px;
-			min-height:15px;
-		}
-		
-		.spacer{
-			height:10px;
-			background:#EDEDED !important;
-		}
-		
-		.horizentalLine{
-			border-bottom:1px solid #EDEDED;
-		}
-		
-		.underline{
-			border-bottom:1px solid #EDEDED;
-		}
-		
-		.space-bottom{
-			border-bottom:5px solid #EDEDED;
-		}
-		
-		.space-top{
-			border-top:5px solid #EDEDED;
-		}
-		
-		.space-both{
-			border-bottom:5px solid #EDEDED;
-			border-top:5px solid #EDEDED;
-		}
-		
-		/** 行程列表CSS 定义**/
-		.ScheduleListItem{
-			font-size:14px;
-			border-bottom:1px solid #EDEDED;
-		}
+        .textfield {
+            height: 38px;
+            background: white;
+            line-height: 38px;
+            border-bottom: 1px solid #EDEDED;
+            font-size: 14px;
+        }
 
-		 .ScheduleListItem .scheduleItem{
-			 padding:0px 0px 0px 0px;
-		 }
-		
-		.ScheduleListItem .content{
-			font-size:14px;
-			color:grey;
-			line-height:25px;
-			min-height:25px;
-		}
-		
-		.ScheduleListItem .content.memo{
-			font-size:14px;
-			color:grey;
-			line-height:25px;
-			min-height:25px;
-		}
-		
-		.ScheduleListItem .title{
-			height:45px;
-			line-height:45px;
-		}
-		
-		.ScheduleListItem .title.strong{
-			font-weight:bold;
-			color:green;
-			font-size:16px;
-			line-height:45px;
-		}
-		
-		.ScheduleListItem .schedule{
-			height:45px;
-		}
-		
-		.ScheduleListItem .icon{
-			margin-top:5px;
-			margin-right:10px;
-		}
-		/** End 行程列表CSS 定义**/
-		
-		.verticledataitem .info{
-			height:40px;
-			line-height:40px;
-			color:grey;
-			font-size:13px;
-		}
-		
-		.font-large{
-			font-size:15px;
-		}
-		
-		.font-medium{
-			font-size:14px;
-		}
-		
-		.font-small{
-			font-size:13px;
-		}
-		
-		.font-bold{
-			font-weight:bold;
-		}
+        .textfield span {
+            margin: 10px 0px 10px 0px;
+            vertical-align: middle;
+        }
 
-		 .font-remark{
-			 font-weight:bold;
-			 color: #FF6100;
-		 }
+        .subtitlebar {
+            height: 50px;
+            background: white;
+            line-height: 40px;
+            color: #fff;
+            font-size: 14px;
+            border-bottom: 5px solid #EDEDED;
+            border-top: 5px solid #EDEDED;
+        }
 
-		.font-grey{
-			color:grey;
-		}
+        .icon {
+            width: 16px;
+            height: 16px;
+        }
 
-		 .font-normal{
-		 }
-		
-		.row{
-			height:45px;
-			line-height:45px;
-		},
+        .page {
+            background: #EDEDED !important
+        }
 
-		 .toolbar-row{
-			 height:30px;
-			 line-height:30px;
-		 }
-		
-		.title-row{
-			height:40px;
-			text-align:bottom;
-		}
-		
-		.label{
-			font-size:14px;
-		}
-		
-		.field{
-			color:grey;
-			font-size:14px;
-		}
-		
-		.borderless{
-			border:none;
-		}
-		
-		input{
-			height:45px;
-		}
-		
-		.x-field-input{
-			border:none !important;
-			height:39px;
-		}
-		
-		.x-input-el{
-			padding:.0em .4em .0em .4em !important;
-			min-height:45px !important;
-		}
+        .page-space {
+            padding:0px 10px 0px 10px;
+        }
 
-		.tab{
-			background-color:#EDEDED
-		}
+        .bg {
+            background: #EDEDED !important
+        }
 
-		 .tab .tabitem{
-			text-align:center;
-			font-weight:bold;
-		 }
+        .bg_white {
+            background: #FFFFFF !important
+        }
 
-		 .tab .tabitem.active{
-			 border-bottom:3px solid #A52A2A;
-		 }
+        .x-field-right {
+            text-align: right !important;
+            margin:0px 10px 0px 0px;
+        }
+
+        .x-field-left {
+            text-align: left !important;
+            margin:0px 10px 0px 0px;
+        }
+
+        .x-field-more {
+            text-align: left !important;
+            margin:0px 10px 0px 0px;
+        }
+
+        .marked {
+            background: #FF6100 !important;
+            height: 45px;
+            line-height: 45px;
+        }
+
+        .button {
+            text-align: center;
+            background: #FF6100;
+            height: 45px;
+            font-size: 14px;
+            line-height: 45px;
+        }
+
+        .toolbar .x-button-label {
+            color: grey !important;
+            margin: 0px 0px 0px 5px;
+            font-size: 14px !important;
+        }
+
+        .tabbar .x-button-label {
+            color: grey !important;
+            font-size: 12px !important;
+        }
+
+        .headerbar .x-button-label {
+            color: black !important;
+            padding: 0px 10px 0px 10px;
+            font-size: 14px !important;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            font-weight: bold
+        }
+
+        .markedlabel {
+            background: #FF6100;
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            color: white;
+        }
+
+        .overlay {
+            opacity: 0.2;
+            width: 100%;
+            color: #fff;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .overlay .x-panel-inner {
+            background: #000 !important;
+        }
+
+        .navigationBar {
+            border-top: 1px solid #EDEDED;
+        }
+
+        .togglefield .x-button {
+            border: 1px solid #EDEDED;
+        }
+
+        .togglefield .active {
+            background: #4A708B !important;
+            color: white;
+        }
+
+        .align-right {
+            text-align: right !important;
+        }
+
+        .raty img {
+            width: 80% !important;
+            margin-top: 5px;
+        }
+
+        /*.multilineinfo {
+            padding: 10px 0px 10px 0px !important;
+            line-height: 25px;
+            min-height: 15px;
+        }*/
+
+        .spacer {
+            height: 10px;
+            background: #EDEDED !important;
+        }
+
+        .horizentalLine {
+            border-bottom: 1px solid #EDEDED;
+        }
+
+        .underline {
+            border-bottom: 1px solid #EDEDED;
+        }
+
+        .space-bottom {
+            border-bottom: 5px solid #EDEDED;
+        }
+
+        .space-top {
+            border-top: 5px solid #EDEDED;
+        }
+
+        .space-both {
+            border-bottom: 5px solid #EDEDED;
+            border-top: 5px solid #EDEDED;
+        }
+
+        /** 行程列表CSS 定义**/
+        .ScheduleListItem {
+            font-size: 14px;
+            border-bottom: 1px solid #EDEDED;
+        }
+
+        .ScheduleListItem .scheduleItem {
+            padding: 0px 0px 0px 0px;
+        }
+
+        .ScheduleListItem .content {
+            font-size: 14px;
+            color: grey;
+            line-height: 25px;
+            min-height: 25px;
+        }
+
+        .ScheduleListItem .content.memo {
+            font-size: 14px;
+            color: grey;
+            line-height: 25px;
+            min-height: 25px;
+        }
+
+        .ScheduleListItem .title {
+            height: 45px;
+            line-height: 45px;
+        }
+
+        .ScheduleListItem .title.strong {
+            font-weight: bold;
+            color: green;
+            font-size: 16px;
+            line-height: 45px;
+        }
+
+        .ScheduleListItem .schedule {
+            height: 45px;
+        }
+
+        .ScheduleListItem .icon {
+            margin-top: 5px;
+            margin-right: 10px;
+        }
+
+        /** End 行程列表CSS 定义**/
+
+        .verticledataitem .info {
+            height: 40px;
+            line-height: 40px;
+            color: grey;
+            font-size: 13px;
+        }
+
+        .font-large {
+            font-size: 15px;
+        }
+
+        .font-medium {
+            font-size: 14px;
+        }
+
+        .font-small {
+            font-size: 13px;
+        }
+
+        .font-bold {
+            font-weight: bold;
+        }
+
+        .font-remark {
+            font-weight: bold;
+            color: #FF6100;
+        }
+
+        .font-grey {
+            color: grey;
+        }
+
+        .font-normal {
+        }
+
+        .field-text{
+            padding: 10px 0px 10px 0px !important;
+            line-height: 25px;
+            min-height: 15px;
+            font-size: 14px;
+        }
+
+        .field-label{
+            padding: 10px 0px 10px 0px !important;
+            line-height: 25px;
+            min-height: 15px;
+            font-size: 14px;
+            color: grey;
+        }
+
+        .field-icon-medium{
+            margin:0px 5px 0px 20px;
+        }
+
+        .row {
+            height: 45px;
+            line-height: 45px;
+
+
+        }
+
+        .toolbar-row {
+            height: 30px;
+            line-height: 30px;
+        }
+
+        .title-row {
+            height: 40px;
+            text-align: bottom;
+        }
+
+        .label {
+            font-size: 14px;
+        }
+
+        .borderless {
+            border: none;
+        }
+
+        input {
+            height: 45px;
+        }
+
+        .x-field-input {
+            border: none !important;
+            height: 39px;
+        }
+
+        .x-input-el {
+            padding: .0em .4em .0em .4em !important;
+            min-height: 45px !important;
+        }
+
+        .tab {
+            background-color: #EDEDED
+        }
+
+        .tab .tabitem {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .tab .tabitem.active {
+            border-bottom: 3px solid #A52A2A;
+        }
     </style>
-    
-	<!--添加引入百度Map的javascript-->
-	<script src="http://api.map.baidu.com/api?v=1.4" type="text/javascript"></script>
+
+    <!--添加引入百度Map的javascript-->
+    <script src="http://api.map.baidu.com/api?v=1.4" type="text/javascript"></script>
 
     <script type="text/javascript" charset="utf-8" src="./cordova.js"></script>
-     
+
     <!-- The line below must be kept intact for Sencha Command to build your application -->
     <script type="text/javascript">/**
  * Sencha Blink - Testing
@@ -616,10 +669,10 @@
 })(this);Ext.blink({"id":"6a27b5c5-1d63-4c4b-b8c6-f2c5d1b063bc","js":[{"path":"app.js","update":"delta"}],"css":[{"path":"resources/css/cupertino.css","update":"delta","theme":"Cupertino"}]});</script>
 </head>
 <body>
-    <div id="appLoadingIndicator">
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
+<div id="appLoadingIndicator">
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
 </body>
 </html>

@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.widget.XMultiLabel', {
     extend: 'Ext.Label',
-    xtype: 'Xmultilabel',
+    xtype: 'xmultilabel',
     config:{
     	tappable : false,
     	cls:'font-medium font-grey multilineinfo',

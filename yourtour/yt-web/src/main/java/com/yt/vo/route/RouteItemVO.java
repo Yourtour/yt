@@ -55,11 +55,5 @@ public class RouteItemVO implements Serializable{
 		return route.getImpression();
 	}
 
-	public Long getLeaderId(){ return route.getLeaderId();}
-
-	public String getLeader(){
-		return route.getLeader();
-	}
-
 	public int getStep(){return route.getStep();}
 }

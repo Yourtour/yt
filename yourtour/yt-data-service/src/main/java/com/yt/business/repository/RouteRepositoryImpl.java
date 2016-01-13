@@ -184,7 +184,9 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 	public void saveRouteMainAndSchedules(RouteMainBean route, String operator)
 			throws Exception {
 		// 如果存在日程，则先保存日程信息
-		if(! route.isNew()) {
+		boolean isNew = route.isNew();
+
+		if(! isNew) {
 			Long routeId = route.getGraphId();
 			List<RouteScheduleBean> schedules = repository.getRouteSchedules(routeId);
 			if(schedules != null){
@@ -207,6 +209,13 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 			LOG.debug(String.format("Save RouteMainBean[%d] success.",
 					route.getGraphId()));
 		}
+		/*for (RouteScheduleBean scheduleBean : route.getSchedules()) {
+			super.save(scheduleBean, operator);
+			if (LOG.isDebugEnabled()) {
+				LOG.debug(String.format("Save RouteScheduleBean[%d] success.",
+						scheduleBean.getGraphId()));
+			}
+		}*/
 	}
 
 	/*

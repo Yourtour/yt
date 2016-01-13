@@ -20,16 +20,8 @@ Ext.define('YourTour.view.route.RouteScheduleListView', {
 	                	text:'编辑',
 	                	itemId:'edit',
 	                	align:'right'
-	                },
-	                {
-	                	xtype: "toolbutton", 
-	                    ui: "normal", 
-	                	text:'分享',
-	                	itemId:'consult',
-	                	align:'right'
 	                }
-					
-				]			
+				]
 			},
 			
 			{

@@ -48,6 +48,7 @@ public class RouteVO extends BaseVO {
 		routeVO.setName(bean.getName());
 		routeVO.setLineName(bean.getLineName());
 		routeVO.setStartDate(new Date(bean.getStartDate()).getTime());
+		routeVO.setImageUrl(bean.getImageUrl());
 
 		if (bean.getSchedules() != null && bean.getSchedules().size() > 0) {
 			for (RouteScheduleBean scheduleBean : bean.getSchedules()) {
@@ -116,7 +117,6 @@ public class RouteVO extends BaseVO {
 			scheduleBean.setIndex(DateUtils.getDateNumber(scheduleDate.getTime()) * 1000);
 			scheduleBean.setDate(scheduleDate.getTime());
 			scheduleBean.setTitle(String.format("第%s天-%s", index+1, DateUtils.formatDate(scheduleDate.getTime())));
-			scheduleBean.setRouteMain(bean);
 			scheduleBean.setCreatedUserId(WebUtils.getCurrentLoginUser());
 			scheduleBean.setUpdatedUserId(WebUtils.getCurrentLoginUser());
 			scheduleBean.setCreatedTime(DateUtils.getCurrentTimeMillis());
