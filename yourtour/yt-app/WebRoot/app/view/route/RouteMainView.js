@@ -9,7 +9,7 @@ Ext.define('YourTour.view.route.RouteMainView', {
             {
                 xtype: 'xheaderbar',
                 itemId: 'headerbar',
-                title: '我的旅行',
+                title: '我的行程',
                 backButton: false,
                 items: [
                     {
@@ -88,12 +88,6 @@ Ext.define('YourTour.view.route.RouteMainView', {
                                         mode: 'tag',
                                         src: 'resources/icons/icon_expense.png',
                                         itemId: 'btnCharge'
-                                    },
-                                    {
-                                        xtype: 'image',
-                                        mode: 'tag',
-                                        src: 'resources/icons/icon_comment.png',
-                                        itemId: 'btnComment'
                                     }
                                 ]
                             },
@@ -123,6 +117,8 @@ Ext.define('YourTour.view.route.RouteMainView', {
                 ]
             }
         ]
-    }
+    },
+
+
 });
 

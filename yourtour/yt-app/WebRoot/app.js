@@ -233,7 +233,6 @@ Ext.application({
                     }
                 }
             };
-
             if (options.params) {
                 request.params = Ext.JSON.encode(options.params);
             }

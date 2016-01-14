@@ -2,26 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1178f09b-7dc4-4f2a-9369-1d6c2acc5095" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/assets/www/resources/icons/icon_prepare.png" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/assets/www/resources/icons/icon_prepare.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/www/resources/icons/icon_prepare.png" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/www/resources/icons/icon_prepare.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/resources/icons/icon_prepare.png" afterPath="$PROJECT_DIR$/yt-app/WebRoot/resources/icons/icon_prepare.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/view/home/HomeMainView.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/view/home/HomeMainView.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/controller/ResourceMainCtrl.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/controller/ResourceMainCtrl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/view/MainView.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/view/MainView.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteMainView.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteMainView.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteScheduleFormView.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteScheduleFormView.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/controller/route/RouteScheduleListCtrl.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/controller/route/RouteScheduleListCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteScheduleListDataItem.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteScheduleListDataItem.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/controller/route/RouteSchedulePlanCtrl.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/controller/route/RouteSchedulePlanCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteSchedulePlanDataItem.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteSchedulePlanDataItem.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/controller/ServiceMainCtrl.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/controller/ServiceMainCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XField.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XField.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XHeaderBar.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XHeaderBar.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteScheduleListView.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteScheduleListView.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteSchedulePlanView.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteSchedulePlanView.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XPage.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XPage.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/assets/www/app.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/assets/www/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/www/app.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/www/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/index.html" afterPath="$PROJECT_DIR$/yt-app/WebRoot/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/assets/www/index.html" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/assets/www/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/www/index.html" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/www/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="yourtour.iws" />
@@ -56,12 +45,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="XHeaderBar.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XHeaderBar.js">
+      <file leaf-file-name="RouteMainCtrl.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/controller/route/RouteMainCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+              <caret line="74" column="19" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="19" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-4.366667">
+              <caret line="215" column="39" selection-start-line="215" selection-start-column="39" selection-end-line="215" selection-end-column="39" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -70,67 +71,67 @@
         <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/home/HomeMainView.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="41" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
+              <caret line="236" column="29" selection-start-line="236" selection-start-column="29" selection-end-line="236" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="XPage.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.22976501">
+              <caret line="135" column="44" selection-start-line="135" selection-start-column="44" selection-end-line="135" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="XPage.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.1785715">
-              <caret line="63" column="9" selection-start-line="63" selection-start-column="9" selection-end-line="63" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="61" column="5" selection-start-line="50" selection-start-column="4" selection-end-line="61" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RouteSchedulePlanCtrl.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/controller/route/RouteSchedulePlanCtrl.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.8448276">
-              <caret line="622" column="24" selection-start-line="622" selection-start-column="24" selection-end-line="622" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CarouselItem.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/common/CarouselItem.js">
+      <file leaf-file-name="MainView.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/MainView.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+              <caret line="32" column="45" selection-start-line="32" selection-start-column="45" selection-end-line="32" selection-end-column="45" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ResourceMainCtrl.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/controller/ResourceMainCtrl.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.9333333">
-              <caret line="220" column="20" selection-start-line="220" selection-start-column="20" selection-end-line="220" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ServiceMainCtrl.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/controller/ServiceMainCtrl.js">
+      <file leaf-file-name="RouteSchedulePlanView.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteSchedulePlanView.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="65" column="20" selection-start-line="65" selection-start-column="20" selection-end-line="65" selection-end-column="20" />
+              <caret line="47" column="22" selection-start-line="47" selection-start-column="22" selection-end-line="47" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RouteScheduleListCtrl.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/controller/route/RouteScheduleListCtrl.js">
+      <file leaf-file-name="RouteMainView.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteMainView.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="100" column="32" selection-start-line="100" selection-start-column="32" selection-end-line="100" selection-end-column="32" />
+              <caret line="119" column="6" selection-start-line="119" selection-start-column="6" selection-end-line="119" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RouteMainItem.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteMainItem.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -141,16 +142,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RouteSchedulePlanDataItem.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteSchedulePlanDataItem.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.4">
-              <caret line="114" column="45" selection-start-line="114" selection-start-column="45" selection-end-line="114" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -169,10 +160,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/expert/ExpertRecommendIntroductionView.js" />
-        <option value="$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/ExpertRestResource.java" />
-        <option value="$PROJECT_DIR$/yt-app/WebRoot/app.js" />
-        <option value="$PROJECT_DIR$/yt-data-service/src/main/java/com/yt/business/bean/ExpertBean.java" />
         <option value="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/member/ExpertVO.java" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/model/ExpertModel.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/expert/ExpertRecommendIntroView.js" />
@@ -209,17 +196,21 @@
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteScheduleListDataItem.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/Store.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XField.js" />
-        <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteMainView.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/controller/route/RouteMainCtrl.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XHeaderBar.js" />
-        <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/home/HomeMainView.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteScheduleFormView.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteSchedulePlanDataItem.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/controller/ResourceMainCtrl.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/controller/ServiceMainCtrl.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/controller/route/RouteScheduleListCtrl.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/controller/route/RouteSchedulePlanCtrl.js" />
+        <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteScheduleListView.js" />
+        <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteSchedulePlanView.js" />
+        <option value="$PROJECT_DIR$/yt-app/WebRoot/app.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XPage.js" />
+        <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteMainView.js" />
+        <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/MainView.js" />
+        <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/home/HomeMainView.js" />
       </list>
     </option>
   </component>
@@ -750,7 +741,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="widget" />
+              <option name="myItemId" value="route" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -799,7 +790,7 @@
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/yt-app/WebRoot" />
-    <property name="SearchEverywhereHistoryKey" value="xPage.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XPage.js&#10;ResourceMainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/ResourceMainCtrl.js&#10;RouteSchedulePlan&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/route/RouteSchedulePlanDataItem.js&#10;ResourcemainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/ResourceMainCtrl.js&#10;RouteSchedulePlanCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/route/RouteSchedulePlanCtrl.js&#10;HomeMainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/home/HomeMainView.js&#10;xheader&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XHeaderBar.js&#10;xField.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XField.js&#10;RouteScheduleFormView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/route/RouteScheduleFormView.js&#10;RouteMainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/route/RouteMainView.js&#10;xMul&#9;null&#9;null&#10;RouteMainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/route/RouteMainCtrl.js&#10;ROuteMainItem.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/route/RouteMainItem.js&#10;Store.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/data/Store.js&#10;Store.&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/store/AlongListStore.js&#10;RouteScheduleL&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/route/RouteScheduleListDataItem.js&#10;index.html&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/index.html&#10;RouteMainItem.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/route/RouteMainItem.js&#10;XPage.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XPage.js&#10;carousel.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/carousel/Carousel.js&#10;RouteRecommendIntroductionItem.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/route/RouteRecommendIntroductionItem.js&#10;ExpertRecommendIntroItem&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/expert/ExpertRecommendIntroItem.js&#10;Context.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/util/Context.js&#10;RouteRestRe&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/RouteRestResource.java&#10;RouteModel&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/model/RouteModel.js&#10;RouteRecommendVO&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/vo/route/RouteRecommendVO.java&#10;Index.html&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/index.html&#10;Container.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/Container.js&#10;DataGe&#9;RUN_CONFIGURATION&#9;DataGenerator&#10;ExpertBean&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-data-service/src/main/java/com/yt/business/bean/ExpertBean.java&#10;UserVO&#9;PSI&#9;JAVA://com.yt.vo.member.UserVO&#10;UserProfileVO&#9;PSI&#9;JAVA://com.yt.vo.member.UserProfileVO&#10;UserProfileBean&#9;PSI&#9;JAVA://com.yt.business.bean.UserProfileBean&#10;RouteRestResource&#9;PSI&#9;JAVA://com.yt.rest.resource.RouteRestResource&#10;CarouselItem&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/common/CarouselItem.js&#10;xGridItem.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XGridItem.js&#10;XCa&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XCarousel.js&#10;view.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/scroll/View.js&#10;ScrollView&#9;null&#9;null&#10;Scroll&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/behavior/Scrollable.js&#10;Panel.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/Panel.js&#10;ExpertRe&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/expert/ExpertRecommendIntroItem.js&#10;routeSchedulePlanCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/route/RouteSchedulePlanCtrl.js&#10;Button.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/Button.js&#10;context.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/util/Context.js&#10;xHeaderBar.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XHeaderBar.js&#10;TitleBar.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/TitleBar.js&#10;field.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/field/Field.js&#10;text.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/field/Text.js&#10;Label.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/Label.js" />
+    <property name="SearchEverywhereHistoryKey" value="index.html&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/index.html&#10;HomeMain&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/home/HomeMainView.js&#10;RouteMainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/route/RouteMainView.js&#10;RouteMainItem.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/route/RouteMainItem.js&#10;mainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/MainView.js&#10;routeMainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/route/RouteMainView.js&#10;app.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app.js&#10;RouteMainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/route/RouteMainCtrl.js&#10;xPage.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XPage.js&#10;ResourceMainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/ResourceMainCtrl.js&#10;RouteSchedulePlan&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/route/RouteSchedulePlanDataItem.js&#10;ResourcemainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/ResourceMainCtrl.js&#10;RouteSchedulePlanCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/route/RouteSchedulePlanCtrl.js&#10;HomeMainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/home/HomeMainView.js&#10;xheader&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XHeaderBar.js&#10;xField.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XField.js&#10;RouteScheduleFormView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/route/RouteScheduleFormView.js&#10;xMul&#9;null&#9;null&#10;ROuteMainItem.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/route/RouteMainItem.js&#10;Store.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/data/Store.js&#10;Store.&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/store/AlongListStore.js&#10;RouteScheduleL&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/route/RouteScheduleListDataItem.js&#10;XPage.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XPage.js&#10;carousel.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/carousel/Carousel.js&#10;RouteRecommendIntroductionItem.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/route/RouteRecommendIntroductionItem.js&#10;ExpertRecommendIntroItem&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/expert/ExpertRecommendIntroItem.js&#10;Context.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/util/Context.js&#10;RouteRestRe&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/RouteRestResource.java&#10;RouteModel&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/model/RouteModel.js&#10;RouteRecommendVO&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/vo/route/RouteRecommendVO.java&#10;Index.html&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/index.html&#10;Container.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/Container.js&#10;DataGe&#9;RUN_CONFIGURATION&#9;DataGenerator&#10;ExpertBean&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-data-service/src/main/java/com/yt/business/bean/ExpertBean.java&#10;UserVO&#9;PSI&#9;JAVA://com.yt.vo.member.UserVO&#10;UserProfileVO&#9;PSI&#9;JAVA://com.yt.vo.member.UserProfileVO&#10;UserProfileBean&#9;PSI&#9;JAVA://com.yt.business.bean.UserProfileBean&#10;RouteRestResource&#9;PSI&#9;JAVA://com.yt.rest.resource.RouteRestResource&#10;CarouselItem&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/common/CarouselItem.js&#10;xGridItem.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XGridItem.js&#10;XCa&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XCarousel.js&#10;view.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/scroll/View.js&#10;ScrollView&#9;null&#9;null&#10;Scroll&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/behavior/Scrollable.js&#10;Panel.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/Panel.js&#10;ExpertRe&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/expert/ExpertRecommendIntroItem.js&#10;routeSchedulePlanCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/route/RouteSchedulePlanCtrl.js&#10;Button.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/Button.js&#10;context.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/util/Context.js" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="dynamic.classpath" value="false" />
@@ -1458,12 +1449,12 @@
       <workItem from="1452677137644" duration="14707000" />
       <workItem from="1452733855497" duration="8446000" />
       <workItem from="1452742576165" duration="11903000" />
-      <workItem from="1452762693360" duration="2634000" />
+      <workItem from="1452762693360" duration="6096000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="444019000" />
+    <option name="totallyTimeSpent" value="447481000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1476,7 +1467,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.4969743" order="6" side_tool="false" content_ui="tabs" />
@@ -1489,9 +1480,9 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.4969743" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3251634" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.40359476" sideWeight="0.7855051" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28431374" sideWeight="0.7855051" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25642964" sideWeight="0.4923077" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15506808" sideWeight="0.4923077" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23358779" sideWeight="0.50769234" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.012859304" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1582,27 +1573,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/touch/src/scroll/View.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XGridItem.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8564477">
-          <caret line="16" column="46" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/controller/ExpertMainCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="173" column="49" selection-start-line="151" selection-start-column="16" selection-end-line="173" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/member/UserProfileVO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1773,13 +1743,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteScheduleListView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.5975103">
-          <caret line="35" column="20" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/expert/ExpertRecommendIntroItem.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.36307055">
@@ -1809,22 +1772,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteMainItem.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.857143">
-          <caret line="126" column="21" selection-start-line="126" selection-start-column="9" selection-end-line="126" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XMultiField.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1832,26 +1779,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/controller/route/RouteMainCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XField.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteMainView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="50" column="61" selection-start-line="50" selection-start-column="54" selection-end-line="50" selection-end-column="61" />
           <folding />
         </state>
       </provider>
@@ -1876,30 +1807,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.7759336">
           <caret line="48" column="27" selection-start-line="48" selection-start-column="27" selection-end-line="48" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/home/HomeMainView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="41" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteScheduleFormView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteSchedulePlanDataItem.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.4">
-          <caret line="114" column="45" selection-start-line="114" selection-start-column="45" selection-end-line="114" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1951,10 +1858,100 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteScheduleListView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteSchedulePlanDataItem.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36">
+          <caret line="114" column="45" selection-start-line="114" selection-start-column="45" selection-end-line="114" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteScheduleFormView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteSchedulePlanView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="47" column="22" selection-start-line="47" selection-start-column="22" selection-end-line="47" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/controller/route/RouteMainCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="74" column="19" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.366667">
+          <caret line="215" column="39" selection-start-line="215" selection-start-column="39" selection-end-line="215" selection-end-column="39" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteMainItem.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1785715">
-          <caret line="63" column="9" selection-start-line="63" selection-start-column="9" selection-end-line="63" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="61" column="5" selection-start-line="50" selection-start-column="4" selection-end-line="61" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/MainView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="32" column="45" selection-start-line="32" selection-start-column="45" selection-end-line="32" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteMainView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="119" column="6" selection-start-line="119" selection-start-column="6" selection-end-line="119" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/home/HomeMainView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="236" column="29" selection-start-line="236" selection-start-column="29" selection-end-line="236" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22976501">
+          <caret line="135" column="44" selection-start-line="135" selection-start-column="44" selection-end-line="135" selection-end-column="44" />
           <folding />
         </state>
       </provider>

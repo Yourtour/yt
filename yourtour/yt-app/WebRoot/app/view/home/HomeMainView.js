@@ -5,12 +5,6 @@ Ext.define('YourTour.view.home.HomeMainView', {
     config: {
         id: 'HomeMainView',
         layout: 'vbox',
-        scrollable: {
-            direction: 'vertical',
-            indicators: false,
-            bounces: false,
-            outOfBoundRestrictFactor : 0,
-        },
         items: [
             {
                 xtype: 'xheaderbar',
@@ -29,7 +23,7 @@ Ext.define('YourTour.view.home.HomeMainView', {
             {
                 xtype: 'carousel',
                 itemId: 'placeCarousel',
-                height: 500,
+                height: 250,
                 cls: 'space-bottom'
             },
 
@@ -164,8 +158,86 @@ Ext.define('YourTour.view.home.HomeMainView', {
                         item: 'YourTour.view.home.AlongItemView'
                     }
                 ]
+            },
+            {
+                xtype: 'xpanel',
+                layut: 'vbox',
+                cls: 'space-top',
+                padding: '0 5 0 5',
+                items: [
+                    {
+                        xtype: 'xlabel',
+                        itemId: 'moreAlong',
+                        cls: 'row nav-arrow font-large underline',
+                        html: '结伴游',
+                        tappable: true
+                    },
+
+                    {
+                        xtype: 'xgridview',
+                        itemId: 'alongs',
+                        layut: 'hbox',
+                        cols: 2,
+                        item: 'YourTour.view.home.AlongItemView'
+                    }
+                ]
+            },
+            {
+                xtype: 'xpanel',
+                layut: 'vbox',
+                cls: 'space-top',
+                padding: '0 5 0 5',
+                items: [
+                    {
+                        xtype: 'xlabel',
+                        itemId: 'moreAlong',
+                        cls: 'row nav-arrow font-large underline',
+                        html: '结伴游',
+                        tappable: true
+                    },
+
+                    {
+                        xtype: 'xgridview',
+                        itemId: 'alongs',
+                        layut: 'hbox',
+                        cols: 2,
+                        item: 'YourTour.view.home.AlongItemView'
+                    }
+                ]
+            },
+            {
+                xtype: 'xpanel',
+                layut: 'vbox',
+                cls: 'space-top',
+                padding: '0 5 0 5',
+                items: [
+                    {
+                        xtype: 'xlabel',
+                        itemId: 'moreAlong',
+                        cls: 'row nav-arrow font-large underline',
+                        html: '结伴游',
+                        tappable: true
+                    },
+
+                    {
+                        xtype: 'xgridview',
+                        itemId: 'alongs',
+                        layut: 'hbox',
+                        cols: 2,
+                        item: 'YourTour.view.home.AlongItemView'
+                    }
+                ]
             }
         ]
+    },
+
+    scroll: function (scroller, x, y) {
+        var headerbar = this.down('#headerbar');
+        if(y < 10){
+            headerbar.show();
+        }else{
+            headerbar.hide();
+        }
     }
 });
 

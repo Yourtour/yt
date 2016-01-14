@@ -8,8 +8,8 @@ Ext.define('YourTour.view.widget.XPage', {
             directionLock: true,
             momentumEasing:  {
                 momentum: {
-                    acceleration: 30,
-                    friction: 0.5
+                    acceleration: 10,
+                    friction: 0.9
                 },
                 bounce: {
                     acceleration: 0.0001,
@@ -18,9 +18,6 @@ Ext.define('YourTour.view.widget.XPage', {
                 minVelocity: 5
             },
             outOfBoundRestrictFactor: 0
-
-            /* bounces: false,
-             outOfBoundRestrictFactor : 0*/
         },
 
         fullscreen: true,

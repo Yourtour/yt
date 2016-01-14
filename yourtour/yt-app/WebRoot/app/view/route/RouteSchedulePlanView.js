@@ -33,7 +33,20 @@ Ext.define('YourTour.view.route.RouteSchedulePlanView', {
 				flex:1,
 				scrollable: {
 					direction: 'vertical',
-					indicators: false	,
+					indicators: false,
+					directionLock: true,
+					momentumEasing:  {
+						momentum: {
+							acceleration: 10,
+							friction: 0.5
+						},
+						bounce: {
+							acceleration: 0.0001,
+							springTension: 0.9999,
+						},
+						minVelocity: 5
+					},
+					outOfBoundRestrictFactor: 0
 				},
 		        useComponents: true,
 		        defaultType: 'RouteSchedulePlanDataItem'
