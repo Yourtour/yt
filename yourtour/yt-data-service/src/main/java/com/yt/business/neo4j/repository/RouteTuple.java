@@ -15,6 +15,9 @@ public class RouteTuple {
 	@ResultColumn("owner")
 	private UserProfileBean owner;
 
+	@ResultColumn("expert")
+	private ExpertBean expert;
+
 	public RouteTuple(){
 	}
 
@@ -32,5 +35,13 @@ public class RouteTuple {
 
 	public void setOwner(UserProfileBean owner) {
 		this.owner = owner;
+	}
+
+	public ExpertBean getExpert() {
+		return expert;
+	}
+
+	public void setExpert(ExpertBean expert) {
+		this.expert = expert;
 	}
 }

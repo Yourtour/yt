@@ -8,6 +8,7 @@ Ext.define('YourTour.view.widget.XField', {
 		icon:null,
 		fieldCls:null,
 		labelCls:null,
+		heightCls:'x-xfield-padding-normal',
 		underline:true,
 		layout:'hbox',
 		style:'background-color:white;',
@@ -16,9 +17,17 @@ Ext.define('YourTour.view.widget.XField', {
 				xtype:'label',
 				itemId:'value',
 				flex:1,
-				cls:'field-text'
+				cls:'x-xfield font-grey x-xfield-padding-normal'
 			}
 		]
+	},
+
+	updateHeightCls:function(heightCls){
+		this.heightCls = heightCls;
+
+		var value = this.down('#value');
+		value.removeCls('x-xfield-padding-normal');
+		value.addCls(heightCls);
 	},
 
 	updateUnderline:function(underline){
@@ -35,7 +44,7 @@ Ext.define('YourTour.view.widget.XField', {
 
 	setIcon:function(icon){
 		this.addCls(icon);
-		this.setFieldCls('field-icon-medium');
+		this.setFieldCls('x-xfield-icon-medium');
 	},
 
 	updateFieldCls:function(cls){
@@ -76,7 +85,8 @@ Ext.define('YourTour.view.widget.XField', {
 			xtype:'label',
 			itemId:'label',
 			margin:'0 10 0 0',
-			cls:'field-label',
+			padding:'10 0 10 0',
+			cls:'x-xfield',
 			html:label
 		});
 	},

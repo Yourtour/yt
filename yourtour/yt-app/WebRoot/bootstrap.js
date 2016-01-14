@@ -719,6 +719,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.Launch": [],
   "YourTour.view.MainView": [],
   "YourTour.view.SearchMain": [],
+  "YourTour.view.common.CarouselItem": [],
   "YourTour.view.common.CommentListItemView": [],
   "YourTour.view.common.ContentReadView": [],
   "YourTour.view.common.ExpertServiceFormView": [],
@@ -739,6 +740,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.expert.ExpertListView": [],
   "YourTour.view.expert.ExpertMainView": [],
   "YourTour.view.expert.ExpertRecommendDataItem": [],
+  "YourTour.view.expert.ExpertRecommendIntroItem": [],
   "YourTour.view.expert.ExpertRecommendIntroView": [],
   "YourTour.view.expert.ExpertRecommendListView": [],
   "YourTour.view.expert.ExpertRouteDataItem": [],
@@ -792,8 +794,10 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.route.RouteProvisionEditView": [],
   "YourTour.view.route.RouteProvisionView": [],
   "YourTour.view.route.RouteRecommendDataItem": [],
+  "YourTour.view.route.RouteRecommendIntroductionItem": [],
   "YourTour.view.route.RouteRecommendIntroductionView": [],
   "YourTour.view.route.RouteRecommendListView": [],
+  "YourTour.view.route.RouteRecommendScheduleItem": [],
   "YourTour.view.route.RouteScheduleDataView": [],
   "YourTour.view.route.RouteScheduleEditView": [],
   "YourTour.view.route.RouteScheduleFormView": [],
@@ -827,6 +831,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.XBlock": [],
   "YourTour.view.widget.XBoldLabel": [],
   "YourTour.view.widget.XButton": [],
+  "YourTour.view.widget.XCarousel": [],
   "YourTour.view.widget.XCheckbox": [],
   "YourTour.view.widget.XDataView": [],
   "YourTour.view.widget.XField": [],
@@ -1670,6 +1675,9 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.SearchMain": [
     "widget.searchmain"
   ],
+  "YourTour.view.common.CarouselItem": [
+    "widget.CommentListItemView"
+  ],
   "YourTour.view.common.CommentListItemView": [
     "widget.CommentListItemView"
   ],
@@ -1717,6 +1725,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.expert.ExpertRecommendDataItem": [
     "widget.ExpertRecommendDataItem"
+  ],
+  "YourTour.view.expert.ExpertRecommendIntroItem": [
+    "widget.ExpertRecommendIntroItem"
   ],
   "YourTour.view.expert.ExpertRecommendIntroView": [],
   "YourTour.view.expert.ExpertRecommendListView": [],
@@ -1849,8 +1860,14 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.route.RouteRecommendDataItem": [
     "widget.RouteRecommendDataItem"
   ],
+  "YourTour.view.route.RouteRecommendIntroductionItem": [
+    "widget.RouteRecommendIntroductionItem"
+  ],
   "YourTour.view.route.RouteRecommendIntroductionView": [],
   "YourTour.view.route.RouteRecommendListView": [],
+  "YourTour.view.route.RouteRecommendScheduleItem": [
+    "widget.RouteRecommendScheduleItem"
+  ],
   "YourTour.view.route.RouteScheduleDataView": [
     "widget.RouteScheduleDataView"
   ],
@@ -1937,6 +1954,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.widget.XButton": [
     "widget.xbutton"
+  ],
+  "YourTour.view.widget.XCarousel": [
+    "widget.xcarousel"
   ],
   "YourTour.view.widget.XCheckbox": [
     "widget.xcheckbox"

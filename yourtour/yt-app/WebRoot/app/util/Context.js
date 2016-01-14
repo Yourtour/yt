@@ -6,8 +6,8 @@ Ext.define('YourTour.util.Context', {
     	userKey:'user',
 
 		//server:'192.168.1.174:8080'
-    	server:'192.168.2.102:8080'
-		//server:'120.55.76.201:8080'
+    	//server:'192.168.2.102:8080'
+		server:'120.55.76.201:8080'
     },
     
     constructor : function(config) {
@@ -35,7 +35,7 @@ Ext.define('YourTour.util.Context', {
 			url = url.substr(0, index) + '_' + size + url.substr(index);
 		}
 
-    	var s = 'http://' + this.getServer() + '/yt-app';
+    	var s = 'http://' + this.getServer() + '/yt-web';
     	if(url == null || url == '') return s;
 
     	if(url.substr(0,1) != '/'){

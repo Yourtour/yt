@@ -573,10 +573,9 @@ public class RouteRestResource extends BaseRestResource{
 			return new ResponseDataVO<Long>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
 	}
+
 	/**
 	 *
-	 * @param subType
-	 * @param subId
 	 * @param serviceId
 	 * @return
 	 */
@@ -598,8 +597,8 @@ public class RouteRestResource extends BaseRestResource{
 	@SuppressWarnings("unchecked")
 	@Path("/recommend/{placeIds}/{duration}")
 	@GET
-	public ResponseDataVO<List<RouteRecommendItemVO>> getRecommendedRoutes(@PathParam("placeIds") String placeIds, @PathParam("duration") String duration) {
-		List<RouteRecommendItemVO> list = new ArrayList<RouteRecommendItemVO>();
+	public ResponseDataVO<List<RouteRecommendVO>> getRecommendedRoutes(@PathParam("placeIds") String placeIds, @PathParam("duration") String duration) {
+		List<RouteRecommendVO> list = new ArrayList<RouteRecommendVO>();
 		try {
 			String[] ids = placeIds.split(",");
 			Long[] lIds = new Long[ids.length];
@@ -612,16 +611,16 @@ public class RouteRestResource extends BaseRestResource{
 				if (bean == null) {
 					continue;
 				}
-				RouteRecommendItemVO vo = RouteRecommendItemVO.transform(bean);
+				RouteRecommendVO vo = RouteRecommendVO.transform(bean);
 				list.add(vo);
 			}
 
-			return new ResponseDataVO<List<RouteRecommendItemVO>>(list);
+			return new ResponseDataVO<List<RouteRecommendVO>>(list);
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
 				LOG.error("Fetch all the LineBean fail.", ex);
 			}
-			return new ResponseDataVO<List<RouteRecommendItemVO>>(
+			return new ResponseDataVO<List<RouteRecommendVO>>(
 					StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
 	}
@@ -630,7 +629,7 @@ public class RouteRestResource extends BaseRestResource{
 	@GET
 	public ResponseDataVO<RouteRecommendVO> getRecommendedRoute(@PathParam("routeId") String routeId) {
 		try {
-			RouteMainBean bean = (RouteMainBean) routeRepository.getRecommendRoute(Long.valueOf(routeId));
+			RouteMainBean bean = (RouteMainBean) routeRepository.getCompleteRoute(Long.valueOf(routeId));
 
 			RouteRecommendVO vo = RouteRecommendVO.transform(bean);
 			return new ResponseDataVO<RouteRecommendVO>(vo);

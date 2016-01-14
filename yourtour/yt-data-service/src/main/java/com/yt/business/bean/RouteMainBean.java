@@ -70,13 +70,13 @@ public class RouteMainBean extends BaseBeanImpl {
 	private transient UserProfileBean owner = null; // 行程所有者
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_EXPERT, type = ExpertBean.class, direction = Direction.OUTGOING)
-	private transient ExpertBean expert = null; // 行程所有者
+	private transient ExpertBean expert = null; // 行程达人
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_LEADER, type = UserProfileBean.class, direction = Direction.OUTGOING)
-	private transient UserProfileBean leader = null; // 行程所有者
+	private transient UserProfileBean leader = null; // 行程领队
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_MEMBER, type = UserProfileBean.class, direction = Direction.OUTGOING, isList = true)
-	private transient List<UserProfileBean> members = null; // 行程所有者
+	private transient List<UserProfileBean> members = null; // 行程成员
 
 	public RouteMainBean() {
 		super();

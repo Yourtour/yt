@@ -3,8 +3,12 @@ Ext.define('YourTour.view.route.RouteRecommendIntroductionItem', {
     requires: ['Ext.Panel'],
     xtype: 'RouteRecommendIntroductionItem',
     config: {
-        label: '简介',
+        label: '行程概述',
         layout: 'vbox',
+        /*scrollable:{
+         direction: 'vertical',
+         indicators: false
+        },*/
         items: [
             {
                 xtype: 'panel',
@@ -91,25 +95,6 @@ Ext.define('YourTour.view.route.RouteRecommendIntroductionItem', {
             },
 
             {
-                xtype: 'panel',
-                tappable: true,
-                layout: 'hbox',
-                padding: '0 10 0 10',
-                cls: 'underline font-grey font-medium nav-arrow',
-                items: [
-                    {
-                        itemId: 'expertImage',
-                        xtype: 'image',
-                        mode: 'tag',
-                    }
-                ]
-            },
-
-            {
-                xtype: 'hspacer'
-            },
-
-            {
                 xtype: 'xlabel',
                 itemId: 'featureTitle',
                 html: '线路特点',
@@ -143,6 +128,26 @@ Ext.define('YourTour.view.route.RouteRecommendIntroductionItem', {
                 padding: '0 10 0 10'
             }
         ]
+    },
+
+    setRecord: function (record) {
+        this.callParent(arguments);
+
+        var me = this;
+
+        if(record) {
+            var image = me.down('#image');
+            image.setHtml("<img src='" + YourTour.util.Context.getImageResource(record.get('imageUrl')) + "' style='width:100%; max-height:150px'>");
+
+            var lineName = me.down('#lineName');
+            lineName.setHtml(record.get('lineName'));
+
+            var feature = me.down('#feature');
+            feature.setText(record.get('feature'));
+
+            var reason = me.down('#reason');
+            reason.setText(record.get('reason'));
+        }
     }
 });
 

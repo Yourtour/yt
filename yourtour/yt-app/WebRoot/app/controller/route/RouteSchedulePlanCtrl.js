@@ -109,7 +109,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 		   },
 
 		   '#RouteRecommendIntroductionView #recommendCarousel':{
-			   /*activeitemchange:'onRecommendCarouselItemChange'*/
+			   activateitem:'onRecommendActivateItem'
 		   },
 
 		   '#RouteRecommendIntroductionView #btnClone':{
@@ -298,6 +298,8 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 		me.getApplication().query(options);
 	},
 
+
+
 	/**
 	 *
 	 * @param dataview
@@ -310,51 +312,49 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 		var me = this;
 		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteRecommendIntroductionView'));
 		var view = me.getRouteRecommendIntroductionView();
-		view.updateRecord(record);
+		view.setAttrs({record:record});
 
 		var headerbar = view.down('#headerbar');
 		headerbar.setTitle(record.get('name'));
 
-		var options = {
-			model:'YourTour.model.RouteModel',
-			url:'/routes/recommend/' + record.get('id'),
-			success:function(store){
-				store.each(function(route){
-					var record = store.first();
+		var routeRecommendIntroductionItem = Ext.create('YourTour.view.route.RouteRecommendIntroductionItem',{itemId: 'recommendIntro',
+			active:true,record:record});
+		me.getRecommendCarousel().add(routeRecommendIntroductionItem);
 
-					var routeRecommendIntroductionItem = Ext.create('YourTour.view.route.RouteRecommendIntroductionItem',{itemId: 'recommendIntro',
-						active:true,
-						label:'概述'});
-					me.getRecommendCarousel().add(routeRecommendIntroductionItem);
+		var routeExpertIntroductionItem = Ext.create('YourTour.view.expert.ExpertRecommendIntroItem',{itemId: 'expertRecommendIntro'});
+		me.getRecommendCarousel().add(routeExpertIntroductionItem);
 
-					var routeRecommendIntroductionItem = Ext.create('YourTour.view.expert.ExpertRecommendIntroItem',{itemId: 'expertRecommendIntro',
-						label:'达人'});
-					me.getRecommendCarousel().add(routeRecommendIntroductionItem);
+		var routeScheduleIntroductionItem = Ext.create('YourTour.view.route.RouteRecommendScheduleItem',{itemId: 'RouteSchedules'});
+		me.getRecommendCarousel().add(routeScheduleIntroductionItem);
+	},
 
-					var routeRecommendIntroductionItem = Ext.create('YourTour.view.route.RouteRecommendScheduleItem',{itemId: 'RouteSchedules',
-						label:'安排'});
-					me.getRecommendCarousel().add(routeRecommendIntroductionItem);
+	onRecommendActivateItem:function(carousel, value){
+		var record = value.getRecord();
 
-					/*var expertRecord = record.userStore.first();
+		if(! undefined) {
+			var me = this;
+			var view = me.getRouteRecommendIntroductionView();
+			var record = view.getAttrs().record;
 
-					var image = view.down('#image');
-					image.setHtml("<img src='" + YourTour.util.Context.getImageResource(record.get('imageUrl')) + "' style='width:100%; max-height:150px'>");
-
-					var lineName = view.down('#lineName');
-					lineName.setHtml(record.get('lineName'));
-
-					var expertImage = view.down('#expertImage');
-					expertImage.setHtml("<img src='" + YourTour.util.Context.getImageResource(expertRecord.get('imageUrl'), 'medium') + "' style='width:64px; height:px'>");
-
-					var feature = view.down('#feature');
-					feature.setText(record.get('feature'));
-
-					var reason = view.down('#reason');
-					reason.setText(record.get('reason'));*/
-				});
+			var itemId = value.getItemId();
+			if(itemId == 'expertRecommendIntro'){
+				value.setRecord(record.expertStore.first());
+			}else if(itemId == 'RouteSchedules'){
+				var routeSchedules = view.down('#RouteScheduleList');
+				var store = routeSchedules.getStore();
+				if(store == null) {
+					var options = {
+						model: 'YourTour.model.RouteModel',
+						url: '/routes/' + record.get('id') + '/query',
+						success: function (store) {
+							var route = store.first();
+							routeSchedules.setStore(route.schedulesStore);
+						}
+					};
+					me.getApplication().query(options);
+				}
 			}
-		};
-		me.getApplication().query(options);
+		}
 	},
 
 	/**

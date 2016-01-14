@@ -173,16 +173,6 @@
             vertical-align: middle;
         }
 
-        .subtitlebar {
-            height: 50px;
-            background: white;
-            line-height: 40px;
-            color: #fff;
-            font-size: 14px;
-            border-bottom: 5px solid #EDEDED;
-            border-top: 5px solid #EDEDED;
-        }
-
         .icon {
             width: 16px;
             height: 16px;
@@ -250,11 +240,6 @@
             font-size: 14px !important;
         }
 
-        .subtitle {
-            font-size: 16px;
-            font-weight: bold
-        }
-
         .markedlabel {
             background: #FF6100;
             width: 100%;
@@ -289,45 +274,13 @@
             color: white;
         }
 
-        .align-right {
-            text-align: right !important;
-        }
-
         .raty img {
             width: 80% !important;
             margin-top: 5px;
         }
 
-        /*.multilineinfo {
-            padding: 10px 0px 10px 0px !important;
-            line-height: 25px;
-            min-height: 15px;
-        }*/
-
-        .spacer {
-            height: 10px;
-            background: #EDEDED !important;
-        }
-
-        .horizentalLine {
-            border-bottom: 1px solid #EDEDED;
-        }
-
         .underline {
             border-bottom: 1px solid #EDEDED;
-        }
-
-        .space-bottom {
-            border-bottom: 5px solid #EDEDED;
-        }
-
-        .space-top {
-            border-top: 5px solid #EDEDED;
-        }
-
-        .space-both {
-            border-bottom: 5px solid #EDEDED;
-            border-top: 5px solid #EDEDED;
         }
 
         /** 行程列表CSS 定义**/
@@ -385,15 +338,15 @@
         }
 
         .font-large {
-            font-size: 15px;
+            font-size: 15px !important;
         }
 
         .font-medium {
-            font-size: 14px;
+            font-size: 14px !important;
         }
 
         .font-small {
-            font-size: 13px;
+            font-size: 13px !important;
         }
 
         .font-bold {
@@ -406,36 +359,33 @@
         }
 
         .font-grey {
-            color: grey;
+            color: grey !important;
         }
 
         .font-normal {
         }
 
-        .field-text{
-            padding: 10px 0px 10px 0px !important;
+        .x-xfield{
             line-height: 25px;
             min-height: 15px;
             font-size: 14px;
         }
 
-        .field-label{
-            padding: 10px 0px 10px 0px !important;
-            line-height: 25px;
-            min-height: 15px;
-            font-size: 14px;
-            color: grey;
+        .x-xfield-padding-normal{
+            padding: 10px 0px 10px 0px;
         }
 
-        .field-icon-medium{
+        .x-xfield-padding-zero{
+            padding: 0px;
+        }
+
+        .x-xfield-icon-medium{
             margin:0px 5px 0px 20px;
         }
 
         .row {
             height: 45px;
             line-height: 45px;
-
-
         }
 
         .toolbar-row {
@@ -445,7 +395,6 @@
 
         .title-row {
             height: 40px;
-            text-align: bottom;
         }
 
         .label {
@@ -470,17 +419,27 @@
             min-height: 45px !important;
         }
 
-        .tab {
-            background-color: #EDEDED
+        .x-xcarousel .x-xcarousel-nav {
+            line-height: 40px;
+            height:40px;
+            color: grey !important;
+            font-size:14px;
         }
 
-        .tab .tabitem {
-            text-align: center;
-            font-weight: bold;
+        .x-xcarousel .x-xcarousel-nav .x-xcarousel-nav-item{
+            text-align:center;
+            border-bottom: 3px solid silver;
         }
 
-        .tab .tabitem.active {
+        .x-xcarousel .x-xcarousel-nav .x-xcarousel-nav-item.active {
             border-bottom: 3px solid #A52A2A;
+            color: #A52A2A !important;
+            font-weight:bold;
+        }
+
+        .spacer{
+            height:10px;
+            background-color:#EDEDED;
         }
     </style>
 

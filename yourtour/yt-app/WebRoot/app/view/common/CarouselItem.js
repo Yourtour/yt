@@ -4,7 +4,8 @@ Ext.define('YourTour.view.common.CarouselItem', {
     xtype: 'CommentListItemView',
     config: {
       	label:null,
-		active:false
+		active:false,
+		record:null,
     },
     
     updateLabel:function(label){
@@ -21,6 +22,18 @@ Ext.define('YourTour.view.common.CarouselItem', {
 
 	isActive:function(){
 		return this.active;
+	},
+
+	updateRecord:function(record){
+		this.setRecord(record);
+	},
+
+	setRecord:function(record){
+		this.record = record;
+	},
+
+	getRecord:function(){
+		return this.record;
 	}
 });
 

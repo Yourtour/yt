@@ -1,6 +1,6 @@
 Ext.define('YourTour.model.RouteModel', {
     extend: 'Ext.data.Model',
-    requires:['YourTour.model.RouteScheduleModel','YourTour.model.UserModel'],
+    requires:['YourTour.model.RouteScheduleModel','YourTour.model.UserModel','YourTour.model.ExpertModel'],
     config:{
     	idProperty:'id',
 		useCache:false,
@@ -43,6 +43,13 @@ Ext.define('YourTour.model.RouteModel', {
 				model: 'YourTour.model.UserModel',
 				name:'user',
 				associationKey:'user'
+			},
+
+			{
+				type: 'hasMany',
+				model: 'YourTour.model.ExpertModel',
+				name:'expert',
+				associationKey:'expert'
 			},
 
 			{

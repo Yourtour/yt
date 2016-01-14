@@ -7,15 +7,6 @@ Ext.define('YourTour.view.widget.XCarousel', {
         items: []
     },
 
-    initialize: function () {
-        this.callParent();
-
-        this.element.on({
-            scope: this,
-            activeitemchange: 'onActiveItemChange'
-        });
-    },
-
     beforeInitialize: function () {
         this.applyItems = this.applyInitialItems;
     },
@@ -25,6 +16,21 @@ Ext.define('YourTour.view.widget.XCarousel', {
 
         this.add(this.initialItems);
         delete this.initialItems;
+
+        var me = this;
+
+        me.carousel.on('activeitemchange', function (carousel, value, oldValue, eOpts) {
+            var navBar = me.navBar;
+            var activeIndex = carousel.getActiveIndex();
+            if (!navBar || !navBar.getAt(activeIndex)) return;
+
+            navBar.getItems().each(function (item) {
+                item.removeCls('active');
+            });
+            navBar.getAt(activeIndex).addCls('active');
+
+            me.fireEvent('activateitem', me, value);
+        });
     },
 
     applyInitialItems: function (items) {
@@ -39,21 +45,8 @@ Ext.define('YourTour.view.widget.XCarousel', {
 
         me.carousel = me.add({
             xtype: 'carousel',
-            flex: 1
-        });
-
-        me.carousel.on('activeitemchange', function(carousel, value, oldValue, eOpts){
-                var activeIndex = carousel.getActiveIndex();
-                var navBar = me.navBar;
-
-                if(! navBar ) return;
-
-                navBar.getItems().each(function(item){
-                    item.removeCls('active');
-                });
-                navBar.getAt(activeIndex).addCls('active');
-
-                me.fireEvent('activeitemchange', carousel, value, oldValue, eOpts);
+            flex: 1,
+            indicator:false
         });
 
         me.doAdd = me._doAdd;
@@ -61,11 +54,7 @@ Ext.define('YourTour.view.widget.XCarousel', {
         me.doInsert = me.doItemInsert;
     },
 
-    /*add:function(item){
-        this._doAdd(item);
-    },*/
-
-    _doAdd: function (item){
+    _doAdd: function (item) {
         var me = this;
 
         var label = Ext.create('Ext.Label', {html: item.label, flex: 1, cls: 'x-xcarousel-nav-item'});
@@ -93,11 +82,7 @@ Ext.define('YourTour.view.widget.XCarousel', {
     doItemInsert: function (index, item) {
     },
 
-
-
     setActiveIndex: function (activeIndex) {
-        this.activeIndex = activeIndex;
-
         var me = this;
         var navBar = me.navBar;
         navBar.getAt(activeIndex).addCls('active');
@@ -107,7 +92,12 @@ Ext.define('YourTour.view.widget.XCarousel', {
     },
 
     getActiveIndex: function () {
-        return this.activeIndex;
+        var me = this;
+
+        var carousel = me.carousel;
+        if(carousel) {
+            return carousel.getActiveIndex();
+        }
     },
 
     setActiveItem: function (index, item) {
@@ -116,14 +106,13 @@ Ext.define('YourTour.view.widget.XCarousel', {
         var me = this;
 
         var navBar = me.navBar;
-        navBar.getItems().each(function(item){
-           item.removeCls('active');
+        navBar.getItems().each(function (item) {
+            item.removeCls('active');
         });
 
         navBar.getAt(index).addCls('active');
 
         var carousel = me.carousel;
         carousel.setActiveItem(item);
-    }
+    },
 });
-

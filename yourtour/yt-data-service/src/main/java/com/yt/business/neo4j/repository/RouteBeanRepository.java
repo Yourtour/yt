@@ -90,7 +90,7 @@ public interface RouteBeanRepository extends GraphRepository<RouteMainBean> {
 	 * @param placeIds
 	 * @return
 	 */
-	@Query("START place=node({0}) MATCH place<-[:AT]-(owner:UserProfileBean)-[:RECOMMEND]->(route:RouteMainBean) RETURN owner, route")
+	@Query("MATCH (expert:ExpertBean)<-[:IS]-(owner:UserProfileBean)-[:RECOMMEND]->(route) RETURN expert, owner, route")
 	public List<RouteTuple> getRecommendRoutes(Long[] placeIds);
 
 	/**
@@ -98,6 +98,6 @@ public interface RouteBeanRepository extends GraphRepository<RouteMainBean> {
 	 * @param routeId
 	 * @return
 	 */
-	@Query("START route=node({0}) MATCH (owner:UserProfileBean)-[:RECOMMEND]->(route) RETURN owner, route")
+	@Query("START route=node({0}) MATCH (expert:ExpertBean)<-[:IS]-(owner:UserProfileBean)-[:RECOMMEND]->(route) RETURN expert, owner, route")
 	public RouteTuple getRecommendRoute(Long routeId);
 }

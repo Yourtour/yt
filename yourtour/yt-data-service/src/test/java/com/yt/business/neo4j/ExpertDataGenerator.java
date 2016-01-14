@@ -17,12 +17,12 @@ import static org.junit.Assert.fail;
 public class ExpertDataGenerator extends DataGenerator{
 	private ExpertRepository repository;
 
-
+	@Test
 	public void testCreateExpertBean() {
 		try {
 			repository = context.getBean(ExpertRepository.class);
 
-			Long[] profileIds = new Long[]{299l, 301l,434l,282l,280l};
+			Long[] profileIds = new Long[]{278l};
 			for(int index = 0; index < profileIds.length; index++){
 				ExpertBean expert = new ExpertBean();
 				UserProfileBean profile = new UserProfileBean();
@@ -37,7 +37,7 @@ public class ExpertDataGenerator extends DataGenerator{
 		}
 	}
 
-	@Test
+	/*@Test
 	public void testCreateRelationWithRoute() {
 		try {
 			repository = context.getBean(ExpertRepository.class);
@@ -54,5 +54,5 @@ public class ExpertDataGenerator extends DataGenerator{
 			ex.printStackTrace();
 			fail(ex.getMessage());
 		}
-	}
+	}*/
 }

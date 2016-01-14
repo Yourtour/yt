@@ -249,7 +249,11 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 			RouteMainBean route = null;
 			for(RouteTuple tuple : tuples){
 				route = tuple.getRoute();
-				route.setOwner(tuple.getOwner());
+
+				ExpertBean expert = tuple.getExpert();
+				UserProfileBean profile = tuple.getOwner();
+				expert.setProfile(profile);
+				route.setExpert(expert);
 
 				routes.add(route);
 			}
@@ -263,13 +267,19 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 		RouteTuple tuple = this.repository.getRecommendRoute(routeId);
 		if(tuple != null){
 			RouteMainBean route = tuple.getRoute();
-			route.setOwner(tuple.getOwner());
+
+			ExpertBean expert = tuple.getExpert();
+			UserProfileBean profile = tuple.getOwner();
+			expert.setProfile(profile);
+
+			route.setExpert(expert);
 
 			return route;
 		}
 
 		return null;
 	}
+
 
 	@Override
 	public RouteMainBean cloneRoute(Long sourceId, Long targetId, String userId) throws Exception {

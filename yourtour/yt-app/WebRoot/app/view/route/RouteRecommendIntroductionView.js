@@ -15,24 +15,7 @@ Ext.define('YourTour.view.route.RouteRecommendIntroductionView', {
 				itemId:'recommendCarousel',
 				flex:1,
 				items:[
-					/*{
-						xtype: 'RouteRecommendIntroductionItem',
-						itemId: 'recommendIntro',
-						active:true,
-						label:'概述'
-					},
 
-					{
-						xtype: 'ExpertRecommendIntroItem',
-						itemId: 'expertRecommendIntro',
-						label:'达人'
-					},
-
-					{
-						xtype: 'RouteRecommendScheduleItem',
-						itemId: 'RouteSchedules',
-						label:'安排'
-					}*/
 				]
 			}
         ]

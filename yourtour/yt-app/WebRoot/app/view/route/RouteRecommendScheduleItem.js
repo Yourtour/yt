@@ -1,14 +1,35 @@
 Ext.define('YourTour.view.route.RouteRecommendScheduleItem', {
     extend: 'YourTour.view.common.CarouselItem',
-    requires:['Ext.Panel','Ext.Img','Ext.DataView','YourTour.view.widget.XCarousel', 'YourTour.view.route.RouteScheduleListDataItem','YourTour.view.widget.XPanel', 'YourTour.view.widget.XButton','YourTour.view.widget.XField','YourTour.view.widget.XLabel','YourTour.view.widget.XHeaderBar', 'YourTour.view.line.LineResourceItem'],
+    requires:['Ext.DataView', 'YourTour.view.route.RouteScheduleListDataItem'],
     xtype:'RouteRecommendScheduleItem',
 	config: {
-		label:'简介',
+		label:'行程安排',
 		layout:'vbox',
 		items: [
 			{
-				xtype: 'panel',
-				html: '行程'
+				itemId:'RouteScheduleList',
+				xtype:'dataview',
+				scrollable:null,
+				useComponents: true,
+				defaultType: 'RouteScheduleListDataItem'
+			},
+
+			{
+				xtype: 'toolbar',
+				docked: 'bottom',
+				items: [
+					{
+						xtype: 'spacer',
+						flex:1
+					}, {
+						xtype: 'button',
+						text: '开始规划',
+						baseCls:'button',
+						flex: 1,
+						padding: '0 20 0 20',
+						itemId: 'btnClone'
+					}
+				]
 			}
 		]
     }
