@@ -98,7 +98,7 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
     		var activity = store.first();
 
     		var scheduleView = me.getScheduleFormView();
-			scheduleView.updateRecord(activity);
+			scheduleView.setData(activity);
     		
         	var headerbar = scheduleView.down('#headerbar');
         	headerbar.setTitle(activity.get('title'));

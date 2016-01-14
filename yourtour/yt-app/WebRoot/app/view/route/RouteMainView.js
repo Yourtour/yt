@@ -49,6 +49,7 @@ Ext.define('YourTour.view.route.RouteMainView', {
                         bottom: 0,
                         docked: 'bottom',
                         style: 'background-color:grey;opacity:0.8; width:100%;',
+                        style: 'width:100%;',
                         items: [
                             {
                                 xtype: 'markedlabel',
@@ -100,14 +101,13 @@ Ext.define('YourTour.view.route.RouteMainView', {
                             {
                                 xtype: 'xmultifield',
                                 itemId: 'lineName',
-                                icon: 'icon-memo',
                                 padding: '0 0 0 10'
                             },
+
 
                             {
                                 xtype: 'xfield',
                                 itemId: 'time',
-                                icon: 'icon-time',
                                 underline:true,
                                 padding: '0 0 0 10'
                             },
@@ -115,7 +115,7 @@ Ext.define('YourTour.view.route.RouteMainView', {
                             {
                                 xtype: 'xmultifield',
                                 itemId: 'impression',
-                                icon: 'icon-impression',
+                                size:80,
                                 padding: '0 0 0 10'
                             }
                         ]

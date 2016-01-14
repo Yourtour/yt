@@ -7,25 +7,26 @@ Ext.define('YourTour.view.widget.XHeaderBar', {
     	docked: 'top',
 		cls:'headerbar',
     	style:'background-color:#3CB371',
+		opacity:0,
     	defaults:{
     		style:'color:white'
     	}
     },
-    
+
     constructor: function(config) {
     	config = config || {};
-    	
+
         if (!config.items) {
              config.items = [];
         }
-        
+
         var found = false;
         Ext.each(config.items, function(item){
         	if(item['itemId'] == 'back'){
         		found = true;
         	}
         });
-        
+
         var backButton = config['backButton'] == undefined || config['backButton']?true:false;
         if(! found && backButton){
 	        config.items.push({
@@ -35,13 +36,13 @@ Ext.define('YourTour.view.widget.XHeaderBar', {
 	            ui: 'normal'
 	        });
         }
-        
+
     	this.callParent([config]);
     },
-    
+
     initialize : function(){
     	this.callParent(arguments);
-    	
+
     	var me = this;
     	var back = me.down('#back');
     	if(back != null){
@@ -53,7 +54,15 @@ Ext.define('YourTour.view.widget.XHeaderBar', {
 			});
     	}
     },
-    
+
+	updateOpacity:function(opacity){
+		this.setOpacity(opacity);
+	},
+
+	setOpacity:function(opacity){
+		this.opacity = opacity;
+	},
+
     /**
      * @private
      */

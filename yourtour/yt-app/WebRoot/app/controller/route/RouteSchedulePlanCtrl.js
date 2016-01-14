@@ -312,7 +312,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 		var me = this;
 		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteRecommendIntroductionView'));
 		var view = me.getRouteRecommendIntroductionView();
-		view.setAttrs({record:record});
+		view.setData(record);
 
 		var headerbar = view.down('#headerbar');
 		headerbar.setTitle(record.get('name'));
@@ -334,7 +334,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 		if(! undefined) {
 			var me = this;
 			var view = me.getRouteRecommendIntroductionView();
-			var record = view.getAttrs().record;
+			var record = view.getData();
 
 			var itemId = value.getItemId();
 			if(itemId == 'expertRecommendIntro'){
@@ -404,7 +404,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     	}
 
 		var view = this.getRouteSchedulePlanView();
-		view.updateRecord(record);
+		view.setData(record);
 
     	this.getToolbar().hide();
     	var type = record.get('type');
@@ -428,7 +428,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     	}
 
 		var view = this.getRouteSchedulePlanView();
-		view.updateRecord(record);
+		view.setData(record);
 
     	this.getToolbar().show();
 		this.getToolbar().getItems().each(function(item){
@@ -620,7 +620,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 		store.getProxy().setUrl(YourTour.util.Context.getContext('/routes/activity/' + record.get('id')));
 		store.load(function(){
 			var activity = store.first();
-			view.updateRecord(activity);
+			view.setData(activity);
 
 			var id = view.down('#id');
 			id.setValue(activity.get('id'));
@@ -653,7 +653,8 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     },
 
 	onNewScheduleActivity:function(){
-		this.redirectTo('/resource/selection');
+		var controller = this.getApplication().getController('ResourceMainCtrl');
+		controller.showSelectionPage();
 	},
 
 	/**
@@ -664,7 +665,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 		var scheduleStore = me.getRouteScheduleList().getStore();
 
 		var planView = this.getRouteSchedulePlanView();
-		var schedule = planView.getRecord();
+		var schedule = planView.getData();
 
 		var data = {};
 		data.index = me.getNewIndex();
@@ -701,7 +702,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     	data.schedule = {};
 
 		var planView = this.getRouteSchedulePlanView();
-		var item = planView.getRecord();
+		var item = planView.getData();
     	if(item.get('type') == 'Schedule'){
     		data.schedule.id = item.get('id');
     	}else{
@@ -784,7 +785,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 		var length = store.getData().length;
 
 		var planView = this.getRouteSchedulePlanView();
-		var schedule = planView.getRecord();
+		var schedule = planView.getData();
 
 		var index = store.indexOf(schedule);
 
@@ -833,7 +834,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 
 		if(value.getItemId() == 'scheduleList') {
 			headerbar.setTitle('行程安排');
-			var record = view.getRecord();
+			var record = view.getData();
 			var routeId = record.get('id');
 
 			var store = me.getScheduleList().getStore();
@@ -860,7 +861,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 	onRouteCloneTap:function(){
 		var me = this;
 		var view = me.getRouteRecommendIntroductionView();
-		var record = view.getRecord();
+		var record = view.getData();
 		var sourceId = record.get('id');
 
 		this.getApplication().callService({
@@ -901,7 +902,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 	 */
 	bookService:function(service, handler){
 		var view = this.getRouteActivityEditView();
-		var activity = view.getRecord();
+		var activity = view.getData();
 		var activityId = activity.get('id');
 
 		var serviceId = service.get('id');
@@ -947,7 +948,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 	 */
 	onActivityItemAddTap:function(){
 		var view = this.getRouteActivityEditView();
-		var activity = view.getRecord();
+		var activity = view.getData();
 		var resource = activity.resourceStore.first();
 
 		var title = resource.get('name');
@@ -962,16 +963,18 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 	 * @param resourceActivityItem
 	 */
 	addScheduleActivityItem:function(resourceActivityItem, handler){
+		console.log(resourceActivityItem);
+
 		var view = this.getRouteActivityEditView();
-		var activity = view.getRecord();
+		var activity = view.getData();
 		var activityId = activity.get('id');
 
 		var resourceActivityItemId = resourceActivityItem.get('id');
-
 		this.getApplication().callService({
 			url : '/routes/activity/' + activityId + '/item/' + resourceActivityItemId +'/save',
 			method : "POST",
 			success : function(data) {
+				console.log(data);
 				resourceActivityItem.set('resourceActivityItemId', resourceActivityItemId);
 				resourceActivityItem.set('id', data);
 

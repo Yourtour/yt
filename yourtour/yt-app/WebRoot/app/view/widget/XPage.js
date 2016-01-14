@@ -1,35 +1,67 @@
 Ext.define('YourTour.view.widget.XPage', {
     extend: 'Ext.Panel',
     xtype: 'xpage',
-    config:{
-    	scrollable: 'none',
-		/*scrollable:{
-    	    direction: 'vertical',
-    	    indicators: false	
-    	},*/
-    	
-    	fullscreen: true,
+    config: {
+        scrollable: {
+            direction: 'vertical',
+            indicators: false,
+            directionLock: true,
+            momentumEasing:  {
+                momentum: {
+                    acceleration: 30,
+                    friction: 0.5
+                },
+                bounce: {
+                    acceleration: 0.0001,
+                    springTension: 0.9999,
+                },
+                minVelocity: 5
+            },
+            outOfBoundRestrictFactor: 0
 
-		attrs:null,
+            /* bounces: false,
+             outOfBoundRestrictFactor : 0*/
+        },
 
-		record:null
+        fullscreen: true,
+
+        attrs: null,
+
+        data: null
     },
 
-	initialize : function(){
-		this.callParent(arguments);
-		
-		this.getScrollable().getScroller().on('scroll',function(scroller,x,y){
-			if(y <= 0){
-			}
-		});
-	},
+    initialize: function () {
+        var me = this;
+        me.callParent(arguments);
 
-	updateRecord:function(record){
-		this.record = record;
-	},
 
-	getRecord:function(){
-		return this.record;
-	}
+        me.getScrollable().getScroller().on('scroll', function (scroller, x, y) {
+            me.scroll(scroller, x, y);
+        });
+
+        me.getScrollable().getScroller().on('scrollend', me.onScrollerEnd,me);
+    },
+
+
+    updateData: function (data) {
+        this.data = data;
+    },
+
+    getData: function () {
+        return this.data;
+    },
+
+    onScrollerEnd : function(scroller,offsets){
+        var y = offsets.y;
+        if(y <= 0){
+            return false;
+        }
+    },
+
+    scroll: function (scroller, x, y) {
+        if(y <= 0){
+            return false;
+        }
+    }
 });
 

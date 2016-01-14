@@ -63,7 +63,7 @@ Ext.define('YourTour.controller.ServiceMainCtrl', {
     showExpertService:function(record, action){
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.common.ExpertServiceFormView'));
         var view = this.getExpertServiceFormView();
-        view.updateRecord(record);
+        view.setData(record);
 
         var headerbar = view.down('#headerbar');
         headerbar.setTitle(record.get('title'));

@@ -4,10 +4,6 @@ Ext.define('YourTour.view.route.RouteScheduleFormView', {
     config: {
     	id:'RouteScheduleFormView',
     	layout:'vbox',
-		scrollable:{
-			direction: 'vertical',
-			indicators: false
-		},
     	items:[
     		{    
 				xtype: 'xheaderbar',

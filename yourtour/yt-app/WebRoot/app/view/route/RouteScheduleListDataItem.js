@@ -21,7 +21,8 @@ Ext.define('YourTour.view.route.RouteScheduleListDataItem', {
     					xtype:'label',
     					itemId:'title',
     					flex:1,
-    					cls:'title strong'
+    					cls:'title strong',
+						padding:'0 0 0 50'
     				}
     			]
     		},
@@ -60,7 +61,8 @@ Ext.define('YourTour.view.route.RouteScheduleListDataItem', {
     					xtype:'label',
     					itemId:'title',
     					flex:1,
-    					cls:'title strong'
+    					cls:'title strong',
+						padding:'0 0 0 50'
     				}
     			]
     		},
@@ -152,6 +154,7 @@ Ext.define('YourTour.view.route.RouteScheduleListDataItem', {
        			
        			var title = panel.down('#title');
        			title.setHtml(record.get('title'));
+				title.addCls('icon-prepare');
        		}else if(type == 'ProvisionItem'){
        			panel = me.down('#prepareItemPanel');
        			panel.show();
@@ -167,6 +170,7 @@ Ext.define('YourTour.view.route.RouteScheduleListDataItem', {
        			
        			var title = panel.down('#title');
        			title.setHtml(record.get('title'));
+				title.addCls('icon-time-32');
        		}else{
        			panel = me.down('#dayItemPanel');
        			panel.show();

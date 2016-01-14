@@ -93,7 +93,7 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
         store.getProxy().setUrl(YourTour.util.Context.getContext('/scenes/' + resourceId));
         store.load(function () {
             var resource = store.first();
-            view.updateRecord(resource);
+            view.setData(resource);
 
             var form = Ext.create('YourTour.view.resource.ResourceSceneView', {record:resource});
             view.insert(1, form);
@@ -160,7 +160,7 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
 
     onResourceAddTap:function(){
         var view = this.getResourceFormView();
-        var resource = view.getRecord();
+        var resource = view.getData();
 
         var controller = this.getApplication().getController('route.RouteSchedulePlanCtrl');
         controller.addScheduleActivity(resource, function () {
@@ -218,7 +218,7 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
 
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.resource.ResourceActivityItemFormView'));
         var view = this.getResourceActivityItemFormView();
-        view.updateRecord(record);
+        view.setData(record);
 
         var headerbar = view.down('#headerbar');
         headerbar.setTitle(record.get('title'));
@@ -243,7 +243,7 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
 
     onActivityItemCancelTap: function () {
         var view = this.getResourceActivityItemFormView();
-        var record = view.getAttrs().item;
+        var record = view.getData();
 
         var controller = this.getApplication().getController('route.RouteSchedulePlanCtrl');
         controller.cancelScheduleActivityItem(record, function () {

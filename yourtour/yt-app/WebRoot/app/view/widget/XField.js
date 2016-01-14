@@ -44,7 +44,8 @@ Ext.define('YourTour.view.widget.XField', {
 
 	setIcon:function(icon){
 		this.addCls(icon);
-		this.setFieldCls('x-xfield-icon-medium');
+		var value = this.down('#value');
+		value.setMargin('0 5 0 30');
 	},
 
 	updateFieldCls:function(cls){
