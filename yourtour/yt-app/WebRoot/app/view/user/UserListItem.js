@@ -1,5 +1,5 @@
 Ext.define('YourTour.view.user.UserListItem', {
-    extend: 'YourTour.view.widget.VDataItem',
+    extend: 'YourTour.view.widget.XDataItem',
     xtype: 'UserListItem',
     requires:['YourTour.view.widget.XField','YourTour.view.widget.XLabel', 'Ext.Panel', 'Ext.Img'],
     config: {

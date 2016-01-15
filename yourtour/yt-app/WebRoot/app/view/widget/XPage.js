@@ -2,20 +2,21 @@ Ext.define('YourTour.view.widget.XPage', {
     extend: 'Ext.Panel',
     xtype: 'xpage',
     config: {
+        layout:'vbox',
         scrollable: {
             direction: 'vertical',
             indicators: false,
             directionLock: true,
             momentumEasing:  {
-                momentum: {
+                /*momentum: {
                     acceleration: 10,
                     friction: 0.9
-                },
+                },*/
                 bounce: {
                     acceleration: 0.0001,
                     springTension: 0.9999,
                 },
-                minVelocity: 5
+                /*minVelocity: 5*/
             },
             outOfBoundRestrictFactor: 0
         },
@@ -39,9 +40,10 @@ Ext.define('YourTour.view.widget.XPage', {
         me.getScrollable().getScroller().on('scrollend', me.onScrollerEnd,me);
     },
 
-
     updateData: function (data) {
         this.data = data;
+
+        this.fillData();
     },
 
     getData: function () {
@@ -59,6 +61,16 @@ Ext.define('YourTour.view.widget.XPage', {
         if(y <= 0){
             return false;
         }
+    },
+
+    fillData:function(){
+        var me = this;
+        var data = this.data;
+
+        var elements = Ext.ComponentQuery.query('xfield,xmultifield,dataview', me);
+        Ext.Array.forEach(elements,function(item){
+            item.updateRecord(data);
+        });
     }
 });
 

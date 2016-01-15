@@ -3,7 +3,7 @@ Ext.define('YourTour.view.resource.ResourceFormView', {
     requires:['Ext.Panel','Ext.Img',  'YourTour.view.widget.XHeaderBar','YourTour.view.widget.XToolbar','YourTour.view.resource.ResourceSceneView'],
     config: {
     	id:'ResourceFormView',
-    	layout:'fit',
+    	layout:'vbox',
     	items:[
     		{    
     			xtype: 'xheaderbar',
@@ -11,35 +11,37 @@ Ext.define('YourTour.view.resource.ResourceFormView', {
     		},		
 			
 			{
-				xtype: 'toolbar',
+				xtype: 'xtoolbar',
 				docked: 'bottom',
 				itemId:'toolbar',
+				cls:'toolbar',
 				items: [
 					{
-						xtype: 'spacer',
-						flex:1
-					},{
 						xtype: 'button',
 						text: '加入日程',
 						ui: 'normal',
 						iconCls:'action',
+						flex:1,
 						itemId: 'btnResourceAddTap'
 					},{
 						xtype: 'button',
 						text: '收藏',
 						ui: 'normal',
+						flex:1,
 						iconCls:'favorites',
 						itemId: 'btnFavorite'
 					},{
 						xtype: 'button',
 						text: '评论',
 						ui: 'normal',
+						flex:1,
 						iconCls:'compose',
 						itemId: 'btnComment'
 					},{
 						xtype: 'button',
 						text: '分享',
 						ui: 'normal',
+						flex:1,
 						iconCls:'action',
 						itemId: 'btnShare'
 					}

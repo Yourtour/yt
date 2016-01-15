@@ -1,116 +1,138 @@
 Ext.define('YourTour.view.widget.XField', {
-    extend: 'Ext.Panel',
+    extend: 'Ext.Container',
     xtype: 'xfield',
-	config:{
-		label:null,
-		value:null,
-		tappable:null,
-		icon:null,
-		fieldCls:null,
-		labelCls:null,
-		heightCls:'x-xfield-padding-normal',
-		underline:true,
-		layout:'hbox',
-		style:'background-color:white;',
-		items:[
-			{
-				xtype:'label',
-				itemId:'value',
-				flex:1,
-				cls:'x-xfield font-grey x-xfield-padding-normal'
-			}
-		]
-	},
+    config: {
+        baseCls:'x-xfield',
+        label: null,
+        icon: null,
+        value: null,
+        tappable: null,
+        fieldCls: null,
+        labelCls: null,
+        underline: true,
+        layout: 'hbox',
+        padding: '10 20 10 10',
+        ifNull:'',
 
-	updateHeightCls:function(heightCls){
-		this.heightCls = heightCls;
+        items: [
+            {
+                xtype: 'label',
+                itemId: 'label',
+                hidden: true
+            },
+            {
+                xtype: 'label',
+                itemId: 'value',
+                cls: 'font-grey',
+                flex: 1
+            }
+        ]
+    },
 
-		var value = this.down('#value');
-		value.removeCls('x-xfield-padding-normal');
-		value.addCls(heightCls);
-	},
+    constructor: function(config){
+        this.callParent(arguments);
 
-	updateUnderline:function(underline){
-		if(underline){
-			this.addCls('underline');
-		}else{
-			this.removeCls('underline');
-		}
-	},
+        var underline = config.underline;
+        if(underline == undefined || underline){
+            this.addCls('underline');
+        }
+    },
 
-	updateIcon:function(icon){
-		this.setIcon(icon);
-	},
+    updateUnderline: function (underline) {
+        this.underline = underline;
 
-	setIcon:function(icon){
-		this.addCls(icon);
-		var value = this.down('#value');
-		value.setMargin('0 5 0 30');
-	},
+        if (underline) {
+            this.addCls('underline');
+        } else {
+            this.removeCls('x-xfield');
+        }
+    },
 
-	updateFieldCls:function(cls){
-		this.setFieldCls(cls);
-	},
+    updateIcon: function (icon) {
+        this.setIcon(icon);
+    },
 
-	setFieldCls:function(cls){
-		var value = this.down('#value');
-		value.addCls(cls);
-	},
+    setIcon: function (icon) {
+        var label = this.down('#label');
+        label.show();
+        label.addCls('icon');
+        label.addCls(icon);
+    },
 
-	updateLabelCls:function(cls){
-		this.setLabelCls(cls);
-	},
+    updateFieldCls: function (cls) {
+        this.setFieldCls(cls);
+    },
 
-	setLabelCls:function(cls){
-		var label = this.down('#label');
-		label.addCls(cls);
-	},
+    setFieldCls: function (cls) {
+        var value = this.down('#value');
+        value.addCls(cls);
+    },
 
-	updateTappable:function(tappable){
-		var me = this;
-		me.addCls('nav-arrow');
-		me.element.on({
-			scope : me,
-			tap : function(e, t) {
-				me.fireEvent('tap', me, e, t);
-			}
-		});
-	},
+    updateLabelCls: function (cls) {
+        this.setLabelCls(cls);
+    },
 
-	updateLabel:function(label){
-		this.setLabel(label);
-	},
+    setLabelCls: function (cls) {
+        var label = this.down('#label');
+        label.addCls(cls);
+    },
 
-	setLabel:function(label){
-		this.insert(0, {
-			xtype:'label',
-			itemId:'label',
-			margin:'0 10 0 0',
-			padding:'10 0 10 0',
-			cls:'x-xfield',
-			html:label
-		});
-	},
+    updateTappable: function (tappable) {
+        var me = this;
+        me.addCls('nav-arrow');
+        me.element.on({
+            scope: me,
+            tap: function (e, t) {
+                me.fireEvent('tap', me, e, t);
+            }
+        });
+    },
 
-	setValue:function(value){
-		this.value = value;
-	},
+    updateLabel: function (label) {
+        this.setLabel(label);
+    },
 
-	getValue:function(){
-		return this.value == null ? this.getText():this.value;
-	},
+    setLabel: function (text) {
+        var label = this.down('#label');
+        label.setMargin('0 10 0 0');
+        label.show();
+        label.setHtml(text);
+    },
 
-	updateText:function(text){
-		this.setText(text);
-	},
+    setValue: function (value) {
+        this.value = value;
+    },
 
-	setText:function(text){
-		var valueEl = this.down('#value');
-		valueEl.setHtml(text);
-	},
+    getValue: function () {
+        return this.value == null ? this.getText() : this.value;
+    },
 
-	getText:function(){
-		return this.text;
-	}
+    updateText: function (text) {
+        this.setText(text);
+    },
+
+    setText: function (text) {
+        var valueEl = this.down('#value');
+        if(text == null || text == ''){
+            valueEl.setHtml(this.ifNull);
+        }else {
+            valueEl.setHtml(text);
+        }
+    },
+
+    getText: function () {
+        return this.text;
+    },
+
+    updateIfNull:function(ifNull){
+        this.ifNull = ifNull;
+    },
+
+    updateRecord:function(record){
+        var itemId = this.getItemId();
+        var value = record.get(itemId);
+
+        this.setText(record.get(itemId));
+    }
 });
 

@@ -95,6 +95,9 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
             var resource = store.first();
             view.setData(resource);
 
+            var headerbar = view.down('#headerbar');
+            headerbar.setTitle(resource.get('name'));
+
             var form = Ext.create('YourTour.view.resource.ResourceSceneView', {record:resource});
             view.insert(1, form);
         });

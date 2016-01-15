@@ -69,16 +69,16 @@ Ext.define('YourTour.controller.ServiceMainCtrl', {
         headerbar.setTitle(record.get('title'));
 
         var memo = view.down('#memo');
-        memo.setHtml(record.get('memo'));
+        memo.setText(record.get('memo'));
 
         var withdraw = view.down('#withdraw');
-        withdraw.setHtml(record.get('withdraw'));
+        withdraw.setText(record.get('withdraw'));
 
         var feeIncluding = view.down('#feeIncluding');
-        feeIncluding.setHtml(record.get('feeIncluding'));
+        feeIncluding.setText(record.get('feeIncluding'));
 
         var feeExcluding = view.down('#feeExcluding');
-        feeExcluding.setHtml(record.get('feeExcluding'));
+        feeExcluding.setText(record.get('feeExcluding'));
 
         var imageUrls = record.get('imageUrls');
         if(imageUrls != null && imageUrls != ''){
@@ -96,13 +96,17 @@ Ext.define('YourTour.controller.ServiceMainCtrl', {
         var btn;
         if(action == 'book'){
             btn = view.down('#btnBook');
+            btn.show();
         }else if(action == 'cancel'){
+            btn = view.down('#btnAlert');
+            btn.show();
+
             btn = view.down('#btnCancel');
+            btn.show();
         }else if(action == 'comment'){
             btn = view.down('#btnComment');
+            btn.show();
         }
-
-        btn.show();
     },
 
     /**

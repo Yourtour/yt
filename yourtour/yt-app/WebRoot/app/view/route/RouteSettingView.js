@@ -29,23 +29,9 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 			},
 
 			{
-				xtype:'panel',
-				layout:'hbox',
-				padding:'0 0 0 10',
-				cls:'row underline',
-				items:[
-					{
-						xtype:'xlabel',
-						html: '名称',
-						style:'width:50px'
-					},
-					{  
-					    xtype: 'textfield',  
-					    itemId:'name',
-					    flex:1,
-					    clearIcon: true
-					}
-				]
+				xtype:'xtextfield',
+				itemId:'name',
+				label:'行程名称',
 			},
 
 			{
@@ -147,64 +133,22 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 			},
 
 			{
-				xtype:'panel',
-				layout:'hbox',
-				padding:'0 0 0 10',
-				cls:'row underline',
-				items:[
-					{
-						xtype:'xlabel',
-						html: '成人人数',
-						style:'width:60px'
-					},
-					{
-						xtype: 'textfield',
-						itemId:'adultNum',
-						flex:1,
-						clearIcon: true,
-					}
-				]
+				xtype:'xtextfield',
+				itemId:'adultNum',
+				label:'成人人数'
 			},
 
 			{
-				xtype:'panel',
-				layout:'hbox',
-				padding:'0 0 0 10',
-				cls:'row underline',
-				items:[
-					{
-						xtype:'xlabel',
-						html: '儿童人数',
-						style:'width:60px'
-					},
-					{
-						xtype: 'textfield',
-						itemId:'childNum',
-						flex:1,
-						clearIcon: true,
-					}
-				]
+				xtype:'xtextfield',
+				itemId:'childNum',
+				label:'儿童人数'
 			},
 
 			{
-				xtype:'panel',
-				layout:'hbox',
-				padding:'0 0 0 10',
-				cls:'row underline',
-				items:[
-					{
-						xtype:'xlabel',
-						html: '老人人数',
-						style:'width:60px'
-					},
-					{
-						xtype: 'textfield',
-						itemId:'olderNum',
-						flex:1,
-						clearIcon: true,
-					}
-				]
-			},
+				xtype:'xtextfield',
+				itemId:'olderNum',
+				label:'老人人数'
+			}
 		]
     }
 });

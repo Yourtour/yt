@@ -95,30 +95,30 @@ Ext.define('YourTour.view.route.RouteMainView', {
                             {
                                 xtype: 'xmultifield',
                                 itemId: 'lineName',
-                                padding: '0 0 0 10'
+                                icon:'icon-name'
                             },
-
 
                             {
                                 xtype: 'xfield',
                                 itemId: 'time',
-                                underline:true,
-                                padding: '0 0 0 10'
+                                icon:'icon-time',
+                                updateRecord:function(record){
+                                    this.setText(record.get('startDate') +'-' + record.get('endDate') + '  合计：' + record.get('duration')+'天');
+                                }
                             },
 
                             {
                                 xtype: 'xmultifield',
                                 itemId: 'impression',
-                                size:80,
-                                padding: '0 0 0 10'
+                                icon:'icon-impression',
+                                ifNull:'赶快记录下你的旅行印象吧.........',
+                                size:80
                             }
                         ]
                     }
                 ]
             }
         ]
-    },
-
-
+    }
 });
 

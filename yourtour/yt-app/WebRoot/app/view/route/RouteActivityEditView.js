@@ -4,10 +4,6 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
     config: {
     	id:'RouteActivityEditView',
     	layout:'vbox',
-		scrollable:{
-			direction: 'vertical',
-			indicators: false
-		},
     	items:[
 			{    
 				xtype: 'hiddenfield',
@@ -38,20 +34,10 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 			},
 
 			{
-				xtype:'panel',
-				layout:'hbox',
-				cls:'row underline icon-name',
-				padding:'0 0 0 10',
-				items:[
-					{
-						xtype: 'xlabel',
-						itemId:'resName',
-						tappable:true,
-						cls:'font-medium font-grey nav-arrow',
-						flex:1,
-						margin:'0 5 0 30'
-					}
-				]
+				xtype: 'xfield',
+				itemId:'resName',
+				tappable:true,
+				icon:'icon-name',
 			},
 
 			{

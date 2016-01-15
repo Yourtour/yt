@@ -104,10 +104,10 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
         	headerbar.setTitle(activity.get('title'));
         	
         	var memo = scheduleView.down('#memo');
-			memo.setHtml(activity.get('memo'));
+			memo.setText(activity.get('memo'));
         	
         	var time = scheduleView.down('#time');
-			time.setHtml(activity.get('startTime') + ' - ' + record.get('endTime'));
+			time.setText(activity.get('startTime') + ' - ' + record.get('endTime'));
         	
         	var resource = activity.resource().getAt(0);
         	me.resource = resource;
@@ -116,13 +116,13 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
 			image.setHtml("<img src='" + YourTour.util.Context.getImageResource(resource.get('imageUrl')) + "' style='width:100%; max-height:150px'>");
         	
         	var address = scheduleView.down('#address');
-			address.setHtml(resource.get('address'));
+			address.setText(resource.get('address'));
         	
         	var phone = scheduleView.down('#phone');
-			phone.setHtml(resource.get('phone'));
+			phone.setText(resource.get('phone'));
         	
         	var resName = scheduleView.down('#resName');
-			resName.setHtml(resource.get('name'));
+			resName.setText(resource.get('name'));
         	
         	var services = scheduleView.down('#services');
 			services.setStore(activity.servicesStore);
@@ -134,7 +134,7 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
     
     onShowResourceView:function(){
 		var view = this.getScheduleFormView();
-		var activity = view.getRecord();
+		var activity = view.getData();
 		var resource = activity.resourceStore.first();
 		var resourceController = this.getApplication().getController('ResourceMainCtrl');
 		resourceController.showResourcePage(resource.get('type'), resource.get('id'));

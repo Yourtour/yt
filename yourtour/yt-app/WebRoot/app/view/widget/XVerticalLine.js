@@ -3,8 +3,9 @@ Ext.define('YourTour.view.widget.XVerticalLine', {
     xtype: 'xvline',
     config:{
         html:'|',
-        margin:'0 5 0 5',
-        cls:'font-grey font-medium'
+        cls:'font-grey font-medium',
+        padding:'0 5 0 5',
+        style:'text-align:center'
     }
 });
 

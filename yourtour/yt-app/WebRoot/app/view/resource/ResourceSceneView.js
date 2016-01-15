@@ -43,67 +43,30 @@ Ext.define('YourTour.view.resource.ResourceSceneView', {
 	    		layout:'vbox',
 		    	items:[
 					{
-						xtype:'panel',
-						layout:'hbox',
-						padding:'0 0 0 10',
-						cls:'underline icon-memo',
-						items:[
-							{
-								xtype: 'xlabel',
-								itemId:'intro',
-								cls:'font-medium font-grey multilineinfo',
-								flex:1,
-								tappable:true,
-								margin:'0 5 0 30'
-							}
-						]
-					},
-					{
-						xtype:'panel',
-						layout:'hbox',
-						padding:'0 0 0 10',
-						cls:'row underline icon-position',
-						items:[
-							{
-								xtype: 'xlabel',
-								itemId:'address',
-								cls:'font-medium font-grey nav-arrow',
-								flex:1,
-								tappable:true,
-								margin:'0 5 0 30'
-							}
-						]
-					},
-
-			    	{
-						xtype:'panel',
-						layout:'hbox',
-						cls:'row underline icon-phone',
-						items:[
-							{
-							    xtype: 'label',  
-							    itemId:'phone',
-							    cls:'font-medium font-grey',
-							    flex:1,
-							    margin:'0 5 0 10'
-							}
-						]
+						xtype: 'xmultifield',
+						itemId:'intro',
+						icon:'icon-memo',
+						size:140
 					},
 
 					{
-						xtype:'panel',
-						layout:'hbox',
-						padding:'0 0 0 10',
-						cls:'underline icon-open',
-						items:[
-							{
-								xtype: 'xlabel',
-								itemId:'openTime',
-								cls:'font-medium font-grey multilineinfo',
-								flex:1,
-								margin:'0 5 0 30',
-							}
-						]
+						xtype: 'xfield',
+						itemId:'address',
+						tappable:true,
+						icon:'icon-position',
+					},
+
+					{
+						xtype: 'xfield',
+						itemId:'phone',
+						icon:'icon-phone',
+						tappable:true,
+					},
+
+					{
+						xtype: 'xmultifield',
+						itemId:'openTime',
+						icon:'icon-open',
 					}
 	    		]
 	    	},

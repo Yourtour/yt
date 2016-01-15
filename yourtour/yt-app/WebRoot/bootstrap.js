@@ -826,13 +826,13 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.SubTitleBar": [],
   "YourTour.view.widget.ToggleField": [],
   "YourTour.view.widget.ToolButton": [],
-  "YourTour.view.widget.VDataItem": [],
   "YourTour.view.widget.XBack": [],
   "YourTour.view.widget.XBlock": [],
   "YourTour.view.widget.XBoldLabel": [],
   "YourTour.view.widget.XButton": [],
   "YourTour.view.widget.XCarousel": [],
   "YourTour.view.widget.XCheckbox": [],
+  "YourTour.view.widget.XDataItem": [],
   "YourTour.view.widget.XDataView": [],
   "YourTour.view.widget.XField": [],
   "YourTour.view.widget.XGenderPicker": [],
@@ -1942,7 +1942,6 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.widget.ToolButton": [
     "widget.toolbutton"
   ],
-  "YourTour.view.widget.VDataItem": [],
   "YourTour.view.widget.XBack": [
     "widget.xback"
   ],
@@ -1961,6 +1960,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.widget.XCheckbox": [
     "widget.xcheckbox"
   ],
+  "YourTour.view.widget.XDataItem": [],
   "YourTour.view.widget.XDataView": [
     "widget.xdataview"
   ],

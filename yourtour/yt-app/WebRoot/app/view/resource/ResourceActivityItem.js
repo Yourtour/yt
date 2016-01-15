@@ -8,10 +8,6 @@ Ext.define('YourTour.view.resource.ResourceActivityItem', {
 		style:'background-color:grey',
         items: [
 			{
-				xtype:'spacer',
-				flex:1
-			},
-			{
 				margin:'5 5 10 5',
     	   		itemId : 'image',
 	    		xtype : 'image',
@@ -25,21 +21,15 @@ Ext.define('YourTour.view.resource.ResourceActivityItem', {
 				style: 'background-color:grey;opacity:0.8; width:100%; text-align:center',
 				items:[
 					{
-						xtype:'label',
+						xtype:'xfield',
 						itemId:'title',
-						cls:'row font-grey font-medium'
 					},
 
 					{
-						xtype:'label',
+						xtype:'xmultifield',
 						itemId:'memo',
-						cls:'multilineinfo font-grey font-medium'
 					}
 				]
-			},
-			{
-				xtype:'spacer',
-				flex:1
 			}
         ]
     },

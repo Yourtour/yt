@@ -4,10 +4,6 @@ Ext.define('YourTour.view.common.ExpertServiceFormView', {
     config: {
     	id:'ExpertServiceFormView',
 		layout:'vbox',
-		scrollable:{
-			direction: 'vertical',
-		 	indicators: false
-		},
     	items:[
 			{    
 				xtype: 'xheaderbar',
@@ -24,91 +20,35 @@ Ext.define('YourTour.view.common.ExpertServiceFormView', {
 
 			{
 				xtype:'panel',
-				layout:'hbox',
-				cls:'underline',
-				padding:'0 5 0 5',
-				margin:'10 0 0 0',
-				items:[
-					{
-						xtype:'label',
-						html: '服务说明',
-						cls:'row font-medium',
-						margin:'0 10 0 0'
-					},
-					{
-						xtype: 'label',
-						itemId:'memo',
-						flex:1,
-						cls:'font-medium font-grey multilineinfo',
-					}
-				]
+				cls:'spacer',
 			},
 
 			{
-				xtype:'panel',
-				layout:'hbox',
-				cls:'underline',
-				padding:'0 5 0 5',
-				items:[
-					{
-						xtype:'label',
-						html: '费用包含',
-						cls:'row font-medium',
-						margin:'0 10 0 0'
-					},
-					{
-						xtype: 'label',
-						itemId:'feeIncluding',
-						flex:1,
-						cls:'font-medium font-grey multilineinfo'
-					}
-				]
+				xtype: 'xmultifield',
+				itemId:'memo',
+				label:'服务说明'
 			},
 
 			{
-				xtype:'panel',
-				layout:'hbox',
-				cls:'underline',
-				padding:'0 5 0 5',
-				items:[
-					{
-						xtype:'label',
-						html: '费用不含',
-						cls:'row font-medium',
-						margin:'0 10 0 0'
-					},
-					{
-						xtype: 'label',
-						itemId:'feeExcluding',
-						flex:1,
-						cls:'font-medium font-grey multilineinfo'
-					}
-				]
+				xtype: 'xmultifield',
+				itemId:'feeIncluding',
+				label:'费用包含'
 			},
 
 			{
-				xtype:'panel',
-				layout:'hbox',
-				cls:'underline',
-				padding:'0 5 0 5',
-				items:[
-					{
-						xtype:'label',
-						html: '退款政策',
-						cls:'row font-medium',
-						margin:'0 10 0 0'
-					},
-					{
-						xtype: 'label',
-						itemId:'withdraw',
-						flex:1,
-						cls:'font-medium font-grey multilineinfo'
-					}
-				]
+				xtype: 'xmultifield',
+				itemId:'feeExcluding',
+				label:'费用不含'
 			},
 
 			{
-                xtype: 'toolbar',
+				xtype: 'xmultifield',
+				itemId:'withdraw',
+				label:'退款政策'
+			},
+
+			{
+                xtype: 'xtoolbar',
                 docked: 'bottom',
 				defaults:{
 					flex:1
@@ -125,15 +65,19 @@ Ext.define('YourTour.view.common.ExpertServiceFormView', {
 						text: '预订',
 						ui: 'normal',
 						hidden:true,
-						baseCls:'button',
 						itemId: 'btnBook'
 					}
 					,{
 						xtype: 'button',
-						text: '取消预订',
+						text: '提醒',
 						ui: 'normal',
 						hidden:true,
-						baseCls:'button',
+						itemId: 'btnAlert'
+					},{
+						xtype: 'button',
+						text: '取消',
+						ui: 'normal',
+						hidden:true,
 						itemId: 'btnCancel'
 					}
 	            ]

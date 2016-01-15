@@ -55,31 +55,33 @@
         }
 
         .nav-arrow {
-            background: #FFFFFF url(./resources/icons/arrow_right.png) no-repeat right center !important;
+            background-image: url(./resources/icons/arrow_right.png);
+            background-repeat: no-repeat;
+            background-position: right center;
         }
 
         .icon-position {
             background-image: url(./resources/icons/icon_position.png);
             background-repeat: no-repeat;
-            background-position: 5px center;
+            background-position: 0px center;
         }
 
         .icon-phone {
             background-image: url(./resources/icons/icon_phone.png);
             background-repeat: no-repeat;
-            background-position: 5px center;
+            background-position: 0px center;
         }
 
         .icon-name {
             background-image: url(./resources/icons/icon_name.png);
             background-repeat: no-repeat;
-            background-position: 5px center;
+            background-position: 0px center;
         }
 
         .icon-time {
             background-image: url(./resources/icons/icon_time.png);
             background-repeat: no-repeat;
-            background-position: 5px center;
+            background-position: 0px center;
         }
 
         .icon-time-32 {
@@ -91,49 +93,49 @@
         .icon-memo {
             background-image: url(./resources/icons/icon_memo.png);
             background-repeat: no-repeat;
-            background-position: 5px center;
+            background-position: 0px center;
         }
 
         .icon-impression {
             background-image: url(./resources/icons/icon_impression.png);
             background-repeat: no-repeat;
-            background-position: 5px center;
+            background-position: 0px center;
         }
 
         .icon-open {
             background-image: url(./resources/icons/icon_open.png);
             background-repeat: no-repeat;
-            background-position: 5px center;
+            background-position: 0px center;
         }
 
         .icon-scene {
             background-image: url(./resources/icons/icon_scene.png);
             background-repeat: no-repeat;
-            background-position: 5px center;
+            background-position: 0px center;
         }
 
         .icon-hotel {
             background-image: url(./resources/icons/icon_hotel.png);
             background-repeat: no-repeat;
-            background-position: 5px center;
+            background-position: 0px center;
         }
 
         .icon-food {
             background-image: url(./resources/icons/icon_food.png);
             background-repeat: no-repeat;
-            background-position: 5px center;
+            background-position: 0px center;
         }
 
         .icon-prepare {
             background-image: url(./resources/icons/icon_prepare.png);
             background-repeat: no-repeat;
-            background-position: 5px center;
+            background-position: 0px center;
         }
 
         .icon-todo {
             background-image: url(./resources/icons/icon_todo.png);
             background-repeat: no-repeat;
-            background-position: 5px center;
+            background-position: 0px center;
         }
 
         .icon-add {
@@ -183,11 +185,6 @@
         .textfield span {
             margin: 10px 0px 10px 0px;
             vertical-align: middle;
-        }
-
-        .icon {
-            width: 16px;
-            height: 16px;
         }
 
         .page {
@@ -375,24 +372,12 @@
         }
 
         .font-normal {
+            color: black !important;
         }
 
-        .x-xfield{
-            line-height: 25px;
-            min-height: 15px;
-            font-size: 14px;
-        }
-
-        .x-xfield-padding-normal{
-            padding: 10px 0px 10px 0px;
-        }
-
-        .x-xfield-padding-zero{
-            padding: 0px;
-        }
-
-        .x-xfield-icon-medium{
-            margin:0px 5px 0px 20px;
+        .img-small{
+            width:100px;
+            height:75px;
         }
 
         .row {
@@ -400,35 +385,44 @@
             line-height: 45px;
         }
 
-        .toolbar-row {
-            height: 30px;
-            line-height: 30px;
+        .x-xdataitem{
+            padding:10px;
+            border-bottom: 1px solid #EDEDED;
         }
 
-        .title-row {
-            height: 40px;
-        }
-
-        .label {
+        .x-xfield{
+            line-height: 25px;
+            min-height: 15px;
             font-size: 14px;
+            background-color:white;
         }
 
-        .borderless {
-            border: none;
+        .x-xfield .icon{
+            width:32px;
         }
 
-        input {
-            height: 45px;
+        .x-xfield .label{
+            width:32px;
         }
 
-        .x-field-input {
+        .x-xtextfield{
+            height: 44px;
+            font-size: 14px;
+            border-bottom: 1px solid #EDEDED;
+        }
+
+        .x-xtextfield .x-form-label{
+            height: 44px;
+            padding:15px 10px 0px 10px !important;
+        }
+
+        .x-xtextfield .x-field-input{
             border: none !important;
-            height: 39px;
         }
 
-        .x-input-el {
-            padding: .0em .4em .0em .4em !important;
-            min-height: 45px !important;
+        .x-xtextfield .x-input-text{
+            height: 43px;
+            color:grey !important;
         }
 
         .x-xcarousel .x-xcarousel-nav {

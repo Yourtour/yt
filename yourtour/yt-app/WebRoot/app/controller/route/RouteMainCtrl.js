@@ -60,6 +60,7 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
     	var me = this;
     	
     	YourTour.util.Context.mainview = me.getRouteMainView();
+
     	var routeCarousel = me.getRouteCarousel();
     	var store = me.store = Ext.create('YourTour.store.RouteStore',{storeId:'RouteMainStore'});	
     	var handler = function(){
@@ -75,8 +76,6 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
 				});
 
 				routeCarousel.setActiveItem(0);
-
-				me.fillRouteInfo(store.getAt(0));
 			}
     	};
 
@@ -147,7 +146,8 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
 		var index = carousel.getActiveIndex();
 		var record = this.store.getAt(index);
 
-		this.fillRouteInfo(record);
+		var view = this.getRouteMainView();
+		view.setData(record);
 	},
 
 	fillRouteInfo:function(record){

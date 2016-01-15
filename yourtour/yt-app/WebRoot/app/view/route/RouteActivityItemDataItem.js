@@ -1,17 +1,15 @@
 Ext.define('YourTour.view.route.RouteActivityItemDataItem', {
-    extend: 'Ext.dataview.component.DataItem',
+    extend: 'YourTour.view.widget.XDataItem',
     xtype: 'RouteActivityItemDataItem',
-    requires:['Ext.Label','Ext.field.Select','Ext.Panel'],
     config: {
 		layout:'hbox',
-		padding:'10 5 10 5',
-		cls:'underline',
     	items:[
 			{
 				itemId : 'image',
 				xtype : 'image',
 				mode : 'tag',
-				margin:'0 10 0 0'
+				margin:'0 5 0 0',
+				imageCls:'img-small'
 			},
 
 			{
@@ -20,15 +18,18 @@ Ext.define('YourTour.view.route.RouteActivityItemDataItem', {
 				flex:1,
 				items:[
 					{
-						xtype:'label',
+						xtype:'xfield',
 						itemId:'title',
-						cls:'font-medium font-grey',
+						underline:false,
+						fieldCls:'font-bold font-normal',
+						padding:'0'
 					} ,
 
 					{
-						xtype:'label',
+						xtype:'xmultifield',
 						itemId:'memo',
-						cls:'font-medium font-grey multilineinfo'
+						underline:false,
+						padding:'0'
 					}
 				]
 			}
@@ -43,13 +44,13 @@ Ext.define('YourTour.view.route.RouteActivityItemDataItem', {
        var me = this;
        if(record){
 		   var image = me.down('#image');
-		   image.setHtml("<img src='" + YourTour.util.Context.getImageResource(record.get('imageUrl')) + "' style='height:75px'>");
+		   image.setHtml("<img src='" + YourTour.util.Context.getImageResource(record.get('imageUrl')) + "'>");
 
 		   var title = me.down('#title');
-    	   title.setHtml(record.get('title'));
+    	   title.setText(record.get('title'));
 
 		   var memo = me.down('#memo');
-		   memo.setHtml(Ext.String.ellipsis(record.get('memo'),30,false));
+		   memo.setText(Ext.String.ellipsis(record.get('memo'),30,false));
        }
     }   
 });

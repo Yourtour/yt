@@ -2,7 +2,8 @@ Ext.define('YourTour.view.widget.XTextField', {
     extend: 'Ext.field.Text',
     xtype: 'xtextfield',
     config:{
-    	inputCls:'borderless'
+        cls:'x-xtextfield',
+        height:45,
     }
 });
 
