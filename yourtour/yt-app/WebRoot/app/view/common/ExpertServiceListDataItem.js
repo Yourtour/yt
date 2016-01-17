@@ -6,10 +6,10 @@ Ext.define('YourTour.view.common.ExpertServiceListDataItem', {
         items: [
 			{
 				itemId : 'image',
-				xtype : 'image',
-				mode : 'tag',
+				xtype : 'ximage',
 				margin:'0 5 0 0',
-				imageCls:'img-small'
+				styleHtmlCls:'img-small',
+				binding:'imageUrl'
 			},
 
 			{
@@ -29,25 +29,15 @@ Ext.define('YourTour.view.common.ExpertServiceListDataItem', {
 						xtype:'xmultifield',
 						itemId:'memo',
 						underline:false,
-						padding:'0'
+						padding:'0',
+						ellipsis:{
+							size:40,
+							expandable:false
+						}
 					}
 				]
 			}
         ]
-    },
-    
-    updateRecord: function(record){
-    	var me = this;
-       	if(record){
-			var image = me.down('#image');
-			image.setHtml("<img src='" + YourTour.util.Context.getImageResource(record.get('imageUrl')) + "'>");
-
-			var title = me.down('#title');
-			title.setText(record.get('title'));
-
-			var memo = me.down('#memo');
-			memo.setText(Ext.String.ellipsis(record.get('memo'),30,false));
-	 	}
     }
 });
 

@@ -2,8 +2,10 @@ Ext.define('YourTour.controller.CommonMainCtrl', {
     extend: 'Ext.app.Controller',
     config: {
         refs:{
-            contentReadView:'#ContentReadView'
+            contentReadView:'#ContentReadView',
 
+            commentListView:'#CommentListView',
+            commentList:'#CommentListView #commentList'
         },
        
         control:{
@@ -20,5 +22,24 @@ Ext.define('YourTour.controller.CommonMainCtrl', {
 
         var contentEl = view.down('#content');
         contentEl.setHtml(content);
+    },
+
+    showCommentListView:function(id, type){
+        var me = this;
+
+        var params = [{name:'id', value:id},{name:'type', value:type},{name:'nextCursor', value:1000}];
+
+        var options = {
+            model:'YourTour.model.CommentModel',
+            url:'/comments',
+            params:params,
+            success:function(store){
+                Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.common.CommentListView'));
+                var view = me.getCommentListView();
+
+                me.getCommentList().setStore(store);
+            }
+        };
+        me.getApplication().query(options);
     }
 });

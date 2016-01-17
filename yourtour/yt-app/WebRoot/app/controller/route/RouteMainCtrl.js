@@ -59,7 +59,7 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
     showPage:function(){
     	var me = this;
     	
-    	YourTour.util.Context.mainview = me.getRouteMainView();
+    	/*YourTour.util.Context.mainview = me.getRouteMainView();*/
 
     	var routeCarousel = me.getRouteCarousel();
     	var store = me.store = Ext.create('YourTour.store.RouteStore',{storeId:'RouteMainStore'});	
@@ -100,6 +100,7 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
     	var model = me.store.getAt(index);
     	
     	Ext.Ajax.request({
+			confirm:'是否要删除当前行程?',
     		url : YourTour.util.Context.getContext('/routes/' + model.get('id') + '/delete'),
     	    method : "GET",
     	    success : function(response) {
@@ -110,9 +111,7 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
     	    	};
     	    	
     	    	Ext.Msg.alert('删除成功。');
-
     	    	me.store.removeAt(index);
-
     	    	routeCarousel.removeAt(index);
     	    }
     	});
@@ -148,25 +147,6 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
 
 		var view = this.getRouteMainView();
 		view.setData(record);
-	},
-
-	fillRouteInfo:function(record){
-		var view = this.getRouteMainView();
-		var name = view.down('#routeName');
-		name.setHtml(record.get('name'));
-
-		var time = view.down('#time');
-		time.setText(record.get('startDate') +'-' + record.get('endDate') + '  合计：' + record.get('duration')+'天');
-
-		var lineName = view.down('#lineName');
-		lineName.setText(record.get('lineName'));
-
-		var impression = view.down('#impression');
-		if(record.get('impression') == '' || record.get('impression') == null){
-			impression.setText('赶快记录下你的旅行印象吧.........');
-		}else {
-			impression.setText(record.get('impression'));
-		}
 	},
 
 	onCarouselItemTap:function(){

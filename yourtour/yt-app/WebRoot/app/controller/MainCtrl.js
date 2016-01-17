@@ -2,7 +2,8 @@ Ext.define('YourTour.controller.MainCtrl', {
     extend: 'YourTour.controller.BaseCtrl',
     config: {
     	refs:{
-    		menuTab:'#MainView #menuTab',
+			mainView:'#MainView',
+			menuTab:'#MainView #menuTab'
     	},
     	
     	control:{

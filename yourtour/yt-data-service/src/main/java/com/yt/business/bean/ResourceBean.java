@@ -1,14 +1,12 @@
 package com.yt.business.bean;
 
-import org.neo4j.graphdb.Direction;
-import org.springframework.data.neo4j.annotation.NodeEntity;
-
-import com.yt.business.BaseDictBeanImpl;
+import com.yt.business.BaseBeanImpl;
 import com.yt.business.common.Constants;
 import com.yt.business.common.Constants.ResType;
-import com.yt.business.common.Constants.Status;
 import com.yt.hbase.annotation.HbaseColumn;
 import com.yt.neo4j.annotation.Neo4jRelationship;
+import org.neo4j.graphdb.Direction;
+import org.springframework.data.neo4j.annotation.NodeEntity;
 
 import java.util.List;
 
@@ -41,8 +39,12 @@ import java.util.List;
  * @since 1.0
  */
 @NodeEntity
-public class ResourceBean extends BaseDictBeanImpl {
+public class ResourceBean extends BaseBeanImpl {
 	private static final long serialVersionUID = -8980153602025087935L;
+
+	private String code;
+
+	private String name;
 
 	@HbaseColumn(name = "img")
 	private String imageUrl; // 图片
@@ -88,10 +90,22 @@ public class ResourceBean extends BaseDictBeanImpl {
 	private int arriveNum; // 到达人数
 
 	@HbaseColumn(name = "cscore")
-	private double commentScore; // 点评分数
+	private double 	commentScore = 0f;
 
 	@HbaseColumn(name = "cnum")
-	private int commentNum; // 点评数
+	private int 	commentNum; // 点评数
+
+	private float   healthScore;
+	private int		healthNum;
+
+	private float   trafficScore;
+	private int   	trafficNum;
+
+	private	float	facilityScore;
+	private int		facilityNum;
+
+	private float	environmentScore;
+	private int		environmentNum;
 
 	@HbaseColumn(name = "fnum")
 	private int favoriteNum; // 收藏数
@@ -118,6 +132,22 @@ public class ResourceBean extends BaseDictBeanImpl {
 
 	public ResourceBean() {
 		super();
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getImageUrl() {
@@ -208,22 +238,6 @@ public class ResourceBean extends BaseDictBeanImpl {
 		this.arriveNum = arriveNum;
 	}
 
-	public double getCommentScore() {
-		return commentScore;
-	}
-
-	public void setCommentScore(double commentScore) {
-		this.commentScore = commentScore;
-	}
-
-	public int getCommentNum() {
-		return commentNum;
-	}
-
-	public void setCommentNum(int commentNum) {
-		this.commentNum = commentNum;
-	}
-
 	public int getFavoriteNum() {
 		return favoriteNum;
 	}
@@ -302,5 +316,101 @@ public class ResourceBean extends BaseDictBeanImpl {
 
 	public void setActivities(List<ResourceActivityItemBean> activities) {
 		this.activities = activities;
+	}
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
+	public String getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(String currency) {
+		this.currency = currency;
+	}
+
+	public double getCommentScore() {
+		return commentScore;
+	}
+
+	public void setCommentScore(double commentScore) {
+		this.commentScore = commentScore;
+	}
+
+	public int getCommentNum() {
+		return commentNum;
+	}
+
+	public void setCommentNum(int commentNum) {
+		this.commentNum = commentNum;
+	}
+
+	public float getHealthScore() {
+		return healthScore;
+	}
+
+	public void setHealthScore(float healthScore) {
+		this.healthScore = healthScore;
+	}
+
+	public int getHealthNum() {
+		return healthNum;
+	}
+
+	public void setHealthNum(int healthNum) {
+		this.healthNum = healthNum;
+	}
+
+	public float getTrafficScore() {
+		return trafficScore;
+	}
+
+	public void setTrafficScore(float trafficScore) {
+		this.trafficScore = trafficScore;
+	}
+
+	public int getTrafficNum() {
+		return trafficNum;
+	}
+
+	public void setTrafficNum(int trafficNum) {
+		this.trafficNum = trafficNum;
+	}
+
+	public float getFacilityScore() {
+		return facilityScore;
+	}
+
+	public void setFacilityScore(float facilityScore) {
+		this.facilityScore = facilityScore;
+	}
+
+	public int getFacilityNum() {
+		return facilityNum;
+	}
+
+	public void setFacilityNum(int facilityNum) {
+		this.facilityNum = facilityNum;
+	}
+
+	public float getEnvironmentScore() {
+		return environmentScore;
+	}
+
+	public void setEnvironmentScore(float environmentScore) {
+		this.environmentScore = environmentScore;
+	}
+
+	public int getEnvironmentNum() {
+		return environmentNum;
+	}
+
+	public void setEnvironmentNum(int environmentNum) {
+		this.environmentNum = environmentNum;
 	}
 }

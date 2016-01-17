@@ -99,8 +99,9 @@ Ext.define('YourTour.view.setting.UserSettingView', {
 
 			{
 				xtype: 'xbutton',
-				docked: 'bottom',
 				itemId:'btnQuit',
+				cls:'x-button-primary',
+				docked: 'bottom',
 				text:'退出'
 			}
         ]

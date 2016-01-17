@@ -720,7 +720,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.MainView": [],
   "YourTour.view.SearchMain": [],
   "YourTour.view.common.CarouselItem": [],
-  "YourTour.view.common.CommentListItemView": [],
+  "YourTour.view.common.CommentListDataItem": [],
+  "YourTour.view.common.CommentListView": [],
   "YourTour.view.common.ContentReadView": [],
   "YourTour.view.common.ExpertServiceFormView": [],
   "YourTour.view.common.ExpertServiceListDataItem": [],
@@ -820,7 +821,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.user.UserListView": [],
   "YourTour.view.user.UserMainView": [],
   "YourTour.view.user.UserProfileView": [],
-  "YourTour.view.widget.HSpacer": [],
   "YourTour.view.widget.MarkedLabel": [],
   "YourTour.view.widget.NoScrollDataView": [],
   "YourTour.view.widget.SubTitleBar": [],
@@ -855,6 +855,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.XPlainButton": [],
   "YourTour.view.widget.XSelecion": [],
   "YourTour.view.widget.XShare": [],
+  "YourTour.view.widget.XSpacer": [],
   "YourTour.view.widget.XTextArea": [],
   "YourTour.view.widget.XTextField": [],
   "YourTour.view.widget.XTimeField": [
@@ -1675,12 +1676,11 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.SearchMain": [
     "widget.searchmain"
   ],
-  "YourTour.view.common.CarouselItem": [
-    "widget.CommentListItemView"
+  "YourTour.view.common.CarouselItem": [],
+  "YourTour.view.common.CommentListDataItem": [
+    "widget.CommentListDataItem"
   ],
-  "YourTour.view.common.CommentListItemView": [
-    "widget.CommentListItemView"
-  ],
+  "YourTour.view.common.CommentListView": [],
   "YourTour.view.common.ContentReadView": [],
   "YourTour.view.common.ExpertServiceFormView": [],
   "YourTour.view.common.ExpertServiceListDataItem": [
@@ -1924,9 +1924,6 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.user.UserProfileView": [
     "widget.UserProfileView"
   ],
-  "YourTour.view.widget.HSpacer": [
-    "widget.hspacer"
-  ],
   "YourTour.view.widget.MarkedLabel": [
     "widget.markedlabel"
   ],
@@ -2022,6 +2019,9 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.widget.XSelecion": [],
   "YourTour.view.widget.XShare": [
     "widget.xshare"
+  ],
+  "YourTour.view.widget.XSpacer": [
+    "widget.xspacer"
   ],
   "YourTour.view.widget.XTextArea": [
     "widget.xtextarea"

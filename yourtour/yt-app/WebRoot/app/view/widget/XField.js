@@ -13,7 +13,8 @@ Ext.define('YourTour.view.widget.XField', {
         layout: 'hbox',
         padding: '10 20 10 10',
         ifNull:'',
-
+        binding:null,
+        dataChange:undefined,
         items: [
             {
                 xtype: 'label',
@@ -29,6 +30,32 @@ Ext.define('YourTour.view.widget.XField', {
         ]
     },
 
+    initialize:function(){
+        this.callParent(arguments);
+
+        var me = this;
+        if(! this.getDataChange()) {
+            me.element.on({
+                dataChange: function (field, record) {
+                    var binding = me.getBinding();
+                    var name = (binding == null ? me.getItemId() : binding);
+                    var names = name.split('.');
+                    var len = names.length;
+
+                    var data = record;
+                    var store = null;
+                    for (var index = 0; index < len - 1; index++) {
+                        eval('store = data.' + [names[index]] + '()');
+                        data = store.first();
+                    }
+                    name = names[len - 1];
+
+                    me.setText(data.get(name));
+                }
+            });
+        }
+    },
+
     constructor: function(config){
         this.callParent(arguments);
 
@@ -36,6 +63,12 @@ Ext.define('YourTour.view.widget.XField', {
         if(underline == undefined || underline){
             this.addCls('underline');
         }
+    },
+
+    updateDataChange:function(dataChange){
+        this.element.on({
+            dataChange:dataChange
+        });
     },
 
     updateUnderline: function (underline) {
@@ -128,11 +161,44 @@ Ext.define('YourTour.view.widget.XField', {
         this.ifNull = ifNull;
     },
 
-    updateRecord:function(record){
-        var itemId = this.getItemId();
-        var value = record.get(itemId);
+    getPair:function(){
+        var values = this.getValue().split(',');
+        var texts =  this.getText().split(',');
 
-        this.setText(record.get(itemId));
+        var pair = '';
+        for(var index = 0; index < values.length; index++){
+            if(pair != ''){
+                pair = pair + '|';
+            }
+
+            pair = pair + values[index] + ',' + texts[index];
+        }
+
+        return pair;
+    },
+
+    setPair:function(pair){
+        if(pair){
+            var pairs = pair.split('|');
+            var values = '', texts = '', pArray;
+            pairs.forEach(function(p){
+                if(values != ''){
+                    values = values + ',';
+                    texts = texts + ',';
+                }
+
+                pArray = p.split(',');
+                values = values + pArray[0];
+                texts = texts + pArray[1];
+            });
+
+            this.setValue(values);
+            this.setText(texts);
+        }
+    },
+
+    updateRecord:function(record){
+        this.element.fireEvent('dataChange', this, record);
     }
 });
 

@@ -27,7 +27,7 @@ Ext.application({
     views: [
         'MainView','Launch','setting.UserSettingView',
         'common.PlaceSelectionView','common.MessageMainView','common.MessageGroupView','common.FieldEditView','common.ContentReadView',
-        'common.ExpertServiceListView','common.ExpertServiceFormView',
+        'common.ExpertServiceListView','common.ExpertServiceFormView','common.CommentListView',
 
         'home.HomeMainView', 'home.BestListView', 'home.AlongListView', 'home.AlongDetailView', 'home.TalentListView', 'SearchMain',
         'route.RouteMainView','route.RouteSettingView','route.RouteImpressionView','route.RouteImageView',
@@ -250,7 +250,25 @@ Ext.application({
     query:function(options){
         try {
             var store = Ext.create('YourTour.store.AjaxStore', {model:options.model});
-            store.getProxy().setUrl(YourTour.util.Context.getContext(options.url));
+            var proxy = store.getProxy();
+
+            var url = options.url;
+            var params = options.params;
+            if(params){
+                url += '?';
+
+                var first = true;
+                params.forEach(function(param){
+                    if(first){
+                        first = false;
+                    }else{
+                        url += '&';
+                    }
+                    url += param.name + '=' + param.value;
+                });
+            }
+            proxy.setUrl(YourTour.util.Context.getContext(url));
+
             store.load(function(){
                 options.success(store);
             })
@@ -258,6 +276,8 @@ Ext.application({
             this.toast(e.name + ":" + e.message);
         }
     },
+
+
 
     toast:function(msg){
         Ext.Msg.alert(msg);

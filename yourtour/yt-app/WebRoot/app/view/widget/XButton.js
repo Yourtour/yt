@@ -2,12 +2,17 @@ Ext.define('YourTour.view.widget.XButton', {
     extend: 'Ext.Button',
     xtype: 'xbutton',
     config: {
-    	baseCls:'button',
-    	attr:null
+        binding:null,
+    	cls:'x-xbutton'
     },
-    
-    updateAttr:function(attr){
-    	this.attr = attr;
+
+    updateRecord:function(record){
+        var text = this.getText();
+        if(text == null || text == ''){
+            var binding = this.binding;
+            var name = binding == null ? this.getItemId():binding;
+            this.setText(record.get(name));
+        }
     }
 });
 

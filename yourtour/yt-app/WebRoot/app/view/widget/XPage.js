@@ -1,5 +1,5 @@
 Ext.define('YourTour.view.widget.XPage', {
-    extend: 'Ext.Panel',
+    extend: 'Ext.Container',
     xtype: 'xpage',
     config: {
         layout:'vbox',
@@ -23,8 +23,6 @@ Ext.define('YourTour.view.widget.XPage', {
 
         fullscreen: true,
 
-        attrs: null,
-
         data: null
     },
 
@@ -32,10 +30,7 @@ Ext.define('YourTour.view.widget.XPage', {
         var me = this;
         me.callParent(arguments);
 
-
-        me.getScrollable().getScroller().on('scroll', function (scroller, x, y) {
-            me.scroll(scroller, x, y);
-        });
+        me.getScrollable().getScroller().on('scroll', me.onScroller,me);
 
         me.getScrollable().getScroller().on('scrollend', me.onScrollerEnd,me);
     },
@@ -43,7 +38,7 @@ Ext.define('YourTour.view.widget.XPage', {
     updateData: function (data) {
         this.data = data;
 
-        this.fillData();
+        this.updateRecord();
     },
 
     getData: function () {
@@ -51,26 +46,18 @@ Ext.define('YourTour.view.widget.XPage', {
     },
 
     onScrollerEnd : function(scroller,offsets){
-        var y = offsets.y;
-        if(y <= 0){
-            return false;
-        }
     },
 
-    scroll: function (scroller, x, y) {
-        if(y <= 0){
-            return false;
-        }
+    onScroller: function (scroller, x, y) {
     },
 
-    fillData:function(){
+    updateRecord:function(){
         var me = this;
-        var data = this.data;
+        var data = me.data;
 
-        var elements = Ext.ComponentQuery.query('xfield,xmultifield,dataview', me);
-        Ext.Array.forEach(elements,function(item){
-            item.updateRecord(data);
-        });
+        if(data) {
+            YourTour.util.Context.fillViewFields(me, data);
+        }
     }
 });
 

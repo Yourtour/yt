@@ -1,13 +1,23 @@
 Ext.define('YourTour.model.CommentModel', {
-    extend: 'Ext.data.Model',
+    extend: 'YourTour.model.BaseModel',
     config:{
-    	idProperty:'rowKey',
-    	
-	    fields:[{name:'rowKey', type:'string'},
-	            {name:'nickname', type:'string'},
-	            {name:'imageUrl', type:'string'},
-	            {name:'comment', type:'string'},
-	            {name:'publishTime', type:'string'}
-	    ]
+	    fields:[{name:'id', type:'string'},
+	            {name:'memo', type:'string'},
+				{name:'score', type:'string'},
+				{name:'thumbup', type:'string'},
+				{name:'replied', type:'string'},
+				{name:'tags', type:'string'},
+	            {name:'imageUrls', type:'string'},
+				{name:'createdDate', type:'string'},
+	    ],
+
+		associations: [
+			{
+				type: 'hasMany',
+				model: 'YourTour.model.UserModel',
+				name:'user',
+				associationKey:'user'
+			}
+		]
     }
 });

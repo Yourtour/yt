@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.user.UserProfileView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:[ 'YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XField','YourTour.view.widget.XMultiField', 'YourTour.view.widget.XPickerField', 'YourTour.view.widget.XImagePicker','YourTour.view.widget.XLabel','YourTour.view.widget.XMultiLabel','YourTour.view.widget.XGenderPicker', 'YourTour.view.widget.XButton'],
+    requires:[ 'YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XField','YourTour.view.widget.XMultiField', 'YourTour.view.widget.XPickerField', 'YourTour.view.widget.XImagePicker','YourTour.view.widget.XLabel','YourTour.view.widget.XMultiLabel','YourTour.view.widget.XGenderPicker'],
     xtype:'UserProfileView',
     config: {
     	id:'UserProfileView',

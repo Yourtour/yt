@@ -1,15 +1,16 @@
 Ext.define('YourTour.view.route.RouteActivityItemDataItem', {
     extend: 'YourTour.view.widget.XDataItem',
     xtype: 'RouteActivityItemDataItem',
+	requires:['YourTour.view.widget.XImage','YourTour.view.widget.XField','YourTour.view.widget.XMultiField'],
     config: {
 		layout:'hbox',
     	items:[
 			{
 				itemId : 'image',
-				xtype : 'image',
-				mode : 'tag',
+				xtype : 'ximage',
 				margin:'0 5 0 0',
-				imageCls:'img-small'
+				styleHtmlCls:'img-small',
+				binding:'imageUrl'
 			},
 
 			{
@@ -29,29 +30,15 @@ Ext.define('YourTour.view.route.RouteActivityItemDataItem', {
 						xtype:'xmultifield',
 						itemId:'memo',
 						underline:false,
-						padding:'0'
+						padding:'0',
+						ellipsis:{
+							size:40,
+							expandable:false
+						}
 					}
 				]
 			}
 		]
-    },
-    
-   	/**
-   	 * 
-   	 * @param {} record
-   	 */
-    updateRecord: function(record) {
-       var me = this;
-       if(record){
-		   var image = me.down('#image');
-		   image.setHtml("<img src='" + YourTour.util.Context.getImageResource(record.get('imageUrl')) + "'>");
-
-		   var title = me.down('#title');
-    	   title.setText(record.get('title'));
-
-		   var memo = me.down('#memo');
-		   memo.setText(Ext.String.ellipsis(record.get('memo'),30,false));
-       }
-    }   
+    }
 });
 

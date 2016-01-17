@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.expert.ExpertRecommendIntroView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Panel','Ext.Img','Ext.DataView','YourTour.view.widget.XMultiField','YourTour.view.route.RouteScheduleListDataItem','YourTour.view.widget.HSpacer', 'YourTour.view.widget.XPanel', 'YourTour.view.widget.XButton','YourTour.view.widget.XField','YourTour.view.widget.XLabel','YourTour.view.widget.XHeaderBar'	],
+    requires:['Ext.Panel','Ext.Img','Ext.DataView','YourTour.view.widget.XMultiField','YourTour.view.route.RouteScheduleListDataItem', 'YourTour.view.widget.XPanel', 'YourTour.view.widget.XField','YourTour.view.widget.XLabel','YourTour.view.widget.XHeaderBar'	],
     config: {
     	id:'ExpertRecommendIntroView',
       	layout:'vbox',

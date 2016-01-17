@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.route.RouteSettingView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.form.Panel', 'YourTour.view.widget.HSpacer', 'YourTour.view.widget.XKVField','YourTour.view.widget.ToolButton', 'Ext.field.DatePicker','YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XLabel', 'YourTour.view.widget.XField', 'Ext.field.Text'],
+    requires:['Ext.form.Panel', 'YourTour.view.widget.XSpacer', 'YourTour.view.widget.ToolButton', 'Ext.field.DatePicker','YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XLabel', 'YourTour.view.widget.XField', 'Ext.field.Text'],
     xtype: 'RouteSettingView',
     config: {
     	id:'RouteSettingView',
@@ -35,7 +35,7 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 			},
 
 			{
-				xtype:'hspacer'
+				xtype:'xspacer'
 			},
 
 			{
@@ -85,7 +85,7 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 			},
 
 			{
-				xtype:'hspacer'
+				xtype:'xspacer'
 			},
 
 			{
@@ -100,7 +100,7 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 						style:'width:50px'
 					},
 					{
-						xtype: 'xkvfield',
+						xtype: 'xfield',
 						itemId:'fromPlace',
 						style:'text-align:right',
 						flex:1
@@ -120,7 +120,7 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 						style:'width:50px'
 					},
 					{
-						xtype: 'xkvfield',
+						xtype: 'xfield',
 						itemId:'toPlaces',
 						style:'text-align:right',
 						flex:1
@@ -129,7 +129,7 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 			},
 
 			{
-				xtype:'hspacer'
+				xtype:'xspacer'
 			},
 
 			{

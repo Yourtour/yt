@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.user.LoginView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Panel','YourTour.view.widget.HSpacer', 'YourTour.view.widget.XHeaderBar', 'Ext.field.Password','YourTour.view.widget.XTextField', 'YourTour.view.widget.XButton', 'YourTour.view.widget.ToolButton'],
+    requires:['Ext.Panel','YourTour.view.widget.XSpacer', 'YourTour.view.widget.XHeaderBar', 'Ext.field.Password','YourTour.view.widget.XTextField', 'YourTour.view.widget.XButton', 'YourTour.view.widget.ToolButton'],
     xtype:'LoginView',
     config: {
     	id:'LoginView',
@@ -20,7 +20,7 @@ Ext.define('YourTour.view.user.LoginView', {
                 }]	
             },
             {
-            	xtype:'hspacer'
+            	xtype:'xspacer'
             },
             {
             	xtype:'panel',
@@ -77,12 +77,13 @@ Ext.define('YourTour.view.user.LoginView', {
             },
             
             {
-            	xtype:'hspacer'
+            	xtype:'xspacer'
             },
             
             {
             	xtype:'xbutton',
             	id:'btnLogin',
+				cls:'x-button-primary',
             	text:'登录'
             },
             

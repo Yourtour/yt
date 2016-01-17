@@ -262,19 +262,14 @@ public class TestLineBean {
 			assertEquals(repo.count(SceneResourceBean.class), 0);
 
 			SceneResourceBean s1 = new SceneResourceBean();
-			s1.setCode("scene1");
 			repo.save(s1, "john");
 			SceneResourceBean s2 = new SceneResourceBean();
-			s2.setCode("scene2");
 			repo.save(s2, "john");
 			SceneResourceBean s3 = new SceneResourceBean();
-			s3.setCode("scene3");
 			repo.save(s3, "john");
 			SceneResourceBean s4 = new SceneResourceBean();
-			s4.setCode("scene4");
 			repo.save(s4, "john");
 			SceneResourceBean s5 = new SceneResourceBean();
-			s5.setCode("scene5");
 			repo.save(s5, "john");
 			assertEquals(repo.count(SceneResourceBean.class), 5);
 
@@ -290,9 +285,6 @@ public class TestLineBean {
 					.get(LineBean.class, l1.getGraphId());
 			assertNotNull(l1_1);
 			assertEquals(l1_1.getScenes().size(), 3);
-			assertEquals(l1_1.getScenes().get(0).getCode(), s1.getCode());
-			assertEquals(l1_1.getScenes().get(1).getCode(), s2.getCode());
-			assertEquals(l1_1.getScenes().get(2).getCode(), s3.getCode());
 
 			l1.getScenes().remove(1);
 			l1.getScenes().remove(0);
@@ -302,8 +294,6 @@ public class TestLineBean {
 					.get(LineBean.class, l1.getGraphId());
 			assertNotNull(l1_2);
 			assertEquals(l1_2.getScenes().size(), 2);
-			assertEquals(l1_2.getScenes().get(0).getCode(), s3.getCode());
-			assertEquals(l1_2.getScenes().get(1).getCode(), s4.getCode());
 
 			LineBean l2 = new LineBean();
 			l2.setCode("line2");
@@ -316,9 +306,6 @@ public class TestLineBean {
 					.get(LineBean.class, l2.getGraphId());
 			assertNotNull(l2_1);
 			assertEquals(l2_1.getScenes().size(), 3);
-			assertEquals(l2_1.getScenes().get(0).getCode(), s1.getCode());
-			assertEquals(l2_1.getScenes().get(1).getCode(), s2.getCode());
-			assertEquals(l2_1.getScenes().get(2).getCode(), s5.getCode());
 
 			repo.delete(LineBean.class);
 			assertEquals(repo.count(LineBean.class), 0);
@@ -342,19 +329,14 @@ public class TestLineBean {
 			assertEquals(repo.count(HotelResourceBean.class), 0);
 
 			HotelResourceBean h1 = new HotelResourceBean();
-			h1.setCode("hotel1");
 			repo.save(h1, "john");
 			HotelResourceBean h2 = new HotelResourceBean();
-			h2.setCode("hotel2");
 			repo.save(h2, "john");
 			HotelResourceBean h3 = new HotelResourceBean();
-			h3.setCode("hotel3");
 			repo.save(h3, "john");
 			HotelResourceBean h4 = new HotelResourceBean();
-			h4.setCode("hotel4");
 			repo.save(h4, "john");
 			HotelResourceBean h5 = new HotelResourceBean();
-			h5.setCode("hotel5");
 			repo.save(h5, "john");
 			assertEquals(repo.count(HotelResourceBean.class), 5);
 
@@ -401,19 +383,14 @@ public class TestLineBean {
 			assertEquals(repo.count(RestaurantResourceBean.class), 0);
 
 			RestaurantResourceBean r1 = new RestaurantResourceBean();
-			r1.setCode("restaurant1");
 			repo.save(r1, "john");
 			RestaurantResourceBean r2 = new RestaurantResourceBean();
-			r2.setCode("restaurant2");
 			repo.save(r2, "john");
 			RestaurantResourceBean r3 = new RestaurantResourceBean();
-			r3.setCode("restaurant3");
 			repo.save(r3, "john");
 			RestaurantResourceBean r4 = new RestaurantResourceBean();
-			r4.setCode("restaurant4");
 			repo.save(r4, "john");
 			RestaurantResourceBean r5 = new RestaurantResourceBean();
-			r5.setCode("restaurant5");
 			repo.save(r5, "john");
 			assertEquals(repo.count(RestaurantResourceBean.class), 5);
 

@@ -1,7 +1,7 @@
 Ext.define('YourTour.view.route.RouteRecommendDataItem', {
     extend: 'Ext.Panel',
     xtype: 'RouteRecommendDataItem',
-    requires:['Ext.Panel', 'Ext.Img', 'YourTour.view.widget.XIcon', 'YourTour.view.widget.XField','YourTour.view.widget.XLabel','YourTour.view.widget.HSpacer'],
+    requires:['Ext.Panel', 'Ext.Img', 'YourTour.view.widget.XIcon', 'YourTour.view.widget.XField','YourTour.view.widget.XLabel'],
     config: {
 		record:null,
 
@@ -80,12 +80,8 @@ Ext.define('YourTour.view.route.RouteRecommendDataItem', {
 						html:'¥ 450元/人/天'
 					},
 				]
-			},
-
-			{
-				xtype:'hspacer'
 			}
-    	]
+		]
     },
 
 	initialize : function(){

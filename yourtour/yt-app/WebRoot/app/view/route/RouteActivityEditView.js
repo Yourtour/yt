@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.route.RouteActivityEditView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Panel','YourTour.view.widget.XLabel','YourTour.view.route.RouteActivityItemDataItem','YourTour.view.route.RouteActivityItemDataItem','YourTour.view.widget.XTimeField','YourTour.view.widget.XField','YourTour.view.widget.ToggleField','YourTour.view.widget.XHeaderBar'],
+    requires:['Ext.Panel','YourTour.view.widget.XLabel','YourTour.view.route.RouteActivityItemDataItem','YourTour.view.route.RouteActivityItemDataItem','YourTour.view.widget.XTimeField','YourTour.view.widget.XField','YourTour.view.widget.XHeaderBar'],
     config: {
     	id:'RouteActivityEditView',
     	layout:'vbox',
@@ -167,6 +167,7 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
             
             {
             	xtype:'xbutton',
+				cls:'x-button-primary',
             	id:'btnDelete',
             	docked: 'bottom',
             	text:'删除'

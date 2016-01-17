@@ -67,6 +67,7 @@ Ext.define('YourTour.view.route.RouteProvisionView', {
             	xtype:'xbutton',
             	id:'btnDelete',
             	docked: 'bottom',
+				cls:'x-button-primary',
             	text:'删除'
             },
         ]

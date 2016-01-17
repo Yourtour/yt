@@ -5,6 +5,10 @@ Ext.define('YourTour.view.widget.XMultiField', {
 		text:null,
 		size:0,
 		expanded:false,
+		ellipsis:{
+			size:0,
+			expandable:false
+		}
 	},
 
 	initialize:function(){
@@ -14,11 +18,41 @@ Ext.define('YourTour.view.widget.XMultiField', {
 		value.addCls('multilineinfo');
 	},
 
-	updateSize:function(size){
-		var me = this;
+	updateText:function(text){
+		this.setText(text);
+	},
 
-		me.size = size;
-		if(size > 0){
+	setText:function(text){
+		var me = this;
+		me.text = text;
+		var size = me.getSize();
+
+		var valueEl = me.down('#value');
+		if(text == null || text == '') {
+			valueEl.setHtml(me.ifNull);
+		}else if(size == 0) {
+			valueEl.setHtml(text);
+		}else{
+			valueEl.setHtml(Ext.String.ellipsis(text, size, false));
+		}
+
+		if(text =='' || text == null || text == undefined){
+			me.addCls('row');
+		}
+	},
+
+	getText:function(){
+		return this.text;
+	},
+
+	updateEllipsis:function(ellipsis){
+		if(! ellipsis) return;
+
+		var me = this;
+		var meEllipsis = me.getEllipsis();
+
+		Ext.apply(meEllipsis,ellipsis);
+		if(meEllipsis.expandable > 0){
 			var value = this.down('#value');
 			me.addCls('icon-arrow-down');
 
@@ -31,7 +65,7 @@ Ext.define('YourTour.view.widget.XMultiField', {
 						me.addCls('icon-arrow-up');
 						me.removeCls('icon-arrow-down');
 					}else{
-						value.setHtml(Ext.String.ellipsis(me.text, me.size, false));
+						value.setHtml(Ext.String.ellipsis(me.text, me.getSize(), false));
 						me.expanded = false;
 
 						me.removeCls('icon-arrow-up');
@@ -42,39 +76,9 @@ Ext.define('YourTour.view.widget.XMultiField', {
 		}
 	},
 
-	updateText:function(text){
-		this.setText(text);
-	},
+	getSize:function(){
+		var ellipsis = this.getEllipsis();
 
-	setText:function(text){
-		this.text = text;
-
-		var valueEl = this.down('#value');
-		if(text == null || text == '') {
-			valueEl.setHtml(this.ifNull);
-		}else if(this.size == 0) {
-			valueEl.setHtml(text);
-		}else{
-			valueEl.setHtml(Ext.String.ellipsis(text, this.size, false));
-		}
-
-		if(text =='' || text == null || text == undefined){
-			this.addCls('row');
-		}
-	},
-
-	getText:function(){
-		return this.text;
-	},
-
-	updateShowMore:function(showMore){
-		this.showMore = showMore;
-
-	},
-
-	output:function(text){
-		if(this.size >0){
-			this.setText(Ext.String.ellipsis(record.get('memo'),this.size,false))
-		}
+		return ellipsis.size;
 	}
 });

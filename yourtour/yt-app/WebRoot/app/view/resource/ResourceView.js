@@ -3,9 +3,9 @@ Ext.define('YourTour.view.resource.ResourceView', {
     requires:['Ext.Panel','Ext.Img','YourTour.view.widget.XHeaderBar','YourTour.view.widget.XToolbar', 'YourTour.view.widget.XLabel','YourTour.view.widget.XField'],
     config: {
     	layout:'vbox'
-    },
+    }
     
-    fillRecord:function(view, record){
+    /*fillRecord:function(view, record){
     	if(record != null){
 			var image = view.down('#image');
 			image.setHtml("<img src='" + YourTour.util.Context.getImageResource(record.get('imageUrl')) + "' style='width:100%; max-height:150px'>");
@@ -22,6 +22,6 @@ Ext.define('YourTour.view.resource.ResourceView', {
 			var intro = view.down('#intro');
 			intro.setText(record.get('intro'));
     	}
-    }
+    }*/
 });
 

@@ -1,7 +1,6 @@
 Ext.define('YourTour.view.common.CarouselItem', {
 	extend: 'Ext.Panel',
     requires:['Ext.Panel'],
-    xtype: 'CommentListItemView',
     config: {
       	label:null,
 		active:false,

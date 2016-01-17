@@ -38,6 +38,10 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
 
             '#ResourceActivityItemFormView #btnCancel': {
                 tap: 'onActivityItemCancelTap'
+            },
+
+            '#ResourceFormView #comment': {
+                tap: 'onCommentTap'
             }
         },
 
@@ -86,21 +90,26 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
      * @param resourceId
      */
     showSceneResource: function (resourceId) {
-        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.resource.ResourceFormView'));
-        var view = this.getResourceFormView();
+        var me = this;
 
-        var store = Ext.create('YourTour.store.AjaxStore', {model: 'YourTour.model.ResourceModel'});
-        store.getProxy().setUrl(YourTour.util.Context.getContext('/scenes/' + resourceId));
-        store.load(function () {
-            var resource = store.first();
-            view.setData(resource);
+        var options = {
+            model:'YourTour.model.ResourceModel',
+            url:'/scenes/' + resourceId,
+            success:function(store){
+                Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.resource.ResourceFormView'));
+                var view = me.getResourceFormView();
 
-            var headerbar = view.down('#headerbar');
-            headerbar.setTitle(resource.get('name'));
+                var form = Ext.create('YourTour.view.resource.ResourceSceneView');
+                view.insert(1, form);
 
-            var form = Ext.create('YourTour.view.resource.ResourceSceneView', {record:resource});
-            view.insert(1, form);
-        });
+                var resource = store.first();
+                view.setData(resource);
+
+                var headerbar = view.down('#headerbar');
+                headerbar.setTitle(resource.get('name'));
+            }
+        };
+        me.getApplication().query(options);
     },
 
     onActiveItemChange: function (tabBar, newTab, oldTab) {
@@ -252,5 +261,15 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
         controller.cancelScheduleActivityItem(record, function () {
             Ext.ComponentManager.get('MainView').pop();
         });
+    },
+
+    onCommentTap:function(){
+        var me = this;
+
+        var view = me.getResourceFormView();
+        var resource = view.getData();
+
+        var controller = this.getApplication().getController('CommonMainCtrl');
+        controller.showCommentListView(resource.get('id'), resource.get('type'));
     }
 });

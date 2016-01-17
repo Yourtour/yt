@@ -1,7 +1,7 @@
 Ext.define('YourTour.view.resource.ResourceActivityItem', {
     extend: 'Ext.Panel',
     xtype: 'ResourceActivityItem',
-    requires:['Ext.Label', 'Ext.Img','Ext.Toolbar', 'YourTour.view.widget.MarkedLabel', 'YourTour.view.widget.XLabel', 'YourTour.view.widget.XField'],
+    requires:['Ext.Label', 'Ext.Img','Ext.Toolbar', 'YourTour.view.widget.XLabel', 'YourTour.view.widget.XField'],
     config: {
     	record:null,
     	layout:'vbox',

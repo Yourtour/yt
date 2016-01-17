@@ -55,6 +55,7 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
 		var editController = this.getApplication().getController('route.RouteSchedulePlanCtrl');
 		editController.updateRouteSchedule(this.store);
     },
+
     showPage:function(routeId){
     	this.routeId = routeId;
     	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteScheduleListView'));
@@ -86,50 +87,25 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
 
     showRouteActivityInfo:function(record){
     	var me = this;
-    	
-    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteScheduleFormView'));
-    	
-    	var store = Ext.create('YourTour.store.AjaxStore', {
-    	    model: 'YourTour.model.RouteActivityModel',
-    	});
-    	
-    	store.getProxy().setUrl(YourTour.util.Context.getContext('/routes/activity/' + record.get('id')));
-    	store.load(function(){
-    		var activity = store.first();
 
-    		var scheduleView = me.getScheduleFormView();
-			scheduleView.setData(activity);
-    		
-        	var headerbar = scheduleView.down('#headerbar');
-        	headerbar.setTitle(activity.get('title'));
-        	
-        	var memo = scheduleView.down('#memo');
-			memo.setText(activity.get('memo'));
-        	
-        	var time = scheduleView.down('#time');
-			time.setText(activity.get('startTime') + ' - ' + record.get('endTime'));
-        	
-        	var resource = activity.resource().getAt(0);
-        	me.resource = resource;
-        	
-        	var image = scheduleView.down('#image');
-			image.setHtml("<img src='" + YourTour.util.Context.getImageResource(resource.get('imageUrl')) + "' style='width:100%; max-height:150px'>");
-        	
-        	var address = scheduleView.down('#address');
-			address.setText(resource.get('address'));
-        	
-        	var phone = scheduleView.down('#phone');
-			phone.setText(resource.get('phone'));
-        	
-        	var resName = scheduleView.down('#resName');
-			resName.setText(resource.get('name'));
-        	
-        	var services = scheduleView.down('#services');
-			services.setStore(activity.servicesStore);
+		var options = {
+			model:'YourTour.model.RouteActivityModel',
+			url:'/routes/activity/' + record.get('id'),
+			success:function(store){
+				Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteScheduleFormView'));
+				var activity = store.first();
 
-			var items = scheduleView.down('#items');
-			items.setStore(activity.itemsStore);
-    	});
+				var scheduleView = me.getScheduleFormView();
+				scheduleView.setData(activity);
+
+				var headerbar = scheduleView.down('#headerbar');
+				headerbar.setTitle(activity.get('title'));
+
+				var services = scheduleView.down('#services');
+				services.setStore(activity.servicesStore);
+			}
+		};
+		me.getApplication().query(options);
     },
     
     onShowResourceView:function(){

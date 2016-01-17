@@ -43,6 +43,14 @@ Ext.define('YourTour.util.Context', {
     	}
 
     	return s + url;
-    }
+    },
+
+	fillViewFields:function(root, record){
+		var me = this;
+		var elements = Ext.ComponentQuery.query('xfield,xmultifield,ximage,xdataview,xbutton,xscore', root);
+		Ext.Array.forEach(elements,function(item){
+			item.updateRecord(record);
+		});
+	}
 });
 

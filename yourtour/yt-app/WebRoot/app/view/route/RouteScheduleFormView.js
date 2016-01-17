@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.route.RouteScheduleFormView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Panel','YourTour.view.widget.XLabel','YourTour.view.widget.XMultiLabel', 'YourTour.view.route.RouteActivityItemDataItem','YourTour.view.widget.XVerticalLine','YourTour.view.common.ExpertServiceListDataItem','YourTour.view.widget.XHeaderBar'],
+    requires:['Ext.Panel','YourTour.view.widget.XLabel','YourTour.view.widget.XImage', 'YourTour.view.widget.XDataView','YourTour.view.widget.XVerticalLine', 'YourTour.view.route.RouteActivityItemDataItem','YourTour.view.common.ExpertServiceListDataItem','YourTour.view.widget.XHeaderBar'],
     config: {
     	id:'RouteScheduleFormView',
     	layout:'vbox',
@@ -9,18 +9,24 @@ Ext.define('YourTour.view.route.RouteScheduleFormView', {
 				xtype: 'xheaderbar',
 				itemId:'headerbar'
 			},
-			
+
 			{
 				itemId : 'image',
-				xtype : 'image',
-				mode : 'tag'
+				xtype : 'ximage',
+				imageCls:'img-medium',
+				binding:'resource.imageUrl'
 			},
 
+			{
+				xtype:'panel',
+				cls:'spacer'
+			},
 			{
 				xtype: 'xfield',
 				itemId:'resName',
 				tappable:true,
 				icon:'icon-name',
+				binding:'resource.name'
 			},
 
 			{
@@ -28,6 +34,7 @@ Ext.define('YourTour.view.route.RouteScheduleFormView', {
 				itemId:'address',
 				tappable:true,
 				icon:'icon-position',
+				binding:'resource.address'
 			},
 
 			{
@@ -35,6 +42,7 @@ Ext.define('YourTour.view.route.RouteScheduleFormView', {
 				itemId:'phone',
 				tappable:true,
 				icon:'icon-phone',
+				binding:'resource.phone'
 			},
 
 			{
@@ -46,13 +54,19 @@ Ext.define('YourTour.view.route.RouteScheduleFormView', {
 				xtype: 'xfield',
 				itemId:'time',
 				icon:'icon-time',
+				dataChange:function(field, record){
+					field.setText(record.get('startTime') +'-' + record.get('startTime'));
+				}
 			},
 
 			{
 				xtype: 'xmultifield',
 				itemId:'memo',
-				size:140,
-				icon:'icon-memo'
+				icon:'icon-memo',
+				ellipsis:{
+					size:100,
+					expandable:true
+				}
 			},
 
 			{
@@ -67,11 +81,12 @@ Ext.define('YourTour.view.route.RouteScheduleFormView', {
 				padding:'0 0 0 10'
 			},
 			{
-				xtype: 'dataview',
+				xtype: 'xdataview',
 				itemId:'items',
 				scrollable:null,
 				useComponents: true,
 				defaultType: 'RouteActivityItemDataItem',
+				binding:'itemsStore'
 			},
 
 			{
@@ -86,11 +101,12 @@ Ext.define('YourTour.view.route.RouteScheduleFormView', {
 				padding:'0 0 0 10'
 			},
 			{
-				xtype: 'dataview',
+				xtype: 'xdataview',
 				itemId:'services',
 				scrollable:null,
 				useComponents: true,
 				defaultType: 'ExpertServiceListDataItem',
+				binding:'servicesStore'
 			},
 
 

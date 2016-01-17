@@ -1,7 +1,7 @@
 Ext.define('YourTour.view.user.RegisterProfileView', {
 	extend: 'Ext.form.Panel',
     xtype: 'RegisterProfileView',
-    requires:['Ext.Panel','Ext.field.Radio','Ext.field.File', 'YourTour.view.widget.XLabel', 'YourTour.view.widget.HSpacer', 'YourTour.view.widget.XTitleBar', 'Ext.field.Password','YourTour.view.widget.XTextField', 'YourTour.view.widget.XButton', 'YourTour.view.widget.ToolButton'],
+    requires:['Ext.Panel','Ext.field.Radio','Ext.field.File', 'YourTour.view.widget.XLabel', 'YourTour.view.widget.XSpacer', 'YourTour.view.widget.XTitleBar', 'Ext.field.Password','YourTour.view.widget.XTextField', 'YourTour.view.widget.XButton', 'YourTour.view.widget.ToolButton'],
     config: {
     	id:'RegisterProfileView',
     	layout:'vbox',
@@ -22,7 +22,7 @@ Ext.define('YourTour.view.user.RegisterProfileView', {
             },
             
             {
-            	xtype:'hspacer'
+            	xtype:'xspacer'
             },
             
             {
@@ -120,7 +120,7 @@ Ext.define('YourTour.view.user.RegisterProfileView', {
             },
             
             {
-            	xtype:'hspacer'
+            	xtype:'xspacer'
             },
             
             {
@@ -153,12 +153,13 @@ Ext.define('YourTour.view.user.RegisterProfileView', {
             },
             
             {
-            	xtype:'hspacer'
+            	xtype:'xspacer'
             },
             
             {
             	xtype:'xbutton',
             	id:'btnRegisterDone',
+				cls: 'x-button-primary',
             	text:'注册'
             },
             

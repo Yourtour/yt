@@ -3,6 +3,7 @@ Ext.define('YourTour.view.resource.ResourceFormView', {
     requires:['Ext.Panel','Ext.Img',  'YourTour.view.widget.XHeaderBar','YourTour.view.widget.XToolbar','YourTour.view.resource.ResourceSceneView'],
     config: {
     	id:'ResourceFormView',
+		itemId:'ResourceFormView',
     	layout:'vbox',
     	items:[
     		{    

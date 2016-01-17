@@ -1,7 +1,7 @@
 Ext.define('YourTour.view.route.RouteMainView', {
     extend: 'YourTour.view.widget.XPage',
     xtype: 'RouteMainView',
-    requires: ['Ext.Carousel', 'YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.ToolButton', 'Ext.field.Hidden', 'Ext.Img'],
+    requires: ['Ext.Carousel', 'YourTour.view.widget.XHeaderBar','YourTour.view.widget.MarkedLabel', 'YourTour.view.widget.ToolButton', 'Ext.field.Hidden', 'Ext.Img'],
     config: {
         id: 'RouteMainView',
         layout: 'card',
@@ -95,15 +95,15 @@ Ext.define('YourTour.view.route.RouteMainView', {
                             {
                                 xtype: 'xmultifield',
                                 itemId: 'lineName',
-                                icon:'icon-name'
+                                icon:'icon-name',
                             },
 
                             {
                                 xtype: 'xfield',
                                 itemId: 'time',
                                 icon:'icon-time',
-                                updateRecord:function(record){
-                                    this.setText(record.get('startDate') +'-' + record.get('endDate') + '  合计：' + record.get('duration')+'天');
+                                dataChange:function(field, record){
+                                    field.setText(record.get('startDate') +'-' + record.get('endDate') + '  合计：' + record.get('duration')+'天');
                                 }
                             },
 
@@ -112,7 +112,10 @@ Ext.define('YourTour.view.route.RouteMainView', {
                                 itemId: 'impression',
                                 icon:'icon-impression',
                                 ifNull:'赶快记录下你的旅行印象吧.........',
-                                size:80
+                                ellipsis:{
+                                    size:80,
+                                    expandable:true
+                                }
                             }
                         ]
                     }

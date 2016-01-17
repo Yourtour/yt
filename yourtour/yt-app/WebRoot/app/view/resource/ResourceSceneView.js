@@ -1,17 +1,17 @@
 Ext.define('YourTour.view.resource.ResourceSceneView', {
 	extend: 'YourTour.view.resource.ResourceView',
-    requires:['Ext.Panel','Ext.Img','YourTour.view.widget.XHeaderBar','YourTour.view.widget.XToolbar', 'YourTour.view.widget.XLabel','YourTour.view.widget.XField'],
+    requires:['Ext.Panel','YourTour.view.widget.XImage','YourTour.view.widget.XHeaderBar','YourTour.view.widget.XSpacer', 'YourTour.view.widget.XLabel','YourTour.view.widget.XField'],
     config: {
     	items:[
 			{
 				xtype:'panel',
 				layout:'vbox',
-				height:150,
 				items:[
 					{
 						itemId : 'image',
-						xtype : 'image',
-						mode : 'tag'
+						xtype : 'ximage',
+						imageCls:'img-medium',
+						binding:'imageUrl'
 					},
 
 					{
@@ -43,13 +43,6 @@ Ext.define('YourTour.view.resource.ResourceSceneView', {
 	    		layout:'vbox',
 		    	items:[
 					{
-						xtype: 'xmultifield',
-						itemId:'intro',
-						icon:'icon-memo',
-						size:140
-					},
-
-					{
 						xtype: 'xfield',
 						itemId:'address',
 						tappable:true,
@@ -67,14 +60,34 @@ Ext.define('YourTour.view.resource.ResourceSceneView', {
 						xtype: 'xmultifield',
 						itemId:'openTime',
 						icon:'icon-open',
+					},
+
+					{
+						xtype: 'xfield',
+						itemId:'comment',
+						tappable:true,
+						icon:'icon-comment',
+						dataChange: function (field, record){
+							field.setText('<span style="color:blue">4.5分</span>  <span style="color:blue">866</span>评价');
+						}
+					},
+
+					{
+						xtype:'xspacer'
+					},
+
+					{
+						xtype: 'xmultifield',
+						itemId:'intro',
+						icon:'icon-memo',
+						ellipsis:{
+							size:100,
+							expandable:true
+						}
 					}
 	    		]
 	    	},
         ]
-    },
-    
-    updateRecord:function(record){
-		this.fillRecord(this, record);
     }
 });
 

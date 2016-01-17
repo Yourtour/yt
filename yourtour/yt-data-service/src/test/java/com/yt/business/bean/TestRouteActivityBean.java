@@ -169,24 +169,18 @@ public class TestRouteActivityBean {
 			assertEquals(repo.count(RestaurantResourceBean.class), 0);
 
 			SceneResourceBean s1 = new SceneResourceBean();
-			s1.setCode("scene 1");
 			repo.save(s1, "john");
 			SceneResourceBean s2 = new SceneResourceBean();
-			s2.setCode("scene 2");
 			repo.save(s2, "john");
 			assertEquals(repo.count(SceneResourceBean.class), 2);
 			HotelResourceBean h1 = new HotelResourceBean();
-			h1.setCode("hotel 1");
 			repo.save(h1, "john");
 			HotelResourceBean h2 = new HotelResourceBean();
-			h2.setCode("hotel 2");
 			repo.save(h2, "john");
 			assertEquals(repo.count(HotelResourceBean.class), 2);
 			RestaurantResourceBean r1 = new RestaurantResourceBean();
-			r1.setCode("restaurant 1");
 			repo.save(r1, "john");
 			RestaurantResourceBean r2 = new RestaurantResourceBean();
-			r2.setCode("restaurant 2");
 			repo.save(r2, "john");
 			assertEquals(repo.count(RestaurantResourceBean.class), 2);
 

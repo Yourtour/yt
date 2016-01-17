@@ -91,7 +91,7 @@ Ext.define('YourTour.view.route.RouteRecommendIntroductionItem', {
             },
 
             {
-                xtype: 'hspacer'
+                xtype: 'xspacer'
             },
 
             {
@@ -110,7 +110,7 @@ Ext.define('YourTour.view.route.RouteRecommendIntroductionItem', {
             },
 
             {
-                xtype: 'hspacer'
+                xtype: 'xspacer'
             },
 
             {
