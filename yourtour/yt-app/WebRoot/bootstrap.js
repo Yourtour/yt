@@ -720,6 +720,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.MainView": [],
   "YourTour.view.SearchMain": [],
   "YourTour.view.common.CarouselItem": [],
+  "YourTour.view.common.CommentFormView": [],
   "YourTour.view.common.CommentListDataItem": [],
   "YourTour.view.common.CommentListView": [],
   "YourTour.view.common.ContentReadView": [],
@@ -822,13 +823,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.user.UserMainView": [],
   "YourTour.view.user.UserProfileView": [],
   "YourTour.view.widget.MarkedLabel": [],
-  "YourTour.view.widget.NoScrollDataView": [],
-  "YourTour.view.widget.SubTitleBar": [],
-  "YourTour.view.widget.ToggleField": [],
   "YourTour.view.widget.ToolButton": [],
   "YourTour.view.widget.XBack": [],
-  "YourTour.view.widget.XBlock": [],
-  "YourTour.view.widget.XBoldLabel": [],
   "YourTour.view.widget.XButton": [],
   "YourTour.view.widget.XCarousel": [],
   "YourTour.view.widget.XCheckbox": [],
@@ -842,20 +838,21 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.XIcon": [],
   "YourTour.view.widget.XImage": [],
   "YourTour.view.widget.XImagePicker": [],
-  "YourTour.view.widget.XKVField": [],
   "YourTour.view.widget.XLabel": [],
-  "YourTour.view.widget.XLabelField": [],
   "YourTour.view.widget.XMultiField": [],
   "YourTour.view.widget.XMultiLabel": [],
-  "YourTour.view.widget.XMultiLabelField": [],
   "YourTour.view.widget.XPage": [],
+  "YourTour.view.widget.XPageBody": [],
   "YourTour.view.widget.XPanel": [],
   "YourTour.view.widget.XPicker": [],
   "YourTour.view.widget.XPickerField": [],
   "YourTour.view.widget.XPlainButton": [],
+  "YourTour.view.widget.XProcessing": [],
+  "YourTour.view.widget.XScore": [],
   "YourTour.view.widget.XSelecion": [],
   "YourTour.view.widget.XShare": [],
   "YourTour.view.widget.XSpacer": [],
+  "YourTour.view.widget.XTappable": [],
   "YourTour.view.widget.XTextArea": [],
   "YourTour.view.widget.XTextField": [],
   "YourTour.view.widget.XTimeField": [
@@ -1677,6 +1674,7 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.searchmain"
   ],
   "YourTour.view.common.CarouselItem": [],
+  "YourTour.view.common.CommentFormView": [],
   "YourTour.view.common.CommentListDataItem": [
     "widget.CommentListDataItem"
   ],
@@ -1927,26 +1925,11 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.widget.MarkedLabel": [
     "widget.markedlabel"
   ],
-  "YourTour.view.widget.NoScrollDataView": [
-    "widget.noscrollabledataview"
-  ],
-  "YourTour.view.widget.SubTitleBar": [
-    "widget.subtitlebar"
-  ],
-  "YourTour.view.widget.ToggleField": [
-    "widget.yttogglefield"
-  ],
   "YourTour.view.widget.ToolButton": [
     "widget.toolbutton"
   ],
   "YourTour.view.widget.XBack": [
     "widget.xback"
-  ],
-  "YourTour.view.widget.XBlock": [
-    "widget.xblock"
-  ],
-  "YourTour.view.widget.XBoldLabel": [
-    "widget.xlabel"
   ],
   "YourTour.view.widget.XButton": [
     "widget.xbutton"
@@ -1983,14 +1966,8 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.widget.XImagePicker": [
     "widget.ximagepicker"
   ],
-  "YourTour.view.widget.XKVField": [
-    "widget.xkvfield"
-  ],
   "YourTour.view.widget.XLabel": [
     "widget.xlabel"
-  ],
-  "YourTour.view.widget.XLabelField": [
-    "widget.xlabelfield"
   ],
   "YourTour.view.widget.XMultiField": [
     "widget.xmultifield"
@@ -1998,11 +1975,11 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.widget.XMultiLabel": [
     "widget.xmultilabel"
   ],
-  "YourTour.view.widget.XMultiLabelField": [
-    "widget.xmultilabelfield"
-  ],
   "YourTour.view.widget.XPage": [
     "widget.xpage"
+  ],
+  "YourTour.view.widget.XPageBody": [
+    "widget.xpagebody"
   ],
   "YourTour.view.widget.XPanel": [
     "widget.xpanel"
@@ -2016,6 +1993,12 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.widget.XPlainButton": [
     "widget.xplainbutton"
   ],
+  "YourTour.view.widget.XProcessing": [
+    "widget.xprocessing"
+  ],
+  "YourTour.view.widget.XScore": [
+    "widget.xscore"
+  ],
   "YourTour.view.widget.XSelecion": [],
   "YourTour.view.widget.XShare": [
     "widget.xshare"
@@ -2023,6 +2006,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.widget.XSpacer": [
     "widget.xspacer"
   ],
+  "YourTour.view.widget.XTappable": [],
   "YourTour.view.widget.XTextArea": [
     "widget.xtextarea"
   ],

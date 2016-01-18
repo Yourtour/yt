@@ -41,8 +41,7 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 			},
 
 			{
-				xtype:'panel',
-				cls:'spacer'
+				xtype:'xspacer'
 			},
 
 			{
@@ -112,8 +111,7 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 			},
 
 			{
-				xtype:'panel',
-				cls:'spacer'
+				xtype:'xspacer'
 			},
 
 			{
@@ -139,8 +137,7 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 			},
 
 			{
-				xtype:'panel',
-				cls:'spacer'
+				xtype:'xspacer'
 			},
 
 			{

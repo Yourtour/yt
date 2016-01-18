@@ -28,6 +28,19 @@ public class CommentDataGenerator extends DataGenerator{
 
 			for(int index = 0; index < 10; index++){
 				CommentBean comment  = new CommentBean();
+				switch(index % 3){
+					case 0:
+						comment.setScore(2.5d);
+						break;
+					case 1:
+						comment.setScore(3.5d);
+						break;
+					case 2:
+						comment.setScore(4.5d);
+						comment.setImageUrls("resources/images/comment.jpg;resources/images/comment.jpg");
+						break;
+				}
+
 				comment.setUser(user);
 				repository.save(comment, "tester");
 

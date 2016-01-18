@@ -9,6 +9,11 @@ Ext.define('YourTour.model.CommentModel', {
 				{name:'tags', type:'string'},
 	            {name:'imageUrls', type:'string'},
 				{name:'createdDate', type:'string'},
+				{name:'recommendedIndex', type:'string'},
+				{name:'image', type:'string'},
+				{name:'good', type:'string'},
+				{name:'medium', type:'string'},
+				{name:'bad', type:'string'}
 	    ],
 
 		associations: [

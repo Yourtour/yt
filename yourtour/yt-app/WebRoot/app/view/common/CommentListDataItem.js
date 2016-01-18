@@ -35,8 +35,7 @@ Ext.define('YourTour.view.common.CommentListDataItem', {
 					{
 						xtype:'xscore',
 						itemId:'score',
-						align:'left',
-						padding:'0 10 0 10'
+						align:'left'
 					}
 				]
 			},

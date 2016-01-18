@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.resource.ResourceSceneView', {
 	extend: 'YourTour.view.resource.ResourceView',
-    requires:['Ext.Panel','YourTour.view.widget.XImage','YourTour.view.widget.XHeaderBar','YourTour.view.widget.XSpacer', 'YourTour.view.widget.XLabel','YourTour.view.widget.XField'],
+    requires:['Ext.Panel','YourTour.view.widget.XImage','YourTour.view.widget.XDataView','YourTour.view.route.RouteActivityItemDataItem','YourTour.view.widget.XHeaderBar','YourTour.view.widget.XSpacer', 'YourTour.view.widget.XLabel','YourTour.view.widget.XField'],
     config: {
     	items:[
 			{
@@ -84,7 +84,33 @@ Ext.define('YourTour.view.resource.ResourceSceneView', {
 							size:100,
 							expandable:true
 						}
-					}
+					},
+
+					{
+						xtype:'xspacer'
+					},
+
+					{
+						xtype:'panel',
+						layout:'vbox',
+						items:[
+							{
+								xtype:'xlabel',
+								html: '景点',
+								tappable:true,
+								cls:'row underline font-medium font-grey',
+								padding:'0 10 0 10'
+							},
+							{
+								xtype: 'xdataview',
+								itemId:'itemList',
+								scrollable:null,
+								binding:'activityItemsStore',
+								useComponents: true,
+								defaultType: 'RouteActivityItemDataItem',
+							}
+						]
+					},
 	    		]
 	    	},
         ]

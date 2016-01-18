@@ -1,8 +1,9 @@
 Ext.define('YourTour.view.common.CommentListView', {
 	extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Label','Ext.Panel','YourTour.view.common.CommentListDataItem'],
+    requires:['Ext.Label','Ext.Panel','YourTour.view.common.CommentListDataItem','YourTour.view.widget.XPageBody','YourTour.view.widget.XProcessing'],
     config: {
     	id:'CommentListView',
+		layout:'card',
     	items:[
 			{    
 				xtype: 'xheaderbar',
@@ -11,72 +12,142 @@ Ext.define('YourTour.view.common.CommentListView', {
 			},
 
 			{
-				xtype:'panel',
-				layout:'hbox',
-				items:[
+				xtype:'xprocessing'
+			},
+
+			{
+					xtype:'xpagebody',
+					layout:'vbox',
+					items:[
 					{
-						xtype:'xscore',
-						itemId:'score',
-						align:'right',
-						padding:'0 10 0 10'
+						xtype:'panel',
+						layout:'hbox',
+						height:70,
+						padding:'10 0 10 10',
+						cls:'underline',
+						items:[
+							{
+								xtype:'xscore',
+								itemId:'commentScore',
+								align:'right',
+								width:50
+							},
+
+							{
+								xtype:'panel',
+								layout:'vbox',
+								flex:1,
+								margin:'0 0 0 10',
+								items:[
+									{
+										xtype:'panel',
+										layout:'hbox',
+										defaults:{
+											flex:1,
+											hidden:true,
+											padding:'0',
+											underline:false
+										},
+										items:[
+											{
+												xtype:'xfield',
+												itemId:'healthScore',
+												label:'卫生'
+											},
+
+											{
+												xtype:'xfield',
+												itemId:'environmentScore',
+												label:'环境'
+											},
+
+											{
+												xtype:'xfield',
+												itemId:'serviceScore',
+												label:'服务'
+											},
+
+											{
+												xtype:'xfield',
+												itemId:'facilityScore',
+												label:'设施',
+											}
+										]
+									},
+									{
+										xtype:'xfield',
+										itemId:'recommendNum',
+										padding:'0',
+										underline:false,
+										label:'推荐'
+									}
+								]
+							}
+						]
+					},
+
+					{
+						xtype:'xspacer'
 					},
 
 					{
 						xtype:'panel',
-						layout:'vbox',
+						itemId:'filterPanel',
+						layout:'hbox',
+						padding:'0 10 0 10',
+						cls:'underline',
+						defaults:{
+							cls:'row',
+							underline:false,
+							tappable:{
+								indicator:'none'
+							},
+							padding:'0',
+							align:'center'
+						},
 						items:[
 							{
-								xtype:'panel',
-								layout:'hbox',
-								defaults:{
-									flex:1,
-									hidden:true,
-									padding:'0',
-									underline:false
-								},
-								items:[
-									{
-										xtype:'xfield',
-										itemId:'healthScore',
-										label:'卫生'
-									},
-
-									{
-										xtype:'xfield',
-										itemId:'environmentScore',
-										label:'卫生'
-									},
-
-									{
-										xtype:'xfield',
-										itemId:'serviceScore',
-										label:'服务'
-									},
-
-									{
-										xtype:'xfield',
-										itemId:'facilityScore',
-										label:'设施',
-									}
-								]
+								xtype:'xfield',
+								itemId:'commentNum'
 							},
+
 							{
 								xtype:'xfield',
-								itemId:'recommendNum',
-								padding:'0',
-								underline:false
+								itemId:'goodNum',
+								margin:'0 0 0 40',
+							},
+
+							{
+								xtype:'xfield',
+								itemId:'mediumNum',
+								margin:'0 0 0 40',
+							},
+
+							{
+								xtype:'xfield',
+								itemId:'badNum',
+								margin:'0 0 0 40',
+							},
+
+							{
+								xtype:'xfield',
+								itemId:'imageNum',
+								margin:'0 0 0 40',
+							},{
+								xtype:'spacer',
+								flex:1
 							}
 						]
+					},
+					{
+						itemId:'commentList',
+						xtype:'xdataview',
+						updatable:false,
+						scrollable:null,
+						useComponents: true,
+						defaultType: 'CommentListDataItem'
 					}
 				]
-			},
-
-			{
-				itemId:'commentList',
-				xtype:'xdataview',
-				scrollable:null,
-				useComponents: true,
-				defaultType: 'CommentListDataItem'
 			}
     	]
     }

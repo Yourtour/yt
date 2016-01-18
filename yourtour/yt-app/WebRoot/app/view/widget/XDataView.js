@@ -9,6 +9,10 @@ Ext.define('YourTour.view.widget.XDataView', {
 		this.binding = binding;
 	},
 
+	isUpdatable:function(){
+		return this.binding != '';
+	},
+
 	updateRecord:function(record){
 		if(this.binding == ''){
 			throw new Error("Binding config must be provided for xdataview");

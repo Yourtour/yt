@@ -1,16 +1,16 @@
 Ext.define('YourTour.view.widget.XField', {
-    extend: 'Ext.Container',
+    extend: 'YourTour.view.widget.XTappable',
     xtype: 'xfield',
     config: {
         baseCls:'x-xfield',
+        layout: 'hbox',
+        align:'left',
         label: null,
         icon: null,
         value: null,
-        tappable: null,
         fieldCls: null,
         labelCls: null,
         underline: true,
-        layout: 'hbox',
         padding: '10 20 10 10',
         ifNull:'',
         binding:null,
@@ -63,6 +63,13 @@ Ext.define('YourTour.view.widget.XField', {
         if(underline == undefined || underline){
             this.addCls('underline');
         }
+
+        var value = this.down('#value');
+        value.setStyle('text-align:' + this.align);
+    },
+
+    updateAlign:function(align){
+        this.align = align;
     },
 
     updateDataChange:function(dataChange){
@@ -110,26 +117,11 @@ Ext.define('YourTour.view.widget.XField', {
         label.addCls(cls);
     },
 
-    updateTappable: function (tappable) {
-        var me = this;
-        me.addCls('nav-arrow');
-        me.element.on({
-            scope: me,
-            tap: function (e, t) {
-                me.fireEvent('tap', me, e, t);
-            }
-        });
-    },
-
     updateLabel: function (label) {
-        this.setLabel(label);
-    },
-
-    setLabel: function (text) {
-        var label = this.down('#label');
-        label.setMargin('0 10 0 0');
-        label.show();
-        label.setHtml(text);
+        var labelEl = this.down('#label');
+        labelEl.setMargin('0 10 0 0');
+        labelEl.show();
+        labelEl.setHtml(label);
     },
 
     setValue: function (value) {

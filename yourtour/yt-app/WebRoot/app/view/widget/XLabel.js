@@ -2,8 +2,9 @@ Ext.define('YourTour.view.widget.XLabel', {
     extend: 'Ext.Label',
     xtype: 'xlabel',
     config:{
-    	tappable : false,
-    	cls:'label',
+    	cls:'x-xlabel',
+		tappable : false,
+
 		style:'background-color:white'
     },
 
@@ -21,7 +22,7 @@ Ext.define('YourTour.view.widget.XLabel', {
     	}
     },
 
-    setTappable:function(tappable){
+    updateTappable:function(tappable){
     	this.tappable = tappable;
     }
 });

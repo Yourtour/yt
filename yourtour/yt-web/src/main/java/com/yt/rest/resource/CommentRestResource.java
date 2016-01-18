@@ -47,11 +47,11 @@ public class CommentRestResource extends BaseRestResource{
 	 * @return
 	 */
 	@GET
-	public ResponseDataVO<List<CommentVO>> getComments(@QueryParam("id") String id, @QueryParam("type") String type, @QueryParam("nextCursor") String nextCursor, @QueryParam("limit") String step) {
+	public ResponseDataVO<List<CommentVO>> getComments(@QueryParam("id") String id, @QueryParam("nextCursor") String nextCursor, @QueryParam("filter") String filter, @QueryParam("limit") String step) {
 		try{
 			List<CommentVO> commentvos = new ArrayList<>();
 			
-			List<CommentBean> commentBeans = commentRepository.getComments(Neo4jUtils.getGraphIDFromString(id), Long.valueOf(nextCursor), Integer.valueOf(step));
+			List<CommentBean> commentBeans = commentRepository.getComments(Neo4jUtils.getGraphIDFromString(id), filter, Long.valueOf(nextCursor), Integer.valueOf(step));
 			if(commentBeans != null){
 				for(CommentBean commentBean : commentBeans){
 					commentvos.add(CommentVO.transform(commentBean));

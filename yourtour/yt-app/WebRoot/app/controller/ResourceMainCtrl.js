@@ -91,20 +91,17 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
      */
     showSceneResource: function (resourceId) {
         var me = this;
+        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.resource.ResourceFormView'));
+        var view = me.getResourceFormView();
 
         var options = {
             model:'YourTour.model.ResourceModel',
             url:'/scenes/' + resourceId,
             success:function(store){
-                Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.resource.ResourceFormView'));
-                var view = me.getResourceFormView();
-
                 var form = Ext.create('YourTour.view.resource.ResourceSceneView');
                 view.insert(1, form);
-
                 var resource = store.first();
                 view.setData(resource);
-
                 var headerbar = view.down('#headerbar');
                 headerbar.setTitle(resource.get('name'));
             }
@@ -270,6 +267,42 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
         var resource = view.getData();
 
         var controller = this.getApplication().getController('CommonMainCtrl');
-        controller.showCommentListView(resource.get('id'), resource.get('type'));
+        controller.showCommentListView(resource.get('id'), resource.get('type'), function(commentView){
+            if(resource.get('type') == 'SCENE'){
+                var score = commentView.down('#commentScore');
+                score.updateRecord(resource);
+
+                var healthScore = commentView.down('#healthScore');
+                healthScore.updateRecord(resource);
+                healthScore.show();
+
+                var environmentScore = commentView.down('#environmentScore');
+                environmentScore.updateRecord(resource);
+                environmentScore.show();
+
+                var serviceScore = commentView.down('#serviceScore');
+                serviceScore.updateRecord(resource);
+                serviceScore.show();
+
+                var facilityScore = commentView.down('#facilityScore');
+                facilityScore.updateRecord(resource);
+                facilityScore.show();
+
+                var commentNum = commentView.down('#commentNum');
+                commentNum.setText('全部<br/> ' + resource.get('commentNum'));
+
+                var goodNum = commentView.down('#goodNum');
+                goodNum.setText('好评<br/> ' + resource.get('goodNum'));
+
+                var mediumNum = commentView.down('#mediumNum');
+                mediumNum.setText('中评<br/> ' + resource.get('mediumNum'));
+
+                var badNum = commentView.down('#badNum');
+                badNum.setText('差评<br/> ' + resource.get('badNum'));
+
+                var imageNum = commentView.down('#imageNum');
+                imageNum.setText('晒图<br/> ' + resource.get('imageNum'));
+            }
+        });
     }
 });

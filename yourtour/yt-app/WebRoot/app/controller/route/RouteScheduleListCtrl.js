@@ -57,25 +57,28 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
     },
 
     showPage:function(routeId){
+		var me = this;
+
     	this.routeId = routeId;
     	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteScheduleListView'));
-    	
-    	var view = this.getRouteScheduleListView();
-    	var store = this.store;
-    	store.setData('');
-    	
-    	var showView=function(){
-    		var record = store.first();
-    		
-    		var imageEl = view.down('#imageUrl');
-    		imageEl.setHtml("<img src='" + YourTour.util.Context.getImageResource(record.get('imageUrl')) + "' style='width:100%; max-height:150px'>");
-    		
-	    	var scheduleList = view.down('#RouteScheduleList');
-	    	scheduleList.setStore(record.schedulesStore);
-    	};
- 	   	
-    	store.getProxy().setUrl(YourTour.util.Context.getContext('/routes/' + routeId +'/query'));
- 	   	store.load(showView,this);
+    	var view = me.getRouteScheduleListView();
+
+		var options = {
+			model:'YourTour.model.RouteModel',
+			url:'/routes/' + routeId +'/query',
+			success:function(store){
+				me.store = store;
+
+				var record = store.first();
+
+				var imageEl = view.down('#imageUrl');
+				imageEl.setHtml("<img src='" + YourTour.util.Context.getImageResource(record.get('imageUrl')) + "' style='width:100%; max-height:150px'>");
+
+				var scheduleList = view.down('#RouteScheduleList');
+				scheduleList.setStore(record.schedulesStore);
+			}
+		};
+		me.getApplication().query(options);
     },
     
     onItemTap:function(dataview, index, item, record,e){
@@ -87,15 +90,14 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
 
     showRouteActivityInfo:function(record){
     	var me = this;
+		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteScheduleFormView'));
+		var scheduleView = me.getScheduleFormView();
 
 		var options = {
 			model:'YourTour.model.RouteActivityModel',
 			url:'/routes/activity/' + record.get('id'),
 			success:function(store){
-				Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteScheduleFormView'));
 				var activity = store.first();
-
-				var scheduleView = me.getScheduleFormView();
 				scheduleView.setData(activity);
 
 				var headerbar = scheduleView.down('#headerbar');

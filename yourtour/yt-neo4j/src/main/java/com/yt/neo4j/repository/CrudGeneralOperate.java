@@ -8,20 +8,17 @@
 package com.yt.neo4j.repository;
 
 import java.lang.reflect.Field;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.Vector;
+import java.util.*;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.neo4j.graphdb.Direction;
 import org.neo4j.graphdb.Node;
 import org.neo4j.graphdb.Relationship;
+import org.springframework.beans.BeanWrapper;
+import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.neo4j.annotation.QueryResult;
 import org.springframework.data.neo4j.conversion.Result;
 import org.springframework.data.neo4j.support.Neo4jTemplate;
 
@@ -116,6 +113,31 @@ public class CrudGeneralOperate implements CrudOperate {
 			bean = loadRelations(bean);
 		}
 		return bean;
+	}
+
+	protected <T> List<T> query(String queryStr, Map<String, Object> params, Class<?> clazz) throws Exception {
+		List<T> list = new ArrayList<>();
+
+		Result<Map<String, Object>> result = template.query(queryStr, params);
+		Object tar = null;
+		for (Map<String, Object> row : result) {
+			if(clazz.isAnnotationPresent(QueryResult.class)){
+				tar = clazz.newInstance();
+				BeanWrapper bw = new BeanWrapperImpl(tar);
+				Field[] fields = clazz.getDeclaredFields();
+				for(Field field : fields){
+					if(row.containsKey(field.getName())){
+						bw.setPropertyValue(field.getName(), template.convert(row.get(field.getName()), field.getType()));
+					}
+				}
+
+			}else {
+				tar = template.convert(row, clazz.getClass());
+			}
+			list.add((T) tar);
+		}
+
+		return list;
 	}
 
 	// 加载关系数据

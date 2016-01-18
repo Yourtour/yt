@@ -9,6 +9,25 @@ Ext.define('YourTour.controller.CommonMainCtrl', {
         },
        
         control:{
+            '#CommentListView #commentNum':{
+                tap:'onCommentFilterTap'
+            },
+
+            '#CommentListView #goodNum':{
+                tap:'onCommentFilterTap'
+            },
+
+            '#CommentListView #mediumNum':{
+                tap:'onCommentFilterTap'
+            },
+
+            '#CommentListView #badNum':{
+                tap:'onCommentFilterTap'
+            },
+
+            '#CommentListView #imageNum':{
+                tap:'onCommentFilterTap'
+            }
         }
     },
     
@@ -24,20 +43,53 @@ Ext.define('YourTour.controller.CommonMainCtrl', {
         contentEl.setHtml(content);
     },
 
-    showCommentListView:function(id, type){
+    showCommentListView:function(id, type, handler){
         var me = this;
+        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.common.CommentListView'));
 
-        var params = [{name:'id', value:id},{name:'type', value:type},{name:'nextCursor', value:1000}];
+        var params = [{name:'id', value:id},{name:'type', value:type},{name:'nextCursor', value:0},{name:'filter',value:'commentNum'}];
+        me.getCommentStore(params, handler);
+    },
 
+    onCommentFilterTap:function(field){
+        var itemId = field.getItemId();
+
+        var view = this.getCommentListView();
+        var filterPanel = view.down('#filterPanel');
+        var items = filterPanel.getItems();
+        items.each(function(item){
+            if(item instanceof YourTour.view.widget.XField) {
+                var value = item.down('#value');
+                if (item.getItemId() == itemId) {
+                    value.addCls('active');
+                } else {
+                    value.removeCls('active');
+                }
+            }
+        })
+
+        var params = view.getData();
+        params[2].value = 0;
+        params[3].value=itemId;
+        this.getCommentStore(params);
+    },
+
+    getCommentStore:function(params, handler){
+        var me = this;
         var options = {
             model:'YourTour.model.CommentModel',
             url:'/comments',
             params:params,
             success:function(store){
-                Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.common.CommentListView'));
                 var view = me.getCommentListView();
 
+                if(handler) {
+                    handler(view);
+                }
+
                 me.getCommentList().setStore(store);
+
+                view.bindData(params);
             }
         };
         me.getApplication().query(options);

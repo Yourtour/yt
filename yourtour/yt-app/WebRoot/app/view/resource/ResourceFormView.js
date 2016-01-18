@@ -18,31 +18,25 @@ Ext.define('YourTour.view.resource.ResourceFormView', {
 				cls:'toolbar',
 				items: [
 					{
+						xtype:'xspacer',
+						flex:1
+					},
+					{
 						xtype: 'button',
 						text: '加入日程',
 						ui: 'normal',
 						iconCls:'action',
-						flex:1,
 						itemId: 'btnResourceAddTap'
 					},{
 						xtype: 'button',
 						text: '收藏',
 						ui: 'normal',
-						flex:1,
 						iconCls:'favorites',
 						itemId: 'btnFavorite'
 					},{
 						xtype: 'button',
-						text: '评论',
-						ui: 'normal',
-						flex:1,
-						iconCls:'compose',
-						itemId: 'btnComment'
-					},{
-						xtype: 'button',
 						text: '分享',
 						ui: 'normal',
-						flex:1,
 						iconCls:'action',
 						itemId: 'btnShare'
 					}

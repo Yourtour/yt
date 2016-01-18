@@ -8,13 +8,14 @@ import com.yt.business.neo4j.repository.AlongTuple;
 import com.yt.business.neo4j.repository.CommentBeanRepository;
 import com.yt.business.neo4j.repository.CommentTuple;
 import com.yt.core.utils.CollectionUtils;
+import com.yt.neo4j.bean.Neo4jBaseBean;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.neo4j.conversion.Result;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Component
 public class CommentRepositoryImpl extends CrudAllInOneOperateImpl implements CommentRepository {
@@ -24,10 +25,26 @@ public class CommentRepositoryImpl extends CrudAllInOneOperateImpl implements Co
 	private CommentBeanRepository repository;
 
 	@Override
-	public List<CommentBean> getComments(Long subjectId, Long start, int limit) throws Exception {
+	public List<CommentBean> getComments(Long subjectId, String filter, Long start, int limit) throws Exception {
 		List<CommentBean> comments = new ArrayList<>();
 
-		List<CommentTuple> tuples = repository.getComments(subjectId, start, limit);
+		String queryStr = "START n=node(%d) MATCH n-[:HAS]->(comment:CommentBean)-[:BELONG]->(user:UserProfileBean) %s  RETURN comment, user";
+		Map<String, Object> params = new HashMap<>();
+		params.put("id", subjectId);
+
+		String where = " ";
+		if(filter.equals("imageNum")){
+			where = " where comment.imageUrls is not null ";
+		}else if(filter.equals("goodNum")){
+			where = " where comment.score >= 4.0 ";
+		}else if(filter.equals("mediumNum")){
+			where =  " where comment.score >= 3.0 and comment.score < 4.0 ";
+		}else if(filter.equals("badNum")){
+			where = " where comment.score < 3.0 ";
+		}
+		params.put("where", where);
+
+		List<CommentTuple> tuples = this.query(String.format(queryStr, subjectId, where), null, CommentTuple.class);
 		if(tuples != null){
 			CommentBean comment = null;
 			for(CommentTuple tuple : tuples){

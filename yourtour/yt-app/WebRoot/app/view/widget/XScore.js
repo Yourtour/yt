@@ -4,8 +4,7 @@ Ext.define('YourTour.view.widget.XScore', {
     config: {
         binding:null,
         align:null,
-    	cls:'x-xscore',
-        width:'50'
+    	cls:'x-xscore'
     },
 
     updateAlign:function(align){

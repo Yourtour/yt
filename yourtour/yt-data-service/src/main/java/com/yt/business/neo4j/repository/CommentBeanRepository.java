@@ -15,6 +15,6 @@ public interface CommentBeanRepository extends GraphRepository<CommentBean> {
 	 * @param size
 	 * @return
 	 */
-	@Query("START n=node({0}) MATCH n-[:HAS]->(comment:CommentBean)-[:BELONG]->(user:UserProfileBean) RETURN comment, user")
-	public List<CommentTuple> getComments(Long subjectId, Long startIndex, int size);
+	@Query("START n=node({0}) MATCH n-[:HAS]->(comment:CommentBean)-[:BELONG]->(user:UserProfileBean) {1}  RETURN comment, user")
+	public List<CommentTuple> getComments(Long subjectId, String where, Long startIndex, int size);
 }

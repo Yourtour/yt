@@ -15,5 +15,5 @@ public interface CommentRepository extends CrudAllInOneOperate {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<CommentBean> getComments(Long subjectId, Long start, int limit) throws Exception;
+	public List<CommentBean> getComments(Long subjectId, String filter, Long start, int limit) throws Exception;
 }

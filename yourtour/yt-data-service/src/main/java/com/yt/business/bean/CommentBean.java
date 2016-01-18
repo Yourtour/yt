@@ -17,12 +17,18 @@ import java.util.List;
 public class CommentBean extends BaseBeanImpl {
 	private static final long serialVersionUID = -2639574489334772005L;
 
-	private float 	score = 0f;
+	private double 	score = 0d;
+	private double   healthScore = 0d;
+	private double   trafficScore = 0d;
+	private	double	facilityScore = 0d;
+	private double	environmentScore = 0d;
 	private String 	memo;
 	private String 	imageUrls;
 	private int		thumbup = 0;
 	private String	replied = "";
 	private String	tags;
+
+	private int recommendedIndex = 0; //-1 不推荐 0：待改善 1：推荐
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_BELONG, type = UserProfileBean.class, direction = Direction.OUTGOING)
 	private transient UserProfileBean user;
@@ -30,12 +36,44 @@ public class CommentBean extends BaseBeanImpl {
 	public CommentBean() {
 	}
 
-	public float getScore() {
+	public double getScore() {
 		return score;
 	}
 
-	public void setScore(float score) {
+	public void setScore(double score) {
 		this.score = score;
+	}
+
+	public double getHealthScore() {
+		return healthScore;
+	}
+
+	public void setHealthScore(double healthScore) {
+		this.healthScore = healthScore;
+	}
+
+	public double getTrafficScore() {
+		return trafficScore;
+	}
+
+	public void setTrafficScore(double trafficScore) {
+		this.trafficScore = trafficScore;
+	}
+
+	public double getFacilityScore() {
+		return facilityScore;
+	}
+
+	public void setFacilityScore(double facilityScore) {
+		this.facilityScore = facilityScore;
+	}
+
+	public double getEnvironmentScore() {
+		return environmentScore;
+	}
+
+	public void setEnvironmentScore(double environmentScore) {
+		this.environmentScore = environmentScore;
 	}
 
 	public String getMemo() {
@@ -84,5 +122,13 @@ public class CommentBean extends BaseBeanImpl {
 
 	public void setReplied(String replied) {
 		this.replied = replied;
+	}
+
+	public int getRecommendedIndex() {
+		return recommendedIndex;
+	}
+
+	public void setRecommendedIndex(int recommendedIndex) {
+		this.recommendedIndex = recommendedIndex;
 	}
 }

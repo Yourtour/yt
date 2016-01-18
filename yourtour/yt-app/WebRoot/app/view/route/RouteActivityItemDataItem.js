@@ -9,7 +9,7 @@ Ext.define('YourTour.view.route.RouteActivityItemDataItem', {
 				itemId : 'image',
 				xtype : 'ximage',
 				margin:'0 5 0 0',
-				styleHtmlCls:'img-small',
+				imageCls:'img-small',
 				binding:'imageUrl'
 			},
 
@@ -32,7 +32,7 @@ Ext.define('YourTour.view.route.RouteActivityItemDataItem', {
 						underline:false,
 						padding:'0',
 						ellipsis:{
-							size:40,
+							size:30,
 							expandable:false
 						}
 					}

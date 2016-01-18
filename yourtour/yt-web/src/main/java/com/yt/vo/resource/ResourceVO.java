@@ -1,7 +1,7 @@
 package com.yt.vo.resource;
 
-import com.yt.business.bean.ResourceActivityItemBean;
 import com.yt.business.bean.PlaceBean;
+import com.yt.business.bean.ResourceActivityItemBean;
 import com.yt.business.bean.ResourceBean;
 import com.yt.business.common.Constants.ResType;
 import com.yt.business.common.Constants.Status;
@@ -11,334 +11,429 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ResourceVO extends BaseVO {
-	private String code;
-	private String name;
-	private String imageUrl; // 图片
-	private ResType type; // 类型
-	private String openTime; // 开放时间 hh24:mi
-	private String closeTime; // 关闭时间 hh24:mi
-	private String trafficIntro; // 公交信息
-	private String payment; // 支付信息
-	private int star; // 星级
-	private boolean member; // 是否会员
-	private String phone; // 联系电话
-	private String address; // 地址
-	private String website; // 网址
-	private String position; // 位置信息
-	private String postCode; // 邮编
-	private int arriveNum; // 到达人数
-	private double commentScore; // 点评分数
-	private int commentNum; // 点评数
-	private int favoriteNum; // 收藏数
-	private int shareNum; // 分享数
-	private String bookingMemo; // 预订须知
-	private String tips; // 贴士
-	private Status status;
+    private String code;
+    private String name;
+    private String imageUrl; // 图片
+    private ResType type; // 类型
+    private String openTime; // 开放时间 hh24:mi
+    private String closeTime; // 关闭时间 hh24:mi
+    private String trafficIntro; // 公交信息
+    private String payment; // 支付信息
+    private int star; // 星级
+    private boolean member; // 是否会员
+    private String phone; // 联系电话
+    private String address; // 地址
+    private String website; // 网址
+    private String position; // 位置信息
+    private String postCode; // 邮编
+    private int arriveNum; // 到达人数
+    private int favoriteNum; // 收藏数
+    private int shareNum; // 分享数
+    private String bookingMemo; // 预订须知
+    private String tips; // 贴士
+    private Status status;
 
-	private String place; // 目的地
-	private Long placeId; // 目的地对象ID
+    private String place; // 目的地
+    private Long placeId; // 目的地对象ID
 
-	private List<ActivityItemVO> activityItems = null;
+    private double commentScore = 0f;
 
-	public void fromBean(ResourceBean bean) {
-		if (bean == null) {
-			return;
-		}
-		super.fromBean(bean);
-		setCode(bean.getCode());
-		setName(bean.getName());
-		setAddress(bean.getAddress());
-		setArriveNum(bean.getArriveNum());
-		setBookingMemo(bean.getBookingMemo());
-		setCommentNum(bean.getCommentNum());
-		setCommentScore(bean.getCommentScore());
-		setFavoriteNum(bean.getFavoriteNum());
-		setImageUrl(bean.getImageUrl());
-		setMember(bean.isMember());
-		setOpenTime(bean.getOpenTime());
-		setPayment(bean.getPayment());
-		setPhone(bean.getPhone());
-		setPosition(bean.getPosition());
-		setPostCode(bean.getPostCode());
-		setShareNum(bean.getShareNum());
-		setStar(bean.getStar());
-		setStatus(bean.getStatus());
-		setTips(bean.getTips());
-		setTrafficIntro(bean.getTrafficIntro());
-		setType(bean.getType());
-		setWebsite(bean.getWebsite());
+    private int commentNum; // 点评数
+    private int     goodNum;	//好评
+    private int		mediumNum;  //中评
+    private int 	badNum;     //差评
+    private int		imageNum;   //晒图
+    private double healthScore;
+    private double trafficScore;
+    private double facilityScore;
+    private double environmentScore;
+    private double serviceScore;
 
-		// 从目的地对象中获取ID和名称，便于前端显示
-		PlaceBean place = bean.getPlace();
-		if (place != null) {
-			setPlace(place.getName());
-			setPlaceId(place.getGraphId());
-		} else {
-			setPlace("");
-			setPlaceId(null);
-		}
+    private List<ActivityItemVO> activityItems = null;
 
-		List<ResourceActivityItemBean> items = bean.getActivities();
-		if(items != null){
-			List<ActivityItemVO> voes = new ArrayList<>();
-			for(ResourceActivityItemBean item: items){
-				voes.add(ActivityItemVO.transform(item));
-			}
+    public void fromBean(ResourceBean bean) {
+        if (bean == null) {
+            return;
+        }
 
-			this.setActivityItems(voes);
-		}
-	}
+        super.fromBean(bean);
 
-	public void toBean(ResourceBean bean) {
-		if (bean == null) {
-			return;
-		}
-		super.toBean(bean);
-		bean.setCode(getCode());
-		bean.setName(getName());
-		bean.setAddress(getAddress());
-		bean.setArriveNum(getArriveNum());
-		bean.setBookingMemo(getBookingMemo());
-		bean.setCommentNum(getCommentNum());
-		bean.setCommentScore(getCommentScore());
-		bean.setFavoriteNum(getFavoriteNum());
-		bean.setImageUrl(getImageUrl());
-		bean.setMember(isMember());
-		bean.setOpenTime(getOpenTime());
-		bean.setPayment(getPayment());
-		bean.setPhone(getPhone());
-		bean.setPosition(getPosition());
-		bean.setPostCode(getPostCode());
-		bean.setShareNum(getShareNum());
-		bean.setStar(getStar());
-		bean.setStatus(getStatus());
-		bean.setTips(getTips());
-		bean.setTrafficIntro(getTrafficIntro());
-		bean.setType(getType());
-		bean.setWebsite(getWebsite());
+        setCode(bean.getCode());
+        setName(bean.getName());
+        setAddress(bean.getAddress());
+        setArriveNum(bean.getArriveNum());
+        setBookingMemo(bean.getBookingMemo());
+        setFavoriteNum(bean.getFavoriteNum());
+        setImageUrl(bean.getImageUrl());
+        setMember(bean.isMember());
+        setOpenTime(bean.getOpenTime());
+        setPayment(bean.getPayment());
+        setPhone(bean.getPhone());
+        setPosition(bean.getPosition());
+        setPostCode(bean.getPostCode());
+        setShareNum(bean.getShareNum());
+        setStar(bean.getStar());
+        setStatus(bean.getStatus());
+        setTips(bean.getTips());
+        setTrafficIntro(bean.getTrafficIntro());
+        setType(bean.getType());
+        setWebsite(bean.getWebsite());
 
-		// 从VO中取出目的地的ID，并设置到PlaceBean中，便于后续建立关联关系
-		PlaceBean place = new PlaceBean();
-		place.setGraphId(getPlaceId());
-		bean.setPlace(place);
-	}
+        setCommentNum(bean.getCommentNum());
+        setGoodNum(bean.getGoodNum());
+        setBadNum(bean.getBadNum());
+        setMediumNum(bean.getMediumNum());
+        setImageNum(bean.getImageNum());
 
-	public ResourceVO() {
-		super();
-	}
+        setCommentScore(bean.getCommentScore());
+        setHealthScore(bean.getHealthScore());
+        setTrafficScore(bean.getTrafficScore());
+        setFacilityScore(bean.getFacilityScore());
+        setEnvironmentScore(bean.getEnvironmentScore());
+        setServiceScore(bean.getServiceScore());
 
-	public String getCode() {
-		return code;
-	}
+        // 从目的地对象中获取ID和名称，便于前端显示
+        PlaceBean place = bean.getPlace();
+        if (place != null) {
+            setPlace(place.getName());
+            setPlaceId(place.getGraphId());
+        } else {
+            setPlace("");
+            setPlaceId(null);
+        }
 
-	public void setCode(String code) {
-		this.code = code;
-	}
+        List<ResourceActivityItemBean> items = bean.getActivities();
+        if (items != null) {
+            List<ActivityItemVO> voes = new ArrayList<>();
+            for (ResourceActivityItemBean item : items) {
+                voes.add(ActivityItemVO.transform(item));
+            }
 
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
+            setActivityItems(voes);
+        }
+    }
 
-	/**
-	 * @param name
-	 *            the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void toBean(ResourceBean bean) {
+        if (bean == null) {
+            return;
+        }
+        super.toBean(bean);
+        bean.setCode(getCode());
+        bean.setName(getName());
+        bean.setAddress(getAddress());
+        bean.setArriveNum(getArriveNum());
+        bean.setBookingMemo(getBookingMemo());
+        bean.setCommentNum(getCommentNum());
+        bean.setCommentScore(getCommentScore());
+        bean.setFavoriteNum(getFavoriteNum());
+        bean.setImageUrl(getImageUrl());
+        bean.setMember(isMember());
+        bean.setOpenTime(getOpenTime());
+        bean.setPayment(getPayment());
+        bean.setPhone(getPhone());
+        bean.setPosition(getPosition());
+        bean.setPostCode(getPostCode());
+        bean.setShareNum(getShareNum());
+        bean.setStar(getStar());
+        bean.setStatus(getStatus());
+        bean.setTips(getTips());
+        bean.setTrafficIntro(getTrafficIntro());
+        bean.setType(getType());
+        bean.setWebsite(getWebsite());
 
-	public String getImageUrl() {
-		return imageUrl;
-	}
+        // 从VO中取出目的地的ID，并设置到PlaceBean中，便于后续建立关联关系
+        PlaceBean place = new PlaceBean();
+        place.setGraphId(getPlaceId());
+        bean.setPlace(place);
+    }
 
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
+    public ResourceVO() {
+        super();
+    }
 
-	public ResType getType() {
-		return type;
-	}
+    public String getCode() {
+        return code;
+    }
 
-	protected void setType(ResType type) {
-		this.type = type;
-	}
+    public void setCode(String code) {
+        this.code = code;
+    }
 
-	public String getOpenTime() {
-		return openTime;
-	}
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
 
-	public void setOpenTime(String openTime) {
-		this.openTime = openTime;
-	}
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getCloseTime() {
-		return closeTime;
-	}
+    public String getImageUrl() {
+        return imageUrl;
+    }
 
-	public void setCloseTime(String closeTime) {
-		this.closeTime = closeTime;
-	}
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
-	public String getTrafficIntro() {
-		return trafficIntro;
-	}
+    public ResType getType() {
+        return type;
+    }
 
-	public void setTrafficIntro(String trafficIntro) {
-		this.trafficIntro = trafficIntro;
-	}
+    protected void setType(ResType type) {
+        this.type = type;
+    }
 
-	public int getStar() {
-		return star;
-	}
+    public String getOpenTime() {
+        return openTime;
+    }
 
-	public void setStar(int star) {
-		this.star = star;
-	}
+    public void setOpenTime(String openTime) {
+        this.openTime = openTime;
+    }
 
-	public boolean isMember() {
-		return member;
-	}
+    public String getCloseTime() {
+        return closeTime;
+    }
 
-	public void setMember(boolean member) {
-		this.member = member;
-	}
+    public void setCloseTime(String closeTime) {
+        this.closeTime = closeTime;
+    }
 
-	public String getPhone() {
-		return phone;
-	}
+    public String getTrafficIntro() {
+        return trafficIntro;
+    }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    public void setTrafficIntro(String trafficIntro) {
+        this.trafficIntro = trafficIntro;
+    }
 
-	public String getAddress() {
-		return address;
-	}
+    public int getStar() {
+        return star;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public void setStar(int star) {
+        this.star = star;
+    }
 
-	public String getPosition() {
-		return position;
-	}
+    public boolean isMember() {
+        return member;
+    }
 
-	public void setPosition(String position) {
-		this.position = position;
-	}
+    public void setMember(boolean member) {
+        this.member = member;
+    }
 
-	public String getPostCode() {
-		return postCode;
-	}
+    public String getPhone() {
+        return phone;
+    }
 
-	public void setPostCode(String postCode) {
-		this.postCode = postCode;
-	}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-	public int getArriveNum() {
-		return arriveNum;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public void setArriveNum(int arriveNum) {
-		this.arriveNum = arriveNum;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	public double getCommentScore() {
-		return commentScore;
-	}
+    public String getPosition() {
+        return position;
+    }
 
-	public void setCommentScore(double commentScore) {
-		this.commentScore = commentScore;
-	}
+    public void setPosition(String position) {
+        this.position = position;
+    }
 
-	public int getCommentNum() {
-		return commentNum;
-	}
+    public String getPostCode() {
+        return postCode;
+    }
 
-	public void setCommentNum(int commentNum) {
-		this.commentNum = commentNum;
-	}
+    public void setPostCode(String postCode) {
+        this.postCode = postCode;
+    }
 
-	public int getFavoriteNum() {
-		return favoriteNum;
-	}
+    public int getArriveNum() {
+        return arriveNum;
+    }
 
-	public void setFavoriteNum(int favoriteNum) {
-		this.favoriteNum = favoriteNum;
-	}
+    public void setArriveNum(int arriveNum) {
+        this.arriveNum = arriveNum;
+    }
 
-	public int getShareNum() {
-		return shareNum;
-	}
+    public double getCommentScore() {
+        return commentScore;
+    }
 
-	public void setShareNum(int shareNum) {
-		this.shareNum = shareNum;
-	}
+    public void setCommentScore(double commentScore) {
+        this.commentScore = commentScore;
+    }
 
-	public String getBookingMemo() {
-		return bookingMemo;
-	}
+    public int getCommentNum() {
+        return commentNum;
+    }
 
-	public void setBookingMemo(String bookingMemo) {
-		this.bookingMemo = bookingMemo;
-	}
+    public void setCommentNum(int commentNum) {
+        this.commentNum = commentNum;
+    }
 
-	public String getTips() {
-		return tips;
-	}
+    public int getFavoriteNum() {
+        return favoriteNum;
+    }
 
-	public void setTips(String tips) {
-		this.tips = tips;
-	}
+    public void setFavoriteNum(int favoriteNum) {
+        this.favoriteNum = favoriteNum;
+    }
 
-	public String getPayment() {
-		return payment;
-	}
+    public int getShareNum() {
+        return shareNum;
+    }
 
-	public void setPayment(String payment) {
-		this.payment = payment;
-	}
+    public void setShareNum(int shareNum) {
+        this.shareNum = shareNum;
+    }
 
-	public String getWebsite() {
-		return website;
-	}
+    public String getBookingMemo() {
+        return bookingMemo;
+    }
 
-	public void setWebsite(String website) {
-		this.website = website;
-	}
+    public void setBookingMemo(String bookingMemo) {
+        this.bookingMemo = bookingMemo;
+    }
 
-	public Status getStatus() {
-		return status;
-	}
+    public String getTips() {
+        return tips;
+    }
 
-	public void setStatus(Status status) {
-		this.status = status;
-	}
+    public void setTips(String tips) {
+        this.tips = tips;
+    }
 
-	public String getPlace() {
-		return place;
-	}
+    public String getPayment() {
+        return payment;
+    }
 
-	public void setPlace(String place) {
-		this.place = place;
-	}
+    public void setPayment(String payment) {
+        this.payment = payment;
+    }
 
-	public Long getPlaceId() {
-		return placeId;
-	}
+    public String getWebsite() {
+        return website;
+    }
 
-	public void setPlaceId(Long placeId) {
-		this.placeId = placeId;
-	}
+    public void setWebsite(String website) {
+        this.website = website;
+    }
 
-	public List<ActivityItemVO> getActivityItems() {
-		return activityItems;
-	}
+    public Status getStatus() {
+        return status;
+    }
 
-	public void setActivityItems(List<ActivityItemVO> activityItems) {
-		this.activityItems = activityItems;
-	}
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    public Long getPlaceId() {
+        return placeId;
+    }
+
+    public void setPlaceId(Long placeId) {
+        this.placeId = placeId;
+    }
+
+    public List<ActivityItemVO> getActivityItems() {
+        return activityItems;
+    }
+
+    public void setActivityItems(List<ActivityItemVO> activityItems) {
+        this.activityItems = activityItems;
+    }
+
+    public double getHealthScore() {
+        return healthScore;
+    }
+
+    public void setHealthScore(double healthScore) {
+        this.healthScore = healthScore;
+    }
+
+    public double getTrafficScore() {
+        return trafficScore;
+    }
+
+    public void setTrafficScore(double trafficScore) {
+        this.trafficScore = trafficScore;
+    }
+
+    public double getFacilityScore() {
+        return facilityScore;
+    }
+
+    public double getEnvironmentScore() {
+        return environmentScore;
+    }
+
+    public void setEnvironmentScore(double environmentScore) {
+        this.environmentScore = environmentScore;
+    }
+
+    public double getServiceScore() {
+        return serviceScore;
+    }
+
+    public void setServiceScore(double serviceScore) {
+        this.serviceScore = serviceScore;
+    }
+
+    public void setFacilityScore(double facilityScore) {
+        this.facilityScore = facilityScore;
+    }
+
+    public int getGoodNum() {
+        return goodNum;
+    }
+
+    public void setGoodNum(int goodNum) {
+        this.goodNum = goodNum;
+    }
+
+    public int getMediumNum() {
+        return mediumNum;
+    }
+
+    public void setMediumNum(int mediumNum) {
+        this.mediumNum = mediumNum;
+    }
+
+    public int getBadNum() {
+        return badNum;
+    }
+
+    public void setBadNum(int badNum) {
+        this.badNum = badNum;
+    }
+
+    public int getImageNum() {
+        return imageNum;
+    }
+
+    public void setImageNum(int imageNum) {
+        this.imageNum = imageNum;
+    }
 }

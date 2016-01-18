@@ -14,7 +14,7 @@ Ext.application({
     name: 'YourTour',
 
     requires: [
-        'Ext.MessageBox', 'YourTour.view.widget.XTextArea', 'Ext.form.Hidden','YourTour.util.Context','YourTour.view.home.BestItemView','YourTour.view.common.PlaceGridItemView'
+        'Ext.MessageBox', 'YourTour.view.widget.XProcessing', 'Ext.form.Hidden','YourTour.util.Context'
     ],
     
     /**
@@ -271,13 +271,29 @@ Ext.application({
 
             store.load(function(){
                 options.success(store);
+
+                var navigationView = Ext.ComponentManager.get('MainView');
+                if(navigationView) {
+                    var view = navigationView.getActiveItem();
+
+                    if(view instanceof YourTour.view.widget.XPage){
+                        view.hideProcessing();
+                    }
+                }
+
             })
         }catch(e){
             this.toast(e.name + ":" + e.message);
         }
     },
 
+    /*open:function(options){
+        var navigationView = Ext.ComponentManager.get('MainView');
+        navigationView.push(Ext.create(options.view));
 
+        var processor = options.processor;
+        processor();
+    },*/
 
     toast:function(msg){
         Ext.Msg.alert(msg);

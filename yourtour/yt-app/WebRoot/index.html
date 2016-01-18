@@ -270,14 +270,7 @@
             font-size: 14px !important;
         }
 
-        .markedlabel {
-            background: #FF6100;
-            width: 100%;
-            height: 40px;
-            line-height: 40px;
-            text-align: center;
-            color: white;
-        }
+
 
         .overlay {
             opacity: 0.2;
@@ -389,11 +382,11 @@
         }
 
         .font-grey {
-            color: grey !important;
+            color: grey;
         }
 
         .font-normal {
-            color: black !important;
+            color: black;
         }
 
         .img-small{
@@ -416,6 +409,15 @@
             line-height: 45px;
         }
 
+        .markedlabel {
+            background: #FF6100;
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            color: white;
+        }
+
         .x-xspacer{
             height:10px;
             background-color:#EDEDED;
@@ -431,6 +433,10 @@
             min-height: 15px;
             font-size: 14px;
             background-color:white;
+        }
+
+        .x-xfield .active{
+            color:red !important;
         }
 
         .x-xfield .icon{
@@ -480,10 +486,26 @@
         }
 
         .x-xscore{
-            line-height:48px;
+            padding:15px 0 15px 0;
+            line-height:20px;
             font-size:14px;
             color: green !important;
             width:50px;
+        }
+
+        .x-xprocessing{
+            background-color:white;
+        }
+
+        .x-xprocessing .x-indicator{
+            text-align:center;
+            line-height:64px;
+            height:64px;
+            font-size:13px;
+            color:grey;
+            background-image: url(./resources/icons/icon_processing.png);
+            background-repeat: no-repeat;
+            background-position: center center;
         }
 
         .spacer{

@@ -95,17 +95,20 @@ public class ResourceBean extends BaseBeanImpl {
 	@HbaseColumn(name = "cnum")
 	private int 	commentNum; // 点评数
 
-	private float   healthScore;
-	private int		healthNum;
+	private int     goodNum;	//好评
+	private int		mediumNum;  //中评
+	private int 	badNum;     //差评
+	private int		imageNum;   //晒图
 
-	private float   trafficScore;
-	private int   	trafficNum;
+	private double   healthScore = 0d;
 
-	private	float	facilityScore;
-	private int		facilityNum;
+	private double   trafficScore = 0d;
 
-	private float	environmentScore;
-	private int		environmentNum;
+	private	double	facilityScore = 0d;
+
+	private double	environmentScore = 0d;
+
+	private double  serviceScore = 0d;
 
 	@HbaseColumn(name = "fnum")
 	private int favoriteNum; // 收藏数
@@ -350,67 +353,75 @@ public class ResourceBean extends BaseBeanImpl {
 		this.commentNum = commentNum;
 	}
 
-	public float getHealthScore() {
+	public double getHealthScore() {
 		return healthScore;
 	}
 
-	public void setHealthScore(float healthScore) {
+	public void setHealthScore(double healthScore) {
 		this.healthScore = healthScore;
 	}
 
-	public int getHealthNum() {
-		return healthNum;
-	}
-
-	public void setHealthNum(int healthNum) {
-		this.healthNum = healthNum;
-	}
-
-	public float getTrafficScore() {
+	public double getTrafficScore() {
 		return trafficScore;
 	}
 
-	public void setTrafficScore(float trafficScore) {
+	public void setTrafficScore(double trafficScore) {
 		this.trafficScore = trafficScore;
 	}
 
-	public int getTrafficNum() {
-		return trafficNum;
-	}
-
-	public void setTrafficNum(int trafficNum) {
-		this.trafficNum = trafficNum;
-	}
-
-	public float getFacilityScore() {
+	public double getFacilityScore() {
 		return facilityScore;
 	}
 
-	public void setFacilityScore(float facilityScore) {
+	public void setFacilityScore(double facilityScore) {
 		this.facilityScore = facilityScore;
 	}
 
-	public int getFacilityNum() {
-		return facilityNum;
-	}
-
-	public void setFacilityNum(int facilityNum) {
-		this.facilityNum = facilityNum;
-	}
-
-	public float getEnvironmentScore() {
+	public double getEnvironmentScore() {
 		return environmentScore;
 	}
 
-	public void setEnvironmentScore(float environmentScore) {
+	public void setEnvironmentScore(double environmentScore) {
 		this.environmentScore = environmentScore;
 	}
 
-	public int getEnvironmentNum() {
-		return environmentNum;
+	public double getServiceScore() {
+		return serviceScore;
 	}
 
-	public void setEnvironmentNum(int environmentNum) {
-		this.environmentNum = environmentNum;
+	public void setServiceScore(double serviceScore) {
+		this.serviceScore = serviceScore;
+	}
+
+	public int getGoodNum() {
+		return goodNum;
+	}
+
+	public void setGoodNum(int goodNum) {
+		this.goodNum = goodNum;
+	}
+
+	public int getMediumNum() {
+		return mediumNum;
+	}
+
+	public void setMediumNum(int mediumNum) {
+		this.mediumNum = mediumNum;
+	}
+
+	public int getBadNum() {
+		return badNum;
+	}
+
+	public void setBadNum(int badNum) {
+		this.badNum = badNum;
+	}
+
+	public int getImageNum() {
+		return imageNum;
+	}
+
+	public void setImageNum(int imageNum) {
+		this.imageNum = imageNum;
 	}
 }
