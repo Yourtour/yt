@@ -1,5 +1,5 @@
 Ext.define('YourTour.view.widget.XGridView', {
-    extend: 'Ext.Panel',
+    extend: 'Ext.Container',
     xtype:'xgridview',
     config:{
     	cols: 3,

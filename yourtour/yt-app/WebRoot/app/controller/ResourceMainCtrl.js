@@ -55,9 +55,6 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
         record: null,
     },
 
-    init: function () {
-    },
-
     showSelectionPage: function () {
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.resource.ResourceSelectionView'));
 
@@ -79,9 +76,10 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
      * @param resourceType
      * @param resourceId
      */
-    showResourcePage: function (resourceType, resourceId) {
-        if (resourceType == 'SCENE') {
-            this.showSceneResource(resourceId);
+    showResourcePage: function (resource) {
+        var type = resource.get('type');
+        if (type == 'SCENE') {
+            this.showSceneResource(resource);
         }
     },
 
@@ -89,21 +87,24 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
      * 显示景点资源明细
      * @param resourceId
      */
-    showSceneResource: function (resourceId) {
+    showSceneResource: function (resource) {
         var me = this;
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.resource.ResourceFormView'));
         var view = me.getResourceFormView();
 
+        var headerbar = view.down('#headerbar');
+        headerbar.setTitle(resource.get('name'));
+
         var options = {
             model:'YourTour.model.ResourceModel',
-            url:'/scenes/' + resourceId,
+            url:'/scenes/' + resource.get('id'),
             success:function(store){
                 var form = Ext.create('YourTour.view.resource.ResourceSceneView');
-                view.insert(1, form);
-                var resource = store.first();
-                view.setData(resource);
-                var headerbar = view.down('#headerbar');
-                headerbar.setTitle(resource.get('name'));
+
+                var pagebody = view.down('#pagebody');
+                pagebody.insert(0, form);
+
+                view.setData(store.first());
             }
         };
         me.getApplication().query(options);

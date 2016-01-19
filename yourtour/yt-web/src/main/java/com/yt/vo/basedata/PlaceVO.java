@@ -5,13 +5,17 @@ import java.util.Vector;
 
 import com.yt.business.bean.PlaceBean;
 import com.yt.business.common.Constants.Status;
+import com.yt.core.utils.CollectionUtils;
 
 public class PlaceVO {
 	private Long graphId = -1l, parentId = null;
-	private String code, shorter, text, memo;
-	private boolean expanded = false, leaf = false;
+	private String parentCode, code, shorter, text, memo, imageUrl, name;
+	private boolean expandable = false, leaf = false;
 	private Status status = Status.ACTIVED;
-	private List<PlaceVO> children;
+	private int followedNum = 0; //关注人数
+	private int goneNum = 0;  //去过人数
+	private int goingNum = 0;  //想去人数
+	private int num = 0;  //下辖目的地个数
 
 	public static PlaceBean transform(PlaceVO vo) {
 		if (vo == null) {
@@ -38,27 +42,31 @@ public class PlaceVO {
 		if (bean == null) {
 			return null;
 		}
+
 		PlaceVO vo = new PlaceVO();
 		vo.setCode(bean.getCode());
-		vo.setExpanded(false);
 		vo.setId(bean.getGraphId());
 		vo.setLeaf(bean.isLeaf());
+		vo.setName(bean.getName());
 		vo.setMemo(bean.getMemo());
 		vo.setShorter(bean.getShorter());
 		vo.setStatus(bean.getStatus());
 		vo.setText(bean.getName());
-		
-		if(bean.getSubs() != null){
-			for(PlaceBean sub : bean.getSubs()){
-				vo.children.add(transform(sub));
-			}
+		vo.setImageUrl(bean.getImageUrl());
+		vo.setGoingNum(bean.getGoingNum());
+		vo.setGoneNum(bean.getGoneNum());
+		vo.setFollowedNum(bean.getFollowedNum());
+		vo.setNum(bean.getSubs().size());
+		vo.setExpandable(CollectionUtils.isNotEmpty(bean.getSubs()));
+
+		if(bean.getParent() != null){
+			vo.setParentCode(bean.getParent().getCode());
 		}
 		return vo;
 	}
 
 	public PlaceVO() {
 		super();
-		this.children = new Vector<PlaceVO>();
 	}
 
 	public Long getGraphId() {
@@ -81,6 +89,14 @@ public class PlaceVO {
 		this.parentId = parentId;
 	}
 
+	public String getParentCode() {
+		return parentCode;
+	}
+
+	public void setParentCode(String parentCode) {
+		this.parentCode = parentCode;
+	}
+
 	public String getCode() {
 		return code;
 	}
@@ -98,7 +114,7 @@ public class PlaceVO {
 	}
 
 	public String getName() {
-		return shorter;
+		return name;
 	}
 
 	public String getText() {
@@ -117,12 +133,20 @@ public class PlaceVO {
 		this.memo = memo;
 	}
 
-	public boolean isExpanded() {
-		return expanded;
+	public boolean isExpandable() {
+		return expandable;
 	}
 
-	public void setExpanded(boolean expanded) {
-		this.expanded = expanded;
+	public void setExpandable(boolean expandable) {
+		this.expandable = expandable;
+	}
+
+	public boolean isLeaf() {
+		return leaf;
+	}
+
+	public void setLeaf(boolean leaf) {
+		this.leaf = leaf;
 	}
 
 	public Status getStatus() {
@@ -133,19 +157,50 @@ public class PlaceVO {
 		this.status = status;
 	}
 
-	public boolean getLeaf() {
-		return leaf;
+
+	public String getImageUrl() {
+		return imageUrl;
 	}
 
-	public void setLeaf(boolean leaf) {
-		this.leaf = leaf;
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
-	public List<PlaceVO> getChildren() {
-		return children;
+	public int getFollowedNum() {
+		return followedNum;
 	}
-	
-	public int getNum(){
-		return this.children.size();
+
+	public void setFollowedNum(int followedNum) {
+		this.followedNum = followedNum;
 	}
+
+	public int getGoneNum() {
+		return goneNum;
+	}
+
+	public void setGoneNum(int goneNum) {
+		this.goneNum = goneNum;
+	}
+
+	public int getGoingNum() {
+		return goingNum;
+	}
+
+	public void setGoingNum(int goingNum) {
+		this.goingNum = goingNum;
+	}
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
 }

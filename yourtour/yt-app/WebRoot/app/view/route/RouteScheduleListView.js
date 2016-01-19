@@ -1,7 +1,6 @@
 Ext.define('YourTour.view.route.RouteScheduleListView', {
     extend: 'YourTour.view.widget.XPage',
     requires:['Ext.Panel', 'YourTour.view.route.RouteScheduleListDataItem', 'YourTour.view.widget.XHeaderBar','YourTour.view.widget.XProcessing'],
-    xtype: 'RouteScheduleListView',
     config: {
     	id:'RouteScheduleListView',
 		layout:'card',

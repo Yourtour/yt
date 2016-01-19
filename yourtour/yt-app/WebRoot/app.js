@@ -26,7 +26,7 @@ Ext.application({
     
     views: [
         'MainView','Launch','setting.UserSettingView',
-        'common.PlaceSelectionView','common.MessageMainView','common.MessageGroupView','common.FieldEditView','common.ContentReadView',
+        'common.MessageMainView','common.MessageGroupView','common.FieldEditView','common.ContentReadView',
         'common.ExpertServiceListView','common.ExpertServiceFormView','common.CommentListView',
 
         'home.HomeMainView', 'home.BestListView', 'home.AlongListView', 'home.AlongDetailView', 'home.TalentListView', 'SearchMain',
@@ -43,7 +43,7 @@ Ext.application({
         'expert.ExpertRecommendListView','expert.ExpertRecommendIntroView',
 
         'community.LiveMainView',
-        'place.PlaceMainView'
+        'place.PlaceMainView','place.PlaceSelectionView',
     ],
     
     controllers: [

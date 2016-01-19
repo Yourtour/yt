@@ -21,8 +21,11 @@
 	<neo4j:repositories base-package="com.yt.business.repository" />
 	<bean id="graphDatabaseService"
 		class="org.springframework.data.neo4j.rest.SpringRestGraphDatabase">
+		<!--<constructor-arg index="0"
+			value="http://yt-database:7474/db/data" />-->
+
 		<constructor-arg index="0"
-			value="http://yt-database:7474/db/data" />
+						 value="http://120.55.76.201:7474/db/data" />
 	</bean>
 
 	<bean id="neo4jCrud" class="com.yt.neo4j.repository.CrudGeneralOperate" />

@@ -1,8 +1,11 @@
 package com.yt.business.repository;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.yt.core.utils.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -106,8 +109,8 @@ public class PlaceRepositoryImpl extends CrudAllInOneOperateImpl implements
 	}
 
 	@Override
-	public List<PlaceBean> getPlaces(Long graphId) {
-		List<PlaceTuple> tuples = this.repository.getPlaces(graphId);
+	public List<PlaceBean> getPlaces(Long parentId) {
+		List<PlaceTuple> tuples = this.repository.getPlaces(parentId);
 
 		List<PlaceBean> places = new ArrayList<PlaceBean>();
 		PlaceBean parent = null, child = null;
@@ -132,26 +135,40 @@ public class PlaceRepositoryImpl extends CrudAllInOneOperateImpl implements
 	
 	@Override
 	public List<PlaceBean> getPlaces(String parentCode) {
-		List<PlaceTuple> tuples = this.repository.getPlaces(parentCode);
-
 		List<PlaceBean> places = new ArrayList<PlaceBean>();
+		List<PlaceTuple> tuples = null;
 		PlaceBean parent = null, child = null;
-		for (PlaceTuple tuple : tuples) {
-			parent = tuple.getParent();
-			child = tuple.getChild();
 
-			if (places.contains(parent)) {
-				for (PlaceBean p : places) {
-					if (p.equals(parent)) {
-						p.addSub(child);
+		String[] parentCodes = parentCode.split(",");
+		for(String code : parentCodes){
+			PlaceBean root = new PlaceBean();
+			root.setCode(code);
+			tuples = this.repository.getPlaces(code);
+
+			for (PlaceTuple tuple : tuples) {
+				parent = tuple.getParent();
+				child = tuple.getChild();
+
+				if (places.contains(parent)) {
+					for (PlaceBean p : places) {
+						if (p.equals(parent)) {
+							p.addSub(child);
+						}
 					}
+				} else {
+					parent.setParent(root);
+
+					parent.addSub(child);
+					places.add(parent);
 				}
-			} else {
-				parent.addSub(child);
-				places.add(parent);
 			}
 		}
 
 		return places;
+	}
+
+	@Override
+	public List<PlaceBean> getRouteRecommendPlaces(Long userId) {
+		return this.repository.getRecommendPlaces(userId);
 	}
 }

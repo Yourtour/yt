@@ -732,9 +732,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.common.MessageGroupView": [],
   "YourTour.view.common.MessageMainView": [],
   "YourTour.view.common.PlaceGridItemView": [],
-  "YourTour.view.common.PlaceListItemView": [],
-  "YourTour.view.common.PlaceSelectionView": [],
-  "YourTour.view.common.PlaceTypeListItemView": [],
   "YourTour.view.community.LiveMainView": [],
   "YourTour.view.expert.ExpertApplyView": [],
   "YourTour.view.expert.ExpertDataItem": [],
@@ -775,6 +772,12 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.place.PlaceMainView": [],
   "YourTour.view.place.PlaceOverviewView": [],
   "YourTour.view.place.PlaceSceneView": [],
+  "YourTour.view.place.PlaceSelectionAbroadItem": [],
+  "YourTour.view.place.PlaceSelectionDataItem": [],
+  "YourTour.view.place.PlaceSelectionHomeItem": [],
+  "YourTour.view.place.PlaceSelectionRecommendItem": [],
+  "YourTour.view.place.PlaceSelectionTypeDataItem": [],
+  "YourTour.view.place.PlaceSelectionView": [],
   "YourTour.view.resource.ResourceActivityItem": [],
   "YourTour.view.resource.ResourceActivityItemFormView": [],
   "YourTour.view.resource.ResourceActivityItemListView": [],
@@ -1696,15 +1699,6 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.common.PlaceGridItemView": [
     "widget.PlaceGridItemView"
   ],
-  "YourTour.view.common.PlaceListItemView": [
-    "widget.PlaceListItemView"
-  ],
-  "YourTour.view.common.PlaceSelectionView": [
-    "widget.PlaceSelectionView"
-  ],
-  "YourTour.view.common.PlaceTypeListItemView": [
-    "widget.PlaceTypeListItemView"
-  ],
   "YourTour.view.community.LiveMainView": [
     "widget.LiveMainView"
   ],
@@ -1811,6 +1805,22 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.place.PlaceSceneView": [
     "widget.PlaceSceneView"
   ],
+  "YourTour.view.place.PlaceSelectionAbroadItem": [
+    "widget.PlaceSelectionAbroadItem"
+  ],
+  "YourTour.view.place.PlaceSelectionDataItem": [
+    "widget.PlaceSelectionDataItem"
+  ],
+  "YourTour.view.place.PlaceSelectionHomeItem": [
+    "widget.PlaceSelectionHomeItem"
+  ],
+  "YourTour.view.place.PlaceSelectionRecommendItem": [
+    "widget.PlaceSelectionRecommendItem"
+  ],
+  "YourTour.view.place.PlaceSelectionTypeDataItem": [
+    "widget.PlaceSelectionTypeDataItem"
+  ],
+  "YourTour.view.place.PlaceSelectionView": [],
   "YourTour.view.resource.ResourceActivityItem": [
     "widget.ResourceActivityItem"
   ],
@@ -1874,9 +1884,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.route.RouteScheduleListDataItem": [
     "widget.RouteScheduleListDataItem"
   ],
-  "YourTour.view.route.RouteScheduleListView": [
-    "widget.RouteScheduleListView"
-  ],
+  "YourTour.view.route.RouteScheduleListView": [],
   "YourTour.view.route.RouteSchedulePlanDataItem": [
     "widget.RouteSchedulePlanDataItem"
   ],
@@ -1888,9 +1896,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.route.RouteSettingItem": [
     "widget.RouteSettingItem"
   ],
-  "YourTour.view.route.RouteSettingView": [
-    "widget.RouteSettingView"
-  ],
+  "YourTour.view.route.RouteSettingView": [],
   "YourTour.view.route.Schedule": [
     "widget.routenew"
   ],

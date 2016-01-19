@@ -109,10 +109,11 @@ Ext.define('YourTour.view.widget.XCarousel', {
         navBar.getItems().each(function (item) {
             item.removeCls('active');
         });
-
         navBar.getAt(index).addCls('active');
 
         var carousel = me.carousel;
         carousel.setActiveItem(item);
     },
+
+
 });

@@ -13,7 +13,8 @@ public interface Constants {
 	/**
 	 * 跟随
 	 */
-	public static final String RELATION_TYPE_FOLLOW = "FOLLOW";
+	public static final String RELATION_TYPE_FOLLOW = "FOLLOWING";
+
 	/**
 	 * 关注
 	 */

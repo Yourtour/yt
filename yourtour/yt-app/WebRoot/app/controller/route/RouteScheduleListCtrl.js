@@ -115,7 +115,7 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
 		var activity = view.getData();
 		var resource = activity.resourceStore.first();
 		var resourceController = this.getApplication().getController('ResourceMainCtrl');
-		resourceController.showResourcePage(resource.get('type'), resource.get('id'));
+		resourceController.showResourcePage(resource);
     },
     
     onShowResourceMap:function(){

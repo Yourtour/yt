@@ -5,7 +5,7 @@ Ext.define('YourTour.view.widget.XHeaderBar', {
     config: {
 		itemId:'headerbar',
     	docked: 'top',
-		cls:'headerbar',
+		cls:'x-xheaderbar x-xmain-color',
     	style:'background-color:#3CB371',
 		opacity:0,
     	defaults:{

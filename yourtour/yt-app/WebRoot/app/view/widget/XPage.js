@@ -3,23 +3,6 @@ Ext.define('YourTour.view.widget.XPage', {
     xtype: 'xpage',
     config: {
         layout:'vbox',
-        scrollable: {
-            direction: 'vertical',
-            indicators: false,
-            directionLock: true,
-            momentumEasing:  {
-                /*momentum: {
-                    acceleration: 10,
-                    friction: 0.9
-                },*/
-                bounce: {
-                    acceleration: 0.0001,
-                    springTension: 0.9999,
-                },
-                /*minVelocity: 5*/
-            },
-            outOfBoundRestrictFactor: 0
-        },
 
         items:[
 
@@ -28,15 +11,6 @@ Ext.define('YourTour.view.widget.XPage', {
         fullscreen: true,
 
         data: null
-    },
-
-    initialize: function () {
-        var me = this;
-        me.callParent(arguments);
-
-        me.getScrollable().getScroller().on('scroll', me.onScroller,me);
-
-        me.getScrollable().getScroller().on('scrollend', me.onScrollerEnd,me);
     },
 
     /**
@@ -59,12 +33,6 @@ Ext.define('YourTour.view.widget.XPage', {
 
     getData: function () {
         return this.data;
-    },
-
-    onScrollerEnd : function(scroller,offsets){
-    },
-
-    onScroller: function (scroller, x, y) {
     },
 
     updateRecord:function(){

@@ -8,7 +8,7 @@ Ext.define('YourTour.view.common.ExpertServiceListDataItem', {
 				itemId : 'image',
 				xtype : 'ximage',
 				margin:'0 5 0 0',
-				styleHtmlCls:'img-small',
+				imageCls:'img-small',
 				binding:'imageUrl'
 			},
 

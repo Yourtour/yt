@@ -52,6 +52,8 @@ public class PlaceBean extends BaseDictBeanImpl {
 	private String shorter = ""; // 简称
 	
 	private String imageUrl;
+
+	private boolean home; //是否国内
 	
 	@HbaseColumn(name = "memo")
 	private String memo = ""; // 备注
@@ -64,6 +66,12 @@ public class PlaceBean extends BaseDictBeanImpl {
 
 	@HbaseColumn(name = "leaf")
 	private boolean leaf = true; // 是否为叶子节点
+
+	private int followedNum = 0; //关注人数
+
+	private int goneNum = 0;  //去过人数
+
+	private int goingNum = 0;  //想去人数
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_PARENT, type = PlaceBean.class, direction = Direction.OUTGOING)
 	private transient PlaceBean parent = null;
@@ -140,6 +148,38 @@ public class PlaceBean extends BaseDictBeanImpl {
 	
 	public void addSub(PlaceBean sub){
 		this.subs.add(sub);
+	}
+
+	public int getFollowedNum() {
+		return followedNum;
+	}
+
+	public void setFollowedNum(int followedNum) {
+		this.followedNum = followedNum;
+	}
+
+	public int getGoneNum() {
+		return goneNum;
+	}
+
+	public void setGoneNum(int goneNum) {
+		this.goneNum = goneNum;
+	}
+
+	public int getGoingNum() {
+		return goingNum;
+	}
+
+	public void setGoingNum(int goingNum) {
+		this.goingNum = goingNum;
+	}
+
+	public boolean isHome() {
+		return home;
+	}
+
+	public void setHome(boolean home) {
+		this.home = home;
 	}
 
 	@Override

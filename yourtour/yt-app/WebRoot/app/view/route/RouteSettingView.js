@@ -1,25 +1,15 @@
 Ext.define('YourTour.view.route.RouteSettingView', {
     extend: 'YourTour.view.widget.XPage',
     requires:['Ext.form.Panel', 'YourTour.view.widget.XSpacer', 'YourTour.view.widget.ToolButton', 'Ext.field.DatePicker','YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XLabel', 'YourTour.view.widget.XField', 'Ext.field.Text'],
-    xtype: 'RouteSettingView',
     config: {
     	id:'RouteSettingView',
-    	layout:'vbox',
     	defaults:{
     		labelWidth: '20'
 		},
         items: [
             {    
 				xtype: 'xheaderbar',
-				title: '行程设置',
-				items:[
-					{
-					   xtype:'toolbutton',
-					   itemId:'next',
-					   text:'下一步',
-					   align:'right'
-					}
-				]
+				title: '行程设置'
 			},
 			
 			{  
@@ -148,6 +138,41 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 				xtype:'xtextfield',
 				itemId:'olderNum',
 				label:'老人人数'
+			},
+
+			{
+				xtype: 'xtoolbar',
+				docked: 'bottom',
+				itemId: 'toolbar',
+				cls: 'toolbar',
+				items: [
+					{
+						xtype:'spacer',
+						flex:1
+					},
+					{
+						xtype: 'button',
+						text: '线路参考',
+						ui: 'normal',
+						iconCls: 'action',
+						itemId: 'btnRefer',
+						flex:2
+					},{
+						xtype:'xvline'
+					} ,
+					{
+						xtype: 'button',
+						text: '行程定制',
+						ui: 'normal',
+						iconCls: 'favorites',
+						itemId: 'btnCutomized',
+						flex:2
+					},
+					{
+						xtype:'spacer',
+						flex:1
+					},
+				]
 			}
 		]
     }

@@ -21,10 +21,10 @@
 	<neo4j:repositories base-package="com.yt.business.neo4j.repository" />
 	<bean id="graphDatabaseService"
 		class="org.springframework.data.neo4j.rest.SpringRestGraphDatabase">
-		<!--<constructor-arg index="0"
-			value="http://120.55.76.201:7474/db/data" />-->
 		<constructor-arg index="0"
-						 value="http://localhost:7474/db/data" />
+			value="http://120.55.76.201:7474/db/data" />
+		<!--<constructor-arg index="0"
+						 value="http://localhost:7474/db/data" />-->
 	</bean>
 
 	<context:component-scan

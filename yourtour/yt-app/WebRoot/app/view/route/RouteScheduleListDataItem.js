@@ -3,27 +3,22 @@ Ext.define('YourTour.view.route.RouteScheduleListDataItem', {
     xtype: 'RouteScheduleListDataItem',
     requires:['Ext.Label','Ext.field.Select','Ext.Panel'],
     config: {
-		defaults:{
-			style:'background:#fff;font-size:14px',
-			padding:'0 5 0 5'
-		},
-
-		cls:'ScheduleListItem',
+		cls:'underline',
+		padding:'10 0 10 0',
     	items:[
     		{
     			itemId:'preparePanel',
     			xtype:'panel',
-    			layout:'hbox',
+    			layout:'vbox',
     			hidden:true,
-    			cls:'schedule',
+				cls:'preparePanel',
     			items:[
-    				{
-    					xtype:'label',
-    					itemId:'title',
-    					flex:1,
-    					cls:'title strong',
-						padding:'0 0 0 50'
-    				}
+					{
+						xtype:'label',
+						itemId:'title',
+						cls:'bold',
+						padding:'0 10 0 10'
+					}
     			]
     		},
     		
@@ -32,19 +27,20 @@ Ext.define('YourTour.view.route.RouteScheduleListDataItem', {
     			xtype:'panel',
     			hidden:true,
     			layout:'vbox',
-				cls:'scheduleItem',
+				padding:'0 10 0 10',
+				cls:'prepareItem',
     			items:[
 					{
 						xtype:'label',
 						itemId:'title',
-						cls:'title icon-todo',
+						cls:'icon-todo title',
 						padding:'0 0 0 50'
 					},
 
 					{
 						xtype:'label',
 						itemId:'memo',
-						cls:'content memo',
+						cls:'content',
 						padding:'0 0 0 50'
 					}
     			]
@@ -54,16 +50,40 @@ Ext.define('YourTour.view.route.RouteScheduleListDataItem', {
     			itemId:'dayPanel',
     			xtype:'panel',
     			hidden:true,
-    			layout:'hbox',
-    			cls:'schedule',
+    			layout:'vbox',
+				cls:'dayPanel',
     			items:[
+					{
+						xtype:'xspacer'
+					},
     				{
     					xtype:'label',
     					itemId:'title',
-    					flex:1,
-    					cls:'title strong',
-						padding:'0 0 0 50'
-    				}
+						cls:'bold',
+						padding:'0 10 0 10',
+    				},
+
+					{
+						xtype:'label',
+						itemId:'startTime',
+						cls:'info',
+						style:'text-align:center',
+						padding:'0 10 0 10'
+					},
+
+					{
+						xtype:'label',
+						itemId:'places',
+						cls:'bold',
+						padding:'0 10 0 10'
+					},
+
+					{
+						xtype:'label',
+						itemId:'memo',
+						cls:'content',
+						padding:'0 10 0 10'
+					}
     			]
     		},
     		
@@ -72,13 +92,14 @@ Ext.define('YourTour.view.route.RouteScheduleListDataItem', {
     			xtype:'panel',
     			layout:'vbox',
     			hidden:true,
-    			cls:'scheduleItem',
+				padding:'0 10 0 10',
+				cls:'dayItem',
     			items:[
 					{
 						xtype:'label',
 						itemId:'title',
+						padding:'0 0 0 50',
 						cls:'title',
-						padding:'0 0 0 50'
 					},
 
     				{
@@ -89,10 +110,10 @@ Ext.define('YourTour.view.route.RouteScheduleListDataItem', {
 							{
 								xtype:'panel',
 								layout:'hbox',
-								cls:'content',
 								items:[
 									{
 										xtype: 'image',
+										padding:'5 0 0 0',
 										src: 'resources/images/raty_32.png',
 										mode: 'tag'
 									},
@@ -100,6 +121,7 @@ Ext.define('YourTour.view.route.RouteScheduleListDataItem', {
 										xtype: 'label',
 										margin:'0 0 0 10',
 										itemId: 'commentNum',
+										cls:'info',
 										html:'120条点评'
 									},
 									{
@@ -109,7 +131,7 @@ Ext.define('YourTour.view.route.RouteScheduleListDataItem', {
 									{
 										xtype: 'label',
 										itemId: 'price',
-										cls:'font-remark',
+										cls:'info font-remark',
 										html:'¥ 450元/人/天'
 									}
 								]
@@ -124,12 +146,12 @@ Ext.define('YourTour.view.route.RouteScheduleListDataItem', {
 		    				{
     							xtype:'label',
     							itemId:'time',
-    							cls:'content'
+								cls:'info'
     						},
 		    				{
 		    					xtype:'label',
 		    					itemId:'memo',
-		    					cls:'content strong'
+								cls:'content'
 		    				}
 		    			]
     				}
@@ -154,7 +176,6 @@ Ext.define('YourTour.view.route.RouteScheduleListDataItem', {
        			
        			var title = panel.down('#title');
        			title.setHtml(record.get('title'));
-				title.addCls('icon-prepare');
        		}else if(type == 'ProvisionItem'){
        			panel = me.down('#prepareItemPanel');
        			panel.show();
@@ -170,7 +191,15 @@ Ext.define('YourTour.view.route.RouteScheduleListDataItem', {
        			
        			var title = panel.down('#title');
        			title.setHtml(record.get('title'));
-				title.addCls('icon-time-32');
+
+				var startTime = panel.down('#startTime');
+				startTime.setHtml(record.get('startTime'));
+
+				var memo = panel.down('#memo');
+				memo.setHtml(record.get('memo'));
+
+				var places = panel.down('#places');
+				places.setHtml(record.get('places'));
        		}else{
        			panel = me.down('#dayItemPanel');
        			panel.show();

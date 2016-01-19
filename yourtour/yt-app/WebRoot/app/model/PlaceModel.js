@@ -5,8 +5,17 @@ Ext.define('YourTour.model.PlaceModel', {
     	
 	    fields:[{name:'id', type:'string'},
 	            {name:'code', type:'string'},
+				{name:'parentCode', type:'string'},
 	    		{name:'name', type:'string'},
-	    		{name:'num', type:'string'}
+	    		{name:'num', type:'string'},
+				{name:'imageUrl', type:'string'},
+				{name:'leaf', type:'string'},
+				{name:'expandable', type:'string'},
+				{name:'followedNum', type:'string'},
+				{name:'goneNum', type:'string'},
+				{name:'goingNum', type:'string'},
+				{name:'hidden', type:'boolean'}
+
 	    ],
 	    
 	    associations: [

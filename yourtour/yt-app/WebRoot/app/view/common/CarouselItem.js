@@ -4,7 +4,7 @@ Ext.define('YourTour.view.common.CarouselItem', {
     config: {
       	label:null,
 		active:false,
-		record:null,
+		cacheData:null,
     },
     
     updateLabel:function(label){
@@ -23,16 +23,18 @@ Ext.define('YourTour.view.common.CarouselItem', {
 		return this.active;
 	},
 
-	updateRecord:function(record){
-		this.setRecord(record);
+	updateData:function(data){
+		this.cacheData = data;
+
+		this.initializeItem();
 	},
 
-	setRecord:function(record){
-		this.record = record;
+	initializeItem:function(){
+
 	},
 
-	getRecord:function(){
-		return this.record;
+	getData:function(){
+		return this.cacheData;
 	}
 });
 

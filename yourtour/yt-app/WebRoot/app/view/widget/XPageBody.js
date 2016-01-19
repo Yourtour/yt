@@ -15,12 +15,28 @@ Ext.define('YourTour.view.widget.XPageBody', {
                  },*/
                 bounce: {
                     acceleration: 0.0001,
-                    springTension: 0.9999,
-                },
+                    springTension: 0.9999
+                }
                 /*minVelocity: 5*/
             },
             outOfBoundRestrictFactor: 0
         }
-    }
+    },
+
+    initialize: function () {
+        var me = this;
+        me.callParent(arguments);
+
+        /*me.getScrollable().getScroller().on('scroll', me.onScroller,me);
+
+        me.getScrollable().getScroller().on('scrollend', me.onScrollerEnd,me);*/
+    },
+
+    /*onScrollerEnd : function(scroller,offsets){
+    },
+
+    onScroller: function (scroller, x, y,eOpts ) {
+        console.log(scroller);
+    }*/
 });
 
