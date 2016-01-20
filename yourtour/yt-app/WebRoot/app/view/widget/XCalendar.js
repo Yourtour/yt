@@ -1,5 +1,7 @@
 Ext.define('YourTour.view.widget.XCalendar', {
     extend: 'Ext.Container',
+
+    alternateClassName: 'YourTour.XCalendar',
     requires:['YourTour.view.widget.XCalendarItem'],
     xtype: 'xcalendar',
     config: {
@@ -12,6 +14,7 @@ Ext.define('YourTour.view.widget.XCalendar', {
         items: [
             {
                 xtype:'label',
+                itemId:'date',
                 cls:'row font-medium header '
             },
             {
@@ -281,6 +284,20 @@ Ext.define('YourTour.view.widget.XCalendar', {
     },
 
     initialize: function () {
+        var me = this;
+
+        me.callParent(arguments);
+
+        me.on(
+            {
+                scope:me,
+                itemtap:'onItemtap'
+            }
+        )
+    },
+
+    onItemtap:function(item, date, active){
+
     },
 
     getFirstDay:function(year, month){
@@ -311,23 +328,28 @@ Ext.define('YourTour.view.widget.XCalendar', {
     },
 
     doDraw:function(){
+        var me = this;
+
         this.getPreviousMonth();
 
         this.getCurrentMonth();
 
         this.getNextMonth();
 
-        var weekItem, weekIndex, dayIndex;
-        var allDays = this.allDays || this.getAllDays();
+        var weekItem, weekIndex, dayIndex, dayItem;
+        var allDays = me.allDays || me.getAllDays()
+
         for(var index = 0; index < allDays.length; index++){
             weekIndex = index / 7 + 1;
             dayIndex = index % 7;
 
             if(dayIndex == 0){
-                week = this.down('#week' + weekIndex);
+                week = me.down('#week' + weekIndex);
             }
 
-            week.getAt(dayIndex).setDate(allDays[index]);
+            dayItem = week.getAt(dayIndex);
+            dayItem.setDate(allDays[index]);
+            dayItem.updateCalendar(me);
         }
     },
 
@@ -339,9 +361,10 @@ Ext.define('YourTour.view.widget.XCalendar', {
         var year = month == 12 ? currentYear - 1 : currentYear;
 
         var week = this.getWeekForLastDay(year, month);
+        var dayNum = this.getDayNum(year, month)
         var allDays = this.allDays || this.getAllDays();
-        for(var index = 1; index <= week; index++){
-            allDays.push({value:this.getDate(year, month, index + 1), enabled:false});
+        for(var index = week; index >= 0; index--){
+            allDays.push({value:this.getDate(year, month, dayNum - index), enabled:false});
         }
     },
 
@@ -375,6 +398,8 @@ Ext.define('YourTour.view.widget.XCalendar', {
         this.year = year;
         this.month = month;
 
+        var date = this.down('#date');
+        date.setHtml(year + '-' + month);
         this.doDraw();
     },
 

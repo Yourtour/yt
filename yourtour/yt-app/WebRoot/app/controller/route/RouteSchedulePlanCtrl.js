@@ -268,8 +268,12 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
      * 行程时间设置部分
      ************************************************************************************************/
     showTimeSelectionView:function(){
+        var me = this;
         var controller = this.getApplication().getController('CommonMainCtrl');
-        controller.showTimeSelectionView();
+        controller.showTimeSelectionView(new Date(), function(){
+            Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteSettingView'));
+            var view = me.getSettingView();
+        });
     },
 
     /*************************************************************************************************

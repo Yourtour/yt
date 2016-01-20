@@ -10,7 +10,9 @@ Ext.define('YourTour.view.widget.XPage', {
 
         fullscreen: true,
 
-        data: null
+        data: null,
+
+        callback:null
     },
 
     /**
@@ -42,6 +44,14 @@ Ext.define('YourTour.view.widget.XPage', {
         if(data) {
             YourTour.util.Context.fillViewFields(me, data);
         }
+    },
+
+    updateCallback:function(callback){
+        this.callback = callback;
+    },
+
+    getCallback:function(){
+        return this.callback;
     },
 
     hideProcessing:function() {

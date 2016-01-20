@@ -29,49 +29,17 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 			},
 
 			{
-				xtype:'panel',
-				layout:'hbox',
-				padding:'0 0 0 10',
-				cls:'row underline',
-				items:[
-					{
-						xtype:'xlabel',
-						html: '出发日期',
-						style:'width:60px'
-					},
-					{  
-					    xtype: 'datepickerfield',  
-					    itemId:'startDate',
-					    flex:1,
-					    value:new Date(),
-					    dateFormat:'Y/m/d',
-					    clearIcon: true,
-					    cls:'nav-arrow'
-					}
-				]
+				xtype:'xfield',
+				itemId:'startDate',
+				label:'出发日期',
+				tappable:true
 			},
 
 			{
-				xtype:'panel',
-				layout:'hbox',
-				padding:'0 0 0 10',
-				cls:'row underline',
-				items:[
-					{
-						xtype:'xlabel',
-						html: '返程日期',
-						style:'width:60px'
-					},
-					{
-						xtype: 'datepickerfield',
-						itemId:'endDate',
-						flex:1,
-						value:new Date(),
-						dateFormat:'Y/m/d',
-						clearIcon: true,
-						cls:'nav-arrow'
-					}
-				]
+				xtype:'xfield',
+				itemId:'endDate',
+				label:'返程日期',
+				tappable:true
 			},
 
 			{
@@ -79,43 +47,17 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 			},
 
 			{
-				xtype:'panel',
-				layout:'hbox',
-				padding:'0 10 0 10',
-				cls:'row underline',
-				items:[
-					{
-						xtype:'xlabel',
-						html: '出发地',
-						style:'width:50px'
-					},
-					{
-						xtype: 'xfield',
-						itemId:'fromPlace',
-						style:'text-align:right',
-						flex:1
-					}
-				]
+				xtype:'xfield',
+				itemId:'fromPlace',
+				label:'出发地',
+				tappable:true
 			},
 
 			{
-				xtype:'panel',
-				layout:'hbox',
-				padding:'0 10 0 10',
-				cls:'row underline',
-				items:[
-					{
-						xtype:'xlabel',
-						html: '目的地',
-						style:'width:50px'
-					},
-					{
-						xtype: 'xfield',
-						itemId:'toPlaces',
-						style:'text-align:right',
-						flex:1
-					}
-				]
+				xtype:'xfield',
+				itemId:'toPlaces',
+				label:'目的地',
+				tappable:true
 			},
 
 			{
@@ -144,14 +86,13 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 				xtype: 'xtoolbar',
 				docked: 'bottom',
 				itemId: 'toolbar',
-				cls: 'toolbar',
 				items: [
 					{
 						xtype:'spacer',
 						flex:1
 					},
 					{
-						xtype: 'button',
+						xtype: 'xbutton',
 						text: '智能匹配',
 						ui: 'normal',
 						iconCls: 'action',
@@ -161,7 +102,7 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 						xtype:'xvline'
 					} ,
 					{
-						xtype: 'button',
+						xtype: 'xbutton',
 						text: '行程定制',
 						ui: 'normal',
 						iconCls: 'favorites',

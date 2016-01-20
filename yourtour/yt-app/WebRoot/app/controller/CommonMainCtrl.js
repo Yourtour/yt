@@ -29,6 +29,10 @@ Ext.define('YourTour.controller.CommonMainCtrl', {
 
             '#CommentListView #imageNum':{
                 tap:'onCommentFilterTap'
+            },
+
+            '#TimeSelectionView #btnNext':{
+                tap:'onTimeSelectionNextTapHandler'
             }
         }
     },
@@ -100,7 +104,7 @@ Ext.define('YourTour.controller.CommonMainCtrl', {
     /*************************************************************************************************
      * 日历选择部分
      ************************************************************************************************/
-    showTimeSelectionView:function(date){
+    showTimeSelectionView:function(date, callback){
         var year, month;
 
         if(! date){
@@ -110,10 +114,22 @@ Ext.define('YourTour.controller.CommonMainCtrl', {
         year = date.getFullYear();
         month = date.getMonth() + 1;
 
-        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.common.TimeSelectionView'));
+        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.common.TimeSelectionView',{callback:callback}));
         var view = this.getTimeSelectionView();
 
         var calendar = view.down('#calendar');
         calendar.setDate(year, month);
+    },
+
+    onTimeSelectionNextTapHandler:function(){
+        var me = this;
+        var view = this.getTimeSelectionView();
+
+        var calendar = view.down('#calendar');
+
+        var callback = view.getCallback();
+        if(callback) {
+            callback();
+        }
     }
 });

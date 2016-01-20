@@ -7,18 +7,22 @@ Ext.define('YourTour.view.common.TimeSelectionView', {
         items: [
             {
                 xtype: 'xheaderbar',
-                title:'想什么时候去'
+                title:'想什么时候去',
+                items:[
+                    {
+                        xtype: "toolbutton",
+                        ui: "normal",
+                        text:'下一步',
+                        itemId:'btnNext',
+                        align:'right'
+                    }
+                ]
             },
 
             {
                 xtype: 'xcalendar',
                 itemId: 'calendar',
                 flex:1
-            },
-
-            {
-                xtype: 'spacer',
-                height:25
             }
         ]
     }

@@ -4,7 +4,39 @@ Ext.define('YourTour.view.widget.XCalendarItem', {
     config: {
     	cls:'day',
         enabled:true,
-        date:null
+        date:null,
+        calendar:null,
+        active:false
+    },
+
+    initialize: function () {
+        var me = this;
+
+        me.callParent(arguments);
+
+        me.element.on({
+            scope:me,
+            'tap' : me.onItemTap
+        })
+    },
+
+    onItemTap:function(){
+        var me = this;
+
+        if(me.enabled) {
+            me.active = !me.active;
+            if(me.active){
+                me.addCls('active')
+            }else{
+                me.removeCls('active');
+            }
+
+            me.calendar.fireEvent('itemtap', me, me.date.value, me.active);
+        }
+    },
+
+    updateCalendar:function(calendar){
+        this.calendar = calendar;
     },
 
     updateEnabled:function(enabled){
@@ -18,8 +50,11 @@ Ext.define('YourTour.view.widget.XCalendarItem', {
         this.setHtml(value.split('/')[2]);
 
         var enabled = date.enabled;
-        if(! enabled){
-            this.addCls('disabled')
+        this.enabled = enabled;
+
+        var active = date.active;
+        if(active){
+            this.addCls('active');
         }
     }
 });
