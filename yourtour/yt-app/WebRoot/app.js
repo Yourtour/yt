@@ -27,13 +27,13 @@ Ext.application({
     views: [
         'MainView','Launch','setting.UserSettingView',
         'common.MessageMainView','common.MessageGroupView','common.FieldEditView','common.ContentReadView',
-        'common.ExpertServiceListView','common.ExpertServiceFormView','common.CommentListView',
+        'common.ExpertServiceListView','common.ExpertServiceFormView','common.CommentListView','common.TimeSelectionView',
 
         'home.HomeMainView', 'home.BestListView', 'home.AlongListView', 'home.AlongDetailView', 'home.TalentListView', 'SearchMain',
         'route.RouteMainView','route.RouteSettingView','route.RouteImpressionView','route.RouteImageView',
         'route.RouteScheduleListView', 'route.RouteSchedulePlanView','route.RouteScheduleReferenceListView','route.RouteScheduleFormView',
         'route.RouteProvisionView','route.RouteProvisionEditView','route.RouteScheduleEditView','route.RouteScheduleView',
-        'route.RouteActivityEditView',
+        'route.RouteActivityEditView','route.RoutePlaceEditView',
         'route.RouteRecommendListView','route.RouteRecommendIntroductionView',
         'user.LoginMainView','user.UserListView','user.UserMainView','user.UserProfileView',
         'resource.ResourceSelectionView','resource.ResourceFormView','resource.ResourceMapView','resource.ResourceActivityItemListView',

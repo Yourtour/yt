@@ -1,13 +1,13 @@
 Ext.define('YourTour.view.place.PlaceSelectionHomeItem', {
     extend: 'YourTour.view.common.CarouselItem',
-    requires: ['YourTour.view.place.PlaceSelectionDataItem'],
+    requires: ['YourTour.view.place.PlaceSelectionDataItem','YourTour.view.widget.XDataView'],
     xtype:'PlaceSelectionHomeItem',
     config: {
         layout: 'vbox',
         label: '国内',
         items: [
             {
-                xtype:'dataview',
+                xtype:'xdataview',
                 itemId:'placeList',
                 flex:1,
                 useComponents: true,

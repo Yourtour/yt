@@ -152,7 +152,7 @@ Ext.define('YourTour.controller.PlaceSelectionCtrl', {
      */
     onPlaceListItemTapHandler: function (dataview, index, item, record, e) {
         if (record.get('leaf') == 'true') {
-
+            this.callback(dataview, index, item, record, e);
         } else {
             var store = dataview.getStore();
             var len = store.getAllCount();

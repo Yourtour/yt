@@ -145,7 +145,7 @@
         }
 
         .icon-delete {
-            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAmCAYAAACoPemuAAAACXBI…w9uZwp9NBp9NBr9fDcDjEZDJZ8hTdHI7FYkT7Nmrs/T8A+9sqBa/UMfkAAAAASUVORK5CYII=');
+            background-image: url(./resources/icons/icon_delete.png);
             background-repeat: no-repeat;
             background-position: right center;
         }
@@ -483,10 +483,24 @@
 
         .x-xscore{
             padding:15px 0 15px 0;
-            line-height:20px;
+            line-height:25px;
             font-size:14px;
             color: green !important;
             width:50px;
+        }
+
+        .x-xscore.x-xleft{
+            text-align:left;
+            background-image: url(./resources/icons/icon_round_48.png);
+            background-repeat: no-repeat;
+            background-position: left center;
+        }
+
+        .x-xscore.x-xright{
+            text-align:right;
+            background-image: url(./resources/icons/icon_round_48.png);
+            background-repeat: no-repeat;
+            background-position: right center;
         }
 
         .x-xprocessing{
@@ -502,6 +516,31 @@
             background-image: url(./resources/icons/icon_processing.png);
             background-repeat: no-repeat;
             background-position: center center;
+        }
+
+        .x-xcalendar{
+            font-size:14px;
+            text-align:center;
+        }
+
+        .x-xcalendar .header{
+            background-color:#3CB371;
+            font-color:white;
+            height:40px;
+        }
+
+        .x-xcalendar .week{
+            line-height:40px;
+            height:40px;
+        }
+
+        .x-xcalendar .day{
+            line-height:40px;
+            height:40px;
+        }
+
+        .x-xcalendar .day.disabled{
+            color:grey;
         }
 
         .spacer{

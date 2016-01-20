@@ -3,6 +3,24 @@ Ext.define('YourTour.view.widget.XDataView', {
     xtype:'xdataview',
 	config:{
 		binding:'',
+		useComponents: true,
+		scrollable: {
+			direction: 'vertical',
+			indicators: false,
+			directionLock: true,
+			momentumEasing:  {
+				/*momentum: {
+				 acceleration: 10,
+				 friction: 0.9
+				 },*/
+				bounce: {
+					acceleration: 0.0001,
+					springTension: 0.9999
+				}
+				/*minVelocity: 5*/
+			},
+			outOfBoundRestrictFactor: 0
+		}
 	},
 
 	updateBinding:function(binding){

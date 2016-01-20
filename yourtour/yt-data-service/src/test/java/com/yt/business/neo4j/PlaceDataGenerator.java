@@ -71,7 +71,7 @@ public class PlaceDataGenerator extends DataGenerator{
 		}
 	}
 
-	@Test
+	//@Test
 	public void createTaiWan(){
 		repository = context.getBean(PlaceRepository.class);
 		try {
@@ -115,6 +115,23 @@ public class PlaceDataGenerator extends DataGenerator{
 				place.setParent(parent);
 				repository.save(place, "admin");
 			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			fail(ex.getMessage());
+		}
+	}
+
+	@Test
+	public void createRelative(){
+		repository = context.getBean(PlaceRepository.class);
+		try {
+			PlaceBean source = new PlaceBean();
+			source.setGraphId(6l);
+
+			PlaceBean target = new PlaceBean();
+			target.setGraphId(7l);
+
+			repository.createRelation(source, target, Constants.RELATION_TYPE_RELATED, Direction.OUTGOING);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			fail(ex.getMessage());

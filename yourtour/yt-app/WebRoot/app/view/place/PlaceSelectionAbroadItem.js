@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.place.PlaceSelectionAbroadItem', {
     extend: 'YourTour.view.common.CarouselItem',
-    requires: ['YourTour.view.place.PlaceSelectionDataItem','YourTour.view.place.PlaceSelectionTypeDataItem'],
+    requires: ['YourTour.view.place.PlaceSelectionDataItem','YourTour.view.widget.XDataView', 'YourTour.view.place.PlaceSelectionTypeDataItem'],
 
     xtype:'PlaceSelectionAbroadItem',
     config: {
@@ -8,7 +8,7 @@ Ext.define('YourTour.view.place.PlaceSelectionAbroadItem', {
         label: '国际·港澳台',
         items: [
             {
-                xtype:'dataview',
+                xtype:'xdataview',
                 itemId:'placeType',
                 flex:1,
                 useComponents: true,
@@ -34,28 +34,10 @@ Ext.define('YourTour.view.place.PlaceSelectionAbroadItem', {
             },
 
             {
-                xtype:'dataview',
+                xtype:'xdataview',
                 itemId:'placeList',
                 flex:4,
-                useComponents: true,
-                defaultType: 'PlaceSelectionDataItem',
-                scrollable: {
-                    direction: 'vertical',
-                    indicators: false,
-                    directionLock: true,
-                    momentumEasing:  {
-                        /*momentum: {
-                         acceleration: 10,
-                         friction: 0.9
-                         },*/
-                        bounce: {
-                            acceleration: 0.0001,
-                            springTension: 0.9999
-                        }
-                        /*minVelocity: 5*/
-                    },
-                    outOfBoundRestrictFactor: 0
-                }
+                defaultType: 'PlaceSelectionDataItem'
             }
         ]
     },

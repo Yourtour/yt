@@ -2,26 +2,26 @@ Ext.define('YourTour.view.widget.XGridView', {
     extend: 'Ext.Container',
     xtype:'xgridview',
     config:{
+		cls:'x-xgridview',
+
+		store: null,
+
     	cols: 3,
-    	models:null,
-    	vSpace:0,
+
+		models:null,
     	vLine:true,
-    	hSpace:0,
     	hLine:true,
-    	item:null,
     	layout:'vbox',
         items: [
 			
         ]
     },
-    
-    applyHSpace:function(hSpace){
-    	this.hSpace = hSpace;
-    },
-    
-    applyVSpace:function(vSpace){
-    	this.vSpace = vSpace;
-    },
+
+	initialize: function() {
+		this.callParent();
+		var me = this;
+	},
+
     
     applyHLine:function(hLine){
     	this.hLine = hLine;
@@ -46,7 +46,11 @@ Ext.define('YourTour.view.widget.XGridView', {
     getItem:function(){
     	return this.item;
     },
-    
+
+	applyStore:function(store){
+		this.store = store;
+	},
+
     applyModels: function(models){
     	var me = this;
     	if(models){
@@ -93,6 +97,28 @@ Ext.define('YourTour.view.widget.XGridView', {
 		    	}
 	    	}
     	}
-    }
+    },
+
+	/**
+	 * Refreshes the view by reloading the data from the store and re-rendering the template.
+	 */
+	refresh: function() {
+		var me = this,
+			container = me.container;
+
+		if (!me.getStore()) {
+			if (!me.hasLoadedStore && !me.getDeferEmptyText()) {
+				me.showEmptyText();
+			}
+			return;
+		}
+		if (container) {
+			me.fireAction('refresh', [me], 'doRefresh');
+		}
+	},
+
+	doRefresh:function(){
+
+	}
 });
 

@@ -22,4 +22,7 @@ public interface PlaceBeanRepository extends GraphRepository<PlaceBean> {
 
 	@Query("START user=NODE({0}) MATCH user-[:FOLLOWING]->(place:PlaceBean) RETURN place")
 	public List<PlaceBean> getRecommendPlaces(Long userId);
+
+	@Query("START source=NODE({0}) MATCH source-[:RELATED]->(target:PlaceBean) RETURN target")
+	public List<PlaceBean> getRelatedPlaces(Long placeId);
 }

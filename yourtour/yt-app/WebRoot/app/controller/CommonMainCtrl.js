@@ -5,7 +5,9 @@ Ext.define('YourTour.controller.CommonMainCtrl', {
             contentReadView:'#ContentReadView',
 
             commentListView:'#CommentListView',
-            commentList:'#CommentListView #commentList'
+            commentList:'#CommentListView #commentList',
+
+            timeSelectionView:'#TimeSelectionView'
         },
        
         control:{
@@ -93,5 +95,25 @@ Ext.define('YourTour.controller.CommonMainCtrl', {
             }
         };
         me.getApplication().query(options);
+    },
+
+    /*************************************************************************************************
+     * 日历选择部分
+     ************************************************************************************************/
+    showTimeSelectionView:function(date){
+        var year, month;
+
+        if(! date){
+            date = new Date();
+        }
+
+        year = date.getFullYear();
+        month = date.getMonth() + 1;
+
+        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.common.TimeSelectionView'));
+        var view = this.getTimeSelectionView();
+
+        var calendar = view.down('#calendar');
+        calendar.setDate(year, month);
     }
 });

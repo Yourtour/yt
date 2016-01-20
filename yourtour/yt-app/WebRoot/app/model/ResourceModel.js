@@ -27,7 +27,8 @@ Ext.define('YourTour.model.ResourceModel', {
 				{name:'facilityScore', type:'string'},
 	    		{name:'recommendIndex', type:'string'},
 	    		{name:'assessmentIndex', type:'string'},
-	    		{name:'desc', type:'string'}
+	    		{name:'desc', type:'string'},
+				{name: 'action', type: 'string', defaultValue: 'add'}
 	    ],
 
 		associations: [

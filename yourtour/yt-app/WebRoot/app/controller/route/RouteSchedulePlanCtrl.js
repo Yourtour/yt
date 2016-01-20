@@ -4,10 +4,12 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 
     config: {
         refs: {
+            //行程规划列表页面
             routeSchedulePlanView: '#RouteSchedulePlanView',
             routeScheduleList: '#RouteSchedulePlanView #RouteScheduleList',
             toolbar: '#RouteSchedulePlanView #toolbar',
 
+            //行程安排编辑页面
             routeActivityEditView: '#RouteActivityEditView',
             routeProvisionEditView: '#RouteProvisionEditView',
             routeScheduleEditView: '#RouteScheduleEditView',
@@ -15,11 +17,22 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
             settingView: '#RouteSettingView',
             placeChangeView: '#PlaceChangeView',
 
+            //行程目的地编辑页面
+            routePlaceEditView:'#RoutePlaceEditView',
+
+            //行程主题选择页面
+
+            //行程时间设置页面
+            timeSelectionView:'#TimeSelectionView',
+
+            //智能匹配线路结果页面
             routeRecommendListView: '#RouteRecommendListView',
             recommendRouteList: '#RouteRecommendListView #recommendRouteList',
+
+            //智能匹配线路结果页面
             routeRecommendIntroductionView: '#RouteRecommendIntroductionView',
             recommendCarousel: '#RouteRecommendIntroductionView #recommendCarousel',
-            scheduleList: '#RouteRecommendIntroductionView #scheduleList',
+            scheduleList: '#RouteRecommendIntroductionView #scheduleList'
         },
 
         control: {
@@ -42,6 +55,19 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 
             '#toolbar #newProvision': {
                 tap: 'onNewProvisionItem'
+            },
+
+            '#RoutePlaceEditView #btnNext':{
+                tap:'onRoutePlaceNextTapHandler'
+            },
+
+            '#RoutePlaceEditView #selectedList':{
+                itemtap: 'onSelectedListItemTapHandler',
+                itemoperation:'onItemRemoveHandler'
+            },
+
+            '#RoutePlaceEditView #relatedList':{
+                itemoperation:'onItemAddHandler'
             },
 
             '#RouteProvisionEditView #btnDelete': {
@@ -126,11 +152,129 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
         route: null
     },
 
+    /*************************************************************************************************
+     * 行程目的地部分
+     ************************************************************************************************/
     createNewRoute: function () {
+        var me = this;
         var controller = this.getApplication().getController('PlaceSelectionCtrl');
-        controller.showPage();
+        controller.showPage(function(dataview, index, item, record, e){
+            me.showPlaceEditView(record);
+        });
     },
 
+    showPlaceEditView:function(place){
+        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RoutePlaceEditView'));
+
+        this.fillPlaceEditView(place);
+    },
+
+    /**
+     * 显示目的地设置界面
+     * @param place
+     */
+    fillPlaceEditView:function(place){
+        var me = this;
+
+        var view = me.getRoutePlaceEditView();
+
+        var selectedList = view.down('#selectedList');
+        var selectedStore = selectedList.getStore();
+        if(selectedStore == null){
+            selectedStore = Ext.create('YourTour.store.AjaxStore', {model: 'YourTour.model.PlaceModel'});
+            selectedList.setStore(selectedStore);
+        }
+        place.set('action','delete');
+        selectedStore.add(place);
+
+        me.getRelatedPlaces(place);
+    },
+
+    /**
+     * 已选择目的地点击触发事件处理
+     * @param dataview
+     * @param index
+     * @param item
+     * @param record
+     * @param e
+     */
+    onSelectedListItemTapHandler:function(dataview, index, item, record, e){
+        this.getRelatedPlaces(record);
+    },
+
+    /**
+     * 显示相关目的地
+     * @param place
+     */
+    getRelatedPlaces:function(place){
+        var me = this;
+        var view = me.getRoutePlaceEditView();
+
+        var message = view.down('#message');
+        message.setHtml('选择' + place.get('name') + '的人还选择了');
+
+        //获取相关的目的地
+        var options = {
+            model: 'YourTour.model.RouteModel',
+            url: '/place/relative/' + place.get('id') + '/query',
+            success: function (store) {
+                var relatedList = view.down('#relatedList');
+                relatedList.setStore(store);
+            }
+        };
+        me.getApplication().query(options);
+    },
+
+    /**
+     * 删除已选择目的地
+     * @param dataview
+     * @param action
+     * @param record
+     */
+    onItemRemoveHandler:function(dataview, action, record){
+        var store = dataview.getStore();
+        store.remove(record);
+    },
+
+    /**
+     * 相关目的地添加
+     * @param dataview
+     * @param action
+     * @param record
+     */
+    onItemAddHandler:function(dataview, action, record){
+        var me = this;
+
+        var store = dataview.getStore();
+        store.remove(record);
+
+        var view = me.getRoutePlaceEditView();
+        var selectedList = view.down('#selectedList');
+        var selectedStore = selectedList.getStore();
+        record.set('action','delete');
+        selectedStore.add(record);
+
+        me.getRelatedPlaces(record);
+    },
+
+    /**
+     * 进入行程时间设置界面
+     */
+    onRoutePlaceNextTapHandler:function(){
+        this.showTimeSelectionView();
+    },
+
+    /*************************************************************************************************
+     * 行程时间设置部分
+     ************************************************************************************************/
+    showTimeSelectionView:function(){
+        var controller = this.getApplication().getController('CommonMainCtrl');
+        controller.showTimeSelectionView();
+    },
+
+    /*************************************************************************************************
+     * 行程设置时预览部分
+     ************************************************************************************************/
     loadStep1Info: function (info) {
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteSettingView'));
         var view = this.getSettingView();
@@ -159,36 +303,6 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 
     getRoute: function () {
         return this.route;
-    },
-
-    /**
-     * 目的地选择
-     */
-    onToPlacesTap: function () {
-        var me = this;
-
-        this.redirectTo('/place/multiSelection');
-
-        var controller = me.getApplication().getController('PlaceSelectionCtrl');
-        controller.bindHandler('#btnOk', 'tap', function () {
-            var ids = '', names = '';
-            var selections = controller.getSelectedPlaces();
-            selections.getItems().each(function (item) {
-                if (ids != '') {
-                    ids = ids + ',';
-                    names = names + ",";
-                }
-
-                ids = ids + item.model.get('id');
-                names = names + item.model.get('name');
-            });
-
-            var toPlaces = me.getSettingView().down('#toPlaces');
-            toPlaces.setValue(ids);
-            toPlaces.setText(names);
-
-            Ext.ComponentManager.get('MainView').pop();
-        });
     },
 
     /**
@@ -298,7 +412,6 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
         };
         me.getApplication().query(options);
     },
-
 
     /**
      *
@@ -968,8 +1081,6 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
      * @param resourceActivityItem
      */
     addScheduleActivityItem: function (resourceActivityItem, handler) {
-        console.log(resourceActivityItem);
-
         var view = this.getRouteActivityEditView();
         var activity = view.getData();
         var activityId = activity.get('id');
@@ -979,7 +1090,6 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
             url: '/routes/activity/' + activityId + '/item/' + resourceActivityItemId + '/save',
             method: "POST",
             success: function (data) {
-                console.log(data);
                 resourceActivityItem.set('resourceActivityItemId', resourceActivityItemId);
                 resourceActivityItem.set('id', data);
 

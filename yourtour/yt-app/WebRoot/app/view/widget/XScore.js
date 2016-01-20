@@ -2,23 +2,34 @@ Ext.define('YourTour.view.widget.XScore', {
     extend: 'Ext.Label',
     xtype: 'xscore',
     config: {
-        binding:null,
-        align:null,
-    	cls:'x-xscore'
+        baseCls: 'x-xscore',
+        binding: null,
+        align: null,
+        star:false
     },
 
-    updateAlign:function(align){
-        if(align == 'right'){
-            this.setStyle('text-align:right;background-image: url(./resources/icons/icon_round_48.png);background-repeat: no-repeat;background-position: left center;');
-        }else{
-            this.setStyle('text-align:left;background-image: url(./resources/icons/icon_round_48.png);background-repeat: no-repeat;background-position: right center;');
+    constructor: function(config) {
+        var me = this;
+
+        if(config.star){
+            if(! config.padding){
+                config.padding = '0 0 0 90';
+            }
         }
+
+        me.callParent(arguments);
     },
 
-    updateRecord:function(record){
+    updateStar:function(star){
+        this.setStyle('background-image: url(./resources/icons/icon_score.png);background-repeat: no-repeat;background-position: left center;');
+    },
+
+    updateRecord: function (record) {
         var binding = this.binding;
-        var name = binding == null ? this.getItemId():binding;
-        this.setHtml(record.get(name) +' 分');
+        var name = binding == null ? this.getItemId() : binding;
+        var score = record.get(name);
+
+        this.setHtml(record.get(name) + ' 分');
     }
 });
 

@@ -171,4 +171,9 @@ public class PlaceRepositoryImpl extends CrudAllInOneOperateImpl implements
 	public List<PlaceBean> getRouteRecommendPlaces(Long userId) {
 		return this.repository.getRecommendPlaces(userId);
 	}
+
+	@Override
+	public List<PlaceBean> getRelatedPlaces(Long placeId) {
+		return this.repository.getRelatedPlaces(placeId);
+	}
 }

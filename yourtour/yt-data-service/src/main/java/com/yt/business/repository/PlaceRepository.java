@@ -17,5 +17,7 @@ public interface PlaceRepository extends CrudAllInOneOperate {
 
 	public List<PlaceBean> getRouteRecommendPlaces(Long userId);
 
+	public List<PlaceBean> getRelatedPlaces(Long placeId);
+
 	public void save(PlaceBean place, String operator) throws Exception;
 }

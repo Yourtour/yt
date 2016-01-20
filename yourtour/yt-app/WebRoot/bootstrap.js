@@ -732,6 +732,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.common.MessageGroupView": [],
   "YourTour.view.common.MessageMainView": [],
   "YourTour.view.common.PlaceGridItemView": [],
+  "YourTour.view.common.TimeSelectionView": [],
   "YourTour.view.community.LiveMainView": [],
   "YourTour.view.expert.ExpertApplyView": [],
   "YourTour.view.expert.ExpertDataItem": [],
@@ -796,6 +797,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.route.RouteImpressionView": [],
   "YourTour.view.route.RouteMainItem": [],
   "YourTour.view.route.RouteMainView": [],
+  "YourTour.view.route.RoutePlaceDataItem": [],
+  "YourTour.view.route.RoutePlaceEditView": [],
   "YourTour.view.route.RouteProvisionEditView": [],
   "YourTour.view.route.RouteProvisionView": [],
   "YourTour.view.route.RouteRecommendDataItem": [],
@@ -829,6 +832,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.ToolButton": [],
   "YourTour.view.widget.XBack": [],
   "YourTour.view.widget.XButton": [],
+  "YourTour.view.widget.XCalendar": [],
+  "YourTour.view.widget.XCalendarItem": [],
   "YourTour.view.widget.XCarousel": [],
   "YourTour.view.widget.XCheckbox": [],
   "YourTour.view.widget.XDataItem": [],
@@ -1699,6 +1704,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.common.PlaceGridItemView": [
     "widget.PlaceGridItemView"
   ],
+  "YourTour.view.common.TimeSelectionView": [],
   "YourTour.view.community.LiveMainView": [
     "widget.LiveMainView"
   ],
@@ -1863,6 +1869,10 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.route.RouteMainView": [
     "widget.RouteMainView"
   ],
+  "YourTour.view.route.RoutePlaceDataItem": [
+    "widget.RoutePlaceDataItem"
+  ],
+  "YourTour.view.route.RoutePlaceEditView": [],
   "YourTour.view.route.RouteProvisionEditView": [],
   "YourTour.view.route.RouteProvisionView": [],
   "YourTour.view.route.RouteRecommendDataItem": [
@@ -1939,6 +1949,12 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.widget.XButton": [
     "widget.xbutton"
+  ],
+  "YourTour.view.widget.XCalendar": [
+    "widget.xcalendar"
+  ],
+  "YourTour.view.widget.XCalendarItem": [
+    "widget.xcalendaritem"
   ],
   "YourTour.view.widget.XCarousel": [
     "widget.xcarousel"

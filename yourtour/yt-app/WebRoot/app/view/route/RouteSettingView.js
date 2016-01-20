@@ -152,7 +152,7 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 					},
 					{
 						xtype: 'button',
-						text: '线路参考',
+						text: '智能匹配',
 						ui: 'normal',
 						iconCls: 'action',
 						itemId: 'btnRefer',

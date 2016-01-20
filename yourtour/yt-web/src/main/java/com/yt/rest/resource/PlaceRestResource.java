@@ -98,11 +98,35 @@ public class PlaceRestResource {
 	 */
 	@GET
 	@Path("/recommend/query")
-	public ResponseDataVO<List<PlaceVO>> getRouteRecommendPlaces() {
+	public ResponseDataVO<List<PlaceVO>> getRecommendPlacesForUser() {
 		List<PlaceVO> list = new ArrayList<PlaceVO>();
 		try {
 			String userId = WebUtils.getCurrentLoginUser();
 			List<PlaceBean> places = placeRepository.getRouteRecommendPlaces(Long.valueOf(userId));
+			for (PlaceBean place : places) {
+				list.add(PlaceVO.transform(place));
+			}
+
+			return new ResponseDataVO<List<PlaceVO>>(list);
+		} catch (Exception ex) {
+			if (LOG.isErrorEnabled()) {
+				LOG.error("GetPlaces fail.", ex);
+			}
+			return new ResponseDataVO<List<PlaceVO>>(
+					StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
+	}
+
+	/**
+	 * 获取用户推荐目的地
+	 * @return
+	 */
+	@GET
+	@Path("/relative/{placeId}/query")
+	public ResponseDataVO<List<PlaceVO>> getRelatedPlaces(@PathParam("placeId") String placeId ){
+		List<PlaceVO> list = new ArrayList<PlaceVO>();
+		try {
+			List<PlaceBean> places = placeRepository.getRelatedPlaces(Long.valueOf(placeId));
 			for (PlaceBean place : places) {
 				list.add(PlaceVO.transform(place));
 			}

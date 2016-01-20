@@ -8,6 +8,7 @@ Ext.define('YourTour.util.Context', {
 		//server:'192.168.1.174:8080'
     	//server:'192.168.2.102:8080'
 		server:'120.55.76.201:8080'
+		//server:'localhost:8080'
     },
     
     constructor : function(config) {
