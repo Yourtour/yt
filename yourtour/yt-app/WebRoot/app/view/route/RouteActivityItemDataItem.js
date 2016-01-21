@@ -26,7 +26,7 @@ Ext.define('YourTour.view.route.RouteActivityItemDataItem', {
 						padding:'0'
 					} ,
 
-					{
+					/*{
 						xtype:'xmultifield',
 						itemId:'memo',
 						underline:false,
@@ -35,7 +35,7 @@ Ext.define('YourTour.view.route.RouteActivityItemDataItem', {
 							size:30,
 							expandable:false
 						}
-					}
+					}*/
 				]
 			}
 		]

@@ -832,7 +832,9 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.ToolButton": [],
   "YourTour.view.widget.XBack": [],
   "YourTour.view.widget.XButton": [],
-  "YourTour.view.widget.XCalendar": [],
+  "YourTour.view.widget.XCalendar": [
+    "YourTour.XCalendar"
+  ],
   "YourTour.view.widget.XCalendarItem": [],
   "YourTour.view.widget.XCarousel": [],
   "YourTour.view.widget.XCheckbox": [],
@@ -849,6 +851,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.XLabel": [],
   "YourTour.view.widget.XMultiField": [],
   "YourTour.view.widget.XMultiLabel": [],
+  "YourTour.view.widget.XNavigation": [],
   "YourTour.view.widget.XPage": [],
   "YourTour.view.widget.XPageBody": [],
   "YourTour.view.widget.XPanel": [],
@@ -1996,6 +1999,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.widget.XMultiLabel": [
     "widget.xmultilabel"
+  ],
+  "YourTour.view.widget.XNavigation": [
+    "widget.xnavigation"
   ],
   "YourTour.view.widget.XPage": [
     "widget.xpage"

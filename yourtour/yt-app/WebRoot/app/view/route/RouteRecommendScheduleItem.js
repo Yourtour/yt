@@ -9,29 +9,54 @@ Ext.define('YourTour.view.route.RouteRecommendScheduleItem', {
 			{
 				itemId:'RouteScheduleList',
 				xtype:'dataview',
-				scrollable:null,
+				flex:1,
+				scrollable: {
+					direction: 'vertical',
+					indicators: false,
+					directionLock: true,
+					momentumEasing:  {
+						/*momentum: {
+						 acceleration: 10,
+						 friction: 0.9
+						 },*/
+						bounce: {
+							acceleration: 0.0001,
+							springTension: 0.9999
+						}
+						/*minVelocity: 5*/
+					},
+					outOfBoundRestrictFactor: 0
+				},
 				useComponents: true,
 				defaultType: 'RouteScheduleListDataItem'
 			},
 
 			{
-				xtype: 'toolbar',
+				xtype: 'xtoolbar',
 				docked: 'bottom',
 				items: [
 					{
 						xtype: 'spacer',
 						flex:1
 					}, {
-						xtype: 'button',
-						text: '开始规划',
+						xtype: 'xbutton',
+						itemId: 'btnClone',
+						text: '行程复制',
 						baseCls:'button',
-						flex: 1,
 						padding: '0 20 0 20',
-						itemId: 'btnClone'
+						icon:'resources/icons/icon_copy.png'
 					}
 				]
 			}
 		]
-    }
+    },
+
+	initializeItem:function() {
+		var me = this;
+
+		var store = me.getData();
+		var scheduleList = me.down('#RouteScheduleList');
+		scheduleList.setStore(store);
+	}
 });
 

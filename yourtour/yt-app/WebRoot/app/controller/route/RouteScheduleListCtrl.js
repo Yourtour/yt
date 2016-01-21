@@ -68,14 +68,23 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
 			url:'/routes/' + routeId +'/query',
 			success:function(store){
 				me.store = store;
-
 				var record = store.first();
 
 				var imageEl = view.down('#imageUrl');
 				imageEl.setHtml("<img src='" + YourTour.util.Context.getImageResource(record.get('imageUrl')) + "' style='width:100%; max-height:150px'>");
 
+				var schedulesStore = record.schedulesStore;
 				var scheduleList = view.down('#RouteScheduleList');
-				scheduleList.setStore(record.schedulesStore);
+
+				var type;
+				schedulesStore.each(function(record){
+					type = record.get('type');
+
+					if(type == 'Provision' || type == 'ProvisionItem'){
+						record.set('hidden', true);
+					}
+				});
+				scheduleList.setStore(schedulesStore);
 			}
 		};
 		me.getApplication().query(options);

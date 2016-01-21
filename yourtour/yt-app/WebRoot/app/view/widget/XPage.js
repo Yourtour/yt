@@ -3,16 +3,11 @@ Ext.define('YourTour.view.widget.XPage', {
     xtype: 'xpage',
     config: {
         layout:'vbox',
-
-        items:[
-
-        ],
-
         fullscreen: true,
-
         data: null,
+        callback:null,
 
-        callback:null
+        items:[]
     },
 
     /**

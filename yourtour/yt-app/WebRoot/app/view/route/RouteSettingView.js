@@ -43,6 +43,12 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 			},
 
 			{
+				xtype:'xfield',
+				itemId:'duration',
+				label:'日程天数'
+			},
+
+			{
 				xtype:'xspacer'
 			},
 

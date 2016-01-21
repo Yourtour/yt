@@ -3,11 +3,7 @@ Ext.define('YourTour.view.route.RouteRecommendListView', {
     requires:['Ext.Panel','Ext.Img', 'Ext.DataView','YourTour.view.widget.XHeaderBar', 'Ext.Spacer','YourTour.view.widget.XBack','YourTour.view.widget.ToolButton','YourTour.view.route.RouteRecommendDataItem'],
     config: {
     	id:'RouteRecommendListView',
-    	layout:'vbox',
-		scrollable: {
-			direction: 'vertical',
-			indicators: false
-		},
+		layout:'card',
         items: [
         	{    
 				xtype: 'xheaderbar',
@@ -21,25 +17,33 @@ Ext.define('YourTour.view.route.RouteRecommendListView', {
 	                }
                 ]
 			},
-
 			{
-				xtype:'panel',
-				height:150,
-				items:[
-					{
-						itemId : 'image',
-						xtype : 'image',
-						mode : 'tag',
-						src:'resources/icons/expert.jpg',
-						width:'100%',
-						height:150
-					}
-				]
+				xtype:'xprocessing'
 			},
 
 			{
-				xtype:'panel',
-				cls:'spacer'
+				xtype: 'xpagebody',
+				items: [
+					{
+						xtype: 'panel',
+						height: 150,
+						items: [
+							{
+								itemId: 'image',
+								xtype: 'image',
+								mode: 'tag',
+								src: 'resources/icons/expert.jpg',
+								width: '100%',
+								height: 150
+							}
+						]
+					},
+
+					{
+						xtype: 'panel',
+						cls: 'spacer'
+					}
+				]
 			}
         ]
     }

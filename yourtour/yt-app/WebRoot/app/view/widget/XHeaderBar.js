@@ -1,16 +1,13 @@
 Ext.define('YourTour.view.widget.XHeaderBar', {
-    extend: 'Ext.TitleBar',
+    extend: 'Ext.Container',
     xtype: 'xheaderbar',
     requires:['YourTour.view.widget.XBack', 'YourTour.view.widget.XPlainButton'],
     config: {
 		itemId:'headerbar',
     	docked: 'top',
-		cls:'x-xheaderbar x-xmain-color',
-    	style:'background-color:#3CB371',
-		opacity:0,
-    	defaults:{
-    		style:'color:white'
-    	}
+		layout:'hbox',
+		padding:'0 0 0 10',
+		baseCls:'x-xheaderbar'
     },
 
     constructor: function(config) {
@@ -20,23 +17,40 @@ Ext.define('YourTour.view.widget.XHeaderBar', {
              config.items = [];
         }
 
-        var found = false;
-        Ext.each(config.items, function(item){
-        	if(item['itemId'] == 'back'){
-        		found = true;
-        	}
-        });
+		console.log(config);
 
-        var backButton = config['backButton'] == undefined || config['backButton']?true:false;
-        if(! found && backButton){
-	        config.items.push({
-	            xtype: 'button',
-	            itemId:'back',
-	            iconCls:'arrow_left',
-	            ui: 'normal'
-	        });
-        }
+		var title = config['title'];
 
+		var left = {xtype:'label', itemId:'back'};
+		var middle = {xtype:'label', style:'text-align:center'};
+		var right = {xtype:'panel', layout:'hbox', items:[{xtype:'spacer', flex:1}]};
+
+		if(config['backButton'] == false){
+			left.flex=1;
+			middle.flex=1;
+			right.flex=1;
+
+			middle.cls = 'x-xmiddle x-xtitle';
+			middle.html = title
+		}else{
+			left.cls = 'x-xleft icon-back x-xtitle';
+
+			left.html = title;
+			left.flex=1;
+
+			right.hidden=true;
+		}
+
+		var items = config.items;
+		if(items){
+			Ext.Array.forEach(items,function(item){
+				item.margin = '7 0 7 0';
+				right.items.push(item);
+			})
+		}
+
+		config.items = [],
+		config.items.push(left, middle, right);
     	this.callParent([config]);
     },
 
@@ -53,21 +67,6 @@ Ext.define('YourTour.view.widget.XHeaderBar', {
 				}
 			});
     	}
-    },
-
-	updateOpacity:function(opacity){
-		this.setOpacity(opacity);
-	},
-
-	setOpacity:function(opacity){
-		this.opacity = opacity;
-	},
-
-    /**
-     * @private
-     */
-    applyBackButton: function(backButton) {
-    	this.backButton = backButton;
     }
 });
 

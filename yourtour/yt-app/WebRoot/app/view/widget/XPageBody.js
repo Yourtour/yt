@@ -4,6 +4,7 @@ Ext.define('YourTour.view.widget.XPageBody', {
     config:{
         itemId:'pagebody',
         flex:1,
+        layout:'vbox',
         scrollable: {
             direction: 'vertical',
             indicators: false,

@@ -154,10 +154,11 @@ Ext.define('YourTour.view.widget.XField', {
     },
 
     getPair:function(){
+        var pair = '';
+        if(this.getValue())
         var values = this.getValue().split(',');
         var texts =  this.getText().split(',');
 
-        var pair = '';
         for(var index = 0; index < values.length; index++){
             if(pair != ''){
                 pair = pair + '|';

@@ -13,7 +13,7 @@ Ext.define('YourTour.view.home.HomeMainView', {
                 backButton: false,
                 items: [
                     {
-                        xtype: "xplainbutton",
+                        xtype: "xbutton",
                         text: '目的地',
                         itemId: 'change',
                         align: 'right'

@@ -1,14 +1,9 @@
 Ext.define('YourTour.view.expert.ExpertRecommendIntroItem', {
-    extend: 'YourTour.view.common.CarouselItem',
+    extend: 'YourTour.view.widget.XPageBody',
     requires: ['Ext.Panel'],
     xtype:'ExpertRecommendIntroItem',
     config: {
         layout: 'vbox',
-        label: '行程达人',
-        /*scrollable: {
-            direction: 'vertical',
-            indicators: false
-        },*/
         items: [
             {
                 xtype: 'panel',
@@ -18,9 +13,8 @@ Ext.define('YourTour.view.expert.ExpertRecommendIntroItem', {
                 items: [
                     {
                         xtype: 'image',
-                        mode: 'tag',
-                        itemId: 'image'
-
+                        itemId: 'image',
+                        mode: 'tag'
                     },
 
                     {
@@ -36,8 +30,8 @@ Ext.define('YourTour.view.expert.ExpertRecommendIntroItem', {
                                     {
                                         xtype: 'xfield',
                                         itemId: 'nickName',
-                                        heightCls:'x-xfield-padding-zero',
                                         underline:false,
+                                        padding:'0 ',
                                         flex:1
                                     },
 
@@ -46,7 +40,7 @@ Ext.define('YourTour.view.expert.ExpertRecommendIntroItem', {
                                         mode: 'tag',
                                         itemId: 'rank',
                                         src: 'resources/images/raty_32.png',
-                                    },
+                                    }
                                 ]
                             },
 
@@ -54,7 +48,7 @@ Ext.define('YourTour.view.expert.ExpertRecommendIntroItem', {
                                 xtype: 'xfield',
                                 itemId:'age',
                                 underline:false,
-                                heightCls:'x-xfield-padding-zero',
+                                padding:'0',
                                 margin:'5 0 0 0'
                             },
 
@@ -62,7 +56,7 @@ Ext.define('YourTour.view.expert.ExpertRecommendIntroItem', {
                                 xtype: 'xfield',
                                 itemId:'identity',
                                 underline:false,
-                                heightCls:'x-xfield-padding-zero',
+                                padding:'0',
                                 margin:'5 0 0 0'
                             },
                         ]
@@ -81,51 +75,47 @@ Ext.define('YourTour.view.expert.ExpertRecommendIntroItem', {
                 layout: 'hbox',
                 padding: '0 10 0 10',
                 defaults: {
-                    flex: 1
+                    flex: 1,
+                    padding:'0 0 0 40'
                 },
-                cls: 'row underline',
+                cls: 'row underline font-medium font-grey',
                 items: [
                     {
                         xtype: 'xlabel',
                         itemId: 'idAuthenticate',
-                        padding:'0 0 0 40',
                         html: '身份认证'
                     },
 
                     {
                         xtype: 'xlabel',
                         itemId: 'mobileAuthenticate',
-                        padding:'0 0 0 40',
                         html: '手机认证'
                     },
 
                     {
                         xtype: 'xlabel',
                         itemId: 'snsAuthenticate',
-                        padding:'0 0 0 40',
                         html: '社交认证'
                     },
                 ]
             },
 
             {
-                xtype: 'xmultifield',
-                padding: '0 10 0 10',
+                xtype: 'xfield',
                 itemId: 'memo'
             },
 
             {
-                xtype: 'toolbar',
+                xtype: 'xtoolbar',
                 docked: 'bottom',
                 items: [
                     {
                         xtype: 'spacer',
                         flex:1
                     }, {
-                        xtype: 'button',
+                        xtype: 'xbutton',
                         text: '联系达人',
                         baseCls:'button',
-                        flex: 1,
                         padding: '0 20 0 20',
                         itemId: 'btnContact'
                     }
@@ -134,33 +124,32 @@ Ext.define('YourTour.view.expert.ExpertRecommendIntroItem', {
         ]
     },
 
-    setRecord:function(record){
-        this.callParent(arguments);
-
-        var view = this;
+    updateData:function(data){
+        var me = this;
+        var record = data;
         if(record){
-            var image = view.down('#image');
+            var image = me.down('#image');
             image.setHtml("<img src='" + YourTour.util.Context.getImageResource(record.get('imageUrl')) + "' style='width:64px; height:64px'>");
 
-            var nickName = view.down('#nickName');
+            var nickName = me.down('#nickName');
             nickName.setHtml(record.get('nickName'));
 
-            var identity = view.down('#identity');
+            var identity = me.down('#identity');
             identity.setText(record.get('identity'));
 
-            var age = view.down('#age');
+            var age = me.down('#age');
             age.setText(record.get('age'));
 
-            var idAuthenticate = view.down('#idAuthenticate');
+            var idAuthenticate = me.down('#idAuthenticate');
             idAuthenticate.addCls(record.get('idAuthenticate') == 1?'icon-checked':'icon-unchecked');
 
-            var snsAuthenticate = view.down('#snsAuthenticate');
+            var snsAuthenticate = me.down('#snsAuthenticate');
             snsAuthenticate.addCls(record.get('snsAuthenticate') == 1?'icon-checked':'icon-unchecked');
 
-            var mobileAuthenticate = view.down('#mobileAuthenticate');
+            var mobileAuthenticate = me.down('#mobileAuthenticate');
             mobileAuthenticate.addCls(record.get('mobileAuthenticate') == 1?'icon-checked':'icon-unchecked');
 
-            var memo = view.down('#memo');
+            var memo = me.down('#memo');
             memo.setText(record.get('memo'));
         }
     }

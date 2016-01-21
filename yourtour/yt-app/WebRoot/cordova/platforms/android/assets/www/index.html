@@ -150,6 +150,12 @@
             background-position: right center;
         }
 
+        .icon-back {
+            background-image: url(./resources/icons/icon_back.png);
+            background-repeat: no-repeat;
+            background-position: 0px center;
+        }
+
         .icon-checked {
             background-image: url(./resources/icons/icon_checked_24.png);
             background-repeat: no-repeat;
@@ -254,27 +260,38 @@
             line-height: 45px;
         }
 
-        .x-xbutton{
-            text-align: center;
-            font-size: 14px;
+        /*********************************************************************************************************/
+        /* 有效CSS
+        /*********************************************************************************************************/
+        .x-xheaderbar{
+            color: white !important;
+            font-size: 14px !important;
+            background-color:#3CB371;
+            height:45px;
         }
 
-        .x-xbutton.x-button-primary{
-            background: #FF6100;
-            height: 45px;
-            line-height: 45px;
+        .x-xheaderbar .x-xtitle{
+            line-height:45px;
         }
 
-        .tabbar .x-button-label {
-            color: grey !important;
-            font-size: 12px !important;
+        .x-xheaderbar .x-xtitle{
+            line-height:45px;
+        }
+
+        .x-xheaderbar .x-xleft{
+            padding:0px 0px 0px 25px;
+        }
+
+        .x-xheaderbar .x-button{
+            background-color:#3CB371;
+            border:none;
+            color: white !important;
+            padding: 0px 10px 0px 10px;
         }
 
         .x-xheaderbar .x-button-label {
-            color: black !important;
-            padding: 0px 10px 0px 10px;
+            color: white !important;
             font-size: 14px !important;
-            background-color:#3CB371;
         }
 
         .overlay {
@@ -305,6 +322,37 @@
         .raty img {
             width: 80% !important;
             margin-top: 5px;
+        }
+
+        .tabbar .x-tab {
+            height:50px;
+        }
+
+/*        .tabbar .x-button-label {
+            color: grey !important;
+            font-size: 12px !important;
+        }*/
+
+        .x-xtoolbar{
+            height:45px;
+            font-size:14px;
+            color:grey !important;
+        }
+
+        .x-xbutton{
+            text-align: center;
+            font-size: 14px;
+            color:grey;
+        }
+
+        .x-xbutton .x-button-label{
+            color:grey;
+        }
+
+        .x-xbutton.x-button-primary{
+            background: #FF6100;
+            height: 45px;
+            line-height: 45px;
         }
 
         .underline {
@@ -425,6 +473,10 @@
             border-bottom: 1px solid #EDEDED;
         }
 
+        .x-xlabel{
+
+        }
+
         .x-xfield{
             line-height: 25px;
             min-height: 15px;
@@ -541,6 +593,13 @@
 
         .x-xcalendar .day.disabled{
             color:grey;
+        }
+
+        .x-xcalendar .day.active{
+            color:white;
+            background-image: url(./resources/icons/icon_active.png);
+            background-repeat: no-repeat;
+            background-position: center, center;
         }
 
         .spacer{

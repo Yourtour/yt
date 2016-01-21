@@ -13,13 +13,13 @@ Ext.define('YourTour.view.route.RouteMainView', {
                 backButton: false,
                 items: [
                     {
-                        xtype: 'toolbutton',
+                        xtype: 'xbutton',
                         itemId: 'new',
                         text: '新建',
                         align: 'right'
                     },
                     {
-                        xtype: 'toolbutton',
+                        xtype: 'xbutton',
                         itemId: 'delete',
                         text: '删除',
                         align: 'right'

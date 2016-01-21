@@ -14,8 +14,7 @@ Ext.define('YourTour.model.PlaceModel', {
 				{name:'followedNum', type:'string'},
 				{name:'goneNum', type:'string'},
 				{name:'goingNum', type:'string'},
-				{name:'hidden', type:'boolean'}
-
+				{name:'hidden', type:'boolean',defaultValue: false}
 	    ],
 	    
 	    associations: [

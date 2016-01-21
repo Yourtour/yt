@@ -1,14 +1,9 @@
 Ext.define('YourTour.view.route.RouteRecommendIntroductionItem', {
-    extend: 'YourTour.view.common.CarouselItem',
+    extend: 'YourTour.view.widget.XPageBody',
     requires: ['Ext.Panel'],
     xtype: 'RouteRecommendIntroductionItem',
     config: {
         label: '行程概述',
-        layout: 'vbox',
-        /*scrollable:{
-         direction: 'vertical',
-         indicators: false
-        },*/
         items: [
             {
                 xtype: 'panel',
@@ -59,30 +54,29 @@ Ext.define('YourTour.view.route.RouteRecommendIntroductionItem', {
                 cls: 'row underline font-bold font-medium'
             },
             {
-                xtype: 'toolbar',
+                xtype: 'xtoolbar',
                 padding: '0 10 0 10',
-                cls: 'toolbar-row underline font-grey font-medium',
                 defaults: {
                     flex: 1
                 },
                 items: [
                     {
-                        xtype: 'button',
+                        xtype: 'xbutton',
                         text: '100',
                         icon: 'resources/icons/icon_eye.png',
                         itemId: 'readNum'
                     }, {
-                        xtype: 'button',
+                        xtype: 'xbutton',
                         text: '100',
                         icon: 'resources/icons/icon_ok.png',
                         itemId: 'usedNum'
                     }, {
-                        xtype: 'button',
+                        xtype: 'xbutton',
                         text: '100',
                         iconCls: 'refresh',
                         itemId: 'commentNum'
                     }, {
-                        xtype: 'button',
+                        xtype: 'xbutton',
                         text: '100',
                         icon: 'resources/icons/icon_favorite.png',
                         itemId: 'favoriteNum'
@@ -95,18 +89,9 @@ Ext.define('YourTour.view.route.RouteRecommendIntroductionItem', {
             },
 
             {
-                xtype: 'xlabel',
-                itemId: 'featureTitle',
-                html: '线路特点',
-                tappable: true,
-                padding: '0 10 0 10',
-                cls: 'row underline font-bold font-medium nav-arrow'
-            },
-
-            {
-                xtype: 'xmultifield',
+                xtype: 'xfield',
                 itemId: 'feature',
-                padding: '0 10 0 10',
+                label:'线路特点'
             },
 
             {
@@ -114,27 +99,16 @@ Ext.define('YourTour.view.route.RouteRecommendIntroductionItem', {
             },
 
             {
-                xtype: 'xlabel',
-                itemId: 'reasonTitle',
-                html: '推荐理由',
-                tappable: true,
-                padding: '0 10 0 10',
-                cls: 'row underline font-bold font-medium nav-arrow'
-            },
-
-            {
-                xtype: 'xmultifield',
+                xtype: 'xfield',
                 itemId: 'reason',
-                padding: '0 10 0 10'
+                label:'推荐理由'
             }
         ]
     },
 
-    setRecord: function (record) {
-        this.callParent(arguments);
-
+    updateData:function(data){
         var me = this;
-
+        var record = data;
         if(record) {
             var image = me.down('#image');
             image.setHtml("<img src='" + YourTour.util.Context.getImageResource(record.get('imageUrl')) + "' style='width:100%; max-height:150px'>");
