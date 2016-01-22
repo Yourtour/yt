@@ -11,12 +11,14 @@ Ext.define('YourTour.model.RouteModel', {
 	    		{name:'name', type:'string'},
 	    		{name:'lineName', type:'string'},
 	    		{name:'impression', type:'string'},
+				{name: 'topic', type: 'string', defaultValue:'登山游'},
+				{name: 'price', type: 'string', defaultValue:'3500元/成人，1700元/儿童'},
 
 				{name:'fromPlace', type:'string'}, //id,name
 				{name:'toPlaces', type:'string'},//ids|names
 	    		{name:'startDate', type:'string'},
 	    		{name:'endDate', type:'string'},
-	    		{name:'duration', type:'string'},
+	    		{name:'duration', type:'string', defaultValue:'10天'},
 
 				{name:'adultNum', type:'string'},
 				{name:'childNum', type:'string'},

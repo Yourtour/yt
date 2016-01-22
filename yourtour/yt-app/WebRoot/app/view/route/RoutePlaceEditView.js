@@ -9,8 +9,8 @@ Ext.define('YourTour.view.route.RoutePlaceEditView', {
 				title:'想去哪儿玩',
 				items:[
 					{
-	                	xtype: "toolbutton", 
-	                    ui: "normal", 
+	                	xtype: "xbutton",
+	                    ui: "normal",
 	                	text:'下一步',
 	                	itemId:'btnNext',
 	                	align:'right'

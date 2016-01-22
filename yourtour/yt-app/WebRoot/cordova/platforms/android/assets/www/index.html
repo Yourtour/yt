@@ -60,6 +60,12 @@
             background-position: right center;
         }
 
+        .icon-route {
+            background-image: url(./resources/icons/icon_tab_route.png);
+            background-repeat: no-repeat;
+            background-position: center 5px;
+        }
+
         .icon-position {
             background-image: url(./resources/icons/icon_position.png);
             background-repeat: no-repeat;
@@ -151,7 +157,7 @@
         }
 
         .icon-back {
-            background-image: url(./resources/icons/icon_back.png);
+            background-image: url(./resources/icons/icon_header_back.png);
             background-repeat: no-repeat;
             background-position: 0px center;
         }
@@ -265,17 +271,13 @@
         /*********************************************************************************************************/
         .x-xheaderbar{
             color: white !important;
-            font-size: 14px !important;
-            background-color:#3CB371;
+            background-color:#3CB371 !important;
             height:45px;
         }
 
         .x-xheaderbar .x-xtitle{
             line-height:45px;
-        }
-
-        .x-xheaderbar .x-xtitle{
-            line-height:45px;
+            font-size: 18px !important;
         }
 
         .x-xheaderbar .x-xleft{
@@ -283,13 +285,12 @@
         }
 
         .x-xheaderbar .x-button{
-            background-color:#3CB371;
+            background-color:inherit;
             border:none;
-            color: white !important;
             padding: 0px 10px 0px 10px;
         }
 
-        .x-xheaderbar .x-button-label {
+        .x-xheaderbar .x-button .x-button-label {
             color: white !important;
             font-size: 14px !important;
         }
@@ -339,13 +340,9 @@
             color:grey !important;
         }
 
-        .x-xbutton{
+        .x-xbutton, .x-button-normal .x-button-label{
             text-align: center;
             font-size: 14px;
-            color:grey;
-        }
-
-        .x-xbutton .x-button-label{
             color:grey;
         }
 
@@ -418,7 +415,6 @@
         }
 
         .font-remark {
-            font-weight: bold !important;
             color: #FF6100  !important;
         }
 
@@ -441,7 +437,7 @@
 
         .img-medium{
             width:100%;
-            height:150px;
+            max-height:150px;
         }
 
         .img-user-logo-48{
@@ -533,12 +529,17 @@
             font-weight:bold;
         }
 
+        .x-xopacity{
+            color:blue;
+            opacity:0.4;
+            width:100%;
+        }
+
         .x-xscore{
             padding:15px 0 15px 0;
             line-height:25px;
             font-size:14px;
-            color: green !important;
-            width:50px;
+            color: green;
         }
 
         .x-xscore.x-xleft{

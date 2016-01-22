@@ -311,7 +311,6 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 
 		List<RouteScheduleBean> sSchedules = source.getSchedules();
 		List<RouteScheduleBean> tSchedules = target.getSchedules();
-
 		if(sSchedules != null){
 			int len = tSchedules.size();
 			for(int index = 0; index < len && index < sSchedules.size(); index++){
@@ -335,6 +334,6 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 		target.setStep(1);
 		this.save(target, userId);
 
-		return target;
+		return this.getCompleteRoute(target.getGraphId());
 	}
 }

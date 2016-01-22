@@ -10,7 +10,7 @@ Ext.define('YourTour.view.widget.XField', {
         value: null,
         fieldCls: null,
         labelCls: null,
-        underline: true,
+        underline: null,
         padding: '10 20 10 10',
         ifNull:'',
         binding:null,
@@ -24,7 +24,6 @@ Ext.define('YourTour.view.widget.XField', {
             {
                 xtype: 'label',
                 itemId: 'value',
-                cls: 'font-grey',
                 flex: 1
             }
         ]
@@ -34,6 +33,16 @@ Ext.define('YourTour.view.widget.XField', {
         this.callParent(arguments);
 
         var me = this;
+
+        var value = this.down('#value');
+        if(me.fieldCls == null){
+            value.addCls('font-grey');
+        }
+
+        if(me.underline == null){
+            me.addCls('underline');
+        }
+
         if(! this.getDataChange()) {
             me.element.on({
                 dataChange: function (field, record) {
@@ -99,22 +108,26 @@ Ext.define('YourTour.view.widget.XField', {
         label.addCls(icon);
     },
 
-    updateFieldCls: function (cls) {
-        this.setFieldCls(cls);
+    updateFieldCls: function (fieldCls) {
+        this.setFieldCls(fieldCls);
     },
 
-    setFieldCls: function (cls) {
+    setFieldCls: function (fieldCls) {
+        this.fieldCls = fieldCls;
+
         var value = this.down('#value');
-        value.addCls(cls);
+        value.addCls(fieldCls);
     },
 
-    updateLabelCls: function (cls) {
-        this.setLabelCls(cls);
+    updateLabelCls: function (labelCls) {
+        this.setLabelCls(labelCls);
     },
 
-    setLabelCls: function (cls) {
+    setLabelCls: function (labelCls) {
+        this.labelCls = labelCls;
+
         var label = this.down('#label');
-        label.addCls(cls);
+        label.addCls(labelCls);
     },
 
     updateLabel: function (label) {

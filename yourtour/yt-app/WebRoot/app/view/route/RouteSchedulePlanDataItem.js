@@ -5,12 +5,6 @@ Ext.define('YourTour.view.route.RouteSchedulePlanDataItem', {
     config: {
     	longpressed:false,
 
-		defaults:{
-			style:'background:#fff;font-size:14px',
-			padding:'0 5 0 5'
-		},
-
-		cls:'ScheduleListItem',
     	items:[
     		{
     			itemId:'preparePanel',
@@ -66,7 +60,7 @@ Ext.define('YourTour.view.route.RouteSchedulePlanDataItem', {
     			xtype:'panel',
     			layout:'vbox',
     			hidden:true,
-    			cls:'scheduleItem',
+    			cls:'dayItem',
     			items:[
 					{
 						xtype:'label',

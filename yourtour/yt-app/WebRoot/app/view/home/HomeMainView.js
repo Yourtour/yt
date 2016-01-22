@@ -9,224 +9,43 @@ Ext.define('YourTour.view.home.HomeMainView', {
             {
                 xtype: 'xheaderbar',
                 itemId: 'headerbar',
-                title: '上海',
-                backButton: false,
-                items: [
-                    {
-                        xtype: "xbutton",
-                        text: '目的地',
-                        itemId: 'change',
-                        align: 'right'
-                    }
-                ]
+                title: '首页',
+                backButton: false
             },
             {
                 xtype: 'carousel',
                 itemId: 'placeCarousel',
-                height: 250,
-                cls: 'space-bottom'
+                height: 200
             },
 
             {
-                xtype: 'toolbar',
-                id: 'navigationBar',
-                defaults: {
-                    flex: 1,
-                    height: '80px',
-                    pack: 'center',
-                    padding: '5 0 0 0',
-                    style: 'color:grey'
-                },
-                baseCls: 'navigationBar',
-
-                ui: 'light',
-                items: [
-                    {
-                        itemId: 'btnRoute',
-                        text: '游玩',
-                        iconCls: 'home',
-                        iconAlign: 'top'
-                    },
-                    {
-                        itemId: 'btnPersonal',
-                        text: '美食',
-                        iconCls: 'user',
-                        iconAlign: 'top'
-                    },
-                    {
-                        itemId: 'btnPersonal',
-                        text: '住宿',
-                        iconCls: 'user',
-                        iconAlign: 'top'
-                    }
-                ]
+                xtype:'xspacer'
             },
 
             {
-                xtype: 'xpanel',
-                layout: 'vbox',
-                cls: 'underline space-top',
-                padding: '0 5 0 5',
-                defaults: {
-                    cls: 'font-medium'
-                },
-                items: [
-                    {
-                        xtype: 'xlabel',
-                        cls: 'row nav-arrow font-large underline',
-                        html: '聊天室'
-                    },
-
-                    {
-                        itemId: 'chatList',
-                        xtype: 'dataview',
-                        scrollable: null,
-                        useComponents: true,
-                        defaultType: 'ChatItemView'
-                    }
-                ]
+                xtype: 'xlabel',
+                cls: 'row font-large underline nav-arrow',
+                html: '目的地'
             },
 
             {
-                xtype: 'xpanel',
-                layut: 'vbox',
-                cls: 'space-top',
-                padding: '0 5 0 5',
-                items: [
-                    {
-                        xtype: 'xlabel',
-                        itemId: 'moreTalent',
-                        cls: 'row nav-arrow font-large underline',
-                        html: '推荐达人',
-                        tappable: true
-                    },
-
-                    {
-                        xtype: 'xgridview',
-                        itemId: 'talents',
-                        layut: 'hbox',
-                        cols: 2,
-                        hSpace: 5,
-                        item: 'YourTour.view.home.TalentItemView'
-                    }
-                ]
+                xtype:'xspacer'
             },
 
             {
-                xtype: 'xpanel',
-                layut: 'vbox',
-                cls: 'space-top',
-                padding: '0 5 0 5',
-                items: [
-                    {
-                        xtype: 'xlabel',
-                        itemId: 'moreBest',
-                        cls: 'row nav-arrow font-large underline',
-                        html: '推荐游',
-                        tappable: true
-                    },
-
-                    {
-                        xtype: 'xgridview',
-                        itemId: 'bests',
-                        layut: 'hbox',
-                        cols: 2,
-                        item: 'YourTour.view.home.BestItemView'
-                    }
-                ]
+                xtype: 'xlabel',
+                cls: 'row font-large underline nav-arrow',
+                html: '新荐线路'
             },
 
             {
-                xtype: 'xpanel',
-                layut: 'vbox',
-                cls: 'space-top',
-                padding: '0 5 0 5',
-                items: [
-                    {
-                        xtype: 'xlabel',
-                        itemId: 'moreAlong',
-                        cls: 'row nav-arrow font-large underline',
-                        html: '结伴游',
-                        tappable: true
-                    },
-
-                    {
-                        xtype: 'xgridview',
-                        itemId: 'alongs',
-                        layut: 'hbox',
-                        cols: 2,
-                        item: 'YourTour.view.home.AlongItemView'
-                    }
-                ]
+                xtype:'xspacer'
             },
-            {
-                xtype: 'xpanel',
-                layut: 'vbox',
-                cls: 'space-top',
-                padding: '0 5 0 5',
-                items: [
-                    {
-                        xtype: 'xlabel',
-                        itemId: 'moreAlong',
-                        cls: 'row nav-arrow font-large underline',
-                        html: '结伴游',
-                        tappable: true
-                    },
 
-                    {
-                        xtype: 'xgridview',
-                        itemId: 'alongs',
-                        layut: 'hbox',
-                        cols: 2,
-                        item: 'YourTour.view.home.AlongItemView'
-                    }
-                ]
-            },
             {
-                xtype: 'xpanel',
-                layut: 'vbox',
-                cls: 'space-top',
-                padding: '0 5 0 5',
-                items: [
-                    {
-                        xtype: 'xlabel',
-                        itemId: 'moreAlong',
-                        cls: 'row nav-arrow font-large underline',
-                        html: '结伴游',
-                        tappable: true
-                    },
-
-                    {
-                        xtype: 'xgridview',
-                        itemId: 'alongs',
-                        layut: 'hbox',
-                        cols: 2,
-                        item: 'YourTour.view.home.AlongItemView'
-                    }
-                ]
-            },
-            {
-                xtype: 'xpanel',
-                layut: 'vbox',
-                cls: 'space-top',
-                padding: '0 5 0 5',
-                items: [
-                    {
-                        xtype: 'xlabel',
-                        itemId: 'moreAlong',
-                        cls: 'row nav-arrow font-large underline',
-                        html: '结伴游',
-                        tappable: true
-                    },
-
-                    {
-                        xtype: 'xgridview',
-                        itemId: 'alongs',
-                        layut: 'hbox',
-                        cols: 2,
-                        item: 'YourTour.view.home.AlongItemView'
-                    }
-                ]
+                xtype: 'xlabel',
+                cls: 'row font-large underline nav-arrow',
+                html: '新荐达人'
             }
         ]
     },

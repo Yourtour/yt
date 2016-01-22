@@ -10,6 +10,7 @@ Ext.define('YourTour.model.RouteScheduleModel', {
             {name: 'index', type: 'string'},
             {name: 'imageUrl', type: 'string'},
             {name: 'type', type: 'string'},
+
             {name: 'title', type: 'string'},
             {name: 'memo', type: 'string'},
             {name: 'date', type: 'string'},

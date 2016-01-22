@@ -17,7 +17,7 @@ import static org.junit.Assert.fail;
 public class ExpertDataGenerator extends DataGenerator{
 	private ExpertRepository repository;
 
-	@Test
+	//@Test
 	public void testCreateExpertBean() {
 		try {
 			repository = context.getBean(ExpertRepository.class);
@@ -37,22 +37,22 @@ public class ExpertDataGenerator extends DataGenerator{
 		}
 	}
 
-	/*@Test
+	@Test
 	public void testCreateRelationWithRoute() {
 		try {
 			repository = context.getBean(ExpertRepository.class);
 
-			ExpertBean expert = new ExpertBean();
-			expert.setGraphId(1064l);
+			UserProfileBean user = new UserProfileBean();
+			user.setGraphId(280l);
 
 			RouteMainBean route = new RouteMainBean();
-			route.setGraphId(417l);
+			route.setGraphId(336l);
 
-			repository.createRelation(expert, route, Constants.RELATION_TYPE_RECOMMEND, Direction.OUTGOING);
+			repository.createRelation(user, route, Constants.RELATION_TYPE_RECOMMEND, Direction.OUTGOING);
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			fail(ex.getMessage());
 		}
-	}*/
+	}
 }

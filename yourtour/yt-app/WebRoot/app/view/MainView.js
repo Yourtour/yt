@@ -40,14 +40,7 @@ Ext.define('YourTour.view.MainView', {
 						xtype:'RouteMainView',
 					    itemId:'btnRoute',
 					    title:'行程',
-					    iconCls:'home',
-					    iconAlign:'top'
-					},
-					{
-						xtype:'LiveMainView',
-					    itemId:'btnView',
-					    title:'发现',
-					    iconCls:'home',
+					    iconCls:'locate',
 					    iconAlign:'top'
 					},
 					{

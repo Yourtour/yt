@@ -115,7 +115,7 @@ public class RouteRestResource extends BaseRestResource{
 	 */
 	@POST
 	@Path("main/save")
-	public ResponseDataVO<Long> saveMain(RouteVO vo, @Context HttpServletRequest request) {
+	public ResponseDataVO<Long> saveMain(RouteVO vo) {
 		if (vo == null) {
 			if (LOG.isWarnEnabled()) {
 				LOG.warn("The RouteVO is null.");
@@ -126,14 +126,14 @@ public class RouteRestResource extends BaseRestResource{
 			RouteMainBean bean = RouteVO.transform(vo);
 			
 			UserProfileBean profileBean = null;
-			long userGraphId = Neo4jUtils.getGraphIDFromString(super.getCurrentUserId(request));
+			long userGraphId = Neo4jUtils.getGraphIDFromString(super.getCurrentUserId());
 			if (userGraphId != -1) {
 				profileBean = (UserProfileBean) routeRepository.get(UserProfileBean.class,
 						userGraphId, false);
 				bean.setOwner(profileBean);
 			}
 			
-			routeRepository.saveRouteMainAndSchedules(bean, WebUtils.getCurrentLoginUser(request));
+			routeRepository.saveRouteMainAndSchedules(bean, WebUtils.getCurrentLoginUser());
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format("Save RouteMainBean['%s'] success.",
 						vo.getRowKey()));return new ResponseDataVO<Long>(bean.getGraphId());
@@ -150,19 +150,23 @@ public class RouteRestResource extends BaseRestResource{
 	}
 
 	/**
-	 *
+	 * 行程复制接口
+	 * @param sourceId
+	 * @param vo
 	 * @return
 	 */
-	@GET
-	@Path("clone/{sourceId}/{targetId}")
-	public ResponseDataVO<RouteLoadVO> cloneRoute(@PathParam("sourceId") String sourceId, @PathParam("targetId") String targetId) {
+	@POST
+	@Path("/{sourceId}/clone")
+	public ResponseDataVO<RouteLoadVO> cloneRoute(@PathParam("sourceId") String sourceId, RouteVO vo) {
 		try {
 			String userId = super.getCurrentUserId();
 
+			Long targetId = this.saveMain(vo).getData();
 			RouteMainBean route = routeRepository.cloneRoute(Long.valueOf(sourceId), Long.valueOf(targetId), userId);
-			RouteLoadVO vo = new RouteLoadVO(route);
 
-			return new ResponseDataVO<RouteLoadVO>(vo);
+			RouteLoadVO loadVo = new RouteLoadVO(route);
+
+			return new ResponseDataVO<RouteLoadVO>(loadVo);
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
 				LOG.error("System Exception.", ex);

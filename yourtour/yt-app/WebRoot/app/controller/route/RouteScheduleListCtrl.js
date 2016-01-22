@@ -56,39 +56,59 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
 		editController.updateRouteSchedule(this.store);
     },
 
-    showPage:function(routeId){
+    showPage:function(data){
 		var me = this;
 
-    	this.routeId = routeId;
     	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteScheduleListView'));
-    	var view = me.getRouteScheduleListView();
 
-		var options = {
-			model:'YourTour.model.RouteModel',
-			url:'/routes/' + routeId +'/query',
-			success:function(store){
-				me.store = store;
-				var record = store.first();
+		if(data instanceof YourTour.store.AjaxStore){
+			var view = me.getRouteScheduleListView();
+			view.hideProcessing();
 
-				var imageEl = view.down('#imageUrl');
-				imageEl.setHtml("<img src='" + YourTour.util.Context.getImageResource(record.get('imageUrl')) + "' style='width:100%; max-height:150px'>");
-
-				var schedulesStore = record.schedulesStore;
-				var scheduleList = view.down('#RouteScheduleList');
-
-				var type;
-				schedulesStore.each(function(record){
-					type = record.get('type');
-
-					if(type == 'Provision' || type == 'ProvisionItem'){
-						record.set('hidden', true);
-					}
-				});
-				scheduleList.setStore(schedulesStore);
-			}
-		};
-		me.getApplication().query(options);
+			me.showRouteScheduleInfo(data);
+		}else {
+			var options = {
+				model: 'YourTour.model.RouteModel',
+				url: '/routes/' + data + '/query',
+				success: function (store) {
+					me.showRouteScheduleInfo(store);
+				}
+			};
+			me.getApplication().query(options);
+		}
     },
+
+	/**
+	 * 显示行程计划信息
+	 * @param store
+	 */
+	showRouteScheduleInfo:function(store){
+		var me = this;
+		var view = me.getRouteScheduleListView();
+
+		me.store = store;
+		var record = store.first();
+		me.routeId = record.get('id');
+
+		var headerbar = view.down('#headerbar');
+		headerbar.setTitle(record.get('name'));
+
+		var imageEl = view.down('#imageUrl');
+		imageEl.setHtml("<img src='" + YourTour.util.Context.getImageResource(record.get('imageUrl')) + "' style='width:100%; max-height:150px'>");
+
+		var schedulesStore = record.schedulesStore;
+		var scheduleList = view.down('#RouteScheduleList');
+
+		var type;
+		schedulesStore.each(function(record){
+			type = record.get('type');
+
+			if(type == 'Provision' || type == 'ProvisionItem'){
+				record.set('hidden', true);
+			}
+		});
+		scheduleList.setStore(schedulesStore);
+	},
     
     onItemTap:function(dataview, index, item, record,e){
     	var type = record.get('resourceType');

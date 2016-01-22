@@ -7,66 +7,96 @@ Ext.define('YourTour.view.widget.XHeaderBar', {
     	docked: 'top',
 		layout:'hbox',
 		padding:'0 0 0 10',
-		baseCls:'x-xheaderbar'
+		baseCls:'x-xheaderbar',
+		title:null,
+		backButton:true,
+		items:[]
     },
 
-    constructor: function(config) {
-    	config = config || {};
+	beforeInitialize: function () {
+		this.applyItems = this.applyInitialItems;
+	},
 
-        if (!config.items) {
-             config.items = [];
-        }
+	initialize: function () {
+		delete this.applyItems;
 
-		console.log(config);
+		this.add(this.initialItems);
+		delete this.initialItems;
 
-		var title = config['title'];
+		var me = this;
+		var back = me.backButton;
+		if(back  == false){
+			me.middlePanel.addCls('x-xmiddle x-xtitle');
 
-		var left = {xtype:'label', itemId:'back'};
-		var middle = {xtype:'label', style:'text-align:center'};
-		var right = {xtype:'panel', layout:'hbox', items:[{xtype:'spacer', flex:1}]};
-
-		if(config['backButton'] == false){
-			left.flex=1;
-			middle.flex=1;
-			right.flex=1;
-
-			middle.cls = 'x-xmiddle x-xtitle';
-			middle.html = title
+			me.leftPanel.setFlex(1);
+			me.rightPanel.setFlex(1);
 		}else{
-			left.cls = 'x-xleft icon-back x-xtitle';
-
-			left.html = title;
-			left.flex=1;
-
-			right.hidden=true;
-		}
-
-		var items = config.items;
-		if(items){
-			Ext.Array.forEach(items,function(item){
-				item.margin = '7 0 7 0';
-				right.items.push(item);
-			})
-		}
-
-		config.items = [],
-		config.items.push(left, middle, right);
-    	this.callParent([config]);
-    },
-
-    initialize : function(){
-    	this.callParent(arguments);
-
-    	var me = this;
-    	var back = me.down('#back');
-    	if(back != null){
-    		back.element.on({
+			me.leftPanel.addCls('x-xleft icon-back x-xtitle');
+			me.leftPanel.element.on({
 				scope : me,
 				tap : function(e, t) {
 					Ext.ComponentManager.get('MainView').pop();
 				}
 			});
-    	}
-    }
+
+			me.middlePanel.setFlex(1);
+		}
+
+		me.doSetTitle();
+	},
+
+	applyInitialItems: function (items) {
+		var me = this;
+		me.initialItems = items;
+
+		me.leftPanel = me.add({xtype:'label', itemId:'left'});
+		me.middlePanel = me.add({xtype:'label', itemId:'middle', style:'text-align:center'});
+		me.rightPanel = me.add({xtype:'panel', itemId:'right', layout:'hbox', items:[{xtype:'spacer', flex:1}]});
+
+		me.doAdd = me._doAdd;
+		me.remove = me.doItemRemove;
+		me.doInsert = me.doItemInsert;
+	},
+
+	_doAdd: function (item) {
+		var me = this;
+		item.setMargin('7 0 7 0');
+		me.rightPanel.add(item);
+	},
+
+	doItemRemove: function (item, destroy) {
+	},
+
+	doItemInsert: function (index, item) {
+	},
+	updateBackButton:function(backButton){
+		this.backButton = backButton;
+	},
+
+	updateTitle:function(title){
+		this.setTitle(title);
+	},
+
+	setTitle:function(title){
+		var me = this;
+		me.title = title;
+
+		me.doSetTitle();
+	},
+
+	doSetTitle:function(){
+		var me = this;
+
+		var title = me.title;
+		var back = me.backButton;
+		var label;
+		if(back == false){
+			label = me.down('#middle');
+		}else{
+			label = me.down('#left');
+		}
+
+		label.setHtml(title);
+	}
 });
 

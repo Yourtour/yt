@@ -1901,9 +1901,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.route.RouteSchedulePlanDataItem": [
     "widget.RouteSchedulePlanDataItem"
   ],
-  "YourTour.view.route.RouteSchedulePlanView": [
-    "widget.RouteSchedulePlanView"
-  ],
+  "YourTour.view.route.RouteSchedulePlanView": [],
   "YourTour.view.route.RouteScheduleReferenceListView": [],
   "YourTour.view.route.RouteScheduleView": [],
   "YourTour.view.route.RouteSettingItem": [

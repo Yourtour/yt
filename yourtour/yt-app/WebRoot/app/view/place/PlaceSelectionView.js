@@ -3,6 +3,7 @@ Ext.define('YourTour.view.place.PlaceSelectionView', {
     requires:['YourTour.view.widget.XHeaderBar','YourTour.view.widget.XCarousel','YourTour.view.place.PlaceSelectionHomeItem','YourTour.view.place.PlaceSelectionRecommendItem','YourTour.view.place.PlaceSelectionAbroadItem'],
     config: {
         id:'PlaceSelectionView',
+        itemId:'PlaceSelectionView',
         items: [
             {
                 xtype: 'xheaderbar',

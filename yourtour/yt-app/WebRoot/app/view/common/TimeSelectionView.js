@@ -10,7 +10,7 @@ Ext.define('YourTour.view.common.TimeSelectionView', {
                 title:'想什么时候去',
                 items:[
                     {
-                        xtype: "toolbutton",
+                        xtype: "xbutton",
                         ui: "normal",
                         text:'下一步',
                         itemId:'btnNext',

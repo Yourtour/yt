@@ -1,36 +1,35 @@
 Ext.define('YourTour.view.route.RouteSchedulePlanView', {
     extend: 'YourTour.view.widget.XPage',
     requires:['Ext.Panel', 'YourTour.view.route.RouteSchedulePlanDataItem', 'YourTour.view.widget.XHeaderBar','YourTour.view.widget.XButton'],
-    xtype: 'RouteSchedulePlanView',
     config: {
     	id:'RouteSchedulePlanView',
-    	layout:'vbox',
+    	layout:'hbox',
     	items:[
     		{    
 				xtype: 'xheaderbar',
-				title:'行程安排',
 				items:[
 						{
-		                	xtype: "toolbutton", 
-		                    ui: "normal", 
-		                	text:'讨论',
+		                	xtype: "xbutton",
+		                    ui: "normal",
+							icon:'resources/icons/icon_header_discuss.png',
 		                	itemId:'discuss',
 		                	align:'right'
 		                },
 				        {
-				    	   xtype: "toolbutton", 
-				    	   ui: "normal", 
-				    	   text:'设置',
+				    	   xtype: "xbutton",
+				    	   ui: "normal",
+							icon:'resources/icons/icon_header_set.png',
 				    	   itemId:'setting',
 				    	   align:'right'
 				        }
 				]
 			},
-			
+
 			{
-    			itemId:'RouteScheduleList',
-    			xtype:'dataview',
-				flex:1,
+				xtype:'dataview',
+				itemId:'scheduleList',
+				flex:2,
+				style:'background-color:silver',
 				scrollable: {
 					direction: 'vertical',
 					indicators: false,
@@ -48,10 +47,46 @@ Ext.define('YourTour.view.route.RouteSchedulePlanView', {
 					},
 					outOfBoundRestrictFactor: 0
 				},
-		        useComponents: true,
-		        defaultType: 'RouteSchedulePlanDataItem'
-    		},
-    		
+
+				itemTpl:new Ext.XTemplate('<tpl if="this.isEnabled(type) == true">','<div class="font-medium underline" style="height:45px; padding:3px 0px 3px 10px"><div class="font-bold">{title}</div><div class="font-grey">{startTime}</div></div>','</tpl>',{
+					isEnabled:function(type){
+						return type == 'Provision' || type == 'Schedule';
+					}
+				})
+			},
+
+			{
+				xtype:'dataview',
+				itemId:'ScheduleItemList',
+				flex:3,
+				scrollable: {
+					direction: 'vertical',
+					indicators: false,
+					directionLock: true,
+					momentumEasing:  {
+						momentum: {
+							acceleration: 10,
+							friction: 0.5
+						},
+						bounce: {
+							acceleration: 0.0001,
+							springTension: 0.9999,
+						},
+						minVelocity: 5
+					},
+					outOfBoundRestrictFactor: 0
+				},
+				itemTpl:new Ext.XTemplate('<tpl if="this.isEnabled(type, hidden) == true">','<div class="row font-grey font-medium underline" style="padding-left:10px">{title}</div>','</tpl>',{
+					isEnabled:function(type, hidden){
+						if(type == 'Provision' || type == 'Schedule'){
+							return false;
+						}else{
+							return ! hidden;
+						}
+					}
+				})
+			},
+
     		{
  			   xtype:'toolbar',
  			   itemId:'toolbar',
@@ -67,6 +102,6 @@ Ext.define('YourTour.view.route.RouteSchedulePlanView', {
  			   ]
  		    }
         ]
-    }
+    },
 });
 

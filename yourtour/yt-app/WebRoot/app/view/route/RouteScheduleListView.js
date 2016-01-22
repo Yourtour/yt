@@ -10,9 +10,9 @@ Ext.define('YourTour.view.route.RouteScheduleListView', {
                 title: '行程安排',
                 items: [
                     {
-                        xtype: "toolbutton",
+                        xtype: "xbutton",
                         ui: "normal",
-                        text: '编辑',
+                        icon:'resources/icons/icon_header_edit.png',
                         itemId: 'edit',
                         align: 'right'
                     }

@@ -4,6 +4,7 @@ Ext.define('YourTour.view.route.RouteMainView', {
     requires: ['Ext.Carousel', 'YourTour.view.widget.XHeaderBar','YourTour.view.widget.MarkedLabel', 'YourTour.view.widget.ToolButton', 'Ext.field.Hidden', 'Ext.Img'],
     config: {
         id: 'RouteMainView',
+        itemId:'RouteMainView',
         layout: 'card',
         items: [
             {
@@ -15,14 +16,14 @@ Ext.define('YourTour.view.route.RouteMainView', {
                     {
                         xtype: 'xbutton',
                         itemId: 'new',
-                        text: '新建',
-                        align: 'right'
+                        align: 'right',
+                        icon:'resources/icons/icon_header_add.png'
                     },
                     {
                         xtype: 'xbutton',
                         itemId: 'delete',
-                        text: '删除',
-                        align: 'right'
+                        align: 'right',
+                        icon:'resources/icons/icon_header_delete.png'
                     }
                 ]
             },
@@ -44,6 +45,34 @@ Ext.define('YourTour.view.route.RouteMainView', {
                     },
 
                     {
+                        xtype:'xnavigation',
+                        itemId:'navigation',
+                        docked: 'top',
+                        direction:'right',
+                        top:30,
+                        left: 10,
+                        items:[
+                            {
+                                xtype:'image',
+                                itemId:'btnRoute',
+                                src:'resources/icons/icon_route.png'
+                            },
+
+                            {
+                                xtype:'image',
+                                itemId:'btnMember',
+                                src:'resources/icons/icon_partner.png'
+                            },
+
+                            {
+                                xtype:'image',
+                                itemId:'btnCharge',
+                                src:'resources/icons/icon_expense.png'
+                            }
+                        ]
+                    },
+
+                    {
                         xtype: 'panel',
                         layout: 'vbox',
                         bottom: 0,
@@ -57,39 +86,6 @@ Ext.define('YourTour.view.route.RouteMainView', {
                                 align: 'center',
                                 itemId: 'routeName',
                                 html: ''
-                            },
-
-                            {
-                                xtype: 'toolbar',
-                                itemId: 'toolbuttons',
-                                padding: 5,
-                                layout: 'hbox',
-                                ui: 'light',
-                                defaults: {
-                                    flex: 1,
-                                    pack: 'center',
-                                    align: 'center'
-                                },
-                                items: [
-                                    {
-                                        xtype: 'image',
-                                        mode: 'tag',
-                                        src: 'resources/icons/icon_route.png',
-                                        itemId: 'btnRoute'
-                                    },
-                                    {
-                                        xtype: 'image',
-                                        mode: 'tag',
-                                        src: 'resources/icons/icon_partner.png',
-                                        itemId: 'btnMember'
-                                    },
-                                    {
-                                        xtype: 'image',
-                                        mode: 'tag',
-                                        src: 'resources/icons/icon_expense.png',
-                                        itemId: 'btnCharge'
-                                    }
-                                ]
                             },
 
                             {

@@ -29,7 +29,8 @@ Ext.define('YourTour.view.widget.XScore', {
         var name = binding == null ? this.getItemId() : binding;
         var score = record.get(name);
 
-        this.setHtml(record.get(name) + ' 分');
+        if(! score) score = 0;
+        this.setHtml(score + ' 分');
     }
 });
 
