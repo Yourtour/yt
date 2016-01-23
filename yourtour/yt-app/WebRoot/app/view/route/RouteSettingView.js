@@ -32,6 +32,7 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 				xtype:'xfield',
 				itemId:'startDate',
 				label:'出发日期',
+				fieldCls:'x-field-right',
 				tappable:true
 			},
 
@@ -39,12 +40,14 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 				xtype:'xfield',
 				itemId:'endDate',
 				label:'返程日期',
+				fieldCls:'x-field-right',
 				tappable:true
 			},
 
 			{
 				xtype:'xfield',
 				itemId:'duration',
+				fieldCls:'x-field-right',
 				label:'日程天数'
 			},
 
@@ -55,6 +58,7 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 			{
 				xtype:'xfield',
 				itemId:'fromPlace',
+				fieldCls:'x-field-right',
 				label:'出发地',
 				tappable:true
 			},
@@ -62,6 +66,7 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 			{
 				xtype:'xfield',
 				itemId:'toPlaces',
+				fieldCls:'x-field-right',
 				label:'目的地',
 				tappable:true
 			},

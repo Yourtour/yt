@@ -91,6 +91,7 @@ Ext.define('YourTour.view.route.RouteMainView', {
                             {
                                 xtype: 'xmultifield',
                                 itemId: 'lineName',
+                                paddingLeft:0,
                                 icon:'icon-name',
                             },
 

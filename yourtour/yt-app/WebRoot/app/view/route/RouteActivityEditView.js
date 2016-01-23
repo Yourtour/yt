@@ -25,9 +25,9 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 				xtype: 'xheaderbar',
 				title:'行程安排',
 				items:[{
-                	xtype: "toolbutton", 
-                    ui: "normal", 
-                	text:'保存',
+                	xtype: "xbutton",
+                    ui: "normal",
+					icon:'resources/icons/icon_header_ok.png',
                 	itemId:'btnSave',
                 	align:'right'
                 }]
@@ -53,7 +53,7 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 					{
 						xtype: 'xtextfield',
 						itemId:'title',
-						cls:'font-medium font-grey nav-arrow',
+						inputCls:'font-medium font-grey',
 						flex:1,
 						placeHolder:'输入活动名称',
 						margin:'0 5 0 30'
@@ -123,8 +123,8 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 						html: '安排',
 						itemId:'btnItemAdd',
 						tappable:true,
-						cls:'row underline font-medium font-grey icon-add',
-						padding:'0 0 0 5'
+						cls:'row underline font-medium icon-add',
+						padding:'0 10 0 10'
 					},
 					{
 						xtype: 'dataview',
@@ -149,8 +149,8 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 						itemId:'btnServiceAdd',
 						html: '服务',
 						tappable:true,
-						cls:'row underline font-medium font-grey icon-add',
-						padding:'0 0 0 5'
+						cls:'row underline font-medium icon-add',
+						padding:'0 10 0 10'
 					},
 					{
 						xtype: 'dataview',

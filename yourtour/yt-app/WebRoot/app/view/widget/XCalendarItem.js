@@ -56,6 +56,14 @@ Ext.define('YourTour.view.widget.XCalendarItem', {
         if(active){
             this.addCls('active');
         }
+    },
+
+    getDate:function(){
+        return this.date.value;
+    },
+
+    isActive:function(){
+        return this.active == true;
     }
 });
 

@@ -4,6 +4,22 @@ Ext.define('YourTour.view.widget.XDataItem', {
         cls:'x-xdataitem'
     },
 
+    initialize:function(){
+        this.callParent(arguments);
+
+        /*this.element.on(
+            {
+                scope : this,
+                longpress:function(){
+
+                }
+            }
+        )
+        if(this.longTap == true){
+
+        }*/
+    },
+
     updateRecord:function(record){
         var me = this;
 

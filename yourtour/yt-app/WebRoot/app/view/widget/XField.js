@@ -8,9 +8,14 @@ Ext.define('YourTour.view.widget.XField', {
         label: null,
         icon: null,
         value: null,
+        text:null,
         fieldCls: null,
         labelCls: null,
         underline: null,
+        paddingLeft:10,
+        paddingRight:20,
+        paddingTop:10,
+        PaddingBottom:10,
         padding: '10 20 10 10',
         ifNull:'',
         binding:null,
@@ -130,6 +135,22 @@ Ext.define('YourTour.view.widget.XField', {
         label.addCls(labelCls);
     },
 
+    updatePaddingLeft:function(paddingLeft){
+        this.paddingLeft = paddingLeft;
+    },
+
+    updatePaddingRight:function(paddingRight){
+        this.paddingRight = paddingRight;
+    },
+
+    updatePaddingTop:function(paddingTop){
+        this.paddingTop = paddingTop;
+    },
+
+    updatePaddingBottom:function(paddingBottom){
+        this.paddingBottom = paddingBottom;
+    },
+
     updateLabel: function (label) {
         var labelEl = this.down('#label');
         labelEl.setMargin('0 10 0 0');
@@ -142,7 +163,8 @@ Ext.define('YourTour.view.widget.XField', {
     },
 
     getValue: function () {
-        return this.value == null ? this.getText() : this.value;
+        var value = this.value;
+        return value == null || value == ''? this.getText() : value;
     },
 
     updateText: function (text) {
@@ -159,7 +181,8 @@ Ext.define('YourTour.view.widget.XField', {
     },
 
     getText: function () {
-        return this.text;
+        var valueEl = this.down('#value');
+        return valueEl.getHtml();
     },
 
     updateIfNull:function(ifNull){
@@ -167,23 +190,13 @@ Ext.define('YourTour.view.widget.XField', {
     },
 
     getPair:function(){
-        var pair = '';
-        if(this.getValue())
-        var values = this.getValue().split(',');
-        var texts =  this.getText().split(',');
-
-        for(var index = 0; index < values.length; index++){
-            if(pair != ''){
-                pair = pair + '|';
-            }
-
-            pair = pair + values[index] + ',' + texts[index];
-        }
-
-        return pair;
+        var me = this;
+        return me.pair;
     },
 
     setPair:function(pair){
+        var me = this;
+
         if(pair){
             var pairs = pair.split('|');
             var values = '', texts = '', pArray;
@@ -200,6 +213,8 @@ Ext.define('YourTour.view.widget.XField', {
 
             this.setValue(values);
             this.setText(texts);
+
+            me.pair = pair;
         }
     },
 

@@ -3,6 +3,7 @@ Ext.define('YourTour.view.route.RoutePlaceEditView', {
     requires:['Ext.Panel', 'YourTour.view.widget.XHeaderBar','YourTour.view.route.RoutePlaceDataItem'],
     config: {
     	id:'RoutePlaceEditView',
+		layout:'card',
     	items:[
     		{    
 				xtype: 'xheaderbar',
@@ -10,40 +11,57 @@ Ext.define('YourTour.view.route.RoutePlaceEditView', {
 				items:[
 					{
 	                	xtype: "xbutton",
-	                    ui: "normal",
-	                	text:'下一步',
 	                	itemId:'btnNext',
+						icon:'resources/icons/icon_header_next.png',
 	                	align:'right'
 	                }
 		        ]
 			},
 
 			{
-				xtype:'xdataview',
-				itemId:'selectedList',
-				defaultType:'RoutePlaceDataItem',
-				flex:1
+				xtype: 'xprocessing'
 			},
 
 			{
-				xtype:'xspacer'
-			},
+				xtype: 'xpagebody',
+				layout: 'vbox',
+				items: [
+					{
+						xtype: 'xdataview',
+						itemId: 'selectedList',
+						defaultType: 'RoutePlaceDataItem',
+						flex: 1
+					},
 
-			{
-				xtype:'panel',
-				layout:'vbox',
-				flex:2,
-				items:[
 					{
 						xtype:'xlabel',
-						itemId:'message',
-						cls:'row font-medium font-bold underline',
-						style:'text-align:center;'
-					},{
-						xtype:'xdataview',
-						itemId:'relatedList',
-						defaultType:'RoutePlaceDataItem',
-						flex:1
+						itemId:'btnAdd',
+						cls:'row',
+						tappable:true,
+						style:'background-image: url(./resources/icons/icon_add_32.png);background-repeat: no-repeat;background-position: center center;'
+					},
+
+					{
+						xtype: 'xspacer'
+					},
+
+					{
+						xtype: 'panel',
+						layout: 'vbox',
+						flex: 2,
+						items: [
+							{
+								xtype: 'xlabel',
+								itemId: 'message',
+								cls: 'row font-medium font-bold underline',
+								style: 'text-align:center;'
+							}, {
+								xtype: 'xdataview',
+								itemId: 'relatedList',
+								defaultType: 'RoutePlaceDataItem',
+								flex: 1
+							}
+						]
 					}
 				]
 			}

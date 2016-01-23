@@ -860,6 +860,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.XPlainButton": [],
   "YourTour.view.widget.XProcessing": [],
   "YourTour.view.widget.XScore": [],
+  "YourTour.view.widget.XSearchField": [],
   "YourTour.view.widget.XSelecion": [],
   "YourTour.view.widget.XShare": [],
   "YourTour.view.widget.XSpacer": [],
@@ -2024,6 +2025,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.widget.XScore": [
     "widget.xscore"
+  ],
+  "YourTour.view.widget.XSearchField": [
+    "widget.xsearchfield"
   ],
   "YourTour.view.widget.XSelecion": [],
   "YourTour.view.widget.XShare": [

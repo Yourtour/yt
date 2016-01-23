@@ -78,16 +78,28 @@
             background-position: 0px center;
         }
 
-        .icon-name {
+        .x-xfield .icon-name {
             background-image: url(./resources/icons/icon_name.png);
             background-repeat: no-repeat;
             background-position: 0px center;
         }
 
-        .icon-time {
+        .x-panel.icon-name {
+            background-image: url(./resources/icons/icon_name.png);
+            background-repeat: no-repeat;
+            background-position: 10px center;
+        }
+
+        .x-xfield .icon-time {
             background-image: url(./resources/icons/icon_time.png);
             background-repeat: no-repeat;
             background-position: 0px center;
+        }
+
+        .x-panel.icon-time {
+            background-image: url(./resources/icons/icon_time.png);
+            background-repeat: no-repeat;
+            background-position: 10px center;
         }
 
         .icon-time-32 {
@@ -96,10 +108,16 @@
             background-position: 5px center;
         }
 
-        .icon-memo {
+        .x-xfield .icon-memo {
             background-image: url(./resources/icons/icon_memo.png);
             background-repeat: no-repeat;
             background-position: 0px center;
+        }
+
+        .x-panel.icon-memo {
+            background-image: url(./resources/icons/icon_memo.png);
+            background-repeat: no-repeat;
+            background-position: 10px center;
         }
 
         .icon-impression {
@@ -162,6 +180,12 @@
             background-position: 0px center;
         }
 
+        .icon-search {
+            background-image: url(./resources/icons/icon_header_search.png);
+            background-repeat: no-repeat;
+            background-position: 0px center;
+        }
+
         .icon-checked {
             background-image: url(./resources/icons/icon_checked_24.png);
             background-repeat: no-repeat;
@@ -214,6 +238,18 @@
             background-image: url(./resources/icons/icon_report.png);
             background-repeat: no-repeat;
             background-position: 0px center;
+        }
+
+        .icon-item-selected {
+            background-image: url(./resources/icons/icon_checked.png);
+            background-repeat: no-repeat;
+            background-position: right center;
+        }
+
+        .icon-item-unselected {
+            background-image: url(./resources/icons/icon_unchecked.png);
+            background-repeat: no-repeat;
+            background-position: right center;
         }
 
         .textfield {
@@ -287,7 +323,7 @@
         .x-xheaderbar .x-button{
             background-color:inherit;
             border:none;
-            padding: 0px 10px 0px 10px;
+            padding: 0px 5px 0px 5px;
         }
 
         .x-xheaderbar .x-button .x-button-label {
@@ -295,34 +331,21 @@
             font-size: 14px !important;
         }
 
-        .overlay {
-            opacity: 0.2;
-            width: 100%;
-            color: #fff;
-            font-weight: bold;
-            font-size: 14px;
-        }
+        .x-xheaderbar .x-xfield-search{
+            background-image: url(./resources/icons/icon_searchfield.png);
+            background-repeat: no-repeat;
+            background-position: 10px center;
+            background-color:white;
+            padding-left:35px;
+            line-height:35px;
 
-        .overlay .x-panel-inner {
-            background: #000 !important;
+            -moz-border-radius: 5px;      /* Gecko browsers */
+            -webkit-border-radius: 5px;   /* Webkit browsers */
+            border-radius:5px;            /* W3C syntax */
         }
 
         .navigationBar {
             border-top: 1px solid #EDEDED;
-        }
-
-        .togglefield .x-button {
-            border: 1px solid #EDEDED;
-        }
-
-        .togglefield .active {
-            background: #4A708B !important;
-            color: white;
-        }
-
-        .raty img {
-            width: 80% !important;
-            margin-top: 5px;
         }
 
         .tabbar .x-tab {
@@ -335,20 +358,24 @@
         }*/
 
         .x-xtoolbar{
-            height:45px;
-            font-size:14px;
+            height:50px;
+        }
+
+        .x-toolbar .x-button.x-iconalign-top{
+           height:3.0em !important;
+        }
+
+        .x-toolbar .x-button.x-iconalign-left{
+            height:2.0em !important;
+        }
+
+        .x-xtoolbar .x-button-normal .x-button-label{
+            font-size:12px;
             color:grey !important;
         }
 
-        .x-xbutton, .x-button-normal .x-button-label{
-            text-align: center;
-            font-size: 14px;
-            color:grey;
-        }
-
-        .x-xbutton.x-button-primary{
+        .x-xtoolbar .x-button-primary{
             background: #FF6100;
-            height: 45px;
             line-height: 45px;
         }
 
@@ -389,6 +416,17 @@
             font-size:14px;
             color:grey;
         }
+
+        .scheduleList .x-item-selected{
+            background-color:white;
+        }
+
+        .scheduleItemList .x-item-selected{
+            background-image: url(./resources/icons/icon_checked_24.png);
+            background-repeat: no-repeat;
+            background-position: right center;
+        }
+
         /** End 行程列表CSS 定义**/
 
         .verticledataitem .info {
@@ -485,29 +523,29 @@
         }
 
         .x-xfield .icon{
-            width:32px;
+            width:42px;
         }
 
         .x-xfield .label{
             width:32px;
         }
 
-        .x-xtextfield{
+        .x-field-text{
             height: 44px;
             font-size: 14px;
             border-bottom: 1px solid #EDEDED;
         }
 
-        .x-xtextfield .x-form-label{
+        .x-field-text .x-form-label{
             height: 44px;
             padding:15px 10px 0px 10px !important;
         }
 
-        .x-xtextfield .x-field-input{
+        .x-field-text .x-field-input, .x-field-textarea .x-field-input, .x-field-select .x-field-input{
             border: none !important;
         }
 
-        .x-xtextfield .x-input-text{
+        .x-field-text .x-input-text, .x-field-select .x-input-text, .x-field-textarea .x-input-text{
             height: 43px;
             color:grey !important;
         }
@@ -536,7 +574,6 @@
         }
 
         .x-xscore{
-            padding:15px 0 15px 0;
             line-height:25px;
             font-size:14px;
             color: green;

@@ -6,7 +6,7 @@ Ext.define('YourTour.view.widget.XHeaderBar', {
 		itemId:'headerbar',
     	docked: 'top',
 		layout:'hbox',
-		padding:'0 0 0 10',
+		padding:'0 0 0 0',
 		baseCls:'x-xheaderbar',
 		title:null,
 		backButton:true,
@@ -85,18 +85,20 @@ Ext.define('YourTour.view.widget.XHeaderBar', {
 	},
 
 	doSetTitle:function(){
-		var me = this;
+		var me = this, title = me.title, back = me.backButton, label;
+		if(title == ''){
+			me.middlePanel.hide();
+			me.rightPanel.getAt(0).hide();
+			me.rightPanel.setFlex(1);
+		}else {
+			if (back == false) {
+				label = me.down('#middle');
+			} else {
+				label = me.down('#left');
+			}
 
-		var title = me.title;
-		var back = me.backButton;
-		var label;
-		if(back == false){
-			label = me.down('#middle');
-		}else{
-			label = me.down('#left');
+			label.setHtml(title);
 		}
-
-		label.setHtml(title);
 	}
 });
 

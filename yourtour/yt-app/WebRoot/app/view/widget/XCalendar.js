@@ -285,7 +285,6 @@ Ext.define('YourTour.view.widget.XCalendar', {
 
     initialize: function () {
         var me = this;
-
         me.callParent(arguments);
 
         me.on(
