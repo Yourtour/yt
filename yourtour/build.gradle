@@ -24,6 +24,10 @@ subprojects {
     }
 
     version = '1.0.0'
+    
+    compileJava {
+        options.encoding = "UTF-8"
+    }
 
     jar {
         manifest.attributes provider: 'Shanghai YourTour Company'
