@@ -122,14 +122,24 @@ Ext.define('YourTour.controller.CommonMainCtrl', {
     },
 
     onTimeSelectionNextTapHandler:function(){
-        var me = this;
-        var view = this.getTimeSelectionView();
+        var me = this, view = this.getTimeSelectionView(), startDate = '', endDate = '';
 
         var calendar = view.down('#calendar');
+        var items = Ext.ComponentQuery.query('xcalendaritem', calendar);
+
+        Ext.Array.forEach(items, function(item, index){
+           if(item.isActive()){
+               if(startDate == ''){
+                   startDate = item.getDate();
+               }else{
+                   endDate = item.getDate();
+               }
+           }
+        });
 
         var callback = view.getCallback();
         if(callback) {
-            callback();
+            callback(startDate, endDate);
         }
     }
 });

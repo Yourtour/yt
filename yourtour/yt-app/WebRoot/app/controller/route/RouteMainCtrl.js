@@ -123,13 +123,7 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
 		var index = routeCarousel.getActiveIndex();
 		var record = me.store.getAt(index);
 
-		var step = record.get('step');
-		if(step == '0'){
-			var controller = me.getApplication().getController('route.RouteSchedulePlanCtrl')
-			controller.loadStep1Info(record);
-		}else{
-			this.redirectTo('/route/load/' + record.get('id'));
-		}
+		this.redirectTo('/route/load/' + record.get('id'));
     },
     
     onMemberTap:function(record){

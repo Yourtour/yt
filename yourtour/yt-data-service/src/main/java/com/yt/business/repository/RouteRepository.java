@@ -69,11 +69,12 @@ public interface RouteRepository extends CrudAllInOneOperate {
 	/**
 	 *
 	 * @param sourceId
-	 * @param targetId
+	 * @param target
+	 * @param userId
 	 * @return
 	 * @throws Exception
 	 */
-	public RouteMainBean cloneRoute(Long sourceId, Long targetId, String userId) throws Exception;
+	public RouteMainBean cloneRoute(Long sourceId, RouteMainBean target, String userId) throws Exception;
 
 	/**
 	 * 保存行程和用户之间的关系，目前在关系中保存成员角色。

@@ -37,6 +37,7 @@ public class RouteMainBean extends BaseBeanImpl {
 	@HbaseColumn(name = "sdt")
 	private long startDate = 0; // 行程开始日期
 	private long endDate = 0;
+	private int  duration = 0;
 
 	private String fromPlace;
 	private String toPlaces;
@@ -144,6 +145,14 @@ public class RouteMainBean extends BaseBeanImpl {
 
 	public void setStartDate(long startDate) {
 		this.startDate = startDate;
+	}
+
+	public int getDuration() {
+		return duration;
+	}
+
+	public void setDuration(int duration) {
+		this.duration = duration;
 	}
 
 	public PlaceBean getFromPlaceBean() {

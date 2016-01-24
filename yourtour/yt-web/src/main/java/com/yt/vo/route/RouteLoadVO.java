@@ -42,7 +42,19 @@ public class RouteLoadVO implements Serializable {
 		
 		return "/resources/images/yunnan.jpg";
 	}
-	
+
+	public int getDuration(){
+		return route.getDuration();
+	}
+
+	public String getStartDate(){
+		return DateUtils.formatDate(route.getStartDate());
+	}
+
+	public String getEndDate(){
+		return DateUtils.formatDate(route.getEndDate());
+	}
+
 	public List<RouteSchedule> getSchedules(){
 		List<RouteSchedule> schedules = new ArrayList<>();
 		

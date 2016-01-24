@@ -20,6 +20,7 @@ public class RouteVO extends BaseVO {
 	private String 	imageUrl;
 	private long 	startDate; // 行程开始日期
 	private long    endDate;
+	private int		duration;
 
 	private int  adultNum;
 	private int  childNum;
@@ -82,6 +83,7 @@ public class RouteVO extends BaseVO {
 		bean.setName(vo.getName());
 		bean.setStartDate(vo.getStartDate());
 		bean.setEndDate(vo.getEndDate());
+		bean.setDuration(vo.getDuration());
 		bean.setFromPlace(vo.getFromPlace());
 		bean.setToPlaces(vo.getToPlaces());
 
@@ -238,5 +240,13 @@ public class RouteVO extends BaseVO {
 
 	public void setSchedules(List<RouteScheduleVO> schedules) {
 		this.schedules = schedules;
+	}
+
+	public int getDuration() {
+		return duration;
+	}
+
+	public void setDuration(int duration) {
+		this.duration = duration;
 	}
 }

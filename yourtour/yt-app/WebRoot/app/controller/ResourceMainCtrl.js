@@ -5,10 +5,7 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
             resourceSceneView: '#ResourceSceneView',
 
             resourceSelectionView: '#ResourceSelectionView',
-            resourceCategory: '#ResourceSelectionView #resourceCategory',
-
-            resourcePlayListView: '#ResourceSelectionView #ResourcePlayListView #ResourceList',
-            resourceFoodListView: '#ResourceSelectionView #ResourceFoodListView #ResourceList',
+            resourceList: '#ResourceSelectionView #resourceList',
 
             resourceFormView: '#ResourceFormView',
             btnResourceAddTap: '#ResourceFormView #btnResourceAddTap',
@@ -20,12 +17,12 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
         },
 
         control: {
-            resourceCategory: {
-                activeitemchange: 'onActiveItemChange'
-            },
-
             resourcePlayListView: {
                 itemtap: 'onPlayItemTap'
+            },
+
+            resourceList: {
+                itemtap:'onSelectionResourceListItemTapHandler'
             },
 
             btnResourceAddTap:{
@@ -43,32 +40,21 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
             '#ResourceFormView #comment': {
                 tap: 'onCommentTap'
             }
-        },
-
-        routes: {
-            '/resource/:resourceType/:resourceId': 'showResourcePage',
-        },
-
-        playStore: null,
-        foodStore: null,
-
-        record: null,
+        }
     },
 
     showSelectionPage: function () {
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.resource.ResourceSelectionView'));
 
-        if (this.playStore != null) {
-            this.playStore.setData('');
-            this.playStore.loaded = false;
-        }
-
-        if (this.foodStore != null) {
-            this.foodStore.setData('');
-            this.foodStore.loaded = false;
-        }
-
-        this.getResourceCategory().fireEvent('activeitemchange', this.getResourceCategory(), this.getResourceCategory().getAt(0), this.getResourceCategory().getAt(0));
+        var me = this, resourceList = me.getResourceList();
+        var options = {
+            model:'YourTour.model.ResourceModel',
+            url:'/scenes/query',
+            success:function(store){
+                resourceList.setStore(store);
+            }
+        };
+        me.getApplication().query(options);
     },
 
     /**
@@ -76,10 +62,18 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
      * @param resourceType
      * @param resourceId
      */
-    showResourcePage: function (resource) {
+    onSelectionResourceListItemTapHandler: function (dataview, index, item, record, e) {
+        this.showResourcePage(record);
+    },
+
+    /**
+     *
+     * @param resource
+     */
+    showResourcePage:function(resource){
         var type = resource.get('type');
         if (type == 'SCENE') {
-            this.showSceneResource(resource);
+            this.showSceneResource(resource, '/scenes/' + resource.get('id'));
         }
     },
 
@@ -87,85 +81,34 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
      * 显示景点资源明细
      * @param resourceId
      */
-    showSceneResource: function (resource) {
-        var me = this;
+    showSceneResource: function (resource, url) {
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.resource.ResourceFormView'));
-        var view = me.getResourceFormView();
+        var me = this, view = me.getResourceFormView(), pagebody = view.down('#pagebody');
 
         var headerbar = view.down('#headerbar');
         headerbar.setTitle(resource.get('name'));
 
         var options = {
             model:'YourTour.model.ResourceModel',
-            url:'/scenes/' + resource.get('id'),
+            url:url,
             success:function(store){
-                var form = Ext.create('YourTour.view.resource.ResourceSceneView');
+                var record = store.first();
 
-                var pagebody = view.down('#pagebody');
-                pagebody.insert(0, form);
+                var resview = Ext.create('YourTour.view.resource.ResourceSceneView');
+                pagebody.insert(0, resview);
 
-                view.setData(store.first());
+                view.updateData(record);
             }
         };
         me.getApplication().query(options);
     },
 
-    onActiveItemChange: function (tabBar, newTab, oldTab) {
+    onResourceFilterHandler: function () {
         if (newTab.getItemId() == 'ResourcePlayListView') {
             this.loadPlayResource(newTab);
         } else if (newTab.getItemId() == 'ResourceFoodListView') {
             this.loadFoodResource(newTab);
         }
-    },
-
-    /**
-     * 查询游玩资源
-     */
-    loadPlayResource: function (view) {
-        var me = this;
-        var resourceList = view.down('#ResourceList');
-
-        var store = resourceList.getStore();
-        if (store == null) {
-            me.playStore = Ext.create('YourTour.store.ResourcePlayStore');
-            store = me.playStore;
-        }
-
-        if (!store.loaded) {
-            var proxy = store.getProxy();
-            proxy.setUrl(YourTour.util.Context.getContext('/scenes/query'));
-            proxy.extraParams = {placeId: '1111', name: '九寨沟'};
-            store.load(function () {
-                resourceList.setStore(store);
-            });
-        }
-    },
-
-    /**
-     * 获取餐饮资源
-     */
-    loadFoodResource: function (view) {
-        var me = this;
-        var resourceList = view.down('#ResourceList');
-
-        var store = resourceList.getStore();
-        if (store == null) {
-            me.foodStore = Ext.create('YourTour.store.ResourceFoodStore');
-            store = me.foodStore;
-        }
-
-        if (!store.loaded) {
-            var proxy = store.getProxy();
-            proxy.setUrl(YourTour.util.Context.getContext('/restaurants/query'));
-            proxy.extraParams = {placeId: '1111', name: '九寨沟'};
-            store.load(function () {
-                resourceList.setStore(store);
-            });
-        }
-    },
-
-    onPlayItemTap: function (dataview, index, item, record, e) {
-        this.showSceneResource(record.get('id'));
     },
 
     onResourceAddTap:function(){
