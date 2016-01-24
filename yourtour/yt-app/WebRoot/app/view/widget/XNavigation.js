@@ -3,7 +3,7 @@ Ext.define('YourTour.view.widget.XNavigation', {
     xtype: 'xnavigation',
     config: {
         layout: 'vbox',
-        baseCls: 'x-xnavigation',
+        baseCls: 'x-xnavigation'
 
     },
 
@@ -35,8 +35,6 @@ Ext.define('YourTour.view.widget.XNavigation', {
     },
 
     constructor: function (config) {
-        var me = this;
-
         config = config || {};
 
         if (!config.items) {
@@ -58,19 +56,19 @@ Ext.define('YourTour.view.widget.XNavigation', {
         };
 
         if (direction == 'left'){
-            config.style = 'height:48px;'
+            config.style = 'height:48px;';
             config.layout = 'hbox';
             navigationButton.margin = '0 0 0 5';
         }else if(direction == 'right') {
-            config.style = 'height:48px;'
+            config.style = 'height:48px;';
             config.layout = 'hbox';
             navigationButton.margin = '0 5 0 0';
         }else if(direction == 'down'){
-            config.style = 'width:48px;'
+            config.style = 'width:48px;';
             config.layout = 'vbox';
             navigationButton.margin = '0 0 5 0';
         }else{
-            config.style = 'width:48px;'
+            config.style = 'width:48px;';
             config.layout = 'vbox';
             navigationButton.margin = '0 5 0 0';
         }
@@ -86,13 +84,13 @@ Ext.define('YourTour.view.widget.XNavigation', {
             } else {
                 item.margin = '5 0 5 0';
             }
-        })
+        });
 
         if (direction == 'left' || direction == 'up') {
             items.unshift({xtype: 'spacer', flex: 1});
             items.push(navigationButton);
         } else {
-            items.unshift(navigationButton)
+            items.unshift(navigationButton);
             items.push({xtype: 'spacer', flex: 1});
         }
 
@@ -107,7 +105,7 @@ Ext.define('YourTour.view.widget.XNavigation', {
             if (!(item instanceof Ext.Spacer || item.getItemId() == 'btnNav')) {
                 item.hide();
             }
-        })
+        });
 
         var btnnav = me.down('#btnNav');
         btnnav.setSrc('resources/icons/icon_expand.png');

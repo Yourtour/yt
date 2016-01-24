@@ -2,7 +2,7 @@ Ext.define('YourTour.controller.SettingMainCtrl', {
     extend: 'Ext.app.Controller',
     config: {
        refs:{
-           userSettingView:'#UserSettingView',
+           userSettingView:'#UserSettingView'
        },
        
        control:{
@@ -20,8 +20,6 @@ Ext.define('YourTour.controller.SettingMainCtrl', {
     },
     
     showPage:function(){
-    	var me = this;
-
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.setting.UserSettingView'));
     },
 

@@ -15,10 +15,10 @@ Ext.define('YourTour.controller.home.AlongMainCtrl', {
        
        routes:{
        		'/along/list':'showListView',
-       		'/along/detail/:alongId':'showDetailView',
+       		'/along/detail/:alongId':'showDetailView'
        },
       
-       store : null,
+       store : null
     },
     
     init: function(){
@@ -37,7 +37,7 @@ Ext.define('YourTour.controller.home.AlongMainCtrl', {
 		store.load(success, this);
     },
     
-    showDetailView:function(alongId){
+    showDetailView:function(){
 		var me = this;
 		var store = this.store;
 		var success = function(){
@@ -48,7 +48,7 @@ Ext.define('YourTour.controller.home.AlongMainCtrl', {
 		store.load(success, this);
     },
     
-    onItemTap:function(dataview, index, item, record,e){
+    onItemTap:function(dataview, index, item, record){
 		this.showAlongDetail(record);
     },
     

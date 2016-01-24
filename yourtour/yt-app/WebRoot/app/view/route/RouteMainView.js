@@ -78,7 +78,6 @@ Ext.define('YourTour.view.route.RouteMainView', {
                         bottom: 0,
                         docked: 'bottom',
                         style: 'background-color:grey;opacity:0.8; width:100%;',
-                        style: 'width:100%;',
                         items: [
                             {
                                 xtype: 'markedlabel',
@@ -92,7 +91,7 @@ Ext.define('YourTour.view.route.RouteMainView', {
                                 xtype: 'xmultifield',
                                 itemId: 'lineName',
                                 paddingLeft:0,
-                                icon:'icon-name',
+                                icon:'icon-name'
                             },
 
                             {

@@ -46,20 +46,20 @@ Ext.define('YourTour.view.resource.ResourceSceneView', {
 						xtype: 'xfield',
 						itemId:'address',
 						tappable:true,
-						icon:'icon-position',
+						icon:'icon-position'
 					},
 
 					{
 						xtype: 'xfield',
 						itemId:'phone',
 						icon:'icon-phone',
-						tappable:true,
+						tappable:true
 					},
 
 					{
 						xtype: 'xmultifield',
 						itemId:'openTime',
-						icon:'icon-open',
+						icon:'icon-open'
 					},
 
 					{
@@ -107,12 +107,12 @@ Ext.define('YourTour.view.resource.ResourceSceneView', {
 								scrollable:null,
 								binding:'activityItemsStore',
 								useComponents: true,
-								defaultType: 'RouteActivityItemDataItem',
+								defaultType: 'RouteActivityItemDataItem'
 							}
 						]
-					},
+					}
 	    		]
-	    	},
+	    	}
         ]
     }
 });

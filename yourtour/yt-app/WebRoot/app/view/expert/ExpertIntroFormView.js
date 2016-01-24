@@ -6,7 +6,7 @@ Ext.define('YourTour.view.expert.ExpertIntroFormView', {
         layout: 'vbox',
         items: [
             {
-                xtype: 'xheaderbar',
+                xtype: 'xheaderbar'
             },
 
             {
@@ -34,7 +34,7 @@ Ext.define('YourTour.view.expert.ExpertIntroFormView', {
                                 xtype: 'image',
                                 mode: 'tag',
                                 itemId: 'gender'
-                            },
+                            }
                         ]
                     },
 
@@ -61,7 +61,7 @@ Ext.define('YourTour.view.expert.ExpertIntroFormView', {
                                 xtype: 'xlabel',
                                 itemId: 'snsAuthenticate',
                                 html: '社交认证'
-                            },
+                            }
                         ]
                     }
                 ]

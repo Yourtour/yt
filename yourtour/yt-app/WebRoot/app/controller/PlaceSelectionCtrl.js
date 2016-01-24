@@ -23,12 +23,12 @@ Ext.define('YourTour.controller.PlaceSelectionCtrl', {
 
             '#PlaceSelectionView #placeList': {
                 itemtap: 'onPlaceListItemTapHandler'
-            },
+            }
         },
 
         placeStore: null,
 
-        callback: null,
+        callback: null
     },
 
     init: function () {
@@ -166,7 +166,7 @@ Ext.define('YourTour.controller.PlaceSelectionCtrl', {
                     break;
                 }
 
-                data.set('hidden', hidden)
+                data.set('hidden', hidden);
             }
 
             item.setExpandable(hidden)
@@ -176,14 +176,14 @@ Ext.define('YourTour.controller.PlaceSelectionCtrl', {
     /**
      *
      */
-    onPlaceTypeItemTapHandler: function (dataview, index, item, record, e) {
+    onPlaceTypeItemTapHandler: function (dataview, index, item, record) {
         var me = this;
         var parentCode = record.get('code');
 
-        var placeList = this.getAbroadItem().down('#placeList');
+        var placeList = me.getAbroadItem().down('#placeList');
         var placeStore = placeList.getStore();
 
-        var hidden = false
+        var hidden = false;
         placeStore.each(function (place) {
             if(parentCode == 'All') {
                 hidden = place.get('leaf') == 'true';

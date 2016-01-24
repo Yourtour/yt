@@ -44,7 +44,7 @@ Ext.define('YourTour.view.route.RouteScheduleEditView', {
 						xtype: 'datepickerfield',
 					    itemId:'date',
 					    flex:1,
-					    clearIcon: true,
+					    clearIcon: true
 					}
 				]
 			},
@@ -64,7 +64,7 @@ Ext.define('YourTour.view.route.RouteScheduleEditView', {
 					    xtype: 'textfield',  
 					    itemId:'title',
 					    flex:1,
-					    clearIcon: true,
+					    clearIcon: true
 					}
 				]
 			},
@@ -89,7 +89,7 @@ Ext.define('YourTour.view.route.RouteScheduleEditView', {
 					    clearIcon: true
 					}
 				]
-			},
+			}
         ]
     }
 });

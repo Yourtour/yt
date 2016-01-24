@@ -20,7 +20,7 @@ Ext.define('YourTour.view.common.ExpertServiceFormView', {
 
 			{
 				xtype:'panel',
-				cls:'spacer',
+				cls:'spacer'
 			},
 
 			{

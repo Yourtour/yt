@@ -44,7 +44,7 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
        
        routeId : null,
        
-       resource:null,
+       resource:null
     },
     
     init:function(){
@@ -110,7 +110,7 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
 		scheduleList.setStore(schedulesStore);
 	},
     
-    onItemTap:function(dataview, index, item, record,e){
+    onItemTap:function(dataview, index, item, record){
     	var type = record.get('resourceType');
     	if(type == 'SCENE' || type == 'FOOD' ||type == 'HOTEL'){
     		this.showRouteActivityInfo(record);
@@ -158,12 +158,12 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
         2000);
     },
     
-    onScheduleServiceTap:function(dataview, index, item, record,e){
+    onScheduleServiceTap:function(dataview, index, item, record){
 		var controller = this.getApplication().getController('ServiceMainCtrl');
 		controller.showExpertService(record, 'cancel')
     },
 
-	onScheduleActivityItemTap:function(dataview, index, item, record,e){
+	onScheduleActivityItemTap:function(dataview, index, item, record){
 		var controller = this.getApplication().getController('ResourceMainCtrl');
 		controller.showResourceActivity(record);
 	}

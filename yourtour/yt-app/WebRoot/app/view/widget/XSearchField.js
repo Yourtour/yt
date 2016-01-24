@@ -4,6 +4,6 @@ Ext.define('YourTour.view.widget.XSearchField', {
     config: {
         baseCls:'x-xfield-search',
         cls:'font-medium font-grey'
-    },
+    }
 });
 

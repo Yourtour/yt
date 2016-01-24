@@ -3,7 +3,7 @@ Ext.define('YourTour.view.widget.XImage', {
     xtype: 'ximage',
     config:{
         binding:'imageUrl',
-        mode : 'tag',
+        mode : 'tag'
     },
 
     updateBinding:function(binding){

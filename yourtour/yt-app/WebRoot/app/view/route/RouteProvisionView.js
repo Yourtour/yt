@@ -38,7 +38,7 @@ Ext.define('YourTour.view.route.RouteProvisionView', {
 					    xtype: 'textfield',  
 					    itemId:'title',
 					    flex:1,
-					    clearIcon: true,
+					    clearIcon: true
 					}
 				]
 			},
@@ -69,8 +69,7 @@ Ext.define('YourTour.view.route.RouteProvisionView', {
             	docked: 'bottom',
 				cls:'x-button-primary',
             	text:'删除'
-            },
-        ]
+            }		        ]
     }
 });
 

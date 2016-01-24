@@ -3,14 +3,14 @@ Ext.define('YourTour.controller.home.TalentMainCtrl', {
     config: {
        refs:{
     	   talentListView:'#TalentListView',
-    	   talentList:'#TalentListView #talentList',
+    	   talentList:'#TalentListView #talentList'
        },
        
        routes:{
        	'/main/talent/list':'showPage'
        },
       
-       store : null,
+       store : null
     },
     
     init: function(){

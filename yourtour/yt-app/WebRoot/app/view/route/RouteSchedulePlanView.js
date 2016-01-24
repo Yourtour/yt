@@ -42,7 +42,7 @@ Ext.define('YourTour.view.route.RouteSchedulePlanView', {
 						},
 						bounce: {
 							acceleration: 0.0001,
-							springTension: 0.9999,
+							springTension: 0.9999
 						},
 						minVelocity: 5
 					},
@@ -76,7 +76,7 @@ Ext.define('YourTour.view.route.RouteSchedulePlanView', {
 								},
 								bounce: {
 									acceleration: 0.0001,
-									springTension: 0.9999,
+									springTension: 0.9999
 								},
 								minVelocity: 5
 							},

@@ -10,7 +10,7 @@ Ext.define('YourTour.view.setting.UserSettingView', {
             {
             	xtype: 'xheaderbar',
 				itemId:'headerbar',
-				title:'设置',
+				title:'设置'
             },
 
 			{
@@ -21,29 +21,29 @@ Ext.define('YourTour.view.setting.UserSettingView', {
 						xtype:'xlabel',
 						padding:'0 10 0 10',
 						cls:'row underline font-medium',
-						html:'个人设置',
+						html:'个人设置'
 					},
 
 					{
 						xtype:'xlabel',
 						padding:'0 10 0 40',
 						cls:'row underline font-medium font-grey nav-arrow',
-						html:'推送设置',
+						html:'推送设置'
 					},
 
 					{
 						xtype:'xlabel',
 						padding:'0 10 0 40',
 						cls:'row underline font-medium font-grey nav-arrow',
-						html:'位置分享',
+						html:'位置分享'
 					},
 
 					{
 						xtype:'xlabel',
 						padding:'0 10 0 40',
 						cls:'row underline font-medium font-grey nav-arrow',
-						html:'清除缓存',
-					},
+						html:'清除缓存'
+					}
 				]
 			},
 
@@ -57,43 +57,43 @@ Ext.define('YourTour.view.setting.UserSettingView', {
 						xtype:'xlabel',
 						padding:'0 10 0 10',
 						cls:'row underline font-medium',
-						html:'应用相关',
+						html:'应用相关'
 					},
 
 					{
 						xtype:'xlabel',
 						padding:'0 10 0 40',
 						cls:'row underline font-medium font-grey nav-arrow',
-						html:'版本检查',
+						html:'版本检查'
 					},
 
 					{
 						xtype:'xlabel',
 						padding:'0 10 0 40',
 						cls:'row underline font-medium font-grey nav-arrow',
-						html:'意见反馈',
+						html:'意见反馈'
 					},
 
 					{
 						xtype:'xlabel',
 						padding:'0 10 0 40',
 						cls:'row underline font-medium font-grey nav-arrow',
-						html:'游徒评价',
+						html:'游徒评价'
 					},
 
 					{
 						xtype:'xlabel',
 						padding:'0 10 0 40',
 						cls:'row underline font-medium font-grey nav-arrow',
-						html:'游徒分享',
+						html:'游徒分享'
 					},
 
 					{
 						xtype:'xlabel',
 						padding:'0 10 0 40',
 						cls:'row underline font-medium font-grey nav-arrow',
-						html:'关于游徒',
-					},
+						html:'关于游徒'
+					}
 				]
 			},
 

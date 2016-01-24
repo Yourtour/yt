@@ -106,7 +106,7 @@ Ext.define('YourTour.view.user.RegisterProfileView', {
              		   src:'resources/icons/icon_portrait_demo.png',
              		   itemId:'portrait',
              		   mode : 'tag',
-             		   maxHeight:50,
+             		   maxHeight:50
 					},
 					
 					{
@@ -182,7 +182,7 @@ Ext.define('YourTour.view.user.RegisterProfileView', {
                 	tappable:true,
                 	html:'照相'
                 }]	
-            },
+            }
         ]
     }
 });

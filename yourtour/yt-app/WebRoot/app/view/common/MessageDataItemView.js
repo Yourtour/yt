@@ -10,7 +10,7 @@ Ext.define('YourTour.view.common.MessageDataItemView', {
 		   	{
 				itemId:'type',
 				xtype:'xfield'
-			},
+			}
         ]
     },
     

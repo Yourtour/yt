@@ -37,7 +37,7 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 				xtype: 'xfield',
 				itemId:'resName',
 				tappable:true,
-				icon:'icon-name',
+				icon:'icon-name'
 			},
 
 			{
@@ -131,7 +131,7 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 						itemId:'itemList',
 						scrollable:null,
 						useComponents: true,
-						defaultType: 'RouteActivityItemDataItem',
+						defaultType: 'RouteActivityItemDataItem'
 					}
 				]
 			},
@@ -157,7 +157,7 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 						itemId:'serviceList',
 						scrollable:null,
 						useComponents: true,
-						defaultType: 'ExpertServiceListDataItem',
+						defaultType: 'ExpertServiceListDataItem'
 					}
 				]
 			},
@@ -168,7 +168,7 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
             	id:'btnDelete',
             	docked: 'bottom',
             	text:'删除'
-            },
+            }
         ]
     },
     

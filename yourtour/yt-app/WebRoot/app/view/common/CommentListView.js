@@ -8,7 +8,7 @@ Ext.define('YourTour.view.common.CommentListView', {
 			{    
 				xtype: 'xheaderbar',
 				itemId:'headerbar',
-				title:'点评',
+				title:'点评'
 			},
 
 			{
@@ -70,7 +70,7 @@ Ext.define('YourTour.view.common.CommentListView', {
 											{
 												xtype:'xfield',
 												itemId:'facilityScore',
-												label:'设施',
+												label:'设施'
 											}
 										]
 									},
@@ -114,25 +114,25 @@ Ext.define('YourTour.view.common.CommentListView', {
 							{
 								xtype:'xfield',
 								itemId:'goodNum',
-								margin:'0 0 0 40',
+								margin:'0 0 0 40'
 							},
 
 							{
 								xtype:'xfield',
 								itemId:'mediumNum',
-								margin:'0 0 0 40',
+								margin:'0 0 0 40'
 							},
 
 							{
 								xtype:'xfield',
 								itemId:'badNum',
-								margin:'0 0 0 40',
+								margin:'0 0 0 40'
 							},
 
 							{
 								xtype:'xfield',
 								itemId:'imageNum',
-								margin:'0 0 0 40',
+								margin:'0 0 0 40'
 							},{
 								xtype:'spacer',
 								flex:1

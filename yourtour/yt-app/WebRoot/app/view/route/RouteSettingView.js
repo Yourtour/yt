@@ -21,7 +21,7 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 			{
 				xtype:'xtextfield',
 				itemId:'name',
-				label:'行程名称',
+				label:'行程名称'
 			},
 
 			{
@@ -123,7 +123,7 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 					{
 						xtype:'spacer',
 						flex:1
-					},
+					}
 				]
 			}
 		]

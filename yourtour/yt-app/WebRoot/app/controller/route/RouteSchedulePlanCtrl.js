@@ -43,7 +43,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
             },
 
             '#RouteSchedulePlanView #scheduleList': {
-                itemtap: 'onPlanViewScheduleTapHandler',
+                itemtap: 'onPlanViewScheduleTapHandler'
             },
 
             '#RouteSchedulePlanView #scheduleItemList': {
@@ -154,7 +154,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 
             '#RouteRecommendIntroductionView #btnClone': {
                 tap: 'onRouteCloneTap'
-            },
+            }
         },
 
         route: null,
@@ -170,7 +170,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 
         me.route = {toPlaces: ''};
         var controller = this.getApplication().getController('PlaceSelectionCtrl');
-        controller.showPage(function (dataview, index, item, record, e) {
+        controller.showPage(function (dataview, index, item, record) {
             me.showPlaceEditView(record);
         });
     },
@@ -183,7 +183,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
         if (toPlaces != '') {
             toPlaces += '|';
         }
-        toPlaces += place.get('id') + ',' + place.get('name')
+        toPlaces += place.get('id') + ',' + place.get('name');
         route.toPlaces = toPlaces;
 
         this.fillPlaceEditView();
@@ -191,7 +191,6 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 
     /**
      * 显示目的地设置界面
-     * @param place
      */
     fillPlaceEditView: function () {
         var me = this, view = me.getRoutePlaceEditView();
@@ -226,9 +225,8 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
      * @param index
      * @param item
      * @param record
-     * @param e
      */
-    onSelectedListItemTapHandler: function (dataview, index, item, record, e) {
+    onSelectedListItemTapHandler: function (dataview, index, item, record) {
         this.getRelatedPlaces(record);
     },
 
@@ -268,7 +266,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 
         var arrPlaces = toPlaces.split('|');
         var newPlaces = '';
-        Ext.Array.forEach(arrPlaces, function (place, index) {
+        Ext.Array.forEach(arrPlaces, function (place) {
             var places = place.split(',');
             if(places[0] != record.get('id')){
                 if(newPlaces != '' ) newPlaces += '|';
@@ -287,7 +285,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
      * @param record
      */
     onItemAddHandler: function (dataview, action, record) {
-        var me = this, view = me.getRoutePlaceEditView(), store = dataview.getStore(), route= me.route;
+        var me = this, view = me.getRoutePlaceEditView(), store = dataview.getStore();
         store.remove(record);
 
         var selectedList = view.down('#selectedList'), selectedStore = selectedList.getStore();
@@ -312,7 +310,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     showTimeSelectionView: function () {
         var me = this, route = me.route;
         var controller = this.getApplication().getController('CommonMainCtrl');
-        controller.showTimeSelectionView(new Date(), function (startDate, endDate, count) {
+        controller.showTimeSelectionView(new Date(), function (startDate, endDate) {
             route.startDate = startDate;
             route.endDate = endDate;
 
@@ -422,9 +420,8 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
      * @param index
      * @param item
      * @param record
-     * @param e
      */
-    onRouteRecommendItemTapHandler: function (dataview, index, item, record, e) {
+    onRouteRecommendItemTapHandler: function (dataview, index, item, record) {
         var me = this;
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteRecommendIntroductionView'));
         var view = me.getRouteRecommendIntroductionView();
@@ -557,10 +554,8 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
      * @param index
      * @param item
      * @param record
-     * @param e
      */
-    onPlanViewScheduleTapHandler: function (dataview, index, item, record, e) {
-        var me = this;
+    onPlanViewScheduleTapHandler: function (dataview, index, item, record) {
         var store = dataview.getStore();
         var count = store.getAllCount(), type, data, hidden = false;
 

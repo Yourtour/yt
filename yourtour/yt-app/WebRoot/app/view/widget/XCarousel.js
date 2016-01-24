@@ -19,7 +19,7 @@ Ext.define('YourTour.view.widget.XCarousel', {
 
         var me = this;
 
-        me.carousel.on('activeitemchange', function (carousel, value, oldValue, eOpts) {
+        me.carousel.on('activeitemchange', function (carousel, value) {
             var navBar = me.navBar;
             var activeIndex = carousel.getActiveIndex();
             if (!navBar || !navBar.getAt(activeIndex)) return;
@@ -66,11 +66,11 @@ Ext.define('YourTour.view.widget.XCarousel', {
         label.element.on(
             {
                 scope: me,
-                tap: function (e, t) {
+                tap: function () {
                     me.setActiveItem(index, item); //fireEvent('activeitemchange', index);
                 }
             }
-        )
+        );
 
         me.navBar.add(label);
         me.carousel.add(item);
@@ -113,7 +113,5 @@ Ext.define('YourTour.view.widget.XCarousel', {
 
         var carousel = me.carousel;
         carousel.setActiveItem(item);
-    },
-
-
+    }
 });

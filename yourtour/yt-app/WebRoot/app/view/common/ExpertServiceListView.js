@@ -7,7 +7,7 @@ Ext.define('YourTour.view.common.ExpertServiceListView', {
 			{    
 				xtype: 'xheaderbar',
 				itemId:'headerbar',
-				title:'达人服务',
+				title:'达人服务'
 			},
 
 			{

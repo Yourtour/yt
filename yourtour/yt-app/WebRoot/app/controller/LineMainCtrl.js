@@ -5,7 +5,7 @@ Ext.define('YourTour.controller.LineMainCtrl', {
            lineRecommendListView:'#LineRecommendListView',
     	   lineList:'#LineRecommendListView #lineList',
 
-           lineIntroductionView:'#LineIntroductionView',
+           lineIntroductionView:'#LineIntroductionView'
        },
        
        control:{

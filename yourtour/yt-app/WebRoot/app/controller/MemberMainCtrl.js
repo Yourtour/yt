@@ -6,8 +6,7 @@ Ext.define('YourTour.controller.MemberMainCtrl', {
     	   memberList:'#MemberMainView #members',
     	   managementBtn:'#MemberMainView #management',
     	   finishedBtn:'#MemberMainView #finished',
-    	   memberSearchList:'#MemberSearchView #memberSearchList',
-    	   
+    	   memberSearchList:'#MemberSearchView #memberSearchList'
        },
        
        control:{

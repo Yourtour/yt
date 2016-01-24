@@ -62,7 +62,7 @@ Ext.define('YourTour.view.route.RouteRecommendDataItem', {
 						itemId:'price',
 						label:'价格:',
 						margin:'0 0 0 20'
-					},
+					}
 				]
 			}
 		]

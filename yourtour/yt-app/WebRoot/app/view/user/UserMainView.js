@@ -57,7 +57,7 @@ Ext.define('YourTour.view.user.UserMainView', {
 		    			 cls:'row nav-arrow font-large underline',
 		    			 html : '我是达人',
 		    			 tappable :true
-		    		},
+		    		}
 		    	]
     		},
     		{

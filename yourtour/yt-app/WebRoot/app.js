@@ -43,7 +43,7 @@ Ext.application({
         'expert.ExpertRecommendListView','expert.ExpertRecommendIntroView',
 
         'community.LiveMainView',
-        'place.PlaceMainView','place.PlaceSelectionView',
+        'place.PlaceMainView','place.PlaceSelectionView'
     ],
     
     controllers: [
@@ -105,7 +105,7 @@ Ext.application({
     		
     	    options.headers = {
     	    	'User-Token':userToken,
-    	    	'Content-Type':'application/json',
+    	    	'Content-Type':'application/json'
     	    };
     	}), this);
     },
@@ -219,7 +219,8 @@ Ext.application({
                     if (respObj.errorCode != '0') {
                         Ext.Msg.alert(respObj.errorText);
                         return;
-                    };
+                    }
+
                     options.success(respObj.data)
                 },
 

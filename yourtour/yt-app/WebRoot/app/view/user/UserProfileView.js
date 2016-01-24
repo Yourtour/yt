@@ -10,7 +10,7 @@ Ext.define('YourTour.view.user.UserProfileView', {
             {
             	xtype: 'xheaderbar',
 				itemId:'headerbar',
-				title:'个人信息',
+				title:'个人信息'
             },
 
 			{
@@ -41,7 +41,7 @@ Ext.define('YourTour.view.user.UserProfileView', {
 				showMore:true,
 				fieldCls:'x-field-more',
 				padding:'0 10 0 10',
-				tappable:true,
+				tappable:true
 			},
 
 			{
@@ -61,7 +61,7 @@ Ext.define('YourTour.view.user.UserProfileView', {
 				items:[
 					{
 						xtype:'xlabel',
-						html : '生日',
+						html : '生日'
 					},
 
 					{
@@ -91,7 +91,7 @@ Ext.define('YourTour.view.user.UserProfileView', {
 				items:[
 					{
 						xtype:'xlabel',
-						html : '性别',
+						html : '性别'
 					},
 
 					{
@@ -122,7 +122,7 @@ Ext.define('YourTour.view.user.UserProfileView', {
 				label : '标签',
 				fieldCls:'x-field-right',
 				padding:'0 10 0 10',
-				tappable:true,
+				tappable:true
 			},
 
 			{

@@ -6,7 +6,7 @@ Ext.define('YourTour.view.common.PlaceGridItemView', {
         items: [
 			{
 				itemId:'name',
-				xtype:'xfield',
+				xtype:'xfield'
 			}    
         ]
     },

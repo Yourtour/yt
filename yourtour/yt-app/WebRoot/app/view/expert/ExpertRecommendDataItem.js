@@ -44,8 +44,8 @@ Ext.define('YourTour.view.expert.ExpertRecommendDataItem', {
                                         xtype: 'image',
                                         mode: 'tag',
                                         itemId: 'rank',
-                                        src: 'resources/images/raty_32.png',
-                                    },
+                                        src: 'resources/images/raty_32.png'
+                                    }
                                 ]
                             },
 
@@ -61,14 +61,14 @@ Ext.define('YourTour.view.expert.ExpertRecommendDataItem', {
                                 itemId:'identity',
                                 underline:false,
                                 margin:'5 0 0 0'
-                            },
+                            }
                         ]
                     },
 
                     {
                         xtype: 'panel',
                         layout: 'vbox',
-                        margin:'10 0 0 0',
+                        margin:'10 0 0 0'
                     }
                 ]
             },
@@ -101,7 +101,7 @@ Ext.define('YourTour.view.expert.ExpertRecommendDataItem', {
                         itemId: 'snsAuthenticate',
                         padding:'0 0 0 40',
                         html: '社交认证'
-                    },
+                    }
                 ]
             },
 

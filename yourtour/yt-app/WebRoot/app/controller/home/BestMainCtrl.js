@@ -2,7 +2,7 @@ Ext.define('YourTour.controller.home.BestMainCtrl', {
     extend: 'YourTour.controller.BaseCtrl',
     config: {
        refs:{
-    	   bestList:'#BestListView #bestList',
+    	   bestList:'#BestListView #bestList'
        },
        
        control:{
@@ -15,7 +15,7 @@ Ext.define('YourTour.controller.home.BestMainCtrl', {
        	'/home/best/list':'showListView'
        },
       
-       store : null,
+       store : null
     },
     
     init: function(){
@@ -35,7 +35,7 @@ Ext.define('YourTour.controller.home.BestMainCtrl', {
 		store.load(success, this);
     },
     
-    onItemTap:function(dataview, index, item, record,e){
+    onItemTap:function(dataview, index, item, record){
     	this.redirectTo('/line/introduction/1');
     }
 });

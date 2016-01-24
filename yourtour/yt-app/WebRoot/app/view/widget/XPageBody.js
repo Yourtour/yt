@@ -31,7 +31,7 @@ Ext.define('YourTour.view.widget.XPageBody', {
         /*me.getScrollable().getScroller().on('scroll', me.onScroller,me);
 
         me.getScrollable().getScroller().on('scrollend', me.onScrollerEnd,me);*/
-    },
+    }
 
     /*onScrollerEnd : function(scroller,offsets){
     },

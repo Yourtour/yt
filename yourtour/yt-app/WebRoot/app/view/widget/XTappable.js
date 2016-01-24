@@ -1,7 +1,7 @@
 Ext.define('YourTour.view.widget.XTappable', {
     extend: 'Ext.Container',
     config: {
-        tappable: null,
+        tappable: null
     },
 
     updateTappable: function (tappable) {

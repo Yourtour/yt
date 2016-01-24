@@ -18,7 +18,7 @@ Ext.define('YourTour.view.widget.XProcessing', {
             {
                 xtype:'spacer',
                 flex:1
-            },
+            }
         ]
     }
 });

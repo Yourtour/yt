@@ -53,7 +53,7 @@ Ext.define('YourTour.view.common.MessageMainView', {
 	    				mode : 'tag',
 	    				src:'resources/icons/icon-add_48.png',
 		              	itemId:'btnAdd'  
-					},
+					}
 				]	
 			} 
     	]

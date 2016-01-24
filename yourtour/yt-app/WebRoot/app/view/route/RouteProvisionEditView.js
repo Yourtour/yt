@@ -49,7 +49,7 @@ Ext.define('YourTour.view.route.RouteProvisionEditView', {
 					    xtype: 'textfield',  
 					    itemId:'title',
 					    flex:1,
-					    clearIcon: true,
+					    clearIcon: true
 					}
 				]
 			},
@@ -80,7 +80,7 @@ Ext.define('YourTour.view.route.RouteProvisionEditView', {
             	id:'btnDelete',
             	docked: 'bottom',
             	text:'删除'
-            },
+            }
         ]
     }
 });
