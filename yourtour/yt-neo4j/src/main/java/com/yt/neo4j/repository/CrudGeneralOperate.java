@@ -115,6 +115,7 @@ public class CrudGeneralOperate implements CrudOperate {
 		return bean;
 	}
 
+	@SuppressWarnings("unchecked")
 	protected <T> List<T> query(String queryStr, Map<String, Object> params, Class<?> clazz) throws Exception {
 		List<T> list = new ArrayList<>();
 
@@ -731,11 +732,11 @@ public class CrudGeneralOperate implements CrudOperate {
 			Neo4jBaseBean tar, String relationshipType) throws Exception {
 		Relationship relationship = this.template.getRelationshipBetween(src, tar, relationshipType);
 		if(relationship != null){
-			Map<String, Object> props = new HashMap();
+			Map<String, Object> props = new HashMap<>();
 			
 			Iterable<String> keys = relationship.getPropertyKeys();
 			if(keys != null){
-				Iterator itKeys = keys.iterator();
+				Iterator<String> itKeys = keys.iterator();
 				String key = null;
 				while(itKeys.hasNext()){
 					key = itKeys.next().toString();
