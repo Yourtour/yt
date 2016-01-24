@@ -115,12 +115,12 @@ public class RouteRestResource extends BaseRestResource{
 	 */
 	@POST
 	@Path("main/save")
-	public ResponseDataVO<Long> saveMain(RouteVO vo) {
+	public ResponseDataVO<RouteLoadVO> saveMain(RouteVO vo) {
 		if (vo == null) {
 			if (LOG.isWarnEnabled()) {
 				LOG.warn("The RouteVO is null.");
 			}
-			return new ResponseDataVO<Long>(StaticErrorEnum.THE_INPUT_IS_NULL);
+			return new ResponseDataVO<RouteLoadVO>(StaticErrorEnum.THE_INPUT_IS_NULL);
 		}
 		try {
 			RouteMainBean bean = RouteVO.transform(vo);
@@ -136,16 +136,18 @@ public class RouteRestResource extends BaseRestResource{
 			routeRepository.saveRouteMainAndSchedules(bean, WebUtils.getCurrentLoginUser());
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format("Save RouteMainBean['%s'] success.",
-						vo.getRowKey()));return new ResponseDataVO<Long>(bean.getGraphId());
+						vo.getRowKey()));
 			}
-			return new ResponseDataVO<Long>(bean.getGraphId());
+
+			RouteLoadVO loadvo = new RouteLoadVO(bean);
+			return new ResponseDataVO<RouteLoadVO>(loadvo);
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
 				LOG.error(
 						String.format("Save the RouteMainBean[id='%s'] fail.",
 								vo.getRowKey()), ex);
 			}
-			return new ResponseDataVO<Long>(StaticErrorEnum.DB_OPERATE_FAIL);
+			return new ResponseDataVO<RouteLoadVO>(StaticErrorEnum.DB_OPERATE_FAIL);
 		}
 	}
 
@@ -161,8 +163,17 @@ public class RouteRestResource extends BaseRestResource{
 		try {
 			String userId = super.getCurrentUserId();
 
-			Long targetId = this.saveMain(vo).getData();
-			RouteMainBean route = routeRepository.cloneRoute(Long.valueOf(sourceId), Long.valueOf(targetId), userId);
+			RouteMainBean bean = RouteVO.transform(vo);
+
+			UserProfileBean profileBean = null;
+			long userGraphId = Neo4jUtils.getGraphIDFromString(super.getCurrentUserId());
+			if (userGraphId != -1) {
+				profileBean = (UserProfileBean) routeRepository.get(UserProfileBean.class,
+						userGraphId, false);
+				bean.setOwner(profileBean);
+			}
+
+			RouteMainBean route = routeRepository.cloneRoute(Long.valueOf(sourceId), bean, userId);
 
 			RouteLoadVO loadVo = new RouteLoadVO(route);
 

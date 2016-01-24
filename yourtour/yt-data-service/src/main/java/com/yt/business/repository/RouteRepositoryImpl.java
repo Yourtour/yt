@@ -282,15 +282,12 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 
 
 	@Override
-	public RouteMainBean cloneRoute(Long sourceId, Long targetId, String userId) throws Exception {
+	public RouteMainBean cloneRoute(Long sourceId, RouteMainBean target, String userId) throws Exception {
+		this.saveRouteMainAndSchedules(target, userId);
+
 		RouteMainBean source = this.getCompleteRoute(sourceId);
 		if(source == null){
 			throw new Exception("No route found for id=" + sourceId);
-		}
-
-		RouteMainBean target = this.getCompleteRoute(targetId);
-		if(target == null){
-			throw new Exception("No route found for id=" + targetId);
 		}
 
 		List<RouteProvisionBean> sProvisions = source.getProvisions();

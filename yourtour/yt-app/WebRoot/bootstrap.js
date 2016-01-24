@@ -840,6 +840,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.XCheckbox": [],
   "YourTour.view.widget.XDataItem": [],
   "YourTour.view.widget.XDataView": [],
+  "YourTour.view.widget.XDateField": [],
   "YourTour.view.widget.XField": [],
   "YourTour.view.widget.XGenderPicker": [],
   "YourTour.view.widget.XGridItem": [],
@@ -1967,6 +1968,9 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.widget.XDataItem": [],
   "YourTour.view.widget.XDataView": [
     "widget.xdataview"
+  ],
+  "YourTour.view.widget.XDateField": [
+    "widget.xdatefield"
   ],
   "YourTour.view.widget.XField": [
     "widget.xfield"

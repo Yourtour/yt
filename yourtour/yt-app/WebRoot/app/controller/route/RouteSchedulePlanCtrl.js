@@ -136,6 +136,10 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
                 tap: 'OnRouteReferTap'
             },
 
+            '#RouteSettingView #btnCutomized': {
+                tap: 'onRouteCustomizeTap'
+            },
+
             '#LineRecommendListView #btnCustomize': {
                 tap: 'onRouteCustomizeTap'
             },
@@ -465,9 +469,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
      * 行程复制
      */
     onRouteCloneTap: function () {
-        var me = this;
-        var view = me.getRouteRecommendIntroductionView();
-        var record = view.getData();
+        var me = this, view = me.getRouteRecommendIntroductionView(), record = view.getData();
         var sourceId = record.get('id');
 
         var route = me.getRouteSettingInfo();
@@ -491,22 +493,21 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
      *
      */
     onRouteCustomizeTap: function () {
-        var me = this;
-        var store = null;
+        var me = this, route = me.getRouteSettingInfo();
 
-        var routeId = route.id;
-        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteSchedulePlanView'));
-        var showView = function () {
-            var record = store.first();
+        this.getApplication().callService({
+            url: '/routes/main/save',
+            method: "POST",
+            params: route,
+            success: function (response) {
+                Ext.ComponentManager.get('MainView').reset();
 
-            var scheduleList = me.getScheduleList();
-            scheduleList.setStore(record.schedulesStore);
-            scheduleList.setActiveItem(0);
-        };
-
-        store = Ext.create('YourTour.store.AjaxStore', {storeId: 'recommendItem', model: 'YourTour.model.RouteModel'});
-        store.getProxy().setUrl(YourTour.util.Context.getContext('/routes/' + routeId + '/query'));
-        store.load(showView, this);
+                var store = Ext.create('YourTour.store.AjaxStore', {model: 'YourTour.model.RouteModel'});
+                store.add(response);
+                var controller = me.getApplication().getController('route.RouteScheduleListCtrl');
+                controller.showPage(store);
+            }
+        });
     },
 
     /*************************************************************************************************
@@ -544,7 +545,6 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 
         var scheduleList = me.getScheduleList();
         scheduleList.setStore(record.schedulesStore);
-        scheduleList.setActiveItem(0);
 
         var scheduleItemList = me.getScheduleItemList();
         scheduleItemList.setStore(record.schedulesStore);
@@ -620,6 +620,26 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 
         var btnCancel = view.down('#btnCancel');
         btnCancel.show();
+<<<<<<< HEAD
+
+        dataview.config.istplhold = true;
+        dataview.addCls('scheduleItemList');
+    },
+
+    /**
+     * 添加行程信息
+     */
+    onPlanViewAddTapHandler: function () {
+        var me = this, scheduleList = me.getScheduleList();
+        var items = scheduleList.getSelection();
+        if (items.length == 1) {
+            var item = items[0];
+            var type = item.get('type');
+            if (type == 'Provision') {
+                this.createProvisionItem();
+            } else if (type == 'Schedule') {
+                this.createScheduleActivity();
+=======
 
         dataview.config.istplhold = true;
         dataview.addCls('scheduleItemList');
@@ -660,11 +680,37 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
                 this.deleteProvisionItem(item, callback);
             } else if (type == 'ScheduleItem') {
                 this.deleteScheduleActivity(item, callback);
+>>>>>>> 363d3f45745abe13a2b3047b6de0208aba83e792
             }
         }
     },
 
     /**
+<<<<<<< HEAD
+     * 删除选中的行程信息
+     */
+    onPlanViewDeleteTapHandler: function () {
+        var me = this, dataview = me.getScheduleItemList(), store = dataview.getStore();
+        var items = dataview.getSelection();
+        if (items.length == 1) {
+            var item = items[0];
+            var type = item.get('type');
+
+            var callback = function (response) {
+                store.remove(item);
+            };
+
+            if (type == 'ProvisionItem') {
+                this.deleteProvisionItem(item, callback);
+            } else if (type == 'ScheduleItem') {
+                this.deleteScheduleActivity(item, callback);
+            }
+        }
+    },
+
+    /**
+=======
+>>>>>>> 363d3f45745abe13a2b3047b6de0208aba83e792
      * 取消删除
      */
     onPlanViewCancelTapHandler: function () {

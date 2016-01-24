@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.route.RouteSettingView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.form.Panel', 'YourTour.view.widget.XSpacer', 'YourTour.view.widget.ToolButton', 'Ext.field.DatePicker','YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XLabel', 'YourTour.view.widget.XField', 'Ext.field.Text'],
+    requires:['Ext.form.Panel', 'YourTour.view.widget.XSpacer', 'YourTour.view.widget.XDateField', 'YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XLabel', 'YourTour.view.widget.XField', 'Ext.field.Text'],
     config: {
     	id:'RouteSettingView',
     	defaults:{
@@ -29,7 +29,7 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 			},
 
 			{
-				xtype:'xfield',
+				xtype:'xdatefield',
 				itemId:'startDate',
 				label:'出发日期',
 				fieldCls:'x-field-right',
@@ -37,7 +37,7 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 			},
 
 			{
-				xtype:'xfield',
+				xtype:'xdatefield',
 				itemId:'endDate',
 				label:'返程日期',
 				fieldCls:'x-field-right',
@@ -104,20 +104,20 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 					},
 					{
 						xtype: 'xbutton',
+						itemId: 'btnRefer',
 						text: '智能匹配',
 						ui: 'normal',
 						iconCls: 'action',
-						itemId: 'btnRefer',
 						flex:2
 					},{
 						xtype:'xvline'
 					} ,
 					{
 						xtype: 'xbutton',
+						itemId: 'btnCutomized',
 						text: '行程定制',
 						ui: 'normal',
 						iconCls: 'favorites',
-						itemId: 'btnCutomized',
 						flex:2
 					},
 					{
