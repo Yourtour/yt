@@ -548,7 +548,6 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 
         var scheduleItemList = me.getScheduleItemList();
         scheduleItemList.setStore(record.schedulesStore);
-
     },
 
     /**
@@ -621,6 +620,26 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 
         var btnCancel = view.down('#btnCancel');
         btnCancel.show();
+<<<<<<< HEAD
+
+        dataview.config.istplhold = true;
+        dataview.addCls('scheduleItemList');
+    },
+
+    /**
+     * 添加行程信息
+     */
+    onPlanViewAddTapHandler: function () {
+        var me = this, scheduleList = me.getScheduleList();
+        var items = scheduleList.getSelection();
+        if (items.length == 1) {
+            var item = items[0];
+            var type = item.get('type');
+            if (type == 'Provision') {
+                this.createProvisionItem();
+            } else if (type == 'Schedule') {
+                this.createScheduleActivity();
+=======
 
         dataview.config.istplhold = true;
         dataview.addCls('scheduleItemList');
@@ -661,11 +680,37 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
                 this.deleteProvisionItem(item, callback);
             } else if (type == 'ScheduleItem') {
                 this.deleteScheduleActivity(item, callback);
+>>>>>>> 363d3f45745abe13a2b3047b6de0208aba83e792
             }
         }
     },
 
     /**
+<<<<<<< HEAD
+     * 删除选中的行程信息
+     */
+    onPlanViewDeleteTapHandler: function () {
+        var me = this, dataview = me.getScheduleItemList(), store = dataview.getStore();
+        var items = dataview.getSelection();
+        if (items.length == 1) {
+            var item = items[0];
+            var type = item.get('type');
+
+            var callback = function (response) {
+                store.remove(item);
+            };
+
+            if (type == 'ProvisionItem') {
+                this.deleteProvisionItem(item, callback);
+            } else if (type == 'ScheduleItem') {
+                this.deleteScheduleActivity(item, callback);
+            }
+        }
+    },
+
+    /**
+=======
+>>>>>>> 363d3f45745abe13a2b3047b6de0208aba83e792
      * 取消删除
      */
     onPlanViewCancelTapHandler: function () {
