@@ -104,7 +104,7 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
 			type = record.get('type');
 
 			if(type == 'Provision' || type == 'ProvisionItem'){
-				record.set('hidden', true);
+				record.set('viewhidden', true);
 			}
 		});
 		scheduleList.setStore(schedulesStore);

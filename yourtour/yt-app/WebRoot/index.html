@@ -611,11 +611,12 @@
         .x-xcalendar{
             font-size:14px;
             text-align:center;
+            border-top: 1px solid white;
         }
 
         .x-xcalendar .header{
             background-color:#3CB371;
-            font-color:white;
+            color:white;
             height:40px;
         }
 
@@ -627,6 +628,14 @@
         .x-xcalendar .day{
             line-height:40px;
             height:40px;
+        }
+
+        .x-xcalendar .day.enabled{
+            color: grey;
+        }
+
+        .x-xcalendar .day.disabled{
+            color: silver;
         }
 
         .x-xcalendar .day.disabled{

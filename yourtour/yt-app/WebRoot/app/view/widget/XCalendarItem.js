@@ -2,11 +2,11 @@ Ext.define('YourTour.view.widget.XCalendarItem', {
     extend: 'Ext.Label',
     xtype: 'xcalendaritem',
     config: {
-    	cls:'day',
-        enabled:true,
-        date:null,
-        calendar:null,
-        active:false
+        cls: 'day',
+        enabled: true,
+        date: null,
+        calendarPanel: null,
+        active: false
     },
 
     initialize: function () {
@@ -15,54 +15,58 @@ Ext.define('YourTour.view.widget.XCalendarItem', {
         me.callParent(arguments);
 
         me.element.on({
-            scope:me,
-            'tap' : me.onItemTap
+            scope: me,
+            'tap': me.onItemTap
         })
     },
 
-    onItemTap:function(){
+    onItemTap: function () {
         var me = this;
 
-        if(me.enabled) {
+        if (me.enabled) {
             me.active = !me.active;
-            if(me.active){
-                me.addCls('active')
-            }else{
-                me.removeCls('active');
-            }
 
-            me.calendar.fireEvent('itemtap', me, me.date.value, me.active);
+            var result = me.calendarPanel.fireEvent('itemtap', me, me.getDate(), me.active);
+            if (result != false) {
+                if (me.active) {
+                    me.addCls('active')
+                } else {
+                    me.removeCls('active');
+                }
+            }
         }
     },
 
-    updateCalendar:function(calendar){
-        this.calendar = calendar;
+    updateCalendarPanel: function (calendarPanel) {
+        this.calendarPanel = calendarPanel;
     },
 
-    updateEnabled:function(enabled){
+    updateEnabled: function (enabled) {
         this.enabled = enabled
     },
 
-    updateDate:function(date){
-        this.date = date;
+    updateDate: function (date) {
+        var me = this, value = date.value, enabled = date.enabled, active = date.active;
+        me.date = date;
 
-        var value = date.value;
-        this.setHtml(value.split('/')[2]);
+        me.setHtml(value.split('/')[2]);
+        if (enabled) {
+            this.addCls('enabled');
+        } else {
+            this.addCls('disabled');
+        }
 
-        var enabled = date.enabled;
         this.enabled = enabled;
-
-        var active = date.active;
-        if(active){
+        if (active) {
             this.addCls('active');
         }
     },
 
-    getDate:function(){
+    getDate: function () {
         return this.date.value;
     },
 
-    isActive:function(){
+    isActive: function () {
         return this.active == true;
     }
 });

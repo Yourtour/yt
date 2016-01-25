@@ -7,7 +7,7 @@ Ext.define('YourTour.view.route.RoutePlaceEditView', {
     	items:[
     		{    
 				xtype: 'xheaderbar',
-				title:'想去哪儿玩',
+				title:'行程目的地安排',
 				items:[
 					{
 	                	xtype: "xbutton",

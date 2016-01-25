@@ -26,7 +26,7 @@ public class RouteScheduleBean extends BaseBeanImpl {
 	private long index = 1; // 行程日程排序号
 
 	@HbaseColumn(name = "dt")
-	private long date = 0; // 行程日程日期
+	private Long date = 0l; // 行程日程日期
 	
 	private int days = 1;
 
@@ -71,11 +71,11 @@ public class RouteScheduleBean extends BaseBeanImpl {
 		this.index = index;
 	}
 
-	public long getDate() {
+	public Long getDate() {
 		return date;
 	}
 
-	public void setDate(long date) {
+	public void setDate(Long date) {
 		this.date = date;
 	}
 

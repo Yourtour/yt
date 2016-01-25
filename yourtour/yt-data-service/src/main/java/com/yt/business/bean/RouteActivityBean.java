@@ -92,7 +92,7 @@ public class RouteActivityBean extends BaseBeanImpl implements Cloneable{
 	}
 
 	public String getStartTime() {
-		return startTime;
+		return startTime == null ? "00:00":startTime;
 	}
 
 	public void setStartTime(String startTime) {
@@ -100,7 +100,7 @@ public class RouteActivityBean extends BaseBeanImpl implements Cloneable{
 	}
 
 	public String getEndTime() {
-		return endTime;
+		return endTime == null?"00:00":endTime;
 	}
 
 	public void setEndTime(String endTime) {

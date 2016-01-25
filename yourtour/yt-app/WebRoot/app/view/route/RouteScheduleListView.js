@@ -92,9 +92,9 @@ Ext.define('YourTour.view.route.RouteScheduleListView', {
                         store.each(function (record) {
                             type = record.get('type');
                             if (type == 'Provision' || type == 'ProvisionItem') {
-                                record.set('hidden', false);
+                                record.set('viewhidden', false);
                             } else {
-                                record.set('hidden', true);
+                                record.set('viewhidden', true);
                             }
                         });
                     } else {
@@ -104,9 +104,9 @@ Ext.define('YourTour.view.route.RouteScheduleListView', {
                         store.each(function (record) {
                             type = record.get('type');
                             if (type == 'Provision' || type == 'ProvisionItem') {
-                                record.set('hidden', true);
+                                record.set('viewhidden', true);
                             } else {
-                                record.set('hidden', false);
+                                record.set('viewhidden', false);
                             }
                         });
                     }

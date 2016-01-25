@@ -297,16 +297,16 @@ public class TestRouteMainBean {
 			assertEquals(repo.count(RouteMainBean.class), 0);
 
 			RouteScheduleBean rs1 = new RouteScheduleBean();
-			rs1.setDate(1000);
+			rs1.setDate(1000l);
 			repo.save(rs1, "john");
 			RouteScheduleBean rs2 = new RouteScheduleBean();
-			rs2.setDate(1001);
+			rs2.setDate(1001l);
 			repo.save(rs2, "john");
 			RouteScheduleBean rs3 = new RouteScheduleBean();
-			rs3.setDate(1002);
+			rs3.setDate(1002l);
 			repo.save(rs3, "john");
 			RouteScheduleBean rs4 = new RouteScheduleBean();
-			rs4.setDate(1003);
+			rs4.setDate(1003l);
 			repo.save(rs4, "john");
 			assertEquals(repo.count(RouteScheduleBean.class), 4);
 

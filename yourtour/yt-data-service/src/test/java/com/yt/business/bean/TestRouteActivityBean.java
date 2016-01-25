@@ -260,11 +260,11 @@ public class TestRouteActivityBean {
 			assertEquals(repo.count(RouteScheduleBean.class), 0);
 
 			RouteScheduleBean rs1 = new RouteScheduleBean();
-			rs1.setDate(1000);
+			rs1.setDate(1000l);
 			rs1.setMemo("route schedule 1");
 			repo.save(rs1, "john");
 			RouteScheduleBean rs2 = new RouteScheduleBean();
-			rs2.setDate(2000);
+			rs2.setDate(2000l);
 			rs2.setMemo("route schedule 2");
 			repo.save(rs2, "john");
 			assertEquals(repo.count(RouteScheduleBean.class), 2);

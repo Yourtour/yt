@@ -1,284 +1,67 @@
 Ext.define('YourTour.view.widget.XCalendar', {
     extend: 'Ext.Container',
-
     alternateClassName: 'YourTour.XCalendar',
-    requires:['YourTour.view.widget.XCalendarItem'],
+    requires: ['YourTour.view.widget.XCalendarPanel', 'Ext.Carousel'],
     xtype: 'xcalendar',
     config: {
         baseCls: 'x-xcalendar',
         layout: 'vbox',
-        year:null,
-        month:null,
-        selectedDate:[],
-        allDays:[],
+        allDays: [],
         items: [
             {
-                xtype:'label',
-                itemId:'date',
-                cls:'row font-medium header '
+                xtype: 'label',
+                itemId: 'title',
+                cls: 'row font-large header '
             },
             {
-                xtype:'panel',
-                layout:'hbox',
-                defaults:{
-                    flex:1
+                xtype: 'panel',
+                layout: 'hbox',
+                defaults: {
+                    flex: 1
                 },
-                cls:'underline week',
-                items:[
+                cls: 'underline week',
+                items: [
                     {
-                        xtype:'label',
-                        html:'日'
+                        xtype: 'label',
+                        html: '日'
                     },
 
                     {
-                        xtype:'label',
-                        html:'一'
+                        xtype: 'label',
+                        html: '一'
                     },
 
                     {
-                        xtype:'label',
-                        html:'二'
+                        xtype: 'label',
+                        html: '二'
                     },
 
                     {
-                        xtype:'label',
-                        html:'三'
+                        xtype: 'label',
+                        html: '三'
                     },
 
                     {
-                        xtype:'label',
-                        html:'四'
+                        xtype: 'label',
+                        html: '四'
                     },
                     {
-                        xtype:'label',
-                        html:'五'
+                        xtype: 'label',
+                        html: '五'
                     },
                     {
-                        xtype:'label',
-                        html:'六'
+                        xtype: 'label',
+                        html: '六'
                     }
 
                 ]
             },
 
             {
-                xtype:'panel',
-                layout:'hbox',
-                itemId:'week1',
-                defaults:{
-                    flex:1
-                },
-                cls:'underline day',
-                items:[
-                    {
-                        xtype:'xcalendaritem'
-                    },
-
-                    {
-                        xtype:'xcalendaritem'
-                    },
-
-                    {
-                        xtype:'xcalendaritem',
-                        itemId:'item3'
-                    },
-
-                    {
-                        xtype:'xcalendaritem'
-                    },
-
-                    {
-                        xtype:'xcalendaritem'
-                    },
-                    {
-                        xtype:'xcalendaritem'
-                    },
-                    {
-                        xtype:'xcalendaritem'
-                    }
-                ]
-            },
-            {
-                xtype:'panel',
-                layout:'hbox',
-                itemId:'week2',
-                defaults:{
-                    flex:1
-                },
-                cls:'underline day',
-                items:[
-                    {
-                        xtype:'xcalendaritem'
-                    },
-
-                    {
-                        xtype:'xcalendaritem'
-                    },
-
-                    {
-                        xtype:'xcalendaritem'
-                    },
-
-                    {
-                        xtype:'xcalendaritem'
-                    },
-
-                    {
-                        xtype:'xcalendaritem'
-                    },
-                    {
-                        xtype:'xcalendaritem'
-                    },
-                    {
-                        xtype:'xcalendaritem'
-                    }
-                ]
-            },
-            {
-                xtype:'panel',
-                layout:'hbox',
-                itemId:'week3',
-                defaults:{
-                    flex:1
-                },
-                cls:'underline day',
-                items:[
-                    {
-                        xtype:'xcalendaritem'
-                    },
-
-                    {
-                        xtype:'xcalendaritem'
-                    },
-
-                    {
-                        xtype:'xcalendaritem'
-                    },
-
-                    {
-                        xtype:'xcalendaritem'
-                    },
-
-                    {
-                        xtype:'xcalendaritem'
-                    },
-                    {
-                        xtype:'xcalendaritem'
-                    },
-                    {
-                        xtype:'xcalendaritem'
-                    }
-                ]
-            },
-
-            {
-                xtype:'panel',
-                layout:'hbox',
-                itemId:'week4',
-                defaults:{
-                    flex:1
-                },
-                cls:'underline day',
-                items:[
-                    {
-                        xtype:'xcalendaritem'
-                    },
-
-                    {
-                        xtype:'xcalendaritem'
-                    },
-
-                    {
-                        xtype:'xcalendaritem'
-                    },
-
-                    {
-                        xtype:'xcalendaritem'
-                    },
-
-                    {
-                        xtype:'xcalendaritem'
-                    },
-                    {
-                        xtype:'xcalendaritem'
-                    },
-                    {
-                        xtype:'xcalendaritem'
-                    }
-                ]
-            },
-
-            {
-                xtype:'panel',
-                layout:'hbox',
-                itemId:'week5',
-                defaults:{
-                    flex:1
-                },
-                cls:'underline day',
-                items:[
-                    {
-                        xtype:'xcalendaritem'
-                    },
-
-                    {
-                        xtype:'xcalendaritem'
-                    },
-
-                    {
-                        xtype:'xcalendaritem'
-                    },
-
-                    {
-                        xtype:'xcalendaritem'
-                    },
-
-                    {
-                        xtype:'xcalendaritem'
-                    },
-                    {
-                        xtype:'xcalendaritem'
-                    },
-                    {
-                        xtype:'xcalendaritem'
-                    }
-                ]
-            },
-            {
-                xtype:'panel',
-                layout:'hbox',
-                itemId:'week6',
-                defaults:{
-                    flex:1
-                },
-                cls:'underline day',
-                items:[
-                    {
-                        xtype:'xcalendaritem'
-                    },
-
-                    {
-                        xtype:'xcalendaritem'
-                    },
-
-                    {
-                        xtype:'xcalendaritem'
-                    },
-
-                    {
-                        xtype:'xcalendaritem'
-                    },
-
-                    {
-                        xtype:'xcalendaritem'
-                    },
-                    {
-                        xtype:'xcalendaritem'
-                    },
-                    {
-                        xtype:'xcalendaritem'
-                    }
-                ]
+                xtype: 'carousel',
+                itemId: 'calendar',
+                flex: 1,
+                indicator: false
             }
         ]
     },
@@ -286,127 +69,100 @@ Ext.define('YourTour.view.widget.XCalendar', {
     initialize: function () {
         var me = this;
         me.callParent(arguments);
+        me.selectedItems = [];
 
         me.on(
             {
-                scope:me,
-                itemtap:'onItemtap'
+                scope: me,
+                itemselect: me.onItemTap
             }
-        )
+        );
+
+        var calendar = me.down('#calendar');
+        calendar.on(
+            {
+                scope: me,
+                activeitemchange: me.onActiveItemChange
+            }
+        );
     },
 
-    onItemtap:function(item, date, active){
-
-    },
-
-    getFirstDay:function(year, month){
-        return year + '/' + month + '/01';
-    },
-
-    getLastDay:function(year, month){
-        var lastDay = new Date(year,month,0).getDate();
-        return year + '/' + month + '/' + lastDay;
-    },
-
-    getDayNum:function(year, month){
-        var dayNum = new Date(year,month,0).getDate();
-
-        return dayNum;
-    },
-
-    getWeekForFirstDay:function(year, month){
-        return new Date(this.getFirstDay(year, month)).getDay()
-    },
-
-    getWeekForLastDay:function(year, month){
-        return new Date(this.getLastDay(year, month)).getDay()
-    },
-
-    getDate:function(year, month, day){
-        return year + '/' + month + '/' + day;
-    },
-
-    doDraw:function(){
+    onActiveItemChange: function (carousel, value, oldValue, eOpts) {
         var me = this;
 
-        this.getPreviousMonth();
+        if(value) {
+            if (me.initialized) {
+                var year = value.getYear(), month = value.getMonth();
 
-        this.getCurrentMonth();
-
-        this.getNextMonth();
-
-        var weekItem, weekIndex, dayIndex, dayItem;
-        var allDays = me.allDays || me.getAllDays()
-
-        for(var index = 0; index < allDays.length; index++){
-            weekIndex = index / 7 + 1;
-            dayIndex = index % 7;
-
-            if(dayIndex == 0){
-                week = me.down('#week' + weekIndex);
+                var activeIndex = carousel.getActiveIndex();
+                if (activeIndex == 0) {
+                    me.insertMonth(year, month);
+                } else if (activeIndex == carousel.getItems().length - 1) {
+                    me.appendMonth(year, month);
+                }
             }
 
-            dayItem = week.getAt(dayIndex);
-            dayItem.setDate(allDays[index]);
-            dayItem.updateCalendar(me);
+            var title = me.down('#title');
+            if (title) {
+                title.setHtml(value.getYear() + '年' + value.getMonth() + '月');
+            }
         }
     },
 
-    getPreviousMonth:function(){
-        var currentMonth = this.getMonth();
-        var currentYear = this.getYear();
+    onItemTap: function (panel, item, date, active) {
+        var me = this, selectedItems = me.selectedItems;
 
-        var month = currentMonth != 1 ? currentMonth - 1 : 12;
-        var year = month == 12 ? currentYear - 1 : currentYear;
+        var result =  me.fireEvent('itemtap', me, panel, item, date, active);
+        if(result) {
+            if (active) {
+                selectedItems.push(item);
+            } else {
+                var index = selectedItems.indexOf(item);
+                if (index > -1) {
+                    selectedItems.splice(index, 1);
+                }
+            }
+        }
 
-        var week = this.getWeekForLastDay(year, month);
-        var dayNum = this.getDayNum(year, month)
-        var allDays = this.allDays || this.getAllDays();
-        for(var index = week; index >= 0; index--){
-            allDays.push({value:this.getDate(year, month, dayNum - index), enabled:false});
+        return result;
+    },
+
+    setDate: function (year, month) {
+        var me = this, calendar = me.down('#calendar');
+
+        me.insertMonth(year, month);
+        calendar.add(Ext.create('YourTour.view.widget.XCalendarPanel', {year: year, month: month, calendar: me}));
+        me.appendMonth(year, month);
+
+        calendar.setActiveItem(1);
+
+        me.initialized = true;
+    },
+
+    insertMonth: function (year, month) {
+        var me = this, calendar = me.down('#calendar');
+        if(calendar) {
+            var dMonth = month != 1 ? month - 1 : 12;
+            var dyear = dMonth == 12 ? year - 1 : year;
+            calendar.insert(0, Ext.create('YourTour.view.widget.XCalendarPanel', {
+                year: dyear,
+                month: dMonth,
+                calendar: me
+            }));
         }
     },
 
-    getCurrentMonth:function(){
-        var month = this.getMonth();
-        var year = this.getYear();
+    appendMonth: function (year, month) {
+        var me = this, calendar = me.down('#calendar');
 
-        var allDays = this.allDays || this.getAllDays();
-        var dayNum = this.getDayNum(year, month);
-        for(var index = 1; index <= dayNum; index++){
-            allDays.push({value:this.getDate(year, month, index), enabled:true});
+        if(calendar) {
+            var dMonth = month != 12 ? month + 1 : 11;
+            var dyear = dMonth == 1 ? year + 1 : year;
+            calendar.add(Ext.create('YourTour.view.widget.XCalendarPanel', {year: dyear, month: dMonth, calendar: me}));
         }
     },
 
-
-    getNextMonth:function(){
-        var currentMonth = this.getMonth();
-        var currentYear = this.getYear();
-
-        var month = currentMonth != 12 ? currentMonth + 1 : 1;
-        var year = month == 1 ? currentYear : currentYear + 1;
-
-        var allDays = this.allDays || this.getAllDays();
-        var len = 42 - allDays.length;
-        for(var index = 1; index <= len; index++){
-            allDays.push({value:this.getDate(year, month, index), enabled:false});
-        }
-    },
-
-    setDate:function(year, month){
-        this.year = year;
-        this.month = month;
-
-        var date = this.down('#date');
-        date.setHtml(year + '-' + month);
-        this.doDraw();
-    },
-
-    getYear:function(){
-        return this.year;
-    },
-
-    getMonth:function(){
-        return this.month;
+    getActiveItems: function () {
+        return this.selectedItems;
     }
 });

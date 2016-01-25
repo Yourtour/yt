@@ -53,7 +53,7 @@ public class TestRouteScheduleBean {
 			RouteScheduleBean rm = new RouteScheduleBean();
 			rm.setIndex(3);
 			rm.setRowKey("rowkey 1");
-			rm.setDate(1000);
+			rm.setDate(1000l);
 			rm.setMemo("description 1");
 			assertNull(rm.getGraphId());
 			crud.save(rm, "john");
@@ -141,7 +141,7 @@ public class TestRouteScheduleBean {
 			assertNotNull(rm3.getActivities());
 			assertEquals(rm3.getActivities().size(), 0);
 
-			rm3.setDate(999);
+			rm3.setDate(999l);
 			crud.save(rm3, "john");
 			assertEquals(crud.count(RouteScheduleBean.class), 2);
 
@@ -173,7 +173,7 @@ public class TestRouteScheduleBean {
 			assertEquals(repo.count(PlaceBean.class), 2);
 
 			RouteScheduleBean rs1 = new RouteScheduleBean();
-			rs1.setDate(1000);
+			rs1.setDate(1000l);
 			repo.save(rs1, "john");
 			assertEquals(repo.count(RouteScheduleBean.class), 1);
 			RouteScheduleBean rs1_1 = (RouteScheduleBean) repo.get(
@@ -186,7 +186,7 @@ public class TestRouteScheduleBean {
 			assertNotNull(rs1_2);
 
 			RouteScheduleBean rs2 = new RouteScheduleBean();
-			rs2.setDate(2000);
+			rs2.setDate(2000l);
 			repo.save(rs2, "john");
 			assertEquals(repo.count(RouteScheduleBean.class), 2);
 			RouteScheduleBean rs2_1 = (RouteScheduleBean) repo.get(
@@ -223,7 +223,7 @@ public class TestRouteScheduleBean {
 			assertEquals(repo.count(RouteMainBean.class), 2);
 
 			RouteScheduleBean rs1 = new RouteScheduleBean();
-			rs1.setDate(1000);
+			rs1.setDate(1000l);
 			rs1.setMemo("route schedule 1");
 			repo.save(rs1, "john");
 			assertEquals(repo.count(RouteScheduleBean.class), 1);
@@ -271,7 +271,7 @@ public class TestRouteScheduleBean {
 
 			// TEST SAVE ENTITY AND RELATIONS
 			RouteScheduleBean rs2 = new RouteScheduleBean();
-			rs2.setDate(2000);
+			rs2.setDate(2000l);
 			rs2.setRouteMain(rm2);
 			repo.save(rs2, "john");
 			assertEquals(repo.count(RouteScheduleBean.class), 2);
@@ -332,7 +332,7 @@ public class TestRouteScheduleBean {
 			assertEquals(repo.count(RouteActivityBean.class), 4);
 			
 			RouteScheduleBean rs1 = new RouteScheduleBean();
-			rs1.setDate(1000);
+			rs1.setDate(1000l);
 			rs1.setMemo("route schedule 1");
 			rs1.getActivities().add(ra1);
 			rs1.getActivities().add(ra2);

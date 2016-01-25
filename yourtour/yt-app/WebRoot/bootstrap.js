@@ -836,6 +836,7 @@ Ext.ClassManager.addNameAlternateMappings({
     "YourTour.XCalendar"
   ],
   "YourTour.view.widget.XCalendarItem": [],
+  "YourTour.view.widget.XCalendarPanel": [],
   "YourTour.view.widget.XCarousel": [],
   "YourTour.view.widget.XCheckbox": [],
   "YourTour.view.widget.XDataItem": [],
@@ -1958,6 +1959,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.widget.XCalendarItem": [
     "widget.xcalendaritem"
+  ],
+  "YourTour.view.widget.XCalendarPanel": [
+    "widget.xcalendarpanel"
   ],
   "YourTour.view.widget.XCarousel": [
     "widget.xcarousel"

@@ -28,7 +28,8 @@ Ext.define('YourTour.model.RouteScheduleModel', {
             {name: 'shareNum', type: 'string'},
             {name: 'commentNum', type: 'string'},
             {name: 'status', type: 'string'},
-            {name: 'hidden', type: 'boolean',defaultValue: false}
+            {name: 'viewhidden', type: 'boolean',defaultValue: false},
+            {name: 'planhidden', type: 'boolean',defaultValue: false}
         ]
     }
 });

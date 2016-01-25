@@ -82,6 +82,10 @@ Ext.define('YourTour.view.widget.XField', {
         value.setStyle('text-align:' + this.align);
     },
 
+    updateBinding:function(binding){
+        this.binding = binding;
+    },
+
     updateAlign:function(align){
         this.align = align;
     },

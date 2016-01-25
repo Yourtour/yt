@@ -2,6 +2,8 @@ package com.yt.vo.route;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import com.yt.business.bean.ResourceBean;
@@ -68,15 +70,15 @@ public class RouteLoadVO implements Serializable {
 	private List<RouteSchedule> getProvisions(){
 		List<RouteSchedule> provisions = new ArrayList<>();
 
+		RouteSchedule group = new RouteSchedule();
+		group.setId("0");
+		group.setTitle("准备事项");
+		group.setType(TYPE.Provision);
+		group.setFirst(true);
+		provisions.add(group);
+
 		List<RouteProvisionBean> beans = this.route.getProvisions();
 		if(CollectionUtils.isNotEmpty(beans)) {
-			RouteSchedule group = new RouteSchedule();
-			group.setId("0");
-			group.setTitle("准备事项");
-			group.setType(TYPE.Provision);
-			group.setFirst(true);
-			provisions.add(group);
-
 			for (RouteProvisionBean provisionBean : this.route.getProvisions()) {
 				RouteSchedule provision = new RouteSchedule();
 				provision.setParentId(group.getId());
@@ -98,57 +100,75 @@ public class RouteLoadVO implements Serializable {
 		List<RouteSchedule> schedules = new ArrayList<>();
 
 		int index = 1;
-		for(RouteScheduleBean scheduleBean : this.route.getSchedules()){
-			RouteSchedule group = new RouteSchedule();
-			group.setId(scheduleBean.getGraphId().toString());
-
-			group.setTitle("DAY " + String.valueOf(index++));
-			group.setStartTime(DateUtils.formatDate(scheduleBean.getDate()));
-			group.setPlaces(scheduleBean.getPlaces());
-			group.setMemo(scheduleBean.getMemo());
-			group.setType(TYPE.Schedule);
-			group.setDate(scheduleBean.getDate());
-			group.setFirst(true);
-			schedules.add(group);
-			
-			if(CollectionUtils.isNotEmpty(scheduleBean.getActivities())){
-				for(RouteActivityBean activityBean : scheduleBean.getActivities()){
-					RouteSchedule activity = new RouteSchedule();
-					activity.setTitle(activityBean.getTitle());
-					activity.setMemo(activityBean.getMemo());
-					activity.setType(TYPE.ScheduleItem);
-					activity.setParentId(group.getId());
-					activity.setId(activityBean.getGraphId().toString());
-					activity.setDate(activityBean.getDate());
-					activity.setStartTime(activityBean.getStartTime());
-					activity.setEndTime(activityBean.getEndTime());
-					activity.setIndex(activityBean.getIndex());
-
-					if(StringUtils.isNull(activityBean.getPrice()) || StringUtils.isNull(activityBean.getCurrency())){
-						activity.setPrice("无价格信息");
-					}else{
-						Constants.Currency currency = Constants.Currency.getCurrency(activityBean.getCurrency());
-						activity.setPrice(currency.symbol + " " + activityBean.getPrice() + currency.unit + "/人");
-					}
-
-					ResourceBean resource = activityBean.getResource();
-					if(resource != null){
-						activity.setImageUrl(activityBean.getResource().getImageUrl());
-						activity.setResourceId(resource.getGraphId().toString());
-						activity.setResourceType(resource.getType().toString());
-						activity.setCommentNum(resource.getCommentNum());
-						activity.setShareNum(resource.getShareNum());
-						activity.setFavoriteNum(resource.getFavoriteNum());
-						activity.setRankScore(resource.getRankScore());
-					}
-
-					schedules.add(activity);
+		List<RouteScheduleBean> scheduleBeans = this.route.getSchedules();
+		if(CollectionUtils.isNotEmpty(scheduleBeans)) {
+			Collections.sort(scheduleBeans, new Comparator<RouteScheduleBean>() {
+				@Override
+				public int compare(RouteScheduleBean o1, RouteScheduleBean o2) {
+					return o1.getDate().compareTo(o2.getDate());
 				}
+			});
 
-				schedules.get(schedules.size() -1 ).setLast(true);
+			for (RouteScheduleBean scheduleBean : scheduleBeans) {
+				RouteSchedule group = new RouteSchedule();
+				group.setId(scheduleBean.getGraphId().toString());
+
+				group.setTitle("DAY " + String.valueOf(index++));
+				group.setStartTime(DateUtils.formatDate(scheduleBean.getDate()));
+				group.setPlaces(scheduleBean.getPlaces());
+				group.setMemo(scheduleBean.getMemo());
+				group.setType(TYPE.Schedule);
+				group.setDate(scheduleBean.getDate());
+				group.setFirst(true);
+				schedules.add(group);
+
+				List<RouteActivityBean> activities = scheduleBean.getActivities();
+				if (CollectionUtils.isNotEmpty(activities)) {
+					Collections.sort(activities, new Comparator<RouteActivityBean>() {
+						@Override
+						public int compare(RouteActivityBean o1, RouteActivityBean o2) {
+							return o1.getStartTime().compareTo(o2.getStartTime());
+						}
+					});
+
+					for (RouteActivityBean activityBean : activities) {
+						RouteSchedule activity = new RouteSchedule();
+						activity.setTitle(activityBean.getTitle());
+						activity.setMemo(activityBean.getMemo());
+						activity.setType(TYPE.ScheduleItem);
+						activity.setParentId(group.getId());
+						activity.setId(activityBean.getGraphId().toString());
+						activity.setDate(activityBean.getDate());
+						activity.setStartTime(activityBean.getStartTime());
+						activity.setEndTime(activityBean.getEndTime());
+						activity.setIndex(activityBean.getIndex());
+
+						if (StringUtils.isNull(activityBean.getPrice()) || StringUtils.isNull(activityBean.getCurrency())) {
+							activity.setPrice("无价格信息");
+						} else {
+							Constants.Currency currency = Constants.Currency.getCurrency(activityBean.getCurrency());
+							activity.setPrice(currency.symbol + " " + activityBean.getPrice() + currency.unit + "/人");
+						}
+
+						ResourceBean resource = activityBean.getResource();
+						if (resource != null) {
+							activity.setImageUrl(activityBean.getResource().getImageUrl());
+							activity.setResourceId(resource.getGraphId().toString());
+							activity.setResourceType(resource.getType().toString());
+							activity.setCommentNum(resource.getCommentNum());
+							activity.setShareNum(resource.getShareNum());
+							activity.setFavoriteNum(resource.getFavoriteNum());
+							activity.setRankScore(resource.getRankScore());
+						}
+
+						schedules.add(activity);
+					}
+
+					schedules.get(schedules.size() - 1).setLast(true);
+				}
 			}
 		}
-		
+
 		return schedules;
 	}
 	
@@ -163,7 +183,7 @@ public class RouteLoadVO implements Serializable {
 		private String  places;
 		private TYPE 	type;
 		private String 	status;
-		private long    date;
+		private Long    date;
 		private String 	startTime;
 		private String 	endTime;
 		private String  duration;
@@ -244,7 +264,7 @@ public class RouteLoadVO implements Serializable {
 			this.status = status;
 		}
 
-		public long getDate() {
+		public Long getDate() {
 			return date;
 		}
 

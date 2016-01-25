@@ -296,7 +296,7 @@ Ext.application({
         processor();
     },*/
 
-    toast:function(msg){
+    alert:function(msg){
         Ext.Msg.alert(msg);
     }
 });

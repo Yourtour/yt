@@ -82,7 +82,7 @@ Ext.define('YourTour.view.route.RouteSchedulePlanView', {
 							},
 							outOfBoundRestrictFactor: 0
 						},
-						itemTpl:new Ext.XTemplate('<tpl if="this.isEnabled(type, hidden) == true">','<div class="row font-grey font-medium underline" style="padding-left:10px">{title}</div>','</tpl>',{
+						itemTpl:new Ext.XTemplate('<tpl if="this.isEnabled(type, planhidden) == true">','<div class="row font-grey font-medium underline" style="padding-left:10px">{title}</div>','</tpl>',{
 							isEnabled:function(type, hidden){
 								if(type == 'Provision' || type == 'Schedule'){
 									return false;

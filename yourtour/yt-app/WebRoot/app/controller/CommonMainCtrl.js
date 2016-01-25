@@ -1,43 +1,47 @@
 Ext.define('YourTour.controller.CommonMainCtrl', {
     extend: 'Ext.app.Controller',
     config: {
-        refs:{
-            contentReadView:'#ContentReadView',
+        refs: {
+            contentReadView: '#ContentReadView',
 
-            commentListView:'#CommentListView',
-            commentList:'#CommentListView #commentList',
+            commentListView: '#CommentListView',
+            commentList: '#CommentListView #commentList',
 
-            timeSelectionView:'#TimeSelectionView'
+            timeSelectionView: '#TimeSelectionView'
         },
-       
-        control:{
-            '#CommentListView #commentNum':{
-                tap:'onCommentFilterTap'
+
+        control: {
+            '#CommentListView #commentNum': {
+                tap: 'onCommentFilterTap'
             },
 
-            '#CommentListView #goodNum':{
-                tap:'onCommentFilterTap'
+            '#CommentListView #goodNum': {
+                tap: 'onCommentFilterTap'
             },
 
-            '#CommentListView #mediumNum':{
-                tap:'onCommentFilterTap'
+            '#CommentListView #mediumNum': {
+                tap: 'onCommentFilterTap'
             },
 
-            '#CommentListView #badNum':{
-                tap:'onCommentFilterTap'
+            '#CommentListView #badNum': {
+                tap: 'onCommentFilterTap'
             },
 
-            '#CommentListView #imageNum':{
-                tap:'onCommentFilterTap'
+            '#CommentListView #imageNum': {
+                tap: 'onCommentFilterTap'
             },
 
-            '#TimeSelectionView #btnNext':{
-                tap:'onTimeSelectionNextTapHandler'
+            '#TimeSelectionView #btnNext': {
+                tap: 'onTimeSelectionNextTapHandler'
+            },
+
+            '#TimeSelectionView #calendar': {
+                itemtap: 'onTimeSelectionActiveItemChangeHandler'
             }
         }
     },
-    
-    showContentReadView:function(title, content){
+
+    showContentReadView: function (title, content) {
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.common.ContentReadView'));
 
         var view = this.getContentReadView();
@@ -49,22 +53,25 @@ Ext.define('YourTour.controller.CommonMainCtrl', {
         contentEl.setHtml(content);
     },
 
-    showCommentListView:function(id, type, handler){
+    showCommentListView: function (id, type, handler) {
         var me = this;
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.common.CommentListView'));
 
-        var params = [{name:'id', value:id},{name:'type', value:type},{name:'nextCursor', value:0},{name:'filter',value:'commentNum'}];
+        var params = [{name: 'id', value: id}, {name: 'type', value: type}, {
+            name: 'nextCursor',
+            value: 0
+        }, {name: 'filter', value: 'commentNum'}];
         me.getCommentStore(params, handler);
     },
 
-    onCommentFilterTap:function(field){
+    onCommentFilterTap: function (field) {
         var itemId = field.getItemId();
 
         var view = this.getCommentListView();
         var filterPanel = view.down('#filterPanel');
         var items = filterPanel.getItems();
-        items.each(function(item){
-            if(item instanceof YourTour.view.widget.XField) {
+        items.each(function (item) {
+            if (item instanceof YourTour.view.widget.XField) {
                 var value = item.down('#value');
                 if (item.getItemId() == itemId) {
                     value.addCls('active');
@@ -76,20 +83,20 @@ Ext.define('YourTour.controller.CommonMainCtrl', {
 
         var params = view.getData();
         params[2].value = 0;
-        params[3].value=itemId;
+        params[3].value = itemId;
         this.getCommentStore(params);
     },
 
-    getCommentStore:function(params, handler){
+    getCommentStore: function (params, handler) {
         var me = this;
         var options = {
-            model:'YourTour.model.CommentModel',
-            url:'/comments',
-            params:params,
-            success:function(store){
+            model: 'YourTour.model.CommentModel',
+            url: '/comments',
+            params: params,
+            success: function (store) {
                 var view = me.getCommentListView();
 
-                if(handler) {
+                if (handler) {
                     handler(view);
                 }
 
@@ -104,42 +111,75 @@ Ext.define('YourTour.controller.CommonMainCtrl', {
     /*************************************************************************************************
      * 日历选择部分
      ************************************************************************************************/
-    showTimeSelectionView:function(date, callback){
+    showTimeSelectionView: function (date, callback) {
         var year, month;
 
-        if(! date){
+        if (!date) {
             date = new Date();
         }
 
         year = date.getFullYear();
         month = date.getMonth() + 1;
 
-        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.common.TimeSelectionView',{callback:callback}));
+        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.common.TimeSelectionView', {callback: callback}));
         var view = this.getTimeSelectionView();
 
         var calendar = view.down('#calendar');
         calendar.setDate(year, month);
     },
 
-    onTimeSelectionNextTapHandler:function(){
-        var me = this, view = this.getTimeSelectionView(), startDate = '', endDate = '';
-
-        var calendar = view.down('#calendar');
-        var items = Ext.ComponentQuery.query('xcalendaritem', calendar);
-
-        Ext.Array.forEach(items, function(item, index){
-           if(item.isActive()){
-               if(startDate == ''){
-                   startDate = item.getDate();
-               }else{
-                   endDate = item.getDate();
-               }
-           }
-        });
+    onTimeSelectionNextTapHandler: function () {
+        var me = this, view = me.getTimeSelectionView(), startDate = view.down('#startDate'), endDate = view.down('#endDate'), duration = view.down('#duration');
 
         var callback = view.getCallback();
-        if(callback) {
-            callback(startDate, endDate);
+        if (callback) {
+            callback(startDate.getValue(), endDate.getValue(), duration);
         }
+    },
+
+    onTimeSelectionActiveItemChangeHandler: function (calendar, panel, item, date, active) {
+        if(! item){
+            return;
+        }
+
+        var me = this;
+        if (active && calendar.getActiveItems().length >= 2) {
+            me.getApplication().alert('只能选择起始时间和返程时间两个，请先点击取消已选择的。');
+            return false;
+        }
+
+        var view = me.getTimeSelectionView(), dDate = Ext.Date.format(new Date(date), 'Y-m-d');
+        var startDate = view.down('#startDate'), endDate = view.down('#endDate'), dStart = startDate.getValue(), dEnd = endDate.getValue();
+        var duration = view.down('#duration');
+
+        var dDuration = 0;
+        if (active == false) {
+            var value = startDate.getValue();
+            if (value == date) {
+                startDate.setText(endDate.getText());
+            }
+
+            endDate.setText('');
+        } else {
+            if (dStart == null) {
+                startDate.setText(date);
+            } else {
+                dStart = Ext.Date.format(new Date(dStart), 'Y-m-d');
+                if (dDate > dStart) {
+                    endDate.setText(date);
+                } else {
+                    endDate = startDate.getValue();
+                    startDate.setText(date);
+                }
+
+                dStart = startDate.getValue() == '' ? null : new Date(startDate.getValue());
+                dEnd = endDate.getValue() == '' ? null : new Date(endDate.getValue());
+                dDuration = parseInt((new Date(dEnd) - new Date(dStart)) / (1000 * 60 * 60 * 24)) + 1;
+            }
+        }
+
+        duration.setText(dDuration);
+
+        return true;
     }
 });

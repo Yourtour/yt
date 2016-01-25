@@ -109,8 +109,6 @@ public class RouteRestResource extends BaseRestResource{
 	 * 
 	 * @param vo
 	 *            行程值对象
-	 * @param request
-	 *            本次的HttpServletRequest对象
 	 * @return 统一的ResponseVO对象
 	 */
 	@POST

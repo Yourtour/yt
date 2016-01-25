@@ -169,7 +169,7 @@ Ext.define('YourTour.view.route.RouteScheduleListDataItem', {
        var me = this;
        var dataview = this.dataview || this.getDataview();
        if(record){
-		   if(record.get('hidden')){
+		   if(record.get('viewhidden')){
 			   me.setHidden(true);
 			   return;
 		   }else{
