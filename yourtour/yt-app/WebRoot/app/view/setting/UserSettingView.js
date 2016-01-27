@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.setting.UserSettingView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:[ 'YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XField', 'YourTour.view.widget.XPickerField', 'YourTour.view.widget.XLabel','YourTour.view.widget.XGenderPicker', 'YourTour.view.widget.XButton'],
+    requires:[ 'YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XField', 'YourTour.view.widget.XLabel', 'YourTour.view.widget.XButton'],
     xtype:'UserSettingView',
     config: {
     	id:'UserSettingView',

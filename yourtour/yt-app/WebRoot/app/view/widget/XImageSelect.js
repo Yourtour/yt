@@ -1,6 +1,6 @@
-Ext.define('YourTour.view.widget.XImagePicker', {
+Ext.define('YourTour.view.widget.XImageSelect', {
     extend: 'YourTour.view.widget.XPicker',
-    xtype: 'ximagepicker',
+    xtype: 'ximageselect',
     config:{
         data:[
             {text:'相册', value:'PhotoLib'},

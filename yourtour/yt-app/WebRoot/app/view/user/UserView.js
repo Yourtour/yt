@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.user.UserView', {
     extend: 'Ext.Container',
-    requires:['YourTour.view.widget.XField','YourTour.view.widget.XMultiField', 'YourTour.view.widget.XPickerField', 'YourTour.view.widget.XImagePicker','YourTour.view.widget.XLabel','YourTour.view.widget.XMultiLabel','YourTour.view.widget.XGenderPicker'],
+    requires:['YourTour.view.widget.XField','YourTour.view.widget.XMultiField', 'YourTour.view.widget.XLabel','YourTour.view.widget.XMultiLabel'],
     xtype:'UserView',
     config: {
     	layout:'vbox',

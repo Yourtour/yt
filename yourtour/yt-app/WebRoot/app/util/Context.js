@@ -1,6 +1,7 @@
 Ext.define('YourTour.util.Context', {
 	singleton : true,
 	alias:'Context',
+	alternateClassName: 'YourTour.Context',
 	
     config : {
     	userKey:'user',
@@ -46,9 +47,8 @@ Ext.define('YourTour.util.Context', {
     	return s + url;
     },
 
-	fillViewFields:function(root, record){
-		var me = this;
-		var elements = Ext.ComponentQuery.query('xfield,xmultifield,ximage,xdataview,xbutton,xscore,xtextarea,xtextfield', root);
+	fillViewFields:function(view, record){
+		var elements = Ext.ComponentQuery.query('xfield,xmultifield,ximage,xdataview,xbutton,xscore,xtextarea,xtextfield', view);
 		var updatable = true;
 		Ext.Array.forEach(elements,function(item){
 			if(item instanceof YourTour.view.widget.XDataView){
@@ -58,6 +58,22 @@ Ext.define('YourTour.util.Context', {
 			if(updatable)
 				item.updateRecord(record);
 		});
+	},
+
+	/**
+	 * 获取页面数据
+	 * @param view
+	 * @param fields
+	 * @returns {{}}
+	 */
+	getViewFields:function(view, fields){
+		var elements = Ext.ComponentQuery.query(fields, view);
+		var data = {};
+		Ext.Array.forEach(elements,function(item){
+			data[item.getItemId()] = item.getValue();
+		});
+
+		return data;
 	}
 });
 

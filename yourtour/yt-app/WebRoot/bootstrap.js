@@ -716,10 +716,13 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.store.SessionStore": [],
   "YourTour.store.TalentListStore": [],
   "YourTour.store.UserStore": [],
-  "YourTour.util.Context": [],
+  "YourTour.util.Context": [
+    "YourTour.Context"
+  ],
   "YourTour.view.Launch": [],
   "YourTour.view.MainView": [],
   "YourTour.view.SearchMain": [],
+  "YourTour.view.charge.ChargeFormView": [],
   "YourTour.view.charge.ChargeMainView": [],
   "YourTour.view.common.CarouselItem": [],
   "YourTour.view.common.CommentFormView": [],
@@ -847,13 +850,13 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.XDataView": [],
   "YourTour.view.widget.XDateField": [],
   "YourTour.view.widget.XField": [],
-  "YourTour.view.widget.XGenderPicker": [],
+  "YourTour.view.widget.XGenderSelect": [],
   "YourTour.view.widget.XGridItem": [],
   "YourTour.view.widget.XGridView": [],
   "YourTour.view.widget.XHeaderBar": [],
   "YourTour.view.widget.XIcon": [],
   "YourTour.view.widget.XImage": [],
-  "YourTour.view.widget.XImagePicker": [],
+  "YourTour.view.widget.XImageSelect": [],
   "YourTour.view.widget.XLabel": [],
   "YourTour.view.widget.XMultiField": [],
   "YourTour.view.widget.XMultiLabel": [],
@@ -1692,6 +1695,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.SearchMain": [
     "widget.searchmain"
   ],
+  "YourTour.view.charge.ChargeFormView": [],
   "YourTour.view.charge.ChargeMainView": [],
   "YourTour.view.common.CarouselItem": [],
   "YourTour.view.common.CommentFormView": [],
@@ -1989,8 +1993,8 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.widget.XField": [
     "widget.xfield"
   ],
-  "YourTour.view.widget.XGenderPicker": [
-    "widget.xgenderpicker"
+  "YourTour.view.widget.XGenderSelect": [
+    "widget.xgenderselect"
   ],
   "YourTour.view.widget.XGridItem": [],
   "YourTour.view.widget.XGridView": [
@@ -2005,8 +2009,8 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.widget.XImage": [
     "widget.ximage"
   ],
-  "YourTour.view.widget.XImagePicker": [
-    "widget.ximagepicker"
+  "YourTour.view.widget.XImageSelect": [
+    "widget.ximageselect"
   ],
   "YourTour.view.widget.XLabel": [
     "widget.xlabel"

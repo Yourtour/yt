@@ -39,7 +39,7 @@ Ext.application({
         'resource.ResourceSelectionView','resource.ResourceFormView','resource.ResourceMapView','resource.ResourceActivityItemListView',
         'resource.ResourceActivityItemFormView',
         'member.MemberMainView','member.MemberView', 'member.MemberAddView','member.MemberPositionView','member.MemberSearchView',
-        'charge.ChargeMainView',
+        'charge.ChargeMainView','charge.ChargeFormView',
         'expert.ExpertMainView','expert.ExpertApplyView','expert.ExpertIntroFormView','expert.ExpertListView','expert.ExpertServiceEditView',
         'expert.ExpertRecommendListView','expert.ExpertRecommendIntroView',
 

@@ -152,7 +152,7 @@ function xf(format) {
  *
  * Using Ext.setup:
  *
- *     @example
+ *     @example`
  *     Ext.setup({
  *         requires: 'Ext.DateExtras',
  *         onReady: function() {

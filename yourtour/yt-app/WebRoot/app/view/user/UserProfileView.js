@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.user.UserProfileView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:[ 'YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XField','YourTour.view.widget.XMultiField', 'YourTour.view.widget.XPickerField', 'YourTour.view.widget.XImagePicker','YourTour.view.widget.XLabel','YourTour.view.widget.XMultiLabel','YourTour.view.widget.XGenderPicker'],
+    requires:[ 'YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XField','YourTour.view.widget.XMultiField', 'YourTour.view.widget.XGenderSelect', 'YourTour.view.widget.XLabel','YourTour.view.widget.XMultiLabel'],
     xtype:'UserProfileView',
     config: {
     	id:'UserProfileView',
@@ -96,7 +96,7 @@ Ext.define('YourTour.view.user.UserProfileView', {
 
 					{
 						itemId : 'gender',
-						xtype : 'xpickerfield',
+						xtype : 'xgenderselect',
 						flex:1,
 						style:'text-align:right'
 					}
@@ -123,16 +123,6 @@ Ext.define('YourTour.view.user.UserProfileView', {
 				fieldCls:'x-field-right',
 				padding:'0 10 0 10',
 				tappable:true
-			},
-
-			{
-				xtype:'xgenderpicker',
-				itemId:'genderPicker'
-			},
-
-			{
-				xtype:'ximagepicker',
-				itemId:'imagePicker'
 			}
         ]
     }

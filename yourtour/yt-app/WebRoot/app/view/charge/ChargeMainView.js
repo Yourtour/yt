@@ -85,7 +85,7 @@ Ext.define('YourTour.view.charge.ChargeMainView', {
 					},
 					{
 						xtype: 'xbutton',
-						itemId:'btnAdd',
+						itemId:'btnCharge',
 						text:'记账',
 						iconAlign:'top',
 						icon: 'resources/icons/icon_button_member_add.png'

@@ -4,6 +4,9 @@ Ext.define('YourTour.view.charge.ChargeFormView', {
     config: {
 	    id:'ChargeFormView',
 	    layout:'vbox',
+		defaults:{
+			labelWidth:75
+		},
         items: [
 			{    
 				xtype: 'xheaderbar',
@@ -21,33 +24,42 @@ Ext.define('YourTour.view.charge.ChargeFormView', {
 
 			{
 				xtype : 'xtextfield',
-				itemId : 'slogan',
+				itemId : 'amount',
 				label : '金额'
 			},
 
 			{
-				xtype : 'xtextfield',
-				itemId : 'slogan',
-				label : '项目'
+				xtype : 'selectfield',
+				itemId : 'item',
+				label : '项目',
+				usePicker:1,
+				options: [
+					{text:'门票', value:'Ticket'},
+					{text:'餐饮', value:'Food'},
+					{text:'住宿', value:'Hotel'},
+					{text:'交通', value:'Traffic'},
+					{text:'购物', value:'Shopping'},
+					{text:'其他', value:'Other'}
+				]
 			},
 
 			{
 				xtype : 'xtextfield',
-				itemId : 'slogan',
+				itemId : 'type',
 				label : '类型'
 			},
 
 			{
 				xtype : 'xtextarea',
-				itemId : 'slogan',
+				itemId : 'memo',
 				label : '备注'
 			},
 
 			{
 				xtype : 'xfield',
-				itemId : 'slogan',
+				itemId : 'attachment',
 				label : '附件'
-			},
+			}
         ]
     }
 });

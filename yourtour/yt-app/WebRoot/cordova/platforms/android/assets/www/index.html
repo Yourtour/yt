@@ -563,13 +563,12 @@
 
         .x-field-text{
             height: 44px;
-            font-size: 14px;
-            border-bottom: 1px solid #EDEDED;
         }
 
-        .x-field-text .x-form-label{
+        .x-field-text .x-form-label, .x-field-textarea .x-form-label, .x-field-select .x-form-label{
             height: 44px;
-            padding:15px 10px 0px 10px !important;
+            line-height:44px;
+            padding:0px 10px !important;
         }
 
         .x-field-text .x-field-input, .x-field-textarea .x-field-input, .x-field-select .x-field-input{
@@ -583,6 +582,8 @@
 
        .x-field{
            min-height: 30px !important;
+           font-size: 14px;
+           border-bottom: 1px solid #EDEDED;
            background-color: inherit !important;
         }
 

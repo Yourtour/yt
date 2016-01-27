@@ -8,5 +8,9 @@ Ext.define('YourTour.controller.BaseCtrl', {
     
     removeAll:function(){
     	
+    },
+
+    getValues:function(formview, fields){
+        return YourTour.util.Context.getViewFields(formview, fields);
     }
 });
