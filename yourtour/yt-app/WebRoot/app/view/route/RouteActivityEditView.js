@@ -28,7 +28,6 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 					{
 						xtype: 'xfield',
 						itemId: 'resName',
-						tappable: true,
 						binding:'resource.name',
 						icon: 'icon-name'
 					},
@@ -115,7 +114,6 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 								xtype: 'xlabel',
 								html: '安排',
 								itemId: 'btnItemAdd',
-								tappable: true,
 								cls: 'row underline font-medium icon-add',
 								padding: '0 10 0 10'
 							},
@@ -142,7 +140,6 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 								xtype: 'xlabel',
 								itemId: 'btnServiceAdd',
 								html: '服务',
-								tappable: true,
 								cls: 'row underline font-medium icon-add',
 								padding: '0 10 0 10'
 							},

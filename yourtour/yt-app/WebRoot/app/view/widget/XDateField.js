@@ -5,12 +5,14 @@ Ext.define('YourTour.view.widget.XDateField', {
 
     },
 
-    setText: function (text) {
-        var me = this;
-        me.callParent(arguments);
-        console.log(new Date(text).getTime());
-        me.value = new Date(text).getTime();
-        console.log(me.value);
+    getValue:function(){
+        var value = this.callParent(arguments);
+
+        if(value && value != ''){
+            return new Date(value).getTime();
+        }else{
+            return 0;
+        }
     }
 });
 

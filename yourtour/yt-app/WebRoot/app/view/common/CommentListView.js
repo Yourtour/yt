@@ -99,9 +99,6 @@ Ext.define('YourTour.view.common.CommentListView', {
 						defaults:{
 							cls:'row',
 							underline:false,
-							tappable:{
-								indicator:'none'
-							},
 							padding:'0',
 							align:'center'
 						},

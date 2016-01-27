@@ -45,6 +45,8 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 	 */
 	public BaseBeanImpl() {
 		super();
+
+		this.rowKey = UUID.randomUUID().toString();
 	}
 
 	/**
@@ -59,6 +61,8 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 
 		this.createdUserId = userId;
 		this.updatedUserId = userId;
+
+		this.rowKey = UUID.randomUUID().toString();
 	}
 
 	/*
@@ -110,6 +114,7 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 	@Override
 	public String getRowKey() {
 		this.rowKey = UUID.randomUUID().toString();
+		System.out.println(this.rowKey);
 		return this.rowKey;
 	}
 

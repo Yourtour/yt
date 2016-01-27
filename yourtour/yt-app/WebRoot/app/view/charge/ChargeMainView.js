@@ -24,45 +24,51 @@ Ext.define('YourTour.view.charge.ChargeMainView', {
 
 			{
 				xtype : 'xfield',
-				itemId : 'slogan',
+				itemId : 'ticket',
 				label : '门票',
-				tappable:true
+				indicator: 'nav-arrow',
+				fieldCls:'x-field-right'
 			},
 
 			{
 				xtype : 'xfield',
-				itemId : 'slogan',
+				itemId : 'food',
 				label : '餐饮',
-				tappable:true
+				indicator: 'nav-arrow',
+				fieldCls:'x-field-right'
 			},
 
 			{
 				xtype : 'xfield',
-				itemId : 'slogan',
+				itemId : 'hotel',
 				label : '住宿',
-				tappable:true
+				indicator: 'nav-arrow',
+				fieldCls:'x-field-right'
 			},
 
 			{
 				xtype : 'xfield',
-				itemId : 'slogan',
+				itemId : 'traffic',
 				label : '交通',
-				tappable:true
+				indicator: 'nav-arrow',
+				fieldCls:'x-field-right'
 			},
 
 			{
 				xtype : 'xfield',
-				itemId : 'slogan',
+				itemId : 'shopping',
 				label : '购物',
-				tappable:true
+				indicator: 'nav-arrow',
+				fieldCls:'x-field-right'
 			},
 
 
 			{
 				xtype : 'xfield',
-				itemId : 'slogan',
+				itemId : 'other',
 				label : '其他',
-				tappable:true
+				indicator: 'nav-arrow',
+				fieldCls:'x-field-right'
 			},
 
 			{
@@ -71,7 +77,8 @@ Ext.define('YourTour.view.charge.ChargeMainView', {
 
 			{
 				xtype : 'xfield',
-				itemId : 'slogan',
+				itemId : 'total',
+				fieldCls:'x-field-right',
 				label : '合计'
 			},
 

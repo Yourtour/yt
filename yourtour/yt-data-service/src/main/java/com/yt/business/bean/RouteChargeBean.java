@@ -21,7 +21,8 @@ import java.util.List;
 public class RouteChargeBean extends BaseBeanImpl {
 	private static final long serialVersionUID = -2071225440268179136L;
 
-	private String 	name; // 行程名称
+	private String  name;
+	private String 	item; //
 	private String	type;
 	private double 	amount;
 	private Long 	chargeDate;
@@ -38,12 +39,12 @@ public class RouteChargeBean extends BaseBeanImpl {
 		super();
 	}
 
-	public String getName() {
-		return name;
+	public String getItem() {
+		return item;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setItem(String item) {
+		this.item = item;
 	}
 
 	public String getImageUrl() {
@@ -100,5 +101,13 @@ public class RouteChargeBean extends BaseBeanImpl {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }

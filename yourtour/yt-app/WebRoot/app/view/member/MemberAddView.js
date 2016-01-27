@@ -16,8 +16,7 @@ Ext.define('YourTour.view.member.MemberAddView', {
 				itemId:'searchfield',
 				html:'昵称/手机号',
 				cls: 'underline',
-				padding:'5 10 5 10',
-				tappable:true
+				padding:'5 10 5 10'
 			},
 
 			{  
@@ -25,8 +24,7 @@ Ext.define('YourTour.view.member.MemberAddView', {
 			    itemId:'barscanner',
 			    html:'扫一扫',
 				padding:'0 0 0 40',
-				cls:'row underline font-grey icon-bar',
-				tappable:true
+				cls:'row underline font-grey icon-bar'
 			},
 			{  
 			    xtype: 'spacer',  

@@ -30,7 +30,6 @@ Ext.define('YourTour.view.user.UserMainView', {
     			style:'background-color:white',
     			cls:'nav-arrow',
     			padding:10,
-				tappable:true,
     			items:[
 					{
 						itemId : 'userLogo',
@@ -55,8 +54,7 @@ Ext.define('YourTour.view.user.UserMainView', {
 		    			 itemId:'expert',
 		    			 padding:'0 10 0 10',
 		    			 cls:'row nav-arrow font-large underline',
-		    			 html : '我是达人',
-		    			 tappable :true
+		    			 html : '我是达人'
 		    		}
 		    	]
     		},
@@ -70,8 +68,7 @@ Ext.define('YourTour.view.user.UserMainView', {
 						itemId:'message',
 						cls:'row nav-arrow font-large underline',
 						html : '我的消息',
-						padding:'0 10 0 10',
-						tappable :true
+						padding:'0 10 0 10'
 					},
 					
 					{
@@ -79,8 +76,7 @@ Ext.define('YourTour.view.user.UserMainView', {
 						itemId:'comment',
 						cls:'row nav-arrow font-large underline',
 						html : '我的点评',
-						padding:'0 10 0 10',
-						tappable :true
+						padding:'0 10 0 10'
 					},
 					
 					{
@@ -88,8 +84,7 @@ Ext.define('YourTour.view.user.UserMainView', {
 						itemId:'favorite',
 						cls:'row nav-arrow font-large underline',
 						html : '我的收藏',
-						padding:'0 10 0 10',
-						tappable :true
+						padding:'0 10 0 10'
 					}
     			]
     		},
@@ -104,8 +99,7 @@ Ext.define('YourTour.view.user.UserMainView', {
 		    			 itemId:'equity',
 		    			 padding:'0 10 0 10',
 		    			 cls:'row nav-arrow font-large underline',
-		    			 html : '我的权益',
-		    			 tappable :true
+		    			 html : '我的权益'
 		    		},
 		    		
 		    		{
@@ -113,8 +107,7 @@ Ext.define('YourTour.view.user.UserMainView', {
 			   			itemId:'order',
 			   			cls:'row nav-arrow font-large underline',
 			   			html : '我的订单',
-			   			padding:'0 10 0 10',
-			   			tappable :true
+			   			padding:'0 10 0 10'
 		    		},
 		    		
 		    		{
@@ -122,8 +115,7 @@ Ext.define('YourTour.view.user.UserMainView', {
 			   			itemId:'footprint',
 			   			cls:'row nav-arrow font-large underline',
 			   			html : '我的足迹',
-			   			padding:'0 10 0 10',
-			   			tappable :true
+			   			padding:'0 10 0 10'
 		    		},
 		    		
 		    		{
@@ -131,8 +123,7 @@ Ext.define('YourTour.view.user.UserMainView', {
 			   			itemId:'charge',
 			   			cls:'row nav-arrow font-large underline',
 			   			html : '我的费用',
-			   			padding:'0 10 0 10',
-			   			tappable :true
+			   			padding:'0 10 0 10'
 		    		}
 		    	]
     		}

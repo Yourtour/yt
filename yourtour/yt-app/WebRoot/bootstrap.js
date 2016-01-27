@@ -674,6 +674,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.model.BaseModel": [],
   "YourTour.model.BestModel": [],
   "YourTour.model.CacheModel": [],
+  "YourTour.model.ChargeModel": [],
   "YourTour.model.ChatModel": [],
   "YourTour.model.CommentModel": [],
   "YourTour.model.ExpertModel": [],
@@ -723,6 +724,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.MainView": [],
   "YourTour.view.SearchMain": [],
   "YourTour.view.charge.ChargeFormView": [],
+  "YourTour.view.charge.ChargeListDataItem": [],
+  "YourTour.view.charge.ChargeListView": [],
   "YourTour.view.charge.ChargeMainView": [],
   "YourTour.view.common.CarouselItem": [],
   "YourTour.view.common.CommentFormView": [],
@@ -1639,6 +1642,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.model.BaseModel": [],
   "YourTour.model.BestModel": [],
   "YourTour.model.CacheModel": [],
+  "YourTour.model.ChargeModel": [],
   "YourTour.model.ChatModel": [],
   "YourTour.model.CommentModel": [],
   "YourTour.model.ExpertModel": [],
@@ -1696,6 +1700,10 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.searchmain"
   ],
   "YourTour.view.charge.ChargeFormView": [],
+  "YourTour.view.charge.ChargeListDataItem": [
+    "widget.ChargeListDataItem"
+  ],
+  "YourTour.view.charge.ChargeListView": [],
   "YourTour.view.charge.ChargeMainView": [],
   "YourTour.view.common.CarouselItem": [],
   "YourTour.view.common.CommentFormView": [],

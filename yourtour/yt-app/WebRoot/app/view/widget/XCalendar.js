@@ -164,5 +164,11 @@ Ext.define('YourTour.view.widget.XCalendar', {
 
     getActiveItems: function () {
         return this.selectedItems;
+    },
+
+    reset:function(){
+        Ext.Array.forEach(this.selectedItems, function(item){
+            item.removeCls('active');
+        })
     }
 });

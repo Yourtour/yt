@@ -2,32 +2,27 @@ package com.yt.rest.resource;
 
 import com.yt.business.bean.*;
 import com.yt.business.repository.RouteChargeRepository;
-import com.yt.business.repository.RouteRepository;
 import com.yt.business.utils.Neo4jUtils;
 import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponseVO;
-import com.yt.utils.WebUtils;
 import com.yt.vo.route.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 @Component
-@Path("route/charge")
+@Path("route/{routeId}/charge")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class RouteChargeRestResource extends BaseRestResource{
-	private static final Log LOG = LogFactory.getLog(RouteChargeRestResource.class);
+public class ChargeRestResource extends BaseRestResource{
+	private static final Log LOG = LogFactory.getLog(ChargeRestResource.class);
 
 	// spring自动装配的行程操作库
 	@Autowired
@@ -39,7 +34,7 @@ public class RouteChargeRestResource extends BaseRestResource{
 	 * @return
 	 */
 	@GET
-	@Path("/{routeId}/query")
+	@Path("/query")
 	public ResponseDataVO<List<RouteChargeVO>> getCharges(@PathParam("routeId") String routeId) {
 		try {
 			List<RouteChargeVO> voes = new ArrayList<>();
@@ -66,7 +61,7 @@ public class RouteChargeRestResource extends BaseRestResource{
 	 * @return
 	 */
 	@POST
-	@Path("{routeId}/save")
+	@Path("save")
 	public ResponseDataVO<Long> saveCharge(@PathParam("routeId") String routeId, RouteChargeVO charge) {
 		try {
 			RouteMainBean route = new RouteMainBean();
@@ -84,7 +79,7 @@ public class RouteChargeRestResource extends BaseRestResource{
 
 			return new ResponseDataVO<Long>(chargeBean.getGraphId());
 		} catch (Exception ex) {
-			LOG.error("Save charge for route failed.",ex);
+			LOG.error("Save route charge failed.",ex);
 			return new ResponseDataVO<Long>(
 					StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}

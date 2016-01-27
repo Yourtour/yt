@@ -37,7 +37,6 @@ Ext.define('YourTour.view.route.RoutePlaceEditView', {
 						xtype:'xlabel',
 						itemId:'btnAdd',
 						cls:'row',
-						tappable:true,
 						style:'background-image: url(./resources/icons/icon_add_32.png);background-repeat: no-repeat;background-position: center center;'
 					},
 

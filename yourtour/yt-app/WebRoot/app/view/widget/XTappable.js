@@ -1,27 +1,27 @@
 Ext.define('YourTour.view.widget.XTappable', {
     extend: 'Ext.Container',
     config: {
-        tappable: null
+        indicator: 'none'
     },
 
-    updateTappable: function (tappable) {
+    initialize:function(){
+        this.callParent(arguments);
+
         var me = this;
-
-        var indicator = 'nav-arrow';
-        if(tappable instanceof Object){
-            indicator = tappable.indicator;
-        }
-
-        if(indicator != 'none') {
-            me.addCls(indicator);
-        }
-
         me.element.on({
             scope: me,
             tap: function (e, t) {
                 me.fireEvent('tap', me, e, t);
             }
         });
+
+        if(me.indicator != 'none'){
+            me.addCls(me.indicator);
+        }
+    },
+
+    updateIndicator: function (indicator) {
+        this.indicator = indicator;
     }
 });
 

@@ -91,9 +91,7 @@ Ext.define('YourTour.view.common.CommentFormView', {
 					flex:1,
 					cls:'row',
 					underline:false,
-					tappable:{
-						indicator:'none'
-					},
+
 					padding:'5 0 5 0'
 				},
 				items:[

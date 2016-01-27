@@ -32,7 +32,6 @@ Ext.define('YourTour.view.route.RouteScheduleFormView', {
 					{
 						xtype: 'xfield',
 						itemId: 'resName',
-						tappable: true,
 						icon: 'icon-name',
 						binding: 'resource.name'
 					},
@@ -40,7 +39,6 @@ Ext.define('YourTour.view.route.RouteScheduleFormView', {
 					{
 						xtype: 'xfield',
 						itemId: 'address',
-						tappable: true,
 						icon: 'icon-position',
 						binding: 'resource.address'
 					},
@@ -48,7 +46,6 @@ Ext.define('YourTour.view.route.RouteScheduleFormView', {
 					{
 						xtype: 'xfield',
 						itemId: 'phone',
-						tappable: true,
 						icon: 'icon-phone',
 						binding: 'resource.phone'
 					},

@@ -172,14 +172,12 @@ Ext.define('YourTour.view.user.RegisterProfileView', {
                 	xtype: "xlabel", 
                 	itemId:'btnPhoto',
                 	cls:'row underline',
-                	tappable:true,
                 	html:'照片'
                 },
                 {
                 	xtype: "xlabel", 
                 	itemId:'btnCamera',
                 	cls:'row',
-                	tappable:true,
                 	html:'照相'
                 }]	
             }

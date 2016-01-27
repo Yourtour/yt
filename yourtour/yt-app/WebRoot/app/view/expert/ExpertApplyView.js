@@ -33,14 +33,12 @@ Ext.define('YourTour.view.expert.ExpertApplyView', {
 					{
 						xtype:'xlabel',
 						html:'资料',
-						tappable:true,
 						cls:'tabitem',
 						itemId:'btnResource'
 					},
 					{
 						xtype:'xlabel',
 						html:'服务',
-						tappable:true,
 						cls:'tabitem',
 						itemId:'btnService'
 					}

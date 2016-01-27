@@ -20,7 +20,6 @@ Ext.define('YourTour.view.user.UserProfileView', {
 				style:'background-color:white',
 				cls:'nav-arrow',
 				padding:10,
-				tappable:true,
 				items:[
 					{
 						itemId : 'userLogo',
@@ -40,8 +39,7 @@ Ext.define('YourTour.view.user.UserProfileView', {
 				label : '个性',
 				showMore:true,
 				fieldCls:'x-field-more',
-				padding:'0 10 0 10',
-				tappable:true
+				padding:'0 10 0 10'
 			},
 
 			{
@@ -49,8 +47,7 @@ Ext.define('YourTour.view.user.UserProfileView', {
 				xtype : 'xfield',
 				label : '昵称',
 				fieldCls:'x-field-right',
-				padding:'0 10 0 10',
-				tappable:true
+				padding:'0 10 0 10'
 			},
 
 			{
@@ -107,8 +104,7 @@ Ext.define('YourTour.view.user.UserProfileView', {
 				itemId : 'state',
 				xtype : 'xfield',
 				padding:'0 10 0 10',
-				label : '地区',
-				tappable:true
+				label : '地区'
 			},
 
 			{
@@ -121,8 +117,7 @@ Ext.define('YourTour.view.user.UserProfileView', {
 				xtype : 'xmultifield',
 				label : '标签',
 				fieldCls:'x-field-right',
-				padding:'0 10 0 10',
-				tappable:true
+				padding:'0 10 0 10'
 			}
         ]
     }

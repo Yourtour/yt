@@ -111,21 +111,33 @@ Ext.define('YourTour.controller.CommonMainCtrl', {
     /*************************************************************************************************
      * 日历选择部分
      ************************************************************************************************/
-    showTimeSelectionView: function (date, callback) {
-        var year, month;
-
-        if (!date) {
-            date = new Date();
-        }
-
-        year = date.getFullYear();
-        month = date.getMonth() + 1;
-
+    showTimeSelectionView: function (options, callback) {
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.common.TimeSelectionView', {callback: callback}));
         var view = this.getTimeSelectionView();
+        view.bindData(options);
 
+        this.initializeTimeSelectionView(view);
+    },
+
+    initializeTimeSelectionView:function(view){
+        var options = view.getData();
+        var defaults = {
+            date:new Date(),
+            single:true,
+            title:'行程日期安排'
+        };
+        Ext.applyIf(options, defaults);
+
+        var date = options.date, year = date.getFullYear(), month = date.getMonth() + 1;
         var calendar = view.down('#calendar');
         calendar.setDate(year, month);
+
+        var headerbar = view.down('#headerbar');
+        headerbar.setTitle(options.title);
+
+        if(options.single){
+            view.down('#infoPanel').hide();
+        }
     },
 
     onTimeSelectionNextTapHandler: function () {
@@ -138,13 +150,54 @@ Ext.define('YourTour.controller.CommonMainCtrl', {
     },
 
     onTimeSelectionActiveItemChangeHandler: function (calendar, panel, item, date, active) {
+        var me = this, view = me.getTimeSelectionView(), options = view.getData();
+        if(options.single){
+            return this.handleTimeSingleSelection(calendar, panel, item, date, active);
+        }else{
+            return this.handleTimeRangeSelection(calendar, panel, item, date, active);
+        }
+    },
+
+    /**
+     * 处理单个时间选择
+     * @param calendar
+     * @param panel
+     * @param item
+     * @param date
+     * @param active
+     * @returns {boolean}
+     */
+    handleTimeSingleSelection:function(calendar, panel, item, date, active){
+        if(! item){
+            return true;
+        }
+
+        if (active) {
+            calendar.reset();
+        }
+
+        var me = this, view = me.getTimeSelectionView(), startDate = view.down('#startDate');
+        startDate.setText(date);
+        return true;
+    },
+
+    /**
+     * 处理范围选择
+     * @param calendar
+     * @param panel
+     * @param item
+     * @param date
+     * @param active
+     * @returns {boolean}
+     */
+    handleTimeRangeSelection:function(calendar, panel, item, date, active){
         if(! item){
             return;
         }
 
         var me = this;
         if (active && calendar.getActiveItems().length >= 2) {
-            me.getApplication().alert('只能选择起始时间和返程时间两个，请先点击取消已选择的。');
+            me.getApplication().alert('只能选择一个时间范围，请先取消已选择的。');
             return false;
         }
 
@@ -182,4 +235,5 @@ Ext.define('YourTour.controller.CommonMainCtrl', {
 
         return true;
     }
+
 });

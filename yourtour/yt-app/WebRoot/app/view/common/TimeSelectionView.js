@@ -11,7 +11,7 @@ Ext.define('YourTour.view.common.TimeSelectionView', {
                     {
                         xtype: "xbutton",
                         itemId:'btnNext',
-                        icon:'resources/icons/icon_header_next.png',
+                        icon:'resources/icons/icon_header_ok.png',
                         align:'right'
                     }
                 ]
@@ -24,31 +24,32 @@ Ext.define('YourTour.view.common.TimeSelectionView', {
             },
 
             {
-                xtype:'xspacer'
-            },
-
-            {
                 xtype:'panel',
+                itemId:'infoPanel',
                 layout:'vbox',
                 items:[
                     {
+                        xtype:'xspacer'
+                    },
+
+                    {
                         xtype:'xfield',
                         itemId:'startDate',
-                        label:'出发日期',
+                        label:'起始日期',
                         fieldCls:'x-field-right'
                     },
 
                     {
                         xtype:'xfield',
                         itemId:'endDate',
-                        label:'返程日期',
+                        label:'结束日期',
                         fieldCls:'x-field-right'
                     },
 
                     {
                         xtype:'xfield',
                         itemId:'duration',
-                        label:'行程天数',
+                        label:'合计天数',
                         fieldCls:'x-field-right'
                     }
                 ]

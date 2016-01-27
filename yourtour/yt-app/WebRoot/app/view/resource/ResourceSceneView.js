@@ -45,15 +45,13 @@ Ext.define('YourTour.view.resource.ResourceSceneView', {
 					{
 						xtype: 'xfield',
 						itemId:'address',
-						tappable:true,
 						icon:'icon-position'
 					},
 
 					{
 						xtype: 'xfield',
 						itemId:'phone',
-						icon:'icon-phone',
-						tappable:true
+						icon:'icon-phone'
 					},
 
 					{
@@ -65,7 +63,6 @@ Ext.define('YourTour.view.resource.ResourceSceneView', {
 					{
 						xtype: 'xfield',
 						itemId:'comment',
-						tappable:true,
 						icon:'icon-comment',
 						dataChange: function (field, record){
 							field.setText('<span style="color:blue">4.5分</span>  <span style="color:blue">866</span>评价');
@@ -97,7 +94,6 @@ Ext.define('YourTour.view.resource.ResourceSceneView', {
 							{
 								xtype:'xlabel',
 								html: '景点',
-								tappable:true,
 								cls:'row underline font-medium font-grey',
 								padding:'0 10 0 10'
 							},

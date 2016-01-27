@@ -314,7 +314,8 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     showTimeSelectionView: function () {
         var me = this, route = me.route;
         var controller = this.getApplication().getController('CommonMainCtrl');
-        controller.showTimeSelectionView(new Date(), function (startDate, endDate, duration) {
+        var options = {single:false};
+        controller.showTimeSelectionView(options, function (startDate, endDate, duration) {
             route.startDate = startDate;
             route.endDate = endDate;
             route.duration = duration;

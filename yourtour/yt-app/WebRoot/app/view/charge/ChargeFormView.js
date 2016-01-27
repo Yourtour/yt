@@ -29,6 +29,12 @@ Ext.define('YourTour.view.charge.ChargeFormView', {
 			},
 
 			{
+				xtype : 'xtextfield',
+				itemId : 'name',
+				label : '名称'
+			},
+
+			{
 				xtype : 'selectfield',
 				itemId : 'item',
 				label : '项目',
@@ -44,9 +50,10 @@ Ext.define('YourTour.view.charge.ChargeFormView', {
 			},
 
 			{
-				xtype : 'xtextfield',
-				itemId : 'type',
-				label : '类型'
+				xtype : 'xdatefield',
+				itemId : 'chargeDate',
+				fieldCls:'x-field-right',
+				label : '日期'
 			},
 
 			{

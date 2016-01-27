@@ -7,12 +7,14 @@ import com.yt.business.neo4j.repository.RouteChargeBeanRepository;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 /**
  * Created by 林平 on 2016/1/27.
  */
+@Component
 public class RouteChargeRepositoryImpl extends CrudAllInOneOperateImpl implements RouteChargeRepository {
     private static final Log logger = LogFactory.getLog(RouteChargeRepositoryImpl.class);
 

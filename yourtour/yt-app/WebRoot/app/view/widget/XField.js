@@ -181,8 +181,10 @@ Ext.define('YourTour.view.widget.XField', {
     },
 
     setText: function (text) {
+        text += '';
         var valueEl = this.down('#value');
         if(text == null || text == ''){
+            console.log(text);
             valueEl.setHtml(this.ifNull);
         }else {
             valueEl.setHtml(text);
