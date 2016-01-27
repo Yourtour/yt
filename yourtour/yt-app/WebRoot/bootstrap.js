@@ -643,6 +643,7 @@ Ext.ClassManager.addNameAlternateMappings({
     "Ext.viewport.WP"
   ],
   "YourTour.controller.BaseCtrl": [],
+  "YourTour.controller.ChargeMainCtrl": [],
   "YourTour.controller.CommonMainCtrl": [],
   "YourTour.controller.ExpertMainCtrl": [],
   "YourTour.controller.Launch": [],
@@ -719,6 +720,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.Launch": [],
   "YourTour.view.MainView": [],
   "YourTour.view.SearchMain": [],
+  "YourTour.view.charge.ChargeMainView": [],
   "YourTour.view.common.CarouselItem": [],
   "YourTour.view.common.CommentFormView": [],
   "YourTour.view.common.CommentListDataItem": [],
@@ -763,11 +765,12 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.home.TalentListView": [],
   "YourTour.view.line.LineResourceItem": [],
   "YourTour.view.member.MemberAddView": [],
-  "YourTour.view.member.MemberDataItem": [],
   "YourTour.view.member.MemberItemView": [],
   "YourTour.view.member.MemberMainView": [],
   "YourTour.view.member.MemberPositionView": [],
+  "YourTour.view.member.MemberSearchDataItem": [],
   "YourTour.view.member.MemberSearchView": [],
+  "YourTour.view.member.MemberView": [],
   "YourTour.view.place.PlaceExpertView": [],
   "YourTour.view.place.PlaceFoodView": [],
   "YourTour.view.place.PlaceMainView": [],
@@ -828,6 +831,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.user.UserListView": [],
   "YourTour.view.user.UserMainView": [],
   "YourTour.view.user.UserProfileView": [],
+  "YourTour.view.user.UserView": [],
   "YourTour.view.widget.MarkedLabel": [],
   "YourTour.view.widget.ToolButton": [],
   "YourTour.view.widget.XBack": [],
@@ -1601,6 +1605,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.Viewport": [],
   "Ext.viewport.WindowsPhone": [],
   "YourTour.controller.BaseCtrl": [],
+  "YourTour.controller.ChargeMainCtrl": [],
   "YourTour.controller.CommonMainCtrl": [],
   "YourTour.controller.ExpertMainCtrl": [],
   "YourTour.controller.Launch": [],
@@ -1687,6 +1692,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.SearchMain": [
     "widget.searchmain"
   ],
+  "YourTour.view.charge.ChargeMainView": [],
   "YourTour.view.common.CarouselItem": [],
   "YourTour.view.common.CommentFormView": [],
   "YourTour.view.common.CommentListDataItem": [
@@ -1791,9 +1797,6 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.member.MemberAddView": [
     "widget.MemberAddView"
   ],
-  "YourTour.view.member.MemberDataItem": [
-    "widget.MemberDataItem"
-  ],
   "YourTour.view.member.MemberItemView": [
     "widget.MemberItemView"
   ],
@@ -1801,7 +1804,11 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.member.MemberPositionView": [
     "widget.MemberPositionView"
   ],
+  "YourTour.view.member.MemberSearchDataItem": [
+    "widget.MemberSearchDataItem"
+  ],
   "YourTour.view.member.MemberSearchView": [],
+  "YourTour.view.member.MemberView": [],
   "YourTour.view.place.PlaceExpertView": [
     "widget.PlaceExpertView"
   ],
@@ -1941,6 +1948,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.user.UserProfileView": [
     "widget.UserProfileView"
+  ],
+  "YourTour.view.user.UserView": [
+    "widget.UserView"
   ],
   "YourTour.view.widget.MarkedLabel": [
     "widget.markedlabel"

@@ -3,8 +3,6 @@ Ext.define('YourTour.view.route.RouteSchedulePlanDataItem', {
     xtype: 'RouteSchedulePlanDataItem',
     requires:['Ext.Label','Ext.field.Select','Ext.Panel'],
     config: {
-    	longpressed:false,
-
     	items:[
     		{
     			itemId:'preparePanel',
@@ -73,10 +71,6 @@ Ext.define('YourTour.view.route.RouteSchedulePlanDataItem', {
     	]
     },
     
-    updateLongpressed:function(longpressed){
-    	this.longpressed = longpressed;
-    },
-    
    	/**
    	 * 
    	 * @param {} record
@@ -124,12 +118,6 @@ Ext.define('YourTour.view.route.RouteSchedulePlanDataItem', {
 					title.addCls('icon_restaurant');
 				}
        		}
-       		
-       		me.element.on('longpress', function(e){
-       			me.longpressed = true;
-       			
-       			dataview.fireEvent('itemlongtap', dataview, dataview.items.length, me, record);
-       		});
        }
     }   
 });

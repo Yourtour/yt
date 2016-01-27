@@ -37,12 +37,20 @@ Ext.define('YourTour.view.widget.XField', {
     initialize:function(){
         this.callParent(arguments);
 
-        var me = this;
+        var me = this, fieldCls = me.fieldCls;
 
         var value = this.down('#value');
-        if(me.fieldCls == null){
+        if(fieldCls == null){
             value.addCls('font-grey');
+        }else{
+            var index = fieldCls.indexOf('!important');
+            if(index < 0){
+                value.addCls('font-grey ' + fieldCls);
+            }else{
+                value.addCls(fieldCls.substring(0, index - 1));
+            }
         }
+
 
         if(me.underline == null){
             me.addCls('underline');
@@ -123,9 +131,6 @@ Ext.define('YourTour.view.widget.XField', {
 
     setFieldCls: function (fieldCls) {
         this.fieldCls = fieldCls;
-
-        var value = this.down('#value');
-        value.addCls(fieldCls);
     },
 
     updateLabelCls: function (labelCls) {

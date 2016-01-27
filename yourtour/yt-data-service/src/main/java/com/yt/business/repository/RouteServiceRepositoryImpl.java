@@ -2,9 +2,6 @@ package com.yt.business.repository;
 
 import com.yt.business.CrudAllInOneOperateImpl;
 import com.yt.business.bean.ExpertServiceBean;
-import com.yt.business.bean.RouteMemberBean;
-import com.yt.business.bean.RouteServiceBean;
-import com.yt.business.neo4j.repository.RouteMemberBeanRepository;
 import com.yt.business.neo4j.repository.RouteServiceBeanRepository;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

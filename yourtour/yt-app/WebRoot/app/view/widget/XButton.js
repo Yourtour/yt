@@ -3,7 +3,8 @@ Ext.define('YourTour.view.widget.XButton', {
     xtype: 'xbutton',
     config: {
         binding:null,
-    	cls:'x-xbutton'
+    	cls:'x-xbutton',
+        ui: "normal"
     },
 
     updateRecord:function(record){

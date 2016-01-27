@@ -7,7 +7,6 @@ Ext.define('YourTour.view.route.RouteScheduleListView', {
         items: [
             {
                 xtype: 'xheaderbar',
-                title: '行程安排',
                 items: [
                     {
                         xtype: "xbutton",

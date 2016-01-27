@@ -38,16 +38,18 @@ public class CommentRestResource extends BaseRestResource{
 
 	private @Autowired
 	CommentRepository commentRepository;
+
 	/**
 	 *
 	 * @param id
-	 * @param type
 	 * @param nextCursor
+	 * @param filter
 	 * @param step
 	 * @return
 	 */
 	@GET
-	public ResponseDataVO<List<CommentVO>> getComments(@QueryParam("id") String id, @QueryParam("nextCursor") String nextCursor, @QueryParam("filter") String filter, @QueryParam("limit") String step) {
+	@Path("/{id}/query")
+	public ResponseDataVO<List<CommentVO>> getComments(@PathParam("id") String id, @QueryParam("nextCursor") String nextCursor, @QueryParam("filter") String filter, @QueryParam("limit") String step) {
 		try{
 			List<CommentVO> commentvos = new ArrayList<>();
 			
@@ -61,6 +63,24 @@ public class CommentRestResource extends BaseRestResource{
 		}catch(Exception exc){
 			LOG.error("", exc);
 			return new ResponseDataVO<List<CommentVO>>(
+					StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
+	}
+
+	/**
+	 * 保存点评
+	 * @param id
+	 * @param comment
+	 * @return
+	 */
+	@GET
+	@Path("/resource/{id}/save")
+	public ResponseDataVO<Long> saveResourceComment(@PathParam("id") String id, CommentVO comment) {
+		try{
+			return new ResponseDataVO<Long>(0l);
+		}catch(Exception exc){
+			LOG.error("", exc);
+			return new ResponseDataVO<Long>(
 					StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
 	}

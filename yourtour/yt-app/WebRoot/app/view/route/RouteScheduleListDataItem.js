@@ -3,8 +3,7 @@ Ext.define('YourTour.view.route.RouteScheduleListDataItem', {
     xtype: 'RouteScheduleListDataItem',
     requires:['Ext.Label','Ext.field.Select','Ext.Panel'],
     config: {
-		cls:'underline',
-
+		padding:'0 10 0 0',
     	items:[
     		{
     			itemId:'preparePanel',
@@ -12,12 +11,18 @@ Ext.define('YourTour.view.route.RouteScheduleListDataItem', {
     			layout:'vbox',
     			hidden:true,
 				cls:'preparePanel',
-				padding:'10',
     			items:[
 					{
 						xtype:'label',
 						itemId:'title',
-						cls:'bold'
+						cls:'title',
+						padding:'0 0 0 30'
+					},
+
+					{
+						xtype:'label',
+						cls:'underline',
+						margin:'0 0 0 30',
 					}
     			]
     		},
@@ -27,21 +32,27 @@ Ext.define('YourTour.view.route.RouteScheduleListDataItem', {
     			xtype:'panel',
     			hidden:true,
     			layout:'vbox',
-				padding:'10',
+				padding:'10 0 10 0',
 				cls:'prepareItem',
     			items:[
 					{
 						xtype:'label',
 						itemId:'title',
 						cls:'icon-todo title',
-						padding:'0 0 0 50'
+						padding:'0 0 0 30'
 					},
 
 					{
 						xtype:'label',
 						itemId:'memo',
 						cls:'content',
-						padding:'0 0 0 50'
+						padding:'0 0 0 30'
+					},
+
+					{
+						xtype:'label',
+						cls:'underline',
+						margin:'0 0 0 30',
 					}
     			]
     		},
@@ -54,36 +65,42 @@ Ext.define('YourTour.view.route.RouteScheduleListDataItem', {
 				cls:'dayPanel',
     			items:[
 					{
-						xtype:'xspacer',
-						itemId:'spacer'
-					},
-    				{
-    					xtype:'label',
-    					itemId:'title',
-						cls:'bold',
-						padding:'10'
-    				},
+						xtype:'panel',
+						layout:'hbox',
+						padding:'0 0 0 30',
+						cls:'title',
+						items:[
+							{
+								xtype:'label',
+								itemId:'title'
+							},
 
-					{
-						xtype:'label',
-						itemId:'startTime',
-						cls:'info',
-						style:'text-align:center',
-						padding:'10'
+							{
+								xtype:'label',
+								itemId:'startTime',
+								padding:'0 0 0 10'
+							}
+						]
 					},
 
 					{
 						xtype:'label',
 						itemId:'places',
 						cls:'bold',
-						padding:'10'
+						padding:'0 0 0 30'
 					},
 
 					{
 						xtype:'label',
 						itemId:'memo',
 						cls:'content',
-						padding:'10'
+						padding:'0 0 0 30'
+					},
+
+					{
+						xtype:'label',
+						cls:'underline',
+						margin:'0 0 0 30',
 					}
     			]
     		},
@@ -93,20 +110,39 @@ Ext.define('YourTour.view.route.RouteScheduleListDataItem', {
     			xtype:'panel',
     			layout:'vbox',
     			hidden:true,
-				padding:'10',
+				padding:'10 0 10 0',
 				cls:'dayItem',
     			items:[
 					{
-						xtype:'label',
-						itemId:'title',
-						padding:'0 0 0 50',
-						cls:'title'
+						xtype:'panel',
+						layout:'hbox',
+						padding:'0 0 0 30',
+						cls:'title',
+						items:[
+							{
+								xtype:'label',
+								itemId:'time'
+
+							},
+							{
+								xtype:'label',
+								itemId:'title',
+								flex:1,
+								padding:'0 0 0 10'
+							},
+
+							{
+								xtype:'label',
+								itemId:'duration',
+								padding:'0 0 0 10'
+							}
+						]
 					},
 
     				{
     					xtype:'panel',
     					layout:'vbox',
-						padding:'0 0 0 50',
+						padding:'0 0 0 30',
     					items:[
 							{
 								xtype:'panel',
@@ -145,17 +181,18 @@ Ext.define('YourTour.view.route.RouteScheduleListDataItem', {
 							},
 
 		    				{
-    							xtype:'label',
-    							itemId:'time',
-								cls:'info'
-    						},
-		    				{
 		    					xtype:'label',
 		    					itemId:'memo',
 								cls:'content'
 		    				}
 		    			]
-    				}
+    				},
+
+					{
+						xtype:'label',
+						cls:'underline',
+						margin:'0 0 0 30',
+					}
     			]
     		}
     	]
@@ -199,10 +236,6 @@ Ext.define('YourTour.view.route.RouteScheduleListDataItem', {
        			panel.show();
 
 				var sTitle = record.get('title');
-				if(sTitle.split(' ')[1] == 1){
-					var spacer = panel.down('#spacer');
-					spacer.hide();
-				}
        			var title = panel.down('#title');
        			title.setHtml(sTitle);
 
@@ -220,16 +253,9 @@ Ext.define('YourTour.view.route.RouteScheduleListDataItem', {
 
 				var title = panel.down('#title');
 				title.setHtml(record.get('title'));
-				var resourceType = record.get('resourceType');
-				if(resourceType == 'SCENE'){
-					title.addCls('icon-scene');
-				}else if(resourceType == 'HOTEL'){
-					title.addCls('icon-hotel');
-				}else if(resourceType == 'FOOD'){
-					title.addCls('icon-food');
-				}else if(resourceType == 'traffic'){
-					title.addCls('icon_restaurant');
-				}
+
+				var time = panel.down('#time');
+				time.setHtml(record.get('startTime'));
 
 				var resImage = panel.down('#resImage');
 				resImage.setHtml("<img src='" + record.get('imageUrl') + "' style='width:100%; max-height:100px'>");
@@ -244,8 +270,7 @@ Ext.define('YourTour.view.route.RouteScheduleListDataItem', {
 				memo.setHtml(Ext.String.ellipsis(record.get('memo'),70,false));
 				memo.show();
 
-       			var time = panel.down('#time');
-       			time.setHtml(record.get('startTime') + '至' + record.get('endTime'));
+
        		}
        }
     }   

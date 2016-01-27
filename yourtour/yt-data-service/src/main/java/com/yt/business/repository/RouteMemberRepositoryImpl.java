@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 import com.yt.business.CrudAllInOneOperateImpl;
 import com.yt.business.bean.RouteMemberBean;
-import com.yt.business.neo4j.repository.RouteMemberBeanRepository;
 
 @Component
 public class RouteMemberRepositoryImpl extends CrudAllInOneOperateImpl implements

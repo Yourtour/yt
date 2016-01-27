@@ -38,7 +38,8 @@ Ext.application({
         'user.LoginMainView','user.UserListView','user.UserMainView','user.UserProfileView',
         'resource.ResourceSelectionView','resource.ResourceFormView','resource.ResourceMapView','resource.ResourceActivityItemListView',
         'resource.ResourceActivityItemFormView',
-        'member.MemberMainView','member.MemberAddView','member.MemberPositionView','member.MemberSearchView',
+        'member.MemberMainView','member.MemberView', 'member.MemberAddView','member.MemberPositionView','member.MemberSearchView',
+        'charge.ChargeMainView',
         'expert.ExpertMainView','expert.ExpertApplyView','expert.ExpertIntroFormView','expert.ExpertListView','expert.ExpertServiceEditView',
         'expert.ExpertRecommendListView','expert.ExpertRecommendIntroView',
 
@@ -54,7 +55,7 @@ Ext.application({
         'user.AccountMainCtrl',
         'route.ScheduleReferenceCtrl','route.ScheduleDetailCtrl',
         'ResourceMainCtrl','user.UserListCtrl','PlaceSelectionCtrl','CommonMainCtrl',
-        'LineMainCtrl','MemberMainCtrl','UserMainCtrl', 'ExpertMainCtrl', 'MessageMainCtrl','PlaceMainCtrl','ServiceMainCtrl'
+        'LineMainCtrl','MemberMainCtrl','ChargeMainCtrl','UserMainCtrl', 'ExpertMainCtrl', 'MessageMainCtrl','PlaceMainCtrl','ServiceMainCtrl'
     ],
     
     models:[

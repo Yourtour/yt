@@ -14,7 +14,8 @@ Ext.define('YourTour.model.UserModel', {
     		{name:'sex', type:'string'},
     		{name:'role', type:'string'},
     		{name:'imageUrl', type:'string'},
-    		{name:'tags', type:'string'}
+    		{name:'tags', type:'string'},
+			{name:'position', type:'string', defaultValue:'121.579496,31.267881'}
 	    ],
 	    
 	    proxy: {

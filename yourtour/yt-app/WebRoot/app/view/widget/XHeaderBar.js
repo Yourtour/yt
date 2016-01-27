@@ -86,6 +86,7 @@ Ext.define('YourTour.view.widget.XHeaderBar', {
 
 	doSetTitle:function(){
 		var me = this, title = me.title, back = me.backButton, label;
+
 		if(title == ''){
 			me.middlePanel.hide();
 			me.rightPanel.getAt(0).hide();

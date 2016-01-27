@@ -139,8 +139,8 @@ public class RouteLoadVO implements Serializable {
 						activity.setParentId(group.getId());
 						activity.setId(activityBean.getGraphId().toString());
 						activity.setDate(activityBean.getDate());
-						activity.setStartTime(activityBean.getStartTime());
-						activity.setEndTime(activityBean.getEndTime());
+						activity.setStartTime(getTime(activityBean.getStartTime()));
+						activity.setEndTime(getTime(activityBean.getEndTime()));
 						activity.setIndex(activityBean.getIndex());
 
 						if (StringUtils.isNull(activityBean.getPrice()) || StringUtils.isNull(activityBean.getCurrency())) {
@@ -391,5 +391,19 @@ public class RouteLoadVO implements Serializable {
 		public void setLast(boolean last) {
 			this.last = last;
 		}
+	}
+
+	private String getTime(String value){
+		if(StringUtils.isNull(value)) return "00:00";
+
+		String[] values = value.split(" ");
+		String time = null;
+		if(values.length == 2){
+			time = values[1];
+		}else{
+			time = values[0];
+		}
+		System.out.println(time);
+		return time.substring(0, 5);
 	}
 }

@@ -41,7 +41,11 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
 		   },
 
 		   '#RouteMainView #btnMember':{
-			   tap:'onMemberTap'
+			   tap:'onRouteMemberTap'
+		   },
+
+		   '#RouteMainView #btnCharge':{
+			   tap:'onRouteChargeTap'
 		   },
 
 		   '#RouteMainView #impression':{
@@ -126,7 +130,7 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
 		this.redirectTo('/route/load/' + record.get('id'));
     },
     
-    onMemberTap:function(record){
+    onRouteMemberTap:function(record){
 		var me = this;
 		var routeCarousel = me.getRouteCarousel();
 		var index = routeCarousel.getActiveIndex();
@@ -134,6 +138,16 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
 
 		this.redirectTo('/routes/' + record.get('id') + '/members');
     },
+
+	onRouteChargeTap:function(record){
+		var me = this, routeCarousel = me.getRouteCarousel();
+
+		var index = routeCarousel.getActiveIndex();
+		var record = me.store.getAt(index);
+
+		var controller = me.getApplication().getController('ChargeMainCtrl');
+		controller.showPage(record.get('id'));
+	},
 
 	onActiveItemChange: function (carousel, value, oldValue, eOpts) {
 		var index = carousel.getActiveIndex();

@@ -7,65 +7,61 @@ Ext.define('YourTour.view.member.MemberMainView', {
         items: [
 			{    
 				xtype: 'xheaderbar',
-				title:'伙伴',
-				items:[
-					{
-					   xtype:'toolbutton',
-					   itemId:'management',
-					   text:'管理',
-					   align:'right'
-					},
-					{
-					   xtype:'toolbutton',
-					   itemId:'finished',
-					   text:'完成',
-					   hidden:true,
-					   align:'right'
-					}
-				]
+				title:'伙伴'
 			},
-			
+
 			{
-				itemId:'members',
-				xtype:'dataview',
+				xtype: 'image',
+				height:150,
+				width:'100%',
+				src:'resources/images/image_member.jpg',
+				mode: 'tag'
+			},
+
+			{
+				xtype:'xspacer'
+			},
+
+			{
+				xtype:'xdataview',
+				itemId:'memberList',
 				flex:1,
 		        useComponents: true,
 		        defaultType: 'MemberItemView'
 	   		},
-			
-			{	
-        		xtype:'tabpanel',
-        		itemId:'menuTab',
-        		ui:'dark',
-        		docked:'bottom',
-        		tabBarPosition:'bottom',
-        		tabBar : {
-                    defaults: {
-                        flex:1
-                    }
-                },
-        	    items:[
+
+			{
+				xtype: 'xtoolbar',
+				docked: 'bottom',
+				itemId: 'btnGroup1',
+				defaults:{
+					flex:1
+				},
+				items: [
 					{
+						xtype: 'xbutton',
 						itemId:'btnAdd',
-						title:'加人',
-					    iconCls:'user',
-					    iconAlign:'top'
-					},
-					
-					{
-						itemId:'btnMessage', 
-					    title:'聊天',
-					    iconCls:'home',
-					    iconAlign:'top'
+						text:'加人',
+						iconAlign:'top',
+						icon: 'resources/icons/icon_button_member_add.png'
 					},
 					{
-					    itemId:'btnPosition',
-					    title:'位置',
-					    iconCls:'home',
-					    iconAlign:'top'
+						xtype: 'xbutton',
+						itemId:'btnMessage',
+						text:'聊天',
+						iconAlign:'top',
+						icon: 'resources/icons/icon_button_chat.png'
+					},
+
+					{
+						xtype: 'xbutton',
+						itemId:'btnPosition',
+						text:'位置',
+						iconAlign:'top',
+						icon: 'resources/icons/icon_button_position.png'
 					}
-        	    ]
-        	}
+				]
+			}
         ]
     }
 });

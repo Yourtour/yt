@@ -1,269 +1,246 @@
 Ext.define('YourTour.controller.MemberMainCtrl', {
     extend: 'YourTour.controller.BaseCtrl',
     config: {
-       refs:{
-    	   menuTab:'#MemberMainView #menuTab',
-    	   memberList:'#MemberMainView #members',
-    	   managementBtn:'#MemberMainView #management',
-    	   finishedBtn:'#MemberMainView #finished',
-    	   memberSearchList:'#MemberSearchView #memberSearchList'
-       },
-       
-       control:{
-    	   menuTab:{
-     		   activeitemchange:'onActiveItemChange'
-     	   },
-     	   
-     	  memberSearchList:{
-			  itemtap:'onSearchListItemtap'
-     	  },
-     	  
-     	  '#MemberMainView #management':{
-     		 tap:'onManagementTap'
-     	  },
-     	  
-     	 '#MemberMainView #finished':{
-    		  tap:'onFinishTap'
-    	  },
-    	  
-     	  '#MemberAddView #barscanner':{
-     		  tap:'onBarScanner'
-     	  },
-     	  
-     	 '#MemberAddView #btnSearch':{
-    		  tap:'onSearch'
-    	  },
+        refs: {
+            memberMainView:'#MemberMainView',
+            memberList:'#MemberMainView #memberList' ,
 
-		 '#MemberSearchView #btnAddAsExpert':{
-			 tap:'onAddAsExpertTap'
-		  },
+            memberSearchView: '#MemberSearchView',
+            memberSearchList: '#MemberSearchView #memberSearchList',
 
-		   '#MemberSearchView #btnAddAsMember':{
-			   tap:'onAddAsMemberTap'
-		   },
+            memberView: '#MemberView',
+        },
 
-		   '#MemberSearchView #btnAddAsLeader':{
-			   tap:'onAddAsLeaderTap'
-		   },
-    	  memberList:{
-    		  itemdelete:'onItemDelete'
-    	  }
-       },
-       
-       routes:{
-        	'/routes/:routeId/members':'showPage'
-       },
-       
-       routeId:null,
-       
-       searchStore : null,
-       
-       memberStore : null,
+        control: {
+            memberSearchList: {
+                itemtap: 'onSearchListItemtap'
+            },
 
-	   selectedMember:null
-    },
-    
-    init:function(){
-    	this.searchStore = Ext.create('YourTour.store.UserStore');
-    	
-    	this.memberStore = Ext.create('YourTour.store.RouteMemberStore'); 
-    },
-    
-    showPage:function(routeId){
-    	var me = this;
-    	
-    	me.routeId = routeId;
-    	
-    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.member.MemberMainView'));
-    	
-    	var store = me.memberStore;
-    	store.setData('');
-    	store.getProxy().setUrl(YourTour.util.Context.getContext('/route/members/' + me.routeId + '/query'));
-    	store.load(function(){
-    		me.getMemberList().setStore(store);
-    	});
-    },
-    
-    onActiveItemChange:function(tabBar, newTab, oldTab){
-    	if(newTab.getItemId() == 'btnMessage'){
-    		this.showMessagePage();
-    	}else if(newTab.getItemId() == 'btnPosition'){
-    		this.showPositionPage();
-    	}else if(newTab.getItemId() == 'btnAdd'){
-    		this.showAddPage();
-    	}
-    },
-    
-    showAddPage:function(){
-    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.member.MemberAddView'));
-    },
-    
-    showMessagePage:function(){
-    	var sessionId = '1111';
-    	this.redirectTo('/message/session/' + sessionId);
-    },
-    
-    /**
-     * 
-     */
-    showPositionPage:function(){
-    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.member.MemberPositionView'));
-    	
-    	var map = new BMap.Map('map');//指向map的容器
-        map.centerAndZoom(new BMap.Point(121.491, 31.233), 11);
-        window.setTimeout(function(){  
-        		map.panTo(new BMap.Point(116.409, 39.918));
-        	}, 
-        2000);
-    },
-    
-    /**
-     * 
-     */
-    onBarScanner:function(){
-    	cordova.plugins.barcodeScanner.scan(  
-	      function (result) {  
-	          alert("We got a barcode\n" +  
-	                "Result: " + result.text + "\n" +  
-	                "Format: " + result.format + "\n" +  
-	                "Cancelled: " + result.cancelled);  
-	      },   
-	      function (error) {  
-	          alert("Scanning failed: " + error);  
-	      }  
-    	);  
-    },
-    
-    /**
-     * 
-     */
-    onSearch:function(){
-    	var me = this;
-    	
-    	var store = me.searchStore;
-    	store.setData('');
-    	store.getProxy().setUrl(YourTour.util.Context.getContext('/users/query'));
-    	
-    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.member.MemberSearchView'));
-    	var memberList = me.getMemberSearchList();
-    	
-    	var onLoaded=function(){
-    		memberList.setStore(store);
-    	};
- 	   	store.load(onLoaded,this);
+            '#MemberMainView #memberList':{
+                itemtap:'onMemberListItemTap'
+            },
+
+            '#MemberMainView #btnMessage': {
+                tap: 'showMessagePage'
+            },
+
+            '#MemberMainView #btnCancel': {
+                tap: 'onMainViewBtnCancelTap'
+            },
+
+            '#MemberMainView #btnPosition': {
+                tap: 'showPositionPage'
+            },
+
+            '#MemberMainView #btnAdd': {
+                tap: 'showAddPage'
+            },
+
+            '#MemberAddView #barscanner': {
+                tap: 'onBarScanner'
+            },
+
+            '#MemberAddView #searchfield': {
+                tap: 'showMemberSearchView'
+            },
+
+            '#MemberSearchView #btnSearch': {
+                tap: 'onSearchFieldTap'
+            },
+
+            '#MemberSearchView #btnAddAsExpert': {
+                tap: 'onAddAsExpertTap'
+            },
+
+            '#MemberSearchView #btnAddAsMember': {
+                tap: 'onAddAsMemberTap'
+            },
+
+            '#MemberSearchView #btnAddAsLeader': {
+                tap: 'onAddAsLeaderTap'
+            },
+
+            '#MemberView #btnAdd':{
+                tap:'onMemberAddTap'
+            },
+
+            '#MemberView #btnDelete':{
+                tap:'onMemberDeleteTap'
+            }
+        },
+
+        routes: {
+            '/routes/:routeId/members': 'showPage'
+        },
+
+        routeId: null,
+
+        memberStore: null,
+
+        selectedMember: null
     },
 
-	onSearchListItemtap:function(dataview, index, item, record,e){
-		this.selectedMember = record;
-	},
+    init: function () {
+        this.memberStore = Ext.create('YourTour.store.RouteMemberStore');
+    },
 
-	onAddAsMemberTap:function(){
-		this.onMemberAdd('MEMBER');
-	},
+    showPage: function (routeId) {
+        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.member.MemberMainView'));
 
-	onAddAsLeaderTap:function(){
-		this.onMemberAdd('LEADER');
-	},
+        var me = this, view = me.getMemberMainView(), memberList = me.getMemberList();
+        var options = {
+            model: 'YourTour.model.UserModel',
+            url: '/route/members/' + routeId + '/query',
+            success: function (store) {
+                var data = {routeId:routeId, store:store};
+                view.bindData(data);
 
-	onAddAsExpertTap:function(){
-		this.onMemberAdd('EXPERT');
-	},
+                memberList.setStore(store);
+            }
+        };
+        me.getApplication().query(options);
+    },
+
+    onMemberListItemTap:function(dataview, index, item, record, e){
+        this.showMemberDetailView(record, 'cancel');
+    },
+
+    showAddPage: function () {
+        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.member.MemberAddView'));
+    },
+
+    showMessagePage: function () {
+        var sessionId = '1111';
+        this.redirectTo('/message/session/' + sessionId);
+    },
 
     /**
-     * 
+     *
      */
-    onMemberAdd:function(role){
-    	var data = {};
+    showPositionPage: function () {
+        var me = this, mainview = me.getMemberMainView(), store = mainview.getData().store, pos, arra;
+        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.member.MemberPositionView'));
 
-		var record = this.selectedMember;
+        var map = new BMap.Map('map');//指向map的容器
+        map.enableScrollWheelZoom(true);
+        /*window.setTimeout(function () {
+                map.centerAndZoom('上海', 11);
+        },2000);*/
+        map.centerAndZoom('上海', 11);
 
-    	data.routeId = this.routeId;
-    	data.userId = record.get('id');
-    	data.role = role;
+        store.each(function(member){
+            if(member.get('position') != '') {
+                pos = member.get('position').split(',');
+                map.clearOverlays();
+                var new_point = new BMap.Point(pos[0], pos[1]);
+                var marker = new BMap.Marker(new_point);  // 创建标注
+                map.addOverlay(marker);              // 将标注添加到地图中
+                map.panTo(new_point);
+            }
+        });
+    },
 
-    	Ext.Ajax.request({
-    	    url : YourTour.util.Context.getContext('route/members/save'),
-    	    method : "POST",
-    	    params : Ext.JSON.encode(data),
-    	    success : function(response) {
-    	    	var respObj = Ext.JSON.decode(response.responseText);
-    	    	if(respObj.errorCode != '0'){
-    	    		Ext.Msg.alert(resp.errorText);
-    	    		return;
-    	    	};
-    	    	
-    	    	Ext.ComponentManager.get('MainView').pop();
-    	    },
-    	    
-    	    failure : function(response) {
-    	        var respObj = Ext.JSON.decode(response.responseText);
-    	        Ext.Msg.alert("Error", respObj.status.statusMessage);
-    	    }
-    	});
+    /**
+     *
+     */
+    onBarScanner: function () {
+        cordova.plugins.barcodeScanner.scan(
+            function (result) {
+                alert("We got a barcode\n" +
+                    "Result: " + result.text + "\n" +
+                    "Format: " + result.format + "\n" +
+                    "Cancelled: " + result.cancelled);
+            },
+            function (error) {
+                alert("Scanning failed: " + error);
+            }
+        );
     },
-    
-    onManagementTap:function(){
-    	var list = this.getMemberList();
-    	var len = list.getStore().getData().length ;
-    	var item, imageDel, imageRole;
-    	for(var index = 0; index < len; index++){
-    		item = list.getItemAt(index);
-    		
-    		imageDel = item.down('#imageDel');
-    		imageDel.show();
-    		
-    		imageRole = item.down('#imageRole');
-    		imageRole.hide();
-    	}
-    	
-    	this.getManagementBtn().hide();
-    	this.getFinishedBtn().show();
+
+    /**
+     *
+     */
+    showMemberSearchView: function () {
+        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.member.MemberSearchView'));
     },
-    
-    onFinishTap:function(){
-    	var list = this.getMemberList();
-    	var len = list.getStore().getData().length ;
-    	var item, imageDel, imageRole;
-    	for(var index = 0; index < len; index++){
-    		item = list.getItemAt(index);
-    		
-    		imageDel = item.down('#imageDel');
-    		imageDel.hide();
-    		
-    		imageRole = item.down('#imageRole');
-    		imageRole.show();
-    	}
-    	
-    	this.getManagementBtn().show();
-    	this.getFinishedBtn().hide();
+
+    /**
+     * 用户搜索
+     */
+    onSearchFieldTap:function(){
+        var me = this, memberList = me.getMemberSearchList();
+        var options = {
+            model: 'YourTour.model.UserModel',
+            url: '/users/query',
+            success: function (store) {
+                memberList.setStore(store);
+            }
+        };
+        me.getApplication().query(options);
     },
-    
-    onItemDelete:function(dataview, record){
-    	var list = this.getMemberList();
-    	var store = list.getStore();
-    	var index = store.indexOf(record);
-    	
-    	var data = {};
-    	data.routeId = this.routeId;
-    	data.userId = record.get('id');
-    	
-    	Ext.Ajax.request({
-    	    url : YourTour.util.Context.getContext('route/members/' + this.routeId + '/' + record.get('id') + '/delete'),
-    	    method : "GET",
-    	    success : function(response) {
-    	    	var respObj = Ext.JSON.decode(response.responseText);
-    	    	if(respObj.errorCode != '0'){
-    	    		Ext.Msg.alert(respObj.errorText);
-    	    		return;
-    	    	};
-    	    	
-    	    	store.removeAt(index);
-    	    },
-    	    
-    	    failure : function(response) {
-    	        var respObj = Ext.JSON.decode(response.responseText);
-    	        Ext.Msg.alert("Error", respObj.status.statusMessage);
-    	    }
-    	});
+
+    onSearchListItemtap: function (dataview, index, item, record, e) {
+        this.showMemberDetailView(record, 'add');
+    },
+
+    /**
+     *
+     * @param record
+     * @param action
+     */
+    showMemberDetailView:function(record, action){
+        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.member.MemberView'));
+        var me = this, view = me.getMemberView(), btnAdd = view.down('#btnAdd'), btnDelete = view.down('#btnDelete');
+        view.setData(record);
+
+        if(action == 'cancel'){
+            btnAdd.hide();
+            btnDelete.show();
+        }else{
+            btnAdd.show();
+            btnDelete.hide();
+        }
+    },
+
+    /**
+     *
+     */
+    onMemberAddTap: function () {
+        var me = this, mainView = me.getMemberMainView(), memberView = me.getMemberView(), data = {};
+        var routeData = mainView.getData(), memberData = memberView.getData();
+
+        data.routeId = routeData.routeId;
+        data.userId = memberData.get('id');
+        data.role = 'MEMBER';
+
+        this.getApplication().callService({
+            url: 'route/members/save',
+            method: "POST",
+            params: data,
+            success: function (response) {
+                var store = routeData.store;
+                store.add(memberData);
+                Ext.ComponentManager.get('MainView').pop(3);
+            }
+        });
+    },
+
+    /**
+     *
+     */
+    onMemberDeleteTap: function () {
+        var me = this, mainView = me.getMemberMainView(), memberView = me.getMemberView(), data = {};
+        var routeData = mainView.getData(), memberData = memberView.getData();
+        var routeId = routeData.routeId, memberId = memberData.get('id');
+
+        this.getApplication().callService({
+            url: 'route/members/' + routeId + '/' + memberId + '/delete',
+            method: "GET",
+            success: function (response) {
+                var store = routeData.store;
+                store.remove(memberData);
+                Ext.ComponentManager.get('MainView').pop();
+            }
+        });
     }
 });
