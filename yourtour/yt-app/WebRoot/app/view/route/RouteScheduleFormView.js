@@ -114,11 +114,9 @@ Ext.define('YourTour.view.route.RouteScheduleFormView', {
 						binding: 'servicesStore'
 					},
 
-
 					{
 						xtype: 'xtoolbar',
 						docked: 'bottom',
-						cls: 'toolbar',
 						items: [
 							{
 								xtype: 'spacer',
@@ -126,22 +124,19 @@ Ext.define('YourTour.view.route.RouteScheduleFormView', {
 							},
 
 							{
-								xtype: 'button',
+								xtype: 'xbutton',
 								text: '留言',
-								ui: 'normal',
 								icon: 'resources/icons/icon_message.png',
 								itemId: 'btnMessage'
 							},
 							{
-								xtype: 'button',
+								xtype: 'xbutton',
 								text: '签到',
-								ui: 'normal',
 								icon: 'resources/icons/icon_checkin.png',
 								itemId: 'btnCheckin'
 							}, {
-								xtype: 'button',
+								xtype: 'xbutton',
 								text: '随记',
-								ui: 'normal',
 								icon: 'resources/icons/icon_note.png',
 								itemId: 'btnNotes'
 							}

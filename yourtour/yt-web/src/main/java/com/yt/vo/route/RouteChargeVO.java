@@ -5,6 +5,7 @@ import com.yt.business.common.Constants;
 import com.yt.business.common.Constants.ResType;
 import com.yt.core.utils.DateUtils;
 import com.yt.vo.BaseVO;
+import com.yt.vo.member.UserVO;
 import com.yt.vo.resource.HotelResourceVO;
 import com.yt.vo.resource.ResourceVO;
 import com.yt.vo.resource.RestaurantResourceVO;
@@ -20,9 +21,14 @@ public class RouteChargeVO extends BaseVO {
 	private String 	item; // 行程名称
 	private String	type;
 	private double 	amount;
+	private double  payment;
+	private int		percent;
 	private Long 	chargeDate;
 	private String 	memo;
 	private String 	imageUrl;
+	private Long 	userId;
+	private String	nickName;
+	private String  userImageUrl;
 
 	public static RouteChargeVO transform(RouteChargeBean bean) {
 		if (bean == null) {
@@ -34,9 +40,19 @@ public class RouteChargeVO extends BaseVO {
 		vo.setName(bean.getName());
 		vo.setItem(bean.getItem());
 		vo.setAmount(bean.getAmount());
+		vo.setPayment(bean.getPayment());
+		vo.setPercent(bean.getPercent());
 		vo.setMemo(bean.getMemo());
 		vo.setImageUrl(bean.getImageUrl());
 		vo.setChargeDate(bean.getChargeDate());
+		vo.setType(bean.getType());
+
+		UserProfileBean user = bean.getOwner();
+		if(user != null) {
+			vo.setUserId(user.getGraphId());
+			vo.setNickName(user.getNickName());
+			vo.setUserImageUrl(user.getImageUrl());
+		}
 
 		return vo;
 	}
@@ -56,6 +72,7 @@ public class RouteChargeVO extends BaseVO {
 		bean.setAmount(vo.getAmount());
 		bean.setType(vo.getType());
 		bean.setMemo(vo.getMemo());
+		bean.setPercent(vo.getPercent());
 
 		return bean;
 	}
@@ -81,7 +98,7 @@ public class RouteChargeVO extends BaseVO {
 	}
 
 	public String getType() {
-		return type;
+		return type == null?"1":"2";
 	}
 
 	public void setType(String type) {
@@ -94,6 +111,22 @@ public class RouteChargeVO extends BaseVO {
 
 	public void setAmount(double amount) {
 		this.amount = amount;
+	}
+
+	public double getPayment() {
+		return payment == 0 ? amount : payment;
+	}
+
+	public void setPayment(double payment) {
+		this.payment = payment;
+	}
+
+	public int getPercent() {
+		return percent;
+	}
+
+	public void setPercent(int percent) {
+		this.percent = percent;
 	}
 
 	public Long getChargeDate() {
@@ -118,5 +151,29 @@ public class RouteChargeVO extends BaseVO {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
+	public String getUserImageUrl() {
+		return userImageUrl;
+	}
+
+	public void setUserImageUrl(String userImageUrl) {
+		this.userImageUrl = userImageUrl;
 	}
 }

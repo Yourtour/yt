@@ -25,6 +25,8 @@ public class RouteChargeBean extends BaseBeanImpl {
 	private String 	item; //
 	private String	type;
 	private double 	amount;
+	private double 	payment;
+	private int		percent;
 	private Long 	chargeDate;
 	private String 	memo;
 	private String 	imageUrl;
@@ -109,5 +111,21 @@ public class RouteChargeBean extends BaseBeanImpl {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public double getPayment() {
+		return payment == 0 ? amount : payment;
+	}
+
+	public void setPayment(double payment) {
+		this.payment = payment;
+	}
+
+	public int getPercent() {
+		return percent;
+	}
+
+	public void setPercent(int percent) {
+		this.percent = percent;
 	}
 }

@@ -5,7 +5,6 @@ Ext.define('YourTour.view.setting.UserSettingView', {
     config: {
     	id:'UserSettingView',
     	layout:'vbox',
-    	cls:'page',
     	items: [
             {
             	xtype: 'xheaderbar',
@@ -47,10 +46,11 @@ Ext.define('YourTour.view.setting.UserSettingView', {
 				]
 			},
 
+			{xtype:'xspacer'},
+
 			{
 				xtype: 'xpanel',
 				layout: 'vbox',
-				margin:'10 0 0 0',
 				flex:1,
 				items:[
 					{

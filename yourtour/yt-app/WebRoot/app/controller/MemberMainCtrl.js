@@ -9,6 +9,9 @@ Ext.define('YourTour.controller.MemberMainCtrl', {
             memberSearchList: '#MemberSearchView #memberSearchList',
 
             memberView: '#MemberView',
+
+            memberSelectionView: '#MemberSelectionView',
+            memberSelectionList: '#MemberSelectionView #memberList'
         },
 
         control: {
@@ -18,6 +21,10 @@ Ext.define('YourTour.controller.MemberMainCtrl', {
 
             '#MemberMainView #memberList':{
                 itemtap:'onMemberListItemTap'
+            },
+
+            '#MemberSelectionView #memberList':{
+                itemtap:'onMemberSelectionItemTap'
             },
 
             '#MemberMainView #btnMessage': {
@@ -88,17 +95,24 @@ Ext.define('YourTour.controller.MemberMainCtrl', {
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.member.MemberMainView'));
 
         var me = this, view = me.getMemberMainView(), memberList = me.getMemberList();
+        me.queryRouteMember(routeId, function(store){
+            var data = {routeId:routeId, store:store};
+            view.bindData(data);
+
+            memberList.setStore(store);
+        })
+
+    },
+
+    queryRouteMember:function(routeId, callback){
         var options = {
             model: 'YourTour.model.UserModel',
-            url: '/route/members/' + routeId + '/query',
+            url: '/route/' + routeId + '/members/query',
             success: function (store) {
-                var data = {routeId:routeId, store:store};
-                view.bindData(data);
-
-                memberList.setStore(store);
+                callback(store);
             }
         };
-        me.getApplication().query(options);
+        this.getApplication().query(options);
     },
 
     onMemberListItemTap:function(dataview, index, item, record, e){
@@ -242,5 +256,26 @@ Ext.define('YourTour.controller.MemberMainCtrl', {
                 Ext.ComponentManager.get('MainView').pop();
             }
         });
+    },
+
+    showMemberSelectionView:function(routeId, callback){
+        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.member.MemberSelectionView', {callback:callback}));
+
+        var me = this, view = me.getMemberSelectionView(), memberList = me.getMemberSelectionList();
+
+        me.queryRouteMember(routeId, function(store){
+            var data = {routeId:routeId, store:store};
+            view.bindData(data);
+
+            memberList.setStore(store);
+        })
+    },
+
+    onMemberSelectionItemTap:function(dataview, index, item, record, e){
+        var me = this, view = me.getMemberSelectionView(), callback = view.getCallback();;
+
+        if(callback){
+            callback(record);
+        }
     }
 });

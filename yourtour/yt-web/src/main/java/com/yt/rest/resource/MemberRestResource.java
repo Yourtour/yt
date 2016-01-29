@@ -32,7 +32,7 @@ import com.yt.vo.route.RouteMemberVO;
 import com.yt.vo.route.RouteSettingVO;
 
 @Component
-@Path("route/members")
+@Path("route/{routeId}/members")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class MemberRestResource extends BaseRestResource{
@@ -48,8 +48,8 @@ public class MemberRestResource extends BaseRestResource{
 	 * @return
 	 */
 	@GET
-	@Path("/{id}/query")
-	public ResponseDataVO<List<RouteMemberVO>> getRouteMembers(@PathParam("id") String routeId, @Context HttpServletRequest request) {
+	@Path("/query")
+	public ResponseDataVO<List<RouteMemberVO>> getRouteMembers(@PathParam("routeId") String routeId, @Context HttpServletRequest request) {
 		try{
 			List<RouteMemberVO> members = new ArrayList<>();
 			
@@ -112,14 +112,14 @@ public class MemberRestResource extends BaseRestResource{
 		}
 	}
 	
+
 	/**
 	 * 删除伙伴
 	 * @param request
-	 * @param member
 	 * @return
 	 */
 	@GET
-	@Path("/{routeId}/{userId}/delete")
+	@Path("/{userId}/delete")
 	public ResponseVO deleteRouteMember(@Context HttpServletRequest request, @PathParam("userId") String userId, @PathParam("routeId") String routeId){
 		try{
 			RouteMainBean route = (RouteMainBean) routeRepository.get(RouteMainBean.class, Long.valueOf(routeId), false);

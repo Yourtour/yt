@@ -1,132 +1,150 @@
 Ext.define('YourTour.view.user.UserMainView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:[ 'YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XLabel'],
-    xtype:'UserMainView',
+    requires: ['YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XLabel'],
+    xtype: 'UserMainView',
     config: {
-    	id:'UserMainView',
-    	layout:'vbox',
-    	cls:'page',
-    	items: [
+        id: 'UserMainView',
+        layout: 'vbox',
+        items: [
             {
-            	xtype: 'xheaderbar',
-				itemId:'headerbar',
-				backButton:false,
-				title:'个人中心',
-				items:[
-					{
-						xtype: "toolbutton",
-						ui: "normal",
-						text: '设置',
-						itemId: 'btnSetting',
-						align: 'right'
-					}
-				]
+                xtype: 'xheaderbar',
+                backButton: false,
+                title: '个人中心',
+                items: [
+                    {
+                        xtype: "xbutton",
+                        itemId: 'btnSetting',
+                        icon: 'resources/icons/icon_header_setting.png',
+                        align: 'right'
+                    }
+                ]
             },
-            
+
             {
-    			xtype:'xpanel',
-    			layout:'hbox',
-    			itemId:'profile',
-    			style:'background-color:white',
-    			cls:'nav-arrow',
-    			padding:10,
-    			items:[
-					{
-						itemId : 'userLogo',
-						xtype : 'image',
-						model:'tag'
-					},   
-		    		{
-		    			 xtype:'xlabel',
-		    			 html : '我是达人',
-		    			 flex:1
-		    		}
-		    	]
-    		},
-    		
-    		{
-    			xtype:'panel',
-    			layout:'vbox',
-    			margin:'10 0 0 0',
-    			items:[
-		    		{
-		    			 xtype:'xlabel',
-		    			 itemId:'expert',
-		    			 padding:'0 10 0 10',
-		    			 cls:'row nav-arrow font-large underline',
-		    			 html : '我是达人'
-		    		}
-		    	]
-    		},
-    		{
-    			xtype:'panel',
-    			layout:'vbox',
-    			margin:'10 0 0 0',
-    			items:[
-					{
-						xtype:'xlabel',
-						itemId:'message',
-						cls:'row nav-arrow font-large underline',
-						html : '我的消息',
-						padding:'0 10 0 10'
-					},
-					
-					{
-						xtype:'xlabel',
-						itemId:'comment',
-						cls:'row nav-arrow font-large underline',
-						html : '我的点评',
-						padding:'0 10 0 10'
-					},
-					
-					{
-						xtype:'xlabel',
-						itemId:'favorite',
-						cls:'row nav-arrow font-large underline',
-						html : '我的收藏',
-						padding:'0 10 0 10'
-					}
-    			]
-    		},
-    		
-    		{
-    			xtype:'panel',
-    			layout:'vbox',
-    			margin:'10 0 0 0',
-    			items:[
-		    		{
-		    			 xtype:'xlabel',
-		    			 itemId:'equity',
-		    			 padding:'0 10 0 10',
-		    			 cls:'row nav-arrow font-large underline',
-		    			 html : '我的权益'
-		    		},
-		    		
-		    		{
-			   			xtype:'xlabel',
-			   			itemId:'order',
-			   			cls:'row nav-arrow font-large underline',
-			   			html : '我的订单',
-			   			padding:'0 10 0 10'
-		    		},
-		    		
-		    		{
-			   			xtype:'xlabel',
-			   			itemId:'footprint',
-			   			cls:'row nav-arrow font-large underline',
-			   			html : '我的足迹',
-			   			padding:'0 10 0 10'
-		    		},
-		    		
-		    		{
-			   			xtype:'xlabel',
-			   			itemId:'charge',
-			   			cls:'row nav-arrow font-large underline',
-			   			html : '我的费用',
-			   			padding:'0 10 0 10'
-		    		}
-		    	]
-    		}
+                xtype: 'xpagebody',
+                layout: 'vbox',
+                items: [
+                    {
+                        xtype: 'xpanel',
+                        layout: 'hbox',
+                        itemId: 'profile',
+                        style: 'background-color:white',
+                        cls: 'nav-arrow',
+                        padding: 10,
+                        items: [
+                            {
+                                itemId: 'userLogo',
+                                xtype: 'image',
+                                model: 'tag'
+                            },
+                            {
+                                xtype: 'xlabel',
+                                html: '我是达人',
+                                flex: 1
+                            }
+                        ]
+                    },
+
+                    {
+                        xtype: 'xspacer'
+                    },
+
+                    {
+                        xtype: 'panel',
+                        layout: 'vbox',
+                        items: [
+                            {
+                                xtype: 'xbutton',
+                                itemId:'btnApply',
+                                cls:'x-button-primary',
+                                text:'达人申请'
+                            },
+
+                            {
+                                xtype: 'xlabel',
+                                itemId: 'expert',
+                                html: '达人服务',
+                                cls: 'row font-medium underline font-grey',
+                                indicator: 'nav-arrow',
+                                padding: '0 10 0 10',
+                                hidden:true
+                            }
+                        ]
+                    },
+
+                    {
+                        xtype: 'xspacer'
+                    },
+                    {
+                        xtype: 'panel',
+                        layout: 'hbox',
+                        cls: 'font-medium underline font-grey',
+                        defaults: {
+                            flex:1,
+                            cls:'text-align-center',
+                        },
+                        items: [
+                            {
+                                xtype: 'xlabel',
+                                itemId: 'message',
+                                html: '我的消息'
+                            },
+
+                            {
+                                xtype: 'xlabel',
+                                itemId: 'comment',
+                                html: '我的点评',
+                                style:'border-left: 1px solid #EDEDED;border-right: 1px solid #EDEDED;'
+                            },
+
+                            {
+                                xtype: 'xlabel',
+                                itemId: 'favorite',
+                                html: '我的收藏'
+                            }
+                        ]
+                    },
+
+                    {
+                        xtype: 'xspacer'
+                    },
+
+                    {
+                        xtype: 'panel',
+                        layout: 'vbox',
+                        defaults: {
+                            cls: 'row font-medium underline font-grey',
+                            indicator: 'nav-arrow',
+                            padding: '0 10 0 10'
+                        },
+                        items: [
+                            {
+                                xtype: 'xlabel',
+                                itemId: 'equity',
+                                html: '我的权益'
+                            },
+
+                            {
+                                xtype: 'xlabel',
+                                itemId: 'order',
+                                html: '我的订单'
+                            },
+
+                            {
+                                xtype: 'xlabel',
+                                itemId: 'footprint',
+                                html: '我的足迹'
+                            },
+
+                            {
+                                xtype: 'xlabel',
+                                itemId: 'charge',
+                                html: '我的费用'
+                            }
+                        ]
+                    }
+                ]
+            }
         ]
     }
 });

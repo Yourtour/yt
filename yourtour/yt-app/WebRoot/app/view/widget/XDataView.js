@@ -33,12 +33,11 @@ Ext.define('YourTour.view.widget.XDataView', {
 
 	updateRecord:function(record){
 		if(this.binding == ''){
-			console.error("Binding config must be provided for xdataview");
-			return;
+			console.warn("Binding config is not provided.");
+		}else {
+			var store = record[this.binding];
+			this.setStore(store);
 		}
-
-		var store = record[this.binding];
-		this.setStore(store);
 	}
 });
 

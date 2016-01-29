@@ -18,6 +18,14 @@ public interface RouteChargeRepository extends CrudAllInOneOperate {
     /**
      *
      * @param chargeId
+     * @return
+     * @throws Exception
+     */
+    public List<RouteChargeBean> getChargeDivisions(Long chargeId) throws Exception;
+
+    /**
+     *
+     * @param chargeId
      * @param userId
      */
     public void deleteCharge(Long chargeId, Long userId) throws Exception;

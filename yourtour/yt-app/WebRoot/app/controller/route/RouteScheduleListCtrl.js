@@ -7,7 +7,9 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
     	   routeScheduleListView:'#RouteScheduleListView',
     	   schedulePlanList:'#RouteScheduleListView #RouteScheduleList',
     	   
-    	   scheduleFormView:'#RouteScheduleFormView'
+    	   scheduleFormView:'#RouteScheduleFormView',
+
+		   routeCheckinView:'#RouteCheckinView'
        },
        
        control:{
@@ -33,6 +35,10 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
 
 		   '#RouteScheduleFormView #items':{
 			   itemtap:'onScheduleActivityItemTap'
+		   },
+
+		   '#RouteScheduleFormView #btnCheckin':{
+			   tap:'doRouteCheckin'
 		   }
        },
        
@@ -166,5 +172,12 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
 	onScheduleActivityItemTap:function(dataview, index, item, record){
 		var controller = this.getApplication().getController('ResourceMainCtrl');
 		controller.showResourceActivity(record);
+	},
+
+	doRouteCheckin:function(){
+		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteCheckinView'));
+
+		var me = this, scheduleView = me.getScheduleFormView(), checkinview = me.getRouteCheckinView();
+
 	}
 });

@@ -7,7 +7,15 @@ Ext.define('YourTour.view.charge.ChargeMainView', {
         items: [
 			{    
 				xtype: 'xheaderbar',
-				title:'费用'
+				title:'费用',
+				items:[
+					{
+						xtype: 'xbutton',
+						itemId:'btnCharge',
+						align:'right',
+						icon: 'resources/icons/icon_header_charge.png'
+					}
+				]
 			},
 
 			{
@@ -80,28 +88,6 @@ Ext.define('YourTour.view.charge.ChargeMainView', {
 				itemId : 'total',
 				fieldCls:'x-field-right',
 				label : '合计'
-			},
-
-			{
-				xtype: 'xtoolbar',
-				docked: 'bottom',
-				items: [
-					{
-						xtype:'spacer',
-						flex:1
-					},
-					{
-						xtype: 'xbutton',
-						itemId:'btnCharge',
-						text:'记账',
-						iconAlign:'top',
-						icon: 'resources/icons/icon_button_member_add.png'
-					},
-					{
-						xtype:'spacer',
-						flex:1
-					}
-				]
 			}
         ]
     }

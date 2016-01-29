@@ -4,13 +4,18 @@ Ext.define('YourTour.view.user.UserProfileView', {
     xtype:'UserProfileView',
     config: {
     	id:'UserProfileView',
-    	layout:'vbox',
-    	cls:'page',
     	items: [
             {
             	xtype: 'xheaderbar',
-				itemId:'headerbar',
-				title:'个人信息'
+				title:'个人信息',
+				items:[
+					{
+						xtype: "xbutton",
+						icon:'resources/icons/icon_header_ok.png',
+						itemId:'btnSave',
+						align:'right'
+					}
+				]
             },
 
 			{
@@ -43,18 +48,16 @@ Ext.define('YourTour.view.user.UserProfileView', {
 			},
 
 			{
-				itemId : 'nickName',
 				xtype : 'xfield',
+				itemId : 'nickName',
 				label : '昵称',
-				fieldCls:'x-field-right',
-				padding:'0 10 0 10'
+				fieldCls:'text-align-right'
 			},
 
 			{
 				xtype:'panel',
 				layout:'hbox',
-				padding:'0 10 0 10',
-				cls:'nav-arrow row underline font-medium font-grey',
+				cls:'row underline font-medium',
 				items:[
 					{
 						xtype:'xlabel',
@@ -74,17 +77,15 @@ Ext.define('YourTour.view.user.UserProfileView', {
 			},
 
 			{
-				itemId : 'constellation',
 				xtype : 'xfield',
-				padding:'0 10 0 10',
+				itemId : 'constellation',
 				label : '星座'
 			},
 
 			{
 				xtype:'xpanel',
 				layout:'hbox',
-				padding:'0 10 0 10',
-				cls:'nav-arrow row underline font-medium font-grey',
+				cls:'row underline font-medium',
 				items:[
 					{
 						xtype:'xlabel',
@@ -101,9 +102,8 @@ Ext.define('YourTour.view.user.UserProfileView', {
 			},
 
 			{
-				itemId : 'state',
 				xtype : 'xfield',
-				padding:'0 10 0 10',
+				itemId : 'state',
 				label : '地区'
 			},
 
@@ -116,7 +116,7 @@ Ext.define('YourTour.view.user.UserProfileView', {
 				itemId : 'tags',
 				xtype : 'xmultifield',
 				label : '标签',
-				fieldCls:'x-field-right',
+				fieldCls:'text-align-right',
 				padding:'0 10 0 10'
 			}
         ]

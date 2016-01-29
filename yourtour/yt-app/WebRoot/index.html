@@ -295,6 +295,18 @@
             background: #FFFFFF !important
         }
 
+        .text-align-right{
+            text-align: right !important;
+        }
+
+        .text-align-left{
+            text-align: left !important;
+        }
+
+        .text-align-center{
+            text-align: center !important;
+        }
+
         .x-field-right {
             text-align: right !important;
             margin:0px 10px 0px 0px;
@@ -397,9 +409,15 @@
             color:grey !important;
         }
 
-        .x-xtoolbar .x-button-primary{
-            background: #FF6100;
-            line-height: 45px;
+        .x-button.x-button-primary{
+            height:45px;
+            background-color: #FF6100 !important;
+            webkit-border-radius:0px;
+            border-radius:0px;
+        }
+
+        .x-button.x-button-primary .x-button-label{
+            color:white !important;
         }
 
         .underline {
@@ -538,8 +556,8 @@
         }
 
         .x-xlabel{
-            height:40px;
-            line-height:40px;
+            min-height:45px;
+            line-height:45px;
         }
 
         .x-xfield{

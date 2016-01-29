@@ -723,10 +723,13 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.Launch": [],
   "YourTour.view.MainView": [],
   "YourTour.view.SearchMain": [],
+  "YourTour.view.charge.ChargeDivisionFormView": [],
+  "YourTour.view.charge.ChargeDivisionView": [],
   "YourTour.view.charge.ChargeFormView": [],
   "YourTour.view.charge.ChargeListDataItem": [],
   "YourTour.view.charge.ChargeListView": [],
   "YourTour.view.charge.ChargeMainView": [],
+  "YourTour.view.charge.ChargeView": [],
   "YourTour.view.common.CarouselItem": [],
   "YourTour.view.common.CommentFormView": [],
   "YourTour.view.common.CommentListDataItem": [],
@@ -776,6 +779,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.member.MemberPositionView": [],
   "YourTour.view.member.MemberSearchDataItem": [],
   "YourTour.view.member.MemberSearchView": [],
+  "YourTour.view.member.MemberSelectionView": [],
   "YourTour.view.member.MemberView": [],
   "YourTour.view.place.PlaceExpertView": [],
   "YourTour.view.place.PlaceFoodView": [],
@@ -802,6 +806,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.resource.ResourceView": [],
   "YourTour.view.route.RouteActivityEditView": [],
   "YourTour.view.route.RouteActivityItemDataItem": [],
+  "YourTour.view.route.RouteCheckinView": [],
   "YourTour.view.route.RouteImageView": [],
   "YourTour.view.route.RouteImpressionView": [],
   "YourTour.view.route.RouteMainItem": [],
@@ -868,12 +873,12 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.XPageBody": [],
   "YourTour.view.widget.XPanel": [],
   "YourTour.view.widget.XPicker": [],
-  "YourTour.view.widget.XPickerField": [],
   "YourTour.view.widget.XPlainButton": [],
   "YourTour.view.widget.XProcessing": [],
   "YourTour.view.widget.XScore": [],
   "YourTour.view.widget.XSearchField": [],
   "YourTour.view.widget.XSelecion": [],
+  "YourTour.view.widget.XSelectField": [],
   "YourTour.view.widget.XShare": [],
   "YourTour.view.widget.XSpacer": [],
   "YourTour.view.widget.XTappable": [],
@@ -1699,12 +1704,15 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.SearchMain": [
     "widget.searchmain"
   ],
+  "YourTour.view.charge.ChargeDivisionFormView": [],
+  "YourTour.view.charge.ChargeDivisionView": [],
   "YourTour.view.charge.ChargeFormView": [],
   "YourTour.view.charge.ChargeListDataItem": [
     "widget.ChargeListDataItem"
   ],
   "YourTour.view.charge.ChargeListView": [],
   "YourTour.view.charge.ChargeMainView": [],
+  "YourTour.view.charge.ChargeView": [],
   "YourTour.view.common.CarouselItem": [],
   "YourTour.view.common.CommentFormView": [],
   "YourTour.view.common.CommentListDataItem": [
@@ -1820,6 +1828,7 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.MemberSearchDataItem"
   ],
   "YourTour.view.member.MemberSearchView": [],
+  "YourTour.view.member.MemberSelectionView": [],
   "YourTour.view.member.MemberView": [],
   "YourTour.view.place.PlaceExpertView": [
     "widget.PlaceExpertView"
@@ -1886,6 +1895,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.route.RouteActivityItemDataItem": [
     "widget.RouteActivityItemDataItem"
   ],
+  "YourTour.view.route.RouteCheckinView": [],
   "YourTour.view.route.RouteImageView": [],
   "YourTour.view.route.RouteImpressionView": [],
   "YourTour.view.route.RouteMainItem": [
@@ -2044,9 +2054,6 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.widget.XPicker": [
     "widget.xpicker"
   ],
-  "YourTour.view.widget.XPickerField": [
-    "widget.xpickerfield"
-  ],
   "YourTour.view.widget.XPlainButton": [
     "widget.xplainbutton"
   ],
@@ -2060,6 +2067,9 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.xsearchfield"
   ],
   "YourTour.view.widget.XSelecion": [],
+  "YourTour.view.widget.XSelectField": [
+    "widget.xselectfield"
+  ],
   "YourTour.view.widget.XShare": [
     "widget.xshare"
   ],

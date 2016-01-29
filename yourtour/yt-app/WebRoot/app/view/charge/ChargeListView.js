@@ -7,7 +7,7 @@ Ext.define('YourTour.view.charge.ChargeListView', {
         items: [
 			{    
 				xtype: 'xheaderbar',
-				title:'费用明细'
+				title:'费用清单'
 			},
 
 			{

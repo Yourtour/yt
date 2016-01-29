@@ -91,6 +91,11 @@ public interface Constants {
 	 */
 	public static final String RELATION_TYPE_APPROVED = "APPROVED";
 
+	/**
+	 * 审批关系
+	 */
+	public static final String RELATION_TYPE_DIVIDED = "DIVIDED";
+
 
 
 	// 资源枚举

@@ -1,5 +1,5 @@
 Ext.define('YourTour.view.widget.XPanel', {
-    extend: 'Ext.Panel',
+	extend: 'YourTour.view.widget.XTappable',
     xtype: 'xpanel',
     
     config:{
