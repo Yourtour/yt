@@ -8,9 +8,18 @@ Ext.define('YourTour.view.home.HomeMainView', {
         items: [
             {
                 xtype: 'xheaderbar',
-                itemId: 'headerbar',
                 title: '首页',
-                backButton: false
+                backButton: false,
+                items:[
+                    {
+                        xtype: 'xbutton',
+                        itemId: 'btnPlace',
+                        align: 'right',
+                        iconAlign:'right',
+                        text:'目的地',
+                        icon:'resources/icons/icon_arrow_down.png'
+                    }
+                ]
             },
             {
                 xtype: 'carousel',

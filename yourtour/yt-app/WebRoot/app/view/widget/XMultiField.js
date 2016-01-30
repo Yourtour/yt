@@ -3,7 +3,6 @@ Ext.define('YourTour.view.widget.XMultiField', {
     xtype: 'xmultifield',
 	config:{
 		text:null,
-		size:0,
 		expanded:false,
 		ellipsis:{
 			size:0,
@@ -12,47 +11,11 @@ Ext.define('YourTour.view.widget.XMultiField', {
 	},
 
 	initialize:function(){
-		this.callParent(arguments);
-
-		var value = this.down('#value');
-		value.addCls('multilineinfo');
-	},
-
-	updateText:function(text){
-		this.setText(text);
-	},
-
-	setText:function(text){
 		var me = this;
-		me.text = text;
-		var size = me.getSize();
+		me.callParent(arguments);
 
-		var valueEl = me.down('#value');
-		if(text == null || text == '') {
-			valueEl.setHtml(me.ifNull);
-		}else if(size == 0) {
-			valueEl.setHtml(text);
-		}else{
-			valueEl.setHtml(Ext.String.ellipsis(text, size, false));
-		}
-
-		if(text =='' || text == null || text == undefined){
-			me.addCls('row');
-		}
-	},
-
-	getText:function(){
-		return this.text;
-	},
-
-	updateEllipsis:function(ellipsis){
-		if(! ellipsis) return;
-
-		var me = this;
-		var meEllipsis = me.getEllipsis();
-
-		Ext.apply(meEllipsis,ellipsis);
-		if(meEllipsis.expandable > 0){
+		var ellipsis = me.ellipsis || me.getEllipsis();
+		if(ellipsis.expandable > 0){
 			var value = this.down('#value');
 			me.addCls('icon-arrow-down');
 
@@ -74,10 +37,48 @@ Ext.define('YourTour.view.widget.XMultiField', {
 				}
 			});
 		}
+
+		this.setText();
+	},
+
+	updateText:function(text){
+		this.text = text;
+	},
+
+	setText:function(text){
+		var me = this;
+
+		if(text) {
+			me.text = text;
+		}else{
+			text = me.text;
+		}
+
+		var size = me.getSize();
+
+		var valueEl = me.down('#value');
+		if(text == null || text == '') {
+			valueEl.setHtml(me.ifNull);
+		}else if(size == 0) {
+			valueEl.setHtml(text);
+		}else{
+			valueEl.setHtml(Ext.String.ellipsis(text, size, false));
+		}
+	},
+
+	getText:function(){
+		return this.text;
+	},
+
+	updateEllipsis:function(ellipsis){
+		if(! ellipsis) return;
+
+		var me = this, meEllipsis = me.ellipsis || me.getEllipsis();
+		Ext.apply(meEllipsis,ellipsis);
 	},
 
 	getSize:function(){
-		var ellipsis = this.getEllipsis();
+		var ellipsis = this.ellipsis || this.getEllipsis();
 
 		return ellipsis.size;
 	}

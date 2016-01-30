@@ -1836,9 +1836,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.place.PlaceFoodView": [
     "widget.PlaceFoodView"
   ],
-  "YourTour.view.place.PlaceMainView": [
-    "widget.PlaceMainView"
-  ],
+  "YourTour.view.place.PlaceMainView": [],
   "YourTour.view.place.PlaceOverviewView": [
     "widget.PlaceOverviewView"
   ],

@@ -25,8 +25,8 @@ import java.util.Vector;
 @Path("routes")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class RouteRestResource extends BaseRestResource{
-	private static final Log LOG = LogFactory.getLog(RouteRestResource.class);
+public class RouteMainRestResource extends BaseRestResource{
+	private static final Log LOG = LogFactory.getLog(RouteMainRestResource.class);
 
 	// spring自动装配的行程操作库
 	@Autowired

@@ -39,6 +39,10 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
 
 		   '#RouteScheduleFormView #btnCheckin':{
 			   tap:'doRouteCheckin'
+		   },
+
+		   '#RouteCheckinView #imgAdd':{
+			   tap:'addCheckInImage'
 		   }
        },
        
@@ -176,8 +180,11 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
 
 	doRouteCheckin:function(){
 		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteCheckinView'));
+	},
 
-		var me = this, scheduleView = me.getScheduleFormView(), checkinview = me.getRouteCheckinView();
-
+	addCheckInImage:function(){
+		YourTour.util.Context.imageCapture(function(){
+			alert('afafa');
+		});
 	}
 });

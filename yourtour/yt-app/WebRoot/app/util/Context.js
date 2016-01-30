@@ -2,7 +2,7 @@ Ext.define('YourTour.util.Context', {
 	singleton : true,
 	alias:'Context',
 	alternateClassName: 'YourTour.Context',
-	
+	required:['YourTour.view.widget.XImageSelect'],
     config : {
     	userKey:'user',
 
@@ -74,6 +74,10 @@ Ext.define('YourTour.util.Context', {
 		});
 
 		return data;
+	},
+
+	imageCapture:function(success, fail){
+		Ext.Viewport.add(Ext.create('YourTour.view.widget.XImageSelect',{success:success, fail : fail}));
 	}
 });
 

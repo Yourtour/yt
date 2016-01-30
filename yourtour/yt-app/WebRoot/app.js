@@ -14,7 +14,7 @@ Ext.application({
     name: 'YourTour',
 
     requires: [
-        'Ext.MessageBox', 'YourTour.view.widget.XProcessing', 'Ext.form.Hidden','YourTour.util.Context'
+        'Ext.MessageBox', 'YourTour.view.widget.XProcessing', 'Ext.form.Hidden','YourTour.util.Context','YourTour.view.widget.XImageSelect'
     ],
     
     /**

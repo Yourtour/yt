@@ -15,8 +15,8 @@ Ext.define('YourTour.controller.home.HomeMainCtrl', {
        },
        
        control:{
-    		'#HomeMainView #change':{
-    			tap:'onPlaceTap'
+    		'#HomeMainView #btnPlace':{
+    			tap:'selectHomePlace'
        		},
        		
        		bestView:{
@@ -110,8 +110,9 @@ Ext.define('YourTour.controller.home.HomeMainCtrl', {
     onMoreAlongTap:function(){
     	this.redirectTo('/along/list');
     },
-    
-    onPlaceTap:function(){
-    	this.redirectTo('/place/change');
+
+	selectHomePlace:function(){
+		var controller = this.getApplication().getController('PlaceMainCtrl');
+		controller.showPage();
     }
 });

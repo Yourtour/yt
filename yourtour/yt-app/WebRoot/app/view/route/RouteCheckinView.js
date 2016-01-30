@@ -36,6 +36,8 @@ Ext.define('YourTour.view.route.RouteCheckinView', {
 				mode : 'tag'
 			}
         ]
-    }
+    },
+
+
 });
 

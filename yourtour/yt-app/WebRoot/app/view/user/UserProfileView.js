@@ -23,19 +23,17 @@ Ext.define('YourTour.view.user.UserProfileView', {
 				layout:'hbox',
 				itemId:'userLogoPanel',
 				style:'background-color:white',
-				cls:'nav-arrow',
+				cls:'nav-arrow underline',
 				padding:10,
 				items:[
 					{
 						itemId : 'userLogo',
 						xtype : 'image',
-						model:'tag'
+						model:'tag',
+						height:64,
+						width:64
 					}
 				]
-			},
-			{
-				xtype:'panel',
-				cls:'spacer'
 			},
 
 			{
@@ -44,7 +42,12 @@ Ext.define('YourTour.view.user.UserProfileView', {
 				label : '个性',
 				showMore:true,
 				fieldCls:'x-field-more',
-				padding:'0 10 0 10'
+				ifNull:'请简单描述您个人'
+			},
+
+			{
+				xtype:'panel',
+				cls:'spacer'
 			},
 
 			{
@@ -116,8 +119,7 @@ Ext.define('YourTour.view.user.UserProfileView', {
 				itemId : 'tags',
 				xtype : 'xmultifield',
 				label : '标签',
-				fieldCls:'text-align-right',
-				padding:'0 10 0 10'
+				fieldCls:'text-align-right'
 			}
         ]
     }

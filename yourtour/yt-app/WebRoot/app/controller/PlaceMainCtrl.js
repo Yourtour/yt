@@ -9,21 +9,17 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
     	   
        },
        
-       routes:{
-        	'/place/:placeId':'showPage'
-       },
-       
-       placeId:null
-       
     },
     
     init:function(){
     },
     
     showPage:function(placeId){
-    	var me = this;
-    	me.placeId = placeId;
-    	
-    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.place.PlaceMainView'));
+        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.place.PlaceMainView'));
+
+    	var me = this, mainview = me.getPlaceMainView();
+        var image = mainview.down('#image');
+        var place = Ext.create('YourTour.model.PlaceModel');
+        image.setData(place);
     }
 });
