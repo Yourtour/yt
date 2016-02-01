@@ -45,6 +45,7 @@ public class ExpertBean extends BaseBeanImpl {
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_COMMENTED, type = CommentBean.class, direction = Direction.OUTGOING, isList = true)
 	private List<CommentBean> comments = null;
 
+	//预先规划好的行程
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_EXPERT, type = RouteMainBean.class, direction = Direction.INCOMING, isList = true)
 	private List<RouteMainBean> routes = null;
 

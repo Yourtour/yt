@@ -2,6 +2,7 @@ package com.yt.business.neo4j.repository;
 
 import java.util.List;
 
+import com.yt.business.bean.LineBean;
 import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.neo4j.repository.GraphRepository;
 
@@ -25,4 +26,10 @@ public interface PlaceBeanRepository extends GraphRepository<PlaceBean> {
 
 	@Query("START source=NODE({0}) MATCH source-[:RELATED]->(target:PlaceBean) RETURN target")
 	public List<PlaceBean> getRelatedPlaces(Long placeId);
+
+	@Query("START place=NODE({0}) MATCH place<-[:AT]->(profile:UserProfileBean)-[:IS]->(expert:ExpertBean) RETURN profile, expert skip {1} limit {2}")
+	public List<ExpertTuple> getExperts(Long placeId, int startIndex, int limit);
+
+	@Query("START place=NODE({0}) MATCH (line:LineBean)-[:AT]->place RETURN line skip {1} limit {2}")
+	public List<LineBean> getLines(Long placeId, int startIndex, int limit);
 }

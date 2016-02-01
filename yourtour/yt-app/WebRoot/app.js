@@ -43,6 +43,10 @@ Ext.application({
         'expert.ExpertMainView','expert.ExpertApplyView','expert.ExpertIntroFormView','expert.ExpertListView','expert.ExpertServiceEditView',
         'expert.ExpertRecommendListView','expert.ExpertRecommendIntroView',
 
+        'line.LineListView',
+
+        'along.AlongListView',
+
         'community.LiveMainView',
         'place.PlaceMainView','place.PlaceSelectionView'
     ],

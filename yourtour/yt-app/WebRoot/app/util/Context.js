@@ -48,7 +48,7 @@ Ext.define('YourTour.util.Context', {
     },
 
 	fillViewFields:function(view, record){
-		var elements = Ext.ComponentQuery.query('xfield,xmultifield,xselectfield, ximage,xdataview,xbutton,xscore,xtextarea,xtextfield', view);
+		var elements = Ext.ComponentQuery.query('xfield,xmultifield,xselectfield, ximage,xbutton,xscore,xtextarea,xtextfield', view);
 		var updatable = true;
 		Ext.Array.forEach(elements,function(item){
 			if(item instanceof YourTour.view.widget.XDataView){

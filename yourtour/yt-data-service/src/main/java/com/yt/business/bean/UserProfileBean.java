@@ -114,7 +114,10 @@ public class UserProfileBean extends BaseDictBeanImpl {
 
 	private int idAuthenticate = 0;
 
-	@Neo4jRelationship(relationship=Constants.RELATION_TYPE_HAS, type = ExpertBean.class, direction = Direction.OUTGOING)
+	@Neo4jRelationship(relationship=Constants.RELATION_TYPE_AT, type = PlaceBean.class, direction = Direction.OUTGOING)
+	private transient PlaceBean place;
+
+	@Neo4jRelationship(relationship=Constants.RELATION_TYPE_IS, type = ExpertBean.class, direction = Direction.OUTGOING)
 	private transient ExpertBean expert;
 	
 	@Neo4jRelationship(relationship=Constants.RELATION_TYPE_FOLLOW, type = UserProfileBean.class, direction = Direction.OUTGOING, isList = true)
@@ -283,6 +286,14 @@ public class UserProfileBean extends BaseDictBeanImpl {
 
 	public void setExpert(ExpertBean expert) {
 		this.expert = expert;
+	}
+
+	public PlaceBean getPlace() {
+		return place;
+	}
+
+	public void setPlace(PlaceBean place) {
+		this.place = place;
 	}
 
 	public String getAge(){

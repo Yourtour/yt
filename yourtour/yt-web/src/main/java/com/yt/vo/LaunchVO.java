@@ -3,7 +3,7 @@ package com.yt.vo;
 import java.io.Serializable;
 import java.util.List;
 
-import com.yt.vo.basedata.PlaceVO;
+import com.yt.vo.place.PlaceVO;
 
 public class LaunchVO implements Serializable {
 	private static final long serialVersionUID = 7353580902980438916L;

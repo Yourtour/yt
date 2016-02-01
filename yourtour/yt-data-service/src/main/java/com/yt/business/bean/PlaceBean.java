@@ -78,6 +78,10 @@ public class PlaceBean extends BaseDictBeanImpl {
 	
 	private transient List<PlaceBean> subs = new ArrayList<PlaceBean>();
 
+	private List<ExpertBean> experts = null;
+
+	private List<LineBean>  lines = null;
+
 	public PlaceBean() {
 		super();
 	}
@@ -180,6 +184,22 @@ public class PlaceBean extends BaseDictBeanImpl {
 
 	public void setHome(boolean home) {
 		this.home = home;
+	}
+
+	public List<ExpertBean> getExperts() {
+		return experts;
+	}
+
+	public void setExperts(List<ExpertBean> experts) {
+		this.experts = experts;
+	}
+
+	public List<LineBean> getLines() {
+		return lines;
+	}
+
+	public void setLines(List<LineBean> lines) {
+		this.lines = lines;
 	}
 
 	@Override

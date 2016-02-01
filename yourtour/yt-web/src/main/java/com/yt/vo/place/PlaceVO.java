@@ -1,11 +1,16 @@
-package com.yt.vo.basedata;
+package com.yt.vo.place;
 
-import java.util.List;
-import java.util.Vector;
-
+import com.yt.business.bean.ExpertBean;
+import com.yt.business.bean.LineBean;
 import com.yt.business.bean.PlaceBean;
 import com.yt.business.common.Constants.Status;
 import com.yt.core.utils.CollectionUtils;
+import com.yt.vo.member.ExpertVO;
+import com.yt.vo.route.LineVO;
+import com.yt.vo.route.RouteVO;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PlaceVO {
 	private Long graphId = -1l, parentId = null;
@@ -16,6 +21,11 @@ public class PlaceVO {
 	private int goneNum = 0;  //去过人数
 	private int goingNum = 0;  //想去人数
 	private int num = 0;  //下辖目的地个数
+
+	private List<ExpertVO> experts;
+	private List<LineVO> lines;
+	private List<RouteVO> routes;
+
 
 	public static PlaceBean transform(PlaceVO vo) {
 		if (vo == null) {
@@ -35,6 +45,27 @@ public class PlaceVO {
 			parent.setGraphId(vo.getParentId());
 			bean.setParent(parent);
 		}
+
+		List<LineBean> lines = bean.getLines();
+		if(CollectionUtils.isNotEmpty(lines)){
+			List<LineVO> voes = new ArrayList<>();
+			for(LineBean line : lines){
+				voes.add(LineVO.transform(line));
+			}
+
+			vo.setLines(voes);
+		}
+
+		List<ExpertBean> experts = bean.getExperts();
+		if(CollectionUtils.isNotEmpty(experts)){
+			List<ExpertVO> voes = new ArrayList<>();
+			for(ExpertBean expert : experts){
+				voes.add(ExpertVO.transform(expert));
+			}
+
+			vo.setExperts(voes);
+		}
+
 		return bean;
 	}
 
@@ -202,5 +233,27 @@ public class PlaceVO {
 		this.name = name;
 	}
 
+	public List<ExpertVO> getExperts() {
+		return experts;
+	}
 
+	public void setExperts(List<ExpertVO> experts) {
+		this.experts = experts;
+	}
+
+	public List<RouteVO> getRoutes() {
+		return routes;
+	}
+
+	public void setRoutes(List<RouteVO> routes) {
+		this.routes = routes;
+	}
+
+	public List<LineVO> getLines() {
+		return lines;
+	}
+
+	public void setLines(List<LineVO> lines) {
+		this.lines = lines;
+	}
 }

@@ -1,7 +1,7 @@
 Ext.define('YourTour.view.expert.ExpertListView', {
 		extend: 'YourTour.view.widget.XPage',
     xtype: 'ExpertListView',
-    requires:['YourTour.view.widget.XHeaderBar'],
+    requires:['YourTour.view.widget.XHeaderBar','YourTour.view.expert.ExpertDataItem'],
     config: {
 	    id:'ExpertListView',
 	    layout:'card',
@@ -13,8 +13,13 @@ Ext.define('YourTour.view.expert.ExpertListView', {
 				items:[
 			       
 				]			
-			},      
-            
+			},
+
+			{
+				xtype: 'xdataview',
+				itemId: 'expertList',
+				defaultType: 'ExpertDataItem'
+			}
         ]
     }
 });

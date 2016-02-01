@@ -1,5 +1,5 @@
 Ext.define('YourTour.view.common.PlaceGridItemView', {
-	extend: 'YourTour.view.widget.XGridItem',
+	extend: 'YourTour.view.widget.grid.XGridItem',
     requires:['Ext.Panel', 'YourTour.view.widget.XField','YourTour.view.widget.XPanel'],
     xtype: 'PlaceGridItemView',
     config: {

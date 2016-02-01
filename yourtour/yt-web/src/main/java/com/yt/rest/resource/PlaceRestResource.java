@@ -1,9 +1,7 @@
 package com.yt.rest.resource;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -12,6 +10,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.yt.business.utils.Neo4jUtils;
 import com.yt.core.utils.CollectionUtils;
 import com.yt.utils.WebUtils;
 import org.apache.commons.logging.Log;
@@ -23,7 +22,7 @@ import com.yt.business.bean.PlaceBean;
 import com.yt.business.repository.PlaceRepository;
 import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
-import com.yt.vo.basedata.PlaceVO;
+import com.yt.vo.place.PlaceVO;
 
 @Component
 @Path("place")
@@ -137,6 +136,27 @@ public class PlaceRestResource {
 				LOG.error("GetPlaces fail.", ex);
 			}
 			return new ResponseDataVO<List<PlaceVO>>(
+					StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
+	}
+
+	@GET
+	@Path("/{placeId}/main")
+	public ResponseDataVO<PlaceVO> queryMainInfo(@PathParam("placeId") String placeId){
+		try {
+			PlaceBean place = placeRepository.getPlace4Home(Neo4jUtils.getGraphIDFromString(placeId));
+			if(place == null){
+				return new ResponseDataVO<PlaceVO>(StaticErrorEnum.THE_DATA_NOT_EXIST);
+			}
+
+			PlaceVO vo = PlaceVO.transform(place);
+
+			return new ResponseDataVO<PlaceVO>(vo);
+		} catch (Exception ex) {
+			if (LOG.isErrorEnabled()) {
+				LOG.error("GetPlaces fail.", ex);
+			}
+			return new ResponseDataVO<PlaceVO>(
 					StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
 	}

@@ -25,7 +25,7 @@ import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.utils.WebUtils;
-import com.yt.vo.basedata.PlaceVO;
+import com.yt.vo.place.PlaceVO;
 
 @Component
 @Path("divisions")

@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.yt.business.bean.ExpertBean;
+import com.yt.business.bean.LineBean;
+import com.yt.business.bean.RouteMainBean;
 import com.yt.core.utils.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,11 +28,39 @@ public class PlaceRepositoryImpl extends CrudAllInOneOperateImpl implements
 		super();
 	}
 
+	@Override
+	public PlaceBean getPlace4Home(Long placeId) throws Exception{
+		PlaceBean place = (PlaceBean) this.get(PlaceBean.class, placeId, false);
+
+		List<ExpertBean> experts = this.getExperts(placeId, 0,20);
+		place.setExperts(experts);
+
+		List<LineBean> lines = this.getLines(placeId, 0, 20);
+		place.setLines(lines);
+
+		return place;
+	}
+
+	@Override
+	public List<ExpertBean> getExperts(Long placeId, int startIndex, int limit) throws Exception{
+		return null;
+	}
+
+	@Override
+	public List<LineBean> getLines(Long placeId, int startIndex, int limit) throws Exception{
+		return null;
+	}
+
+	@Override
+	public List<RouteMainBean> getRoutes(Long placeId, int startIndex, int limit) throws Exception{
+		return null;
+	}
+
 	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.yt.business.repository.PlaceRespository#getAllRootPlaces()
-	 */
+         * (non-Javadoc)
+         *
+         * @see com.yt.business.repository.PlaceRespository#getAllRootPlaces()
+         */
 	@Override
 	public List<PlaceBean> getAllRootPlaces() throws Exception {
 		return repository.getAllRootPlaces();

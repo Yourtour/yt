@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.place.PlaceMainView', {
 	extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Img','YourTour.view.widget.XHeaderBar','YourTour.view.widget.XGridView'],
+    requires:['Ext.Img','YourTour.view.widget.XHeaderBar','YourTour.view.place.PlaceExpertItem','YourTour.view.place.PlaceLineItem','YourTour.view.place.PlaceAlongItem'],
     config: {
     	id:'PlaceMainView',
       	layout:'vbox',
@@ -61,55 +61,19 @@ Ext.define('YourTour.view.place.PlaceMainView', {
 					},
 
 					{
-						xtype: 'xspacer'
-					},
-					{
-						xtype: 'xlabel',
-						cls: 'underline x-xlabel-normal',
-						indicator:'nav-arrow',
-						html: '服务达人'
+						xtype:'PlaceExpertItem',
+						itemId:'placeExpertItem'
 					},
 
 					{
-						xtype: 'xgridview',
-						itemId:'experts',
-						height:150,
-						itemTpl:new Ext.XTemplate('<div class="row">张皓然</div>')
-					},
-
-					/*{
-						xtype: 'xspacer'
-					},
-					{
-						xtype: 'xlabel',
-						cls: 'underline x-xlabel-normal',
-						indicator:'nav-arrow',
-						html: '旅行线路'
+						xtype:'PlaceLineItem',
+						itemId:'placeLineItem'
 					},
 
 					{
-						xtype: 'panel',
-						layout: 'vbox',
-						height: 150,
-						items: []
-					},
-
-					{
-						xtype: 'xspacer'
-					},
-					{
-						xtype: 'xlabel',
-						cls: 'underline x-xlabel-normal',
-						indicator:'nav-arrow',
-						html: '一起旅游'
-					},
-
-					{
-						xtype: 'panel',
-						layout: 'vbox',
-						height: 150,
-						items: []
-					}*/
+						xtype: 'PlaceAlongItem',
+						itemId:'placeAlongItem'
+					}
 				]
 			}
         ]

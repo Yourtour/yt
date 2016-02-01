@@ -2,26 +2,17 @@ package com.yt.rest.resource;
 
 import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataParam;
-import com.yt.business.bean.PlaceBean;
 import com.yt.business.repository.PlaceRepository;
-import com.yt.business.utils.Neo4jUtils;
 import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
-import com.yt.response.ResponseVO;
-import com.yt.utils.WebUtils;
-import com.yt.vo.basedata.PlaceVO;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import java.io.InputStream;
-import java.util.List;
-import java.util.Vector;
 
 @Component
 @Path("/route/{routeId}/activity/{activityId}")

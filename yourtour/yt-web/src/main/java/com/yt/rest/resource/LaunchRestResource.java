@@ -19,7 +19,7 @@ import com.yt.business.repository.PlaceRepository;
 import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
 import com.yt.vo.LaunchVO;
-import com.yt.vo.basedata.PlaceVO;
+import com.yt.vo.place.PlaceVO;
 
 @Component
 @Path("app")

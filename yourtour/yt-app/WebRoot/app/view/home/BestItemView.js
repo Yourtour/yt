@@ -1,5 +1,5 @@
 Ext.define('YourTour.view.home.BestItemView', {
-    extend: 'YourTour.view.widget.XGridItem',
+    extend: 'YourTour.view.widget.grid.XGridItem',
     requires:['Ext.Panel', 'YourTour.view.widget.XPanel','YourTour.view.widget.XField'],
     xtype: 'BestItemView',
     config: {

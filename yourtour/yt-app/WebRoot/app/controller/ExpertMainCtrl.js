@@ -362,13 +362,13 @@ Ext.define('YourTour.controller.ExpertMainCtrl', {
         }, this);
     },
 
-    showIntroPage:function(userId){
+    showExpertInfo:function(userId, record){
     	var me = this;
     	
     	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.expert.ExpertIntroView'));
     },
     
-    showListPage:function(placeId){
+    showExpertList:function(placeId, store){
     	var me = this;
     	
     	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.expert.ExpertListView'));

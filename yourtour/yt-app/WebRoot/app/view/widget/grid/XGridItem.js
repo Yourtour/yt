@@ -1,4 +1,4 @@
-Ext.define('YourTour.view.widget.XGridItem', {
+Ext.define('YourTour.view.widget.grid.XGridItem', {
     extend: 'Ext.Panel',
     config:{
     	layout:'fit',

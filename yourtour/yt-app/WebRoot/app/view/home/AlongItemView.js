@@ -1,5 +1,5 @@
 Ext.define('YourTour.view.home.AlongItemView', {
-	extend: 'YourTour.view.widget.XGridItem',
+	extend: 'YourTour.view.widget.grid.XGridItem',
     requires:['Ext.Panel', 'YourTour.view.widget.XField','YourTour.view.widget.XPanel'],
     xtype: 'AlongItemView',
     config: {
