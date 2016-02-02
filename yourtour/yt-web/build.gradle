@@ -15,6 +15,7 @@ dependencies {
 				   "com.sun.jersey:jersey-json:1.19",
 				   "com.sun.jersey:jersey-servlet:1.19",
 				   "com.sun.jersey:jersey-server:1.19",
+				    "com.sun.jersey.contribs:jersey-multipart:1.19",
 				   "com.sun.jersey.contribs:jersey-spring:1.19",
 					 "org.ebaysf.web:cors-filter:1.0.1",
 					 "org.springframework.data:spring-data-hadoop:2.1.2.RELEASE",
@@ -26,6 +27,8 @@ dependencies {
 		       "org.springframework.data:spring-data-neo4j-rest:3.2.0.RELEASE",
 		       "org.neo4j:neo4j-cypher-dsl:2.1.4",
 		       "javax.validation:validation-api:1.1.0.Final",
+		       "javax.websocket:javax.websocket-api:1.1",
+		       "javax.websocket:javax.websocket-client-api:1.1",
 		       "dom4j:dom4j:1.6.1",
 					 project(":yt-data-service")	
 				
