@@ -32,8 +32,8 @@ public class AlongRepositoryImpl extends CrudAllInOneOperateImpl implements
 		AlongBean alongBean = alongRepo.getAlongByGraphId(graphId);
 		if(alongBean == null) return null;
 		
-		List<CommentTuple> comments = commentRepo.getComments(alongBean.getGraphId(), "commentNum", 0l, 10);
-		alongBean.setComments(comments);
+		/*List<CommentTuple> comments = commentRepo.getComments(alongBean.getGraphId(), "commentNum", 0l, 10);
+		alongBean.setComments(comments);*/
 		return alongBean;
 	}
 
@@ -51,7 +51,4 @@ public class AlongRepositoryImpl extends CrudAllInOneOperateImpl implements
 
 		return alongBeans;
 	}
-
-	
-	
 }

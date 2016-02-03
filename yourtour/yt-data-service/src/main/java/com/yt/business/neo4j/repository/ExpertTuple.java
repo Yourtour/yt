@@ -19,6 +19,7 @@ public class ExpertTuple {
 	}
 
 	public ExpertBean getExpert() {
+		expert.setProfile(profile);
 		return expert;
 	}
 

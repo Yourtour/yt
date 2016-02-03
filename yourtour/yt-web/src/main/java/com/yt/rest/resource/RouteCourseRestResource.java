@@ -15,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 import java.io.InputStream;
 
 @Component
-@Path("/route/{routeId}/activity/{activityId}")
+@Path("/course/{routeId}/{activityId}")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class RouteCourseRestResource {
@@ -25,9 +25,8 @@ public class RouteCourseRestResource {
 	private PlaceRepository placeRepository;
 
 	@Path("/checkin/save")
-	@GET
-	private ResponseDataVO<Long> saveCheckinInfo(String memo, @FormDataParam("file") InputStream fileInputStream,
-												 @FormDataParam("file") FormDataContentDisposition contentDispositionHeader) {
+	@POST
+	public ResponseDataVO<Long> saveCheckinInfo(String memo) {
 		try {
 			return new ResponseDataVO<Long>();
 		} catch (Exception ex) {

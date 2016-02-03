@@ -1,9 +1,6 @@
 package com.yt.business.neo4j;
 
-import com.yt.business.bean.PlaceBean;
-import com.yt.business.bean.ResourceActivityItemBean;
-import com.yt.business.bean.SceneResourceBean;
-import com.yt.business.bean.UserProfileBean;
+import com.yt.business.bean.*;
 import com.yt.business.common.Constants;
 import com.yt.business.repository.PlaceRepository;
 import com.yt.business.repository.RouteRepository;
@@ -121,7 +118,7 @@ public class PlaceDataGenerator extends DataGenerator{
 		}
 	}
 
-	@Test
+	//@Test
 	public void createRelative(){
 		repository = context.getBean(PlaceRepository.class);
 		try {
@@ -132,6 +129,36 @@ public class PlaceDataGenerator extends DataGenerator{
 			target.setGraphId(7l);
 
 			repository.createRelation(source, target, Constants.RELATION_TYPE_RELATED, Direction.OUTGOING);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			fail(ex.getMessage());
+		}
+	}
+
+	@Test
+	public void createMainViewData(){
+		repository = context.getBean(PlaceRepository.class);
+		try {
+			PlaceBean place = new PlaceBean();
+			place.setGraphId(6l);
+
+			Long[] expertIds = new Long[]{299l, 280l, 434l, 299l, 301l};
+			for(Long expertId : expertIds){
+				UserProfileBean profile = new UserProfileBean();
+				profile.setGraphId(expertId);
+
+				repository.createRelation(place, profile, Constants.RELATION_TYPE_IS, Direction.INCOMING);
+			}
+
+			Long[] lineIds = new Long[]{299l, 280l, 434l, 299l, 301l};
+			for(Long lineId : lineIds){
+				LineBean line = new LineBean();
+				line.setGraphId(lineId);
+
+				repository.createRelation(place, line, Constants.RELATION_TYPE_AT, Direction.INCOMING);
+			}
+
+
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			fail(ex.getMessage());

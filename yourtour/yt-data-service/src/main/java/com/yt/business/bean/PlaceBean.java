@@ -80,7 +80,7 @@ public class PlaceBean extends BaseDictBeanImpl {
 
 	private List<ExpertBean> experts = null;
 
-	private List<LineBean>  lines = null;
+	private List<RouteMainBean>  routes = null;
 
 	public PlaceBean() {
 		super();
@@ -194,12 +194,12 @@ public class PlaceBean extends BaseDictBeanImpl {
 		this.experts = experts;
 	}
 
-	public List<LineBean> getLines() {
-		return lines;
+	public List<RouteMainBean> getRoutes() {
+		return routes;
 	}
 
-	public void setLines(List<LineBean> lines) {
-		this.lines = lines;
+	public void setRoutes(List<RouteMainBean> routes) {
+		this.routes = routes;
 	}
 
 	@Override

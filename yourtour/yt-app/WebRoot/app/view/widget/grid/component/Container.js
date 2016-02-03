@@ -86,9 +86,11 @@ Ext.define('YourTour.view.widget.grid.component.Container', {
             delete record._tmpIndex;
         }
 
-        for(i = 0; i < me.cols - ln % me.cols; i++){
-            item = me.getEmptyItemConfig();
-            me.row.add(item);
+        if(me.row.getItems().length != me.cols) {
+            for (i = 0; i < me.cols - ln % me.cols; i++) {
+                item = me.getEmptyItemConfig();
+                me.row.add(item);
+            }
         }
 
         return items;

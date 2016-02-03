@@ -25,10 +25,11 @@ public class ExpertBean extends BaseBeanImpl {
 	private static final long serialVersionUID = -3433522673262851121L;
 
 	private String  memo;
-
 	private String  tags;
 	private String  places;
 	private String  result; //审批结果
+
+	private int		recommended = 0;
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_IS, type = UserProfileBean.class, direction = Direction.INCOMING)
 	private UserProfileBean profile = null;
@@ -131,5 +132,13 @@ public class ExpertBean extends BaseBeanImpl {
 
 	public void setTags(String tags) {
 		this.tags = tags;
+	}
+
+	public int getRecommended() {
+		return recommended;
+	}
+
+	public void setRecommended(int recommended) {
+		this.recommended = recommended;
 	}
 }

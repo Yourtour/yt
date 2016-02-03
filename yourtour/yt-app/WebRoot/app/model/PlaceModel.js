@@ -23,7 +23,21 @@ Ext.define('YourTour.model.PlaceModel', {
 	            model: 'YourTour.model.PlaceModel',   
 	            name:'children',   
 	            associationKey:'children'  
-	        }
-        ]  
+	        },
+
+			{
+				type: 'hasMany',
+				model: 'YourTour.model.ExpertModel',
+				name:'experts',
+				associationKey:'experts'
+			},
+
+			{
+				type: 'hasMany',
+				model: 'YourTour.model.RouteModel',
+				name:'routes',
+				associationKey:'routes'
+			}
+        ]
     }
 });

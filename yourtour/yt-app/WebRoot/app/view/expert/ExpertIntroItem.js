@@ -1,4 +1,4 @@
-Ext.define('YourTour.view.expert.ExpertRecommendIntroItem', {
+Ext.define('YourTour.view.expert.ExpertIntroItem', {
     extend: 'YourTour.view.widget.XPageBody',
     requires: ['Ext.Panel'],
     xtype:'ExpertRecommendIntroItem',

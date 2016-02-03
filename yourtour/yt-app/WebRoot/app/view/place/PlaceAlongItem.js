@@ -1,7 +1,7 @@
 Ext.define('YourTour.view.place.PlaceAlongItem', {
 	extend: 'Ext.Container',
     xtype: 'PlaceAlongItem',
-    requires:['YourTour.view.widget.grid.XGridView','YourTour.view.widget.grid.XDataView','YourTour.view.place.PlaceExpertGridItem'],
+    requires:['YourTour.view.widget.XDataView','YourTour.view.along.AlongListDataItem'],
     config: {
         layout:'vbox',
       	items:[
@@ -19,9 +19,8 @@ Ext.define('YourTour.view.place.PlaceAlongItem', {
             {
                 xtype: 'xdataview',
                 itemId: 'placeAlongList',
-                defaultType: 'RouteScheduleListDataItem'
+                defaultType: 'AlongListDataItem'
             }
         ]
     }
 });
-

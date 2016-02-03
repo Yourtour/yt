@@ -40,8 +40,8 @@ Ext.application({
         'resource.ResourceActivityItemFormView',
         'member.MemberMainView','member.MemberView', 'member.MemberAddView','member.MemberPositionView','member.MemberSearchView','member.MemberSelectionView',
         'charge.ChargeMainView','charge.ChargeFormView','charge.ChargeListView','charge.ChargeView','charge.ChargeDivisionView','charge.ChargeDivisionFormView',
-        'expert.ExpertMainView','expert.ExpertApplyView','expert.ExpertIntroFormView','expert.ExpertListView','expert.ExpertServiceEditView',
-        'expert.ExpertRecommendListView','expert.ExpertRecommendIntroView',
+        'expert.ExpertMainView','expert.ExpertApplyView','expert.ExpertListView','expert.ExpertServiceEditView',
+        'expert.ExpertRecommendListView','expert.ExpertRecommendIntroView','expert.ExpertView',
 
         'line.LineListView',
 
@@ -59,7 +59,8 @@ Ext.application({
         'user.AccountMainCtrl',
         'route.ScheduleReferenceCtrl','route.ScheduleDetailCtrl',
         'ResourceMainCtrl','user.UserListCtrl','PlaceSelectionCtrl','CommonMainCtrl',
-        'LineMainCtrl','MemberMainCtrl','ChargeMainCtrl','UserMainCtrl', 'ExpertMainCtrl', 'MessageMainCtrl','PlaceMainCtrl','ServiceMainCtrl'
+        'LineMainCtrl','MemberMainCtrl','ChargeMainCtrl','UserMainCtrl', 'ExpertMainCtrl', 'MessageMainCtrl','PlaceMainCtrl','ServiceMainCtrl',
+        'AlongMainCtrl'
     ],
     
     models:[

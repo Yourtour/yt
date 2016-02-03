@@ -2,6 +2,9 @@ package com.yt.business.bean;
 
 import java.util.List;
 
+import com.yt.business.common.Constants;
+import com.yt.neo4j.annotation.Neo4jRelationship;
+import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 
 import com.yt.business.BaseBeanImpl;
@@ -64,10 +67,11 @@ public class AlongBean extends BaseBeanImpl {
 	@HbaseColumn(name = "stat")
 	private Status status;
 
-	private transient RouteMainBean route; // 结伴信息关联的行程
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_AT, type = UserProfileBean.class, direction = Direction.OUTGOING)
 	private transient UserProfileBean publisher; // 结伴信息发布者信息
-	private transient List<CommentTuple> comments; // 评论信息
-	private transient List<UserProfileBean> following; // 关注人员
+
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_AT, type = RouteMainBean.class, direction = Direction.OUTGOING)
+	private transient  RouteMainBean route;
 
 	public AlongBean() {
 		super();
@@ -169,14 +173,6 @@ public class AlongBean extends BaseBeanImpl {
 		this.status = status;
 	}
 
-	public RouteMainBean getRoute() {
-		return route;
-	}
-
-	public void setRoute(RouteMainBean route) {
-		this.route = route;
-	}
-
 	public UserProfileBean getPublisher() {
 		return publisher;
 	}
@@ -185,19 +181,11 @@ public class AlongBean extends BaseBeanImpl {
 		this.publisher = publisher;
 	}
 
-	public List<CommentTuple> getComments() {
-		return comments;
+	public RouteMainBean getRoute() {
+		return route;
 	}
 
-	public void setComments(List<CommentTuple> comments) {
-		this.comments = comments;
-	}
-
-	public List<UserProfileBean> getFollowing() {
-		return following;
-	}
-
-	public void setFollowing(List<UserProfileBean> following) {
-		this.following = following;
+	public void setRoute(RouteMainBean route) {
+		this.route = route;
 	}
 }

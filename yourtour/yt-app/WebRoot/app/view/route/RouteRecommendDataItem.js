@@ -3,67 +3,28 @@ Ext.define('YourTour.view.route.RouteRecommendDataItem', {
     xtype: 'RouteRecommendDataItem',
     requires:['Ext.Panel', 'Ext.Img', 'YourTour.view.widget.XField','YourTour.view.widget.XLabel'],
     config: {
+		height:150,
+		layout:'vbox',
+		padding:'0 0 10 0',
     	items:[
-    		{
-    			xtype:'panel',
-    			layout:'vbox',
-    			height:150,
-    			items:[
-		    		{
-		   				itemId : 'image',
-						xtype : 'ximage',
-						binding:'imageUrl',
-						imageCls:'img-medium'
-		    		},
-
-					{
-						xtype: 'panel',
-						layout: 'vbox',
-						padding: '0 10 0 10',
-						docked: 'top',
-						top: 1,
-						left:1,
-						items: [
-							{
-								xtype: 'xscore',
-								star:true
-							}
-						]
-					}
-		    	]
-    		},
+			{
+				xtype: 'ximage',
+				itemId: 'image',
+				width:'100%',
+				height:'100%',
+				mode:'background'
+			},
 
 			{
 				xtype: 'xfield',
 				itemId: 'lineName',
+				docked:'top',
 				underline:false,
-				fieldCls:'font-bold',
-				padding:'5 0 0 0'
-			},
-
-			{
-				xtype:'panel',
-				layout:'hbox',
-				defaults:{
-					padding:'5 0 0 0',
-					underline:false,
-					fieldCls:'font-small',
-					labelCls:'font-grey'
-				},
-				items:[
-					{
-						xtype:'xfield',
-						itemId:'duration',
-						label:'日程天数:'
-					},
-
-					{
-						xtype:'xfield',
-						itemId:'price',
-						label:'价格:',
-						margin:'0 0 0 20'
-					}
-				]
+				cls:'x-xopacity',
+				fieldCls:'font-white',
+				top:10,
+				left:10,
+				padding:0
 			}
 		]
     }

@@ -1,4 +1,4 @@
-Ext.define('YourTour.view.line.AlongListDataItem', {
+Ext.define('YourTour.view.along.AlongListDataItem', {
 	extend: 'YourTour.view.widget.XDataItem',
     xtype: 'AlongListDataItem',
     requires:['Ext.Label','Ext.Panel'],

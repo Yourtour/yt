@@ -1,5 +1,6 @@
 Ext.define('YourTour.controller.ExpertMainCtrl', {
     extend: 'YourTour.controller.BaseCtrl',
+    requires:['YourTour.view.expert.ExpertViewIntroItem'],
     config: {
        refs:{
     	   expertMainView:'#ExpertMainView',
@@ -13,7 +14,9 @@ Ext.define('YourTour.controller.ExpertMainCtrl', {
 
            expertRecommendListView:'#ExpertRecommendListView',
            expertRecommendList:' #ExpertRecommendListView #expertList',
-           expertRecommendIntroView:'#ExpertRecommendIntroView'
+           expertRecommendIntroView:'#ExpertRecommendIntroView',
+
+           expertView:'#ExpertView'
        },
        
        control:{
@@ -363,9 +366,21 @@ Ext.define('YourTour.controller.ExpertMainCtrl', {
     },
 
     showExpertInfo:function(userId, record){
-    	var me = this;
-    	
-    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.expert.ExpertIntroView'));
+    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.expert.ExpertView'));
+        var me = this, expertview = me.getExpertView(), expertCarousel = expertview.down('#expertCarousel');
+
+        var options = {
+            model: 'YourTour.model.ExpertModel',
+            url: '/expert/' + userId,
+            success: function (store) {
+                var expert = store.first();
+                expertview.setData(expert);
+
+                var introItem = Ext.create('YourTour.view.expert.ExpertViewIntroItem', {record:expert});
+                expertCarousel.add(introItem)
+            }
+        };
+        me.getApplication().query(options);
     },
     
     showExpertList:function(placeId, store){

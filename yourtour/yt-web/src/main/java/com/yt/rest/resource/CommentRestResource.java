@@ -73,7 +73,7 @@ public class CommentRestResource extends BaseRestResource{
 	 * @param comment
 	 * @return
 	 */
-	@GET
+	@POST
 	@Path("/resource/{id}/save")
 	public ResponseDataVO<Long> saveResourceComment(@PathParam("id") String id, CommentVO comment) {
 		try{

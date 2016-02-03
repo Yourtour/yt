@@ -13,14 +13,15 @@ Ext.define('YourTour.view.place.PlaceExpertItem', {
                 itemId:'placeMoreExperts',
                 cls: 'underline x-xlabel-normal',
                 indicator:'nav-arrow',
-                html: '服务达人'
+                html: '游徒达人'
             },
 
             {
                 xtype: 'xgridview',
                 itemId:'placeExpertList',
                 cols:2,
-                height:150,
+                height:140,
+                size:4,
                 useComponents: true,
                 defaultType: 'PlaceExpertGridItem'
             }

@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.line.LineListDataItem', {
 	extend: 'YourTour.view.widget.XDataItem',
-    xtype: 'ExpertDataItem',
+    xtype: 'LineListDataItem',
     requires:['Ext.Label','Ext.Panel'],
     config: {
 		layout:'vbox',

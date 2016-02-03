@@ -642,6 +642,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.viewport.WindowsPhone": [
     "Ext.viewport.WP"
   ],
+  "YourTour.controller.AlongMainCtrl": [],
   "YourTour.controller.BaseCtrl": [],
   "YourTour.controller.ChargeMainCtrl": [],
   "YourTour.controller.CommonMainCtrl": [],
@@ -723,6 +724,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.Launch": [],
   "YourTour.view.MainView": [],
   "YourTour.view.SearchMain": [],
+  "YourTour.view.along.AlongListDataItem": [],
+  "YourTour.view.along.AlongListView": [],
   "YourTour.view.charge.ChargeDivisionFormView": [],
   "YourTour.view.charge.ChargeDivisionView": [],
   "YourTour.view.charge.ChargeFormView": [],
@@ -772,6 +775,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.home.TalentItemView": [],
   "YourTour.view.home.TalentListItemView": [],
   "YourTour.view.home.TalentListView": [],
+  "YourTour.view.line.LineListDataItem": [],
+  "YourTour.view.line.LineListView": [],
   "YourTour.view.line.LineResourceItem": [],
   "YourTour.view.member.MemberAddView": [],
   "YourTour.view.member.MemberItemView": [],
@@ -781,10 +786,14 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.member.MemberSearchView": [],
   "YourTour.view.member.MemberSelectionView": [],
   "YourTour.view.member.MemberView": [],
+  "YourTour.view.place.PlaceAlongItem": [],
+  "YourTour.view.place.PlaceExpertGridItem": [],
+  "YourTour.view.place.PlaceExpertItem": [],
   "YourTour.view.place.PlaceExpertView": [],
   "YourTour.view.place.PlaceFoodView": [],
   "YourTour.view.place.PlaceMainView": [],
   "YourTour.view.place.PlaceOverviewView": [],
+  "YourTour.view.place.PlaceRouteItem": [],
   "YourTour.view.place.PlaceSceneView": [],
   "YourTour.view.place.PlaceSelectionAbroadItem": [],
   "YourTour.view.place.PlaceSelectionDataItem": [],
@@ -859,8 +868,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.XDateField": [],
   "YourTour.view.widget.XField": [],
   "YourTour.view.widget.XGenderSelect": [],
-  "YourTour.view.widget.XGridItem": [],
-  "YourTour.view.widget.XGridView": [],
   "YourTour.view.widget.XHeaderBar": [],
   "YourTour.view.widget.XIcon": [],
   "YourTour.view.widget.XImage": [],
@@ -892,7 +899,12 @@ Ext.ClassManager.addNameAlternateMappings({
   ],
   "YourTour.view.widget.XTitleBar": [],
   "YourTour.view.widget.XToolbar": [],
-  "YourTour.view.widget.XVerticalLine": []
+  "YourTour.view.widget.XVerticalLine": [],
+  "YourTour.view.widget.grid.XGridItem": [],
+  "YourTour.view.widget.grid.XGridView": [],
+  "YourTour.view.widget.grid.component.Container": [],
+  "YourTour.view.widget.grid.component.DataItem": [],
+  "YourTour.view.widget.grid.element.Container": []
 });
 Ext.ClassManager.addNameAliasMappings({
   "Ext.AbstractComponent": [],
@@ -1615,6 +1627,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.Ios": [],
   "Ext.viewport.Viewport": [],
   "Ext.viewport.WindowsPhone": [],
+  "YourTour.controller.AlongMainCtrl": [],
   "YourTour.controller.BaseCtrl": [],
   "YourTour.controller.ChargeMainCtrl": [],
   "YourTour.controller.CommonMainCtrl": [],
@@ -1703,6 +1716,12 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.SearchMain": [
     "widget.searchmain"
+  ],
+  "YourTour.view.along.AlongListDataItem": [
+    "widget.AlongListDataItem"
+  ],
+  "YourTour.view.along.AlongListView": [
+    "widget.AlongListView"
   ],
   "YourTour.view.charge.ChargeDivisionFormView": [],
   "YourTour.view.charge.ChargeDivisionView": [],
@@ -1811,6 +1830,12 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.home.TalentListView": [
     "widget.TalentListView"
   ],
+  "YourTour.view.line.LineListDataItem": [
+    "widget.LineListDataItem"
+  ],
+  "YourTour.view.line.LineListView": [
+    "widget.LineListView"
+  ],
   "YourTour.view.line.LineResourceItem": [
     "widget.LineResourceItem"
   ],
@@ -1830,6 +1855,15 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.member.MemberSearchView": [],
   "YourTour.view.member.MemberSelectionView": [],
   "YourTour.view.member.MemberView": [],
+  "YourTour.view.place.PlaceAlongItem": [
+    "widget.PlaceAlongItem"
+  ],
+  "YourTour.view.place.PlaceExpertGridItem": [
+    "widget.PlaceExpertGridItem"
+  ],
+  "YourTour.view.place.PlaceExpertItem": [
+    "widget.PlaceExpertItem"
+  ],
   "YourTour.view.place.PlaceExpertView": [
     "widget.PlaceExpertView"
   ],
@@ -1839,6 +1873,9 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.place.PlaceMainView": [],
   "YourTour.view.place.PlaceOverviewView": [
     "widget.PlaceOverviewView"
+  ],
+  "YourTour.view.place.PlaceRouteItem": [
+    "widget.PlaceRouteItem"
   ],
   "YourTour.view.place.PlaceSceneView": [
     "widget.PlaceSceneView"
@@ -2012,10 +2049,6 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.widget.XGenderSelect": [
     "widget.xgenderselect"
   ],
-  "YourTour.view.widget.XGridItem": [],
-  "YourTour.view.widget.XGridView": [
-    "widget.xgridview"
-  ],
   "YourTour.view.widget.XHeaderBar": [
     "widget.xheaderbar"
   ],
@@ -2095,5 +2128,14 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.widget.XVerticalLine": [
     "widget.xvline"
-  ]
+  ],
+  "YourTour.view.widget.grid.XGridItem": [],
+  "YourTour.view.widget.grid.XGridView": [
+    "widget.xgridview"
+  ],
+  "YourTour.view.widget.grid.component.Container": [],
+  "YourTour.view.widget.grid.component.DataItem": [
+    "widget.griditem"
+  ],
+  "YourTour.view.widget.grid.element.Container": []
 });

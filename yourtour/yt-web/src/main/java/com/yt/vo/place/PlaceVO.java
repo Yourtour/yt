@@ -3,6 +3,7 @@ package com.yt.vo.place;
 import com.yt.business.bean.ExpertBean;
 import com.yt.business.bean.LineBean;
 import com.yt.business.bean.PlaceBean;
+import com.yt.business.bean.RouteMainBean;
 import com.yt.business.common.Constants.Status;
 import com.yt.core.utils.CollectionUtils;
 import com.yt.vo.member.ExpertVO;
@@ -23,9 +24,7 @@ public class PlaceVO {
 	private int num = 0;  //下辖目的地个数
 
 	private List<ExpertVO> experts;
-	private List<LineVO> lines;
 	private List<RouteVO> routes;
-
 
 	public static PlaceBean transform(PlaceVO vo) {
 		if (vo == null) {
@@ -44,26 +43,6 @@ public class PlaceVO {
 			PlaceBean parent = new PlaceBean();
 			parent.setGraphId(vo.getParentId());
 			bean.setParent(parent);
-		}
-
-		List<LineBean> lines = bean.getLines();
-		if(CollectionUtils.isNotEmpty(lines)){
-			List<LineVO> voes = new ArrayList<>();
-			for(LineBean line : lines){
-				voes.add(LineVO.transform(line));
-			}
-
-			vo.setLines(voes);
-		}
-
-		List<ExpertBean> experts = bean.getExperts();
-		if(CollectionUtils.isNotEmpty(experts)){
-			List<ExpertVO> voes = new ArrayList<>();
-			for(ExpertBean expert : experts){
-				voes.add(ExpertVO.transform(expert));
-			}
-
-			vo.setExperts(voes);
 		}
 
 		return bean;
@@ -92,6 +71,26 @@ public class PlaceVO {
 
 		if(bean.getParent() != null){
 			vo.setParentCode(bean.getParent().getCode());
+		}
+
+		List<RouteMainBean> routes = bean.getRoutes();
+		if(CollectionUtils.isNotEmpty(routes)){
+			List<RouteVO> voes = new ArrayList<>();
+			for(RouteMainBean route : routes){
+				voes.add(RouteVO.transform(route));
+			}
+
+			vo.setRoutes(voes);
+		}
+
+		List<ExpertBean> experts = bean.getExperts();
+		if(CollectionUtils.isNotEmpty(experts)){
+			List<ExpertVO> voes = new ArrayList<>();
+			for(ExpertBean expert : experts){
+				voes.add(ExpertVO.transform(expert));
+			}
+
+			vo.setExperts(voes);
 		}
 		return vo;
 	}
@@ -247,13 +246,5 @@ public class PlaceVO {
 
 	public void setRoutes(List<RouteVO> routes) {
 		this.routes = routes;
-	}
-
-	public List<LineVO> getLines() {
-		return lines;
-	}
-
-	public void setLines(List<LineVO> lines) {
-		this.lines = lines;
 	}
 }

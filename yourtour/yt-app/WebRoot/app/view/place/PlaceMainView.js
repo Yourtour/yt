@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.place.PlaceMainView', {
 	extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Img','YourTour.view.widget.XHeaderBar','YourTour.view.place.PlaceExpertItem','YourTour.view.place.PlaceLineItem','YourTour.view.place.PlaceAlongItem'],
+    requires:['Ext.Img','YourTour.view.widget.XHeaderBar','YourTour.view.place.PlaceExpertItem'],
     config: {
     	id:'PlaceMainView',
       	layout:'vbox',
@@ -66,26 +66,43 @@ Ext.define('YourTour.view.place.PlaceMainView', {
 					},
 
 					{
-						xtype:'PlaceLineItem',
-						itemId:'placeLineItem'
+						xtype:'panel',
+						itemId:'placeRouteItem',
+						layout:'vbox',
+						items:[
+							{
+								xtype: 'xspacer'
+							},
+							{
+								xtype: 'xlabel',
+								itemId:'placeMorelines',
+								cls: 'underline x-xlabel-normal',
+								indicator:'nav-arrow',
+								html: '游徒行程'
+							}
+						]
 					},
 
 					{
-						xtype: 'PlaceAlongItem',
-						itemId:'placeAlongItem'
+						xtype: 'panel',
+						itemId:'placeAlongItem',
+						layout:'vbox',
+						items:[
+							{
+								xtype: 'xspacer'
+							},
+							{
+								xtype: 'xlabel',
+								itemId:'placeMorelines',
+								cls: 'underline x-xlabel-normal',
+								indicator:'nav-arrow',
+								html: '游徒结伴'
+							}
+						]
 					}
 				]
 			}
         ]
-    },
-
-	initialize:function(){
-		var me = this;
-		me.callParent(arguments);
-
-		var store = Ext.create('YourTour.store.AlongListStore');
-		var grid = me.down('#experts');
-		grid.setStore(store);
-	}
+    }
 });
 

@@ -86,15 +86,5 @@ public interface PlaceRepository extends CrudAllInOneOperate {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<LineBean> getLines(Long placeId, int startIndex, int limit) throws Exception;
-
-	/**
-	 *
-	 * @param placeId
-	 * @param startIndex
-	 * @param limit
-	 * @return
-	 * @throws Exception
-	 */
 	public List<RouteMainBean> getRoutes(Long placeId, int startIndex, int limit) throws Exception;
 }

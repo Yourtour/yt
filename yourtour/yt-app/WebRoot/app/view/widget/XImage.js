@@ -25,7 +25,13 @@ Ext.define('YourTour.view.widget.XImage', {
 
         var url = data.get(name);
         var cls = this.getImageCls();
-        this.setHtml("<img src='" + YourTour.util.Context.getImageResource(url) + "' class='" + cls +"'/>");
+
+        var mode = this.mode || this.getMode();
+        if(mode == 'tag') {
+            this.setHtml("<img src='" + YourTour.util.Context.getImageResource(url) + "' class='" + cls + "'/>");
+        }else{
+            this.setSrc(YourTour.util.Context.getImageResource(url));
+        }
     }
 });
 
