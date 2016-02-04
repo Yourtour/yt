@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.route.RouteRecommendIntroductionView', {
 	extend: 'YourTour.view.widget.XPage',
-    requires:['YourTour.view.widget.XHeaderBar','YourTour.view.widget.XNavigation', 'YourTour.view.route.RouteRecommendScheduleItem', 'YourTour.view.route.RouteRecommendIntroductionItem','YourTour.view.expert.ExpertRecommendIntroItem'],
+    requires:['YourTour.view.widget.XHeaderBar','YourTour.view.widget.XNavigation', 'YourTour.view.route.RouteRecommendScheduleItem', 'YourTour.view.route.RouteRecommendIntroductionItem'],
     config: {
     	id:'RouteRecommendIntroductionView',
 		layout:'card',
@@ -19,10 +19,7 @@ Ext.define('YourTour.view.route.RouteRecommendIntroductionView', {
 				itemId: 'introductionItem'
 			},
 
-			{
-				xtype: 'ExpertRecommendIntroItem',
-				itemId: 'expertItem'
-			},
+
 
 			{
 				xtype: 'RouteRecommendScheduleItem',

@@ -4,7 +4,6 @@ import java.util.*;
 
 import com.yt.business.bean.*;
 import com.yt.business.neo4j.repository.*;
-import com.yt.core.utils.DateUtils;
 import com.yt.core.utils.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -32,7 +31,7 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 	private ResourceActivityItemRepository resourceActivityItemRepository;
 
 	@Autowired
-	private ExpertServiceRepository expertServiceRepository;
+	private ExpertBeanRepository expertBeanRepository;
 
 	public RouteRepositoryImpl() {
 		super();
@@ -127,7 +126,7 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 	 */
 	@Override
 	public List<RouteMainBean> getRoutesByOwner(Long userId) throws Exception {
-		List<OwnerRouteTuple> routes = repository.getRoutesByOwner(userId);
+		List<OwnerRouteTuple> routes = repository.getOwnedRoutes(userId);
 		List<RouteMainBean> list = new Vector<RouteMainBean>(routes.size());
 		for (OwnerRouteTuple bean : routes) {
 			if (bean.route == null) {

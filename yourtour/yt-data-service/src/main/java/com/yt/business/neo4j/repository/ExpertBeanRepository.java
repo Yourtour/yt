@@ -6,7 +6,10 @@ import org.springframework.data.neo4j.repository.GraphRepository;
 
 import java.util.List;
 
-public interface ExpertServiceRepository extends GraphRepository<ExpertServiceBean> {
+public interface ExpertBeanRepository extends GraphRepository<ExpertServiceBean> {
+	@Query("START N=NODE({0}) MATCH (profile:UserProfileBean)-[:IS]->expert return expert, profile")
+	public ExpertTuple getExpert(Long expertId);
+
 	@Query("MATCH (expert:ExpertBean)<-[:IS]-(profile:UserProfileBean) return expert, profile")
 	public List<ExpertTuple> getExperts(Long[] places, Integer duration);
 
@@ -19,6 +22,19 @@ public interface ExpertServiceRepository extends GraphRepository<ExpertServiceBe
 	@Query("START user=node({0}) MATCH user-[:HAS]->(application:ExpertApplicationBean) RETURN application")
 	public ExpertApplicationBean getApplication(Long userId);
 
-	@Query("START user=node({0}) MATCH user-[p:PARTICIPATE]->(routes:RouteMainBean) where p.role='EXPERT' RETURN routes")
-	public List<RouteMainBean> getRoutes(Long userId);
+	/**
+	 * 获取达人参与的行程
+	 * @param expertId
+	 * @return
+	 */
+	@Query("START expert=node({0}) MATCH expert-[p:PARTICIPATE]->(routes:RouteMainBean) where p.role='EXPERT' RETURN routes")
+	public List<RouteMainBean> getParticipatedRoutes(Long expertId, int startIndex, int limits);
+
+	/**
+	 * 获取达人推荐行程
+	 * @param expertId
+	 * @return
+	 */
+	@Query("START expert=node({0}) MATCH expert-[:RECOMMEND]->(routes:RouteMainBean) RETURN routes")
+	public List<RouteMainBean> getRecommendRoutes(Long expertId);
 }

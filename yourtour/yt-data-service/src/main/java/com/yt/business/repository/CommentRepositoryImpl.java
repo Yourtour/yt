@@ -25,7 +25,7 @@ public class CommentRepositoryImpl extends CrudAllInOneOperateImpl implements Co
 	private CommentBeanRepository repository;
 
 	@Override
-	public List<CommentBean> getComments(Long subjectId, String filter, Long start, int limit) throws Exception {
+	public List<CommentBean> getComments(Long subjectId, String filter, Long nextCursor, int limit) throws Exception {
 		List<CommentBean> comments = new ArrayList<>();
 
 		String queryStr = "START n=node(%d) MATCH n-[:HAS]->(comment:CommentBean)-[:BELONG]->(user:UserProfileBean) %s  RETURN comment, user";

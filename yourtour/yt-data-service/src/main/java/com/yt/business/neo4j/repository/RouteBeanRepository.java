@@ -49,22 +49,46 @@ public interface RouteBeanRepository extends GraphRepository<RouteMainBean> {
 
 	/**
 	 * 根据指定的用户，返回该用户拥有的行程，同时返回包含在关系中的imageUrl和impression属性。
-	 *
 	 * @param userId
-	 *            用户Id
-	 * @return 指定用户拥有的行程、关系属性元组列表
+	 * @return
 	 */
 	@Query("START owner=node({0}) MATCH owner<-[r:HAS]-(route:RouteMainBean) RETURN r.imageUrl, r.impression, route")
-	public List<OwnerRouteTuple> getRoutesByOwner(Long userId);
+	public List<OwnerRouteTuple> getOwnedRoutes(Long userId);
+
+	/**
+	 * 获取达人推荐的行程
+	 * @param userId
+	 * @param startIndex
+	 * @param limit
+	 * @return
+	 */
+	@Query("START route=node({0}) MATCH (expert:ExpertBean)<-[:IS]-(owner:UserProfileBean)-[:RECOMMEND]->(route) RETURN expert, owner, route")
+	public List<RouteMainBean> getRoutesRecommendedByExpert(Long userId, Long startIndex, int limit);
+
+	/**
+	 * 获取以达人身份参与的行程
+	 * @param userId
+	 * @param startIndex
+	 * @param limit
+	 * @return
+	 */
+	@Query("START member=node({0}) MATCH member<-[:EXPERT]-(route:RouteMainBean) RETURN route")
+	public List<RouteMainBean> getRoutesParticipatedAsExpert(Long userId, Long startIndex, int limit);
+
+	/**
+	 * 获取以非达人身份参与的行程
+	 * @param userId
+	 * @param startIndex
+	 * @param limit
+	 * @return
+	 */
+	@Query("START member=node({0}) MATCH member<-[:MEMBER]-(route:RouteMainBean) RETURN route")
+	public List<RouteMainBean> getRoutesParticipatedAsMember(Long userId, int startIndex, int limit);
 
 	/**
 	 * 根据指定的行程和成员角色，返回该行程中的用户。
-	 *
 	 * @param routeId
-	 *            行程ID
-	 * @param groupRole
-	 *            成员角色
-	 * @return 用户列表
+	 * @return
 	 */
 	@Query("START route=node({0}) MATCH route -- (user:UserProfileBean) RETURN user")
 	public List<UserProfileBean> getRouteMember(Long routeId);

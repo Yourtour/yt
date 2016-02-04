@@ -23,6 +23,9 @@ import java.util.List;
 @NodeEntity
 public class ExpertBean extends BaseBeanImpl {
 	private static final long serialVersionUID = -3433522673262851121L;
+	public static final String EXPERT_NOT = "-1";
+	public static final String EXPERT_APPLY = "0";
+	public static final String EXPERT_APPROVED = "1";
 
 	private String  memo;
 	private String  tags;
@@ -34,32 +37,11 @@ public class ExpertBean extends BaseBeanImpl {
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_IS, type = UserProfileBean.class, direction = Direction.INCOMING)
 	private UserProfileBean profile = null;
 
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_SERVICE, type = PlaceBean.class, direction = Direction.OUTGOING, isList = true)
-	private List<PlaceBean> placeList = null;
-
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RECOMMEND, type = RouteMainBean.class, direction = Direction.OUTGOING, isList = true)
-	private List<RouteMainBean> recommendRoutes = null;
-
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = ExpertServiceBean.class, direction = Direction.OUTGOING, isList = true)
 	private List<ExpertServiceBean> services = null;
-
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_COMMENTED, type = CommentBean.class, direction = Direction.OUTGOING, isList = true)
-	private List<CommentBean> comments = null;
-
-	//预先规划好的行程
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_EXPERT, type = RouteMainBean.class, direction = Direction.INCOMING, isList = true)
-	private List<RouteMainBean> routes = null;
+	private List<RouteMainBean> routes = null; //推荐行程
 
 	public ExpertBean() {
 		super();
-	}
-
-	public List<RouteMainBean> getRecommendRoutes() {
-		return recommendRoutes;
-	}
-
-	public void setRecommendRoutes(List<RouteMainBean> recommendRoutes) {
-		this.recommendRoutes = recommendRoutes;
 	}
 
 	public String getPlaces() {
@@ -68,14 +50,6 @@ public class ExpertBean extends BaseBeanImpl {
 
 	public void setPlaces(String places) {
 		this.places = places;
-	}
-
-	public List<PlaceBean> getPlaceList() {
-		return placeList;
-	}
-
-	public void setPlaceList(List<PlaceBean> placeList) {
-		this.placeList = placeList;
 	}
 
 	public String getMemo() {
@@ -92,14 +66,6 @@ public class ExpertBean extends BaseBeanImpl {
 
 	public void setServices(List<ExpertServiceBean> services) {
 		this.services = services;
-	}
-
-	public List<CommentBean> getComments() {
-		return comments;
-	}
-
-	public void setComments(List<CommentBean> comments) {
-		this.comments = comments;
 	}
 
 	public List<RouteMainBean> getRoutes() {

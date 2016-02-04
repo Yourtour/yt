@@ -2,8 +2,10 @@ package com.yt.business.repository;
 
 import com.yt.business.CrudAllInOneOperateImpl;
 import com.yt.business.bean.*;
-import com.yt.business.neo4j.repository.ExpertServiceRepository;
+import com.yt.business.neo4j.repository.ExpertBeanRepository;
 import com.yt.business.neo4j.repository.ExpertTuple;
+import com.yt.business.neo4j.repository.RouteBeanRepository;
+import com.yt.business.neo4j.repository.UserProfileBeanRepository;
 import com.yt.core.utils.CollectionUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -19,7 +21,13 @@ public class ExpertRepositoryImpl extends CrudAllInOneOperateImpl implements
 	private static final Log LOG = LogFactory.getLog(ExpertRepositoryImpl.class);
 
 	@Autowired
-	private ExpertServiceRepository expertServiceRepository;
+	private ExpertBeanRepository expertBeanRepository;
+
+	@Autowired
+	private RouteBeanRepository routeBeanRepository;
+
+	@Autowired
+	private CommentRepository commentRepository;
 
 	public ExpertRepositoryImpl() {
 		super();
@@ -36,7 +44,7 @@ public class ExpertRepositoryImpl extends CrudAllInOneOperateImpl implements
 		}
 
 		List<ExpertBean> experts = new ArrayList<>();
-		List<ExpertTuple> tuples = expertServiceRepository.getExperts(places.toArray(new Long[]{}), Integer.valueOf(duration));
+		List<ExpertTuple> tuples = expertBeanRepository.getExperts(places.toArray(new Long[]{}), Integer.valueOf(duration));
 		if(CollectionUtils.isNotEmpty(tuples)){
 			for(ExpertTuple tuple : tuples){
 				ExpertBean expert = tuple.getExpert();
@@ -50,8 +58,18 @@ public class ExpertRepositoryImpl extends CrudAllInOneOperateImpl implements
 	}
 
 	@Override
-	public List<ExpertServiceBean> getServices(Long expertId) {
-		return expertServiceRepository.getServices(expertId);
+	public List<ExpertServiceBean> getServices(Long expertId, Long nextCursor, int limit) throws Exception {
+		return expertBeanRepository.getServices(expertId);
+	}
+
+	@Override
+	public List<RouteMainBean> getRecommendRoutes(Long expertId, Long nextCursor, int limit) throws Exception {
+		return this.routeBeanRepository.getRoutesRecommendedByExpert(expertId, nextCursor, limit);
+	}
+
+	@Override
+	public List<RouteMainBean> getServicedRoutes(Long expertId, Long nextCursor, int limit) throws Exception {
+		return this.routeBeanRepository.getRoutesParticipatedAsExpert(expertId, nextCursor, limit);
 	}
 
 	@Override
@@ -64,7 +82,7 @@ public class ExpertRepositoryImpl extends CrudAllInOneOperateImpl implements
 
 	@Override
 	public ExpertApplicationBean getApplication(Long userId) throws Exception {
-		return expertServiceRepository.getApplication(userId);
+		return expertBeanRepository.getApplication(userId);
 	}
 
 	@Override
@@ -74,10 +92,5 @@ public class ExpertRepositoryImpl extends CrudAllInOneOperateImpl implements
 		ExpertBean expert = (ExpertBean) this.get(ExpertBean.class, approvement.getApplication().getExpertId());
 		expert.setResult(approvement.getResult());
 		super.save(expert, expert.getCreatedUserId());
-	}
-
-	@Override
-	public List<RouteMainBean> getRoutes(Long expertId) {
-		return expertServiceRepository.getRoutes(expertId);
 	}
 }

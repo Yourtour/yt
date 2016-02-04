@@ -53,10 +53,6 @@ public class UserProfileBean extends BaseDictBeanImpl {
 	private static final long serialVersionUID = -6977525800090683657L;
 	private static final String INDEX_NAME = "user"; // 定义了本实体中全文检索的索引名称。
 
-	public static final String EXPERT_NOT = "-1";
-	public static final String EXPERT_APPLY = "0";
-	public static final String EXPERT_APPROVED = "1";
-
 	@HbaseColumn(name = "nname")
 	@Indexed
 	private String nickName; // 昵称
@@ -100,26 +96,19 @@ public class UserProfileBean extends BaseDictBeanImpl {
 	@HbaseColumn(name = "role")
 	private Role role = Role.MEMBER; // 角色
 
-	@HbaseColumn(name = "rank")
 	@Indexed
 	private int rank; // 等级
 
-	@HbaseColumn(name = "slga")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
 	private String slogan; // 个人口号
 
 	private int snsAuthenticate = 0;
-
 	private int mobileAuthenticate = 0;
-
 	private int idAuthenticate = 0;
 
 	@Neo4jRelationship(relationship=Constants.RELATION_TYPE_AT, type = PlaceBean.class, direction = Direction.OUTGOING)
 	private transient PlaceBean place;
 
-	@Neo4jRelationship(relationship=Constants.RELATION_TYPE_IS, type = ExpertBean.class, direction = Direction.OUTGOING)
-	private transient ExpertBean expert;
-	
 	@Neo4jRelationship(relationship=Constants.RELATION_TYPE_FOLLOW, type = UserProfileBean.class, direction = Direction.OUTGOING, isList = true)
 	private transient List<UserProfileBean> followers;
 	
@@ -128,6 +117,9 @@ public class UserProfileBean extends BaseDictBeanImpl {
 	
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_WATCH, type = LineBean.class, direction = Direction.OUTGOING, isList = true)
 	private transient List<LineBean> watchedLines;
+
+	private List<CommentBean> comments = null;
+	private List<RouteMainBean> routes = null;
 
 	public UserProfileBean() {
 		super();
@@ -280,20 +272,28 @@ public class UserProfileBean extends BaseDictBeanImpl {
 		this.idAuthenticate = idAuthenticate;
 	}
 
-	public ExpertBean getExpert() {
-		return expert;
-	}
-
-	public void setExpert(ExpertBean expert) {
-		this.expert = expert;
-	}
-
 	public PlaceBean getPlace() {
 		return place;
 	}
 
 	public void setPlace(PlaceBean place) {
 		this.place = place;
+	}
+
+	public List<CommentBean> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<CommentBean> comments) {
+		this.comments = comments;
+	}
+
+	public List<RouteMainBean> getRoutes() {
+		return routes;
+	}
+
+	public void setRoutes(List<RouteMainBean> routes) {
+		this.routes = routes;
 	}
 
 	public String getAge(){

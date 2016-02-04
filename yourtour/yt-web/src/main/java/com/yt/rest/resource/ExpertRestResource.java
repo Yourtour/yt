@@ -93,7 +93,7 @@ public class ExpertRestResource {
 		try{
 			String userId = WebUtils.getCurrentLoginUser(request);
 			UserProfileBean user = (UserProfileBean) this.expertRepository.get(UserProfileBean.class, Long.valueOf(userId), false);
-			ExpertBean expert = user.getExpert();
+			ExpertBean expert = null; //user.getExpert();
 
 			ExpertApplicationBean application = this.expertRepository.getApplication(Long.valueOf(userId));
 			if(application == null){
@@ -196,7 +196,7 @@ public class ExpertRestResource {
 	@Path("/services/{expertId}")
 	public ResponseDataVO<List<ExpertServiceVO>> getServices(@Context HttpServletRequest request, @PathParam("expertId") String expertId){
 		try{
-			List<ExpertServiceBean> services = this.expertRepository.getServices(Long.valueOf(expertId));
+			List<ExpertServiceBean> services = this.expertRepository.getServices(Long.valueOf(expertId), 0l, 20);
 			List<ExpertServiceVO> valueobjects = new ArrayList<>();
 
 			if(services != null){
@@ -219,9 +219,34 @@ public class ExpertRestResource {
 	 */
 	@GET
 	@Path("/routes/{expertId}")
-	public ResponseDataVO<List<RouteItemVO>> getRoutes(@Context HttpServletRequest request, @PathParam("expertId") String expertId){
+	public ResponseDataVO<List<RouteItemVO>> getServicedRoutes(@Context HttpServletRequest request, @PathParam("expertId") String expertId){
 		try{
-			List<RouteMainBean> routes = this.expertRepository.getRoutes(Long.valueOf(expertId));
+			List<RouteMainBean> routes = this.expertRepository.getServicedRoutes(Long.valueOf(expertId), 0l, 20);
+			List<RouteItemVO> valueobjects = new ArrayList<>();
+
+			if(routes != null){
+				for(RouteMainBean route : routes){
+					valueobjects.add(new RouteItemVO(route));
+				}
+			}
+			return new ResponseDataVO<List<RouteItemVO>>(valueobjects);
+		} catch (Exception ex) {
+			Logger.error("Exception raised when saving service.", ex);
+			return new ResponseDataVO<List<RouteItemVO>>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
+	}
+
+	/**
+	 *
+	 * @param request
+	 * @param expertId
+	 * @return
+	 */
+	@GET
+	@Path("/routes/{expertId}")
+	public ResponseDataVO<List<RouteItemVO>> getRecommendRoutes(@Context HttpServletRequest request, @PathParam("expertId") String expertId){
+		try{
+			List<RouteMainBean> routes = this.expertRepository.getRecommendRoutes(Long.valueOf(expertId), 0l, 20);
 			List<RouteItemVO> valueobjects = new ArrayList<>();
 
 			if(routes != null){

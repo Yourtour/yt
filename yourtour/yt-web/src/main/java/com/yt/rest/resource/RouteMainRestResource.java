@@ -39,7 +39,7 @@ public class RouteMainRestResource extends BaseRestResource{
 	 */
 	@GET
 	@Path("/personal/query")
-	public ResponseDataVO<List<RouteItemVO>> getRoutesByUser(@Context HttpServletRequest request) {
+	public ResponseDataVO<List<RouteItemVO>> getOwnedRoutes(@Context HttpServletRequest request) {
 		String userId = null;
 		try {
 			userId = super.getCurrentUserId(request);
@@ -428,7 +428,7 @@ public class RouteMainRestResource extends BaseRestResource{
 	 */
 	@GET
 	@Path("{id}/delete")
-	public ResponseVO delete(@PathParam("id") String id) {
+	public ResponseVO deleteRoute(@PathParam("id") String id) {
 		long graphId = Neo4jUtils.getGraphIDFromString(id);
 		try {
 			RouteMainBean bean = null;

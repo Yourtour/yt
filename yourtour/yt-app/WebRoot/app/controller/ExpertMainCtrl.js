@@ -1,95 +1,100 @@
 Ext.define('YourTour.controller.ExpertMainCtrl', {
     extend: 'YourTour.controller.BaseCtrl',
-    requires:['YourTour.view.expert.ExpertViewIntroItem'],
+    requires: ['YourTour.view.expert.ExpertViewIntroItem'],
     config: {
-       refs:{
-    	   expertMainView:'#ExpertMainView',
-           expertRouteList:'#ExpertMainView #routeList',
+        refs: {
+            expertView: '#ExpertView',
+            expertCarousel: '#ExpertView #expertCarousel',
 
-           expertApplyView:'#ExpertApplyView',
-           expertCarousel:'#ExpertApplyView #expertCarousel',
-           expertServiceList:'#ExpertApplyView #ServiceList',
+            /************************************************************************************************/
+            expertMainView: '#ExpertMainView',
+            expertRouteList: '#ExpertMainView #routeList',
 
-           expertServiceEditView:'#ExpertServiceEditView',
+            expertApplyView: '#ExpertApplyView',
+            expertCarousel: '#ExpertApplyView #expertCarousel',
+            expertServiceList: '#ExpertApplyView #ServiceList',
 
-           expertRecommendListView:'#ExpertRecommendListView',
-           expertRecommendList:' #ExpertRecommendListView #expertList',
-           expertRecommendIntroView:'#ExpertRecommendIntroView',
+            expertServiceEditView: '#ExpertServiceEditView',
 
-           expertView:'#ExpertView'
-       },
-       
-       control:{
-           '#ExpertMainView #btnApply':{
-               tap:'onExpertApplyTap'
-           },
+            expertRecommendListView: '#ExpertRecommendListView',
+            expertRecommendList: ' #ExpertRecommendListView #expertList',
+            expertRecommendIntroView: '#ExpertRecommendIntroView',
+        },
 
-    	   '#ExpertApplyView #btnResource':{
-               tap:'onResourceItemTap'
-           },
+        control: {
+            '#ExpertView #expertCarousel':{
+                activeitemchange:'showExpertInfoes'
+            },
 
-           '#ExpertApplyView #btnService':{
-               tap:'onServiceItemTap'
-           },
+            /************************************************************************************************/
+            '#ExpertMainView #btnApply': {
+                tap: 'onExpertApplyTap'
+            },
 
-           '#ExpertApplyView #btnSubmit':{
-               tap:'onExpertSubmitTap'
-           },
+            '#ExpertApplyView #btnResource': {
+                tap: 'onResourceItemTap'
+            },
 
-           '#ExpertApplyView #expertCarousel':{
-               activeitemchange:'onActiveItemChange'
-           },
+            '#ExpertApplyView #btnService': {
+                tap: 'onServiceItemTap'
+            },
 
-           '#ExpertApplyView #btnAdd':{
-               tap:'onServiceAddTap'
-           },
+            '#ExpertApplyView #btnSubmit': {
+                tap: 'onExpertSubmitTap'
+            },
 
-           expertServiceList:{
-               itemtap:'onServiceItemtap'
-           },
+            '#ExpertApplyView #expertCarousel': {
+                activeitemchange: 'onActiveItemChange'
+            },
 
-           '#ExpertServiceEditView #btnSave':{
-               tap:'onServiceSaveTap'
-           },
+            '#ExpertApplyView #btnAdd': {
+                tap: 'onServiceAddTap'
+            },
 
-           '#ExpertServiceEditView #btnDelete':{
-               tap:'onServiceDeleteTap'
-           },
+            expertServiceList: {
+                itemtap: 'onServiceItemtap'
+            },
 
-           expertRecommendList:{
+            '#ExpertServiceEditView #btnSave': {
+                tap: 'onServiceSaveTap'
+            },
 
-           }
-       },
-       
-       routes:{
-        	'/expert':'showMainPage',
-        	'/expert/:userId':'showIntroPage',
-        	'/experts/:placeId':'showListPage'
-       }
+            '#ExpertServiceEditView #btnDelete': {
+                tap: 'onServiceDeleteTap'
+            },
+
+            expertRecommendList: {}
+        },
+
+        routes: {
+            '/expert': 'showMainPage',
+            '/expert/:userId': 'showIntroPage',
+            '/experts/:placeId': 'showListPage'
+        }
     },
-    
-    init:function(){
+
+    init: function () {
     },
 
-    showMainPage:function(){
+    showMainPage: function () {
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.expert.ExpertMainView'));
 
         var me = this;
         var view = me.getExpertMainView();
 
         var profile = this.getApplication().getUserProfile();
-        if(profile != undefined){
-            if(profile.expert != '1'){
+        if (profile != undefined) {
+            if (profile.expert != '1') {
                 var promptPanel = view.down('#promptPanel');
                 promptPanel.show();
-            }else{
+            } else {
                 var expertRouteList = me.getExpertRouteList();
 
                 expertRouteList.show();
 
-                var store = Ext.create('YourTour.store.AjaxStore', {model:'YourTour.model.RouteModel'});
+                var store = Ext.create('YourTour.store.AjaxStore', {model: 'YourTour.model.RouteModel'});
                 store.getProxy().setUrl(YourTour.util.Context.getContext('/expert/routes/' + me.getApplication().getUserId()));
-                store.load(function(){
+                store.load(function () {
                     expertRouteList.setStore(store);
                 })
             }
@@ -101,12 +106,12 @@ Ext.define('YourTour.controller.ExpertMainCtrl', {
      * @param duration
      * @param places
      */
-    showRecommendPage:function(duration, places){
+    showRecommendPage: function (duration, places) {
         duration = 5;
         var ids = '', names = '';
         var pArray = places.split('|');
-        for(var index = 0; index < pArray.length; index++){
-            if(index > 0){
+        for (var index = 0; index < pArray.length; index++) {
+            if (index > 0) {
                 ids = ids + ',';
                 names = names + ',';
             }
@@ -119,18 +124,18 @@ Ext.define('YourTour.controller.ExpertMainCtrl', {
         var me = this;
 
         var options = {
-            model:'YourTour.model.ExpertModel',
-            url:'/expert/' + ids + '/' + duration,
-            success:function(store){
+            model: 'YourTour.model.ExpertModel',
+            url: '/expert/' + ids + '/' + duration,
+            success: function (store) {
                 Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.expert.ExpertRecommendListView'));
                 var view = me.getExpertRecommendListView();
 
                 var headerbar = view.down('#headerbar');
                 headerbar.setTitle(names);
 
-                store.each(function(expert){
-                    var item = Ext.create('YourTour.view.expert.ExpertRecommendDataItem',{record:expert});
-                    item.on('tap', function(record){
+                store.each(function (expert) {
+                    var item = Ext.create('YourTour.view.expert.ExpertRecommendDataItem', {record: expert});
+                    item.on('tap', function (record) {
                         me.showRecommendIntroPage(record);
                     });
                     view.add(item);
@@ -140,13 +145,13 @@ Ext.define('YourTour.controller.ExpertMainCtrl', {
         me.getApplication().query(options);
     },
 
-    showRecommendIntroPage:function(record){
+    showRecommendIntroPage: function (record) {
         var me = this;
 
         var options = {
-            model:'YourTour.model.ExpertModel',
-            url:'/expert/' + record.get('id'),
-            success:function(store){
+            model: 'YourTour.model.ExpertModel',
+            url: '/expert/' + record.get('id'),
+            success: function (store) {
                 Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.expert.ExpertRecommendIntroView'));
                 var view = me.getExpertRecommendIntroView();
 
@@ -165,22 +170,22 @@ Ext.define('YourTour.controller.ExpertMainCtrl', {
                 age.setText(record.get('age'));
 
                 var idAuthenticate = view.down('#idAuthenticate');
-                idAuthenticate.addCls(record.get('idAuthenticate') == 1?'icon-checked':'icon-unchecked');
+                idAuthenticate.addCls(record.get('idAuthenticate') == 1 ? 'icon-checked' : 'icon-unchecked');
 
                 var snsAuthenticate = view.down('#snsAuthenticate');
-                snsAuthenticate.addCls(record.get('snsAuthenticate') == 1?'icon-checked':'icon-unchecked');
+                snsAuthenticate.addCls(record.get('snsAuthenticate') == 1 ? 'icon-checked' : 'icon-unchecked');
 
                 var mobileAuthenticate = view.down('#mobileAuthenticate');
-                mobileAuthenticate.addCls(record.get('mobileAuthenticate') == 1?'icon-checked':'icon-unchecked');
+                mobileAuthenticate.addCls(record.get('mobileAuthenticate') == 1 ? 'icon-checked' : 'icon-unchecked');
 
                 var memo = view.down('#memo');
                 memo.setText(record.get('memo'));
 
                 var routeStore = record.routesStore;
                 var routes = view.down('#routes');
-                routeStore.each(function(route){
-                    var item = Ext.create('YourTour.view.route.RouteRecommendDataItem',{record:route});
-                    item.on('tap', function(record){
+                routeStore.each(function (route) {
+                    var item = Ext.create('YourTour.view.route.RouteRecommendDataItem', {record: route});
+                    item.on('tap', function (record) {
                         var controller = me.getApplication().getController('RouteSchedulePlanCtrl');
                         contoller.showRecommendRouteInfo(record);
                     });
@@ -191,7 +196,7 @@ Ext.define('YourTour.controller.ExpertMainCtrl', {
         me.getApplication().query(options);
     },
 
-    onExpertApplyTap:function(){
+    onExpertApplyTap: function () {
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.expert.ExpertApplyView'));
 
         var page = this.getExpertApplyView();
@@ -201,13 +206,13 @@ Ext.define('YourTour.controller.ExpertMainCtrl', {
         this.getExpertCarousel().setActiveItem(0);
     },
 
-    onResourceItemTap:function(){
+    onResourceItemTap: function () {
         this.showTab(0);
 
         this.getExpertCarousel().setActiveItem(0);
     },
 
-    onExpertSubmitTap:function(){
+    onExpertSubmitTap: function () {
         var me = this;
 
         var view = this.getExpertApplyView();
@@ -215,92 +220,94 @@ Ext.define('YourTour.controller.ExpertMainCtrl', {
 
         var realName = view.down('#realName').getValue();
         var certType = view.down('#certType').getValue();
-        var certNo =  view.down('#certNo').getValue();
+        var certNo = view.down('#certNo').getValue();
         var tags = view.down('#tags').getValue();
-        data.realName= realName;
+        data.realName = realName;
         data.certType = certType;
         data.certNo = certNo;
         data.tags = tags;
 
         Ext.Ajax.request({
-            url : YourTour.util.Context.getContext('/expert/application/save'),
-            method : "POST",
-            params : Ext.JSON.encode(data),
-            success : function(response) {
+            url: YourTour.util.Context.getContext('/expert/application/save'),
+            method: "POST",
+            params: Ext.JSON.encode(data),
+            success: function (response) {
                 var respObj = Ext.JSON.decode(response.responseText);
-                if(respObj.errorCode != '0'){
+                if (respObj.errorCode != '0') {
                     Ext.Msg.alert(respObj.errorText);
                     return;
-                };
+                }
+                ;
             },
-            failure : function(response) {
+            failure: function (response) {
                 var respObj = Ext.JSON.decode(response.responseText);
                 Ext.Msg.alert("Error", respObj.status.statusMessage);
             }
         });
     },
 
-    onServiceItemTap:function(switchCarousel){
+    onServiceItemTap: function (switchCarousel) {
         var me = this;
 
         me.showTab(1);
         me.getExpertCarousel().setActiveItem(1);
 
-        var store = Ext.create('YourTour.store.AjaxStore', {model:'YourTour.model.ServiceModel'});
+        var store = Ext.create('YourTour.store.AjaxStore', {model: 'YourTour.model.ServiceModel'});
         store.getProxy().setUrl(YourTour.util.Context.getContext('/expert/services/' + me.getApplication().getUserId()));
-        store.load(function(){
+        store.load(function () {
             me.getExpertServiceList().setStore(store);
         })
     },
 
-    onActiveItemChange:function(carousel, value, oldValue, eOpts){
-        if(oldValue.getItemId() == 'overviewPanel'){
+    onActiveItemChange: function (carousel, value, oldValue, eOpts) {
+        if (oldValue.getItemId() == 'overviewPanel') {
             this.showTab(0);
-        }else{
+        } else {
             this.showTab(1);
         }
     },
 
-    showTab:function(index){
+    showTab: function (index) {
         var page = this.getExpertApplyView();
         var btnService = page.down('#btnService');
         var btnResource = page.down('#btnResource');
 
-        if(index == 0){
+        if (index == 0) {
             btnService.addCls('active');
             btnResource.removeCls('active');
-        }else{
+        } else {
             btnService.removeCls('active');
             btnResource.addCls('active');
         }
     },
 
-    onServiceAddTap:function(){
+    onServiceAddTap: function () {
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.expert.ExpertServiceEditView'));
     },
 
-    onServiceSaveTap:function(){
+    onServiceSaveTap: function () {
         var me = this;
         var view = this.getExpertServiceEditView();
         var data = {};
 
         var id = view.down('#id').getValue();
         var title = view.down('#title').getValue();
-        var memo =  view.down('#memo').getValue();
-        data.id= id;
+        var memo = view.down('#memo').getValue();
+        data.id = id;
         data.title = title;
         data.memo = memo;
 
         Ext.Ajax.request({
-            url : YourTour.util.Context.getContext('/expert/service/save'),
-            method : "POST",
-            params : Ext.JSON.encode(data),
-            success : function(response) {
+            url: YourTour.util.Context.getContext('/expert/service/save'),
+            method: "POST",
+            params: Ext.JSON.encode(data),
+            success: function (response) {
                 var respObj = Ext.JSON.decode(response.responseText);
-                if(respObj.errorCode != '0'){
+                if (respObj.errorCode != '0') {
                     Ext.Msg.alert(respObj.errorText);
                     return;
-                };
+                }
+                ;
 
                 data.id = respObj.data;
 
@@ -308,14 +315,14 @@ Ext.define('YourTour.controller.ExpertMainCtrl', {
 
                 Ext.ComponentManager.get('MainView').pop();
             },
-            failure : function(response) {
+            failure: function (response) {
                 var respObj = Ext.JSON.decode(response.responseText);
                 Ext.Msg.alert("Error", respObj.status.statusMessage);
             }
         });
     },
 
-    onServiceItemtap:function(dataview, index, item, record,e){
+    onServiceItemtap: function (dataview, index, item, record, e) {
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.expert.ExpertServiceEditView'));
 
         var view = this.getExpertServiceEditView();
@@ -332,23 +339,24 @@ Ext.define('YourTour.controller.ExpertMainCtrl', {
         toolbar.show();
     },
 
-    onServiceDeleteTap:function(){
+    onServiceDeleteTap: function () {
         var me = this;
         var view = this.getExpertServiceEditView();
 
-        Ext.Msg.confirm("提示", "您确定要删除当前服务吗?", function(e) {
+        Ext.Msg.confirm("提示", "您确定要删除当前服务吗?", function (e) {
             if (e == "yes") {
                 var id = view.down('#id').getValue();
 
                 Ext.Ajax.request({
-                    url : YourTour.util.Context.getContext('/expert/service/' + id + '/delete'),
-                    method : "GET",
-                    success : function(response) {
+                    url: YourTour.util.Context.getContext('/expert/service/' + id + '/delete'),
+                    method: "GET",
+                    success: function (response) {
                         var respObj = Ext.JSON.decode(response.responseText);
-                        if(respObj.errorCode != '0'){
+                        if (respObj.errorCode != '0') {
                             Ext.Msg.alert(respObj.errorText);
                             return;
-                        };
+                        }
+                        ;
 
                         var store = me.getExpertServiceList().getStore();
                         var index = store.find('id', id);
@@ -356,7 +364,7 @@ Ext.define('YourTour.controller.ExpertMainCtrl', {
 
                         Ext.ComponentManager.get('MainView').pop();
                     },
-                    failure : function(response) {
+                    failure: function (response) {
                         var respObj = Ext.JSON.decode(response.responseText);
                         Ext.Msg.alert("Error", respObj.status.statusMessage);
                     }
@@ -365,8 +373,16 @@ Ext.define('YourTour.controller.ExpertMainCtrl', {
         }, this);
     },
 
-    showExpertInfo:function(userId, record){
-    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.expert.ExpertView'));
+    /*************************************************************************************************
+     * 达人详情部分
+     ************************************************************************************************/
+    /**
+     *
+     * @param userId
+     * @param record
+     */
+    showExpertInfo: function (userId, record) {
+        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.expert.ExpertView'));
         var me = this, expertview = me.getExpertView(), expertCarousel = expertview.down('#expertCarousel');
 
         var options = {
@@ -375,17 +391,20 @@ Ext.define('YourTour.controller.ExpertMainCtrl', {
             success: function (store) {
                 var expert = store.first();
                 expertview.setData(expert);
-
-                var introItem = Ext.create('YourTour.view.expert.ExpertViewIntroItem', {record:expert});
-                expertCarousel.add(introItem)
             }
         };
         me.getApplication().query(options);
     },
-    
-    showExpertList:function(placeId, store){
-    	var me = this;
-    	
-    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.expert.ExpertListView'));
+
+    showExpertInfoes:function( carousel, value, oldValue, eOpts ){
+        var itemId = value.getItemid();
+        console.log(itemId);
+    },
+
+
+    showExpertList: function (placeId, store) {
+        var me = this;
+
+        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.expert.ExpertListView'));
     }
 });

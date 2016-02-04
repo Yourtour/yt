@@ -1,6 +1,6 @@
 package com.yt.websocket;
 
-import javax.websocket.CloseReason;
+/*import javax.websocket.CloseReason;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
@@ -8,10 +8,10 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-@ServerEndpoint("/ws/chat")
+@ServerEndpoint("/ws/chat")*/
 public class TestWebSocket {
 
-	public TestWebSocket() {
+	/*public TestWebSocket() {
 		super();
 	}
 
@@ -42,5 +42,5 @@ public class TestWebSocket {
 				session.getId(), text));
 		// TODO onMessage(text)
 	}
-
+*/
 }

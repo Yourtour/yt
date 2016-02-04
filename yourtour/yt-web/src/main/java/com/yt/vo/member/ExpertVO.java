@@ -15,10 +15,6 @@ public class ExpertVO extends UserVO{
 
 	private String 	places;
 
-	private List<ExpertServiceVO> services = new ArrayList<>();  //提供服务
-	private List<CommentVO> comments = new ArrayList<>(); //用户点评
-	private List<RouteVO> routes = new ArrayList<>(); //以往服务行程
-
 	public static ExpertVO transform(ExpertBean bean){
 		ExpertVO expert = new ExpertVO();
 
@@ -34,27 +30,6 @@ public class ExpertVO extends UserVO{
 		expert.setMemo(bean.getMemo());
 		expert.setTags(bean.getTags());
 
-		List<ExpertServiceBean> services = bean.getServices();
-		if(CollectionUtils.isNotEmpty(services)){
-			for(ExpertServiceBean service : services){
-				expert.getServices().add(ExpertServiceVO.transform(service));
-			}
-		}
-
-		List<CommentBean> comments = bean.getComments();
-		if(CollectionUtils.isNotEmpty(comments)){
-			for(CommentBean comment : comments){
-				expert.getComments().add(CommentVO.transform(comment));
-			}
-		}
-
-		List<RouteMainBean> routes = bean.getRecommendRoutes();
-		if(CollectionUtils.isNotEmpty(routes)){
-			for(RouteMainBean route : routes){
-				expert.getRoutes().add(RouteVO.transform(route));
-			}
-		}
-
 		return expert;
 	}
 
@@ -64,29 +39,5 @@ public class ExpertVO extends UserVO{
 
 	public void setPlaces(String places) {
 		this.places = places;
-	}
-
-	public List<ExpertServiceVO> getServices() {
-		return services;
-	}
-
-	public void setServices(List<ExpertServiceVO> services) {
-		this.services = services;
-	}
-
-	public List<CommentVO> getComments() {
-		return comments;
-	}
-
-	public void setComments(List<CommentVO> comments) {
-		this.comments = comments;
-	}
-
-	public List<RouteVO> getRoutes() {
-		return routes;
-	}
-
-	public void setRoutes(List<RouteVO> routes) {
-		this.routes = routes;
 	}
 }

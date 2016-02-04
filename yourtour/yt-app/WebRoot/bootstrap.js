@@ -750,16 +750,17 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.community.LiveMainView": [],
   "YourTour.view.expert.ExpertApplyView": [],
   "YourTour.view.expert.ExpertDataItem": [],
-  "YourTour.view.expert.ExpertIntroFormView": [],
+  "YourTour.view.expert.ExpertIntroItem": [],
   "YourTour.view.expert.ExpertListView": [],
   "YourTour.view.expert.ExpertMainView": [],
   "YourTour.view.expert.ExpertRecommendDataItem": [],
-  "YourTour.view.expert.ExpertRecommendIntroItem": [],
   "YourTour.view.expert.ExpertRecommendIntroView": [],
   "YourTour.view.expert.ExpertRecommendListView": [],
   "YourTour.view.expert.ExpertRouteDataItem": [],
   "YourTour.view.expert.ExpertServiceDataItem": [],
   "YourTour.view.expert.ExpertServiceEditView": [],
+  "YourTour.view.expert.ExpertView": [],
+  "YourTour.view.expert.ExpertViewIntroItem": [],
   "YourTour.view.home.AlongDetailView": [],
   "YourTour.view.home.AlongItemView": [],
   "YourTour.view.home.AlongListItemView": [],
@@ -1765,7 +1766,9 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.expert.ExpertDataItem": [
     "widget.ExpertDataItem"
   ],
-  "YourTour.view.expert.ExpertIntroFormView": [],
+  "YourTour.view.expert.ExpertIntroItem": [
+    "widget.ExpertRecommendIntroItem"
+  ],
   "YourTour.view.expert.ExpertListView": [
     "widget.ExpertListView"
   ],
@@ -1774,9 +1777,6 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.expert.ExpertRecommendDataItem": [
     "widget.ExpertRecommendDataItem"
-  ],
-  "YourTour.view.expert.ExpertRecommendIntroItem": [
-    "widget.ExpertRecommendIntroItem"
   ],
   "YourTour.view.expert.ExpertRecommendIntroView": [],
   "YourTour.view.expert.ExpertRecommendListView": [],
@@ -1787,6 +1787,10 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.ExpertServiceDataItem"
   ],
   "YourTour.view.expert.ExpertServiceEditView": [],
+  "YourTour.view.expert.ExpertView": [],
+  "YourTour.view.expert.ExpertViewIntroItem": [
+    "widget.ExpertViewIntroItem"
+  ],
   "YourTour.view.home.AlongDetailView": [],
   "YourTour.view.home.AlongItemView": [
     "widget.AlongItemView"
