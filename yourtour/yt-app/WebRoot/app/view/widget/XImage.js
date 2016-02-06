@@ -11,7 +11,7 @@ Ext.define('YourTour.view.widget.XImage', {
     },
 
     updateRecord:function(record){
-        var binding =  this.getBinding();
+        var binding =  this.binding || this.getBinding();
         var names = binding.split('.');
         var len = names.length;
 

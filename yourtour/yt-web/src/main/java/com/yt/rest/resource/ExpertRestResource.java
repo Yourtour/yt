@@ -218,7 +218,7 @@ public class ExpertRestResource {
 	 * @return
 	 */
 	@GET
-	@Path("/routes/{expertId}")
+	@Path("/routes/expert/{expertId}")
 	public ResponseDataVO<List<RouteItemVO>> getServicedRoutes(@Context HttpServletRequest request, @PathParam("expertId") String expertId){
 		try{
 			List<RouteMainBean> routes = this.expertRepository.getServicedRoutes(Long.valueOf(expertId), 0l, 20);
@@ -243,10 +243,10 @@ public class ExpertRestResource {
 	 * @return
 	 */
 	@GET
-	@Path("/routes/{expertId}")
-	public ResponseDataVO<List<RouteItemVO>> getRecommendRoutes(@Context HttpServletRequest request, @PathParam("expertId") String expertId){
+	@Path("/routes/recommend/{uid}")
+	public ResponseDataVO<List<RouteItemVO>> getRecommendRoutes(@Context HttpServletRequest request, @PathParam("uid") String uid){
 		try{
-			List<RouteMainBean> routes = this.expertRepository.getRecommendRoutes(Long.valueOf(expertId), 0l, 20);
+			List<RouteMainBean> routes = this.expertRepository.getRecommendRoutes(Long.valueOf(uid), 0l, 20);
 			List<RouteItemVO> valueobjects = new ArrayList<>();
 
 			if(routes != null){

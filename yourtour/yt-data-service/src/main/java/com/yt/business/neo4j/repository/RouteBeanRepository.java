@@ -62,7 +62,7 @@ public interface RouteBeanRepository extends GraphRepository<RouteMainBean> {
 	 * @param limit
 	 * @return
 	 */
-	@Query("START route=node({0}) MATCH (expert:ExpertBean)<-[:IS]-(owner:UserProfileBean)-[:RECOMMEND]->(route) RETURN expert, owner, route")
+	@Query("START user=node({0}) MATCH user-[:RECOMMEND]->(route:RouteMainBean) RETURN route")
 	public List<RouteMainBean> getRoutesRecommendedByExpert(Long userId, Long startIndex, int limit);
 
 	/**
@@ -72,7 +72,7 @@ public interface RouteBeanRepository extends GraphRepository<RouteMainBean> {
 	 * @param limit
 	 * @return
 	 */
-	@Query("START member=node({0}) MATCH member<-[:EXPERT]-(route:RouteMainBean) RETURN route")
+	@Query("START user=node({0}) MATCH user-[:EXPERT]->(route:RouteMainBean) RETURN route")
 	public List<RouteMainBean> getRoutesParticipatedAsExpert(Long userId, Long startIndex, int limit);
 
 	/**

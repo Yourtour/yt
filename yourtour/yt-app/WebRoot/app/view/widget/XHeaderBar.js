@@ -49,8 +49,8 @@ Ext.define('YourTour.view.widget.XHeaderBar', {
 		var me = this;
 		me.initialItems = items;
 
-		me.leftPanel = me.add({xtype:'label', itemId:'left'});
-		me.middlePanel = me.add({xtype:'label', itemId:'middle', style:'text-align:center'});
+		me.leftPanel = me.add({xtype:'panel', itemId:'left'});
+		me.middlePanel = me.add({xtype:'panel', itemId:'middle', layout:'hbox'});
 		me.rightPanel = me.add({xtype:'panel', itemId:'right', layout:'hbox', items:[{xtype:'spacer', flex:1}]});
 
 		me.doAdd = me._doAdd;
@@ -60,8 +60,16 @@ Ext.define('YourTour.view.widget.XHeaderBar', {
 
 	_doAdd: function (item) {
 		var me = this;
-		item.setMargin('7 0 7 0');
-		me.rightPanel.add(item);
+		var align = item.align;
+		if(!align) align='right';
+
+		if(align == 'middle'){
+			item.setMargin('7 0 7 0');
+			me.middlePanel.add(item);
+		}else if(align == 'right'){
+			item.setMargin('7 0 7 0');
+			me.rightPanel.add(item);
+		}
 	},
 
 	doItemRemove: function (item, destroy) {

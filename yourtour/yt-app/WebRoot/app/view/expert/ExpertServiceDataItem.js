@@ -1,46 +1,24 @@
 Ext.define('YourTour.view.expert.ExpertServiceDataItem', {
-    extend: 'Ext.dataview.component.DataItem',
+	extend: 'YourTour.view.widget.XDataItem',
     xtype: 'ExpertServiceDataItem',
-    requires:['Ext.Label','Ext.Panel'],
     config: {
 		layout:'vbox',
-		defaults:{
-			padding:'0 5 0 5'
-		},
     	items:[
 			{
-				xtype:'label',
+				xtype:'xspacer'
+			},
+			{
+				xtype:'xfield',
 				itemId:'title',
-				cls:'row underline font-medium font-bold'
+				indicator:'nav-arrow'
 			},
 
 			{
-				xtype:'label',
+				xtype:'xmultifield',
 				itemId:'memo',
-				cls:'multilineinfo font-medium font-grey'
-			},
-
-			{
-				xtype:'panel',
-				cls:'spacer'
+				underline:false
 			}
     	]
-    },
-
-   	/**
-   	 * 
-   	 * @param {} record
-   	 */
-    updateRecord: function(record) {
-       	var me = this;
-
-		if(record){
-			var titleEl = me.down('#title');
-			titleEl.setHtml(record.get('title'));
-
-			var memoEl = me.down('#memo');
-			memoEl.setHtml(record.get('memo'));
-		}
     }
 });
 

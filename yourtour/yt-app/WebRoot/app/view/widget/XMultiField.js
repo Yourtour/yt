@@ -3,6 +3,8 @@ Ext.define('YourTour.view.widget.XMultiField', {
     xtype: 'xmultifield',
 	config:{
 		text:null,
+		cls:'x-xfield-multi',
+
 		expanded:false,
 		ellipsis:{
 			size:0,

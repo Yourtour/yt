@@ -1,6 +1,5 @@
 Ext.define('YourTour.controller.ExpertMainCtrl', {
     extend: 'YourTour.controller.BaseCtrl',
-    requires: ['YourTour.view.expert.ExpertViewIntroItem'],
     config: {
         refs: {
             expertView: '#ExpertView',
@@ -11,7 +10,7 @@ Ext.define('YourTour.controller.ExpertMainCtrl', {
             expertRouteList: '#ExpertMainView #routeList',
 
             expertApplyView: '#ExpertApplyView',
-            expertCarousel: '#ExpertApplyView #expertCarousel',
+            //expertCarousel: '#ExpertApplyView #expertCarousel',
             expertServiceList: '#ExpertApplyView #ServiceList',
 
             expertServiceEditView: '#ExpertServiceEditView',
@@ -22,8 +21,8 @@ Ext.define('YourTour.controller.ExpertMainCtrl', {
         },
 
         control: {
-            '#ExpertView #expertCarousel':{
-                activeitemchange:'showExpertInfoes'
+            expertCarousel:{
+                activeitemchange:'changeExpertView'
             },
 
             /************************************************************************************************/
@@ -383,7 +382,7 @@ Ext.define('YourTour.controller.ExpertMainCtrl', {
      */
     showExpertInfo: function (userId, record) {
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.expert.ExpertView'));
-        var me = this, expertview = me.getExpertView(), expertCarousel = expertview.down('#expertCarousel');
+        var me = this, expertview = me.getExpertView();
 
         var options = {
             model: 'YourTour.model.ExpertModel',
@@ -396,11 +395,98 @@ Ext.define('YourTour.controller.ExpertMainCtrl', {
         me.getApplication().query(options);
     },
 
-    showExpertInfoes:function( carousel, value, oldValue, eOpts ){
-        var itemId = value.getItemid();
-        console.log(itemId);
+    changeExpertView:function( carousel, value, oldValue, eOpts){
+        var itemId = value.getItemId();
+
+        if(itemId == 'expertViewServiceItem'){
+            this.getService4Expert();
+        }else if(itemId == 'expertViewRecommendItem'){
+            this.getRecommend4Expert();
+        }else if(itemId == 'expertViewParticipateItem'){
+            this.getParticipate4Expert();
+        }else if(itemId == 'expertViewCommentItem'){
+            this.getComment4Expert();
+        }
     },
 
+    /**
+     * 获取达人提供的服务
+     */
+    getService4Expert:function(){
+        var me = this,
+            expertview = me.getExpertView(), serviceList = expertview.down('#serviceList'),
+            data = expertview.getData(), expertId = data.get('id');
+        if( !serviceList.getStore()) {
+            var options = {
+                model: 'YourTour.model.ServiceModel',
+                url: '/expert/services/' + expertId,
+                success: function (store) {
+                    serviceList.setStore(store);
+                }
+            };
+            me.getApplication().query(options);
+        }
+    },
+
+    /**
+     * 获取达人推荐的行程
+     */
+    getRecommend4Expert:function(){
+        var me = this,
+            expertview = me.getExpertView(), recommendList = expertview.down('#recommendList'),
+            data = expertview.getData(), uid = data.profileStore.first().get('id');
+
+        if( !recommendList.getStore()) {
+            var options = {
+                model: 'YourTour.model.RouteModel',
+                url: '/expert/routes/recommend/' + uid,
+                success: function (store) {
+                    recommendList.setStore(store);
+                }
+            };
+            me.getApplication().query(options);
+        }
+    },
+
+    /**
+     * 获取达人服务的行程
+     */
+    getParticipate4Expert:function(){
+        var me = this,
+            expertview = me.getExpertView(), participateList = expertview.down('#participateList'),
+            data = expertview.getData(), uid = data.profileStore.first().get('id');
+
+        if( !participateList.getStore()) {
+            var options = {
+                model: 'YourTour.model.RouteModel',
+                url: '/expert/routes/expert/' + uid,
+                success: function (store) {
+                    participateList.setStore(store);
+                }
+            };
+            me.getApplication().query(options);
+        }
+    },
+
+    /**
+     * 获取达人的点评
+     */
+    getComment4Expert:function(){
+        var me = this,
+            expertview = me.getExpertView(), commentList = expertview.down('#commentList'),
+            data = expertview.getData(), uid = data.profileStore.first().get('id');
+
+        if( !commentList.getStore()) {
+            var options = {
+                model: 'YourTour.model.RouteModel',
+                url: '/comments/' + uid + '/query',
+                success: function (store) {
+                    commentList.setStore(store);
+                }
+            };
+            me.getApplication().query(options);
+        }
+    },
 
     showExpertList: function (placeId, store) {
         var me = this;

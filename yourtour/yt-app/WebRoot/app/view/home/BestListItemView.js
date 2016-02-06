@@ -90,7 +90,7 @@ Ext.define('YourTour.view.home.BestListItemView', {
 							{
 								xtype : 'image',
 								width:20,
-								src:'resources/icons/icon_favorite.png'	
+								src:'resources/icons/icon_button_favorite.png'
 							},
 					        {
 					        	xtype:'xfield',

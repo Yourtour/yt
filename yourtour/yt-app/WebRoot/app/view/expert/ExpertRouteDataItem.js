@@ -22,7 +22,7 @@ Ext.define('YourTour.view.expert.ExpertRouteDataItem', {
 				xtype:'panel',
 				layout:'hbox',
 				padding:'0 5 0 5',
-				cls:'row underline',
+				cls:'row',
 				items:[
 					{
 						xtype:'label',

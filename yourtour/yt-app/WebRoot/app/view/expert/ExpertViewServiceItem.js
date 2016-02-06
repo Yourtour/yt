@@ -1,15 +1,15 @@
 Ext.define('YourTour.view.expert.ExpertViewServiceItem', {
-    extend: 'Ext.Container',
+    extend: 'YourTour.view.common.CarouselItem',
     xtype:'ExpertViewServiceItem',
     requires:['YourTour.view.expert.ExpertServiceDataItem'],
     config: {
         layout: 'vbox',
-        title:'达人服务',
         items: [
             {
                 xtype: 'xdataview',
                 itemId: 'serviceList',
                 binding:'services',
+                flex:1,
                 defaultType: 'ExpertServiceDataItem'
             }
         ]

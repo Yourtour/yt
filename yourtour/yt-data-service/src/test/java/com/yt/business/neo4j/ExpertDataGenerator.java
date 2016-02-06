@@ -3,19 +3,13 @@ package com.yt.business.neo4j;
 import com.yt.business.bean.*;
 import com.yt.business.common.Constants;
 import com.yt.business.repository.ExpertRepository;
-import com.yt.business.repository.PlaceRepository;
-import com.yt.business.repository.RouteRepository;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.neo4j.graphdb.Direction;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
 public class ExpertDataGenerator extends DataGenerator{
@@ -65,7 +59,7 @@ public class ExpertDataGenerator extends DataGenerator{
 		}
 	}
 
-	@Test
+	//@Test
 	public void createRelationWithPlace(){
 		try {
 			PlaceBean place = new PlaceBean();
@@ -84,25 +78,78 @@ public class ExpertDataGenerator extends DataGenerator{
 
 				repository.createRelation(profile, expert, Constants.RELATION_TYPE_IS, Direction.OUTGOING, props);
 			}
-
-			/*ExpertBean expert = new ExpertBean();
-			expert.setGraphId(1064l);
-
-			repository.deleteRelation(profile, expert, "IS");*/
-
-			/*Long[] expertIds = new Long[]{299l, 280l, 434l, 299l, 301l};
-			for(Long expertId : expertIds){
-				UserProfileBean profile = new UserProfileBean();
-				profile.setGraphId(expertId);
-
-				repository.createRelation(place, profile, Constants.RELATION_TYPE_RECOMMEND, Direction.INCOMING);
-
-			}*/
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			fail(ex.getMessage());
 		}
 	}
 
+	//@Test
+	public void createExpertServices(){
+		try {
+			Long uid = 282l, eid=1062l;
+			Long[] sids = new Long[]{930l, 951l};
+
+			UserProfileBean ubean = new UserProfileBean();
+			ubean.setGraphId(uid);
+
+			ExpertBean ebean = new ExpertBean();
+			ebean.setGraphId(eid);
+
+			for(Long sid : sids){
+				ExpertServiceBean sbean = new ExpertServiceBean();
+				sbean.setGraphId(sid);
+
+				this.repository.deleteRelation(ubean, sbean, "HAS");
+
+				this.repository.createRelation(ebean, sbean, "HAS", Direction.OUTGOING);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			fail(ex.getMessage());
+		}
+	}
+
+	//@Test
+	public void createExpertRecommendRoutes(){
+		try {
+			Long uid = 434l;
+			Long[] rids = new Long[]{336l, 329l,250l,247l, 417l,1031l, 1069l};
+
+			UserProfileBean ubean = new UserProfileBean();
+			ubean.setGraphId(uid);
+
+			for(Long rid : rids){
+				RouteMainBean rbean = new RouteMainBean();
+				rbean.setGraphId(rid);
+
+				this.repository.createRelation(ubean, rbean, "RECOMMEND", Direction.OUTGOING);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			fail(ex.getMessage());
+		}
+	}
+
+	@Test
+	public void createExpertParticipateRoutes(){
+		try {
+			Long uid = 434l;
+			Long[] rids = new Long[]{336l, 329l,250l,247l, 417l,1031l, 1069l};
+
+			UserProfileBean ubean = new UserProfileBean();
+			ubean.setGraphId(uid);
+
+			for(Long rid : rids){
+				RouteMainBean rbean = new RouteMainBean();
+				rbean.setGraphId(rid);
+
+				this.repository.createRelation(ubean, rbean, "EXPERT", Direction.OUTGOING);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			fail(ex.getMessage());
+		}
+	}
 
 }

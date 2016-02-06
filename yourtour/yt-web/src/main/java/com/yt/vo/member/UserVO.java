@@ -41,11 +41,23 @@ public class UserVO extends BaseVO {
 	private int mobileAuthenticate;
 	private int idAuthenticate;
 
+	private int followingNum = 0;
+	private int followedNum = 0;
+	private int thumbupNum = 0;
+	private int albumNum = 0;
+
 	public static UserVO transform(UserProfileBean bean) {
 		if (bean == null) {
 			return null;
 		}
 		UserVO vo = new UserVO();
+
+		transform(vo, bean);
+
+		return vo;
+	}
+
+	public static void transform(UserVO vo, UserProfileBean bean){
 		vo.fromBean(bean);
 		vo.setBirthday(dateFormat.format(new Date(bean.getBirthday())));
 		vo.setCharacter(bean.getCharacter());
@@ -63,7 +75,17 @@ public class UserVO extends BaseVO {
 		vo.setSlogan(bean.getSlogan());
 		vo.setStatus(bean.getStatus());
 		vo.setUserName(bean.getCode());
-		return vo;
+		vo.setAge(bean.getAge());
+		vo.setIdentity(bean.getIdentity());
+		vo.setSnsAuthenticate(bean.getSnsAuthenticate());
+		vo.setIdAuthenticate(bean.getIdAuthenticate());
+		vo.setMobileAuthenticate(bean.getMobileAuthenticate());
+		vo.setFollowedNum(bean.getFollowedNum());
+		vo.setFollowingNum(bean.getFollowingNum());
+		vo.setThumbupNum(bean.getThumbupNum());
+		vo.setAlbumNum(bean.getAlbumNum());
+		vo.setTags(bean.getTags());
+		vo.setMemo(bean.getMemo());
 	}
 
 	public static UserProfileBean transform(UserVO vo) {
@@ -89,7 +111,6 @@ public class UserVO extends BaseVO {
 		bean.setMobileNo(vo.getMobileNo());
 		bean.setNativePlace(vo.getNativePlace());
 		bean.setNickName(vo.getNickName());
-		bean.setRank(vo.getRank());
 		bean.setName(vo.getRealName());
 		bean.setResidence(vo.getResidence());
 		bean.setRole(vo.getRole());
@@ -216,8 +237,8 @@ public class UserVO extends BaseVO {
 		this.role = role;
 	}
 
-	public int getRank() {
-		return rank;
+	public String getRank() {
+		return "resources/icons/12/icon_rank_" + rank + ".png";
 	}
 
 	public void setRank(int rank) {
@@ -294,5 +315,37 @@ public class UserVO extends BaseVO {
 
 	public void setIdAuthenticate(int idAuthenticate) {
 		this.idAuthenticate = idAuthenticate;
+	}
+
+	public int getFollowingNum() {
+		return followingNum;
+	}
+
+	public void setFollowingNum(int followingNum) {
+		this.followingNum = followingNum;
+	}
+
+	public int getFollowedNum() {
+		return followedNum;
+	}
+
+	public void setFollowedNum(int followedNum) {
+		this.followedNum = followedNum;
+	}
+
+	public int getThumbupNum() {
+		return thumbupNum;
+	}
+
+	public void setThumbupNum(int thumbupNum) {
+		this.thumbupNum = thumbupNum;
+	}
+
+	public int getAlbumNum() {
+		return albumNum;
+	}
+
+	public void setAlbumNum(int albumNum) {
+		this.albumNum = albumNum;
 	}
 }

@@ -27,12 +27,8 @@ public class ExpertBean extends BaseBeanImpl {
 	public static final String EXPERT_APPLY = "0";
 	public static final String EXPERT_APPROVED = "1";
 
-	private String  memo;
-	private String  tags;
 	private String  places;
 	private String  result; //审批结果
-
-	private int		recommended = 0;
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_IS, type = UserProfileBean.class, direction = Direction.INCOMING)
 	private UserProfileBean profile = null;
@@ -50,14 +46,6 @@ public class ExpertBean extends BaseBeanImpl {
 
 	public void setPlaces(String places) {
 		this.places = places;
-	}
-
-	public String getMemo() {
-		return memo;
-	}
-
-	public void setMemo(String memo) {
-		this.memo = memo;
 	}
 
 	public List<ExpertServiceBean> getServices() {
@@ -90,21 +78,5 @@ public class ExpertBean extends BaseBeanImpl {
 
 	public void setResult(String result) {
 		this.result = result;
-	}
-
-	public String getTags() {
-		return tags;
-	}
-
-	public void setTags(String tags) {
-		this.tags = tags;
-	}
-
-	public int getRecommended() {
-		return recommended;
-	}
-
-	public void setRecommended(int recommended) {
-		this.recommended = recommended;
 	}
 }

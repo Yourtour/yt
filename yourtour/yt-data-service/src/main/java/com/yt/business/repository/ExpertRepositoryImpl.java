@@ -63,8 +63,8 @@ public class ExpertRepositoryImpl extends CrudAllInOneOperateImpl implements
 	}
 
 	@Override
-	public List<RouteMainBean> getRecommendRoutes(Long expertId, Long nextCursor, int limit) throws Exception {
-		return this.routeBeanRepository.getRoutesRecommendedByExpert(expertId, nextCursor, limit);
+	public List<RouteMainBean> getRecommendRoutes(Long uid, Long nextCursor, int limit) throws Exception {
+		return this.routeBeanRepository.getRoutesRecommendedByExpert(uid, nextCursor, limit);
 	}
 
 	@Override

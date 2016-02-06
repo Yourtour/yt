@@ -750,17 +750,21 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.community.LiveMainView": [],
   "YourTour.view.expert.ExpertApplyView": [],
   "YourTour.view.expert.ExpertDataItem": [],
-  "YourTour.view.expert.ExpertIntroItem": [],
   "YourTour.view.expert.ExpertListView": [],
   "YourTour.view.expert.ExpertMainView": [],
-  "YourTour.view.expert.ExpertRecommendDataItem": [],
   "YourTour.view.expert.ExpertRecommendIntroView": [],
   "YourTour.view.expert.ExpertRecommendListView": [],
   "YourTour.view.expert.ExpertRouteDataItem": [],
   "YourTour.view.expert.ExpertServiceDataItem": [],
   "YourTour.view.expert.ExpertServiceEditView": [],
   "YourTour.view.expert.ExpertView": [],
+  "YourTour.view.expert.ExpertViewCommentItem": [],
   "YourTour.view.expert.ExpertViewIntroItem": [],
+  "YourTour.view.expert.ExpertViewParticipateDataItem": [],
+  "YourTour.view.expert.ExpertViewParticipateItem": [],
+  "YourTour.view.expert.ExpertViewRecommendDataItem": [],
+  "YourTour.view.expert.ExpertViewRecommendItem": [],
+  "YourTour.view.expert.ExpertViewServiceItem": [],
   "YourTour.view.home.AlongDetailView": [],
   "YourTour.view.home.AlongItemView": [],
   "YourTour.view.home.AlongListItemView": [],
@@ -1766,17 +1770,11 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.expert.ExpertDataItem": [
     "widget.ExpertDataItem"
   ],
-  "YourTour.view.expert.ExpertIntroItem": [
-    "widget.ExpertRecommendIntroItem"
-  ],
   "YourTour.view.expert.ExpertListView": [
     "widget.ExpertListView"
   ],
   "YourTour.view.expert.ExpertMainView": [
     "widget.ExpertMainView"
-  ],
-  "YourTour.view.expert.ExpertRecommendDataItem": [
-    "widget.ExpertRecommendDataItem"
   ],
   "YourTour.view.expert.ExpertRecommendIntroView": [],
   "YourTour.view.expert.ExpertRecommendListView": [],
@@ -1788,8 +1786,26 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.expert.ExpertServiceEditView": [],
   "YourTour.view.expert.ExpertView": [],
+  "YourTour.view.expert.ExpertViewCommentItem": [
+    "widget.ExpertViewCommentItem"
+  ],
   "YourTour.view.expert.ExpertViewIntroItem": [
     "widget.ExpertViewIntroItem"
+  ],
+  "YourTour.view.expert.ExpertViewParticipateDataItem": [
+    "widget.ExpertViewParticipateDataItem"
+  ],
+  "YourTour.view.expert.ExpertViewParticipateItem": [
+    "widget.ExpertViewParticipateItem"
+  ],
+  "YourTour.view.expert.ExpertViewRecommendDataItem": [
+    "widget.ExpertViewRecommendDataItem"
+  ],
+  "YourTour.view.expert.ExpertViewRecommendItem": [
+    "widget.ExpertViewRecommendItem"
+  ],
+  "YourTour.view.expert.ExpertViewServiceItem": [
+    "widget.ExpertViewServiceItem"
   ],
   "YourTour.view.home.AlongDetailView": [],
   "YourTour.view.home.AlongItemView": [

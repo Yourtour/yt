@@ -8,29 +8,7 @@ Ext.define('YourTour.view.charge.ChargeView', {
         items: [
 			{    
 				xtype: 'xheaderbar',
-				title:'费用明细',
-				items:[
-					{
-						xtype: 'xbutton',
-						itemId:'btnEdit',
-						align:'right',
-						icon: 'resources/icons/icon_header_edit.png'
-					},
-
-					{
-						xtype: 'xbutton',
-						itemId:'btnDelete',
-						align:'right',
-						icon: 'resources/icons/icon_header_delete.png'
-					},
-
-					{
-						xtype: 'xbutton',
-						itemId:'btnDivide',
-						align:'right',
-						icon: 'resources/icons/icon_header_divide.png'
-					}
-				]
+				title:'费用明细'
 			},
 
 			{
@@ -107,6 +85,52 @@ Ext.define('YourTour.view.charge.ChargeView', {
 				flex:1,
 				useComponents: false,
 				itemTpl:new Ext.XTemplate('<div class="underline font-medium font-grey" style="height:45px; line-height:45px; padding:0px 10px 0px 10px"><span  style="float:left">{nickName}</span><span style="float:right">{payment}</span></div>')
+			},
+
+			{
+				xtype: 'xtoolbar',
+				itemId:'toolbar',
+				docked: 'bottom',
+				items: [
+					{
+						xtype:'spacer',
+						flex:1
+					},
+					{
+						xtype: 'xbutton',
+						itemId:'btnEdit',
+						text: '编辑',
+						icon: 'resources/icons/24/icon_edit.png'
+					},
+
+					{
+						xtype:'spacer',
+						flex:1
+					},
+
+					{
+						xtype: 'xbutton',
+						itemId:'btnDelete',
+						text: '删除',
+						icon: 'resources/icons/24/icon_delete.png'
+					},
+
+					{
+						xtype:'spacer',
+						flex:1
+					},
+
+					{
+						xtype: 'xbutton',
+						itemId:'btnDivide',
+						text: '分摊',
+						icon: 'resources/icons/24/icon_divide.png'
+					},
+					{
+						xtype:'spacer',
+						flex:1
+					}
+				]
 			}
         ]
     }

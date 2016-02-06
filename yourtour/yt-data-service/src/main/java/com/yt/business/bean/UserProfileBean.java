@@ -96,6 +96,10 @@ public class UserProfileBean extends BaseDictBeanImpl {
 	@HbaseColumn(name = "role")
 	private Role role = Role.MEMBER; // 角色
 
+	private String tags; //个人标签
+
+	private String memo; //个人简介
+
 	@Indexed
 	private int rank; // 等级
 
@@ -105,6 +109,11 @@ public class UserProfileBean extends BaseDictBeanImpl {
 	private int snsAuthenticate = 0;
 	private int mobileAuthenticate = 0;
 	private int idAuthenticate = 0;
+
+	private int followingNum = 0;
+	private int followedNum = 0;
+	private int thumbupNum = 0;
+	private int albumNum = 0;
 
 	@Neo4jRelationship(relationship=Constants.RELATION_TYPE_AT, type = PlaceBean.class, direction = Direction.OUTGOING)
 	private transient PlaceBean place;
@@ -296,11 +305,59 @@ public class UserProfileBean extends BaseDictBeanImpl {
 		this.routes = routes;
 	}
 
+	public int getFollowingNum() {
+		return followingNum;
+	}
+
+	public void setFollowingNum(int followingNum) {
+		this.followingNum = followingNum;
+	}
+
+	public int getFollowedNum() {
+		return followedNum;
+	}
+
+	public void setFollowedNum(int followedNum) {
+		this.followedNum = followedNum;
+	}
+
+	public int getThumbupNum() {
+		return thumbupNum;
+	}
+
+	public void setThumbupNum(int thumbupNum) {
+		this.thumbupNum = thumbupNum;
+	}
+
+	public int getAlbumNum() {
+		return albumNum;
+	}
+
+	public void setAlbumNum(int albumNum) {
+		this.albumNum = albumNum;
+	}
+
+	public String getTags() {
+		return tags;
+	}
+
+	public void setTags(String tags) {
+		this.tags = tags;
+	}
+
 	public String getAge(){
 		if(this.getBirthday() != 0){
 			return DateUtils.formatDate(this.birthday,"yy") +"后  " + this.getConstellation();
 		}
 
 		return "";
+	}
+
+	public String getMemo() {
+		return memo;
+	}
+
+	public void setMemo(String memo) {
+		this.memo = memo;
 	}
 }

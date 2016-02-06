@@ -78,7 +78,7 @@ Ext.define('YourTour.view.route.RouteRecommendIntroductionItem', {
                     }, {
                         xtype: 'xbutton',
                         text: '100',
-                        icon: 'resources/icons/icon_favorite.png',
+                        icon: 'resources/icons/icon_button_favorite.png',
                         itemId: 'favoriteNum'
                     }
                 ]

@@ -6,22 +6,17 @@ Ext.define('YourTour.view.widget.XDataItem', {
 
     initialize:function(){
         this.callParent(arguments);
-
-        /*this.element.on(
-            {
-                scope : this,
-                longpress:function(){
-
-                }
-            }
-        )
-        if(this.longTap == true){
-
-        }*/
     },
 
     updateRecord:function(record){
-        var me = this;
+        var me = this, dataview = me.dataview || this.getDataview();
+        var index = dataview.getStore().indexOf(record);
+        if(index == 0){
+            var item = me.getAt(0);
+            if(item instanceof YourTour.view.widget.XSpacer){
+                item.hide();
+            }
+        }
 
         if(record) {
             YourTour.util.Context.fillViewFields(me, record);

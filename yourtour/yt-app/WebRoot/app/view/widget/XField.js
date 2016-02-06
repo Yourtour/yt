@@ -13,7 +13,7 @@ Ext.define('YourTour.view.widget.XField', {
         fieldCls: null,
         labelCls: null,
         underline: null,
-        padding: '10 20 10 10',
+        padding: '10 10 10 10',
         ifNull:'',
         binding:null,
         dataChange:null,
@@ -35,7 +35,6 @@ Ext.define('YourTour.view.widget.XField', {
         this.callParent(arguments);
 
         var me = this, fieldCls = me.fieldCls;
-
         var value = this.down('#value');
         if(fieldCls == null){
             value.addCls('font-grey');
@@ -47,7 +46,6 @@ Ext.define('YourTour.view.widget.XField', {
                 value.addCls(fieldCls.substring(0, index - 1));
             }
         }
-
 
         if(me.underline == null){
             me.addCls('underline');
@@ -143,6 +141,7 @@ Ext.define('YourTour.view.widget.XField', {
     },
 
     updateLabel: function (label) {
+        this.label = label;
         var labelEl = this.down('#label');
         labelEl.setMargin('0 10 0 0');
         labelEl.show();

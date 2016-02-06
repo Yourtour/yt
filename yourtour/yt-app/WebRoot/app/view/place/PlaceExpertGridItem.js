@@ -1,5 +1,6 @@
 Ext.define('YourTour.view.place.PlaceExpertGridItem', {
 	extend: 'YourTour.view.widget.grid.component.DataItem',
+    requires:['YourTour.view.widget.XImage'],
     xtype: 'PlaceExpertGridItem',
     config: {
         layout:'hbox',
@@ -10,7 +11,8 @@ Ext.define('YourTour.view.place.PlaceExpertGridItem', {
 			{
 				xtype:'ximage',
                 itemId:'imageUrl',
-                imageCls:'img-user-logo-48'
+                imageCls:'img-user-logo-48',
+                binding:'profile.imageUrl'
 			},
 
             {
@@ -21,7 +23,8 @@ Ext.define('YourTour.view.place.PlaceExpertGridItem', {
                     {
                         xtype:'xfield',
                         itemId:'nickName',
-                        underline:false
+                        underline:false,
+                        binding:'profile.nickName'
                     }
                 ]
             }
