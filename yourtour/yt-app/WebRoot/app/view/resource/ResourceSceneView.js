@@ -4,112 +4,155 @@ Ext.define('YourTour.view.resource.ResourceSceneView', {
     config: {
     	items:[
 			{
-				xtype:'panel',
-				layout:'vbox',
+				itemId : 'image',
+				xtype : 'ximage',
+				imageCls:'img-medium',
+				binding:'imageUrl'
+			},
+
+			{
+				xtype:'xpanel',
+				layout:'hbox',
+				itemId:'commentPanel',
+				padding:'0 10 0 0',
+				cls:'row nav-arrow',
 				items:[
 					{
-						itemId : 'image',
-						xtype : 'ximage',
-						imageCls:'img-medium',
-						binding:'imageUrl'
+						xtype:'xlabel',
+						html:'游徒点评',
+						margin:'0 10 0 0'
 					},
-
 					{
-						xtype: 'panel',
-						layout: 'hbox',
-						cls: 'row underline',
-						padding: '0 10 0 10',
-						docked: 'bottom',
-						bottom: 0,
-						style: 'background-color:grey;opacity:0.2; width:100%; text-align:center',
-						items: [
-							{
-								xtype:'spacer',
-								flex:1
-							},
-
-							{
-								xtype: 'image',
-								src: 'resources/images/raty_32.png',
-								mode: 'tag'
-							}
-						]
-					}
-				]
-			},
-	    	
-	    	{
-	    		xtype:'panel',
-	    		layout:'vbox',
-		    	items:[
-					{
-						xtype: 'xfield',
-						itemId:'address',
-						icon:'icon-position'
-					},
-
-					{
-						xtype: 'xfield',
-						itemId:'phone',
-						icon:'icon-phone'
-					},
-
-					{
-						xtype: 'xmultifield',
-						itemId:'openTime',
-						icon:'icon-open'
+						xtype: 'image',
+						src: 'resources/images/raty_32.png',
+						mode: 'tag'
 					},
 
 					{
 						xtype: 'xfield',
 						itemId:'comment',
-						icon:'icon-comment',
+						margin:'0 0 0 10',
+						underline:false,
 						dataChange: function (field, record){
 							field.setText('<span style="color:blue">4.5分</span>  <span style="color:blue">866</span>评价');
 						}
-					},
+					}
+				]
+			},
 
+			{
+				xtype:'xspacer'
+			},
+	    	
+			{
+				xtype: 'xfield',
+				itemId:'address',
+				cls:'nav-arrow',
+				label:'景点地址'
+			},
+
+			{
+				xtype: 'xfield',
+				itemId:'phone',
+				label:'景点电话'
+			},
+
+			{
+				xtype: 'xmultifield',
+				itemId:'openTime',
+				label:'开放时间'
+			},
+
+			{
+				xtype: 'xmultifield',
+				itemId:'intro',
+				label:'景点介绍',
+				ellipsis:{
+					size:100,
+					expandable:true
+				}
+			},
+
+			{
+				xtype: 'xmultifield',
+				itemId:'price',
+				label:'门票信息'
+			},
+
+			{
+				xtype: 'xmultifield',
+				itemId:'traffic',
+				label:'交通信息'
+			},
+
+			{
+				xtype:'xspacer'
+			},
+
+			{
+				xtype:'panel',
+				layout:'vbox',
+				items:[
 					{
-						xtype:'xspacer'
+						xtype:'xlabel',
+						html: '景点帖示',
+						cls:'row underline font-medium',
+						padding:'0 10 0 10'
 					},
-
 					{
 						xtype: 'xmultifield',
-						itemId:'intro',
-						icon:'icon-memo',
-						ellipsis:{
-							size:100,
-							expandable:true
-						}
-					},
-
-					{
-						xtype:'xspacer'
-					},
-
-					{
-						xtype:'panel',
-						layout:'vbox',
-						items:[
-							{
-								xtype:'xlabel',
-								html: '景点',
-								cls:'row underline font-medium font-grey',
-								padding:'0 10 0 10'
-							},
-							{
-								xtype: 'xdataview',
-								itemId:'itemList',
-								scrollable:null,
-								binding:'activityItemsStore',
-								useComponents: true,
-								defaultType: 'RouteActivityItemDataItem'
-							}
-						]
+						itemId:'tips'
 					}
-	    		]
-	    	}
+				]
+			},
+
+			{
+				xtype:'xspacer'
+			},
+
+			{
+				xtype:'panel',
+				layout:'vbox',
+				items:[
+					{
+						xtype:'xlabel',
+						html: '景点攻略',
+						cls:'row underline font-medium',
+						padding:'0 10 0 10'
+					},
+					{
+						xtype: 'xdataview',
+						itemId:'itemList',
+						scrollable:null,
+						binding:'activityItemsStore',
+						useComponents: true,
+						defaultType: 'RouteActivityItemDataItem'
+					}
+				]
+			},
+
+			{
+				xtype:'xspacer'
+			},
+
+			{
+				xtype:'panel',
+				layout:'vbox',
+				items:[
+					{
+						xtype:'xlabel',
+						html: '附近热门',
+						cls:'nav-arrow row underline font-medium',
+						padding:'0 10 0 10'
+					},
+					{
+						xtype: 'xdataview',
+						itemId:'recommendList',
+						scrollable:null,
+						useComponents: true
+					}
+				]
+			}
         ]
     }
 });
-

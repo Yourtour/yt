@@ -17,10 +17,10 @@ Ext.define('YourTour.view.widget.XNavigation', {
             tap: function () {
                 var expanded = btnnav.expanded;
                 if (expanded) {
-                    btnnav.setSrc('resources/icons/icon_expand.png');
+                    btnnav.setSrc('resources/icons/48/icon_expand.png');
                     btnnav.expanded = false;
                 } else {
-                    btnnav.setSrc('resources/icons/icon_collapse.png');
+                    btnnav.setSrc('resources/icons/48/icon_collapse.png');
                     btnnav.expanded = true;
                 }
 
@@ -51,7 +51,7 @@ Ext.define('YourTour.view.widget.XNavigation', {
             itemId: 'btnNav',
             mode: 'tag',
             margin: '5 0 0 0',
-            src: 'resources/icons/icon_expand.png',
+            src: 'resources/icons/48/icon_expand.png',
             style: 'width:48px;height:48px;'
         };
 
@@ -108,7 +108,7 @@ Ext.define('YourTour.view.widget.XNavigation', {
         });
 
         var btnnav = me.down('#btnNav');
-        btnnav.setSrc('resources/icons/icon_expand.png');
+        btnnav.setSrc('resources/icons/48/icon_expand.png');
         btnnav.expanded = false;
     }
 });

@@ -17,13 +17,13 @@ Ext.define('YourTour.view.route.RouteMainView', {
                         xtype: 'xbutton',
                         itemId: 'new',
                         align: 'right',
-                        icon:'resources/icons/icon_header_add.png'
+                        icon:'resources/icons/24/icon_header_add.png'
                     },
                     {
                         xtype: 'xbutton',
                         itemId: 'delete',
                         align: 'right',
-                        icon:'resources/icons/icon_header_delete.png'
+                        icon:'resources/icons/24/icon_header_delete.png'
                     }
                 ]
             },
@@ -55,19 +55,19 @@ Ext.define('YourTour.view.route.RouteMainView', {
                             {
                                 xtype:'image',
                                 itemId:'btnRoute',
-                                src:'resources/icons/icon_route.png'
+                                src:'resources/icons/48/icon_route.png'
                             },
 
                             {
                                 xtype:'image',
                                 itemId:'btnMember',
-                                src:'resources/icons/icon_partner.png'
+                                src:'resources/icons/48/icon_partner.png'
                             },
 
                             {
                                 xtype:'image',
                                 itemId:'btnCharge',
-                                src:'resources/icons/icon_expense.png'
+                                src:'resources/icons/48/icon_expense.png'
                             }
                         ]
                     },

@@ -11,7 +11,7 @@ Ext.define('YourTour.view.route.RouteScheduleListView', {
                     {
                         xtype: "xbutton",
                         ui: "normal",
-                        icon:'resources/icons/icon_header_edit.png',
+                        icon:'resources/icons/24/icon_header_edit.png',
                         itemId: 'edit',
                         align: 'right'
                     }
@@ -61,7 +61,7 @@ Ext.define('YourTour.view.route.RouteScheduleListView', {
                 itemId: 'button',
                 mode: 'tag',
                 docked: 'bottom',
-                src: 'resources/icons/icon_prepare.png',
+                src: 'resources/icons/48/icon_prepare.png',
                 bottom: 30,
                 left: 10,
                 style: 'width:48px;height:48px;'
@@ -86,7 +86,7 @@ Ext.define('YourTour.view.route.RouteScheduleListView', {
                     var type;
                     if (button.schedule) {
                         button.schedule = false;
-                        button.setSrc('resources/icons/icon_schedule.png');
+                        button.setSrc('resources/icons/48/icon_schedule.png');
 
                         store.each(function (record) {
                             type = record.get('type');
@@ -98,7 +98,7 @@ Ext.define('YourTour.view.route.RouteScheduleListView', {
                         });
                     } else {
                         button.schedule = true;
-                        button.setSrc('resources/icons/icon_prepare.png');
+                        button.setSrc('resources/icons/48/icon_prepare.png');
 
                         store.each(function (record) {
                             type = record.get('type');
@@ -112,7 +112,6 @@ Ext.define('YourTour.view.route.RouteScheduleListView', {
                 }
             }
         )
-
     }
 });
 

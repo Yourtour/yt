@@ -68,24 +68,16 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
 
     showPage:function(data){
 		var me = this;
-
     	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteScheduleListView'));
 
-		if(data instanceof YourTour.store.AjaxStore){
-			var view = me.getRouteScheduleListView();
-			view.hideProcessing();
-
-			me.showRouteScheduleInfo(data);
-		}else {
-			var options = {
-				model: 'YourTour.model.RouteModel',
-				url: '/routes/' + data + '/query',
-				success: function (store) {
-					me.showRouteScheduleInfo(store);
-				}
-			};
-			me.getApplication().query(options);
-		}
+		var options = {
+			model: 'YourTour.model.RouteModel',
+			url: '/routes/' + data + '/query',
+			success: function (store) {
+				me.showRouteScheduleInfo(store);
+			}
+		};
+		me.getApplication().query(options);
     },
 
 	/**
@@ -112,6 +104,8 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
 		var type;
 		schedulesStore.each(function(record){
 			type = record.get('type');
+
+			record.set('status', 'new');
 
 			if(type == 'Provision' || type == 'ProvisionItem'){
 				record.set('viewhidden', true);

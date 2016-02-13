@@ -7,6 +7,28 @@ Ext.define('YourTour.view.resource.ResourceFormView', {
         items: [
             {
                 xtype: 'xheaderbar',
+                items:[
+                    {
+                        xtype:'xbutton',
+                        text:'详情',
+                        align:'right',
+                        padding:'0 10 0 20'
+                    },
+
+                    {
+                        xtype:'xbutton',
+                        text:'行程',
+                        align:'right',
+                        padding:'0 10 0 10'
+                    },
+
+                    {
+                        xtype:'xbutton',
+                        text:'达人',
+                        align:'right',
+                        padding:'0 10 0 10'
+                    }
+                ]
             },
 
             {
@@ -29,23 +51,42 @@ Ext.define('YourTour.view.resource.ResourceFormView', {
                             },
                             {
                                 xtype: 'xbutton',
-                                text: '加入日程',
-                                ui: 'normal',
-                                iconCls: 'action',
-                                itemId: 'btnResourceAddTap'
-                            }, {
-                                xtype: 'xbutton',
                                 text: '收藏',
                                 ui: 'normal',
-                                iconCls: 'favorites',
+                                icon: 'resources/icons/24/icon_favorite.png',
                                 itemId: 'btnFavorite'
                             }, {
+                                xtype: 'spacer',
+                                flex: 1
+                            },{
                                 xtype: 'xbutton',
                                 text: '分享',
                                 ui: 'normal',
-                                iconCls: 'action',
+                                icon: 'resources/icons/24/icon_share.png',
                                 itemId: 'btnShare'
-                            }
+                            },{
+                                xtype: 'spacer',
+                                flex: 1
+                            },{
+                                xtype: 'xbutton',
+                                text: '纠错',
+                                ui: 'normal',
+                                icon: 'resources/icons/24/icon_warn.png',
+                                itemId: 'btnCorrect'
+                            },{
+                                xtype: 'spacer',
+                                flex: 1
+                            },
+                            {
+                                xtype: 'xbutton',
+                                text: '加入日程',
+                                ui: 'normal',
+                                icon: 'resources/icons/16/icon_add.png',
+                                itemId: 'btnResourceAddTap'
+                            }, {
+                                xtype: 'spacer',
+                                flex: 1
+                            },
                         ]
                     }
                 ]

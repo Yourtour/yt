@@ -3,7 +3,7 @@ Ext.define('YourTour.view.widget.XField', {
     xtype: 'xfield',
     config: {
         baseCls:'x-xfield',
-        cls:'x-xfield-xdefault',
+        cls:'x-xfield-default',
         layout: 'hbox',
         align:'left',
         label: null,

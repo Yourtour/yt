@@ -37,7 +37,7 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
                 tap: 'onActivityItemCancelTap'
             },
 
-            '#ResourceFormView #comment': {
+            '#ResourceFormView #commentPanel': {
                 tap: 'onCommentTap'
             }
         }

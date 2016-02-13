@@ -402,6 +402,7 @@
             font-size:14px;
             color:grey !important;
             text-align: left;
+            margin-left:3px;
         }
 
         .x-button.x-button-primary{
@@ -420,44 +421,58 @@
         }
 
         /** 行程列表CSS 定义**/
-        .dayPanel, .preparePanel, .dayItem, .prepareItem {
-            background-image: url(./resources/icons/icon_vline.png);
+        .x-xschedule{
+
+        }
+
+        .x-xschedule .x-xschedule-join{
+            background-color: #EDEDED;
+            padding-left:10px;
+            padding-right:10px;
+
+            background-image: url(./resources/icons/24/icon_join.png);
             background-repeat: repeat-y;
-            background-position: 4px center;
+            background-position: 10px center;
         }
 
-        .preparePanel .title, .dayPanel .title{
-            height:40px;
-            line-height:40px;
+        .x-xschedule .x-xschedule-join .x-xtitle{
+            background-color: #EDEDED;
+            margin-top:12px;
+            margin-bottom:11px;
+            line-height: 20px;
+        }
+
+        .x-xschedule .x-xschedule-item .x-xschedule-scene {
+            background-image: url(./resources/icons/24/icon_scene.png);
+            background-repeat: no-repeat;
+            background-position: 0px center;
+            padding-left:30px;
+        }
+
+        .x-xschedule .x-xschedule-item .x-xschedule-food {
+            background-image: url(./resources/icons/24/icon_food.png);
+            background-repeat: no-repeat;
+            background-position: 0px center;
+            padding-left:30px;
+        }
+
+        .x-xschedule .x-xschedule-item .x-xschedule-hotel {
+            background-image: url(./resources/icons/24/icon_hotel.png);
+            background-repeat: no-repeat;
+            background-position: 0px center;
+            padding-left:30px;
+        }
+
+        .x-xschedule .x-xschedule-item .x-xschedule-traffic {
+            background-image: url(./resources/icons/24/icon_traffic.png);
+            background-repeat: no-repeat;
+            background-position: 0px center;
+            padding-left:30px;
+        }
+
+        .x-xschedule .x-xschedule .x-xtitle {
+            background-color: #EDEDED;
             font-weight:bold;
-
-            background-image: url(./resources/icons/icon_dot.png);
-            background-repeat: no-repeat;
-            background-position: 8px center;
-        }
-
-        .dayItem .title, .prepareItem .title{
-            height:32px;
-            line-height:32px;
-            font-size:14px;
-
-            background-image: url(./resources/icons/icon_dot.png);
-            background-repeat: no-repeat;
-            background-position: 8px center;
-        }
-
-        .dayItem .info, .prepareItem .info, .dayPanel .info{
-            height:32px;
-            line-height:32px;
-            font-size:14px;
-            color:grey;
-        }
-
-        .dayItem .content, .prepareItem .content, .dayPanel .content{
-            min-height:32px;
-            line-height:20px;
-            font-size:14px;
-            color:grey;
         }
 
         .scheduleList .x-item-selected{
@@ -554,18 +569,19 @@
             line-height:45px;
         }
 
-        .x-xlabel.x-xlabel-normal{
+        .x-xlabel.label-normal{
             font-size: 14px;
         }
 
         .x-xfield{
             font-size: 14px;
+            min-height: 25px;
         }
 
-        .x-xfield .x-xfield-xdefault{
+        .x-xfield.x-xfield-default{
             background-color:white;
             line-height: 25px;
-            min-height: 45px;
+            color:grey;
         }
 
         .x-xfield.x-xfield-multi{

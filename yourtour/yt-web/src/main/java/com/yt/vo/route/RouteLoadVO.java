@@ -19,7 +19,7 @@ import com.yt.core.utils.StringUtils;
 public class RouteLoadVO implements Serializable {
 	private static final long serialVersionUID = -5772201577521181151L;
 
-	private static enum TYPE{Provision, ProvisionItem, Schedule, ScheduleItem};
+	private static enum TYPE{Provision, ProvisionItem, Schedule, ScheduleItem, ScheduleJoin};
 	
 	private RouteMainBean route;
 	
@@ -109,6 +109,7 @@ public class RouteLoadVO implements Serializable {
 				}
 			});
 
+			RouteActivityBean activityBean = null;
 			for (RouteScheduleBean scheduleBean : scheduleBeans) {
 				RouteSchedule group = new RouteSchedule();
 				group.setId(scheduleBean.getGraphId().toString());
@@ -131,7 +132,9 @@ public class RouteLoadVO implements Serializable {
 						}
 					});
 
-					for (RouteActivityBean activityBean : activities) {
+					for(int i  = 0; i < activities.size(); i++){
+						activityBean = activities.get(i);
+
 						RouteSchedule activity = new RouteSchedule();
 						activity.setTitle(activityBean.getTitle());
 						activity.setMemo(activityBean.getMemo());
@@ -161,6 +164,13 @@ public class RouteLoadVO implements Serializable {
 							activity.setRankScore(resource.getRankScore());
 						}
 
+						if( i > 0){
+							RouteSchedule traffic = new RouteSchedule();
+							traffic.setType(TYPE.ScheduleJoin);
+							traffic.setTitle("1.5km");
+							traffic.setMemo("建议步行");
+							schedules.add(traffic);
+						}
 						schedules.add(activity);
 					}
 

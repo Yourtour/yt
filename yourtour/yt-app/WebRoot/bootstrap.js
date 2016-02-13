@@ -838,6 +838,11 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.route.RouteScheduleEditView": [],
   "YourTour.view.route.RouteScheduleFormView": [],
   "YourTour.view.route.RouteScheduleListDataItem": [],
+  "YourTour.view.route.RouteScheduleListProvision": [],
+  "YourTour.view.route.RouteScheduleListProvisionItem": [],
+  "YourTour.view.route.RouteScheduleListSchedule": [],
+  "YourTour.view.route.RouteScheduleListScheduleItem": [],
+  "YourTour.view.route.RouteScheduleListScheduleJoin": [],
   "YourTour.view.route.RouteScheduleListView": [],
   "YourTour.view.route.RouteSchedulePlanDataItem": [],
   "YourTour.view.route.RouteSchedulePlanView": [],
@@ -1983,6 +1988,21 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.route.RouteScheduleFormView": [],
   "YourTour.view.route.RouteScheduleListDataItem": [
     "widget.RouteScheduleListDataItem"
+  ],
+  "YourTour.view.route.RouteScheduleListProvision": [
+    "widget.RouteScheduleListProvision"
+  ],
+  "YourTour.view.route.RouteScheduleListProvisionItem": [
+    "widget.RouteScheduleListProvisionItem"
+  ],
+  "YourTour.view.route.RouteScheduleListSchedule": [
+    "widget.RouteScheduleListSchedule"
+  ],
+  "YourTour.view.route.RouteScheduleListScheduleItem": [
+    "widget.RouteScheduleListScheduleItem"
+  ],
+  "YourTour.view.route.RouteScheduleListScheduleJoin": [
+    "widget.RouteScheduleListScheduleJoin"
   ],
   "YourTour.view.route.RouteScheduleListView": [],
   "YourTour.view.route.RouteSchedulePlanDataItem": [

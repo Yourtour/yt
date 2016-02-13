@@ -7,7 +7,9 @@ Ext.define('YourTour.view.route.RouteScheduleFormView', {
     	items:[
     		{
 				xtype: 'xheaderbar',
-				itemId:'headerbar'
+				itemId:'headerbar',
+				items:[
+				]
 			},
 
 			{
@@ -26,39 +28,33 @@ Ext.define('YourTour.view.route.RouteScheduleFormView', {
 					},
 
 					{
-						xtype: 'panel',
-						cls: 'spacer'
-					},
-					{
 						xtype: 'xfield',
 						itemId: 'resName',
-						icon: 'icon-name',
+						label:'景点名称',
+						cls:'nav-arrow',
 						binding: 'resource.name'
 					},
 
 					{
 						xtype: 'xfield',
 						itemId: 'address',
-						icon: 'icon-position',
+						label:'景点地址',
+						cls:'nav-arrow',
 						binding: 'resource.address'
 					},
 
 					{
 						xtype: 'xfield',
 						itemId: 'phone',
-						icon: 'icon-phone',
+						label:'景点电话',
+						cls:'nav-arrow',
 						binding: 'resource.phone'
-					},
-
-					{
-						xtype: 'panel',
-						cls: 'spacer'
 					},
 
 					{
 						xtype: 'xfield',
 						itemId: 'time',
-						icon: 'icon-time',
+						label:'开放时间',
 						dataChange: function (field, record) {
 							field.setText(record.get('startTime') + '-' + record.get('startTime'));
 						}
@@ -67,7 +63,7 @@ Ext.define('YourTour.view.route.RouteScheduleFormView', {
 					{
 						xtype: 'xmultifield',
 						itemId: 'memo',
-						icon: 'icon-memo',
+						label:'景点简介',
 						ellipsis: {
 							size: 100,
 							expandable: true
@@ -117,6 +113,7 @@ Ext.define('YourTour.view.route.RouteScheduleFormView', {
 					{
 						xtype: 'xtoolbar',
 						docked: 'bottom',
+						itemId:'toolbar',
 						items: [
 							{
 								xtype: 'spacer',
@@ -126,20 +123,31 @@ Ext.define('YourTour.view.route.RouteScheduleFormView', {
 							{
 								xtype: 'xbutton',
 								text: '留言',
-								icon: 'resources/icons/icon_message.png',
+								icon: 'resources/icons/16/icon_message.png',
 								itemId: 'btnMessage'
+							},
+							{
+								xtype:'spacer',
+								flex:1
 							},
 							{
 								xtype: 'xbutton',
 								text: '签到',
-								icon: 'resources/icons/icon_checkin.png',
+								icon: 'resources/icons/24/icon_checkin.png',
 								itemId: 'btnCheckin'
+							}, {
+								xtype:'spacer',
+								flex:1
 							}, {
 								xtype: 'xbutton',
 								text: '随记',
-								icon: 'resources/icons/icon_note.png',
+								icon: 'resources/icons/24/icon_note.png',
 								itemId: 'btnNotes'
-							}
+							},
+							{
+								xtype:'spacer',
+								flex:1
+							},
 						]
 					}
 				]
