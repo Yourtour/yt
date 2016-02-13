@@ -12,8 +12,8 @@ subprojects {
        //mavenCentral()
        maven {
 			url "http://repo1.maven.org/maven2"
-			artifactUrls "http://m2.neo4j.org/content/repositories/releases"
 			artifactUrls "http://repo.spring.io/release"
+			artifactUrls "http://m2.neo4j.org/content/repositories/releases"
        }
     }
 
