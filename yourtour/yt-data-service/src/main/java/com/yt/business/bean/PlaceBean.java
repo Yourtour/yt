@@ -9,7 +9,6 @@ import org.springframework.data.neo4j.annotation.NodeEntity;
 
 import com.yt.business.BaseDictBeanImpl;
 import com.yt.business.common.Constants;
-import com.yt.business.common.Constants.Status;
 import com.yt.hbase.annotation.HbaseColumn;
 import com.yt.hbase.annotation.HbaseTable;
 import com.yt.neo4j.annotation.Neo4jRelationship;

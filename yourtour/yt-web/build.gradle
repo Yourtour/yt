@@ -30,6 +30,7 @@ dependencies {
 		       "javax.websocket:javax.websocket-api:1.1",
 		       "javax.websocket:javax.websocket-client-api:1.1",
 		       "dom4j:dom4j:1.6.1",
+		       "com.alibaba:fastjson:1.2.7",
 					 project(":yt-data-service")	
 				
 	 providedCompile "javax.servlet:servlet-api:2.5"

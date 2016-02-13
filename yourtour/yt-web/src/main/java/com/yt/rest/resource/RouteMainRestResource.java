@@ -25,8 +25,9 @@ import java.util.Vector;
 @Path("routes")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class RouteMainRestResource extends BaseRestResource{
-	private static final Log LOG = LogFactory.getLog(RouteMainRestResource.class);
+public class RouteMainRestResource extends BaseRestResource {
+	private static final Log LOG = LogFactory
+			.getLog(RouteMainRestResource.class);
 
 	// spring自动装配的行程操作库
 	@Autowired
@@ -39,18 +40,21 @@ public class RouteMainRestResource extends BaseRestResource{
 	 */
 	@GET
 	@Path("/personal/query")
-	public ResponseDataVO<List<RouteItemVO>> getOwnedRoutes(@Context HttpServletRequest request) {
+	public ResponseDataVO<List<RouteItemVO>> getOwnedRoutes(
+			@Context HttpServletRequest request) {
 		String userId = null;
 		try {
 			userId = super.getCurrentUserId(request);
 			long userGraphId = Neo4jUtils.getGraphIDFromString(userId);
-			
+
 			// 根据用户ID获取对应的行程列表
-			List<RouteMainBean> routes = routeRepository.getRoutesByOwner(userGraphId);
+			List<RouteMainBean> routes = routeRepository
+					.getRoutesByOwner(userGraphId);
 			List<RouteItemVO> list = new Vector<RouteItemVO>(routes.size());
 			for (RouteMainBean route : routes) {
-				if(route == null) continue;
-				
+				if (route == null)
+					continue;
+
 				RouteItemVO vo = new RouteItemVO(route);
 				list.add(vo);
 			}
@@ -81,7 +85,8 @@ public class RouteMainRestResource extends BaseRestResource{
 			RouteMainBean bean = null;
 			if (graphId != -1) {
 				// id是GraphID
-				bean = (RouteMainBean) routeRepository.getCompleteRoute(graphId);
+				bean = (RouteMainBean) routeRepository
+						.getCompleteRoute(graphId);
 			}
 			if (bean == null) {
 				return new ResponseDataVO<RouteLoadVO>(
@@ -118,20 +123,23 @@ public class RouteMainRestResource extends BaseRestResource{
 			if (LOG.isWarnEnabled()) {
 				LOG.warn("The RouteVO is null.");
 			}
-			return new ResponseDataVO<RouteLoadVO>(StaticErrorEnum.THE_INPUT_IS_NULL);
+			return new ResponseDataVO<RouteLoadVO>(
+					StaticErrorEnum.THE_INPUT_IS_NULL);
 		}
 		try {
 			RouteMainBean bean = RouteVO.transform(vo);
-			
+
 			UserProfileBean profileBean = null;
-			long userGraphId = Neo4jUtils.getGraphIDFromString(super.getCurrentUserId());
+			long userGraphId = Neo4jUtils.getGraphIDFromString(super
+					.getCurrentUserId());
 			if (userGraphId != -1) {
-				profileBean = (UserProfileBean) routeRepository.get(UserProfileBean.class,
-						userGraphId, false);
+				profileBean = (UserProfileBean) routeRepository.get(
+						UserProfileBean.class, userGraphId, false);
 				bean.setOwner(profileBean);
 			}
-			
-			routeRepository.saveRouteMainAndSchedules(bean, WebUtils.getCurrentLoginUser());
+
+			routeRepository.saveRouteMainAndSchedules(bean,
+					WebUtils.getCurrentLoginUser());
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format("Save RouteMainBean['%s'] success.",
 						vo.getRowKey()));
@@ -145,33 +153,38 @@ public class RouteMainRestResource extends BaseRestResource{
 						String.format("Save the RouteMainBean[id='%s'] fail.",
 								vo.getRowKey()), ex);
 			}
-			return new ResponseDataVO<RouteLoadVO>(StaticErrorEnum.DB_OPERATE_FAIL);
+			return new ResponseDataVO<RouteLoadVO>(
+					StaticErrorEnum.DB_OPERATE_FAIL);
 		}
 	}
 
 	/**
 	 * 行程复制接口
+	 * 
 	 * @param sourceId
 	 * @param vo
 	 * @return
 	 */
 	@POST
 	@Path("/{sourceId}/clone")
-	public ResponseDataVO<RouteLoadVO> cloneRoute(@PathParam("sourceId") String sourceId, RouteVO vo) {
+	public ResponseDataVO<RouteLoadVO> cloneRoute(
+			@PathParam("sourceId") String sourceId, RouteVO vo) {
 		try {
 			String userId = super.getCurrentUserId();
 
 			RouteMainBean bean = RouteVO.transform(vo);
 
 			UserProfileBean profileBean = null;
-			long userGraphId = Neo4jUtils.getGraphIDFromString(super.getCurrentUserId());
+			long userGraphId = Neo4jUtils.getGraphIDFromString(super
+					.getCurrentUserId());
 			if (userGraphId != -1) {
-				profileBean = (UserProfileBean) routeRepository.get(UserProfileBean.class,
-						userGraphId, false);
+				profileBean = (UserProfileBean) routeRepository.get(
+						UserProfileBean.class, userGraphId, false);
 				bean.setOwner(profileBean);
 			}
 
-			RouteMainBean route = routeRepository.cloneRoute(Long.valueOf(sourceId), bean, userId);
+			RouteMainBean route = routeRepository.cloneRoute(
+					Long.valueOf(sourceId), bean, userId);
 
 			RouteLoadVO loadVo = new RouteLoadVO(route);
 
@@ -180,7 +193,8 @@ public class RouteMainRestResource extends BaseRestResource{
 			if (LOG.isErrorEnabled()) {
 				LOG.error("System Exception.", ex);
 			}
-			return new ResponseDataVO<RouteLoadVO>(StaticErrorEnum.DB_OPERATE_FAIL);
+			return new ResponseDataVO<RouteLoadVO>(
+					StaticErrorEnum.DB_OPERATE_FAIL);
 		}
 	}
 
@@ -195,8 +209,8 @@ public class RouteMainRestResource extends BaseRestResource{
 	 */
 	@POST
 	@Path("/{routeId}/schedule/save")
-	public ResponseVO saveSchedule(@PathParam("routeId") String routeId, RouteScheduleVO vo,
-			@Context HttpServletRequest request) {
+	public ResponseVO saveSchedule(@PathParam("routeId") String routeId,
+			RouteScheduleVO vo, @Context HttpServletRequest request) {
 		if (vo == null) {
 			if (LOG.isWarnEnabled()) {
 				LOG.warn("The RouteScheduleVO is null.");
@@ -205,13 +219,14 @@ public class RouteMainRestResource extends BaseRestResource{
 		}
 		try {
 			RouteScheduleBean bean = null;
-			if(vo.getId() == null){
+			if (vo.getId() == null) {
 				bean = RouteScheduleVO.transform(vo);
-			}else{
-				bean = (RouteScheduleBean) routeRepository.get(RouteScheduleBean.class, vo.getId());
+			} else {
+				bean = (RouteScheduleBean) routeRepository.get(
+						RouteScheduleBean.class, vo.getId());
 				bean.setMemo(vo.getMemo());
 			}
-			
+
 			routeRepository.save(bean, WebUtils.getCurrentLoginUser(request));
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format(
@@ -230,7 +245,7 @@ public class RouteMainRestResource extends BaseRestResource{
 
 	/**
 	 * 保存行程活动值对象到图数据库
-	 *
+	 * 
 	 * @param vo
 	 *            行程活动值对象
 	 * @param request
@@ -239,8 +254,9 @@ public class RouteMainRestResource extends BaseRestResource{
 	 */
 	@POST
 	@Path("/{routeId}/activity/save")
-	public ResponseDataVO<Long> saveScheduleActivity(@PathParam("routeId") String routeId, RouteActivityVO vo,
-								   @Context HttpServletRequest request) {
+	public ResponseDataVO<Long> saveScheduleActivity(
+			@PathParam("routeId") String routeId, RouteActivityVO vo,
+			@Context HttpServletRequest request) {
 		if (vo == null) {
 			if (LOG.isWarnEnabled()) {
 				LOG.warn("The RouteActivityVO is null.");
@@ -267,26 +283,35 @@ public class RouteMainRestResource extends BaseRestResource{
 	}
 
 	/**
-	 *
+	 * 
 	 * @param activityId
 	 * @param itemId
 	 * @return
 	 */
 	@POST
 	@Path("/activity/{activityId}/item/{itemId}/save")
-	public ResponseDataVO<Long> saveScheduleActivityItem(@PathParam("activityId") String activityId, @PathParam("itemId") String itemId) {
+	public ResponseDataVO<Long> saveScheduleActivityItem(
+			@PathParam("activityId") String activityId,
+			@PathParam("itemId") String itemId) {
 		try {
-			RouteActivityBean activity = (RouteActivityBean) routeRepository.get(RouteActivityBean.class, Neo4jUtils.getGraphIDFromString(activityId));
-			if(activity == null){
-				return new ResponseDataVO<Long>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+			RouteActivityBean activity = (RouteActivityBean) routeRepository
+					.get(RouteActivityBean.class,
+							Neo4jUtils.getGraphIDFromString(activityId));
+			if (activity == null) {
+				return new ResponseDataVO<Long>(
+						StaticErrorEnum.FETCH_DB_DATA_FAIL);
 			}
 
-			ResourceActivityItemBean item = (ResourceActivityItemBean) routeRepository.get(ResourceActivityItemBean.class, Neo4jUtils.getGraphIDFromString(itemId));
-			if(item == null){
-				return new ResponseDataVO<Long>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+			ResourceActivityItemBean item = (ResourceActivityItemBean) routeRepository
+					.get(ResourceActivityItemBean.class,
+							Neo4jUtils.getGraphIDFromString(itemId));
+			if (item == null) {
+				return new ResponseDataVO<Long>(
+						StaticErrorEnum.FETCH_DB_DATA_FAIL);
 			}
 
-			RouteActivityItemBean activityItem = new RouteActivityItemBean(WebUtils.getCurrentLoginUser());
+			RouteActivityItemBean activityItem = new RouteActivityItemBean(
+					WebUtils.getCurrentLoginUser());
 			activityItem.setActivity(activity);
 			activityItem.setResourceActivityItem(item);
 			activityItem.setResourceActivityItemId(item.getGraphId());
@@ -303,7 +328,7 @@ public class RouteMainRestResource extends BaseRestResource{
 	}
 
 	/**
-	 *
+	 * 
 	 * @param subType
 	 * @param subId
 	 * @param serviceId
@@ -311,13 +336,19 @@ public class RouteMainRestResource extends BaseRestResource{
 	 */
 	@POST
 	@Path("/service/{subType}/{subId}/{serviceId}/save")
-	public ResponseDataVO<Long> saveService(@PathParam("subType") String subType, @PathParam("subId") String subId, @PathParam("serviceId") String serviceId){
-		try{
+	public ResponseDataVO<Long> saveService(
+			@PathParam("subType") String subType,
+			@PathParam("subId") String subId,
+			@PathParam("serviceId") String serviceId) {
+		try {
 			RouteServiceBean routeService = new RouteServiceBean();
 
-			ExpertServiceBean service = (ExpertServiceBean) routeRepository.get(ExpertServiceBean.class, Long.valueOf(serviceId), false);
-			if(service == null){
-				return new ResponseDataVO<Long>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+			ExpertServiceBean service = (ExpertServiceBean) routeRepository
+					.get(ExpertServiceBean.class, Long.valueOf(serviceId),
+							false);
+			if (service == null) {
+				return new ResponseDataVO<Long>(
+						StaticErrorEnum.FETCH_DB_DATA_FAIL);
 			}
 			routeService.setService(service);
 
@@ -331,32 +362,41 @@ public class RouteMainRestResource extends BaseRestResource{
 			routeService.setFeeExcluding(service.getFeeExcluding());
 			routeService.setMemo(service.getMemo());
 
-			if(subType.equals("route")){
-				RouteMainBean route = (RouteMainBean) routeRepository.get(RouteMainBean.class, Long.valueOf(subId), false);
-				if(route == null){
-					return new ResponseDataVO<Long>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+			if (subType.equals("route")) {
+				RouteMainBean route = (RouteMainBean) routeRepository.get(
+						RouteMainBean.class, Long.valueOf(subId), false);
+				if (route == null) {
+					return new ResponseDataVO<Long>(
+							StaticErrorEnum.FETCH_DB_DATA_FAIL);
 				}
 
 				routeService.setRoute(route);
-			}else if(subType.equals("schedule")){
-				RouteScheduleBean schedule = (RouteScheduleBean) routeRepository.get(RouteScheduleBean.class, Long.valueOf(subId), false);
-				if(schedule == null){
-					return new ResponseDataVO<Long>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+			} else if (subType.equals("schedule")) {
+				RouteScheduleBean schedule = (RouteScheduleBean) routeRepository
+						.get(RouteScheduleBean.class, Long.valueOf(subId),
+								false);
+				if (schedule == null) {
+					return new ResponseDataVO<Long>(
+							StaticErrorEnum.FETCH_DB_DATA_FAIL);
 				}
 
 				routeService.setSchedule(schedule);
-			}else if(subType.equals("activity")){
-				RouteActivityBean activity = (RouteActivityBean) routeRepository.get(RouteActivityBean.class, Long.valueOf(subId), false);
-				if(activity == null){
-					return new ResponseDataVO<Long>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+			} else if (subType.equals("activity")) {
+				RouteActivityBean activity = (RouteActivityBean) routeRepository
+						.get(RouteActivityBean.class, Long.valueOf(subId),
+								false);
+				if (activity == null) {
+					return new ResponseDataVO<Long>(
+							StaticErrorEnum.FETCH_DB_DATA_FAIL);
 				}
 
 				routeService.setActivity(activity);
-			}else{
+			} else {
 				return new ResponseDataVO<Long>(StaticErrorEnum.DB_OPERATE_FAIL);
 			}
 
-			this.routeRepository.save(routeService, WebUtils.getCurrentLoginUser());
+			this.routeRepository.save(routeService,
+					WebUtils.getCurrentLoginUser());
 
 			return new ResponseDataVO<Long>(routeService.getGraphId());
 		} catch (Exception ex) {
@@ -365,17 +405,19 @@ public class RouteMainRestResource extends BaseRestResource{
 		}
 	}
 
-
-	
 	@GET
 	@Path("activity/{activityId}")
-	public ResponseDataVO<RouteActivityVO> getActivity(@PathParam("activityId")  String activityId,@Context HttpServletRequest request) {
+	public ResponseDataVO<RouteActivityVO> getActivity(
+			@PathParam("activityId") String activityId,
+			@Context HttpServletRequest request) {
 		try {
-			RouteActivityBean activity = routeRepository.getCompleteActivity(Long.valueOf(activityId));
+			RouteActivityBean activity = routeRepository
+					.getCompleteActivity(Long.valueOf(activityId));
 			return new ResponseDataVO<>(RouteActivityVO.transform(activity));
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
-				LOG.error(String.format("Get the RouteActivity[id='%s'] fail.",activityId), ex);
+				LOG.error(String.format("Get the RouteActivity[id='%s'] fail.",
+						activityId), ex);
 			}
 			return new ResponseDataVO<>(StaticErrorEnum.DB_OPERATE_FAIL);
 		}
@@ -392,7 +434,8 @@ public class RouteMainRestResource extends BaseRestResource{
 	 */
 	@POST
 	@Path("/{routeId}/provision/save")
-	public ResponseDataVO<Long> saveProvision(@PathParam("routeId") String routeId, RouteProvisionVO vo,
+	public ResponseDataVO<Long> saveProvision(
+			@PathParam("routeId") String routeId, RouteProvisionVO vo,
 			@Context HttpServletRequest request) {
 		if (vo == null) {
 			if (LOG.isWarnEnabled()) {
@@ -574,9 +617,12 @@ public class RouteMainRestResource extends BaseRestResource{
 
 	@POST
 	@Path("/activity/item/{itemId}/delete")
-	public ResponseDataVO<Long> deleteActivityItem(@PathParam("itemId") String itemId){
-		try{
-			RouteActivityItemBean itemBean = (RouteActivityItemBean) routeRepository.get(RouteActivityItemBean.class, Neo4jUtils.getGraphIDFromString(itemId), false);
+	public ResponseDataVO<Long> deleteActivityItem(
+			@PathParam("itemId") String itemId) {
+		try {
+			RouteActivityItemBean itemBean = (RouteActivityItemBean) routeRepository
+					.get(RouteActivityItemBean.class,
+							Neo4jUtils.getGraphIDFromString(itemId), false);
 
 			this.routeRepository.delete(itemBean);
 
@@ -588,15 +634,17 @@ public class RouteMainRestResource extends BaseRestResource{
 	}
 
 	/**
-	 *
+	 * 
 	 * @param serviceId
 	 * @return
 	 */
 	@POST
 	@Path("/service/{serviceId}/delete")
-	public ResponseDataVO<Long> deleteService(@PathParam("serviceId") String serviceId){
-		try{
-			RouteServiceBean routeService = (RouteServiceBean) routeRepository.get(RouteServiceBean.class, Long.valueOf(serviceId), false);
+	public ResponseDataVO<Long> deleteService(
+			@PathParam("serviceId") String serviceId) {
+		try {
+			RouteServiceBean routeService = (RouteServiceBean) routeRepository
+					.get(RouteServiceBean.class, Long.valueOf(serviceId), false);
 
 			this.routeRepository.delete(routeService);
 
@@ -610,16 +658,19 @@ public class RouteMainRestResource extends BaseRestResource{
 	@SuppressWarnings("unchecked")
 	@Path("/recommend/{placeIds}/{duration}")
 	@GET
-	public ResponseDataVO<List<RouteRecommendVO>> getRecommendedRoutes(@PathParam("placeIds") String placeIds, @PathParam("duration") String duration) {
+	public ResponseDataVO<List<RouteRecommendVO>> getRecommendedRoutes(
+			@PathParam("placeIds") String placeIds,
+			@PathParam("duration") String duration) {
 		List<RouteRecommendVO> list = new ArrayList<RouteRecommendVO>();
 		try {
 			String[] ids = placeIds.split(",");
 			Long[] lIds = new Long[ids.length];
-			for(int index = 0; index < ids.length; index++){
+			for (int index = 0; index < ids.length; index++) {
 				lIds[index] = Long.valueOf(ids[index]);
 			}
 
-			List<RouteMainBean> result = (List<RouteMainBean>) routeRepository.getRecommendRoutes(lIds);
+			List<RouteMainBean> result = (List<RouteMainBean>) routeRepository
+					.getRecommendRoutes(lIds);
 			for (RouteMainBean bean : result) {
 				if (bean == null) {
 					continue;
@@ -640,9 +691,11 @@ public class RouteMainRestResource extends BaseRestResource{
 
 	@Path("/recommend/{routeId}")
 	@GET
-	public ResponseDataVO<RouteRecommendVO> getRecommendedRoute(@PathParam("routeId") String routeId) {
+	public ResponseDataVO<RouteRecommendVO> getRecommendedRoute(
+			@PathParam("routeId") String routeId) {
 		try {
-			RouteMainBean bean = (RouteMainBean) routeRepository.getCompleteRoute(Long.valueOf(routeId));
+			RouteMainBean bean = (RouteMainBean) routeRepository
+					.getCompleteRoute(Long.valueOf(routeId));
 
 			RouteRecommendVO vo = RouteRecommendVO.transform(bean);
 			return new ResponseDataVO<RouteRecommendVO>(vo);
