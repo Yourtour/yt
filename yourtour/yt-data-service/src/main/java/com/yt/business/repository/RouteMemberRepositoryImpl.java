@@ -17,7 +17,7 @@ public class RouteMemberRepositoryImpl extends CrudAllInOneOperateImpl implement
 			.getLog(RouteMemberRepositoryImpl.class);
 
 	@Autowired
-	private RouteServiceRepository routeServiceRepo;
+	private ServiceRepository routeServiceRepo;
 
 	@Override
 	public List<RouteMemberBean> getRouteMembers(Long routeId) throws Exception {

@@ -17,19 +17,17 @@ Ext.define('YourTour.view.resource.ResourceActivityItemListView', {
 			},
 
 			{
-				xtype: 'toolbar',
+				xtype: 'xtoolbar',
 				docked: 'bottom',
 				items: [
 					{
 						xtype: 'spacer',
 						flex:1
 					},{
-						xtype: 'button',
+						xtype: 'xbutton',
 						text: '加入日程',
-						ui: 'normal',
-						baseCls:'button',
 						itemId: 'btnAddToRoute',
-						padding:'0 40 0 40'
+						icon: 'resources/icons/24/icon_button_add.png',
 					}
 				]
 			}

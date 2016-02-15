@@ -116,14 +116,6 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
                 itemtap: 'onActivityItemTap'
             },
 
-            '#RouteActivityEditView #btnServiceAdd': {
-                tap: 'onActivityServiceAddTap'
-            },
-
-            '#RouteActivityEditView #serviceList': {
-                itemtap: 'onActivityServiceItemTap'
-            },
-
             '#RouteActivityEditView #resName': {
                 tap: 'onShowResourceView'
             },
@@ -872,6 +864,14 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
             success: function (store) {
                 var activity = store.first();
                 view.setData(activity);
+
+                var items = view.down('#itemList');
+                items.setStore(activity.itemsStore);
+                if(items.getStore().getAllCount() == 0){
+                    view.down('#activityItem').setText('没有具体的行程安排。');
+                }else{
+                    view.down('#activityItem').setText('');
+                }
             }
         };
         me.getApplication().query(options);

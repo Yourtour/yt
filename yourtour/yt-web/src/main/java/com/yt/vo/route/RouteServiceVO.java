@@ -1,58 +1,80 @@
 package com.yt.vo.route;
 
 import com.yt.business.bean.RouteServiceBean;
+import com.yt.core.utils.DateUtils;
 import com.yt.vo.BaseVO;
 import com.yt.vo.member.ExpertServiceVO;
 
-public class RouteServiceVO extends ExpertServiceVO {
-	private String  expertServiceId;
-	private String  scheduleId;
-	private String  routeId;
+public class RouteServiceVO extends BaseVO {
+	private String 	useDate;
+	private int 	memberNum;
+	private String	address;
+	private String	memo;
 
-	public static RouteServiceVO transform(RouteServiceBean bean) {
-		if (bean == null) {
-			return null;
-		}
-		RouteServiceVO valueObject = new RouteServiceVO();
-		valueObject.setExpertServiceId(String.valueOf(bean.getExpertServiceId()));
-		valueObject.setId(bean.getGraphId());
-		valueObject.setFee(bean.getFee());
-		valueObject.setTitle(bean.getTitle());
-		valueObject.setMemo(bean.getMemo());
-		valueObject.setWithdraw(bean.getWithdraw());
-		valueObject.setFeeExcluding(bean.getFeeExcluding());
-		valueObject.setFeeIncluding(bean.getFeeIncluding());
-		valueObject.setImageUrl(bean.getImageUrl());
-		valueObject.setImageUrls(bean.getImageUrls());
-
-		return valueObject;
-	}
+	private ExpertServiceVO expertService;
 
 	public RouteServiceVO() {
 		super();
 	}
 
-	public String getExpertServiceId() {
-		return expertServiceId;
+	public static RouteServiceVO transform(RouteServiceBean bean) {
+		if (bean == null) {
+			return null;
+		}
+
+		RouteServiceVO valueObject = new RouteServiceVO();
+		valueObject.setId(bean.getGraphId());
+		valueObject.setMemo(bean.getMemo());
+		valueObject.setUseDate(DateUtils.formatDate(bean.getUseDate()));
+		valueObject.setMemberNum(bean.getMemberNum());
+
+		valueObject.setExpertService(ExpertServiceVO.transform(bean.getService()));
+		return valueObject;
 	}
 
-	public void setExpertServiceId(String expertServiceId) {
-		this.expertServiceId = expertServiceId;
+	public static RouteServiceBean transform(RouteServiceVO vo) {
+		RouteServiceBean bean = new RouteServiceBean();
+
+		return bean;
 	}
 
-	public String getRouteId() {
-		return routeId;
+	public String getUseDate() {
+		return useDate;
 	}
 
-	public void setRouteId(String routeId) {
-		this.routeId = routeId;
+	public void setUseDate(String useDate) {
+		this.useDate = useDate;
 	}
 
-	public String getScheduleId() {
-		return scheduleId;
+	public int getMemberNum() {
+		return memberNum;
 	}
 
-	public void setScheduleId(String scheduleId) {
-		this.scheduleId = scheduleId;
+	public void setMemberNum(int memberNum) {
+		this.memberNum = memberNum;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getMemo() {
+		return memo;
+	}
+
+	public void setMemo(String memo) {
+		this.memo = memo;
+	}
+
+	public ExpertServiceVO getExpertService() {
+		return this.expertService;
+	}
+
+	public void setExpertService(ExpertServiceVO expertServiceVO) {
+		this.expertService = expertServiceVO;
 	}
 }

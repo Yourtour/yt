@@ -152,10 +152,10 @@ public class ExpertRestResource {
 	public ResponseDataVO<Long> saveService(@Context HttpServletRequest request, ExpertServiceVO serviceVO){
 		try{
 			String userId = WebUtils.getCurrentLoginUser(request);
-			ExpertBean expert = (ExpertBean) this.expertRepository.get(ExpertBean.class, Long.valueOf(userId), false);
+			UserProfileBean user = (UserProfileBean) this.expertRepository.get(UserProfileBean.class, Long.valueOf(userId), false);
 
 			ExpertServiceBean service = ExpertServiceVO.transform(serviceVO);
-			service.setExpert(expert);
+			service.setUser(user);
 			this.expertRepository.save(service, userId);
 
 			return new ResponseDataVO<Long>(service.getGraphId());

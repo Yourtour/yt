@@ -60,6 +60,12 @@ Ext.define('YourTour.view.route.RouteMainView', {
 
                             {
                                 xtype:'image',
+                                itemId:'btnService',
+                                src:'resources/icons/48/icon_service.png'
+                            },
+
+                            {
+                                xtype:'image',
                                 itemId:'btnMember',
                                 src:'resources/icons/48/icon_partner.png'
                             },

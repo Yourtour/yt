@@ -59,7 +59,7 @@ Ext.define('YourTour.view.route.RouteScheduleFormView', {
 					{
 						xtype: 'xmultifield',
 						itemId:'memo',
-						label:'行程备注',
+						label:'行程描述',
 						ellipsis:{
 							size:100,
 							expandable:true
@@ -83,24 +83,6 @@ Ext.define('YourTour.view.route.RouteScheduleFormView', {
 						defaultType: 'RouteActivityItemDataItem',
 						itemHeight:95,
 						scrollable:'none'
-					},
-
-					{
-						xtype: 'panel',
-						cls: 'spacer'
-					},
-
-					{
-						xtype: 'xfield',
-						itemId: 'activityService',
-						label:'行程服务'
-					},
-
-					{
-						xtype: 'xdataview',
-						itemId: 'services',
-						scrollable:'none',
-						defaultType: 'ExpertServiceListDataItem'
 					},
 
 					{

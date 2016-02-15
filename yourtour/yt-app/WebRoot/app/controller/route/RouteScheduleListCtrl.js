@@ -29,10 +29,6 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
     		   tap:'onShowResourceMap'
     	   },
     	   
-    	   '#RouteScheduleFormView #services':{
-    		   itemtap:'onScheduleServiceTap'
-    	   },
-
 		   '#RouteScheduleFormView #items':{
 			   itemtap:'onScheduleActivityItemTap'
 		   },
@@ -142,14 +138,6 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
 					scheduleView.down('#activityItem').setText('没有具体的行程安排。');
 				}else{
 					scheduleView.down('#activityItem').setText('');
-				}
-
-				var services = scheduleView.down('#services');
-				services.setStore(activity.servicesStore);
-				if(services.getStore().getAllCount() == 0){
-					scheduleView.down('#activityService').setText('没有具体的行程服务。');
-				}else{
-					scheduleView.down('#activityService').setText('');
 				}
 			}
 		};

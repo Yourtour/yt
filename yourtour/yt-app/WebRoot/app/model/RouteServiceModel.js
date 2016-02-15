@@ -1,4 +1,4 @@
-Ext.define('YourTour.model.ServiceModel', {
+Ext.define('YourTour.model.RouteServiceModel', {
     extend: 'YourTour.model.BaseModel',
     config:{
 	    fields:[
@@ -13,6 +13,15 @@ Ext.define('YourTour.model.ServiceModel', {
 			{name:'memo', type:'string'},
 			{name:'status', type:'string'},
 			{name:'expertServiceId', type:'string'}
-	    ]
+	    ],
+
+		associations: [
+			{
+				type: 'hasMany',
+				model: 'YourTour.model.ExpertServiceModel',
+				name:'expertService',
+				associationKey:'expertService'
+			}
+		]
     }
 });

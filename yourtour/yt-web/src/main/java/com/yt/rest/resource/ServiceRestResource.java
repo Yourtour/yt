@@ -6,11 +6,10 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import com.yt.business.bean.*;
-import com.yt.business.repository.RouteServiceRepository;
+import com.yt.business.repository.ServiceRepository;
 import com.yt.business.utils.Neo4jUtils;
 import com.yt.response.ResponseDataVO;
 import com.yt.utils.WebUtils;
-import com.yt.vo.AbbrVO;
 import com.yt.vo.member.ExpertServiceVO;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -29,7 +28,7 @@ import java.util.List;
 @Path("services")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class ServiceRestResource {
+public class ServiceRestResource extends BaseRestResource{
 	private static final Log LOG = LogFactory.getLog(ServiceRestResource.class);
 
 	// spring自动装配的行程操作库
@@ -37,104 +36,56 @@ public class ServiceRestResource {
 	private RouteRepository routeRepository;
 
 	@Autowired
-	private RouteServiceRepository serviceRepository;
+	private ServiceRepository serviceRepository;
+
+	@GET
+	@Path("/route/{routeId}")
+	public ResponseDataVO<List<RouteServiceVO>> getRouteServices(@PathParam("routeId")  String routeId){
+		try {
+			Long rid = Neo4jUtils.getGraphIDFromString(routeId);
+
+			List<RouteServiceVO> services = new ArrayList<>();
+			List<RouteServiceBean> serviceBeans = serviceRepository.getRouteServices(rid);
+			if(serviceBeans != null){
+				for(RouteServiceBean serviceBean : serviceBeans){
+					services.add(RouteServiceVO.transform(serviceBean));
+				}
+			}
+
+			return new ResponseDataVO<List<RouteServiceVO>>(services);
+		} catch (Exception ex) {
+			LOG.error("Exception raised.", ex);
+			return new ResponseDataVO<List<RouteServiceVO>>(
+					StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
+	}
 
 	/**
 	 *
-	 * @param request
-	 * @param service
+	 * @param routeId
+	 * @param serviceId
+	 * @param serviceVO
 	 * @return
 	 */
 	@POST
-	@Path("/route/save")
-	public ResponseVO saveRouteService(@Context HttpServletRequest request, RouteServiceVO serviceVO){
+	@Path("/route/{routeId}/service/{serviceId}/save")
+	public ResponseVO saveRouteService(@PathParam("routeId") String routeId, @PathParam("serviceId") String serviceId, RouteServiceVO serviceVO){
 		try{
-			RouteMainBean route = (RouteMainBean) routeRepository.get(RouteMainBean.class, Long.valueOf(serviceVO.getRouteId()), false);
+			RouteMainBean route = (RouteMainBean) routeRepository.get(RouteMainBean.class, Long.valueOf(routeId), false);
 			if(route == null){
 				return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
 			}
 
-			ExpertServiceBean service = (ExpertServiceBean) routeRepository.get(ExpertServiceBean.class, Long.valueOf(serviceVO.getExpertServiceId()), false);
+			ExpertServiceBean service = (ExpertServiceBean) routeRepository.get(ExpertServiceBean.class, Long.valueOf(serviceId), false);
 			if(service == null){
 				return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
 			}
 
-			RouteServiceBean serviceBean = new RouteServiceBean();
+			RouteServiceBean serviceBean = RouteServiceVO.transform(serviceVO);
 			serviceBean.setRoute(route);
 			serviceBean.setService(service);
-			serviceBean.setTitle(serviceVO.getTitle());
-			serviceBean.setMemo(serviceVO.getMemo());
 
-			this.serviceRepository.save(serviceBean,  WebUtils.getCurrentLoginUser(request));
-
-			return new ResponseVO();
-		} catch (Exception ex) {
-			LOG.error("Exception raised when saving service.", ex);
-			return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
-		}
-	}
-
-	/**
-	 *
-	 * @param request
-	 * @param service
-	 * @return
-	 */
-	@POST
-	@Path("/schedule/save")
-	public ResponseVO saveScheduleService(@Context HttpServletRequest request, RouteServiceVO serviceVO){
-		try{
-			RouteScheduleBean schedule = (RouteScheduleBean) routeRepository.get(RouteScheduleBean.class, Long.valueOf(serviceVO.getScheduleId()), false);
-			if(schedule == null){
-				return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
-			}
-
-			ExpertServiceBean service = (ExpertServiceBean) routeRepository.get(ExpertServiceBean.class, Long.valueOf(serviceVO.getExpertServiceId()), false);
-			if(service == null){
-				return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
-			}
-
-			RouteServiceBean serviceBean = new RouteServiceBean();
-			serviceBean.setSchedule(schedule);
-			serviceBean.setService(service);
-			serviceBean.setTitle(serviceVO.getTitle());
-			serviceBean.setMemo(serviceVO.getMemo());
-
-			this.serviceRepository.save(serviceBean,  WebUtils.getCurrentLoginUser(request));
-
-			return new ResponseVO();
-		} catch (Exception ex) {
-			LOG.error("Exception raised when saving service.", ex);
-			return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
-		}
-	}
-
-	/**
-	 *
-	 * @param request
-	 * @return
-	 */
-	@POST
-	@Path("/activity/save")
-	public ResponseVO saveActivityService(@Context HttpServletRequest request, RouteServiceVO serviceVO){
-		try{
-			RouteActivityBean activity = (RouteActivityBean) routeRepository.get(RouteActivityBean.class, Long.valueOf(serviceVO.getScheduleId()), false);
-			if(activity == null){
-				return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
-			}
-
-			ExpertServiceBean service = (ExpertServiceBean) routeRepository.get(ExpertServiceBean.class, Long.valueOf(serviceVO.getExpertServiceId()), false);
-			if(service == null){
-				return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
-			}
-
-			RouteServiceBean serviceBean = new RouteServiceBean();
-			serviceBean.setActivity(activity);
-			serviceBean.setService(service);
-			serviceBean.setTitle(serviceVO.getTitle());
-			serviceBean.setMemo(serviceVO.getMemo());
-
-			this.serviceRepository.save(serviceBean,  WebUtils.getCurrentLoginUser(request));
+			this.serviceRepository.save(serviceBean, this.getCurrentUserId());
 
 			return new ResponseVO();
 		} catch (Exception ex) {
@@ -145,12 +96,12 @@ public class ServiceRestResource {
 
 	@GET
     @Path("/expert/{expertId}")
-    public ResponseDataVO<List<ExpertServiceVO>> getServices(@PathParam("expertId")  String expertId){
+    public ResponseDataVO<List<ExpertServiceVO>> getExpertServices(@PathParam("expertId")  String expertId){
         try {
             Long userId = Neo4jUtils.getGraphIDFromString(expertId);
 
             List<ExpertServiceVO> services = new ArrayList<>();
-            List<ExpertServiceBean> serviceBeans = serviceRepository.getServices(userId);
+            List<ExpertServiceBean> serviceBeans = serviceRepository.getExpertServices(userId);
             if(serviceBeans != null){
                 for(ExpertServiceBean serviceBean : serviceBeans){
                     services.add(ExpertServiceVO.transform(serviceBean));

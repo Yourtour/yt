@@ -28,7 +28,7 @@ public class ExpertServiceBean extends BaseBeanImpl {
 	private String memo; // 服务描述
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = ExpertBean.class, direction = Direction.INCOMING)
-	private transient ExpertBean expert = null; // 服务相关达人
+	private transient UserProfileBean user = null; // 服务相关达人
 
 	public ExpertServiceBean() {
 		super();
@@ -118,11 +118,11 @@ public class ExpertServiceBean extends BaseBeanImpl {
 		this.category = category;
 	}
 
-	public ExpertBean getExpert() {
-		return expert;
+	public UserProfileBean getUser() {
+		return user;
 	}
 
-	public void setExpert(ExpertBean expert) {
-		this.expert = expert;
+	public void setUser(UserProfileBean user) {
+		this.user = user;
 	}
 }

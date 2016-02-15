@@ -84,14 +84,6 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 		RouteActivityBean activity = (RouteActivityBean) super.get(RouteActivityBean.class,activityId);
 
 		if(activity != null){
-			List<RouteServiceBean> services = activity.getServices();
-			if(services != null){
-				for(RouteServiceBean service : services){
-					if(service.getExpertServiceId() == null) continue;
-					service.setService((ExpertServiceBean) this.get(ExpertServiceBean.class, service.getExpertServiceId(), false));
-				}
-			}
-
 			List<RouteActivityItemBean> items = activity.getItems();
 			if(items != null){
 				for(RouteActivityItemBean item : items){

@@ -37,9 +37,7 @@ Ext.define('YourTour.view.resource.ResourceActivityItemFormView', {
         var me = this, data = me.data || me.getData();
         if(data){
             var activityItem = me.down('#ResourceActivityItem');
-            console.log('background-image: url(' + data.get('imageUrl') + ');background-repeat: no-repeat;background-position: center center;');
             activityItem.setStyle('background-image: url(' + data.get('imageUrl') +  ');background-repeat: no-repeat;background-position: center center;');
-            //this.setStyle('background-image','url(' + YourTour.util.Context.getImageResource(data.get('imageUrl')) + ')');
         }
     }
 });

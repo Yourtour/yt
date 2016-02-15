@@ -40,6 +40,10 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
 			   tap:'onRouteTap'
 		   },
 
+		   '#RouteMainView #btnService':{
+			   tap:'onRouteServiceTap'
+		   },
+
 		   '#RouteMainView #btnMember':{
 			   tap:'onRouteMemberTap'
 		   },
@@ -129,6 +133,16 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
 
 		this.redirectTo('/route/load/' + record.get('id'));
     },
+
+	onRouteServiceTap:function(record){
+		var me = this;
+		var routeCarousel = me.getRouteCarousel();
+		var index = routeCarousel.getActiveIndex();
+		var record = me.store.getAt(index);
+
+		var controller = me.getApplication().getController('ServiceMainCtrl');
+		controller.showRouteService(record);
+	},
     
     onRouteMemberTap:function(record){
 		var me = this;

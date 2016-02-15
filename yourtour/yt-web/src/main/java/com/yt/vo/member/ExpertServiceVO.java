@@ -13,7 +13,8 @@ public class ExpertServiceVO extends BaseVO {
 
     private String category;
     private String imageUrl;
-    private String imageUrls;
+
+    private UserVO user;
 
     public ExpertServiceVO() {
     }
@@ -42,8 +43,10 @@ public class ExpertServiceVO extends BaseVO {
         valueObject.setFeeExcluding(bean.getFeeExcluding());
         valueObject.setFeeIncluding(bean.getFeeIncluding());
         valueObject.setImageUrl(bean.getImageUrl());
-        valueObject.setImageUrls(bean.getImageUrls());
 
+        if(bean.getUser() != null){
+            valueObject.setUser(UserVO.transform(bean.getUser()));
+        }
         return valueObject;
     }
 
@@ -111,11 +114,11 @@ public class ExpertServiceVO extends BaseVO {
         this.imageUrl = imageUrl;
     }
 
-    public String getImageUrls() {
-        return imageUrls;
+    public UserVO getUser() {
+        return user;
     }
 
-    public void setImageUrls(String imageUrls) {
-        this.imageUrls = imageUrls;
+    public void setUser(UserVO user) {
+        this.user = user;
     }
 }

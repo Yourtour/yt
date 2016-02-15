@@ -679,6 +679,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.model.ChatModel": [],
   "YourTour.model.CommentModel": [],
   "YourTour.model.ExpertModel": [],
+  "YourTour.model.ExpertServiceModel": [],
   "YourTour.model.HomeCarouselModel": [],
   "YourTour.model.HomeModel": [],
   "YourTour.model.LaunchModel": [],
@@ -694,7 +695,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.model.RouteActivityModel": [],
   "YourTour.model.RouteModel": [],
   "YourTour.model.RouteScheduleModel": [],
-  "YourTour.model.ServiceModel": [],
+  "YourTour.model.RouteServiceModel": [],
   "YourTour.model.TalentModel": [],
   "YourTour.model.UserModel": [],
   "YourTour.model.common.ResponseModel": [],
@@ -851,6 +852,10 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.route.RouteSettingItem": [],
   "YourTour.view.route.RouteSettingView": [],
   "YourTour.view.route.Schedule": [],
+  "YourTour.view.service.RouteServiceEditView": [],
+  "YourTour.view.service.RouteServiceFormView": [],
+  "YourTour.view.service.RouteServiceListDataItem": [],
+  "YourTour.view.service.RouteServiceMainView": [],
   "YourTour.view.setting.UserSettingView": [],
   "YourTour.view.user.LoginMainView": [],
   "YourTour.view.user.LoginView": [],
@@ -1674,6 +1679,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.model.ChatModel": [],
   "YourTour.model.CommentModel": [],
   "YourTour.model.ExpertModel": [],
+  "YourTour.model.ExpertServiceModel": [],
   "YourTour.model.HomeCarouselModel": [],
   "YourTour.model.HomeModel": [],
   "YourTour.model.LaunchModel": [],
@@ -1691,7 +1697,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.model.RouteActivityModel": [],
   "YourTour.model.RouteModel": [],
   "YourTour.model.RouteScheduleModel": [],
-  "YourTour.model.ServiceModel": [],
+  "YourTour.model.RouteServiceModel": [],
   "YourTour.model.TalentModel": [],
   "YourTour.model.UserModel": [],
   "YourTour.model.common.ResponseModel": [],
@@ -2014,6 +2020,12 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.route.Schedule": [
     "widget.routenew"
   ],
+  "YourTour.view.service.RouteServiceEditView": [],
+  "YourTour.view.service.RouteServiceFormView": [],
+  "YourTour.view.service.RouteServiceListDataItem": [
+    "widget.RouteServiceListDataItem"
+  ],
+  "YourTour.view.service.RouteServiceMainView": [],
   "YourTour.view.setting.UserSettingView": [
     "widget.UserSettingView"
   ],

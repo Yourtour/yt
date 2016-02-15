@@ -11,12 +11,20 @@ import org.springframework.data.neo4j.repository.GraphRepository;
 
 import java.util.List;
 
-public interface RouteServiceBeanRepository extends GraphRepository<RouteServiceBean> {
+public interface ServiceBeanRepository extends GraphRepository<RouteServiceBean> {
     /**
      *
      * @param expertId
      * @return
      */
     @Query("START user=node({0}) MATCH user-[:HAS]->(services:ExpertServiceBean) RETURN services")
-    public List<ExpertServiceBean> getServices(Long expertId);
+    public List<ExpertServiceBean> getExpertServices(Long expertId);
+
+    /**
+     *
+     * @param routeId
+     * @return
+     */
+    @Query("START route=node({0}) MATCH route-[:HAS]->(routeService:RouteServiceBean)-[]-(expertService:ExpertServiceBean)<-[:HAS]-(user:UserProfileBean) RETURN routeService, expertService, user")
+    public List<ServiceTuple> getRouteServices(Long routeId);
 }

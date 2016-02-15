@@ -5,7 +5,12 @@ Ext.define('YourTour.controller.ServiceMainCtrl', {
            expertServiceListView:'#ExpertServiceListView',
            expertServiceList:'#ExpertServiceListView #ExpertServiceList',
 
-           expertServiceFormView:'#ExpertServiceFormView'
+           expertServiceFormView:'#ExpertServiceFormView',
+
+           routeServiceMainView:'#RouteServiceMainView',
+           routeServiceList:'#RouteServiceMainView #RouteServiceList',
+
+           routeServiceFormView:'#RouteServiceFormView'
        },
        
        control:{
@@ -19,7 +24,11 @@ Ext.define('YourTour.controller.ServiceMainCtrl', {
 
             '#ExpertServiceFormView #btnCancel':{
                tap:'onServiceCancelTap'
-            }
+            },
+
+           routeServiceList:{
+               itemtap:'showRouteServiceInfo'
+           }
        }
     },
     
@@ -35,7 +44,7 @@ Ext.define('YourTour.controller.ServiceMainCtrl', {
         expertId = 282;
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.expert.ExpertServiceListView'));
 
-        var store = Ext.create('YourTour.store.AjaxStore', {model:'YourTour.model.ServiceModel'});
+        var store = Ext.create('YourTour.store.AjaxStore', {model:'YourTour.model.ExpertServiceModel'});
         var proxy = store.getProxy();
         proxy.setUrl(YourTour.util.Context.getContext('/services/expert/' + expertId));
         store.load(function(){
@@ -133,5 +142,56 @@ Ext.define('YourTour.controller.ServiceMainCtrl', {
         controller.cancelService(service, function(){
             Ext.ComponentManager.get('MainView').pop();
         });
+    },
+
+    showRouteService:function(route){
+        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.service.RouteServiceMainView'));
+        var me = this, view = me.getRouteServiceMainView(), routeServiceList = me.getRouteServiceList();
+        view.bindData(route);
+
+        var options = {
+            model: 'YourTour.model.RouteServiceModel',
+            url: '/services/route/' + route.get('id'),
+            success: function (store) {
+                routeServiceList.setStore(store);
+            }
+        };
+        me.getApplication().query(options);
+    },
+
+    showRouteServiceInfo:function(dataview, index, item, record,e){
+        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.service.RouteServiceFormView'));
+        var me = this, view = me.getRouteServiceFormView();
+        view.bindData(record);
+
+        var expertService = record.expertServiceStore.first();
+
+        var headerbar = view.down('#headerbar');
+        headerbar.setTitle(expertService.get('title'));
+
+        var memo = view.down('#memo');
+        memo.setText(expertService.get('memo'));
+
+        var withdraw = view.down('#withdraw');
+        withdraw.setText(expertService.get('withdraw'));
+
+        var feeIncluding = view.down('#feeIncluding');
+        feeIncluding.setText(expertService.get('feeIncluding'));
+
+        var feeExcluding = view.down('#feeExcluding');
+        feeExcluding.setText(expertService.get('feeExcluding'));
+
+        var imageUrls = expertService.get('imageUrls');
+        if(imageUrls != null && imageUrls != ''){
+            var urls = imageUrls.split('|');
+
+            var images = view.down('#images');
+            urls.forEach(function(url){
+                var image = Ext.create('YourTour.view.widget.XImage',{url : url});
+                images.add(image);
+            });
+
+            images.setActiveItem(0);
+        }
     }
 });

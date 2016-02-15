@@ -11,10 +11,13 @@ import com.yt.neo4j.annotation.Neo4jRelationship;
 
 @HbaseTable(name = "T_ROUTE_SERVICE")
 @NodeEntity
-public class RouteServiceBean extends ExpertServiceBean {
+public class RouteServiceBean extends BaseBeanImpl {
 	private static final long serialVersionUID = 6259294378320824143L;
 
-	private Long  expertServiceId;
+	private long 	useDate;
+	private int 	memberNum;
+	private String	address;
+	private String	memo;
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RELATED, type = ExpertServiceBean.class, direction = Direction.OUTGOING)
 	private transient ExpertServiceBean service = null; // 行程活动关联的行程日程
@@ -22,26 +25,12 @@ public class RouteServiceBean extends ExpertServiceBean {
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = RouteMainBean.class, direction = Direction.INCOMING)
 	private transient RouteMainBean route = null; // 行程活动关联的行程日程
 
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = RouteScheduleBean.class, direction = Direction.INCOMING)
-	private transient RouteScheduleBean schedule = null; // 行程活动关联的行程日程
-	
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = RouteActivityBean.class, direction = Direction.INCOMING)
-	private transient RouteActivityBean activity = null; // 行程活动关联的行程日程
-
 	public RouteServiceBean() {
 		super();
 	}
 
 	public RouteServiceBean(String userId) {
 		super(userId);
-	}
-
-	public Long getExpertServiceId() {
-		return expertServiceId;
-	}
-
-	public void setExpertServiceId(Long expertServiceId) {
-		this.expertServiceId = expertServiceId;
 	}
 
 	public RouteMainBean getRoute() {
@@ -52,27 +41,43 @@ public class RouteServiceBean extends ExpertServiceBean {
 		this.route = route;
 	}
 
-	public RouteScheduleBean getSchedule() {
-		return schedule;
-	}
-
-	public void setSchedule(RouteScheduleBean schedule) {
-		this.schedule = schedule;
-	}
-
-	public RouteActivityBean getActivity() {
-		return activity;
-	}
-
-	public void setActivity(RouteActivityBean activity) {
-		this.activity = activity;
-	}
-
 	public ExpertServiceBean getService() {
 		return service;
 	}
 
 	public void setService(ExpertServiceBean service) {
 		this.service = service;
+	}
+
+	public long getUseDate() {
+		return useDate;
+	}
+
+	public void setUseDate(long useDate) {
+		this.useDate = useDate;
+	}
+
+	public int getMemberNum() {
+		return memberNum;
+	}
+
+	public void setMemberNum(int memberNum) {
+		this.memberNum = memberNum;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getMemo() {
+		return memo;
+	}
+
+	public void setMemo(String memo) {
+		this.memo = memo;
 	}
 }

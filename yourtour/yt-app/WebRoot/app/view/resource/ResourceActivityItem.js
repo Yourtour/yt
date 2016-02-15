@@ -4,6 +4,7 @@ Ext.define('YourTour.view.resource.ResourceActivityItem', {
     requires:['YourTour.view.widget.XField','YourTour.view.widget.XMultiField'],
     config: {
     	layout:'vbox',
+		record:null,
         items: [
 			{
 				xtype:'xmultifield',
@@ -13,6 +14,16 @@ Ext.define('YourTour.view.resource.ResourceActivityItem', {
 				underline:false
 			}
         ]
-    }
+    },
+
+	updateRecord: function(record) {
+		var me = this;
+		if(record){
+			var memo = me.down('#memo');
+			memo.setText(record.get('memo'));
+
+			me.setStyle('background-image: url(' + record.get('imageUrl') +  ');background-repeat: no-repeat;background-position: center center;');
+		}
+	}
 });
 

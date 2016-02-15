@@ -29,7 +29,7 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 						xtype: 'xfield',
 						itemId: 'resName',
 						binding:'resource.name',
-						icon: 'icon-name'
+						label:'景点名称'
 					},
 
 					{
@@ -39,16 +39,20 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 					{
 						xtype: 'panel',
 						layout: 'hbox',
-						cls: 'row underline icon-name',
-						padding: '0 0 0 10',
-						items: [
+						cls: 'row underline',
+						padding: '0 10 0 10',
+						items:[
+							{
+								xtype:'xlabel',
+								html:'行程名称',
+								padding:'0 10 0 0'
+							},
 							{
 								xtype: 'xtextfield',
 								itemId: 'title',
+								flex:1,
 								inputCls: 'font-medium font-grey',
-								flex: 1,
-								placeHolder: '输入活动名称',
-								margin: '0 5 0 30'
+								placeHolder: '输入活动名称'
 							}
 						]
 					},
@@ -56,15 +60,20 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 					{
 						xtype: 'panel',
 						layout: 'hbox',
-						cls: 'row underline icon-time',
+						cls: 'row underline',
 						padding: '0 0 0 10',
 						items: [
+							{
+								xtype:'xlabel',
+								html:'行程时间',
+								padding:'0 10 0 0'
+							},
 							{
 								xtype: 'timepickerfield',
 								itemId: 'startTime',
 								value: new Date(),
-								width: 100,
-								margin: '0 5 0 30'
+								width: 70,
+								margin: '0 5 0 0'
 							},
 
 							{
@@ -78,7 +87,7 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 							{
 								xtype: 'timepickerfield',
 								itemId: 'endTime',
-								width: 100,
+								width: 70,
 								value: new Date()
 							}
 						]
@@ -87,9 +96,14 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 					{
 						xtype: 'panel',
 						layout: 'hbox',
-						cls: 'underline icon-memo',
+						cls: 'underline',
 						padding: '0 0 0 10',
 						items: [
+							{
+								xtype:'xlabel',
+								html:'行程描述',
+								padding:'0 10 0 0'
+							},
 							{
 								xtype: 'xtextarea',
 								itemId: 'memo',
@@ -97,7 +111,7 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 								clearIcon: true,
 								flex: 1,
 								cls: 'font-medium font-grey multilineinfo',
-								margin: '0 5 0 30'
+								margin: '0 5 0 0'
 							}
 						]
 					},
@@ -107,51 +121,26 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 					},
 
 					{
-						xtype: 'panel',
+						xtype: 'xpanel',
+						itemId:'btnItemAdd',
 						layout: 'vbox',
+						cls:'icon-add',
 						items: [
 							{
-								xtype: 'xlabel',
-								html: '安排',
-								itemId: 'btnItemAdd',
-								cls: 'row underline font-medium icon-add',
-								padding: '0 10 0 10'
-							},
-							{
-								xtype: 'dataview',
-								itemId: 'itemList',
-								scrollable: null,
-								useComponents: true,
-								defaultType: 'RouteActivityItemDataItem',
-								binding:'itemsStore'
+								xtype: 'xfield',
+								itemId: 'activityItem',
+								label:'行程安排'
 							}
 						]
 					},
 
 					{
-						xtype: 'xspacer'
-					},
-
-					{
-						xtype: 'panel',
-						layout: 'vbox',
-						items: [
-							{
-								xtype: 'xlabel',
-								itemId: 'btnServiceAdd',
-								html: '服务',
-								cls: 'row underline font-medium icon-add',
-								padding: '0 10 0 10'
-							},
-							{
-								xtype: 'xdataview',
-								itemId: 'serviceList',
-								scrollable: null,
-								useComponents: true,
-								defaultType: 'ExpertServiceListDataItem',
-								binding:'servicesStore'
-							}
-						]
+						xtype: 'xdataview',
+						itemId: 'itemList',
+						itemHeight:95,
+						defaultType: 'RouteActivityItemDataItem',
+						scrollable:'none',
+						binding:'item'
 					}
 				]
 			}
