@@ -25,6 +25,20 @@ Ext.define('YourTour.util.Context', {
     	return s + url;
     },
 
+	getUserId:function(){
+		var localStore =  Ext.StoreManager.get('LocalStore');
+		localStore.load();
+
+		var index = localStore.find('key', 'user.profile');
+		if(index >= 0){
+			var userProfile = localStore.getAt(index);
+			var profile = Ext.JSON.decode(userProfile.get('value'));
+			return profile.id;
+		}
+
+		return '';
+	},
+
 	/**
 	 * 获取图片资源
 	 * @param url

@@ -6,7 +6,11 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
         },
 
         control: {
-            '#PlaceMainView #placeExpertList': {
+            '#PlaceMainView #placeChatRoom': {
+                tap: 'showPlaceChatRoom'
+            },
+
+            '#PlaceMainView #placeExpertItem #placeExpertList': {
                 itemtap: 'showExpertInfo'
             },
 
@@ -49,6 +53,13 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
         this.placeId = placeId;
 
         this.refreshHomeData();
+    },
+
+    showPlaceChatRoom: function() {
+        console.log('showPlaceChatRoom');
+       var placeId = this.placeId;
+        var ctrl = this.getApplication().getController('MessageMainCtrl');
+        ctrl.showMainPage(placeId);
     },
 
     /**
