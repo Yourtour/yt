@@ -1,4 +1,4 @@
-Ext.define('YourTour.view.common.ExpertServiceListDataItem', {
+Ext.define('YourTour.view.expert.ExpertServiceListDataItem', {
 	extend: 'YourTour.view.widget.XDataItem',
     xtype: 'ExpertServiceListDataItem',
     config: {

@@ -1,6 +1,6 @@
-Ext.define('YourTour.view.common.ExpertServiceListView', {
+Ext.define('YourTour.view.expert.ExpertServiceListView', {
 	extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Label','Ext.Panel','YourTour.view.common.ExpertServiceListDataItem'],
+    requires:['Ext.Label','Ext.Panel','YourTour.view.expert.ExpertServiceListDataItem'],
     config: {
     	id:'ExpertServiceListView',
     	items:[

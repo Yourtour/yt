@@ -11,7 +11,7 @@ Ext.define('YourTour.view.route.RouteScheduleListView', {
                     {
                         xtype: "xbutton",
                         ui: "normal",
-                        icon:'resources/icons/24/icon_header_edit.png',
+                        icon:'resources/icons/24/icon_edit.png',
                         itemId: 'edit',
                         align: 'right'
                     }

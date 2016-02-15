@@ -136,8 +136,21 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
 				var headerbar = scheduleView.down('#headerbar');
 				headerbar.setTitle(activity.get('title'));
 
+				var items = scheduleView.down('#items');
+				items.setStore(activity.itemsStore);
+				if(items.getStore().getAllCount() == 0){
+					scheduleView.down('#activityItem').setText('没有具体的行程安排。');
+				}else{
+					scheduleView.down('#activityItem').setText('');
+				}
+
 				var services = scheduleView.down('#services');
 				services.setStore(activity.servicesStore);
+				if(services.getStore().getAllCount() == 0){
+					scheduleView.down('#activityService').setText('没有具体的行程服务。');
+				}else{
+					scheduleView.down('#activityService').setText('');
+				}
 			}
 		};
 		me.getApplication().query(options);

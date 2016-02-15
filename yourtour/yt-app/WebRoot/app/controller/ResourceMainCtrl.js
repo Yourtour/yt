@@ -116,9 +116,7 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
         var resource = view.getData();
 
         var controller = this.getApplication().getController('route.RouteSchedulePlanCtrl');
-        controller.addScheduleActivity(resource, function () {
-            Ext.ComponentManager.get('MainView').pop();
-        });
+        controller.addScheduleActivity(resource);
     },
 
     /**
@@ -175,13 +173,6 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
 
         var headerbar = view.down('#headerbar');
         headerbar.setTitle(record.get('title'));
-
-        var image = view.down('#image');
-        image.setHtml("<img src='" + YourTour.util.Context.getImageResource(record.get('imageUrl')) + "' style='width:100%'>");
-
-        var memo = view.down('#memo');
-        memo.setHtml(record.get('memo'));
-
     },
 
     onActivityItemAddTap: function () {

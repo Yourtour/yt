@@ -81,7 +81,7 @@ Ext.define('YourTour.view.resource.ResourceFormView', {
                                 xtype: 'xbutton',
                                 text: '加入日程',
                                 ui: 'normal',
-                                icon: 'resources/icons/16/icon_add.png',
+                                icon: 'resources/icons/16/icon_button_add.png',
                                 itemId: 'btnResourceAddTap'
                             }, {
                                 xtype: 'spacer',

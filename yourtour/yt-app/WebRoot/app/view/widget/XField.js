@@ -26,6 +26,7 @@ Ext.define('YourTour.view.widget.XField', {
             {
                 xtype: 'label',
                 itemId: 'value',
+                cls:'x-xfield-text',
                 flex: 1
             }
         ]

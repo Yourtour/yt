@@ -190,7 +190,6 @@
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="jdk" jdkName="1.7" jdkType="JavaSDK" />
-    <orderEntry type="library" name="org.eclipse.jst.j2ee.internal.web.container" level="application" />
     <orderEntry type="module" module-name="yt-data-service" exported="" />
     <orderEntry type="module-library" exported="">
       <library name="spring-context-4.1.6.RELEASE.jar">
@@ -1926,5 +1925,23 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.m2/repository/javax/websocket/javax.websocket-api/1.0/javax.websocket-api-1.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.m2/repository/com/alibaba/fastjson/1.1.41/fastjson-1.1.41.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

@@ -13,6 +13,11 @@ Ext.define('YourTour.view.route.RouteScheduleListSchedule', {
             },
 
             {
+                xtype: 'xfield',
+                itemId: 'lineName'
+            },
+
+            {
                 xtype:'panel',
                 layout:'vbox',
                 items:[

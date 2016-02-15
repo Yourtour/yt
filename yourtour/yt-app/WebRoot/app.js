@@ -27,7 +27,7 @@ Ext.application({
     views: [
         'MainView','Launch','setting.UserSettingView',
         'common.MessageMainView','common.MessageGroupView','common.FieldEditView','common.ContentReadView',
-        'common.ExpertServiceListView','common.ExpertServiceFormView','common.CommentListView','common.TimeSelectionView',
+        'common.CommentListView','common.TimeSelectionView',
 
         'home.HomeMainView', 'home.BestListView', 'home.AlongListView', 'home.AlongDetailView', 'home.TalentListView', 'SearchMain',
         'route.RouteMainView','route.RouteSettingView','route.RouteImpressionView','route.RouteImageView',
@@ -41,7 +41,7 @@ Ext.application({
         'member.MemberMainView','member.MemberView', 'member.MemberAddView','member.MemberPositionView','member.MemberSearchView','member.MemberSelectionView',
         'charge.ChargeMainView','charge.ChargeFormView','charge.ChargeListView','charge.ChargeView','charge.ChargeDivisionView','charge.ChargeDivisionFormView',
         'expert.ExpertMainView','expert.ExpertApplyView','expert.ExpertListView','expert.ExpertServiceEditView',
-        'expert.ExpertRecommendListView','expert.ExpertRecommendIntroView','expert.ExpertView',
+        'expert.ExpertRecommendListView','expert.ExpertRecommendIntroView','expert.ExpertView','expert.ExpertServiceListView','expert.ExpertServiceFormView',
 
         'line.LineListView',
 

@@ -1,69 +1,46 @@
 Ext.define('YourTour.view.resource.ResourceActivityItemFormView', {
     extend: 'YourTour.view.widget.XPage',
-    xtype: 'ResourceActivityItemFormView',
+    requires:['YourTour.view.resource.ResourceActivityItem'],
     config: {
         itemId: 'ResourceActivityItemFormView',
-        layout: 'card',
         items: [
             {
-                xtype: 'panel',
-                style: 'background-color:grey',
-                layout: 'vbox',
+                xtype: 'xheaderbar'
+            },
+
+            {
+                xtype: 'ResourceActivityItem',
+                itemId:'ResourceActivityItem',
+                flex:1
+            },
+
+            {
+                xtype: 'xtoolbar',
+                docked: 'bottom',
                 items: [
                     {
-                        xtype: 'xheaderbar',
-                    },
-
-                    {
                         xtype: 'spacer',
                         flex: 1
-                    },
-                    {
-                        margin: '5 5 10 5',
-                        itemId: 'image',
-                        xtype: 'image',
-                        mode: 'tag'
-                    },
-                    {
-                        xtype: 'panel',
-                        docked: 'bottom',
-                        bottom: 0,
-                        layout: 'vbox',
-                        padding: '5 0 10 5',
-                        style: 'background-color:grey;opacity:0.8; width:100%;',
-                        items: [
-                            {
-                                xtype: 'xmultifield',
-                                itemId: 'memo',
-                                underline:false
-                            }
-                        ]
-                    },
-                    {
-                        xtype: 'spacer',
-                        flex: 1
-                    },
-
-                    {
-                        xtype: 'toolbar',
-                        docked: 'bottom',
-                        items: [
-                            {
-                                xtype: 'spacer',
-                                flex: 1
-                            }, {
-                                xtype: 'button',
-                                text: '取消日程',
-                                ui: 'normal',
-                                baseCls: 'button',
-                                itemId: 'btnCancel',
-                                padding: '0 40 0 40'
-                            }
-                        ]
+                    }, {
+                        xtype: 'xbutton',
+                        text: '取消日程',
+                        itemId: 'btnCancel'
                     }
                 ]
             }
         ]
+    },
+
+    updateRecord: function() {
+        this.callParent(arguments);
+
+        var me = this, data = me.data || me.getData();
+        if(data){
+            var activityItem = me.down('#ResourceActivityItem');
+            console.log('background-image: url(' + data.get('imageUrl') + ');background-repeat: no-repeat;background-position: center center;');
+            activityItem.setStyle('background-image: url(' + data.get('imageUrl') +  ');background-repeat: no-repeat;background-position: center center;');
+            //this.setStyle('background-image','url(' + YourTour.util.Context.getImageResource(data.get('imageUrl')) + ')');
+        }
     }
 });
 

@@ -4,11 +4,12 @@ Ext.define('YourTour.view.route.RouteActivityItemDataItem', {
 	requires:['YourTour.view.widget.XImage','YourTour.view.widget.XField','YourTour.view.widget.XMultiField'],
     config: {
 		layout:'hbox',
+		padding:10,
     	items:[
 			{
 				itemId : 'image',
 				xtype : 'ximage',
-				margin:'0 5 0 0',
+				margin:'0 10 0 0',
 				imageCls:'img-small',
 				binding:'imageUrl'
 			},

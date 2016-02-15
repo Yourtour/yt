@@ -136,6 +136,5 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="library" name="org.eclipse.jst.j2ee.internal.module.container" level="application" />
   </component>
 </module>

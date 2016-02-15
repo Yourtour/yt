@@ -11,14 +11,14 @@ Ext.define('YourTour.view.route.RouteSchedulePlanView', {
 						{
 		                	xtype: "xbutton",
 		                    ui: "normal",
-							icon:'resources/icons/icon_header_discuss.png',
+							icon:'resources/icons/24/icon_header_discuss.png',
 		                	itemId:'discuss',
 		                	align:'right'
 		                },
 				        {
 				    	   xtype: "xbutton",
 				    	   ui: "normal",
-							icon:'resources/icons/icon_header_set.png',
+							icon:'resources/icons/24/icon_header_set.png',
 				    	   itemId:'setting',
 				    	   align:'right'
 				        }
@@ -98,39 +98,36 @@ Ext.define('YourTour.view.route.RouteSchedulePlanView', {
 						docked: 'bottom',
 						itemId: 'toolbar',
 						items: [
-							{xtype:'spacer', flex:1},
+							{xtype:'spacer',flex:1},
 							{
 								xtype: 'xbutton',
 								itemId: 'btnAdd',
 								text: '添加',
-								iconAlign:'top',
-								icon: 'resources/icons/icon_button_add.png'
+								icon: 'resources/icons/24/icon_button_add.png'
 							},
 							{
 								xtype: 'xbutton',
 								itemId: 'btnDelete',
 								text: '删除',
 								hidden:true,
-								margin:'0 20 0 0',
-								iconAlign:'top',
-								icon: 'resources/icons/icon_button_delete.png'
+								icon: 'resources/icons/24/icon_button_delete.png'
 							},
+
+							{xtype:'spacer',itemId:'spacer',flex:1, hidden:true},
 
 							{
 								xtype: 'xbutton',
 								itemId: 'btnCancel',
 								text: '取消',
 								hidden:true,
-								margin:'0 0 0 10',
-								iconAlign:'top',
-								icon: 'resources/icons/icon_button_cancel.png'
+								icon: 'resources/icons/24/icon_cancel.png'
 							},
-							{xtype:'spacer', flex:1}
+							{xtype:'spacer',flex:1}
 						]
 					}
 				]
 			}
         ]
-    },
+    }
 });
 

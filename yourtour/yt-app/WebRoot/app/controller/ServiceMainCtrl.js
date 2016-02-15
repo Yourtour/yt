@@ -33,7 +33,7 @@ Ext.define('YourTour.controller.ServiceMainCtrl', {
     showExpertServices:function(expertId){
         var me = this;
         expertId = 282;
-        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.common.ExpertServiceListView'));
+        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.expert.ExpertServiceListView'));
 
         var store = Ext.create('YourTour.store.AjaxStore', {model:'YourTour.model.ServiceModel'});
         var proxy = store.getProxy();
@@ -56,12 +56,12 @@ Ext.define('YourTour.controller.ServiceMainCtrl', {
     },
 
     /**
-     * 显示服务明细
+     * 显示达人服务明细
      * @param record
      * @param action
      */
     showExpertService:function(record, action){
-        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.common.ExpertServiceFormView'));
+        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.expert.ExpertServiceFormView'));
         var view = this.getExpertServiceFormView();
         view.setData(record);
 

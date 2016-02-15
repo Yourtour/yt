@@ -596,7 +596,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
             } else if (type == 'Schedule') {
                 this.editSchedule(record);
             } else if (type == 'ScheduleItem') {
-                this.editScheduleActivity(record);
+                this.editScheduleActivity(record, 'edit');
             }
         }
     },
@@ -617,6 +617,9 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 
         var btnDelete = view.down('#btnDelete');
         btnDelete.show();
+
+        var spacer = view.down('#spacer');
+        spacer.show();
 
         var btnCancel = view.down('#btnCancel');
         btnCancel.show();
@@ -672,10 +675,11 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
         dataview.config.istplhold = false;
         dataview.removeCls('scheduleItemList');
 
-        var btnAdd = view.down('#btnAdd'), btnDelete = view.down('#btnDelete'), btnCancel = view.down('#btnCancel');
+        var btnAdd = view.down('#btnAdd'), btnDelete = view.down('#btnDelete'), btnCancel = view.down('#btnCancel'),spacer = view.down('#spacer');
         btnAdd.show();
         btnDelete.hide();
         btnCancel.hide();
+        spacer.hide();
     },
 
     /*************************************************************************************************
@@ -852,11 +856,14 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
     /**
      * 编辑日程安排
      */
-    editScheduleActivity: function (record) {
-        Ext.ComponentManager.get('MainView').pop('RouteSchedulePlanView');
+    editScheduleActivity: function (record, action) {
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteActivityEditView'));
+        var me = this, view = this.getRouteActivityEditView(), routeSchedulePlanView = me.getRouteSchedulePlanView();
 
-        var me = this, view = this.getRouteActivityEditView();
+        var headerbar = view.down('#headerbar');
+        headerbar.updateBackAction(function(){
+            Ext.ComponentManager.get('MainView').pop(routeSchedulePlanView);
+        });
 
         //处理计划部分
         var options = {
@@ -896,7 +903,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
             schedule.set('planhidden', false);
             scheduleStore.add(schedule);
 
-            me.editScheduleActivity(schedule);
+            me.editScheduleActivity(schedule, 'add');
         });
     },
 
@@ -907,6 +914,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
         var me = this, view = this.getRouteActivityEditView(), activity = view.getData();
         var scheduleList = me.getScheduleList(), schedule = scheduleList.getSelection()[0];
         var scheduleItemList = me.getScheduleItemList() , scheduleStore = scheduleItemList.getStore();
+        var routeSchedulePlanView = me.getRouteSchedulePlanView()
 
         var data = {};
         data.status = 'VALIDATED';
@@ -940,7 +948,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
             activity.set('title', data.title);
             activity.set('memo', data.memo);
 
-            Ext.ComponentManager.get('MainView').pop();
+            Ext.ComponentManager.get('MainView').pop(routeSchedulePlanView);
         });
     },
 

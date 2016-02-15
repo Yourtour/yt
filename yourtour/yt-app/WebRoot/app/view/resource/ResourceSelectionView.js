@@ -20,7 +20,7 @@ Ext.define('YourTour.view.resource.ResourceSelectionView', {
 					{
 						xtype: "xbutton",
 						ui: "normal",
-						icon:'resources/icons/icon_header_filter.png',
+						icon:'resources/icons/24/icon_header_filter.png',
 						itemId:'filter',
 						align:'right'
 					}

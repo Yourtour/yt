@@ -738,9 +738,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.common.CommentListDataItem": [],
   "YourTour.view.common.CommentListView": [],
   "YourTour.view.common.ContentReadView": [],
-  "YourTour.view.common.ExpertServiceFormView": [],
-  "YourTour.view.common.ExpertServiceListDataItem": [],
-  "YourTour.view.common.ExpertServiceListView": [],
   "YourTour.view.common.FieldEditView": [],
   "YourTour.view.common.MessageDataItemView": [],
   "YourTour.view.common.MessageGroupView": [],
@@ -757,6 +754,9 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.expert.ExpertRouteDataItem": [],
   "YourTour.view.expert.ExpertServiceDataItem": [],
   "YourTour.view.expert.ExpertServiceEditView": [],
+  "YourTour.view.expert.ExpertServiceFormView": [],
+  "YourTour.view.expert.ExpertServiceListDataItem": [],
+  "YourTour.view.expert.ExpertServiceListView": [],
   "YourTour.view.expert.ExpertView": [],
   "YourTour.view.expert.ExpertViewCommentItem": [],
   "YourTour.view.expert.ExpertViewIntroItem": [],
@@ -1749,11 +1749,6 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.common.CommentListView": [],
   "YourTour.view.common.ContentReadView": [],
-  "YourTour.view.common.ExpertServiceFormView": [],
-  "YourTour.view.common.ExpertServiceListDataItem": [
-    "widget.ExpertServiceListDataItem"
-  ],
-  "YourTour.view.common.ExpertServiceListView": [],
   "YourTour.view.common.FieldEditView": [],
   "YourTour.view.common.MessageDataItemView": [
     "widget.MessageDataItemView"
@@ -1790,6 +1785,11 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.ExpertServiceDataItem"
   ],
   "YourTour.view.expert.ExpertServiceEditView": [],
+  "YourTour.view.expert.ExpertServiceFormView": [],
+  "YourTour.view.expert.ExpertServiceListDataItem": [
+    "widget.ExpertServiceListDataItem"
+  ],
+  "YourTour.view.expert.ExpertServiceListView": [],
   "YourTour.view.expert.ExpertView": [],
   "YourTour.view.expert.ExpertViewCommentItem": [
     "widget.ExpertViewCommentItem"
@@ -1924,12 +1924,8 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.resource.ResourceActivityItem": [
     "widget.ResourceActivityItem"
   ],
-  "YourTour.view.resource.ResourceActivityItemFormView": [
-    "widget.ResourceActivityItemFormView"
-  ],
-  "YourTour.view.resource.ResourceActivityItemListView": [
-    "widget.ResourceActivityItemListView"
-  ],
+  "YourTour.view.resource.ResourceActivityItemFormView": [],
+  "YourTour.view.resource.ResourceActivityItemListView": [],
   "YourTour.view.resource.ResourceFoodDataItem": [
     "widget.ResourceFoodDataItem"
   ],

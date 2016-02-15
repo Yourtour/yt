@@ -17,7 +17,7 @@ Ext.define('YourTour.view.home.HomeMainView', {
                         align: 'right',
                         iconAlign:'right',
                         text:'目的地',
-                        icon:'resources/icons/icon_arrow_down.png'
+                        icon:'resources/icons/16/icon_arrow_down.png'
                     }
                 ]
             },

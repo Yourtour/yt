@@ -11,7 +11,7 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 				items:[{
                 	xtype: "xbutton",
                     ui: "normal",
-					icon:'resources/icons/icon_header_ok.png',
+					icon:'resources/icons/24/icon_header_ok.png',
                 	itemId:'btnSave',
                 	align:'right'
                 }]

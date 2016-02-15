@@ -1,4 +1,4 @@
-Ext.define('YourTour.view.common.ExpertServiceFormView', {
+Ext.define('YourTour.view.expert.ExpertServiceFormView', {
 	extend: 'YourTour.view.widget.XPage',
     requires:['Ext.Label','Ext.Panel'],
     config: {
@@ -6,10 +6,7 @@ Ext.define('YourTour.view.common.ExpertServiceFormView', {
 		layout:'vbox',
     	items:[
 			{    
-				xtype: 'xheaderbar',
-				itemId:'headerbar',
-				items:[
-				]
+				xtype: 'xheaderbar'
 			},
 
 			{

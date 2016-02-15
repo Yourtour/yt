@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.route.RouteScheduleFormView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Panel','YourTour.view.widget.XLabel','YourTour.view.widget.XImage','YourTour.view.widget.XProcessing', 'YourTour.view.widget.XDataView','YourTour.view.widget.XVerticalLine', 'YourTour.view.route.RouteActivityItemDataItem','YourTour.view.common.ExpertServiceListDataItem','YourTour.view.widget.XHeaderBar'],
+    requires:['Ext.Panel','YourTour.view.widget.XLabel','YourTour.view.widget.XImage','YourTour.view.widget.XProcessing', 'YourTour.view.widget.XDataView','YourTour.view.widget.XVerticalLine', 'YourTour.view.route.RouteActivityItemDataItem','YourTour.view.expert.ExpertServiceListDataItem','YourTour.view.widget.XHeaderBar'],
     config: {
     	id:'RouteScheduleFormView',
     	layout:'card',
@@ -31,7 +31,7 @@ Ext.define('YourTour.view.route.RouteScheduleFormView', {
 						xtype: 'xfield',
 						itemId: 'resName',
 						label:'景点名称',
-						cls:'nav-arrow',
+						indicator:'nav-arrow',
 						binding: 'resource.name'
 					},
 
@@ -39,55 +39,50 @@ Ext.define('YourTour.view.route.RouteScheduleFormView', {
 						xtype: 'xfield',
 						itemId: 'address',
 						label:'景点地址',
-						cls:'nav-arrow',
+						indicator:'nav-arrow',
 						binding: 'resource.address'
 					},
 
 					{
-						xtype: 'xfield',
-						itemId: 'phone',
-						label:'景点电话',
-						cls:'nav-arrow',
-						binding: 'resource.phone'
+						xtype: 'xspacer'
 					},
 
 					{
 						xtype: 'xfield',
 						itemId: 'time',
-						label:'开放时间',
+						label:'行程时间',
 						dataChange: function (field, record) {
-							field.setText(record.get('startTime') + '-' + record.get('startTime'));
+							field.setText(record.get('startTime') + '-' + record.get('endTime'));
 						}
 					},
 
 					{
 						xtype: 'xmultifield',
-						itemId: 'memo',
-						label:'景点简介',
-						ellipsis: {
-							size: 100,
-							expandable: true
+						itemId:'memo',
+						label:'行程备注',
+						ellipsis:{
+							size:100,
+							expandable:true
 						}
 					},
 
 					{
-						xtype: 'panel',
-						cls: 'spacer'
+						xtype: 'xspacer'
 					},
 
+
 					{
-						xtype: 'label',
-						html: '安排',
-						cls: 'row underline font-medium font-grey',
-						padding: '0 0 0 10'
+						xtype: 'xfield',
+						itemId: 'activityItem',
+						label:'行程安排'
 					},
+
 					{
 						xtype: 'xdataview',
 						itemId: 'items',
-						scrollable: null,
-						useComponents: true,
 						defaultType: 'RouteActivityItemDataItem',
-						binding: 'itemsStore'
+						itemHeight:95,
+						scrollable:'none'
 					},
 
 					{
@@ -96,18 +91,16 @@ Ext.define('YourTour.view.route.RouteScheduleFormView', {
 					},
 
 					{
-						xtype: 'label',
-						html: '服务',
-						cls: 'row underline font-medium font-grey',
-						padding: '0 0 0 10'
+						xtype: 'xfield',
+						itemId: 'activityService',
+						label:'行程服务'
 					},
+
 					{
 						xtype: 'xdataview',
 						itemId: 'services',
-						scrollable: null,
-						useComponents: true,
-						defaultType: 'ExpertServiceListDataItem',
-						binding: 'servicesStore'
+						scrollable:'none',
+						defaultType: 'ExpertServiceListDataItem'
 					},
 
 					{
@@ -115,17 +108,6 @@ Ext.define('YourTour.view.route.RouteScheduleFormView', {
 						docked: 'bottom',
 						itemId:'toolbar',
 						items: [
-							{
-								xtype: 'spacer',
-								flex: 1
-							},
-
-							{
-								xtype: 'xbutton',
-								text: '留言',
-								icon: 'resources/icons/16/icon_message.png',
-								itemId: 'btnMessage'
-							},
 							{
 								xtype:'spacer',
 								flex:1
@@ -147,7 +129,7 @@ Ext.define('YourTour.view.route.RouteScheduleFormView', {
 							{
 								xtype:'spacer',
 								flex:1
-							},
+							}
 						]
 					}
 				]
