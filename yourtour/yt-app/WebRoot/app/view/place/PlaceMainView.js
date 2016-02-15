@@ -33,8 +33,9 @@ Ext.define('YourTour.view.place.PlaceMainView', {
 						},
 						items: [
 							{
-								xtype: 'panel',
+								xtype: 'xpanel',
 								cls:'icon-place-chat',
+								itemId: 'placeChatRoom',
 								layout:'vbox',
 								style: 'border-right:1px solid #EDEDED'
 							},

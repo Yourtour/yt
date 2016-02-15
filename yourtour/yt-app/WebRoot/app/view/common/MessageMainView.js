@@ -9,7 +9,7 @@ Ext.define('YourTour.view.common.MessageMainView', {
 			{    
 				xtype: 'xheaderbar',
 				itemId:'headerbar',
-				title:'目的地',
+				title:'目的地'/*,
 				items:[
 			       {
 			    	   xtype:'toolbutton',
@@ -17,7 +17,7 @@ Ext.define('YourTour.view.common.MessageMainView', {
 			    	   text:'设置',
 			    	   align:'right'
 			       }
-				]	
+				]*/
 			},
 			
 			{
@@ -36,23 +36,24 @@ Ext.define('YourTour.view.common.MessageMainView', {
 				layout:'hbox',
 				docked:'bottom',
 				items:[
-					{  
+					{
 						xtype : 'image',
 						mode : 'tag',
-						src:'resources/icons/icon_voice.png',
+						src:'resources/icons/48/icon_voice.png',
 					  	itemId:'voice'  
 					},
 					
 					{
-						xtype:'label',
+						xtype:'textarea',
+						itemId: 'content',
 						flex:1
 					},
 					
 					{  
 						xtype : 'image',
 	    				mode : 'tag',
-	    				src:'resources/icons/icon-add_48.png',
-		              	itemId:'btnAdd'  
+	    				src:'resources/icons/48/icon_add.png',
+		              	itemId:'btnSend'
 					}
 				]	
 			} 

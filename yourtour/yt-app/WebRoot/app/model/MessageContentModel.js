@@ -4,9 +4,18 @@ Ext.define('YourTour.model.MessageContentModel', {
     	idProperty:'id',
     	
 	    fields:[{name:'id', type:'string'},
-	            {name:'imageUrl', type:'string'},
-	    		{name:'title', type:'string'},
-	    		{name:'latestMessage', type:'string'}
-	    ]
+				{name: 'contentType', type: 'string'},
+	    		{name:'content', type:'string'},
+	    		{name:'sendTime', type:'string'}
+	    ],
+
+		associations: [
+			{
+				type: 'hasMany',
+				model: 'YourTour.model.UserModel',
+				name:'user',
+				associationKey:'user'
+			}
+		]
     }
 });
