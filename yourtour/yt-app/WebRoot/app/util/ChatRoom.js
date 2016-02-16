@@ -26,17 +26,18 @@ Ext.define('YourTour.util.ChatRoom', {
             this.closeChatRoom();
         }
 
-        var s = 'http://' + this.getServer() + '/yt-web/ws/chart';
+        var s = 'ws://' + this.getServer() + '/yt-web/ws/chat';
         if (url == '') {
             throw new Error('The url is empty.');
         }
         if (url.substr(0, 1) != '/') {
             s += '/';
         }
-        s += url;
+        s += url + '/' + YourTour.util.Context.getUserId();
 
         // create the WebSocket
         var ws = null;
+        console.log('WebSocket URL: ' + s);
         if ('WebSocket' in window) {
             ws = new WebSocket(s);
         } else if ('MozWebSocket' in window) {

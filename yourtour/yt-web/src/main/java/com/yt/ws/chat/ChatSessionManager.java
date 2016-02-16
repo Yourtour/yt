@@ -36,22 +36,22 @@ public class ChatSessionManager {
 	}
 
 	public synchronized void addPlaceChatSession(String placeCode,
-			Session session) {
+			Session session, String userId) {
 		Map<String, Session> list = null;
 		if (placeChatRooms.containsKey(placeCode)) {
 			list = placeChatRooms.get(placeCode);
 		} else {
 			list = new HashMap<String, Session>();
 		}
-		list.put(session.getUserPrincipal().getName(), session);
+		list.put(userId, session);
 		placeChatRooms.put(placeCode, list);
 	}
 
 	public synchronized void delPlaceChatSession(String placeCode,
-			Session session) {
+			Session session, String userId) {
 		if (placeChatRooms.containsKey(placeCode)) {
 			Map<String, Session> list = placeChatRooms.get(placeCode);
-			list.remove(session.getUserPrincipal().getName());
+			list.remove(userId);
 		}
 	}
 
@@ -64,22 +64,22 @@ public class ChatSessionManager {
 	}
 
 	public synchronized void addRouteChatSession(String routeCode,
-			Session session) {
+			Session session, String userId) {
 		Map<String, Session> list = null;
 		if (routeChatRooms.containsKey(routeCode)) {
 			list = routeChatRooms.get(routeCode);
 		} else {
 			list = new HashMap<String, Session>();
 		}
-		list.put(session.getUserPrincipal().getName(), session);
+		list.put(userId, session);
 		routeChatRooms.put(routeCode, list);
 	}
 
 	public synchronized void delRouteChatSession(String routeCode,
-			Session session) {
+			Session session, String userId) {
 		if (routeChatRooms.containsKey(routeCode)) {
 			Map<String, Session> list = routeChatRooms.get(routeCode);
-			list.remove(session.getUserPrincipal().getName());
+			list.remove(userId);
 		}
 	}
 
@@ -92,7 +92,7 @@ public class ChatSessionManager {
 	}
 
 	public synchronized void addDynamicChatSession(String roomCode,
-			Session session) {
+			Session session, String userId) {
 		Map<String, Session> list = null;
 		if (dynamicChatRooms.containsKey(roomCode)) {
 			list = dynamicChatRooms.get(roomCode);
@@ -100,10 +100,10 @@ public class ChatSessionManager {
 			list = new HashMap<String, Session>();
 		}
 		// 判断该session是否在白名单中，否则不加入
-		String operator = session.getUserPrincipal().getName();
+		String operator = userId;
 		if (dynamicWhiteList.get(roomCode) != null
 				&& dynamicWhiteList.get(roomCode).contains(operator)) {
-			list.put(session.getUserPrincipal().getName(), session);
+			list.put(operator, session);
 			dynamicChatRooms.put(roomCode, list);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format(
@@ -120,10 +120,10 @@ public class ChatSessionManager {
 	}
 
 	public synchronized void delDynamicChatSession(String roomCode,
-			Session session) {
+			Session session, String userId) {
 		if (dynamicChatRooms.containsKey(roomCode)) {
 			Map<String, Session> list = dynamicChatRooms.get(roomCode);
-			list.remove(session.getUserPrincipal().getName());
+			list.remove(userId);
 			// 判断如果已经没有聊天着后，清空白名单
 			if (list.isEmpty() && dynamicWhiteList.get(roomCode) != null) {
 				dynamicWhiteList.get(roomCode).clear();

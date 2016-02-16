@@ -41,7 +41,7 @@ public class ChatRepositoryImpl extends CrudAllInOneOperateImpl implements
 		ChatSessionBean room = null;
 		String roomNo = String.format("p%d", placeId);
 		try {
-			room = (ChatSessionBean) super.get(ChatSessionBean.class, "roomNo",
+			room = (ChatSessionBean) super.get(ChatSessionBean.class, "chatRoomNo",
 					roomNo);
 			if (room == null) {
 				// 聊天室不存在，为目的地创建一个聊天室
@@ -85,7 +85,7 @@ public class ChatRepositoryImpl extends CrudAllInOneOperateImpl implements
 		ChatSessionBean room = null;
 		String roomNo = String.format("r%d", routeId);
 		try {
-			room = (ChatSessionBean) super.get(ChatSessionBean.class, "roomNo",
+			room = (ChatSessionBean) super.get(ChatSessionBean.class, "chatRoomNo",
 					roomNo);
 			if (room == null) {
 				// 聊天室不存在，为行程创建一个聊天室
@@ -130,7 +130,7 @@ public class ChatRepositoryImpl extends CrudAllInOneOperateImpl implements
 		try {
 			if (roomNo != null && !roomNo.isEmpty()) {
 				room = (ChatSessionBean) super.get(ChatSessionBean.class,
-						"roomNo", roomNo);
+						"chatRoomNo", roomNo);
 			}
 			if (room == null) {
 				// 聊天室不存在，为创建一个动态聊天室

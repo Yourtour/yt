@@ -28,7 +28,7 @@ public class ChatSessionUtils {
 	}
 
 	public static void addChatSession(ChatSessionTypeEnum type, String code,
-			Session session) {
+			Session session, String userId) {
 		if (code == null || code.isEmpty() || session == null) {
 			if (LOG.isWarnEnabled()) {
 				LOG.warn("The code or session is null, the operate is ignored.");
@@ -37,20 +37,20 @@ public class ChatSessionUtils {
 		}
 		switch (type) {
 		case PLACE_SESSION:
-			manager.addPlaceChatSession(code, session);
+			manager.addPlaceChatSession(code, session, userId);
 			break;
 		case ROUTE_SESSION:
-			manager.addRouteChatSession(code, session);
+			manager.addRouteChatSession(code, session, userId);
 			break;
 		case DYNAMIC_SESSION:
 		default:
-			manager.addDynamicChatSession(code, session);
+			manager.addDynamicChatSession(code, session, userId);
 			break;
 		}
 	}
 
 	public static void delChatSession(ChatSessionTypeEnum type, String code,
-			Session session) {
+			Session session, String userId) {
 		if (code == null || code.isEmpty() || session == null) {
 			if (LOG.isWarnEnabled()) {
 				LOG.warn("The code or session is null, the operate is ignored.");
@@ -59,14 +59,14 @@ public class ChatSessionUtils {
 		}
 		switch (type) {
 		case PLACE_SESSION:
-			manager.delPlaceChatSession(code, session);
+			manager.delPlaceChatSession(code, session, userId);
 			break;
 		case ROUTE_SESSION:
-			manager.delRouteChatSession(code, session);
+			manager.delRouteChatSession(code, session, userId);
 			break;
 		case DYNAMIC_SESSION:
 		default:
-			manager.delDynamicChatSession(code, session);
+			manager.delDynamicChatSession(code, session, userId);
 			break;
 		}
 	}

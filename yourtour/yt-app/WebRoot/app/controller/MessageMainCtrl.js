@@ -1,5 +1,6 @@
 Ext.define('YourTour.controller.MessageMainCtrl', {
     extend: 'YourTour.controller.BaseCtrl',
+    requires: ['YourTour.util.ChatRoom'],
     config: {
        refs:{
     	   messageMainView:'#MessageMainView'
@@ -22,11 +23,12 @@ Ext.define('YourTour.controller.MessageMainCtrl', {
     
     showMainPage:function(chatRoomJson){
     	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.common.MessageMainView'));
-    	
+
+
     	var me = this;
     	var messageMainView = me.getMessageMainView();
     	var headerBar = messageMainView.down('#headerbar');
-        var roomType = chatRoomJson.getType(), roomCode = chatRoomJson.getRoomCode();
+        var roomType = chatRoomJson.type, roomCode = chatRoomJson.roomCode;
         if (roomType == 'place') {
             headerBar.setTitle('目的地聊天室');
             YourTour.util.ChatRoom.openChatRoom('place/' + roomCode, function(event) {
