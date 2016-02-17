@@ -30,7 +30,7 @@ Ext.define('YourTour.view.common.MessageMainView', {
     		},
 			
 			{    
-				xtype: 'panel',
+				xtype: 'xpanel',
 				itemId:'messagetool',
 				height:50,
 				layout:'hbox',

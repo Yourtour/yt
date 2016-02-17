@@ -20,7 +20,8 @@ public abstract class AbstractChatRoomEndpoint {
 
 	public AbstractChatRoomEndpoint() {
 		super();
-		chatRepository = ContextLoader.getCurrentWebApplicationContext().getBean(ChatRepository.class);
+		chatRepository = ContextLoader.getCurrentWebApplicationContext()
+				.getBean(ChatRepository.class);
 	}
 
 	public void openSession(ChatSessionTypeEnum type, String roomCode,
@@ -164,9 +165,10 @@ public abstract class AbstractChatRoomEndpoint {
 			}
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
-				LOG.error(String
-						.format("Process the message command fail, user(id=%s), type(%s), room(%s), message(%s)",
-								userId, type.name(), roomCode, command));
+				LOG.error(
+						String.format(
+								"Process the message command fail, user(id=%s), type(%s), room(%s), message(%s)",
+								userId, type.name(), roomCode, command), ex);
 			}
 		}
 	}
