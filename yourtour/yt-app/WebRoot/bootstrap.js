@@ -658,7 +658,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.controller.ServiceMainCtrl": [],
   "YourTour.controller.SettingMainCtrl": [],
   "YourTour.controller.UserMainCtrl": [],
-  "YourTour.controller.home.AlongMainCtrl": [],
   "YourTour.controller.home.BestMainCtrl": [],
   "YourTour.controller.home.HomeMainCtrl": [],
   "YourTour.controller.home.TalentMainCtrl": [],
@@ -719,12 +718,17 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.store.SessionStore": [],
   "YourTour.store.TalentListStore": [],
   "YourTour.store.UserStore": [],
+  "YourTour.util.ChatRoom": [
+    "YourTour.ChatRoom"
+  ],
   "YourTour.util.Context": [
     "YourTour.Context"
   ],
   "YourTour.view.Launch": [],
   "YourTour.view.MainView": [],
   "YourTour.view.SearchMain": [],
+  "YourTour.view.along.AlongEditView": [],
+  "YourTour.view.along.AlongFormView": [],
   "YourTour.view.along.AlongListDataItem": [],
   "YourTour.view.along.AlongListView": [],
   "YourTour.view.charge.ChargeDivisionFormView": [],
@@ -766,10 +770,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.expert.ExpertViewRecommendDataItem": [],
   "YourTour.view.expert.ExpertViewRecommendItem": [],
   "YourTour.view.expert.ExpertViewServiceItem": [],
-  "YourTour.view.home.AlongDetailView": [],
-  "YourTour.view.home.AlongItemView": [],
-  "YourTour.view.home.AlongListItemView": [],
-  "YourTour.view.home.AlongListView": [],
   "YourTour.view.home.BestItemView": [],
   "YourTour.view.home.BestListItemView": [],
   "YourTour.view.home.BestListView": [],
@@ -1663,7 +1663,6 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.controller.ServiceMainCtrl": [],
   "YourTour.controller.SettingMainCtrl": [],
   "YourTour.controller.UserMainCtrl": [],
-  "YourTour.controller.home.AlongMainCtrl": [],
   "YourTour.controller.home.BestMainCtrl": [],
   "YourTour.controller.home.HomeMainCtrl": [],
   "YourTour.controller.home.TalentMainCtrl": [],
@@ -1726,6 +1725,9 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.store.SessionStore": [],
   "YourTour.store.TalentListStore": [],
   "YourTour.store.UserStore": [],
+  "YourTour.util.ChatRoom": [
+    "ChatRoom"
+  ],
   "YourTour.util.Context": [
     "Context"
   ],
@@ -1738,12 +1740,12 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.SearchMain": [
     "widget.searchmain"
   ],
+  "YourTour.view.along.AlongEditView": [],
+  "YourTour.view.along.AlongFormView": [],
   "YourTour.view.along.AlongListDataItem": [
     "widget.AlongListDataItem"
   ],
-  "YourTour.view.along.AlongListView": [
-    "widget.AlongListView"
-  ],
+  "YourTour.view.along.AlongListView": [],
   "YourTour.view.charge.ChargeDivisionFormView": [],
   "YourTour.view.charge.ChargeDivisionView": [],
   "YourTour.view.charge.ChargeFormView": [],
@@ -1822,16 +1824,6 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.expert.ExpertViewServiceItem": [
     "widget.ExpertViewServiceItem"
-  ],
-  "YourTour.view.home.AlongDetailView": [],
-  "YourTour.view.home.AlongItemView": [
-    "widget.AlongItemView"
-  ],
-  "YourTour.view.home.AlongListItemView": [
-    "widget.AlongListItemView"
-  ],
-  "YourTour.view.home.AlongListView": [
-    "widget.AlongListView"
   ],
   "YourTour.view.home.BestItemView": [
     "widget.BestItemView"
