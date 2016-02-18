@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.common.MessageMainView', {
 	extend: 'YourTour.view.widget.XPage',
-	requires:['Ext.Panel','YourTour.view.common.MessageDataItemView'],
+	requires:['Ext.Panel','YourTour.view.common.MessageDataItemView', 'YourTour.view.widget.XTextArea'],
 	xtype:'MessageMainView',
     config: {
     	id:'MessageMainView',
@@ -30,7 +30,7 @@ Ext.define('YourTour.view.common.MessageMainView', {
     		},
 			
 			{    
-				xtype: 'panel',
+				xtype: 'xpanel',
 				itemId:'messagetool',
 				height:50,
 				layout:'hbox',
@@ -44,7 +44,7 @@ Ext.define('YourTour.view.common.MessageMainView', {
 					},
 					
 					{
-						xtype:'textarea',
+						xtype:'xtextarea',
 						itemId: 'content',
 						flex:1
 					},

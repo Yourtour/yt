@@ -19,7 +19,7 @@ public interface ChatBeanRepository extends GraphRepository<ChatSessionBean> {
 	 * @return 聊天人员列表
 	 */
 	@Query("MATCH (room:ChatSessionBean)<-[:HAS]-(user:UserProfileBean) "
-			+ "WITH room, user " + "WHERE room.roomNo = {0} " + "RETURN user")
+			+ "WITH room, user " + "WHERE room.chatRoomNo = {0} " + "RETURN user")
 	public List<UserProfileBean> getChatters(String roomNo);
 
 	/**
@@ -67,7 +67,7 @@ public interface ChatBeanRepository extends GraphRepository<ChatSessionBean> {
 	@Query("START user=node({1}) "
 			+ "MATCH user<-[:RELATED]-(his:ChatJoinHistoryBean)-[:RELATED]->(room:ChatSessionBean)<-[:RELATED]-(msg:ChatMessageBean) "
 			+ "WITH room, max(his.updatedTime) AS maxTime, count(msg) AS msgCount "
-			+ "WHERE room.roomNo = {0} AND msg.createdTime >= maxTime "
+			+ "WHERE room.chatRoomNo = {0} AND msg.createdTime >= maxTime "
 			+ "RETURN msgCount")
 	public long getUnreadMessageCount(String roomNo, long userId);
 
@@ -87,7 +87,7 @@ public interface ChatBeanRepository extends GraphRepository<ChatSessionBean> {
 	@Query("START user=node({1}) "
 			+ "MATCH user<-[:RELATED]-(his:ChatJoinHistoryBean)-[:RELATED]->(room:ChatSessionBean)<-[:RELATED]-(msg:ChatMessageBean) "
 			+ "WITH room, max(his.updatedTime) AS maxTime, count(msg) AS msgCount "
-			+ "WHERE room.roomNo = {0} AND msg.createdTime >= maxTime "
+			+ "WHERE room.chatRoomNo = {0} AND msg.createdTime >= maxTime "
 			+ "ORDER BY msg.createdTime " + "RETURN msg "
 			+ "SKIP {2} LIMIT {3}")
 	public List<ChatMessageBean> getUnreadMessages(String roomNo, long userId,

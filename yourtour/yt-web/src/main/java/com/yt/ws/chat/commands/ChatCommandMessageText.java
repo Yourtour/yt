@@ -53,7 +53,7 @@ public class ChatCommandMessageText extends AbstractChatCommandMessage {
 			message.setMessage(this.getTextMessage());
 			message.setChatSession(chatSessionBean);
 			message.setUserProfile(userProfileBean);
-			String operator = session.getUserPrincipal().getName();
+			String operator = userProfileBean.getCode();
 			repository.save(message, true, operator);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug("save a text message successfully.");
