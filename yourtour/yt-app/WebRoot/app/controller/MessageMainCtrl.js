@@ -10,7 +10,7 @@ Ext.define('YourTour.controller.MessageMainCtrl', {
             '#MessageMainView #group': {
                 tap: 'onMessageGroup'
             },
-            '#MessageMainView #messagetool #btnSend': {
+            '#MessageMainView #btnSend': {
                 tap: 'onSendMessage'
             }
         },
