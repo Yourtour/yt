@@ -1,6 +1,6 @@
 Ext.define('YourTour.controller.home.HomeMainCtrl', {
     extend: 'YourTour.controller.BaseCtrl',
-    requires:['YourTour.view.home.LiveItemView', 'YourTour.view.home.ChatItemView','YourTour.view.home.AlongItemView','YourTour.view.home.TalentItemView','YourTour.view.home.CarouselItemView'],
+    requires:['YourTour.view.home.LiveItemView', 'YourTour.view.home.ChatItemView','YourTour.view.home.TalentItemView','YourTour.view.home.CarouselItemView'],
     config: {
        refs:{
        	   	homeMainView:'#HomeMainView',

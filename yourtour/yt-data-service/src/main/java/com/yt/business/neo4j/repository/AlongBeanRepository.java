@@ -25,6 +25,14 @@ public interface AlongBeanRepository extends GraphRepository<AlongBean> {
 	 * @param size
 	 * @return
 	 */
-	@Query("START place=node({0}) MATCH (place:PlaceBean)<-[:AT]-(along:AlongBean)-[:BELONG]->(route:RouteBean) return along, route order by along.index asc skip {1} limit {2}")
-	public List<AlongTuple> getAlongByPlace(Long placeId, int startIndex, int size);
+	@Query("START place=node({0}) MATCH (place:PlaceBean)<-[:TO]-(route:RouteMainBean)<-[:BELONG]-(along:AlongBean)-[:BELONG]->(user:UserProfileBean) return along, route, user")
+	public List<AlongTuple> getAlongByPlace(Long placeId, Long startIndex, int size);
+
+	/**
+	 *
+	 * @param routeId
+	 * @return
+	 */
+	@Query("START route=node({0}) MATCH route<-[:BELONG]-(along:AlongBean)-[:BELONG]->(user:UserProfileBean) return along, route, user")
+	public List<AlongTuple> getAlongByRoute(Long routeId);
 }

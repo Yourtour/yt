@@ -29,7 +29,7 @@ Ext.application({
         'common.MessageMainView','common.MessageGroupView','common.FieldEditView','common.ContentReadView',
         'common.CommentListView','common.TimeSelectionView',
 
-        'home.HomeMainView', 'home.BestListView', 'home.AlongListView', 'home.AlongDetailView', 'home.TalentListView', 'SearchMain',
+        'home.HomeMainView', 'home.BestListView', 'home.TalentListView', 'SearchMain',
         'route.RouteMainView','route.RouteSettingView','route.RouteImpressionView','route.RouteImageView',
         'route.RouteScheduleListView', 'route.RouteSchedulePlanView','route.RouteScheduleReferenceListView','route.RouteScheduleFormView',
         'route.RouteProvisionView','route.RouteProvisionEditView','route.RouteScheduleEditView','route.RouteScheduleView',
@@ -55,7 +55,7 @@ Ext.application({
     
     controllers: [
         'Launch', 'MainCtrl','SettingMainCtrl',
-        'home.HomeMainCtrl', 'home.BestMainCtrl','home.TalentMainCtrl','home.AlongMainCtrl',
+        'home.HomeMainCtrl', 'home.BestMainCtrl','home.TalentMainCtrl',
         'route.RouteMainCtrl',
         'route.RouteScheduleListCtrl','route.RouteSchedulePlanCtrl',
         'user.AccountMainCtrl',

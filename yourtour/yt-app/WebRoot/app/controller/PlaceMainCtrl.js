@@ -15,6 +15,10 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
                 itemtap: 'showExpertInfo'
             },
 
+            '#PlaceMainView #along': {
+                tap: 'showAlongInfo'
+            },
+
             '#PlaceMainView #placeMoreExperts': {
                 tap: 'showMoreExperts'
             },
@@ -25,10 +29,6 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
 
             '#PlaceMainView #placeMoreRoutes': {
                 tap: 'showMoreRoutes'
-            },
-
-            '#PlaceMainView #placeAlongList': {
-                itemtap: 'showAlongInfo'
             },
 
             '#PlaceMainView #placeMoreAlongs': {
@@ -56,9 +56,9 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
         this.refreshHomeData();
     },
 
-    showPlaceChatRoom: function() {
+    showPlaceChatRoom: function () {
         console.log('showPlaceChatRoom');
-       var placeId = this.placeId;
+        var placeId = this.placeId;
         var ctrl = this.getApplication().getController('MessageMainCtrl');
         ctrl.showMainPage({type: 'place', roomCode: placeId});
     },
@@ -83,7 +83,7 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
                 var place = store.first();
                 mainview.setData(place);
 
-                if(place) {
+                if (place) {
                     var expertStore = place.expertsStore;
                     if (expertStore && expertStore.getAllCount() > 0) {
                         expertItem.show();
@@ -92,9 +92,9 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
 
                     var routeStore = place.routesStore;
                     if (routeStore && routeStore.getAllCount() > 0) {
-                        var store = Ext.create('YourTour.store.AjaxStore',{model:'YourTour.model.RouteModel'});
-                        routeStore.each(function(record, index){
-                            if(index < 5) {
+                        var store = Ext.create('YourTour.store.AjaxStore', {model: 'YourTour.model.RouteModel'});
+                        routeStore.each(function (record, index) {
+                            if (index < 5) {
                                 store.add(record);
                             }
                         });
@@ -103,10 +103,10 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
                     }
 
                     /*var alongStore = place.alongsStore;
-                    if (alongStore && alongStore.getAllCount() > 0) {
-                        alongItem.hide();
-                        alongList.setStore(alongStore);
-                    }*/
+                     if (alongStore && alongStore.getAllCount() > 0) {
+                     alongItem.hide();
+                     alongList.setStore(alongStore);
+                     }*/
                 }
             }
         };
@@ -120,7 +120,7 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
      * @param item
      * @param record
      */
-    showExpertInfo:function(dataview, index, item, record){
+    showExpertInfo: function (dataview, index, item, record) {
         var controller = this.getApplication().getController('ExpertMainCtrl');
         controller.showExpertInfo(record.get('id'), record);
     },
@@ -128,7 +128,7 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
     /**
      * 显示更多目的地达人
      */
-    showMoreExperts:function(){
+    showMoreExperts: function () {
         var me = this,
             placeId = me.placeId,
             mainview = me.getPlaceMainView(),
@@ -146,7 +146,7 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
      * @param item
      * @param record
      */
-    showRouteInfo:function(dataview, index, item, record){
+    showRouteInfo: function (dataview, index, item, record) {
         var controller = this.getApplication().getController('route.RouteMainCtrl');
         controller.showRouteInfo(record);
     },
@@ -154,7 +154,7 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
     /**
      * 显示更多目的地线路
      */
-    showMoreRoutes:function(){
+    showMoreRoutes: function () {
         var me = this,
             mainview = me.getPlaceMainView(),
             place = mainview.getData();
@@ -164,27 +164,14 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
     },
 
     /**
-     * 显示结伴信息
-     * @param dataview
-     * @param index
-     * @param item
-     * @param record
-     */
-    showAlongInfo:function(dataview, index, item, record){
-        /*var controller = this.getApplication().getController('AlongMainCtrl');
-        controller.showLineInfo(record);*/
-    },
-
-    /**
      * 显示更多目的地结伴
      */
-    showMoreAlongs:function(){
+    showAlongInfo: function () {
         var me = this,
-            placeId = me.placeId,
             mainview = me.getPlaceMainView(),
             place = mainview.getData();
 
         var controller = this.getApplication().getController('AlongMainCtrl');
-        controller.showLineList(placeId, place.linesStore);
+        controller.showAlongList(place);
     }
 });

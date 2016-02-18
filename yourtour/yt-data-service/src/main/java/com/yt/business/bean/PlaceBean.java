@@ -72,6 +72,8 @@ public class PlaceBean extends BaseDictBeanImpl {
 
 	private int goingNum = 0;  //想去人数
 
+	private int alongNum = 0; //结伴条数
+
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_PARENT, type = PlaceBean.class, direction = Direction.OUTGOING)
 	private transient PlaceBean parent = null;
 	
@@ -175,6 +177,14 @@ public class PlaceBean extends BaseDictBeanImpl {
 
 	public void setGoingNum(int goingNum) {
 		this.goingNum = goingNum;
+	}
+
+	public int getAlongNum() {
+		return alongNum;
+	}
+
+	public void setAlongNum(int alongNum) {
+		this.alongNum = alongNum;
 	}
 
 	public boolean isHome() {

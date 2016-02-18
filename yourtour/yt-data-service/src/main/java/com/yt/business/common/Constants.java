@@ -254,6 +254,17 @@ public interface Constants {
 			this.code = code;
 			this.name = name;
 		}
+
+		public static AlongIntentionType get(String name){
+			AlongIntentionType[] types = AlongIntentionType.values();
+			for(AlongIntentionType type : types){
+				if(type.name.equals(name)){
+					return type;
+				}
+			}
+
+			return null;
+		}
 	}
 
 	// 结伴枚举

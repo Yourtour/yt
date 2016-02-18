@@ -3,18 +3,37 @@ Ext.define('YourTour.view.along.AlongListDataItem', {
     xtype: 'AlongListDataItem',
     requires:['Ext.Label','Ext.Panel'],
     config: {
-		layout:'vbox',
+		layout:'hbox',
 		cls:'underline',
+		padding:'5 10 5 10',
     	items:[
 			{
 				xtype : 'ximage',
-				itemId:'image'
+				itemId:'routeImage',
+				imageCls:'img-100-75',
+				binding:'route.imageUrl',
+				margin:'0 10 0 0'
 			},
 
 			{
-				xtype:'xfield',
-				itemId:'name',
-				cls:'row underline font-medium font-grey'
+				xtype:'panel',
+				layout:'vbox',
+				items:[
+					{
+						xtype:'xfield',
+						itemId:'title',
+						padding:'0',
+						underline:false
+					},
+
+					{
+						xtype:'xfield',
+						itemId:'route',
+						padding:'0',
+						binding:'route.name',
+						underline:false
+					}
+				]
 			}
     	]
     }

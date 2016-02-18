@@ -28,24 +28,28 @@ public class AlongRepositoryImpl extends CrudAllInOneOperateImpl implements
 	private CommentBeanRepository commentRepo;
 
 	@Override
-	public AlongBean getAlongByGraphId(Long graphId, int startIndex, int size) throws Exception {
-		AlongBean alongBean = alongRepo.getAlongByGraphId(graphId);
-		if(alongBean == null) return null;
-		
-		/*List<CommentTuple> comments = commentRepo.getComments(alongBean.getGraphId(), "commentNum", 0l, 10);
-		alongBean.setComments(comments);*/
-		return alongBean;
-	}
-
-	@Override
-	public List<AlongBean> getAlongsByPlace(Long placeId, int startIndex, int limit)
+	public List<AlongBean> getAlongsByPlace(Long placeId, Long startIndex, int limit)
 	throws Exception {
 		List<AlongBean> alongBeans = new ArrayList();
+
 		List<AlongTuple> alongTuples = alongRepo.getAlongByPlace(placeId, startIndex, limit);
 		if(CollectionUtils.isNotEmpty(alongTuples)){
 			for(AlongTuple tuple : alongTuples){
-				AlongBean alongBean = tuple.getAlong();
-				alongBean.setRoute(tuple.getRoute());
+				alongBeans.add(tuple.getAlong());
+			}
+		}
+
+		return alongBeans;
+	}
+
+	@Override
+	public List<AlongBean> getAlongsByRoute(Long routeId) throws Exception {
+		List<AlongBean> alongBeans = new ArrayList();
+
+		List<AlongTuple> alongTuples = alongRepo.getAlongByRoute(routeId);
+		if(CollectionUtils.isNotEmpty(alongTuples)){
+			for(AlongTuple tuple : alongTuples){
+				alongBeans.add(tuple.getAlong());
 			}
 		}
 

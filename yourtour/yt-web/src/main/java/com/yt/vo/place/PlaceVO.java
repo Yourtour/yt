@@ -22,6 +22,7 @@ public class PlaceVO {
 	private int goneNum = 0;  //去过人数
 	private int goingNum = 0;  //想去人数
 	private int num = 0;  //下辖目的地个数
+	private int alongNum = 0;
 
 	private List<ExpertVO> experts;
 	private List<RouteVO> routes;
@@ -68,6 +69,7 @@ public class PlaceVO {
 		vo.setFollowedNum(bean.getFollowedNum());
 		vo.setNum(bean.getSubs().size());
 		vo.setExpandable(CollectionUtils.isNotEmpty(bean.getSubs()));
+		vo.setAlongNum(bean.getAlongNum());
 
 		if(bean.getParent() != null){
 			vo.setParentCode(bean.getParent().getCode());
@@ -153,6 +155,14 @@ public class PlaceVO {
 
 	public void setText(String text) {
 		this.text = text;
+	}
+
+	public int getAlongNum() {
+		return alongNum;
+	}
+
+	public void setAlongNum(int alongNum) {
+		this.alongNum = alongNum;
 	}
 
 	public String getMemo() {

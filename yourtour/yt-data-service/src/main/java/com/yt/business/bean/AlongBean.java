@@ -26,10 +26,10 @@ public class AlongBean extends BaseBeanImpl {
 	private static final long serialVersionUID = -3433522673262851121L;
 
 	@HbaseColumn(name = "name")
-	private String name;
+	private String title;
 
 	@HbaseColumn(name = "img")
-	private String imageUrl; // 图片
+	private String imageUrls; // 图片
 
 	@HbaseColumn(name = "itnt")
 	private AlongIntentionType intention; // 结伴目的
@@ -38,17 +38,11 @@ public class AlongBean extends BaseBeanImpl {
 	// 截止期限
 	private long deadLine;
 
-	@HbaseColumn(name = "gdesc")
-	// 团队描述
-	private String groupDesc;
+	private int  num;
 
 	@HbaseColumn(name = "rdesc")
 	// 要求描述
-	private String requestDesc;
-
-	@HbaseColumn(name = "adesc")
-	// 结伴描述
-	private String alongDesc;
+	private String memo;
 
 	@HbaseColumn(name = "lnla")
 	// 经纬度
@@ -59,38 +53,42 @@ public class AlongBean extends BaseBeanImpl {
 	private String address;
 
 	@HbaseColumn(name = "rnum")
-	private int readNum; // 阅读数
+	private int readNum; // 浏览数
 
 	@HbaseColumn(name = "cnum")
 	private int commentNum; // 评论数
 
+	private int followedNum; //关注人数
+
+	private int applyNum;  //报名人数
+
 	@HbaseColumn(name = "stat")
 	private Status status;
 
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_AT, type = UserProfileBean.class, direction = Direction.OUTGOING)
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_BELONG, type = UserProfileBean.class, direction = Direction.OUTGOING)
 	private transient UserProfileBean publisher; // 结伴信息发布者信息
 
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_AT, type = RouteMainBean.class, direction = Direction.OUTGOING)
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_BELONG, type = RouteMainBean.class, direction = Direction.OUTGOING)
 	private transient  RouteMainBean route;
 
 	public AlongBean() {
 		super();
 	}
 
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public String getImageUrl() {
-		return imageUrl;
+	public String getMemo() {
+		return memo;
 	}
 
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
+	public void setMemo(String memo) {
+		this.memo = memo;
 	}
 
 	public AlongIntentionType getIntention() {
@@ -107,30 +105,6 @@ public class AlongBean extends BaseBeanImpl {
 
 	public void setDeadLine(long deadLine) {
 		this.deadLine = deadLine;
-	}
-
-	public String getGroupDesc() {
-		return groupDesc;
-	}
-
-	public void setGroupDesc(String groupDesc) {
-		this.groupDesc = groupDesc;
-	}
-
-	public String getRequestDesc() {
-		return requestDesc;
-	}
-
-	public void setRequestDesc(String requestDesc) {
-		this.requestDesc = requestDesc;
-	}
-
-	public String getAlongDesc() {
-		return alongDesc;
-	}
-
-	public void setAlongDesc(String alongDesc) {
-		this.alongDesc = alongDesc;
 	}
 
 	public String getLongLat() {
@@ -171,6 +145,38 @@ public class AlongBean extends BaseBeanImpl {
 
 	public void setStatus(Status status) {
 		this.status = status;
+	}
+
+	public String getImageUrls() {
+		return imageUrls;
+	}
+
+	public void setImageUrls(String imageUrls) {
+		this.imageUrls = imageUrls;
+	}
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+
+	public int getFollowedNum() {
+		return followedNum;
+	}
+
+	public void setFollowedNum(int followedNum) {
+		this.followedNum = followedNum;
+	}
+
+	public int getApplyNum() {
+		return applyNum;
+	}
+
+	public void setApplyNum(int applyNum) {
+		this.applyNum = applyNum;
 	}
 
 	public UserProfileBean getPublisher() {

@@ -1,5 +1,6 @@
 package com.yt.business.neo4j.repository;
 
+import com.yt.business.bean.UserProfileBean;
 import org.springframework.data.neo4j.annotation.QueryResult;
 import org.springframework.data.neo4j.annotation.ResultColumn;
 
@@ -13,11 +14,16 @@ public class AlongTuple {
 
 	@ResultColumn("route")
 	private RouteMainBean route;
+
+	@ResultColumn("user")
+	private UserProfileBean user;
 	
 	public AlongTuple(){
 	}
 
 	public AlongBean getAlong() {
+		along.setRoute(this.getRoute());
+		along.setPublisher(this.getUser());
 		return along;
 	}
 
@@ -31,5 +37,13 @@ public class AlongTuple {
 
 	public void setRoute(RouteMainBean route) {
 		this.route = route;
+	}
+
+	public UserProfileBean getUser() {
+		return user;
+	}
+
+	public void setUser(UserProfileBean user) {
+		this.user = user;
 	}
 }

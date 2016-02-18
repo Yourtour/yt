@@ -6,7 +6,21 @@ import com.yt.business.CrudAllInOneOperate;
 import com.yt.business.bean.AlongBean;
 
 public interface AlongRepository extends CrudAllInOneOperate {
-	public AlongBean getAlongByGraphId(Long graphId, int startIndex, int size) throws Exception;
+	/**
+	 *
+	 * @param placeGraphId
+	 * @param start
+	 * @param limit
+	 * @return
+	 * @throws Exception
+	 */
+	public List<AlongBean> getAlongsByPlace(Long placeGraphId, Long start, int limit) throws Exception;
 
-	public List<AlongBean> getAlongsByPlace(Long placeGraphId, int start, int limit) throws Exception;
+	/**
+	 *
+	 * @param routeId
+	 * @return
+	 * @throws Exception
+	 */
+	public List<AlongBean> getAlongsByRoute(Long routeId) throws Exception;
 }

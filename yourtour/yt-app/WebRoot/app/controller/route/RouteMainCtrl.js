@@ -197,7 +197,8 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
         var index = routeCarousel.getActiveIndex();
         var record = me.store.getAt(index);
 
-        this.redirectTo('/routes/' + record.get('id') + '/members');
+        var controller = me.getApplication().getController('MemberMainCtrl');
+        controller.showMainPage(record);
     },
 
     onRouteChargeTap: function (record) {

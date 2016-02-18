@@ -2,8 +2,8 @@ Ext.define('YourTour.controller.MemberMainCtrl', {
     extend: 'YourTour.controller.BaseCtrl',
     config: {
         refs: {
-            memberMainView:'#MemberMainView',
-            memberList:'#MemberMainView #memberList' ,
+            memberMainView: '#MemberMainView',
+            memberList: '#MemberMainView #memberList',
 
             memberSearchView: '#MemberSearchView',
             memberSearchList: '#MemberSearchView #memberSearchList',
@@ -19,12 +19,12 @@ Ext.define('YourTour.controller.MemberMainCtrl', {
                 itemtap: 'onSearchListItemtap'
             },
 
-            '#MemberMainView #memberList':{
-                itemtap:'onMemberListItemTap'
+            '#MemberMainView #memberList': {
+                itemtap: 'onMemberListItemTap'
             },
 
-            '#MemberSelectionView #memberList':{
-                itemtap:'onMemberSelectionItemTap'
+            '#MemberSelectionView #memberList': {
+                itemtap: 'onMemberSelectionItemTap'
             },
 
             '#MemberMainView #btnMessage': {
@@ -71,44 +71,35 @@ Ext.define('YourTour.controller.MemberMainCtrl', {
                 tap: 'onAddAsLeaderTap'
             },
 
-            '#MemberView #btnAdd':{
-                tap:'onMemberAddTap'
+            '#MemberView #btnAdd': {
+                tap: 'onMemberAddTap'
             },
 
-            '#MemberView #btnDelete':{
-                tap:'onMemberDeleteTap'
+            '#MemberView #btnDelete': {
+                tap: 'onMemberDeleteTap'
             }
-        },
-
-        routes: {
-            '/routes/:routeId/members': 'showPage'
-        },
-
-        routeId: null,
-
-        memberStore: null,
-
-        selectedMember: null
+        }
     },
 
-    init: function () {
-        this.memberStore = Ext.create('YourTour.store.RouteMemberStore');
-    },
-
-    showPage: function (routeId) {
+    showMainPage: function (route) {
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.member.MemberMainView'));
 
-        var me = this, view = me.getMemberMainView(), memberList = me.getMemberList();
-        me.queryRouteMember(routeId, function(store){
-            var data = {routeId:routeId, store:store};
+        var me = this, view = me.getMemberMainView(), memberList = me.getMemberList(), routeId = route.get('id');
+        me.queryRouteMember(routeId, function (store) {
+            var data = {routeId: routeId, store: store, route: route};
             view.bindData(data);
 
             memberList.setStore(store);
         })
-
     },
 
-    queryRouteMember:function(routeId, callback){
+    getRouteInfo: function () {
+        var me = this, view = me.getMemberMainView();
+
+        return view.getData().route;
+    },
+
+    queryRouteMember: function (routeId, callback) {
         var options = {
             model: 'YourTour.model.UserModel',
             url: '/route/' + routeId + '/members/query',
@@ -119,7 +110,7 @@ Ext.define('YourTour.controller.MemberMainCtrl', {
         this.getApplication().query(options);
     },
 
-    onMemberListItemTap:function(dataview, index, item, record, e){
+    onMemberListItemTap: function (dataview, index, item, record, e) {
         this.showMemberDetailView(record, 'cancel');
     },
 
@@ -142,12 +133,12 @@ Ext.define('YourTour.controller.MemberMainCtrl', {
         var map = new BMap.Map('map');//指向map的容器
         map.enableScrollWheelZoom(true);
         /*window.setTimeout(function () {
-                map.centerAndZoom('上海', 11);
-        },2000);*/
+         map.centerAndZoom('上海', 11);
+         },2000);*/
         map.centerAndZoom('上海', 11);
 
-        store.each(function(member){
-            if(member.get('position') != '') {
+        store.each(function (member) {
+            if (member.get('position') != '') {
                 pos = member.get('position').split(',');
                 map.clearOverlays();
                 var new_point = new BMap.Point(pos[0], pos[1]);
@@ -185,7 +176,7 @@ Ext.define('YourTour.controller.MemberMainCtrl', {
     /**
      * 用户搜索
      */
-    onSearchFieldTap:function(){
+    onSearchFieldTap: function () {
         var me = this, memberList = me.getMemberSearchList();
         var options = {
             model: 'YourTour.model.UserModel',
@@ -206,15 +197,15 @@ Ext.define('YourTour.controller.MemberMainCtrl', {
      * @param record
      * @param action
      */
-    showMemberDetailView:function(record, action){
+    showMemberDetailView: function (record, action) {
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.member.MemberView'));
         var me = this, view = me.getMemberView(), btnAdd = view.down('#btnAdd'), btnDelete = view.down('#btnDelete');
         view.setData(record);
 
-        if(action == 'cancel'){
+        if (action == 'cancel') {
             btnAdd.hide();
             btnDelete.show();
-        }else{
+        } else {
             btnAdd.show();
             btnDelete.hide();
         }
@@ -262,23 +253,23 @@ Ext.define('YourTour.controller.MemberMainCtrl', {
         });
     },
 
-    showMemberSelectionView:function(routeId, callback){
-        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.member.MemberSelectionView', {callback:callback}));
+    showMemberSelectionView: function (routeId, callback) {
+        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.member.MemberSelectionView', {callback: callback}));
 
         var me = this, view = me.getMemberSelectionView(), memberList = me.getMemberSelectionList();
 
-        me.queryRouteMember(routeId, function(store){
-            var data = {routeId:routeId, store:store};
+        me.queryRouteMember(routeId, function (store) {
+            var data = {routeId: routeId, store: store};
             view.bindData(data);
 
             memberList.setStore(store);
         })
     },
 
-    onMemberSelectionItemTap:function(dataview, index, item, record, e){
-        var me = this, view = me.getMemberSelectionView(), callback = view.getCallback();;
+    onMemberSelectionItemTap: function (dataview, index, item, record, e) {
+        var me = this, view = me.getMemberSelectionView(), callback = view.getCallback();
 
-        if(callback){
+        if (callback) {
             callback(record);
         }
     },
@@ -287,9 +278,10 @@ Ext.define('YourTour.controller.MemberMainCtrl', {
      *  显示行程结伴信息
      *  Status: formal
      */
-    showAlongView:function(){
-        var controller = this.getApplication().getController('AlongMainCtrl');
+    showAlongView: function () {
+        var me = this, mainview = me.getMemberMainView(), route = mainview.getData().route;
 
-        controller.showAlongInfo();
+        var controller = this.getApplication().getController('AlongMainCtrl');
+        controller.showAlongInfoView(route);
     }
 });

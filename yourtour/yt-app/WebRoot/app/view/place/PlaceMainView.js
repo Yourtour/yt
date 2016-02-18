@@ -61,6 +61,16 @@ Ext.define('YourTour.view.place.PlaceMainView', {
 							}
 						]
 					},
+					{
+						xtype: 'xspacer'
+					},
+
+					{
+						xtype:'xlabel',
+						itemId:'along',
+						html:'结伴信息',
+						indicator:'nav-arrow'
+					},
 
 					{
 						xtype:'PlaceExpertItem',

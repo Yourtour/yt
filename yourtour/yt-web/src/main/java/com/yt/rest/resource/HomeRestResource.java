@@ -47,13 +47,7 @@ public class HomeRestResource {
 		try {
 			String userToken = request.getHeader("User-Token");
 			List<AlongVO> alongs = new ArrayList<AlongVO>();
-			List<AlongBean> alongBeans = alongRepository.getAlongsByPlace(
-					Long.parseLong(placeId), 0, 5);
-			if (CollectionUtils.isNotEmpty(alongBeans)) {
-				for (AlongBean along : alongBeans) {
-					alongs.add(new AlongVO(along));
-				}
-			}
+
 			homeVO.setAlongs(alongs);
 		} catch (Exception exc) {
 			if (LOG.isErrorEnabled()) {
