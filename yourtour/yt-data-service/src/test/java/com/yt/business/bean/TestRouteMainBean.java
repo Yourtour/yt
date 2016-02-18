@@ -76,7 +76,6 @@ public class TestRouteMainBean {
 			assertFalse(rm2.getUpdatedTime() > 0);
 			assertEquals(rm2.getUpdatedUserId(), rm.getUpdatedUserId());
 			assertNull(rm2.getFromPlace());
-			assertNull(rm2.getOwner());
 			assertNotNull(rm2.getSchedules());
 			assertEquals(rm2.getSchedules().size(), 0);
 			assertNotNull(rm2.getProvisions());
@@ -97,7 +96,6 @@ public class TestRouteMainBean {
 			assertEquals(rm2_11.getGraphId(), rm.getGraphId());
 			assertEquals(rm2_11.getName(), rm.getName());
 			assertNull(rm2_11.getFromPlace());
-			assertNull(rm2_11.getOwner());
 			assertNotNull(rm2_11.getSchedules());
 			assertEquals(rm2_11.getSchedules().size(), 0);
 			assertNotNull(rm2_11.getProvisions());

@@ -40,18 +40,18 @@ public class ExpertDataGenerator extends DataGenerator{
 		}
 	}
 
-	//@Test
+	@Test
 	public void testCreateRelationWithRoute() {
 		try {
 			repository = context.getBean(ExpertRepository.class);
 
 			UserProfileBean user = new UserProfileBean();
-			user.setGraphId(280l);
+			user.setGraphId(434l);
 
 			RouteMainBean route = new RouteMainBean();
-			route.setGraphId(336l);
+			route.setGraphId(250l);
 
-			repository.createRelation(user, route, Constants.RELATION_TYPE_RECOMMEND, Direction.OUTGOING);
+			repository.deleteRelation(user, route, Constants.RELATION_TYPE_EXPERT);
 
 		} catch (Exception ex) {
 			ex.printStackTrace();

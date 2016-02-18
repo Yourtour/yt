@@ -24,16 +24,35 @@ Ext.define('YourTour.view.service.RouteServiceFormView', {
 					},
 
 					{
-						xtype: 'xmultifield',
-						itemId: 'useDate',
-						label: '使用日期'
+						xtype: 'xfield',
+						itemId: 'fromDate',
+						label: '开始日期'
+					},
+
+					{
+						xtype: 'xfield',
+						itemId: 'endDate',
+						label: '结束日期'
+					},
+
+					{
+						xtype: 'xfield',
+						itemId: 'place',
+						label: '消费地点'
 					},
 
 					{
 						xtype: 'xmultifield',
-						itemId: 'content',
-						label: '服务人数'
+						itemId: 'memberNum',
+						label: '消费人数'
 					},
+
+					{
+						xtype: 'xfield',
+						itemId: 'fee',
+						label: '消费费用'
+					},
+
 					{
 						xtype: 'xmultifield',
 						itemId: 'bookMemo',
@@ -81,8 +100,21 @@ Ext.define('YourTour.view.service.RouteServiceFormView', {
 						items: [
 							{
 								xtype:'spacer', flex:1
-							},
-							{
+							},	{
+								xtype: 'xbutton',
+								text: '完成',
+								itemId: 'btnCancel',
+								icon:'resources/icons/24/icon_ok.png'
+							},{
+								xtype:'spacer', flex:1
+							},{
+								xtype: 'xbutton',
+								text: '取消',
+								itemId: 'btnCancel',
+								icon:'resources/icons/24/icon_cancel.png'
+							},{
+								xtype:'spacer', flex:1
+							},{
 								xtype: 'xbutton',
 								text: '点评',
 								itemId: 'btnComment',
@@ -91,17 +123,10 @@ Ext.define('YourTour.view.service.RouteServiceFormView', {
 								xtype:'spacer', flex:1
 							},{
 								xtype: 'xbutton',
-								text: '提醒',
+								text: '通知达人',
 								itemId: 'btnAlert',
-								icon:'resources/icons/24/icon_alert.png'
+								icon:'resources/icons/24/icon_message.png'
 							}, {
-								xtype:'spacer', flex:1
-							},{
-								xtype: 'xbutton',
-								text: '取消',
-								itemId: 'btnCancel',
-								icon:'resources/icons/24/icon_cancel.png'
-							},{
 								xtype:'spacer', flex:1
 							}
 						]

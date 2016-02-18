@@ -684,6 +684,7 @@ Ext.dom.Element.addMembers({
      * @return {Ext.dom.Element} this
      */
     setStyle: function(prop, value) {
+        console.log(prop);
         var me = this,
             dom = me.dom,
             hooks = me.styleHooks,

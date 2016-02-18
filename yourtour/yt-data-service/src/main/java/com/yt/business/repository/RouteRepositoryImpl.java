@@ -235,18 +235,10 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 	public List<RouteMainBean> getRecommendRoutes(Long[] placeIds) throws Exception {
 		List<RouteMainBean> routes = new ArrayList<>();
 
-		List<RouteTuple> tuples = this.repository.getRecommendRoutes(placeIds);
+		List<RouteTuple> tuples = this.repository.getRecommendRoutes4Places(placeIds);
 		if(tuples != null){
-			RouteMainBean route = null;
 			for(RouteTuple tuple : tuples){
-				route = tuple.getRoute();
-
-				ExpertBean expert = tuple.getExpert();
-				UserProfileBean profile = tuple.getOwner();
-				expert.setProfile(profile);
-				route.setExpert(expert);
-
-				routes.add(route);
+				routes.add(tuple.getRoute());
 			}
 		}
 
@@ -257,15 +249,7 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 	public RouteMainBean getRecommendRoute(Long routeId) throws Exception {
 		RouteTuple tuple = this.repository.getRecommendRoute(routeId);
 		if(tuple != null){
-			RouteMainBean route = tuple.getRoute();
-
-			ExpertBean expert = tuple.getExpert();
-			UserProfileBean profile = tuple.getOwner();
-			expert.setProfile(profile);
-
-			route.setExpert(expert);
-
-			return route;
+			return tuple.getRoute();
 		}
 
 		return null;

@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.place.PlaceMainView', {
 	extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Img','YourTour.view.widget.XHeaderBar','YourTour.view.place.PlaceExpertItem'],
+    requires:['Ext.Img','YourTour.view.widget.XHeaderBar','YourTour.view.place.PlaceExpertItem','YourTour.view.route.RouteListDataItem'],
     config: {
     	id:'PlaceMainView',
       	layout:'vbox',
@@ -28,6 +28,7 @@ Ext.define('YourTour.view.place.PlaceMainView', {
 						xtype: 'panel',
 						layout: 'hbox',
 						height: 150,
+						padding:'0 10 0 10',
 						defaults: {
 							flex: 1
 						},
@@ -76,10 +77,18 @@ Ext.define('YourTour.view.place.PlaceMainView', {
 							},
 							{
 								xtype: 'xlabel',
-								itemId:'placeMorelines',
+								itemId:'placeMoreRoutes',
 								cls: 'underline x-xlabel-normal',
 								indicator:'nav-arrow',
 								html: '游徒行程'
+							},
+
+							{
+								xtype: 'xdataview',
+								itemId: 'placeRouteList',
+								itemHeight:100,
+								scrollable:'none',
+								defaultType: 'RouteListDataItem'
 							}
 						]
 					},

@@ -34,8 +34,9 @@ Ext.application({
         'route.RouteScheduleListView', 'route.RouteSchedulePlanView','route.RouteScheduleReferenceListView','route.RouteScheduleFormView',
         'route.RouteProvisionView','route.RouteProvisionEditView','route.RouteScheduleEditView','route.RouteScheduleView',
         'route.RouteActivityEditView','route.RoutePlaceEditView','route.RouteCheckinView',
-        'route.RouteRecommendListView','route.RouteRecommendIntroductionView',
+        'route.RouteRecommendListView','route.RouteFormView','route.RouteListView',
         'service.RouteServiceMainView','service.RouteServiceFormView','service.RouteServiceEditView',
+        'service.PlaceServiceMainView','service.RouteServiceBookView',
         'user.LoginMainView','user.UserListView','user.UserMainView','user.UserProfileView',
         'resource.ResourceSelectionView','resource.ResourceFormView','resource.ResourceMapView','resource.ResourceActivityItemListView',
         'resource.ResourceActivityItemFormView',
@@ -46,7 +47,7 @@ Ext.application({
 
         'line.LineListView',
 
-        'along.AlongListView',
+        'along.AlongListView','along.AlongFormView','along.AlongEditView',
 
         'community.LiveMainView',
         'place.PlaceMainView','place.PlaceSelectionView'

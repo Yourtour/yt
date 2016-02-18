@@ -1,17 +1,21 @@
 package com.yt.business.neo4j.repository;
 
 import com.yt.business.bean.ExpertServiceBean;
-import com.yt.business.bean.RouteMainBean;
 import com.yt.business.bean.RouteServiceBean;
-import com.yt.business.bean.UserProfileBean;
 import org.springframework.data.neo4j.annotation.Query;
-import org.springframework.data.neo4j.annotation.QueryResult;
-import org.springframework.data.neo4j.annotation.ResultColumn;
 import org.springframework.data.neo4j.repository.GraphRepository;
 
 import java.util.List;
 
 public interface ServiceBeanRepository extends GraphRepository<RouteServiceBean> {
+    /**
+     *
+     * @param placeIds
+     * @return
+     */
+    @Query("START places=node({0}) MATCH places<-[:AT]-user-[:HAS]->(service:ExpertServiceBean) RETURN service, user")
+    public List<ExpertServiceTuple> getPlaceServices(Long[] placeIds,Long nextCursor, int limit);
+
     /**
      *
      * @param expertId
@@ -26,5 +30,7 @@ public interface ServiceBeanRepository extends GraphRepository<RouteServiceBean>
      * @return
      */
     @Query("START route=node({0}) MATCH route-[:HAS]->(routeService:RouteServiceBean)-[]-(expertService:ExpertServiceBean)<-[:HAS]-(user:UserProfileBean) RETURN routeService, expertService, user")
-    public List<ServiceTuple> getRouteServices(Long routeId);
+    public List<RouteServiceTuple> getRouteServices(Long routeId);
+
+
 }

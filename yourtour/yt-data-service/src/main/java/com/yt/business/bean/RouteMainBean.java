@@ -70,14 +70,7 @@ public class RouteMainBean extends BaseBeanImpl {
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = UserProfileBean.class, direction = Direction.OUTGOING)
 	private transient UserProfileBean owner = null; // 行程所有者
 
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_EXPERT, type = ExpertBean.class, direction = Direction.OUTGOING)
-	private transient ExpertBean expert = null; // 行程达人
-
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_LEADER, type = UserProfileBean.class, direction = Direction.OUTGOING)
-	private transient UserProfileBean leader = null; // 行程领队
-
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_MEMBER, type = UserProfileBean.class, direction = Direction.OUTGOING, isList = true)
-	private transient List<UserProfileBean> members = null; // 行程成员
+	private UserProfileBean user = null;
 
 	public RouteMainBean() {
 		super();
@@ -97,30 +90,6 @@ public class RouteMainBean extends BaseBeanImpl {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public ExpertBean getExpert() {
-		return expert;
-	}
-
-	public void setExpert(ExpertBean expert) {
-		this.expert = expert;
-	}
-
-	public UserProfileBean getLeader() {
-		return leader;
-	}
-
-	public void setLeader(UserProfileBean leader) {
-		this.leader = leader;
-	}
-
-	public List<UserProfileBean> getMembers() {
-		return members;
-	}
-
-	public void setMembers(List<UserProfileBean> members) {
-		this.members = members;
 	}
 
 	public String getImpression() {
@@ -341,5 +310,13 @@ public class RouteMainBean extends BaseBeanImpl {
 
 	public void setOrderMemo(String orderMemo) {
 		this.orderMemo = orderMemo;
+	}
+
+	public UserProfileBean getUser() {
+		return user;
+	}
+
+	public void setUser(UserProfileBean user) {
+		this.user = user;
 	}
 }

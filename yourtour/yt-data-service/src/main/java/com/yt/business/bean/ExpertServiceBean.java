@@ -24,10 +24,18 @@ public class ExpertServiceBean extends BaseBeanImpl {
 	private String withdraw;
 	private String imageUrls;
 
+	private double 	commentScore = 0f;
+	private int 	commentNum; // 点评数
+
+	private int     goodNum;	//好评
+	private int		mediumNum;  //中评
+	private int 	badNum;     //差评
+	private int		imageNum;   //晒图
+
 	@HbaseColumn(name = "memo")
 	private String memo; // 服务描述
 
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = ExpertBean.class, direction = Direction.INCOMING)
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = UserProfileBean.class, direction = Direction.INCOMING)
 	private transient UserProfileBean user = null; // 服务相关达人
 
 	public ExpertServiceBean() {
@@ -116,6 +124,54 @@ public class ExpertServiceBean extends BaseBeanImpl {
 
 	public void setCategory(String category) {
 		this.category = category;
+	}
+
+	public double getCommentScore() {
+		return commentScore;
+	}
+
+	public void setCommentScore(double commentScore) {
+		this.commentScore = commentScore;
+	}
+
+	public int getCommentNum() {
+		return commentNum;
+	}
+
+	public void setCommentNum(int commentNum) {
+		this.commentNum = commentNum;
+	}
+
+	public int getGoodNum() {
+		return goodNum;
+	}
+
+	public void setGoodNum(int goodNum) {
+		this.goodNum = goodNum;
+	}
+
+	public int getMediumNum() {
+		return mediumNum;
+	}
+
+	public void setMediumNum(int mediumNum) {
+		this.mediumNum = mediumNum;
+	}
+
+	public int getBadNum() {
+		return badNum;
+	}
+
+	public void setBadNum(int badNum) {
+		this.badNum = badNum;
+	}
+
+	public int getImageNum() {
+		return imageNum;
+	}
+
+	public void setImageNum(int imageNum) {
+		this.imageNum = imageNum;
 	}
 
 	public UserProfileBean getUser() {

@@ -24,17 +24,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
             //行程主题选择页面
 
             //行程时间设置页面
-            timeSelectionView: '#TimeSelectionView',
-
-            //智能匹配线路结果页面
-            routeRecommendListView: '#RouteRecommendListView',
-            routeRecommendList: '#RouteRecommendListView #routeRecommendList',
-
-            //智能匹配线路结果页面
-            routeRecommendIntroductionView: '#RouteRecommendIntroductionView',
-            introductionItem: '#RouteRecommendIntroductionView #introductionItem',
-            expertItem: '#RouteRecommendIntroductionView #expertItem',
-            scheduleItem: '#RouteRecommendIntroductionView #scheduleItem'
+            timeSelectionView: '#TimeSelectionView'
         },
 
         control: {
@@ -134,22 +124,6 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 
             '#RouteSettingView #btnCutomized': {
                 tap: 'onRouteCustomizeTap'
-            },
-
-            '#LineRecommendListView #btnCustomize': {
-                tap: 'onRouteCustomizeTap'
-            },
-
-            '#RouteRecommendListView #routeRecommendList': {
-                itemtap: 'onRouteRecommendItemTapHandler'
-            },
-
-            '#RouteRecommendIntroductionView #recommendCarousel': {
-                activateitem: 'onRecommendActivateItem'
-            },
-
-            '#RouteRecommendIntroductionView #btnClone': {
-                tap: 'onRouteCloneTap'
             }
         },
 
@@ -367,119 +341,6 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
         me.getRecommendRoutes(5, route.toPlaces)
     },
 
-    /*************************************************************************************************
-     * 行程智能匹配部分
-     ************************************************************************************************/
-    /**
-     *
-     * @param duration
-     * @param places
-     */
-    getRecommendRoutes: function (duration, places) {
-        duration = 5;
-        var ids = '', names = '';
-        var pArray = places.split('|');
-        for (var index = 0; index < pArray.length; index++) {
-            if (index > 0) {
-                ids = ids + ',';
-                names = names + ',';
-            }
-
-            var array = pArray[index].split(',');
-            ids = ids + array[0];
-            names = names + array[1];
-        }
-
-        var me = this;
-        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteRecommendListView'));
-        var view = me.getRouteRecommendListView();
-
-        var headerbar = view.down('#headerbar');
-        headerbar.setTitle(names);
-
-        var pagebody = view.down('#pagebody');
-        var options = {
-            model: 'YourTour.model.RouteModel',
-            url: '/routes/recommend/' + ids + '/' + duration,
-            success: function (store) {
-                var routeRecommendList = me.getRouteRecommendList();
-                routeRecommendList.setStore(store);
-            }
-        };
-        me.getApplication().query(options);
-    },
-
-    /**
-     *
-     * @param dataview
-     * @param index
-     * @param item
-     * @param record
-     */
-    onRouteRecommendItemTapHandler: function (dataview, index, item, record) {
-        var me = this;
-        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteRecommendIntroductionView'));
-        var view = me.getRouteRecommendIntroductionView();
-        view.setData(record);
-
-        var headerbar = view.down('#headerbar');
-        headerbar.setTitle(record.get('name'));
-
-        //处理概述部分
-        var introductionItem = me.getIntroductionItem();
-        introductionItem.updateData(record);
-
-        //处理达人部分
-        var expertItem = me.getExpertItem();
-        expertItem.updateData(record.expertStore.first());
-
-        //处理计划部分
-        var options = {
-            model: 'YourTour.model.RouteModel',
-            url: '/routes/' + record.get('id') + '/query',
-            success: function (store) {
-                var route = store.first();
-                var schedulesStore = route.schedulesStore;
-
-                var type;
-                schedulesStore.each(function (record) {
-                    type = record.get('type');
-
-                    if (type == 'Provision' || type == 'ProvisionItem') {
-                        record.set('planhidden', true);
-                    }
-                });
-
-                var scheduleItem = me.getScheduleItem();
-                scheduleItem.updateData(schedulesStore);
-            }
-        };
-        me.getApplication().query(options);
-    },
-
-    /**
-     * 行程复制
-     */
-    onRouteCloneTap: function () {
-        var me = this, view = me.getRouteRecommendIntroductionView(), record = view.getData();
-        var sourceId = record.get('id');
-
-        var route = me.getRouteSettingInfo();
-
-        this.getApplication().callService({
-            url: '/routes/' + sourceId + '/clone',
-            method: "POST",
-            params: route,
-            success: function (response) {
-                Ext.ComponentManager.get('MainView').reset();
-
-                var store = Ext.create('YourTour.store.AjaxStore', {model: 'YourTour.model.RouteModel'});
-                store.add(response);
-                var controller = me.getApplication().getController('route.RouteScheduleListCtrl');
-                controller.showPage(store);
-            }
-        });
-    },
 
     /**
      *

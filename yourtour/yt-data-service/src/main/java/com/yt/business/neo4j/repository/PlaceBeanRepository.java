@@ -45,6 +45,6 @@ public interface PlaceBeanRepository extends GraphRepository<PlaceBean> {
 	 * @param limit
 	 * @return
 	 */
-	@Query("START place=NODE({0}) MATCH place-[R:RECOMMEND]->(route:RouteMainBean) RETURN route ORDER BY R.LEVEL SKIP {1} LIMIT {2}")
-	public List<RouteMainBean> getRoutes(Long placeId, int startIndex, int limit);
+	@Query("START place=node({0}) MATCH place<-[:AT]-(user:UserProfileBean)-[:RECOMMEND]->(route:RouteMainBean) RETURN user, route")
+	public List<RouteTuple> getRoutes(Long placeId, int startIndex, int limit);
 }

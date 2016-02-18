@@ -2,6 +2,7 @@ package com.debug;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Date;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -21,8 +22,10 @@ public class HttpMocker {
 	private static final String APPLICATION_JSON = "application/json";
     private static final String CONTENT_TYPE_TEXT_JSON = "text/json";
 
-    public static void main(String[] args) throws Exception {  
-    	doPost();
+    public static void main(String[] args) throws Exception {
+		Date date = new Date(1455611100000l);
+		System.out.println(date);
+		System.out.println(System.currentTimeMillis());
 	}
 	
     /**

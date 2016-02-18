@@ -5,7 +5,7 @@ import org.springframework.data.neo4j.annotation.QueryResult;
 import org.springframework.data.neo4j.annotation.ResultColumn;
 
 @QueryResult
-public class ServiceTuple {
+public class RouteServiceTuple {
 	@ResultColumn("routeService")
 	private RouteServiceBean routeService;
 
@@ -15,7 +15,7 @@ public class ServiceTuple {
 	@ResultColumn("user")
 	private UserProfileBean  user;
 
-	public ServiceTuple(){
+	public RouteServiceTuple(){
 	}
 
 	public RouteServiceBean getRouteService() {

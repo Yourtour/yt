@@ -7,8 +7,8 @@ Ext.define('YourTour.view.charge.ChargeListDataItem', {
 			{
 				xtype:'xfield',
 				itemId:'date',
-				padding:0,
 				underline:false,
+				flex:2,
 				dataChange: function (field, record){
 					field.setText(Ext.Date.format(new Date(record.get('chargeDate')),'Y/m/d'));
 				}
@@ -17,18 +17,15 @@ Ext.define('YourTour.view.charge.ChargeListDataItem', {
 			{
 				xtype:'xfield',
 				itemId:'name',
-				padding:0,
-				margin:'0 0 0 10',
-				flex:1,
+				flex:3,
 				underline:false
 			},
 
 			{
 				xtype : 'xselectfield',
 				itemId : 'type',
-				padding:0,
-				margin:'0 10 0 10',
 				underline:false,
+				flex:1,
 				options: [
 					{text:'个人', value:'1'},
 					{text:'分摊', value:'2'}
@@ -38,8 +35,8 @@ Ext.define('YourTour.view.charge.ChargeListDataItem', {
 			{
 				xtype:'xfield',
 				itemId:'payment',
-				padding:0,
-				underline:false
+				underline:false,
+				flex:1
 			}
         ]
     },

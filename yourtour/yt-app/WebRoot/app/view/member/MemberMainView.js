@@ -43,14 +43,23 @@ Ext.define('YourTour.view.member.MemberMainView', {
 						itemId:'btnAdd',
 						text:'加人',
 						iconAlign:'top',
-						icon: 'resources/icons/icon_button_member_add.png'
+						icon: 'resources/icons/24/icon_member_add.png'
 					},
+
+					{
+						xtype: 'xbutton',
+						itemId:'btnAlong',
+						text:'结伴',
+						iconAlign:'top',
+						icon: 'resources/icons/24/icon_along.png'
+					},
+
 					{
 						xtype: 'xbutton',
 						itemId:'btnMessage',
 						text:'聊天',
 						iconAlign:'top',
-						icon: 'resources/icons/icon_button_chat.png'
+						icon: 'resources/icons/24/icon_chat.png'
 					},
 
 					{
@@ -58,7 +67,7 @@ Ext.define('YourTour.view.member.MemberMainView', {
 						itemId:'btnPosition',
 						text:'位置',
 						iconAlign:'top',
-						icon: 'resources/icons/icon_button_position.png'
+						icon: 'resources/icons/24/icon_position.png'
 					}
 				]
 			}

@@ -8,7 +8,15 @@ Ext.define('YourTour.view.service.RouteServiceMainView', {
     	items:[
 			{    
 				xtype: 'xheaderbar',
-				title:'行程服务'
+				title:'行程服务',
+				items: [
+					{
+						xtype: 'xbutton',
+						itemId: 'btnAdd',
+						align: 'right',
+						icon:'resources/icons/24/icon_header_add.png'
+					}
+				]
 			},
 
 			{

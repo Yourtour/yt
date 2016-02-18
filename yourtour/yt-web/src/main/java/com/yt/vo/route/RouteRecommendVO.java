@@ -6,6 +6,7 @@ import com.yt.business.bean.UserProfileBean;
 import com.yt.vo.BaseVO;
 import com.yt.vo.member.ExpertVO;
 import com.yt.vo.member.UserProfileVO;
+import com.yt.vo.member.UserVO;
 
 public class RouteRecommendVO extends BaseVO {
 	private String 	name; // 行程名称
@@ -25,7 +26,7 @@ public class RouteRecommendVO extends BaseVO {
 	private String  useMemo; //使用说明
 	private String  orderMemo; //预订须知
 
-	private ExpertVO expert;
+	private UserVO user;
 
 	public RouteRecommendVO() {
 		super();
@@ -52,9 +53,9 @@ public class RouteRecommendVO extends BaseVO {
 		routeVO.setOrderMemo(bean.getOrderMemo());
 		routeVO.setUseMemo(bean.getUseMemo());
 
-		ExpertBean expert  = bean.getExpert();
-		if(expert != null){
-			routeVO.setExpert(ExpertVO.transform(expert));
+		UserProfileBean user  = bean.getUser();
+		if(user != null){
+			routeVO.setUser(UserVO.transform(user));
 		}
 
 		return routeVO;
@@ -124,12 +125,12 @@ public class RouteRecommendVO extends BaseVO {
 		this.commentNum = commentNum;
 	}
 
-	public ExpertVO getExpert() {
-		return expert;
+	public UserVO getUser() {
+		return user;
 	}
 
-	public void setExpert(ExpertVO expert) {
-		this.expert = expert;
+	public void setUser(UserVO user) {
+		this.user = user;
 	}
 
 	public String getFeature() {

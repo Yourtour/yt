@@ -22,4 +22,12 @@ public interface ServiceRepository extends CrudAllInOneOperate {
      * @throws Exception
      */
     public List<ExpertServiceBean> getExpertServices(Long expertId) throws Exception;
+
+    /**
+     *
+     * @param placeIds
+     * @return
+     * @throws Exception
+     */
+    public List<ExpertServiceBean> getPlaceServices(Long[] placeIds, Long nextCursor, int limit) throws Exception;
 }

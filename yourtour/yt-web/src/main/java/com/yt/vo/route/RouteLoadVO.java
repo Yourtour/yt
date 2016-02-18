@@ -192,7 +192,7 @@ public class RouteLoadVO implements Serializable {
 		private String	memo;
 		private String  places;
 		private TYPE 	type;
-		private String 	status;
+		private String 	status = "new";
 		private Long    date;
 		private String 	startTime;
 		private String 	endTime;

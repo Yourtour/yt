@@ -14,9 +14,13 @@ import com.yt.neo4j.annotation.Neo4jRelationship;
 public class RouteServiceBean extends BaseBeanImpl {
 	private static final long serialVersionUID = 6259294378320824143L;
 
-	private long 	useDate;
-	private int 	memberNum;
-	private String	address;
+	private long 	fromDate;
+	private long 	endDate;
+	private int 	adultNum;
+	private int 	oldNum;
+	private int 	childNum;
+	private int		fee;
+	private String	place;
 	private String	memo;
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RELATED, type = ExpertServiceBean.class, direction = Direction.OUTGOING)
@@ -49,28 +53,60 @@ public class RouteServiceBean extends BaseBeanImpl {
 		this.service = service;
 	}
 
-	public long getUseDate() {
-		return useDate;
+	public long getFromDate() {
+		return fromDate;
 	}
 
-	public void setUseDate(long useDate) {
-		this.useDate = useDate;
+	public void setFromDate(long fromDate) {
+		this.fromDate = fromDate;
 	}
 
-	public int getMemberNum() {
-		return memberNum;
+	public long getEndDate() {
+		return endDate;
 	}
 
-	public void setMemberNum(int memberNum) {
-		this.memberNum = memberNum;
+	public void setEndDate(long endDate) {
+		this.endDate = endDate;
 	}
 
-	public String getAddress() {
-		return address;
+	public int getAdultNum() {
+		return adultNum;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setAdultNum(int adultNum) {
+		this.adultNum = adultNum;
+	}
+
+	public int getOldNum() {
+		return oldNum;
+	}
+
+	public void setOldNum(int oldNum) {
+		this.oldNum = oldNum;
+	}
+
+	public int getChildNum() {
+		return childNum;
+	}
+
+	public void setChildNum(int childNum) {
+		this.childNum = childNum;
+	}
+
+	public int getFee() {
+		return fee;
+	}
+
+	public void setFee(int fee) {
+		this.fee = fee;
+	}
+
+	public String getPlace() {
+		return place;
+	}
+
+	public void setPlace(String place) {
+		this.place = place;
 	}
 
 	public String getMemo() {

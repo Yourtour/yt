@@ -78,7 +78,7 @@ Ext.define('YourTour.view.route.RouteMainView', {
                         ]
                     },
 
-                    {
+                    /*{
                         xtype: 'panel',
                         layout: 'vbox',
                         bottom: 0,
@@ -120,7 +120,7 @@ Ext.define('YourTour.view.route.RouteMainView', {
                                 }
                             }
                         ]
-                    }
+                    }*/
                 ]
             }
         ]

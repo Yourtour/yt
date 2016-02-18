@@ -36,7 +36,8 @@ Ext.define('YourTour.model.RouteModel', {
 				{name:'chargeMemo', type:'string'},
 				{name:'withdrawMemo', type:'string'},
 				{name:'useMemo', type:'string'},
-				{name:'orderMemo', type:'string'}
+				{name:'orderMemo', type:'string'},
+				{name:'status', type:'string', defaultValue:'new'}
 	    ],
 
 	    associations: [
@@ -45,13 +46,6 @@ Ext.define('YourTour.model.RouteModel', {
 				model: 'YourTour.model.UserModel',
 				name:'user',
 				associationKey:'user'
-			},
-
-			{
-				type: 'hasMany',
-				model: 'YourTour.model.ExpertModel',
-				name:'expert',
-				associationKey:'expert'
 			},
 
 			{

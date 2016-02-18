@@ -1,13 +1,38 @@
-Ext.define('YourTour.view.route.RouteRecommendIntroductionView', {
+Ext.define('YourTour.view.route.RouteFormView', {
 	extend: 'YourTour.view.widget.XPage',
-    requires:['YourTour.view.widget.XHeaderBar','YourTour.view.widget.XNavigation', 'YourTour.view.route.RouteRecommendScheduleItem', 'YourTour.view.route.RouteRecommendIntroductionItem'],
+    requires:['YourTour.view.widget.XHeaderBar','YourTour.view.widget.XNavigation', 'YourTour.view.route.RouteFormScheduleItem', 'YourTour.view.route.RouteFormOverviewItem'],
     config: {
-    	id:'RouteRecommendIntroductionView',
+    	id:'RouteFormView',
 		layout:'card',
         items: [
         	{    
 				xtype: 'xheaderbar',
-				title:'行程介绍'
+				title:'行程介绍',
+				items:[
+					{
+						xtype:'xbutton',
+						itemId:'btnOverview',
+						text:'概述',
+						align:'right',
+						padding:'0 10 0 20'
+					},
+
+					{
+						xtype:'xbutton',
+						itemId:'btnSchedule',
+						text:'行程',
+						align:'right',
+						padding:'0 10 0 10'
+					},
+
+					{
+						xtype:'xbutton',
+						itemId:'btnExpert',
+						text:'达人',
+						align:'right',
+						padding:'0 10 0 10'
+					}
+				]
 			},
 
 			{
@@ -15,51 +40,24 @@ Ext.define('YourTour.view.route.RouteRecommendIntroductionView', {
 			},
 
 			{
-				xtype: 'RouteRecommendIntroductionItem',
-				itemId: 'introductionItem'
-			},
-
-
-
-			{
-				xtype: 'RouteRecommendScheduleItem',
-				itemId: 'scheduleItem'
-			},
-
-			{
-				xtype:'xnavigation',
-				itemId:'navigation',
-				docked: 'bottom',
-				bottom:30,
-				left: 10,
-				defaults:{
-					style:'width:48px;height:48px;',
-					mode : 'tag'
-				},
-				items:[
+				xtype: 'xpagebody',
+				layout: 'card',
+				items: [
 					{
-						xtype:'image',
-						itemId:'btnIntroduction',
-						src:'resources/icons/icon_route.png'
+						xtype: 'RouteFormOverviewItem',
+						itemId: 'overviewItem'
 					},
 
 					{
-						xtype:'image',
-						itemId:'btnExpert',
-						src:'resources/icons/icon_partner.png'
-					},
-
-					{
-						xtype:'image',
-						itemId:'btnSchedule',
-						src:'resources/icons/icon_expense.png'
+						xtype: 'RouteFormScheduleItem',
+						itemId: 'scheduleItem'
 					}
 				]
 			}
         ]
     },
 
-	initialize:function(){
+	/*initialize:function(){
 		this.callParent(arguments);
 
 		var me = this;
@@ -103,9 +101,11 @@ Ext.define('YourTour.view.route.RouteRecommendIntroductionView', {
 
 		var navigation = me.down('#navigation');
 		navigation.collapse();
-	},
+	},*/
 
 	hideProcessing:function() {
+		this.callParent(arguments);
+
 		var me = this;
 		var introductionItem = me.down('#introductionItem');
 		this.setActiveItem(introductionItem);

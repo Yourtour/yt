@@ -1,9 +1,9 @@
-Ext.define('YourTour.view.route.RouteRecommendIntroductionItem', {
-    extend: 'YourTour.view.widget.XPageBody',
+Ext.define('YourTour.view.route.RouteFormOverviewItem', {
+    extend: 'Ext.Container',
     requires: ['Ext.Panel'],
-    xtype: 'RouteRecommendIntroductionItem',
+    xtype: 'RouteFormOverviewItem',
     config: {
-        label: '行程概述',
+        layout: 'vbox',
         items: [
             {
                 xtype: 'panel',
@@ -53,6 +53,7 @@ Ext.define('YourTour.view.route.RouteRecommendIntroductionItem', {
                 padding: '0 10 0 10',
                 cls: 'row underline font-bold font-medium'
             },
+
             {
                 xtype: 'xtoolbar',
                 padding: '0 10 0 10',

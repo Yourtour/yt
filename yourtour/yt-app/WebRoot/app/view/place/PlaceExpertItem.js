@@ -23,6 +23,7 @@ Ext.define('YourTour.view.place.PlaceExpertItem', {
                 height:140,
                 size:4,
                 useComponents: true,
+                scrollable:'none',
                 defaultType: 'PlaceExpertGridItem'
             }
         ]

@@ -9,6 +9,7 @@ import com.yt.business.bean.ExpertBean;
 import com.yt.business.bean.LineBean;
 import com.yt.business.bean.RouteMainBean;
 import com.yt.business.neo4j.repository.ExpertTuple;
+import com.yt.business.neo4j.repository.RouteTuple;
 import com.yt.core.utils.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -58,7 +59,16 @@ public class PlaceRepositoryImpl extends CrudAllInOneOperateImpl implements
 
 	@Override
 	public List<RouteMainBean> getRoutes(Long placeId, int startIndex, int limit) throws Exception {
-		return repository.getRoutes(placeId, startIndex, limit);
+		List<RouteMainBean> routes = new ArrayList<>();
+
+		List<RouteTuple> tuples = this.repository.getRoutes(placeId, startIndex, limit);
+		if(tuples != null){
+			for(RouteTuple tuple : tuples){
+				routes.add(tuple.getRoute());
+			}
+		}
+
+		return routes;
 	}
 
 	/*

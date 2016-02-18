@@ -12,16 +12,14 @@ public class RouteTuple {
 	@ResultColumn("route")
 	private RouteMainBean route;
 
-	@ResultColumn("owner")
-	private UserProfileBean owner;
-
-	@ResultColumn("expert")
-	private ExpertBean expert;
+	@ResultColumn("user")
+	private UserProfileBean user;
 
 	public RouteTuple(){
 	}
 
 	public RouteMainBean getRoute() {
+		route.setUser(this.getUser());
 		return route;
 	}
 
@@ -29,19 +27,11 @@ public class RouteTuple {
 		this.route = route;
 	}
 
-	public UserProfileBean getOwner() {
-		return owner;
+	public UserProfileBean getUser() {
+		return user;
 	}
 
-	public void setOwner(UserProfileBean owner) {
-		this.owner = owner;
-	}
-
-	public ExpertBean getExpert() {
-		return expert;
-	}
-
-	public void setExpert(ExpertBean expert) {
-		this.expert = expert;
+	public void setUser(UserProfileBean user) {
+		this.user = user;
 	}
 }

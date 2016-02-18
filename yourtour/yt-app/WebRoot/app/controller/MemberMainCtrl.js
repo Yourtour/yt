@@ -28,7 +28,11 @@ Ext.define('YourTour.controller.MemberMainCtrl', {
             },
 
             '#MemberMainView #btnMessage': {
-                tap: 'showMessagePage'
+                tap: 'showMessageView'
+            },
+
+            '#MemberMainView #btnAlong': {
+                tap: 'showAlongView'
             },
 
             '#MemberMainView #btnCancel': {
@@ -277,5 +281,15 @@ Ext.define('YourTour.controller.MemberMainCtrl', {
         if(callback){
             callback(record);
         }
+    },
+
+    /**
+     *  显示行程结伴信息
+     *  Status: formal
+     */
+    showAlongView:function(){
+        var controller = this.getApplication().getController('AlongMainCtrl');
+
+        controller.showAlongInfo();
     }
 });

@@ -1,20 +1,20 @@
 Ext.define('YourTour.view.along.AlongListView', {
-		extend: 'YourTour.view.widget.XPage',
+    extend: 'YourTour.view.widget.XPage',
     xtype: 'AlongListView',
-    requires:['YourTour.view.widget.XHeaderBar','YourTour.view.along.AlongListDataItem'],
+    requires: ['YourTour.view.widget.XHeaderBar', 'YourTour.view.along.AlongListDataItem'],
     config: {
-	    id:'AlongListView',
-	    layout:'card',
+        id: 'AlongListView',
+        layout: 'card',
         items: [
-			{    
-				xtype: 'xheaderbar',
-			},
+            {
+                xtype: 'xheaderbar',
+            },
 
-			{
-				xtype: 'xdataview',
-				itemId: 'alongList',
-				defaultType: 'AlongListDataItem'
-			}
+            {
+                xtype: 'xdataview',
+                itemId: 'alongList',
+                defaultType: 'AlongListDataItem'
+            }
         ]
     }
 });

@@ -3,16 +3,14 @@ Ext.define('YourTour.model.RouteServiceModel', {
     config:{
 	    fields:[
 			{name:'id', type:'string'},
-			{name:'title', type:'string'},
-			{name:'imageUrl', type:'string'},
-			{name:'imageUrls', type:'string'},
-			{name:'fee', type:'string'},
-			{name:'withdraw', type:'string'},
-			{name:'feeIncluding', type:'string'},
-			{name:'feeExcluding', type:'string'},
-			{name:'memo', type:'string'},
-			{name:'status', type:'string'},
-			{name:'expertServiceId', type:'string'}
+			{name:'fee', type:'string', defaultValue:'0'},
+			{name:'adultNum', type:'string'},
+			{name:'oldNum', type:'string'},
+			{name:'childNum', type:'string'},
+			{name:'fromDateStr', type:'string'},
+			{name:'endDateStr', type:'string'},
+			{name:'place', type:'string'},
+			{name:'memo', type:'string'}
 	    ],
 
 		associations: [

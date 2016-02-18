@@ -96,6 +96,11 @@ public interface Constants {
 	 */
 	public static final String RELATION_TYPE_DIVIDED = "DIVIDED";
 
+	/**
+	 * 审批关系
+	 */
+	public static final String RELATION_TYPE_FAVORITE = "FAVORITE";
+
 
 
 	// 资源枚举

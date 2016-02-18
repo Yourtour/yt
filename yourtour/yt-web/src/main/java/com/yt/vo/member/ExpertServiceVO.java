@@ -14,6 +14,14 @@ public class ExpertServiceVO extends BaseVO {
     private String category;
     private String imageUrl;
 
+    private double 	commentScore = 0f;
+    private int 	commentNum; // 点评数
+
+    private int     goodNum;	//好评
+    private int		mediumNum;  //中评
+    private int 	badNum;     //差评
+    private int		imageNum;   //晒图
+
     private UserVO user;
 
     public ExpertServiceVO() {
@@ -112,6 +120,54 @@ public class ExpertServiceVO extends BaseVO {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public double getCommentScore() {
+        return commentScore;
+    }
+
+    public void setCommentScore(double commentScore) {
+        this.commentScore = commentScore;
+    }
+
+    public int getCommentNum() {
+        return commentNum;
+    }
+
+    public void setCommentNum(int commentNum) {
+        this.commentNum = commentNum;
+    }
+
+    public int getGoodNum() {
+        return goodNum;
+    }
+
+    public void setGoodNum(int goodNum) {
+        this.goodNum = goodNum;
+    }
+
+    public int getMediumNum() {
+        return mediumNum;
+    }
+
+    public void setMediumNum(int mediumNum) {
+        this.mediumNum = mediumNum;
+    }
+
+    public int getBadNum() {
+        return badNum;
+    }
+
+    public void setBadNum(int badNum) {
+        this.badNum = badNum;
+    }
+
+    public int getImageNum() {
+        return imageNum;
+    }
+
+    public void setImageNum(int imageNum) {
+        this.imageNum = imageNum;
     }
 
     public UserVO getUser() {

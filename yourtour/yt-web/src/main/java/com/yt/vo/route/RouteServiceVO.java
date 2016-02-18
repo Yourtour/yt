@@ -6,9 +6,14 @@ import com.yt.vo.BaseVO;
 import com.yt.vo.member.ExpertServiceVO;
 
 public class RouteServiceVO extends BaseVO {
-	private String 	useDate;
-	private int 	memberNum;
-	private String	address;
+	private long 	fromDate;
+	private long 	endDate;
+
+	private int 	adultNum;
+	private int 	oldNum;
+	private int 	childNum;
+	private int		fee;
+	private String	place;
 	private String	memo;
 
 	private ExpertServiceVO expertService;
@@ -25,8 +30,12 @@ public class RouteServiceVO extends BaseVO {
 		RouteServiceVO valueObject = new RouteServiceVO();
 		valueObject.setId(bean.getGraphId());
 		valueObject.setMemo(bean.getMemo());
-		valueObject.setUseDate(DateUtils.formatDate(bean.getUseDate()));
-		valueObject.setMemberNum(bean.getMemberNum());
+		valueObject.setFromDate(bean.getFromDate());
+		valueObject.setEndDate(bean.getEndDate());
+		valueObject.setPlace(bean.getPlace());
+		valueObject.setAdultNum(bean.getAdultNum());
+		valueObject.setOldNum(bean.getOldNum());
+		valueObject.setChildNum(bean.getChildNum());
 
 		valueObject.setExpertService(ExpertServiceVO.transform(bean.getService()));
 		return valueObject;
@@ -35,31 +44,72 @@ public class RouteServiceVO extends BaseVO {
 	public static RouteServiceBean transform(RouteServiceVO vo) {
 		RouteServiceBean bean = new RouteServiceBean();
 
+		bean.setGraphId(vo.getId());
+		bean.setChildNum(vo.getChildNum());
+		bean.setAdultNum(vo.getAdultNum());
+		bean.setOldNum(vo.getOldNum());
+		bean.setPlace(vo.getPlace());
+		bean.setMemo(vo.getMemo());
+		bean.setFromDate(vo.getFromDate());
+		bean.setEndDate(vo.getEndDate());
+
 		return bean;
 	}
 
-	public String getUseDate() {
-		return useDate;
+	public long getFromDate() {
+		return fromDate;
 	}
 
-	public void setUseDate(String useDate) {
-		this.useDate = useDate;
+	public void setFromDate(long fromDate) {
+		this.fromDate = fromDate;
 	}
 
-	public int getMemberNum() {
-		return memberNum;
+	public long getEndDate() {
+		return endDate;
 	}
 
-	public void setMemberNum(int memberNum) {
-		this.memberNum = memberNum;
+	public void setEndDate(long endDate) {
+		this.endDate = endDate;
 	}
 
-	public String getAddress() {
-		return address;
+	public int getAdultNum() {
+		return adultNum;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setAdultNum(int adultNum) {
+		this.adultNum = adultNum;
+	}
+
+	public int getOldNum() {
+		return oldNum;
+	}
+
+	public void setOldNum(int oldNum) {
+		this.oldNum = oldNum;
+	}
+
+	public int getChildNum() {
+		return childNum;
+	}
+
+	public void setChildNum(int childNum) {
+		this.childNum = childNum;
+	}
+
+	public int getFee() {
+		return fee;
+	}
+
+	public void setFee(int fee) {
+		this.fee = fee;
+	}
+
+	public String getPlace() {
+		return place;
+	}
+
+	public void setPlace(String place) {
+		this.place = place;
 	}
 
 	public String getMemo() {
@@ -76,5 +126,17 @@ public class RouteServiceVO extends BaseVO {
 
 	public void setExpertService(ExpertServiceVO expertServiceVO) {
 		this.expertService = expertServiceVO;
+	}
+
+	public String getFromDateStr(){
+		if(this.fromDate == 0) return "";
+
+		return DateUtils.formatDate(this.fromDate, "yyyy-MM-dd hh:mm:ss");
+	}
+
+	public String getEndDateStr(){
+		if(this.endDate == 0) return "";
+
+		return DateUtils.formatDate(this.endDate, "yyyy-MM-dd hh:mm:ss");
 	}
 }

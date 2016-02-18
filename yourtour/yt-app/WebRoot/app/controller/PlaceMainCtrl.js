@@ -2,7 +2,8 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
     extend: 'YourTour.controller.BaseCtrl',
     config: {
         refs: {
-            placeMainView: '#PlaceMainView'
+            placeMainView: '#PlaceMainView',
+            placeRouteList: '#PlaceMainView #placeRouteList'
         },
 
         control: {
@@ -71,7 +72,7 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
             expertItem = mainview.down('#placeExpertItem'),
             expertList = expertItem.down('#placeExpertList'),
             routeItem = mainview.down('#placeRouteItem'),
-            routeList = routeItem.down('#placeRouteList'),
+            placeRouteList = me.getPlaceRouteList(),
             alongItem = mainview.down('#placeAlongItem'),
             alongList = alongItem.down('#placeAlongList');
 
@@ -84,7 +85,6 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
 
                 if(place) {
                     var expertStore = place.expertsStore;
-
                     if (expertStore && expertStore.getAllCount() > 0) {
                         expertItem.show();
                         expertList.setStore(expertStore);
@@ -92,13 +92,14 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
 
                     var routeStore = place.routesStore;
                     if (routeStore && routeStore.getAllCount() > 0) {
-                        routeItem.show();
+                        var store = Ext.create('YourTour.store.AjaxStore',{model:'YourTour.model.RouteModel'});
                         routeStore.each(function(record, index){
-                            if(index < 4) {
-                                var item = Ext.create('YourTour.view.route.RouteRecommendDataItem', {record: record});
-                                routeItem.add(item);
+                            if(index < 5) {
+                                store.add(record);
                             }
                         });
+
+                        placeRouteList.setStore(store);
                     }
 
                     /*var alongStore = place.alongsStore;
@@ -146,8 +147,8 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
      * @param record
      */
     showRouteInfo:function(dataview, index, item, record){
-        /*var controller = this.getApplication().getController('LineMainCtrl');
-        controller.showLineInfo(record);*/
+        var controller = this.getApplication().getController('route.RouteMainCtrl');
+        controller.showRouteInfo(record);
     },
 
     /**
@@ -155,12 +156,11 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
      */
     showMoreRoutes:function(){
         var me = this,
-            placeId = me.placeId,
             mainview = me.getPlaceMainView(),
             place = mainview.getData();
 
-        var controller = this.getApplication().getController('LineMainCtrl');
-        controller.showLineList(placeId, place.routesStore);
+        var controller = this.getApplication().getController('route.RouteMainCtrl');
+        controller.showRouteListView(place.routesStore);
     },
 
     /**
