@@ -6,7 +6,8 @@ subprojects {
        springVersion = "4.1.6.RELEASE"
     }
     
-    sourceCompatibility=1.7
+    sourceCompatibility = '1.7'
+    targetCompatibility = '1.7'
 
     repositories {
        //mavenCentral()
