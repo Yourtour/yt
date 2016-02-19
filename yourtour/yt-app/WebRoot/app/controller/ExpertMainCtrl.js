@@ -4,6 +4,7 @@ Ext.define('YourTour.controller.ExpertMainCtrl', {
         refs: {
             expertView: '#ExpertView',
             expertCarousel: '#ExpertView #expertCarousel',
+            expertButtonGroup: '#ExpertView #buttonGroup',
 
             /************************************************************************************************/
             expertMainView: '#ExpertMainView',
@@ -23,6 +24,10 @@ Ext.define('YourTour.controller.ExpertMainCtrl', {
         control: {
             expertCarousel:{
                 activeitemchange:'changeExpertView'
+            },
+
+            expertButtonGroup:{
+                itemtap:'changeExpertView4Button'
             },
 
             /************************************************************************************************/
@@ -396,7 +401,7 @@ Ext.define('YourTour.controller.ExpertMainCtrl', {
     },
 
     changeExpertView:function( carousel, value, oldValue, eOpts){
-        var itemId = value.getItemId();
+        var me = this, expertButtonGroup = me.getExpertButtonGroup(), itemId = value.getItemId();
 
         if(itemId == 'expertViewServiceItem'){
             this.getService4Expert();
@@ -407,6 +412,13 @@ Ext.define('YourTour.controller.ExpertMainCtrl', {
         }else if(itemId == 'expertViewCommentItem'){
             this.getComment4Expert();
         }
+
+        expertButtonGroup.setActiveItem(carousel.getActiveIndex());
+    },
+
+    changeExpertView4Button:function(buttongroup, button, index){
+        var me = this, expertCarousel = me.getExpertCarousel();
+        expertCarousel.setActiveItem(index);
     },
 
     /**

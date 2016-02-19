@@ -3,6 +3,7 @@ Ext.define('YourTour.controller.AlongMainCtrl', {
     config: {
         refs: {
             alongFormView: '#AlongFormView',
+            alongFormUserView:'#AlongFormUserView',
             alongEditView: '#AlongEditView',
             alongListView: '#AlongListView',
             alongList: '#AlongListView #alongList'
@@ -106,7 +107,7 @@ Ext.define('YourTour.controller.AlongMainCtrl', {
                 var along = Ext.create('YourTour.model.AlongModel', data);
                 along.set('id', response);
 
-                me.showAlongInfo(along);
+                me.showAlongFormView(along);
 
                 Ext.ComponentManager.get('MainView').pop();
             }
@@ -114,32 +115,27 @@ Ext.define('YourTour.controller.AlongMainCtrl', {
     },
 
     showAlongInfo4List:function(dataview, index, item, record){
-        this.showAlongInfoView(record);
+        this.showAlongFormUserView(record);
     },
 
     /**
      *
      * @param along
      */
-    showAlongInfoView: function (record) {
+    showAlongFormView: function (route) {
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.along.AlongFormView'));
 
         var along = null, me = this, formview = me.getAlongFormView();
-        if(record instanceof YourTour.model.RouteModel) {
-            var options = {
-                model: 'YourTour.model.AlongModel',
-                url: '/along/route/' + record.get('id'),
-                success: function (store) {
-                    along = store.first();
+        var options = {
+            model: 'YourTour.model.AlongModel',
+            url: '/along/route/' + route.get('id'),
+            success: function (store) {
+                along = store.first();
 
-                    me.showAlongInfo(along);
-                }
-            };
-            me.getApplication().query(options);
-        }else{
-            along = record;
-            this.showAlongInfo(along);
-        }
+                me.showAlongInfo(along);
+            }
+        };
+        me.getApplication().query(options);
     },
 
     /**
@@ -157,5 +153,16 @@ Ext.define('YourTour.controller.AlongMainCtrl', {
             formview.setActiveItem(0);
             btnEdit.hide();
         }
+    },
+
+    /**
+     *
+     * @param along
+     */
+    showAlongFormUserView: function (along) {
+        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.along.AlongFormUserView'));
+
+        var me = this, formview = me.getAlongFormUserView();
+        formview.setData(along);
     }
 });

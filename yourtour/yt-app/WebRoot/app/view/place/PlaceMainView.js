@@ -88,7 +88,7 @@ Ext.define('YourTour.view.place.PlaceMainView', {
 							{
 								xtype: 'xlabel',
 								itemId:'placeMoreRoutes',
-								cls: 'underline x-xlabel-normal',
+								cls: 'underline x-xlabel-normal  font-medium',
 								indicator:'nav-arrow',
 								html: '游徒行程'
 							},
@@ -96,27 +96,9 @@ Ext.define('YourTour.view.place.PlaceMainView', {
 							{
 								xtype: 'xdataview',
 								itemId: 'placeRouteList',
-								itemHeight:100,
+								itemHeight:90,
 								scrollable:'none',
 								defaultType: 'RouteListDataItem'
-							}
-						]
-					},
-
-					{
-						xtype: 'panel',
-						itemId:'placeAlongItem',
-						layout:'vbox',
-						items:[
-							{
-								xtype: 'xspacer'
-							},
-							{
-								xtype: 'xlabel',
-								itemId:'placeMorelines',
-								cls: 'underline x-xlabel-normal',
-								indicator:'nav-arrow',
-								html: '游徒结伴'
 							}
 						]
 					}

@@ -47,7 +47,7 @@ Ext.application({
 
         'line.LineListView',
 
-        'along.AlongListView','along.AlongFormView','along.AlongEditView',
+        'along.AlongListView','along.AlongFormView','along.AlongFormUserView','along.AlongEditView',
 
         'community.LiveMainView',
         'place.PlaceMainView','place.PlaceSelectionView'

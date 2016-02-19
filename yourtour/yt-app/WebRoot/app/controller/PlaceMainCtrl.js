@@ -72,9 +72,7 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
             expertItem = mainview.down('#placeExpertItem'),
             expertList = expertItem.down('#placeExpertList'),
             routeItem = mainview.down('#placeRouteItem'),
-            placeRouteList = me.getPlaceRouteList(),
-            alongItem = mainview.down('#placeAlongItem'),
-            alongList = alongItem.down('#placeAlongList');
+            placeRouteList = me.getPlaceRouteList();
 
         var options = {
             model: 'YourTour.model.PlaceModel',

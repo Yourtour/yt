@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.expert.ExpertView', {
     extend: 'YourTour.view.widget.XPage',
-    requires: [ 'Ext.Carousel', 'YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XLabel','YourTour.view.expert.ExpertViewIntroItem',
+    requires: [ 'Ext.Carousel', 'YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XLabel','YourTour.view.widget.XButtonGroup','YourTour.view.expert.ExpertViewIntroItem',
                 'YourTour.view.expert.ExpertViewServiceItem','YourTour.view.expert.ExpertViewRecommendItem',
                 'YourTour.view.expert.ExpertViewParticipateItem','YourTour.view.expert.ExpertViewCommentItem'
               ],
@@ -13,38 +13,45 @@ Ext.define('YourTour.view.expert.ExpertView', {
                 title: '达人',
                 items:[
                     {
-                        xtype:'xbutton',
-                        text:'介绍',
+                        xtype:'xbuttongroup',
                         align:'right',
-                        padding:'0 15 0 20'
-                    },
+                        itemId:'buttonGroup',
+                        items:[
+                            {
+                                xtype:'xbutton',
+                                itemId:'expertIntro',
+                                text:'介绍',
+                                padding:'0 15 0 20'
+                            },
 
-                    {
-                        xtype:'xbutton',
-                        text:'服务',
-                        align:'right',
-                        padding:'0 15 0 15'
-                    },
+                            {
+                                xtype:'xbutton',
+                                text:'服务',
+                                itemId:'expertService',
+                                padding:'0 15 0 15'
+                            },
 
-                    {
-                        xtype:'xbutton',
-                        text:'推荐',
-                        align:'right',
-                        padding:'0 15 0 15'
-                    },
+                            {
+                                xtype:'xbutton',
+                                text:'推荐',
+                                itemId:'expertRecommendRoute',
+                                padding:'0 15 0 15'
+                            },
 
-                    {
-                        xtype:'xbutton',
-                        text:'过往',
-                        align:'right',
-                        padding:'0 15 0 15'
-                    },
+                            {
+                                xtype:'xbutton',
+                                text:'过往',
+                                itemId:'expertServiceRoute',
+                                padding:'0 15 0 15'
+                            },
 
-                    {
-                        xtype:'xbutton',
-                        text:'评论',
-                        align:'right',
-                        padding:'0 20 0 15'
+                            {
+                                xtype:'xbutton',
+                                text:'评论',
+                                itemId:'expertComment',
+                                padding:'0 20 0 15'
+                            }
+                        ]
                     }
                 ]
             },
