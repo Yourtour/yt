@@ -728,9 +728,11 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.MainView": [],
   "YourTour.view.SearchMain": [],
   "YourTour.view.along.AlongEditView": [],
+  "YourTour.view.along.AlongFormUserView": [],
   "YourTour.view.along.AlongFormView": [],
   "YourTour.view.along.AlongListDataItem": [],
   "YourTour.view.along.AlongListView": [],
+  "YourTour.view.along.AlongView": [],
   "YourTour.view.charge.ChargeDivisionFormView": [],
   "YourTour.view.charge.ChargeDivisionView": [],
   "YourTour.view.charge.ChargeFormView": [],
@@ -1741,11 +1743,15 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.searchmain"
   ],
   "YourTour.view.along.AlongEditView": [],
+  "YourTour.view.along.AlongFormUserView": [],
   "YourTour.view.along.AlongFormView": [],
   "YourTour.view.along.AlongListDataItem": [
     "widget.AlongListDataItem"
   ],
   "YourTour.view.along.AlongListView": [],
+  "YourTour.view.along.AlongView": [
+    "widget.alongview"
+  ],
   "YourTour.view.charge.ChargeDivisionFormView": [],
   "YourTour.view.charge.ChargeDivisionView": [],
   "YourTour.view.charge.ChargeFormView": [],

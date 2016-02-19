@@ -5,7 +5,7 @@ Ext.define('YourTour.model.AlongModel', {
             {name: 'id', type: 'string'},
             {name: 'title', type: 'string'},
             {name: 'imageUrl', type: 'string'},
-            {name: 'createTime', type: 'string'},
+            {name: 'createdTime', type: 'string'},
             {name: 'intentionCode', type: 'string'},
             {name: 'intentionName', type: 'string'},
             {name: 'memo', type: 'string'},

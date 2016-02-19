@@ -36,7 +36,7 @@ Ext.define('YourTour.view.expert.ExpertViewIntroItem', {
                     {
                         xtype: 'panel',
                         layout: 'hbox',
-                        margin:'10 0 0 0',
+                        margin:'5 0 0 0',
                         items: [
                             {
                                 xtype:'spacer',
@@ -79,7 +79,6 @@ Ext.define('YourTour.view.expert.ExpertViewIntroItem', {
 
                     {
                         xtype: 'xfield',
-                        itemId: 'age',
                         underline: false,
                         padding:0,
                         margin:'10 0 0 0',
@@ -94,7 +93,7 @@ Ext.define('YourTour.view.expert.ExpertViewIntroItem', {
                         xtype: 'panel',
                         layout: 'hbox',
                         padding: '0 10 0 10',
-                        margin:'15 0 0 0',
+                        margin:'5 0 0 0',
                         defaults: {
                             flex: 1
                         },

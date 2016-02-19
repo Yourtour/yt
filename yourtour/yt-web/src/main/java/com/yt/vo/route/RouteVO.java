@@ -50,6 +50,7 @@ public class RouteVO extends BaseVO {
 		routeVO.setLineName(bean.getLineName());
 		routeVO.setStartDate(new Date(bean.getStartDate()).getTime());
 		routeVO.setImageUrl(bean.getImageUrl());
+		routeVO.setToPlaces(bean.getToPlaces());
 
 		if (bean.getSchedules() != null && bean.getSchedules().size() > 0) {
 			for (RouteScheduleBean scheduleBean : bean.getSchedules()) {

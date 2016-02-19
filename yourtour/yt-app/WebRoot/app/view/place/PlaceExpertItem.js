@@ -11,7 +11,7 @@ Ext.define('YourTour.view.place.PlaceExpertItem', {
             {
                 xtype: 'xlabel',
                 itemId:'placeMoreExperts',
-                cls: 'underline x-xlabel-normal',
+                cls: 'underline x-xlabel-normal font-medium',
                 indicator:'nav-arrow',
                 html: '游徒达人'
             },
