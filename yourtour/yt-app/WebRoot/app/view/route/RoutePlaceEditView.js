@@ -12,7 +12,7 @@ Ext.define('YourTour.view.route.RoutePlaceEditView', {
 					{
 	                	xtype: "xbutton",
 	                	itemId:'btnNext',
-						icon:'resources/icons/icon_header_next.png',
+						icon:'resources/icons/24/icon_header_next.png',
 	                	align:'right'
 	                }
 		        ]
@@ -37,7 +37,7 @@ Ext.define('YourTour.view.route.RoutePlaceEditView', {
 						xtype:'xlabel',
 						itemId:'btnAdd',
 						cls:'row',
-						style:'background-image: url(./resources/icons/icon_add_32.png);background-repeat: no-repeat;background-position: center center;'
+						style:'background-image: url(./resources/icons/32/icon_add.png);background-repeat: no-repeat;background-position: center center;'
 					},
 
 					{

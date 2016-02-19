@@ -102,19 +102,16 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 						xtype: 'xbutton',
 						itemId: 'btnRefer',
 						text: '智能匹配',
-						ui: 'normal',
-						iconCls: 'action',
-						flex:2
+						icon:'resources/icons/24/icon_favorite.png'
 					},{
-						xtype:'xvline'
+						xtype:'xvline',
+						flex:1
 					} ,
 					{
 						xtype: 'xbutton',
 						itemId: 'btnCutomized',
 						text: '行程定制',
-						ui: 'normal',
-						iconCls: 'favorites',
-						flex:2
+						icon:'resources/icons/24/icon_customize.png'
 					},
 					{
 						xtype:'spacer',

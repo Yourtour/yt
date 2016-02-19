@@ -878,6 +878,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.ToolButton": [],
   "YourTour.view.widget.XBack": [],
   "YourTour.view.widget.XButton": [],
+  "YourTour.view.widget.XButtonGroup": [],
   "YourTour.view.widget.XCalendar": [
     "YourTour.XCalendar"
   ],
@@ -2080,6 +2081,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.widget.XButton": [
     "widget.xbutton"
+  ],
+  "YourTour.view.widget.XButtonGroup": [
+    "widget.xbuttongroup"
   ],
   "YourTour.view.widget.XCalendar": [
     "widget.xcalendar"

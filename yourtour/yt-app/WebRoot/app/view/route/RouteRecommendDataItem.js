@@ -3,30 +3,42 @@ Ext.define('YourTour.view.route.RouteRecommendDataItem', {
     xtype: 'RouteRecommendDataItem',
     requires:['Ext.Panel', 'Ext.Img', 'YourTour.view.widget.XField','YourTour.view.widget.XLabel'],
     config: {
-		height:150,
 		layout:'vbox',
-		padding:'0 0 10 0',
     	items:[
-			{
-				xtype: 'ximage',
-				itemId: 'image',
-				width:'100%',
-				height:'100%',
-				mode:'background'
-			},
-
 			{
 				xtype: 'xfield',
 				itemId: 'lineName',
-				docked:'top',
-				underline:false,
-				cls:'x-xopacity',
-				fieldCls:'font-white',
-				top:10,
-				left:10,
-				padding:0
+				indicator:'nav-arrow'
+			},
+			{
+				xtype:'panel',
+				itemId:'image',
+				maxHeight:'150px',
+				minHeight:'150px'
 			}
 		]
-    }
+    },
+
+	updateRecord:function(record){
+		var me = this;
+		if(record){
+			var me = this, dataview = me.dataview || me.getDataview(), store = dataview.getStore();
+			if (store.indexOf(record) > 0) {
+				me.insert(0, {xtype:'xspacer'});
+			}
+
+			var image = me.down('#image');
+			var url = YourTour.util.Context.getImageResource(record.get('imageUrl'));
+			var style={};
+			style['background-image'] = 'url(' + url +  ')';
+			style['background-repeat'] = 'no-repeat';
+			style['background-position'] = 'center center';
+			style['background-size'] = '100% auto';
+			image.setStyle(style);
+
+			var lineName = me.down('#lineName');
+			lineName.setText(record.get('lineName'));
+		}
+	}
 });
 

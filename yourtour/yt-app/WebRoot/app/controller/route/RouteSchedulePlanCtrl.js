@@ -330,17 +330,16 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
         route.childNum = childNum.getValue();
         route.olderNum = olderNum.getValue();
 
-        console.log(route);
         return route;
     },
 
     OnRouteReferTap: function () {
-        var me = this;
+        var me = this,
+            route = me.getRouteSettingInfo(),
+            controller = me.getApplication().getController('route.RouteMainCtrl');
 
-        var route = this.getRouteSettingInfo();
-        me.getRecommendRoutes(5, route.toPlaces)
+        controller.getRecommendRoutes(5, route.toPlaces)
     },
-
 
     /**
      *

@@ -3,6 +3,9 @@ Ext.define('YourTour.view.widget.XButtonGroup', {
     xtype:'xbuttongroup',
     config: {
         layout:'hbox',
+        defaults:{
+            flex:1
+        },
         items:[]
     },
 

@@ -9,24 +9,34 @@ Ext.define('YourTour.view.resource.ResourceFormView', {
                 xtype: 'xheaderbar',
                 items:[
                     {
-                        xtype:'xbutton',
-                        text:'详情',
-                        align:'right',
-                        padding:'0 10 0 20'
-                    },
+                        xtype: 'xbuttongroup',
+                        align: 'right',
+                        itemId: 'buttonGroup',
+                        defaults: {
+                            flex: 1
+                        },
+                        items: [
+                            {
+                                xtype: 'xbutton',
+                                text: '详情',
+                                align: 'right',
+                                padding: '0 10 0 20'
+                            },
 
-                    {
-                        xtype:'xbutton',
-                        text:'行程',
-                        align:'right',
-                        padding:'0 10 0 10'
-                    },
+                            {
+                                xtype: 'xbutton',
+                                text: '行程',
+                                align: 'right',
+                                padding: '0 10 0 10'
+                            },
 
-                    {
-                        xtype:'xbutton',
-                        text:'达人',
-                        align:'right',
-                        padding:'0 10 0 10'
+                            {
+                                xtype: 'xbutton',
+                                text: '达人',
+                                align: 'right',
+                                padding: '0 10 0 10'
+                            }
+                        ]
                     }
                 ]
             },
@@ -86,7 +96,7 @@ Ext.define('YourTour.view.resource.ResourceFormView', {
                             }, {
                                 xtype: 'spacer',
                                 flex: 1
-                            },
+                            }
                         ]
                     }
                 ]

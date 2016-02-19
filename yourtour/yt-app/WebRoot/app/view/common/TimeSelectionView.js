@@ -11,7 +11,7 @@ Ext.define('YourTour.view.common.TimeSelectionView', {
                     {
                         xtype: "xbutton",
                         itemId:'btnNext',
-                        icon:'resources/icons/icon_header_ok.png',
+                        icon:'resources/icons/24/icon_header_ok.png',
                         align:'right'
                     }
                 ]

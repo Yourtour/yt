@@ -145,7 +145,7 @@ Ext.define('YourTour.controller.CommonMainCtrl', {
 
         var callback = view.getCallback();
         if (callback) {
-            callback(startDate.getValue(), endDate.getValue(), duration);
+            callback(startDate.getValue(), endDate.getValue(), duration.getValue());
         }
     },
 

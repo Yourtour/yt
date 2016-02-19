@@ -18,6 +18,9 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
 
             //行程介绍
             routeFormView: '#RouteFormView',
+            routeFormCarousel:'#RouteFormView #routeFormCarousel',
+            routeButtonGroup:'#RouteFormView #buttonGroup',
+
             overviewItem: '#RouteFormView #overviewItem',
             expertItem: '#RouteFormView #expertItem',
             scheduleItem: '#RouteFormView #scheduleItem',
@@ -37,7 +40,6 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
             },
 
             routeCarousel: {
-                activeitemchange: 'onActiveItemChange',
                 tap: 'onCarouselItemTap'
             },
 
@@ -89,18 +91,13 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
                 tap: 'onRouteCloneTap'
             },
 
-            '#RouteFormView #btnOverview': {
-                tap: 'showRouteOverviewInfo'
+            '#RouteFormView #routeFormCarousel': {
+                activeitemchange:'showRouteInfo4Carousel'
             },
 
-            '#RouteFormView #btnSchedule': {
-                tap: 'showRouteScheduleInfo'
-            },
-
-            '#RouteFormView #btnExpert': {
-                tap: 'showRouteExpertInfo'
+            '#RouteFormView #buttonGroup': {
+                itemtap:'showRouteInfo4Button'
             }
-
         },
 
         routes: {
@@ -112,9 +109,6 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
 
     showPage: function () {
         var me = this;
-
-        /*YourTour.util.Context.mainview = me.getRouteMainView();*/
-
         var routeCarousel = me.getRouteCarousel();
         var store = me.store = Ext.create('YourTour.store.RouteStore', {storeId: 'RouteMainStore'});
         var handler = function () {
@@ -209,44 +203,6 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
 
         var controller = me.getApplication().getController('ChargeMainCtrl');
         controller.showPage(record.get('id'));
-    },
-
-    onActiveItemChange: function (carousel, value, oldValue, eOpts) {
-        var index = carousel.getActiveIndex();
-        var record = this.store.getAt(index);
-
-        /*var view = this.getRouteMainView();
-         view.setData(record);*/
-    },
-
-    onCarouselItemTap: function () {
-        var index = this.getRouteCarousel().getActiveIndex();
-        var route = this.store.getAt(index);
-
-        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteImageView'));
-
-        this.getPhoto(navigator.camera.PictureSourceType.PHOTOLIBRARY);
-    },
-
-    getPhoto: function (source) {
-        var me = this;
-
-        navigator.camera.getPicture(me.success, me.failure, {
-            quality: 50,
-            destinationType: navigator.camera.DestinationType.FILE_URI,
-            sourceType: source
-        });
-    },
-
-    success: function (image_uri) {
-        alert(image_uri);
-
-        var view = this.getRegisterProfileView();
-        var img = view.down('#portrait');
-        img.setSrc(image_uri);
-    },
-
-    failure: function (message) {
     },
 
     /**
@@ -444,19 +400,14 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
         });
     },
 
-    showRouteOverviewInfo:function(){
-        var me = this, overviewItem = me.getOverviewItem(), scheduleItem = me.getScheduleItem();
-        overviewItem.show();
-        scheduleItem.hide();
+    showRouteInfo4Carousel:function( carousel, value, oldValue, eOpts){
+        var me = this, routeButtonGroup = me.getRouteButtonGroup();
+
+        routeButtonGroup.setActiveItem(carousel.getActiveIndex());
     },
 
-    showRouteScheduleInfo:function(){
-        var me = this, overviewItem = me.getOverviewItem(), scheduleItem = me.getScheduleItem();
-        overviewItem.hide();
-        scheduleItem.show();
-    },
-
-    showRouteExpertInfo:function(){
-
+    showRouteInfo4Button:function(buttongroup, button, index){
+        var me = this, routeFormCarousel = me.getRouteFormCarousel();
+        routeFormCarousel.setActiveItem(index);
     }
 });

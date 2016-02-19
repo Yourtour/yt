@@ -16,40 +16,36 @@ Ext.define('YourTour.view.expert.ExpertView', {
                         xtype:'xbuttongroup',
                         align:'right',
                         itemId:'buttonGroup',
+                        margin:'0 10 0 0',
                         items:[
                             {
                                 xtype:'xbutton',
                                 itemId:'expertIntro',
-                                text:'介绍',
-                                padding:'0 15 0 20'
+                                text:'介绍'
                             },
 
                             {
                                 xtype:'xbutton',
                                 text:'服务',
-                                itemId:'expertService',
-                                padding:'0 15 0 15'
+                                itemId:'expertService'
                             },
 
                             {
                                 xtype:'xbutton',
                                 text:'推荐',
-                                itemId:'expertRecommendRoute',
-                                padding:'0 15 0 15'
+                                itemId:'expertRecommendRoute'
                             },
 
                             {
                                 xtype:'xbutton',
                                 text:'过往',
-                                itemId:'expertServiceRoute',
-                                padding:'0 15 0 15'
+                                itemId:'expertServiceRoute'
                             },
 
                             {
                                 xtype:'xbutton',
                                 text:'评论',
-                                itemId:'expertComment',
-                                padding:'0 20 0 15'
+                                itemId:'expertComment'
                             }
                         ]
                     }

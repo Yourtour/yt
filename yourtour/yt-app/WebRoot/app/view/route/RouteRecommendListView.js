@@ -16,30 +16,9 @@ Ext.define('YourTour.view.route.RouteRecommendListView', {
 				xtype: 'xpagebody',
 				items: [
 					{
-						xtype: 'panel',
-						height: 150,
-						items: [
-							{
-								itemId: 'image',
-								xtype: 'image',
-								mode: 'tag',
-								src: 'resources/icons/expert.jpg',
-								width: '100%',
-								height: 150
-							}
-						]
-					},
-
-					{
-						xtype: 'panel',
-						cls: 'spacer'
-					},
-
-					{
 						itemId: 'routeRecommendList',
-						xtype: 'dataview',
-						scrollable: null,
-						useComponents: true,
+						xtype: 'xdataview',
+						flex:1,
 						defaultType: 'RouteRecommendDataItem'
 					}
 				]

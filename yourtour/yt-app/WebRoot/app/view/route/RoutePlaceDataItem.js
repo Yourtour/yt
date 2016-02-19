@@ -4,14 +4,14 @@ Ext.define('YourTour.view.route.RoutePlaceDataItem', {
 	requires:['YourTour.view.widget.XImage','YourTour.view.widget.XField','YourTour.view.widget.XScore'],
     config: {
 		layout:'hbox',
-
+		cls:'row underline',
+		padding:'0 10',
     	items:[
 			{
 				xtype:'xfield',
 				itemId:'name',
 				underline:false,
 				fieldCls:'font-normal',
-				padding:'0',
 				flex:1
 			},
 
@@ -19,7 +19,9 @@ Ext.define('YourTour.view.route.RoutePlaceDataItem', {
 				xtype:'xscore',
 				itemId:'score',
 				star:true,
-				flex:1
+				flex:1,
+				padding:'10 0 10 90',
+				cls:'x-xfield x-xfield-default '
 			},
 
 			{
