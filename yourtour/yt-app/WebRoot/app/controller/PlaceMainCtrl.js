@@ -158,7 +158,7 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
             place = mainview.getData();
 
         var controller = this.getApplication().getController('route.RouteMainCtrl');
-        controller.showRouteListView(place.routesStore);
+        controller.showRouteListView(place);
     },
 
     /**

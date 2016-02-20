@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.place.PlaceMainView', {
 	extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Img','YourTour.view.widget.XHeaderBar','YourTour.view.place.PlaceExpertItem','YourTour.view.route.RouteListDataItem'],
+    requires:['Ext.Img','YourTour.view.widget.XHeaderBar','YourTour.view.place.PlaceExpertItem','YourTour.view.route.RouteListDataItemHBox'],
     config: {
     	id:'PlaceMainView',
       	layout:'vbox',
@@ -98,7 +98,7 @@ Ext.define('YourTour.view.place.PlaceMainView', {
 								itemId: 'placeRouteList',
 								itemHeight:90,
 								scrollable:'none',
-								defaultType: 'RouteListDataItem'
+								defaultType: 'RouteListDataItemHBox'
 							}
 						]
 					}

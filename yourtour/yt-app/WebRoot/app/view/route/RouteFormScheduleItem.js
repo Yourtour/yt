@@ -24,7 +24,7 @@ Ext.define('YourTour.view.route.RouteFormScheduleItem', {
 						itemId: 'btnClone',
 						text: '行程复制',
 						padding: '0 20 0 20',
-						icon:'resources/icons/icon_copy.png'
+						icon:'resources/icons/24/icon_copy.png'
 					}
 				]
 			}

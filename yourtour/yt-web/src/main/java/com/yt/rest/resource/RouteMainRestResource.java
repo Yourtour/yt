@@ -580,10 +580,10 @@ public class RouteMainRestResource extends BaseRestResource {
 	@SuppressWarnings("unchecked")
 	@Path("/recommend/{placeIds}/{duration}")
 	@GET
-	public ResponseDataVO<List<RouteRecommendVO>> getRecommendedRoutes(
+	public ResponseDataVO<List<RouteVO>> getRecommendedRoutes(
 			@PathParam("placeIds") String placeIds,
 			@PathParam("duration") String duration) {
-		List<RouteRecommendVO> list = new ArrayList<RouteRecommendVO>();
+		List<RouteVO> list = new ArrayList<RouteVO>();
 		try {
 			String[] ids = placeIds.split(",");
 			Long[] lIds = new Long[ids.length];
@@ -597,35 +597,35 @@ public class RouteMainRestResource extends BaseRestResource {
 				if (bean == null) {
 					continue;
 				}
-				RouteRecommendVO vo = RouteRecommendVO.transform(bean);
+				RouteVO vo = RouteVO.transform(bean);
 				list.add(vo);
 			}
 
-			return new ResponseDataVO<List<RouteRecommendVO>>(list);
+			return new ResponseDataVO<List<RouteVO>>(list);
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
 				LOG.error("Fetch all the LineBean fail.", ex);
 			}
-			return new ResponseDataVO<List<RouteRecommendVO>>(
+			return new ResponseDataVO<List<RouteVO>>(
 					StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
 	}
 
 	@Path("/recommend/{routeId}")
 	@GET
-	public ResponseDataVO<RouteRecommendVO> getRecommendedRoute(
+	public ResponseDataVO<RouteVO> getRecommendedRoute(
 			@PathParam("routeId") String routeId) {
 		try {
 			RouteMainBean bean = (RouteMainBean) routeRepository
 					.getCompleteRoute(Long.valueOf(routeId));
 
-			RouteRecommendVO vo = RouteRecommendVO.transform(bean);
-			return new ResponseDataVO<RouteRecommendVO>(vo);
+			RouteVO vo = RouteVO.transform(bean);
+			return new ResponseDataVO<RouteVO>(vo);
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
 				LOG.error("Fetch all the LineBean fail.", ex);
 			}
-			return new ResponseDataVO<RouteRecommendVO>(
+			return new ResponseDataVO<RouteVO>(
 					StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
 	}

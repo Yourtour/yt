@@ -801,8 +801,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.place.PlaceFoodView": [],
   "YourTour.view.place.PlaceMainView": [],
   "YourTour.view.place.PlaceOverviewView": [],
-  "YourTour.view.place.PlaceRouteItem": [],
-  "YourTour.view.place.PlaceSceneView": [],
   "YourTour.view.place.PlaceSelectionAbroadItem": [],
   "YourTour.view.place.PlaceSelectionDataItem": [],
   "YourTour.view.place.PlaceSelectionHomeItem": [],
@@ -829,7 +827,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.route.RouteFormView": [],
   "YourTour.view.route.RouteImageView": [],
   "YourTour.view.route.RouteImpressionView": [],
-  "YourTour.view.route.RouteListDataItem": [],
+  "YourTour.view.route.RouteListDataItemHBox": [],
+  "YourTour.view.route.RouteListDataItemVBox": [],
   "YourTour.view.route.RouteListView": [],
   "YourTour.view.route.RouteMainItem": [],
   "YourTour.view.route.RouteMainView": [],
@@ -837,7 +836,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.route.RoutePlaceEditView": [],
   "YourTour.view.route.RouteProvisionEditView": [],
   "YourTour.view.route.RouteProvisionView": [],
-  "YourTour.view.route.RouteRecommendDataItem": [],
   "YourTour.view.route.RouteRecommendListView": [],
   "YourTour.view.route.RouteScheduleDataView": [],
   "YourTour.view.route.RouteScheduleEditView": [],
@@ -1909,12 +1907,6 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.place.PlaceOverviewView": [
     "widget.PlaceOverviewView"
   ],
-  "YourTour.view.place.PlaceRouteItem": [
-    "widget.PlaceRouteItem"
-  ],
-  "YourTour.view.place.PlaceSceneView": [
-    "widget.PlaceSceneView"
-  ],
   "YourTour.view.place.PlaceSelectionAbroadItem": [
     "widget.PlaceSelectionAbroadItem"
   ],
@@ -1971,8 +1963,11 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.route.RouteFormView": [],
   "YourTour.view.route.RouteImageView": [],
   "YourTour.view.route.RouteImpressionView": [],
-  "YourTour.view.route.RouteListDataItem": [
-    "widget.RouteListDataItem"
+  "YourTour.view.route.RouteListDataItemHBox": [
+    "widget.RouteListDataItemHBox"
+  ],
+  "YourTour.view.route.RouteListDataItemVBox": [
+    "widget.RouteListDataItemVBox"
   ],
   "YourTour.view.route.RouteListView": [],
   "YourTour.view.route.RouteMainItem": [
@@ -1987,9 +1982,6 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.route.RoutePlaceEditView": [],
   "YourTour.view.route.RouteProvisionEditView": [],
   "YourTour.view.route.RouteProvisionView": [],
-  "YourTour.view.route.RouteRecommendDataItem": [
-    "widget.RouteRecommendDataItem"
-  ],
   "YourTour.view.route.RouteRecommendListView": [],
   "YourTour.view.route.RouteScheduleDataView": [
     "widget.RouteScheduleDataView"

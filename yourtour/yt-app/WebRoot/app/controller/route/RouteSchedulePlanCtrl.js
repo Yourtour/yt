@@ -338,7 +338,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
             route = me.getRouteSettingInfo(),
             controller = me.getApplication().getController('route.RouteMainCtrl');
 
-        controller.getRecommendRoutes(5, route.toPlaces)
+        controller.showRouteRecommendListView(5, route.toPlaces)
     },
 
     /**

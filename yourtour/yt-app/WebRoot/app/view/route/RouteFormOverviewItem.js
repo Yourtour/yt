@@ -4,6 +4,23 @@ Ext.define('YourTour.view.route.RouteFormOverviewItem', {
     xtype: 'RouteFormOverviewItem',
     config: {
         layout: 'vbox',
+        scrollable: {
+            direction: 'vertical',
+            indicators: false,
+            directionLock: true,
+            momentumEasing:  {
+                /*momentum: {
+                 acceleration: 10,
+                 friction: 0.9
+                 },*/
+                bounce: {
+                    acceleration: 0.0001,
+                    springTension: 0.9999
+                }
+                /*minVelocity: 5*/
+            },
+            outOfBoundRestrictFactor: 0
+        },
         items: [
             {
                 xtype: 'panel',
@@ -64,22 +81,22 @@ Ext.define('YourTour.view.route.RouteFormOverviewItem', {
                     {
                         xtype: 'xbutton',
                         text: '100',
-                        icon: 'resources/icons/icon_eye.png',
+                        icon: 'resources/icons/24/icon_eye.png',
                         itemId: 'readNum'
                     }, {
                         xtype: 'xbutton',
                         text: '100',
-                        icon: 'resources/icons/icon_ok.png',
+                        icon: 'resources/icons/24/icon_ok.png',
                         itemId: 'usedNum'
                     }, {
                         xtype: 'xbutton',
                         text: '100',
-                        iconCls: 'refresh',
+                        icon: 'resources/icons/24/icon_comment.png',
                         itemId: 'commentNum'
                     }, {
                         xtype: 'xbutton',
                         text: '100',
-                        icon: 'resources/icons/icon_button_favorite.png',
+                        icon: 'resources/icons/24/icon_favorite.png',
                         itemId: 'favoriteNum'
                     }
                 ]
@@ -91,8 +108,7 @@ Ext.define('YourTour.view.route.RouteFormOverviewItem', {
 
             {
                 xtype: 'xfield',
-                itemId: 'feature',
-                label:'线路特点'
+                itemId: 'feature'
             },
 
             {
@@ -101,8 +117,7 @@ Ext.define('YourTour.view.route.RouteFormOverviewItem', {
 
             {
                 xtype: 'xfield',
-                itemId: 'reason',
-                label:'推荐理由'
+                itemId: 'reason'
             }
         ]
     },
@@ -118,10 +133,10 @@ Ext.define('YourTour.view.route.RouteFormOverviewItem', {
             lineName.setHtml(record.get('lineName'));
 
             var feature = me.down('#feature');
-            feature.setText(record.get('feature'));
+            feature.setText('<span class="font-striking font-medium font-bold tab-space-right">线路特点:</span>' + record.get('feature'));
 
             var reason = me.down('#reason');
-            reason.setText(record.get('reason'));
+            reason.setText('<span class="font-striking font-medium font-bold tab-space-right">推荐理由:</span>' + record.get('reason'));
         }
     }
 });

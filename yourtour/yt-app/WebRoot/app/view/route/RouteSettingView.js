@@ -101,7 +101,7 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 					{
 						xtype: 'xbutton',
 						itemId: 'btnRefer',
-						text: '智能匹配',
+						text: '达人推荐',
 						icon:'resources/icons/24/icon_favorite.png'
 					},{
 						xtype:'xvline',

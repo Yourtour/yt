@@ -27,7 +27,13 @@ public class RouteVO extends BaseVO {
 	private int  olderNum;
 
 	private	String 	impression;
-	private String 	feature;
+
+	private String 	reason; //推荐理由
+	private String 	feature; //行程特点
+	private String 	chargeMemo; //费用说明
+	private String	withdrawMemo; //退改说明
+	private String  useMemo; //使用说明
+	private String  orderMemo; //预订须知
 
 	//作为请求参数时，格式为id, 作为相应参数时格式为：id,name
 	private String fromPlace; // 行程出发地点
@@ -51,6 +57,13 @@ public class RouteVO extends BaseVO {
 		routeVO.setStartDate(new Date(bean.getStartDate()).getTime());
 		routeVO.setImageUrl(bean.getImageUrl());
 		routeVO.setToPlaces(bean.getToPlaces());
+
+		routeVO.setReason(bean.getReason());
+		routeVO.setFeature(bean.getFeature());
+		routeVO.setWithdrawMemo(bean.getWithdrawMemo());
+		routeVO.setChargeMemo(bean.getChargeMemo());
+		routeVO.setUseMemo(bean.getUseMemo());
+		routeVO.setOrderMemo(bean.getOrderMemo());
 
 		if (bean.getSchedules() != null && bean.getSchedules().size() > 0) {
 			for (RouteScheduleBean scheduleBean : bean.getSchedules()) {
@@ -249,5 +262,53 @@ public class RouteVO extends BaseVO {
 
 	public void setDuration(int duration) {
 		this.duration = duration;
+	}
+
+	public String getReason() {
+		return reason;
+	}
+
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
+
+	public String getChargeMemo() {
+		return chargeMemo;
+	}
+
+	public void setChargeMemo(String chargeMemo) {
+		this.chargeMemo = chargeMemo;
+	}
+
+	public String getWithdrawMemo() {
+		return withdrawMemo;
+	}
+
+	public void setWithdrawMemo(String withdrawMemo) {
+		this.withdrawMemo = withdrawMemo;
+	}
+
+	public String getUseMemo() {
+		return useMemo;
+	}
+
+	public void setUseMemo(String useMemo) {
+		this.useMemo = useMemo;
+	}
+
+	public String getOrderMemo() {
+		return orderMemo;
+	}
+
+	public void setOrderMemo(String orderMemo) {
+		this.orderMemo = orderMemo;
+	}
+
+	public UserVO getExpert() {
+		return expert;
+	}
+
+	public void setExpert(UserVO expert) {
+		this.expert = expert;
 	}
 }

@@ -1,6 +1,6 @@
-Ext.define('YourTour.view.route.RouteListDataItem', {
+Ext.define('YourTour.view.route.RouteListDataItemHBox', {
 	extend: 'YourTour.view.widget.XDataItem',
-    xtype: 'RouteListDataItem',
+    xtype: 'RouteListDataItemHBox',
     requires:['Ext.Label','Ext.Panel'],
     config: {
 		layout:'hbox',

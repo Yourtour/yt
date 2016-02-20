@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.route.RouteRecommendListView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Panel','Ext.DataView','YourTour.view.widget.XHeaderBar', 'Ext.Spacer','YourTour.view.route.RouteRecommendDataItem'],
+    requires:['Ext.Panel','Ext.DataView','YourTour.view.widget.XHeaderBar', 'Ext.Spacer','YourTour.view.route.RouteListDataItemVBox'],
     config: {
     	id:'RouteRecommendListView',
 		layout:'card',
@@ -19,7 +19,7 @@ Ext.define('YourTour.view.route.RouteRecommendListView', {
 						itemId: 'routeRecommendList',
 						xtype: 'xdataview',
 						flex:1,
-						defaultType: 'RouteRecommendDataItem'
+						defaultType: 'RouteListDataItemVBox'
 					}
 				]
 			}

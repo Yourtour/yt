@@ -266,14 +266,22 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
         window.plugins.socialsharing.share(null, null, 'http://www.baidu.com/img/bdlogo.gif', null);
     },
 
-
-    showRouteListView: function (store) {
+    /**
+     * 显示目的地推荐行程
+     * @param store
+     * @param place
+     */
+    showRouteListView: function (place) {
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteListView'));
+        var me = this, listview = me.getRouteListView(), routeList = me.getRouteList();
+        routeList.setDefaultType('RouteListDataItemVBox')
 
-        var me = this, routeList = me.getRouteList();
-        if(store) {
+        var headerbar = listview.down('#headerbar');
+        headerbar.setTitle(place.get('name'));
+
+        me.searchRoute('0',place.get('id'), function(store){
             routeList.setStore(store);
-        }
+        });
     },
 
     /*************************************************************************************************
@@ -284,7 +292,7 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
      * @param duration
      * @param places
      */
-    getRecommendRoutes: function (duration, places) {
+    showRouteRecommendListView: function (duration, places) {
         duration = 5;
         var ids = '', names = '';
         var pArray = places.split('|');
@@ -306,13 +314,25 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
         var headerbar = view.down('#headerbar');
         headerbar.setTitle(names);
 
-        var pagebody = view.down('#pagebody');
+        me.searchRoute(duration, ids, function(store){
+            var routeRecommendList = me.getRouteRecommendList();
+            routeRecommendList.setStore(store);
+        });
+    },
+
+    /**
+     * 检索行程
+     * @param duration
+     * @param places
+     * @param calllback
+     */
+    searchRoute:function(duration, ids, callback){
+        var me = this;
         var options = {
             model: 'YourTour.model.RouteModel',
             url: '/routes/recommend/' + ids + '/' + duration,
             success: function (store) {
-                var routeRecommendList = me.getRouteRecommendList();
-                routeRecommendList.setStore(store);
+                callback(store);
             }
         };
         me.getApplication().query(options);
