@@ -23,6 +23,11 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 				itemId:'name',
 				label:'行程名称'
 			},
+			{
+				xtype:'xtextfield',
+				itemId:'budget',
+				label:'行程预算'
+			},
 
 			{
 				xtype:'xspacer'

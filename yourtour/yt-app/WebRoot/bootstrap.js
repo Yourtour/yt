@@ -743,7 +743,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.common.CarouselItem": [],
   "YourTour.view.common.CommentFormView": [],
   "YourTour.view.common.CommentListDataItem": [],
-  "YourTour.view.common.CommentListView": [],
+  "YourTour.view.common.CommentMainView": [],
   "YourTour.view.common.ContentReadView": [],
   "YourTour.view.common.FieldEditView": [],
   "YourTour.view.common.MessageDataItemView": [],
@@ -1765,7 +1765,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.common.CommentListDataItem": [
     "widget.CommentListDataItem"
   ],
-  "YourTour.view.common.CommentListView": [],
+  "YourTour.view.common.CommentMainView": [],
   "YourTour.view.common.ContentReadView": [],
   "YourTour.view.common.FieldEditView": [],
   "YourTour.view.common.MessageDataItemView": [

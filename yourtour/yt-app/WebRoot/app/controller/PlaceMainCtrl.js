@@ -99,12 +99,6 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
 
                         placeRouteList.setStore(store);
                     }
-
-                    /*var alongStore = place.alongsStore;
-                     if (alongStore && alongStore.getAllCount() > 0) {
-                     alongItem.hide();
-                     alongList.setStore(alongStore);
-                     }*/
                 }
             }
         };

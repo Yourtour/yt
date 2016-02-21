@@ -28,7 +28,8 @@ public class CommentRepositoryImpl extends CrudAllInOneOperateImpl implements Co
 	public List<CommentBean> getComments(Long subjectId, String filter, Long nextCursor, int limit) throws Exception {
 		List<CommentBean> comments = new ArrayList<>();
 
-		String queryStr = "START n=node(%d) MATCH n-[:HAS]->(comment:CommentBean)-[:BELONG]->(user:UserProfileBean) %s  RETURN comment, user";
+		//String queryStr = "START n=node(%d) MATCH n-[:HAS]->(comment:CommentBean)-[:BELONG]->(user:UserProfileBean) %s  RETURN comment, user";
+		String queryStr = "MATCH (comment:CommentBean)-[:BELONG]->(user:UserProfileBean) %s  RETURN comment, user";
 		Map<String, Object> params = new HashMap<>();
 		params.put("id", subjectId);
 
@@ -44,7 +45,8 @@ public class CommentRepositoryImpl extends CrudAllInOneOperateImpl implements Co
 		}
 		params.put("where", where);
 
-		List<CommentTuple> tuples = this.query(String.format(queryStr, subjectId, where), null, CommentTuple.class);
+		//List<CommentTuple> tuples = this.query(String.format(queryStr, subjectId, where), null, CommentTuple.class);
+		List<CommentTuple> tuples = this.query(String.format(queryStr, where), null, CommentTuple.class);
 		if(tuples != null){
 			CommentBean comment = null;
 			for(CommentTuple tuple : tuples){

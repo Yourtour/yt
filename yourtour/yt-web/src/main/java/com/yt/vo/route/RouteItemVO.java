@@ -54,6 +54,4 @@ public class RouteItemVO implements Serializable{
 	public String getImpression(){
 		return route.getImpression();
 	}
-
-	public int getStep(){return route.getStep();}
 }

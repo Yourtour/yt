@@ -27,7 +27,7 @@ Ext.application({
     views: [
         'MainView','Launch','setting.UserSettingView',
         'common.MessageMainView','common.MessageGroupView','common.FieldEditView','common.ContentReadView',
-        'common.CommentListView','common.TimeSelectionView',
+        'common.CommentMainView','common.TimeSelectionView',
 
         'home.HomeMainView', 'home.BestListView', 'home.TalentListView', 'SearchMain',
         'route.RouteMainView','route.RouteSettingView','route.RouteImpressionView','route.RouteImageView',

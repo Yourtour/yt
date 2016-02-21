@@ -25,8 +25,7 @@ public class RouteMainBean extends BaseBeanImpl {
 	@HbaseColumn(name = "name")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
 	private String name; // 行程名称
-	private String 	lineName;
-	private int    	step = 0;
+	private String 	lineName; //线路名称
 	private String 	reason; //推荐理由
 	private String 	feature; //行程特点
 	private String 	chargeMemo; //费用说明
@@ -36,24 +35,28 @@ public class RouteMainBean extends BaseBeanImpl {
 
 	@HbaseColumn(name = "sdt")
 	private long startDate = 0; // 行程开始日期
-	private long endDate = 0;
-	private int  duration = 0;
+	private long endDate = 0; // 行程结束日期
+	private int  duration = 0; // 行程持续时间
 
-	private String fromPlace;
-	private String toPlaces;
+	private String fromPlace; //出发地（冗余）
+	private String toPlaces; //目的地（冗余）
 
-	private int  adultNum;
-	private int  childNum;
-	private int  olderNum;
+	private int  adultNum;  //成人数
+	private int  childNum;	//儿童数
+	private int  olderNum; //老人数
+	private int  budget; //预算
 
 	private String imageUrl;
 	private transient String impression;
 
-	private float rankScore;
-	private int thumbupNum;
-	private int favoriteNum;
-	private int shareNum;
-	private int commentNum;
+	private String tags;  //标签，数据冗余
+	private String bestTime; //最佳时间
+	private float commentScore; //点评分数
+	private int readNum;  //阅读数量
+	private int thumbupNum;  //点赞数量
+	private int favoriteNum;  //收藏数量
+	private int shareNum;  //分享数量
+	private int commentNum;  //点评数量
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_FROM, type = PlaceBean.class, direction = Direction.OUTGOING)
 	private transient PlaceBean fromPlaceBean = null; // 行程出发地点
@@ -86,6 +89,14 @@ public class RouteMainBean extends BaseBeanImpl {
 
 	public void setLineName(String lineName) {
 		this.lineName = lineName;
+	}
+
+	public int getBudget() {
+		return budget;
+	}
+
+	public void setBudget(int budget) {
+		this.budget = budget;
 	}
 
 	public void setName(String name) {
@@ -200,14 +211,6 @@ public class RouteMainBean extends BaseBeanImpl {
 		this.olderNum = olderNum;
 	}
 
-	public int getStep() {
-		return step;
-	}
-
-	public void setStep(int step) {
-		this.step = step;
-	}
-
 	public String getFromPlace() {
 		return fromPlace;
 	}
@@ -224,12 +227,12 @@ public class RouteMainBean extends BaseBeanImpl {
 		this.toPlaces = toPlaces;
 	}
 
-	public float getRankScore() {
-		return rankScore;
+	public float getCommentScore() {
+		return commentScore;
 	}
 
-	public void setRankScore(float rankScore) {
-		this.rankScore = rankScore;
+	public void setCommentScore(float commentScore) {
+		this.commentScore = commentScore;
 	}
 
 	public int getThumbupNum() {
@@ -302,6 +305,30 @@ public class RouteMainBean extends BaseBeanImpl {
 
 	public void setUseMemo(String useMemo) {
 		this.useMemo = useMemo;
+	}
+
+	public String getBestTime() {
+		return bestTime;
+	}
+
+	public void setBestTime(String bestTime) {
+		this.bestTime = bestTime;
+	}
+
+	public String getTags() {
+		return tags;
+	}
+
+	public void setTags(String tags) {
+		this.tags = tags;
+	}
+
+	public int getReadNum() {
+		return readNum;
+	}
+
+	public void setReadNum(int readNum) {
+		this.readNum = readNum;
 	}
 
 	public String getOrderMemo() {

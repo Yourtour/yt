@@ -26,8 +26,18 @@ public class RouteVO extends BaseVO {
 	private int  childNum;
 	private int  olderNum;
 
+	private int  budget; //预算
+	private float commentScore;
+	private int readNum;
+	private int thumbupNum;
+	private int favoriteNum;
+	private int shareNum;
+	private int commentNum;
+	private String tags;
+
 	private	String 	impression;
 
+	private String bestTime; //最佳时间
 	private String 	reason; //推荐理由
 	private String 	feature; //行程特点
 	private String 	chargeMemo; //费用说明
@@ -57,6 +67,16 @@ public class RouteVO extends BaseVO {
 		routeVO.setStartDate(new Date(bean.getStartDate()).getTime());
 		routeVO.setImageUrl(bean.getImageUrl());
 		routeVO.setToPlaces(bean.getToPlaces());
+
+		routeVO.setBudget(bean.getBudget());
+		routeVO.setBestTime(bean.getBestTime());
+		routeVO.setTags(bean.getTags());
+		routeVO.setReadNum(bean.getReadNum());
+		routeVO.setCommentScore(bean.getCommentScore());
+		routeVO.setCommentNum(bean.getCommentNum());
+		routeVO.setFavoriteNum(bean.getFavoriteNum());
+		routeVO.setShareNum(bean.getShareNum());
+		routeVO.setThumbupNum(bean.getThumbupNum());
 
 		routeVO.setReason(bean.getReason());
 		routeVO.setFeature(bean.getFeature());
@@ -104,6 +124,9 @@ public class RouteVO extends BaseVO {
 		bean.setAdultNum(vo.getAdultNum());
 		bean.setChildNum(vo.getChildNum());
 		bean.setOlderNum(vo.getOlderNum());
+
+		bean.setBudget(vo.getBudget());
+		bean.setBestTime(vo.getBestTime());
 
 		if (StringUtils.isNotNull(vo.getFromPlace())) {
 			PlaceBean placeBean = new PlaceBean();
@@ -187,6 +210,78 @@ public class RouteVO extends BaseVO {
 
 	public void setFeature(String feature) {
 		this.feature = feature;
+	}
+
+	public String getBestTime() {
+		return bestTime;
+	}
+
+	public void setBestTime(String bestTime) {
+		this.bestTime = bestTime;
+	}
+
+	public int getBudget() {
+		return budget;
+	}
+
+	public void setBudget(int budget) {
+		this.budget = budget;
+	}
+
+	public float getCommentScore() {
+		return commentScore;
+	}
+
+	public void setCommentScore(float commentScore) {
+		this.commentScore = commentScore;
+	}
+
+	public int getReadNum() {
+		return readNum;
+	}
+
+	public void setReadNum(int readNum) {
+		this.readNum = readNum;
+	}
+
+	public int getThumbupNum() {
+		return thumbupNum;
+	}
+
+	public void setThumbupNum(int thumbupNum) {
+		this.thumbupNum = thumbupNum;
+	}
+
+	public int getFavoriteNum() {
+		return favoriteNum;
+	}
+
+	public void setFavoriteNum(int favoriteNum) {
+		this.favoriteNum = favoriteNum;
+	}
+
+	public int getShareNum() {
+		return shareNum;
+	}
+
+	public void setShareNum(int shareNum) {
+		this.shareNum = shareNum;
+	}
+
+	public int getCommentNum() {
+		return commentNum;
+	}
+
+	public void setCommentNum(int commentNum) {
+		this.commentNum = commentNum;
+	}
+
+	public String getTags() {
+		return tags;
+	}
+
+	public void setTags(String tags) {
+		this.tags = tags;
 	}
 
 	public long getStartDate() {

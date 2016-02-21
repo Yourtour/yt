@@ -11,6 +11,10 @@ Ext.define('YourTour.view.resource.ResourceSceneView', {
 			},
 
 			{
+				xtype:'xspacer'
+			},
+
+			{
 				xtype:'xpanel',
 				layout:'hbox',
 				itemId:'commentPanel',
@@ -47,7 +51,7 @@ Ext.define('YourTour.view.resource.ResourceSceneView', {
 			{
 				xtype: 'xfield',
 				itemId:'address',
-				cls:'nav-arrow',
+				indicator:'nav-arrow',
 				label:'景点地址'
 			},
 

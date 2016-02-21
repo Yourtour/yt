@@ -4,6 +4,8 @@ Ext.define('YourTour.view.common.CommentListDataItem', {
     xtype: 'CommentListDataItem',
     config: {
 		layout:'vbox',
+		padding:'10',
+		cls:'underline',
         items: [
 			{
 				xtype:'panel',
@@ -28,6 +30,16 @@ Ext.define('YourTour.view.common.CommentListDataItem', {
 								padding:'0',
 								binding:'user.nickName',
 								underline:false
+							},
+
+							{
+								xtype:'xfield',
+								itemId:'createdDate',
+								padding:'0',
+								underline:false,
+								dataChange:function(field, record){
+									field.setText('<span class="tab-space-right">发表于</span>' + record.get('createdDate'));
+								}
 							}
 						]
 					},
@@ -35,7 +47,8 @@ Ext.define('YourTour.view.common.CommentListDataItem', {
 					{
 						xtype:'xscore',
 						itemId:'score',
-						cls:'x-xleft'
+						align:'left',
+						shape:'round'
 					}
 				]
 			},
@@ -52,26 +65,20 @@ Ext.define('YourTour.view.common.CommentListDataItem', {
     			layout:'hbox',
     			items:[
 					{
-						xtype:'xfield',
-						itemId:'createdDate',
-						padding:'0',
-						underline:false,
+						xtype:'spacer',
 						flex:1
 					},
-
 					{
 						xtype:'xbutton',
 						itemId:'report',
-						iconCls:'icon-report',
-						width:80,
-						text:'举报'
+						text:'举报',
+						icon:'resources/icons/16/icon_report.png'
 					},
 
 					{
 						xtype:'xbutton',
 						itemId:'thumbup',
-						width:80,
-						iconCls:'icon-thumbup'
+						icon:'resources/icons/16/icon_thumbup.png'
 					}
     			]
     		}

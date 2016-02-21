@@ -4,30 +4,30 @@ Ext.define('YourTour.controller.CommonMainCtrl', {
         refs: {
             contentReadView: '#ContentReadView',
 
-            commentListView: '#CommentListView',
-            commentList: '#CommentListView #commentList',
+            commentMainView: '#CommentMainView',
+            commentList: '#CommentMainView #commentList',
 
             timeSelectionView: '#TimeSelectionView'
         },
 
         control: {
-            '#CommentListView #commentNum': {
+            '#CommentMainView #commentNum': {
                 tap: 'onCommentFilterTap'
             },
 
-            '#CommentListView #goodNum': {
+            '#CommentMainView #goodNum': {
                 tap: 'onCommentFilterTap'
             },
 
-            '#CommentListView #mediumNum': {
+            '#CommentMainView #mediumNum': {
                 tap: 'onCommentFilterTap'
             },
 
-            '#CommentListView #badNum': {
+            '#CommentMainView #badNum': {
                 tap: 'onCommentFilterTap'
             },
 
-            '#CommentListView #imageNum': {
+            '#CommentMainView #imageNum': {
                 tap: 'onCommentFilterTap'
             },
 
@@ -53,21 +53,43 @@ Ext.define('YourTour.controller.CommonMainCtrl', {
         contentEl.setHtml(content);
     },
 
-    showCommentListView: function (id, type, handler) {
+    showCommentMainView: function (id, type, handler) {
         var me = this;
-        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.common.CommentListView'));
+        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.common.CommentMainView'));
 
         var params = [{name: 'id', value: id}, {name: 'type', value: type}, {
             name: 'nextCursor',
             value: 0
         }, {name: 'filter', value: 'commentNum'}];
-        me.getCommentStore(params, handler);
+
+        me.getCommentStore(id, params, handler);
+    },
+
+    getCommentStore: function (id, params, handler) {
+        var me = this;
+        var options = {
+            model: 'YourTour.model.CommentModel',
+            url: '/comments/' + id,
+            params: params,
+            success: function (store) {
+                var view = me.getCommentMainView();
+
+                if (handler) {
+                    handler(view);
+                }
+
+                me.getCommentList().setStore(store);
+
+                view.bindData(params);
+            }
+        };
+        me.getApplication().query(options);
     },
 
     onCommentFilterTap: function (field) {
         var itemId = field.getItemId();
 
-        var view = this.getCommentListView();
+        var view = this.getCommentMainView();
         var filterPanel = view.down('#filterPanel');
         var items = filterPanel.getItems();
         items.each(function (item) {
@@ -85,27 +107,6 @@ Ext.define('YourTour.controller.CommonMainCtrl', {
         params[2].value = 0;
         params[3].value = itemId;
         this.getCommentStore(params);
-    },
-
-    getCommentStore: function (params, handler) {
-        var me = this;
-        var options = {
-            model: 'YourTour.model.CommentModel',
-            url: '/comments',
-            params: params,
-            success: function (store) {
-                var view = me.getCommentListView();
-
-                if (handler) {
-                    handler(view);
-                }
-
-                me.getCommentList().setStore(store);
-
-                view.bindData(params);
-            }
-        };
-        me.getApplication().query(options);
     },
 
     /*************************************************************************************************

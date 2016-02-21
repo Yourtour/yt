@@ -36,6 +36,15 @@ Ext.define('YourTour.view.resource.ResourceSelectionView', {
 				layout: 'vbox',
 				items: [
 					{
+						xtype:'xfield',
+						itemId:'reference',
+						label:'参照位置',
+						text:'选择参照位置'
+					},
+					{
+						xtype:'xspacer'
+					},
+					{
 						xtype:'xdataview',
 						itemId:'resourceList',
 						flex:1,

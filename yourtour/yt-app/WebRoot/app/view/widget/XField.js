@@ -21,7 +21,8 @@ Ext.define('YourTour.view.widget.XField', {
             {
                 xtype: 'label',
                 itemId: 'label',
-                hidden: true
+                hidden: true,
+                style:'text-align:left'
             },
             {
                 xtype: 'label',
@@ -38,11 +39,11 @@ Ext.define('YourTour.view.widget.XField', {
         var me = this, fieldCls = me.fieldCls;
         var value = this.down('#value');
         if(fieldCls == null){
-            value.addCls('font-grey');
+            value.addCls('font-grey font-medium');
         }else{
             var index = fieldCls.indexOf('!important');
             if(index < 0){
-                value.addCls('font-grey ' + fieldCls);
+                value.addCls('font-grey font-medium ' + fieldCls);
             }else{
                 value.addCls(fieldCls.substring(0, index - 1));
             }

@@ -145,7 +145,6 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 			throw new Exception("No Route found for id=" + routeId);
 		}
 
-		route.setStep(1);
 		super.save(route, false, operator);
 
 		super.save(activity, operator);
@@ -158,7 +157,6 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 			throw new Exception("No Route found for id=" + routeId);
 		}
 
-		route.setStep(1);
 		super.save(route, false, operator);
 
 		super.save(provision, operator);
@@ -303,7 +301,6 @@ public class RouteRepositoryImpl extends CrudAllInOneOperateImpl implements
 			}
 		}
 
-		target.setStep(1);
 		this.save(target, userId);
 
 		return this.getCompleteRoute(target.getGraphId());

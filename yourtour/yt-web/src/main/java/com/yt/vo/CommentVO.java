@@ -40,7 +40,7 @@ public class CommentVO extends BaseVO{
 		comment.setTrafficScore(bean.getTrafficScore());
 		comment.setTags(bean.getTags());
 		comment.setThumbup(bean.getThumbup());
-		comment.setCreatedDate(DateUtils.formatDate(bean.getCreatedTime()));
+		comment.setCreatedDate(DateUtils.formatDate(bean.getCreatedTime(), DateUtils.DATE_FORMAT_FULL));
 		comment.setRecommendedIndex(bean.getRecommendedIndex());
 		comment.setUser(UserVO.transform(bean.getUser()));
 

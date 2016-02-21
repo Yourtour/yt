@@ -14,9 +14,14 @@ Ext.define('YourTour.view.route.RouteMainItem', {
                 style: 'background-color:grey;opacity:0.8;',
                 items:[
                     {
+                        xtype:'xfield',
+                        itemId:'name',
+                        underline:false,
+                        fieldCls:'font-striking font-bold font-large-extra'
+                    },
+                    {
                         xtype: 'xmultifield',
                         itemId: 'lineName',
-                        paddingLeft:0,
                         icon:'icon-name',
                         underline:false,
                         fieldCls:'font-white'
@@ -27,19 +32,7 @@ Ext.define('YourTour.view.route.RouteMainItem', {
                         itemId: 'time',
                         icon:'icon-time',
                         underline:false,
-                        fieldCls:'font-white'
-                    },
-
-                    {
-                        xtype: 'xmultifield',
-                        itemId: 'impression',
-                        icon:'icon-impression',
-                        ifNull:'赶快记录下你的旅行印象吧.........',
-                        underline:false,
-                        ellipsis:{
-                            size:80,
-                            expandable:true
-                        },
+                        margin:'0 0 20 0',
                         fieldCls:'font-white'
                     }
                 ]
@@ -59,14 +52,14 @@ Ext.define('YourTour.view.route.RouteMainItem', {
             style['background-size'] = '98% auto';
             me.setStyle(style);
 
+            var name = me.down('#name');
+            name.setText(record.get('name'));
+
             var lineName = me.down('#lineName');
             lineName.setText(record.get('lineName'));
 
             var time = me.down('#time');
             time.setText(record.get('startDate') +'-' + record.get('endDate') + '  合计：' + record.get('duration')+'天');
-
-            var impression = me.down('#impression');
-            impression.setText(record.get('impression'));
  	 	}
      }   
 });

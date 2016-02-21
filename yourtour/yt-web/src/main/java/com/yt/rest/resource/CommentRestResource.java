@@ -48,7 +48,7 @@ public class CommentRestResource extends BaseRestResource{
 	 * @return
 	 */
 	@GET
-	@Path("/{id}/query")
+	@Path("/{id}")
 	public ResponseDataVO<List<CommentVO>> getComments(@PathParam("id") String id, @QueryParam("nextCursor") String nextCursor, @QueryParam("filter") String filter, @QueryParam("limit") String step) {
 		try{
 			List<CommentVO> commentvos = new ArrayList<>();

@@ -5,7 +5,20 @@ Ext.define('YourTour.view.widget.XScore', {
         baseCls: 'x-xscore',
         binding: null,
         align: null,
-        star:false
+        shape:'star'
+    },
+
+    initialize:function(){
+        var me = this;
+        this.callParent(arguments);
+
+        if(me.shape == 'round'){
+            if(me.align == 'left'){
+                me.addCls('x-round-left');
+            }else{
+                me.addCls('x-round-right');
+            }
+        }
     },
 
     constructor: function(config) {
@@ -20,8 +33,12 @@ Ext.define('YourTour.view.widget.XScore', {
         me.callParent(arguments);
     },
 
-    updateStar:function(star){
-        this.setStyle('background-image: url(./resources/icons/icon_score.png);background-repeat: no-repeat;background-position: left center;');
+    updateAlign:function(align){
+        this.align = align;
+    },
+
+    updateShape:function(shape){
+        this.shape = shape;
     },
 
     updateRecord: function (record) {
@@ -29,8 +46,17 @@ Ext.define('YourTour.view.widget.XScore', {
         var name = binding == null ? this.getItemId() : binding;
         var score = record.get(name);
 
-        if(! score) score = 0;
-        this.setHtml(score + ' 分');
+        this.setText(score);
+    },
+
+    setText:function(text){
+        if(! text) text = 0;
+
+        if(this.shape == 'star'){
+            this.setStyle('background-image: url(./resources/icons/icon_score.png);background-repeat: no-repeat;background-position: left center;');
+        }
+
+        this.setHtml(text + ' 分');
     }
 });
 

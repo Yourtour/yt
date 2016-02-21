@@ -10,6 +10,7 @@ import java.util.Date;
 public class DateUtils {
 	private static final Log logger = LogFactory.getLog(DateUtils.class);
 
+	public static final String DATE_FORMAT_FULL="yyyy-MM-dd HH:mm:ss";
 	public static final String DATE_FORMAT_DEFAULT="yyyy-MM-dd";
 
 	//private static SimpleDateFormat formatter = new java.text.SimpleDateFormat(DATE_FORMAT_DEFAULT);
