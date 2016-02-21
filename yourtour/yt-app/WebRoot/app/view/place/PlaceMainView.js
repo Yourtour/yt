@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.place.PlaceMainView', {
 	extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Img','YourTour.view.widget.XHeaderBar','YourTour.view.place.PlaceExpertItem','YourTour.view.route.RouteListDataItemHBox'],
+    requires:['YourTour.view.widget.XHeaderBar','YourTour.view.widget.XDataView','YourTour.view.place.PlaceMainDataItem'],
     config: {
     	id:'PlaceMainView',
       	layout:'vbox',
@@ -13,98 +13,116 @@ Ext.define('YourTour.view.place.PlaceMainView', {
 
 			{
 				xtype: 'xpagebody',
-				layout: 'vbox',
+				itemId:'pagebody',
+				layout: 'card',
 				items: [
 					{
-						xtype: 'image',
-						itemId: 'image',
-						height: 150,
-						src: 'resources/images/shanghai.jpg'
-					},
-
-					{xtype: 'xspacer'},
-
-					{
-						xtype: 'panel',
-						layout: 'hbox',
-						height: 150,
-						padding:'0 10 0 10',
-						defaults: {
-							flex: 1
-						},
-						items: [
-							{
-								xtype: 'xpanel',
-								cls:'icon-place-chat',
-								itemId: 'placeChatRoom',
-								layout:'vbox',
-								style: 'border-right:1px solid #EDEDED'
-							},
-
-							{
-								xtype: 'panel',
-								layout: 'vbox',
-								defaults: {
-									flex: 1
-								},
-								items: [
-									{
-										xtype: 'image',
-										src: 'resources/icons/icon_place_intro.png'
-									},
-
-									{
-										xtype: 'panel',
-										cls: 'icon-place-live'
-									}
-								]
-							}
-						]
-					},
-					{
-						xtype: 'xspacer'
-					},
-
-					{
-						xtype:'xlabel',
-						itemId:'along',
-						html:'结伴信息',
-						indicator:'nav-arrow'
-					},
-
-					{
-						xtype:'PlaceExpertItem',
-						itemId:'placeExpertItem'
-					},
-
-					{
 						xtype:'panel',
-						itemId:'placeRouteItem',
+						itemId:'entryPanel',
 						layout:'vbox',
 						items:[
 							{
-								xtype: 'xspacer'
+								xtype:'carousel',
+								itemId:'imageCarousel',
+								flex:7
 							},
 							{
-								xtype: 'xlabel',
-								itemId:'placeMoreRoutes',
-								cls: 'underline x-xlabel-normal  font-medium',
-								indicator:'nav-arrow',
-								html: '游徒行程'
-							},
+								xtype:'xdataview',
+								itemId:'resourceList',
+								defaultType: 'PlaceMainDataItem',
+								direction:'horizontal',
+								flex:1
+							}
+						]
+					},{
+						xtype:'panel',
+						itemId:'navPanel',
+						layout:'vbox',
+						items:[
+							{
+								xtype:'panel',
+								layout:'vbox',
+								docked:'bottom',
+								padding:'10 10',
+								items:[
+									{
+										xtype:'panel',
+										layout:'hbox',
+										defaults:{
+											flex:1,
+											cls:'x-xnav-button'
+										},
+										items:[
+											{
+												xtype: 'xlabel',
+												html: '介绍',
+												style:'background-image: url(./resources/icons/48/icon_intro.png);'
+											},
+											{
+												xtype: 'xlabel',
+												itemId:'placeLines',
+												html: '线路',
+												style:'background-image: url(./resources/icons/48/icon_line.png);'
+											},
+											{
+												xtype: 'xlabel',
+												itemId:'placeExperts',
+												html: '达人',
+												style:'background-image: url(./resources/icons/48/icon_expert.png);'
+											}
+										]
+									},
 
-							{
-								xtype: 'xdataview',
-								itemId: 'placeRouteList',
-								itemHeight:90,
-								scrollable:'none',
-								defaultType: 'RouteListDataItemHBox'
+									{
+										xtype:'panel',
+										layout:'hbox',
+										defaults:{
+											flex:1,
+											cls:'x-xnav-button'
+										},
+										items:[
+											{
+												xtype: 'xlabel',
+												itemId:'placeAlongs',
+												html: '捡人',
+												style:'background-image: url(./resources/icons/48/icon_along.png);'
+											},
+											{
+												xtype: 'xlabel',
+												html: '直播',
+												style:'background-image: url(./resources/icons/48/icon_live.png);'
+											},
+											{
+												xtype: 'xlabel',
+												html: '聊天室',
+												style:'background-image: url(./resources/icons/48/icon_chat.png);'
+											}
+										]
+									}
+								]
 							}
 						]
 					}
 				]
 			}
         ]
-    }
+    },
+
+	initialize:function(){
+		this.callParent(arguments);
+		var me = this, pagebody = me.down('#pagebody'), entryPanel = pagebody.down('#entryPanel'), navPanel = pagebody.down('#navPanel');
+
+		entryPanel.element.on('swipe', function(e, target, options, eOpts){
+			if (e.direction === 'up' && e.distance >= 20) {
+				pagebody.animateActiveItem(navPanel,{ type: 'slide', direction: 'up' });
+			}
+		});
+
+		navPanel.element.on('swipe', function(e, target, options, eOpts){
+			if (e.direction === 'down' && e.distance >= 20) {
+				pagebody.animateActiveItem(entryPanel,{ type: 'slide', direction: 'down' });
+			}
+		})
+	}
 });
 

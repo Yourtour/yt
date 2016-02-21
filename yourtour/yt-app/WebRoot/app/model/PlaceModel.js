@@ -29,6 +29,13 @@ Ext.define('YourTour.model.PlaceModel', {
 
             {
                 type: 'hasMany',
+                model: 'YourTour.model.ResourceModel',
+                name: 'resources',
+                associationKey: 'resources'
+            },
+
+            {
+                type: 'hasMany',
                 model: 'YourTour.model.ExpertModel',
                 name: 'experts',
                 associationKey: 'experts'

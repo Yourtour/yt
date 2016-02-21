@@ -4,10 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.yt.business.CrudAllInOneOperate;
-import com.yt.business.bean.ExpertBean;
-import com.yt.business.bean.LineBean;
-import com.yt.business.bean.PlaceBean;
-import com.yt.business.bean.RouteMainBean;
+import com.yt.business.bean.*;
 
 public interface PlaceRepository extends CrudAllInOneOperate {
 	/**
@@ -71,20 +68,31 @@ public interface PlaceRepository extends CrudAllInOneOperate {
 	/**
 	 *
 	 * @param placeId
-	 * @param startIndex
+	 * @param nextCursor
 	 * @param limit
 	 * @return
 	 * @throws Exception
 	 */
-	public List<ExpertBean> getExperts(Long placeId, int startIndex, int limit) throws Exception;
+	public List<ExpertBean> getExperts(Long placeId, Long nextCursor, int limit) throws Exception;
 
 	/**
 	 *
 	 * @param placeId
-	 * @param startIndex
+	 * @param nextCursor
 	 * @param limit
 	 * @return
 	 * @throws Exception
 	 */
-	public List<RouteMainBean> getRoutes(Long placeId, int startIndex, int limit) throws Exception;
+	public List<RouteMainBean> getRoutes(Long placeId, Long nextCursor, int limit) throws Exception;
+
+	/**
+	 *
+	 * @param placeId
+	 * @param nextCursor
+	 * @param limit
+	 * @return
+	 * @throws Exception
+	 */
+	public List<SceneResourceBean> getSceneResources(Long placeId, Long nextCursor, int limit) throws Exception;
+
 }

@@ -5,9 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.yt.business.bean.ExpertBean;
-import com.yt.business.bean.LineBean;
-import com.yt.business.bean.RouteMainBean;
+import com.yt.business.bean.*;
 import com.yt.business.neo4j.repository.ExpertTuple;
 import com.yt.business.neo4j.repository.RouteTuple;
 import com.yt.core.utils.CollectionUtils;
@@ -15,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.yt.business.CrudAllInOneOperateImpl;
-import com.yt.business.bean.PlaceBean;
 import com.yt.business.neo4j.repository.PlaceBeanRepository;
 import com.yt.business.neo4j.repository.PlaceTuple;
 
@@ -34,18 +31,13 @@ public class PlaceRepositoryImpl extends CrudAllInOneOperateImpl implements
 	public PlaceBean getPlace4Home(Long placeId) throws Exception{
 		PlaceBean place = (PlaceBean) this.get(PlaceBean.class, placeId, false);
 
-		List<ExpertBean> experts = this.getExperts(placeId, 0, 20);
-		place.setExperts(experts);
-
-		List<RouteMainBean> routes = this.getRoutes(placeId, 0, 20);
-		place.setRoutes(routes);
-
+		place.setResources(this.getSceneResources(placeId, 0l, 20));
 		return place;
 	}
 
 	@Override
-	public List<ExpertBean> getExperts(Long placeId, int startIndex, int limit) throws Exception {
-		List<ExpertTuple> tuples = repository.getExperts(placeId, startIndex, limit);
+	public List<ExpertBean> getExperts(Long placeId, Long nextCursor, int limit) throws Exception {
+		List<ExpertTuple> tuples = repository.getExperts(placeId, nextCursor, limit);
 
 		List<ExpertBean> experts = new ArrayList<>();
 		if(CollectionUtils.isNotEmpty(tuples)){
@@ -58,10 +50,10 @@ public class PlaceRepositoryImpl extends CrudAllInOneOperateImpl implements
 	}
 
 	@Override
-	public List<RouteMainBean> getRoutes(Long placeId, int startIndex, int limit) throws Exception {
+	public List<RouteMainBean> getRoutes(Long placeId, Long nextCursor, int limit) throws Exception {
 		List<RouteMainBean> routes = new ArrayList<>();
 
-		List<RouteTuple> tuples = this.repository.getRoutes(placeId, startIndex, limit);
+		List<RouteTuple> tuples = this.repository.getRoutes(placeId, nextCursor, limit);
 		if(tuples != null){
 			for(RouteTuple tuple : tuples){
 				routes.add(tuple.getRoute());
@@ -71,11 +63,16 @@ public class PlaceRepositoryImpl extends CrudAllInOneOperateImpl implements
 		return routes;
 	}
 
+	@Override
+	public List<SceneResourceBean> getSceneResources(Long placeId, Long nextCursor, int limit) throws Exception {
+		return this.repository.getSceneResoruces(placeId, nextCursor, limit);
+	}
+
 	/*
-         * (non-Javadoc)
-         *
-         * @see com.yt.business.repository.PlaceRespository#getAllRootPlaces()
-         */
+             * (non-Javadoc)
+             *
+             * @see com.yt.business.repository.PlaceRespository#getAllRootPlaces()
+             */
 	@Override
 	public List<PlaceBean> getAllRootPlaces() throws Exception {
 		return repository.getAllRootPlaces();

@@ -2,6 +2,7 @@ package com.yt.business.neo4j;
 
 import com.yt.business.bean.ResourceActivityItemBean;
 import com.yt.business.bean.SceneResourceBean;
+import com.yt.business.repository.ExpertRepository;
 import com.yt.business.repository.RouteRepository;
 import org.junit.After;
 import org.junit.Before;
@@ -15,7 +16,26 @@ import static org.junit.Assert.fail;
 public class ResourceDataGenerator extends DataGenerator{
 	private RouteRepository repository;
 
+	@Before
+	public void setup(){
+		repository = context.getBean(RouteRepository.class);
+	}
+
 	@Test
+	public void testCRUDReosurceBean() {
+		try {
+			SceneResourceBean resource = (SceneResourceBean) repository.get(SceneResourceBean.class, 10l);
+
+			resource.setGraphId(null);
+			resource.setName("新安江山水画廊");
+			repository.save(resource, "admin");
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			fail(ex.getMessage());
+		}
+	}
+
+	//@Test
 	public void testCRUDRouteBean() {
 		repository = context.getBean(RouteRepository.class);
 		try {

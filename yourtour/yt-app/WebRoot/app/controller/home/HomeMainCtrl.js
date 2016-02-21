@@ -54,65 +54,14 @@ Ext.define('YourTour.controller.home.HomeMainCtrl', {
     },
     
     init: function(){
-    	this.store = Ext.create('YourTour.store.HomeStore');
     },
     
-    showPage:function(){
-    	YourTour.util.Context.mainview = this.getHomeMainView();
-    	var parent = this;
-		var store = this.store;
-		var success = function(){
-			var model = store.getAt(0);
-			/*var carousels = model.carousels();
-    		carousels.each(function(carousel){
- 	 	   		parent.getPlaceCarousel().add(Ext.create('YourTour.view.home.CarouselItemView',{itemId:'carousel', model:carousel}));
- 	 	   	});*/
-    		
-    		/*parent.getBestView().removeAll(true, true);
-    		parent.getBestView().setModels(model.lines());*/
-    		
-    		/*parent.getTalentView().removeAll(true, true);
-    		parent.getTalentView().setModels(model.talents());
-    		
-    		parent.getAlongView().removeAll(true, true);
-    		parent.getAlongView().setModels(model.alongs()); 	 	   	
-*/    		
-    		//parent.getChatList().setStore(model.chatsStore);
-		};
-		
-		store.load(success, this);
-    },
-    
-    onCallback:function(record){
-    	this.getHeaderbar().setTitle(record.get('name'));
-    },
-    
-    onItemTap4Best:function(record){
-    	this.redirectTo('/line/introduction/1');
-    },
-    
-    onMoreBestTap:function(){
-    	this.redirectTo('/home/best/list');
-    },
-    
-    onItemTap4Talents:function(record){
-    	this.redirectTo('/main/talent/list');
-    },
-    
-    onMoreTalentTap:function(){
-    	this.redirectTo('/main/talent/list');
-    },
-
-    onItemTap4Along:function(record){
-    	this.redirectTo('/along/detail/1');
-    },
-    
-    onMoreAlongTap:function(){
-    	this.redirectTo('/along/list');
-    },
+    showPage:function() {
+		YourTour.util.Context.mainview = this.getHomeMainView();
+	},
 
 	selectHomePlace:function(){
 		var controller = this.getApplication().getController('PlaceMainCtrl');
-		controller.showPage();
+		controller.showMainPage(6, '黄山');
     }
 });

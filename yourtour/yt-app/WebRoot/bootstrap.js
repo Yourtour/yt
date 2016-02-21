@@ -799,6 +799,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.place.PlaceExpertItem": [],
   "YourTour.view.place.PlaceExpertView": [],
   "YourTour.view.place.PlaceFoodView": [],
+  "YourTour.view.place.PlaceMainDataItem": [],
+  "YourTour.view.place.PlaceMainItem": [],
   "YourTour.view.place.PlaceMainView": [],
   "YourTour.view.place.PlaceOverviewView": [],
   "YourTour.view.place.PlaceSelectionAbroadItem": [],
@@ -1902,6 +1904,12 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.place.PlaceFoodView": [
     "widget.PlaceFoodView"
+  ],
+  "YourTour.view.place.PlaceMainDataItem": [
+    "widget.PlaceMainDataItem"
+  ],
+  "YourTour.view.place.PlaceMainItem": [
+    "widget.PlaceMainItem"
   ],
   "YourTour.view.place.PlaceMainView": [],
   "YourTour.view.place.PlaceOverviewView": [

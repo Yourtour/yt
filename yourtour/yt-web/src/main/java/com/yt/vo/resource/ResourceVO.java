@@ -51,55 +51,57 @@ public class ResourceVO extends BaseVO {
 
     private List<ActivityItemVO> activityItems = null;
 
-    public void fromBean(ResourceBean bean) {
+    public static ResourceVO transform(ResourceBean bean) {
         if (bean == null) {
-            return;
+            return null;
         }
 
-        super.fromBean(bean);
+        ResourceVO vo = new ResourceVO();
 
-        setCode(bean.getCode());
-        setName(bean.getName());
-        setAddress(bean.getAddress());
-        setArriveNum(bean.getArriveNum());
-        setBookingMemo(bean.getBookingMemo());
-        setFavoriteNum(bean.getFavoriteNum());
-        setImageUrl(bean.getImageUrl());
-        setMember(bean.isMember());
-        setOpenTime(bean.getOpenTime());
-        setPayment(bean.getPayment());
-        setPhone(bean.getPhone());
-        setPosition(bean.getPosition());
-        setPostCode(bean.getPostCode());
-        setShareNum(bean.getShareNum());
-        setStar(bean.getStar());
-        setStatus(bean.getStatus());
-        setTips(bean.getTips());
-        setTrafficIntro(bean.getTrafficIntro());
-        setType(bean.getType());
-        setWebsite(bean.getWebsite());
+        vo.fromBean(bean);
 
-        setCommentNum(bean.getCommentNum());
-        setGoodNum(bean.getGoodNum());
-        setBadNum(bean.getBadNum());
-        setMediumNum(bean.getMediumNum());
-        setImageNum(bean.getImageNum());
+        vo.setCode(bean.getCode());
+        vo.setName(bean.getName());
+        vo.setAddress(bean.getAddress());
+        vo.setArriveNum(bean.getArriveNum());
+        vo.setBookingMemo(bean.getBookingMemo());
+        vo.setFavoriteNum(bean.getFavoriteNum());
+        vo.setImageUrl(bean.getImageUrl());
+        vo.setMember(bean.isMember());
+        vo.setOpenTime(bean.getOpenTime());
+        vo.setPayment(bean.getPayment());
+        vo.setPhone(bean.getPhone());
+        vo.setPosition(bean.getPosition());
+        vo.setPostCode(bean.getPostCode());
+        vo.setShareNum(bean.getShareNum());
+        vo.setStar(bean.getStar());
+        vo.setStatus(bean.getStatus());
+        vo.setTips(bean.getTips());
+        vo.setTrafficIntro(bean.getTrafficIntro());
+        vo.setType(bean.getType());
+        vo.setWebsite(bean.getWebsite());
 
-        setCommentScore(bean.getCommentScore());
-        setHealthScore(bean.getHealthScore());
-        setTrafficScore(bean.getTrafficScore());
-        setFacilityScore(bean.getFacilityScore());
-        setEnvironmentScore(bean.getEnvironmentScore());
-        setServiceScore(bean.getServiceScore());
+        vo.setCommentNum(bean.getCommentNum());
+        vo.setGoodNum(bean.getGoodNum());
+        vo.setBadNum(bean.getBadNum());
+        vo.setMediumNum(bean.getMediumNum());
+        vo.setImageNum(bean.getImageNum());
+
+        vo.setCommentScore(bean.getCommentScore());
+        vo.setHealthScore(bean.getHealthScore());
+        vo.setTrafficScore(bean.getTrafficScore());
+        vo.setFacilityScore(bean.getFacilityScore());
+        vo.setEnvironmentScore(bean.getEnvironmentScore());
+        vo.setServiceScore(bean.getServiceScore());
 
         // 从目的地对象中获取ID和名称，便于前端显示
         PlaceBean place = bean.getPlace();
         if (place != null) {
-            setPlace(place.getName());
-            setPlaceId(place.getGraphId());
+            vo.setPlace(place.getName());
+            vo.setPlaceId(place.getGraphId());
         } else {
-            setPlace("");
-            setPlaceId(null);
+            vo.setPlace("");
+            vo.setPlaceId(null);
         }
 
         List<ResourceActivityItemBean> items = bean.getActivities();
@@ -109,42 +111,49 @@ public class ResourceVO extends BaseVO {
                 voes.add(ActivityItemVO.transform(item));
             }
 
-            setActivityItems(voes);
+            vo.setActivityItems(voes);
         }
+
+        return vo;
     }
 
-    public void toBean(ResourceBean bean) {
-        if (bean == null) {
-            return;
+    public static ResourceBean transform(ResourceVO vo) {
+        if (vo == null) {
+            return null;
         }
-        super.toBean(bean);
-        bean.setCode(getCode());
-        bean.setName(getName());
-        bean.setAddress(getAddress());
-        bean.setArriveNum(getArriveNum());
-        bean.setBookingMemo(getBookingMemo());
-        bean.setCommentNum(getCommentNum());
-        bean.setCommentScore(getCommentScore());
-        bean.setFavoriteNum(getFavoriteNum());
-        bean.setImageUrl(getImageUrl());
-        bean.setMember(isMember());
-        bean.setOpenTime(getOpenTime());
-        bean.setPayment(getPayment());
-        bean.setPhone(getPhone());
-        bean.setPosition(getPosition());
-        bean.setPostCode(getPostCode());
-        bean.setShareNum(getShareNum());
-        bean.setStar(getStar());
-        bean.setStatus(getStatus());
-        bean.setTips(getTips());
-        bean.setTrafficIntro(getTrafficIntro());
-        bean.setType(getType());
-        bean.setWebsite(getWebsite());
+
+        ResourceBean bean = new ResourceBean();
+
+        vo.toBean(bean);
+        bean.setCode(vo.getCode());
+        bean.setName(vo.getName());
+        bean.setAddress(vo.getAddress());
+        bean.setArriveNum(vo.getArriveNum());
+        bean.setBookingMemo(vo.getBookingMemo());
+        bean.setCommentNum(vo.getCommentNum());
+        bean.setCommentScore(vo.getCommentScore());
+        bean.setFavoriteNum(vo.getFavoriteNum());
+        bean.setImageUrl(vo.getImageUrl());
+        bean.setMember(vo.isMember());
+        bean.setOpenTime(vo.getOpenTime());
+        bean.setPayment(vo.getPayment());
+        bean.setPhone(vo.getPhone());
+        bean.setPosition(vo.getPosition());
+        bean.setPostCode(vo.getPostCode());
+        bean.setShareNum(vo.getShareNum());
+        bean.setStar(vo.getStar());
+        bean.setStatus(vo.getStatus());
+        bean.setTips(vo.getTips());
+        bean.setTrafficIntro(vo.getTrafficIntro());
+        bean.setType(vo.getType());
+        bean.setWebsite(vo.getWebsite());
 
         // 从VO中取出目的地的ID，并设置到PlaceBean中，便于后续建立关联关系
         PlaceBean place = new PlaceBean();
-        place.setGraphId(getPlaceId());
+        place.setGraphId(vo.getPlaceId());
         bean.setPlace(place);
+
+        return bean;
     }
 
     public ResourceVO() {

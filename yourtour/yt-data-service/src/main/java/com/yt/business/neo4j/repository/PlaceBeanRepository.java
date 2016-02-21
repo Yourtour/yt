@@ -2,12 +2,9 @@ package com.yt.business.neo4j.repository;
 
 import java.util.List;
 
-import com.yt.business.bean.LineBean;
-import com.yt.business.bean.RouteMainBean;
+import com.yt.business.bean.*;
 import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.neo4j.repository.GraphRepository;
-
-import com.yt.business.bean.PlaceBean;
 
 public interface PlaceBeanRepository extends GraphRepository<PlaceBean> {
 	@Query("MATCH (p:PlaceBean{root: true})  RETURN p")
@@ -29,22 +26,32 @@ public interface PlaceBeanRepository extends GraphRepository<PlaceBean> {
 	public List<PlaceBean> getRelatedPlaces(Long placeId);
 
 	/**
+	 * 分页获取目的地景点资源
+	 * @param placeId
+	 * @param nextCursor
+	 * @param limit
+	 * @return
+	 */
+	@Query("START place=NODE({0}) MATCH place<-[:AT]->(resource:SceneResourceBean) RETURN resource")
+	public List<SceneResourceBean> getSceneResoruces(Long placeId, Long nextCursor, int limit);
+
+	/**
 	 * 分页获取目的地达人
 	 * @param placeId
-	 * @param startIndex
+	 * @param nextCursor
 	 * @param limit
 	 * @return
 	 */
 	@Query("START place=NODE({0}) MATCH place<-[:AT]->(profile:UserProfileBean)-[R:IS]-(expert:ExpertBean) RETURN profile, expert ORDER BY R.LEVEL SKIP {1} LIMIT {2}")
-	public List<ExpertTuple> getExperts(Long placeId, int startIndex, int limit);
+	public List<ExpertTuple> getExperts(Long placeId, Long nextCursor, int limit);
 
 	/**
 	 * 分页获取目的地推荐行程
 	 * @param placeId
-	 * @param startIndex
+	 * @param nextCursor
 	 * @param limit
 	 * @return
 	 */
 	@Query("START place=node({0}) MATCH place<-[:AT]-(user:UserProfileBean)-[:RECOMMEND]->(route:RouteMainBean) RETURN user, route")
-	public List<RouteTuple> getRoutes(Long placeId, int startIndex, int limit);
+	public List<RouteTuple> getRoutes(Long placeId, Long nextCursor, int limit);
 }

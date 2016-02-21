@@ -1,12 +1,10 @@
 package com.yt.vo.place;
 
-import com.yt.business.bean.ExpertBean;
-import com.yt.business.bean.LineBean;
-import com.yt.business.bean.PlaceBean;
-import com.yt.business.bean.RouteMainBean;
+import com.yt.business.bean.*;
 import com.yt.business.common.Constants.Status;
 import com.yt.core.utils.CollectionUtils;
 import com.yt.vo.member.ExpertVO;
+import com.yt.vo.resource.ResourceVO;
 import com.yt.vo.route.LineVO;
 import com.yt.vo.route.RouteVO;
 
@@ -24,8 +22,7 @@ public class PlaceVO {
 	private int num = 0;  //下辖目的地个数
 	private int alongNum = 0;
 
-	private List<ExpertVO> experts;
-	private List<RouteVO> routes;
+	private List<ResourceVO> resources;
 
 	public static PlaceBean transform(PlaceVO vo) {
 		if (vo == null) {
@@ -75,25 +72,16 @@ public class PlaceVO {
 			vo.setParentCode(bean.getParent().getCode());
 		}
 
-		List<RouteMainBean> routes = bean.getRoutes();
-		if(CollectionUtils.isNotEmpty(routes)){
-			List<RouteVO> voes = new ArrayList<>();
-			for(RouteMainBean route : routes){
-				voes.add(RouteVO.transform(route));
+		List<? extends ResourceBean> resources = bean.getResources();
+		if(CollectionUtils.isNotEmpty(resources)){
+			List<ResourceVO> voes = new ArrayList<>();
+			for(ResourceBean resource : resources){
+				voes.add(ResourceVO.transform(resource));
 			}
 
-			vo.setRoutes(voes);
+			vo.setResources(voes);
 		}
 
-		List<ExpertBean> experts = bean.getExperts();
-		if(CollectionUtils.isNotEmpty(experts)){
-			List<ExpertVO> voes = new ArrayList<>();
-			for(ExpertBean expert : experts){
-				voes.add(ExpertVO.transform(expert));
-			}
-
-			vo.setExperts(voes);
-		}
 		return vo;
 	}
 
@@ -242,19 +230,11 @@ public class PlaceVO {
 		this.name = name;
 	}
 
-	public List<ExpertVO> getExperts() {
-		return experts;
+	public List<ResourceVO> getResources() {
+		return resources;
 	}
 
-	public void setExperts(List<ExpertVO> experts) {
-		this.experts = experts;
-	}
-
-	public List<RouteVO> getRoutes() {
-		return routes;
-	}
-
-	public void setRoutes(List<RouteVO> routes) {
-		this.routes = routes;
+	public void setResources(List<ResourceVO> resources) {
+		this.resources = resources;
 	}
 }

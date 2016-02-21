@@ -3,10 +3,11 @@ Ext.define('YourTour.view.widget.XDataView', {
     xtype: 'xdataview',
     config: {
         binding: '',
+        direction:'vertical', // or  horizontal
         useComponents: true,
         itemHeight: 0,
         scrollable: {
-            direction: 'vertical',
+            direction: 'horizontal',
             indicators: false,
             directionLock: true,
             momentumEasing: {
@@ -22,6 +23,53 @@ Ext.define('YourTour.view.widget.XDataView', {
             },
             outOfBoundRestrictFactor: 0
         }
+    },
+
+    initialize: function() {
+        this.callParent();
+        var me = this,
+            container,
+            triggerEvent = me.getTriggerEvent();
+
+        me.on(me.getTriggerCtEvent(), me.onContainerTrigger, me);
+
+        var containerLayout = (me.direction == 'horizontal'?'hbox':'vbox');
+        container = me.container = this.add(new Ext.dataview[me.getUseComponents() ? 'component' : 'element'].Container({
+            baseCls: this.getBaseCls(), layout:containerLayout
+        }));
+        container.dataview = me;
+
+        if (triggerEvent) {
+            me.on(triggerEvent, me.onItemTrigger, me);
+        }
+
+        container.on({
+            itemtouchstart: 'onItemTouchStart',
+            itemtouchend: 'onItemTouchEnd',
+            itemtap: 'onItemTap',
+            itemtaphold: 'onItemTapHold',
+            itemtouchmove: 'onItemTouchMove',
+            itemsingletap: 'onItemSingleTap',
+            itemdoubletap: 'onItemDoubleTap',
+            itemswipe: 'onItemSwipe',
+            scope: me
+        });
+
+        if (me.getStore()) {
+            if (me.isPainted()) {
+                me.refresh();
+            }
+            else {
+                me.on({
+                    painted: 'refresh',
+                    single: true
+                });
+            }
+        }
+    },
+
+    updateDirection:function(direction){
+        this.direction = direction;
     },
 
     updateItemHeight:function(itemHeight){

@@ -79,9 +79,7 @@ public class PlaceBean extends BaseDictBeanImpl {
 	
 	private transient List<PlaceBean> subs = new ArrayList<PlaceBean>();
 
-	private List<ExpertBean> experts = null;
-
-	private List<RouteMainBean>  routes = null;
+	private List<? extends ResourceBean> resources = null; //关联游玩资源
 
 	public PlaceBean() {
 		super();
@@ -195,20 +193,12 @@ public class PlaceBean extends BaseDictBeanImpl {
 		this.home = home;
 	}
 
-	public List<ExpertBean> getExperts() {
-		return experts;
+	public List<? extends ResourceBean> getResources() {
+		return resources;
 	}
 
-	public void setExperts(List<ExpertBean> experts) {
-		this.experts = experts;
-	}
-
-	public List<RouteMainBean> getRoutes() {
-		return routes;
-	}
-
-	public void setRoutes(List<RouteMainBean> routes) {
-		this.routes = routes;
+	public void setResources(List<? extends ResourceBean> resources) {
+		this.resources = resources;
 	}
 
 	@Override

@@ -1,39 +1,34 @@
 Ext.define('YourTour.controller.PlaceMainCtrl', {
     extend: 'YourTour.controller.BaseCtrl',
+    requires:['YourTour.view.place.PlaceMainItem'],
     config: {
         refs: {
             placeMainView: '#PlaceMainView',
-            placeRouteList: '#PlaceMainView #placeRouteList'
+            imageCarousel: '#PlaceMainView #imageCarousel',
+            resourceList:'#PlaceMainView #resourceList'
         },
 
         control: {
+            resourceList:{
+                itemtap:'showResource'
+            },
+
             '#PlaceMainView #placeChatRoom': {
                 tap: 'showPlaceChatRoom'
             },
 
-            '#PlaceMainView #placeExpertItem #placeExpertList': {
-                itemtap: 'showExpertInfo'
+            '#PlaceMainView #placeAlongs': {
+                tap: 'showAlongView'
             },
 
-            '#PlaceMainView #along': {
-                tap: 'showAlongInfo'
+            '#PlaceMainView #placeExperts': {
+                tap: 'showExpertView'
             },
 
-            '#PlaceMainView #placeMoreExperts': {
-                tap: 'showMoreExperts'
-            },
+            '#PlaceMainView #placeLines': {
+                tap: 'showLineView'
+            }
 
-            '#PlaceMainView #placeRouteList': {
-                itemtap: 'showRouteInfo'
-            },
-
-            '#PlaceMainView #placeMoreRoutes': {
-                tap: 'showMoreRoutes'
-            },
-
-            '#PlaceMainView #placeMoreAlongs': {
-                tap: 'showMoreAlongs'
-            },
         },
 
         placeId: null
@@ -47,32 +42,11 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
      * @param placeId
      * @param placeName
      */
-    showPage: function (placeId, placeName) {
+    showMainPage: function (placeId, placeName) {
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.place.PlaceMainView'));
+        var me = this, mainview = me.getPlaceMainView(), resourceList = me.getResourceList(), navPanel = mainview.down('#navPanel');
 
-        placeId = 6;
-        this.placeId = placeId;
-
-        this.refreshHomeData();
-    },
-
-    showPlaceChatRoom: function () {
-        console.log('showPlaceChatRoom');
-        var placeId = this.placeId;
-        var ctrl = this.getApplication().getController('MessageMainCtrl');
-        ctrl.showMainPage({type: 'place', roomCode: placeId});
-    },
-
-    /**
-     * 刷新目的地首页数据
-     */
-    refreshHomeData: function () {
-        var me = this, placeId = me.placeId,
-            mainview = me.getPlaceMainView(),
-            expertItem = mainview.down('#placeExpertItem'),
-            expertList = expertItem.down('#placeExpertList'),
-            routeItem = mainview.down('#placeRouteItem'),
-            placeRouteList = me.getPlaceRouteList();
+        mainview.down('#headerbar').setTitle(placeName);
 
         var options = {
             model: 'YourTour.model.PlaceModel',
@@ -81,28 +55,48 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
                 var place = store.first();
                 mainview.setData(place);
 
-                if (place) {
-                    var expertStore = place.expertsStore;
-                    if (expertStore && expertStore.getAllCount() > 0) {
-                        expertItem.show();
-                        expertList.setStore(expertStore);
-                    }
+                var url = YourTour.util.Context.getImageResource(place.get('imageUrl'));
+                var style={};
+                style['background-image'] = 'url(' + url +  ')';
+                style['background-repeat'] = 'no-repeat';
+                style['background-position'] = 'center center';
+                style['background-size'] = '100% 100%';
+                navPanel.setStyle(style);
 
-                    var routeStore = place.routesStore;
-                    if (routeStore && routeStore.getAllCount() > 0) {
-                        var store = Ext.create('YourTour.store.AjaxStore', {model: 'YourTour.model.RouteModel'});
-                        routeStore.each(function (record, index) {
-                            if (index < 5) {
-                                store.add(record);
-                            }
-                        });
-
-                        placeRouteList.setStore(store);
-                    }
-                }
+                var resourceStore = place.resourcesStore;
+                resourceList.setStore(resourceStore);
+                me.showResourceImages(resourceStore.getAt(0));
             }
         };
         me.getApplication().query(options);
+    },
+
+    showResource:function(dataview, index, item, record){
+        this.showResourceImages(record);
+    },
+
+    showResourceImages:function(resource){
+        var me = this, imageCarousel = me.getImageCarousel();
+
+        if(imageCarousel){
+            imageCarousel.removeAll(false);
+        }
+
+        var images = resource.get('imageUrl').split(';');
+        Ext.Array.forEach(images, function(image, index){
+            imageCarousel.add({xtype:'PlaceMainItem', data:image})
+        });
+
+        if(imageCarousel.getItemLength() > 0){
+            imageCarousel.setActiveIndex(0);
+        }
+    },
+
+    showPlaceChatRoom: function () {
+        console.log('showPlaceChatRoom');
+        var placeId = this.placeId;
+        var ctrl = this.getApplication().getController('MessageMainCtrl');
+        ctrl.showMainPage({type: 'place', roomCode: placeId});
     },
 
     /**
@@ -120,7 +114,7 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
     /**
      * 显示更多目的地达人
      */
-    showMoreExperts: function () {
+    showExpertView: function () {
         var me = this,
             placeId = me.placeId,
             mainview = me.getPlaceMainView(),
@@ -146,7 +140,7 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
     /**
      * 显示更多目的地线路
      */
-    showMoreRoutes: function () {
+    showLineView: function () {
         var me = this,
             mainview = me.getPlaceMainView(),
             place = mainview.getData();
@@ -158,7 +152,7 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
     /**
      * 显示更多目的地结伴
      */
-    showAlongInfo: function () {
+    showAlongView: function () {
         var me = this,
             mainview = me.getPlaceMainView(),
             place = mainview.getData();
