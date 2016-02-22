@@ -2,7 +2,7 @@ Ext.define('YourTour.view.widget.XDateField', {
     extend: 'YourTour.view.widget.XField',
     xtype: 'xdatefield',
     config: {
-
+        editable:true
     },
 
     getValue:function(){

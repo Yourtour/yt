@@ -10,34 +10,31 @@ Ext.define('YourTour.view.widget.XPageBody', {
             indicators: false,
             directionLock: true,
             momentumEasing:  {
-                /*momentum: {
-                 acceleration: 10,
-                 friction: 0.9
-                 },*/
                 bounce: {
                     acceleration: 0.0001,
                     springTension: 0.9999
                 }
-                /*minVelocity: 5*/
             },
             outOfBoundRestrictFactor: 0
         }
     },
 
     initialize: function () {
-        var me = this;
-        me.callParent(arguments);
+        this.callParent(arguments);
+        /*var me = this, scroller = me.getScrollable().getScroller();
 
-        /*me.getScrollable().getScroller().on('scroll', me.onScroller,me);
-
-        me.getScrollable().getScroller().on('scrollend', me.onScrollerEnd,me);*/
-    }
-
-    /*onScrollerEnd : function(scroller,offsets){
+        scroller.on({
+            scroll: 'onScroller',
+            scrollend: 'onScrollerEnd',
+        });*/
     },
 
-    onScroller: function (scroller, x, y,eOpts ) {
-        console.log(scroller);
+    /*onScroller: function (scroller, x, y,eOpts ) {
+        alert('onScroller');
+    },
+
+    onScrollerEnd: function (scroller, x, y,eOpts ) {
+        alert('onScrollerEnd');
     }*/
 });
 

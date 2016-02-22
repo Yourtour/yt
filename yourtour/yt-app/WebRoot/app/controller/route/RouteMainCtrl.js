@@ -155,8 +155,12 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
     },
 
     onRouteTap: function () {
-        var me = this, mainview = me.getRouteMainView(), record = mainview.getData();
-        this.redirectTo('/route/load/' + record.get('id'));
+        var me = this,
+            mainview = me.getRouteMainView(),
+            record = mainview.getData(),
+            controller = me.getApplication().getController('route.RouteScheduleListCtrl');
+
+        controller.showPage(record.get('id'));
     },
 
     onRouteServiceTap: function (record) {

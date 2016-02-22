@@ -42,47 +42,39 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
 		   }
        },
        
-       routes:{
-        	'/route/load/:routeId':'showPage'
-       },
-       
-       store:null,
-       
        routeId : null,
-       
        resource:null
     },
-    
-    init:function(){
-		this.store = Ext.create('YourTour.store.RouteStore', {storeId:'RouteDetailStore'});	    	
-    },
-    
-    onEditTap:function(){
-		var editController = this.getApplication().getController('route.RouteSchedulePlanCtrl');
-		editController.updateRouteSchedule(this.store);
-    },
 
-    showPage:function(data){
+	showPage:function(data){
 		var me = this;
-    	Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteScheduleListView'));
+		Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteScheduleListView'));
 
-		var options = {
-			model: 'YourTour.model.RouteModel',
-			url: '/routes/' + data + '/query',
-			success: function (store) {
-				me.showRouteScheduleInfo(store);
-			}
-		};
-		me.getApplication().query(options);
-    },
+		if(data instanceof YourTour.store.AjaxStore){
+			me.showRouteScheduleInfo(data);
+		}else {
+			var options = {
+				model: 'YourTour.model.RouteModel',
+				url: '/routes/' + data + '/query',
+				success: function (store) {
+					me.showRouteScheduleInfo(store);
+				}
+			};
+			me.getApplication().query(options);
+		}
+	},
 
 	/**
 	 * 显示行程计划信息
 	 * @param store
 	 */
 	showRouteScheduleInfo:function(store){
-		var me = this;
-		var view = me.getRouteScheduleListView();
+		var me = this,
+			view = me.getRouteScheduleListView(),
+			headerbar = view.down('#headerbar'),
+			routePanel = view.down('#routePanel');
+
+		view.hideProcessing();
 
 		me.store = store;
 		var record = store.first();
@@ -91,8 +83,13 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
 		var headerbar = view.down('#headerbar');
 		headerbar.setTitle(record.get('name'));
 
-		var imageEl = view.down('#imageUrl');
-		imageEl.setHtml("<img src='" + YourTour.util.Context.getImageResource(record.get('imageUrl')) + "' style='width:100%; max-height:150px'>");
+		var url = YourTour.util.Context.getImageResource(record.get('imageUrl'));
+		var style = {};
+		style['background-image'] = 'url(' + url + ')';
+		style['background-repeat'] = 'no-repeat';
+		style['background-position'] = 'center center';
+		style['background-size'] = '100% 100%';
+		routePanel.setStyle(style);
 
 		var schedulesStore = record.schedulesStore;
 		var scheduleList = view.down('#RouteScheduleList');
@@ -108,6 +105,11 @@ Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
 			}
 		});
 		scheduleList.setStore(schedulesStore);
+	},
+
+	onEditTap:function(){
+		var editController = this.getApplication().getController('route.RouteSchedulePlanCtrl');
+		editController.updateRouteSchedule(this.store);
 	},
     
     onItemTap:function(dataview, index, item, record){

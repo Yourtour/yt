@@ -11,13 +11,19 @@ Ext.define('YourTour.view.widget.XTappable', {
         me.element.on({
             scope: me,
             tap: function (e, t) {
-                me.fireEvent('tap', me, e, t);
+                me.onTap(e, t);
             }
         });
 
         if(me.indicator != 'none'){
             me.addCls(me.indicator);
         }
+    },
+
+    onTap:function(e, t){
+        var me = this;
+
+        me.fireEvent('tap', me, e, t);
     },
 
     updateIndicator: function (indicator) {

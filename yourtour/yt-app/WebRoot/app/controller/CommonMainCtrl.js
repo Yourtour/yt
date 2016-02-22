@@ -2,7 +2,7 @@ Ext.define('YourTour.controller.CommonMainCtrl', {
     extend: 'Ext.app.Controller',
     config: {
         refs: {
-            contentReadView: '#ContentReadView',
+            fieldEditView: '#FieldEditView',
 
             commentMainView: '#CommentMainView',
             commentList: '#CommentMainView #commentList',
@@ -11,6 +11,10 @@ Ext.define('YourTour.controller.CommonMainCtrl', {
         },
 
         control: {
+            '#FieldEditView #btnOk':{
+                tap:'saveFieldValue'
+            },
+
             '#CommentMainView #commentNum': {
                 tap: 'onCommentFilterTap'
             },
@@ -235,6 +239,28 @@ Ext.define('YourTour.controller.CommonMainCtrl', {
         duration.setText(dDuration);
 
         return true;
-    }
+    },
 
+    editField:function(field){
+        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.common.FieldEditView'));
+
+        var me = this, view = me.getFieldEditView(), headerbar = view.down('#headerbar'), content = view.down('#content');
+        view.bindData(field);
+
+        headerbar.setTitle(field.getLabel());
+
+        var text = field.getText();
+        if(text == null){
+            content.setPlaceHolder(field.getPlaceHolder())
+        }else {
+            content.setValue(field.getText());
+        }
+    },
+
+    saveFieldValue:function(){
+        var me = this, view = me.getFieldEditView(), field = view.getData(), content = view.down('#content');
+        field.setText(content.getValue());
+
+        Ext.ComponentManager.get('MainView').pop();
+    }
 });

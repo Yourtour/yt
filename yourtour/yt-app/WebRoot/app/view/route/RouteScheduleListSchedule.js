@@ -41,6 +41,8 @@ Ext.define('YourTour.view.route.RouteScheduleListSchedule', {
     updateRecord: function (record) {
         var me = this;
         if (record) {
+            this.record = record;
+
             var sTitle = record.get('title'), places = record.get('places');
             var title = me.down('#title');
             title.setHtml(sTitle + '  ' + places);
@@ -49,5 +51,7 @@ Ext.define('YourTour.view.route.RouteScheduleListSchedule', {
             memo.setText(record.get('memo'));
         }
     }
+
+
 });
 

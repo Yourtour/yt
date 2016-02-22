@@ -648,7 +648,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.controller.CommonMainCtrl": [],
   "YourTour.controller.ExpertMainCtrl": [],
   "YourTour.controller.HomeMainCtrl": [],
-  "YourTour.controller.Launch": [],
   "YourTour.controller.LineMainCtrl": [],
   "YourTour.controller.MainCtrl": [],
   "YourTour.controller.MemberMainCtrl": [],
@@ -722,7 +721,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.util.Context": [
     "YourTour.Context"
   ],
-  "YourTour.view.Launch": [],
+  "YourTour.view.LaunchView": [],
   "YourTour.view.MainView": [],
   "YourTour.view.SearchMain": [],
   "YourTour.view.along.AlongEditView": [],
@@ -742,7 +741,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.common.CommentFormView": [],
   "YourTour.view.common.CommentListDataItem": [],
   "YourTour.view.common.CommentMainView": [],
-  "YourTour.view.common.ContentReadView": [],
   "YourTour.view.common.FieldEditView": [],
   "YourTour.view.common.MessageDataItemView": [],
   "YourTour.view.common.MessageGroupView": [],
@@ -1657,7 +1655,6 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.controller.CommonMainCtrl": [],
   "YourTour.controller.ExpertMainCtrl": [],
   "YourTour.controller.HomeMainCtrl": [],
-  "YourTour.controller.Launch": [],
   "YourTour.controller.LineMainCtrl": [],
   "YourTour.controller.MainCtrl": [],
   "YourTour.controller.MemberMainCtrl": [],
@@ -1733,9 +1730,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.util.Context": [
     "Context"
   ],
-  "YourTour.view.Launch": [
-    "widget.launch"
-  ],
+  "YourTour.view.LaunchView": [],
   "YourTour.view.MainView": [
     "widget.MainView"
   ],
@@ -1767,7 +1762,6 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.CommentListDataItem"
   ],
   "YourTour.view.common.CommentMainView": [],
-  "YourTour.view.common.ContentReadView": [],
   "YourTour.view.common.FieldEditView": [],
   "YourTour.view.common.MessageDataItemView": [
     "widget.MessageDataItemView"

@@ -62,6 +62,7 @@ Ext.define('YourTour.view.widget.XMultiField', {
 		if(text == null || text == '') {
 			valueEl.setHtml(me.ifNull);
 		}else if(size == 0) {
+			if(this.editable)  text = text + '<div class="icon-edit"></div>';
 			valueEl.setHtml(text);
 		}else{
 			valueEl.setHtml(Ext.String.ellipsis(text, size, false));

@@ -26,7 +26,7 @@ Ext.application({
     
     views: [
         'MainView','LaunchView','setting.UserSettingView',
-        'common.MessageMainView','common.MessageGroupView','common.FieldEditView','common.ContentReadView',
+        'common.MessageMainView','common.MessageGroupView','common.FieldEditView','common.FieldEditView',
         'common.CommentMainView','common.TimeSelectionView',
 
         'home.HomeMainView', 'home.BestListView', 'home.TalentListView', 'SearchMain',
@@ -115,6 +115,8 @@ Ext.application({
     	    	'Content-Type':'application/json'
     	    };
     	}), this);
+
+        YourTour.util.Context.setApplication(this);
     },
     
     onDeviceReady:function() {

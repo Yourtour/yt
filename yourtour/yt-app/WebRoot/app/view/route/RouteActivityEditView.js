@@ -37,24 +37,12 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 					},
 
 					{
-						xtype: 'panel',
-						layout: 'hbox',
-						cls: 'row underline',
-						padding: '0 10 0 10',
-						items:[
-							{
-								xtype:'xlabel',
-								html:'行程名称',
-								padding:'0 10 0 0'
-							},
-							{
-								xtype: 'xtextfield',
-								itemId: 'title',
-								flex:1,
-								inputCls: 'font-medium font-grey',
-								placeHolder: '输入活动名称'
-							}
-						]
+						xtype: 'xfield',
+						itemId: 'title',
+						label:'行程名称',
+						editable:true,
+						inputCls: 'font-grey',
+						text: '输入活动名称'
 					},
 
 					{
@@ -80,7 +68,7 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 								xtype: 'xlabel',
 								html: '至',
 								width: 40,
-								style: 'font-weight:bold',
+								cls: 'font-grey font-medium',
 								margin: '0 5 0 5'
 							},
 
@@ -94,26 +82,11 @@ Ext.define('YourTour.view.route.RouteActivityEditView', {
 					},
 
 					{
-						xtype: 'panel',
-						layout: 'hbox',
-						cls: 'underline',
-						padding: '0 0 0 10',
-						items: [
-							{
-								xtype:'xlabel',
-								html:'行程描述',
-								padding:'0 10 0 0'
-							},
-							{
-								xtype: 'xtextarea',
-								itemId: 'memo',
-								height: 195,
-								clearIcon: true,
-								flex: 1,
-								cls: 'font-medium font-grey multilineinfo',
-								margin: '0 5 0 0'
-							}
-						]
+						xtype: 'xmultifield',
+						itemId: 'memo',
+						label:'行程描述',
+						editable:true,
+						text: '输入活动名称'
 					},
 
 					{

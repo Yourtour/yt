@@ -15,8 +15,10 @@ Ext.define('YourTour.view.widget.XField', {
         underline: null,
         padding: '10 10 10 10',
         ifNull:'',
+        placeHolder:null,
         binding:null,
         dataChange:null,
+        editable:false,
         items: [
             {
                 xtype: 'label',
@@ -51,6 +53,18 @@ Ext.define('YourTour.view.widget.XField', {
 
         if(me.underline == null){
             me.addCls('underline');
+        }
+
+        if(me.placeHolder != null){
+            value.setHtml(me.placeHolder);
+        }
+
+        if(me.editable){
+            me.on('tap', function(){
+                var application = YourTour.util.Context.getApplication(), controller = application.getController('CommonMainCtrl');
+
+                controller.editField(me);
+            })
         }
 
         if(! this.getDataChange()) {
@@ -164,18 +178,22 @@ Ext.define('YourTour.view.widget.XField', {
     },
 
     setText: function (text) {
+        this.text = text;
+
         text += '';
+
         var valueEl = this.down('#value');
         if(text == null || text == ''){
             valueEl.setHtml(this.ifNull);
         }else {
+            if(this.editable)  text = text + '<div class="icon-edit"></div>';
+
             valueEl.setHtml(text);
         }
     },
 
     getText: function () {
-        var valueEl = this.down('#value');
-        return valueEl.getHtml();
+        return this.text;
     },
 
     updateIfNull:function(ifNull){
@@ -211,8 +229,20 @@ Ext.define('YourTour.view.widget.XField', {
         }
     },
 
+    updateEditable:function(editable){
+        this.editable = editable;
+    },
+
     updateRecord:function(record){
         this.element.fireEvent('dataChange', this, record);
+    },
+
+    updatePlaceHolder:function(placeHolder){
+        this.placeHolder = placeHolder;
+    },
+
+    getPlaceHolder:function(){
+        return this.placeHolder;
     }
 });
 

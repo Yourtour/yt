@@ -27,18 +27,22 @@ Ext.define('YourTour.view.route.RouteScheduleListView', {
                 layout: 'vbox',
                 items: [
                     {
+                        xtype: 'xlabel',
+                        itemId:'titleIndicator',
+                        cls:'x-xschedule-indicator',
+                        docked:'top',
+                        hidden:true
+                    },
+
+                    {
                         xtype: 'panel',
+                        itemId:'routePanel',
+                        height:150,
                         layout: 'vbox',
                         items: [
                             {
-                                itemId: 'imageUrl',
-                                xtype: 'image',
-                                mode: 'tag'
-                            },
-
-                            {
+                                xtype: 'xfield',
                                 itemId: 'name',
-                                xtype: 'label',
                                 style: 'background:grey;opacity:0.5; color:#fff; font-size:14px; font-weight:bold; width:100%; height:40px; line-height:40px; text-align:center',
                                 docked: 'bottom',
                                 bottom: 1
@@ -53,7 +57,11 @@ Ext.define('YourTour.view.route.RouteScheduleListView', {
                         useComponents: true,
                         defaultType: 'RouteScheduleListDataItem'
                     }
-                ]
+                ],
+
+                initialize:function(){
+                    this.callParent(arguments);
+                }
             },
 
             {
@@ -111,7 +119,33 @@ Ext.define('YourTour.view.route.RouteScheduleListView', {
                     }
                 }
             }
-        )
+        );
+
+        var pagebody = me.down('#pagebody'), scroller = pagebody.getScrollable().getScroller();
+        scroller.on({
+            scroll: 'onScroller',
+            //scrollend: 'onScrollerEnd',
+            scope: this
+        });
+    },
+
+    onScroller:function (scroller, x, y,eOpts ) {
+        var me = this,strTitle,record,
+            titleIndicator = me.down('#titleIndicator');
+        items = Ext.ComponentQuery.query('#RouteScheduleList  .RouteScheduleListSchedule');
+
+        Ext.Array.forEach(items, function(item, index){
+            if(index == 0 && item.element.getY() >= 0){
+                titleIndicator.hide();
+            }else if(item.element.getY() <= 0) {
+                titleIndicator.show();
+
+                record = item.getRecord();
+                strTitle = record.get('title') + ' ' + record.get('places');
+            }
+        });
+
+        titleIndicator.setHtml(strTitle);
     }
 });
 

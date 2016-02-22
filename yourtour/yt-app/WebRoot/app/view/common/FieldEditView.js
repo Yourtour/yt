@@ -3,32 +3,25 @@ Ext.define('YourTour.view.common.FieldEditView', {
     requires:['Ext.Label','Ext.Panel'],
     config: {
     	id:'FieldEditView',
-    	layout:'vbox',
+    	layout:'card',
     	items:[
-			{    
+			{
 				xtype: 'xheaderbar',
 				itemId:'headerbar',
-				title:'编辑',
 				items:[
 					{
-						xtype:'toolbutton',
-						itemId:'btnSave',
-						text:'确定',
+						xtype: "xbutton",
+						itemId:'btnOk',
+						icon:'resources/icons/24/icon_header_ok.png',
 						align:'right'
 					}
 				]
 			},
-			
-			{
-				xtype: 'textfield',
-				itemId:'field',
-				padding:'0 10 0 10',
-				inputCls:'font-medium font-grey'
-			},
 
 			{
-				xtype: 'label',
-				cls:'horizentalLine'
+				xtype: 'textareafield',
+				itemId:'content',
+				height:200
 			}
     	]
     }

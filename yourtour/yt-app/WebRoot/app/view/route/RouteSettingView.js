@@ -19,14 +19,20 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 			},
 
 			{
-				xtype:'xtextfield',
+				xtype:'xfield',
 				itemId:'name',
-				label:'行程名称'
+				editable:true,
+				label:'行程名称',
+				align:'right',
+				placeHolder:'请输入行程名称'
 			},
 			{
-				xtype:'xtextfield',
+				xtype:'xfield',
 				itemId:'budget',
-				label:'行程预算'
+				label:'行程预算',
+				editable:true,
+				align:'right',
+				placeHolder:'请输入行程预算'
 			},
 
 			{
@@ -37,14 +43,14 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 				xtype:'xdatefield',
 				itemId:'startDate',
 				label:'出发日期',
-				fieldCls:'x-field-right'
+				align:'right'
 			},
 
 			{
 				xtype:'xdatefield',
 				itemId:'endDate',
 				label:'返程日期',
-				fieldCls:'x-field-right'
+				align:'right'
 			},
 
 			{

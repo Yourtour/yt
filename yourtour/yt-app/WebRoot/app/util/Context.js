@@ -8,8 +8,10 @@ Ext.define('YourTour.util.Context', {
 
 		//server:'192.168.1.174:8080'
     	//server:'192.168.2.102:8080'
-		server:'120.55.76.201:8080'
-		//server:'localhost:8080'
+		server:'120.55.76.201:8080',
+		//server:'localhost:8080',
+
+		application:null
     },
     
     constructor : function(config) {
@@ -93,6 +95,15 @@ Ext.define('YourTour.util.Context', {
 
 	imageCapture:function(success, fail){
 		Ext.Viewport.add(Ext.create('YourTour.view.widget.XImageSelect',{success:success, fail : fail}));
+	},
+
+	setApplication:function(application){
+		this.application = application;
+	},
+
+	getApplication:function(){
+		return this.application;
 	}
+
 });
 
