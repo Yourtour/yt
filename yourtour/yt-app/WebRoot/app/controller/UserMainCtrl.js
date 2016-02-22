@@ -22,6 +22,11 @@ Ext.define('YourTour.controller.UserMainCtrl', {
                tap:'onUserProfileTap'
            },
 
+           '#UserMainView #footprint':{
+               tap:'showFootprintPage'
+           },
+
+
            '#UserMainView #btnSetting':{
                 tap:'onSettingTap'
            },
@@ -50,17 +55,10 @@ Ext.define('YourTour.controller.UserMainCtrl', {
                donetap:'onImagePick'
            }
 
-       },
-       
-       routes:{
-    	   '/main/user':'showPage'
        }
     },
     
-    init:function(){
-    },
-    
-    showPage:function(){
+    showMainPage:function(){
     	var me = this;
     	
     	YourTour.util.Context.mainview = me.getUserMainView();
@@ -167,5 +165,10 @@ Ext.define('YourTour.controller.UserMainCtrl', {
         var userProfileView = this.getUserProfileView();
         var img = view.down('#portrait');
         img.setSrc(image_uri);
+    },
+
+    showFootprintPage:function(){
+
     }
+
 });

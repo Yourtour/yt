@@ -14,7 +14,7 @@ Ext.application({
     name: 'YourTour',
 
     requires: [
-        'Ext.MessageBox', 'YourTour.view.widget.XProcessing', 'Ext.form.Hidden','YourTour.util.Context','YourTour.view.widget.XImageSelect'
+        'Ext.data.proxy.LocalStorage','Ext.MessageBox', 'YourTour.view.widget.XProcessing', 'Ext.form.Hidden','YourTour.util.Context','YourTour.view.widget.XImageSelect'
     ],
     
     /**
@@ -25,7 +25,7 @@ Ext.application({
     localStorage : window.localStorage,  
     
     views: [
-        'MainView','Launch','setting.UserSettingView',
+        'MainView','LaunchView','setting.UserSettingView',
         'common.MessageMainView','common.MessageGroupView','common.FieldEditView','common.ContentReadView',
         'common.CommentMainView','common.TimeSelectionView',
 
@@ -39,7 +39,7 @@ Ext.application({
         'service.PlaceServiceMainView','service.RouteServiceBookView',
         'user.LoginMainView','user.UserListView','user.UserMainView','user.UserProfileView',
         'resource.ResourceSelectionView','resource.ResourceFormView','resource.ResourceMapView','resource.ResourceActivityItemListView',
-        'resource.ResourceActivityItemFormView',
+        'resource.ResourceActivityItemFormView','resource.ResourceListView',
         'member.MemberMainView','member.MemberView', 'member.MemberAddView','member.MemberPositionView','member.MemberSearchView','member.MemberSelectionView',
         'charge.ChargeMainView','charge.ChargeFormView','charge.ChargeListView','charge.ChargeView','charge.ChargeDivisionView','charge.ChargeDivisionFormView',
         'expert.ExpertMainView','expert.ExpertApplyView','expert.ExpertListView','expert.ExpertServiceEditView',
@@ -54,8 +54,7 @@ Ext.application({
     ],
     
     controllers: [
-        'Launch', 'MainCtrl','SettingMainCtrl',
-        'home.HomeMainCtrl', 'home.BestMainCtrl','home.TalentMainCtrl',
+        'MainCtrl','SettingMainCtrl','HomeMainCtrl',
         'route.RouteMainCtrl',
         'route.RouteScheduleListCtrl','route.RouteSchedulePlanCtrl',
         'user.AccountMainCtrl',

@@ -1,14 +1,15 @@
 Ext.define('YourTour.view.place.PlaceMainView', {
 	extend: 'YourTour.view.widget.XPage',
     requires:['YourTour.view.widget.XHeaderBar','YourTour.view.widget.XDataView','YourTour.view.place.PlaceMainDataItem'],
-    config: {
+    xtype:'PlaceMainView',
+	config: {
     	id:'PlaceMainView',
       	layout:'vbox',
         items: [
 			{    
 				xtype: 'xheaderbar',
 				itemId:'headerbar',
-				title:'上海'
+				backButton: false
 			},
 
 			{
@@ -43,7 +44,7 @@ Ext.define('YourTour.view.place.PlaceMainView', {
 								xtype:'panel',
 								layout:'vbox',
 								docked:'bottom',
-								padding:'10 10',
+								padding:'20 10',
 								items:[
 									{
 										xtype:'panel',
@@ -69,6 +70,12 @@ Ext.define('YourTour.view.place.PlaceMainView', {
 												itemId:'placeExperts',
 												html: '达人',
 												style:'background-image: url(./resources/icons/48/icon_expert.png);'
+											},
+											{
+												xtype: 'xlabel',
+												itemId:'placeScene',
+												html: '景点',
+												style:'background-image: url(./resources/icons/48/icon_scene.png);'
 											}
 										]
 									},
@@ -76,6 +83,7 @@ Ext.define('YourTour.view.place.PlaceMainView', {
 									{
 										xtype:'panel',
 										layout:'hbox',
+										margin:'10 0 0 0',
 										defaults:{
 											flex:1,
 											cls:'x-xnav-button'
@@ -96,6 +104,12 @@ Ext.define('YourTour.view.place.PlaceMainView', {
 												xtype: 'xlabel',
 												html: '聊天室',
 												style:'background-image: url(./resources/icons/48/icon_chat.png);'
+											},
+											{
+												xtype: 'xlabel',
+												itemId:'placePosition',
+												html: '附近',
+												style:'background-image: url(./resources/icons/48/icon_position.png);'
 											}
 										]
 									}

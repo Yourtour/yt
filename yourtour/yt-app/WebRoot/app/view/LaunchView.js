@@ -1,11 +1,10 @@
-Ext.define('YourTour.view.Launch', {
+Ext.define('YourTour.view.LaunchView', {
     extend: 'Ext.Container',
-    xtype: 'launch',
     requires:['Ext.Img', 'Ext.Label','Ext.Carousel'],
     config: {
     	layout:'card',
     	fullscreen: true,
-    	id:'launch',
+    	id:'LaunchView',
         items: [
             {
             	xtype: 'image',

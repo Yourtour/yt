@@ -5,7 +5,6 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
     config: {
         refs: {
             routeMainView: '#RouteMainView',
-            routeCarousel: '#RouteMainView #routeCarousel',
             newRoute: '#RouteMainView #new',
             deleteRoute: '#RouteMainView #delete',
 
@@ -37,10 +36,6 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
 
             deleteRoute: {
                 tap: 'onRouteDelete'
-            },
-
-            routeCarousel: {
-                tap: 'onCarouselItemTap'
             },
 
             '#RouteImpressionView #save': {
@@ -100,36 +95,29 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
             }
         },
 
-        routes: {
-            '/main/route': 'showPage'
-        },
-
         store: null
     },
 
-    showPage: function () {
-        var me = this;
-        var routeCarousel = me.getRouteCarousel();
-        var store = me.store = Ext.create('YourTour.store.RouteStore', {storeId: 'RouteMainStore'});
-        var handler = function () {
-            if (routeCarousel) {
-                routeCarousel.removeAll(true, false);
+    showMainPage: function () {
+        var me = this, mainview = me.getRouteMainView(), routePanel = mainview.down('#routePanel');
 
-                store.each(function (item) {
-                    var routePanel = Ext.create('YourTour.view.route.RouteMainItem', {
-                        carousel: routeCarousel,
-                        record: item
-                    });
-                    routeCarousel.add(routePanel);
-                });
+        var options = {
+            model: 'YourTour.model.RouteModel',
+            url: '/routes/personal/query',
+            success: function (store) {
+                var route = store.first();
+                mainview.setData(route);
 
-                routeCarousel.setActiveItem(0);
+                var url = YourTour.util.Context.getImageResource(route.get('imageUrl'));
+                var style = {};
+                style['background-image'] = 'url(' + url + ')';
+                style['background-repeat'] = 'no-repeat';
+                style['background-position'] = 'center center';
+                style['background-size'] = '100% 100%';
+                routePanel.setStyle(style);
             }
         };
-
-        var proxy = store.getProxy();
-        proxy.setUrl(YourTour.util.Context.getContext('/routes/personal/query'));
-        store.load(handler, this);
+        me.getApplication().query(options);
     },
 
     onRouteNew: function () {
@@ -166,40 +154,27 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
         });
     },
 
-    onRouteTap: function (record) {
-        var me = this;
-        var routeCarousel = me.getRouteCarousel();
-        var index = routeCarousel.getActiveIndex();
-        var record = me.store.getAt(index);
-
+    onRouteTap: function () {
+        var me = this, mainview = me.getRouteMainView(), record = mainview.getData();
         this.redirectTo('/route/load/' + record.get('id'));
     },
 
     onRouteServiceTap: function (record) {
-        var me = this;
-        var routeCarousel = me.getRouteCarousel();
-        var index = routeCarousel.getActiveIndex();
-        var record = me.store.getAt(index);
+        var me = this, mainview = me.getRouteMainView(), record = mainview.getData();
 
         var controller = me.getApplication().getController('ServiceMainCtrl');
         controller.showRouteService(record);
     },
 
     onRouteMemberTap: function (record) {
-        var me = this;
-        var routeCarousel = me.getRouteCarousel();
-        var index = routeCarousel.getActiveIndex();
-        var record = me.store.getAt(index);
+        var me = this, mainview = me.getRouteMainView(), record = mainview.getData();
 
         var controller = me.getApplication().getController('MemberMainCtrl');
         controller.showMainPage(record);
     },
 
     onRouteChargeTap: function (record) {
-        var me = this, routeCarousel = me.getRouteCarousel();
-
-        var index = routeCarousel.getActiveIndex();
-        var record = me.store.getAt(index);
+        var me = this, mainview = me.getRouteMainView(), record = mainview.getData();
 
         var controller = me.getApplication().getController('ChargeMainCtrl');
         controller.showPage(record.get('id'));

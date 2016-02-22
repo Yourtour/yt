@@ -5,7 +5,7 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
             resourceSceneView: '#ResourceSceneView',
 
             resourceSelectionView: '#ResourceSelectionView',
-            resourceList: '#ResourceSelectionView #resourceList',
+            selectionList: '#ResourceSelectionView #resourceList',
 
             resourceFormView: '#ResourceFormView',
             btnResourceAddTap: '#ResourceFormView #btnResourceAddTap',
@@ -13,7 +13,10 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
             resourceActivityItemListView: '#ResourceActivityItemListView',
             activityList: '#ResourceActivityItemListView #activityList',
 
-            resourceActivityItemFormView: '#ResourceActivityItemFormView'
+            resourceActivityItemFormView: '#ResourceActivityItemFormView',
+
+            resourceListView:'#ResourceListView',
+            resourceList:'#ResourceListView #resourceList'
         },
 
         control: {
@@ -21,7 +24,7 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
                 itemtap: 'onPlayItemTap'
             },
 
-            resourceList: {
+            selectionList: {
                 itemtap:'showResource'
             },
 
@@ -43,15 +46,29 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
         }
     },
 
-    showSelectionPage: function () {
-        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.resource.ResourceSelectionView'));
+    showListView4Place:function(place){
+        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.resource.ResourceListView'));
 
         var me = this, resourceList = me.getResourceList();
         var options = {
             model:'YourTour.model.ResourceModel',
-            url:'/scenes/query',
+            url:'/resource/place/' + place.get('id'),
             success:function(store){
                 resourceList.setStore(store);
+            }
+        };
+        me.getApplication().query(options);
+    },
+
+    showSelectionPage: function () {
+        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.resource.ResourceSelectionView'));
+
+        var me = this, selectionList = me.getSelectionList();
+        var options = {
+            model:'YourTour.model.ResourceModel',
+            url:'/scenes/query',
+            success:function(store){
+                selectionList.setStore(store);
             }
         };
         me.getApplication().query(options);

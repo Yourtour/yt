@@ -7,7 +7,7 @@ Ext.define('YourTour.view.widget.XDataView', {
         useComponents: true,
         itemHeight: 0,
         scrollable: {
-            direction: 'horizontal',
+            direction: 'vertical',
             indicators: false,
             directionLock: true,
             momentumEasing: {

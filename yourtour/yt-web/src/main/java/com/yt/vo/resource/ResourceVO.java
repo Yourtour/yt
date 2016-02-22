@@ -33,6 +33,9 @@ public class ResourceVO extends BaseVO {
     private String tips; // 贴士
     private Status status;
 
+    private String tags;
+    private String feature;
+
     private String place; // 目的地
     private Long placeId; // 目的地对象ID
 
@@ -81,6 +84,8 @@ public class ResourceVO extends BaseVO {
         vo.setType(bean.getType());
         vo.setWebsite(bean.getWebsite());
 
+        vo.setTags(bean.getTags());
+        vo.setFeature(bean.getFeature());
         vo.setCommentNum(bean.getCommentNum());
         vo.setGoodNum(bean.getGoodNum());
         vo.setBadNum(bean.getBadNum());
@@ -444,5 +449,21 @@ public class ResourceVO extends BaseVO {
 
     public void setImageNum(int imageNum) {
         this.imageNum = imageNum;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
+
+    public String getFeature() {
+        return feature;
+    }
+
+    public void setFeature(String feature) {
+        this.feature = feature;
     }
 }

@@ -647,6 +647,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.controller.ChargeMainCtrl": [],
   "YourTour.controller.CommonMainCtrl": [],
   "YourTour.controller.ExpertMainCtrl": [],
+  "YourTour.controller.HomeMainCtrl": [],
   "YourTour.controller.Launch": [],
   "YourTour.controller.LineMainCtrl": [],
   "YourTour.controller.MainCtrl": [],
@@ -658,9 +659,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.controller.ServiceMainCtrl": [],
   "YourTour.controller.SettingMainCtrl": [],
   "YourTour.controller.UserMainCtrl": [],
-  "YourTour.controller.home.BestMainCtrl": [],
-  "YourTour.controller.home.HomeMainCtrl": [],
-  "YourTour.controller.home.TalentMainCtrl": [],
   "YourTour.controller.route.RouteMainCtrl": [],
   "YourTour.controller.route.RouteScheduleListCtrl": [],
   "YourTour.controller.route.RouteSchedulePlanCtrl": [],
@@ -815,6 +813,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.resource.ResourceFoodDataItem": [],
   "YourTour.view.resource.ResourceFoodListView": [],
   "YourTour.view.resource.ResourceFormView": [],
+  "YourTour.view.resource.ResourceListDataItem": [],
+  "YourTour.view.resource.ResourceListView": [],
   "YourTour.view.resource.ResourceMapView": [],
   "YourTour.view.resource.ResourcePlayDataItem": [],
   "YourTour.view.resource.ResourcePlayListView": [],
@@ -864,6 +864,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.service.RouteServiceListDataItem": [],
   "YourTour.view.service.RouteServiceMainView": [],
   "YourTour.view.setting.UserSettingView": [],
+  "YourTour.view.user.FootprintMainView": [],
   "YourTour.view.user.LoginMainView": [],
   "YourTour.view.user.LoginView": [],
   "YourTour.view.user.RegisterAccountView": [],
@@ -1655,6 +1656,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.controller.ChargeMainCtrl": [],
   "YourTour.controller.CommonMainCtrl": [],
   "YourTour.controller.ExpertMainCtrl": [],
+  "YourTour.controller.HomeMainCtrl": [],
   "YourTour.controller.Launch": [],
   "YourTour.controller.LineMainCtrl": [],
   "YourTour.controller.MainCtrl": [],
@@ -1666,9 +1668,6 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.controller.ServiceMainCtrl": [],
   "YourTour.controller.SettingMainCtrl": [],
   "YourTour.controller.UserMainCtrl": [],
-  "YourTour.controller.home.BestMainCtrl": [],
-  "YourTour.controller.home.HomeMainCtrl": [],
-  "YourTour.controller.home.TalentMainCtrl": [],
   "YourTour.controller.route.RouteMainCtrl": [],
   "YourTour.controller.route.RouteScheduleListCtrl": [],
   "YourTour.controller.route.RouteSchedulePlanCtrl": [],
@@ -1911,7 +1910,9 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.place.PlaceMainItem": [
     "widget.PlaceMainItem"
   ],
-  "YourTour.view.place.PlaceMainView": [],
+  "YourTour.view.place.PlaceMainView": [
+    "widget.PlaceMainView"
+  ],
   "YourTour.view.place.PlaceOverviewView": [
     "widget.PlaceOverviewView"
   ],
@@ -1943,6 +1944,10 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.ResourceFoodListView"
   ],
   "YourTour.view.resource.ResourceFormView": [],
+  "YourTour.view.resource.ResourceListDataItem": [
+    "widget.ResourceListDataItem"
+  ],
+  "YourTour.view.resource.ResourceListView": [],
   "YourTour.view.resource.ResourceMapView": [
     "widget.ResourceMapView"
   ],
@@ -2042,6 +2047,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.setting.UserSettingView": [
     "widget.UserSettingView"
   ],
+  "YourTour.view.user.FootprintMainView": [],
   "YourTour.view.user.LoginMainView": [],
   "YourTour.view.user.LoginView": [
     "widget.LoginView"

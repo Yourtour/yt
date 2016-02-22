@@ -10,8 +10,7 @@ Ext.define('YourTour.view.route.RouteMainItem', {
             {
                 xtype:'panel',
                 itemId:'item',
-                docked:'bottom',
-                style: 'background-color:grey;opacity:0.8;',
+                margin:'20 0 0 0',
                 items:[
                     {
                         xtype:'xfield',

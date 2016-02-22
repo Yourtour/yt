@@ -37,10 +37,17 @@ Ext.define('YourTour.view.MainView', {
 					    iconAlign:'top'
 					},
 					{
+						xtype:'PlaceMainView',
+						itemId:'btnPlace',
+						title:'目的地',
+						iconCls:'locate',
+						iconAlign:'top'
+					},
+					{
 						xtype:'RouteMainView',
 					    itemId:'btnRoute',
 					    title:'行程',
-					    iconCls:'locate',
+					    iconCls:'bookmarks',
 					    iconAlign:'top'
 					},
 					{

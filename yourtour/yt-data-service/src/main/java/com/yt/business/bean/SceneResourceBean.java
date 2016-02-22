@@ -25,10 +25,6 @@ public class SceneResourceBean extends ResourceBean {
 	private static final long serialVersionUID = 563053332776568183L;
 	private static final String INDEX_NAME = "scene";
 
-	@HbaseColumn(name = "intr")
-	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	private String intro; // 简介
-
 	@HbaseColumn(name = "tikt")
 	private String ticket; // 门票信息
 
@@ -47,14 +43,6 @@ public class SceneResourceBean extends ResourceBean {
 
 	public SceneResourceBean() {
 		super();
-	}
-
-	public String getIntro() {
-		return intro;
-	}
-
-	public void setIntro(String intro) {
-		this.intro = intro;
 	}
 
 	public String getTicket() {

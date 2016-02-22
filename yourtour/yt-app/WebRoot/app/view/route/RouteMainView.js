@@ -29,98 +29,86 @@ Ext.define('YourTour.view.route.RouteMainView', {
             },
 
             {
-                xtype:'panel',
-                layout:'vbox',
-                items:[
+                xtype: 'xpagebody',
+                itemId:'pageBody',
+                layout: 'card',
+                items: [
                     {
-                        xtype: 'carousel',
-                        itemId: 'routeCarousel',
-                        flex: 1,
-                        animation: {
-                            duration: 250,
-                            easing: {
-                                type: 'fade'
-                            }
-                        }
-                    },
-
-                    {
-                        xtype:'xnavigation',
-                        itemId:'navigation',
-                        docked: 'top',
-                        direction:'right',
-                        top:30,
-                        left: 10,
+                        xtype:'panel',
+                        itemId:'routePanel',
+                        layout:'vbox',
                         items:[
                             {
-                                xtype:'image',
-                                itemId:'btnRoute',
-                                src:'resources/icons/48/icon_route.png'
+                                xtype:'panel',
+                                itemId:'item',
+                                margin:'20 0 0 0',
+                                items:[
+                                    {
+                                        xtype:'xfield',
+                                        itemId:'name',
+                                        underline:false,
+                                        fieldCls:'font-striking font-bold font-large-extra'
+                                    },
+                                    {
+                                        xtype: 'xmultifield',
+                                        itemId: 'lineName',
+                                        icon:'icon-name',
+                                        underline:false,
+                                        fieldCls:'font-white'
+                                    },
+
+                                    {
+                                        xtype: 'xfield',
+                                        itemId: 'time',
+                                        icon:'icon-time',
+                                        underline:false,
+                                        margin:'0 0 20 0',
+                                        fieldCls:'font-white'
+                                    }
+                                ]
                             },
 
                             {
-                                xtype:'image',
-                                itemId:'btnService',
-                                src:'resources/icons/48/icon_service.png'
-                            },
+                                xtype:'panel',
+                                layout:'hbox',
+                                docked: 'bottom',
+                                defaults:{
+                                    flex:1,
+                                    cls:'x-xnav-button'
+                                },
+                                items:[
+                                    {
+                                        xtype: 'xlabel',
+                                        html: '行程',
+                                        itemId:'btnRoute',
+                                        style:'background-image: url(./resources/icons/48/icon_route.png);'
+                                    },
 
-                            {
-                                xtype:'image',
-                                itemId:'btnMember',
-                                src:'resources/icons/48/icon_partner.png'
-                            },
+                                    {
+                                        xtype: 'xlabel',
+                                        html: '服务',
+                                        itemId:'btnService',
+                                        style:'background-image: url(./resources/icons/48/icon_service.png);'
+                                    },
 
-                            {
-                                xtype:'image',
-                                itemId:'btnCharge',
-                                src:'resources/icons/48/icon_expense.png'
+                                    {
+                                        xtype: 'xlabel',
+                                        html: '伙伴',
+                                        itemId:'btnMember',
+                                        style:'background-image: url(./resources/icons/48/icon_partner.png);'
+                                    },
+
+                                    {
+                                        xtype: 'xlabel',
+                                        html: '费用',
+                                        itemId:'btnCharge',
+                                        style:'background-image: url(./resources/icons/48/icon_expense.png);'
+                                    }
+                                ]
                             }
+
                         ]
-                    },
-
-                    /*{
-                        xtype: 'panel',
-                        layout: 'vbox',
-                        bottom: 0,
-                        docked: 'bottom',
-                        style: 'background-color:grey;opacity:0.8; width:100%;',
-                        items: [
-                            {
-                                xtype: 'markedlabel',
-                                pack: 'center',
-                                align: 'center',
-                                itemId: 'routeName',
-                                html: ''
-                            },
-
-                            {
-                                xtype: 'xmultifield',
-                                itemId: 'lineName',
-                                paddingLeft:0,
-                                icon:'icon-name'
-                            },
-
-                            {
-                                xtype: 'xfield',
-                                itemId: 'time',
-                                icon:'icon-time',
-                                dataChange:function(field, record){
-                                    field.setText(record.get('startDate') +'-' + record.get('endDate') + '  合计：' + record.get('duration')+'天');
-                                }
-                            },
-
-                            {
-                                xtype: 'xmultifield',
-                                itemId: 'impression',
-                                icon:'icon-impression',
-                                ifNull:'赶快记录下你的旅行印象吧.........',
-                                ellipsis:{
-                                    size:80,
-                                    expandable:true
-                                }
-                            }
-                        ]
-                    }*/
+                    }
                 ]
             }
         ]

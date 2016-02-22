@@ -64,7 +64,7 @@ Ext.define('YourTour.view.route.RouteScheduleListScheduleItem', {
             time.setText(record.get('startTime'));
 
             var resImage = me.down('#resImage');
-            resImage.setSrc(YourTour.util.Context.getImageResource(record.get('imageUrl')));
+            resImage.setSrc(YourTour.util.Context.getImageResource(record.get('imageUrl').split(';')[0]));
 
             var memo = me.down('#memo');
             memo.setText(Ext.String.ellipsis(record.get('memo'), 70, false));

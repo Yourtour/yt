@@ -6,7 +6,9 @@ import com.yt.business.common.Constants.ResType;
 import com.yt.hbase.annotation.HbaseColumn;
 import com.yt.neo4j.annotation.Neo4jRelationship;
 import org.neo4j.graphdb.Direction;
+import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
+import org.springframework.data.neo4j.support.index.IndexType;
 
 import java.util.List;
 
@@ -123,6 +125,13 @@ public class ResourceBean extends BaseBeanImpl {
 
 	@HbaseColumn(name = "tips")
 	private String tips; // 贴士
+
+	private String tags;
+
+	private String feature;
+
+	@HbaseColumn(name = "intr")
+	private String intro; // 简介
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_AT, type = PlaceBean.class, direction = Direction.OUTGOING)
 	private transient PlaceBean place = null;
@@ -423,5 +432,29 @@ public class ResourceBean extends BaseBeanImpl {
 
 	public void setImageNum(int imageNum) {
 		this.imageNum = imageNum;
+	}
+
+	public String getTags() {
+		return tags;
+	}
+
+	public void setTags(String tags) {
+		this.tags = tags;
+	}
+
+	public String getFeature() {
+		return feature;
+	}
+
+	public void setFeature(String feature) {
+		this.feature = feature;
+	}
+
+	public String getIntro() {
+		return intro;
+	}
+
+	public void setIntro(String intro) {
+		this.intro = intro;
 	}
 }

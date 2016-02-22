@@ -27,6 +27,10 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
 
             '#PlaceMainView #placeLines': {
                 tap: 'showLineView'
+            },
+
+            '#PlaceMainView #placePosition': {
+                tap: 'showResourceView'
             }
 
         },
@@ -43,32 +47,37 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
      * @param placeName
      */
     showMainPage: function (placeId, placeName) {
-        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.place.PlaceMainView'));
+        /*Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.place.PlaceMainView'));*/
         var me = this, mainview = me.getPlaceMainView(), resourceList = me.getResourceList(), navPanel = mainview.down('#navPanel');
 
         mainview.down('#headerbar').setTitle(placeName);
 
-        var options = {
-            model: 'YourTour.model.PlaceModel',
-            url: '/place/' + placeId + '/main',
-            success: function (store) {
-                var place = store.first();
-                mainview.setData(place);
+        if(! mainview.getData()) {
+            var options = {
+                model: 'YourTour.model.PlaceModel',
+                url: '/place/' + placeId + '/main',
+                success: function (store) {
+                    var place = store.first();
+                    mainview.setData(place);
 
-                var url = YourTour.util.Context.getImageResource(place.get('imageUrl'));
-                var style={};
-                style['background-image'] = 'url(' + url +  ')';
-                style['background-repeat'] = 'no-repeat';
-                style['background-position'] = 'center center';
-                style['background-size'] = '100% 100%';
-                navPanel.setStyle(style);
+                    var url = YourTour.util.Context.getImageResource(place.get('imageUrl'));
+                    var style = {};
+                    style['background-image'] = 'url(' + url + ')';
+                    style['background-repeat'] = 'no-repeat';
+                    style['background-position'] = 'center center';
+                    style['background-size'] = '100% 100%';
+                    navPanel.setStyle(style);
 
-                var resourceStore = place.resourcesStore;
-                resourceList.setStore(resourceStore);
-                me.showResourceImages(resourceStore.getAt(0));
-            }
-        };
-        me.getApplication().query(options);
+                    var resourceStore = place.resourcesStore;
+                    resourceList.setStore(resourceStore);
+
+                    me.showResourceImages(resourceStore.getAt(0));
+                }
+            };
+            me.getApplication().query(options);
+        }else{
+            me.showResourceImages(resourceList.getStore().getAt(0));
+        }
     },
 
     showResource:function(dataview, index, item, record){
@@ -97,6 +106,19 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
         var placeId = this.placeId;
         var ctrl = this.getApplication().getController('MessageMainCtrl');
         ctrl.showMainPage({type: 'place', roomCode: placeId});
+    },
+
+    /**
+     * 显示目的地附近
+     */
+    showResourceView:function(){
+        var me = this,
+            placeId = me.placeId,
+            mainview = me.getPlaceMainView(),
+            place = mainview.getData();
+
+        var controller = this.getApplication().getController('ResourceMainCtrl');
+        controller.showListView4Place(place);
     },
 
     /**

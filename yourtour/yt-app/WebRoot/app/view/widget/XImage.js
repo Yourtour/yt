@@ -23,7 +23,7 @@ Ext.define('YourTour.view.widget.XImage', {
         }
         var name = names[len - 1];
 
-        var url = data.get(name);
+        var url = data.get(name).split(';')[0];
         var cls = this.getImageCls();
 
         var mode = this.mode || this.getMode();
