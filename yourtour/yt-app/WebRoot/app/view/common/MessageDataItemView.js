@@ -30,7 +30,7 @@ Ext.define('YourTour.view.common.MessageDataItemView', {
     	var me = this;
        	if(record){
 			console.log(record);
-			var user = record.user;
+			var user = record.userStore.first();
 			var left = me.down('#imageLeft'), content=me.down('#content'), right = me.down('#imageRight');
 			if (user.id == YourTour.util.Context.getUserId()) {
 				left.hide();

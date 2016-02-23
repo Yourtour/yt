@@ -1,10 +1,13 @@
 package com.yt.ws.chat.commands;
 
+import java.util.Date;
+
 import javax.websocket.Session;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.alibaba.fastjson.JSONObject;
 import com.yt.business.bean.ChatMessageBean;
 import com.yt.business.bean.ChatSessionBean;
 import com.yt.business.bean.UserProfileBean;
@@ -72,15 +75,18 @@ public class ChatCommandMessageText extends AbstractChatCommandMessage {
 				sessions = sessionManager.getDynamicChatRoom(roomCode);
 				break;
 			}
+
+			JSONObject jsonUser = new JSONObject();
+			jsonUser.put("id", userProfileBean.getGraphId());
+			jsonUser.put("nickName", userProfileBean.getNickName());
+			jsonUser.put("imageUrl", userProfileBean.getImageUrl());
+			JSONObject jsonMessage = new JSONObject();
+			jsonMessage.put("contentType", MESSAGE_TYPE);
+			jsonMessage.put("content", this.getTextMessage());
+			jsonMessage.put("user", jsonUser);
 			for (Session s : sessions) {
-				if (session.getId().equals(s.getId())) {
-					// 自己的会话，消息前面加星号标记
-					s.getBasicRemote().sendText(
-							String.format("[*]%s", this.getTextMessage()));
-				} else {
-					// 转发的消息
-					s.getBasicRemote().sendText(this.getTextMessage());
-				}
+				jsonMessage.put("sendTime", new Date().getTime());
+				s.getBasicRemote().sendText(jsonMessage.toJSONString());
 			}
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {

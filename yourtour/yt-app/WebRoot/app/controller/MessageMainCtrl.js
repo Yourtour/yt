@@ -29,7 +29,6 @@ Ext.define('YourTour.controller.MessageMainCtrl', {
     showMainPage: function (chatRoomJson) {
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.common.MessageMainView'));
 
-
         var me = this,
             messageMainView = me.getMessageMainView(),
             headerBar = messageMainView.down('#headerbar'),

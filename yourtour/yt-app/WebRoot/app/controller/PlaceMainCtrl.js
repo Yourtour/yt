@@ -32,13 +32,7 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
             '#PlaceMainView #placePosition': {
                 tap: 'showResourceView'
             }
-
-        },
-
-        placeId: null
-    },
-
-    init: function () {
+        }
     },
 
     /**
@@ -102,11 +96,10 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
     },
 
     showPlaceChatRoom: function () {
-        var me = this,
-            mainview = me.getPlaceMainView(),
-            place = mainview.getData();
-            placeId = place.get('id');
-        var ctrl = me.getApplication().getController('MessageMainCtrl');
+        var me = this, mainview = me.getPlaceMainView(), place = mainview.getData();
+
+        var placeId = place.get('id');
+        var ctrl = this.getApplication().getController('MessageMainCtrl');
         ctrl.showMainPage({type: 'place', roomCode: placeId});
     },
 
