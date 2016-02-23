@@ -12,14 +12,20 @@ Ext.define('YourTour.view.widget.XProcessing', {
             },
             {
                 xtype:'label',
-                html:'Loading',
-                cls:'x-indicator'
+                itemId:'process'
             },
             {
                 xtype:'spacer',
                 flex:1
             }
         ]
+    },
+
+    initialize:function(){
+        this.callParent(arguments);
+
+        var me = this, process = me.down('#process');
+        process.setHtml('<div class="spinner"><i></i></div>');
     }
 });
 

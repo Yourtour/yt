@@ -9,7 +9,15 @@ Ext.define('YourTour.view.home.HomeMainView', {
             {
                 xtype: 'xheaderbar',
                 title: '首页',
-                backButton: false
+                backButton: false,
+                items:[
+                    {
+                        xtype: "xbutton",
+                        icon:'resources/icons/24/icon_header_position.png',
+                        itemId:'btnPosition',
+                        align:'right'
+                    }
+                ]
             },
 
             {

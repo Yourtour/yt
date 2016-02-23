@@ -921,6 +921,7 @@ Ext.ClassManager.addNameAlternateMappings({
   ],
   "YourTour.view.widget.XTitleBar": [],
   "YourTour.view.widget.XToolbar": [],
+  "YourTour.view.widget.XUserLogo": [],
   "YourTour.view.widget.XVerticalLine": [],
   "YourTour.view.widget.grid.XGridItem": [],
   "YourTour.view.widget.grid.XGridView": [],
@@ -2189,6 +2190,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.widget.XToolbar": [
     "widget.xtoolbar"
+  ],
+  "YourTour.view.widget.XUserLogo": [
+    "widget.xuserlogo"
   ],
   "YourTour.view.widget.XVerticalLine": [
     "widget.xvline"

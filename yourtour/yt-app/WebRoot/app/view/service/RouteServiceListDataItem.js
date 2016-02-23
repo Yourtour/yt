@@ -1,60 +1,60 @@
 Ext.define('YourTour.view.service.RouteServiceListDataItem', {
 	extend: 'YourTour.view.widget.XDataItem',
     xtype: 'RouteServiceListDataItem',
+	requires:['YourTour.view.widget.XUserLogo'],
     config: {
-      	layout:'hbox',
-		padding:10,
+      	layout:'vbox',
+		cls:'x-xspacer',
         items: [
 			{
-				itemId : 'image',
-				xtype : 'ximage',
-				margin:'0 5 0 0',
-				imageCls:'img-small',
+				xtype: 'xfield',
+				itemId:'title',
+				labelCls:'',
+				padding:'10 20 10 10',
+				indicator:'nav-arrow',
+				dataChange:function(field, record){
+					var expertService = record.expertServiceStore.first();
+					field.setText('<span style="width:30%">' + expertService.get('title') + '</span><span style="position:absolute;right:100px;">' + record.get('fromDateStr') + '~' + record.get('endDateStr') + '</span><span  style="position:absolute; right:20px">' + '未完成' + '</span>');
+				}
 			},
 
 			{
-				xtype:'panel',
-				layout:'vbox',
-				flex:1,
-				items:[
+				xtype: 'xmultifield',
+				itemId: 'memo',
+				underline: false,
+				padding: '10',
+				binding:'expertService.memo',
+				ellipsis: {
+					size: 60,
+					expandable: false
+				}
+			},
+
+			{
+				xtype: 'panel',
+				layout: 'hbox',
+				padding: '0 10 10 10',
+				items: [
 					{
-						xtype:'xfield',
-						itemId:'title',
-						underline:false,
-						fieldCls:'font-bold font-normal',
-						padding:'0'
-					} ,
+						xtype: 'xuserlogo',
+						margin: '0 10 0 0',
+						binding:'expertService.user.imageUrl',
+						cls: 'x-xmedium'
+					},
 
 					{
-						xtype:'xmultifield',
-						itemId:'memo',
+						xtype:'xfield',
 						underline:false,
-						padding:'0',
-						ellipsis:{
-							size:40,
-							expandable:false
+						padding: '0 10 10 0',
+						dataChange:function(field, record){
+							var expertService = record.expertServiceStore.first(), user = expertService.userStore.first();
+
+							field.setText(user.get('nickName'));
 						}
 					}
 				]
 			}
         ]
-    },
-
-	updateRecord:function(record){
-		var me = this;
-
-		if(record){
-			var expertService = record.expertServiceStore.first();
-
-			var image = me.down('#image');
-			image.setSrc(expertService.get('imageUrl'));
-
-			var title = me.down('#title');
-			title.setText(expertService.get('title'));
-
-			var memo = me.down('#memo');
-			memo.setText(record.get('memo'));
-		}
-	}
+    }
 });
 

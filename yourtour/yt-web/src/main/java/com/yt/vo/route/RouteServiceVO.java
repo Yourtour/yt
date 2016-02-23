@@ -131,12 +131,12 @@ public class RouteServiceVO extends BaseVO {
 	public String getFromDateStr(){
 		if(this.fromDate == 0) return "";
 
-		return DateUtils.formatDate(this.fromDate, "yyyy-MM-dd hh:mm:ss");
+		return DateUtils.formatDate(this.fromDate, "yyyy-MM-dd");
 	}
 
 	public String getEndDateStr(){
 		if(this.endDate == 0) return "";
 
-		return DateUtils.formatDate(this.endDate, "yyyy-MM-dd hh:mm:ss");
+		return DateUtils.formatDate(this.endDate, "yyyy-MM-dd");
 	}
 }
