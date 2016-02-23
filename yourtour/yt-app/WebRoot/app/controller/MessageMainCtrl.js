@@ -26,6 +26,10 @@ Ext.define('YourTour.controller.MessageMainCtrl', {
 
     },
 
+    onDestroy: function() {
+        console.log('on destroy................');
+    },
+
     showMainPage: function (chatRoomJson) {
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.common.MessageMainView'));
 
@@ -82,17 +86,12 @@ Ext.define('YourTour.controller.MessageMainCtrl', {
     },
 
     onCommonMessage: function (event) {
+        // 通用的接收到WebSocket实时消息
         var me = this, messageList = me.getMessageList(), data = Ext.JSON.decode(event.data);
-
-        console.log(data);
 
         var messageStore = messageList.getStore();
         var model = Ext.create('YourTour.model.MessageContentModel', data);
         messageStore.add(model);
-
-        // 通用的接收到WebSocket实时消息
-        console.log('WebSocket onMessage() ->');
-        console.log(event);
     },
 
     onMessageGroup: function () {
@@ -107,5 +106,6 @@ Ext.define('YourTour.controller.MessageMainCtrl', {
         var message = {type: 'MESSAGE', messageType: 'text/plain', notice: false, textMessage: content.getValue()};
         console.log(message);
         YourTour.util.ChatRoom.sendMessage(message);
+        //content.setValue('');
     }
 });
