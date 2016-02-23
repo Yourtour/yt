@@ -102,6 +102,7 @@ Ext.define('YourTour.view.place.PlaceMainView', {
 											},
 											{
 												xtype: 'xlabel',
+												itemId:'placeChatRoom',
 												html: '聊天室',
 												style:'background-image: url(./resources/icons/48/icon_chat.png);'
 											},

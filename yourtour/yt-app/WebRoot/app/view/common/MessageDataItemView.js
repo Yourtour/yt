@@ -29,21 +29,22 @@ Ext.define('YourTour.view.common.MessageDataItemView', {
     updateRecord: function(record){
     	var me = this;
        	if(record){
-			var user = record.userStore.first();
+			console.log(record);
+			var user = record.user;
 			var left = me.down('#imageLeft'), content=me.down('#content'), right = me.down('#imageRight');
-			if (user.get('id') == YourTour.util.Context.getUserId()) {
+			if (user.id == YourTour.util.Context.getUserId()) {
 				left.hide();
-				right.setSrc(YourTour.util.Context.getImageResource(user.get('imageUrl')));
+				right.setSrc(YourTour.util.Context.getImageResource(user.imageUrl));
 
 				content.addCls('left')
 			} else {
 				right.hide();
-				left.setSrc(YourTour.util.Context.getImageResource(user.get('imageUrl')));
+				left.setSrc(YourTour.util.Context.getImageResource(user.imageUrl));
 
 				content.addCls('right')
 			}
 
-			content.setText(record.get('content'));
+			content.setText(record.content);
 	 	}
     }
 });

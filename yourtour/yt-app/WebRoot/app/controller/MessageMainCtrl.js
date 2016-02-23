@@ -3,13 +3,15 @@ Ext.define('YourTour.controller.MessageMainCtrl', {
     requires: ['YourTour.util.ChatRoom'],
     config: {
         refs: {
-            messageMainView: '#MessageMainView'
+            messageMainView: '#MessageMainView',
+            messageList:'#MessageMainView #MessageList'
         },
 
         control: {
             '#MessageMainView #group': {
                 tap: 'onMessageGroup'
             },
+
             '#MessageMainView #btnSend': {
                 tap: 'onSendMessage'
             }
@@ -32,7 +34,11 @@ Ext.define('YourTour.controller.MessageMainCtrl', {
             messageMainView = me.getMessageMainView(),
             headerBar = messageMainView.down('#headerbar'),
             roomType = chatRoomJson.type,
-            roomCode = chatRoomJson.roomCode;
+            roomCode = chatRoomJson.roomCode,
+            messageList = me.getMessageList();
+
+        var messageStore = Ext.create('Ext.data.Store', {model:'YourTour.model.MessageContentModel'});
+        messageList.setStore(messageStore);
 
         if (roomType == 'place') {
             headerBar.setTitle('目的地聊天室');
@@ -77,6 +83,12 @@ Ext.define('YourTour.controller.MessageMainCtrl', {
     },
 
     onCommonMessage: function (event) {
+        var me = this, messageList = me.getMessageList(), data = event.data;
+
+        var messageStore = messageList.getStore();
+        var model = Ext.create('YourTour.model.MessageContentModel', data);
+        messageStore.add(model);
+
         // 通用的接收到WebSocket实时消息
         console.log('WebSocket onMessage() ->');
         console.log(event);
@@ -91,6 +103,8 @@ Ext.define('YourTour.controller.MessageMainCtrl', {
             messageMainView = me.getMessageMainView(),
             content = messageMainView.down('#content');
 
-        console.log('Send message: ' + content.getText());
+        var message = {type: 'MESSAGE', messageType: 'text/plain', notice: false, textMessage: content.getValue()};
+        console.log(message);
+        YourTour.util.ChatRoom.sendMessage(message);
     }
 });

@@ -102,9 +102,11 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
     },
 
     showPlaceChatRoom: function () {
-        console.log('showPlaceChatRoom');
-        var placeId = this.placeId;
-        var ctrl = this.getApplication().getController('MessageMainCtrl');
+        var me = this,
+            mainview = me.getPlaceMainView(),
+            place = mainview.getData();
+            placeId = place.get('id');
+        var ctrl = me.getApplication().getController('MessageMainCtrl');
         ctrl.showMainPage({type: 'place', roomCode: placeId});
     },
 
