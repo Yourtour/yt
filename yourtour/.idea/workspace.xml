@@ -4,7 +4,6 @@
     <list default="true" id="1178f09b-7dc4-4f2a-9369-1d6c2acc5095" name="Default" comment="">
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-app\WebRoot\cordova\platforms\android\assets\www\plugins\phonegap-plugin-barcodescanner\www\barcodescanner.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/plugins/phonegap-plugin-barcodescanner/plugin.xml" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/plugins/phonegap-plugin-barcodescanner/plugin.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="yourtour.iws" />
@@ -1584,12 +1583,12 @@
       <workItem from="1456103386568" duration="15331000" />
       <workItem from="1456121654519" duration="14688000" />
       <workItem from="1456188660485" duration="809000" />
-      <workItem from="1456191492482" duration="9789000" />
+      <workItem from="1456191492482" duration="9972000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1278138000" />
+    <option name="totallyTimeSpent" value="1278321000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
