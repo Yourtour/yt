@@ -33,18 +33,17 @@ Ext.define('YourTour.view.common.MessageDataItemView', {
     updateRecord: function(record){
     	var me = this;
        	if(record){
-			console.log(record);
 			var user = record.userStore.first();
 
 			var left = me.down('#imageLeft'), content=me.down('#content'), right = me.down('#imageRight');
 			if (user.get('id') == YourTour.util.Context.getUserId()) {
 				right.setSrc(YourTour.util.Context.getImageResource(user.get('imageUrl')));
 
-				content.addCls('left')
+				content.addCls('rightText');
 			} else {
 				left.setSrc(YourTour.util.Context.getImageResource(user.get('imageUrl')));
 
-				content.addCls('right')
+				//content.addCls('left');
 			}
 
 			content.setText(record.get('content'));
