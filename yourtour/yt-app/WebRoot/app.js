@@ -121,12 +121,6 @@ Ext.application({
     
     onDeviceReady:function() {
     	try{
-            ExtraInfo.getExtra(function(message) {
-                alert(message);
-            }, function(message) {
-                alert(message);
-            });
-
     		document.addEventListener("backbutton", function(){
     	        var canPop = false;
     	        var id = Ext.Viewport.getActiveItem().id;
