@@ -9,23 +9,20 @@ Ext.define('YourTour.view.common.MessageMainView', {
 			{    
 				xtype: 'xheaderbar',
 				itemId:'headerbar',
-				title:'目的地'/*,
+				title:'目的地',
 				items:[
 			       {
 			    	   xtype:'toolbutton',
 			    	   itemId:'group',
-			    	   text:'设置',
+			    	   text:'成员',
 			    	   align:'right'
 			       }
-				]*/
+				]
 			},
 			
 			{
-    			itemId:'MessageList',
-    			scrollable:null,
-    			style:'background-color:#F2F2F2',
-    			flex:1,
-		        useComponents: true,
+    			xtype:'xdataview',
+				itemId:'MessageList',
 		        defaultType: 'MessageDataItemView'
     		},
 			
@@ -50,12 +47,11 @@ Ext.define('YourTour.view.common.MessageMainView', {
 					},
 					
 					{  
-						xtype : 'image',
-	    				mode : 'tag',
-	    				src:'resources/icons/48/icon_add.png',
-		              	itemId:'btnSend'
+						xtype : 'xlabel',
+						html:'Send',
+	              		itemId:'btnSend'
 					}
-				]	
+				]
 			} 
     	]
     }

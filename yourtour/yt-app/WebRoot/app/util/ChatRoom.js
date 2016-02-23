@@ -71,7 +71,7 @@ Ext.define('YourTour.util.ChatRoom', {
         if (this.getWebSocket() == null) {
             throw new Error('The chat room not initialized, please invoke openChatRoom() at first.');
         }
-        this.getWebSocket().send(message);
+        this.getWebSocket().send(Ext.JSON.encode(message));
     }
 
 });

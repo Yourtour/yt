@@ -8,7 +8,7 @@ Ext.define('YourTour.view.common.MessageGroupView', {
 			{    
 				xtype: 'xheaderbar',
 				itemId:'headerbar',
-				title:'讨论信息'		
+				title:'聊天信息'
 			}
         ]
     }

@@ -26,6 +26,10 @@ Ext.define('YourTour.view.widget.XUserLogo', {
         var url = data.get(name).split(';')[0];
 
         var url = YourTour.util.Context.getImageResource(url);
+        this.setSrc(url);
+    },
+
+    setSrc:function(url){
         var style = {};
         style['background-image'] = 'url(' + url + ')';
         style['background-repeat'] = 'no-repeat';
