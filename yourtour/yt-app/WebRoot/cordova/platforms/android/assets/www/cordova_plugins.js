@@ -34,17 +34,17 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/phonegap-plugin-barcodescanner/www/barcodescanner.js",
-        "id": "phonegap-plugin-barcodescanner.BarcodeScanner",
-        "clobbers": [
-            "cordova.plugins.barcodeScanner"
-        ]
-    },
-    {
         "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
         "id": "cordova-plugin-x-socialsharing.SocialSharing",
         "clobbers": [
             "window.plugins.socialsharing"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-extra/www/ExtraInfo.js",
+        "id": "cordova-plugin-extra.ExtraInfo",
+        "clobbers": [
+            "ExtraInfo"
         ]
     }
 ];
@@ -54,7 +54,8 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.0.0",
     "cordova-plugin-camera": "1.2.0",
     "phonegap-plugin-barcodescanner": "4.0.1",
-    "cordova-plugin-x-socialsharing": "5.0.8-dev"
+    "cordova-plugin-x-socialsharing": "5.0.8-dev",
+    "cordova-plugin-extra": "1.2.0"
 }
 // BOTTOM OF METADATA
 });

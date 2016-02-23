@@ -92,7 +92,7 @@ Ext.application({
     },
 
     launch: function() {
-    	try{
+        try{
     		document.addEventListener("deviceready", this.onDeviceReady, false);
     	}catch(e){
     		alert(e.name + ":" + e.message);
@@ -121,6 +121,12 @@ Ext.application({
     
     onDeviceReady:function() {
     	try{
+            ExtraInfo.getExtra(function(message) {
+                alert(message);
+            }, function(message) {
+                alert(message);
+            });
+
     		document.addEventListener("backbutton", function(){
     	        var canPop = false;
     	        var id = Ext.Viewport.getActiveItem().id;

@@ -14,6 +14,9 @@
     <feature name="SocialSharing">
         <param name="android-package" value="nl.xservices.plugins.SocialSharing" />
     </feature>
+    <feature name="ExtraInfo">
+        <param name="android-package" value="com.yt.cordova.extra.ExtraInfo" />
+    </feature>
     <allow-intent href="market:*" />
     <name>游徒</name>
     <description>
