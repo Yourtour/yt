@@ -82,7 +82,9 @@ Ext.define('YourTour.controller.MessageMainCtrl', {
     },
 
     onCommonMessage: function (event) {
-        var me = this, messageList = me.getMessageList(), data = event.data;
+        var me = this, messageList = me.getMessageList(), data = Ext.JSON.decode(event.data);
+
+        console.log(data);
 
         var messageStore = messageList.getStore();
         var model = Ext.create('YourTour.model.MessageContentModel', data);
