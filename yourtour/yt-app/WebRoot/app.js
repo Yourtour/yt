@@ -92,7 +92,7 @@ Ext.application({
     },
 
     launch: function() {
-    	try{
+        try{
     		document.addEventListener("deviceready", this.onDeviceReady, false);
     	}catch(e){
     		alert(e.name + ":" + e.message);

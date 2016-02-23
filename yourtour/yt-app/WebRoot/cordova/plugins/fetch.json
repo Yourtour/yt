@@ -32,5 +32,13 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "cordova-plugin-extra": {
+        "source": {
+            "type": "local",
+            "path": "e:\\tmp\\plugin\\ExtraInfo"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

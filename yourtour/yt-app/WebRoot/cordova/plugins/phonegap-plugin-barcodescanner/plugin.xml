@@ -14,9 +14,9 @@
         <engine name="cordova" version=">=3.0.0" />
     </engines>
 
-    <js-module src="www/barcodescanner.js" name="BarcodeScanner">
+    <js-modulejs-module src="www/barcodescanner.js" name="BarcodeScanner">
         <clobbers target="cordova.plugins.barcodeScanner" />
-    </js-module>
+    </js-modulejs-module>
 
     <!-- ios -->
     <platform name="ios">

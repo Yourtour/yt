@@ -1,0 +1,29 @@
+<?xmlversion="1.0"encoding="utf-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:rim="http://www.blackberry.com/ns/widgets"
+    id="cordova-plugin-extra"
+    version="1.2.0">
+
+    <name>ExtraInfo</name>
+    <description>Description</description>
+    
+    <!-- <keywords>cordova,camera</keywords>
+    <repo>https://git-wip-us.apache.org/repos/asf/cordova-plugin-camera.git</repo>
+    <issue>https://issues.apache.org/jira/browse/CB/component/12320645</issue>
+     -->
+
+    <js-module name="ExtraInfo" src="www/ExtraInfo.js">
+        <clobbers target="ExtraInfo"/>
+    </js-module>
+
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="ExtraInfo">
+                <param name="android-package" value="com.yt.cordova.extra.ExtraInfo"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/ExtraInfo.java" target-dir="src/com/yt/cordova/extra"/>
+    </platform>
+</plugin>
