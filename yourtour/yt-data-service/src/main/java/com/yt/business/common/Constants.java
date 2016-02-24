@@ -37,6 +37,11 @@ public interface Constants {
 	public static final String RELATION_TYPE_AT = "AT";
 
 	/**
+	 * 为
+	 */
+	public static final String RELATION_TYPE_FOR = "FOR";
+
+	/**
 	 * 从
 	 */
 	public static final String RELATION_TYPE_FROM = "FROM";

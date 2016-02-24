@@ -37,17 +37,17 @@ public class ExpertRestResource {
 	private ExpertRepository expertRepository;
 
 	/**
-	 *
+	 * 查找目的地提供服务的达人
 	 * @param placeIds
-	 * @param duration
+	 * @param type
 	 * @return
 	 */
 	@GET
-	@Path("/{placeIds}/{duration}")
-	public ResponseDataVO<List<ExpertVO>> query(@PathParam("placeIds") String placeIds, @PathParam("duration") String duration){
+	@Path("/places/{placeIds}/services/{serviceType}")
+	public ResponseDataVO<List<ExpertVO>> query(@PathParam("placeIds") String placeIds, @PathParam("serviceType") String type){
 		try{
 			List<ExpertVO> experts = new ArrayList<>();
-			List<ExpertBean> beans = this.expertRepository.getExperts(placeIds, duration);
+			List<ExpertBean> beans = this.expertRepository.getExperts(placeIds, type.equalsIgnoreCase("ALL")?null:type);
 			if(CollectionUtils.isNotEmpty(beans)){
 				for(ExpertBean expert : beans){
 					experts.add(ExpertVO.transform(expert));
@@ -60,6 +60,8 @@ public class ExpertRestResource {
 			return new ResponseDataVO<List<ExpertVO>>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
 	}
+
+
 
 	/**
 	 *
@@ -239,7 +241,7 @@ public class ExpertRestResource {
 	/**
 	 *
 	 * @param request
-	 * @param expertId
+	 * @param uid
 	 * @return
 	 */
 	@GET

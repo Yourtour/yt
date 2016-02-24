@@ -17,13 +17,17 @@ Ext.define('YourTour.util.Context', {
     constructor : function(config) {
         this.initConfig(config);
     },
-    
+
+	getRemoteServer:function(){
+		return this.server || this.getServer();
+	},
+
     getContext:function(url){
     	var s = 'http://' + this.getServer() + '/yt-web/rest';
     	if(url.substr(0,1) != '/'){
     		s += '/';
     	}
-    	
+
     	return s + url;
     },
 

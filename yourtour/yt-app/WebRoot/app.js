@@ -27,14 +27,14 @@ Ext.application({
     views: [
         'MainView','LaunchView','setting.UserSettingView',
         'common.MessageMainView','common.MessageGroupView','common.FieldEditView','common.FieldEditView',
-        'common.CommentMainView','common.TimeSelectionView',
+        'common.CommentMainView','common.TimeSelectionView','common.ConsultMainView',
 
         'home.HomeMainView', 'home.BestListView', 'home.TalentListView', 'SearchMain',
         'route.RouteMainView','route.RouteSettingView','route.RouteImpressionView','route.RouteImageView',
         'route.RouteScheduleListView', 'route.RouteSchedulePlanView','route.RouteScheduleReferenceListView','route.RouteScheduleFormView',
         'route.RouteProvisionView','route.RouteProvisionEditView','route.RouteScheduleEditView','route.RouteScheduleView',
         'route.RouteActivityEditView','route.RoutePlaceEditView','route.RouteCheckinView',
-        'route.RouteRecommendListView','route.RouteFormView','route.RouteListView',
+        'route.RouteRecommendListView','route.RouteFormView','route.RouteListView','route.RouteReservationPlanView',
         'service.RouteServiceMainView','service.RouteServiceFormView','service.RouteServiceEditView',
         'service.PlaceServiceMainView','service.RouteServiceBookView',
         'user.LoginMainView','user.UserListView','user.UserMainView','user.UserProfileView',
@@ -57,7 +57,7 @@ Ext.application({
         'MainCtrl','SettingMainCtrl','HomeMainCtrl',
         'route.RouteMainCtrl',
         'route.RouteScheduleListCtrl','route.RouteSchedulePlanCtrl',
-        'user.AccountMainCtrl',
+        'AccountMainCtrl',
         'route.ScheduleReferenceCtrl','route.ScheduleDetailCtrl',
         'ResourceMainCtrl','user.UserListCtrl','PlaceSelectionCtrl','CommonMainCtrl',
         'LineMainCtrl','MemberMainCtrl','ChargeMainCtrl','UserMainCtrl', 'ExpertMainCtrl', 'MessageMainCtrl','PlaceMainCtrl','ServiceMainCtrl',
@@ -98,27 +98,22 @@ Ext.application({
     		alert(e.name + ":" + e.message);
     	}   
 
-    	Ext.Ajax.on('beforerequest', (function(conn, options, eOpts) {
-    		var localStore =  Ext.StoreManager.get('LocalStore');
-        	localStore.load();
-        	
-        	var userToken = '';
-        	var index = localStore.find('key', 'user.profile'); 
-        	if(index >= 0){
-        		var userProfile = localStore.getAt(index);
-        		var profile = Ext.JSON.decode(userProfile.get('value'));
-        		userToken = profile.id;
-        	}
-    		
-    	    options.headers = {
-    	    	'User-Token':userToken,
-    	    	'Content-Type':'application/json'
-    	    };
-    	}), this);
+        this.init();
+    },
+
+    init:function(){
+        var me = this;
+        Ext.Ajax.on('beforerequest', (function(conn, options, eOpts) {
+            var userToken =me.getUserId();
+            options.headers = {
+                'User-Token':userToken,
+                'Content-Type':'application/json'
+            };
+        }), this);
 
         YourTour.util.Context.setApplication(this);
     },
-    
+
     onDeviceReady:function() {
     	try{
     		document.addEventListener("backbutton", function(){
@@ -159,7 +154,24 @@ Ext.application({
             }
         );
     },
-    
+
+    store:function(values){
+        var localStore =  Ext.StoreManager.get('LocalStore');
+        localStore.load();
+        if(Ext.isArray(values)){
+            Ext.Array.forEach(values, function(value){
+                localStore.add(value);
+            });
+        }else{
+            localStore.add(values);
+        }
+        localStore.sync();
+    },
+
+    /**
+     * 获取用户ID
+     * @returns {*}
+     */
     getUserId:function(){
     	var localStore =  Ext.StoreManager.get('LocalStore');
     	localStore.load();
@@ -174,6 +186,10 @@ Ext.application({
     	return '';
     },
 
+    /**
+     * 获取用户个人信息
+     * @returns {*}
+     */
     getUserProfile:function(){
         var localStore =  Ext.StoreManager.get('LocalStore');
         localStore.load();
@@ -188,6 +204,9 @@ Ext.application({
         return '';
     },
 
+    /**
+     * 退出应用
+     */
     quit:function(){
         var me = this;
         Ext.Msg.confirm("提示", "您确定要退出应用吗?", function(e) {
@@ -199,6 +218,11 @@ Ext.application({
         }, this);
     },
 
+    /**
+     * 获取图片
+     * @param source
+     * @param successFn
+     */
     getPhoto: function(source, successFn) {
         var me = this;
 
@@ -215,7 +239,7 @@ Ext.application({
     },
 
     /**
-     *
+     * 调用远程服务(非查询类的)
      * @param options
      */
     callService:function(options){
@@ -254,7 +278,7 @@ Ext.application({
     },
 
     /**
-     *
+     * 调用远程查询类服务
      * @param options
      */
     query:function(options){

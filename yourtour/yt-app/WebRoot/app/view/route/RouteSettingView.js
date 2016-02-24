@@ -120,6 +120,15 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 					} ,
 					{
 						xtype: 'xbutton',
+						itemId: 'btnResevation',
+						text: '预约定制',
+						icon:'resources/icons/24/icon_booking.png'
+					},{
+						xtype:'xvline',
+						flex:1
+					} ,
+					{
+						xtype: 'xbutton',
 						itemId: 'btnCutomized',
 						text: '行程定制',
 						icon:'resources/icons/24/icon_customize.png'

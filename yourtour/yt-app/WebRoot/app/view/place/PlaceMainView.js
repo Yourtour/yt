@@ -75,6 +75,7 @@ Ext.define('YourTour.view.place.PlaceMainView', {
 												xtype: 'xlabel',
 												itemId:'placeScene',
 												html: '景点',
+												cls:'',
 												style:'background-image: url(./resources/icons/48/icon_scene.png);'
 											}
 										]

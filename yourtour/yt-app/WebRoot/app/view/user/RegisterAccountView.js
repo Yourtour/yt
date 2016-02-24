@@ -3,145 +3,91 @@ Ext.define('YourTour.view.user.RegisterAccountView', {
     requires: ['Ext.Panel', 'YourTour.view.widget.XSpacer', 'YourTour.view.widget.XTitleBar', 'Ext.field.Password', 'YourTour.view.widget.XTextField', 'YourTour.view.widget.XButton', 'YourTour.view.widget.ToolButton'],
     xtype: 'RegisterAccountView',
     config: {
-        id: 'RegisterAccountView',
         layout: 'vbox',
         defaults: {
-            padding: '0 10 0 10'
+            padding: '0 10 0 10',
+            style:'background-color:white',
         },
         scrollable: 'none',
-
         items: [
             {
-                xtype: 'xtitlebar',
-                docked: 'top',
+                xtype: 'xheaderbar',
                 title: '账号注册',
-                items: [{
-                    xtype: "image",
-                    itemId: 'back',
-                    id: 'back',
-                    mode: 'tag',
-                    margin: '0 0 0 5',
-                    src: 'resources/icons/icon_back.png',
-                    align: 'left'
-                }]
+                backAction:function(headerbar){
+                    headerbar.up('#LoginMainView').setActiveItem(0);
+                }
             },
 
             {
-                xtype: 'xspacer'
-            },
-
-            {
-                xtype: 'panel',
+                xtype: 'container',
                 layout: 'hbox',
-                cls: 'row underline',
-                style: 'background:white',
+                cls: 'row underline icon-user',
+                padding: '0 10 0 50',
                 items: [
-                    {
-                        xtype: 'image',
-                        src: 'resources/icons/icon_mobile.png',
-                        mode: 'tag'
-                    },
-
-                    {
-                        xtype: 'xlabel',
-                        html: '|',
-                        margin: '0 10 0 10'
-                    },
                     {
                         xtype: 'xtextfield',
+                        placeHolder: '请输入手机号码(11位数字)',
+                        inputCls: 'font-grey',
+                        flex: 1,
                         name: 'mobile',
-                        flex: 1,
-                        placeHolder: '请输入手机号码(11位数字)'
+                        itemId: 'mobile'
                     }
                 ]
             },
 
             {
-                xtype: 'panel',
+                xtype: 'container',
                 layout: 'hbox',
-                cls: 'row underline',
-                style: 'background:white',
+                cls: 'row underline icon-code',
+                padding: '0 0 0 50',
                 items: [
                     {
-                        xtype: 'image',
-                        src: 'resources/icons/icon_code.png',
-                        mode: 'tag'
-                    },
-
-                    {
-                        xtype: 'xlabel',
-                        html: '|',
-                        margin: '0 10 0 10'
-                    },
-                    {
-                        xtype: 'panel',
-                        layout: 'hbox',
+                        xtype: 'xtextfield',
                         flex: 1,
-                        items: [
-                            {
-                                xtype: 'xtextfield',
-                                flex: 3,
-                                placeHolder: '请输入验证码',
-                                name: 'authcode'
-                            },
-                            {
-                                xtype: 'xbutton',
-                                itemId: 'getCode',
-                                flex: 2,
-                                cls: 'x-button-primary',
-                                html: '获取验证码'
-                            }
-                        ]
+                        placeHolder: '请输入验证码',
+                        name: 'authcode'
+                    },
+                    {
+                        xtype: 'xbutton',
+                        itemId: 'getCode',
+                        cls: 'x-button-primary',
+                        width:120,
+                        height:43,
+                        html: '获取验证码'
                     }
                 ]
             },
 
             {
-                xtype: 'panel',
+                xtype: 'container',
                 layout: 'hbox',
-                cls: 'row underline',
-                style: 'background:white',
+                cls: 'row underline icon-password',
+                padding: '0 10 0 50',
                 items: [
-                    {
-                        xtype: 'image',
-                        src: 'resources/icons/icon_password.png',
-                        mode: 'tag'
-                    },
-
-                    {
-                        xtype: 'xlabel',
-                        html: '|',
-                        margin: '0 10 0 10'
-                    },
                     {
                         xtype: 'passwordfield',
-                        flex: 1,
                         placeHolder: '请输入密码(8-16位字母、数字)',
-                        name: 'password'
+                        inputCls: 'font-grey',
+                        flex: 1,
+                        name: 'password',
+                        itemId: 'password'
                     }
                 ]
-            }, {
-                xtype: 'panel',
+            },
+
+            {
+                xtype: 'container',
                 layout: 'hbox',
-                cls: 'row underline',
-                style: 'background:white',
+                cls: 'row underline icon-password',
+                padding: '0 10 0 50',
                 items: [
                     {
-                        xtype: 'image',
-                        src: 'resources/icons/icon_password.png',
-                        mode: 'tag'
-                    },
-
-                    {
-                        xtype: 'xlabel',
-                        html: '|',
-                        margin: '0 10 0 10'
-                    },
-                    {
                         xtype: 'passwordfield',
-                        flex: 1,
                         placeHolder: '请输入验证密码(8-16位字母、数字)',
-                        name: 'confirmPassword'
+                        inputCls: 'font-grey',
+                        flex: 1,
+                        name: 'confirmPassword',
+                        itemId: 'confirmPassword'
                     }
                 ]
             },
@@ -152,7 +98,7 @@ Ext.define('YourTour.view.user.RegisterAccountView', {
 
             {
                 xtype: 'xbutton',
-                id: 'btnNext',
+                id: 'btnRegisterAccount',
                 cls: 'x-button-primary',
                 text: '下一步'
             }

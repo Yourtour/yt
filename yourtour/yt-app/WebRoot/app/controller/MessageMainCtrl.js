@@ -12,13 +12,14 @@ Ext.define('YourTour.controller.MessageMainCtrl', {
                 tap: 'onMessageGroup'
             },
 
+            '#MessageMainView #messageText': {
+                focus: 'onMessageFocus'
+            },
+
+
             '#MessageMainView #btnSend': {
                 tap: 'onSendMessage'
             }
-        },
-
-        routes: {
-            '/message/session/:sessionId': 'showMainPage'
         }
     },
 
@@ -84,15 +85,11 @@ Ext.define('YourTour.controller.MessageMainCtrl', {
     onCommonMessage: function (event) {
         var me = this, messageList = me.getMessageList(), data = Ext.JSON.decode(event.data);
 
-        console.log(data);
-
         var messageStore = messageList.getStore();
         var model = Ext.create('YourTour.model.MessageContentModel', data);
         messageStore.add(model);
 
-        // 通用的接收到WebSocket实时消息
-        console.log('WebSocket onMessage() ->');
-        console.log(event);
+        messageList.getScrollable().getScroller().scrollToEnd();
     },
 
     onMessageGroup: function () {
@@ -102,10 +99,25 @@ Ext.define('YourTour.controller.MessageMainCtrl', {
     onSendMessage: function () {
         var me = this,
             messageMainView = me.getMessageMainView(),
-            content = messageMainView.down('#content');
+            messagetool = messageMainView.down('#messagetool'),
+            messageText = messageMainView.down('#messageText'),
+            messageTextArea = messageMainView.down('#messageTextArea');
 
-        var message = {type: 'MESSAGE', messageType: 'text/plain', notice: false, textMessage: content.getValue()};
-        console.log(message);
+        var message = {type: 'MESSAGE', messageType: 'text/plain', notice: false, textMessage: messageTextArea.getValue()};
         YourTour.util.ChatRoom.sendMessage(message);
+        messageTextArea.setValue('');
+        messageTextArea.hide();
+        messageText.show();
+    },
+
+    onMessageFocus:function(field){
+        var me = this,
+            messageMainView = me.getMessageMainView(),
+            messageText = messageMainView.down('#messageText'),
+            messageTextArea = messageMainView.down('#messageTextArea');
+
+        messageText.hide();
+        messageTextArea.show();
+        messageTextArea.focus();
     }
 });

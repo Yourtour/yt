@@ -1,7 +1,7 @@
 Ext.define('YourTour.view.resource.ResourceSelectionView', {
     extend: 'YourTour.view.widget.XPage',
     xtype: 'SelectionListView',
-    requires:['YourTour.view.widget.XToolbar', 'YourTour.view.widget.XButton', 'YourTour.view.widget.XSearchField','YourTour.view.widget.XDataView','YourTour.view.resource.ResourcePlayDataItem'],
+    requires:['YourTour.view.widget.XToolbar', 'YourTour.view.widget.XButton', 'YourTour.view.widget.XSearchField','YourTour.view.widget.XDataView','YourTour.view.resource.ResourceListDataItem'],
     config: {
     	id:'ResourceSelectionView',
     	layout:'card',
@@ -38,17 +38,33 @@ Ext.define('YourTour.view.resource.ResourceSelectionView', {
 					{
 						xtype:'xfield',
 						itemId:'reference',
-						label:'参照位置',
-						text:'选择参照位置'
-					},
-					{
-						xtype:'xspacer'
+						cls:'icon-position icon-space',
+						placeHolder:'选择当前位置'
 					},
 					{
 						xtype:'xdataview',
 						itemId:'resourceList',
 						flex:1,
-						defaultType: 'ResourcePlayDataItem'
+						defaultType: 'ResourceListDataItem'
+					}
+				]
+			},
+
+			{
+				xtype: 'xtoolbar',
+				docked: 'bottom',
+				itemId: 'toolbar',
+				items: [
+					{
+						xtype:'spacer',
+						flex:1
+					},
+					{
+						xtype: 'xbutton',
+						itemId: 'btnConsult',
+						cls:'x-button-primary',
+						text:'开始咨询',
+						flex:1
 					}
 				]
 			}

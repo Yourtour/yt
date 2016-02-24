@@ -12,47 +12,74 @@ Ext.define('YourTour.view.common.MessageMainView', {
 				title:'目的地',
 				items:[
 			       {
-			    	   xtype:'toolbutton',
+			    	   xtype:'xbutton',
 			    	   itemId:'group',
-			    	   text:'成员',
+			    	   text:'设置',
 			    	   align:'right'
 			       }
 				]
 			},
-			
+
 			{
-    			xtype:'xdataview',
-				itemId:'MessageList',
-		        defaultType: 'MessageDataItemView'
-    		},
-			
-			{    
-				xtype: 'xpanel',
-				itemId:'messagetool',
-				height:50,
-				layout:'hbox',
-				docked:'bottom',
+				xtype:'container',
+				layout:'vbox',
+				flex:1,
 				items:[
 					{
-						xtype : 'image',
-						mode : 'tag',
-						src:'resources/icons/48/icon_voice.png',
-					  	itemId:'voice'  
+						xtype:'xdataview',
+						itemId:'MessageList',
+						defaultType: 'MessageDataItemView',
+						flex:1,
+						style:'background-color:#EDEDED'
 					},
-					
+
 					{
-						xtype:'xtextarea',
-						itemId: 'content',
-						flex:1
-					},
-					
-					{  
-						xtype : 'xlabel',
-						html:'Send',
-	              		itemId:'btnSend'
+						xtype: 'xpanel',
+						itemId:'messagetool',
+						layout:'hbox',
+						cls:'row',
+						padding:'0 10',
+						docked:'bottom',
+						items:[
+							{
+								xtype : 'image',
+								mode : 'tag',
+								src:'resources/icons/48/icon_voice.png',
+								itemId:'voice'
+							},
+
+							{
+								xtype:'textfield',
+								itemId: 'messageText',
+								flex:1
+							},
+
+							{
+								xtype:'textareafield',
+								itemId: 'messageTextArea',
+								flex:1,
+								hidden:true,
+								maxRows:4,
+								clearIcon:false,
+								cls:'underline'
+							},
+
+							{
+								xtype : 'xlabel',
+								html:'Send',
+								itemId:'btnSend'
+							}
+						]
 					}
 				]
-			} 
+			}
     	]
-    }
+    },
+
+	initialize:function(){
+		this.callParent(arguments);
+
+		console.log(this.inputCls);
+		console.log(this.baseCls);
+	}
 });

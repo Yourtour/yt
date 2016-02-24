@@ -59,6 +59,42 @@
             background-position: right center;
         }
 
+        .icon-user {
+            background-image: url(./resources/icons/24/icon_user.png);
+            background-repeat: no-repeat;
+            background-position: 10px center;
+        }
+
+        .icon-password {
+            background-image: url(./resources/icons/24/icon_password.png);
+            background-repeat: no-repeat;
+            background-position: 10px center;
+        }
+
+        .icon-mobile {
+            background-image: url(./resources/icons/24/icon_mobile.png);
+            background-repeat: no-repeat;
+            background-position: 10px center;
+        }
+
+        .icon-code {
+            background-image: url(./resources/icons/24/icon_code.png);
+            background-repeat: no-repeat;
+            background-position: 10px center;
+        }
+
+        .icon-nickname {
+            background-image: url(./resources/icons/24/icon_nickname.png);
+            background-repeat: no-repeat;
+            background-position: 10px center;
+        }
+
+        .icon-portrait {
+            background-image: url(./resources/icons/24/icon_portrait.png);
+            background-repeat: no-repeat;
+            background-position: 10px 10px;
+        }
+
         .icon-route {
             background-image: url(./resources/icons/icon_tab_route.png);
             background-repeat: no-repeat;
@@ -96,8 +132,6 @@
             background-position: 0px center;
         }
 
-
-
         .x-panel.icon-name {
             background-image: url(./resources/icons/24/icon_name.png);
             background-repeat: no-repeat;
@@ -109,8 +143,6 @@
             background-repeat: no-repeat;
             background-position: 0px center;
         }
-
-
         .x-panel.icon-time {
             background-image: url(./resources/icons/24/icon_time.png);
             background-repeat: no-repeat;
@@ -121,6 +153,10 @@
             background-image: url(./resources/icons/32/icon_time.png);
             background-repeat: no-repeat;
             background-position: 5px center;
+        }
+
+        .icon-space{
+            padding-left:20px;
         }
 
         .x-xfield .icon-memo {
@@ -263,7 +299,12 @@
             background-size: 100% 100%;
         }
 
-
+        .icon-tag{
+            background-image: url(./resources/icons/24/icon_tag.png);
+            background-repeat: no-repeat;
+            background-position: 5px center;
+            padding-left:20px;
+        }
 
         .textfield {
             height: 38px;
@@ -430,7 +471,7 @@
         }
 
         .x-button.x-button-primary{
-            height:45px;
+            height:45px !important;
             background-color: #FF6100 !important;
             webkit-border-radius:0px;
             border-radius:0px;
@@ -438,6 +479,7 @@
 
         .x-button.x-button-primary .x-button-label{
             color:white !important;
+            font-weight:bold;
         }
 
         .underline {
@@ -690,7 +732,6 @@
            min-height: 30px !important;
            font-size: 14px;
            background-color: inherit !important;
-           border-bottom: 1px solid #EDEDED;
         }
 
         .x-field-search .x-field-input{
@@ -814,7 +855,7 @@
             color:white;
             background-image: url(./resources/icons/32/icon_active.png);
             background-repeat: no-repeat;
-            background-position: center, center;
+            background-position: center center;
         }
 
         .spacer{
@@ -838,6 +879,36 @@
             color:white  !important;
             font-size:12px  !important;
             border-radius: 5px;
+        }
+
+        .x-xmessage .x-xtriangle-left{
+            background-image: url(./resources/icons/16/icon_triangle_left.png);
+            background-repeat: no-repeat;
+            background-position: left 10px;
+        }
+
+        .x-xmessage .x-xtriangle-right{
+            background-image: url(./resources/icons/16/icon_triangle_right.png);
+            background-repeat: no-repeat;
+            background-position: right 10px;
+        }
+
+        .x-xmessage .x-xcontent{
+            border-radius:5px;
+                line-height: 25px;
+        }
+
+        .x-xmessage .x-xcontent.x-xreceive{
+            background-color:white !important;
+
+        }
+
+        .x-xmessage .x-xcontent.x-xsend{
+            background-color:#3CB371 !important;
+        }
+
+        .x-xmessage-height{
+            min-height:40px !important;
         }
 
         /** 圆形进度CSS 定义**/
@@ -908,10 +979,6 @@
     <script id="microloader" type="text/javascript" src=".sencha/app/microloader/development.js"></script>
 </head>
 <body>
-<div id="appLoadingIndicator">
-    <div></div>
-    <div></div>
-    <div></div>
-</div>
+
 </body>
 </html>

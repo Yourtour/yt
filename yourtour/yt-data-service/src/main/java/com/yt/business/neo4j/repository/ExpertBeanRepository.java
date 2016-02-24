@@ -11,7 +11,16 @@ public interface ExpertBeanRepository extends GraphRepository<ExpertServiceBean>
 	public ExpertTuple getExpert(Long expertId);
 
 	@Query("MATCH (expert:ExpertBean)<-[:IS]-(profile:UserProfileBean) return expert, profile")
-	public List<ExpertTuple> getExperts(Long[] places, Integer duration);
+	public List<ExpertTuple> getExperts(Long[] places);
+
+	/**
+	 * 查找目的地提供服务的达人
+	 * @param place
+	 * @param service
+	 * @return
+	 */
+	@Query("start place=node({0}) MATCH (expert:ExpertBean)<-[:IS]-(profile:UserProfileBean)-[:AT]->place return expert, profile")
+	public List<ExpertTuple> getExperts(Long[] place, Long[] service);
 
 	@Query("START routeService=node({0}) MATCH routeService-[:RELATED]->(expertService:ExpertServiceBean) RETURN expertService")
 	public List<ExpertServiceBean> getServices(Long[] routeServiceIds);

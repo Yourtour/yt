@@ -10,7 +10,7 @@ Ext.define('YourTour.view.widget.XHeaderBar', {
 		baseCls:'x-xheaderbar',
 		title:null,
 		backButton:true,
-		backAction:function(){
+		backAction:function(headerbar){
 			Ext.ComponentManager.get('MainView').pop();
 		},
 		items:[]
@@ -39,7 +39,7 @@ Ext.define('YourTour.view.widget.XHeaderBar', {
 				scope : me,
 				tap : function(e, t) {
 					var backAction = me.getBackAction();
-					backAction();
+					backAction(me);
 				}
 			});
 

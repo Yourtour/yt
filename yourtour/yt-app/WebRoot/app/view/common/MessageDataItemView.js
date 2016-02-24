@@ -4,27 +4,49 @@ Ext.define('YourTour.view.common.MessageDataItemView', {
     xtype: 'MessageDataItemView',
     config: {
       	layout:'hbox',
-      	padding:'10 5 10 5',
-      	cls:'message',
+      	padding:'10',
+      	cls:'x-xmessage',
         items: [
 			{
 				itemId:'imageLeft',
 				xtype:'xuserlogo',
-				margin:'0 10 0 0',
+				margin:'0 5 0 0',
 				cls:'x-xmedium'
 			},
 
 			{
-				itemId:'content',
-				xtype:'xmultifield',
+				xtype:'panel',
 				flex:1,
-				underline:false
+				itemId:'contentPanel',
+				margin:'0 5',
+				layout:'hbox',
+				items:[
+					{
+						xtype:'spacer',
+						itemId:'leftSpacer',
+						flex:1,
+						hidden:true
+					},
+					{
+						itemId:'content',
+						xtype:'xmultifield',
+						cls:'x-xcontent',
+						margin:'0 10',
+						fieldCls:'font-normal',
+						underline:false
+					},{
+						xtype:'spacer',
+						itemId:'rightSpacer',
+						flex:1,
+						hidden:true
+					}
+				]
 			},
 
 			{
 				itemId:'imageRight',
 				xtype:'xuserlogo',
-				margin:'0 0 0 10',
+				margin:'0 0 0 5',
 				cls:'x-xmedium'
 			}
         ]
@@ -35,15 +57,25 @@ Ext.define('YourTour.view.common.MessageDataItemView', {
        	if(record){
 			var user = record.userStore.first();
 
-			var left = me.down('#imageLeft'), content=me.down('#content'), right = me.down('#imageRight');
-			if (user.get('id') == YourTour.util.Context.getUserId()) {
+			var contentPanel = me.down('#contentPanel'),
+				content=me.down('#content'),
+				left = me.down('#imageLeft'),
+				right = me.down('#imageRight'),
+				leftSpacer = me.down('#leftSpacer'),
+				rightSpacer = me.down('#rightSpacer');
+
+			if (user.get('id') == YourTour.util.Context.getUserId()) {  //本人
 				right.setSrc(YourTour.util.Context.getImageResource(user.get('imageUrl')));
 
-				content.addCls('rightText');
+				contentPanel.addCls('x-xtriangle-right');
+				content.addCls('x-xsend');
+				leftSpacer.show();
 			} else {
 				left.setSrc(YourTour.util.Context.getImageResource(user.get('imageUrl')));
 
-				//content.addCls('left');
+				contentPanel.addCls('x-xtriangle-left');
+				content.addCls('x-xreceive');
+				rightSpacer.show();
 			}
 
 			content.setText(record.get('content'));

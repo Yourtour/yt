@@ -8,13 +8,13 @@ import java.util.List;
 
 public interface ExpertRepository extends CrudAllInOneOperate {
 	/**
-	 *
+	 * 获取目的地提供指定服务的达人
 	 * @param placeIds
-	 * @param duration
+	 * @param services
 	 * @return
 	 * @throws Exception
 	 */
-	public List<ExpertBean> getExperts(String placeIds, String duration) throws Exception;
+	public List<ExpertBean> getExperts(String placeIds,String services) throws Exception;
 
 	/**
 	 * 达人提供的服务

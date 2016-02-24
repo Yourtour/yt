@@ -1,124 +1,74 @@
 Ext.define('YourTour.view.user.RegisterProfileView', {
-	extend: 'Ext.form.Panel',
+	extend: 'Ext.Container',
     xtype: 'RegisterProfileView',
     requires:['Ext.Panel','Ext.field.Radio','Ext.field.File', 'YourTour.view.widget.XLabel', 'YourTour.view.widget.XSpacer', 'YourTour.view.widget.XTitleBar', 'Ext.field.Password','YourTour.view.widget.XTextField', 'YourTour.view.widget.XButton', 'YourTour.view.widget.ToolButton'],
     config: {
-    	id:'RegisterProfileView',
-    	layout:'vbox',
+		layout: 'vbox',
+		defaults: {
+			padding: '0 10 0 10',
+			style:'background-color:white',
+		},
+		scrollable: 'none',
         items: [
-        	{
-            	xtype: 'xtitlebar',
-                docked: 'top',
-                title: '用户注册',
-            	items:[{
-                	xtype: "image", 
-                	itemId:'back',
-                	id:'back',
-                	mode:'tag',
-                	margin:'0 0 0 5',
-                	src:'resources/icons/icon_back.png',
-                	align:'left'
-                }]	
-            },
-            
-            {
-            	xtype:'xspacer'
-            },
-            
-            {
-            	xtype:'panel',
-            	layout:'hbox',
-            	cls:'row underline',
-            	style:'background:white',
-            	padding:'0 10 0 10',
-            	items:[
-            	   {
-            		   xtype:'image', 
-            		   src:'resources/icons/icon_nickname.png',
-            		   mode : 'tag'
-            	   },
-            	   {
-            		   xtype:'label',
-            		   html:'|',
-            		   margin:'0 10 0 10'
-            	   },
-            	   {
-            		   xtype:'xtextfield', 
-            		   flex:1,
-            		   placeHolder:'请输入昵称',
-            		   name: 'nickName'
-            	   }
-            	]
-            },
-            
-            {
-            	xtype:'panel',
-            	layout:'hbox',
-            	cls:'row underline',
-            	style:'background:white',
-            	padding:'0 10 0 10',
-            	items:[
+			{
+				xtype: 'xheaderbar',
+				title: '用户注册',
+				backAction:function(headerbar){
+					headerbar.up('#LoginMainView').setActiveItem(1);
+				}
+			},
+
+			{
+				xtype: 'container',
+				layout: 'hbox',
+				cls: 'row underline icon-nickname',
+				padding: '0 10 0 50',
+				items: [
 					{
-						   xtype:'image', 
-						   src:'resources/icons/icon_nickname.png',
-						   mode : 'tag'
-					},
-					{
-						   xtype:'label',
-						   html:'|',
-						   margin:'0 10 0 10'
-					},    
-					{
-            		   xtype:'selectfield',                     
-                       displayField:"text",
-                       valueField:"value",
-                       placeHolder:'请选择性别',
-                       options:[
-							{text: '男',  value: 'M'},
-							{text: '女', value: 'F'}
-                       ]
+						xtype: 'xtextfield',
+						placeHolder: '请输入昵称',
+						inputCls: 'font-grey',
+						flex: 1,
+						name: 'nickName',
+						itemId: 'nickName'
 					}
 				]
-            },
-            
-            {
-            	xtype:'panel',
-            	layout:'hbox',
-            	cls:'textfield',
-            	padding:'0 10 0 10',
-            	style:'height:75px',
-            	items:[
+			},
+
+			{
+				xtype: 'container',
+				layout: 'hbox',
+				cls: 'row underline icon-nickname',
+				padding: '0 10 0 50',
+				items: [
 					{
-            		   xtype:'image', 
-            		   src:'resources/icons/icon_portrait.png',
-            		   itemId:'portrait',
-            		   mode : 'tag'
-            	    },
-					
-            	    {
-					   xtype:'label',
-					   html:'|',
-					   margin:'0 10 0 10'
-					},   
-					
-					{
-            	       xtype:'image', 
-             		   src:'resources/icons/icon_portrait_demo.png',
-             		   itemId:'portrait',
-             		   mode : 'tag',
-             		   maxHeight:50
-					},
-					
-					{
-						xtype: 'filefield',
-						name: 'file',
-						hidden:true,
-						accept: 'image',
-						multiple: true
+						xtype:'xgenderselect',
+						itemId:'gender',
+						name:'gener',
+						displayField:"text",
+						valueField:"value",
+						flex: 1
 					}
-            	]
-            },
-            
+				]
+			},
+
+			{
+				xtype: 'container',
+				layout: 'hbox',
+				cls: 'underline icon-portrait',
+				padding: '2 10 0 50',
+				height:80,
+				width:80,
+				items: [
+					{
+						xtype:'xuserlogo',
+						itemId:'userLogo',
+						src:'resources/icons/icon_portrait_demo.png',
+						cls:'img-small'
+					}
+				]
+			},
+
             {
             	xtype:'xspacer'
             },
@@ -161,25 +111,6 @@ Ext.define('YourTour.view.user.RegisterProfileView', {
             	id:'btnRegisterDone',
 				cls: 'x-button-primary',
             	text:'注册'
-            },
-            
-            {
-            	xtype: 'panel',
-                docked: 'bottom',
-                itemId:'portraitOptions',
-                layout:'vbox',
-            	items:[{
-                	xtype: "xlabel", 
-                	itemId:'btnPhoto',
-                	cls:'row underline',
-                	html:'照片'
-                },
-                {
-                	xtype: "xlabel", 
-                	itemId:'btnCamera',
-                	cls:'row',
-                	html:'照相'
-                }]	
             }
         ]
     }

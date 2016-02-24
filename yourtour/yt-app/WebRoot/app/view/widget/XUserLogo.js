@@ -2,6 +2,7 @@ Ext.define('YourTour.view.widget.XUserLogo', {
     extend: 'Ext.Label',
     xtype: 'xuserlogo',
     config:{
+        src:null,
         baseCls:'x-xuser-logo',
         binding:'imageUrl'
     },
@@ -26,6 +27,10 @@ Ext.define('YourTour.view.widget.XUserLogo', {
         var url = data.get(name).split(';')[0];
 
         var url = YourTour.util.Context.getImageResource(url);
+        this.setSrc(url);
+    },
+
+    updateSrc:function(url){
         this.setSrc(url);
     },
 

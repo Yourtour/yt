@@ -2,7 +2,7 @@ Ext.define('YourTour.controller.MainCtrl', {
     extend: 'YourTour.controller.BaseCtrl',
     config: {
     	refs:{
-			launchview:'#LaunchView',
+			launchView:'#LaunchView',
 
 			mainView:'#MainView',
 			menuTab:'#MainView #menuTab'
@@ -11,50 +11,55 @@ Ext.define('YourTour.controller.MainCtrl', {
     	control:{
      	   menuTab:{
      		   activeitemchange:'onActiveItemChange'
-     	   }
-     	},
-    	
-		store : null
+     	   },
+
+			'#LaunchView #enter':{
+				tap:'doEnter'
+			}
+     	}
     },
 
 	launch:function(){
-		Ext.fly('appLoadingIndicator').destroy();
+		var me = this;
 		Ext.Viewport.add(Ext.create('YourTour.view.LaunchView'));
 
-		this.store = Ext.create('YourTour.store.LaunchStore', {itemId:'lanuchStore'});
+		//检查是否访问过启动页面
+		var localStore =  Ext.StoreManager.get('LocalStore');
+		localStore.load();
+
+		var index = localStore.find('key', 'welcome.visited'); //检查是否访问过welcome页
+		if(index < 0){ //没有访问过
+			var launch = me.getLaunchView();
+			launch.setActiveItem(1);
+		}else{
+			//检查是否登录过
+			index = localStore.find('key', 'account.authenticated');
+			if(index >= 0){
+				me.showMainPage();
+			}else{
+				me.doEnter();
+			}
+		}
+
+		/*this.store = Ext.create('YourTour.store.LaunchStore', {itemId:'lanuchStore'});
 		var me = this;
 		var success = function(){
 			try{
 				var localStore =  Ext.StoreManager.get('LocalStore');
 				localStore.load();
-
-				var index = localStore.find('key', 'welcome.visited'); //检查是否访问过welcome页
-				if(index < 0){
-					var launch = me.getLaunchView();
-					launch.setActiveItem(1);
-				}else{
-					//检查是否登录过
-					index = localStore.find('key', 'account.authenticated');
-					if(index >= 0){
-						me.showMainPage();
-					}else{
-						me.doEnter();
-					}
-				}
 			}catch(e){
 				alert(e.name + ": " + e.message);
 			}
 		};
 
-		this.store.load(success, this);
+		this.store.load(success, this);*/
 	},
 
 	doEnter:function(){
-		var localStore =  Ext.StoreManager.get('LocalStore');
-		localStore.add({key:'welcome.visited', value:'1'});
-		localStore.sync();
+		this.getApplication().store({key:'welcome.visited', value:'1'});
 
-		this.redirectTo('/login');
+		var controller = this.getApplication().getController('AccountMainCtrl');
+		controller.showLoginView();
 	},
 
 	/**

@@ -6,14 +6,7 @@ Ext.define('YourTour.util.ChatRoom', {
     alias: 'ChatRoom',
     alternateClassName: 'YourTour.ChatRoom',
     config: {
-        userKey: 'user',
         url: '',
-
-        //server:'192.168.1.174:8080'
-        //server:'192.168.2.102:8080'
-        //server: '120.55.76.201:8080'
-        server: 'localhost:8080',
-
         webSocket: null
     },
 
@@ -26,7 +19,7 @@ Ext.define('YourTour.util.ChatRoom', {
             this.closeChatRoom();
         }
 
-        var s = 'ws://' + this.getServer() + '/yt-web/ws/chat';
+        var s = 'ws://' + YourTour.util.Context.getRemoteServer() + '/yt-web/ws/chat';
         if (url == '') {
             throw new Error('The url is empty.');
         }
@@ -71,6 +64,7 @@ Ext.define('YourTour.util.ChatRoom', {
         if (this.getWebSocket() == null) {
             throw new Error('The chat room not initialized, please invoke openChatRoom() at first.');
         }
+
         this.getWebSocket().send(Ext.JSON.encode(message));
     }
 

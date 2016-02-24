@@ -24,7 +24,11 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
             //行程主题选择页面
 
             //行程时间设置页面
-            timeSelectionView: '#TimeSelectionView'
+            timeSelectionView: '#TimeSelectionView',
+
+            //行程预约界面
+            routeReservationPlanView:'#RouteReservationPlanView',
+            expertList:'#RouteReservationPlanView #expertList',
         },
 
         control: {
@@ -118,12 +122,8 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
                 tap: "onToPlacesTap"
             },
 
-            '#RouteSettingView #btnRefer': {
-                tap: 'OnRouteReferTap'
-            },
-
-            '#RouteSettingView #btnCutomized': {
-                tap: 'onRouteCustomizeTap'
+            '#RouteSettingView #toolbar':{
+                activeitemchange:'onRouteSettingViewButtonsTap'
             }
         },
 
@@ -145,6 +145,37 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
         });
     },
 
+    /**
+     * 显示行程预约定制信息提供页面
+     */
+    showRouteReservationPlanView:function(){
+        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteReservationPlanView'));
+
+        var me = this,
+            view = me.getRouteReservationPlanView(),
+            route = me.getRouteSettingInfo(),
+            expertList = me.getExpertList();
+
+        view.bindData(route);
+
+        //获取相关的目的地
+        var options = {
+            model: 'YourTour.model.ExpertModel',
+            url: '/expert/places/' + route.toPlaceIds + '/services/all',
+            success: function (store) {
+                expertList.setStore(store);
+            }
+        };
+        me.getApplication().query(options);
+
+    },
+
+    /**
+     * 选择目的地
+     * @param place
+     *
+     * Status:formal
+     */
     showPlaceEditView: function (place) {
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RoutePlaceEditView'));
 
@@ -183,6 +214,18 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
         });
 
         me.getRelatedPlaces(selectedStore.last());
+    },
+
+    onRouteSettingViewButtonsTap:function(toolbar, value, oldValue, eOpts ){
+        var itemId = value.getItemId();
+
+        if(itemId == 'btnRefer'){
+            this.OnRouteReferTap();
+        }else if (itemId == 'btnCutomized'){
+            this.onRouteCustomizeTap();
+        }else if (itemId == 'btnResevation'){
+            this.showRouteReservationPlanView();
+        }
     },
 
     onRoutePlaceAddTapHandler: function () {
@@ -325,6 +368,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
         route.startDate = startDate.getValue();
         route.endDate = endDate.getValue();
         route.fromPlace = fromPlace.getPair();
+        route.toPlaceIds = toPlaces.getValue();
         route.toPlaces = toPlaces.getPair();
         route.adultNum = adultNum.getValue();
         route.childNum = childNum.getValue();

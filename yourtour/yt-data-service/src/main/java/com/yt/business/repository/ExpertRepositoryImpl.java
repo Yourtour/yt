@@ -7,6 +7,7 @@ import com.yt.business.neo4j.repository.ExpertTuple;
 import com.yt.business.neo4j.repository.RouteBeanRepository;
 import com.yt.business.neo4j.repository.UserProfileBeanRepository;
 import com.yt.core.utils.CollectionUtils;
+import com.yt.core.utils.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,17 +35,31 @@ public class ExpertRepositoryImpl extends CrudAllInOneOperateImpl implements
 	}
 
 	@Override
-	public List<ExpertBean> getExperts(String placeIds, String duration) throws Exception {
-		List<Long> places = new ArrayList<>();
-		if(placeIds != null){
+	public List<ExpertBean> getExperts(String placeIds, String pServices) throws Exception {
+		Long[] places = null, services = null;
+		List<ExpertTuple> tuples = null;
+
+		if(StringUtils.isNotNull(placeIds)){
 			String[] ids = placeIds.split(",");
-			for(String id : ids){
-				places.add(Long.valueOf(id));
+			places = new Long[ids.length];
+			for(int index = 0; index < ids.length; index++){
+				places[index] = Long.valueOf(ids[index]);
 			}
 		}
 
+		if(StringUtils.isNull(pServices)){
+			tuples = expertBeanRepository.getExperts(places);
+		}else{
+			String[] ids = pServices.split(",");
+			services = new Long[ids.length];
+			for(int index = 0; index < ids.length; index++){
+				services[index] = Long.valueOf(ids[index]);
+			}
+
+			tuples = expertBeanRepository.getExperts(places,services);
+		}
+
 		List<ExpertBean> experts = new ArrayList<>();
-		List<ExpertTuple> tuples = expertBeanRepository.getExperts(places.toArray(new Long[]{}), Integer.valueOf(duration));
 		if(CollectionUtils.isNotEmpty(tuples)){
 			for(ExpertTuple tuple : tuples){
 				ExpertBean expert = tuple.getExpert();

@@ -1,5 +1,5 @@
 Ext.define('YourTour.view.LaunchView', {
-    extend: 'Ext.Container',
+    extend: 'YourTour.view.widget.XPage',
     requires:['Ext.Img', 'Ext.Label','Ext.Carousel'],
     config: {
     	layout:'card',
@@ -46,7 +46,6 @@ Ext.define('YourTour.view.LaunchView', {
 			            	}
 		            	]
             		}
-            		
             	]
             }
         ]

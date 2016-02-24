@@ -1,7 +1,7 @@
-Ext.define('YourTour.view.place.PlaceExpertGridItem', {
+Ext.define('YourTour.view.expert.ExpertGridDataItem', {
 	extend: 'YourTour.view.widget.grid.component.DataItem',
     requires:['YourTour.view.widget.XImage'],
-    xtype: 'PlaceExpertGridItem',
+    xtype: 'ExpertGridDataItem',
     config: {
         layout:'hbox',
         height:70,
@@ -9,9 +9,9 @@ Ext.define('YourTour.view.place.PlaceExpertGridItem', {
         cls:'underline',
         items: [
 			{
-				xtype:'ximage',
+				xtype:'xuserlogo',
                 itemId:'imageUrl',
-                imageCls:'img-user-logo-48',
+                cls:'img-small',
                 binding:'profile.imageUrl'
 			},
 

@@ -42,7 +42,20 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
 
             '#ResourceFormView #commentPanel': {
                 tap: 'showCommentView'
+            },
+
+            '#ResourceSelectionView #toolbar':{
+                activeitemchange:'onResourceMainViewToolbarTap'
             }
+        }
+    },
+
+    onResourceMainViewToolbarTap:function(toolbar, value, oldValue, eOpts ){
+        var me = this, itemId = value.getItemId();
+
+        if(itemId == 'btnConsult'){
+            var controller = me.getApplication().getController('CommonMainCtrl');
+            controller.showConsultMainView();
         }
     },
 
@@ -66,7 +79,7 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
         var me = this, selectionList = me.getSelectionList();
         var options = {
             model:'YourTour.model.ResourceModel',
-            url:'/scenes/query',
+            url:'/resource/place/6',
             success:function(store){
                 selectionList.setStore(store);
             }
@@ -113,14 +126,6 @@ Ext.define('YourTour.controller.ResourceMainCtrl', {
             }
         };
         me.getApplication().query(options);
-    },
-
-    onResourceFilterHandler: function () {
-        if (newTab.getItemId() == 'ResourcePlayListView') {
-            this.loadPlayResource(newTab);
-        } else if (newTab.getItemId() == 'ResourceFoodListView') {
-            this.loadFoodResource(newTab);
-        }
     },
 
     onResourceAddTap:function(){

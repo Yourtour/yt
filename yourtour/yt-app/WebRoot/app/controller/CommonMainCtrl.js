@@ -7,7 +7,9 @@ Ext.define('YourTour.controller.CommonMainCtrl', {
             commentMainView: '#CommentMainView',
             commentList: '#CommentMainView #commentList',
 
-            timeSelectionView: '#TimeSelectionView'
+            timeSelectionView: '#TimeSelectionView',
+
+            consultMainView: '#ConsultMainView'
         },
 
         control: {
@@ -43,6 +45,10 @@ Ext.define('YourTour.controller.CommonMainCtrl', {
                 itemtap: 'onTimeSelectionActiveItemChangeHandler'
             }
         }
+    },
+
+    showConsultMainView:function(){
+        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.common.ConsultMainView'));
     },
 
     showContentReadView: function (title, content) {

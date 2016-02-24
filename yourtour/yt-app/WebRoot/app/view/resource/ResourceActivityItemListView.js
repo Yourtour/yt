@@ -1,6 +1,5 @@
 Ext.define('YourTour.view.resource.ResourceActivityItemListView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['YourTour.view.resource.ResourcePlayDataItem'],
     config: {
     	itemId:'ResourceActivityItemListView',
     	layout:'vbox',

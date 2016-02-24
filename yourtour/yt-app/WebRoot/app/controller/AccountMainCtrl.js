@@ -1,4 +1,4 @@
-Ext.define('YourTour.controller.user.AccountMainCtrl', {
+Ext.define('YourTour.controller.AccountMainCtrl', {
     extend: 'Ext.app.Controller',
     config: {
        refs:{
@@ -23,10 +23,10 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     		   tap:'onGetAuthCode'
     	   },
     	   
-    	   '#RegisterAccountView #btnNext':{
-    		   tap:'onRegisterAccountTap'
+    	   '#RegisterAccountView #btnRegisterAccount':{
+    		   tap:'registerUserAccount'
     	   },
-    	   
+
     	   '#RegisterProfileView #btnRegisterDone':{
     		   tap:'onRegisterDoneTap'
     	   },
@@ -43,42 +43,34 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     		   tap:'onBtnPhotoTap'
     	   }
        },
-       
-       routes:{
-       		'/login':'showLoginView'	
-       },
-       
-       store:null,
-       
-       model:null
     },
     
     init:function(){
     	this.model = Ext.create('YourTour.model.UserModel',{graphId:-1});
     },
-    
+
     showLoginView:function(){
     	var loginMainView = Ext.create('YourTour.view.user.LoginMainView');
     	Ext.Viewport.setActiveItem(loginMainView);	
     },
     
     onRegisterTap:function(){
-    	this.getLoginMainView().setActiveItem('#RegisterAccountView');
+    	this.getLoginMainView().setActiveItem(1);
     },
     
     onGetAuthCode:function(){
     	
     },
-    
+
     /**
-     * 
+     * 账户注册
      */
-    onRegisterAccountTap:function(){
+	registerUserAccount:function(){
     	var me = this;
     	
-    	var accountview = this.getRgisterAccountView();
-    	var values = accountview.getValues(); 
-    	
+    	/*var accountview = this.getRgisterAccountView();
+    	var values = accountview.getValues();
+
     	var mobile = values.mobile;
     	if(mobile == ''){
     		Ext.Msg.alert('请输入手机号码。');
@@ -102,27 +94,20 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     		return;
     	}
     	
-    	delete values['confirmPassword'];
-    	
-    	var data = Ext.JSON.encode(values);
-    	Ext.Ajax.request({
-    	    url : YourTour.util.Context.getContext('/users/account/register'),
-    	    method : "POST",
-    	    params : data,
-    	    success : function(response) {
-    	    	var data = Ext.JSON.decode(response.responseText);
-    	    	if(data.errorCode != '0'){
-    	    		Ext.Msg.alert(data.errorText);
-    	    		return;
-    	    	};
-    	    	
-    	    	me.getLoginMainView().setActiveItem(me.getRegisterProfileView());
-    	    },
-    	    failure : function(response) {
-    	        var respObj = Ext.JSON.decode(response.responseText);
-    	        Ext.Msg.alert("Error", respObj.status.statusMessage);
-    	    }
-    	});
+    	delete values['confirmPassword'];*/
+
+		me.getLoginMainView().setActiveItem(2);
+
+		/*this.getApplication().callService({
+			url: '/users/account/register',
+			method: "POST",
+			params: values,
+			success: function (response) {
+				me.getApplication().store({key:'user.profile', value:Ext.JSON.encode(response)});
+
+				me.getLoginMainView().setActiveItem(2);
+			}
+		});*/
     },
     
     /**
@@ -152,7 +137,10 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     onPortraitTap:function(){
     	this.getPortraitOptions().show();
     },
-    
+
+	/**
+	 * 登录
+	 */
     onLoginTap:function(){
     	var me = this;
     	var loginInfo = {};
@@ -177,12 +165,10 @@ Ext.define('YourTour.controller.user.AccountMainCtrl', {
     	    method : "POST",
     	    params : loginInfo,
     	    success : function(response) {
-    	    	var localStore =  Ext.StoreManager.get('LocalStore');
-    	    	localStore.add({key:'account.authenticated', value:'1'});
-    	    	localStore.add({key:'user.profile', value:Ext.JSON.encode(response)});
-    	    	localStore.sync();
+    	    	me.getApplication().store([{key:'account.authenticated', value:'1'}, {key:'user.profile', value:Ext.JSON.encode(response)}]);
 
-    	    	me.redirectTo('/mainpage');
+				var controller = me.getApplication().getController('MainCtrl');
+				controller.showMainPage();
     	    }
     	});
     },

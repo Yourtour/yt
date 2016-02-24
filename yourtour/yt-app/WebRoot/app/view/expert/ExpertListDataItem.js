@@ -1,6 +1,6 @@
-Ext.define('YourTour.view.expert.ExpertDataItem', {
+Ext.define('YourTour.view.expert.ExpertListDataItem', {
     extend: 'Ext.dataview.component.DataItem',
-    xtype: 'ExpertDataItem',
+    xtype: 'ExpertListDataItem',
     requires:['Ext.Label','Ext.Panel'],
     config: {
 		layout:'vbox',
