@@ -106,7 +106,20 @@ public interface Constants {
 	 */
 	public static final String RELATION_TYPE_FAVORITE = "FAVORITE";
 
+	public final static String RELATION_TYPE_PUBLISH = "PUBLISH";
 
+
+	public static enum ThemeType{
+		SCENE("SCENE", "景点"), FOOD("FOOD", "美食"), HOTEL("HOTEL", "住宿"), TRAFFIC("TRAFFIC", "交通"), WEATHER("WEATHER", "天气");
+
+		public String code;
+		public String name;
+
+		private ThemeType(String code, String name) {
+			this.code = code;
+			this.name = name;
+		}
+	}
 
 	// 资源枚举
 	public static enum GenderType {

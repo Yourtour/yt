@@ -56,13 +56,13 @@ Ext.define('YourTour.view.place.PlaceMainView', {
 										items:[
 											{
 												xtype: 'xlabel',
-												html: '介绍',
+												html: '导览',
 												style:'background-image: url(./resources/icons/48/icon_intro.png);'
 											},
 											{
 												xtype: 'xlabel',
 												itemId:'placeLines',
-												html: '线路',
+												html: '行程',
 												style:'background-image: url(./resources/icons/48/icon_line.png);'
 											},
 											{
@@ -74,8 +74,7 @@ Ext.define('YourTour.view.place.PlaceMainView', {
 											{
 												xtype: 'xlabel',
 												itemId:'placeScene',
-												html: '景点',
-												cls:'',
+												html: '游玩',
 												style:'background-image: url(./resources/icons/48/icon_scene.png);'
 											}
 										]
@@ -98,20 +97,18 @@ Ext.define('YourTour.view.place.PlaceMainView', {
 											},
 											{
 												xtype: 'xlabel',
-												html: '直播',
+												html: '晒一晒',
 												style:'background-image: url(./resources/icons/48/icon_live.png);'
 											},
 											{
 												xtype: 'xlabel',
-												itemId:'placeChatRoom',
-												html: '聊天室',
+												itemId:'placeCommunity',
+												html: '社区',
 												style:'background-image: url(./resources/icons/48/icon_chat.png);'
 											},
 											{
 												xtype: 'xlabel',
-												itemId:'placePosition',
-												html: '附近',
-												style:'background-image: url(./resources/icons/48/icon_position.png);'
+												itemId:'placePosition'
 											}
 										]
 									}

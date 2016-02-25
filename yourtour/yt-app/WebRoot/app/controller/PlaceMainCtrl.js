@@ -5,7 +5,9 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
         refs: {
             placeMainView: '#PlaceMainView',
             imageCarousel: '#PlaceMainView #imageCarousel',
-            resourceList:'#PlaceMainView #resourceList'
+            resourceList:'#PlaceMainView #resourceList',
+
+            placeCommunityView:'#PlaceCommunityView'
         },
 
         control: {
@@ -13,8 +15,8 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
                 itemtap:'showResource'
             },
 
-            '#PlaceMainView #placeChatRoom': {
-                tap: 'showPlaceChatRoom'
+            '#PlaceMainView #placeCommunity': {
+                tap: 'showCommunityMainView'
             },
 
             '#PlaceMainView #placeAlongs': {
@@ -72,6 +74,10 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
         }else{
             me.showResourceImages(resourceList.getStore().getAt(0));
         }
+    },
+
+    showCommunityMainView:function(){
+        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.place.PlaceCommunityView'));
     },
 
     showResource:function(dataview, index, item, record){
