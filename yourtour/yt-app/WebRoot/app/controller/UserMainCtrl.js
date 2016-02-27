@@ -150,7 +150,19 @@ Ext.define('YourTour.controller.UserMainCtrl', {
     },
 
     onUserLogoTap:function(){
-        this.getImagePicker().show();
+        var me = this, userProfileView = me.getUserProfileView();
+        window.imagePicker.getPictures(
+            function(results) {
+                for (var i = 0; i < results.length; i++) {
+                    var image = userProfileView.down('#image');
+                    image.setSrc(results[i]);
+
+                    alert(image.getValue())
+                }
+            }, function (error) {
+                alert('Error: ' + error);
+            }
+        );
     },
 
     onImagePick:function(picker, value, text, eOpts ){

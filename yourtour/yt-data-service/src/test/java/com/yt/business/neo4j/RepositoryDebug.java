@@ -4,17 +4,16 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.yt.business.bean.UserAccountBean;
-import com.yt.business.neo4j.repository.UserAccountBeanRepository;
+import com.yt.business.neo4j.repository.UserBeanRepository;
 
 public class RepositoryDebug {
 	private ApplicationContext context;
-	private UserAccountBeanRepository accountRepository;
+	private UserBeanRepository accountRepository;
 	
 	public RepositoryDebug() {
 		context = new ClassPathXmlApplicationContext(new String[] {
 				"application-hbase-context.xml", "application-neo4j-context.xml" });
-		accountRepository = context.getBean(UserAccountBeanRepository.class);
+		accountRepository = context.getBean(UserBeanRepository.class);
 	}
 	
 	@Test

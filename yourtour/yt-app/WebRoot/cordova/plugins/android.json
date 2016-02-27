@@ -27,6 +27,10 @@
                         {
                             "xml": "<feature name=\"ExtraInfo\"><param name=\"android-package\" value=\"com.yt.cordova.extra.ExtraInfo\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"ImagePicker\"><param name=\"android-package\" value=\"com.synconset.ImagePicker\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -51,6 +55,10 @@
                         {
                             "xml": "<activity android:label=\"@string/share_name\" android:name=\"com.google.zxing.client.android.HelpActivity\"><intent-filter><action android:name=\"android.intent.action.VIEW\" /><category android:name=\"android.intent.category.DEFAULT\" /></intent-filter></activity>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<activity android:label=\"@string/multi_app_name\" android:name=\"com.synconset.MultiImageChooserActivity\" android:theme=\"@android:style/Theme.Holo.Light\"></activity>",
+                            "count": 1
                         }
                     ],
                     "/manifest": [
@@ -64,6 +72,10 @@
                         },
                         {
                             "xml": "<uses-feature android:name=\"android.hardware.camera\" android:required=\"false\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
                             "count": 1
                         }
                     ]
@@ -567,6 +579,9 @@
             "PACKAGE_NAME": "foo.bar.YourTour"
         },
         "cordova-plugin-extra": {
+            "PACKAGE_NAME": "foo.bar.YourTour"
+        },
+        "cordova-plugin-image-picker": {
             "PACKAGE_NAME": "foo.bar.YourTour"
         }
     },

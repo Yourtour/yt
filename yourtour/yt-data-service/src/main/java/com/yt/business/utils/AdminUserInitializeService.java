@@ -1,5 +1,6 @@
 package com.yt.business.utils;
 
+import com.yt.business.bean.UserProfileBean;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.InitializingBean;
@@ -79,7 +80,7 @@ public class AdminUserInitializeService implements InitializingBean {
 	@Transactional
 	private void initializeAdminEmployee() throws Exception {
 		// 检测默认的admin账户是否存在
-		UserTuple admin = userRepository.getUserAccount("admin");
+		UserProfileBean admin = userRepository.getUserByUserName("admin");
 		if (admin != null) {
 			// admin账户已经存在，返回
 			return;

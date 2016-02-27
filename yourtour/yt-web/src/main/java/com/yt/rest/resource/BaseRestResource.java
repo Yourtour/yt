@@ -1,10 +1,13 @@
 package com.yt.rest.resource;
 
 import com.yt.utils.WebUtils;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.servlet.http.HttpServletRequest;
 
 public class BaseRestResource {
+
+
 	public BaseRestResource() {
 	}
 	

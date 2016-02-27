@@ -3,22 +3,22 @@ Ext.define('YourTour.view.widget.XImageSelect', {
     xtype: 'ximageselect',
     config:{
         layout:'vbox',
-        docked:'bottom',
-        success:Ext.emptyFn,
-        fail:Ext.emptyFn,
+        image:{
+            fileName:'unknown.jpg',
+            quality: 75,
+            width: 200,
+            height: 200
+        },
         items:[
             {
-                xtype: 'xlabel',
-                itemId:'photo',
-                cls:'row underline font-medium font-grey text-align-center',
-                html:'相册'
-            },
-
-            {
-                xtype: 'xlabel',
-                itemId:'camera',
-                cls:'row underline font-medium font-grey  text-align-center',
-                html:'照相'
+                xtype:'selectfield',
+                itemId:'imageSelect',
+                hidden:true,
+                usePicker:true,
+                options: [
+                    {text: '相机',  value: 'camera'},
+                    {text: '相册', value: 'library'}
+                ]
             }
         ]
     },
@@ -26,38 +26,57 @@ Ext.define('YourTour.view.widget.XImageSelect', {
     initialize:function(){
         this.callParent(arguments);
 
-        var me = this, photo = me.down('#photo'), camera = me.down('#camera');
-        photo.on({
-            scope:photo,
-            tap:function(){
-                me.getPhoto(navigator.camera.PictureSourceType.PHOTOLIBRARY);
+        var me = this, imageSelect = me.down('#imageSelect'), image = me.image || me.getImage();
+        me.addCls('icon-add');
+
+        me.captured = false;
+        imageSelect.on('change', function(select, newValue, oldValue, eOpts ){
+            Ext.device.Camera.capture({
+                success: function (image) {
+                    me.removeCls('icon-add');
+
+                    me.captured = true;
+                    var base64 = 'data:image/jpeg;base64,' + image;
+                    me.setData(base64);
+
+                    var style = {};
+                    style['background-image'] = 'url(' + base64 + ')';
+                    style['background-repeat'] = 'no-repeat';
+                    style['background-position'] = 'center center';
+                    style['background-size'] = '100% 100%';
+                    me.setStyle(style);
+                },
+                quality: image.quality,
+                width: image.width,
+                height: image.height,
+                source: newValue,
+                destination: 'data'
+            });
+        })
+
+        me.element.on('tap', function(){
+            if (!me.captured) {
+                imageSelect.showPicker();
             }
-        });
-
-        camera.on({
-            scope:photo,
-            tap:function(){
-                me.getPhoto(navigator.camera.PictureSourceType.CAMERA);
-            }
-        });
+        })
     },
 
-    updateSuccess:function(success){
-        this.success = success;
+    getAsBase64:function(){
+        return this.getData();
     },
 
-    updateFail:function(fail){
-        this.fail = fail;
+    updateImage:function(image){
+        Ext.apply(this.image, image);
     },
 
-    getPhoto: function(source) {
-        var me = this;
-
-        navigator.camera.getPicture(me.success, me.fail, {
-            quality: 50,
-            destinationType: navigator.camera.DestinationType.FILE_URI,
-            sourceType: source
-        });
+    updateFileName:function(fileName){
+        this.fileName = fileName;
     },
+
+    getFileName:function(){
+        var me = this, image = me.image || me.getImage();
+
+        return image.fileName;
+    }
 });
 

@@ -7,57 +7,46 @@
  */
 package com.yt.business.neo4j.repository;
 
-import java.util.List;
-
+import com.yt.business.bean.UserProfileBean;
 import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.neo4j.repository.GraphRepository;
 
-import com.yt.business.bean.UserProfileBean;
+import com.yt.business.bean.UserAccountBean;
+
+import java.util.List;
 
 /**
- * 关于用户实体（UserProfileBean）的关系查询接口定义。
  * 
- * <p>
- * <b>修改历史：</b>
- * <table border="1">
- * <tr>
- * <th>修改时间</th>
- * <th>修改人</th>
- * <th>备注</th>
- * </tr>
- * <tr>
- * <td>2015年6月22日</td>
- * <td>john</td>
- * <td>Create</td>
- * </tr>
- * </table>
- * 
- * @author john
- * 
- * @version 1.0
- * @since 1.0
+ * @author Tony.Zhang
+ *
  */
-public interface UserProfileBeanRepository extends GraphRepository<UserProfileBean> {
-	/**
-	 * 根据登录账号获取用户个人信息
-	 * 
-	 * @param user
-	 *            　指定的用户
-	 * @return　用户列表
-	 */
-	@Query("START account=node(UserAccountBean(name:{0}) RETURN account-[:BELONG]->profile RETURN profile")
-	public UserProfileBean getUserProfileInfo(String userName);
-	
+public interface UserBeanRepository extends GraphRepository<UserAccountBean> {
 	/**
 	 * 获取关注了相同行程的用户列表
-	 * 
+	 *
 	 * @param user
 	 *            　指定的用户
 	 * @return　用户列表
 	 */
 	@Query("START u=node({0}) MATCH u-[:watchRoute]->(route)<-[:watchRoute]-(users) RETURN users")
 	public List<UserProfileBean> getUsersWatchSameRoutes(UserProfileBean user);
-	
+
+	/**
+	 * 根据昵称获取用户信息
+	 * @param nickName
+	 * @return
+	 */
+	@Query("MATCH (profile:UserProfileBean)<-[:BELONG]-(account:UserAccount) WHERE profile.nickName={0} RETURN profile, account")
+	public UserTuple getUserByNickName(String nickName);
+
+	/**
+	 * 根据账号检索账号注册信息
+	 * @param userName
+	 * @return
+	 */
+	@Query("MATCH (profile:UserProfileBean)<-[:BELONG]-(account:UserAccount) WHERE account.userName={0} RETURN profile, account")
+	public UserTuple getUserByUserName(String userName);
+
 	@Query("match (account:UserAccountBean)-[:BELONG]->(profile:UserProfileBean) where account.userName={0} or profile.nickName={0} or profile.mobileNo={0} RETURN profile;")
 	public List<UserProfileBean> getUsers(String searchWords);
 }

@@ -17,6 +17,9 @@
     <feature name="ExtraInfo">
         <param name="android-package" value="com.yt.cordova.extra.ExtraInfo" />
     </feature>
+    <feature name="ImagePicker">
+        <param name="android-package" value="com.synconset.ImagePicker" />
+    </feature>
     <allow-intent href="market:*" />
     <name>游徒</name>
     <description>

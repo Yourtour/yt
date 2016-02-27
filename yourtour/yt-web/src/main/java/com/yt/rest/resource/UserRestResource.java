@@ -1,48 +1,48 @@
 package com.yt.rest.resource;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Vector;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
+import com.sun.jersey.core.header.FormDataContentDisposition;
+import com.sun.jersey.multipart.FormDataBodyPart;
+import com.sun.jersey.multipart.FormDataMultiPart;
+import com.sun.jersey.multipart.FormDataParam;
 import com.yt.business.bean.UserAccountBean;
 import com.yt.business.bean.UserProfileBean;
-import com.yt.business.neo4j.repository.UserTuple;
+import com.yt.business.common.AppException;
+import com.yt.business.common.Constants;
 import com.yt.business.repository.UserRepository;
 import com.yt.business.utils.AdminUserInitializeService;
 import com.yt.business.utils.Neo4jUtils;
 import com.yt.core.utils.Base64Utils;
+import com.yt.core.utils.FileUtils;
 import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponsePagingDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.utils.WebUtils;
-import com.yt.vo.member.AuthenticationVO;
-import com.yt.vo.member.LoginVO;
-import com.yt.vo.member.RegisterVO;
-import com.yt.vo.member.UserProfileVO;
-import com.yt.vo.member.UserVO;
+import com.yt.vo.member.*;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+import org.springframework.util.FileCopyUtils;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
 
 @Component
 @Path("users")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class UserRestResource extends BaseRestResource{
+	@Value("${app.image.base}")
+	private String imageBase = "";
+
 	private static final Log LOG = LogFactory.getLog(UserRestResource.class);
 
 	@Autowired
@@ -314,12 +314,38 @@ public class UserRestResource extends BaseRestResource{
 		}
 	}
 
+	/**
+	 * APP用户登录接口
+	 * @param loginVO
+	 * @return
+	 */
+	@POST
+	@Path("/account/login")
+	public ResponseDataVO<UserProfileVO> login(LoginVO loginVO){
+		try{
+			UserProfileBean user = userRepository.getUser(loginVO.getMobile(), loginVO.getPassword());
+
+			UserProfileVO profile = new UserProfileVO(user);
+			return new ResponseDataVO<UserProfileVO>(profile);
+		} catch (AppException ex) {
+			return new ResponseDataVO<UserProfileVO>(StaticErrorEnum.AUTHENTICATE_FAIL);
+		} catch (Exception ex) {
+			LOG.error("Exception raised when registering user account.", ex);
+			return new ResponseDataVO<UserProfileVO>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
+	}
+
+	/**
+	 * APP 用户账户注册接口
+	 * @param registervo
+	 * @return
+	 */
 	@POST
 	@Path("/account/register")
 	public ResponseDataVO<RegisterVO> registerUserAccount(RegisterVO registervo){
 		try{
-			UserTuple tuple = userRepository.getUserAccount(registervo.getMobile());
-			if(tuple != null){
+			UserProfileBean profile = userRepository.getUserByUserName(registervo.getMobile());
+			if(profile != null){
 				return new ResponseDataVO<RegisterVO>(StaticErrorEnum.USER_EXIST);
 			}
 			
@@ -327,7 +353,7 @@ public class UserRestResource extends BaseRestResource{
 			account.setUserName(registervo.getMobile());
 			account.setPwd(Base64Utils.MD5(registervo.getPassword()));
 			
-			UserProfileBean profile = new UserProfileBean();
+			profile = new UserProfileBean();
 			profile.setMobileNo(registervo.getMobile());
 			account.setProfile(profile);
 			this.userRepository.save(account, String.valueOf(account.getGraphId()));
@@ -337,49 +363,46 @@ public class UserRestResource extends BaseRestResource{
 			return new ResponseDataVO<RegisterVO>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
 	}
-	
+
+	/**
+	 *
+	 * @param form
+	 * @return
+	 */
 	@POST
-	@Path("/account/login")
-	public ResponseDataVO<UserProfileVO> login(LoginVO loginVO){
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
+	@Path("/profile/save")
+	public ResponseDataVO<UserProfileVO> registerProfile(@FormDataParam("id") Long profileId,
+													  @FormDataParam("nickName") String nickName,
+													  @FormDataParam("gender") String gender,
+													  FormDataMultiPart form){
 		try{
-			UserTuple user = userRepository.getUserAccount(loginVO.getMobile());
-			if(user == null){
-				return new ResponseDataVO<UserProfileVO>(StaticErrorEnum.AUTHENTICATE_FAIL);
+			UserProfileBean profile = userRepository.getUserByNickName(nickName);
+			if(profile != null){
+				return new ResponseDataVO<UserProfileVO>(StaticErrorEnum.NICKNAME_EXIST);
 			}
-			
-			if(! user.getAccount().getPwd().equals(Base64Utils.MD5(loginVO.getPassword().trim()))){
-				return new ResponseDataVO<UserProfileVO>(StaticErrorEnum.AUTHENTICATE_FAIL);
+
+			profile = (UserProfileBean)userRepository.get(UserProfileBean.class, profileId, false);
+			if(profile == null){
+				return new ResponseDataVO<UserProfileVO>(StaticErrorEnum.USER_NOT_EXIST);
 			}
-			
-			UserProfileVO profile = new UserProfileVO(user.getProfile());
-			return new ResponseDataVO<UserProfileVO>(profile);
+
+			List<FormDataBodyPart> l= form.getFields("userLogo");
+			for (FormDataBodyPart p : l) {
+				InputStream is = p.getValueAs(InputStream.class);
+				FormDataContentDisposition detail = p.getFormDataContentDisposition();
+				profile.setImageUrl(FileUtils.saveFile(this.imageBase, FileUtils.getType(detail.getFileName()), is));
+			}
+
+			profile.setNickName(nickName);
+			profile.setGender(Constants.GenderType.getEnum(gender));
+			this.userRepository.save(profile, false, String.valueOf(profileId));
+
+			profile = (UserProfileBean) userRepository.get(UserProfileBean.class, profileId, false);
+			return new ResponseDataVO<UserProfileVO>(new UserProfileVO(profile));
 		} catch (Exception ex) {
 			LOG.error("Exception raised when registering user account.", ex);
 			return new ResponseDataVO<UserProfileVO>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
 	}
-	
-	/*@POST
-	@Path("/profile/register")
-	@Consumes(MediaType.MULTIPART_FORM_DATA)  
-	public ResponseDataVO<RegisterVO> registerProfile(RegisterVO registervo, @FormDataParam("file") InputStream fileInputStream,  
-	        @FormDataParam("file") FormDataContentDisposition disposition){
-		try{
-			String fileName = disposition.getFileName(); 
-			UserAccountBean account = userRepository.getUserAccount(registervo.getUserName());
-			if(account == null){
-				return new ResponseDataVO<RegisterVO>(StaticErrorEnum.USER_NOT_EXIST);
-			}
-			
-			UserProfileBean profile = account.getProfile();
-			profile.setNickName(registervo.getNickname());
-			profile.setGender(GenderType.valueOf(registervo.getSex()));
-			
-			this.userRepository.save(profile, String.valueOf(account.getGraphId()));
-			return new ResponseDataVO<RegisterVO>(registervo);
-		} catch (Exception ex) {
-			LOG.error("Exception raised when registering user account.", ex);
-			return new ResponseDataVO<RegisterVO>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
-		}
-	}*/
 }

@@ -46,6 +46,13 @@ module.exports = [
         "clobbers": [
             "ExtraInfo"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-image-picker/www/imagepicker.js",
+        "id": "cordova-plugin-image-picker.ImagePicker",
+        "clobbers": [
+            "plugins.imagePicker"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -55,7 +62,8 @@ module.exports.metadata =
     "cordova-plugin-camera": "1.2.0",
     "phonegap-plugin-barcodescanner": "4.0.1",
     "cordova-plugin-x-socialsharing": "5.0.8-dev",
-    "cordova-plugin-extra": "1.2.0"
+    "cordova-plugin-extra": "1.2.0",
+    "cordova-plugin-image-picker": "1.0.8"
 }
 // BOTTOM OF METADATA
 });
