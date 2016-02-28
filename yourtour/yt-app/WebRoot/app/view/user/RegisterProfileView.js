@@ -59,13 +59,13 @@ Ext.define('YourTour.view.user.RegisterProfileView', {
 				cls: 'underline icon-portrait',
 				padding: '2 10 0 50',
 				height:80,
-				width:80,
 				items: [
 					{
 						xtype:'ximageselect',
 						itemId:'userLogo',
-						width:75,
-						height:75
+						cls:'x-xuserlogo',
+						flex:1,
+						maxHeight:75
 					}
 				]
 			},

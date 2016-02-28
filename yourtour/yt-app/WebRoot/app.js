@@ -293,8 +293,10 @@ Ext.application({
             }
         }
 
-        var files = options.files;
-        if (files) {
+        var fileContainer = options.file;
+        if (fileContainer) {
+            var files = fileContainer.getImages();
+
             var base64, mimeString, byteString, arrayBuffer, intArray, blob;
             Ext.Array.forEach(files, function (file) {
                 base64 = file.getAsBase64();

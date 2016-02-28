@@ -887,6 +887,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.XHeaderBar": [],
   "YourTour.view.widget.XIcon": [],
   "YourTour.view.widget.XImage": [],
+  "YourTour.view.widget.XImageField": [],
   "YourTour.view.widget.XImageSelect": [],
   "YourTour.view.widget.XLabel": [],
   "YourTour.view.widget.XMultiField": [],
@@ -2092,6 +2093,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.widget.XImage": [
     "widget.ximage"
+  ],
+  "YourTour.view.widget.XImageField": [
+    "widget.ximagefield"
   ],
   "YourTour.view.widget.XImageSelect": [
     "widget.ximageselect"

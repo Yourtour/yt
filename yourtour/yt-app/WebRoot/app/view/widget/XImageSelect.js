@@ -1,50 +1,71 @@
 Ext.define('YourTour.view.widget.XImageSelect', {
     extend: 'Ext.Container',
     xtype: 'ximageselect',
-    config:{
-        layout:'vbox',
-        image:{
-            fileName:'unknown.jpg',
+    requires:['YourTour.view.widget.XImageField'],
+    config: {
+        layout: 'vbox',
+        flex: 1,
+        image: {
+            fileName: 'unknown.jpg',
             quality: 75,
             width: 200,
-            height: 200
+            height: 200,
+            maximumImageCount: 9,  //需要采集的图片总数
+            maximumImageColCount: 3 //每行允许显示的图片
         },
-        items:[
+        imageContainer: null,
+        items: [
             {
-                xtype:'selectfield',
-                itemId:'imageSelect',
-                hidden:true,
-                usePicker:true,
+                xtype: 'selectfield',
+                itemId: 'imageSelect',
+                hidden: true,
+                usePicker: true,
                 options: [
-                    {text: '相机',  value: 'camera'},
+                    {text: '相机', value: 'camera'},
                     {text: '相册', value: 'library'}
                 ]
             }
         ]
     },
 
-    initialize:function(){
+    initialize: function () {
         this.callParent(arguments);
 
-        var me = this, imageSelect = me.down('#imageSelect'), image = me.image || me.getImage();
-        me.addCls('icon-add');
+        var me = this,
+            imageSelect = me.down('#imageSelect'),
+            image = me.image || me.getImage();
 
-        me.captured = false;
-        imageSelect.on('change', function(select, newValue, oldValue, eOpts ){
+        me.imageCount = 0;
+        me.createImageRowContainer();
+        me.imageContainer = me.query('.container')[0];
+
+        imageSelect.on('change', function (select, newValue, oldValue, eOpts) {
             Ext.device.Camera.capture({
                 success: function (image) {
-                    me.removeCls('icon-add');
+                    var images = me.imageContainer.query('.ximagefield'), activeImage, activeIndex = -100;
+                    Ext.Array.forEach(images, function (image, index) {
+                        if (image.active) {
+                            activeImage = image;
+                            activeIndex = index;
+                            image.removeCls('icon-add');
 
-                    me.captured = true;
-                    var base64 = 'data:image/jpeg;base64,' + image;
-                    me.setData(base64);
+                            image.setActive(false);
+                            activeImage.setCaptured(true);
+                        } else if (activeIndex + 1 == index) {
+                            image.addCls('icon-add');
 
-                    var style = {};
-                    style['background-image'] = 'url(' + base64 + ')';
-                    style['background-repeat'] = 'no-repeat';
-                    style['background-position'] = 'center center';
-                    style['background-size'] = '100% 100%';
-                    me.setStyle(style);
+                            activeImage.setCaptured(false);
+                            image.setActive(true);
+                        }
+                    });
+
+                    activeImage.setData(image);
+
+                    me.imageCount += 1;
+                    if (activeIndex == image.maximumImageColCount - 1 && me.imageCount < image.maximumImageCount) {
+                        me.createImageRowContainer();
+                        me.add(me.imageContainer);
+                    }
                 },
                 quality: image.quality,
                 width: image.width,
@@ -53,30 +74,68 @@ Ext.define('YourTour.view.widget.XImageSelect', {
                 destination: 'data'
             });
         })
+    },
 
-        me.element.on('tap', function(){
-            if (!me.captured) {
-                imageSelect.showPicker();
+    bindEvents: function (row) {
+        var me = this, imageSelect = me.down('#imageSelect'), images = row.query('.ximagefield');
+        Ext.Array.forEach(images, function (image) {
+            image.element.on('tap', function () {
+                if (image.getActive() || image.getCaptured()) {
+                    imageSelect.showPicker();
+                }
+            })
+        });
+    },
+
+    /**
+     *
+     */
+    createImageRowContainer: function () {
+        this.imageContainer = Ext.create('Ext.Container', {
+            layout: 'hbox',
+            flex: 1,
+            cls: 'x-ximage-row',
+            defaults: {
+                flex: 1,
+                padding: 5
+            },
+            items: []
+        });
+        this.add(this.imageContainer);
+
+        var image = this.image || this.getImage();
+        for (var i = 0; i < image.maximumImageColCount; i++) {
+            if (i == 0) {
+                this.imageContainer.add({
+                    xtype: 'ximagefield',
+                    active: true,
+                    fileName:image.fileName
+                })
+            } else {
+                this.imageContainer.add({
+                    xtype: 'ximagefield',
+                    fileName:image.fileName
+                })
             }
-        })
+        }
+        this.imageContainer.getAt(0).addCls('icon-add');
+
+        this.bindEvents(this.imageContainer);
     },
 
-    getAsBase64:function(){
-        return this.getData();
-    },
+    /**
+     * 获取选择的图片
+     * @returns {Array}
+     */
+    getImages:function(){
+        var me = this, fields = me.query('.ximagefield'), results=[];
+        Ext.Array.forEach(fields, function(field){
+            if(field.getCaptured()){
+                results.push(field);
+            }
+        });
 
-    updateImage:function(image){
-        Ext.apply(this.image, image);
-    },
-
-    updateFileName:function(fileName){
-        this.fileName = fileName;
-    },
-
-    getFileName:function(){
-        var me = this, image = me.image || me.getImage();
-
-        return image.fileName;
+        return results;
     }
 });
 
