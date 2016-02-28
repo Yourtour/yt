@@ -27,14 +27,15 @@ Ext.define('YourTour.view.user.UserProfileView', {
 				padding:10,
 				items:[
 					{
-						itemId : 'userLogo',
-						xtype : 'image',
-						model:'tag',
-						height:64,
-						width:64
+						xtype:'ximagefield',
+						itemId:'image',
+						cls:'img-small',
+						binding:'profile.imageUrl'
 					}
 				]
 			},
+
+
 
 			{
 				itemId : 'slogan',

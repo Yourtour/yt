@@ -5,7 +5,6 @@ import com.yt.business.bean.*;
 import com.yt.business.neo4j.repository.ExpertBeanRepository;
 import com.yt.business.neo4j.repository.ExpertTuple;
 import com.yt.business.neo4j.repository.RouteBeanRepository;
-import com.yt.business.neo4j.repository.UserProfileBeanRepository;
 import com.yt.core.utils.CollectionUtils;
 import com.yt.core.utils.StringUtils;
 import org.apache.commons.logging.Log;

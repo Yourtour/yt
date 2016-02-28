@@ -1,12 +1,12 @@
 Ext.define('YourTour.view.user.RegisterProfileView', {
 	extend: 'Ext.Container',
     xtype: 'RegisterProfileView',
-    requires:['Ext.Panel','Ext.field.Radio','Ext.field.File', 'YourTour.view.widget.XLabel', 'YourTour.view.widget.XSpacer', 'YourTour.view.widget.XTitleBar', 'Ext.field.Password','YourTour.view.widget.XTextField', 'YourTour.view.widget.XButton', 'YourTour.view.widget.ToolButton'],
+    requires:['Ext.Panel','Ext.field.Radio','Ext.field.File', 'YourTour.view.widget.XImageSelect', 'YourTour.view.widget.XSpacer', 'YourTour.view.widget.XTitleBar', 'Ext.field.Password','YourTour.view.widget.XTextField', 'YourTour.view.widget.XButton', 'YourTour.view.widget.ToolButton'],
     config: {
 		layout: 'vbox',
 		defaults: {
 			padding: '0 10 0 10',
-			style:'background-color:white',
+			style:'background-color:white'
 		},
 		scrollable: 'none',
         items: [
@@ -17,6 +17,7 @@ Ext.define('YourTour.view.user.RegisterProfileView', {
 					headerbar.up('#LoginMainView').setActiveItem(1);
 				}
 			},
+
 
 			{
 				xtype: 'container',
@@ -61,47 +62,46 @@ Ext.define('YourTour.view.user.RegisterProfileView', {
 				width:80,
 				items: [
 					{
-						xtype:'xuserlogo',
+						xtype:'ximageselect',
 						itemId:'userLogo',
-						src:'resources/icons/icon_portrait_demo.png',
-						cls:'img-small'
+						width:75,
+						height:75
 					}
 				]
 			},
+			{
+				xtype:'xspacer'
+			},
 
-            {
-            	xtype:'xspacer'
-            },
-            
-            {
-            	xtype:'panel',
-            	layout:'hbox',
-            	margin:'10 0 0 0',
-            	items:[{
+			{
+				xtype:'panel',
+				layout:'hbox',
+				margin:'10 0 0 0',
+				items:[{
 					xtype:'panel',
 					layout:'hbox',
 					cls:'textfield',
 					style:'width:100%',
 					items:[
-					   {
-						   xtype:'label',
-						   html:'-',
-						   fit:1
-					   },
-					   {
-						   xtype:'label',
-						   html:'标签',
-						   fit:1
-					   },
-					   {
-						   xtype:'label',
-						   html:'-',
-						   fit:1
-					   }
+						{
+							xtype:'label',
+							html:'-',
+							fit:1
+						},
+						{
+							xtype:'label',
+							html:'标签',
+							fit:1
+						},
+						{
+							xtype:'label',
+							html:'-',
+							fit:1
+						}
 					]
-            	}]
-            },
-            
+				}]
+			},
+
             {
             	xtype:'xspacer'
             },

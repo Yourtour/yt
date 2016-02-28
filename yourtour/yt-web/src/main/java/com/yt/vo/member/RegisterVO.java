@@ -1,11 +1,12 @@
 package com.yt.vo.member;
 
+import com.yt.vo.BaseVO;
+
 import java.io.Serializable;
 
-public class RegisterVO implements Serializable{
+public class RegisterVO extends BaseVO {
 	private static final long serialVersionUID = 7565498288049730405L;
 	
-	private Long graphId;
 	private String mobile;
 	private String authcode;
 	private String password;
@@ -16,14 +17,6 @@ public class RegisterVO implements Serializable{
 
 	public RegisterVO() {
 		super();
-	}
-
-	public Long getGraphId() {
-		return graphId;
-	}
-
-	public void setGraphId(Long graphId) {
-		this.graphId = graphId;
 	}
 
 	public String getMobile() {

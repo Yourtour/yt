@@ -108,7 +108,6 @@ public interface Constants {
 
 	public final static String RELATION_TYPE_PUBLISH = "PUBLISH";
 
-
 	public static enum ThemeType{
 		SCENE("SCENE", "景点"), FOOD("FOOD", "美食"), HOTEL("HOTEL", "住宿"), TRAFFIC("TRAFFIC", "交通"), WEATHER("WEATHER", "天气");
 
@@ -123,7 +122,7 @@ public interface Constants {
 
 	// 资源枚举
 	public static enum GenderType {
-		MALE("MALE", "男性"), FEMALE("FEMALE", "女性"), NA("NA", "暂未知");
+		MALE("M", "男性"), FEMALE("F", "女性"), NA("NA", "暂未知");
 
 		public String code;
 		public String name;
@@ -131,6 +130,17 @@ public interface Constants {
 		private GenderType(String code, String name) {
 			this.code = code;
 			this.name = name;
+		}
+
+		public String getCode(){
+			return code;
+		}
+
+		public static GenderType getEnum(String value) {
+			for(GenderType v : values())
+				if(v.getCode().equalsIgnoreCase(value)) return v;
+
+			throw new IllegalArgumentException();
 		}
 	}
 

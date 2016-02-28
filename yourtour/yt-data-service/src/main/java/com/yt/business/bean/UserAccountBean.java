@@ -55,7 +55,7 @@ public class UserAccountBean extends BaseBeanImpl {
 	@Indexed
 	private Status status = Status.VALIDATED;
 
-	@Neo4jRelationship(relationship=Constants.RELATION_TYPE_BELONG, type = UserProfileBean.class, direction = Direction.OUTGOING, isList = false)
+	@Neo4jRelationship(relationship=Constants.RELATION_TYPE_BELONG, type = UserProfileBean.class, direction = Direction.OUTGOING)
 	private UserProfileBean  profile;
 
 	public UserAccountBean() {

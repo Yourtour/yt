@@ -1,87 +1,87 @@
 /*
-    This file is generated and updated by Sencha Cmd. You can edit this file as
-    needed for your application, but these edits will have to be merged by
-    Sencha Cmd when it performs code generation tasks such as generating new
-    models, controllers or views and when running "sencha app upgrade".
+ This file is generated and updated by Sencha Cmd. You can edit this file as
+ needed for your application, but these edits will have to be merged by
+ Sencha Cmd when it performs code generation tasks such as generating new
+ models, controllers or views and when running "sencha app upgrade".
 
-    Ideally changes to this file would be limited and most work would be done
-    in other places (such as Controllers). If Sencha Cmd cannot merge your
-    changes and its generated code, it will produce a "merge conflict" that you
-    will need to resolve manually.
-*/
+ Ideally changes to this file would be limited and most work would be done
+ in other places (such as Controllers). If Sencha Cmd cannot merge your
+ changes and its generated code, it will produce a "merge conflict" that you
+ will need to resolve manually.
+ */
 
 Ext.application({
     name: 'YourTour',
 
     requires: [
-        'Ext.data.proxy.LocalStorage','Ext.MessageBox', 'YourTour.view.widget.XProcessing', 'Ext.form.Hidden','YourTour.util.Context','YourTour.view.widget.XImageSelect'
+        'Ext.data.proxy.LocalStorage', 'Ext.MessageBox', 'YourTour.view.widget.XProcessing', 'Ext.form.Hidden', 'YourTour.util.Context', 'YourTour.view.widget.XImageSelect'
     ],
-    
+
     /**
      * APP 本地缓存。
      * this.getApplication().localStorage.setItem('user', this.model.rowKey);
      * this.getApplication().localStorage.getItem('user');
      */
-    localStorage : window.localStorage,  
-    
+    localStorage: window.localStorage,
+
     views: [
-        'MainView','LaunchView','setting.UserSettingView',
-        'common.MessageMainView','common.MessageGroupView','common.FieldEditView','common.FieldEditView',
-        'common.CommentMainView','common.TimeSelectionView','common.ConsultMainView',
+        'MainView', 'LaunchView', 'setting.UserSettingView',
+        'common.MessageMainView', 'common.MessageGroupView', 'common.FieldEditView', 'common.FieldEditView',
+        'common.CommentMainView', 'common.TimeSelectionView', 'common.ConsultMainView',
 
         'home.HomeMainView', 'home.BestListView', 'home.TalentListView', 'SearchMain',
-        'route.RouteMainView','route.RouteSettingView','route.RouteImpressionView','route.RouteImageView',
-        'route.RouteScheduleListView', 'route.RouteSchedulePlanView','route.RouteScheduleReferenceListView','route.RouteScheduleFormView',
-        'route.RouteProvisionView','route.RouteProvisionEditView','route.RouteScheduleEditView','route.RouteScheduleView',
-        'route.RouteActivityEditView','route.RoutePlaceEditView','route.RouteCheckinView',
-        'route.RouteRecommendListView','route.RouteFormView','route.RouteListView','route.RouteReservationPlanView',
-        'service.RouteServiceMainView','service.RouteServiceFormView','service.RouteServiceEditView',
-        'service.PlaceServiceMainView','service.RouteServiceBookView',
-        'user.LoginMainView','user.UserListView','user.UserMainView','user.UserProfileView',
-        'resource.ResourceSelectionView','resource.ResourceFormView','resource.ResourceMapView','resource.ResourceActivityItemListView',
-        'resource.ResourceActivityItemFormView','resource.ResourceListView',
-        'member.MemberMainView','member.MemberView', 'member.MemberAddView','member.MemberPositionView','member.MemberSearchView','member.MemberSelectionView',
-        'charge.ChargeMainView','charge.ChargeFormView','charge.ChargeListView','charge.ChargeView','charge.ChargeDivisionView','charge.ChargeDivisionFormView',
-        'expert.ExpertMainView','expert.ExpertApplyView','expert.ExpertListView','expert.ExpertServiceEditView',
-        'expert.ExpertRecommendListView','expert.ExpertRecommendIntroView','expert.ExpertView','expert.ExpertServiceListView','expert.ExpertServiceFormView',
+        'route.RouteMainView', 'route.RouteSettingView', 'route.RouteImpressionView', 'route.RouteImageView',
+        'route.RouteScheduleListView', 'route.RouteSchedulePlanView', 'route.RouteScheduleReferenceListView', 'route.RouteScheduleFormView',
+        'route.RouteProvisionView', 'route.RouteProvisionEditView', 'route.RouteScheduleEditView', 'route.RouteScheduleView',
+        'route.RouteActivityEditView', 'route.RoutePlaceEditView', 'route.RouteCheckinView',
+        'route.RouteRecommendListView', 'route.RouteFormView', 'route.RouteListView', 'route.RouteReservationPlanView',
+        'service.RouteServiceMainView', 'service.RouteServiceFormView', 'service.RouteServiceEditView',
+        'service.PlaceServiceMainView', 'service.RouteServiceBookView',
+        'user.LoginMainView', 'user.UserListView', 'user.UserMainView', 'user.UserProfileView',
+        'resource.ResourceSelectionView', 'resource.ResourceFormView', 'resource.ResourceMapView', 'resource.ResourceActivityItemListView',
+        'resource.ResourceActivityItemFormView', 'resource.ResourceListView',
+        'member.MemberMainView', 'member.MemberView', 'member.MemberAddView', 'member.MemberPositionView', 'member.MemberSearchView', 'member.MemberSelectionView',
+        'charge.ChargeMainView', 'charge.ChargeFormView', 'charge.ChargeListView', 'charge.ChargeView', 'charge.ChargeDivisionView', 'charge.ChargeDivisionFormView',
+        'expert.ExpertMainView', 'expert.ExpertApplyView', 'expert.ExpertListView', 'expert.ExpertServiceEditView',
+        'expert.ExpertRecommendListView', 'expert.ExpertRecommendIntroView', 'expert.ExpertView', 'expert.ExpertServiceListView', 'expert.ExpertServiceFormView',
 
         'line.LineListView',
 
-        'along.AlongListView','along.AlongFormView','along.AlongFormUserView','along.AlongEditView',
+        'along.AlongListView', 'along.AlongFormView', 'along.AlongFormUserView', 'along.AlongEditView',
 
         'community.LiveMainView',
-        'place.PlaceMainView','place.PlaceSelectionView'
+        'place.PlaceMainView', 'place.PlaceSelectionView'
     ],
-    
+
     controllers: [
-        'MainCtrl','SettingMainCtrl','HomeMainCtrl',
+        'MainCtrl', 'SettingMainCtrl', 'HomeMainCtrl',
         'route.RouteMainCtrl',
-        'route.RouteScheduleListCtrl','route.RouteSchedulePlanCtrl',
+        'route.RouteScheduleListCtrl', 'route.RouteSchedulePlanCtrl',
         'AccountMainCtrl',
-        'route.ScheduleReferenceCtrl','route.ScheduleDetailCtrl',
-        'ResourceMainCtrl','user.UserListCtrl','PlaceSelectionCtrl','CommonMainCtrl',
-        'LineMainCtrl','MemberMainCtrl','ChargeMainCtrl','UserMainCtrl', 'ExpertMainCtrl', 'MessageMainCtrl','PlaceMainCtrl','ServiceMainCtrl',
+        'route.ScheduleReferenceCtrl', 'route.ScheduleDetailCtrl',
+        'ResourceMainCtrl', 'user.UserListCtrl', 'PlaceSelectionCtrl', 'CommonMainCtrl',
+        'LineMainCtrl', 'MemberMainCtrl', 'ChargeMainCtrl', 'UserMainCtrl', 'ExpertMainCtrl', 'MessageMainCtrl', 'PlaceMainCtrl', 'ServiceMainCtrl',
         'AlongMainCtrl'
     ],
-    
-    models:[
-        'LaunchModel','RouteModel','RouteActivityModel', 'LineModel', 'UserModel','OptionModel', 'HomeModel','LiveModel','ChatModel','AlongModel','TalentModel','HomeCarouselModel','CommentModel', 'PlaceModel',
-        'CacheModel','ActivityItemModel','RouteServiceModel', 'ExpertModel','ExpertServiceModel','ChargeModel', 'MessageContentModel'
+
+    models: [
+        'LaunchModel', 'RouteModel', 'RouteActivityModel', 'LineModel', 'UserModel', 'OptionModel', 'HomeModel', 'LiveModel', 'ChatModel', 'AlongModel', 'TalentModel', 'HomeCarouselModel', 'CommentModel', 'PlaceModel',
+        'CacheModel', 'ActivityItemModel', 'RouteServiceModel', 'ExpertModel', 'ExpertServiceModel', 'ChargeModel', 'MessageContentModel'
     ],
-    
-    stores:[
-        'LaunchStore','RouteStore','RouteMemberStore', 'LineStore','ResourcePlayStore','ResourceFoodStore','UserStore', 'HomeStore', 'BestListStore','TalentListStore', 'AlongListStore','CommentStore', 'PlaceStore','LocalStore'
+
+    stores: [
+        'LaunchStore', 'RouteStore', 'RouteMemberStore', 'LineStore', 'ResourcePlayStore', 'ResourceFoodStore', 'UserStore', 'HomeStore', 'BestListStore', 'TalentListStore', 'AlongListStore', 'CommentStore', 'PlaceStore', 'LocalStore'
     ],
-        
+
     icon: {
         '57': 'resources/icons/Icon.png',
         '72': 'resources/icons/Icon~ipad.png',
         '114': 'resources/icons/Icon@2x.png',
         '144': 'resources/icons/Icon~ipad@2x.png'
     },
-    
+
     isIconPrecomposed: true,
-    
+
     startupImage: {
         '320x460': 'resources/startup/launch.jpg',
         '640x920': 'resources/startup/launch.png',
@@ -91,63 +91,63 @@ Ext.application({
         '1496x2048': 'resources/startup/launch.png'
     },
 
-    launch: function() {
-        try{
-    		document.addEventListener("deviceready", this.onDeviceReady, false);
-    	}catch(e){
-    		alert(e.name + ":" + e.message);
-    	}   
+    launch: function () {
+        try {
+            document.addEventListener("deviceready", this.onDeviceReady, false);
+        } catch (e) {
+            alert(e.name + ":" + e.message);
+        }
 
         this.init();
     },
 
-    init:function(){
+    init: function () {
         var me = this;
-        Ext.Ajax.on('beforerequest', (function(conn, options, eOpts) {
-            var userToken =me.getUserId();
+        Ext.Ajax.on('beforerequest', (function (conn, options, eOpts) {
+            var userToken = me.getUserId();
             options.headers = {
-                'User-Token':userToken,
-                'Content-Type':'application/json'
+                'User-Token': userToken,
+                'Content-Type': 'application/json'
             };
         }), this);
 
         YourTour.util.Context.setApplication(this);
     },
 
-    onDeviceReady:function() {
-    	try{
-    		document.addEventListener("backbutton", function(){
-    	        var canPop = false;
-    	        var id = Ext.Viewport.getActiveItem().id;
-    	        
-    	        if (id.indexOf("MainView") != -1) {
-    	          var mainview = Ext.Viewport.getActiveItem();
-    	          var length = mainview.getItems().length;
-    	          if (length > 2) {
-    	            canPop = true;
-    	          }
-    	        }
-    	        
-    	        if (canPop) {
-    	        	Ext.ComponentManager.get('MainView').pop();
-    	        } else {
-    	        	Ext.Msg.confirm("提示", "您确定要退出应用吗?", function(e) {
-    	        		if (e == "yes") {
-    	        			navigator.app.exitApp();
-    	        		}
-    	        	}, this);
-    	        }
-    		}, false);
-    	}catch(e){
-    		alert(e.name + ":" + e.message);
-    	}
+    onDeviceReady: function () {
+        try {
+            document.addEventListener("backbutton", function () {
+                var canPop = false;
+                var id = Ext.Viewport.getActiveItem().id;
+
+                if (id.indexOf("MainView") != -1) {
+                    var mainview = Ext.Viewport.getActiveItem();
+                    var length = mainview.getItems().length;
+                    if (length > 2) {
+                        canPop = true;
+                    }
+                }
+
+                if (canPop) {
+                    Ext.ComponentManager.get('MainView').pop();
+                } else {
+                    Ext.Msg.confirm("提示", "您确定要退出应用吗?", function (e) {
+                        if (e == "yes") {
+                            navigator.app.exitApp();
+                        }
+                    }, this);
+                }
+            }, false);
+        } catch (e) {
+            alert(e.name + ":" + e.message);
+        }
     },
-    
-    onUpdated: function() {
+
+    onUpdated: function () {
         Ext.Msg.confirm(
             "Application Update",
             "This application has just successfully been updated to the latest version. Reload now?",
-            function(buttonId) {
+            function (buttonId) {
                 if (buttonId === 'yes') {
                     window.location.reload();
                 }
@@ -155,14 +155,14 @@ Ext.application({
         );
     },
 
-    store:function(values){
-        var localStore =  Ext.StoreManager.get('LocalStore');
+    store: function (values) {
+        var localStore = Ext.StoreManager.get('LocalStore');
         localStore.load();
-        if(Ext.isArray(values)){
-            Ext.Array.forEach(values, function(value){
+        if (Ext.isArray(values)) {
+            Ext.Array.forEach(values, function (value) {
                 localStore.add(value);
             });
-        }else{
+        } else {
             localStore.add(values);
         }
         localStore.sync();
@@ -172,30 +172,30 @@ Ext.application({
      * 获取用户ID
      * @returns {*}
      */
-    getUserId:function(){
-    	var localStore =  Ext.StoreManager.get('LocalStore');
-    	localStore.load();
-    	
-    	var index = localStore.find('key', 'user.profile'); 
-    	if(index >= 0){
-    		var userProfile = localStore.getAt(index);
-    		var profile = Ext.JSON.decode(userProfile.get('value'));
-    		return profile.id;
-    	}
-    	
-    	return '';
+    getUserId: function () {
+        var localStore = Ext.StoreManager.get('LocalStore');
+        localStore.load();
+
+        var index = localStore.find('key', 'user.profile');
+        if (index >= 0) {
+            var userProfile = localStore.getAt(index);
+            var profile = Ext.JSON.decode(userProfile.get('value'));
+            return profile.id;
+        }
+
+        return '';
     },
 
     /**
      * 获取用户个人信息
      * @returns {*}
      */
-    getUserProfile:function(){
-        var localStore =  Ext.StoreManager.get('LocalStore');
+    getUserProfile: function () {
+        var localStore = Ext.StoreManager.get('LocalStore');
         localStore.load();
 
         var index = localStore.find('key', 'user.profile');
-        if(index >= 0){
+        if (index >= 0) {
             var userProfile = localStore.getAt(index);
             var profile = Ext.JSON.decode(userProfile.get('value'));
             return profile;
@@ -207,9 +207,9 @@ Ext.application({
     /**
      * 退出应用
      */
-    quit:function(){
+    quit: function () {
         var me = this;
-        Ext.Msg.confirm("提示", "您确定要退出应用吗?", function(e) {
+        Ext.Msg.confirm("提示", "您确定要退出应用吗?", function (e) {
             if (e == "yes") {
                 me.localStorage.clear();
 
@@ -223,12 +223,12 @@ Ext.application({
      * @param source
      * @param successFn
      */
-    getPhoto: function(source, successFn) {
+    getPhoto: function (source, successFn) {
         var me = this;
 
         navigator.camera.getPicture(
             successFn,
-            function() {
+            function () {
             },
             {
                 quality: 50,
@@ -242,7 +242,7 @@ Ext.application({
      * 调用远程服务(非查询类的)
      * @param options
      */
-    callService:function(options){
+    callService: function (options) {
         try {
             var request = {
                 url: YourTour.util.Context.getContext(options.url),
@@ -272,30 +272,91 @@ Ext.application({
             }
 
             Ext.Ajax.request(request);
-        }catch(e){
+        } catch (e) {
             this.toast(e.name + ":" + e.message);
         }
     },
 
     /**
+     * 附件上传
+     * @param options
+     */
+    uploadService: function (o) {
+        var formdata = new FormData();
+
+        var options = {params: {}, files: [], url: ''};
+        Ext.apply(options, o);
+        var params = options.params;
+        if (params) {
+            for (var param in params) {
+                formdata.append(param, params[param]);
+            }
+        }
+
+        var files = options.files;
+        if (files) {
+            var base64, mimeString, byteString, arrayBuffer, intArray, blob;
+            Ext.Array.forEach(files, function (file) {
+                base64 = file.getAsBase64();
+                mimeString =  base64.split(',')[0].split(':')[1].split(';')[0]; // mime类型
+                byteString = atob(base64.split(',')[1]); //base64 解码
+                arrayBuffer = new ArrayBuffer(byteString.length); //创建缓冲数组
+                intArray = new Uint8Array(arrayBuffer); //创建视图
+                for (var i = 0; i < byteString.length; i += 1) {
+                    intArray[i] = byteString.charCodeAt(i);
+                }
+
+                blob = new Blob([intArray], { type:  mimeString }); //转成blob
+                formdata.append(file.getItemId(), blob, file.getFileName());
+            })
+        }
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', YourTour.util.Context.getContext(options.url), true);
+        xhr.send(formdata,
+            function (response) {
+                var respObj = Ext.JSON.decode(response.responseText);
+                if (respObj.errorCode != '0') {
+                    Ext.Msg.alert(respObj.errorText);
+                    return;
+                }
+
+                options.success(respObj.data)
+            },
+
+            function (response) {
+                console.log(response);
+                var respObj = Ext.JSON.decode(response.responseText);
+
+                if (options.failure) {
+                    options.failure(respObj)
+                } else {
+                    Ext.Msg.alert("Error", respObj.status.statusMessage);
+                }
+            }
+        ) ;
+    },
+
+
+    /**
      * 调用远程查询类服务
      * @param options
      */
-    query:function(options){
+    query: function (options) {
         try {
-            var store = Ext.create('YourTour.store.AjaxStore', {model:options.model});
+            var store = Ext.create('YourTour.store.AjaxStore', {model: options.model});
             var proxy = store.getProxy();
 
             var url = options.url;
             var params = options.params;
-            if(params){
+            if (params) {
                 url += '?';
 
                 var first = true;
-                params.forEach(function(param){
-                    if(first){
+                params.forEach(function (param) {
+                    if (first) {
                         first = false;
-                    }else{
+                    } else {
                         url += '&';
                     }
                     url += param.name + '=' + param.value;
@@ -303,33 +364,33 @@ Ext.application({
             }
             proxy.setUrl(YourTour.util.Context.getContext(url));
 
-            store.load(function(){
+            store.load(function () {
                 options.success(store);
 
                 var navigationView = Ext.ComponentManager.get('MainView');
-                if(navigationView) {
+                if (navigationView) {
                     var view = navigationView.getActiveItem();
 
-                    if(view instanceof YourTour.view.widget.XPage){
+                    if (view instanceof YourTour.view.widget.XPage) {
                         view.hideProcessing();
                     }
                 }
 
             })
-        }catch(e){
+        } catch (e) {
             this.toast(e.name + ":" + e.message);
         }
     },
 
     /*open:function(options){
-        var navigationView = Ext.ComponentManager.get('MainView');
-        navigationView.push(Ext.create(options.view));
+     var navigationView = Ext.ComponentManager.get('MainView');
+     navigationView.push(Ext.create(options.view));
 
-        var processor = options.processor;
-        processor();
-    },*/
+     var processor = options.processor;
+     processor();
+     },*/
 
-    alert:function(msg){
+    alert: function (msg) {
         Ext.Msg.alert(msg);
     }
 });

@@ -127,8 +127,8 @@ public class UserProfileBean extends BaseDictBeanImpl {
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_WATCH, type = LineBean.class, direction = Direction.OUTGOING, isList = true)
 	private transient List<LineBean> watchedLines;
 
-	private List<CommentBean> comments = null;
-	private List<RouteMainBean> routes = null;
+	private transient List<CommentBean> comments = null;
+	private transient List<RouteMainBean> routes = null;
 
 	public UserProfileBean() {
 		super();
