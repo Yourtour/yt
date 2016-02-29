@@ -23,7 +23,8 @@ Ext.define('YourTour.view.widget.XUserLogo', {
     initialize:function(){
         this.callParent(arguments);
 
-        var me = this, editable = me.editable, imageSelect = me.down('#imageSelect');;
+        var me = this, editable = me.editable, imageSelect = me.down('#imageSelect');
+
         if(editable){
             imageSelect.on('change', function (select, newValue, oldValue, eOpts) {
                 Ext.device.Camera.capture({
@@ -38,6 +39,8 @@ Ext.define('YourTour.view.widget.XUserLogo', {
                 });
             })
         }
+
+        me.modified = false;
     },
 
     onTap:function(){
@@ -106,6 +109,12 @@ Ext.define('YourTour.view.widget.XUserLogo', {
         me.setStyle(styles);
 
         this.data = data;
+
+        this.modified = true;
+    },
+
+    getModified:function(){
+        return this.modified;
     }
 });
 

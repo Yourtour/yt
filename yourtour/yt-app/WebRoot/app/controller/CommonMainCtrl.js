@@ -265,7 +265,7 @@ Ext.define('YourTour.controller.CommonMainCtrl', {
 
     saveFieldValue:function(){
         var me = this, view = me.getFieldEditView(), field = view.getData(), content = view.down('#content');
-        field.setText(content.getValue());
+        field.modifyText(content.getValue());
 
         Ext.ComponentManager.get('MainView').pop();
     }

@@ -104,7 +104,7 @@ Ext.define('YourTour.controller.AccountMainCtrl', {
     doRegisterProfile: function () {
         var me = this, profileview = this.getRegisterProfileView();
 
-        var options = {url: '/users/profile/save'}, params = {}, files = [];
+        var options = {url: '/users/profile/save'}, params = {};
         params.nickName = profileview.down('#nickName').getValue();
         if(params.nickName == ''){
             this.getApplication().alert('请输入昵称');

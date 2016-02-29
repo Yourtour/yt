@@ -60,6 +60,7 @@ Ext.define('YourTour.view.widget.XField', {
         }
 
         if(me.editable){
+            value.addCls('icon-edit');
             me.on('tap', function(){
                 var application = YourTour.util.Context.getApplication(), controller = application.getController('CommonMainCtrl');
 
@@ -87,6 +88,8 @@ Ext.define('YourTour.view.widget.XField', {
                 }
             });
         }
+
+        me.modified = false;
     },
 
     constructor: function(config){
@@ -186,10 +189,14 @@ Ext.define('YourTour.view.widget.XField', {
         if(text == null || text == ''){
             valueEl.setHtml(this.ifNull);
         }else {
-            if(this.editable)  text = text + '<div class="icon-edit"></div>';
-
             valueEl.setHtml(text);
         }
+    },
+
+    modifyText:function(text){
+        this.setText(text);
+
+        this.modified = true;
     },
 
     getText: function () {
@@ -243,6 +250,10 @@ Ext.define('YourTour.view.widget.XField', {
 
     getPlaceHolder:function(){
         return this.placeHolder;
+    },
+
+    isModified:function(){
+        return this.modified;
     }
 });
 

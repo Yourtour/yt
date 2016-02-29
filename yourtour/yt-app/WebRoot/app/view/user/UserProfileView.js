@@ -36,10 +36,10 @@ Ext.define('YourTour.view.user.UserProfileView', {
 			},
 
 			{
-				itemId : 'slogan',
 				xtype : 'xmultifield',
+				itemId : 'slogan',
 				label : '个性',
-				showMore:true,
+				editable:true,
 				fieldCls:'x-field-more',
 				ifNull:'请简单描述您个人'
 			},
@@ -53,7 +53,7 @@ Ext.define('YourTour.view.user.UserProfileView', {
 				xtype : 'xfield',
 				itemId : 'nickName',
 				label : '昵称',
-				fieldCls:'text-align-right'
+				editable:true
 			},
 
 			{
@@ -105,9 +105,19 @@ Ext.define('YourTour.view.user.UserProfileView', {
 
 			{
 				xtype : 'xfield',
-				itemId : 'state',
-				label : '地区'
+				itemId : 'residence',
+				label : '居住地',
+				editable:true
 			},
+
+			{
+				xtype : 'xfield',
+				itemId : 'nativePlace',
+				label : '籍贯',
+				editable:true
+			},
+
+
 
 			{
 				xtype:'panel',
@@ -118,7 +128,8 @@ Ext.define('YourTour.view.user.UserProfileView', {
 				itemId : 'tags',
 				xtype : 'xmultifield',
 				label : '标签',
-				fieldCls:'text-align-right'
+				fieldCls:'text-align-right',
+				editable:true
 			}
         ]
     }
