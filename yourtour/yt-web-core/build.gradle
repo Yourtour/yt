@@ -1,12 +1,12 @@
-apply plugin: 'war'
-apply plugin: 'eclipse-wtp'
+//apply plugin: 'war'
+//apply plugin: 'eclipse-wtp'
 
-configurations{
-    providedCompile
-}
+//configurations{
+//    providedCompile
+//}
 
 dependencies {
-	compile  project(":yt-web-core"),
+	compile  project(":yt-data-service"),
 					 "org.springframework:spring-context:${springVersion}",
 					 "org.springframework:spring-web:${springVersion}",
 					 "org.springframework:spring-tx:${springVersion}",
@@ -33,5 +33,5 @@ dependencies {
 		       "dom4j:dom4j:1.6.1",
 		       "com.alibaba:fastjson:1.2.7"	
 				
-	 providedCompile "javax.servlet:servlet-api:2.5"
+//	 providedCompile "javax.servlet:servlet-api:2.5"
 }
