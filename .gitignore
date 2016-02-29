@@ -1,6 +1,10 @@
+.git
+.metadata
 *.class
 
-**/build/
+/Servers/
+
+**/*build*
 **/bin/
 **/target/
 
