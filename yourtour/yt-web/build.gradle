@@ -6,7 +6,8 @@ configurations{
 }
 
 dependencies {
-	compile  "org.springframework:spring-context:${springVersion}",
+	compile  project(":yt-data-service"),
+					 "org.springframework:spring-context:${springVersion}",
 					 "org.springframework:spring-web:${springVersion}",
 					 "org.springframework:spring-tx:${springVersion}",
 					 "org.springframework:spring-aspects:${springVersion}",
@@ -30,8 +31,7 @@ dependencies {
 		       "javax.websocket:javax.websocket-api:1.1",
 		       "javax.websocket:javax.websocket-client-api:1.1",
 		       "dom4j:dom4j:1.6.1",
-		       "com.alibaba:fastjson:1.2.7",
-					 project(":yt-data-service")	
+		       "com.alibaba:fastjson:1.2.7"	
 				
 	 providedCompile "javax.servlet:servlet-api:2.5"
 }
