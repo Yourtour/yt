@@ -3,7 +3,7 @@ package com.yt.vo.chat;
 import java.io.Serializable;
 
 import com.yt.business.bean.ChatMessageBean;
-import com.yt.vo.member.UserProfileVO;
+import com.yt.vo.member.UserVO;
 
 public class ChatMessageVO implements Serializable {
 
@@ -28,8 +28,8 @@ public class ChatMessageVO implements Serializable {
 		return bean.getMessage();
 	}
 
-	public UserProfileVO getFromUser() {
-		return new UserProfileVO(bean.getUserProfile());
+	public UserVO getFromUser() {
+		return UserVO.transform(bean.getUserProfile());
 	}
 
 }

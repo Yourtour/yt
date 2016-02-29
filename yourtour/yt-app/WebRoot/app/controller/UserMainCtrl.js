@@ -6,7 +6,6 @@ Ext.define('YourTour.controller.UserMainCtrl', {
 
            userProfileView:'#UserProfileView',
            genderPicker:'#UserProfileView #genderPicker',
-           imagePicker:'#UserProfileView #imagePicker',
 
            fieldEditView:'#FieldEditView',
 
@@ -18,8 +17,8 @@ Ext.define('YourTour.controller.UserMainCtrl', {
     		   tap:'onExpertTap'
     	   },
 
-           '#UserMainView #profile':{
-               tap:'onUserProfileTap'
+           '#UserMainView #userLogo':{
+               tap:'showUserProfileView'
            },
 
            '#UserMainView #footprint':{
@@ -35,6 +34,10 @@ Ext.define('YourTour.controller.UserMainCtrl', {
                tap:'onGenderTap'
            },
 
+           '#UserProfileView #userLogoPanel':{
+               tap:'doChangeUserLogo'
+           },
+
            '#UserProfileView #nickName':{
                tap:'onNickNameFieldTap'
            },
@@ -43,37 +46,37 @@ Ext.define('YourTour.controller.UserMainCtrl', {
                tap:'onStateFieldTap'
            },
 
-           '#UserProfileView #userLogoPanel':{
-               tap:'onUserLogoTap'
-           },
-
            genderPicker:{
                donetap:'onGenderPick'
-           },
-
-           imagePicker:{
-               donetap:'onImagePick'
            }
-
        }
     },
     
     showMainPage:function(){
     	var me = this;
-    	
     	YourTour.util.Context.mainview = me.getUserMainView();
-    	var userMainView = this.getUserMainView();
+    	var mainview = this.getUserMainView();
 
-        var profile = this.getApplication().getUserProfile();
-    	var userLogo = userMainView.down('#userLogo');
-    	userLogo.setHtml("<img src='" + YourTour.util.Context.getImageResource(profile.imageUrl) + "' style='width:64px; height:64px'>");
+        var profileInfo = this.getApplication().getUserProfile();
+    	var userLogo = mainview.down('#userLogo');
+        userLogo.setSrc(YourTour.util.Context.getImageResource(profileInfo.imageUrl));
+
+        var nickName = profileInfo.nickName, genderIcon = profileInfo.gender=='M'?'icon-male':'icon-female';
+
+        mainview.down('#profile').setText('<span class="' + genderIcon + '">' + nickName + '</span>');
+    },
+
+    doChangeUserLogo:function(){
+        var me = this, view = me.getUserProfileView(), userLogo = view.down('#userLogo');
+
+        userLogo.showPicker();
     },
 
     onExpertTap:function(){
     	this.redirectTo('/expert');
     },
 
-    onUserProfileTap:function(){
+    showUserProfileView:function(){
         var me = this;
 
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.user.UserProfileView'));
@@ -90,7 +93,7 @@ Ext.define('YourTour.controller.UserMainCtrl', {
         var userProfileView = this.getUserProfileView();
 
         var userLogo = userProfileView.down('#userLogo');
-        userLogo.setHtml("<img src='" + YourTour.util.Context.getImageResource(profile.imageUrl) + "'>");
+        userLogo.setSrc(YourTour.util.Context.getImageResource(profile.imageUrl));
 
         var nickName = userProfileView.down('#nickName');
         nickName.setValue(profile.nickName);
@@ -147,40 +150,5 @@ Ext.define('YourTour.controller.UserMainCtrl', {
             stateEl.setValue(record.get('id'));
             stateEl.setText(record.get('name'));
         });
-    },
-
-    onUserLogoTap:function(){
-        var me = this, userProfileView = me.getUserProfileView();
-        window.imagePicker.getPictures(
-            function(results) {
-                for (var i = 0; i < results.length; i++) {
-                    var image = userProfileView.down('#image');
-                    image.setSrc(results[i]);
-
-                    alert(image.getValue())
-                }
-            }, function (error) {
-                alert('Error: ' + error);
-            }
-        );
-    },
-
-    onImagePick:function(picker, value, text, eOpts ){
-        if(value == 'PhotoLib'){
-            this.getApplication().getPhoto(navigator.camera.PictureSourceType.PHOTOLIBRARY,onImagePickSuccess);
-        }else{
-            this.getApplication().getPhoto(navigator.camera.PictureSourceType.CAMERA,onImagePickSuccess);
-        }
-    },
-
-    onImagePickSuccess:function(image_uri) {
-        var userProfileView = this.getUserProfileView();
-        var img = view.down('#portrait');
-        img.setSrc(image_uri);
-    },
-
-    showFootprintPage:function(){
-
     }
-
 });

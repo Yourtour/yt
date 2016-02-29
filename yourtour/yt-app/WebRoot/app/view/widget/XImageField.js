@@ -55,9 +55,7 @@ Ext.define('YourTour.view.widget.XImageField', {
     },
 
     getFileName: function () {
-        var me = this, image = me.image || me.getImage();
-
-        return image.fileName;
+        return this.fileName;
     }
 });
 

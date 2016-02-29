@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Vector;
 
 @Component
-@Path("resource")
+@Path("app/resource")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class ResourceRestResource {

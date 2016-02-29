@@ -892,6 +892,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.XLabel": [],
   "YourTour.view.widget.XMultiField": [],
   "YourTour.view.widget.XMultiLabel": [],
+  "YourTour.view.widget.XNavPicker": [],
+  "YourTour.view.widget.XNavSelect": [],
   "YourTour.view.widget.XNavigation": [],
   "YourTour.view.widget.XPage": [],
   "YourTour.view.widget.XPageBody": [],
@@ -2108,6 +2110,10 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.widget.XMultiLabel": [
     "widget.xmultilabel"
+  ],
+  "YourTour.view.widget.XNavPicker": [],
+  "YourTour.view.widget.XNavSelect": [
+    "widget.xnavselect"
   ],
   "YourTour.view.widget.XNavigation": [
     "widget.xnavigation"

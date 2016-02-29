@@ -31,7 +31,7 @@ import com.yt.utils.WebUtils;
 import com.yt.vo.resource.SceneResourceVO;
 
 @Component
-@Path("scenes")
+@Path("app/scenes")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class SceneRestResource {

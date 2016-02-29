@@ -219,26 +219,6 @@ Ext.application({
     },
 
     /**
-     * 获取图片
-     * @param source
-     * @param successFn
-     */
-    getPhoto: function (source, successFn) {
-        var me = this;
-
-        navigator.camera.getPicture(
-            successFn,
-            function () {
-            },
-            {
-                quality: 50,
-                destinationType: navigator.camera.DestinationType.FILE_URI,
-                sourceType: source
-            }
-        );
-    },
-
-    /**
      * 调用远程服务(非查询类的)
      * @param options
      */
@@ -293,10 +273,9 @@ Ext.application({
             }
         }
 
-        var fileContainer = options.file;
+        var fileContainer = options.fileContainer;
         if (fileContainer) {
             var files = fileContainer.getImages();
-
             var base64, mimeString, byteString, arrayBuffer, intArray, blob;
             Ext.Array.forEach(files, function (file) {
                 base64 = file.getAsBase64();
@@ -307,9 +286,9 @@ Ext.application({
                 for (var i = 0; i < byteString.length; i += 1) {
                     intArray[i] = byteString.charCodeAt(i);
                 }
-
                 blob = new Blob([intArray], { type:  mimeString }); //转成blob
-                formdata.append(file.getItemId(), blob, file.getFileName());
+
+                formdata.append(fileContainer.getItemId(), blob, file.getFileName());
             })
         }
 

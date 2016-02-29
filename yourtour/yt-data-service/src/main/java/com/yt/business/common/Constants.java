@@ -330,4 +330,16 @@ public interface Constants {
 		}
 	}
 
+	// 资源枚举
+	public static enum Image {
+		USER_LOGO("user", "用户头像");
+
+		public String code;
+		public String name;
+
+		private Image(String code, String name) {
+			this.code = code;
+			this.name = name;
+		}
+	}
 }

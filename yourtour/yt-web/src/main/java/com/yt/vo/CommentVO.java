@@ -2,10 +2,7 @@ package com.yt.vo;
 
 import com.yt.business.bean.CommentBean;
 import com.yt.core.utils.DateUtils;
-import com.yt.vo.member.UserProfileVO;
 import com.yt.vo.member.UserVO;
-
-import java.io.Serializable;
 
 public class CommentVO extends BaseVO{
 	private double 	score = 0d;

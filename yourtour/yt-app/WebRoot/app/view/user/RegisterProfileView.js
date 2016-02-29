@@ -65,6 +65,10 @@ Ext.define('YourTour.view.user.RegisterProfileView', {
 						itemId:'userLogo',
 						cls:'x-xuserlogo',
 						flex:1,
+						image:{
+							fileName:'user.jpg',
+							maximumImageCount:1
+						},
 						maxHeight:75
 					}
 				]

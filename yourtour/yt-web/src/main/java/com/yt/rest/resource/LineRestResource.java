@@ -37,7 +37,7 @@ import com.yt.vo.RelationConditionVO;
 import com.yt.vo.route.LineVO;
 
 @Component
-@Path("lines")
+@Path("app/lines")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class LineRestResource {

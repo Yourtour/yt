@@ -25,7 +25,7 @@ import com.yt.response.ResponseDataVO;
 import com.yt.vo.place.PlaceVO;
 
 @Component
-@Path("place")
+@Path("app/place")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class PlaceRestResource {

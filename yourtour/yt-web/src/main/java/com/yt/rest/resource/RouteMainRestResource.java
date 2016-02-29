@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Vector;
 
 @Component
-@Path("routes")
+@Path("app/routes")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class RouteMainRestResource extends BaseRestResource {

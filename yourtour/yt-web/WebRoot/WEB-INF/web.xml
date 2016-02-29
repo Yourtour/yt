@@ -6,7 +6,7 @@
 	</context-param> 
 
 	<listener>
-    	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    	<listener-class>com.yt.ContextLoaderListener</listener-class>
   	</listener>
   	
   	<listener>  

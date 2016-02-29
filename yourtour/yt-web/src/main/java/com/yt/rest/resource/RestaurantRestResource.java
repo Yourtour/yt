@@ -31,7 +31,7 @@ import com.yt.utils.WebUtils;
 import com.yt.vo.resource.RestaurantResourceVO;
 
 @Component
-@Path("restaurants")
+@Path("app/restaurants")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class RestaurantRestResource {

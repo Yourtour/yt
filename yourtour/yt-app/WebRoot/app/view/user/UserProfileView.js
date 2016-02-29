@@ -11,7 +11,7 @@ Ext.define('YourTour.view.user.UserProfileView', {
 				items:[
 					{
 						xtype: "xbutton",
-						icon:'resources/icons/icon_header_ok.png',
+						icon:'resources/icons/24/icon_header_ok.png',
 						itemId:'btnSave',
 						align:'right'
 					}
@@ -27,15 +27,13 @@ Ext.define('YourTour.view.user.UserProfileView', {
 				padding:10,
 				items:[
 					{
-						xtype:'ximagefield',
-						itemId:'image',
-						cls:'img-small',
-						binding:'profile.imageUrl'
-					}
+						xtype: 'xuserlogo',
+						itemId: 'userLogo',
+						editable:true,
+						cls:'x-xmedium'
+					},
 				]
 			},
-
-
 
 			{
 				itemId : 'slogan',

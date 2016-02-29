@@ -31,7 +31,7 @@ import com.yt.utils.WebUtils;
 import com.yt.vo.resource.HotelResourceVO;
 
 @Component
-@Path("hotels")
+@Path("app/hotels")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class HotelRestResource {

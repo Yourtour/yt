@@ -44,7 +44,7 @@ public interface UserBeanRepository extends GraphRepository<UserAccountBean> {
 	 * @param userName
 	 * @return
 	 */
-	@Query("MATCH (profile:UserProfileBean)<-[:BELONG]-(account:UserAccount) WHERE account.userName={0} RETURN profile, account")
+	@Query("MATCH (profile:UserProfileBean)<-[:BELONG]-(account:UserAccountBean) WHERE account.userName={0} RETURN profile, account")
 	public UserTuple getUserByUserName(String userName);
 
 	@Query("match (account:UserAccountBean)-[:BELONG]->(profile:UserProfileBean) where account.userName={0} or profile.nickName={0} or profile.mobileNo={0} RETURN profile;")
