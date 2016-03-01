@@ -1,6 +1,5 @@
 package com.yt.rest.resource;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -22,18 +21,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.sun.jersey.core.header.FormDataContentDisposition;
-import com.sun.jersey.multipart.FormDataBodyPart;
-import com.sun.jersey.multipart.FormDataMultiPart;
-import com.sun.jersey.multipart.FormDataParam;
 import com.yt.business.bean.UserAccountBean;
 import com.yt.business.bean.UserProfileBean;
 import com.yt.business.common.AppException;
-import com.yt.business.common.Constants;
 import com.yt.business.repository.UserRepository;
 import com.yt.business.utils.AdminUserInitializeService;
 import com.yt.business.utils.Neo4jUtils;
-import com.yt.core.utils.FileUtils;
 import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponsePagingDataVO;
@@ -344,46 +337,4 @@ public class UserRestResource extends BaseRestResource{
 		}
 	}
 
-
-	/**
-	 *
-	 * @param form
-	 * @return
-	 */
-	@POST
-	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	@Path("/profile/save")
-	public ResponseDataVO<UserProfileVO> registerProfile(@FormDataParam("id") Long profileId,
-													  @FormDataParam("nickName") String nickName,
-													  @FormDataParam("gender") String gender,
-													  FormDataMultiPart form){
-		try{
-			UserProfileBean profile = userRepository.getUserByNickName(nickName);
-			if(profile != null){
-				return new ResponseDataVO<UserProfileVO>(StaticErrorEnum.NICKNAME_EXIST);
-			}
-
-			profile = (UserProfileBean)userRepository.get(UserProfileBean.class, profileId, false);
-			if(profile == null){
-				return new ResponseDataVO<UserProfileVO>(StaticErrorEnum.USER_NOT_EXIST);
-			}
-
-			List<FormDataBodyPart> l= form.getFields("userLogo");
-			for (FormDataBodyPart p : l) {
-				InputStream is = p.getValueAs(InputStream.class);
-				FormDataContentDisposition detail = p.getFormDataContentDisposition();
-				profile.setImageUrl(FileUtils.saveFile(this.imageBase, FileUtils.getType(detail.getFileName()), is));
-			}
-
-			profile.setNickName(nickName);
-			profile.setGender(Constants.GenderType.getEnum(gender));
-			this.userRepository.save(profile, false, String.valueOf(profileId));
-
-			profile = (UserProfileBean) userRepository.get(UserProfileBean.class, profileId, false);
-			return new ResponseDataVO<UserProfileVO>(new UserProfileVO(profile));
-		} catch (Exception ex) {
-			LOG.error("Exception raised when registering user account.", ex);
-			return new ResponseDataVO<UserProfileVO>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
-		}
-	}
 }
