@@ -9,6 +9,7 @@
           <element id="module-output" name="yt-hbase" />
           <element id="module-output" name="yt-core" />
           <element id="module-output" name="yt-neo4j" />
+          <element id="module-output" name="yt-web-core" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="module" name="spring-context-4.1.6.RELEASE.jar" module-name="yt-core" />

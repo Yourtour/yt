@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module type="JAVA_MODULE" version="4">
+<module external.linked.project.id=":yt-hbase" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$/../yt-web-core" external.system.id="GRADLE" external.system.module.group="yourtour" external.system.module.version="1.0.0" type="JAVA_MODULE" version="4">
   <component name="EclipseModuleManager">
     <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-hadoop/2.1.2.RELEASE/31e568cd5860b99398ef902fac4420f7a639419b/spring-data-hadoop-2.1.2.RELEASE.jar!/" />
     <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-commons/1.9.2.RELEASE/6f92f93d9f837ea8a97a99e9bb850d3a08974c99/spring-data-commons-1.9.2.RELEASE.jar!/" />
@@ -133,11 +133,16 @@
     </src_description>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="false">
-    <output url="file://$MODULE_DIR$/bin" />
+    <output url="file://$MODULE_DIR$/build/classes/main" />
+    <output-test url="file://$MODULE_DIR$/build/classes/test" />
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/build" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="yt-core" exported="" />

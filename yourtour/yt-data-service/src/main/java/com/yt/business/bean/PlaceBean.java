@@ -79,7 +79,7 @@ public class PlaceBean extends BaseDictBeanImpl {
 	
 	private transient List<PlaceBean> subs = new ArrayList<PlaceBean>();
 
-	private List<? extends ResourceBean> resources = null; //关联游玩资源
+	private transient List<? extends ResourceBean> resources = null; //关联游玩资源
 
 	public PlaceBean() {
 		super();

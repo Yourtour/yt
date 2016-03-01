@@ -122,7 +122,7 @@ public interface Constants {
 
 	// 资源枚举
 	public static enum GenderType {
-		MALE("M", "男性"), FEMALE("F", "女性"), NA("NA", "暂未知");
+		MALE("MALE", "男性"), FEMALE("FEMALE", "女性"), NA("NA", "暂未知");
 
 		public String code;
 		public String name;

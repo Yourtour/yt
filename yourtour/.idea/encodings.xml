@@ -3,7 +3,6 @@
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$/yt-app/WebRoot/app/controller/ExpertMainCtrl.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/bean/Neo4jBaseDictBeanImpl.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/BaseRestResource.java" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

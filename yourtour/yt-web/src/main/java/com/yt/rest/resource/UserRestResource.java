@@ -11,6 +11,8 @@ import com.yt.business.common.Constants;
 import com.yt.business.repository.UserRepository;
 import com.yt.business.utils.Neo4jUtils;
 import com.yt.core.utils.Base64Utils;
+import com.yt.core.utils.DateUtils;
+import com.yt.core.utils.StringUtils;
 import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponseVO;
@@ -168,9 +170,9 @@ public class UserRestResource extends BaseRestResource{
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	@Path("/profile/save")
 	public ResponseDataVO<UserVO> registerProfile(@FormDataParam("id") Long profileId,
-													  @FormDataParam("nickName") String nickName,
-													  @FormDataParam("gender") String gender,
-													  FormDataMultiPart form){
+												  @FormDataParam("nickName") String nickName,
+												  @FormDataParam("gender") String gender,
+												  FormDataMultiPart form){
 		try{
 			UserProfileBean profile = userRepository.getUserByNickName(nickName);
 			if(profile != null){
@@ -193,6 +195,56 @@ public class UserRestResource extends BaseRestResource{
 
 			profile.setNickName(nickName);
 			profile.setGender(Constants.GenderType.getEnum(gender));
+			this.userRepository.save(profile, false, String.valueOf(profileId));
+
+			profile = (UserProfileBean) userRepository.get(UserProfileBean.class, profileId, false);
+			return new ResponseDataVO<UserVO>(UserVO.transform(profile));
+		} catch (Exception ex) {
+			LOG.error("Exception raised when registering user profile.", ex);
+			return new ResponseDataVO<UserVO>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
+	}
+
+	/**
+	 *
+	 * @param form
+	 * @return
+	 */
+	@POST
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
+	@Path("/{profileId}/save")
+	public ResponseDataVO<UserVO> saveUserProfile(@PathParam("profileId") Long profileId,
+												  @FormDataParam("nickName") String nickName,
+												  @FormDataParam("birthday") Long birthday,
+												  @FormDataParam("slogan") String slogan,
+												  @FormDataParam("residence") String residence,
+												  @FormDataParam("gender") String gender,
+												  @FormDataParam("nativePlace") String nativePlace,
+												  @FormDataParam("tags") String tags,
+												  FormDataMultiPart form){
+		try{
+			UserProfileBean profile = (UserProfileBean) userRepository.get(UserProfileBean.class, profileId, false);
+			if(profile == null){
+				return new ResponseDataVO<UserVO>(StaticErrorEnum.USER_NOT_EXIST);
+			}
+
+			List<FormDataBodyPart> l= form.getFields("userLogo");
+			if(l != null) {
+				for (FormDataBodyPart p : l) {
+					InputStream is = p.getValueAs(InputStream.class);
+					FormDataContentDisposition detail = p.getFormDataContentDisposition();
+					profile.setImageUrl(FileUtils.saveFile("images/user", FileUtils.getType(detail.getFileName()), is));
+				}
+			}
+
+			if(nickName != null) profile.setNickName(nickName);
+			if(birthday != null) profile.setBirthday(birthday);
+			if(gender != null) profile.setGender(Constants.GenderType.getEnum(gender));
+			if(slogan != null) profile.setSlogan(slogan);
+			if(nativePlace != null) profile.setNativePlace(nativePlace);
+			if(residence != null) profile.setResidence(residence);
+			if(tags != null) profile.setTags(tags);
+
 			this.userRepository.save(profile, false, String.valueOf(profileId));
 
 			profile = (UserProfileBean) userRepository.get(UserProfileBean.class, profileId, false);

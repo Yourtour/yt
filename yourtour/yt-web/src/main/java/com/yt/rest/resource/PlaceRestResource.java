@@ -64,7 +64,7 @@ public class PlaceRestResource {
 	 * @return
 	 */
 	@GET
-	@Path("/{parentCode}/query")
+	@Path("/parent/{parentCode}/query")
 	public ResponseDataVO<List<PlaceVO>> getPlaces(@PathParam("parentCode") String parentCode) {
 		List<PlaceVO> list = new ArrayList<PlaceVO>();
 		try {
@@ -115,6 +115,32 @@ public class PlaceRestResource {
 					StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
 	}
+
+	/**
+	 * 获取用户推荐目的地
+	 * @return
+	 */
+	@GET
+	@Path("/residence/query")
+	public ResponseDataVO<List<PlaceVO>> getResidencePlace() {
+		List<PlaceVO> list = new ArrayList<PlaceVO>();
+		try {
+			String userId = WebUtils.getCurrentLoginUser();
+			List<PlaceBean> places = (List<PlaceBean>) placeRepository.get(PlaceBean.class);
+			for (PlaceBean place : places) {
+				list.add(PlaceVO.transform(place));
+			}
+
+			return new ResponseDataVO<List<PlaceVO>>(list);
+		} catch (Exception ex) {
+			if (LOG.isErrorEnabled()) {
+				LOG.error("GetPlaces fail.", ex);
+			}
+			return new ResponseDataVO<List<PlaceVO>>(
+					StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
+	}
+
 
 	/**
 	 * 获取用户推荐目的地

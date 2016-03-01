@@ -1,15 +1,7 @@
 package com.yt.vo.route;
 
 import com.yt.business.bean.*;
-import com.yt.business.common.Constants.ResType;
 import com.yt.vo.BaseVO;
-import com.yt.vo.resource.HotelResourceVO;
-import com.yt.vo.resource.ResourceVO;
-import com.yt.vo.resource.RestaurantResourceVO;
-import com.yt.vo.resource.SceneResourceVO;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class RouteActivityItemVO extends BaseVO {
 	private String title, memo, option, imageUrl;

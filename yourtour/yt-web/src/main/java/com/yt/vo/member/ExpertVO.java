@@ -1,15 +1,7 @@
 package com.yt.vo.member;
 
 import com.yt.business.bean.*;
-import com.yt.core.utils.CollectionUtils;
-import com.yt.core.utils.DateUtils;
 import com.yt.vo.BaseVO;
-import com.yt.vo.CommentVO;
-import com.yt.vo.route.RouteVO;
-
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ExpertVO extends BaseVO {
 	private static final long serialVersionUID = 7565498288049730405L;

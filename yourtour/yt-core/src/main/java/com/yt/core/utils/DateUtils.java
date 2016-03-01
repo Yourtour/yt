@@ -23,6 +23,13 @@ public class DateUtils {
 		return formatDate(millisecond, DATE_FORMAT_DEFAULT);
 	}
 
+	public static long getLong(String date) throws Exception{
+		if(StringUtils.isNull(date)) return 0;
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		return sdf.parse(date).getTime();
+	}
+
 	public static int getDateNumber(long millisecond){
 		if(millisecond == 0) return 0;
 

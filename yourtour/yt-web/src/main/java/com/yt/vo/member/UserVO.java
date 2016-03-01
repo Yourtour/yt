@@ -3,6 +3,7 @@ package com.yt.vo.member;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.yt.vo.BaseVO;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -10,7 +11,6 @@ import com.yt.business.bean.UserProfileBean;
 import com.yt.business.common.Constants.GenderType;
 import com.yt.business.common.Constants.Role;
 import com.yt.business.common.Constants.Status;
-import com.yt.vo.BaseVO;
 
 public class UserVO extends BaseVO {
 	private static final Log LOG = LogFactory.getLog(UserVO.class);

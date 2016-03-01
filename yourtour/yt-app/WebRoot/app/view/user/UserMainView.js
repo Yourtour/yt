@@ -14,7 +14,7 @@ Ext.define('YourTour.view.user.UserMainView', {
                     {
                         xtype: "xbutton",
                         itemId: 'btnSetting',
-                        icon: 'resources/icons/icon_header_setting.png',
+                        icon: 'resources/icons/24/icon_header_setting.png',
                         align: 'right'
                     }
                 ]

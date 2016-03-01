@@ -2,8 +2,6 @@ package com.yt.vo.member;
 
 import com.yt.vo.BaseVO;
 
-import java.io.Serializable;
-
 public class RegisterVO extends BaseVO {
 	private static final long serialVersionUID = 7565498288049730405L;
 	

@@ -1,20 +1,7 @@
 package com.yt.vo.route;
 
 import com.yt.business.bean.*;
-import com.yt.business.common.Constants;
-import com.yt.business.common.Constants.ResType;
-import com.yt.core.utils.DateUtils;
 import com.yt.vo.BaseVO;
-import com.yt.vo.member.UserVO;
-import com.yt.vo.resource.HotelResourceVO;
-import com.yt.vo.resource.ResourceVO;
-import com.yt.vo.resource.RestaurantResourceVO;
-import com.yt.vo.resource.SceneResourceVO;
-import org.apache.commons.httpclient.util.DateUtil;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 public class RouteChargeVO extends BaseVO {
 	private String  name;

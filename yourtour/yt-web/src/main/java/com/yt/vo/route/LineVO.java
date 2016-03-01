@@ -1,9 +1,7 @@
 package com.yt.vo.route;
 
-import com.yt.business.bean.HotelResourceBean;
 import com.yt.business.bean.LineBean;
 import com.yt.business.bean.PlaceBean;
-import com.yt.business.bean.RestaurantResourceBean;
 import com.yt.business.bean.SceneResourceBean;
 import com.yt.business.common.Constants.Status;
 import com.yt.vo.BaseVO;
