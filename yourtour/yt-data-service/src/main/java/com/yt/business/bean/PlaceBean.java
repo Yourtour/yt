@@ -3,6 +3,7 @@ package com.yt.business.bean;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.yt.business.BusinessBeanImpl;
 import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
@@ -43,12 +44,15 @@ import com.yt.neo4j.annotation.Neo4jRelationship;
  */
 @HbaseTable(name = "T_PLACE_INFO")
 @NodeEntity
-public class PlaceBean extends BaseDictBeanImpl {
+public class PlaceBean extends BusinessBeanImpl {
 	private static final long serialVersionUID = -6977525800090683657L;
 	
 	@HbaseColumn(name = "shor")
 	@Indexed
 	private String shorter = ""; // 简称
+
+	private String name;
+	private String code;
 	
 	private String imageUrl;
 
@@ -66,8 +70,6 @@ public class PlaceBean extends BaseDictBeanImpl {
 	@HbaseColumn(name = "leaf")
 	private boolean leaf = true; // 是否为叶子节点
 
-	private int followedNum = 0; //关注人数
-
 	private int goneNum = 0;  //去过人数
 
 	private int goingNum = 0;  //想去人数
@@ -83,6 +85,14 @@ public class PlaceBean extends BaseDictBeanImpl {
 
 	public PlaceBean() {
 		super();
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getShorter() {
@@ -153,14 +163,6 @@ public class PlaceBean extends BaseDictBeanImpl {
 		this.subs.add(sub);
 	}
 
-	public int getFollowedNum() {
-		return followedNum;
-	}
-
-	public void setFollowedNum(int followedNum) {
-		this.followedNum = followedNum;
-	}
-
 	public int getGoneNum() {
 		return goneNum;
 	}
@@ -191,6 +193,14 @@ public class PlaceBean extends BaseDictBeanImpl {
 
 	public void setHome(boolean home) {
 		this.home = home;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public List<? extends ResourceBean> getResources() {

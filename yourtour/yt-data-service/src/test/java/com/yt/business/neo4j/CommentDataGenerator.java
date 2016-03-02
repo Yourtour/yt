@@ -37,7 +37,7 @@ public class CommentDataGenerator extends DataGenerator{
 						break;
 					case 2:
 						comment.setScore(4.5d);
-						comment.setImageUrls("resources/images/comment.jpg;resources/images/comment.jpg");
+						comment.setImageUrl("resources/images/comment.jpg;resources/images/comment.jpg");
 						break;
 				}
 

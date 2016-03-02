@@ -24,7 +24,7 @@ import java.util.List;
 @Path("app/along/")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class AlongRestResource extends BaseRestResource {
+public class AlongRestResource extends RestResource {
 	private static final Log LOG = LogFactory.getLog(AlongRestResource.class);
 
 	// spring自动装配的行程操作库

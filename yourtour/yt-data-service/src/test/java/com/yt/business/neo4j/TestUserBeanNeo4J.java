@@ -63,13 +63,12 @@ public class TestUserBeanNeo4J {
 			user.setNickName("nick name");
 			//user.setPwd("password");
 			user.setRole(Role.EXPERT);
-			user.setName("real name");
+			user.setRealName("real name");
 			user.setResidence("residence");
 			user.setGender(GenderType.FEMALE);
 			user.setStatus(Status.ACTIVED);
 			user.setUpdatedTime(System.currentTimeMillis());
 			user.setUpdatedUserId("user id");
-			user.setCode("user name");
 			neo4jCRUD.save(user, "tester");
 			assertNotNull(user.getGraphId());
 			assertEquals("Assert the count when save.",
@@ -79,10 +78,8 @@ public class TestUserBeanNeo4J {
 			assertNotNull(user1);
 			assertEquals("Assert the rowKey of the UserBean.",
 					user.getRowKey(), user1.getRowKey());
-			assertEquals("Assert the userName of the UserBean.",
-					user1.getCode(), user1.getCode());
 			assertEquals("Assert the realName of the UserBean.",
-					user.getName(), user1.getName());
+					user.getRealName(), user1.getRealName());
 			assertEquals("Assert the nickName of the UserBean.",
 					user.getNickName(), user1.getNickName());
 			assertEquals("Assert the email of the UserBean.", user.getEmail(),

@@ -16,7 +16,7 @@ public class PlaceVO {
 	private String parentCode, code, shorter, text, memo, imageUrl, name;
 	private boolean expandable = false, leaf = false;
 	private Status status = Status.ACTIVED;
-	private int followedNum = 0; //关注人数
+	private int favoiteNum = 0; //关注人数
 	private int goneNum = 0;  //去过人数
 	private int goingNum = 0;  //想去人数
 	private int num = 0;  //下辖目的地个数
@@ -63,7 +63,6 @@ public class PlaceVO {
 		vo.setImageUrl(bean.getImageUrl());
 		vo.setGoingNum(bean.getGoingNum());
 		vo.setGoneNum(bean.getGoneNum());
-		vo.setFollowedNum(bean.getFollowedNum());
 		vo.setNum(bean.getSubs().size());
 		vo.setExpandable(CollectionUtils.isNotEmpty(bean.getSubs()));
 		vo.setAlongNum(bean.getAlongNum());
@@ -194,12 +193,12 @@ public class PlaceVO {
 		this.imageUrl = imageUrl;
 	}
 
-	public int getFollowedNum() {
-		return followedNum;
+	public int getFavoiteNum() {
+		return favoiteNum;
 	}
 
-	public void setFollowedNum(int followedNum) {
-		this.followedNum = followedNum;
+	public void setFavoiteNum(int favoiteNum) {
+		this.favoiteNum = favoiteNum;
 	}
 
 	public int getGoneNum() {

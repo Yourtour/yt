@@ -82,14 +82,12 @@ public class TestUserBeanHbase {
 			bean.setNickName("nick name");
 			//bean.setPwd("password");
 			bean.setRole(Role.EXPERT);
-			bean.setName("real name");
 			bean.setResidence("residence");
 			bean.setRowKey("row key 001");
 			bean.setGender(GenderType.FEMALE);
 			bean.setStatus(Status.ACTIVED);
 			bean.setUpdatedTime(System.currentTimeMillis());
 			bean.setUpdatedUserId("update user");
-			bean.setCode("user name");
 			crudOperate.saveRow(bean);
 			assertEquals(crudOperate.getRows(UserProfileBean.class).size(), 1);
 
@@ -108,18 +106,15 @@ public class TestUserBeanHbase {
 			assertEquals(bean1.getNickName(), bean.getNickName());
 			//assertEquals(bean1.getPwd(), bean.getPwd());
 			assertEquals(bean1.getRole(), bean.getRole());
-			assertEquals(bean1.getName(), bean.getName());
 			assertEquals(bean1.getResidence(), bean.getResidence());
 			assertEquals(bean1.getRowKey(), bean.getRowKey());
 			assertEquals(bean1.getGender(), bean.getGender());
 			assertEquals(bean1.getStatus(), bean.getStatus());
 			assertEquals(bean1.getUpdatedTime(), bean.getUpdatedTime());
 			assertEquals(bean1.getUpdatedUserId(), bean.getUpdatedUserId());
-			assertEquals(bean1.getCode(), bean.getCode());
 
 			bean1.setCharacter("new character");
 			bean1.setUpdatedTime(System.currentTimeMillis() + 1000);
-			bean1.setCode("new user name");
 			crudOperate.saveRow(bean1);
 			assertEquals(crudOperate.getRows(UserProfileBean.class).size(), 1);
 			UserProfileBean bean11 = (UserProfileBean) crudOperate.getRow(UserProfileBean.class,
@@ -127,12 +122,9 @@ public class TestUserBeanHbase {
 			assertNotNull(bean11);
 			assertEquals(bean1.getCharacter(), bean11.getCharacter());
 			assertEquals(bean1.getUpdatedTime(), bean11.getUpdatedTime());
-			assertEquals(bean1.getCode(), bean11.getCode());
 			assertFalse(bean.getCharacter().equals(bean11.getCharacter()));
 			assertFalse(bean.getUpdatedTime() == bean11.getUpdatedTime());
-			assertFalse(bean.getCode().equals(bean11.getCode()));
 			assertEquals(bean.getBirthday(), bean11.getBirthday());
-			assertEquals(bean.getName(), bean11.getName());
 
 			bean.setRowKey("row key 002");
 			crudOperate.saveRow(bean);
@@ -141,7 +133,6 @@ public class TestUserBeanHbase {
 					"row key 002");
 			assertNotNull(bean12);
 			assertEquals(bean.getBirthday(), bean12.getBirthday());
-			assertEquals(bean.getName(), bean12.getName());
 
 			crudOperate.deleteRow(bean);
 			assertEquals(crudOperate.getRows(UserProfileBean.class).size(), 1);

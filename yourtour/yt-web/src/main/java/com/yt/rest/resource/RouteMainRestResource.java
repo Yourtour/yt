@@ -25,7 +25,7 @@ import java.util.Vector;
 @Path("app/routes")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class RouteMainRestResource extends BaseRestResource {
+public class RouteMainRestResource extends RestResource {
 	private static final Log LOG = LogFactory
 			.getLog(RouteMainRestResource.class);
 

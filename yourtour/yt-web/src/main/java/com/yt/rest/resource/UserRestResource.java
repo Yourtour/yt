@@ -11,8 +11,6 @@ import com.yt.business.common.Constants;
 import com.yt.business.repository.UserRepository;
 import com.yt.business.utils.Neo4jUtils;
 import com.yt.core.utils.Base64Utils;
-import com.yt.core.utils.DateUtils;
-import com.yt.core.utils.StringUtils;
 import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponseVO;
@@ -30,7 +28,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import java.io.File;
 import java.io.InputStream;
 import java.util.List;
 
@@ -38,7 +35,7 @@ import java.util.List;
 @Path("app/users")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class UserRestResource extends BaseRestResource{
+public class UserRestResource extends RestResource {
 	private static final Log LOG = LogFactory.getLog(UserRestResource.class);
 
 	@Autowired

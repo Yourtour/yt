@@ -1,6 +1,7 @@
 package com.yt.business.bean;
 
 import com.yt.business.BaseBeanImpl;
+import com.yt.business.BusinessBeanImpl;
 import com.yt.business.common.Constants;
 import com.yt.business.common.Constants.ResType;
 import com.yt.hbase.annotation.HbaseColumn;
@@ -41,7 +42,7 @@ import java.util.List;
  * @since 1.0
  */
 @NodeEntity
-public class ResourceBean extends BaseBeanImpl {
+public class ResourceBean extends BusinessBeanImpl {
 	private static final long serialVersionUID = -8980153602025087935L;
 
 	private String code;
@@ -91,12 +92,6 @@ public class ResourceBean extends BaseBeanImpl {
 	@HbaseColumn(name = "anum")
 	private int arriveNum; // 到达人数
 
-	@HbaseColumn(name = "cscore")
-	private double 	commentScore = 0f;
-
-	@HbaseColumn(name = "cnum")
-	private int 	commentNum; // 点评数
-
 	private int     goodNum;	//好评
 	private int		mediumNum;  //中评
 	private int 	badNum;     //差评
@@ -111,14 +106,6 @@ public class ResourceBean extends BaseBeanImpl {
 	private double	environmentScore = 0d;
 
 	private double  serviceScore = 0d;
-
-	@HbaseColumn(name = "fnum")
-	private int favoriteNum; // 收藏数
-
-	@HbaseColumn(name = "snum")
-	private int shareNum; // 分享数
-
-	private float rankScore;
 
 	@HbaseColumn(name = "bmemo")
 	private String bookingMemo; // 预订须知
@@ -250,22 +237,6 @@ public class ResourceBean extends BaseBeanImpl {
 		this.arriveNum = arriveNum;
 	}
 
-	public int getFavoriteNum() {
-		return favoriteNum;
-	}
-
-	public void setFavoriteNum(int favoriteNum) {
-		this.favoriteNum = favoriteNum;
-	}
-
-	public int getShareNum() {
-		return shareNum;
-	}
-
-	public void setShareNum(int shareNum) {
-		this.shareNum = shareNum;
-	}
-
 	public String getBookingMemo() {
 		return bookingMemo;
 	}
@@ -306,14 +277,6 @@ public class ResourceBean extends BaseBeanImpl {
 		this.place = place;
 	}
 
-	public float getRankScore() {
-		return rankScore;
-	}
-
-	public void setRankScore(float rankScore) {
-		this.rankScore = rankScore;
-	}
-
 	public UserProfileBean getUser() {
 		return user;
 	}
@@ -344,22 +307,6 @@ public class ResourceBean extends BaseBeanImpl {
 
 	public void setCurrency(String currency) {
 		this.currency = currency;
-	}
-
-	public double getCommentScore() {
-		return commentScore;
-	}
-
-	public void setCommentScore(double commentScore) {
-		this.commentScore = commentScore;
-	}
-
-	public int getCommentNum() {
-		return commentNum;
-	}
-
-	public void setCommentNum(int commentNum) {
-		this.commentNum = commentNum;
 	}
 
 	public double getHealthScore() {

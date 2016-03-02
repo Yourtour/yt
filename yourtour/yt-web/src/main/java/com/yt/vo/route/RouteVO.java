@@ -27,9 +27,9 @@ public class RouteVO extends BaseVO {
 	private int  olderNum;
 
 	private int  budget; //预算
-	private float commentScore;
+	private double commentScore;
 	private int readNum;
-	private int thumbupNum;
+	private int likeNum;
 	private int favoriteNum;
 	private int shareNum;
 	private int commentNum;
@@ -76,7 +76,7 @@ public class RouteVO extends BaseVO {
 		routeVO.setCommentNum(bean.getCommentNum());
 		routeVO.setFavoriteNum(bean.getFavoriteNum());
 		routeVO.setShareNum(bean.getShareNum());
-		routeVO.setThumbupNum(bean.getThumbupNum());
+		routeVO.setLikeNum(bean.getLikeNum());
 
 		routeVO.setReason(bean.getReason());
 		routeVO.setFeature(bean.getFeature());
@@ -228,14 +228,6 @@ public class RouteVO extends BaseVO {
 		this.budget = budget;
 	}
 
-	public float getCommentScore() {
-		return commentScore;
-	}
-
-	public void setCommentScore(float commentScore) {
-		this.commentScore = commentScore;
-	}
-
 	public int getReadNum() {
 		return readNum;
 	}
@@ -244,12 +236,20 @@ public class RouteVO extends BaseVO {
 		this.readNum = readNum;
 	}
 
-	public int getThumbupNum() {
-		return thumbupNum;
+	public double getCommentScore() {
+		return commentScore;
 	}
 
-	public void setThumbupNum(int thumbupNum) {
-		this.thumbupNum = thumbupNum;
+	public void setCommentScore(double commentScore) {
+		this.commentScore = commentScore;
+	}
+
+	public int getLikeNum() {
+		return likeNum;
+	}
+
+	public void setLikeNum(int likeNum) {
+		this.likeNum = likeNum;
 	}
 
 	public int getFavoriteNum() {

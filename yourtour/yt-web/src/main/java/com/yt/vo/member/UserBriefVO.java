@@ -26,9 +26,8 @@ public class UserBriefVO extends BaseVO {
 		vo.fromBean(bean);
 		vo.setImageUrl(bean.getImageUrl());
 		vo.setNickName(bean.getNickName());
-		vo.setRealName(bean.getName());
+		vo.setRealName(bean.getRealName());
 		vo.setGender(bean.getGender());
-		vo.setUserName(bean.getCode());
 		return vo;
 	}
 
@@ -42,9 +41,8 @@ public class UserBriefVO extends BaseVO {
 		vo.setUserName(vo.getUserName());
 		bean.setImageUrl(vo.getImageUrl());
 		bean.setNickName(vo.getNickName());
-		bean.setName(vo.getRealName());
+		bean.setRealName(vo.getRealName());
 		bean.setGender(vo.getGender());
-		bean.setCode(vo.getUserName());
 		return bean;
 	}
 

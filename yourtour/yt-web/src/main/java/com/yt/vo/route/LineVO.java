@@ -7,7 +7,6 @@ import com.yt.business.common.Constants.Status;
 import com.yt.vo.BaseVO;
 
 public class LineVO extends BaseVO {
-	private String code;
 	private String name; // 名称
 	private String imageUrl; // 图片
 	private String intro; // 概述， 线路进行简单介绍
@@ -36,7 +35,6 @@ public class LineVO extends BaseVO {
 		}
 		LineVO vo = new LineVO();
 		vo.fromBean(bean);
-		vo.setCode(bean.getCode());
 		vo.setArriveNum(bean.getArriveNum());
 		vo.setCommentIndex(bean.getCommentIndex());
 		vo.setCommentNum(bean.getCommentNum());
@@ -51,7 +49,6 @@ public class LineVO extends BaseVO {
 		vo.setShareNum(bean.getShareNum());
 		vo.setStatus(bean.getStatus());
 		vo.setTags(bean.getTags());
-		vo.setThumbupNum(bean.getThumbupNum());
 
 		// 从目的地对象中获取ID和名称，便于前端显示
 		PlaceBean place = bean.getPlace();
@@ -87,7 +84,6 @@ public class LineVO extends BaseVO {
 		}
 		LineBean bean = new LineBean();
 		vo.toBean(bean);
-		bean.setCode(vo.getCode());
 		bean.setArriveNum(vo.getArriveNum());
 		bean.setCommentIndex(vo.getCommentIndex());
 		bean.setCommentNum(vo.getCommentNum());
@@ -104,7 +100,6 @@ public class LineVO extends BaseVO {
 		bean.setShareNum(vo.getShareNum());
 		bean.setStatus(vo.getStatus());
 		bean.setTags(vo.getTags());
-		bean.setThumbupNum(vo.getThumbupNum());
 
 		// 从VO中取出目的地的ID，并设置到PlaceBean中，便于后续建立关联关系
 		PlaceBean place = new PlaceBean();
@@ -127,14 +122,6 @@ public class LineVO extends BaseVO {
 
 	public LineVO() {
 		super();
-	}
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
 	}
 
 	public String getName() {

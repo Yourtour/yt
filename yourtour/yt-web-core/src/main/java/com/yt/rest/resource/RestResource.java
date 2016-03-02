@@ -5,10 +5,10 @@ import org.springframework.beans.factory.annotation.Value;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class BaseRestResource {
+public class RestResource {
 
 
-	public BaseRestResource() {
+	public RestResource() {
 	}
 	
 	protected String getCurrentUserId(HttpServletRequest request) throws Exception{

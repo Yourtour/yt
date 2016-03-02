@@ -2,6 +2,7 @@ package com.yt.business.bean;
 
 import java.util.List;
 
+import com.yt.business.BusinessBeanImpl;
 import com.yt.business.common.Constants;
 import com.yt.neo4j.annotation.Neo4jRelationship;
 import org.neo4j.graphdb.Direction;
@@ -22,7 +23,7 @@ import com.yt.hbase.annotation.HbaseTable;
  */
 @HbaseTable(name = "T_ROUTE_ALONG_INFO")
 @NodeEntity
-public class AlongBean extends BaseBeanImpl {
+public class AlongBean extends BusinessBeanImpl {
 	private static final long serialVersionUID = -3433522673262851121L;
 
 	@HbaseColumn(name = "name")
@@ -51,14 +52,6 @@ public class AlongBean extends BaseBeanImpl {
 	@HbaseColumn(name = "addr")
 	// 位置描述
 	private String address;
-
-	@HbaseColumn(name = "rnum")
-	private int readNum; // 浏览数
-
-	@HbaseColumn(name = "cnum")
-	private int commentNum; // 评论数
-
-	private int followedNum; //关注人数
 
 	private int applyNum;  //报名人数
 
@@ -123,22 +116,6 @@ public class AlongBean extends BaseBeanImpl {
 		this.address = address;
 	}
 
-	public int getReadNum() {
-		return readNum;
-	}
-
-	public void setReadNum(int readNum) {
-		this.readNum = readNum;
-	}
-
-	public int getCommentNum() {
-		return commentNum;
-	}
-
-	public void setCommentNum(int commentNum) {
-		this.commentNum = commentNum;
-	}
-
 	public Status getStatus() {
 		return status;
 	}
@@ -161,14 +138,6 @@ public class AlongBean extends BaseBeanImpl {
 
 	public void setNum(int num) {
 		this.num = num;
-	}
-
-	public int getFollowedNum() {
-		return followedNum;
-	}
-
-	public void setFollowedNum(int followedNum) {
-		this.followedNum = followedNum;
 	}
 
 	public int getApplyNum() {

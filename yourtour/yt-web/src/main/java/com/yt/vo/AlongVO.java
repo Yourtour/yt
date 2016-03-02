@@ -21,7 +21,7 @@ public class AlongVO extends BaseVO{
 	private String address;
 	private int readNum; // 浏览数
 	private int commentNum; // 评论数
-	private int followedNum; //关注人数
+	private int favoriteNum; //关注人数
 	private int applyNum;  //报名人数
 	private UserVO user;
 	private RouteVO route;
@@ -37,7 +37,7 @@ public class AlongVO extends BaseVO{
 		vo.setApplyNum(along.getApplyNum());
 		vo.setNum(along.getNum());
 		vo.setReadNum(along.getReadNum());
-		vo.setFollowedNum(along.getFollowedNum());
+		vo.setFavoriteNum(along.getFavoriteNum());
 		vo.setImageUrls(along.getImageUrls());
 		vo.setCommentNum(along.getCommentNum());
 		vo.setIntention(along.getIntention().name);
@@ -148,12 +148,12 @@ public class AlongVO extends BaseVO{
 		this.commentNum = commentNum;
 	}
 
-	public int getFollowedNum() {
-		return followedNum;
+	public int getFavoriteNum() {
+		return favoriteNum;
 	}
 
-	public void setFollowedNum(int followedNum) {
-		this.followedNum = followedNum;
+	public void setFavoriteNum(int favoriteNum) {
+		this.favoriteNum = favoriteNum;
 	}
 
 	public int getApplyNum() {

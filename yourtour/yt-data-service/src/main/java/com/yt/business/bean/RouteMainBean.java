@@ -3,6 +3,7 @@ package com.yt.business.bean;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.yt.business.BusinessBeanImpl;
 import org.codehaus.jackson.map.annotate.JsonRootName;
 import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.Indexed;
@@ -18,7 +19,7 @@ import com.yt.neo4j.annotation.Neo4jRelationship;
 @HbaseTable(name = "T_ROUTE_MAIN")
 @NodeEntity
 @JsonRootName("route")
-public class RouteMainBean extends BaseBeanImpl {
+public class RouteMainBean extends BusinessBeanImpl {
 	private static final long serialVersionUID = -2071225440268179136L;
 	private static final String INDEX_NAME = "route";
 
@@ -51,12 +52,6 @@ public class RouteMainBean extends BaseBeanImpl {
 
 	private String tags;  //标签，数据冗余
 	private String bestTime; //最佳时间
-	private float commentScore; //点评分数
-	private int readNum;  //阅读数量
-	private int thumbupNum;  //点赞数量
-	private int favoriteNum;  //收藏数量
-	private int shareNum;  //分享数量
-	private int commentNum;  //点评数量
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_FROM, type = PlaceBean.class, direction = Direction.OUTGOING)
 	private transient PlaceBean fromPlaceBean = null; // 行程出发地点
@@ -227,46 +222,6 @@ public class RouteMainBean extends BaseBeanImpl {
 		this.toPlaces = toPlaces;
 	}
 
-	public float getCommentScore() {
-		return commentScore;
-	}
-
-	public void setCommentScore(float commentScore) {
-		this.commentScore = commentScore;
-	}
-
-	public int getThumbupNum() {
-		return thumbupNum;
-	}
-
-	public void setThumbupNum(int thumbupNum) {
-		this.thumbupNum = thumbupNum;
-	}
-
-	public int getFavoriteNum() {
-		return favoriteNum;
-	}
-
-	public void setFavoriteNum(int favoriteNum) {
-		this.favoriteNum = favoriteNum;
-	}
-
-	public int getShareNum() {
-		return shareNum;
-	}
-
-	public void setShareNum(int shareNum) {
-		this.shareNum = shareNum;
-	}
-
-	public int getCommentNum() {
-		return commentNum;
-	}
-
-	public void setCommentNum(int commentNum) {
-		this.commentNum = commentNum;
-	}
-
 	public String getReason() {
 		return reason;
 	}
@@ -321,14 +276,6 @@ public class RouteMainBean extends BaseBeanImpl {
 
 	public void setTags(String tags) {
 		this.tags = tags;
-	}
-
-	public int getReadNum() {
-		return readNum;
-	}
-
-	public void setReadNum(int readNum) {
-		this.readNum = readNum;
 	}
 
 	public String getOrderMemo() {

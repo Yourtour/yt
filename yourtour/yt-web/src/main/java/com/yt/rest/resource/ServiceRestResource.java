@@ -27,7 +27,7 @@ import java.util.List;
 @Path("/app/services")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class ServiceRestResource extends BaseRestResource {
+public class ServiceRestResource extends RestResource {
 	private static final Log LOG = LogFactory.getLog(ServiceRestResource.class);
 
 	@Autowired

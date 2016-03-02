@@ -1,6 +1,7 @@
 package com.yt.business.bean;
 
 import com.yt.business.BaseBeanImpl;
+import com.yt.business.BusinessBeanImpl;
 import com.yt.business.common.Constants;
 import com.yt.hbase.annotation.HbaseTable;
 import com.yt.neo4j.annotation.Neo4jRelationship;
@@ -9,7 +10,7 @@ import org.springframework.data.neo4j.annotation.NodeEntity;
 
 @HbaseTable(name = "T_COMMENT_INFO")
 @NodeEntity
-public class CommentBean extends BaseBeanImpl {
+public class CommentBean extends BusinessBeanImpl {
 	private static final long serialVersionUID = -2639574489334772005L;
 
 	private double 	score = 0d;
@@ -18,8 +19,7 @@ public class CommentBean extends BaseBeanImpl {
 	private	double	facilityScore = 0d;
 	private double	environmentScore = 0d;
 	private String 	memo;
-	private String 	imageUrls;
-	private int		thumbup = 0;
+	private String 	imageUrl; //多张图片使用逗号分隔
 	private String	replied = "";
 	private String	tags;
 
@@ -79,20 +79,12 @@ public class CommentBean extends BaseBeanImpl {
 		this.memo = memo;
 	}
 
-	public String getImageUrls() {
-		return imageUrls;
+	public String getImageUrl() {
+		return imageUrl;
 	}
 
-	public void setImageUrls(String imageUrls) {
-		this.imageUrls = imageUrls;
-	}
-
-	public int getThumbup() {
-		return thumbup;
-	}
-
-	public void setThumbup(int thumbup) {
-		this.thumbup = thumbup;
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 	public UserProfileBean getUser() {

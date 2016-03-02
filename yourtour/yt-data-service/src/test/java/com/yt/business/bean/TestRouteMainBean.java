@@ -229,10 +229,8 @@ public class TestRouteMainBean {
 			assertEquals(repo.count(RouteMainBean.class), 0);
 
 			UserProfileBean u1 = new UserProfileBean();
-			u1.setCode("user 1");
 			repo.save(u1, "john");
 			UserProfileBean u2 = new UserProfileBean();
-			u2.setCode("user 2");
 			repo.save(u2, "john");
 			assertEquals(repo.count(UserProfileBean.class), 2);
 

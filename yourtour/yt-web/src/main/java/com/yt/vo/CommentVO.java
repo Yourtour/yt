@@ -12,7 +12,7 @@ public class CommentVO extends BaseVO{
 	private double	environmentScore = 0d;
 
 	private String 	memo;
-	private String 	imageUrls;
+	private String 	imageUrl;
 	private int		thumbup = 0;
 	private String	replied = "";
 	private String	tags;
@@ -27,7 +27,7 @@ public class CommentVO extends BaseVO{
 	public static CommentVO transform(CommentBean bean){
 		CommentVO comment = new CommentVO();
 
-		comment.setImageUrls(bean.getImageUrls());
+		comment.setImageUrl(bean.getImageUrl());
 		comment.setMemo(bean.getMemo());
 		comment.setReplied(bean.getReplied());
 		comment.setScore(bean.getScore());
@@ -36,7 +36,6 @@ public class CommentVO extends BaseVO{
 		comment.setFacilityScore(bean.getFacilityScore());
 		comment.setTrafficScore(bean.getTrafficScore());
 		comment.setTags(bean.getTags());
-		comment.setThumbup(bean.getThumbup());
 		comment.setCreatedDate(DateUtils.formatDate(bean.getCreatedTime(), DateUtils.DATE_FORMAT_FULL));
 		comment.setRecommendedIndex(bean.getRecommendedIndex());
 		comment.setUser(UserVO.transform(bean.getUser()));
@@ -93,12 +92,12 @@ public class CommentVO extends BaseVO{
 		this.memo = memo;
 	}
 
-	public String getImageUrls() {
-		return imageUrls == null ? "" : imageUrls;
+	public String getImageUrl() {
+		return imageUrl;
 	}
 
-	public void setImageUrls(String imageUrls) {
-		this.imageUrls = imageUrls;
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 	public int getThumbup() {
@@ -150,7 +149,7 @@ public class CommentVO extends BaseVO{
 	}
 
 	public boolean isImage(){
-		return ! this.getImageUrls().equals("");
+		return ! this.getImageUrl().equals("");
 	}
 
 	public boolean isGood(){

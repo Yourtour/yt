@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
+import com.yt.business.BaseBeanImpl;
 import com.yt.core.utils.DateUtils;
 import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.Indexed;
@@ -49,13 +50,15 @@ import com.yt.neo4j.annotation.Neo4jRelationship;
  */
 @HbaseTable(name = "T_USER_PROFILE_INFO")
 @NodeEntity
-public class UserProfileBean extends BaseDictBeanImpl {
+public class UserProfileBean extends BaseBeanImpl {
 	private static final long serialVersionUID = -6977525800090683657L;
 	private static final String INDEX_NAME = "user"; // 定义了本实体中全文检索的索引名称。
 
 	@HbaseColumn(name = "nname")
 	@Indexed
 	private String nickName; // 昵称
+
+	private String realName; //真实姓名
 
 	private String identity; //身份
 
@@ -130,11 +133,23 @@ public class UserProfileBean extends BaseDictBeanImpl {
 	private transient List<CommentBean> comments = null;
 	private transient List<RouteMainBean> routes = null;
 
+	public UserProfileBean(Long id){
+		super(id);
+	}
+
 	public UserProfileBean() {
 		super();
 		this.followers = new Vector<UserProfileBean>();
 		this.watchers = new Vector<UserProfileBean>();
 		this.watchedLines = new Vector<LineBean>();
+	}
+
+	public String getRealName() {
+		return realName;
+	}
+
+	public void setRealName(String realName) {
+		this.realName = realName;
 	}
 
 	public String getNickName() {

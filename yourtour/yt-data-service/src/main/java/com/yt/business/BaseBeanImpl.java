@@ -52,6 +52,17 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 	/**
 	 * 默认的构造函数
 	 */
+	public BaseBeanImpl(Long id) {
+		super();
+
+		this.graphId = id;
+
+		this.rowKey = UUID.randomUUID().toString();
+	}
+
+	/**
+	 * 默认的构造函数
+	 */
 	public BaseBeanImpl(String userId)
 	{
 		super();
@@ -219,5 +230,4 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 	public boolean isNew(){
 		return this.graphId == null || this.graphId.longValue() == 0;
 	}
-
 }

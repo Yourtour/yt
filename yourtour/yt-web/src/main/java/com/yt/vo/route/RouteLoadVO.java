@@ -161,7 +161,6 @@ public class RouteLoadVO implements Serializable {
 							activity.setCommentNum(resource.getCommentNum());
 							activity.setShareNum(resource.getShareNum());
 							activity.setFavoriteNum(resource.getFavoriteNum());
-							activity.setRankScore(resource.getRankScore());
 						}
 
 						if( i > 0){

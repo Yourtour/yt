@@ -30,7 +30,7 @@ import com.yt.vo.chat.ChatSessionVO;
 @Path("app/chat")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class ChatRestResource extends BaseRestResource {
+public class ChatRestResource extends RestResource {
 	private static final Log LOG = LogFactory.getLog(ChatRestResource.class);
 
 	@Autowired

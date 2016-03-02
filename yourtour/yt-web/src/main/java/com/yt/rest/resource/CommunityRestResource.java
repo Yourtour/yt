@@ -21,7 +21,7 @@ import java.util.List;
 @Path("/app/community")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class CommunityRestResource extends BaseRestResource {
+public class CommunityRestResource extends RestResource {
     private static final Log LOG = LogFactory.getLog(CommunityRestResource.class);
 
     private @Autowired

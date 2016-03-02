@@ -3,6 +3,7 @@ package com.yt.business.bean;
 import java.util.List;
 import java.util.Vector;
 
+import com.yt.business.BusinessBeanImpl;
 import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
@@ -52,9 +53,11 @@ import com.yt.neo4j.annotation.Neo4jRelationship;
  */
 @HbaseTable(name = "T_LINE_INFO")
 @NodeEntity
-public class LineBean extends BaseDictBeanImpl {
+public class LineBean extends BusinessBeanImpl {
 	private static final long serialVersionUID = -3433522673262851121L;
 	private static final String INDEX_NAME = "line";
+
+	private String name;
 
 	@HbaseColumn(name = "img")
 	private String imageUrl; // 图片
@@ -83,20 +86,6 @@ public class LineBean extends BaseDictBeanImpl {
 	@HbaseColumn(name = "tags")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
 	private String tags; // 标签
-
-	@HbaseColumn(name = "cscore")
-	private double commentScore; // 点评分数
-	@HbaseColumn(name = "cnum")
-	private int commentNum; // 点评数
-
-	@HbaseColumn(name = "tnum")
-	private int thumbupNum; // 点赞数
-
-	@HbaseColumn(name = "fnum")
-	private int favoriteNum; // 收藏数
-
-	@HbaseColumn(name = "snum")
-	private int shareNum; // 分享数
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_AT, type = PlaceBean.class, direction = Direction.OUTGOING)
 	private transient PlaceBean place = null;
@@ -188,43 +177,11 @@ public class LineBean extends BaseDictBeanImpl {
 		this.tags = tags;
 	}
 
-	public double getCommentScore() {
-		return commentScore;
+	public String getName() {
+		return name;
 	}
 
-	public void setCommentScore(double commentScore) {
-		this.commentScore = commentScore;
-	}
-
-	public int getCommentNum() {
-		return commentNum;
-	}
-
-	public void setCommentNum(int commentNum) {
-		this.commentNum = commentNum;
-	}
-
-	public int getThumbupNum() {
-		return thumbupNum;
-	}
-
-	public void setThumbupNum(int thumbupNum) {
-		this.thumbupNum = thumbupNum;
-	}
-
-	public int getFavoriteNum() {
-		return favoriteNum;
-	}
-
-	public void setFavoriteNum(int favoriteNum) {
-		this.favoriteNum = favoriteNum;
-	}
-
-	public int getShareNum() {
-		return shareNum;
-	}
-
-	public void setShareNum(int shareNum) {
-		this.shareNum = shareNum;
+	public void setName(String name) {
+		this.name = name;
 	}
 }

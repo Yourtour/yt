@@ -35,7 +35,7 @@ import com.yt.vo.route.RouteSettingVO;
 @Path("/app/route/{routeId}/members")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class MemberRestResource extends BaseRestResource {
+public class MemberRestResource extends RestResource {
 	private static final Log LOG = LogFactory.getLog(MemberRestResource.class);
 
 	// spring自动装配的行程操作库

@@ -23,7 +23,7 @@ import java.util.List;
 @Path("app/route/{routeId}/charge")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class ChargeRestResource extends BaseRestResource {
+public class ChargeRestResource extends RestResource {
 	private static final Log LOG = LogFactory.getLog(ChargeRestResource.class);
 
 	// spring自动装配的行程操作库
