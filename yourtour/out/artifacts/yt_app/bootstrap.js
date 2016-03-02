@@ -905,12 +905,14 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.XPickerField": [],
   "YourTour.view.widget.XPlaceField": [],
   "YourTour.view.widget.XPlainButton": [],
+  "YourTour.view.widget.XPop": [],
   "YourTour.view.widget.XProcessing": [],
   "YourTour.view.widget.XScore": [],
   "YourTour.view.widget.XSearchField": [],
   "YourTour.view.widget.XSelecion": [],
   "YourTour.view.widget.XSelectField": [],
   "YourTour.view.widget.XShare": [],
+  "YourTour.view.widget.XShareButton": [],
   "YourTour.view.widget.XSpacer": [],
   "YourTour.view.widget.XTappable": [],
   "YourTour.view.widget.XTextArea": [],
@@ -2149,6 +2151,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.widget.XPlainButton": [
     "widget.xplainbutton"
   ],
+  "YourTour.view.widget.XPop": [],
   "YourTour.view.widget.XProcessing": [
     "widget.xprocessing"
   ],
@@ -2162,8 +2165,9 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.widget.XSelectField": [
     "widget.xselectfield"
   ],
-  "YourTour.view.widget.XShare": [
-    "widget.xshare"
+  "YourTour.view.widget.XShare": [],
+  "YourTour.view.widget.XShareButton": [
+    "widget.xsharebutton"
   ],
   "YourTour.view.widget.XSpacer": [
     "widget.xspacer"

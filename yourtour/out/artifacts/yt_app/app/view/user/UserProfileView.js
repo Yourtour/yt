@@ -94,13 +94,13 @@ Ext.define('YourTour.view.user.UserProfileView', {
                         xtype: 'panel',
                         cls: 'spacer'
                     },
-
                     {
-                        itemId: 'tags',
-                        xtype: 'xmultifield',
-                        label: '标签',
-                        fieldCls: 'text-align-right',
-                        editable: true
+                        xtype:'xlabel',
+                        html:'旅行标签'
+                    },
+                    {
+                        xtype:'xgridview',
+                        itemId:'tag'
                     }
                 ]
             }

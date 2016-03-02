@@ -27,7 +27,7 @@ Ext.define('YourTour.view.widget.XField', {
                 style:'text-align:left'
             },
             {
-                xtype: 'label',
+                xtype: 'container',
                 itemId: 'value',
                 cls:'x-xfield-text',
                 flex: 1

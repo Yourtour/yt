@@ -23,6 +23,22 @@ Ext.define('YourTour.controller.MainCtrl', {
 		var me = this;
 		Ext.Viewport.add(Ext.create('YourTour.view.LaunchView'));
 
+		/**
+		 * 获取系统初始化数据
+		 */
+		this.store = Ext.create('YourTour.store.LaunchStore', {itemId:'lanuchStore'});
+		var me = this;
+		var success = function(){
+			try{
+				var localStore =  Ext.StoreManager.get('LocalStore');
+				localStore.load();
+			}catch(e){
+				alert(e.name + ": " + e.message);
+			}
+		};
+
+		this.store.load(success, this);
+
 		//检查是否访问过启动页面
 		var localStore =  Ext.StoreManager.get('LocalStore');
 		localStore.load();
@@ -40,19 +56,6 @@ Ext.define('YourTour.controller.MainCtrl', {
 				me.doEnter();
 			}
 		}
-
-		/*this.store = Ext.create('YourTour.store.LaunchStore', {itemId:'lanuchStore'});
-		var me = this;
-		var success = function(){
-			try{
-				var localStore =  Ext.StoreManager.get('LocalStore');
-				localStore.load();
-			}catch(e){
-				alert(e.name + ": " + e.message);
-			}
-		};
-
-		this.store.load(success, this);*/
 	},
 
 	doEnter:function(){

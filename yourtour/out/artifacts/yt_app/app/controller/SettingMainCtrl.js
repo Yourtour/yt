@@ -9,10 +9,6 @@ Ext.define('YourTour.controller.SettingMainCtrl', {
            '#UserSettingView #btnQuit':{
                 tap:'onUserQuitTap'
            }
-       },
-       
-       routes:{
-    	   '/user/setting':'showPage'
        }
     },
     

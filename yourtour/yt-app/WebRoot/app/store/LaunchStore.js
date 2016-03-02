@@ -8,7 +8,7 @@ Ext.define('YourTour.store.LaunchStore', {
     	
     	proxy:{
 	    	api:{
-				 read: YourTour.util.Context.getContext('/app/launch')
+				 read: YourTour.util.Context.getContext('/launch')
 			}
     	}
     }

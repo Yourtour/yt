@@ -194,7 +194,7 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
         var me = this, residenceSelectionView = me.getResidenceSelectionView(), residencePlaceList = me.getResidencePlaceList();
         residenceSelectionView.down('#headerbar').setTitle(field.getLabel());
 
-        residencePlaceList.on('itemtap', function(dataview, index, item, record){
+        residencePlaceList.on('itemtap', function(list, index, item, record){
             field.modifyText(record.get('name'));
             field.setValue(record.get('id') +',' + record.get('name'));
             Ext.ComponentManager.get('MainView').pop();
@@ -203,11 +203,16 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
         var options = {
             config:{
                 model: 'YourTour.model.PlaceModel',
-                groupField: 'name',
-                groupDir: 'DESC'
+                grouper:{
+                    groupFn: function(record) {
+                        return record.get('code').substr(0, 1);
+                    },
+                    sortProperty: 'code'
+                }
             },
             url: '/place/residence/query',
             success: function (store) {
+                residencePlaceList.setStore(null);
                 residencePlaceList.setStore(store);
             }
         };
