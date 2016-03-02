@@ -12,6 +12,8 @@ Ext.define('YourTour.view.widget.XPlaceField', {
     },
 
     setText:function(text){
+        if(text == null) return;
+
         var places = text.split('|'), str='';
         Ext.Array.forEach(places, function(place){
             if(str != '') str += ',';

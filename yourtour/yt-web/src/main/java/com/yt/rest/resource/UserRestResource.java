@@ -172,6 +172,7 @@ public class UserRestResource extends BaseRestResource{
 	public ResponseDataVO<UserVO> registerProfile(@FormDataParam("id") Long profileId,
 												  @FormDataParam("nickName") String nickName,
 												  @FormDataParam("gender") String gender,
+												  @FormDataParam("tags") String tags,
 												  FormDataMultiPart form){
 		try{
 			UserProfileBean profile = userRepository.getUserByNickName(nickName);
@@ -195,6 +196,7 @@ public class UserRestResource extends BaseRestResource{
 
 			profile.setNickName(nickName);
 			profile.setGender(Constants.GenderType.getEnum(gender));
+			profile.setTags(tags);
 			this.userRepository.save(profile, false, String.valueOf(profileId));
 
 			profile = (UserProfileBean) userRepository.get(UserProfileBean.class, profileId, false);

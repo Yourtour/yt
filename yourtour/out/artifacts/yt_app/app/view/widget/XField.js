@@ -161,6 +161,11 @@ Ext.define('YourTour.view.widget.XField', {
         label.addCls(labelCls);
     },
 
+    removeLabelCls: function (labelCls) {
+        var label = this.down('#label');
+        label.removeCls(labelCls);
+    },
+
     updateLabel: function (label) {
         this.label = label;
         var labelEl = this.down('#label');

@@ -6,7 +6,7 @@ Ext.define('YourTour.controller.AccountMainCtrl', {
             loginView: '#LoginView',
             rgisterAccountView: '#RegisterAccountView',
             registerProfileView: '#RegisterProfileView',
-            portraitOptions: '#RegisterProfileView #portraitOptions'
+            tagList: '#RegisterProfileView #tagList'
         },
 
         control: {
@@ -28,6 +28,10 @@ Ext.define('YourTour.controller.AccountMainCtrl', {
 
             '#RegisterProfileView #btnRegisterDone': {
                 tap: 'doRegisterProfile'
+            },
+
+            '#RegisterProfileView #tagList':{
+                itemtap:'selectTags'
             }
         },
     },
@@ -43,6 +47,9 @@ Ext.define('YourTour.controller.AccountMainCtrl', {
 
     doAccountRegister: function () {
         this.getLoginMainView().setActiveItem(1);
+
+        var me = this, tagList = me.getTagList(), store = this.getApplication().getBaseStore().first().tagsStore;
+        tagList.setStore(store);
     },
 
     doGetAuthCode: function () {
@@ -53,9 +60,7 @@ Ext.define('YourTour.controller.AccountMainCtrl', {
      * 账户注册
      */
     doRegisterUserAccount: function () {
-        var me = this;
-
-        var accountview = this.getRgisterAccountView();
+        var me = this, accountview = this.getRgisterAccountView();
         var values = accountview.getValues();
 
         var mobile = values.mobile;
@@ -115,6 +120,18 @@ Ext.define('YourTour.controller.AccountMainCtrl', {
             this.getApplication().alert('请选择性别');
             return;
         }
+
+        var store = me.getTagList().getStore();
+        var tags='';
+        store.each(function(item){
+            if(item.get('selected')){
+                if(tags != '') tags += '|';
+
+                tags += item.get('id') + ',' + item.get('name');
+            };
+        });
+        params.tags = tags;
+
         params.id = me.getApplication().getUserId();
         options.params = params;
 
@@ -131,6 +148,24 @@ Ext.define('YourTour.controller.AccountMainCtrl', {
         }
 
         this.getApplication().uploadService(options);
+    },
+
+    selectTags:function(dataview, index, item, record, e){
+        var selected = record.get('selected');
+        if(selected){
+            record.set('selected', false);
+        }else{
+            record.set('selected', true);
+        }
+
+        var name = item.down('#name');
+        if(record.get('selected')){
+            name.removeLabelCls('icon-unchecked');
+            name.setLabelCls('icon-checked');
+        }else{
+            name.removeLabelCls('icon-checked');
+            name.setLabelCls('icon-unchecked');
+        }
     },
 
     /**

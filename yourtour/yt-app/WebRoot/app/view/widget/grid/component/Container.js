@@ -75,7 +75,7 @@ Ext.define('YourTour.view.widget.grid.component.Container', {
             }
 
             if(i % me.cols == 0){
-                me.row = Ext.create('Ext.Panel',{layout:'hbox', cls: baseCls + '-row'});
+                me.row = Ext.create('Ext.Container',{layout:'hbox', cls: baseCls + '-row'});
                 this.add(me.row);
             }
 
@@ -111,7 +111,7 @@ Ext.define('YourTour.view.widget.grid.component.Container', {
 
     getEmptyItemConfig:function(){
         return {
-            xtype:'panel',
+            xtype:'container',
             flex:1
         }
     }

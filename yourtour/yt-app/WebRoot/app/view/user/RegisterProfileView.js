@@ -1,7 +1,7 @@
 Ext.define('YourTour.view.user.RegisterProfileView', {
 	extend: 'Ext.Container',
     xtype: 'RegisterProfileView',
-    requires:['Ext.Panel','Ext.field.Radio','Ext.field.File', 'YourTour.view.widget.XImageSelect', 'YourTour.view.widget.XSpacer', 'YourTour.view.widget.XTitleBar', 'Ext.field.Password','YourTour.view.widget.XTextField', 'YourTour.view.widget.XButton', 'YourTour.view.widget.ToolButton'],
+    requires:['Ext.Panel','Ext.field.Radio','YourTour.view.user.UserTagDataItem', 'YourTour.view.widget.XImageSelect', 'YourTour.view.widget.XSpacer', 'YourTour.view.widget.XTitleBar', 'Ext.field.Password','YourTour.view.widget.XTextField', 'YourTour.view.widget.XButton', 'YourTour.view.widget.ToolButton'],
     config: {
 		layout: 'vbox',
 		defaults: {
@@ -77,32 +77,16 @@ Ext.define('YourTour.view.user.RegisterProfileView', {
 			},
 
 			{
-				xtype:'panel',
-				layout:'hbox',
-				margin:'10 0 0 0',
-				items:[{
-					xtype:'panel',
-					layout:'hbox',
-					cls:'textfield',
-					style:'width:100%',
-					items:[
-						{
-							xtype:'label',
-							html:'-',
-							fit:1
-						},
-						{
-							xtype:'label',
-							html:'标签',
-							fit:1
-						},
-						{
-							xtype:'label',
-							html:'-',
-							fit:1
-						}
-					]
-				}]
+				xtype:'xlabel',
+				html:'旅行标签',
+				cls:'underline font-normal'
+			},
+			{
+				xtype: 'xgridview',
+				itemId: 'tagList',
+				useComponents: true,
+				defaultType: 'UserTagDataItem',
+				cols:3
 			},
 
             {

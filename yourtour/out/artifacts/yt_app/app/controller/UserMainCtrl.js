@@ -3,7 +3,9 @@ Ext.define('YourTour.controller.UserMainCtrl', {
     config: {
         refs: {
             userMainView: '#UserMainView',
-            userProfileView: '#UserProfileView'
+
+            userProfileView: '#UserProfileView',
+            tagList: '#UserProfileView #tagList'
         },
 
         control: {
@@ -25,6 +27,10 @@ Ext.define('YourTour.controller.UserMainCtrl', {
 
             '#UserProfileView #userLogoPanel': {
                 tap: 'doChangeUserLogo'
+            },
+
+            '#UserProfileView #tagList':{
+                itemtap:'changeTagItemStatus'
             }
         }
     },
@@ -71,6 +77,14 @@ Ext.define('YourTour.controller.UserMainCtrl', {
 
         var residence = view.down('#residence');
         residence.setText(profile.residence);
+
+        var tags = profile.tags, tagList = me.getTagList(), store = this.getApplication().getBaseStore().first().tagsStore;
+        store.each(function(item){
+            if(tags && tags.indexOf(item.get('id') + ',' + item.get('name'))>=0){
+                item.set('selected', true);
+            }
+        });
+        tagList.setStore(store);
     },
 
     /**
@@ -124,10 +138,16 @@ Ext.define('YourTour.controller.UserMainCtrl', {
             params.nativePlace = nativePlace.getValue();
         }
 
-        var tags = view.down('#tags');
-        if (tags.isModified()) {
-            params.tags = tags.getValue();
-        }
+        var store = me.getTagList().getStore();
+        var tags='';
+        store.each(function(item){
+            if(item.get('selected')){
+                if(tags != '') tags += '|';
+
+                tags += item.get('id') + ',' + item.get('name');
+            };
+        });
+        params.tags = tags;
 
         options.url = '/users/' + params.id + '/save';
         options.params = params;
@@ -149,7 +169,26 @@ Ext.define('YourTour.controller.UserMainCtrl', {
         this.getApplication().uploadService(options);
     },
 
+    changeTagItemStatus:function(dataview, index, item, record, e){
+        var selected = record.get('selected');
+        if(selected){
+            record.set('selected', false);
+        }else{
+            record.set('selected', true);
+        }
+
+        var name = item.down('#name');
+        if(record.get('selected')){
+            name.removeLabelCls('icon-unchecked');
+            name.setLabelCls('icon-checked');
+        }else{
+            name.removeLabelCls('icon-checked');
+            name.setLabelCls('icon-unchecked');
+        }
+    },
+
     onSettingTap: function () {
-        this.redirectTo('/user/setting');
+        var controller = this.getApplication().getController('SettingMainCtrl');
+        controller.showPage();
     }
 });

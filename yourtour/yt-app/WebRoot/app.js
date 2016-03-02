@@ -24,6 +24,16 @@ Ext.application({
      */
     localStorage: window.localStorage,
 
+    /**
+     * 系统基础数据
+     */
+    baseStore:null,
+
+    /**
+     * 用户数据
+     */
+    userProfile:null,
+
     views: [
         'MainView', 'LaunchView', 'setting.UserSettingView',
         'common.MessageMainView', 'common.MessageGroupView', 'common.FieldEditView', 'common.FieldEditView',
@@ -65,7 +75,7 @@ Ext.application({
     ],
 
     models: [
-        'LaunchModel', 'RouteModel', 'RouteActivityModel', 'LineModel', 'UserModel', 'OptionModel', 'HomeModel', 'LiveModel', 'ChatModel', 'AlongModel', 'TalentModel', 'HomeCarouselModel', 'CommentModel', 'PlaceModel',
+        'SimpleModel', 'LaunchModel', 'RouteModel', 'RouteActivityModel', 'LineModel', 'UserModel', 'OptionModel', 'HomeModel', 'LiveModel', 'ChatModel', 'AlongModel', 'TalentModel', 'HomeCarouselModel', 'CommentModel', 'PlaceModel',
         'CacheModel', 'ActivityItemModel', 'RouteServiceModel', 'ExpertModel', 'ExpertServiceModel', 'ChargeModel', 'MessageContentModel'
     ],
 
@@ -98,10 +108,12 @@ Ext.application({
             alert(e.name + ":" + e.message);
         }
 
-        this.init();
+        this.initialize();
+
+
     },
 
-    init: function () {
+    initialize: function () {
         var me = this;
         Ext.Ajax.on('beforerequest', (function (conn, options, eOpts) {
             var userToken = me.getUserId();
@@ -112,6 +124,52 @@ Ext.application({
         }), this);
 
         YourTour.util.Context.setApplication(this);
+
+        this.initAppContext();
+    },
+
+    getBaseStore:function(){
+        if(this.baseStore == null){
+            this.initAppContext();
+        }
+
+        return this.baseStore;
+    },
+
+    /**
+     * APP基础数据初始化
+     */
+    initAppContext:function(){
+        console.log('Initializing App Context.......');
+        var me = this, localStore =  Ext.StoreManager.get('LocalStore'), json;
+
+        localStore.load(function(){
+            var index = localStore.find('key', 'app.basedata');
+            if(index < 0){ //本地没有缓存
+                console.log('Loading base data from remote server.......');
+                var store = Ext.create('YourTour.store.LaunchStore', {itemId:'lanuchStore'});
+                var success = function(){
+                    try{
+                        var json = Ext.JSON.encode(store.first().raw);
+                        localStore.add({key:'app.basedata', value:json});
+                        localStore.sync();
+
+                        me.baseStore = Ext.create('YourTour.store.LaunchStore', store.first());
+                    }catch(e){
+                        alert(e.name + ": " + e.message);
+                    }
+
+                    me.getController('MainCtrl').startup();
+                };
+                store.load(success, this);
+            }else{
+                console.log('Loading base data from local.......');
+                json = localStore.getAt(index).get('value');
+                me.baseStore = Ext.create('YourTour.store.LaunchStore', {data:Ext.JSON.decode(json)});
+
+                me.getController('MainCtrl').startup();
+            }
+        });
     },
 
     onDeviceReady: function () {
@@ -156,7 +214,7 @@ Ext.application({
     },
 
     store: function (values) {
-        var localStore = Ext.StoreManager.get('LocalStore');
+        var me = this, localStore = Ext.StoreManager.get('LocalStore');
         localStore.load();
 
         var v = [];
@@ -168,8 +226,11 @@ Ext.application({
 
         var found = false;
         Ext.Array.forEach(v, function (value) {
-            found = false;
+            if(value.key == 'user.profile'){
+                me.userProfile = null;
+            }
 
+            found = false;
             localStore.each(function(item){
                 if(item.get('key') == value.key){
                     found = true;
@@ -190,17 +251,10 @@ Ext.application({
      * @returns {*}
      */
     getUserId: function () {
-        var localStore = Ext.StoreManager.get('LocalStore');
-        localStore.load();
+        var profile = this.getUserProfile();
+        if(profile == null) return null;
 
-        var index = localStore.find('key', 'user.profile');
-        if (index >= 0) {
-            var userProfile = localStore.getAt(index);
-            var profile = Ext.JSON.decode(userProfile.get('value'));
-            return profile.id;
-        }
-
-        return '';
+        return profile.id;
     },
 
     /**
@@ -208,17 +262,18 @@ Ext.application({
      * @returns {*}
      */
     getUserProfile: function () {
-        var localStore = Ext.StoreManager.get('LocalStore');
-        localStore.load();
-
-        var index = localStore.find('key', 'user.profile');
-        if (index >= 0) {
-            var userProfile = localStore.getAt(index);
-            var profile = Ext.JSON.decode(userProfile.get('value'));
-            return profile;
+        var me = this;
+        if(this.userProfile == null){
+            var localStore = Ext.StoreManager.get('LocalStore');
+            localStore.load();
+            var index = localStore.find('key', 'user.profile');
+            if (index >= 0) {
+                var userProfile = localStore.getAt(index);
+                me.userProfile = Ext.JSON.decode(userProfile.get('value'));
+            }
         }
 
-        return '';
+        return me.userProfile;
     },
 
     /**

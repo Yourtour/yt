@@ -692,6 +692,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.model.RouteModel": [],
   "YourTour.model.RouteScheduleModel": [],
   "YourTour.model.RouteServiceModel": [],
+  "YourTour.model.SimpleModel": [],
   "YourTour.model.TalentModel": [],
   "YourTour.model.UserModel": [],
   "YourTour.model.common.ResponseModel": [],
@@ -747,6 +748,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.common.MessageGroupView": [],
   "YourTour.view.common.MessageMainView": [],
   "YourTour.view.common.PlaceGridItemView": [],
+  "YourTour.view.common.SimpleDataItem": [],
   "YourTour.view.common.TimeSelectionView": [],
   "YourTour.view.community.LiveMainView": [],
   "YourTour.view.expert.ExpertApplyView": [],
@@ -868,6 +870,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.user.UserListView": [],
   "YourTour.view.user.UserMainView": [],
   "YourTour.view.user.UserProfileView": [],
+  "YourTour.view.user.UserTagDataItem": [],
   "YourTour.view.user.UserView": [],
   "YourTour.view.widget.MarkedLabel": [],
   "YourTour.view.widget.ToolButton": [],
@@ -1706,6 +1709,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.model.RouteModel": [],
   "YourTour.model.RouteScheduleModel": [],
   "YourTour.model.RouteServiceModel": [],
+  "YourTour.model.SimpleModel": [],
   "YourTour.model.TalentModel": [],
   "YourTour.model.UserModel": [],
   "YourTour.model.common.ResponseModel": [],
@@ -1778,6 +1782,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.common.PlaceGridItemView": [
     "widget.PlaceGridItemView"
+  ],
+  "YourTour.view.common.SimpleDataItem": [
+    "widget.SimpleDataItem"
   ],
   "YourTour.view.common.TimeSelectionView": [],
   "YourTour.view.community.LiveMainView": [
@@ -2051,6 +2058,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.user.UserProfileView": [
     "widget.UserProfileView"
+  ],
+  "YourTour.view.user.UserTagDataItem": [
+    "widget.UserTagDataItem"
   ],
   "YourTour.view.user.UserView": [
     "widget.UserView"

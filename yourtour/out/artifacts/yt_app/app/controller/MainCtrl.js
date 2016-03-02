@@ -19,43 +19,41 @@ Ext.define('YourTour.controller.MainCtrl', {
      	}
     },
 
-	launch:function(){
-		var me = this;
+	startup:function(){
+		var me = this, index;
 		Ext.Viewport.add(Ext.create('YourTour.view.LaunchView'));
 
-		/**
-		 * 获取系统初始化数据
-		 */
 		this.store = Ext.create('YourTour.store.LaunchStore', {itemId:'lanuchStore'});
-		var me = this;
 		var success = function(){
 			try{
 				var localStore =  Ext.StoreManager.get('LocalStore');
-				localStore.load();
+				var json = Ext.JSON.encode(this.store.first().raw);
+				index = localStore.find('key', 'app.basedata'); //检查是否访问过welcome页
+				if(index < 0){
+					localStore.add({key:'app.basedata', value:json});
+				}else{
+					localStore.getAt(index).set('value', json);
+				}
+				localStore.sync();
+
+				index = localStore.find('key', 'welcome.visited'); //检查是否访问过welcome页
+				if(index < 0){ //没有访问过
+					var launch = me.getLaunchView();
+					launch.setActiveItem(1);
+				}else{
+					//检查是否登录过
+					index = localStore.find('key', 'account.authenticated');
+					if(index >= 0){
+						me.showMainPage();
+					}else{
+						me.doEnter();
+					}
+				}
 			}catch(e){
 				alert(e.name + ": " + e.message);
 			}
 		};
-
 		this.store.load(success, this);
-
-		//检查是否访问过启动页面
-		var localStore =  Ext.StoreManager.get('LocalStore');
-		localStore.load();
-
-		var index = localStore.find('key', 'welcome.visited'); //检查是否访问过welcome页
-		if(index < 0){ //没有访问过
-			var launch = me.getLaunchView();
-			launch.setActiveItem(1);
-		}else{
-			//检查是否登录过
-			index = localStore.find('key', 'account.authenticated');
-			if(index >= 0){
-				me.showMainPage();
-			}else{
-				me.doEnter();
-			}
-		}
 	},
 
 	doEnter:function(){

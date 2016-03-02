@@ -7,7 +7,14 @@ Ext.define('YourTour.model.LaunchModel', {
    	            model: 'YourTour.model.PlaceModel',   
    	            name:'places',
    	            associationKey:'places'
-   	        }
+   	        },
+
+			{
+				type: 'hasMany',
+				model: 'YourTour.model.SimpleModel',
+				name:'tags',
+				associationKey:'tags'
+			}
 	    ]
     }
 });

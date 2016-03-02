@@ -4,9 +4,9 @@ Ext.define('YourTour.view.widget.XGenderSelect', {
     config:{
         usePicker:1,
         options:[
-            {text:'未知', value:''},
-            {text:'男', value:'M'},
-            {text:'女', value:'F'}
+            {text:'男', value:'MALE'},
+            {text:'女', value:'FEMALE'},
+            {text:'未知', value:'NA'},
         ]
     }
 });

@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.user.UserProfileView', {
     extend: 'YourTour.view.widget.XPage',
-    requires: ['YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XPlaceField', 'YourTour.view.widget.XField', 'YourTour.view.widget.XMultiField', 'YourTour.view.widget.XDateField', 'YourTour.view.widget.XGenderField'],
+    requires: ['YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XPlaceField', 'YourTour.view.widget.XField', 'YourTour.view.widget.XMultiField', 'YourTour.view.widget.XDateField', 'YourTour.view.user.UserTagDataItem', 'YourTour.view.widget.XGenderField'],
     xtype: 'UserProfileView',
     config: {
         id: 'UserProfileView',
@@ -91,16 +91,19 @@ Ext.define('YourTour.view.user.UserProfileView', {
                     },
 
                     {
-                        xtype: 'panel',
-                        cls: 'spacer'
+                        xtype: 'xspacer'
                     },
                     {
                         xtype:'xlabel',
-                        html:'旅行标签'
+                        html:'旅行标签',
+                        cls:'underline font-normal'
                     },
                     {
-                        xtype:'xgridview',
-                        itemId:'tag'
+                        xtype: 'xgridview',
+                        itemId: 'tagList',
+                        useComponents: true,
+                        defaultType: 'UserTagDataItem',
+                        cols:3
                     }
                 ]
             }
