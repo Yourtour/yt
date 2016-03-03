@@ -14,7 +14,7 @@ Ext.define('YourTour.view.route.RouteProvisionView', {
 				title:'行程准备事项',
 				items:[
 					{
-	                	xtype: "toolbutton", 
+	                	xtype: "xbutton",
 	                    ui: "normal", 
 	                	text:'保存',
 	                	itemId:'save',

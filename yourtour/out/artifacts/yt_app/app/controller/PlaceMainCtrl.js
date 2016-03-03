@@ -192,7 +192,7 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.place.ResidenceSelectionView'));
 
         var me = this, residenceSelectionView = me.getResidenceSelectionView(), residencePlaceList = me.getResidencePlaceList();
-        residenceSelectionView.down('#headerbar').setTitle(field.getLabel());
+        residenceSelectionView.down('#headerbar').setTitle(field.getLabelText());
 
         residencePlaceList.on('itemtap', function(list, index, item, record){
             field.modifyText(record.get('name'));

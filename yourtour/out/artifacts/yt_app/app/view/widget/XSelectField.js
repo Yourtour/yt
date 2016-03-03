@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.widget.XSelectField', {
     extend: 'YourTour.view.widget.XField',
-    requires:['YourTour.view.widget.XGridSheet'],
+    requires:['YourTour.view.widget.XGridSheet','YourTour.view.widget.XPicker'],
     xtype: 'xselectfield',
     config: {
         /**
@@ -35,10 +35,12 @@ Ext.define('YourTour.view.widget.XSelectField', {
 
     onEditTap: function () {
         var me = this, selectable = me.selectable || me.getSelectable();
-        if (selectable.style == 'list') {
-            me.view = me.getListView();
-        } else {
-            me.view = me.getGridView();
+        if(me.view == null) {
+            if (selectable.style == 'list') {
+                me.view = me.getListView();
+            } else {
+                me.view = me.getGridView();
+            }
         }
 
         me.view.show();
@@ -101,7 +103,7 @@ Ext.define('YourTour.view.widget.XSelectField', {
             });
 
             me.setValue(value);
-            me.setText(text);
+            me.modifyText(text);
         })
 
         return sheet;

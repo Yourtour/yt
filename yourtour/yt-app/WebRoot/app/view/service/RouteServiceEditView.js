@@ -11,7 +11,7 @@ Ext.define('YourTour.view.service.RouteServiceEditView', {
 				title:'服务',
 				items:[
 					{
-						xtype: "toolbutton",
+						xtype: "xbutton",
 						ui: "normal",
 						text: '保存',
 						itemId: 'btnSave',

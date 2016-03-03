@@ -128,16 +128,10 @@ Ext.define('YourTour.controller.UserMainCtrl', {
             params.nativePlace = nativePlace.getValue();
         }
 
-        var store = me.getTagList().getStore();
-        var tags='';
-        store.each(function(item){
-            if(item.get('selected')){
-                if(tags != '') tags += '|';
-
-                tags += item.get('id') + ',' + item.get('name');
-            };
-        });
-        params.tags = tags;
+        var tags = view.down('#tags');
+        if (tags.isModified()) {
+            params.tags = tags.getValue();
+        }
 
         options.url = '/users/' + params.id + '/save';
         options.params = params;

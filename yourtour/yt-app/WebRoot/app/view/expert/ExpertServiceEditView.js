@@ -11,8 +11,7 @@ Ext.define('YourTour.view.expert.ExpertServiceEditView', {
 				title:'服务',
 				items:[
 					{
-						xtype: "toolbutton",
-						ui: "normal",
+						xtype: "xbutton",
 						text: '保存',
 						itemId: 'btnSave',
 						align: 'right'

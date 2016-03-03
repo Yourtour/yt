@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.user.RegisterAccountView', {
     extend: 'Ext.form.Panel',
-    requires: ['Ext.Panel', 'YourTour.view.widget.XSpacer', 'YourTour.view.widget.XTitleBar', 'Ext.field.Password', 'YourTour.view.widget.XTextField', 'YourTour.view.widget.XButton', 'YourTour.view.widget.ToolButton'],
+    requires: ['Ext.Panel', 'YourTour.view.widget.XSpacer', 'Ext.field.Password', 'YourTour.view.widget.XTextField', 'YourTour.view.widget.XButton'],
     xtype: 'RegisterAccountView',
     config: {
         layout: 'vbox',

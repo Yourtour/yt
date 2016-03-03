@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.route.RouteImageView', {
 	extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.field.Checkbox', 'YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.ToolButton','YourTour.view.widget.XPanel','YourTour.view.widget.XCheckbox'],
+    requires:['Ext.field.Checkbox', 'YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XPanel','YourTour.view.widget.XCheckbox'],
     config: {
 	    id:'RouteImageView',
 	    layout:'vbox',
@@ -32,7 +32,7 @@ Ext.define('YourTour.view.route.RouteImageView', {
 						flex:1
 					},
 					{
-			    	   xtype:'toolbutton',
+			    	   xtype:'xbutton',
 			    	   itemId:'save',
 			    	   text:'保存',
 				    }

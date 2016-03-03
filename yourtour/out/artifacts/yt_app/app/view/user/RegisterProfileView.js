@@ -1,14 +1,14 @@
 Ext.define('YourTour.view.user.RegisterProfileView', {
 	extend: 'Ext.Container',
     xtype: 'RegisterProfileView',
-    requires:['Ext.Panel','Ext.field.Radio','YourTour.view.user.UserTagDataItem', 'YourTour.view.widget.XImageSelect', 'YourTour.view.widget.XSpacer', 'YourTour.view.widget.XTitleBar', 'Ext.field.Password','YourTour.view.widget.XTextField', 'YourTour.view.widget.XButton', 'YourTour.view.widget.ToolButton'],
+    requires:['Ext.Panel', 'YourTour.view.widget.XImageSelect', 'YourTour.view.widget.XSpacer','YourTour.view.widget.XTextField', 'YourTour.view.widget.XButton', 'YourTour.view.widget.XSelectField', 'YourTour.view.widget.XGenderField'],
     config: {
 		layout: 'vbox',
 		defaults: {
 			padding: '0 10 0 10',
 			style:'background-color:white'
 		},
-		scrollable: 'none',
+		scrollable: null,
         items: [
 			{
 				xtype: 'xheaderbar',
@@ -42,12 +42,18 @@ Ext.define('YourTour.view.user.RegisterProfileView', {
 				padding: '0 10 0 50',
 				items: [
 					{
-						xtype:'xgenderselect',
+						xtype:'xgenderfield',
 						itemId:'gender',
 						name:'gener',
-						displayField:"text",
-						valueField:"value",
-						flex: 1
+						field:{
+							align:'left',
+						},
+						underline:false,
+						flex: 1,
+						editable:{
+							enable:true,
+							icon:'none'
+						},
 					}
 				]
 			},
@@ -77,16 +83,31 @@ Ext.define('YourTour.view.user.RegisterProfileView', {
 			},
 
 			{
-				xtype:'xlabel',
-				html:'旅行标签',
-				cls:'underline font-normal'
-			},
-			{
-				xtype: 'xgridview',
-				itemId: 'tagList',
-				useComponents: true,
-				defaultType: 'UserTagDataItem',
-				cols:3
+				xtype: 'container',
+				layout: 'hbox',
+				cls: 'row underline',
+				padding: '0 10 0 50',
+				items: [
+					{
+						xtype: 'xselectfield',
+						itemId: 'tags',
+						dd:'dddd',
+						field:{
+							align:'left',
+							placeHolder:'标签选择'
+						},
+						selectable: {
+							style: 'grid',
+							multiselect: true
+						},
+						editable:{
+							enable:true,
+							icon:'none'
+						},
+						underline:false,
+						flex: 1
+					}
+				]
 			},
 
             {

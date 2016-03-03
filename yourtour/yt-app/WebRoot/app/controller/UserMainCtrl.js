@@ -129,7 +129,7 @@ Ext.define('YourTour.controller.UserMainCtrl', {
         }
 
         var tags = view.down('#tags');
-        if (nativePlace.isModified()) {
+        if (tags.isModified()) {
             params.tags = tags.getValue();
         }
 

@@ -744,6 +744,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.common.CommentMainView": [],
   "YourTour.view.common.ConsultMainView": [],
   "YourTour.view.common.FieldEditView": [],
+  "YourTour.view.common.GridSheetDataItem": [],
   "YourTour.view.common.MessageDataItemView": [],
   "YourTour.view.common.MessageGroupView": [],
   "YourTour.view.common.MessageMainView": [],
@@ -872,9 +873,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.user.UserProfileView": [],
   "YourTour.view.user.UserTagDataItem": [],
   "YourTour.view.user.UserView": [],
-  "YourTour.view.widget.MarkedLabel": [],
   "YourTour.view.widget.ToolButton": [],
-  "YourTour.view.widget.XBack": [],
+  "YourTour.view.widget.XActionSheet": [],
   "YourTour.view.widget.XButton": [],
   "YourTour.view.widget.XButtonGroup": [],
   "YourTour.view.widget.XCalendar": [
@@ -890,6 +890,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.XField": [],
   "YourTour.view.widget.XGenderField": [],
   "YourTour.view.widget.XGenderSelect": [],
+  "YourTour.view.widget.XGridSheet": [],
   "YourTour.view.widget.XHeaderBar": [],
   "YourTour.view.widget.XIcon": [],
   "YourTour.view.widget.XImage": [],
@@ -907,12 +908,9 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.XPicker": [],
   "YourTour.view.widget.XPickerField": [],
   "YourTour.view.widget.XPlaceField": [],
-  "YourTour.view.widget.XPlainButton": [],
-  "YourTour.view.widget.XPop": [],
   "YourTour.view.widget.XProcessing": [],
   "YourTour.view.widget.XScore": [],
   "YourTour.view.widget.XSearchField": [],
-  "YourTour.view.widget.XSelecion": [],
   "YourTour.view.widget.XSelectField": [],
   "YourTour.view.widget.XShare": [],
   "YourTour.view.widget.XShareButton": [],
@@ -1773,6 +1771,9 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.common.CommentMainView": [],
   "YourTour.view.common.ConsultMainView": [],
   "YourTour.view.common.FieldEditView": [],
+  "YourTour.view.common.GridSheetDataItem": [
+    "widget.GridSheetDataItem"
+  ],
   "YourTour.view.common.MessageDataItemView": [
     "widget.MessageDataItemView"
   ],
@@ -2065,15 +2066,10 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.user.UserView": [
     "widget.UserView"
   ],
-  "YourTour.view.widget.MarkedLabel": [
-    "widget.markedlabel"
-  ],
   "YourTour.view.widget.ToolButton": [
     "widget.toolbutton"
   ],
-  "YourTour.view.widget.XBack": [
-    "widget.xback"
-  ],
+  "YourTour.view.widget.XActionSheet": [],
   "YourTour.view.widget.XButton": [
     "widget.xbutton"
   ],
@@ -2110,6 +2106,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.widget.XGenderSelect": [
     "widget.xgenderselect"
+  ],
+  "YourTour.view.widget.XGridSheet": [
+    "widget.xgridsheet"
   ],
   "YourTour.view.widget.XHeaderBar": [
     "widget.xheaderbar"
@@ -2158,10 +2157,6 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.widget.XPlaceField": [
     "widget.xplacefield"
   ],
-  "YourTour.view.widget.XPlainButton": [
-    "widget.xplainbutton"
-  ],
-  "YourTour.view.widget.XPop": [],
   "YourTour.view.widget.XProcessing": [
     "widget.xprocessing"
   ],
@@ -2171,7 +2166,6 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.widget.XSearchField": [
     "widget.xsearchfield"
   ],
-  "YourTour.view.widget.XSelecion": [],
   "YourTour.view.widget.XSelectField": [
     "widget.xselectfield"
   ],

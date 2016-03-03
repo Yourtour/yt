@@ -254,7 +254,7 @@ Ext.define('YourTour.controller.CommonMainCtrl', {
         var me = this, view = me.getFieldEditView(), headerbar = view.down('#headerbar'), content = view.down('#content');
         view.bindData(field);
 
-        headerbar.setTitle(field.getLabel());
+        headerbar.setTitle(field.getLabelText());
 
         var text = field.getText();
         if(text == null){

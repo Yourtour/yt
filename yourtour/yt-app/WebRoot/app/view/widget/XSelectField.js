@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.widget.XSelectField', {
     extend: 'YourTour.view.widget.XField',
-    requires:['YourTour.view.widget.XGridSheet'],
+    requires:['YourTour.view.widget.XGridSheet','YourTour.view.widget.XPicker'],
     xtype: 'xselectfield',
     config: {
         /**

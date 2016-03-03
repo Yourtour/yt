@@ -14,7 +14,7 @@ Ext.define('YourTour.view.route.RouteScheduleEditView', {
 				title:'日程编辑',
 				items:[
 					{
-	                	xtype: "toolbutton", 
+	                	xtype: "xbutton",
 	                    ui: "normal", 
 	                	text:'保存',
 	                	itemId:'btnSave',

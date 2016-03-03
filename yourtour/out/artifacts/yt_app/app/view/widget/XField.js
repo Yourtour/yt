@@ -5,20 +5,33 @@ Ext.define('YourTour.view.widget.XField', {
         baseCls:'x-xfield',
         cls:'x-xfield-default',
         layout: 'hbox',
-        align:'right',
-        label: null,
-        icon: null,
+
+        field:{ //Field配置项
+            placeHolder:null,
+            cls:null,
+            ifNull:'',
+            align:'right',
+            binding:null,
+            editable:{ //是否可编辑
+                enable:false,
+                icon:'icon-edit'
+            }
+        },
+
+        label:{ //标签配置项
+            text:null,
+            cls:null,
+            margin:'0 10 0 0',
+            visible:false
+        },
+
         value: null,
         text:null,
-        fieldCls: null,
-        labelCls: null,
+
         underline: null,
         padding: '10 10 10 10',
-        ifNull:'',
-        placeHolder:null,
-        binding:null,
         dataChange:null,
-        editable:false,
+
         items: [
             {
                 xtype: 'label',
@@ -35,39 +48,23 @@ Ext.define('YourTour.view.widget.XField', {
         ]
     },
 
+    constructor: function(config){
+        this.callParent(arguments);
+    },
+
     initialize:function(){
         this.callParent(arguments);
 
-        var me = this, fieldCls = me.fieldCls;
-        var value = this.down('#value');
-        if(fieldCls == null){
-            value.addCls('font-grey font-medium');
-        }else{
-            var index = fieldCls.indexOf('!important');
-            if(index < 0){
-                value.addCls('font-grey font-medium ' + fieldCls);
-            }else{
-                value.addCls(fieldCls.substring(0, index - 1));
-            }
-        }
-
+        var me = this;
         if(me.underline == null){
             me.addCls('underline');
         }
 
-        if(me.placeHolder != null){
-            value.setHtml(me.placeHolder);
-        }
-
-        if(me.editable){
-            value.addCls('icon-edit');
-            me.on('tap', me.onEditTap, this);
-        }
-
+        var config = me.field || me.getField();
         if(! this.getDataChange()) {
             me.element.on({
                 dataChange: function (field, record) {
-                    var binding = me.getBinding();
+                    var binding = config.binding;
                     var name = (binding == null ? me.getItemId() : binding);
                     var names = name.split('.');
                     var len = names.length;
@@ -86,32 +83,76 @@ Ext.define('YourTour.view.widget.XField', {
         }
 
         me.modified = false;
+
+        me.initLabel();
+        me.initField();
     },
 
-    constructor: function(config){
-        this.callParent(arguments);
+    /**
+     * 初始化标签
+     */
+    initLabel:function(){
+        var me = this,
+            label = me.label || me.getLabel();
+            element = me.down('#label');
 
-        var underline = config.underline;
-        if(underline == undefined || underline){
-            this.addCls('underline');
+        if(label.visible) {
+            element.setMargin(label.margin);
+
+            if (label.text != null) {
+                element.setHtml(label.text);
+            }
+
+            if (label.cls != null) {
+                element.addCls(label.cls);
+            }
+
+            element.show();
+        }
+    },
+
+    /**
+     * 初始化Field
+     */
+    initField:function(){
+        var me = this,
+            field = me.field || me.getField(),
+            value = this.down('#value');
+
+        var fieldCls = field.cls;
+        if(fieldCls == null){
+            value.addCls('font-grey font-medium');
+        }else{
+            var index = fieldCls.indexOf('!important');
+            if(index < 0){
+                value.addCls('font-grey font-medium ' + fieldCls);
+            }else{
+                value.addCls(fieldCls.substring(0, index - 1));
+            }
         }
 
-        var value = this.down('#value');
-        value.setStyle('text-align:' + this.align);
+        var placeHolder = field.placeHolder;
+        if(placeHolder != null){
+            value.setHtml(placeHolder);
+        }
+
+        value.setStyle('text-align:' + field.align);
+
+        //判断是否可编辑
+        var editable = field.editable || field.getEditable();
+        if(editable.enable) {
+            me.on('tap', me.onEditTap, this);
+
+            if(editable.icon != 'none') {
+                value.addCls(editable.icon);
+            }
+        }
     },
 
     onEditTap:function(){
         var me = this, application = YourTour.util.Context.getApplication(), controller = application.getController('CommonMainCtrl');
 
         controller.editField(me);
-    },
-
-    updateBinding:function(binding){
-        this.binding = binding;
-    },
-
-    updateAlign:function(align){
-        this.align = align;
     },
 
     updateDataChange:function(dataChange){
@@ -122,12 +163,6 @@ Ext.define('YourTour.view.widget.XField', {
 
     updateUnderline: function (underline) {
         this.underline = underline;
-
-        if (underline) {
-            this.addCls('underline');
-        } else {
-            this.removeCls('x-xfield');
-        }
     },
 
     updateIcon: function (icon) {
@@ -141,24 +176,29 @@ Ext.define('YourTour.view.widget.XField', {
         label.addCls(icon);
     },
 
-    updateFieldCls: function (fieldCls) {
-        this.setFieldCls(fieldCls);
-    },
-
     setFieldCls: function (fieldCls) {
-        this.fieldCls = fieldCls;
+        var me = this,
+            field = me.field || me.getField(),
+            value = this.down('#value');
+
+        Ext.apply(field, {cls:fieldCls});
+
+        value.addCls(fieldCls);
     },
 
-    updateLabelCls: function (labelCls) {
-        this.setLabelCls(labelCls);
+    removeFieldCls: function (fieldCls) {
+        var value = this.down('#value');
+        value.removeCls(fieldCls);
     },
 
     setLabelCls: function (labelCls) {
-        this.labelCls = labelCls;
+        var me = this,
+            label = me.label || me.getLabel(),
+            labelEl = this.down('#label');
 
-        var label = this.down('#label');
-        label.show();
-        label.addCls(labelCls);
+        Ext.apply(label, {cls:labelCls});
+
+        labelEl.addCls(labelCls);
     },
 
     removeLabelCls: function (labelCls) {
@@ -166,12 +206,23 @@ Ext.define('YourTour.view.widget.XField', {
         label.removeCls(labelCls);
     },
 
-    updateLabel: function (label) {
-        this.label = label;
-        var labelEl = this.down('#label');
-        labelEl.setMargin('0 10 0 0');
-        labelEl.show();
-        labelEl.setHtml(label);
+    updateLabel: function (config) {
+        var me = this,
+            label = me.label || me.getLabel(),
+            labelEl = this.down('#label');
+
+        if(Ext.isObject(label)){
+            config.visible = true;
+            Ext.apply(label, config);
+        }else{
+            Ext.apply(label, {text:config, visible:true});
+        }
+    },
+
+    getLabelText:function(){
+        var label = this.label || this.getLabel();
+
+        return label.text;
     },
 
     setValue: function (value) {
@@ -210,10 +261,6 @@ Ext.define('YourTour.view.widget.XField', {
         return this.text;
     },
 
-    updateIfNull:function(ifNull){
-        this.ifNull = ifNull;
-    },
-
     getPair:function(){
         var me = this;
         return me.pair;
@@ -244,7 +291,11 @@ Ext.define('YourTour.view.widget.XField', {
     },
 
     updateEditable:function(editable){
-        this.editable = editable;
+        if(Ext.isObject(editable)){
+            Ext.apply(this.editable || this.getEditable(), editable);
+        }else{
+            Ext.apply(this.editable || this.getEditable(), {enable:editable});
+        }
     },
 
     updateRecord:function(record){
@@ -253,10 +304,6 @@ Ext.define('YourTour.view.widget.XField', {
 
     updatePlaceHolder:function(placeHolder){
         this.placeHolder = placeHolder;
-    },
-
-    getPlaceHolder:function(){
-        return this.placeHolder;
     },
 
     isModified:function(){

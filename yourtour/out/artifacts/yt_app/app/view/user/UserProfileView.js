@@ -44,10 +44,16 @@ Ext.define('YourTour.view.user.UserProfileView', {
                     {
                         xtype: 'xmultifield',
                         itemId: 'slogan',
-                        label: '个性',
-                        editable: true,
-                        fieldCls: 'x-field-more',
-                        ifNull: '请简单描述您个人'
+                        label:{
+                            text:'个性'
+                        },
+                        field:{
+                            cls:'x-field-more',
+                            ifNull: '请简单描述您个人',
+                            editable:{
+                                enable:true
+                            }
+                        }
                     },
 
                     {
@@ -58,36 +64,66 @@ Ext.define('YourTour.view.user.UserProfileView', {
                     {
                         xtype: 'xfield',
                         itemId: 'nickName',
-                        label: '昵称',
-                        editable: true
+                        label:{
+                            text:'昵称'
+                        },
+                        field:{
+                            editable:{
+                                enable:true
+                            }
+                        }
                     },
 
                     {
                         xtype: 'xdatefield',
                         itemId: 'birthday',
-                        label: '生日',
-                        editable: true
+                        label:{
+                            text:'生日'
+                        },
+                        field:{
+                            editable:{
+                                enable:true
+                            }
+                        }
                     },
 
                     {
                         xtype: 'xgenderfield',
                         itemId: 'gender',
-                        label: '性别',
-                        editable: true
+                        label:{
+                            text:'性别'
+                        },
+                        field:{
+                            editable:{
+                                enable:true
+                            }
+                        }
                     },
 
                     {
                         xtype: 'xplacefield',
                         itemId: 'residence',
-                        label: '居住地',
-                        editable: true
+                        label:{
+                            text:'居住地'
+                        },
+                        field:{
+                            editable:{
+                                enable:true
+                            }
+                        }
                     },
 
                     {
                         xtype: 'xplacefield',
                         itemId: 'nativePlace',
-                        label: '籍贯',
-                        editable: true
+                        label:{
+                            text:'籍贯'
+                        },
+                        field:{
+                            editable:{
+                                enable:true
+                            }
+                        }
                     },
 
                     {
@@ -96,8 +132,14 @@ Ext.define('YourTour.view.user.UserProfileView', {
                     {
                         xtype: 'xselectfield',
                         itemId: 'tags',
-                        label: '旅行标签',
-                        editable: true,
+                        label:{
+                            text:'旅行标签'
+                        },
+                        field:{
+                            editable:{
+                                enable:true
+                            }
+                        },
                         selectable: {
                             style: 'grid',
                             multiselect: true

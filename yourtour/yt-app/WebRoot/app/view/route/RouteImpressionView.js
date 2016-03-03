@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.route.RouteImpressionView', {
 	extend: 'YourTour.view.widget.XPage',
-    requires:['YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.ToolButton','YourTour.view.widget.XTextArea'],
+    requires:['YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XTextArea'],
     config: {
 	    id:'RouteImpressionView',
 	    layout:'vbox',
@@ -11,7 +11,7 @@ Ext.define('YourTour.view.route.RouteImpressionView', {
 				title:'旅行印象',
 				items:[
 			       {
-			    	   xtype:'toolbutton',
+			    	   xtype:'xbutton',
 			    	   itemId:'save',
 			    	   text:'保存',
 			    	   align:'right'
