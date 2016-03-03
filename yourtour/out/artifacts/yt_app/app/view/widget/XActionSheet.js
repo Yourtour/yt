@@ -1,19 +1,11 @@
-Ext.define('YourTour.view.widget.XGridSheet', {
+Ext.define('YourTour.view.widget.XActionSheet', {
     extend: 'Ext.ActionSheet',
-    xtype:'xgridsheet',
     config: {
-        layout:'vbox',
         items:[
             {
                 xtype:'container',
-                layout:'vbox',
+                height:70,
                 items:[
-                    {
-                        xtype:'container',
-                        layout:'hbox',
-                        items:[
-                        ],
-                    },
                     {
                         xtype: 'xbutton',
                         text: 'Close',

@@ -11,7 +11,7 @@ Ext.define('YourTour.view.widget.grid.XGridView', {
 
     config: {
         baseCls:Ext.baseCSSPrefix + 'xgridview',
-        cols:null,
+        cols:3,
         size:9999,
 
         scrollable:null

@@ -1,32 +1,46 @@
 Ext.define('YourTour.view.widget.XSelectField', {
     extend: 'YourTour.view.widget.XField',
+    requires:['YourTour.view.widget.XGridSheet'],
     xtype: 'xselectfield',
     config: {
         /**
          * 数据源
          */
-        store:null,
+        store: null,
 
-        render:{
-            style:'list',
-            multiselect:false,
-            cols:3,
-            value:'id',
-            text:'name'
+        selectable: {
+            style: 'list', //grid or list
+            multiselect: false,
+            cols: 3,
+            value: 'id',
+            text: 'name'
         },
 
-        view:null
+        view: null
     },
 
-    /**
-     * 编辑状态
-     */
+    updateSelectable:function(selectable){
+        var me = this;
+
+        Ext.apply(me.selectable || me.getSelectable(), selectable)
+    },
+
+    updateStore: function (store) {
+        this.setStore(store);
+    },
+
+    setStore: function (store) {
+        this.store = store;
+    },
+
     onEditTap: function () {
-        var me = this, render = me.render;
-        if(render.style == 'list'){
-            me.view = me.getListView();
-        }else{
-            me.view = me.getGridView();
+        var me = this, selectable = me.selectable || me.getSelectable();
+        if(me.view == null) {
+            if (selectable.style == 'list') {
+                me.view = me.getListView();
+            } else {
+                me.view = me.getGridView();
+            }
         }
 
         me.view.show();
@@ -36,12 +50,14 @@ Ext.define('YourTour.view.widget.XSelectField', {
      * 获取列表式选择视图
      * @returns {YourTour.view.widget.XPicker}
      */
-    getListView:function(){
-        var me = this, render = me.render,  options = [] ;
+    getListView: function () {
+        var me = this, selectable = me.selectable || me.getSelectable(), options = [];
 
-        me.store.each(function(item){
-            options.push({text:item[me.render.text], value:item[me.render.value]});
-        });
+        if (me.store != null) {
+            me.store.each(function (item) {
+                options.push({text: item.get(selectable.text), value: item.get(selectable.value)});
+            });
+        }
 
         var picker = Ext.create('YourTour.view.widget.XPicker', {
             slots: [
@@ -52,7 +68,7 @@ Ext.define('YourTour.view.widget.XSelectField', {
             ]
         });
 
-        picker.on('change', function(picker, newValue){
+        picker.on('change', function (picker, newValue) {
             me.modifyText(newValue.slot);
             me.setValue(newValue.slot);
         });
@@ -65,37 +81,37 @@ Ext.define('YourTour.view.widget.XSelectField', {
     /**
      * 获取Grid式选择视图
      */
-    getGridView:function(){
-        var me = this, render = me.render;
+    getGridView: function () {
+        var me = this, selectable = me.selectable || me.getSelectable();
 
-        var picker = Ext.create('YourTour.view.widget.XPicker', {
-            slots: [
-                {
-                    name: 'slot',
-                    data: options
-                }
-            ]
-        });
+        var sheet = Ext.create('YourTour.view.widget.XGridSheet');
+        sheet.setStore(me.store);
 
-        picker.on('change', function(picker, newValue){
-            me.modifyText(newValue.slot);
-            me.setValue(newValue.slot);
-        });
+        sheet.on('done', function(){
+            var value='', text='';
 
-        Ext.Viewport.add(picker);
+            me.store.each(function(item){
+                if(item.get('selected')){
+                    if(text != ''){
+                        text += ',';
+                        value += '|';
+                    }
 
-        return picker;
+                    text += item.get('name');
+                    value += item.get('id') + ',' + item.get('name');
+                };
+            });
+
+            me.setValue(value);
+            me.modifyText(text);
+        })
+
+        return sheet;
     },
 
-    setText:function(text){
-        var me = this;
-        Ext.Array.forEach(me.options, function(item){
-           if(item.value == text){
-               text = item.text;
-           }
-        });
-
-        me.callParent([text]);
+    destroy: function() {
+        this.callParent(arguments);
+        Ext.destroy(this.view);
     }
 });
 

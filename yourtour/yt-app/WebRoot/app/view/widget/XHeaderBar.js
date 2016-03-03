@@ -1,7 +1,6 @@
 Ext.define('YourTour.view.widget.XHeaderBar', {
     extend: 'Ext.Container',
     xtype: 'xheaderbar',
-    requires:['YourTour.view.widget.XBack', 'YourTour.view.widget.XPlainButton'],
     config: {
 		itemId:'headerbar',
     	docked: 'top',

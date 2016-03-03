@@ -4,8 +4,7 @@ Ext.define('YourTour.controller.UserMainCtrl', {
         refs: {
             userMainView: '#UserMainView',
 
-            userProfileView: '#UserProfileView',
-            tagList: '#UserProfileView #tagList'
+            userProfileView: '#UserProfileView'
         },
 
         control: {
@@ -27,10 +26,6 @@ Ext.define('YourTour.controller.UserMainCtrl', {
 
             '#UserProfileView #userLogoPanel': {
                 tap: 'doChangeUserLogo'
-            },
-
-            '#UserProfileView #tagList':{
-                itemtap:'changeTagItemStatus'
             }
         }
     },
@@ -78,13 +73,8 @@ Ext.define('YourTour.controller.UserMainCtrl', {
         var residence = view.down('#residence');
         residence.setText(profile.residence);
 
-        var tags = profile.tags, tagList = me.getTagList(), store = this.getApplication().getBaseStore().first().tagsStore;
-        store.each(function(item){
-            if(tags && tags.indexOf(item.get('id') + ',' + item.get('name'))>=0){
-                item.set('selected', true);
-            }
-        });
-        tagList.setStore(store);
+        var tags = view.down('#tags'), store = this.getApplication().getBaseStore().first().tagsStore;
+        tags.setStore(store);
     },
 
     /**
