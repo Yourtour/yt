@@ -62,6 +62,7 @@ Ext.define('YourTour.view.setting.UserSettingView', {
 
 					{
 						xtype:'xlabel',
+						itemId:'btnVersionCheck',
 						padding:'0 10 0 40',
 						cls:'row underline font-medium font-grey nav-arrow',
 						html:'版本检查'

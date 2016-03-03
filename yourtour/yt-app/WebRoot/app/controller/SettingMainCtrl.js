@@ -8,6 +8,10 @@ Ext.define('YourTour.controller.SettingMainCtrl', {
        control:{
            '#UserSettingView #btnQuit':{
                 tap:'onUserQuitTap'
+           },
+
+           '#UserSettingView #btnVersionCheck':{
+               tap:'checkVersion'
            }
        }
     },
@@ -22,5 +26,9 @@ Ext.define('YourTour.controller.SettingMainCtrl', {
 
     onUserQuitTap:function(){
         this.getApplication().quit();
+    },
+
+    checkVersion:function(){
+        window.location = 'http://' + YourTour.util.Context.getRemoteServer() + '/yt-web/android-debug.apk';
     }
 });

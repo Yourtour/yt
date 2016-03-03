@@ -1,7 +1,7 @@
 Ext.define('YourTour.view.route.RouteMainView', {
     extend: 'YourTour.view.widget.XPage',
     xtype: 'RouteMainView',
-    requires: ['Ext.Carousel', 'YourTour.view.widget.XHeaderBar','YourTour.view.widget.MarkedLabel', 'YourTour.view.widget.ToolButton', 'Ext.field.Hidden', 'Ext.Img'],
+    requires: ['Ext.Carousel', 'YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.ToolButton', 'Ext.field.Hidden', 'Ext.Img'],
     config: {
         id: 'RouteMainView',
         itemId:'RouteMainView',
