@@ -41,7 +41,7 @@ import com.yt.vo.member.UserVO;
 @Path("users")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class UserRestResource extends BaseRestResource{
+public class UserRestResource extends RestResource{
 	@Value("${app.image.base}")
 	private String imageBase = "";
 

@@ -26,7 +26,7 @@ public class UserProfileVO implements Serializable{
 		return bean.getNickName();
 	}
 
-	public String getName(){return bean.getName();}
+	public String getRealName(){return bean.getRealName();}
 
 	public String getGender(){
 		return bean.getGender().name;

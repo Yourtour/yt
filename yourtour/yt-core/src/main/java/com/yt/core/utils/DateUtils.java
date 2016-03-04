@@ -13,8 +13,6 @@ public class DateUtils {
 	public static final String DATE_FORMAT_FULL="yyyy-MM-dd HH:mm:ss";
 	public static final String DATE_FORMAT_DEFAULT="yyyy-MM-dd";
 
-	//private static SimpleDateFormat formatter = new java.text.SimpleDateFormat(DATE_FORMAT_DEFAULT);
-
 	public static long getCurrentTimeMillis(){
 		return System.currentTimeMillis();
 	}

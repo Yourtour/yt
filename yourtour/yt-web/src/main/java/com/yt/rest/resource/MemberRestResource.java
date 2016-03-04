@@ -38,7 +38,6 @@ import com.yt.vo.route.RouteSettingVO;
 public class MemberRestResource extends RestResource {
 	private static final Log LOG = LogFactory.getLog(MemberRestResource.class);
 
-	// spring自动装配的行程操作库
 	@Autowired
 	private RouteRepository routeRepository;
 
@@ -144,7 +143,7 @@ public class MemberRestResource extends RestResource {
 	/**
 	 * 添加伙伴
 	 * @param request
-	 * @param member
+	 * @param setting
 	 * @return
 	 */
 	@POST
@@ -164,7 +163,7 @@ public class MemberRestResource extends RestResource {
 			}	
 			
 			Map<String,Object> props = routeRepository.getRelation(user, route, Constants.RELATION_TYPE_PARTICIPATE);
-			if(props == null) props = new HashMap();
+			if(props == null) props = new HashMap<>();
 			
 			props.put(setting.getAttr(), setting.getAttrValue());
 			routeRepository.createRelation(route, user, Constants.RELATION_TYPE_HAS, Direction.OUTGOING,props);
@@ -176,4 +175,3 @@ public class MemberRestResource extends RestResource {
 		}
 	}
 }
-

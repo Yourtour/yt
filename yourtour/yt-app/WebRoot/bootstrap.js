@@ -778,7 +778,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.home.BestListView": [],
   "YourTour.view.home.CarouselItemView": [],
   "YourTour.view.home.ChatItemView": [],
-  "YourTour.view.home.HomeMain": [],
   "YourTour.view.home.HomeMainView": [],
   "YourTour.view.home.LiveItemView": [],
   "YourTour.view.home.TalentItemView": [],
@@ -889,10 +888,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.XDateField": [],
   "YourTour.view.widget.XField": [],
   "YourTour.view.widget.XGenderField": [],
-  "YourTour.view.widget.XGenderSelect": [],
   "YourTour.view.widget.XGridSheet": [],
   "YourTour.view.widget.XHeaderBar": [],
-  "YourTour.view.widget.XIcon": [],
   "YourTour.view.widget.XImage": [],
   "YourTour.view.widget.XImageField": [],
   "YourTour.view.widget.XImageSelect": [],
@@ -1857,9 +1854,6 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.home.ChatItemView": [
     "widget.ChatItemView"
   ],
-  "YourTour.view.home.HomeMain": [
-    "widget.HomeMain"
-  ],
   "YourTour.view.home.HomeMainView": [
     "widget.HomeMainView"
   ],
@@ -2104,17 +2098,11 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.widget.XGenderField": [
     "widget.xgenderfield"
   ],
-  "YourTour.view.widget.XGenderSelect": [
-    "widget.xgenderselect"
-  ],
   "YourTour.view.widget.XGridSheet": [
     "widget.xgridsheet"
   ],
   "YourTour.view.widget.XHeaderBar": [
     "widget.xheaderbar"
-  ],
-  "YourTour.view.widget.XIcon": [
-    "widget.xicon"
   ],
   "YourTour.view.widget.XImage": [
     "widget.ximage"
