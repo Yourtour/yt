@@ -2,7 +2,6 @@ Ext.define('YourTour.view.widget.XPlaceField', {
     extend: 'YourTour.view.widget.XField',
     xtype: 'xplacefield',
     config: {
-        editable: true
     },
 
     onEditTap: function () {

@@ -276,7 +276,7 @@ Ext.define('YourTour.view.widget.XCalendarPanel', {
     },
 
     getDate: function (year, month, day) {
-        return year + '/' + month + '/' + day;
+        return year + '/' + (month<10?'0' + month : month) + '/' + (day<10?'0' + day : day);
     },
 
     doDraw: function () {
@@ -298,17 +298,13 @@ Ext.define('YourTour.view.widget.XCalendarPanel', {
             }
 
             dayItem = weekItem.getAt(dayIndex);
-            dayItem.setDate(allDays[index]);
             dayItem.updateCalendarPanel(me);
-            if(allDays[index].active){
-                dayItem.addCls('active');
-            }
+            dayItem.setDate(allDays[index]);
         }
     },
 
     getPreviousMonth: function () {
-        var currentMonth = this.getMonth();
-        var currentYear = this.getYear();
+        var currentMonth = this.getMonth(), currentYear = this.getYear(), date;
 
         var month = currentMonth != 1 ? currentMonth - 1 : 12;
         var year = month == 12 ? currentYear - 1 : currentYear;
@@ -317,28 +313,24 @@ Ext.define('YourTour.view.widget.XCalendarPanel', {
         var dayNum = this.getDayNum(year, month)
         var allDays = this.allDays || this.getAllDays();
         for (var index = week; index > 0; index--) {
-            allDays.push({value: this.getDate(year, month, dayNum - index), enabled: false});
+            date = this.getDate(year, month, dayNum - index);
+            allDays.push({value: date, enabled: false, active:this.isActive(date)});
         }
     },
 
     getCurrentMonth: function () {
-        var month = this.getMonth();
-        var year = this.getYear();
+        var month = this.getMonth(),year = this.getYear(), date;
 
         var allDays = this.allDays || this.getAllDays();
         var dayNum = this.getDayNum(year, month);
         for (var index = 1; index <= dayNum; index++) {
-            if(index == this.day){
-                allDays.push({value: this.getDate(year, month, index), enabled: true, active:true});
-            }else {
-                allDays.push({value: this.getDate(year, month, index), enabled: true, active:false});
-            }
+            date = this.getDate(year, month, index);
+            allDays.push({value: date, enabled: true, active:this.isActive(date)});
         }
     },
 
     getNextMonth: function () {
-        var currentMonth = this.getMonth();
-        var currentYear = this.getYear();
+        var currentMonth = this.getMonth(),currentYear = this.getYear(), date;
 
         var month = currentMonth != 12 ? currentMonth + 1 : 1;
         var year = month == 1 ? currentYear : currentYear + 1;
@@ -346,18 +338,24 @@ Ext.define('YourTour.view.widget.XCalendarPanel', {
         var allDays = this.allDays || this.getAllDays();
         var len = 42 - allDays.length;
         for (var index = 1; index <= len; index++) {
-            allDays.push({value: this.getDate(year, month, index), enabled: false});
+            date = this.getDate(year, month, index);
+            allDays.push({value: date, enabled: false, active:this.isActive(date)});
         }
     },
 
-    /*setDate: function (year, month) {
-        this.year = year;
-        this.month = month;
+    isActive:function(date){
+        var me = this, active = false,
+            calendar = me.calendar || me.getCalendar(),
+            defaultDate = calendar.getDefaultDate();
 
-        var date = this.down('#date');
-        date.setHtml(year + '-' + month);
-        this.doDraw();
-    },*/
+        Ext.Array.forEach(defaultDate, function(d){
+            if(Ext.Date.format(d,'Y/m/d') == date){
+                active = true;
+            }
+        })
+
+        return active;
+    },
 
     updateCalendar:function(calendar){
         this.calendar = calendar;

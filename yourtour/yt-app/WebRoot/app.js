@@ -40,7 +40,7 @@ Ext.application({
         'common.CommentMainView', 'common.TimeSelectionView', 'common.ConsultMainView',
 
         'home.HomeMainView', 'home.BestListView', 'home.TalentListView', 'SearchMain',
-        'route.RouteMainView', 'route.RouteSettingView', 'route.RouteImpressionView', 'route.RouteImageView',
+        'route.RouteMainView', 'route.RoutePlanView', 'route.RouteImpressionView', 'route.RouteImageView',
         'route.RouteScheduleListView', 'route.RouteSchedulePlanView', 'route.RouteScheduleReferenceListView', 'route.RouteScheduleFormView',
         'route.RouteProvisionView', 'route.RouteProvisionEditView', 'route.RouteScheduleEditView', 'route.RouteScheduleView',
         'route.RouteActivityEditView', 'route.RoutePlaceEditView', 'route.RouteCheckinView',

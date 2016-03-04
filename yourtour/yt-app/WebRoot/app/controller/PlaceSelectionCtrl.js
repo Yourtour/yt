@@ -31,10 +31,6 @@ Ext.define('YourTour.controller.PlaceSelectionCtrl', {
         callback: null
     },
 
-    init: function () {
-        this.placeStore = Ext.create('YourTour.store.PlaceStore');
-    },
-
     showPage: function (callback) {
         var me = this;
         me.callback = callback;
@@ -66,18 +62,6 @@ Ext.define('YourTour.controller.PlaceSelectionCtrl', {
      * @param value
      */
     onPlacesItemActiveHandler: function (carousel, value) {
-        /*if(! value.getRecord()){
-         var itemId = value.getItemId();
-
-         if(itemId == 'routePlaceRecommendItem'){
-         this.getRouteRecommendPlace(value);
-         }else if(itemId == 'routePlaceHomeItem'){
-         this.getRouteHomePlace(value);
-         }else if(itemId == 'routePlaceAbroadItem'){
-         this.getRouteAbroadPlace(value);
-         }
-         }*/
-
         var itemId = value.getItemId();
         if (itemId == 'recommendItem') {
             this.getRecommendPlaces(value);
@@ -112,7 +96,7 @@ Ext.define('YourTour.controller.PlaceSelectionCtrl', {
         var me = this;
         var options = {
             model: 'YourTour.model.PlaceModel',
-            url: '/place/China/query',
+            url: '/place/parent/China/query',
             success: function (store) {
                 store.each(function(place){
                     place.set('hidden', place.get('leaf') == 'true');
@@ -131,7 +115,7 @@ Ext.define('YourTour.controller.PlaceSelectionCtrl', {
         var me = this;
         var options = {
             model: 'YourTour.model.PlaceModel',
-            url: '/place/GAT,Aisa,Europe,Africa,America,Ocean/query',
+            url: '/place/parent/GAT,Aisa,Europe,Africa,America,Ocean/query',
             success: function (store) {
                 store.each(function(place){
                     place.set('hidden', place.get('leaf') == 'true');

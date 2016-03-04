@@ -2,59 +2,77 @@ Ext.define('YourTour.view.widget.XDateField', {
     extend: 'YourTour.view.widget.XField',
     xtype: 'xdatefield',
     config: {
-        editable: true,
-        single: true
+        single: true,
+        seperator: '~',
+        datatype:'long',
+
+        listeners: {
+            getter: function (field, value) {
+                if(value == null || value == ''){
+                    field.setValue(null);
+                }else{
+                    if(field.datatype == 'long') {
+                        field.setValue(new Date(value).getTime());
+                    }else{
+                        field.setValue(new Date(value));
+                    }
+                }
+
+                return true;
+            },
+
+            setter: function (field, text) {
+                if(! (text == '' || text == null)){
+                    if (Ext.isNumber(text)){
+                        field.fillText(Ext.Date.format(new Date(text),'Y/m/d'));
+                    }
+                }
+
+                return true;
+            }
+        }
     },
 
     onEditTap: function () {
-        var me = this, application = YourTour.util.Context.getApplication(), controller = application.getController('CommonMainCtrl'), date = me.getText();
+        var me = this,
+            application = YourTour.util.Context.getApplication(),
+            controller = application.getController('CommonMainCtrl'),
+            date = me.getFieldText();
+
+        var dates = [];
+        if (date != null) {
+            var sDate = date.split('~');
+            Ext.Array.forEach(sDate, function (d) {
+                dates.push(new Date(d));
+            });
+        }
+
+        if (dates.length == 0) {
+            dates.push(new Date());
+        }
 
         var options = {
             single: me.single,
-            title: me.getLabel(),
-            date: date == null || date == '' ? new Date() : new Date(date)
+            title: me.getFieldLabel(),
+            dates: dates
         };
         controller.showTimeSelectionView(options, function (startDate, endDate, duration) {
             if (endDate) {
-                me.modifyText(startDate + ' ~ ' + endDate);
+                me.modifyText(startDate + ' ~ ' + endDate + ',' + duration);
             } else {
                 me.modifyText(startDate);
             }
 
             Ext.ComponentManager.get('MainView').pop();
         });
-    },
+    } ,
 
     updateSingle: function (single) {
         this.single = single;
     },
 
-    getValue: function () {
-        var value = this.callParent(arguments);
-
-        if (value && value != '') {
-            return new Date(value).getTime();
-        } else {
-            return 0;
-        }
-    },
-
-    setText: function (text) {
-        if (text && text != '') {
-            if (Ext.isNumber(text)) {
-                this.callParent([Ext.Date.format(new Date(text), 'Y/m/d')]);
-            } else {
-                this.callParent([text]);
-            }
-        }
-    },
-
-    updateValue: function (value) {
-        this.setValue(value);
-    },
-
-    setValue: function (value) {
-        this.setText(Ext.Date.format(value, 'Y-m-d'));
+    updateSeperator: function (seperator) {
+        this.seperator = seperator;
     }
 });
 

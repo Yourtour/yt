@@ -1,15 +1,15 @@
-Ext.define('YourTour.view.route.RouteSettingView', {
+Ext.define('YourTour.view.route.RoutePlanView', {
     extend: 'YourTour.view.widget.XPage',
     requires:['Ext.form.Panel', 'YourTour.view.widget.XSpacer', 'YourTour.view.widget.XDateField', 'YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XLabel', 'YourTour.view.widget.XField', 'Ext.field.Text'],
     config: {
-    	id:'RouteSettingView',
+    	id:'RoutePlanView',
     	defaults:{
     		labelWidth: '20'
 		},
         items: [
             {    
 				xtype: 'xheaderbar',
-				title: '行程设置'
+				title: '行程计划'
 			},
 			
 			{  
@@ -21,18 +21,45 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 			{
 				xtype:'xfield',
 				itemId:'name',
-				editable:true,
-				label:'行程名称',
-				align:'right',
-				placeHolder:'请输入行程名称'
+				label:{
+					text:'行程名称'
+				},
+				field:{
+					placeHolder:'请输入行程名称',
+					ifNull: '请简单描述您个人',
+					editable:{
+						enable:true
+					}
+				}
 			},
+
 			{
 				xtype:'xfield',
 				itemId:'budget',
-				label:'行程预算',
-				editable:true,
-				align:'right',
-				placeHolder:'请输入行程预算'
+				label:{
+					text:'行程预算'
+				},
+				field:{
+					placeHolder:'请输入行程预算',
+					editable:{
+						enable:true
+					}
+				}
+			},
+
+			{
+				xtype:'xdatefield',
+				itemId:'routeDate',
+				single:false,
+				label:{
+					text:'行程日期'
+				},
+				field:{
+					placeHolder:'请选择行程日期安排',
+					editable:{
+						enable:true
+					}
+				}
 			},
 
 			{
@@ -40,64 +67,76 @@ Ext.define('YourTour.view.route.RouteSettingView', {
 			},
 
 			{
-				xtype:'xdatefield',
-				itemId:'startDate',
-				label:'出发日期',
-				align:'right'
-			},
-
-			{
-				xtype:'xdatefield',
-				itemId:'endDate',
-				label:'返程日期',
-				align:'right'
-			},
-
-			{
-				xtype:'xfield',
-				itemId:'duration',
-				fieldCls:'x-field-right',
-				label:'日程天数'
-			},
-
-			{
-				xtype:'xspacer'
-			},
-
-			{
-				xtype:'xfield',
+				xtype:'xplacefield',
 				itemId:'fromPlace',
-				fieldCls:'x-field-right',
-				label:'出发地'
+				label:{
+					text:'出发地'
+				},
+				field:{
+					placeHolder:'请选择行程出发地',
+					editable:{
+						enable:true
+					}
+				}
 			},
 
 			{
-				xtype:'xfield',
+				xtype:'xplacefield',
 				itemId:'toPlaces',
-				fieldCls:'x-field-right',
-				label:'目的地'
+				label:{
+					text:'目的地'
+				},
+				field:{
+					placeHolder:'请选择行程目的地',
+					editable:{
+						enable:true
+					}
+				}
 			},
-
 			{
 				xtype:'xspacer'
 			},
 
 			{
-				xtype:'xtextfield',
+				xtype:'xfield',
 				itemId:'adultNum',
-				label:'成人人数'
+				label:{
+					text:'成人人数'
+				},
+				field:{
+					placeHolder:'请输入成人人数',
+					editable:{
+						enable:true
+					}
+				}
 			},
 
 			{
-				xtype:'xtextfield',
+				xtype:'xfield',
 				itemId:'childNum',
-				label:'儿童人数'
+				label:{
+					text:'儿童人数'
+				},
+				field:{
+					placeHolder:'请输入儿童人数',
+					editable:{
+						enable:true
+					}
+				}
 			},
 
 			{
-				xtype:'xtextfield',
+				xtype:'xfield',
 				itemId:'olderNum',
-				label:'老人人数'
+				label:{
+					text:'老人人数'
+				},
+				field:{
+					placeHolder:'请输入老人人数',
+					editable:{
+						enable:true
+					}
+				}
 			},
 
 			{

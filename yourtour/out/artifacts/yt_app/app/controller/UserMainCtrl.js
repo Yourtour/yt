@@ -52,7 +52,10 @@ Ext.define('YourTour.controller.UserMainCtrl', {
 
         var  me = this, view = me.getUserProfileView(), profile = me.getApplication().getUserProfile();
 
-        var userLogo = view.down('#userLogo');
+        var user = Ext.create('YourTour.model.UserModel', {data:profile});
+        view.setData(user);
+
+        /*var userLogo = view.down('#userLogo');
         userLogo.setSrc(YourTour.util.Context.getImageResource(profile.imageUrl));
 
         var nickName = view.down('#nickName');
@@ -74,7 +77,7 @@ Ext.define('YourTour.controller.UserMainCtrl', {
         residence.setText(profile.residence);
 
         var tags = view.down('#tags'), store = this.getApplication().getBaseStore().first().tagsStore;
-        tags.setStore(store);
+        tags.setStore(store);*/
     },
 
     /**
@@ -98,6 +101,7 @@ Ext.define('YourTour.controller.UserMainCtrl', {
         if (nickName.isModified()) {
             params.nickName = nickName.getValue();
         }
+
         if (params.nickName && (params.nickName == null || params.nickName == '')) {
             this.alert('昵称不能为空。');
             return;

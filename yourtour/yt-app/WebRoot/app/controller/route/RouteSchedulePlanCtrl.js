@@ -15,7 +15,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
             routeProvisionEditView: '#RouteProvisionEditView',
             routeScheduleEditView: '#RouteScheduleEditView',
             routeDiscussView: '#RouteDiscussView',
-            settingView: '#RouteSettingView',
+            routePlanView: '#RoutePlanView',
             placeChangeView: '#PlaceChangeView',
 
             //行程目的地编辑页面
@@ -114,15 +114,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
                 tap: 'onShowResourceView'
             },
 
-            '#RouteSettingView #fromPlace': {
-                tap: "onFromPlaceTap"
-            },
-
-            '#RouteSettingView #toPlaces': {
-                tap: "onToPlacesTap"
-            },
-
-            '#RouteSettingView #toolbar':{
+            '#RoutePlanView #toolbar':{
                 activeitemchange:'onRouteSettingViewButtonsTap'
             }
         },
@@ -153,7 +145,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 
         var me = this,
             view = me.getRouteReservationPlanView(),
-            route = me.getRouteSettingInfo(),
+            route = me.getRoutePlanInfo(),
             expertList = me.getExpertList();
 
         view.bindData(route);
@@ -329,14 +321,14 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
             route.endDate = endDate;
             route.duration = duration;
 
-            me.showRouteSettingView();
+            me.showRoutePlanView();
         });
     },
 
-    showRouteSettingView:function(){
-        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RouteSettingView'));
+    showRoutePlanView:function(){
+        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.route.RoutePlanView'));
 
-        var me = this, view = me.getSettingView(), route = me.route;
+        /*var me = this, view = me.getRoutePlanView(), route = me.route;
         var startDate = view.down('#startDate');
         startDate.setText(route.startDate);
 
@@ -347,11 +339,15 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
         duration.setText(route.duration + '天');
 
         var toPlaces = view.down('#toPlaces');
-        toPlaces.setPair(route.toPlaces);
+        toPlaces.setPair(route.toPlaces);*/
     },
 
-    getRouteSettingInfo: function () {
-        var me = this, view = me.getSettingView(), route = me.route;
+    /**
+     * 获取行程计划信息
+     * @returns {{toPlaces: string}|*}
+     */
+    getRoutePlanInfo: function () {
+        var me = this, view = me.getRoutePlanView(), route = me.route;
 
         var id = view.down('#id');
         var name = view.down('#name');
@@ -379,7 +375,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
 
     OnRouteReferTap: function () {
         var me = this,
-            route = me.getRouteSettingInfo(),
+            route = me.getRoutePlanInfo(),
             controller = me.getApplication().getController('route.RouteMainCtrl');
 
         controller.showRouteRecommendListView(5, route.toPlaces)
@@ -389,7 +385,7 @@ Ext.define('YourTour.controller.route.RouteSchedulePlanCtrl', {
      *
      */
     onRouteCustomizeTap: function () {
-        var me = this, route = me.getRouteSettingInfo();
+        var me = this, route = me.getRoutePlanInfo();
 
         this.getApplication().callService({
             url: '/routes/main/save',
