@@ -2,34 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92ee94f3-3d6c-4f6d-925a-699d6360b737" name="Default" comment="">
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\Test\src\Test.java" afterPath="" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\out\artifacts\yt_app\app\view\widget\XGenderSelect.js" afterPath="" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-app\WebRoot\cordova\platforms\android\assets\www\plugins\phonegap-plugin-barcodescanner\www\barcodescanner.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-core/src/main/java/com/yt/core/utils/DateUtils.java" afterPath="$PROJECT_DIR$/yt-core/src/main/java/com/yt/core/utils/DateUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/MemberRestResource.java" afterPath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/MemberRestResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-core/src/test/java/com/yt/core/utils/TestEnumUtils.java" afterPath="$PROJECT_DIR$/yt-core/src/test/java/com/yt/core/utils/TestEnumUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/vo/member/UserProfileVO.java" afterPath="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/vo/member/UserProfileVO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/rest/resource/UserRestResource.java" afterPath="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/rest/resource/UserRestResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/vo/member/UserVO.java" afterPath="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/vo/member/UserVO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/yt_app/cordova/platforms/android/assets/www/app.js" afterPath="$PROJECT_DIR$/out/artifacts/yt_app/cordova/platforms/android/assets/www/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/yt_app/cordova/www/app.js" afterPath="$PROJECT_DIR$/out/artifacts/yt_app/cordova/www/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/assets/www/app.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/assets/www/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/www/app.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/www/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/yt_app/bootstrap.js" afterPath="$PROJECT_DIR$/out/artifacts/yt_app/bootstrap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/bootstrap.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/bootstrap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-web-core/src/main/java/com/yt/ContextLoaderListener.java" afterPath="$PROJECT_DIR$/yt-web-core/src/main/java/com/yt/ContextLoaderListener.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yourtour.iml" afterPath="$PROJECT_DIR$/yourtour.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/yt-app.iml" afterPath="$PROJECT_DIR$/yt-app/yt-app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-core/yt-core.iml" afterPath="$PROJECT_DIR$/yt-core/yt-core.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-data-service/yt-data-service.iml" afterPath="$PROJECT_DIR$/yt-data-service/yt-data-service.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-hbase/yt-hbase.iml" afterPath="$PROJECT_DIR$/yt-hbase/yt-hbase.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-neo4j/yt-neo4j.iml" afterPath="$PROJECT_DIR$/yt-neo4j/yt-neo4j.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/yt-oms.iml" afterPath="$PROJECT_DIR$/yt-oms/yt-oms.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-web-core/yt-web-core.iml" afterPath="$PROJECT_DIR$/yt-web-core/yt-web-core.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-web/yt-web.iml" afterPath="$PROJECT_DIR$/yt-web/yt-web.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/yt_web_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/yt_web_war_exploded.xml" />
     </list>
     <ignored path="yourtour.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -87,11 +64,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DateUtils.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DateUtils.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yt-core/src/main/java/com/yt/core/utils/DateUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.41509435">
-              <caret line="23" column="30" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -124,9 +101,17 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="165" column="51" selection-start-line="165" selection-start-column="51" selection-end-line="165" selection-end-column="51" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ContextLoaderListener.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/yt-web-core/src/main/java/com/yt/ContextLoaderListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.7924528">
+              <caret line="25" column="42" selection-start-line="25" selection-start-column="42" selection-end-line="25" selection-end-column="42" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -286,18 +271,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="37" column="60" selection-start-line="37" selection-start-column="60" selection-end-line="37" selection-end-column="60" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RestResource.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-web-core/src/main/java/com/yt/rest/resource/RestResource.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="false" />
               </folding>
@@ -2574,7 +2547,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/route/LineVO.java" />
         <option value="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/CommentVO.java" />
         <option value="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/route/RouteLoadVO.java" />
         <option value="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/member/UserBriefVO.java" />
@@ -2625,6 +2597,7 @@
         <option value="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/vo/member/UserVO.java" />
         <option value="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/vo/member/UserProfileVO.java" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XImage.js" />
+        <option value="$PROJECT_DIR$/yt-web-core/src/main/java/com/yt/ContextLoaderListener.java" />
       </list>
     </option>
   </component>
@@ -2688,6 +2661,98 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="yourtour" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yourtour" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yourtour" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yt-web-core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yourtour" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yourtour" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yt-web-core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yourtour" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yourtour" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yt-web-core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yourtour" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yourtour" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yt-web-core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yt" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -3235,12 +3300,12 @@
       <workItem from="1457013908266" duration="764000" />
       <workItem from="1457047751687" duration="606000" />
       <workItem from="1457052662114" duration="1159000" />
-      <workItem from="1457054125387" duration="608000" />
+      <workItem from="1457054125387" duration="1381000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71657000" />
+    <option name="totallyTimeSpent" value="72430000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -3253,7 +3318,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -3266,7 +3331,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7924837" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29500756" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29500756" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -3306,13 +3371,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XPickerField.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="63" column="5" selection-start-line="60" selection-start-column="4" selection-end-line="63" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XGridSheet.js">
       <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
         <state />
@@ -3582,14 +3640,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/AlongRestResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/yt-web-core/src/main/java/com/yt/rest/resource/RestResource.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3654,16 +3704,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="37" column="60" selection-start-line="37" selection-start-column="60" selection-end-line="37" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/MemberRestResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="165" column="51" selection-start-line="165" selection-start-column="51" selection-end-line="165" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="false" />
           </folding>
@@ -3836,8 +3876,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/yt-core/src/main/java/com/yt/core/utils/DateUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41509435">
-          <caret line="23" column="30" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/AlongRestResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/MemberRestResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="165" column="51" selection-start-line="165" selection-start-column="51" selection-end-line="165" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-web-core/src/main/java/com/yt/ContextLoaderListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7924528">
+          <caret line="25" column="42" selection-start-line="25" selection-start-column="42" selection-end-line="25" selection-end-column="42" />
           <folding />
         </state>
       </provider>

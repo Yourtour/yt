@@ -23,6 +23,6 @@ public class ContextLoaderListener extends org.springframework.web.context.Conte
         contextName = context.getServletContextName();
         realpath = context.getRealPath("/");
 
-        logger.warn(realpath);
+        logger.warn("Service run path=" + realpath);
     }
 }
