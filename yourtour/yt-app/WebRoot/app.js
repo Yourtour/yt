@@ -80,8 +80,7 @@ Ext.application({
     ],
 
     stores: [
-        'LaunchStore', 'RouteStore', 'RouteMemberStore', 'LineStore', 'ResourcePlayStore', 'ResourceFoodStore', 'UserStore', 'HomeStore', 'BestListStore', 'TalentListStore', 'AlongListStore', 'CommentStore', 'PlaceStore', 'LocalStore'
-    ],
+        'GenderStore','LaunchStore', 'LocalStore'],
 
     icon: {
         '57': 'resources/icons/Icon.png',

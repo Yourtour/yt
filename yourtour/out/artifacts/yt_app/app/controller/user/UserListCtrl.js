@@ -17,10 +17,6 @@ Ext.define('YourTour.controller.user.UserListCtrl', {
        store : null
     },
     
-    init: function(){
-    	this.store = Ext.create('YourTour.store.UserStore');	
-    },
-    
     showPage:function(){
     	var me = this;
     	var userList = me.getUserList();

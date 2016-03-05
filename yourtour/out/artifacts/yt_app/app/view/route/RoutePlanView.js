@@ -32,6 +32,7 @@ Ext.define('YourTour.view.route.RoutePlanView', {
 					}
 				}
 			},
+
 			{
 				xtype:'xfield',
 				itemId:'budget',
@@ -57,23 +58,6 @@ Ext.define('YourTour.view.route.RoutePlanView', {
 					placeHolder:'请选择行程日期安排',
 					editable:{
 						enable:true
-					}
-				},
-
-				listeners:{
-					getter: function (field, value, options) {
-						if(value == null || value == ''){
-							options.result = 0;
-						}else{
-
-							options.result = value;
-						}
-
-						return true;
-					},
-
-					setter:function(field, value, options){
-						console.log(vlaue);
 					}
 				}
 			},

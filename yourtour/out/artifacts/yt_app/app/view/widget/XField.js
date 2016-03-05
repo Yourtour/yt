@@ -45,20 +45,54 @@ Ext.define('YourTour.view.widget.XField', {
             }
         ],
 
-        /*listeners:{
+        listeners:{ //监听器
+            /**
+             * 调用getValue时触发，用来对返回值进行预处理
+             * @param field
+             * @param value
+             */
             getter: function (field, value) {
-                console.log('base');
                 field.setValue(value);
 
                 return true;
             },
 
+            /**
+             * 调用setText时触发，用来对显示的文本进行预处理
+             * @param field
+             * @param text
+             */
             setter: function (field, text) {
                 field.fillText(text);
 
                 return true;
+            },
+
+            /**
+             * 自动绑定时(updateReocrd)触发，用来进行定制化
+             * @param field
+             * @param record
+             */
+            binder:function(field, record){
+                var me = field,
+                    config = me.getField() || me.field,
+                    binding = config.binding,
+                    name = (binding == null ? me.getItemId() : binding);
+
+                var names = name.split('.');
+                var len = names.length;
+
+                var data = record;
+                var store = null;
+                for (var index = 0; index < len - 1; index++) {
+                    eval('store = data.' + [names[index]] + '()');
+                    data = store.first();
+                }
+                name = names[len - 1];
+                value = data.get(name);
+                me.setText(value);
             }
-        }*/
+        }
     },
 
     initialize: function () {
@@ -237,8 +271,11 @@ Ext.define('YourTour.view.widget.XField', {
      * @returns {*}
      */
     getValue: function () {
-        var me = this, value = this.value == null ? this.text : this.value;
+        var me = this,
+            value = this.value == null ? this.text : this.value;
+
         me.fireEvent('getter', this, value);
+
         return this.value;
     },
 
@@ -257,9 +294,8 @@ Ext.define('YourTour.view.widget.XField', {
     setText: function (text) {
         this.text = text;
 
-        if(! this.fireEvent('setter', this, text)){
-            this.fillText(text);
-        }
+        var me = this;
+        me.fireEvent('setter', this, text);
     },
 
     /**
@@ -306,26 +342,8 @@ Ext.define('YourTour.view.widget.XField', {
      * @param record
      */
     updateRecord: function (record) {
-        var me = this, value = null;
-
-        if(! me.fireEvent('binder', this, record)){
-            var config = this.getField() || this.field,
-                binding = config.binding,
-                name = (binding == null ? me.getItemId() : binding);
-
-            var names = name.split('.');
-            var len = names.length;
-
-            var data = record;
-            var store = null;
-            for (var index = 0; index < len - 1; index++) {
-                eval('store = data.' + [names[index]] + '()');
-                data = store.first();
-            }
-            name = names[len - 1];
-            value = data.get(name);
-            me.setText(value);
-        }
+        var me = this;
+        me.fireEvent('binder', this, record);
     },
 
     /**

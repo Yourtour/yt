@@ -1,6 +1,6 @@
 Ext.define('YourTour.controller.route.RouteMainCtrl', {
     extend: 'YourTour.controller.BaseCtrl',
-    requires: ['YourTour.store.RouteStore', 'YourTour.view.route.RouteMainItem'],
+    requires: ['YourTour.view.route.RouteMainItem'],
 
     config: {
         refs: {

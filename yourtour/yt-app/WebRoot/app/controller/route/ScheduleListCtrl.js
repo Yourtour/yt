@@ -1,6 +1,6 @@
 Ext.define('YourTour.controller.route.ScheduleListCtrl', {
     extend: 'YourTour.controller.BaseCtrl',
-    requires:['YourTour.store.RouteStore', 'YourTour.model.RouteModel'],
+    requires:['YourTour.model.RouteModel'],
     
     config: {
        refs: {
@@ -31,10 +31,6 @@ Ext.define('YourTour.controller.route.ScheduleListCtrl', {
        },
        
        store:null
-    },
-    
-    init:function(){
-		this.store = Ext.create('YourTour.store.RouteStore', {storeId:'ScheduleListStore'});	    	
     },
     
     onPlanTap:function(){

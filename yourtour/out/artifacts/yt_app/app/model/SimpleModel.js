@@ -1,8 +1,9 @@
 Ext.define('YourTour.model.SimpleModel', {
-    extend: 'YourTour.model.BaseModel',
+    extend: 'Ext.data.Model',
     config: {
+        idProperty:'code',
+
         fields: [
-            {name: 'id', type: 'string'},
             {name: 'code', type: 'string'},
             {name: 'name', type: 'string'}
         ]

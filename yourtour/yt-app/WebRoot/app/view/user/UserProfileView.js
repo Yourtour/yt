@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.user.UserProfileView', {
     extend: 'YourTour.view.widget.XPage',
-    requires: ['YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XPlaceField', 'YourTour.view.widget.XField', 'YourTour.view.widget.XMultiField', 'YourTour.view.widget.XDateField', 'YourTour.view.widget.XSelectField', 'YourTour.view.widget.XGenderField'],
+    requires: ['YourTour.store.GenderStore', 'YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XPlaceField', 'YourTour.view.widget.XField', 'YourTour.view.widget.XMultiField', 'YourTour.view.widget.XDateField', 'YourTour.view.widget.XSelectField'],
     xtype: 'UserProfileView',
     config: {
         id: 'UserProfileView',
@@ -88,7 +88,7 @@ Ext.define('YourTour.view.user.UserProfileView', {
                     },
 
                     {
-                        xtype: 'xgenderfield',
+                        xtype: 'xselectfield',
                         itemId: 'gender',
                         label:{
                             text:'性别'
@@ -97,7 +97,8 @@ Ext.define('YourTour.view.user.UserProfileView', {
                             editable:{
                                 enable:true
                             }
-                        }
+                        },
+                        store:Ext.create('YourTour.store.GenderStore')
                     },
 
                     {

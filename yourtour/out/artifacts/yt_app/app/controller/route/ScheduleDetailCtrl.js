@@ -1,6 +1,6 @@
 Ext.define('YourTour.controller.route.ScheduleDetailCtrl', {
     extend: 'YourTour.controller.BaseCtrl',
-    requires:['YourTour.store.RouteStore', 'YourTour.model.RouteModel'],
+    requires:['YourTour.model.RouteModel'],
     
     config: {
        refs: {
@@ -16,10 +16,6 @@ Ext.define('YourTour.controller.route.ScheduleDetailCtrl', {
        },
        
        store:null
-    },
-    
-    init:function(){
-		this.store = Ext.create('YourTour.store.RouteStore');	    	
     },
     
     showSceneSchedulePage:function(index){

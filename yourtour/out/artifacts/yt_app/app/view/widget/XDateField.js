@@ -8,7 +8,6 @@ Ext.define('YourTour.view.widget.XDateField', {
 
         listeners: {
             getter: function (field, value) {
-                console.log('datefield');
                 if(value == null || value == ''){
                     field.setValue(null);
                 }else{
@@ -38,10 +37,10 @@ Ext.define('YourTour.view.widget.XDateField', {
         var me = this,
             application = YourTour.util.Context.getApplication(),
             controller = application.getController('CommonMainCtrl'),
-            date = me.getValue();
+            date = me.getFieldText();
 
         var dates = [];
-        if (date != 0) {
+        if (date != null) {
             var sDate = date.split('~');
             Ext.Array.forEach(sDate, function (d) {
                 dates.push(new Date(d));

@@ -1,7 +1,7 @@
 Ext.define('YourTour.view.user.RegisterProfileView', {
 	extend: 'Ext.Container',
     xtype: 'RegisterProfileView',
-    requires:['Ext.Panel', 'YourTour.view.widget.XImageSelect', 'YourTour.view.widget.XSpacer','YourTour.view.widget.XTextField', 'YourTour.view.widget.XButton', 'YourTour.view.widget.XSelectField', 'YourTour.view.widget.XGenderField'],
+    requires:['Ext.Panel', 'YourTour.store.GenderStore', 'YourTour.view.widget.XImageSelect', 'YourTour.view.widget.XSpacer','YourTour.view.widget.XTextField', 'YourTour.view.widget.XButton', 'YourTour.view.widget.XSelectField'],
     config: {
 		layout: 'vbox',
 		defaults: {
@@ -42,9 +42,8 @@ Ext.define('YourTour.view.user.RegisterProfileView', {
 				padding: '0 10 0 50',
 				items: [
 					{
-						xtype:'xgenderfield',
+						xtype:'xselectfield',
 						itemId:'gender',
-						name:'gener',
 						field:{
 							align:'left',
 						},
@@ -54,6 +53,7 @@ Ext.define('YourTour.view.user.RegisterProfileView', {
 							enable:true,
 							icon:'none'
 						},
+						store:Ext.create('YourTour.store.GenderStore')
 					}
 				]
 			},
