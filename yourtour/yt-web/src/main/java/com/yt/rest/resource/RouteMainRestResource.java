@@ -6,7 +6,7 @@ import com.yt.business.utils.Neo4jUtils;
 import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponseVO;
-import com.yt.utils.WebUtils;
+import com.yt.utils.SessionUtils;
 import com.yt.vo.route.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -139,7 +139,7 @@ public class RouteMainRestResource extends RestResource {
 			}
 
 			routeRepository.saveRouteMainAndSchedules(bean,
-					WebUtils.getCurrentLoginUser());
+					SessionUtils.getCurrentLoginUser());
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format("Save RouteMainBean['%s'] success.",
 						vo.getRowKey()));
@@ -227,7 +227,7 @@ public class RouteMainRestResource extends RestResource {
 				bean.setMemo(vo.getMemo());
 			}
 
-			routeRepository.save(bean, WebUtils.getCurrentLoginUser(request));
+			routeRepository.save(bean, SessionUtils.getCurrentLoginUser(request));
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format(
 						"Save RouteScheduleBean['%s'] success.", vo.getRowKey()));
@@ -266,7 +266,7 @@ public class RouteMainRestResource extends RestResource {
 
 		try {
 			RouteActivityBean bean = RouteActivityVO.transform(vo);
-			routeRepository.save(bean, WebUtils.getCurrentLoginUser(request));
+			routeRepository.save(bean, SessionUtils.getCurrentLoginUser(request));
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format(
 						"Save RouteActivityBean['%s'] success.", vo.getRowKey()));
@@ -311,12 +311,12 @@ public class RouteMainRestResource extends RestResource {
 			}
 
 			RouteActivityItemBean activityItem = new RouteActivityItemBean(
-					WebUtils.getCurrentLoginUser());
+					SessionUtils.getCurrentLoginUser());
 			activityItem.setActivity(activity);
 			activityItem.setResourceActivityItem(item);
 			activityItem.setResourceActivityItemId(item.getGraphId());
 
-			routeRepository.save(activityItem, WebUtils.getCurrentLoginUser());
+			routeRepository.save(activityItem, SessionUtils.getCurrentLoginUser());
 
 			return new ResponseDataVO<Long>(activityItem.getGraphId());
 		} catch (Exception ex) {
@@ -367,7 +367,7 @@ public class RouteMainRestResource extends RestResource {
 		}
 		try {
 			RouteProvisionBean bean = RouteProvisionVO.transform(vo);
-			routeRepository.save(bean, WebUtils.getCurrentLoginUser(request));
+			routeRepository.save(bean, SessionUtils.getCurrentLoginUser(request));
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format(
 						"Save RouteProvisionBean['%s'] success.",

@@ -1,29 +1,19 @@
 package com.yt.rest.resource;
 
 import com.yt.business.bean.ResourceBean;
-import com.yt.business.bean.RestaurantResourceBean;
 import com.yt.business.repository.ResourceRepository;
-import com.yt.business.repository.RestaurantRepository;
-import com.yt.business.utils.Neo4jUtils;
 import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
-import com.yt.response.ResponsePagingDataVO;
-import com.yt.response.ResponseVO;
-import com.yt.utils.WebUtils;
 import com.yt.vo.resource.ResourceVO;
-import com.yt.vo.resource.RestaurantResourceVO;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 @Component
 @Path("app/resource")

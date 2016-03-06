@@ -4,7 +4,6 @@ import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataBodyPart;
 import com.sun.jersey.multipart.FormDataMultiPart;
 import com.sun.jersey.multipart.FormDataParam;
-import com.yt.business.BaseBeanImpl;
 import com.yt.business.BusinessBeanImpl;
 import com.yt.business.bean.CommentBean;
 import com.yt.business.bean.UserProfileBean;
@@ -13,11 +12,10 @@ import com.yt.business.repository.CommentRepository;
 import com.yt.business.utils.Neo4jUtils;
 import com.yt.core.utils.DateUtils;
 import com.yt.error.StaticErrorEnum;
-import com.yt.hbase.BaseBean;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.utils.FileUtils;
-import com.yt.utils.WebUtils;
+import com.yt.utils.SessionUtils;
 import com.yt.vo.CommentVO;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -82,7 +80,7 @@ public class BaseRestResource extends RestResource {
 	@Path("/comment/{id}/save")
 	public ResponseDataVO<CommentVO> saveResourceComment(@PathParam("id") String id, @FormDataParam("memo") String memo, FormDataMultiPart form) {
 		try{
-			String userId = WebUtils.getCurrentLoginUser();
+			String userId = SessionUtils.getCurrentLoginUser();
 
 			BusinessBeanImpl subjectBean = (BusinessBeanImpl) this.commentRepository.get(BusinessBeanImpl.class, Neo4jUtils.getGraphIDFromString(id), false);
 			if(subjectBean == null){
@@ -127,7 +125,7 @@ public class BaseRestResource extends RestResource {
 	@Path("/favorite/{id}/save")
 	public ResponseVO saveUserFavorite(@PathParam("id") String id) {
 		try{
-			String userId = WebUtils.getCurrentLoginUser();
+			String userId = SessionUtils.getCurrentLoginUser();
 
 			BusinessBeanImpl subjectBean = (BusinessBeanImpl) this.commentRepository.get(BusinessBeanImpl.class, Neo4jUtils.getGraphIDFromString(id), false);
 			if(subjectBean == null){
@@ -159,7 +157,7 @@ public class BaseRestResource extends RestResource {
 	@Path("/favorite/{id}/delete")
 	public ResponseVO deleteUserFavorite(@PathParam("id") String id) {
 		try{
-			String userId = WebUtils.getCurrentLoginUser();
+			String userId = SessionUtils.getCurrentLoginUser();
 
 			BusinessBeanImpl subjectBean = (BusinessBeanImpl) this.commentRepository.get(BusinessBeanImpl.class, Neo4jUtils.getGraphIDFromString(id), false);
 			if(subjectBean == null){
@@ -188,7 +186,7 @@ public class BaseRestResource extends RestResource {
 	@Path("/like/{id}/save")
 	public ResponseVO saveUserLike(@PathParam("id") String id) {
 		try{
-			String userId = WebUtils.getCurrentLoginUser();
+			String userId = SessionUtils.getCurrentLoginUser();
 
 			BusinessBeanImpl subjectBean = (BusinessBeanImpl) this.commentRepository.get(BusinessBeanImpl.class, Neo4jUtils.getGraphIDFromString(id), false);
 			if(subjectBean == null){

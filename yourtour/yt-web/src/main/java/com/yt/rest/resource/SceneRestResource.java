@@ -27,7 +27,7 @@ import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponsePagingDataVO;
 import com.yt.response.ResponseVO;
-import com.yt.utils.WebUtils;
+import com.yt.utils.SessionUtils;
 import com.yt.vo.resource.SceneResourceVO;
 
 @Component
@@ -180,14 +180,14 @@ public class SceneRestResource {
 	@Path("save.json")
 	public ResponseVO saveByAdd(SceneResourceVO vo,
 			@Context HttpServletRequest request) {
-		return save(null, vo, WebUtils.getCurrentLoginUser(request));
+		return save(null, vo, SessionUtils.getCurrentLoginUser(request));
 	}
 
 	@POST
 	@Path("save/{id}.json")
 	public ResponseVO saveByUpdate(@PathParam("id") String id,
 			SceneResourceVO vo, @Context HttpServletRequest request) {
-		return save(id, vo, WebUtils.getCurrentLoginUser(request));
+		return save(id, vo, SessionUtils.getCurrentLoginUser(request));
 	}
 
 	private ResponseVO save(String id, SceneResourceVO vo, String operator) {

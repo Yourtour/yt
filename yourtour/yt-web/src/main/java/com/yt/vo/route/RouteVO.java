@@ -10,7 +10,7 @@ import java.util.Set;
 import com.yt.business.bean.*;
 import com.yt.core.utils.DateUtils;
 import com.yt.core.utils.StringUtils;
-import com.yt.utils.WebUtils;
+import com.yt.utils.SessionUtils;
 import com.yt.vo.BaseVO;
 import com.yt.vo.member.UserVO;
 
@@ -156,8 +156,8 @@ public class RouteVO extends BaseVO {
 			scheduleBean.setIndex(DateUtils.getDateNumber(scheduleDate.getTime()) * 1000);
 			scheduleBean.setDate(scheduleDate.getTime());
 			scheduleBean.setTitle(String.format("第%s天-%s", index+1, DateUtils.formatDate(scheduleDate.getTime())));
-			scheduleBean.setCreatedUserId(WebUtils.getCurrentLoginUser());
-			scheduleBean.setUpdatedUserId(WebUtils.getCurrentLoginUser());
+			scheduleBean.setCreatedUserId(SessionUtils.getCurrentLoginUser());
+			scheduleBean.setUpdatedUserId(SessionUtils.getCurrentLoginUser());
 			scheduleBean.setCreatedTime(DateUtils.getCurrentTimeMillis());
 			scheduleBean.setUpdatedTime(DateUtils.getCurrentTimeMillis());
 

@@ -15,7 +15,7 @@ import com.yt.core.utils.CollectionUtils;
 import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponseVO;
-import com.yt.utils.WebUtils;
+import com.yt.utils.SessionUtils;
 import com.yt.vo.member.ExpertApplicationVO;
 import com.yt.vo.member.ExpertApprovementVO;
 import com.yt.vo.member.ExpertServiceVO;
@@ -93,7 +93,7 @@ public class ExpertRestResource {
 	@Path("/application")
 	public ResponseVO saveApplication(ExpertApplicationVO applicationVO,@Context HttpServletRequest request) {
 		try{
-			String userId = WebUtils.getCurrentLoginUser(request);
+			String userId = SessionUtils.getCurrentLoginUser(request);
 			UserProfileBean user = (UserProfileBean) this.expertRepository.get(UserProfileBean.class, Long.valueOf(userId), false);
 			ExpertBean expert = null; //user.getExpert();
 
@@ -109,7 +109,7 @@ public class ExpertRestResource {
 
 			application.setExpert(expert);
 
-			this.expertRepository.saveApplication(application, WebUtils.getCurrentLoginUser(request));
+			this.expertRepository.saveApplication(application, SessionUtils.getCurrentLoginUser(request));
 			return new ResponseVO();
 		}catch(Exception exc){
 			Logger.error("Expert Application Exception.", exc);
@@ -127,7 +127,7 @@ public class ExpertRestResource {
 	@Path("/{expertId}/{applicationId}/approve")
 	public ResponseVO saveApprovement(@PathParam("expertId") String expertId, @PathParam("applicationId") String applicationId, ExpertApprovementVO approvementVO) {
 		try{
-			String userId = WebUtils.getCurrentLoginUser();
+			String userId = SessionUtils.getCurrentLoginUser();
 
 			ExpertApplicationBean application = (ExpertApplicationBean) this.expertRepository.get(ExpertApplicationBean.class, Long.valueOf(applicationId), false);
 
@@ -153,7 +153,7 @@ public class ExpertRestResource {
 	@Path("/service/save")
 	public ResponseDataVO<Long> saveService(@Context HttpServletRequest request, ExpertServiceVO serviceVO){
 		try{
-			String userId = WebUtils.getCurrentLoginUser(request);
+			String userId = SessionUtils.getCurrentLoginUser(request);
 			UserProfileBean user = (UserProfileBean) this.expertRepository.get(UserProfileBean.class, Long.valueOf(userId), false);
 
 			ExpertServiceBean service = ExpertServiceVO.transform(serviceVO);

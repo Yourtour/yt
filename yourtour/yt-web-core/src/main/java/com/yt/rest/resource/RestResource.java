@@ -1,7 +1,6 @@
 package com.yt.rest.resource;
 
-import com.yt.utils.WebUtils;
-import org.springframework.beans.factory.annotation.Value;
+import com.yt.utils.SessionUtils;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,6 +15,6 @@ public class RestResource {
 	}
 
 	protected String getCurrentUserId() throws Exception{
-		return WebUtils.getCurrentLoginUser();
+		return SessionUtils.getCurrentLoginUser();
 	}
 }

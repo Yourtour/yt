@@ -9,13 +9,12 @@ import com.yt.business.bean.UserProfileBean;
 import com.yt.business.common.AppException;
 import com.yt.business.common.Constants;
 import com.yt.business.repository.UserRepository;
-import com.yt.business.utils.Neo4jUtils;
 import com.yt.core.utils.Base64Utils;
 import com.yt.error.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.utils.FileUtils;
-import com.yt.utils.WebUtils;
+import com.yt.utils.SessionUtils;
 import com.yt.vo.member.LoginVO;
 import com.yt.vo.member.RegisterVO;
 import com.yt.vo.member.UserVO;
@@ -24,9 +23,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import java.io.InputStream;
 import java.util.List;
@@ -43,31 +40,19 @@ public class UserRestResource extends RestResource {
 
 	@GET
 	@Path("{id}")
-	public ResponseDataVO<UserVO> getUser(@PathParam("id") String id) {
-		long graphId = Neo4jUtils.getGraphIDFromString(id);
+	public ResponseDataVO<UserVO> getUser(@PathParam("id") Long id) {
 		try {
-			UserProfileBean bean = null;
-			if (graphId != -1) {
-				// id是GraphID
-				bean = (UserProfileBean) userRepository.get(UserProfileBean.class, graphId);
-			} else {
-				// id 是rowkey
-				bean = (UserProfileBean) userRepository.get(UserProfileBean.class, "rowKey",
-						id);
-			}
+			UserProfileBean bean = (UserProfileBean) userRepository.get(UserProfileBean.class, id);
 			if (bean == null) {
-				return new ResponseDataVO<UserVO>(
-						StaticErrorEnum.THE_DATA_NOT_EXIST);
+				LOG.warn(String.format("No UserProfileBean[id=%d] found.", id));
+				return new ResponseDataVO<UserVO>(StaticErrorEnum.THE_DATA_NOT_EXIST);
 			}
+
 			UserVO vo = UserVO.transform(bean);
-			if (LOG.isDebugEnabled()) {
-				LOG.debug(String.format("Get UserBean['%s'] success.", id));
-			}
 			return new ResponseDataVO<UserVO>(vo);
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
-				LOG.error(String.format("Fetch UserBean[id='%s'] fail.", id),
-						ex);
+				LOG.error(String.format("Fetch UserProfileBean[id='%s'] fail.", id), ex);
 			}
 			return new ResponseDataVO<UserVO>(
 					StaticErrorEnum.FETCH_DB_DATA_FAIL);
@@ -75,24 +60,17 @@ public class UserRestResource extends RestResource {
 	}
 
 	@GET
-	@Path("logout/{username}")
-	public ResponseVO logout(@PathParam("username") String username,
-			@Context HttpServletRequest request) {
-		if (username == null) {
-			return new ResponseVO(StaticErrorEnum.THE_INPUT_IS_NULL);
-		}
+	@Path("logout/{id}")
+	public ResponseVO logout(@PathParam("id") Long id) {
 		try {
-			UserProfileBean user = (UserProfileBean) userRepository.get(UserProfileBean.class,
-					"code", username);
+			UserProfileBean user = (UserProfileBean) userRepository.get(UserProfileBean.class, id, false);
 			if (user == null) {
-				if (LOG.isWarnEnabled()) {
-					LOG.warn(String.format(
-							"The user[%s] not exist, logout fail.", username));
-				}
+				LOG.warn(String.format("No UserProfileBean[id=%d] found.", id));
 				return new ResponseVO(StaticErrorEnum.USER_NOT_EXIST);
 			}
+
 			// 清除当前session登录信息
-			WebUtils.setCurrentLoginUser(request, null);
+			SessionUtils.setCurrentLoginUser(id);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format("The user[%s] logout success.",
 						username));

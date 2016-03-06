@@ -384,6 +384,10 @@ Ext.application({
      */
     query: function (options) {
         try {
+            var cached = options.cached;
+            if(cached){
+
+            }
             var store;
             if(options.config){
                 store = Ext.create('YourTour.store.AjaxStore', options.config);
