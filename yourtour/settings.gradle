@@ -1,1 +1,1 @@
-include "yt-core", "yt-hbase", "yt-neo4j", "yt-data-service", "yt-web-core", "yt-web", "yt-oms"
+include "yt-core", "yt-hbase", "yt-neo4j", "yt-data-service", "yt-web-core", "yt-wxams", "yt-web", "yt-oms"
