@@ -57,4 +57,7 @@ public class SessionUtils {
 		HttpSession session = request.getSession(true);
 		session.removeAttribute(key);
 	}
+
+	public static void clear(){
+	}
 }

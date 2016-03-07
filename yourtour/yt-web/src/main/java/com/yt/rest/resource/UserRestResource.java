@@ -38,52 +38,43 @@ public class UserRestResource extends RestResource {
 	@Autowired
 	private UserRepository userRepository;
 
+	/**
+	 * 根据用户ID获取注册信息接口
+	 * @param id
+	 * @return
+	 */
 	@GET
 	@Path("{id}")
-	public ResponseDataVO<UserVO> getUser(@PathParam("id") Long id) {
-		try {
-			UserProfileBean bean = (UserProfileBean) userRepository.get(UserProfileBean.class, id);
-			if (bean == null) {
-				LOG.warn(String.format("No UserProfileBean[id=%d] found.", id));
-				return new ResponseDataVO<UserVO>(StaticErrorEnum.THE_DATA_NOT_EXIST);
-			}
-
-			UserVO vo = UserVO.transform(bean);
-			return new ResponseDataVO<UserVO>(vo);
-		} catch (Exception ex) {
-			if (LOG.isErrorEnabled()) {
-				LOG.error(String.format("Fetch UserProfileBean[id='%s'] fail.", id), ex);
-			}
-			return new ResponseDataVO<UserVO>(
-					StaticErrorEnum.FETCH_DB_DATA_FAIL);
+	public ResponseDataVO<UserVO> getUser(@PathParam("id") Long id) throws Exception{
+		UserProfileBean bean = (UserProfileBean) userRepository.get(UserProfileBean.class, id);
+		if (bean == null) {
+			LOG.warn(String.format("No UserProfileBean[id=%d] found.", id));
+			return new ResponseDataVO<UserVO>(StaticErrorEnum.THE_DATA_NOT_EXIST);
 		}
+
+		UserVO vo = UserVO.transform(bean);
+		return new ResponseDataVO<UserVO>(vo);
 	}
 
+	/**
+	 * 用户登录注销接口
+	 * @param id
+	 * @return
+	 */
 	@GET
 	@Path("logout/{id}")
-	public ResponseVO logout(@PathParam("id") Long id) {
-		try {
-			UserProfileBean user = (UserProfileBean) userRepository.get(UserProfileBean.class, id, false);
-			if (user == null) {
-				LOG.warn(String.format("No UserProfileBean[id=%d] found.", id));
-				return new ResponseVO(StaticErrorEnum.USER_NOT_EXIST);
-			}
-
-			// 清除当前session登录信息
-			SessionUtils.setCurrentLoginUser(id);
-			if (LOG.isDebugEnabled()) {
-				LOG.debug(String.format("The user[%s] logout success.",
-						username));
-			}
-			return new ResponseVO();
-		} catch (Exception ex) {
-			if (LOG.isWarnEnabled()) {
-				LOG.warn(String.format("The user[%s] logout fail.", username),
-						ex);
-			}
-			return new ResponseVO(StaticErrorEnum.AUTHENTICATE_FAIL);
+	public ResponseVO logout(@PathParam("id") Long id)  throws Exception{
+		UserProfileBean user = (UserProfileBean) userRepository.get(UserProfileBean.class, id, false);
+		if (user == null) {
+			LOG.warn(String.format("No UserProfileBean[id=%d] found.", id));
+			return new ResponseVO(StaticErrorEnum.USER_NOT_EXIST);
 		}
+
+		// 清除当前session登录信息
+		SessionUtils.clear();
+		return new ResponseVO();
 	}
+
 	/**
 	 * APP用户登录接口
 	 * @param loginVO
@@ -91,7 +82,7 @@ public class UserRestResource extends RestResource {
 	 */
 	@POST
 	@Path("/login")
-	public ResponseDataVO<UserVO> login(LoginVO loginVO){
+	public ResponseDataVO<UserVO> login(LoginVO loginVO) throws Exception{
 		try{
 			UserProfileBean user = userRepository.getUser(loginVO.getMobile(), loginVO.getPassword());
 
@@ -99,9 +90,6 @@ public class UserRestResource extends RestResource {
 			return new ResponseDataVO<UserVO>(profile);
 		} catch (AppException ex) {
 			return new ResponseDataVO<UserVO>(StaticErrorEnum.AUTHENTICATE_FAIL);
-		} catch (Exception ex) {
-			LOG.error("Exception raised when registering user account.", ex);
-			return new ResponseDataVO<UserVO>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
 	}
 
@@ -112,85 +100,89 @@ public class UserRestResource extends RestResource {
 	 */
 	@POST
 	@Path("/account/register")
-	public ResponseDataVO<UserVO> registerUserAccount(RegisterVO registervo){
-		try{
-			UserProfileBean profile = userRepository.getUserByUserName(registervo.getMobile());
-			if(profile != null){
-				return new ResponseDataVO<UserVO>(StaticErrorEnum.USER_EXIST);
-			}
-			
-			UserAccountBean account = new UserAccountBean();
-			account.setUserName(registervo.getMobile());
-			account.setPwd(Base64Utils.MD5(registervo.getPassword()));
-			
-			profile = new UserProfileBean();
-			profile.setMobileNo(registervo.getMobile());
-			account.setProfile(profile);
-			this.userRepository.save(account, String.valueOf(account.getGraphId()));
-
-			profile = (UserProfileBean) userRepository.getUserByUserName(account.getUserName());
-			return new ResponseDataVO<UserVO>(UserVO.transform(profile));
-		} catch (Exception ex) {
-			LOG.error("Exception raised when registering user account.", ex);
-			return new ResponseDataVO<UserVO>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+	public ResponseDataVO<UserVO> registerUserAccount(RegisterVO registervo) throws Exception{
+		UserProfileBean profile = userRepository.getUserByUserName(registervo.getMobile());
+		if(profile != null){
+			return new ResponseDataVO<UserVO>(StaticErrorEnum.USER_EXIST);
 		}
+
+		UserAccountBean account = new UserAccountBean();
+		account.setUserName(registervo.getMobile());
+		account.setPwd(Base64Utils.MD5(registervo.getPassword()));
+
+		profile = new UserProfileBean();
+		profile.setMobileNo(registervo.getMobile());
+		account.setProfile(profile);
+		this.userRepository.save(account, String.valueOf(account.getGraphId()));
+
+		profile = userRepository.getUserByUserName(account.getUserName());
+		return new ResponseDataVO<UserVO>(UserVO.transform(profile));
 	}
 
 	/**
-	 *
+	 * 用户信息注册保存接口
+	 * @param profileId
+	 * @param nickName
+	 * @param gender
+	 * @param tags
 	 * @param form
 	 * @return
+	 * @throws Exception
 	 */
 	@POST
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	@Path("/profile/save")
+	@Path("/{id}/profile/save")
 	public ResponseDataVO<UserVO> registerProfile(@FormDataParam("id") Long profileId,
 												  @FormDataParam("nickName") String nickName,
 												  @FormDataParam("gender") String gender,
 												  @FormDataParam("tags") String tags,
-												  FormDataMultiPart form){
-		try{
-			UserProfileBean profile = userRepository.getUserByNickName(nickName);
-			if(profile != null){
-				return new ResponseDataVO<UserVO>(StaticErrorEnum.NICKNAME_EXIST);
-			}
-
-			profile = (UserProfileBean)userRepository.get(UserProfileBean.class, profileId, false);
-			if(profile == null){
-				return new ResponseDataVO<UserVO>(StaticErrorEnum.USER_NOT_EXIST);
-			}
-
-			List<FormDataBodyPart> l= form.getFields("userLogo");
-			if(l != null) {
-				for (FormDataBodyPart p : l) {
-					InputStream is = p.getValueAs(InputStream.class);
-					FormDataContentDisposition detail = p.getFormDataContentDisposition();
-					profile.setImageUrl(FileUtils.saveFile("images/user", FileUtils.getType(detail.getFileName()), is));
-				}
-			}
-
-			profile.setNickName(nickName);
-			profile.setGender(Constants.GenderType.getEnum(gender));
-			profile.setTags(tags);
-			this.userRepository.save(profile, false, String.valueOf(profileId));
-
-			profile = (UserProfileBean) userRepository.get(UserProfileBean.class, profileId, false);
-			return new ResponseDataVO<UserVO>(UserVO.transform(profile));
-		} catch (Exception ex) {
-			LOG.error("Exception raised when registering user profile.", ex);
-			return new ResponseDataVO<UserVO>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+												  FormDataMultiPart form) throws Exception{
+		UserProfileBean profile = userRepository.getUserByNickName(nickName);
+		if(profile != null){
+			return new ResponseDataVO<UserVO>(StaticErrorEnum.NICKNAME_EXIST);
 		}
+
+		profile = (UserProfileBean)userRepository.get(UserProfileBean.class, profileId, false);
+		if(profile == null){
+			return new ResponseDataVO<UserVO>(StaticErrorEnum.USER_NOT_EXIST);
+		}
+
+		List<FormDataBodyPart> l= form.getFields("userLogo");
+		if(l != null) {
+			for (FormDataBodyPart p : l) {
+				InputStream is = p.getValueAs(InputStream.class);
+				FormDataContentDisposition detail = p.getFormDataContentDisposition();
+				profile.setImageUrl(FileUtils.saveFile("images/user", FileUtils.getType(detail.getFileName()), is));
+			}
+		}
+
+		profile.setNickName(nickName);
+		profile.setGender(Constants.GenderType.getEnum(gender));
+		profile.setTags(tags);
+		this.userRepository.save(profile, false, String.valueOf(profileId));
+
+		profile = (UserProfileBean) userRepository.get(UserProfileBean.class, profileId, false);
+		return new ResponseDataVO<UserVO>(UserVO.transform(profile));
 	}
 
 	/**
-	 *
+	 * 用户信息修改保存接口
+	 * @param id
+	 * @param nickName
+	 * @param birthday
+	 * @param slogan
+	 * @param residence
+	 * @param gender
+	 * @param nativePlace
+	 * @param tags
 	 * @param form
 	 * @return
+	 * @throws Exception
 	 */
 	@POST
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	@Path("/{profileId}/save")
-	public ResponseDataVO<UserVO> saveUserProfile(@PathParam("profileId") Long profileId,
+	@Path("/{id}/save")
+	public ResponseDataVO<UserVO> saveUserProfile(@PathParam("profileId") Long id,
 												  @FormDataParam("nickName") String nickName,
 												  @FormDataParam("birthday") Long birthday,
 												  @FormDataParam("slogan") String slogan,
@@ -198,37 +190,32 @@ public class UserRestResource extends RestResource {
 												  @FormDataParam("gender") String gender,
 												  @FormDataParam("nativePlace") String nativePlace,
 												  @FormDataParam("tags") String tags,
-												  FormDataMultiPart form){
-		try{
-			UserProfileBean profile = (UserProfileBean) userRepository.get(UserProfileBean.class, profileId, false);
-			if(profile == null){
-				return new ResponseDataVO<UserVO>(StaticErrorEnum.USER_NOT_EXIST);
-			}
-
-			List<FormDataBodyPart> l= form.getFields("userLogo");
-			if(l != null) {
-				for (FormDataBodyPart p : l) {
-					InputStream is = p.getValueAs(InputStream.class);
-					FormDataContentDisposition detail = p.getFormDataContentDisposition();
-					profile.setImageUrl(FileUtils.saveFile("images/user", FileUtils.getType(detail.getFileName()), is));
-				}
-			}
-
-			if(nickName != null) profile.setNickName(nickName);
-			if(birthday != null) profile.setBirthday(birthday);
-			if(gender != null) profile.setGender(Constants.GenderType.getEnum(gender));
-			if(slogan != null) profile.setSlogan(slogan);
-			if(nativePlace != null) profile.setNativePlace(nativePlace);
-			if(residence != null) profile.setResidence(residence);
-			if(tags != null) profile.setTags(tags);
-
-			this.userRepository.save(profile, false, String.valueOf(profileId));
-
-			profile = (UserProfileBean) userRepository.get(UserProfileBean.class, profileId, false);
-			return new ResponseDataVO<UserVO>(UserVO.transform(profile));
-		} catch (Exception ex) {
-			LOG.error("Exception raised when registering user profile.", ex);
-			return new ResponseDataVO<UserVO>(StaticErrorEnum.FETCH_DB_DATA_FAIL);
+												  FormDataMultiPart form) throws Exception{
+		UserProfileBean profile = (UserProfileBean) userRepository.get(UserProfileBean.class, profileId, false);
+		if(profile == null){
+			return new ResponseDataVO<UserVO>(StaticErrorEnum.USER_NOT_EXIST);
 		}
+
+		List<FormDataBodyPart> l= form.getFields("userLogo");
+		if(l != null) {
+			for (FormDataBodyPart p : l) {
+				InputStream is = p.getValueAs(InputStream.class);
+				FormDataContentDisposition detail = p.getFormDataContentDisposition();
+				profile.setImageUrl(FileUtils.saveFile("images/user", FileUtils.getType(detail.getFileName()), is));
+			}
+		}
+
+		if(nickName != null) profile.setNickName(nickName);
+		if(birthday != null) profile.setBirthday(birthday);
+		if(gender != null) profile.setGender(Constants.GenderType.getEnum(gender));
+		if(slogan != null) profile.setSlogan(slogan);
+		if(nativePlace != null) profile.setNativePlace(nativePlace);
+		if(residence != null) profile.setResidence(residence);
+		if(tags != null) profile.setTags(tags);
+
+		this.userRepository.save(profile, false, String.valueOf(profileId));
+
+		profile = (UserProfileBean) userRepository.get(UserProfileBean.class, profileId, false);
+		return new ResponseDataVO<UserVO>(UserVO.transform(profile));
 	}
 }
