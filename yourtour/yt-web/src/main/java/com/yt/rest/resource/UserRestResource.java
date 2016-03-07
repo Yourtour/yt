@@ -182,7 +182,7 @@ public class UserRestResource extends RestResource {
 	@POST
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	@Path("/{id}/save")
-	public ResponseDataVO<UserVO> saveUserProfile(@PathParam("profileId") Long id,
+	public ResponseDataVO<UserVO> saveUserProfile(@PathParam("id") Long id,
 												  @FormDataParam("nickName") String nickName,
 												  @FormDataParam("birthday") Long birthday,
 												  @FormDataParam("slogan") String slogan,
@@ -191,7 +191,7 @@ public class UserRestResource extends RestResource {
 												  @FormDataParam("nativePlace") String nativePlace,
 												  @FormDataParam("tags") String tags,
 												  FormDataMultiPart form) throws Exception{
-		UserProfileBean profile = (UserProfileBean) userRepository.get(UserProfileBean.class, profileId, false);
+		UserProfileBean profile = (UserProfileBean) userRepository.get(UserProfileBean.class, id, false);
 		if(profile == null){
 			return new ResponseDataVO<UserVO>(StaticErrorEnum.USER_NOT_EXIST);
 		}
@@ -213,9 +213,9 @@ public class UserRestResource extends RestResource {
 		if(residence != null) profile.setResidence(residence);
 		if(tags != null) profile.setTags(tags);
 
-		this.userRepository.save(profile, false, String.valueOf(profileId));
+		this.userRepository.save(profile, false, String.valueOf(id));
 
-		profile = (UserProfileBean) userRepository.get(UserProfileBean.class, profileId, false);
+		profile = (UserProfileBean) userRepository.get(UserProfileBean.class, id, false);
 		return new ResponseDataVO<UserVO>(UserVO.transform(profile));
 	}
 }
