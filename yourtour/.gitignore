@@ -1,5 +1,5 @@
-.gradle
 .idea
+.gradle
 yt-android/**
 yt-dal/**
 yt-rsal/**
