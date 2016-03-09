@@ -106,6 +106,11 @@ public interface Constants {
 	 */
 	public static final String RELATION_TYPE_FAVORITE = "FAVORITE";
 
+	/**
+	 * 旅行车
+	 */
+	public static final String RELATION_TYPE_TRAVELCART = "FAVORITE";
+
 	public final static String RELATION_TYPE_PUBLISH = "PUBLISH";
 
 	public static enum ThemeType{
@@ -169,6 +174,13 @@ public interface Constants {
 		private ResType(String code, String name) {
 			this.code = code;
 			this.name = name;
+		}
+
+		public static ResType getEnum(String value) {
+			for(ResType v : values())
+				if(v.code.equalsIgnoreCase(value)) return v;
+
+			throw new IllegalArgumentException();
 		}
 	}
 

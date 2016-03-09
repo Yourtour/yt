@@ -1,6 +1,9 @@
 package com.yt.business.utils;
 
 import com.yt.business.bean.UserProfileBean;
+import com.yt.business.repository.neo4j.UserBeanRepository;
+import com.yt.business.repository.neo4j.UserTuple;
+import com.yt.neo4j.repository.CrudOperate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.InitializingBean;
@@ -10,8 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yt.business.CrudAllInOneOperate;
 import com.yt.business.bean.UserAccountBean;
-import com.yt.business.neo4j.repository.UserTuple;
-import com.yt.business.repository.UserRepository;
+import com.yt.business.service.IUserService;
 import com.yt.core.utils.MessageDigestUtils;
 
 public class AdminUserInitializeService implements InitializingBean {
@@ -20,11 +22,7 @@ public class AdminUserInitializeService implements InitializingBean {
 			.getLog(AdminUserInitializeService.class);
 
 	@Autowired
-	@Qualifier("crudAllInOneOperate")
-	private CrudAllInOneOperate crudOperate;
-	
-	@Autowired
-	private UserRepository userRepository;
+	private IUserService service;
 
 	// 密码进行签名的算法
 	private String algorithm = "SHA-1";
@@ -80,7 +78,7 @@ public class AdminUserInitializeService implements InitializingBean {
 	@Transactional
 	private void initializeAdminEmployee() throws Exception {
 		// 检测默认的admin账户是否存在
-		UserProfileBean admin = userRepository.getUserByUserName("admin");
+		UserProfileBean admin = service.getUserProfileInfo("admin");
 		if (admin != null) {
 			// admin账户已经存在，返回
 			return;
@@ -94,7 +92,7 @@ public class AdminUserInitializeService implements InitializingBean {
 		adminBean.setUserName("admin");
 		// 将明码的密码更换为摘要加密的密码
 		adminBean.setPwd(MessageDigestUtils.digest(this.algorithm, "admin"));
-		userRepository.save(adminBean, "admin");
+		service.saveUseAccount(adminBean);
 		if (LOG.isDebugEnabled()) {
 			LOG.debug(String
 					.format("Initialize admin employee successfully, default code = %s, password = %s.",

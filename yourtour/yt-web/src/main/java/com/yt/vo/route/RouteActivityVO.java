@@ -38,7 +38,7 @@ public class RouteActivityVO extends BaseVO {
 		vo.setDate(bean.getDate());
 		if (bean.getSchedule() != null) {
 			RouteScheduleVO scheduleVO = new RouteScheduleVO();
-			scheduleVO.setId(bean.getSchedule().getGraphId());
+			scheduleVO.setId(bean.getSchedule().getId());
 			scheduleVO.setDate(bean.getSchedule().getDate());
 			vo.setSchedule(scheduleVO);
 		}
@@ -54,7 +54,7 @@ public class RouteActivityVO extends BaseVO {
 				resourceVO = new RestaurantResourceVO();
 			}
 			if (resourceVO != null) {
-				resourceVO.setId(resourceBean.getGraphId());
+				resourceVO.setId(resourceBean.getId());
 				resourceVO.setCode(resourceBean.getCode());
 				resourceVO.setName(resourceBean.getName());
 				resourceVO.setImageUrl(resourceBean.getImageUrl());
@@ -101,7 +101,7 @@ public class RouteActivityVO extends BaseVO {
 
 		if (vo.getSchedule() != null) {
 			RouteScheduleBean schedule = new RouteScheduleBean();
-			schedule.setGraphId(vo.getSchedule().getId());
+			schedule.setId(vo.getSchedule().getId());
 			bean.setSchedule(schedule);
 		}
 		ResourceVO resourceVO = vo.getResource();
@@ -115,7 +115,7 @@ public class RouteActivityVO extends BaseVO {
 				resourceBean = new RestaurantResourceBean();
 			}
 			if (resourceBean != null) {
-				resourceBean.setGraphId(resourceVO.getId());
+				resourceBean.setId(resourceVO.getId());
 				bean.setResource(resourceBean);
 			}
 		}

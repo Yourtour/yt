@@ -18,7 +18,7 @@ public class LineVO implements Serializable {
 	}
 	
 	public String getRowKey(){
-		return String.valueOf(lineBean.getGraphId());
+		return String.valueOf(lineBean.getId());
 	}
 	
 	public String getImageUrl(){

@@ -1,6 +1,7 @@
 package com.yt.response;
 
-import com.yt.error.StaticErrorEnum;
+
+import com.yt.core.common.StaticErrorEnum;
 
 public class ResponsePagingDataVO<T> extends ResponseDataVO<T> {
 	private long totalCount = 0;

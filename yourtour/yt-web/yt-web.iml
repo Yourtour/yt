@@ -376,5 +376,6 @@
     <orderEntry type="library" exported="" name="Gradle: io.netty:netty:3.7.0.Final" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.apache.hadoop:hadoop-auth:2.6.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.aspectj:aspectjweaver:1.8.6" level="project" />
+    <orderEntry type="module" module-name="yt-core" />
   </component>
 </module>

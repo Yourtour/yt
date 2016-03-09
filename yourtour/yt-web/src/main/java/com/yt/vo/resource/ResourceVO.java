@@ -103,7 +103,7 @@ public class ResourceVO extends BaseVO {
         PlaceBean place = bean.getPlace();
         if (place != null) {
             vo.setPlace(place.getName());
-            vo.setPlaceId(place.getGraphId());
+            vo.setPlaceId(place.getId());
         } else {
             vo.setPlace("");
             vo.setPlaceId(null);
@@ -155,7 +155,7 @@ public class ResourceVO extends BaseVO {
 
         // 从VO中取出目的地的ID，并设置到PlaceBean中，便于后续建立关联关系
         PlaceBean place = new PlaceBean();
-        place.setGraphId(vo.getPlaceId());
+        place.setId(vo.getPlaceId());
         bean.setPlace(place);
 
         return bean;

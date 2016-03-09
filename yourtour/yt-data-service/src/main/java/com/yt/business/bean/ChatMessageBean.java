@@ -55,8 +55,8 @@ public class ChatMessageBean extends BaseBeanImpl {
 		super();
 	}
 
-	public ChatMessageBean(String userId) {
-		super(userId);
+	public ChatMessageBean(Long id) {
+		super(id);
 	}
 
 	public boolean isNotice() {

@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.yt.business.bean.*;
+import com.yt.business.common.Constants;
 import com.yt.business.repository.neo4j.ExpertTuple;
 import com.yt.business.repository.neo4j.RouteTuple;
 import com.yt.business.service.IPlaceService;
 import com.yt.core.utils.CollectionUtils;
+import com.yt.neo4j.repository.CrudOperate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,22 +18,16 @@ import com.yt.business.repository.neo4j.PlaceBeanRepository;
 import com.yt.business.repository.neo4j.PlaceTuple;
 
 @Component
-public class PlaceServiceImpl extends CrudAllInOneOperateImpl implements
-		IPlaceService {
+public class PlaceServiceImpl extends BaseServiceImpl implements IPlaceService {
 
 	@Autowired
 	private PlaceBeanRepository repository;
 
+	@Autowired
+	private CrudOperate<PlaceBean> placeCrudOperate;
+
 	public PlaceServiceImpl() {
 		super();
-	}
-
-	@Override
-	public PlaceBean getPlace4Home(Long placeId) throws Exception{
-		PlaceBean place = (PlaceBean) this.get(PlaceBean.class, placeId, false);
-
-		place.setResources(this.getSceneResources(placeId, 0l, 20));
-		return place;
 	}
 
 	@Override
@@ -63,40 +59,12 @@ public class PlaceServiceImpl extends CrudAllInOneOperateImpl implements
 	}
 
 	@Override
-	public List<SceneResourceBean> getSceneResources(Long placeId, Long nextCursor, int limit) throws Exception {
-		return this.repository.getSceneResoruces(placeId, nextCursor, limit);
-	}
-
-	/*
-             * (non-Javadoc)
-             *
-             * @see com.yt.business.repository.PlaceRespository#getAllRootPlaces()
-             */
-	@Override
-	public List<PlaceBean> getAllRootPlaces() throws Exception {
-		return repository.getAllRootPlaces();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.yt.business.repository.PlaceRespository#getAllSubPlaces(java.lang
-	 * .Long)
-	 */
-	@Override
-	public List<PlaceBean> getAllSubPlaces(Long graphId) throws Exception {
-		return repository.getAllSubPlaces(graphId);
-	}
-
-	@Override
-	public void save(PlaceBean place, String operator) throws Exception {
+	public void savePlace(PlaceBean place, Long operator) throws Exception {
 		// 由于目的地是一棵树，保存操作可能涉及到其他节点的rowKey的变更，因此在原有方法是进行扩展。
 		boolean codeChanged = false;
 		PlaceBean orient = null;
-		if (place.getGraphId() != null) {
-			orient = super.template
-					.findOne(place.getGraphId(), PlaceBean.class);
+		if (place.getId() != null) {
+			orient = placeCrudOperate.get(place.getId());
 		}
 		if (orient != null && place.getCode().equals(orient.getCode())) {
 			// 未修改了代码
@@ -107,12 +75,11 @@ public class PlaceServiceImpl extends CrudAllInOneOperateImpl implements
 		}
 
 		PlaceBean parent = place.getParent();
-		if (parent != null && parent.getGraphId() != null) {
-			parent = (PlaceBean) super.template.findOne(parent.getGraphId(),
-					PlaceBean.class);
+		if (parent != null && parent.getId() != null) {
+			parent = placeCrudOperate.get(parent.getId());
 			if (parent.isLeaf()) {
 				parent.setLeaf(false);
-				super.save(parent, operator);
+				placeCrudOperate.save(parent);
 			}
 		}
 		// 没有父节点，则当前节点就是根节点
@@ -124,50 +91,24 @@ public class PlaceServiceImpl extends CrudAllInOneOperateImpl implements
 			rowkey = String.format("%s-%s", parent.getRowKey(), rowkey);
 		}
 		place.setRowKey(rowkey);
-		super.save(place, operator);
+		placeCrudOperate.save(place);
 		if (codeChanged) {
 			// 由于代码修改过，因此相关子节点的rowkey也需要同步修改
 			iterateUpdateRowkey(place, operator);
 		}
 	}
 
-	private void iterateUpdateRowkey(PlaceBean place, String operator)
+	private void iterateUpdateRowkey(PlaceBean place, Long operator)
 			throws Exception {
 		String rowkey = place.getRowKey();
-		List<PlaceBean> children = repository.getAllSubPlaces(place
-				.getGraphId());
+		List<PlaceBean> children = repository.getAllSubPlaces(place.getId());
 		for (PlaceBean child : children) {
 			child.setRowKey(String.format("%s-%s", rowkey, child.getCode()));
-			super.save(child, operator);
+			placeCrudOperate.save(child);
 			iterateUpdateRowkey(child, operator);
 		}
 	}
 
-	@Override
-	public List<PlaceBean> getPlaces(Long parentId) {
-		List<PlaceTuple> tuples = this.repository.getPlaces(parentId);
-
-		List<PlaceBean> places = new ArrayList<PlaceBean>();
-		PlaceBean parent = null, child = null;
-		for (PlaceTuple tuple : tuples) {
-			parent = tuple.getParent();
-			child = tuple.getChild();
-
-			if (places.contains(parent)) {
-				for (PlaceBean p : places) {
-					if (p.equals(parent)) {
-						p.addSub(child);
-					}
-				}
-			} else {
-				parent.addSub(child);
-				places.add(parent);
-			}
-		}
-
-		return places;
-	}
-	
 	@Override
 	public List<PlaceBean> getPlaces(String parentCode) {
 		List<PlaceBean> places = new ArrayList<PlaceBean>();
@@ -203,12 +144,22 @@ public class PlaceServiceImpl extends CrudAllInOneOperateImpl implements
 	}
 
 	@Override
-	public List<PlaceBean> getRouteRecommendPlaces(Long userId) {
-		return this.repository.getRecommendPlaces(userId);
+	public List<PlaceBean> getRelatedPlaces(Long placeId) {
+		return this.repository.getRelatedPlaces(placeId);
 	}
 
 	@Override
-	public List<PlaceBean> getRelatedPlaces(Long placeId) {
-		return this.repository.getRelatedPlaces(placeId);
+	public void deletePlace(Long id, Long userId) throws Exception {
+
+	}
+
+	@Override
+	public PlaceBean getPlace(Long id) throws Exception {
+		return null;
+	}
+
+	@Override
+	public List<PlaceBean> getAllRootPlaces() throws Exception {
+		return null;
 	}
 }

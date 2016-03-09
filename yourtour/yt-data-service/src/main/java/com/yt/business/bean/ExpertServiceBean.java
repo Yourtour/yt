@@ -42,8 +42,8 @@ public class ExpertServiceBean extends BaseBeanImpl {
 		super();
 	}
 
-	public ExpertServiceBean(String userId) {
-		super(userId);
+	public ExpertServiceBean(Long id) {
+		super(id);
 	}
 
 	public String getTitle() {

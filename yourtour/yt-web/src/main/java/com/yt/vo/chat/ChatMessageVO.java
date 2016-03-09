@@ -17,7 +17,7 @@ public class ChatMessageVO implements Serializable {
 	}
 
 	public Long getId() {
-		return bean.getGraphId();
+		return bean.getId();
 	}
 
 	public boolean isNotice() {

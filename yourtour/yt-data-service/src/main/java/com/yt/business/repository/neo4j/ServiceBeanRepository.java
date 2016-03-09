@@ -10,14 +10,6 @@ import java.util.List;
 public interface ServiceBeanRepository extends GraphRepository<RouteServiceBean> {
     /**
      *
-     * @param placeIds
-     * @return
-     */
-    @Query("START places=node({0}) MATCH places<-[:AT]-user-[:HAS]->(service:ExpertServiceBean) RETURN service, user")
-    public List<ExpertServiceTuple> getPlaceServices(Long[] placeIds,Long nextCursor, int limit);
-
-    /**
-     *
      * @param expertId
      * @return
      */
@@ -31,6 +23,4 @@ public interface ServiceBeanRepository extends GraphRepository<RouteServiceBean>
      */
     @Query("START route=node({0}) MATCH route-[:HAS]->(routeService:RouteServiceBean)-[]-(expertService:ExpertServiceBean)<-[:HAS]-(user:UserProfileBean) RETURN routeService, expertService, user")
     public List<RouteServiceTuple> getRouteServices(Long routeId);
-
-
 }

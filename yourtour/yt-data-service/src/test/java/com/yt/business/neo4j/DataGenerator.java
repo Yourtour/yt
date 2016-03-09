@@ -3,8 +3,6 @@ package com.yt.business.neo4j;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
-import com.yt.business.bean.*;
-import com.yt.business.repository.RouteRepository;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

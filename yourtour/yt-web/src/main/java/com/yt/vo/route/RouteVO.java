@@ -130,7 +130,7 @@ public class RouteVO extends BaseVO {
 
 		if (StringUtils.isNotNull(vo.getFromPlace())) {
 			PlaceBean placeBean = new PlaceBean();
-			placeBean.setGraphId(Long.valueOf(vo.getFromPlace().split(",")[0]));
+			placeBean.setId(Long.valueOf(vo.getFromPlace().split(",")[0]));
 			bean.setFromPlaceBean(placeBean);
 		}
 
@@ -139,7 +139,7 @@ public class RouteVO extends BaseVO {
 		String[] places = vo.getToPlaces().split("[|]");
 		for(String place : places){
 			PlaceBean destination = new PlaceBean();
-			destination.setGraphId(Long.valueOf(place.split(",")[0]));
+			destination.setId(Long.valueOf(place.split(",")[0]));
 			destinations.add(destination);
 		}
 		bean.setToPlaceBeans(new ArrayList<>(destinations));

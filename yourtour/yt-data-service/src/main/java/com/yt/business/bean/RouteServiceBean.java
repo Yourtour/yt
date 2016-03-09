@@ -33,8 +33,8 @@ public class RouteServiceBean extends BaseBeanImpl {
 		super();
 	}
 
-	public RouteServiceBean(String userId) {
-		super(userId);
+	public RouteServiceBean(Long serviceId) {
+		super(serviceId);
 	}
 
 	public RouteMainBean getRoute() {

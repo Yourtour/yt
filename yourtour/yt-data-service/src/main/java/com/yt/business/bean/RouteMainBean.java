@@ -74,6 +74,11 @@ public class RouteMainBean extends BusinessBeanImpl {
 		super();
 	}
 
+	public RouteMainBean(Long id) {
+		super(id);
+	}
+
+
 	public String getName() {
 		return name;
 	}

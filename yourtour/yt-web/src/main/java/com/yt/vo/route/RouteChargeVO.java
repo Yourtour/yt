@@ -23,7 +23,7 @@ public class RouteChargeVO extends BaseVO {
 		}
 
 		RouteChargeVO vo = new RouteChargeVO();
-		vo.setId(bean.getGraphId());
+		vo.setId(bean.getId());
 		vo.setName(bean.getName());
 		vo.setItem(bean.getItem());
 		vo.setAmount(bean.getAmount());
@@ -36,7 +36,7 @@ public class RouteChargeVO extends BaseVO {
 
 		UserProfileBean user = bean.getOwner();
 		if(user != null) {
-			vo.setUserId(user.getGraphId());
+			vo.setUserId(user.getId());
 			vo.setNickName(user.getNickName());
 			vo.setUserImageUrl(user.getImageUrl());
 		}

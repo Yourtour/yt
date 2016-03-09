@@ -34,13 +34,13 @@ public abstract class BaseBeanImpl implements Serializable, BaseBean,
 	private String rowKey;
 
 	@HbaseColumn(name = "cuid")
-	private String createdUserId = "";
+	private Long createdUserId = 0l;
 
 	@HbaseColumn(name = "ct")
 	private long createdTime;
 
 	@HbaseColumn(name = "uuid")
-	private String updatedUserId = "";
+	private Long updatedUserId = 0l;
 
 	@HbaseColumn(name = "ut")
 	private long updatedTime;
@@ -78,7 +78,7 @@ public abstract class BaseBeanImpl implements Serializable, BaseBean,
 	 * @see com.yt.hbase.BaseBean#getCreatedUserId()
 	 */
 	@Override
-	public String getCreatedUserId() {
+	public Long getCreatedUserId() {
 		return createdUserId;
 	}
 
@@ -88,7 +88,7 @@ public abstract class BaseBeanImpl implements Serializable, BaseBean,
 	 * @see com.yt.hbase.BaseBean#setCreatedUserId(java.lang.String)
 	 */
 	@Override
-	public void setCreatedUserId(String createdUserId) {
+	public void setCreatedUserId(Long createdUserId) {
 		this.createdUserId = createdUserId;
 	}
 
@@ -118,7 +118,7 @@ public abstract class BaseBeanImpl implements Serializable, BaseBean,
 	 * @see com.yt.hbase.BaseBean#getUpdatedUserId()
 	 */
 	@Override
-	public String getUpdatedUserId() {
+	public Long getUpdatedUserId() {
 		return updatedUserId;
 	}
 
@@ -128,7 +128,7 @@ public abstract class BaseBeanImpl implements Serializable, BaseBean,
 	 * @see com.yt.hbase.BaseBean#setUpdatedUserId(java.lang.String)
 	 */
 	@Override
-	public void setUpdatedUserId(String updatedUserId) {
+	public void setUpdatedUserId(Long updatedUserId) {
 		this.updatedUserId = updatedUserId;
 	}
 

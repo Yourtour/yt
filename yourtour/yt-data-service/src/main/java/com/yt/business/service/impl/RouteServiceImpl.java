@@ -1,26 +1,24 @@
 package com.yt.business.service.impl;
 
-import java.util.*;
-
 import com.yt.business.bean.*;
-import com.yt.business.neo4j.repository.*;
-import com.yt.business.repository.neo4j.*;
+import com.yt.business.repository.neo4j.RouteActivityRepository;
+import com.yt.business.repository.neo4j.RouteBeanRepository;
+import com.yt.business.repository.neo4j.RouteBeanRepository.OwnerRouteTuple;
+import com.yt.business.repository.neo4j.RouteTuple;
 import com.yt.business.service.IRouteService;
 import com.yt.core.utils.StringUtils;
+import com.yt.neo4j.repository.CrudOperate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.neo4j.graphdb.Direction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.yt.business.CrudAllInOneOperateImpl;
-import com.yt.business.common.Constants;
-import com.yt.business.common.Constants.GroupRole;
-import com.yt.business.repository.neo4j.RouteBeanRepository.OwnerRouteTuple;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
 
 @Component
-public class RouteServiceImpl extends CrudAllInOneOperateImpl implements
-		IRouteService {
+public class RouteServiceImpl extends BaseServiceImpl implements IRouteService {
 	private static final Log LOG = LogFactory.getLog(RouteServiceImpl.class);
 
 	@Autowired
@@ -30,36 +28,55 @@ public class RouteServiceImpl extends CrudAllInOneOperateImpl implements
 	private RouteActivityRepository activityRepository;
 
 	@Autowired
-	private ResourceActivityItemRepository resourceActivityItemRepository;
+	private CrudOperate<RouteMainBean> routeCrudOperate;
 
 	@Autowired
-	private ExpertBeanRepository expertBeanRepository;
+	private CrudOperate<RouteActivityBean> activityCrudOperate;
+
+	@Autowired
+	private CrudOperate<RouteProvisionBean> provisionCrudOperate;
+
+	@Autowired
+	private CrudOperate<RouteScheduleBean> scheduleCrudOperate;
+
+	@Autowired
+	private CrudOperate<ResourceActivityItemBean> activityItemCrudOperate;
+
+
 
 	public RouteServiceImpl() {
 		super();
 	}
 
 	@Override
-	public RouteMainBean getCompleteRoute(Long routeId) throws Exception {
-		RouteMainBean route = (RouteMainBean) super.get(RouteMainBean.class,
-				routeId);
+	public void deleteRoute(Long routeId, Long userId) throws Exception {
+		RouteMainBean route = routeCrudOperate.get(routeId);
+
+		routeCrudOperate.delete(route);
+	}
+
+	@Override
+	public void saveRoute(RouteMainBean route, Long userId) throws Exception {
+		routeCrudOperate.save(route);
+	}
+
+	@Override
+	public RouteMainBean getRoute(Long routeId) throws Exception {
+		RouteMainBean route = routeCrudOperate.get(routeId);
 		if (route != null) {
 			List<RouteScheduleBean> schedules = route.getSchedules();
 			if (schedules != null && schedules.size() > 0) {
 				List<RouteScheduleBean> newSchedules = new Vector<RouteScheduleBean>(
 						schedules.size());
 				for (RouteScheduleBean schedule : schedules) {
-					RouteScheduleBean newSchedule = (RouteScheduleBean) super
-							.get(RouteScheduleBean.class, schedule.getGraphId());
+					RouteScheduleBean newSchedule = scheduleCrudOperate.get(schedule.getId());
 					List<RouteActivityBean> activities = newSchedule
 							.getActivities();
 					if (activities != null && activities.size() > 0) {
 						List<RouteActivityBean> newActivities = new Vector<RouteActivityBean>(
 								activities.size());
 						for (RouteActivityBean activity : activities) {
-							RouteActivityBean newActivity = (RouteActivityBean) super
-									.get(RouteActivityBean.class,
-											activity.getGraphId());
+							RouteActivityBean newActivity = activityCrudOperate.get(activity.getId());
 							newActivities.add(newActivity);
 						}
 						newSchedule.getActivities().clear();
@@ -73,32 +90,8 @@ public class RouteServiceImpl extends CrudAllInOneOperateImpl implements
 		}
 		return route;
 	}
-
 	@Override
-	public RouteActivityBean getCompleteActivity(Long activityId) throws Exception {
-		RouteActivityBean activity = (RouteActivityBean) super.get(RouteActivityBean.class,activityId);
-
-		if(activity != null){
-			List<RouteActivityItemBean> items = activity.getItems();
-			if(items != null){
-				for(RouteActivityItemBean item : items){
-					if(item.getResourceActivityItemId() == null) continue;
-					item.setResourceActivityItem((ResourceActivityItemBean) this.get(ResourceActivityItemBean.class, item.getResourceActivityItemId(), false));
-				}
-			}
-
-		}
-
-		return activity;
-	}
-
-	@Override
-	public List<UserProfileBean> getRouteMember(Long routeId) throws Exception {
-		return repository.getRouteMember(routeId);
-	}
-
-	@Override
-	public List<RouteMainBean> getRoutesByOwner(Long userId) throws Exception {
+	public List<RouteMainBean> getRoutes(Long userId) throws Exception {
 		List<OwnerRouteTuple> routes = repository.getOwnedRoutes(userId);
 		List<RouteMainBean> list = new Vector<RouteMainBean>(routes.size());
 		for (OwnerRouteTuple bean : routes) {
@@ -120,111 +113,103 @@ public class RouteServiceImpl extends CrudAllInOneOperateImpl implements
 	}
 
 	@Override
-	public void saveScheduleActivity(Long routeId, RouteActivityBean activity, String operator) throws Exception {
-		RouteMainBean route = (RouteMainBean)this.get(RouteMainBean.class, routeId);
+	public void saveSchedule(RouteScheduleBean schedule, Long uid) throws Exception {
+
+	}
+
+	@Override
+	public void deleteSchedule(Long routeId, Long scheduleId, Long uid) throws Exception {
+
+	}
+
+	@Override
+	public RouteActivityBean getScheduleActivity(Long activityId) throws Exception {
+		RouteActivityBean activity = activityCrudOperate.get(activityId);
+
+		if(activity != null){
+			List<RouteActivityItemBean> items = activity.getItems();
+			if(items != null){
+				for(RouteActivityItemBean item : items){
+					if(item.getResourceActivityItemId() == null) continue;
+					item.setResourceActivityItem(activityItemCrudOperate.get(item.getResourceActivityItemId(), false));
+				}
+			}
+		}
+
+		return activity;
+	}
+
+	@Override
+	public void saveScheduleActivity(Long routeId, RouteActivityBean activity, Long userId) throws Exception {
+		RouteMainBean route = routeCrudOperate.get(routeId);
 		if(route == null){
 			throw new Exception("No Route found for id=" + routeId);
 		}
 
-		super.save(route, false, operator);
-
-		super.save(activity, operator);
+		activityCrudOperate.save(activity);
 	}
 
 	@Override
-	public void saveRouteProvision(Long routeId, RouteProvisionBean provision, String operator) throws Exception {
-		RouteMainBean route = (RouteMainBean)this.get(RouteMainBean.class, routeId);
+	public void deleteScheduleActivity(Long routeId, Long activityId, Long uid) throws Exception {
+
+	}
+
+	@Override
+	public void deleteScheduleActivityItem(Long routeId, Long activityId, Long itemId, Long userId) throws Exception {
+
+	}
+
+
+	@Override
+	public void saveRouteProvision(Long routeId, RouteProvisionBean provision, Long userId) throws Exception {
+		RouteMainBean route = routeCrudOperate.get(routeId);
 		if(route == null){
 			throw new Exception("No Route found for id=" + routeId);
 		}
 
-		super.save(route, false, operator);
+		provisionCrudOperate.save(provision);
+	}
+	@Override
+	public void deleteRouteProvision(Long routeId, Long provisionId, Long userId) throws Exception {
 
-		super.save(provision, operator);
 	}
 
 	@Override
-	public void saveRouteMainAndSchedules(RouteMainBean route, String operator)
+	public void saveRouteMainAndSchedules(RouteMainBean route, Long userId)
 			throws Exception {
 		// 如果存在日程，则先保存日程信息
 		boolean isNew = route.isNew();
 
 		if(! isNew) {
-			Long routeId = route.getGraphId();
+			Long routeId = route.getId();
 			List<RouteScheduleBean> schedules = repository.getRouteSchedules(routeId);
 			if(schedules != null){
 				for(RouteScheduleBean schedule : schedules){
-					super.delete(schedule);
+					scheduleCrudOperate.delete(schedule);
 				}
 			}
 		}
 
 		for (RouteScheduleBean scheduleBean : route.getSchedules()) {
-			super.save(scheduleBean, operator);
+			scheduleCrudOperate.save(scheduleBean);
 			if (LOG.isDebugEnabled()) {
 				LOG.debug(String.format("Save RouteScheduleBean[%d] success.",
-						scheduleBean.getGraphId()));
+						scheduleBean.getId()));
 			}
 		}
 
-		super.save(route, operator);
+		routeCrudOperate.save(route);
 		if (LOG.isDebugEnabled()) {
 			LOG.debug(String.format("Save RouteMainBean[%d] success.",
-					route.getGraphId()));
+					route.getId()));
 		}
-		/*for (RouteScheduleBean scheduleBean : route.getSchedules()) {
-			super.save(scheduleBean, operator);
-			if (LOG.isDebugEnabled()) {
-				LOG.debug(String.format("Save RouteScheduleBean[%d] success.",
-						scheduleBean.getGraphId()));
-			}
-		}*/
 	}
 
 	@Override
-	public void saveRoutePersonRelation(RouteMainBean route,
-			UserAccountBean user, GroupRole groupRole) throws Exception {
-		Map<String, Object> properties = new HashMap<String, Object>();
-		properties.put("groupRole", groupRole.code);
-		super.createRelation(route, user, Constants.RELATION_TYPE_HAS,
-				Direction.OUTGOING, properties);
-	}
-
-	@Override
-	public RouteActivityBean getRouteActivity(Long activityId) throws Exception {
-		return (RouteActivityBean) this.get(RouteActivityBean.class, activityId);
-	}
-
-	@Override
-	public List<RouteMainBean> getRecommendRoutes(Long[] placeIds) throws Exception {
-		List<RouteMainBean> routes = new ArrayList<>();
-
-		List<RouteTuple> tuples = this.repository.getRecommendRoutes4Places(placeIds);
-		if(tuples != null){
-			for(RouteTuple tuple : tuples){
-				routes.add(tuple.getRoute());
-			}
-		}
-
-		return routes;
-	}
-
-	@Override
-	public RouteMainBean getRecommendRoute(Long routeId) throws Exception {
-		RouteTuple tuple = this.repository.getRecommendRoute(routeId);
-		if(tuple != null){
-			return tuple.getRoute();
-		}
-
-		return null;
-	}
-
-
-	@Override
-	public RouteMainBean cloneRoute(Long sourceId, RouteMainBean target, String userId) throws Exception {
+	public RouteMainBean cloneRoute(Long sourceId, RouteMainBean target, Long userId) throws Exception {
 		this.saveRouteMainAndSchedules(target, userId);
 
-		RouteMainBean source = this.getCompleteRoute(sourceId);
+		RouteMainBean source = this.getRoute(sourceId);
 		if(source == null){
 			throw new Exception("No route found for id=" + sourceId);
 		}
@@ -238,7 +223,7 @@ public class RouteServiceImpl extends CrudAllInOneOperateImpl implements
 				tProvision.setCreatedUserId(userId);
 				tProvision.setRouteMain(target);
 
-				this.save(tProvision, userId);
+				provisionCrudOperate.save(tProvision);
 				tProvisions.add(tProvision);
 			}
 
@@ -259,7 +244,7 @@ public class RouteServiceImpl extends CrudAllInOneOperateImpl implements
 					tActivity.setCreatedUserId(userId);
 					tActivity.setSchedule(tSchedules.get(index));
 
-					this.save(tActivity, userId);
+					activityCrudOperate.save(tActivity);
 					tActivities.add(tActivity);
 				}
 
@@ -267,8 +252,18 @@ public class RouteServiceImpl extends CrudAllInOneOperateImpl implements
 			}
 		}
 
-		this.save(target, userId);
+		routeCrudOperate.save(target);
 
-		return this.getCompleteRoute(target.getGraphId());
+		return this.getRoute(target.getId());
+	}
+
+	@Override
+	public List<RouteMainBean> getRoutes(Long placeId, Long nextCursor, int limit) throws Exception {
+		return null;
+	}
+
+	@Override
+	public List<RouteMainBean> getRoutes(Long[] placeIds, int duration, Long nextCursor, int limit) throws Exception {
+		return null;
 	}
 }

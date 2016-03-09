@@ -1,15 +1,8 @@
 package com.yt.neo4j.repository;
 
-import com.yt.business.CrudAllInOneOperate;
-import com.yt.business.bean.ChatJoinHistoryBean;
-import com.yt.business.bean.ChatMessageBean;
-import com.yt.business.bean.ChatSessionBean;
-import com.yt.business.bean.UserProfileBean;
 import com.yt.neo4j.bean.Neo4jBaseBean;
-import com.yt.neo4j.repository.RelationshipCrudOperate;
 import org.neo4j.graphdb.Direction;
 
-import java.util.List;
 import java.util.Map;
 
 public interface RelationshipRepository<S extends Neo4jBaseBean, T extends Neo4jBaseBean> extends RelationshipCrudOperate<S,T> {

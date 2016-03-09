@@ -17,6 +17,14 @@ public interface IUserService {
     public UserProfileBean getUserProfileInfo(Long useId) throws Exception;
 
     /**
+     * 根据账号获取用户信息
+     * @param userName
+     * @return
+     * @throws Exception
+     */
+    public UserProfileBean getUserProfileInfo(String userName) throws Exception;
+
+    /**
      * 用户登录
      * @param userName
      * @param password

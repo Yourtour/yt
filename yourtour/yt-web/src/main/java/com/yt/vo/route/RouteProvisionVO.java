@@ -22,7 +22,7 @@ public class RouteProvisionVO extends BaseVO {
 		bean.setIndex(vo.getIndex());
 		
 		RouteMainBean route = new RouteMainBean();
-		route.setGraphId(vo.getRouteId());
+		route.setId(vo.getRouteId());
 		bean.setRouteMain(route);
 		
 		return bean;

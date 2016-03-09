@@ -28,7 +28,7 @@ import com.yt.neo4j.bean.Neo4jBaseBean;
  * @version 1.0
  * @since 1.0
  */
-public interface Neo4jBeanDescriptorCache {
+public interface Neo4jBeanDescriptorCache<T extends Neo4jBaseBean> {
 	/**
 	 * 设置并返回neo4j实体类的表描述对象，用于缓存。
 	 * 
@@ -37,7 +37,7 @@ public interface Neo4jBeanDescriptorCache {
 	 * @return neo4j表描述对象，如果设置不成功，则返回null。
 	 * @see #get(Class)
 	 */
-	public Neo4jBeanDescriptor put(Class<? extends Neo4jBaseBean> clazz);
+	public Neo4jBeanDescriptor put(Class<T> clazz);
 
 	/**
 	 * 获取指定neo4j实体类的表描述对象
@@ -47,7 +47,7 @@ public interface Neo4jBeanDescriptorCache {
 	 * @return neo4j表描述对象，如果不存在，则返回null。
 	 * @see #get(String)
 	 */
-	public Neo4jBeanDescriptor get(Class<? extends Neo4jBaseBean> clazz);
+	public Neo4jBeanDescriptor get(Class<T> clazz);
 
 	/**
 	 * 获取指定neo4j实体对象名的表描述对象

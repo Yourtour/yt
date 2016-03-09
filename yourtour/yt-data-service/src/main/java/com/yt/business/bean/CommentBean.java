@@ -2,6 +2,7 @@ package com.yt.business.bean;
 
 import com.yt.business.BaseBeanImpl;
 import com.yt.business.BusinessBeanImpl;
+import com.yt.business.CommentBaseBean;
 import com.yt.business.common.Constants;
 import com.yt.hbase.annotation.HbaseTable;
 import com.yt.neo4j.annotation.Neo4jRelationship;
@@ -13,6 +14,7 @@ import org.springframework.data.neo4j.annotation.NodeEntity;
 public class CommentBean extends BusinessBeanImpl {
 	private static final long serialVersionUID = -2639574489334772005L;
 
+	private Long    parentId = 0l;
 	private double 	score = 0d;
 	private double   healthScore = 0d;
 	private double   trafficScore = 0d;
@@ -25,10 +27,19 @@ public class CommentBean extends BusinessBeanImpl {
 
 	private int recommendedIndex = 0; //-1 不推荐 0：待改善 1：推荐
 
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_BELONG, type = UserProfileBean.class, direction = Direction.OUTGOING)
 	private transient UserProfileBean user;
 
+	private transient CommentBaseBean entity;
+
 	public CommentBean() {
+	}
+
+	public Long getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(Long parentId) {
+		this.parentId = parentId;
 	}
 
 	public double getScore() {
@@ -117,5 +128,13 @@ public class CommentBean extends BusinessBeanImpl {
 
 	public void setRecommendedIndex(int recommendedIndex) {
 		this.recommendedIndex = recommendedIndex;
+	}
+
+	public CommentBaseBean getEntity() {
+		return entity;
+	}
+
+	public void setEntity(CommentBaseBean entity) {
+		this.entity = entity;
 	}
 }

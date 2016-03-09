@@ -35,13 +35,13 @@ public class Neo4jBaseBeanImpl implements Serializable, Neo4jBaseBean,
 	private static final long serialVersionUID = -1255893864343425738L;
 
 	@GraphId
-	private Long graphid = null;
+	private Long id = null;
 
-	private String createdUserId = "";
+	private Long createdUserId = 0l;
 
 	private long createdTime;
 
-	private String updatedUserId = "";
+	private Long updatedUserId = 0l;
 
 	private long updatedTime;
 
@@ -58,8 +58,8 @@ public class Neo4jBaseBeanImpl implements Serializable, Neo4jBaseBean,
 	 * @see com.yt.neo4j.bean.Neo4jBaseBean#getGraphId()
 	 */
 	@Override
-	public Long getGraphId() {
-		return graphid;
+	public Long getId() {
+		return id;
 	}
 
 	/*
@@ -68,8 +68,8 @@ public class Neo4jBaseBeanImpl implements Serializable, Neo4jBaseBean,
 	 * @see com.yt.neo4j.bean.Neo4jBaseBean#setGraphId(java.lang.Long)
 	 */
 	@Override
-	public void setGraphId(Long id) {
-		this.graphid = id;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	/*
@@ -78,7 +78,7 @@ public class Neo4jBaseBeanImpl implements Serializable, Neo4jBaseBean,
 	 * @see com.yt.neo4j.bean.Neo4jBaseBean#getCreatedUserId()
 	 */
 	@Override
-	public String getCreatedUserId() {
+	public Long getCreatedUserId() {
 		return createdUserId;
 	}
 
@@ -88,7 +88,7 @@ public class Neo4jBaseBeanImpl implements Serializable, Neo4jBaseBean,
 	 * @see com.yt.neo4j.bean.Neo4jBaseBean#setCreatedUserId(java.lang.String)
 	 */
 	@Override
-	public void setCreatedUserId(String createdUserId) {
+	public void setCreatedUserId(Long createdUserId) {
 		this.createdUserId = createdUserId;
 	}
 
@@ -118,7 +118,7 @@ public class Neo4jBaseBeanImpl implements Serializable, Neo4jBaseBean,
 	 * @see com.yt.neo4j.bean.Neo4jBaseBean#getUpdatedUserId()
 	 */
 	@Override
-	public String getUpdatedUserId() {
+	public Long getUpdatedUserId() {
 		return updatedUserId;
 	}
 
@@ -128,7 +128,7 @@ public class Neo4jBaseBeanImpl implements Serializable, Neo4jBaseBean,
 	 * @see com.yt.neo4j.bean.Neo4jBaseBean#setUpdatedUserId(java.lang.String)
 	 */
 	@Override
-	public void setUpdatedUserId(String updatedUserId) {
+	public void setUpdatedUserId(Long updatedUserId) {
 		this.updatedUserId = updatedUserId;
 	}
 
@@ -162,8 +162,8 @@ public class Neo4jBaseBeanImpl implements Serializable, Neo4jBaseBean,
 		if (o == null) {
 			return 1;
 		}
-		Long src = this.getGraphId();
-		Long tar = o.getGraphId();
+		Long src = this.getId();
+		Long tar = o.getId();
 		if (src == null && tar == null) {
 			return 0;
 		} else if (src != null) {

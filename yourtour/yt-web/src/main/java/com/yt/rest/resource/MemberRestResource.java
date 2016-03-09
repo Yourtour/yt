@@ -1,177 +1,92 @@
 package com.yt.rest.resource;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-
+import com.yt.business.bean.RouteMemberBean;
+import com.yt.business.common.Constants;
+import com.yt.business.service.IRouteMemberService;
+import com.yt.response.ResponseDataVO;
+import com.yt.response.ResponseVO;
+import com.yt.utils.SessionUtils;
+import com.yt.vo.route.RouteMemberVO;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.neo4j.graphdb.Direction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.yt.business.bean.RouteMainBean;
-import com.yt.business.bean.UserProfileBean;
-import com.yt.business.common.Constants;
-import com.yt.business.repository.RouteRepository;
-import com.yt.error.StaticErrorEnum;
-import com.yt.response.ResponseDataVO;
-import com.yt.response.ResponseVO;
-import com.yt.vo.route.RouteMemberVO;
-import com.yt.vo.route.RouteSettingVO;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
-@Path("/app/route/{routeId}/members")
+@Path("/app/route/{routeId}/member")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class MemberRestResource extends RestResource {
 	private static final Log LOG = LogFactory.getLog(MemberRestResource.class);
 
 	@Autowired
-	private RouteRepository routeRepository;
+	private IRouteMemberService memberService;
 
 	/**
 	 * 获取行程伙伴
-	 * @param request
+	 * @param routeId
 	 * @return
+	 * @throws Exception
 	 */
 	@GET
 	@Path("/query")
-	public ResponseDataVO<List<RouteMemberVO>> getRouteMembers(@PathParam("routeId") String routeId, @Context HttpServletRequest request) {
-		try{
-			List<RouteMemberVO> members = new ArrayList<>();
-			
-			Long rid = Long.valueOf(routeId);
-			List<UserProfileBean> users = routeRepository.getRouteMember(rid);
-			if(users != null){
-				int index = 0;
-				for(UserProfileBean user : users){
-					RouteMemberVO vo = new RouteMemberVO(user);
-					if(index == 0){
-						vo.setRole(Constants.GroupRole.LEADER.code.toLowerCase());
-					}
-					
-					if(index == 1){
-						vo.setRole(Constants.GroupRole.EXPERT.code.toLowerCase());
-					}
-					
-					members.add(vo);
-					index++;
+	public ResponseDataVO<List<RouteMemberVO>> getRouteMembers(@PathParam("routeId") Long routeId) throws Exception{
+		List<RouteMemberVO> voes = new ArrayList<>();
+
+		List<RouteMemberBean> members = memberService.getMembers(routeId);
+		if(members != null){
+			int index = 0;
+			for(RouteMemberBean member : members){
+				RouteMemberVO vo = RouteMemberVO.transform(member);
+				if(index == 0){
+					vo.setRole(Constants.GroupRole.LEADER.code.toLowerCase());
 				}
+
+				if(index == 1){
+					vo.setRole(Constants.GroupRole.EXPERT.code.toLowerCase());
+				}
+
+				voes.add(vo);
+				index++;
 			}
-			return new ResponseDataVO<List<RouteMemberVO>>(members);
-		}catch(Exception exc){
-			LOG.error("", exc);
-			return new ResponseDataVO<List<RouteMemberVO>>(
-					StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
+		return new ResponseDataVO<List<RouteMemberVO>>(voes);
 	}
 
 	/**
 	 * 添加伙伴
-	 * @param request
+	 * @param routeId
 	 * @param member
 	 * @return
+	 * @throws Exception
 	 */
 	@POST
 	@Path("/save")
-	public ResponseVO addRouteMember(@Context HttpServletRequest request, RouteMemberVO member){
-		try{
-			long routeId = member.getRouteId();
-			RouteMainBean route = (RouteMainBean) routeRepository.get(RouteMainBean.class, routeId, false);
-			if(route == null){
-				return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
-			}
-			
-			long userId = member.getUserId();
-			UserProfileBean user = (UserProfileBean)routeRepository.get(UserProfileBean.class, userId, false);
-			if(user == null){
-				return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
-			}
-			
-			Map<String,Object> props = new HashMap<String, Object>();
-			props.put("role", member.getRole());
-			routeRepository.createRelation(route, user, Constants.RELATION_TYPE_PARTICIPATE, Direction.INCOMING,props);
-			
-			return new ResponseVO();
-		} catch (Exception ex) {
-			LOG.error("Exception raised when registering user account.", ex);
-			return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
-		}
+	public ResponseDataVO<RouteMemberVO> addRouteMember(@PathParam("routeId") Long routeId, RouteMemberVO member) throws Exception{
+		RouteMemberBean memberBean = RouteMemberVO.transform(member);
+
+		this.memberService.saveMember(memberBean, SessionUtils.getCurrentLoginUser());
+
+		return new ResponseDataVO<RouteMemberVO>(RouteMemberVO.transform(memberBean));
 	}
-	
 
 	/**
-	 * 删除伙伴
-	 * @param request
+	 *
+	 * @param rid
+	 * @param uid
 	 * @return
+	 * @throws Exception
 	 */
 	@GET
-	@Path("/{userId}/delete")
-	public ResponseVO deleteRouteMember(@Context HttpServletRequest request, @PathParam("userId") String userId, @PathParam("routeId") String routeId){
-		try{
-			RouteMainBean route = (RouteMainBean) routeRepository.get(RouteMainBean.class, Long.valueOf(routeId), false);
-			if(route == null){
-				return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
-			}
-			
-			UserProfileBean user = (UserProfileBean)routeRepository.get(UserProfileBean.class, Long.valueOf(userId), false);
-			if(user == null){
-				return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
-			}
-			
-			routeRepository.deleteRelation(route, user, Constants.RELATION_TYPE_PARTICIPATE);
-			
-			return new ResponseVO();
-		} catch (Exception ex) {
-			LOG.error("Exception raised when registering user account.", ex);
-			return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
-		}
-	}
-	
-	/**
-	 * 添加伙伴
-	 * @param request
-	 * @param setting
-	 * @return
-	 */
-	@POST
-	@Path("/setting/save")
-	public ResponseVO saveRouteSetting(@Context HttpServletRequest request, RouteSettingVO setting){
-		try{
-			long routeId = setting.getRouteId();
-			RouteMainBean route = (RouteMainBean) routeRepository.get(RouteMainBean.class, routeId, false);
-			if(route == null){
-				return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
-			}
-			
-			long userId = setting.getUserId();
-			UserProfileBean user = (UserProfileBean)routeRepository.get(UserProfileBean.class, userId, false);
-			if(user == null){
-				return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
-			}	
-			
-			Map<String,Object> props = routeRepository.getRelation(user, route, Constants.RELATION_TYPE_PARTICIPATE);
-			if(props == null) props = new HashMap<>();
-			
-			props.put(setting.getAttr(), setting.getAttrValue());
-			routeRepository.createRelation(route, user, Constants.RELATION_TYPE_HAS, Direction.OUTGOING,props);
-			
-			return new ResponseVO();
-		} catch (Exception ex) {
-			LOG.error("Exception raised when registering user account.", ex);
-			return new ResponseVO(StaticErrorEnum.FETCH_DB_DATA_FAIL);
-		}
+	@Path("/{uid}/delete")
+	public ResponseVO deleteRouteMember(@PathParam("routeId") Long rid, @PathParam("uid") Long uid) throws Exception{
+		this.memberService.deleteMember(rid, uid, SessionUtils.getCurrentLoginUser());
+
+		return new ResponseVO();
 	}
 }

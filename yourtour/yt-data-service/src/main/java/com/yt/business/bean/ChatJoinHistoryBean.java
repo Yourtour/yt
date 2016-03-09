@@ -49,8 +49,8 @@ public class ChatJoinHistoryBean extends BaseBeanImpl {
 		super();
 	}
 
-	public ChatJoinHistoryBean(String userId) {
-		super(userId);
+	public ChatJoinHistoryBean(Long id) {
+		super(id);
 	}
 
 	public UserProfileBean getUserProfile() {

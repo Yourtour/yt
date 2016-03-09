@@ -5,15 +5,29 @@ import java.util.List;
 import com.yt.business.CrudAllInOneOperate;
 import com.yt.business.bean.RouteMemberBean;
 
-public interface IRouteMemberService extends CrudAllInOneOperate {
+public interface IRouteMemberService {
 	/**
-	 * /** 根据指定的用户，返回该用户拥有的行程
-	 * 
+	 * 添加组成员
+	 * @param member
 	 * @param userId
-	 *            用户Id
-	 * @return 指定用户拥有的行程列表
 	 * @throws Exception
-	 *             获取数据过程中发生的异常
 	 */
-	public List<RouteMemberBean> getRouteMembers(Long routeId) throws Exception;
+	public void saveMember(RouteMemberBean member, Long userId) throws Exception;
+
+	/**
+	 * 删除组成员
+	 * @param routeId
+	 * @param muid
+	 * @param userId
+	 * @throws Exception
+	 */
+	public void deleteMember(Long routeId, Long muid, Long userId) throws Exception;
+
+	/**
+	 * 获取行程成员
+	 * @param routeId
+	 * @return
+	 * @throws Exception
+	 */
+	public List<RouteMemberBean> getMembers(Long routeId) throws Exception;
 }

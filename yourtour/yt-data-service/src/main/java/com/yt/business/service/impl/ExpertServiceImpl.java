@@ -9,26 +9,37 @@ import com.yt.business.service.ICommentService;
 import com.yt.business.service.IExpertService;
 import com.yt.core.utils.CollectionUtils;
 import com.yt.core.utils.StringUtils;
+import com.yt.neo4j.repository.CrudOperate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
-public class ExpertServiceImpl extends CrudAllInOneOperateImpl implements	IExpertService {
+@Service
+public class ExpertServiceImpl extends BaseServiceImpl implements IExpertService {
 	private static final Log LOG = LogFactory.getLog(ExpertServiceImpl.class);
+
+	@Autowired
+	private CrudOperate<ExpertApplicationBean> applicationCrudOperate;
+
+	@Autowired
+	private CrudOperate<ExpertApprovementBean> approveCrudOperate;
+
+	@Autowired
+	private CrudOperate<ExpertBean> expertCrudOperate;
+
+	@Autowired
+	private CrudOperate<ExpertServiceBean> serviceCrudOperate;
 
 	@Autowired
 	private ExpertBeanRepository expertBeanRepository;
 
 	@Autowired
 	private RouteBeanRepository routeBeanRepository;
-
-	@Autowired
-	private ICommentService ICommentService;
 
 	public ExpertServiceImpl() {
 		super();
@@ -73,11 +84,6 @@ public class ExpertServiceImpl extends CrudAllInOneOperateImpl implements	IExper
 	}
 
 	@Override
-	public List<ExpertServiceBean> getServices(Long expertId, Long nextCursor, int limit) throws Exception {
-		return expertBeanRepository.getServices(expertId);
-	}
-
-	@Override
 	public List<RouteMainBean> getRecommendRoutes(Long uid, Long nextCursor, int limit) throws Exception {
 		return this.routeBeanRepository.getRoutesRecommendedByExpert(uid, nextCursor, limit);
 	}
@@ -88,11 +94,8 @@ public class ExpertServiceImpl extends CrudAllInOneOperateImpl implements	IExper
 	}
 
 	@Override
-	public void saveApplication(ExpertApplicationBean application) throws Exception {
-		ExpertBean expert = application.getExpert();
-		super.save(expert);
-
-		super.save(application);
+	public void saveApplication(ExpertApplicationBean application, Long uid) throws Exception {
+		this.applicationCrudOperate.save(application);
 	}
 
 	@Override
@@ -101,11 +104,20 @@ public class ExpertServiceImpl extends CrudAllInOneOperateImpl implements	IExper
 	}
 
 	@Override
-	public void saveApprovement(ExpertApprovementBean approvement) throws Exception {
-		super.save(approvement);
+	public void saveApprovement(Long applicationId, ExpertApprovementBean approvement, Long userId) throws Exception {
+		this.approveCrudOperate.save(approvement);
 
-		ExpertBean expert = (ExpertBean) this.get(ExpertBean.class, approvement.getApplication().getExpertId());
+		ExpertBean expert = this.expertCrudOperate.get(approvement.getApplication().getExpertId());
 		expert.setResult(approvement.getResult());
-		super.save(expert);
+		this.expertCrudOperate.save(expert);
 	}
+
+	@Override
+	public ExpertBean getExpert(Long userId) throws Exception {
+		ExpertBean expert = this.expertCrudOperate.get(userId);
+
+		return expert;
+	}
+
+
 }

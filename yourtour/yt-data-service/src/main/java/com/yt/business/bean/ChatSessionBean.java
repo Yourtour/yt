@@ -65,8 +65,8 @@ public class ChatSessionBean extends BaseBeanImpl {
 		super();
 	}
 
-	public ChatSessionBean(String userId) {
-		super(userId);
+	public ChatSessionBean(Long id) {
+		super(id);
 	}
 
 	public String getChatRoomNo() {

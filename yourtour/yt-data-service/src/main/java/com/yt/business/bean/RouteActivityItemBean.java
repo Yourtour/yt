@@ -39,8 +39,8 @@ public class RouteActivityItemBean extends BaseBeanImpl implements Cloneable{
 		super();
 	}
 
-	public RouteActivityItemBean(String userId) {
-		super(userId);
+	public RouteActivityItemBean(Long itemId) {
+		super(itemId);
 	}
 
 	public String getTitle() {

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.yt.business.bean.LaunchBean;
 import com.yt.vo.place.PlaceVO;
 
 public class LaunchVO implements Serializable {
@@ -12,6 +13,12 @@ public class LaunchVO implements Serializable {
 	List<PlaceVO> places = null;
 
 	public LaunchVO() {
+	}
+
+	public static LaunchVO transform(LaunchBean bean){
+		LaunchVO vo = new LaunchVO();
+
+		return vo;
 	}
 
 	public void setPlaces(List<PlaceVO> places){

@@ -1,25 +1,20 @@
 package com.yt.rest.resource;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-
+import com.yt.business.bean.LaunchBean;
+import com.yt.business.bean.PlaceBean;
+import com.yt.business.service.ILaunchService;
+import com.yt.response.ResponseDataVO;
+import com.yt.vo.LaunchVO;
+import com.yt.vo.place.PlaceVO;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.yt.business.bean.PlaceBean;
-import com.yt.business.repository.PlaceRepository;
-import com.yt.error.StaticErrorEnum;
-import com.yt.response.ResponseDataVO;
-import com.yt.vo.LaunchVO;
-import com.yt.vo.place.PlaceVO;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 @Path("app")
@@ -29,31 +24,23 @@ public class LaunchRestResource {
 	private static final Log LOG = LogFactory.getLog(LaunchRestResource.class);
 
 	@Autowired
-	private PlaceRepository placeRepository;
+	private ILaunchService launchService;
 
-	@Path("launch")
+	/**
+	 * APP 启动调用接口
+	 * @param accessId
+	 * @param lastAccessDate
+	 * @param version
+	 * @return
+	 * @throws Exception
+	 */
+	@Path("launch/{accessId}/{lastAccessDate}/{version}")
 	@GET
-	public ResponseDataVO<LaunchVO> launchApp() {
-		LaunchVO valueObject = new LaunchVO();
-		try {
-			List<PlaceBean> placeBeans = (List<PlaceBean>) placeRepository
-					.getAllRootPlaces();
-			if (placeBeans != null) {
-				List<PlaceVO> places = new ArrayList<PlaceVO>();
-				for (PlaceBean bean : placeBeans) {
-					places.add(PlaceVO.transform(bean));
-				}
+	public ResponseDataVO<LaunchVO> launchApp(@PathParam("accessId") String accessId,
+											  @PathParam("lastAccessDate") Long lastAccessDate,
+											  @PathParam("version") String version) throws Exception {
+		LaunchBean bean = this.launchService.launch(accessId, lastAccessDate, version);
 
-				valueObject.setPlaces(places);
-			}
-
-			return new ResponseDataVO<LaunchVO>(valueObject);
-		} catch (Exception ex) {
-			if (LOG.isErrorEnabled()) {
-				LOG.error("launchApp fail.", ex);
-			}
-			return new ResponseDataVO<LaunchVO>(
-					StaticErrorEnum.FETCH_DB_DATA_FAIL);
-		}
+		return new ResponseDataVO<LaunchVO>(LaunchVO.transform(bean));
 	}
 }

@@ -213,7 +213,7 @@ public class PlaceBean extends BusinessBeanImpl {
 
 	@Override
 	public int hashCode() {
-		return super.getGraphId().hashCode();
+		return super.getId().hashCode();
 	}
 
 	@Override
@@ -223,6 +223,6 @@ public class PlaceBean extends BusinessBeanImpl {
 		if(obj == this) return true;
 		
 		PlaceBean target =(PlaceBean) obj;
-		return target.getGraphId().equals(super.getGraphId());
+		return target.getId().equals(super.getId());
 	}
 }

@@ -6,6 +6,7 @@ import com.yt.business.repository.neo4j.ServiceBeanRepository;
 import com.yt.business.repository.neo4j.RouteServiceTuple;
 import com.yt.business.service.IService;
 import com.yt.core.utils.CollectionUtils;
+import com.yt.neo4j.repository.CrudOperate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,19 +22,47 @@ public class ServiceImpl extends BaseServiceImpl implements IService {
 	@Autowired
 	private ServiceBeanRepository serviceBeanRepository;
 
-	@Override
-	public void saveService(RouteServiceBean service, Long userId) throws Exception {
+	@Autowired
+	private CrudOperate<ExpertServiceBean> expertServiceCrudOperate;
 
+	@Autowired
+	private CrudOperate<RouteServiceBean> routeServiceCrudOperate;
+
+	public ServiceImpl() {
 	}
 
 	@Override
-	public void deleteService(Long routeId, Long serviceId, Long userId) throws Exception {
-
+	public void saveExpertService(ExpertServiceBean service, Long userId) throws Exception {
+		expertServiceCrudOperate.save(service);
 	}
 
 	@Override
-	public List<ExpertServiceBean> getExpertServices(Long expertId) throws Exception {
-		return serviceBeanRepository.getExpertServices(expertId);
+	public void deleteExpertService(Long serviceId, Long userId) throws Exception {
+		ExpertServiceBean service = expertServiceCrudOperate.get(serviceId);
+
+		expertServiceCrudOperate.delete(service);
+	}
+
+	@Override
+	public ExpertServiceBean getExpertService(Long serviceId) throws Exception {
+		return expertServiceCrudOperate.get(serviceId);
+	}
+
+	@Override
+	public List<ExpertServiceBean> getExpertServices(Long uid) throws Exception {
+		return serviceBeanRepository.getExpertServices(uid);
+	}
+
+	@Override
+	public void deleteRouteService(Long routeId, Long serviceId, Long userId) throws Exception {
+		RouteServiceBean service = routeServiceCrudOperate.get(serviceId);
+
+		routeServiceCrudOperate.delete(service);
+	}
+
+	@Override
+	public void saveRouteService(RouteServiceBean service, Long userId) throws Exception {
+		routeServiceCrudOperate.save(service);
 	}
 
 	@Override

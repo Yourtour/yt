@@ -1,6 +1,6 @@
 package com.yt.response;
 
-import com.yt.error.StaticErrorEnum;
+import com.yt.core.common.StaticErrorEnum;
 
 public class ResponseDataVO<T> extends ResponseVO {
 	private T data = null;
@@ -20,7 +20,7 @@ public class ResponseDataVO<T> extends ResponseVO {
 		super.setErrorText(error.errorText);
 	}
 
-	public ResponseDataVO(int errorCode, String errorText, T data) {
+	public ResponseDataVO(String errorCode, String errorText, T data) {
 		super(errorCode, errorText);
 		this.data = data;
 	}

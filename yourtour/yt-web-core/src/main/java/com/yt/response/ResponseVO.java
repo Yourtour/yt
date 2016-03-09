@@ -1,9 +1,9 @@
 package com.yt.response;
 
-import com.yt.error.StaticErrorEnum;
+import com.yt.core.common.StaticErrorEnum;
 
 public class ResponseVO {
-	private int errorCode = 0;
+	private String errorCode = "0";
 	private String errorText = "";
 
 	public ResponseVO() {
@@ -16,17 +16,17 @@ public class ResponseVO {
 		this.errorText = error.errorText;
 	}
 
-	public ResponseVO(int errorCode, String errorText) {
+	public ResponseVO(String errorCode, String errorText) {
 		this();
 		this.errorCode = errorCode;
 		this.errorText = errorText;
 	}
 
-	public int getErrorCode() {
+	public String getErrorCode() {
 		return errorCode;
 	}
 
-	public void setErrorCode(int errorCode) {
+	public void setErrorCode(String errorCode) {
 		this.errorCode = errorCode;
 	}
 

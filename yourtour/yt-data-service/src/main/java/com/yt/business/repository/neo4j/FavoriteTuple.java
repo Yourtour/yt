@@ -1,6 +1,8 @@
 package com.yt.business.repository.neo4j;
 
+import com.yt.business.FavoriteBaseBean;
 import com.yt.business.bean.AlongBean;
+import com.yt.business.bean.FavoriteBean;
 import com.yt.business.bean.RouteMainBean;
 import com.yt.business.bean.UserProfileBean;
 import org.springframework.data.neo4j.annotation.QueryResult;
@@ -8,41 +10,28 @@ import org.springframework.data.neo4j.annotation.ResultColumn;
 
 @QueryResult
 public class FavoriteTuple {
-	@ResultColumn("along")
-	private AlongBean along;
+	@ResultColumn("subject")
+	private FavoriteBaseBean subject;
 
-	@ResultColumn("route")
-	private RouteMainBean route;
-
-	@ResultColumn("user")
-	private UserProfileBean user;
+	@ResultColumn("favorite")
+	private FavoriteBean favorite;
 
 	public FavoriteTuple(){
 	}
 
-	public AlongBean getAlong() {
-		along.setRoute(this.getRoute());
-		along.setPublisher(this.getUser());
-		return along;
+	public FavoriteBaseBean getSubject() {
+		return subject;
 	}
 
-	public void setAlong(AlongBean along) {
-		this.along = along;
+	public void setSubject(FavoriteBaseBean subject) {
+		this.subject = subject;
 	}
 
-	public RouteMainBean getRoute() {
-		return route;
+	public FavoriteBean getFavorite() {
+		return favorite;
 	}
 
-	public void setRoute(RouteMainBean route) {
-		this.route = route;
-	}
-
-	public UserProfileBean getUser() {
-		return user;
-	}
-
-	public void setUser(UserProfileBean user) {
-		this.user = user;
+	public void setFavorite(FavoriteBean favorite) {
+		this.favorite = favorite;
 	}
 }

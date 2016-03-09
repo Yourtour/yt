@@ -6,11 +6,10 @@ import com.sun.jersey.multipart.FormDataMultiPart;
 import com.sun.jersey.multipart.FormDataParam;
 import com.yt.business.bean.UserAccountBean;
 import com.yt.business.bean.UserProfileBean;
-import com.yt.business.common.AppException;
 import com.yt.business.common.Constants;
-import com.yt.business.repository.UserRepository;
+import com.yt.business.service.IUserService;
 import com.yt.core.utils.Base64Utils;
-import com.yt.error.StaticErrorEnum;
+import com.yt.core.common.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.utils.FileUtils;
@@ -36,7 +35,7 @@ public class UserRestResource extends RestResource {
 	private static final Log LOG = LogFactory.getLog(UserRestResource.class);
 
 	@Autowired
-	private UserRepository userRepository;
+	private IUserService userService;
 
 	/**
 	 * 根据用户ID获取注册信息接口
@@ -46,10 +45,9 @@ public class UserRestResource extends RestResource {
 	@GET
 	@Path("{id}")
 	public ResponseDataVO<UserVO> getUser(@PathParam("id") Long id) throws Exception{
-		UserProfileBean bean = (UserProfileBean) userRepository.get(UserProfileBean.class, id);
+		UserProfileBean bean = userService.getUserProfileInfo(id);
 		if (bean == null) {
-			LOG.warn(String.format("No UserProfileBean[id=%d] found.", id));
-			return new ResponseDataVO<UserVO>(StaticErrorEnum.THE_DATA_NOT_EXIST);
+			return new ResponseDataVO<UserVO>(StaticErrorEnum.DATA_NOT_EXIST);
 		}
 
 		UserVO vo = UserVO.transform(bean);
@@ -64,11 +62,7 @@ public class UserRestResource extends RestResource {
 	@GET
 	@Path("logout/{id}")
 	public ResponseVO logout(@PathParam("id") Long id)  throws Exception{
-		UserProfileBean user = (UserProfileBean) userRepository.get(UserProfileBean.class, id, false);
-		if (user == null) {
-			LOG.warn(String.format("No UserProfileBean[id=%d] found.", id));
-			return new ResponseVO(StaticErrorEnum.USER_NOT_EXIST);
-		}
+		userService.logout(id);
 
 		// 清除当前session登录信息
 		SessionUtils.clear();
@@ -83,14 +77,9 @@ public class UserRestResource extends RestResource {
 	@POST
 	@Path("/login")
 	public ResponseDataVO<UserVO> login(LoginVO loginVO) throws Exception{
-		try{
-			UserProfileBean user = userRepository.getUser(loginVO.getMobile(), loginVO.getPassword());
-
-			UserVO profile = UserVO.transform(user);
-			return new ResponseDataVO<UserVO>(profile);
-		} catch (AppException ex) {
-			return new ResponseDataVO<UserVO>(StaticErrorEnum.AUTHENTICATE_FAIL);
-		}
+		UserProfileBean user = userService.login(loginVO.getMobile(), loginVO.getPassword());
+		UserVO profile = UserVO.transform(user);
+		return new ResponseDataVO<UserVO>(profile);
 	}
 
 	/**
@@ -101,21 +90,11 @@ public class UserRestResource extends RestResource {
 	@POST
 	@Path("/account/register")
 	public ResponseDataVO<UserVO> registerUserAccount(RegisterVO registervo) throws Exception{
-		UserProfileBean profile = userRepository.getUserByUserName(registervo.getMobile());
-		if(profile != null){
-			return new ResponseDataVO<UserVO>(StaticErrorEnum.USER_EXIST);
-		}
-
 		UserAccountBean account = new UserAccountBean();
 		account.setUserName(registervo.getMobile());
 		account.setPwd(Base64Utils.MD5(registervo.getPassword()));
 
-		profile = new UserProfileBean();
-		profile.setMobileNo(registervo.getMobile());
-		account.setProfile(profile);
-		this.userRepository.save(account, String.valueOf(account.getGraphId()));
-
-		profile = userRepository.getUserByUserName(account.getUserName());
+		UserProfileBean profile = userService.saveUseAccount(account);
 		return new ResponseDataVO<UserVO>(UserVO.transform(profile));
 	}
 
@@ -137,12 +116,7 @@ public class UserRestResource extends RestResource {
 												  @FormDataParam("gender") String gender,
 												  @FormDataParam("tags") String tags,
 												  FormDataMultiPart form) throws Exception{
-		UserProfileBean profile = userRepository.getUserByNickName(nickName);
-		if(profile != null){
-			return new ResponseDataVO<UserVO>(StaticErrorEnum.NICKNAME_EXIST);
-		}
-
-		profile = (UserProfileBean)userRepository.get(UserProfileBean.class, profileId, false);
+		UserProfileBean profile = userService.getUserProfileInfo(profileId);
 		if(profile == null){
 			return new ResponseDataVO<UserVO>(StaticErrorEnum.USER_NOT_EXIST);
 		}
@@ -159,9 +133,7 @@ public class UserRestResource extends RestResource {
 		profile.setNickName(nickName);
 		profile.setGender(Constants.GenderType.getEnum(gender));
 		profile.setTags(tags);
-		this.userRepository.save(profile, false, String.valueOf(profileId));
-
-		profile = (UserProfileBean) userRepository.get(UserProfileBean.class, profileId, false);
+		profile = this.userService.saveUseProfile(profile);
 		return new ResponseDataVO<UserVO>(UserVO.transform(profile));
 	}
 
@@ -191,7 +163,7 @@ public class UserRestResource extends RestResource {
 												  @FormDataParam("nativePlace") String nativePlace,
 												  @FormDataParam("tags") String tags,
 												  FormDataMultiPart form) throws Exception{
-		UserProfileBean profile = (UserProfileBean) userRepository.get(UserProfileBean.class, id, false);
+		UserProfileBean profile = userService.getUserProfileInfo(id);
 		if(profile == null){
 			return new ResponseDataVO<UserVO>(StaticErrorEnum.USER_NOT_EXIST);
 		}
@@ -213,9 +185,7 @@ public class UserRestResource extends RestResource {
 		if(residence != null) profile.setResidence(residence);
 		if(tags != null) profile.setTags(tags);
 
-		this.userRepository.save(profile, false, String.valueOf(id));
-
-		profile = (UserProfileBean) userRepository.get(UserProfileBean.class, id, false);
+		profile = this.userService.saveUseProfile(profile);
 		return new ResponseDataVO<UserVO>(UserVO.transform(profile));
 	}
 }

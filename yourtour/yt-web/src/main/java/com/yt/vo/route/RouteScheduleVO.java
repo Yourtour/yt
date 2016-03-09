@@ -44,7 +44,7 @@ public class RouteScheduleVO extends BaseVO {
 		if (vo.getActivities() != null && vo.getActivities().size() > 0) {
 			for (RouteActivityVO activityVO : vo.getActivities()) {
 				RouteActivityBean activity = new RouteActivityBean();
-				activity.setGraphId(activityVO.getId());
+				activity.setId(activityVO.getId());
 				bean.getActivities().add(activity);
 			}
 		}

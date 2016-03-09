@@ -1,6 +1,7 @@
 package com.yt.business.service;
 
 import com.yt.business.bean.AlongBean;
+import com.yt.business.bean.LaunchBean;
 
 import java.util.List;
 
@@ -9,43 +10,12 @@ import java.util.List;
  */
 public interface ILaunchService {
     /**
-     * 保存结伴信息
-     * @param along
-     * @throws Exception
-     */
-    public void saveAlongInfo(AlongBean along) throws Exception;
-
-    /**
-     * 获取结伴信息
-     * @param alongId
+     * 客户端启动服务接口
+     * @param accessId
+     * @param lastAccessTime
+     * @param version
      * @return
      * @throws Exception
      */
-    public AlongBean getAlongInfo(Long alongId) throws Exception;
-
-    /**
-     * 删除结伴信息
-     * @param alongId
-     * @param userId
-     * @throws Exception
-     */
-    public void deleteAlongInfo(Long alongId, Long userId) throws Exception;
-
-    /**
-     * 获取指定目的地的结伴信息
-     * @param placeId
-     * @param startIndex
-     * @param limit
-     * @return
-     * @throws Exception
-     */
-    public List<AlongBean> getAlongsByPlace(Long placeId, Long startIndex, int limit) throws Exception;
-
-    /**
-     * 获取指定行程的结伴信息
-     * @param routeId
-     * @return
-     * @throws Exception
-     */
-    public List<AlongBean> getAlongsByRoute(Long routeId) throws Exception;
+    public LaunchBean launch(String accessId, long lastAccessTime, String version) throws Exception;
 }

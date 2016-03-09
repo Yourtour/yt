@@ -22,16 +22,16 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 	private String rowKey = UUID.randomUUID().toString();
 
 	@GraphId
-	private Long graphId = null;
+	private Long id = null;
 
 	@HbaseColumn(name = "cuid")
-	private String createdUserId = "";
+	private Long createdUserId=0l;
 
 	@HbaseColumn(name = "ct")
 	private long createdTime = 0l;
 
 	@HbaseColumn(name = "uuid")
-	private String updatedUserId = "";
+	private Long updatedUserId=0l;
 
 	@HbaseColumn(name = "ut")
 	private long updatedTime = 0l;
@@ -55,30 +55,14 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 	public BaseBeanImpl(Long id) {
 		super();
 
-		this.graphId = id;
-
-		this.rowKey = UUID.randomUUID().toString();
-	}
-
-	/**
-	 * 默认的构造函数
-	 */
-	public BaseBeanImpl(String userId)
-	{
-		super();
-
-		this.createdTime = DateUtils.getCurrentTimeMillis();
-		this.updatedTime = DateUtils.getCurrentTimeMillis();
-
-		this.createdUserId = userId;
-		this.updatedUserId = userId;
+		this.id = id;
 
 		this.rowKey = UUID.randomUUID().toString();
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
 	@Override
@@ -86,8 +70,8 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 		if (o == null) {
 			return 1;
 		}
-		Long src = this.getGraphId();
-		Long tar = o.getGraphId();
+		Long src = this.getId();
+		Long tar = o.getId();
 		if (src == null && tar == null) {
 			return 0;
 		} else if (src != null) {
@@ -97,41 +81,30 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.yt.neo4j.bean.Neo4jBaseBean#getGraphId()
-	 */
 	@Override
-	public Long getGraphId() {
-		return graphId;
+	public Long getId() {
+		return null;
+	}
+
+	@Override
+	public void setId(Long id) {
+
 	}
 
 	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.yt.neo4j.bean.Neo4jBaseBean#setGraphId(java.lang.Long)
-	 */
-	@Override
-	public void setGraphId(Long id) {
-		this.graphId = id;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.yt.hbase.BaseBean#getRowKey()
-	 */
+         * (non-Javadoc)
+         *
+         * @see com.yt.hbase.BaseBean#getRowKey()
+         */
 	@Override
 	public String getRowKey() {
 		this.rowKey = UUID.randomUUID().toString();
-		System.out.println(this.rowKey);
 		return this.rowKey;
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.yt.hbase.BaseBean#setRowKey(java.lang.String)
 	 */
 	@Override
@@ -141,27 +114,27 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.yt.hbase.BaseBean#getCreatedUserId()
 	 */
 	@Override
-	public String getCreatedUserId() {
+	public Long getCreatedUserId() {
 		return createdUserId;
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.yt.hbase.BaseBean#setCreatedUserId(java.lang.String)
 	 */
 	@Override
-	public void setCreatedUserId(String createdUserId) {
+	public void setCreatedUserId(Long createdUserId) {
 		this.createdUserId = createdUserId;
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.yt.hbase.BaseBean#getCreatedTime()
 	 */
 	@Override
@@ -171,7 +144,7 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.yt.hbase.BaseBean#setCreatedTime(long)
 	 */
 	@Override
@@ -181,27 +154,27 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.yt.hbase.BaseBean#getUpdatedUserId()
 	 */
 	@Override
-	public String getUpdatedUserId() {
+	public Long getUpdatedUserId() {
 		return updatedUserId;
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.yt.hbase.BaseBean#setUpdatedUserId(java.lang.String)
 	 */
 	@Override
-	public void setUpdatedUserId(String updatedUserId) {
+	public void setUpdatedUserId(Long updatedUserId) {
 		this.updatedUserId = updatedUserId;
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.yt.hbase.BaseBean#getUpdatedTime()
 	 */
 	@Override
@@ -211,7 +184,7 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.yt.hbase.BaseBean#setUpdatedTime(long)
 	 */
 	@Override
@@ -228,6 +201,8 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 	}
 
 	public boolean isNew(){
-		return this.graphId == null || this.graphId.longValue() == 0;
+		return this.id == null || this.id.longValue() == 0;
 	}
+
+
 }

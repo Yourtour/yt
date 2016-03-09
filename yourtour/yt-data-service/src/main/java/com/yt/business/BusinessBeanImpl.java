@@ -29,14 +29,6 @@ public class BusinessBeanImpl extends BaseBeanImpl {
 		super(graphId);
 	}
 
-	/**
-	 * 默认的构造函数
-	 */
-	public BusinessBeanImpl(String userId)
-	{
-		super(userId);
-	}
-
 	public double getCommentScore() {
 		return commentScore;
 	}

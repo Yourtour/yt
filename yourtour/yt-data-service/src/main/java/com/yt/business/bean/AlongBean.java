@@ -1,17 +1,13 @@
 package com.yt.business.bean;
 
-import java.util.List;
-
 import com.yt.business.BusinessBeanImpl;
 import com.yt.business.common.Constants;
 import com.yt.neo4j.annotation.Neo4jRelationship;
 import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 
-import com.yt.business.BaseBeanImpl;
 import com.yt.business.common.Constants.AlongIntentionType;
 import com.yt.business.common.Constants.Status;
-import com.yt.business.neo4j.repository.CommentTuple;
 import com.yt.hbase.annotation.HbaseColumn;
 import com.yt.hbase.annotation.HbaseTable;
 

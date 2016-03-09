@@ -1,28 +1,19 @@
 package com.yt.business.repository.neo4j;
 
-import java.util.List;
-
+import com.yt.business.bean.AlongBean;
 import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.neo4j.repository.GraphRepository;
 
-import com.yt.business.bean.AlongBean;
+import java.util.List;
 
-public interface FavoriteBeanRepository extends GraphRepository<AlongBean> {
+public interface FavoriteBeanRepository extends GraphRepository<FavoriteTuple> {
 	/**
-	 * 根据目的地翻页查询结伴信息,查询结果根据结伴的INDEX属性进行排序
-	 * @param placeId
+	 * 获取用户收藏信息
+	 * @param userid
 	 * @param startIndex
 	 * @param size
 	 * @return
 	 */
 	@Query("START place=node({0}) MATCH (place:PlaceBean)<-[:TO]-(route:RouteMainBean)<-[:BELONG]-(along:AlongBean)-[:BELONG]->(user:UserProfileBean) return along, route, user")
-	public List<AlongTuple> getAlongByPlace(Long placeId, Long startIndex, int size);
-
-	/**
-	 *
-	 * @param routeId
-	 * @return
-	 */
-	@Query("START route=node({0}) MATCH route<-[:BELONG]-(along:AlongBean)-[:BELONG]->(user:UserProfileBean) return along, route, user")
-	public List<AlongTuple> getAlongByRoute(Long routeId);
+	public List<FavoriteTuple> getFavorites(Long userid, Long startIndex, int size);
 }

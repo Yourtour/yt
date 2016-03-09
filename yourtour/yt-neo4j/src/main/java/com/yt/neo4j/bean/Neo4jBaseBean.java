@@ -30,7 +30,7 @@ public interface Neo4jBaseBean {
 	 * 
 	 * @return 实体对应的ID，如果ID为null，则表示该实体没有被Attach。
 	 */
-	public Long getGraphId();
+	public Long getId();
 
 	/**
 	 * 设置Neo4J实体在图中的唯一ID，只能由内部进行设置，外部只能获取。
@@ -38,14 +38,14 @@ public interface Neo4jBaseBean {
 	 * @param id
 	 *            设置的ID
 	 */
-	public void setGraphId(Long id);
+	public void setId(Long id);
 
 	/**
 	 * 获取创建人员ID
 	 * 
 	 * @return 创建人员ID
 	 */
-	public String getCreatedUserId();
+	public Long getCreatedUserId();
 
 	/**
 	 * 设置创建人员ID
@@ -53,7 +53,7 @@ public interface Neo4jBaseBean {
 	 * @param createdUserId
 	 *            创建人员ID
 	 */
-	public void setCreatedUserId(String createdUserId);
+	public void setCreatedUserId(Long createdUserId);
 
 	/**
 	 * 获取更新人员ID
@@ -75,7 +75,7 @@ public interface Neo4jBaseBean {
 	 * 
 	 * @return 更新人员ID
 	 */
-	public String getUpdatedUserId();
+	public Long getUpdatedUserId();
 
 	/**
 	 * 设置更新人员ID
@@ -83,7 +83,7 @@ public interface Neo4jBaseBean {
 	 * @param updatedUserId
 	 *            更新人员ID
 	 */
-	public void setUpdatedUserId(String updatedUserId);
+	public void setUpdatedUserId(Long updatedUserId);
 
 	/**
 	 * 获取更新时间

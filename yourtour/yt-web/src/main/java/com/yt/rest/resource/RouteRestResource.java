@@ -40,7 +40,7 @@ public class RouteRestResource extends RestResource {
 			long uid = SessionUtils.getCurrentLoginUser();
 
 			// 根据用户ID获取对应的行程列表
-			List<RouteMainBean> routes = routeService.getRoutesByOwner(uid);
+			List<RouteMainBean> routes = routeService.getRoutes(uid);
 			List<RouteItemVO> list = new Vector<RouteItemVO>(routes.size());
 			for (RouteMainBean route : routes) {
 				if (route == null)
@@ -61,7 +61,7 @@ public class RouteRestResource extends RestResource {
 	@GET
 	@Path("{rid}/query")
 	public ResponseDataVO<RouteLoadVO> getRoute(@PathParam("rid") Long rid) throws Exception {
-			RouteMainBean bean = routeService.getCompleteRoute(rid);
+			RouteMainBean bean = routeService.getRoute(rid);
 
 			RouteLoadVO vo = new RouteLoadVO(bean);
 			return new ResponseDataVO<RouteLoadVO>(vo);
@@ -91,7 +91,7 @@ public class RouteRestResource extends RestResource {
 	/**
 	 * 行程复制接口
 	 * 
-	 * @param sourceId
+	 * @param routeId
 	 * @param vo
 	 * @return
 	 */
@@ -241,11 +241,48 @@ public class RouteRestResource extends RestResource {
 		return new ResponseVO();
 	}
 
+	/**
+	 * 目的地行程推荐
+	 * @param placeId
+	 * @param nextCursor
+	 * @param limit
+	 * @return
+	 * @throws Exception
+	 */
 	@SuppressWarnings("unchecked")
-	@Path("/recommend/{placeIds}/{duration}")
+	@Path("/place/{placeId}")
+	@GET
+	public ResponseDataVO<List<RouteVO>> getRecommendedRoutes(@PathParam("placeId") Long placeId,
+															  @QueryParam("start") Long nextCursor,
+															  @QueryParam("limit") int limit )
+			throws Exception {
+		List<RouteVO> list = new ArrayList<RouteVO>();
+		List<RouteMainBean> result = routeService.getRoutes(placeId, nextCursor, limit);
+		for (RouteMainBean bean : result) {
+			if (bean == null) {
+				continue;
+			}
+			RouteVO vo = RouteVO.transform(bean);
+			list.add(vo);
+		}
+
+		return new ResponseDataVO<List<RouteVO>>(list);
+	}
+
+	/**
+	 * 行程智能匹配
+	 * @param placeIds
+	 * @param duration
+	 * @return
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	@Path("/place/{placeIds}/{duration}")
 	@GET
 	public ResponseDataVO<List<RouteVO>> getRecommendedRoutes(@PathParam("placeIds") String placeIds,
-															  @PathParam("duration") String duration)
+															  @PathParam("duration") int duration,
+															  @QueryParam("start") Long nextCursor,
+															  @QueryParam("limit") int limit )
 	throws Exception {
 		List<RouteVO> list = new ArrayList<RouteVO>();
 		String[] ids = placeIds.split(",");
@@ -254,8 +291,7 @@ public class RouteRestResource extends RestResource {
 			lIds[index] = Long.valueOf(ids[index]);
 		}
 
-		List<RouteMainBean> result = (List<RouteMainBean>) routeService
-				.getRecommendRoutes(lIds);
+		List<RouteMainBean> result = routeService.getRoutes(lIds, duration, nextCursor, limit);
 		for (RouteMainBean bean : result) {
 			if (bean == null) {
 				continue;

@@ -15,7 +15,7 @@ public class ChatSessionVO implements Serializable {
 	}
 	
 	public Long getId() {
-		return sessionBean.getGraphId();
+		return sessionBean.getId();
 	}
 	
 	public String getCode() {

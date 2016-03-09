@@ -2,10 +2,6 @@ package com.yt.business.bean;
 
 import com.yt.business.BaseBeanImpl;
 import com.yt.business.common.Constants;
-import com.yt.business.common.Constants.AlongIntentionType;
-import com.yt.business.common.Constants.Status;
-import com.yt.business.neo4j.repository.CommentTuple;
-import com.yt.hbase.annotation.HbaseColumn;
 import com.yt.hbase.annotation.HbaseTable;
 import com.yt.neo4j.annotation.Neo4jRelationship;
 import org.neo4j.graphdb.Direction;

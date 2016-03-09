@@ -5,8 +5,12 @@ import java.util.Map;
 
 import com.yt.business.CrudAllInOneOperate;
 import com.yt.business.bean.*;
+import com.yt.business.common.Constants;
 
-public interface IPlaceService extends CrudAllInOneOperate {
+/**
+ * 和目的地相关服务接口定义
+ */
+public interface IPlaceService {
 	/**
 	 *
 	 * @return
@@ -15,58 +19,44 @@ public interface IPlaceService extends CrudAllInOneOperate {
 	public List<PlaceBean> getAllRootPlaces() throws Exception;
 
 	/**
-	 *
-	 * @param graphId
+	 * 保存目的地
+	 * @param place
+	 * @throws Exception
+	 */
+	public void savePlace(PlaceBean place, Long userId) throws Exception;
+
+	/**
+	 * 删除目的地
+	 * @param id
 	 * @return
 	 * @throws Exception
 	 */
-	public List<PlaceBean> getAllSubPlaces(Long graphId) throws Exception;
+	public void deletePlace(Long id, Long userId) throws Exception;
 
 	/**
-	 *
-	 * @param graphId
+	 * 获取目的地
+	 * @param id
 	 * @return
+	 * @throws Exception
 	 */
-	public List<PlaceBean> getPlaces(Long graphId);
+	public PlaceBean getPlace(Long id) throws Exception;
 
 	/**
-	 *
+	 * 获取某个目的地的下属目的地
 	 * @param parentCode
 	 * @return
 	 */
 	public List<PlaceBean> getPlaces(String parentCode);
 
 	/**
-	 *
-	 * @param userId
-	 * @return
-	 */
-	public List<PlaceBean> getRouteRecommendPlaces(Long userId);
-
-	/**
-	 *
+	 * 获取和指定目的地相关的目的地
 	 * @param placeId
 	 * @return
 	 */
 	public List<PlaceBean> getRelatedPlaces(Long placeId);
 
 	/**
-	 *
-	 * @param place
-	 * @param operator
-	 * @throws Exception
-	 */
-	public void save(PlaceBean place, String operator) throws Exception;
-
-	/**
-	 *
-	 * @param placeId
-	 * @return
-	 */
-	public PlaceBean getPlace4Home(Long placeId) throws Exception;
-
-	/**
-	 *
+	 * 获取目的地达人
 	 * @param placeId
 	 * @param nextCursor
 	 * @param limit
@@ -76,7 +66,7 @@ public interface IPlaceService extends CrudAllInOneOperate {
 	public List<ExpertBean> getExperts(Long placeId, Long nextCursor, int limit) throws Exception;
 
 	/**
-	 *
+	 * 获取目的地推荐行程
 	 * @param placeId
 	 * @param nextCursor
 	 * @param limit
@@ -85,14 +75,5 @@ public interface IPlaceService extends CrudAllInOneOperate {
 	 */
 	public List<RouteMainBean> getRoutes(Long placeId, Long nextCursor, int limit) throws Exception;
 
-	/**
-	 *
-	 * @param placeId
-	 * @param nextCursor
-	 * @param limit
-	 * @return
-	 * @throws Exception
-	 */
-	public List<SceneResourceBean> getSceneResources(Long placeId, Long nextCursor, int limit) throws Exception;
 
 }

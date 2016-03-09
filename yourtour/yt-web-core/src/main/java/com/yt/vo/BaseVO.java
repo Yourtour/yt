@@ -7,16 +7,16 @@ import java.util.UUID;
 public class BaseVO {
 	private Long graphId;
 	private String rowKey;
-	private String createdUserId = "";
+	private Long createdUserId = 0l;
 	private long createdTime;
-	private String updatedUserId = "";
+	private Long updatedUserId = 0l;
 	private long updatedTime;
 
 	public void fromBean(BaseBeanImpl bean) {
 		if (bean == null) {
 			return;
 		}
-		setId(bean.getGraphId());
+		setId(bean.getId());
 		setCreatedTime(bean.getCreatedTime());
 		setCreatedUserId(bean.getCreatedUserId());
 		setRowKey(bean.getRowKey());
@@ -27,7 +27,7 @@ public class BaseVO {
 	public void toBean(BaseBeanImpl bean) {
 		bean.setCreatedTime(getCreatedTime());
 		bean.setCreatedUserId(getCreatedUserId());
-		bean.setGraphId(getId());
+		bean.setId(getId());
 		bean.setRowKey(getRowKey());
 		bean.setUpdatedTime(getUpdatedTime());
 		bean.setUpdatedUserId(getUpdatedUserId());
@@ -53,11 +53,11 @@ public class BaseVO {
 		this.rowKey = rowKey;
 	}
 
-	public String getCreatedUserId() {
+	public Long getCreatedUserId() {
 		return createdUserId;
 	}
 
-	public void setCreatedUserId(String createdUserId) {
+	public void setCreatedUserId(Long createdUserId) {
 		this.createdUserId = createdUserId;
 	}
 
@@ -69,11 +69,11 @@ public class BaseVO {
 		this.createdTime = createdTime;
 	}
 
-	public String getUpdatedUserId() {
+	public Long getUpdatedUserId() {
 		return updatedUserId;
 	}
 
-	public void setUpdatedUserId(String updatedUserId) {
+	public void setUpdatedUserId(Long updatedUserId) {
 		this.updatedUserId = updatedUserId;
 	}
 

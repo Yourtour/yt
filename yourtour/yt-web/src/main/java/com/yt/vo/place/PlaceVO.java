@@ -1,12 +1,10 @@
 package com.yt.vo.place;
 
-import com.yt.business.bean.*;
+import com.yt.business.bean.PlaceBean;
+import com.yt.business.bean.ResourceBean;
 import com.yt.business.common.Constants.Status;
 import com.yt.core.utils.CollectionUtils;
-import com.yt.vo.member.ExpertVO;
 import com.yt.vo.resource.ResourceVO;
-import com.yt.vo.route.LineVO;
-import com.yt.vo.route.RouteVO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +29,7 @@ public class PlaceVO {
 		PlaceBean bean = new PlaceBean();
 		bean.setCode(vo.getCode());
 		if (vo.getGraphId() != null && vo.getGraphId().longValue() != -1l) {
-			bean.setGraphId(vo.getGraphId());
+			bean.setId(vo.getGraphId());
 		}
 		bean.setName(vo.getText());
 		bean.setMemo(vo.getMemo());
@@ -39,7 +37,7 @@ public class PlaceVO {
 		bean.setStatus(vo.getStatus());
 		if (vo.getParentId() != null && vo.getParentId().longValue() != -1l) {
 			PlaceBean parent = new PlaceBean();
-			parent.setGraphId(vo.getParentId());
+			parent.setId(vo.getParentId());
 			bean.setParent(parent);
 		}
 
@@ -53,7 +51,7 @@ public class PlaceVO {
 
 		PlaceVO vo = new PlaceVO();
 		vo.setCode(bean.getCode());
-		vo.setId(bean.getGraphId());
+		vo.setId(bean.getId());
 		vo.setLeaf(bean.isLeaf());
 		vo.setName(bean.getName());
 		vo.setMemo(bean.getMemo());

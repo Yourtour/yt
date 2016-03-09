@@ -8,7 +8,7 @@ import com.yt.business.bean.ChatMessageBean;
 import com.yt.business.bean.ChatSessionBean;
 import com.yt.business.bean.UserProfileBean;
 
-public interface IChatService extends CrudAllInOneOperate {
+public interface IChatService {
 	/**
 	 * 根据指定的目的的ID打开对应的目的的聊天室，如该聊天室不存在，则创建一个新的聊天室。
 	 * 
@@ -122,17 +122,14 @@ public interface IChatService extends CrudAllInOneOperate {
 			throws Exception;
 
 	/**
-	 * * 返回指定聊天室中指定用户ID的未阅读消息，可以分页获取。
-	 * 
+	 * 返回指定聊天室中指定用户ID的未阅读消息，可以分页获取。
 	 * @param roomNo
-	 *            聊天室房间号
+	 * @param nextCursor
 	 * @param userId
-	 *            指定的用户ID
-	 * @return 符合条件的消息记录列表
+	 * @return
 	 * @throws Exception
-	 *             操作过程中发生异常
 	 */
-	public List<ChatMessageBean> getUnreadMessages(String roomNo, long userId)
+	public List<ChatMessageBean> getUnreadMessages(String roomNo, Long nextCursor, long userId)
 			throws Exception;
 
 	/**

@@ -45,7 +45,7 @@ public interface BaseBean {
 	 * 
 	 * @return 创建人员ID
 	 */
-	public String getCreatedUserId();
+	public Long getCreatedUserId();
 
 	/**
 	 * 设置创建人员ID
@@ -53,7 +53,7 @@ public interface BaseBean {
 	 * @param createdUserId
 	 *            创建人员ID
 	 */
-	public void setCreatedUserId(String createdUserId);
+	public void setCreatedUserId(Long createdUserId);
 
 	/**
 	 * 获取更新人员ID
@@ -75,7 +75,7 @@ public interface BaseBean {
 	 * 
 	 * @return 更新人员ID
 	 */
-	public String getUpdatedUserId();
+	public Long getUpdatedUserId();
 
 	/**
 	 * 设置更新人员ID
@@ -83,7 +83,7 @@ public interface BaseBean {
 	 * @param updatedUserId
 	 *            更新人员ID
 	 */
-	public void setUpdatedUserId(String updatedUserId);
+	public void setUpdatedUserId(Long updatedUserId);
 
 	/**
 	 * 获取更新时间

@@ -47,8 +47,8 @@ import com.yt.neo4j.bean.Neo4jBaseBean;
  * @version 1.0
  * @since 1.0
  */
-public class Neo4jBeanDescriptorGeneralCacheImpl implements
-		Neo4jBeanDescriptorCache, InitializingBean {
+public class Neo4jBeanDescriptorGeneralCacheImpl<T extends Neo4jBaseBean> implements
+		Neo4jBeanDescriptorCache<T>, InitializingBean {
 	private static final Log LOG = LogFactory
 			.getLog(Neo4jBeanDescriptorGeneralCacheImpl.class);
 	private final TypeFilter[] ENTITY_TYPE_FILTERS = new TypeFilter[] {
@@ -151,7 +151,7 @@ public class Neo4jBeanDescriptorGeneralCacheImpl implements
 	 * @see com.yt.neo4j.cache.Neo4jBeanDescriptorCache#put(java.lang.Class)
 	 */
 	@Override
-	public Neo4jBeanDescriptor put(Class<? extends Neo4jBaseBean> clazz) {
+	public Neo4jBeanDescriptor put(Class<T> clazz) {
 		String beanClass = clazz.getName();
 		if (!cache.containsKey(beanClass)) {
 			Neo4jBeanDescriptor bd = Neo4jBeanDescriptor.valueOf(clazz);
@@ -179,7 +179,7 @@ public class Neo4jBeanDescriptorGeneralCacheImpl implements
 	 * @see com.yt.neo4j.cache.Neo4jBeanDescriptorCache#get(java.lang.Class)
 	 */
 	@Override
-	public Neo4jBeanDescriptor get(Class<? extends Neo4jBaseBean> clazz) {
+	public Neo4jBeanDescriptor get(Class<T> clazz) {
 		String beanClass = clazz.getName();
 		Neo4jBeanDescriptor bd = get(beanClass);
 		if (bd == null) {
@@ -220,5 +220,7 @@ public class Neo4jBeanDescriptorGeneralCacheImpl implements
 		list.addAll(cache.values());
 		return list;
 	}
+
+
 
 }
