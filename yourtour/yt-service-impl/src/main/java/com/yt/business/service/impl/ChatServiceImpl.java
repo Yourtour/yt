@@ -6,7 +6,11 @@ import java.util.UUID;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+/**
+ * @author john
+ * 
+ */
+import org.springframework.stereotype.Service;
 
 import com.yt.business.bean.ChatJoinHistoryBean;
 import com.yt.business.bean.ChatMessageBean;
@@ -17,15 +21,6 @@ import com.yt.business.bean.UserProfileBean;
 import com.yt.business.repository.neo4j.ChatBeanRepository;
 import com.yt.business.service.IChatService;
 import com.yt.neo4j.repository.CrudOperate;
-
-/**
- * @author john
- * 
- */
-@Component
-public class ChatServiceImpl extends BaseServiceImpl implements IChatService {
-=======
-import org.springframework.stereotype.Service;
 
 @Service
 public class ChatServiceImpl extends BaseServiceImpl  implements IChatService {
