@@ -2,17 +2,13 @@ package com.yt.business.repository.neo4j;
 
 import java.util.List;
 
-import com.yt.business.bean.RouteMemberBean;
-import com.yt.business.bean.RouteScheduleBean;
+import com.yt.business.bean.*;
 import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.neo4j.annotation.QueryResult;
 import org.springframework.data.neo4j.annotation.ResultColumn;
 import org.springframework.data.neo4j.repository.GraphRepository;
 
-import com.yt.business.bean.RouteMainBean;
-import com.yt.business.bean.UserProfileBean;
-
-public interface RouteBeanRepository extends GraphRepository<RouteMainBean> {
+public interface RouteRepository extends GraphRepository<RouteMainBean> {
 	@QueryResult
 	public class OwnerRouteTuple {
 		@ResultColumn("r.imageUrl")
@@ -121,4 +117,21 @@ public interface RouteBeanRepository extends GraphRepository<RouteMainBean> {
 	 */
 	@Query("START route=node({0}) MATCH route -- (schedules:RouteScheduleBean) return schedules")
 	public List<RouteScheduleBean> getRouteSchedules(Long routeId);
+
+	/**
+	 *
+	 * @param routeId
+	 * @param userId
+	 * @return
+	 */
+	@Query("START route=node({0}), user=node({1}) MATCH route<-[:BELONG]-(charge:RouteChargeBean)-[:BELONG]->user RETURN charge")
+	public List<RouteChargeBean> getCharges(Long routeId, Long userId);
+
+	/**
+	 *
+	 * @param chargeId
+	 * @return
+	 */
+	@Query("START root=node({0}) MATCH root-[:DIVIDED]->(charge:RouteChargeBean)-[:BELONG]->(owner:UserProfileBean) RETURN charge, owner")
+	public List<ChargeTuple> getChargeDivisions(Long chargeId);
 }

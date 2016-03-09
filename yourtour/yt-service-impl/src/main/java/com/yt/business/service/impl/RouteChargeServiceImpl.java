@@ -1,12 +1,12 @@
 package com.yt.business.service.impl;
 
-import com.yt.business.bean.*;
-import com.yt.core.common.AppException;
+import com.yt.business.bean.RouteChargeBean;
 import com.yt.business.common.Constants;
-import com.yt.core.common.StaticErrorEnum;
 import com.yt.business.repository.neo4j.ChargeTuple;
-import com.yt.business.repository.neo4j.RouteChargeBeanRepository;
+import com.yt.business.repository.neo4j.RouteRepository;
 import com.yt.business.service.IRouteChargeService;
+import com.yt.core.common.AppException;
+import com.yt.core.common.StaticErrorEnum;
 import com.yt.neo4j.repository.CrudOperate;
 import com.yt.neo4j.repository.RelationshipCrudOperate;
 import org.apache.commons.logging.Log;
@@ -26,7 +26,7 @@ public class RouteChargeServiceImpl extends BaseServiceImpl implements IRouteCha
     private static final Log logger = LogFactory.getLog(RouteChargeServiceImpl.class);
 
     @Autowired
-    private RouteChargeBeanRepository chargeRepository;
+    private RouteRepository routeRepository;
 
     @Autowired
     private CrudOperate<RouteChargeBean> chargeCrudOperate;
@@ -34,17 +34,16 @@ public class RouteChargeServiceImpl extends BaseServiceImpl implements IRouteCha
     @Autowired
     private RelationshipCrudOperate<RouteChargeBean, RouteChargeBean> chargeDivisionRelationship;
 
-
     @Override
     public List<RouteChargeBean> getCharges(Long routeId, Long operatorId) throws Exception{
-        return chargeRepository.getCharges(routeId, operatorId);
+        return routeRepository.getCharges(routeId, operatorId);
     }
 
     @Override
     public List<RouteChargeBean> getChargeDivisions(Long routeId, Long chargeId) throws Exception {
         List<RouteChargeBean> charges = new ArrayList<>();
 
-        List<ChargeTuple> tuples = chargeRepository.getChargeDivisions(chargeId);
+        List<ChargeTuple> tuples = routeRepository.getChargeDivisions(chargeId);
         if(tuples == null) return charges;
 
         for(ChargeTuple tuple : tuples){
@@ -80,11 +79,24 @@ public class RouteChargeServiceImpl extends BaseServiceImpl implements IRouteCha
 
         chargeCrudOperate.save(charge, true);
 
+        //平摊费用和被平摊费用之间建立关系
         chargeDivisionRelationship.createRelation(master, charge, Constants.RELATION_TYPE_DIVIDED, Direction.OUTGOING);
     }
 
     @Override
-    public void deleteChargeDivisions(Long routeId, Long chargeId, Long operatorId) throws Exception {
+    public void deleteChargeDivision(Long routeId, Long masterChargeId, Long chargeId, Long operatorId) throws Exception {
+        RouteChargeBean master = chargeCrudOperate.get(masterChargeId);
+        if(master == null){
+            throw new AppException(StaticErrorEnum.DATA_NOT_EXIST);
+        }
 
+        RouteChargeBean charge = chargeCrudOperate.get(chargeId);
+        if(charge == null){
+            throw new AppException(StaticErrorEnum.DATA_NOT_EXIST);
+        }
+        chargeCrudOperate.delete(charge);
+
+        master.setPayment(master.getPayment() + charge.getAmount()); //被平摊费用实际支付增加平摊的费用
+        chargeCrudOperate.save(master);
     }
 }

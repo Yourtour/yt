@@ -2,8 +2,8 @@ package com.yt.business.service.impl;
 
 import com.yt.business.bean.*;
 import com.yt.business.common.Constants;
-import com.yt.business.repository.neo4j.RouteBeanRepository;
-import com.yt.business.repository.neo4j.RouteBeanRepository.OwnerRouteTuple;
+import com.yt.business.repository.neo4j.RouteRepository;
+import com.yt.business.repository.neo4j.RouteRepository.OwnerRouteTuple;
 import com.yt.business.repository.neo4j.RouteTuple;
 import com.yt.business.service.IRouteService;
 import com.yt.core.common.AppException;
@@ -24,7 +24,7 @@ public class RouteServiceImpl extends BaseServiceImpl implements IRouteService {
 	private static final Log LOG = LogFactory.getLog(RouteServiceImpl.class);
 
 	@Autowired
-	private RouteBeanRepository repository;
+	private RouteRepository repository;
 	
 	@Autowired
 	private CrudOperate<RouteMainBean> routeCrudOperate;

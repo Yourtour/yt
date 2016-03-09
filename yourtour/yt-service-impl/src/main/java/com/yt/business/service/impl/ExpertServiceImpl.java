@@ -1,11 +1,10 @@
 package com.yt.business.service.impl;
 
-import com.yt.business.CrudAllInOneOperateImpl;
 import com.yt.business.bean.*;
 import com.yt.business.repository.neo4j.ExpertBeanRepository;
 import com.yt.business.repository.neo4j.ExpertTuple;
-import com.yt.business.repository.neo4j.RouteBeanRepository;
-import com.yt.business.service.ICommentService;
+import com.yt.business.repository.neo4j.RouteRepository;
+import com.yt.business.repository.neo4j.RouteTuple;
 import com.yt.business.service.IExpertService;
 import com.yt.core.utils.CollectionUtils;
 import com.yt.core.utils.StringUtils;
@@ -13,7 +12,6 @@ import com.yt.neo4j.repository.CrudOperate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -39,7 +37,7 @@ public class ExpertServiceImpl extends BaseServiceImpl implements IExpertService
 	private ExpertBeanRepository expertBeanRepository;
 
 	@Autowired
-	private RouteBeanRepository routeBeanRepository;
+	private RouteRepository routeRepository;
 
 	public ExpertServiceImpl() {
 		super();
@@ -85,12 +83,30 @@ public class ExpertServiceImpl extends BaseServiceImpl implements IExpertService
 
 	@Override
 	public List<RouteMainBean> getRecommendRoutes(Long uid, Long nextCursor, int limit) throws Exception {
-		return this.routeBeanRepository.getRoutesRecommendedByExpert(uid, nextCursor, limit);
+		List<RouteMainBean> routes = new ArrayList<>();
+
+		List<RouteTuple> tuples = routeRepository.getRecommendRoutes(uid, nextCursor, limit);
+		if(CollectionUtils.isNotEmpty(tuples)){
+			for(RouteTuple tuple : tuples){
+				routes.add(tuple.getRoute());
+			}
+		}
+
+		return routes;
 	}
 
 	@Override
 	public List<RouteMainBean> getServicedRoutes(Long expertId, Long nextCursor, int limit) throws Exception {
-		return this.routeBeanRepository.getRoutesParticipatedAsExpert(expertId, nextCursor, limit);
+		List<RouteMainBean> routes = new ArrayList<>();
+
+		List<RouteRepository.OwnerRouteTuple> tuples = this.routeRepository.getRoutes(expertId, nextCursor, limit, "EXPERT");
+		if(CollectionUtils.isNotEmpty(tuples)){
+			for(RouteRepository.OwnerRouteTuple tuple : tuples){
+				routes.add(tuple.getRoute());
+			}
+		}
+
+		return routes;
 	}
 
 	@Override

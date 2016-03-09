@@ -4,14 +4,15 @@
     <list default="true" id="92ee94f3-3d6c-4f6d-925a-699d6360b737" name="Default" comment="">
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-app\WebRoot\cordova\platforms\android\assets\www\plugins\phonegap-plugin-barcodescanner\www\barcodescanner.js" afterPath="" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-data-service\src\test\java\com\yt\business\neo4j\DataGenerator.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/ChargeRestResource.java" afterPath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/ChargeRestResource.java" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\neo4j\RouteChargeBeanRepository.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/ExpertServiceImpl.java" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/ExpertServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IRouteChargeService.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IRouteChargeService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IRouteMemberService.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IRouteMemberService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/neo4j/RouteBeanRepository.java" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/neo4j/RouteBeanRepository.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RouteChargeBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RouteChargeBean.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteChargeServiceImpl.java" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteChargeServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RouteMemberBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RouteMemberBean.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteMemberServiceImpl.java" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteMemberServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteServiceImpl.java" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MOVED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\neo4j\RouteBeanRepository.java" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/neo4j/RouteRepository.java" />
     </list>
     <ignored path="yourtour.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -69,17 +70,17 @@
         <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteMemberServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-42.607143">
-              <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+              <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RouteBeanRepository.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/neo4j/RouteBeanRepository.java">
+      <file leaf-file-name="RouteRepository.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/neo4j/RouteRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="114" column="24" selection-start-line="114" selection-start-column="24" selection-end-line="114" selection-end-column="24" />
+            <state vertical-scroll-proportion="-11.964286">
+              <caret line="130" column="6" selection-start-line="130" selection-start-column="6" selection-end-line="130" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -88,30 +89,8 @@
       <file leaf-file-name="RouteChargeServiceImpl.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteChargeServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3773585">
-              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ChargeRestResource.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/ChargeRestResource.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="129" column="32" selection-start-line="129" selection-start-column="32" selection-end-line="129" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IRouteChargeService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IRouteChargeService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="47" column="16" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.6226415">
+              <caret line="81" column="26" selection-start-line="81" selection-start-column="26" selection-end-line="81" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -123,8 +102,30 @@
         <entry file="file://$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RouteChargeBean.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="34" column="41" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="41" />
+              <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RouteActivityTuple.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/neo4j/RouteActivityTuple.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IRouteChargeService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IRouteChargeService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="57" column="102" selection-start-line="57" selection-start-column="37" selection-end-line="57" selection-end-column="102" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -143,24 +144,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RelationshipCrudGeneralOperate.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/repository/RelationshipCrudGeneralOperate.java">
+      <file leaf-file-name="ExpertServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/ExpertServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="149" column="16" selection-start-line="149" selection-start-column="16" selection-end-line="149" selection-end-column="16" />
+            <state vertical-scroll-proportion="-30.821428">
+              <caret line="105" column="13" selection-start-line="105" selection-start-column="13" selection-end-line="105" selection-end-column="13" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IRouteMemberService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IRouteMemberService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.321428">
-              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -168,8 +157,8 @@
       <file leaf-file-name="RouteServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.913793">
-              <caret line="159" column="13" selection-start-line="159" selection-start-column="13" selection-end-line="159" selection-end-column="13" />
+            <state vertical-scroll-proportion="-5.672414">
+              <caret line="185" column="22" selection-start-line="176" selection-start-column="8" selection-end-line="185" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -3103,10 +3092,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/cache/Neo4jBeanDescriptorGeneralCacheImpl.java" />
-        <option value="$PROJECT_DIR$/yt-hbase/src/main/java/com/yt/hbase/BaseBeanImpl.java" />
-        <option value="$PROJECT_DIR$/yt-data-service/src/main/java/com/yt/business/BusinessBeanImpl.java" />
-        <option value="$PROJECT_DIR$/yt-data-service/src/main/java/com/yt/business/bean/PlaceBean.java" />
         <option value="$PROJECT_DIR$/yt-data-service/src/main/java/com/yt/business/bean/RouteServiceBean.java" />
         <option value="$PROJECT_DIR$/yt-data-service/src/main/java/com/yt/business/bean/RouteActivityItemBean.java" />
         <option value="$PROJECT_DIR$/yt-data-service/src/main/java/com/yt/business/bean/ChatJoinHistoryBean.java" />
@@ -3147,13 +3132,17 @@
         <option value="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IRouteService.java" />
         <option value="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RouteMainBean.java" />
         <option value="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IRouteMemberService.java" />
-        <option value="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteServiceImpl.java" />
-        <option value="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/neo4j/RouteBeanRepository.java" />
         <option value="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RouteMemberBean.java" />
         <option value="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteMemberServiceImpl.java" />
-        <option value="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IRouteChargeService.java" />
-        <option value="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteChargeServiceImpl.java" />
         <option value="$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/ChargeRestResource.java" />
+        <option value="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/neo4j/RouteChargeBeanRepository.java" />
+        <option value="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/neo4j/RouteBeanRepository.java" />
+        <option value="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/neo4j/RouteRepository.java" />
+        <option value="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteServiceImpl.java" />
+        <option value="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/ExpertServiceImpl.java" />
+        <option value="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IRouteChargeService.java" />
+        <option value="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RouteChargeBean.java" />
+        <option value="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteChargeServiceImpl.java" />
       </list>
     </option>
   </component>
@@ -4227,12 +4216,12 @@
       <workItem from="1457484381066" duration="17294000" />
       <workItem from="1457503348315" duration="441000" />
       <workItem from="1457503828183" duration="1086000" />
-      <workItem from="1457505025112" duration="9990000" />
+      <workItem from="1457505025112" duration="10974000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="184007000" />
+    <option name="totallyTimeSpent" value="184991000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -4258,7 +4247,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34477124" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6928105" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15355521" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.025718609" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -4307,13 +4296,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/TravelCartBaseBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/LikeBaseBean.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -4459,14 +4441,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/ExpertServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4653,16 +4627,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.913793">
-          <caret line="159" column="13" selection-start-line="159" selection-start-column="13" selection-end-line="159" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RouteMemberBean.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -4678,40 +4642,14 @@
     <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteMemberServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-42.607143">
-          <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+          <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RouteChargeBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="41" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/neo4j/RouteBeanRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="114" column="24" selection-start-line="114" selection-start-column="24" selection-end-line="114" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IRouteChargeService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="47" column="16" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/ChargeRestResource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="3.3138936">
           <caret line="129" column="32" selection-start-line="129" selection-start-column="32" selection-end-line="129" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -4719,11 +4657,65 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.672414">
+          <caret line="185" column="22" selection-start-line="176" selection-start-column="8" selection-end-line="185" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/ExpertServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-30.821428">
+          <caret line="105" column="13" selection-start-line="105" selection-start-column="13" selection-end-line="105" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/neo4j/RouteActivityTuple.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/neo4j/RouteRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.964286">
+          <caret line="130" column="6" selection-start-line="130" selection-start-column="6" selection-end-line="130" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IRouteChargeService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="57" column="102" selection-start-line="57" selection-start-column="37" selection-end-line="57" selection-end-column="102" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RouteChargeBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteChargeServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3773585">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.6226415">
+          <caret line="81" column="26" selection-start-line="81" selection-start-column="26" selection-end-line="81" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

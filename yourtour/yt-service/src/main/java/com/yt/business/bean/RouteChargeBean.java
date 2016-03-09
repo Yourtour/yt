@@ -24,8 +24,8 @@ public class RouteChargeBean extends BaseBeanImpl {
 	private String  name;
 	private String 	item; //
 	private String	type;
-	private double 	amount;
-	private double 	payment;
+	private double 	amount;  //记账总费用
+	private double 	payment;  //实际支付费用，在没有平摊的情况下payment = amount
 	private int		percent;
 	private Long 	chargeDate;
 	private String 	memo;

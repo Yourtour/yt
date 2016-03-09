@@ -2,12 +2,10 @@ package com.yt.business.service.impl;
 
 import com.yt.business.bean.RouteMainBean;
 import com.yt.business.bean.RouteMemberBean;
-import com.yt.business.bean.RouteProvisionBean;
 import com.yt.business.bean.UserProfileBean;
 import com.yt.business.common.Constants;
-import com.yt.business.repository.neo4j.RouteBeanRepository;
+import com.yt.business.repository.neo4j.RouteRepository;
 import com.yt.business.service.IRouteMemberService;
-import com.yt.business.service.IService;
 import com.yt.core.common.AppException;
 import com.yt.core.common.StaticErrorEnum;
 import com.yt.neo4j.repository.CrudOperate;
@@ -27,7 +25,7 @@ public class RouteMemberServiceImpl extends BaseServiceImpl implements IRouteMem
 	private static final Log LOG = LogFactory.getLog(RouteMemberServiceImpl.class);
 
 	@Autowired
-	private RouteBeanRepository repository;
+	private RouteRepository repository;
 
 	@Autowired
 	private CrudOperate<RouteMainBean> routeCrudOperate;
