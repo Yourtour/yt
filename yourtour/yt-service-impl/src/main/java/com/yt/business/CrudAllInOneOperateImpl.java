@@ -1,15 +1,14 @@
 package com.yt.business;
 
-import java.util.List;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.yt.hbase.BaseBean;
 import com.yt.neo4j.bean.Neo4jBaseBean;
 import com.yt.neo4j.bean.Neo4jBaseDictBean;
 import com.yt.neo4j.repository.CrudGeneralOperate;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 public class CrudAllInOneOperateImpl<T extends Neo4jBaseBean> extends CrudGeneralOperate<T> implements
 		CrudAllInOneOperate<T> {

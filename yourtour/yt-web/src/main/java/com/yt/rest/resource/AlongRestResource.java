@@ -4,7 +4,6 @@ import com.yt.business.bean.AlongBean;
 import com.yt.business.bean.RouteMainBean;
 import com.yt.business.bean.UserProfileBean;
 import com.yt.business.service.IAlongService;
-import com.yt.business.utils.Neo4jUtils;
 import com.yt.core.utils.CollectionUtils;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponseVO;
@@ -37,9 +36,9 @@ public class AlongRestResource extends RestResource {
 	 */
 	@GET
 	@Path("/route/{routeId}")
-	public ResponseDataVO<List<AlongVO>> getRouteAlong(@PathParam("routeId") String routeId) throws Exception {
+	public ResponseDataVO<List<AlongVO>> getRouteAlong(@PathParam("routeId") Long routeId) throws Exception {
 		List<AlongVO> alongs = new ArrayList<>();
-		Long rid = Neo4jUtils.getGraphIDFromString(routeId);
+		Long rid = routeId;
 
 		List<AlongBean> beans = this.alongService.getAlongsByRoute(rid);
 		if(CollectionUtils.isNotEmpty(beans)){
@@ -60,11 +59,11 @@ public class AlongRestResource extends RestResource {
 	 */
 	@GET
 	@Path("/place/{placeId}")
-	public ResponseDataVO<List<AlongVO>> getPlaceAlong(@PathParam("placeId") String placeId,
+	public ResponseDataVO<List<AlongVO>> getPlaceAlong(@PathParam("placeId") Long placeId,
 													   @QueryParam("start") Long nextCursor,
 													   @QueryParam("limit") int limit) throws Exception{
 		List<AlongVO> alongs = new ArrayList<>();
-		Long pid = Neo4jUtils.getGraphIDFromString(placeId);
+		Long pid = placeId;
 
 		List<AlongBean> beans = this.alongService.getAlongsByPlace(pid, nextCursor, limit);
 		if(CollectionUtils.isNotEmpty(beans)){
@@ -83,9 +82,9 @@ public class AlongRestResource extends RestResource {
 	 */
 	@POST
 	@Path("/{routeId}/{alongId}/save")
-	public ResponseDataVO<Long> saveAlongInfo(@PathParam("routeId") String routeId,@PathParam("alongId") String alongId, AlongVO vo) throws Exception{
+	public ResponseDataVO<Long> saveAlongInfo(@PathParam("routeId") Long routeId,@PathParam("alongId") Long alongId, AlongVO vo) throws Exception{
 		AlongBean along = null;
-		Long aid = Neo4jUtils.getGraphIDFromString(alongId);
+		Long aid = alongId;
 		if(aid != 0){
 			along = this.alongService.getAlongInfo(aid);
 		}else{
@@ -95,7 +94,7 @@ public class AlongRestResource extends RestResource {
 		if(aid == 0) {
 			AlongVO.transform(vo, along);
 			RouteMainBean route = new RouteMainBean();
-			route.setId(Neo4jUtils.getGraphIDFromString(routeId));
+			route.setId(routeId);
 			along.setRoute(route);
 
 			UserProfileBean user = new UserProfileBean();
@@ -115,8 +114,8 @@ public class AlongRestResource extends RestResource {
 	 */
 	@GET
 	@Path("/{alongId}/delete")
-	public ResponseVO deleteAlongInfo(@PathParam("alongId") String alongId) throws Exception{
-		this.alongService.deleteAlongInfo(Neo4jUtils.getGraphIDFromString(alongId), this.getCurrentUserId());
+	public ResponseVO deleteAlongInfo(@PathParam("alongId") Long alongId) throws Exception{
+		this.alongService.deleteAlongInfo(alongId, this.getCurrentUserId());
 
 		return new ResponseVO();
 	}

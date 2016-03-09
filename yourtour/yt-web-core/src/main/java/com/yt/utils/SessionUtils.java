@@ -1,10 +1,10 @@
 package com.yt.utils;
 
+import com.yt.core.utils.Neo4jUtils;
+import com.yt.core.utils.StringUtils;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
-import com.yt.business.utils.Neo4jUtils;
-import com.yt.core.utils.StringUtils;
 
 public class SessionUtils {
 	public static final String USER_TOKEN = "User-Token";

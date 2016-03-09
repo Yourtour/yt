@@ -1,10 +1,11 @@
 package com.yt.business.service;
 
-import java.util.List;
+import com.yt.business.bean.RouteActivityBean;
+import com.yt.business.bean.RouteMainBean;
+import com.yt.business.bean.RouteProvisionBean;
+import com.yt.business.bean.RouteScheduleBean;
 
-import com.yt.business.CrudAllInOneOperate;
-import com.yt.business.bean.*;
-import com.yt.business.common.Constants.GroupRole;
+import java.util.List;
 
 public interface IRouteService {
 	/**

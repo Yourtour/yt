@@ -1,9 +1,6 @@
 package com.yt.business.service;
 
-import com.yt.business.CrudAllInOneOperate;
-import com.yt.business.bean.AlongBean;
 import com.yt.business.bean.CommentBean;
-import com.yt.neo4j.bean.Neo4jBaseBean;
 
 import java.util.List;
 

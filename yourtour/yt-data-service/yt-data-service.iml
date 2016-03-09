@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.id=":yt-data-service" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$/../yt-web-core" external.system.id="GRADLE" external.system.module.group="yourtour" external.system.module.version="1.0.0" type="JAVA_MODULE" version="4">
+<module external.linked.project.id=":yt-data-service" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$/../yt-service" external.system.id="GRADLE" external.system.module.group="yourtour" external.system.module.version="1.0.0" type="JAVA_MODULE" version="4">
   <component name="EclipseModuleManager">
     <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/log4j/log4j/1.2.17/5af35056b4d257e4b64b9e8069c0746e8b08629f/log4j-1.2.17.jar!/" />
     <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.aspectj/aspectjweaver/1.8.6/7108cf65148f29a55ebf23db2c46224ea9d086dc/aspectjweaver-1.8.6.jar!/" />

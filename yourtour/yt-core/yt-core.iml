@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.id=":yt-core" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$/../yt-web-core" external.system.id="GRADLE" external.system.module.group="yourtour" external.system.module.version="1.0.0" type="JAVA_MODULE" version="4">
+<module external.linked.project.id=":yt-core" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$/../yt-service" external.system.id="GRADLE" external.system.module.group="yourtour" external.system.module.version="1.0.0" type="JAVA_MODULE" version="4">
   <component name="EclipseModuleManager">
     <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/4.1.6.RELEASE/15f0b22bf89ed468badbc4eec759af2b916d33e4/spring-context-4.1.6.RELEASE.jar!/" />
     <libelement value="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.8.2/c94f54227b08100974c36170dcb53329435fe5ad/junit-4.8.2.jar!/" />
@@ -38,8 +38,8 @@
     <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-core:4.1.6.RELEASE" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-expression:4.1.6.RELEASE" level="project" />
     <orderEntry type="library" exported="" name="Gradle: aopalliance:aopalliance:1.0" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: junit:junit:4.8.2" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: log4j:log4j:1.2.17" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: org.aspectj:aspectjweaver:1.8.6" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: junit:junit:4.8.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: log4j:log4j:1.2.17" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.aspectj:aspectjweaver:1.8.6" level="project" />
   </component>
 </module>

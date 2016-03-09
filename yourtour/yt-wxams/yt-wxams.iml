@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.id=":yt-web-core" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$/../yt-service" external.system.id="GRADLE" external.system.module.group="yourtour" external.system.module.version="1.0.0" type="JAVA_MODULE" version="4">
+<module external.linked.project.id=":yt-wxams" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$/../yt-service" external.system.id="GRADLE" external.system.module.group="yourtour" external.system.module.version="1.0.0" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="web" name="Web Gradle : yt-wxams-1.0.0.war">
+      <configuration>
+        <webroots>
+          <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
+        </webroots>
+        <sourceRoots>
+          <root url="file://$MODULE_DIR$/src/main/resources" />
+          <root url="file://$MODULE_DIR$/src/main/java" />
+        </sourceRoots>
+      </configuration>
+    </facet>
+  </component>
   <component name="NewModuleRootManager" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/build/classes/main" />
     <output-test url="file://$MODULE_DIR$/build/classes/test" />
@@ -14,6 +27,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="yt-web-core" exported="" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: javax.servlet:servlet-api:2.5" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-context:4.1.6.RELEASE" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-web:4.1.6.RELEASE" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-tx:4.1.6.RELEASE" level="project" />
@@ -108,7 +123,6 @@
     <orderEntry type="library" exported="" name="Gradle: org.springframework.batch:spring-batch-infrastructure:3.0.3.RELEASE" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.apache.hadoop:hadoop-yarn-api:2.6.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.apache.commons:commons-compress:1.4.1" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: javax.servlet:servlet-api:2.5" level="project" />
     <orderEntry type="library" exported="" name="Gradle: commons-cli:commons-cli:1.2" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.apache.hadoop:hadoop-annotations:2.6.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: com.google.inject.extensions:guice-servlet:3.0" level="project" />
@@ -180,6 +194,5 @@
     <orderEntry type="library" exported="" name="Gradle: org.apache.hadoop:hadoop-auth:2.6.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.aspectj:aspectjweaver:1.8.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.aspectj:aspectjweaver:1.8.6" level="project" />
-    <orderEntry type="module" module-name="yt-service" exported="" />
   </component>
 </module>

@@ -1,10 +1,7 @@
 package com.yt.business.service;
 
 import com.yt.business.bean.AlongBean;
-import com.yt.business.repository.neo4j.AlongTuple;
-import com.yt.core.utils.CollectionUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

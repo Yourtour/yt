@@ -3,7 +3,6 @@ package com.yt.rest.resource;
 import com.yt.business.bean.ChatMessageBean;
 import com.yt.business.bean.ChatSessionBean;
 import com.yt.business.service.IChatService;
-import com.yt.business.utils.Neo4jUtils;
 import com.yt.core.common.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
 import com.yt.vo.chat.ChatMessageVO;

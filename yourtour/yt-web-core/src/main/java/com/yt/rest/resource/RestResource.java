@@ -6,7 +6,6 @@ package com.yt.rest.resource;
  * 2）在给接口中，涉及到数据修改保存的接口，第一步必须先从数据存储中获取已经存在的数据，然后根据每个接口提交的数据进行修改，防止数据破坏
  *
  */
-import com.yt.business.utils.Neo4jUtils;
 import com.yt.utils.SessionUtils;
 
 import javax.servlet.http.HttpServletRequest;

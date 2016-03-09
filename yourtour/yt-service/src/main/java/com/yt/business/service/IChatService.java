@@ -1,12 +1,11 @@
 package com.yt.business.service;
 
-import java.util.List;
-
-import com.yt.business.CrudAllInOneOperate;
 import com.yt.business.bean.ChatJoinHistoryBean;
 import com.yt.business.bean.ChatMessageBean;
 import com.yt.business.bean.ChatSessionBean;
 import com.yt.business.bean.UserProfileBean;
+
+import java.util.List;
 
 public interface IChatService {
 	/**

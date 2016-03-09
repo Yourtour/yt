@@ -4,7 +4,6 @@ import com.yt.business.bean.RouteChargeBean;
 import com.yt.business.bean.RouteMainBean;
 import com.yt.business.bean.UserProfileBean;
 import com.yt.business.service.IRouteChargeService;
-import com.yt.business.utils.Neo4jUtils;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.vo.route.RouteChargeVO;
@@ -36,13 +35,12 @@ public class ChargeRestResource extends RestResource {
 	 */
 	@GET
 	@Path("/query")
-	public ResponseDataVO<List<RouteChargeVO>> getCharges(@PathParam("routeId") String routeId) throws Exception {
+	public ResponseDataVO<List<RouteChargeVO>> getCharges(@PathParam("routeId") Long routeId) throws Exception {
 		List<RouteChargeVO> voes = new ArrayList<>();
 
-		Long rid = Neo4jUtils.getGraphIDFromString(routeId);
 		Long uid = super.getCurrentUserId();
 
-		List<RouteChargeBean> charges = chargeService.getCharges(rid, uid);
+		List<RouteChargeBean> charges = chargeService.getCharges(routeId, uid);
 		for (RouteChargeBean charge : charges) {
 			voes.add(RouteChargeVO.transform(charge));
 		}
@@ -57,9 +55,9 @@ public class ChargeRestResource extends RestResource {
 	 */
 	@POST
 	@Path("save")
-	public ResponseDataVO<Long> saveCharge(@PathParam("routeId") String routeId, RouteChargeVO charge) throws Exception{
+	public ResponseDataVO<Long> saveCharge(@PathParam("routeId") Long routeId, RouteChargeVO charge) throws Exception{
 		RouteMainBean route = new RouteMainBean();
-		route.setId(Neo4jUtils.getGraphIDFromString(routeId));
+		route.setId(routeId);
 
 		Long userId = super.getCurrentUserId();
 		UserProfileBean user = new UserProfileBean();
@@ -82,8 +80,8 @@ public class ChargeRestResource extends RestResource {
 	 */
 	@GET
 	@Path("{chargeId}/delete")
-	public ResponseVO deleteCharge(@PathParam("chargeId") String chargeId) throws Exception {
-		Long cid = Neo4jUtils.getGraphIDFromString(chargeId);
+	public ResponseVO deleteCharge(@PathParam("chargeId") Long chargeId) throws Exception {
+		Long cid = chargeId;
 		Long uid = super.getCurrentUserId();
 
 		this.chargeService.deleteCharge(cid, uid);
@@ -98,11 +96,11 @@ public class ChargeRestResource extends RestResource {
 	 */
 	@GET
 	@Path("{chargeId}/division/query")
-	public ResponseDataVO<List<RouteChargeVO>> queryChargeDivision(@PathParam("routeId") String routeId,
-																   @PathParam("chargeId") String chargeId) throws Exception{
+	public ResponseDataVO<List<RouteChargeVO>> queryChargeDivision(@PathParam("routeId") Long routeId,
+																   @PathParam("chargeId") Long chargeId) throws Exception{
 		List<RouteChargeVO> voes = new ArrayList<>();
 
-		Long cid = Neo4jUtils.getGraphIDFromString(chargeId);
+		Long cid = chargeId;
 		List<RouteChargeBean> charges = this.chargeService.getChargeDivisions(cid);
 		for (RouteChargeBean charge : charges) {
 			voes.add(RouteChargeVO.transform(charge));
@@ -117,23 +115,23 @@ public class ChargeRestResource extends RestResource {
 	 */
 	@POST
 	@Path("{chargeId}/division/{userId}/save")
-	public ResponseDataVO<Long> divideCharge(@PathParam("routeId") String routeId,
-											 @PathParam("chargeId") String chargeId,
-											 @PathParam("userId") String userId, RouteChargeVO vo) throws Exception{
+	public ResponseDataVO<Long> divideCharge(@PathParam("routeId") Long routeId,
+											 @PathParam("chargeId") Long chargeId,
+											 @PathParam("userId") Long userId, RouteChargeVO vo) throws Exception{
 		Long uid = this.getCurrentUserId();
 
 		RouteMainBean route = new RouteMainBean();
-		route.setId(Neo4jUtils.getGraphIDFromString(routeId));
+		route.setId(routeId);
 
 		UserProfileBean user = new UserProfileBean();
-		user.setId(Neo4jUtils.getGraphIDFromString(userId));
+		user.setId(userId);
 
 		RouteChargeBean chargeBean = RouteChargeVO.transform(vo);
 		chargeBean.setType("2");
 		chargeBean.setRoute(route);
 		chargeBean.setOwner(user);
 
-		this.chargeService.saveChargeDivisions(Neo4jUtils.getGraphIDFromString(chargeId), chargeBean);
+		this.chargeService.saveChargeDivisions(chargeId, chargeBean);
 		return new ResponseDataVO<Long>(chargeBean.getId());
 	}
 }
