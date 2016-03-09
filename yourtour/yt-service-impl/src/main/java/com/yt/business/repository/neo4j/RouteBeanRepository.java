@@ -2,6 +2,7 @@ package com.yt.business.repository.neo4j;
 
 import java.util.List;
 
+import com.yt.business.bean.RouteMemberBean;
 import com.yt.business.bean.RouteScheduleBean;
 import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.neo4j.annotation.QueryResult;
@@ -74,18 +75,8 @@ public interface RouteBeanRepository extends GraphRepository<RouteMainBean> {
 	 * @param userId
 	 * @return
 	 */
-	@Query("START user=node({0}) MATCH user-[r:MEMBER]->(route:RouteMainBean) RETURN r.imageUrl, r.impression, r.permission, r.role, route")
-	public List<OwnerRouteTuple> getRoutes(Long userId);
-
-	/**
-	 * 获取达人服务过的行程
-	 * @param userId
-	 * @param startIndex
-	 * @param limit
-	 * @return
-	 */
-	@Query("START user=node({0}) MATCH user-[r:EXPERT]->(route:RouteMainBean) RETURN r.permission, route")
-	public List<OwnerRouteTuple> getServicedRoutes(Long userId, Long startIndex, int limit);
+	@Query("START user=node({0}) MATCH user-[r:MEMBER]->(route:RouteMainBean) where r.role=~{4} RETURN r.imageUrl, r.impression, r.permission, r.role, route")
+	public List<OwnerRouteTuple> getRoutes(Long userId, Long startIndex, int limit, String roles);
 
 	/**
 	 * 获取达人推荐的行程
@@ -120,8 +111,8 @@ public interface RouteBeanRepository extends GraphRepository<RouteMainBean> {
 	 * @param routeId
 	 * @return
 	 */
-	@Query("START route=node({0}) MATCH route -- (user:UserProfileBean) RETURN user")
-	public List<UserProfileBean> getRouteMember(Long routeId);
+	@Query("START route=node({0}) MATCH route -[r:MEMBER]- (user:UserProfileBean) RETURN r.role, user")
+	public List<RouteMemberBean> getRouteMember(Long routeId);
 
 	/**
 	 *

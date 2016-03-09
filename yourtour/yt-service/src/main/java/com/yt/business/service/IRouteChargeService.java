@@ -10,30 +10,25 @@ public interface IRouteChargeService {
      * @param charge
      * @throws Exception
      */
-    public void saveCharge(RouteChargeBean charge) throws Exception;
+    public void saveCharge(RouteChargeBean charge, Long operatorId) throws Exception;
 
     /**
      * 删除行程费用
+     * @param routeId
      * @param chargeId
-     * @param userId
-     */
-    public void deleteCharge(Long chargeId, Long userId) throws Exception;
-
-    /**
-     * 获取行程费用
-     * @param chargeId
-     * @return
+     * @param operatorId
      * @throws Exception
      */
-    public RouteChargeBean getCharge(Long chargeId) throws Exception;
+    public void deleteCharge(Long routeId, Long chargeId, Long operatorId) throws Exception;
 
     /**
      * 获取用户某条行程费用清单
      * @param routeId
-     * @param userId
+     * @param operatorId
      * @return
+     * @throws Exception
      */
-    public List<RouteChargeBean> getCharges(Long routeId, Long userId) throws Exception;
+    public List<RouteChargeBean> getCharges(Long routeId, Long operatorId) throws Exception;
 
     /**
      * 获取费用平摊
@@ -41,7 +36,7 @@ public interface IRouteChargeService {
      * @return
      * @throws Exception
      */
-    public List<RouteChargeBean> getChargeDivisions(Long chargeId) throws Exception;
+    public List<RouteChargeBean> getChargeDivisions(Long routeId, Long chargeId) throws Exception;
 
     /**
      * 保存费用平摊
@@ -50,7 +45,7 @@ public interface IRouteChargeService {
      * @return
      * @throws Exception
      */
-    public void saveChargeDivisions(Long masterChargeId, RouteChargeBean charge) throws Exception;
+    public void saveChargeDivisions(Long routeId, Long masterChargeId, RouteChargeBean charge, Long operatorId) throws Exception;
 
     /**
      * 删除费用平台
@@ -58,7 +53,7 @@ public interface IRouteChargeService {
      * @return
      * @throws Exception
      */
-    public void deleteChargeDivisions(Long chargeId) throws Exception;
+    public void deleteChargeDivisions(Long routeId, Long chargeId, Long operatorId) throws Exception;
 
 
 }

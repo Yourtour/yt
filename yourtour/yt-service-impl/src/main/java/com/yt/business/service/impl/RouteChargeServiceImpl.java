@@ -36,12 +36,12 @@ public class RouteChargeServiceImpl extends BaseServiceImpl implements IRouteCha
 
 
     @Override
-    public List<RouteChargeBean> getCharges(Long routeId, Long userId) throws Exception{
-        return chargeRepository.getCharges(routeId, userId);
+    public List<RouteChargeBean> getCharges(Long routeId, Long operatorId) throws Exception{
+        return chargeRepository.getCharges(routeId, operatorId);
     }
 
     @Override
-    public List<RouteChargeBean> getChargeDivisions(Long chargeId) throws Exception {
+    public List<RouteChargeBean> getChargeDivisions(Long routeId, Long chargeId) throws Exception {
         List<RouteChargeBean> charges = new ArrayList<>();
 
         List<ChargeTuple> tuples = chargeRepository.getChargeDivisions(chargeId);
@@ -55,7 +55,7 @@ public class RouteChargeServiceImpl extends BaseServiceImpl implements IRouteCha
     }
 
     @Override
-    public void deleteCharge(Long chargeId, Long userId) throws Exception{
+    public void deleteCharge(Long routeId, Long chargeId, Long operatorId) throws Exception{
         RouteChargeBean charge = chargeCrudOperate.get(chargeId, false);
         if(charge != null){
             charge.setStatus(Constants.Status.CANCELED);
@@ -65,17 +65,12 @@ public class RouteChargeServiceImpl extends BaseServiceImpl implements IRouteCha
         }
     }
 
-    public void saveCharge(RouteChargeBean charge) throws Exception {
+    public void saveCharge(RouteChargeBean charge, Long operatorId) throws Exception {
         chargeCrudOperate.save(charge);
     }
 
     @Override
-    public RouteChargeBean getCharge(Long chargeId) throws Exception {
-        return null;
-    }
-
-    @Override
-    public void saveChargeDivisions(Long masterChargeId, RouteChargeBean charge) throws Exception {
+    public void saveChargeDivisions(Long routeId, Long masterChargeId, RouteChargeBean charge, Long operatorId) throws Exception {
         RouteChargeBean master = chargeCrudOperate.get(masterChargeId);
         if(master == null){
             throw new AppException(StaticErrorEnum.DATA_NOT_EXIST);
@@ -89,7 +84,7 @@ public class RouteChargeServiceImpl extends BaseServiceImpl implements IRouteCha
     }
 
     @Override
-    public void deleteChargeDivisions(Long chargeId) throws Exception {
+    public void deleteChargeDivisions(Long routeId, Long chargeId, Long operatorId) throws Exception {
 
     }
 }

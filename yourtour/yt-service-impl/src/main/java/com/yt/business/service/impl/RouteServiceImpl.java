@@ -9,7 +9,6 @@ import com.yt.business.service.IRouteService;
 import com.yt.core.common.AppException;
 import com.yt.core.common.StaticErrorEnum;
 import com.yt.core.utils.CollectionUtils;
-import com.yt.core.utils.StringUtils;
 import com.yt.neo4j.repository.CrudOperate;
 import com.yt.neo4j.repository.RelationshipCrudOperate;
 import org.apache.commons.logging.Log;
@@ -87,14 +86,12 @@ public class RouteServiceImpl extends BaseServiceImpl implements IRouteService {
 
 		if(isNew){ //保存用户在行程中的成员关系
 			UserProfileBean user = new UserProfileBean(operatorId);
-			Map<String, Object> member = memberRelationship.getRelation(user, route, Constants.RELATION_TYPE_MEMBER);
-			if(member == null){
-				member = new HashMap<>();
-				member.put("permission", "W");
-				member.put("role", Constants.GroupRole.LEADER.code);
+			Map<String, Object> member = new HashMap<>();
+			member = new HashMap<>();
+			member.put("permission", "W");
+			member.put("role", Constants.GroupRole.LEADER.code);
 
-				memberRelationship.createRelation(user, route, Constants.RELATION_TYPE_MEMBER, Direction.INCOMING, member);
-			}
+			memberRelationship.createRelation(user, route, Constants.RELATION_TYPE_MEMBER, Direction.INCOMING, member);
 		}
 	}
 
@@ -155,7 +152,7 @@ public class RouteServiceImpl extends BaseServiceImpl implements IRouteService {
 		RouteMainBean route = null;
 		List<RouteMainBean> list = new ArrayList<RouteMainBean>();
 
-		List<OwnerRouteTuple> routes = repository.getRoutes(userId);
+		List<OwnerRouteTuple> routes = repository.getRoutes(userId, 0l , 20, "MEMBER|LEADER");
 		for (OwnerRouteTuple bean : routes) {
 			route = bean.getRoute();
 			if (route == null) {
@@ -317,6 +314,7 @@ public class RouteServiceImpl extends BaseServiceImpl implements IRouteService {
 		this.updateBaseInfo(provision, operatorId);
 		provisionCrudOperate.save(provision);
 	}
+
 	@Override
 	public void deleteRouteProvision(Long routeId, Long provisionId, Long operatorId) throws Exception {
 		RouteProvisionBean provision = provisionCrudOperate.get(provisionId);
