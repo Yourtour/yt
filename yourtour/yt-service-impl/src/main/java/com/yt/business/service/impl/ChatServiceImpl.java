@@ -3,19 +3,27 @@ package com.yt.business.service.impl;
 import java.util.List;
 import java.util.UUID;
 
-import com.yt.business.bean.*;
-import com.yt.business.service.IChatService;
-import com.yt.neo4j.repository.CrudOperate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.yt.business.CrudAllInOneOperateImpl;
+import com.yt.business.bean.ChatJoinHistoryBean;
+import com.yt.business.bean.ChatMessageBean;
+import com.yt.business.bean.ChatSessionBean;
+import com.yt.business.bean.PlaceBean;
+import com.yt.business.bean.RouteMainBean;
+import com.yt.business.bean.UserProfileBean;
 import com.yt.business.repository.neo4j.ChatBeanRepository;
+import com.yt.business.service.IChatService;
+import com.yt.neo4j.repository.CrudOperate;
 
+/**
+ * @author john
+ * 
+ */
 @Component
-public class ChatServiceImpl extends BaseServiceImpl  implements IChatService {
+public class ChatServiceImpl extends BaseServiceImpl implements IChatService {
 	private static final Log LOG = LogFactory.getLog(ChatServiceImpl.class);
 
 	@Autowired
@@ -33,6 +41,12 @@ public class ChatServiceImpl extends BaseServiceImpl  implements IChatService {
 	@Autowired
 	private CrudOperate<RouteMainBean> routeCrudOperate;
 
+	@Autowired
+	private CrudOperate<UserProfileBean> userCrudOperate;
+
+	@Autowired
+	private CrudOperate<ChatJoinHistoryBean> joinRecordCrudOperate;
+
 	public ChatServiceImpl() {
 		super();
 	}
@@ -43,7 +57,7 @@ public class ChatServiceImpl extends BaseServiceImpl  implements IChatService {
 		ChatSessionBean room = null;
 		String roomNo = String.format("p%d", placeId);
 		try {
-			room = sessionCrudOperate.get("chatRoomNo",	roomNo);
+			room = sessionCrudOperate.get("chatRoomNo", roomNo);
 			if (room == null) {
 				// 聊天室不存在，为目的地创建一个聊天室
 				// TODO 未来还需要根据目的地关系进行聊天室合并
@@ -191,7 +205,53 @@ public class ChatServiceImpl extends BaseServiceImpl  implements IChatService {
 	}
 
 	@Override
-	public List<ChatMessageBean> getUnreadMessages(String roomNo, Long nextCursor, long userId) throws Exception {
+	public List<ChatMessageBean> getUnreadMessages(String roomNo,
+			Long nextCursor, long userId) throws Exception {
 		return null;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.yt.business.service.IChatService#saveChatJoinRecord(java.lang.String,
+	 * com.yt.business.bean.ChatSessionBean)
+	 */
+	@Override
+	public void saveChatJoinRecord(String userId, ChatSessionBean sessionBean)
+			throws Exception {
+		UserProfileBean userProfile = userCrudOperate.get(Long.valueOf(userId));
+		if (userProfile != null) {
+			ChatJoinHistoryBean his = this.getNewestChatJoinRecord(userProfile
+					.getId());
+			if (his != null) {
+				joinRecordCrudOperate.save(his);
+				if (LOG.isDebugEnabled()) {
+					LOG.debug("Update the user's newest chat join record successfully.");
+				}
+			} else {
+				his = new ChatJoinHistoryBean();
+				his.setChatSession(sessionBean);
+				his.setUserProfile(userProfile);
+			}
+		} else {
+			if (LOG.isErrorEnabled()) {
+				LOG.error(String.format(
+						"The user profile not exist, userId: %s.", userId));
+			}
+		}
+	}
+
+	public ChatMessageBean saveChatMessage(boolean isNotice,
+			String textMessage, ChatSessionBean chatSessionBean, long userId)
+			throws Exception {
+		UserProfileBean userProfile = userCrudOperate.get(Long.valueOf(userId));
+		ChatMessageBean message = new ChatMessageBean();
+		message.setNotice(isNotice);
+		message.setMessage(textMessage);
+		message.setChatSession(chatSessionBean);
+		message.setUserProfile(userProfile);
+		messageCrudOperate.save(message, true);
+		return message;
 	}
 }
