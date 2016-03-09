@@ -65,8 +65,10 @@ public class RouteMainBean extends BusinessBeanImpl {
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = RouteProvisionBean.class, direction = Direction.OUTGOING, isList = true)
 	private transient List<RouteProvisionBean> provisions = null; // 行程包含的准备
 
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = UserProfileBean.class, direction = Direction.OUTGOING)
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_MEMBER, type = UserProfileBean.class, direction = Direction.INCOMING)
 	private transient UserProfileBean owner = null; // 行程所有者
+
+	private RouteMemberBean member = null; //成员属性
 
 	private UserProfileBean user = null;
 
@@ -297,5 +299,13 @@ public class RouteMainBean extends BusinessBeanImpl {
 
 	public void setUser(UserProfileBean user) {
 		this.user = user;
+	}
+
+	public RouteMemberBean getMember() {
+		return member;
+	}
+
+	public void setMember(RouteMemberBean member) {
+		this.member = member;
 	}
 }

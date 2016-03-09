@@ -12,13 +12,19 @@ import com.yt.business.bean.RouteMainBean;
 import com.yt.business.bean.UserProfileBean;
 
 public interface RouteBeanRepository extends GraphRepository<RouteMainBean> {
-
 	@QueryResult
 	public class OwnerRouteTuple {
 		@ResultColumn("r.imageUrl")
 		public String imageUrl;
 		@ResultColumn("r.impression")
 		public String impression;
+
+		@ResultColumn("r.permission")
+		public String permission; //R:只读 W:修改
+
+		@ResultColumn("r.role") //参照 Constants.GroupRole枚举定义
+		private String role;
+
 		@ResultColumn("route")
 		public RouteMainBean route;
 
@@ -38,6 +44,22 @@ public interface RouteBeanRepository extends GraphRepository<RouteMainBean> {
 			this.impression = impression;
 		}
 
+		public String getPermission() {
+			return permission;
+		}
+
+		public void setPermission(String permission) {
+			this.permission = permission;
+		}
+
+		public String getRole() {
+			return role;
+		}
+
+		public void setRole(String role) {
+			this.role = role;
+		}
+
 		public RouteMainBean getRoute() {
 			return route;
 		}
@@ -48,44 +70,52 @@ public interface RouteBeanRepository extends GraphRepository<RouteMainBean> {
 	}
 
 	/**
-	 * 根据指定的用户，返回该用户拥有的行程，同时返回包含在关系中的imageUrl和impression属性。
+	 * 获取和指定用户相关的行程。
 	 * @param userId
 	 * @return
 	 */
-	@Query("START owner=node({0}) MATCH owner<-[r:HAS]-(route:RouteMainBean) RETURN r.imageUrl, r.impression, route")
-	public List<OwnerRouteTuple> getOwnedRoutes(Long userId);
+	@Query("START user=node({0}) MATCH user-[r:MEMBER]->(route:RouteMainBean) RETURN r.imageUrl, r.impression, r.permission, r.role, route")
+	public List<OwnerRouteTuple> getRoutes(Long userId);
+
+	/**
+	 * 获取达人服务过的行程
+	 * @param userId
+	 * @param startIndex
+	 * @param limit
+	 * @return
+	 */
+	@Query("START user=node({0}) MATCH user-[r:EXPERT]->(route:RouteMainBean) RETURN r.permission, route")
+	public List<OwnerRouteTuple> getServicedRoutes(Long userId, Long startIndex, int limit);
 
 	/**
 	 * 获取达人推荐的行程
 	 * @param userId
-	 * @param startIndex
+	 * @return
+	 */
+	@Query("START user=node({0}) MATCH user-[r:RECOMMEND]->(route:RouteMainBean) RETURN route")
+	public List<RouteMainBean> getRecommendRoutes(Long userId);
+
+	/**
+	 * 获取目的地行程
+	 * @param placeId
+	 * @param nextCursor
 	 * @param limit
 	 * @return
 	 */
-	@Query("START user=node({0}) MATCH user-[:RECOMMEND]->(route:RouteMainBean) RETURN route")
-	public List<RouteMainBean> getRoutesRecommendedByExpert(Long userId, Long startIndex, int limit);
+	@Query("START user=node({0}) MATCH user-[r:RECOMMEND]->(route:RouteMainBean) RETURN route, user")
+	public List<RouteTuple> getRecommendRoutes(Long placeId, Long nextCursor, int limit);
 
 	/**
-	 * 获取以达人身份参与的行程
-	 * @param userId
-	 * @param startIndex
+	 * 获取目的地行程
+	 * @param placeId
+	 * @param nextCursor
 	 * @param limit
 	 * @return
 	 */
-	@Query("START user=node({0}) MATCH user-[:EXPERT]->(route:RouteMainBean) RETURN route")
-	public List<RouteMainBean> getRoutesParticipatedAsExpert(Long userId, Long startIndex, int limit);
+	@Query("START user=node({0}) MATCH user-[r:RECOMMEND]->(route:RouteMainBean) RETURN route, user")
+	public List<RouteTuple> getRecommendRoutes(Long[] placeId, int duration, Long nextCursor, int limit);
 
-	/**
-	 * 获取以非达人身份参与的行程
-	 * @param userId
-	 * @param startIndex
-	 * @param limit
-	 * @return
-	 */
-	@Query("START member=node({0}) MATCH member<-[:MEMBER]-(route:RouteMainBean) RETURN route")
-	public List<RouteMainBean> getRoutesParticipatedAsMember(Long userId, int startIndex, int limit);
-
-	/**
+	 /**
 	 * 根据指定的行程和成员角色，返回该行程中的用户。
 	 * @param routeId
 	 * @return
@@ -98,30 +128,6 @@ public interface RouteBeanRepository extends GraphRepository<RouteMainBean> {
 	 * @param routeId
 	 * @return
 	 */
-	@Query("START route=node({0}) MATCH route -- (schedule:RouteScheduleBean) delete schedule")
-	public void deleteRouteSchedule(Long routeId);
-
-	/**
-	 *
-	 * @param routeId
-	 * @return
-	 */
 	@Query("START route=node({0}) MATCH route -- (schedules:RouteScheduleBean) return schedules")
 	public List<RouteScheduleBean> getRouteSchedules(Long routeId);
-
-	/**
-	 *
-	 * @param placeIds
-	 * @return
-	 */
-	@Query("START places=node({0}) MATCH place<-[:AT]-(user:UserProfileBean)-[:RECOMMEND]->(route) RETURN user, route")
-	public List<RouteTuple> getRecommendRoutes4Places(Long[] placeIds);
-
-	/**
-	 *
-	 * @param routeId
-	 * @return
-	 */
-	@Query("START route=node({0}) MATCH (owner:UserProfileBean)-[:RECOMMEND]->(route) RETURN owner, route")
-	public RouteTuple getRecommendRoute(Long routeId);
 }

@@ -13,8 +13,9 @@ import org.springframework.stereotype.Component;
 
 import com.yt.business.CrudAllInOneOperateImpl;
 import com.yt.business.repository.neo4j.ChatBeanRepository;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class ChatServiceImpl extends BaseServiceImpl  implements IChatService {
 	private static final Log LOG = LogFactory.getLog(ChatServiceImpl.class);
 

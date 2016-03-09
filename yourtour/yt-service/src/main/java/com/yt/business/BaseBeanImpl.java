@@ -203,6 +203,4 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 	public boolean isNew(){
 		return this.id == null || this.id.longValue() == 0;
 	}
-
-
 }

@@ -1,25 +1,23 @@
 package com.yt.business.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.yt.business.bean.*;
-import com.yt.business.common.Constants;
+import com.yt.business.bean.ExpertBean;
+import com.yt.business.bean.PlaceBean;
+import com.yt.business.bean.RouteMainBean;
 import com.yt.business.repository.neo4j.ExpertTuple;
+import com.yt.business.repository.neo4j.PlaceBeanRepository;
+import com.yt.business.repository.neo4j.PlaceTuple;
 import com.yt.business.repository.neo4j.RouteTuple;
 import com.yt.business.service.IPlaceService;
 import com.yt.core.utils.CollectionUtils;
 import com.yt.neo4j.repository.CrudOperate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-import com.yt.business.CrudAllInOneOperateImpl;
-import com.yt.business.repository.neo4j.PlaceBeanRepository;
-import com.yt.business.repository.neo4j.PlaceTuple;
+import java.util.ArrayList;
+import java.util.List;
 
-@Component
+@Service
 public class PlaceServiceImpl extends BaseServiceImpl implements IPlaceService {
-
 	@Autowired
 	private PlaceBeanRepository repository;
 

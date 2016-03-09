@@ -11,14 +11,8 @@ import java.util.List;
  */
 public interface IPlaceService {
 	/**
-	 *
-	 * @return
-	 * @throws Exception
-	 */
-	public List<PlaceBean> getAllRootPlaces() throws Exception;
-
-	/**
 	 * 保存目的地
+	 * @param place
 	 * @param place
 	 * @throws Exception
 	 */
@@ -39,6 +33,13 @@ public interface IPlaceService {
 	 * @throws Exception
 	 */
 	public PlaceBean getPlace(Long id) throws Exception;
+
+	/**
+	 *
+	 * @return
+	 * @throws Exception
+	 */
+	public List<PlaceBean> getAllRootPlaces() throws Exception;
 
 	/**
 	 * 获取某个目的地的下属目的地

@@ -1,7 +1,5 @@
 package com.yt.business.service.impl;
 
-import com.yt.business.CrudAllInOneOperateImpl;
-import com.yt.business.bean.ChatSessionBean;
 import com.yt.business.bean.ResourceBean;
 import com.yt.business.common.Constants;
 import com.yt.business.repository.neo4j.ResourceBeanRepository;
@@ -10,14 +8,14 @@ import com.yt.neo4j.repository.CrudOperate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * Created by 林平 on 2016/2/21.
  */
-@Component
+@Service
 public class ResourceServiceImpl extends BaseServiceImpl implements IResourceService {
     private static final Log LOG = LogFactory.getLog(ResourceServiceImpl.class);
 

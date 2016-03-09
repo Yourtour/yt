@@ -15,16 +15,22 @@ import com.yt.hbase.annotation.HbaseColumn;
 import com.yt.hbase.annotation.HbaseTable;
 import com.yt.neo4j.annotation.Neo4jRelationship;
 
-@NodeEntity
 public class RouteMemberBean extends BaseBeanImpl {
 	private static final long serialVersionUID = -2071225440268179136L;
 
 	private String role;
+	private String permission;
+	private String imageUrl;
+	private String impression;
 
 	private UserProfileBean profile;
 
 	public RouteMemberBean() {
 		super();
+	}
+
+	public RouteMemberBean(Long id) {
+		super(id);
 	}
 
 	public String getRole() {
@@ -35,11 +41,35 @@ public class RouteMemberBean extends BaseBeanImpl {
 		this.role = role;
 	}
 
+	public String getPermission() {
+		return permission;
+	}
+
+	public void setPermission(String permission) {
+		this.permission = permission;
+	}
+
 	public UserProfileBean getProfile() {
 		return profile;
 	}
 
 	public void setProfile(UserProfileBean profile) {
 		this.profile = profile;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	public String getImpression() {
+		return impression;
+	}
+
+	public void setImpression(String impression) {
+		this.impression = impression;
 	}
 }
