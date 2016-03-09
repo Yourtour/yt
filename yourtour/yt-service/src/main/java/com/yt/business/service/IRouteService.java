@@ -9,38 +9,38 @@ import java.util.List;
 
 public interface IRouteService {
 	/**
-	 *
+	 * 保存行程
 	 * @param route
-	 * @param userId
+	 * @param operatorId
 	 * @throws Exception
 	 */
-	public void saveRoute(RouteMainBean route, Long userId) throws Exception;
+	public void saveRoute(RouteMainBean route, Long operatorId) throws Exception;
 
 	/**
-	 * 同时保存传输进来的行程基本信息和其中包含的日程信息
+	 * 保存行程信息，包括行程计划内容以及日程信息；
 	 * @param route
-	 * @param UserId
+	 * @param operatorId
 	 * @throws Exception
 	 */
-	public void saveRouteMainAndSchedules(RouteMainBean route, Long UserId)	throws Exception;
+	public void saveRouteMainAndSchedules(RouteMainBean route, Long operatorId)	throws Exception;
 
 	/**
 	 * 行程复制
 	 * @param sourceId
 	 * @param target
-	 * @param userId
+	 * @param operatorId
 	 * @return
 	 * @throws Exception
 	 */
-	public RouteMainBean cloneRoute(Long sourceId, RouteMainBean target, Long userId) throws Exception;
+	public RouteMainBean cloneRoute(Long sourceId, RouteMainBean target, Long operatorId) throws Exception;
 
 	/**
 	 * 删除行程
 	 * @param routeId
-	 * @param userId
+	 * @param operatorId
 	 * @throws Exception
 	 */
-	public void deleteRoute(Long routeId, Long userId) throws Exception;
+	public void deleteRoute(Long routeId, Long operatorId) throws Exception;
 
 	/**
 	 * 根据指定的行程ID，返回完整的行程对象。
@@ -88,19 +88,19 @@ public interface IRouteService {
 	/**
 	 *
 	 * @param schedule
-	 * @param uid
+	 * @param operatorId
 	 * @throws Exception
 	 */
-	public void saveSchedule(RouteScheduleBean schedule, Long uid) throws Exception;
+	public void saveSchedule(RouteScheduleBean schedule, Long operatorId) throws Exception;
 
 	/**
 	 * 删除行程日程安排
 	 * @param routeId
 	 * @param scheduleId
-	 * @param uid
+	 * @param operatorId
 	 * @throws Exception
 	 */
-	public void deleteSchedule(Long routeId, Long scheduleId, Long uid) throws Exception;
+	public void deleteSchedule(Long routeId, Long scheduleId, Long operatorId) throws Exception;
 
 	/**
 	 * 获取行程活动完整数据
@@ -116,26 +116,26 @@ public interface IRouteService {
 	 * @param activity
 	 * @throws Exception
 	 */
-	public void saveScheduleActivity(Long routeId, RouteActivityBean activity, Long userId) throws Exception;
+	public void saveScheduleActivity(Long routeId, RouteActivityBean activity, Long operatorId) throws Exception;
 
 	/**
 	 * 删除行程具体某项活动安排
 	 * @param routeId
 	 * @param activityId
-	 * @param uid
+	 * @param operatorId
 	 * @throws Exception
 	 */
-	public void deleteScheduleActivity(Long routeId, Long activityId, Long uid) throws Exception;
+	public void deleteScheduleActivity(Long routeId, Long activityId, Long operatorId) throws Exception;
 
 	/**
 	 * 删除日程活动安排中具体活动项
 	 * @param routeId
 	 * @param activityId
 	 * @param itemId
-	 * @param userId
+	 * @param operatorId
 	 * @throws Exception
 	 */
-	public void deleteScheduleActivityItem(Long routeId, Long activityId, Long itemId, Long userId) throws Exception;
+	public void deleteScheduleActivityItem(Long routeId, Long activityId, Long itemId, Long operatorId) throws Exception;
 
 	/**
 	 * 保存行程准备事项
@@ -143,16 +143,14 @@ public interface IRouteService {
 	 * @param provision
 	 * @throws Exception
 	 */
-	public void saveRouteProvision(Long routeId, RouteProvisionBean provision, Long userId) throws Exception;
+	public void saveRouteProvision(Long routeId, RouteProvisionBean provision, Long operatorId) throws Exception;
 
 	/**
 	 * 删除行程准备事项
 	 * @param routeId
 	 * @param provisionId
-	 * @param userId
+	 * @param operatorId
 	 * @throws Exception
 	 */
-	public void deleteRouteProvision(Long routeId, Long provisionId, Long userId) throws Exception;
-
-
+	public void deleteRouteProvision(Long routeId, Long provisionId, Long operatorId) throws Exception;
 }

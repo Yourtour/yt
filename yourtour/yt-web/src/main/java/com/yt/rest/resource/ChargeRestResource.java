@@ -68,7 +68,7 @@ public class ChargeRestResource extends RestResource {
 		chargeBean.setOwner(user);
 		chargeBean.setType("1");
 
-		chargeService.saveCharge(chargeBean);
+		chargeService.saveCharge(chargeBean, userId);
 
 		return new ResponseDataVO<Long>(chargeBean.getId());
 	}
@@ -80,11 +80,11 @@ public class ChargeRestResource extends RestResource {
 	 */
 	@GET
 	@Path("{chargeId}/delete")
-	public ResponseVO deleteCharge(@PathParam("chargeId") Long chargeId) throws Exception {
+	public ResponseVO deleteCharge(@PathParam("routeId") Long routeId, @PathParam("chargeId") Long chargeId) throws Exception {
 		Long cid = chargeId;
 		Long uid = super.getCurrentUserId();
 
-		this.chargeService.deleteCharge(cid, uid);
+		this.chargeService.deleteCharge(routeId,cid, uid);
 
 		return new ResponseVO();
 	}
@@ -101,7 +101,7 @@ public class ChargeRestResource extends RestResource {
 		List<RouteChargeVO> voes = new ArrayList<>();
 
 		Long cid = chargeId;
-		List<RouteChargeBean> charges = this.chargeService.getChargeDivisions(cid);
+		List<RouteChargeBean> charges = this.chargeService.getChargeDivisions(routeId, cid);
 		for (RouteChargeBean charge : charges) {
 			voes.add(RouteChargeVO.transform(charge));
 		}
@@ -131,7 +131,7 @@ public class ChargeRestResource extends RestResource {
 		chargeBean.setRoute(route);
 		chargeBean.setOwner(user);
 
-		this.chargeService.saveChargeDivisions(chargeId, chargeBean);
+		this.chargeService.saveChargeDivisions(routeId, chargeId, chargeBean, uid);
 		return new ResponseDataVO<Long>(chargeBean.getId());
 	}
 }

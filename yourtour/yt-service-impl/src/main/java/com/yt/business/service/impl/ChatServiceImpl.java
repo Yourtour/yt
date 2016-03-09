@@ -24,6 +24,11 @@ import com.yt.neo4j.repository.CrudOperate;
  */
 @Component
 public class ChatServiceImpl extends BaseServiceImpl implements IChatService {
+=======
+import org.springframework.stereotype.Service;
+
+@Service
+public class ChatServiceImpl extends BaseServiceImpl  implements IChatService {
 	private static final Log LOG = LogFactory.getLog(ChatServiceImpl.class);
 
 	@Autowired

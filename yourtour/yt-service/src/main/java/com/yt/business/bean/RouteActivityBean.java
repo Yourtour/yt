@@ -49,9 +49,6 @@ public class RouteActivityBean extends BaseBeanImpl implements Cloneable{
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RELATED, type = ResourceBean.class, direction = Direction.OUTGOING)
 	private transient ResourceBean resource = null; // 行程活动关联的资源
 
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = RouteServiceBean.class, direction = Direction.OUTGOING, isList = true)
-	private transient List<RouteServiceBean> services = null;
-
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = RouteActivityItemBean.class, direction = Direction.OUTGOING, isList = true)
 	private transient List<RouteActivityItemBean> items = null;
 
@@ -121,14 +118,6 @@ public class RouteActivityBean extends BaseBeanImpl implements Cloneable{
 
 	public void setResource(ResourceBean resource) {
 		this.resource = resource;
-	}
-
-	public List<RouteServiceBean> getServices() {
-		return services;
-	}
-
-	public void setServices(List<RouteServiceBean> services) {
-		this.services = services;
 	}
 
 	public String getPrice() {
