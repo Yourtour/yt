@@ -28,7 +28,7 @@ public class RouteMemberVO extends BaseVO{
 		vo.fromBean(bean);
 		vo.setRole(bean.getRole());
 
-		UserProfileBean profile = bean.getProfile();
+		UserProfileBean profile = bean.getUser();
 		vo.setProfile(UserVO.transform(profile));
 
 		return vo;

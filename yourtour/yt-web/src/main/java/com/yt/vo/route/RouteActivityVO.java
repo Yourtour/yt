@@ -20,7 +20,6 @@ public class RouteActivityVO extends BaseVO {
 	private String startTime, endTime;
 	private RouteScheduleVO schedule = new RouteScheduleVO();
 	private ResourceVO resource = new ResourceVO();
-	private List<RouteServiceVO> services = new ArrayList<>();
 	private List<RouteActivityItemVO> items = new ArrayList<>();
 
 	public static RouteActivityVO transform(RouteActivityBean bean) {
@@ -73,15 +72,6 @@ public class RouteActivityVO extends BaseVO {
 			vo.setItems(voes);
 		}
 
-		List<RouteServiceBean> serviceBeans = bean.getServices();
-		if(serviceBeans != null){
-			List<RouteServiceVO> voes = new ArrayList<>();
-			for(RouteServiceBean service : serviceBeans){
-				voes.add(RouteServiceVO.transform(service));
-			}
-			vo.setServices(voes);
-		}
-		
 		return vo;
 	}
 
@@ -188,14 +178,6 @@ public class RouteActivityVO extends BaseVO {
 
 	public void setResource(ResourceVO resource) {
 		this.resource = resource;
-	}
-
-	public List<RouteServiceVO> getServices() {
-		return services;
-	}
-
-	public void setServices(List<RouteServiceVO> services) {
-		this.services = services;
 	}
 
 	public List<RouteActivityItemVO> getItems() {
