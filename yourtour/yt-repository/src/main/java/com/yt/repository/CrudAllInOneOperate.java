@@ -1,4 +1,4 @@
-package com.yt.business;
+package com.yt.repository;
 
 import com.yt.neo4j.Neo4jBaseBean;
 import com.yt.neo4j.repository.CrudOperate;

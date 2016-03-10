@@ -1,4 +1,4 @@
 dependencies {
 	compile project(":yt-service"),
-		project(":yt-data-service")
+		project(":yt-repository")
 }
