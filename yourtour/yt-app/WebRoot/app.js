@@ -212,7 +212,11 @@ Ext.application({
         );
     },
 
-    store: function (values) {
+    /**
+     * 保存到本地缓存
+     * @param values
+     */
+    storeCached: function (values) {
         var me = this, localStore = Ext.StoreManager.get('LocalStore');
         localStore.load();
 
@@ -243,6 +247,21 @@ Ext.application({
         });
 
         localStore.sync();
+    },
+
+    /**
+     * 本地缓存获取
+     * @param key
+     */
+    getCached: function (key) {
+        var me = this, localStore = Ext.StoreManager.get('LocalStore');
+        localStore.load();
+
+        var index = localStore.find('key', key);
+        if (index >= 0) {
+            var data = localStore.getAt(index);
+            return Ext.JSON.decode(data.get('value'));
+        }
     },
 
     /**
@@ -384,19 +403,25 @@ Ext.application({
      */
     query: function (options) {
         try {
+            var me = this, url = options.url, localStore =  Ext.StoreManager.get('LocalStore');
+
             var cached = options.cached;
-            if(cached){
-
+            if(cached){ //从本地缓存获取
+                var data = me.getCached(url);
+                if(data != null){
+                    var store = Ext.create('Ext.data.Store', {model: options.model, data:data});
+                    options.success(store);
+                }
             }
-            var store;
+
+            var ajaxStore;
             if(options.config){
-                store = Ext.create('YourTour.store.AjaxStore', options.config);
+                ajaxStore = Ext.create('YourTour.store.AjaxStore', options.config);
             }else{
-                store = Ext.create('YourTour.store.AjaxStore', {model: options.model});
+                ajaxStore = Ext.create('YourTour.store.AjaxStore', {model: options.model});
             }
-            var proxy = store.getProxy();
+            var proxy = ajaxStore.getProxy();
 
-            var url = options.url;
             var params = options.params;
             if (params) {
                 url += '?';
@@ -413,8 +438,12 @@ Ext.application({
             }
             proxy.setUrl(YourTour.util.Context.getContext(url));
 
-            store.load(function () {
-                options.success(store);
+            ajaxStore.load(function () {
+                options.success(ajaxStore, cached?'true':'false'); //true:表示需要刷新
+
+                if(cached){ //本地缓存
+                    //me.StoreCached([{key:url, value:Ext.JSON.encode(ajaxStore.getData())}]);
+                }
 
                 var navigationView = Ext.ComponentManager.get('MainView');
                 if (navigationView) {

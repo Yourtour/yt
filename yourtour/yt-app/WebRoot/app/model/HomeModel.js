@@ -7,7 +7,8 @@ Ext.define('YourTour.model.HomeModel', {
 	    fields:[{name:'rowKey', type:'string'},
 	    		{name:'name', type:'string'},
 	    		{name:'liveNum', type:'string'},
-	    		{name:'chatNum', type:'string'}
+	    		{name:'chatNum', type:'string'},
+				{name:'lastModifiedTime', type:'long'}
 	    ],
 	    
 	    associations: [

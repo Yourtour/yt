@@ -31,7 +31,6 @@ public class UserServiceImpl extends ServiceBase implements IUserService {
     @Autowired
     private CrudOperate<UserAccountBean> accountCrudOperate;
 
-
     @Override
     public UserProfileBean getUserProfileInfo(Long userId) throws Exception {
         UserProfileBean user = profileCrudOperate.get(userId);

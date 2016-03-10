@@ -74,12 +74,12 @@ public class FavoriteServiceImpl extends ServiceBase implements IFavoriteService
     public List<FavoriteBean> getFavorites(Long userId, Long nextCursor, int limit) throws Exception {
         List<FavoriteBean> favorites = new ArrayList<>();
 
-        List<FavoriteTuple> tuples = favoriteRepository.getFavorites(userId, nextCursor, limit);
+        /*List<FavoriteTuple> tuples = favoriteRepository.getFavorites(userId, nextCursor, limit);
         if(CollectionUtils.isNotEmpty(tuples)){
             for(FavoriteTuple tuple : tuples){
                 favorites.add(tuple.getFavorite());
             }
-        }
+        }*/
 
         return favorites;
     }

@@ -10,6 +10,8 @@
           <element id="module-output" name="yt-core" />
           <element id="module-output" name="yt-neo4j" />
           <element id="module-output" name="yt-web-core" />
+          <element id="module-output" name="yt-service" />
+          <element id="module-output" name="yt-service-impl" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="module" name="spring-context-4.1.6.RELEASE.jar" module-name="yt-core" />
@@ -348,6 +350,7 @@
           <element id="library" level="project" name="Gradle: xpp3:xpp3_min:1.1.4c" />
           <element id="library" level="project" name="Gradle: junit:junit:4.11" />
         </element>
+        <element id="file-copy" path="$PROJECT_DIR$/yt-web/WebRoot/WEB-INF/web.xml" />
       </element>
       <element id="javaee-facet-resources" facet="yt-web/web/Web" />
     </root>

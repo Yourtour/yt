@@ -23,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.neo4j.annotation.QueryResult;
 import org.springframework.data.neo4j.conversion.Result;
 import org.springframework.data.neo4j.support.Neo4jTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.lang.reflect.Field;
 import java.util.*;
@@ -57,8 +58,10 @@ import java.util.*;
 
 /**
  * @author john
- * 
+ *
  */
+
+@Repository
 public class RelationshipCrudGeneralOperate<S extends Neo4jBaseBean,T extends Neo4jBaseBean> implements RelationshipCrudOperate<S, T>{
 	/** 静态变量：系统日志 */
 	private static final Log LOG = LogFactory.getLog(RelationshipCrudGeneralOperate.class);

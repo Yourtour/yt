@@ -1,17 +1,15 @@
 package com.yt.business;
 
-import java.io.Serializable;
-import java.util.UUID;
-
 import com.yt.business.common.Constants;
-import com.yt.core.utils.DateUtils;
+import com.yt.hbase.BaseBean;
+import com.yt.hbase.annotation.HbaseColumn;
+import com.yt.neo4j.bean.Neo4jBaseBean;
 import org.springframework.data.neo4j.annotation.GraphId;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 
-import com.yt.hbase.BaseBean;
-import com.yt.hbase.annotation.HbaseColumn;
-import com.yt.neo4j.bean.Neo4jBaseBean;
+import java.io.Serializable;
+import java.util.UUID;
 
 @NodeEntity
 public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,

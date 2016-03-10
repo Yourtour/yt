@@ -9,6 +9,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yt.business.CrudAllInOneOperate;
@@ -16,16 +17,16 @@ import com.yt.business.bean.UserAccountBean;
 import com.yt.business.service.IUserService;
 import com.yt.core.utils.MessageDigestUtils;
 
+@Service
 public class AdminUserInitializeService implements InitializingBean {
 	/** 静态变量：系统日志 */
-	private static final Log LOG = LogFactory
-			.getLog(AdminUserInitializeService.class);
+	private static final Log LOG = LogFactory.getLog(AdminUserInitializeService.class);
 
 	@Autowired
 	private IUserService service;
 
 	// 密码进行签名的算法
-	private String algorithm = "SHA-1";
+	private String algorithm = "SHA-256";
 
 	/**
 	 * 默认构造方法
