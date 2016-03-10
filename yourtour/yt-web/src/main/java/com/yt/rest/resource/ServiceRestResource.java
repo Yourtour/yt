@@ -35,7 +35,7 @@ public class ServiceRestResource extends RestResource {
 	 * @return
 	 * @throws Exception
 	 */
-	@GET
+	@POST
 	@Path("/expert/save")
 	public ResponseVO saveExpertService(ExpertServiceVO servicevo) throws Exception{
 		ExpertServiceBean service = ExpertServiceVO.transform(servicevo);

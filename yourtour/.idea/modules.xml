@@ -5,10 +5,9 @@
       <module fileurl="file://$PROJECT_DIR$/yourtour.iml" filepath="$PROJECT_DIR$/yourtour.iml" />
       <module fileurl="file://$PROJECT_DIR$/yt-app/yt-app.iml" filepath="$PROJECT_DIR$/yt-app/yt-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/yt-core/yt-core.iml" filepath="$PROJECT_DIR$/yt-core/yt-core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/yt-data-service/yt-data-service.iml" filepath="$PROJECT_DIR$/yt-data-service/yt-data-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/yt-hbase/yt-hbase.iml" filepath="$PROJECT_DIR$/yt-hbase/yt-hbase.iml" />
       <module fileurl="file://$PROJECT_DIR$/yt-neo4j/yt-neo4j.iml" filepath="$PROJECT_DIR$/yt-neo4j/yt-neo4j.iml" />
-      <module fileurl="file://$PROJECT_DIR$/yt-oms/yt-oms.iml" filepath="$PROJECT_DIR$/yt-oms/yt-oms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yt-repository/yt-repository.iml" filepath="$PROJECT_DIR$/yt-repository/yt-repository.iml" />
       <module fileurl="file://$PROJECT_DIR$/yt-service/yt-service.iml" filepath="$PROJECT_DIR$/yt-service/yt-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/yt-service-impl/yt-service-impl.iml" filepath="$PROJECT_DIR$/yt-service-impl/yt-service-impl.iml" />
       <module fileurl="file://$PROJECT_DIR$/yt-web/yt-web.iml" filepath="$PROJECT_DIR$/yt-web/yt-web.iml" />

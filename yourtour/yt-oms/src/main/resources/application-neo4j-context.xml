@@ -31,7 +31,7 @@
 		/ -->
 
 	<context:component-scan
-		base-package="com.yt.neo4j.repository, com.yt.business.repository" />
+		base-package="com.yt.neo4j.repository" />
 
 	<bean id="neo4jCrud" class="com.yt.neo4j.repository.CrudGeneralOperate" />
 	<bean id="neo4jFts" class="com.yt.neo4j.repository.FullTextSearchGeneralOperate" />

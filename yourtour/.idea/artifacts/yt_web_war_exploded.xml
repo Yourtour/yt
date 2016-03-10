@@ -5,13 +5,13 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="yt-web" />
-          <element id="module-output" name="yt-data-service" />
           <element id="module-output" name="yt-hbase" />
           <element id="module-output" name="yt-core" />
           <element id="module-output" name="yt-neo4j" />
           <element id="module-output" name="yt-web-core" />
           <element id="module-output" name="yt-service" />
           <element id="module-output" name="yt-service-impl" />
+          <element id="module-output" name="yt-repository" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="module" name="spring-context-4.1.6.RELEASE.jar" module-name="yt-core" />

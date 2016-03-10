@@ -54,7 +54,7 @@ public class ResourceRestResource {
      * @throws Exception
      */
     @Path("/{resourceId}/type/{type}/save")
-    @GET
+    @POST
     public ResponseVO saveResource(@PathParam("resourceId") Long resourceId,
                                      @PathParam("type") String type, ResourceVO vo) throws Exception {
         Constants.ResType resType = Constants.ResType.getEnum(type);

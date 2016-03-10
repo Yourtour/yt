@@ -37,7 +37,6 @@ import com.yt.neo4j.Neo4jBaseBean;
  * @version 1.0
  * @since 1.0
  */
-@Repository
 public interface RelationshipCrudOperate<S extends Neo4jBaseBean, T extends Neo4jBaseBean> {
 	/**
 	 * 仅仅保存最简单的Neo4J实体对象之间的关系，本方法建立的关系不包括属性。<br>

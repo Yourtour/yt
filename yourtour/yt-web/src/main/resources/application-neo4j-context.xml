@@ -21,7 +21,7 @@
 
 	<neo4j:repositories base-package="com.yt.business.repository.neo4j" />
 
-	<context:component-scan base-package="com.yt.business.service" />
+	<context:component-scan base-package="com.yt.business.service, com.yt.neo4j.repository" />
 
 	<bean id="graphDatabaseService"
 		class="org.springframework.data.neo4j.rest.SpringRestGraphDatabase">
@@ -33,7 +33,7 @@
 	<!--neo4j:config storeDirectory="data/yt.db" base-package="com.yt.business.bean" 
 		/ -->
 
-	<bean id="crudAllInOneOperate" class="com.yt.business.CrudAllInOneOperateImpl" />
+	<bean id="crudAllInOneOperate" class="com.yt.repository.CrudAllInOneOperateImpl" />
 
 	<!--<bean id="neo4jCrud" class="com.yt.neo4j.repository.CrudGeneralOperate" />-->
 	<bean id="neo4jFts" class="com.yt.neo4j.repository.FullTextSearchGeneralOperate" />
@@ -49,7 +49,7 @@
 	</bean>-->
 
 	<!-- 注入包装了hbase和neo4j操作的配置类 -->
-	<bean id="crudAllInOneConfig" class="com.yt.business.CrudAllInOneConfig">
+	<bean id="crudAllInOneConfig" class="com.yt.repository.CrudAllInOneConfig">
 		<property name="save2Hbase" value="false" />
 		<!--property name="hbaseCrud" ref="hbaseCrud" / -->
 	</bean>
