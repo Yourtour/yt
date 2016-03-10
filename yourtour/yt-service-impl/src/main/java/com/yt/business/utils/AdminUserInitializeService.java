@@ -1,19 +1,13 @@
 package com.yt.business.utils;
 
-import com.yt.business.bean.UserProfileBean;
-import com.yt.business.repository.neo4j.UserBeanRepository;
-import com.yt.business.repository.neo4j.UserTuple;
-import com.yt.neo4j.repository.CrudOperate;
-import com.yt.repository.CrudAllInOneOperate;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yt.PropertiesReader;
 import com.yt.business.bean.UserAccountBean;
 import com.yt.business.service.IUserService;
 import com.yt.core.utils.MessageDigestUtils;
@@ -21,13 +15,14 @@ import com.yt.core.utils.MessageDigestUtils;
 @Service
 public class AdminUserInitializeService implements InitializingBean {
 	/** 静态变量：系统日志 */
-	private static final Log LOG = LogFactory.getLog(AdminUserInitializeService.class);
+	private static final Log LOG = LogFactory
+			.getLog(AdminUserInitializeService.class);
 
 	@Autowired
 	private IUserService service;
 
-	// 密码进行签名的算法
-	private String algorithm = "SHA-256";
+	@Autowired
+	private PropertiesReader propertiesReader;
 
 	/**
 	 * 默认构造方法
@@ -44,21 +39,6 @@ public class AdminUserInitializeService implements InitializingBean {
 	 */
 	public AdminUserInitializeService(String algorithm) {
 		this();
-		this.setAlgorithm(algorithm);
-	}
-
-	/**
-	 * 设置密码进行签名计算的算法，默认采用SHA-1。
-	 * 
-	 * @param algorithm
-	 *            签名算法名称
-	 */
-	public void setAlgorithm(String algorithm) {
-		if (LOG.isDebugEnabled()) {
-			LOG.debug(String.format("The algorithm is changed: '%s' -> '%s'.",
-					this.algorithm, algorithm));
-		}
-		this.algorithm = algorithm;
 	}
 
 	/**
@@ -73,32 +53,28 @@ public class AdminUserInitializeService implements InitializingBean {
 	 *             判断过程中发生的异常
 	 */
 	public boolean checkPassword(String origin, String base64) throws Exception {
-		String target = MessageDigestUtils.digest(algorithm, origin);
+		String target = MessageDigestUtils.digest(
+				propertiesReader.getProperty("digest.algorithm", "SHA-1"),
+				origin);
 		return base64.equals(target);
 	}
 
 	@Transactional
 	private void initializeAdminEmployee() throws Exception {
 		// 检测默认的admin账户是否存在
-		UserProfileBean admin = service.getUserProfileInfo("admin");
+		UserAccountBean admin = service.getUserAccount("admin");
 		if (admin != null) {
 			// admin账户已经存在，返回
 			return;
 		}
+
 		// admin账户不存在，需要初始化
 		if (LOG.isWarnEnabled()) {
 			LOG.warn("The admin user is not exist, will initialize it.");
 		}
-		
-		UserAccountBean adminBean = new UserAccountBean();
-		adminBean.setUserName("admin");
-		// 将明码的密码更换为摘要加密的密码
-		adminBean.setPwd(MessageDigestUtils.digest(this.algorithm, "admin"));
-		service.saveUseAccount(adminBean);
+		service.regist("admin", "admin");
 		if (LOG.isDebugEnabled()) {
-			LOG.debug(String
-					.format("Initialize admin employee successfully, default code = %s, password = %s.",
-							adminBean.getUserName(), adminBean.getPwd()));
+			LOG.debug("Initialize admin employee successfully, default code = admin, password = admin, pls change the password..");
 		}
 	}
 
