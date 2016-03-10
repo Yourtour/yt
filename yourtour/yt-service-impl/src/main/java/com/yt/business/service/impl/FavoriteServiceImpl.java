@@ -23,7 +23,7 @@ import java.util.List;
  * Created by 林平 on 2016/3/8.
  */
 @Service
-public class FavoriteServiceImpl extends BaseServiceImpl implements IFavoriteService {
+public class FavoriteServiceImpl extends ServiceBase implements IFavoriteService {
     @Autowired
     private FavoriteBeanRepository favoriteRepository;
 

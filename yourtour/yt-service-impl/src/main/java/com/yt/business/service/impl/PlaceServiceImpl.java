@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class PlaceServiceImpl extends BaseServiceImpl implements IPlaceService {
+public class PlaceServiceImpl extends ServiceBase implements IPlaceService {
 	@Autowired
 	private PlaceBeanRepository repository;
 

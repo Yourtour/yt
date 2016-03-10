@@ -90,25 +90,6 @@ public class ChargeRestResource extends RestResource {
 	}
 
 	/**
-	 * 获取用户行程费用清单
-	 * @param routeId
-	 * @return
-	 */
-	@GET
-	@Path("{chargeId}/division/query")
-	public ResponseDataVO<List<RouteChargeVO>> queryChargeDivision(@PathParam("routeId") Long routeId,
-																   @PathParam("chargeId") Long chargeId) throws Exception{
-		List<RouteChargeVO> voes = new ArrayList<>();
-
-		Long cid = chargeId;
-		List<RouteChargeBean> charges = this.chargeService.getChargeDivisions(routeId, cid);
-		for (RouteChargeBean charge : charges) {
-			voes.add(RouteChargeVO.transform(charge));
-		}
-		return new ResponseDataVO<List<RouteChargeVO>>(voes);
-	}
-
-	/**
 	 * 删除行程费用
 	 * @param chargeId
 	 * @return

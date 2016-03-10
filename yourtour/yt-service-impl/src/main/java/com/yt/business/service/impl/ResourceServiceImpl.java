@@ -16,7 +16,7 @@ import java.util.List;
  * Created by 林平 on 2016/2/21.
  */
 @Service
-public class ResourceServiceImpl extends BaseServiceImpl implements IResourceService {
+public class ResourceServiceImpl extends ServiceBase implements IResourceService {
     private static final Log LOG = LogFactory.getLog(ResourceServiceImpl.class);
 
     @Autowired

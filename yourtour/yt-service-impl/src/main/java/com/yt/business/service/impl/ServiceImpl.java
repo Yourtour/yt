@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ServiceImpl extends BaseServiceImpl implements IService {
+public class ServiceImpl extends ServiceBase implements IService {
 	private static final Log LOG = LogFactory.getLog(ServiceImpl.class);
 
 	@Autowired

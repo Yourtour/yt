@@ -9,14 +9,12 @@ import com.yt.neo4j.repository.CrudOperate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-import com.yt.business.CrudAllInOneOperateImpl;
 import com.yt.business.repository.neo4j.ChatBeanRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ChatServiceImpl extends BaseServiceImpl  implements IChatService {
+public class ChatServiceImpl extends ServiceBase implements IChatService {
 	private static final Log LOG = LogFactory.getLog(ChatServiceImpl.class);
 
 	@Autowired

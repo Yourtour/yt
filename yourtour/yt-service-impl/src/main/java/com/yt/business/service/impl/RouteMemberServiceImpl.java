@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class RouteMemberServiceImpl extends BaseServiceImpl implements IRouteMemberService {
+public class RouteMemberServiceImpl extends ServiceBase implements IRouteMemberService {
 	private static final Log LOG = LogFactory.getLog(RouteMemberServiceImpl.class);
 
 	@Autowired

@@ -31,14 +31,6 @@ public interface IRouteChargeService {
     public List<RouteChargeBean> getCharges(Long routeId, Long operatorId) throws Exception;
 
     /**
-     * 获取行程费用的平摊信息
-     * @param chargeId
-     * @return
-     * @throws Exception
-     */
-    public List<RouteChargeBean> getChargeDivisions(Long routeId, Long chargeId) throws Exception;
-
-    /**
      * 保存费用平摊
      * @param masterChargeId
      * @param charge

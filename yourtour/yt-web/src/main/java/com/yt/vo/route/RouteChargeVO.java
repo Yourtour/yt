@@ -1,7 +1,11 @@
 package com.yt.vo.route;
 
 import com.yt.business.bean.*;
+import com.yt.core.utils.CollectionUtils;
 import com.yt.vo.BaseVO;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RouteChargeVO extends BaseVO {
 	private String  name;
@@ -16,6 +20,8 @@ public class RouteChargeVO extends BaseVO {
 	private Long 	userId;
 	private String	nickName;
 	private String  userImageUrl;
+
+	private List<RouteChargeVO> divisions = null;
 
 	public static RouteChargeVO transform(RouteChargeBean bean) {
 		if (bean == null) {
@@ -41,6 +47,16 @@ public class RouteChargeVO extends BaseVO {
 			vo.setUserImageUrl(user.getImageUrl());
 		}
 
+		List<RouteChargeBean> divisions = bean.getDivision();
+		if(CollectionUtils.isNotEmpty(divisions)){
+			List<RouteChargeVO> divisionvo = new ArrayList<>();
+
+			for(RouteChargeBean division : divisions){
+				divisionvo.add(RouteChargeVO.transform(division));
+			}
+
+			vo.setDivisions(divisionvo);
+		}
 		return vo;
 	}
 
@@ -162,5 +178,13 @@ public class RouteChargeVO extends BaseVO {
 
 	public void setUserImageUrl(String userImageUrl) {
 		this.userImageUrl = userImageUrl;
+	}
+
+	public List<RouteChargeVO> getDivisions() {
+		return divisions;
+	}
+
+	public void setDivisions(List<RouteChargeVO> divisions) {
+		this.divisions = divisions;
 	}
 }

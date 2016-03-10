@@ -66,11 +66,13 @@ public class MemberRestResource extends RestResource {
 	 * @throws Exception
 	 */
 	@POST
-	@Path("/save")
-	public ResponseDataVO<RouteMemberVO> addRouteMember(@PathParam("routeId") Long routeId, RouteMemberVO member) throws Exception{
+	@Path("/{userId}/save")
+	public ResponseDataVO<RouteMemberVO> addRouteMember(@PathParam("routeId") Long routeId,
+														@PathParam("userId") Long userId,
+														RouteMemberVO member) throws Exception{
 		RouteMemberBean memberBean = RouteMemberVO.transform(member);
 
-		this.memberService.saveMember(memberBean, SessionUtils.getCurrentLoginUser());
+		this.memberService.saveMember(routeId, userId, memberBean, SessionUtils.getCurrentLoginUser());
 
 		return new ResponseDataVO<RouteMemberVO>(RouteMemberVO.transform(memberBean));
 	}
@@ -88,5 +90,4 @@ public class MemberRestResource extends RestResource {
 		this.memberService.deleteMember(rid, uid, SessionUtils.getCurrentLoginUser());
 
 		return new ResponseVO();
-	}
 }

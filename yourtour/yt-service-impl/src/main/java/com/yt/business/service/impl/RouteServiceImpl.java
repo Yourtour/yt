@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
-public class RouteServiceImpl extends BaseServiceImpl implements IRouteService {
+public class RouteServiceImpl extends ServiceBase implements IRouteService {
 	private static final Log LOG = LogFactory.getLog(RouteServiceImpl.class);
 
 	@Autowired

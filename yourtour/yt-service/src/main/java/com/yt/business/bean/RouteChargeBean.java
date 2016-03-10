@@ -37,6 +37,8 @@ public class RouteChargeBean extends BaseBeanImpl {
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_BELONG, type = UserProfileBean.class, direction = Direction.OUTGOING)
 	private transient UserProfileBean owner = null; // 行程所有者
 
+	private List<RouteChargeBean> division = null;
+
 	public RouteChargeBean() {
 		super();
 	}
@@ -127,5 +129,13 @@ public class RouteChargeBean extends BaseBeanImpl {
 
 	public void setPercent(int percent) {
 		this.percent = percent;
+	}
+
+	public List<RouteChargeBean> getDivision() {
+		return division;
+	}
+
+	public void setDivision(List<RouteChargeBean> division) {
+		this.division = division;
 	}
 }

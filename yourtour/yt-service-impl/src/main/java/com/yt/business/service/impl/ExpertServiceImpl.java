@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ExpertServiceImpl extends BaseServiceImpl implements IExpertService {
+public class ExpertServiceImpl extends ServiceBase implements IExpertService {
 	private static final Log LOG = LogFactory.getLog(ExpertServiceImpl.class);
 
 	@Autowired

@@ -1,117 +1,45 @@
 Ext.define('YourTour.view.widget.XCarousel', {
-    extend: 'Ext.Container',
+    extend: 'Ext.Carousel',
     xtype: 'xcarousel',
     config: {
         cls: 'x-xcarousel',
-        layout: 'vbox',
-        items: []
+        timer:0,
+        task:null
     },
 
-    beforeInitialize: function () {
-        this.applyItems = this.applyInitialItems;
-    },
+    initialize:function(){
+        this.callParent(arguments);
 
-    initialize: function () {
-        delete this.applyItems;
-
-        this.add(this.initialItems);
-        delete this.initialItems;
-
-        var me = this;
-
-        me.carousel.on('activeitemchange', function (carousel, value) {
-            var navBar = me.navBar;
-            var activeIndex = carousel.getActiveIndex();
-            if (!navBar || !navBar.getAt(activeIndex)) return;
-
-            navBar.getItems().each(function (item) {
-                item.removeCls('active');
+        var me = this, timer = this.timer || this.getTimer();
+        if(timer != 0){
+            var task = Ext.create('Ext.util.DelayedTask',function(){
+                me.move();
             });
-            navBar.getAt(activeIndex).addCls('active');
-
-            me.fireEvent('activateitem', me, value);
-        });
-    },
-
-    applyInitialItems: function (items) {
-        var me = this;
-        me.initialItems = items;
-
-        me.navBar = me.add({
-            xtype: 'panel',
-            layout: 'hbox',
-            cls: 'x-xcarousel-nav'
-        });
-
-        me.carousel = me.add({
-            xtype: 'carousel',
-            flex: 1,
-            indicator:false
-        });
-
-        me.doAdd = me._doAdd;
-        me.remove = me.doItemRemove;
-        me.doInsert = me.doItemInsert;
-    },
-
-    _doAdd: function (item) {
-        var me = this;
-
-        var label = Ext.create('Ext.Label', {html: item.label, flex: 1, cls: 'x-xcarousel-nav-item'});
-        if (item.getActive()) {
-            label.addCls('active');
-        }
-
-        var index = me.navBar.getItems().length;
-        label.element.on(
-            {
-                scope: me,
-                tap: function () {
-                    me.setActiveItem(index, item); //fireEvent('activeitemchange', index);
-                }
-            }
-        );
-
-        me.navBar.add(label);
-        me.carousel.add(item);
-    },
-
-    doItemRemove: function (item, destroy) {
-    },
-
-    doItemInsert: function (index, item) {
-    },
-
-    setActiveIndex: function (activeIndex) {
-        var me = this;
-        var navBar = me.navBar;
-        navBar.getAt(activeIndex).addCls('active');
-
-        var carousel = me.carousel;
-        carousel.setActiveItem(carousel.getAt(activeIndex));
-    },
-
-    getActiveIndex: function () {
-        var me = this;
-
-        var carousel = me.carousel;
-        if(carousel) {
-            return carousel.getActiveIndex();
+            task.delay(timer); //一秒后执行调用updateClock函数
         }
     },
 
-    setActiveItem: function (index, item) {
-        if (!item || item == null) return;
+    updateTimer:function(timer){
+        this.timer = timer;
+    },
 
-        var me = this;
+    move:function(){
+        var me = this, timer = this.timer || this.getTimer();
 
-        var navBar = me.navBar;
-        navBar.getItems().each(function (item) {
-            item.removeCls('active');
+
+        var task = Ext.create('Ext.util.DelayedTask',function(){
+            me.move();
         });
-        navBar.getAt(index).addCls('active');
+        task.delay(timer); //一秒后执行调用updateClock函数
+    },
 
-        var carousel = me.carousel;
-        carousel.setActiveItem(item);
+    destroy: function() {
+        var task = this.task || this.getTask();
+
+        if(task != null){
+            task.cancel();
+        }
+
+        this.callParent(arguments);
     }
-});
+})

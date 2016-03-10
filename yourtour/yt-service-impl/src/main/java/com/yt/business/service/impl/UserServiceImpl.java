@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
  * Created by 林平 on 2016/3/7.
  */
 @Service
-public class UserServiceImpl extends BaseServiceImpl implements IUserService {
+public class UserServiceImpl extends ServiceBase implements IUserService {
     private static final Log LOG = LogFactory.getLog(UserServiceImpl.class);
 
     @Autowired

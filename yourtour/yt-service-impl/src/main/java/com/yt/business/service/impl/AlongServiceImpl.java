@@ -4,23 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.yt.business.service.IAlongService;
-import com.yt.core.utils.DateUtils;
 import com.yt.neo4j.repository.CrudOperate;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-import com.yt.business.CrudAllInOneOperateImpl;
 import com.yt.business.bean.AlongBean;
 import com.yt.business.repository.neo4j.AlongBeanRepository;
 import com.yt.business.repository.neo4j.AlongTuple;
-import com.yt.business.repository.neo4j.CommentBeanRepository;
 import com.yt.core.utils.CollectionUtils;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AlongServiceImpl extends BaseServiceImpl implements IAlongService {
+public class AlongServiceImpl extends ServiceBase implements IAlongService {
 	@Autowired
 	private AlongBeanRepository alongRepo;
 

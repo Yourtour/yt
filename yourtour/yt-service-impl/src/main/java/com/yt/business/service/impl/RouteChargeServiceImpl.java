@@ -7,6 +7,7 @@ import com.yt.business.repository.neo4j.RouteRepository;
 import com.yt.business.service.IRouteChargeService;
 import com.yt.core.common.AppException;
 import com.yt.core.common.StaticErrorEnum;
+import com.yt.core.utils.CollectionUtils;
 import com.yt.neo4j.repository.CrudOperate;
 import com.yt.neo4j.repository.RelationshipCrudOperate;
 import org.apache.commons.logging.Log;
@@ -22,7 +23,7 @@ import java.util.List;
  * Created by 林平 on 2016/1/27.
  */
 @Service
-public class RouteChargeServiceImpl extends BaseServiceImpl implements IRouteChargeService {
+public class RouteChargeServiceImpl extends ServiceBase implements IRouteChargeService {
     private static final Log logger = LogFactory.getLog(RouteChargeServiceImpl.class);
 
     @Autowired
@@ -36,18 +37,22 @@ public class RouteChargeServiceImpl extends BaseServiceImpl implements IRouteCha
 
     @Override
     public List<RouteChargeBean> getCharges(Long routeId, Long operatorId) throws Exception{
-        return routeRepository.getCharges(routeId, operatorId);
-    }
+        List<RouteChargeBean> charges = routeRepository.getCharges(routeId, operatorId);
+        if(CollectionUtils.isNotEmpty(charges)){
+            List<ChargeTuple> tuples = null;
+            for(RouteChargeBean charge : charges) {
+                if(charge.getAmount() == charge.getPayment()) continue;
 
-    @Override
-    public List<RouteChargeBean> getChargeDivisions(Long routeId, Long chargeId) throws Exception {
-        List<RouteChargeBean> charges = new ArrayList<>();
+                tuples = routeRepository.getChargeDivisions(charge.getId());
+                if (tuples == null) return charges;
 
-        List<ChargeTuple> tuples = routeRepository.getChargeDivisions(chargeId);
-        if(tuples == null) return charges;
+                List<RouteChargeBean> divisions = new ArrayList<>();
+                for (ChargeTuple tuple : tuples) {
+                    divisions.add(tuple.getCharge());
+                }
 
-        for(ChargeTuple tuple : tuples){
-            charges.add(tuple.getCharge());
+                charge.setDivision(divisions);
+            }
         }
 
         return charges;

@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class CommentServiceImpl extends BaseServiceImpl implements ICommentService {
+public class CommentServiceImpl extends ServiceBase implements ICommentService {
 	private static final Log LOG = LogFactory.getLog(CommentServiceImpl.class);
 
 	@Autowired
