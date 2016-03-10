@@ -1,13 +1,12 @@
 package com.yt.neo4j.repository;
 
-import com.yt.neo4j.repository.RelationshipRepository;
-import com.yt.neo4j.bean.Neo4jBaseBean;
-import com.yt.neo4j.repository.RelationshipCrudOperate;
+import java.util.Map;
+
 import org.neo4j.graphdb.Direction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
+import com.yt.neo4j.Neo4jBaseBean;
 
 @Service
 public class RelationshipRepositoryImpl<S extends Neo4jBaseBean, T extends Neo4jBaseBean> implements RelationshipRepository<S,T> {

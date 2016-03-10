@@ -1,19 +1,10 @@
 package com.yt.business;
 
-import com.yt.business.common.Constants;
-import com.yt.core.utils.DateUtils;
-import com.yt.hbase.BaseBean;
-import com.yt.hbase.annotation.HbaseColumn;
-import com.yt.neo4j.bean.Neo4jBaseBean;
-import org.springframework.data.neo4j.annotation.GraphId;
-import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 
-import java.io.Serializable;
-import java.util.UUID;
-
 @NodeEntity
-public class BusinessBeanImpl extends BaseBeanImpl {
+public class SocialBeanImpl extends BaseBeanImpl {
+	private static final long serialVersionUID = 6037109574215594532L;
 	private double commentScore; // 点评分数
 	private int commentNum = 0; //评论数
 	private int favoriteNum = 0; //收藏数
@@ -21,11 +12,11 @@ public class BusinessBeanImpl extends BaseBeanImpl {
 	private int readNum = 0; //浏览数
 	private int shareNum; // 分享数
 
-	public BusinessBeanImpl(){
+	public SocialBeanImpl(){
 		super();
 	}
 
-	public BusinessBeanImpl(Long graphId){
+	public SocialBeanImpl(Long graphId){
 		super(graphId);
 	}
 

@@ -1,9 +1,11 @@
-package com.yt.neo4j.bean;
+package com.yt.business;
 
 import java.io.Serializable;
 
 import org.springframework.data.neo4j.annotation.GraphId;
 import org.springframework.data.neo4j.annotation.NodeEntity;
+
+import com.yt.neo4j.Neo4jBaseBean;
 
 /**
  * Neo4J中定义实体的基类，定义所有实体类中都至少包括的GraphId字段，并进行了注解。<br>
@@ -44,6 +46,8 @@ public class Neo4jBaseBeanImpl implements Serializable, Neo4jBaseBean,
 	private Long updatedUserId = 0l;
 
 	private long updatedTime;
+
+	private boolean isDeleted = false;
 
 	/**
 	 * 默认构造方法
@@ -150,6 +154,20 @@ public class Neo4jBaseBeanImpl implements Serializable, Neo4jBaseBean,
 	@Override
 	public void setUpdatedTime(long updatedTime) {
 		this.updatedTime = updatedTime;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.yt.neo4j.Neo4jBaseBean#isDeleted()
+	 */
+	@Override
+	public boolean isDeleted() {
+		return isDeleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.isDeleted = deleted;
 	}
 
 	/*

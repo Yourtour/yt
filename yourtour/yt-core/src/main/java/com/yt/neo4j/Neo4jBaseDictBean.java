@@ -1,4 +1,4 @@
-package com.yt.neo4j.bean;
+package com.yt.neo4j;
 
 /**
  * Neo4J中定义字典实体的接口定义

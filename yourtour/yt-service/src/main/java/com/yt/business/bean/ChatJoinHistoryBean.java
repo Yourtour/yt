@@ -1,12 +1,12 @@
 package com.yt.business.bean;
 
-import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 
 import com.yt.business.BaseBeanImpl;
 import com.yt.business.common.Constants;
 import com.yt.hbase.annotation.HbaseTable;
 import com.yt.neo4j.annotation.Neo4jRelationship;
+import com.yt.neo4j.annotation.Neo4jRelationship.Direction;
 
 /**
  * 该实体定义聊天人员加入历史数据信息。

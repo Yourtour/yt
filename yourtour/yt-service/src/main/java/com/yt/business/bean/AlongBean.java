@@ -1,15 +1,14 @@
 package com.yt.business.bean;
 
-import com.yt.business.BusinessBeanImpl;
-import com.yt.business.common.Constants;
-import com.yt.neo4j.annotation.Neo4jRelationship;
-import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 
+import com.yt.business.SocialBeanImpl;
+import com.yt.business.common.Constants;
 import com.yt.business.common.Constants.AlongIntentionType;
-import com.yt.business.common.Constants.Status;
 import com.yt.hbase.annotation.HbaseColumn;
 import com.yt.hbase.annotation.HbaseTable;
+import com.yt.neo4j.annotation.Neo4jRelationship;
+import com.yt.neo4j.annotation.Neo4jRelationship.Direction;
 
 /**
  * 该实体定义了系统中的行程的结伴信息。结伴信息和行程以及结伴发布者之间的关系通过图状数据库Neo4j存储
@@ -19,7 +18,7 @@ import com.yt.hbase.annotation.HbaseTable;
  */
 @HbaseTable(name = "T_ROUTE_ALONG_INFO")
 @NodeEntity
-public class AlongBean extends BusinessBeanImpl {
+public class AlongBean extends SocialBeanImpl {
 	private static final long serialVersionUID = -3433522673262851121L;
 
 	@HbaseColumn(name = "name")
@@ -50,9 +49,6 @@ public class AlongBean extends BusinessBeanImpl {
 	private String address;
 
 	private int applyNum;  //报名人数
-
-	@HbaseColumn(name = "stat")
-	private Status status;
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_BELONG, type = UserProfileBean.class, direction = Direction.OUTGOING)
 	private transient UserProfileBean publisher; // 结伴信息发布者信息
@@ -110,14 +106,6 @@ public class AlongBean extends BusinessBeanImpl {
 
 	public void setAddress(String address) {
 		this.address = address;
-	}
-
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
 	}
 
 	public String getImageUrls() {

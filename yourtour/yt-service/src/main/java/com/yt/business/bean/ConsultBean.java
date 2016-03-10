@@ -1,13 +1,14 @@
 package com.yt.business.bean;
 
-import com.yt.business.BusinessBeanImpl;
-import com.yt.business.CommentBaseBean;
-import com.yt.hbase.annotation.HbaseTable;
 import org.springframework.data.neo4j.annotation.NodeEntity;
+
+import com.yt.business.CommentBaseBean;
+import com.yt.business.SocialBeanImpl;
+import com.yt.hbase.annotation.HbaseTable;
 
 @HbaseTable(name = "T_CONSULT_INFO")
 @NodeEntity
-public class ConsultBean extends BusinessBeanImpl {
+public class ConsultBean extends SocialBeanImpl {
 	private static final long serialVersionUID = -2639574489334772005L;
 
 	private Long    parentId = 0l;

@@ -10,6 +10,7 @@ import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 
 import com.yt.neo4j.annotation.Neo4jRelationship;
+import com.yt.neo4j.utils.Neo4jUtils;
 
 public class Neo4jBeanDescriptor {
 	private static final Log LOG = LogFactory.getLog(Neo4jBeanDescriptor.class);
@@ -42,9 +43,12 @@ public class Neo4jBeanDescriptor {
 							.format("Found a field[%s] be annotation the Neo4jRelationship.",
 									field.getName()));
 				}
-				RelationDescriptor rd = nbd.createRelation(field.getName(),
-						relationship.relationship(), relationship.type(),
-						relationship.isList(), relationship.direction(), field);
+				RelationDescriptor rd = nbd
+						.createRelation(field.getName(), relationship
+								.relationship(), relationship.type(),
+								relationship.isList(), Neo4jUtils
+										.transformDirection(relationship
+												.direction()), field);
 				nbd.getRelations().put(rd.getFieldName(), rd);
 			}
 			clazz = clazz.getSuperclass();

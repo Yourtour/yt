@@ -1,15 +1,14 @@
 package com.yt.business.bean;
 
-import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 
 import com.yt.business.BaseBeanImpl;
 import com.yt.business.common.Constants;
-import com.yt.business.common.Constants.Status;
 import com.yt.hbase.annotation.HbaseColumn;
 import com.yt.hbase.annotation.HbaseTable;
 import com.yt.neo4j.annotation.Neo4jRelationship;
+import com.yt.neo4j.annotation.Neo4jRelationship.Direction;
 
 /**
  * 该实体定义了用户的相关信息
@@ -47,16 +46,20 @@ public class UserAccountBean extends BaseBeanImpl {
 	@HbaseColumn(name = "uname")
 	@Indexed
 	private String userName; // 手机
-	
+
 	@HbaseColumn(name = "pwd")
 	private String pwd; // 登录密码
-	
+
+	public enum Status {
+		VALIDATED, INVALIDE, FROOZE
+	}
+
 	@HbaseColumn(name = "stat")
 	@Indexed
 	private Status status = Status.VALIDATED;
 
-	@Neo4jRelationship(relationship=Constants.RELATION_TYPE_BELONG, type = UserProfileBean.class, direction = Direction.OUTGOING)
-	private UserProfileBean  profile;
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_BELONG, type = UserProfileBean.class, direction = Direction.OUTGOING)
+	private UserProfileBean profile;
 
 	public UserAccountBean() {
 		super();
@@ -84,5 +87,19 @@ public class UserAccountBean extends BaseBeanImpl {
 
 	public void setProfile(UserProfileBean profile) {
 		this.profile = profile;
+	}
+
+	/**
+	 * @return the status
+	 */
+	public Status getStatus() {
+		return status;
+	}
+
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 }

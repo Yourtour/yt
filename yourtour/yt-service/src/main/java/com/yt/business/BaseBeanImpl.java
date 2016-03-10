@@ -3,15 +3,13 @@ package com.yt.business;
 import java.io.Serializable;
 import java.util.UUID;
 
-import com.yt.business.common.Constants;
-import com.yt.core.utils.DateUtils;
 import org.springframework.data.neo4j.annotation.GraphId;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 
 import com.yt.hbase.BaseBean;
 import com.yt.hbase.annotation.HbaseColumn;
-import com.yt.neo4j.bean.Neo4jBaseBean;
+import com.yt.neo4j.Neo4jBaseBean;
 
 @NodeEntity
 public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
@@ -25,20 +23,19 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 	private Long id = null;
 
 	@HbaseColumn(name = "cuid")
-	private Long createdUserId=0l;
+	private Long createdUserId = 0l;
 
 	@HbaseColumn(name = "ct")
 	private long createdTime = 0l;
 
 	@HbaseColumn(name = "uuid")
-	private Long updatedUserId=0l;
+	private Long updatedUserId = 0l;
 
 	@HbaseColumn(name = "ut")
 	private long updatedTime = 0l;
 
-	@HbaseColumn(name = "stat")
-	@Indexed
-	private Constants.Status status = Constants.Status.VALIDATED;
+	@HbaseColumn(name = "rm")
+	private boolean isDeleted = false;
 
 	/**
 	 * 默认的构造函数
@@ -62,7 +59,7 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
 	@Override
@@ -92,10 +89,10 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 	}
 
 	/*
-         * (non-Javadoc)
-         *
-         * @see com.yt.hbase.BaseBean#getRowKey()
-         */
+	 * (non-Javadoc)
+	 * 
+	 * @see com.yt.hbase.BaseBean#getRowKey()
+	 */
 	@Override
 	public String getRowKey() {
 		this.rowKey = UUID.randomUUID().toString();
@@ -104,7 +101,7 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see com.yt.hbase.BaseBean#setRowKey(java.lang.String)
 	 */
 	@Override
@@ -114,7 +111,7 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see com.yt.hbase.BaseBean#getCreatedUserId()
 	 */
 	@Override
@@ -124,7 +121,7 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see com.yt.hbase.BaseBean#setCreatedUserId(java.lang.String)
 	 */
 	@Override
@@ -134,7 +131,7 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see com.yt.hbase.BaseBean#getCreatedTime()
 	 */
 	@Override
@@ -144,7 +141,7 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see com.yt.hbase.BaseBean#setCreatedTime(long)
 	 */
 	@Override
@@ -154,7 +151,7 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see com.yt.hbase.BaseBean#getUpdatedUserId()
 	 */
 	@Override
@@ -164,7 +161,7 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see com.yt.hbase.BaseBean#setUpdatedUserId(java.lang.String)
 	 */
 	@Override
@@ -174,7 +171,7 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see com.yt.hbase.BaseBean#getUpdatedTime()
 	 */
 	@Override
@@ -184,7 +181,7 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see com.yt.hbase.BaseBean#setUpdatedTime(long)
 	 */
 	@Override
@@ -192,15 +189,21 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 		this.updatedTime = updatedTime;
 	}
 
-	public Constants.Status getStatus() {
-		return status;
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.yt.neo4j.Neo4jBaseBean#isDeleted()
+	 */
+	@Override
+	public boolean isDeleted() {
+		return isDeleted;
 	}
 
-	public void setStatus(Constants.Status status) {
-		this.status = status;
+	public void setDeleted(boolean deleted) {
+		this.isDeleted = deleted;
 	}
 
-	public boolean isNew(){
+	public boolean isNew() {
 		return this.id == null || this.id.longValue() == 0;
 	}
 }

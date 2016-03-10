@@ -1,6 +1,6 @@
 package com.yt.business;
 
-import com.yt.neo4j.bean.Neo4jBaseBean;
+import com.yt.neo4j.Neo4jBaseBean;
 
 /**
  * 可以收藏的实体接口

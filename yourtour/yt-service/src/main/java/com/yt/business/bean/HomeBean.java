@@ -1,16 +1,8 @@
 package com.yt.business.bean;
 
-import com.yt.business.BusinessBeanImpl;
-import com.yt.business.common.Constants;
-import com.yt.business.common.Constants.AlongIntentionType;
-import com.yt.business.common.Constants.Status;
-import com.yt.hbase.annotation.HbaseColumn;
-import com.yt.hbase.annotation.HbaseTable;
-import com.yt.neo4j.annotation.Neo4jRelationship;
-import org.neo4j.graphdb.Direction;
-import org.springframework.data.neo4j.annotation.NodeEntity;
-
 import java.util.List;
+
+import com.yt.business.SocialBeanImpl;
 
 /**
  * 该实体定义了有服务层获取的首页数据
@@ -18,7 +10,7 @@ import java.util.List;
  * @author Tony.Zhang
  * 
  */
-public class HomeBean extends BusinessBeanImpl {
+public class HomeBean extends SocialBeanImpl {
 	private static final long serialVersionUID = -3433522673262851121L;
 
 	private List<RouteMainBean> recommendedRoutes;  //推荐行程

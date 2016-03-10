@@ -1,14 +1,14 @@
 package com.yt.business.bean;
 
-import com.yt.business.BaseBeanImpl;
-import com.yt.business.common.Constants;
-import com.yt.hbase.annotation.HbaseColumn;
-import com.yt.hbase.annotation.HbaseTable;
-import com.yt.neo4j.annotation.Neo4jRelationship;
-import org.neo4j.graphdb.Direction;
+import java.util.List;
+
 import org.springframework.data.neo4j.annotation.NodeEntity;
 
-import java.util.List;
+import com.yt.business.BaseBeanImpl;
+import com.yt.business.common.Constants;
+import com.yt.hbase.annotation.HbaseTable;
+import com.yt.neo4j.annotation.Neo4jRelationship;
+import com.yt.neo4j.annotation.Neo4jRelationship.Direction;
 
 @HbaseTable(name = "T_EXPERT_APPLICATION")
 @NodeEntity

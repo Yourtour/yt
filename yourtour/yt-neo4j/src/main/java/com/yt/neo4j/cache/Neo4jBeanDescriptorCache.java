@@ -2,7 +2,7 @@ package com.yt.neo4j.cache;
 
 import java.util.List;
 
-import com.yt.neo4j.bean.Neo4jBaseBean;
+import com.yt.neo4j.Neo4jBaseBean;
 
 /**
  * 定义neo4j表描述对象的缓存接口。<br>

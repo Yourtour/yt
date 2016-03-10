@@ -62,7 +62,6 @@ public class RouteChargeServiceImpl extends ServiceBase implements IRouteChargeS
     public void deleteCharge(Long routeId, Long chargeId, Long operatorId) throws Exception{
         RouteChargeBean charge = chargeCrudOperate.get(chargeId, false);
         if(charge != null){
-            charge.setStatus(Constants.Status.CANCELED);
             chargeCrudOperate.save(charge, false);
         }else{
             logger.warn(String.format("No charge found for id=%s", chargeId));

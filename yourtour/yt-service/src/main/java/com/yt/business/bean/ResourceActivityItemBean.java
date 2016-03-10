@@ -1,16 +1,12 @@
 package com.yt.business.bean;
 
-import com.yt.business.BaseBeanImpl;
-import com.yt.business.BaseDictBeanImpl;
-import com.yt.business.common.Constants;
-import com.yt.business.common.Constants.ResType;
-import com.yt.business.common.Constants.Status;
-import com.yt.hbase.annotation.HbaseColumn;
-import com.yt.neo4j.annotation.Neo4jRelationship;
-import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 
-import java.util.List;
+import com.yt.business.BaseBeanImpl;
+import com.yt.business.common.Constants;
+import com.yt.hbase.annotation.HbaseColumn;
+import com.yt.neo4j.annotation.Neo4jRelationship;
+import com.yt.neo4j.annotation.Neo4jRelationship.Direction;
 
 /**
  * 资源bean，定义了各类资源的公共信息，不直接创建表，被后续其他资源对象继承（如：景点、宾馆、饭店等）

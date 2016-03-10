@@ -10,9 +10,7 @@ package com.yt.neo4j.repository;
 import java.util.List;
 import java.util.Map;
 
-import org.neo4j.graphdb.Direction;
-
-import com.yt.neo4j.bean.Neo4jBaseBean;
+import com.yt.neo4j.Neo4jBaseBean;
 
 /**
  * 定义了针对Neo4J的CRUD操作的接口。

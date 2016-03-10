@@ -1,9 +1,10 @@
 package com.yt.neo4j.repository;
 
-import com.yt.neo4j.bean.Neo4jBaseBean;
+import java.util.Map;
+
 import org.neo4j.graphdb.Direction;
 
-import java.util.Map;
+import com.yt.neo4j.Neo4jBaseBean;
 
 public interface RelationshipRepository<S extends Neo4jBaseBean, T extends Neo4jBaseBean> extends RelationshipCrudOperate<S,T> {
 	/**

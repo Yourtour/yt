@@ -3,18 +3,16 @@ package com.yt.business.bean;
 import java.util.List;
 import java.util.Vector;
 
-import com.yt.business.BusinessBeanImpl;
-import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.data.neo4j.support.index.IndexType;
 
-import com.yt.business.BaseDictBeanImpl;
+import com.yt.business.SocialBeanImpl;
 import com.yt.business.common.Constants;
-import com.yt.business.common.Constants.Status;
 import com.yt.hbase.annotation.HbaseColumn;
 import com.yt.hbase.annotation.HbaseTable;
 import com.yt.neo4j.annotation.Neo4jRelationship;
+import com.yt.neo4j.annotation.Neo4jRelationship.Direction;
 
 /**
  * 
@@ -53,7 +51,7 @@ import com.yt.neo4j.annotation.Neo4jRelationship;
  */
 @HbaseTable(name = "T_LINE_INFO")
 @NodeEntity
-public class LineBean extends BusinessBeanImpl {
+public class LineBean extends SocialBeanImpl {
 	private static final long serialVersionUID = -3433522673262851121L;
 	private static final String INDEX_NAME = "line";
 

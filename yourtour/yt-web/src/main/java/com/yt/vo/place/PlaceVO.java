@@ -1,19 +1,17 @@
 package com.yt.vo.place;
 
-import com.yt.business.bean.PlaceBean;
-import com.yt.business.bean.ResourceBean;
-import com.yt.business.common.Constants.Status;
-import com.yt.core.utils.CollectionUtils;
-import com.yt.vo.resource.ResourceVO;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import com.yt.business.bean.PlaceBean;
+import com.yt.business.bean.ResourceBean;
+import com.yt.core.utils.CollectionUtils;
+import com.yt.vo.resource.ResourceVO;
 
 public class PlaceVO {
 	private Long graphId = -1l, parentId = null;
 	private String parentCode, code, shorter, text, memo, imageUrl, name;
 	private boolean expandable = false, leaf = false;
-	private Status status = Status.ACTIVED;
 	private int favoiteNum = 0; //关注人数
 	private int goneNum = 0;  //去过人数
 	private int goingNum = 0;  //想去人数
@@ -34,7 +32,6 @@ public class PlaceVO {
 		bean.setName(vo.getText());
 		bean.setMemo(vo.getMemo());
 		bean.setShorter(vo.getShorter());
-		bean.setStatus(vo.getStatus());
 		if (vo.getParentId() != null && vo.getParentId().longValue() != -1l) {
 			PlaceBean parent = new PlaceBean();
 			parent.setId(vo.getParentId());
@@ -56,7 +53,6 @@ public class PlaceVO {
 		vo.setName(bean.getName());
 		vo.setMemo(bean.getMemo());
 		vo.setShorter(bean.getShorter());
-		vo.setStatus(bean.getStatus());
 		vo.setText(bean.getName());
 		vo.setImageUrl(bean.getImageUrl());
 		vo.setGoingNum(bean.getGoingNum());
@@ -173,15 +169,6 @@ public class PlaceVO {
 	public void setLeaf(boolean leaf) {
 		this.leaf = leaf;
 	}
-
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
-	}
-
 
 	public String getImageUrl() {
 		return imageUrl;
