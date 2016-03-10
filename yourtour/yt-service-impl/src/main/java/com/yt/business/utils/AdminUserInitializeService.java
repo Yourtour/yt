@@ -4,6 +4,8 @@ import com.yt.business.bean.UserProfileBean;
 import com.yt.business.repository.neo4j.UserBeanRepository;
 import com.yt.business.repository.neo4j.UserTuple;
 import com.yt.neo4j.repository.CrudOperate;
+import com.yt.repository.CrudAllInOneOperate;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.InitializingBean;
@@ -12,7 +14,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.yt.business.CrudAllInOneOperate;
 import com.yt.business.bean.UserAccountBean;
 import com.yt.business.service.IUserService;
 import com.yt.core.utils.MessageDigestUtils;

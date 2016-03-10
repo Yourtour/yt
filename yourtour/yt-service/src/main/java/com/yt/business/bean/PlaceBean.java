@@ -3,16 +3,15 @@ package com.yt.business.bean;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.yt.business.BusinessBeanImpl;
-import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 
-import com.yt.business.BaseDictBeanImpl;
+import com.yt.business.SocialBeanImpl;
 import com.yt.business.common.Constants;
 import com.yt.hbase.annotation.HbaseColumn;
 import com.yt.hbase.annotation.HbaseTable;
 import com.yt.neo4j.annotation.Neo4jRelationship;
+import com.yt.neo4j.annotation.Neo4jRelationship.Direction;
 
 /**
  * 该实体定义目的地数据信息。
@@ -44,7 +43,7 @@ import com.yt.neo4j.annotation.Neo4jRelationship;
  */
 @HbaseTable(name = "T_PLACE_INFO")
 @NodeEntity
-public class PlaceBean extends BusinessBeanImpl {
+public class PlaceBean extends SocialBeanImpl {
 	private static final long serialVersionUID = -6977525800090683657L;
 	
 	@HbaseColumn(name = "shor")

@@ -2,24 +2,104 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92ee94f3-3d6c-4f6d-925a-699d6360b737" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/utils/Neo4jUtils.java" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-app\WebRoot\cordova\platforms\android\assets\www\plugins\phonegap-plugin-barcodescanner\www\barcodescanner.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-data-service\src\test\java\com\yt\business\neo4j\DataGenerator.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-neo4j\src\main\java\com\yt\neo4j\bean\package-info.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-neo4j\src\test\java\com\yt\business\bean\Account.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-neo4j\src\test\java\com\yt\business\bean\Organization.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-neo4j\src\test\java\com\yt\business\bean\Person.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-neo4j\src\test\java\com\yt\business\bean\Privilege.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-neo4j\src\test\java\com\yt\business\bean\Role.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-neo4j\src\test\java\com\yt\neo4j\cache\TestNeo4jRelationCache.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documents/design/架构图.vsdx" afterPath="$PROJECT_DIR$/documents/design/架构图.vsdx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documents/design/游徒平台接口设计.xlsx" afterPath="$PROJECT_DIR$/documents/design/游徒平台接口设计.xlsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/utils/AdminUserInitializeService.java" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/utils/AdminUserInitializeService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/AlongBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/AlongBean.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/BannerBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/BannerBean.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/BaseBeanImpl.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/BaseBeanImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/neo4j/FavoriteBeanRepository.java" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/neo4j/FavoriteBeanRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/FavoriteServiceImpl.java" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/FavoriteServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/model/HomeModel.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/model/HomeModel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/BaseDictBeanImpl.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/BaseDictBeanImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ChatJoinHistoryBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ChatJoinHistoryBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ChatMessageBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ChatMessageBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ChatSessionBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ChatSessionBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/CommentBaseBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/CommentBaseBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/CommentBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/CommentBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/common/Constants.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/common/Constants.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ConsultBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ConsultBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/repository/CrudGeneralOperate.java" afterPath="$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/repository/CrudGeneralOperate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/repository/CrudOperate.java" afterPath="$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/repository/CrudOperate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ExpertApplicationBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ExpertApplicationBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ExpertApprovementBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ExpertApprovementBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ExpertBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ExpertBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ExpertServiceBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ExpertServiceBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/FavoriteBaseBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/FavoriteBaseBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/FavoriteBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/FavoriteBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/repository/FullTextSearchGeneralOperate.java" afterPath="$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/repository/FullTextSearchGeneralOperate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/repository/FullTextSearchOperate.java" afterPath="$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/repository/FullTextSearchOperate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/HomeBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/HomeBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/HotelResourceBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/HotelResourceBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/LineBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/LineBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/cache/Neo4jBeanDescriptor.java" afterPath="$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/cache/Neo4jBeanDescriptor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/cache/Neo4jBeanDescriptorCache.java" afterPath="$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/cache/Neo4jBeanDescriptorCache.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/cache/Neo4jBeanDescriptorGeneralCacheImpl.java" afterPath="$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/cache/Neo4jBeanDescriptorGeneralCacheImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/PlaceBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/PlaceBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/place/PlaceVO.java" afterPath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/place/PlaceVO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/repository/QueryOperate.java" afterPath="$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/repository/QueryOperate.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/repository/RelationshipCrudGeneralOperate.java" afterPath="$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/repository/RelationshipCrudGeneralOperate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/UserServiceImpl.java" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/UserServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XCarousel.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XCarousel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-web/src/main/resources/application-neo4j-context.xml" afterPath="$PROJECT_DIR$/yt-web/src/main/resources/application-neo4j-context.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-web/src/main/resources/application-rest-context.xml" afterPath="$PROJECT_DIR$/yt-web/src/main/resources/application-rest-context.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-web/yt-web.iml" afterPath="$PROJECT_DIR$/yt-web/yt-web.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-wxams/yt-wxams.iml" afterPath="$PROJECT_DIR$/yt-wxams/yt-wxams.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/yt_web_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/yt_web_war_exploded.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/repository/RelationshipCrudOperate.java" afterPath="$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/repository/RelationshipCrudOperate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/repository/RelationshipRepository.java" afterPath="$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/repository/RelationshipRepository.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/repository/RelationshipRepositoryImpl.java" afterPath="$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/repository/RelationshipRepositoryImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ResourceActivityItemBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ResourceActivityItemBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ResourceBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ResourceBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/resource/ResourceVO.java" afterPath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/resource/ResourceVO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RestaurantResourceBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RestaurantResourceBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RouteActivityBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RouteActivityBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RouteActivityItemBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RouteActivityItemBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/route/RouteActivityVO.java" afterPath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/route/RouteActivityVO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RouteChargeBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RouteChargeBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteChargeServiceImpl.java" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteChargeServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RouteCheckinBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RouteCheckinBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RouteMainBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RouteMainBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RouteNotesBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RouteNotesBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RouteProvisionBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RouteProvisionBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RouteReservationBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RouteReservationBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RouteScheduleBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RouteScheduleBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RouteServiceBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/RouteServiceBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/SceneResourceBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/SceneResourceBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ThemeBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ThemeBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/TravelCartBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/TravelCartBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/UserAccountBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/UserAccountBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/UserProfileBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/UserProfileBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/member/UserVO.java" afterPath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/member/UserVO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/VersionBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/VersionBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/build.gradle" afterPath="$PROJECT_DIR$/yt-service/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service-impl/build.gradle" afterPath="$PROJECT_DIR$/yt-service-impl/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.gradle" afterPath="$PROJECT_DIR$/settings.gradle" />
+      <change type="MOVED" beforePath="E:\workspace\yt\yourtour\yt-data-service\.gitignore" afterPath="$PROJECT_DIR$/yt-repository/.gitignore" />
+      <change type="MOVED" beforePath="E:\workspace\yt\yourtour\yt-data-service\build.gradle" afterPath="$PROJECT_DIR$/yt-repository/build.gradle" />
+      <change type="MOVED" beforePath="E:\workspace\yt\yourtour\yt-data-service\src\main\java\META-INF\MANIFEST.MF" afterPath="$PROJECT_DIR$/yt-repository/src/main/java/META-INF/MANIFEST.MF" />
+      <change type="MOVED" beforePath="E:\workspace\yt\yourtour\yt-data-service\src\test\java\application-hbase-context.xml" afterPath="$PROJECT_DIR$/yt-repository/src/test/java/application-hbase-context.xml" />
+      <change type="MOVED" beforePath="E:\workspace\yt\yourtour\yt-data-service\src\test\java\application-neo4j-context.xml" afterPath="$PROJECT_DIR$/yt-repository/src/test/java/application-neo4j-context.xml" />
+      <change type="MOVED" beforePath="E:\workspace\yt\yourtour\yt-data-service\src\test\java\com\yt\business\neo4j\DataGenerator.java" afterPath="$PROJECT_DIR$/yt-repository/src/test/java/com/yt/business/neo4j/DataGenerator.java" />
+      <change type="MOVED" beforePath="E:\workspace\yt\yourtour\yt-data-service\src\test\java\com\yt\business\repository\neo4j\DataGenerator.java" afterPath="$PROJECT_DIR$/yt-repository/src/test/java/com/yt/business/repository/neo4j/DataGenerator.java" />
+      <change type="MOVED" beforePath="E:\workspace\yt\yourtour\yt-data-service\src\test\java\log4j.xml" afterPath="$PROJECT_DIR$/yt-repository/src/test/java/log4j.xml" />
+      <change type="MOVED" beforePath="E:\workspace\yt\yourtour\yt-data-service\yt-data-service.iml" afterPath="$PROJECT_DIR$/yt-repository/yt-data-service.iml" />
+      <change type="MOVED" beforePath="E:\workspace\yt\yourtour\yt-hbase\src\main\java\com\yt\hbase\BaseBean.java" afterPath="$PROJECT_DIR$/yt-core/src/main/java/com/yt/hbase/BaseBean.java" />
+      <change type="MOVED" beforePath="E:\workspace\yt\yourtour\yt-hbase\src\main\java\com\yt\hbase\BaseBeanImpl.java" afterPath="$PROJECT_DIR$/yt-core/src/main/java/com/yt/hbase/BaseBeanImpl.java" />
+      <change type="MOVED" beforePath="E:\workspace\yt\yourtour\yt-hbase\src\main\java\com\yt\hbase\BaseDictBean.java" afterPath="$PROJECT_DIR$/yt-core/src/main/java/com/yt/hbase/BaseDictBean.java" />
+      <change type="MOVED" beforePath="E:\workspace\yt\yourtour\yt-hbase\src\main\java\com\yt\hbase\BaseDictBeanImpl.java" afterPath="$PROJECT_DIR$/yt-core/src/main/java/com/yt/hbase/BaseDictBeanImpl.java" />
+      <change type="MOVED" beforePath="E:\workspace\yt\yourtour\yt-hbase\src\main\java\com\yt\hbase\CrudOperate.java" afterPath="$PROJECT_DIR$/yt-core/src/main/java/com/yt/hbase/CrudOperate.java" />
+      <change type="MOVED" beforePath="E:\workspace\yt\yourtour\yt-hbase\src\main\java\com\yt\hbase\annotation\HbaseColumn.java" afterPath="$PROJECT_DIR$/yt-core/src/main/java/com/yt/hbase/annotation/HbaseColumn.java" />
+      <change type="MOVED" beforePath="E:\workspace\yt\yourtour\yt-hbase\src\main\java\com\yt\hbase\annotation\HbaseTable.java" afterPath="$PROJECT_DIR$/yt-core/src/main/java/com/yt/hbase/annotation/HbaseTable.java" />
+      <change type="MOVED" beforePath="E:\workspace\yt\yourtour\yt-hbase\src\main\java\com\yt\hbase\annotation\package-info.java" afterPath="$PROJECT_DIR$/yt-core/src/main/java/com/yt/hbase/annotation/package-info.java" />
+      <change type="MOVED" beforePath="E:\workspace\yt\yourtour\yt-neo4j\src\main\java\com\yt\neo4j\annotation\Neo4jRelationship.java" afterPath="$PROJECT_DIR$/yt-core/src/main/java/com/yt/neo4j/annotation/Neo4jRelationship.java" />
+      <change type="MOVED" beforePath="E:\workspace\yt\yourtour\yt-neo4j\src\main\java\com\yt\neo4j\bean\Neo4jBaseBean.java" afterPath="$PROJECT_DIR$/yt-core/src/main/java/com/yt/neo4j/Neo4jBaseBean.java" />
+      <change type="MOVED" beforePath="E:\workspace\yt\yourtour\yt-neo4j\src\main\java\com\yt\neo4j\bean\Neo4jBaseBeanImpl.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/Neo4jBaseBeanImpl.java" />
+      <change type="MOVED" beforePath="E:\workspace\yt\yourtour\yt-neo4j\src\main\java\com\yt\neo4j\bean\Neo4jBaseDictBean.java" afterPath="$PROJECT_DIR$/yt-core/src/main/java/com/yt/neo4j/Neo4jBaseDictBean.java" />
+      <change type="MOVED" beforePath="E:\workspace\yt\yourtour\yt-neo4j\src\main\java\com\yt\neo4j\bean\Neo4jBaseDictBeanImpl.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/Neo4jBaseDictBeanImpl.java" />
+      <change type="MOVED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\CrudAllInOneConfig.java" afterPath="$PROJECT_DIR$/yt-repository/src/main/java/com/yt/repository/CrudAllInOneConfig.java" />
+      <change type="MOVED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\CrudAllInOneOperate.java" afterPath="$PROJECT_DIR$/yt-repository/src/main/java/com/yt/repository/CrudAllInOneOperate.java" />
+      <change type="MOVED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\CrudAllInOneOperateImpl.java" afterPath="$PROJECT_DIR$/yt-repository/src/main/java/com/yt/repository/CrudAllInOneOperateImpl.java" />
+      <change type="MOVED" beforePath="E:\workspace\yt\yourtour\yt-service\src\main\java\com\yt\business\BusinessBeanImpl.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/SocialBeanImpl.java" />
     </list>
     <ignored path="yourtour.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -73,6 +153,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="BaseBeanImpl.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/BaseBeanImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6037736">
+              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="application-neo4j-context.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yt-web/src/main/resources/application-neo4j-context.xml">
           <provider selected="true" editor-type-id="text-editor">
@@ -83,21 +175,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CrudAllInOneOperateImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/CrudAllInOneOperateImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.4666667">
-              <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RelationshipCrudGeneralOperate.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RelationshipCrudGeneralOperate.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/repository/RelationshipCrudGeneralOperate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.49056605">
-              <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="51" column="3" selection-start-line="51" selection-start-column="3" selection-end-line="51" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -117,7 +199,7 @@
         <entry file="file://$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/repository/CrudOperate.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+              <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -127,7 +209,7 @@
         <entry file="file://$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/repository/CrudGeneralOperate.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-6.133333">
-              <caret line="63" column="13" selection-start-line="63" selection-start-column="13" selection-end-line="63" selection-end-column="13" />
+              <caret line="67" column="13" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -3098,18 +3180,18 @@
         <option value="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/route/RouteMemberVO.java" />
         <option value="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/route/RouteActivityVO.java" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XCarousel.js" />
-        <option value="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/BaseBeanImpl.java" />
         <option value="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/BannerBean.java" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/model/HomeModel.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/store/LocalStore.js" />
-        <option value="$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/repository/RelationshipCrudGeneralOperate.java" />
         <option value="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/UserServiceImpl.java" />
         <option value="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/utils/AdminUserInitializeService.java" />
         <option value="$PROJECT_DIR$/yt-web/src/main/resources/application-rest-context.xml" />
         <option value="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/FavoriteServiceImpl.java" />
         <option value="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/neo4j/FavoriteBeanRepository.java" />
         <option value="$PROJECT_DIR$/yt-web/src/main/resources/application-neo4j-context.xml" />
+        <option value="$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/repository/RelationshipCrudGeneralOperate.java" />
+        <option value="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/BaseBeanImpl.java" />
       </list>
     </option>
   </component>
@@ -3520,10 +3602,6 @@
               <option name="myItemId" value="neo4j" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="repository" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -3554,6 +3632,10 @@
               <option name="myItemId" value="neo4j" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="repository" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -3576,7 +3658,7 @@
   <component name="PropertiesComponent">
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="RelationshipCrudOperate.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-neo4j/src/main/java/com/yt/neo4j/repository/RelationshipCrudGeneralOperate.java&#10;CrudGeneralOperate.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-neo4j/src/main/java/com/yt/neo4j/repository/CrudGeneralOperate.java&#10;CrudAllInOneOperateImpl.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/CrudAllInOneOperateImpl.java&#10;crudAllInOneOperate.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/CrudAllInOneOperate.java&#10;FavoriteTuple.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/repository/neo4j/FavoriteTuple.java&#10;AdminUserInitializeService.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/utils/AdminUserInitializeService.java&#10;UserServiceImpl&#9;PSI&#9;JAVA://com.yt.business.service.impl.UserServiceImpl&#10;AdminUserInitializeService.js&#9;null&#9;null&#10;LocalStore.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/store/LocalStore.js&#10;HomeModel.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/model/HomeModel.js&#10;AccountMainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/AccountMainCtrl.js&#10;UserMainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/UserMainCtrl.js&#10;AjaxStore.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/store/AjaxStore.js&#10;app.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app.js&#10;ChatServiceImpl&#9;PSI&#9;JAVA://com.yt.business.service.impl.ChatServiceImpl&#10;MemberRest&#9;PSI&#9;JAVA://com.yt.rest.resource.MemberRestResource&#10;DelayedTask.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/util/DelayedTask.js&#10;Carousel.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/carousel/Carousel.js&#10;XCarousel.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XCarousel.js&#10;WebUtils.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web-core/src/main/java/com/yt/utils/WebUtils.java&#10;ChargeRest&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/ChargeRestResource.java&#10;CommentSer&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/service/impl/CommentServiceImpl.java&#10;Constants&#9;PSI&#9;JAVA://com.yt.business.common.Constants&#10;RouteMainBean.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service/src/main/java/com/yt/business/bean/RouteMainBean.java&#10;iExpertSer&#9;PSI&#9;JAVA://com.yt.business.service.IExpertService&#10;IPlaceSer&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-data-service/src/main/java/com/yt/business/service/IPlaceService.java&#10;StaticErrorEnum&#9;PSI&#9;JAVA://com.yt.error.StaticErrorEnum&#10;RelationshipCrudOperate.js&#9;null&#9;null&#10;UserRest&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/UserRestResource.java&#10;UserRes&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/UserRestResource.java&#10;UserRestResource.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/UserRestResource.java&#10;FileUtils.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web-core/src/main/java/com/yt/utils/FileUtils.java&#10;RegisterProfileView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/user/RegisterProfileView.js&#10;UserProfileView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/user/UserProfileView.js&#10;HomeStore.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/store/HomeStore.js&#10;UserProf&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/user/UserProfileView.js&#10;Xselectfield.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XSelectField.js&#10;XSelectField.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XSelectField.js&#10;XPickerField.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XPickerField.js&#10;XGenderField.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XGenderField.js&#10;XPlaceField.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XPlaceField.js&#10;XField.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XField.js&#10;index.html&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/index.html&#10;XMultiField.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XMultiField.js&#10;RoutePlanView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/route/RoutePlanView.js&#10;UserModel.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/model/UserModel.js&#10;userMainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/UserMainCtrl.js&#10;UserMainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/user/UserMainView.js&#10;userProfileView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/user/UserProfileView.js&#10;XDateField.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XDateField.js" />
+    <property name="SearchEverywhereHistoryKey" value="baseBean.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service/src/main/java/com/yt/business/BaseBeanImpl.java&#10;RelationshipCrudOperate.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-neo4j/src/main/java/com/yt/neo4j/repository/RelationshipCrudGeneralOperate.java&#10;CrudGeneralOperate.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-neo4j/src/main/java/com/yt/neo4j/repository/CrudGeneralOperate.java&#10;CrudAllInOneOperateImpl.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/CrudAllInOneOperateImpl.java&#10;crudAllInOneOperate.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/CrudAllInOneOperate.java&#10;FavoriteTuple.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/repository/neo4j/FavoriteTuple.java&#10;AdminUserInitializeService.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/utils/AdminUserInitializeService.java&#10;UserServiceImpl&#9;PSI&#9;JAVA://com.yt.business.service.impl.UserServiceImpl&#10;AdminUserInitializeService.js&#9;null&#9;null&#10;LocalStore.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/store/LocalStore.js&#10;HomeModel.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/model/HomeModel.js&#10;AccountMainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/AccountMainCtrl.js&#10;UserMainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/UserMainCtrl.js&#10;AjaxStore.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/store/AjaxStore.js&#10;app.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app.js&#10;ChatServiceImpl&#9;PSI&#9;JAVA://com.yt.business.service.impl.ChatServiceImpl&#10;MemberRest&#9;PSI&#9;JAVA://com.yt.rest.resource.MemberRestResource&#10;DelayedTask.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/util/DelayedTask.js&#10;Carousel.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/carousel/Carousel.js&#10;XCarousel.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XCarousel.js&#10;WebUtils.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web-core/src/main/java/com/yt/utils/WebUtils.java&#10;ChargeRest&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/ChargeRestResource.java&#10;CommentSer&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/service/impl/CommentServiceImpl.java&#10;Constants&#9;PSI&#9;JAVA://com.yt.business.common.Constants&#10;RouteMainBean.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service/src/main/java/com/yt/business/bean/RouteMainBean.java&#10;iExpertSer&#9;PSI&#9;JAVA://com.yt.business.service.IExpertService&#10;IPlaceSer&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-data-service/src/main/java/com/yt/business/service/IPlaceService.java&#10;StaticErrorEnum&#9;PSI&#9;JAVA://com.yt.error.StaticErrorEnum&#10;RelationshipCrudOperate.js&#9;null&#9;null&#10;UserRest&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/UserRestResource.java&#10;UserRes&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/UserRestResource.java&#10;UserRestResource.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/UserRestResource.java&#10;FileUtils.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web-core/src/main/java/com/yt/utils/FileUtils.java&#10;RegisterProfileView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/user/RegisterProfileView.js&#10;UserProfileView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/user/UserProfileView.js&#10;HomeStore.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/store/HomeStore.js&#10;UserProf&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/user/UserProfileView.js&#10;Xselectfield.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XSelectField.js&#10;XSelectField.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XSelectField.js&#10;XPickerField.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XPickerField.js&#10;XGenderField.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XGenderField.js&#10;XPlaceField.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XPlaceField.js&#10;XField.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XField.js&#10;index.html&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/index.html&#10;XMultiField.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XMultiField.js&#10;RoutePlanView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/route/RoutePlanView.js&#10;UserModel.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/model/UserModel.js&#10;userMainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/UserMainCtrl.js&#10;UserMainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/user/UserMainView.js&#10;userProfileView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/user/UserProfileView.js" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="project.structure.last.edited" value="Artifacts" />
@@ -4125,12 +4207,12 @@
       <workItem from="1457503828183" duration="1086000" />
       <workItem from="1457505025112" duration="11587000" />
       <workItem from="1457571361267" duration="10639000" />
-      <workItem from="1457586356478" duration="5114000" />
+      <workItem from="1457586356478" duration="5234000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="201357000" />
+    <option name="totallyTimeSpent" value="201477000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -4344,18 +4426,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/BaseBeanImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3498#3499#0" expanded="true" />
-            <element signature="e#3535#3536#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/BaseDictBeanImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -4530,7 +4600,7 @@
     <entry file="file://$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/repository/CrudOperate.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -4550,14 +4620,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/CrudAllInOneOperate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1509434">
-          <caret line="5" column="74" selection-start-line="5" selection-start-column="70" selection-end-line="5" selection-end-column="81" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4588,24 +4650,26 @@
     <entry file="file://$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/repository/CrudGeneralOperate.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.133333">
-          <caret line="63" column="13" selection-start-line="63" selection-start-column="13" selection-end-line="63" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/CrudAllInOneOperateImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.4666667">
-          <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+          <caret line="67" column="13" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/repository/RelationshipCrudGeneralOperate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49056605">
-          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="51" column="3" selection-start-line="51" selection-start-column="3" selection-end-line="51" selection-end-column="3" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/BaseBeanImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6037736">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

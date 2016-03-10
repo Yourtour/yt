@@ -7,26 +7,21 @@
  */
 package com.yt.neo4j.repository;
 
-import com.yt.neo4j.bean.Neo4jBaseBean;
-import com.yt.neo4j.bean.Neo4jBaseDictBean;
-import com.yt.neo4j.cache.Neo4jBeanDescriptor;
-import com.yt.neo4j.cache.Neo4jBeanDescriptor.RelationDescriptor;
-import com.yt.neo4j.cache.Neo4jBeanDescriptorCache;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.neo4j.graphdb.Direction;
 import org.neo4j.graphdb.Node;
 import org.neo4j.graphdb.Relationship;
-import org.springframework.beans.BeanWrapper;
-import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.neo4j.annotation.QueryResult;
-import org.springframework.data.neo4j.conversion.Result;
 import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.lang.reflect.Field;
-import java.util.*;
+import com.yt.neo4j.Neo4jBaseBean;
+import com.yt.neo4j.cache.Neo4jBeanDescriptorCache;
 
 /**
  * 面向Neo4j实体对象之间的关系进行常规CRUD操作的操作类。

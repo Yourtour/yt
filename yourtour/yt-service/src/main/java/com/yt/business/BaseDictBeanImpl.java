@@ -4,7 +4,7 @@ import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 
 import com.yt.hbase.annotation.HbaseColumn;
-import com.yt.neo4j.bean.Neo4jBaseDictBean;
+import com.yt.neo4j.Neo4jBaseDictBean;
 
 @NodeEntity
 public abstract class BaseDictBeanImpl extends BaseBeanImpl implements
@@ -18,7 +18,7 @@ public abstract class BaseDictBeanImpl extends BaseBeanImpl implements
 	@HbaseColumn(name = "name")
 	@Indexed
 	private String name = "";
-
+	
 	/**
 	 * 默认的构造函数
 	 */
@@ -87,5 +87,5 @@ public abstract class BaseDictBeanImpl extends BaseBeanImpl implements
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	
 }

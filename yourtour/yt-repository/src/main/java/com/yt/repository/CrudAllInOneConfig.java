@@ -1,8 +1,9 @@
-package com.yt.business;
+package com.yt.repository;
 
-import com.yt.hbase.CrudOperate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import com.yt.hbase.CrudOperate;
 
 public class CrudAllInOneConfig {
 	private static final Log LOG = LogFactory.getLog(CrudAllInOneConfig.class);

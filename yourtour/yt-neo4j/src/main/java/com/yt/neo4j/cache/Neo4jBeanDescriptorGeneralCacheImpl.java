@@ -22,7 +22,7 @@ import org.springframework.core.type.filter.TypeFilter;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.util.ClassUtils;
 
-import com.yt.neo4j.bean.Neo4jBaseBean;
+import com.yt.neo4j.Neo4jBaseBean;
 
 /**
  * 一个本地的通用设置hbase表描述对象的缓存实现。

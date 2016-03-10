@@ -3,8 +3,13 @@ package com.yt.vo.route;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.yt.business.bean.*;
-import com.yt.business.common.Constants;
+import com.yt.business.bean.HotelResourceBean;
+import com.yt.business.bean.ResourceBean;
+import com.yt.business.bean.RestaurantResourceBean;
+import com.yt.business.bean.RouteActivityBean;
+import com.yt.business.bean.RouteActivityItemBean;
+import com.yt.business.bean.RouteScheduleBean;
+import com.yt.business.bean.SceneResourceBean;
 import com.yt.business.common.Constants.ResType;
 import com.yt.vo.BaseVO;
 import com.yt.vo.resource.HotelResourceVO;
@@ -87,7 +92,6 @@ public class RouteActivityVO extends BaseVO {
 		bean.setStartTime(vo.getStartTime());
 		bean.setEndTime(vo.getEndTime());
 		bean.setDate(vo.getDate());
-		bean.setStatus(Constants.Status.valueOf(vo.getStatus()));
 
 		if (vo.getSchedule() != null) {
 			RouteScheduleBean schedule = new RouteScheduleBean();

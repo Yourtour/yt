@@ -1,13 +1,14 @@
 package com.yt.business.bean;
 
+import java.util.List;
+
+import org.springframework.data.neo4j.annotation.NodeEntity;
+
 import com.yt.business.BaseBeanImpl;
 import com.yt.business.common.Constants;
 import com.yt.hbase.annotation.HbaseTable;
 import com.yt.neo4j.annotation.Neo4jRelationship;
-import org.neo4j.graphdb.Direction;
-import org.springframework.data.neo4j.annotation.NodeEntity;
-
-import java.util.List;
+import com.yt.neo4j.annotation.Neo4jRelationship.Direction;
 
 /**
  * 该实体定义了系统中的行程的结伴信息。结伴信息和行程以及结伴发布者之间的关系通过图状数据库Neo4j存储

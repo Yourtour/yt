@@ -6,11 +6,13 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import org.neo4j.graphdb.Direction;
-
 @Target({ FIELD })
 @Retention(RUNTIME)
 public @interface Neo4jRelationship {
+	public enum Direction {
+		INCOMING, OUTGOING, BOTH
+	};
+
 	String relationship();
 
 	Class<?> type();

@@ -3,14 +3,13 @@ package com.yt.vo.member;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.yt.vo.BaseVO;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.yt.business.bean.UserProfileBean;
 import com.yt.business.common.Constants.GenderType;
 import com.yt.business.common.Constants.Role;
-import com.yt.business.common.Constants.Status;
+import com.yt.vo.BaseVO;
 
 public class UserVO extends BaseVO {
 	private static final Log LOG = LogFactory.getLog(UserVO.class);
@@ -31,7 +30,6 @@ public class UserVO extends BaseVO {
 	private String constellation; // 星座
 	private Role role; // 角色
 	private int rank; // 等级
-	private Status status;
 	private String slogan; // 个人口号
 	private String  identity;
 	private String  age;
@@ -73,7 +71,6 @@ public class UserVO extends BaseVO {
 		vo.setRole(bean.getRole());
 		vo.setGender(bean.getGender());
 		vo.setSlogan(bean.getSlogan());
-		vo.setStatus(bean.getStatus());
 		vo.setAge(bean.getAge());
 		vo.setIdentity(bean.getIdentity());
 		vo.setSnsAuthenticate(bean.getSnsAuthenticate());
@@ -115,7 +112,6 @@ public class UserVO extends BaseVO {
 		bean.setRole(vo.getRole());
 		bean.setGender(vo.getGender());
 		bean.setSlogan(vo.getSlogan());
-		bean.setStatus(vo.getStatus());
 		return bean;
 	}
 
@@ -241,14 +237,6 @@ public class UserVO extends BaseVO {
 
 	public void setRank(int rank) {
 		this.rank = rank;
-	}
-
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
 	}
 
 	public String getSlogan() {

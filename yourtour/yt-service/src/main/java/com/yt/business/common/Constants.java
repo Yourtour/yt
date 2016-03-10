@@ -184,21 +184,6 @@ public interface Constants {
 		}
 	}
 
-	// 数据状态
-	public static enum Status {
-		DRAFT("DRAFT", "草稿"), VALIDATED("VALIDATED", "有效"), ACTIVED("ACTIVED",
-				"激活"), FROZEN("FRONEN", "冻结"), CLOSED("CLOSED", "关闭"), CANCELED(
-				"CANCELED", "取消");
-
-		public String code;
-		public String name;
-
-		private Status(String code, String name) {
-			this.code = code;
-			this.name = name;
-		}
-	}
-
 	// 签到枚举
 	public static enum CheckinType {
 		ARRIVE("ARRIVE", "出发签到"), LEAVE("LEAVE", "离开签到");

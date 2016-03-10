@@ -1,6 +1,9 @@
-package com.yt.neo4j.bean;
+package com.yt.business;
 
 import org.springframework.data.neo4j.annotation.Indexed;
+
+import com.yt.neo4j.Neo4jBaseBean;
+import com.yt.neo4j.Neo4jBaseDictBean;
 
 /**
  * hbase中字典类实体的抽象类，定义了常规字典类实体必须包含的数据内容。

@@ -7,9 +7,9 @@
  */
 package com.yt.neo4j.repository;
 
-import com.yt.neo4j.bean.Neo4jBaseBean;
-
 import java.util.List;
+
+import com.yt.neo4j.Neo4jBaseBean;
 
 /**
  * 定义了针对Neo4J的CRUD操作的接口。

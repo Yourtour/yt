@@ -1,8 +1,6 @@
 package com.yt.business.bean;
 
 import com.yt.business.common.Constants;
-import com.yt.neo4j.annotation.Neo4jRelationship;
-import org.neo4j.graphdb.Direction;
 
 /**
  * 旅行车，用来收集用户在目的地浏览过程中收集的和行程相关的资源或者达人

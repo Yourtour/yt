@@ -1,14 +1,13 @@
 package com.yt.vo.resource;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.yt.business.bean.PlaceBean;
 import com.yt.business.bean.ResourceActivityItemBean;
 import com.yt.business.bean.ResourceBean;
 import com.yt.business.common.Constants.ResType;
-import com.yt.business.common.Constants.Status;
 import com.yt.vo.BaseVO;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ResourceVO extends BaseVO {
     private String code;
@@ -31,7 +30,6 @@ public class ResourceVO extends BaseVO {
     private int shareNum; // 分享数
     private String bookingMemo; // 预订须知
     private String tips; // 贴士
-    private Status status;
 
     private String tags;
     private String feature;
@@ -78,7 +76,6 @@ public class ResourceVO extends BaseVO {
         vo.setPostCode(bean.getPostCode());
         vo.setShareNum(bean.getShareNum());
         vo.setStar(bean.getStar());
-        vo.setStatus(bean.getStatus());
         vo.setTips(bean.getTips());
         vo.setTrafficIntro(bean.getTrafficIntro());
         vo.setType(bean.getType());
@@ -147,7 +144,6 @@ public class ResourceVO extends BaseVO {
         bean.setPostCode(vo.getPostCode());
         bean.setShareNum(vo.getShareNum());
         bean.setStar(vo.getStar());
-        bean.setStatus(vo.getStatus());
         bean.setTips(vo.getTips());
         bean.setTrafficIntro(vo.getTrafficIntro());
         bean.setType(vo.getType());
@@ -345,14 +341,6 @@ public class ResourceVO extends BaseVO {
 
     public void setWebsite(String website) {
         this.website = website;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
     }
 
     public String getPlace() {

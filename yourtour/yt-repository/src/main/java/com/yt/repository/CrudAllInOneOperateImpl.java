@@ -1,14 +1,15 @@
-package com.yt.business;
+package com.yt.repository;
 
-import com.yt.hbase.BaseBean;
-import com.yt.neo4j.bean.Neo4jBaseBean;
-import com.yt.neo4j.bean.Neo4jBaseDictBean;
-import com.yt.neo4j.repository.CrudGeneralOperate;
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.List;
+import com.yt.hbase.BaseBean;
+import com.yt.neo4j.Neo4jBaseBean;
+import com.yt.neo4j.Neo4jBaseDictBean;
+import com.yt.neo4j.repository.CrudGeneralOperate;
 
 public class CrudAllInOneOperateImpl<T extends Neo4jBaseBean> extends CrudGeneralOperate<T> implements
 		CrudAllInOneOperate<T> {
@@ -93,23 +94,23 @@ public class CrudAllInOneOperateImpl<T extends Neo4jBaseBean> extends CrudGenera
 			// 如果是字典类型的节点，则通过代码来判断该bean是否已经存在
 			bean = get("code", ((Neo4jBaseDictBean) neo4jBean).getCode());
 		}
-		if (bean == null && neo4jBean instanceof BaseBeanImpl) {
+		if (bean == null && neo4jBean instanceof BaseBean) {
 			// 否则根据rowKey来判断
-			bean = get("rowKey", ((BaseBeanImpl) neo4jBean).getRowKey());
+			bean = get("rowKey", ((BaseBean) neo4jBean).getRowKey());
 		}
 
 
-		String rowKey = ((BaseBeanImpl) neo4jBean).getRowKey();
+		String rowKey = ((BaseBean) neo4jBean).getRowKey();
 		if (rowKey == null || rowKey.length() <= 0) {
 			// rowKey为空
 			if (bean != null) {
 				// 如果ID不为空，则将rowKey设置为ID
-				rowKey = ((BaseBeanImpl) bean).getRowKey();
+				rowKey = ((BaseBean) bean).getRowKey();
 			} else {
 				// 否则设置为hashCode
 				rowKey = String.valueOf(neo4jBean.hashCode());
 			}
-			((BaseBeanImpl) neo4jBean).setRowKey(rowKey);
+			((BaseBean) neo4jBean).setRowKey(rowKey);
 		}
 
 		// 先保存指定的节点

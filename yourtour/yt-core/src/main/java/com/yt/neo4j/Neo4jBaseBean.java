@@ -1,4 +1,4 @@
-package com.yt.neo4j.bean;
+package com.yt.neo4j;
 
 /**
  * Neo4J中定义实体的接口定义
@@ -99,5 +99,12 @@ public interface Neo4jBaseBean {
 	 *            更新时间
 	 */
 	public void setUpdatedTime(long updatedTime);
+
+	/**
+	 * 判断该记录是否被逻辑删除
+	 * 
+	 * @return 返回true表示已经被逻辑删除，否则返回false。
+	 */
+	public boolean isDeleted();
 
 }
