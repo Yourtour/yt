@@ -86,8 +86,9 @@ public class MemberRestResource extends RestResource {
 	 */
 	@GET
 	@Path("/{uid}/delete")
-	public ResponseVO deleteRouteMember(@PathParam("routeId") Long rid, @PathParam("uid") Long uid) throws Exception{
+	public ResponseVO deleteRouteMember(@PathParam("routeId") Long rid, @PathParam("uid") Long uid) throws Exception {
 		this.memberService.deleteMember(rid, uid, SessionUtils.getCurrentLoginUser());
 
 		return new ResponseVO();
+	}
 }

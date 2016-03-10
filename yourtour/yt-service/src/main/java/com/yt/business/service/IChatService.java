@@ -122,14 +122,15 @@ public interface IChatService {
 
 	/**
 	 * 返回指定聊天室中指定用户ID的未阅读消息，可以分页获取。
+	 * 
 	 * @param roomNo
 	 * @param nextCursor
 	 * @param userId
 	 * @return
 	 * @throws Exception
 	 */
-	public List<ChatMessageBean> getUnreadMessages(String roomNo, Long nextCursor, long userId)
-			throws Exception;
+	public List<ChatMessageBean> getUnreadMessages(String roomNo,
+			Long nextCursor, long userId) throws Exception;
 
 	/**
 	 * 返回指定聊天室中指定用户ID的未阅读消息，可以分页获取。
@@ -172,4 +173,10 @@ public interface IChatService {
 	 */
 	public ChatJoinHistoryBean getNewestChatJoinRecord(long userId)
 			throws Exception;
+
+	public void saveChatJoinRecord(String userId, ChatSessionBean sessionBean)
+			throws Exception;
+
+	public ChatMessageBean saveChatMessage(boolean isNotice, String textMessage,
+			ChatSessionBean chatSessionBean, long userId) throws Exception;
 }

@@ -1,5 +1,6 @@
 .idea
 .gradle
+out/**
 yt-android/**
 yt-dal/**
 yt-rsal/**
