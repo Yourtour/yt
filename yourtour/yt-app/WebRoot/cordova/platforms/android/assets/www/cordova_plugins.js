@@ -53,6 +53,20 @@ module.exports = [
         "clobbers": [
             "plugins.imagePicker"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-app-version/www/AppVersionPlugin.js",
+        "id": "cordova-plugin-app-version.cordova.getAppVersion",
+        "clobbers": [
+            "cordova.getAppVersion"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.splashscreen/www/splashscreen.js",
+        "id": "org.apache.cordova.splashscreen.SplashScreen",
+        "clobbers": [
+            "navigator.splashscreen"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -63,7 +77,9 @@ module.exports.metadata =
     "phonegap-plugin-barcodescanner": "4.0.1",
     "cordova-plugin-x-socialsharing": "5.0.8-dev",
     "cordova-plugin-extra": "1.2.0",
-    "cordova-plugin-image-picker": "1.0.8"
+    "cordova-plugin-image-picker": "1.0.8",
+    "cordova-plugin-app-version": "0.1.8",
+    "org.apache.cordova.splashscreen": "1.0.0"
 }
 // BOTTOM OF METADATA
 });

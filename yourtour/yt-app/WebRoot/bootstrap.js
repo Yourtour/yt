@@ -16,9 +16,7 @@ Ext.Loader.addClassPathMappings({
   "Ext.device.sqlite.SQLResultSet": "touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLResultSetRowList": "touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLTransaction": "touch/src/device/sqlite/Sencha.js",
-  "YourTour": "app",
-  "YourTour.store.RouteMemberStore": "app/store/UserStore.js",
-  "YourTour.store.UserStore": "app/store/RouteMemberStore.js"
+  "YourTour": "app"
 });
 Ext.ClassManager.addNameAlternateMappings({
   "Ext.AbstractComponent": [],
@@ -697,25 +695,11 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.model.UserModel": [],
   "YourTour.model.common.ResponseModel": [],
   "YourTour.store.AjaxStore": [],
-  "YourTour.store.AlongListStore": [],
-  "YourTour.store.BestListStore": [],
-  "YourTour.store.CommentStore": [],
   "YourTour.store.DummyStore": [],
-  "YourTour.store.HomeStore": [],
+  "YourTour.store.GenderStore": [],
   "YourTour.store.LaunchStore": [],
-  "YourTour.store.LineStore": [],
   "YourTour.store.LocalStore": [],
-  "YourTour.store.MessageContentStore": [],
-  "YourTour.store.MessageSessionStore": [],
-  "YourTour.store.PlaceStore": [],
-  "YourTour.store.ResourceFoodStore": [],
-  "YourTour.store.ResourcePlayStore": [],
-  "YourTour.store.ResourceStore": [],
-  "YourTour.store.RouteMemberStore": [],
-  "YourTour.store.RouteStore": [],
   "YourTour.store.SessionStore": [],
-  "YourTour.store.TalentListStore": [],
-  "YourTour.store.UserStore": [],
   "YourTour.util.ChatRoom": [
     "YourTour.ChatRoom"
   ],
@@ -886,7 +870,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.XDataView": [],
   "YourTour.view.widget.XDateField": [],
   "YourTour.view.widget.XField": [],
-  "YourTour.view.widget.XGenderField": [],
   "YourTour.view.widget.XGridSheet": [],
   "YourTour.view.widget.XHeaderBar": [],
   "YourTour.view.widget.XImage": [],
@@ -895,6 +878,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.XLabel": [],
   "YourTour.view.widget.XMultiField": [],
   "YourTour.view.widget.XMultiLabel": [],
+  "YourTour.view.widget.XNavCarousel": [],
   "YourTour.view.widget.XNavPicker": [],
   "YourTour.view.widget.XNavSelect": [],
   "YourTour.view.widget.XNavigation": [],
@@ -902,7 +886,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.XPageBody": [],
   "YourTour.view.widget.XPanel": [],
   "YourTour.view.widget.XPicker": [],
-  "YourTour.view.widget.XPickerField": [],
   "YourTour.view.widget.XPlaceField": [],
   "YourTour.view.widget.XProcessing": [],
   "YourTour.view.widget.XScore": [],
@@ -1708,25 +1691,11 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.model.UserModel": [],
   "YourTour.model.common.ResponseModel": [],
   "YourTour.store.AjaxStore": [],
-  "YourTour.store.AlongListStore": [],
-  "YourTour.store.BestListStore": [],
-  "YourTour.store.CommentStore": [],
   "YourTour.store.DummyStore": [],
-  "YourTour.store.HomeStore": [],
+  "YourTour.store.GenderStore": [],
   "YourTour.store.LaunchStore": [],
-  "YourTour.store.LineStore": [],
   "YourTour.store.LocalStore": [],
-  "YourTour.store.MessageContentStore": [],
-  "YourTour.store.MessageSessionStore": [],
-  "YourTour.store.PlaceStore": [],
-  "YourTour.store.ResourceFoodStore": [],
-  "YourTour.store.ResourcePlayStore": [],
-  "YourTour.store.ResourceStore": [],
-  "YourTour.store.RouteMemberStore": [],
-  "YourTour.store.RouteStore": [],
   "YourTour.store.SessionStore": [],
-  "YourTour.store.TalentListStore": [],
-  "YourTour.store.UserStore": [],
   "YourTour.util.ChatRoom": [
     "ChatRoom"
   ],
@@ -2091,9 +2060,6 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.widget.XField": [
     "widget.xfield"
   ],
-  "YourTour.view.widget.XGenderField": [
-    "widget.xgenderfield"
-  ],
   "YourTour.view.widget.XGridSheet": [
     "widget.xgridsheet"
   ],
@@ -2118,6 +2084,9 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.widget.XMultiLabel": [
     "widget.xmultilabel"
   ],
+  "YourTour.view.widget.XNavCarousel": [
+    "widget.xnavcarousel"
+  ],
   "YourTour.view.widget.XNavPicker": [],
   "YourTour.view.widget.XNavSelect": [
     "widget.xnavselect"
@@ -2135,9 +2104,6 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.xpanel"
   ],
   "YourTour.view.widget.XPicker": [],
-  "YourTour.view.widget.XPickerField": [
-    "widget.xpickerfield"
-  ],
   "YourTour.view.widget.XPlaceField": [
     "widget.xplacefield"
   ],

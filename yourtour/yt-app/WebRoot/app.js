@@ -108,16 +108,25 @@ Ext.application({
         }
 
         this.initialize();
-
-
     },
 
     initialize: function () {
         var me = this;
+
         Ext.Ajax.on('beforerequest', (function (conn, options, eOpts) {
+            var versionNo='1.0.0';
+            /*cordova.getAppVersion.getVersionNumber(function (version) {
+             versionNo = version;
+             });*/
+
+            var accessToken = 'ABCDEFG';//this.getCached('Access-Token');
             var userToken = me.getUserId();
+
             options.headers = {
-                'User-Token': userToken,
+                'Access-Token':accessToken,  //客户端令牌
+                'App-Version':versionNo,  //客户端版本号
+                'User-Token': userToken,  //用户令牌
+
                 'Content-Type': 'application/json'
             };
         }), this);

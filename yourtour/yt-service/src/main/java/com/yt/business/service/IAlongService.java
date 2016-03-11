@@ -5,6 +5,7 @@ import com.yt.business.bean.AlongBean;
 import java.util.List;
 
 /**
+ *
  * Created by 林平 on 2016/3/8.
  */
 public interface IAlongService {

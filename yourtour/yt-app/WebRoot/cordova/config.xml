@@ -19,11 +19,18 @@
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
+
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-    
+
+    <preference name="SplashScreen" value="splash" /> <!-- 不带后缀png的文件名，默认是screen-->
+    <preference name="SplashScreenDelay" value="3000" /> <!-- Splash显示时间，默认是3000ms-->
+    <feature name="SplashScreen">
+        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+    </feature>
+
     <feature name="Camera"> 
 	    <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" /> 
 	</feature>
