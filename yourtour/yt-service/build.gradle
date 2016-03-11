@@ -20,14 +20,12 @@ class RepositoryGeneratorPlugin implements Plugin<Project> {
                         def repositoryFile = new File(project.repositoryGenerator.target + repositoryFileName + ".java")
                         if (!repositoryFile.exists()) {
                             def printWriter = repositoryFile.newPrintWriter() //
-                            printWriter.write('package com.yt.business.repository;')
-                            printWriter.write('\n\n')
-                            printWriter.write('import com.yt.neo4j.repository.CrudGeneralOperate;')
-                            printWriter.write('\n')
-                            printWriter.write('import com.yt.business.bean.' + beanName + ';')
+                            printWriter.write('package com.yt.business.repository;\n\n')
+                            printWriter.write('import com.yt.neo4j.repository.CrudGeneralOperate;\n')
+                            printWriter.write('import org.springframework.stereotype.Service;\n')
+                            printWriter.write('import com.yt.business.bean.' + beanName + ';\n\n')
 
-                            printWriter.write('\n\n')
-
+                            printWriter.write('@Service\n')
                             printWriter.write('public class ' + repositoryFileName + ' extends CrudGeneralOperate<' + beanName + '>{}')
                             printWriter.flush()
                             printWriter.close()
