@@ -6,7 +6,7 @@ import com.yt.business.FavoriteBaseBean;
 import com.yt.business.SocialBeanImpl;
 import com.yt.hbase.annotation.HbaseTable;
 
-@HbaseTable(name = "T_COMMENT_INFO")
+@HbaseTable(name = "T_FAVORITE_INFO")
 @NodeEntity
 public class FavoriteBean extends SocialBeanImpl {
 	private static final long serialVersionUID = -2639574489334772005L;

@@ -3,7 +3,7 @@ package com.yt.business.service.impl;
 import com.yt.business.bean.*;
 import com.yt.business.repository.neo4j.ExpertBeanRepository;
 import com.yt.business.repository.neo4j.ExpertTuple;
-import com.yt.business.repository.neo4j.RouteRepository;
+import com.yt.business.repository.neo4j.RouteMainBeanRepository;
 import com.yt.business.repository.neo4j.RouteTuple;
 import com.yt.business.service.IExpertService;
 import com.yt.core.utils.CollectionUtils;
@@ -37,7 +37,7 @@ public class ExpertServiceImpl extends ServiceBase implements IExpertService {
 	private ExpertBeanRepository expertBeanRepository;
 
 	@Autowired
-	private RouteRepository routeRepository;
+	private RouteMainBeanRepository routeRepository;
 
 	public ExpertServiceImpl() {
 		super();
@@ -99,9 +99,9 @@ public class ExpertServiceImpl extends ServiceBase implements IExpertService {
 	public List<RouteMainBean> getServicedRoutes(Long expertId, Long nextCursor, int limit) throws Exception {
 		List<RouteMainBean> routes = new ArrayList<>();
 
-		List<RouteRepository.OwnerRouteTuple> tuples = this.routeRepository.getRoutes(expertId, nextCursor, limit, "EXPERT");
+		List<RouteMainBeanRepository.OwnerRouteTuple> tuples = this.routeRepository.getRoutes(expertId, nextCursor, limit, "EXPERT");
 		if(CollectionUtils.isNotEmpty(tuples)){
-			for(RouteRepository.OwnerRouteTuple tuple : tuples){
+			for(RouteMainBeanRepository.OwnerRouteTuple tuple : tuples){
 				routes.add(tuple.getRoute());
 			}
 		}

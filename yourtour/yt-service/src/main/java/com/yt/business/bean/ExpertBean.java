@@ -1,6 +1,7 @@
 package com.yt.business.bean;
 
 import java.util.List;
+import java.util.Vector;
 
 import org.springframework.data.neo4j.annotation.NodeEntity;
 
@@ -11,54 +12,53 @@ import com.yt.neo4j.annotation.Neo4jRelationship;
 import com.yt.neo4j.annotation.Neo4jRelationship.Direction;
 
 /**
- * 该实体定义了系统中的行程的结伴信息。结伴信息和行程以及结伴发布者之间的关系通过图状数据库Neo4j存储
+ * 达人信息对象
  * 
  * @author Tony.Zhang
  * 
  */
-@HbaseTable(name = "T_USER_EXPERT_INFO")
+@HbaseTable(name = "T_EXPERT_INFO")
 @NodeEntity
 public class ExpertBean extends BaseBeanImpl {
 	private static final long serialVersionUID = -3433522673262851121L;
-	public static final String EXPERT_NOT = "-1";
-	public static final String EXPERT_APPLY = "0";
-	public static final String EXPERT_APPROVED = "1";
 
-	private String  places;
-	private String  result; //审批结果
+	public enum Status {
+		APPLICATION, // 申请
+		APPROVING, // 审批中
+		APPROVED_PASS, // 审批通过
+		APPROVED_NOT_PASS, // 审批不通过
+		FROZEN // 冻结
+	}
 
+	private String result; // 审批结果内容
+	private Status status = Status.APPLICATION; // 达人状态
+
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_SERVICE, type = PlaceBean.class, direction = Direction.INCOMING)
+	private transient List<PlaceBean> places; // 达人服务的目的地
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_IS, type = UserProfileBean.class, direction = Direction.INCOMING)
-	private UserProfileBean profile = null;
-
-	private List<ExpertServiceBean> services = null;
-	private List<RouteMainBean> routes = null; //推荐行程
+	private transient UserProfileBean profile = null; // 达人用户Profile信息
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = ExpertServiceBean.class, direction = Direction.OUTGOING)
+	private transient List<ExpertServiceBean> services = null; // 达人服务列表
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = RouteMainBean.class, direction = Direction.OUTGOING)
+	private transient List<RouteMainBean> routes = null; // 推荐行程清单
 
 	public ExpertBean() {
 		super();
+		this.places = new Vector<PlaceBean>();
+		this.services = new Vector<ExpertServiceBean>();
+		this.routes = new Vector<RouteMainBean>();
 	}
 
-	public String getPlaces() {
+	public List<PlaceBean> getPlaces() {
 		return places;
-	}
-
-	public void setPlaces(String places) {
-		this.places = places;
 	}
 
 	public List<ExpertServiceBean> getServices() {
 		return services;
 	}
 
-	public void setServices(List<ExpertServiceBean> services) {
-		this.services = services;
-	}
-
 	public List<RouteMainBean> getRoutes() {
 		return routes;
-	}
-
-	public void setRoutes(List<RouteMainBean> routes) {
-		this.routes = routes;
 	}
 
 	public UserProfileBean getProfile() {
@@ -75,5 +75,13 @@ public class ExpertBean extends BaseBeanImpl {
 
 	public void setResult(String result) {
 		this.result = result;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 }

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.yt.business.bean.ConsultBean;
+import com.yt.business.bean.NewsBean;
 import com.yt.business.bean.HomeBean;
 import com.yt.business.bean.RouteMainBean;
 import com.yt.core.utils.CollectionUtils;

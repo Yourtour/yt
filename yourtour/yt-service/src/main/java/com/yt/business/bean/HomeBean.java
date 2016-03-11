@@ -17,7 +17,7 @@ public class HomeBean extends SocialBeanImpl {
 
 	private List<RouteMainBean> hotRoutes;  //热门行程（大家都在玩的行程）
 
-	private List<ConsultBean> consults;  //资讯信息
+	private List<NewsBean> consults;  //资讯信息
 
 	private List<BannerBean> banners; //Banner信息
 
@@ -41,11 +41,11 @@ public class HomeBean extends SocialBeanImpl {
 		this.hotRoutes = hotRoutes;
 	}
 
-	public List<ConsultBean> getConsults() {
+	public List<NewsBean> getConsults() {
 		return consults;
 	}
 
-	public void setConsults(List<ConsultBean> consults) {
+	public void setConsults(List<NewsBean> consults) {
 		this.consults = consults;
 	}
 

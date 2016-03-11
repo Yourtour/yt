@@ -2,8 +2,6 @@ package com.yt.vo;
 
 import com.yt.business.BaseBeanImpl;
 
-import java.util.UUID;
-
 public class BaseVO {
 	private Long graphId;
 	private String rowKey;
@@ -46,7 +44,7 @@ public class BaseVO {
 	}
 
 	public String getRowKey() {
-		return UUID.randomUUID().toString();
+		return rowKey;
 	}
 
 	public void setRowKey(String rowKey) {
