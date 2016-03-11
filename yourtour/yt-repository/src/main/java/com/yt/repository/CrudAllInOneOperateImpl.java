@@ -83,7 +83,6 @@ public class CrudAllInOneOperateImpl<T extends Neo4jBaseBean> extends CrudGenera
 			}
 			throw new NullPointerException("The Neo4jBean is null.");
 		}
-		Class<T> clazz = (Class<T>) neo4jBean.getClass();
 		// 判断该图节点是否存在
 		T bean = null;
 		if (neo4jBean.getId() != null) {

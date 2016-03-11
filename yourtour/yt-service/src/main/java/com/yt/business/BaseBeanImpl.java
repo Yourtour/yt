@@ -79,12 +79,12 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 
 	@Override
 	public Long getId() {
-		return null;
+		return this.id;
 	}
 
 	@Override
 	public void setId(Long id) {
-
+		this.id = id;
 	}
 
 	/*
@@ -94,7 +94,9 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 	 */
 	@Override
 	public String getRowKey() {
-		this.rowKey = UUID.randomUUID().toString();
+		if (this.rowKey == null || this.rowKey.isEmpty()) {
+			this.rowKey = UUID.randomUUID().toString();
+		}
 		return this.rowKey;
 	}
 
