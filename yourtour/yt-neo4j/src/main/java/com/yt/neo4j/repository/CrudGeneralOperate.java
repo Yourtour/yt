@@ -7,6 +7,7 @@
  */
 package com.yt.neo4j.repository;
 
+import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -88,6 +89,8 @@ public class CrudGeneralOperate<T extends Neo4jBaseBean> implements CrudOperate<
 	 */
 	protected Class<T> getClazz(){
 		Type genType = this.getClass().getGenericSuperclass();
+
+		File f = null;
 
 		Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
 

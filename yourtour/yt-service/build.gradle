@@ -1,3 +1,50 @@
+apply plugin: RepositoryGeneratorPlugin
+
+repositoryGenerator {
+    source = 'E:/workspace/yt/yourtour/yt-service/src/main/java/com/yt/business/bean'
+    target = 'E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/repository/'
+    packageName = 'com.yt.business.repository'
+}
+
+class RepositoryGeneratorPlugin implements Plugin<Project> {
+    void apply(Project project) {
+        project.extensions.create("repositoryGenerator", RepositoryGeneratorPluginExtension)
+
+        project.task('generator') << {
+            def sourceDir = new File(project.repositoryGenerator.source)
+            if (sourceDir.isDirectory()) {
+                sourceDir.eachFileRecurse { file ->
+                    def beanName = file.getName().split("[.]")[0]
+                    if(beanName != 'package-info') {
+                        def repositoryFileName = beanName + "Repository"
+                        def repositoryFile = new File(project.repositoryGenerator.target + repositoryFileName + ".java")
+                        if (!repositoryFile.exists()) {
+                            def printWriter = repositoryFile.newPrintWriter() //
+                            printWriter.write('package com.yt.business.repository;')
+                            printWriter.write('\n\n')
+                            printWriter.write('import com.yt.neo4j.repository.CrudGeneralOperate;')
+                            printWriter.write('\n')
+                            printWriter.write('import com.yt.business.bean.' + beanName + ';')
+
+                            printWriter.write('\n\n')
+
+                            printWriter.write('public class ' + repositoryFileName + ' extends CrudGeneralOperate<' + beanName + '>{}')
+                            printWriter.flush()
+                            printWriter.close()
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+class RepositoryGeneratorPluginExtension {
+    String source = "E:/workspace/yt/yourtour/yt-service/src/main/java/com/yt/business/bean"
+    String target = "E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/repository"
+    String packageName = "com.yt.business.repository"
+}
+
 dependencies {
 	ext {
                 springDataVersion = "3.2.0.RELEASE"

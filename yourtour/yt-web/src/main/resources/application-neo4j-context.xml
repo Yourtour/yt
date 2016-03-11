@@ -16,7 +16,7 @@
 	<context:annotation-config />
 	<context:spring-configured />
 
-	<neo4j:config graphDatabaseService="graphDatabaseService"
+	<!--<neo4j:config graphDatabaseService="graphDatabaseService"
 		base-package="com.yt.business.bean" />
 
 	<neo4j:repositories base-package="com.yt.business.repository.neo4j" />
@@ -27,30 +27,25 @@
 		class="org.springframework.data.neo4j.rest.SpringRestGraphDatabase">
 		<constructor-arg index="0"
 			value="http://yt-database:7474/db/data" />
-		<!--<constructor-arg index="0"
-						 value="http://120.55.76.201:7474/db/data" />-->
+		&lt;!&ndash;<constructor-arg index="0"
+						 value="http://120.55.76.201:7474/db/data" />&ndash;&gt;
 	</bean>
-	<!--neo4j:config storeDirectory="data/yt.db" base-package="com.yt.business.bean" 
-		/ -->
+	&lt;!&ndash;neo4j:config storeDirectory="data/yt.db" base-package="com.yt.business.bean"
+		/ &ndash;&gt;
 
 	<bean id="crudAllInOneOperate" class="com.yt.repository.CrudAllInOneOperateImpl" />
 
-	<!--<bean id="neo4jCrud" class="com.yt.neo4j.repository.CrudGeneralOperate" />-->
+	&lt;!&ndash;<bean id="neo4jCrud" class="com.yt.neo4j.repository.CrudGeneralOperate" />&ndash;&gt;
 	<bean id="neo4jFts" class="com.yt.neo4j.repository.FullTextSearchGeneralOperate" />
 
-	<!-- 初始化Neo4j相关的关系实体缓存 -->
+	&lt;!&ndash; 初始化Neo4j相关的关系实体缓存 &ndash;&gt;
 	<bean id="neo4jBeanDescriptorGeneralCacheImpl" class="com.yt.neo4j.cache.Neo4jBeanDescriptorGeneralCacheImpl">
 		<property name="beanRepositories" value="com.yt.business.bean,com.yt.neo4j.bean" />
 	</bean>
 
-	<!-- 初始化admin账户的service -->
-	<!--<bean id="initAdminUserService" class="com.yt.business.utils.AdminUserInitializeService">
-		<property name="algorithm" value="SHA-256" />
-	</bean>-->
-
-	<!-- 注入包装了hbase和neo4j操作的配置类 -->
+	&lt;!&ndash; 注入包装了hbase和neo4j操作的配置类 &ndash;&gt;
 	<bean id="crudAllInOneConfig" class="com.yt.repository.CrudAllInOneConfig">
 		<property name="save2Hbase" value="false" />
-		<!--property name="hbaseCrud" ref="hbaseCrud" / -->
-	</bean>
+		&lt;!&ndash;property name="hbaseCrud" ref="hbaseCrud" / &ndash;&gt;
+	</bean>-->
 </beans>
