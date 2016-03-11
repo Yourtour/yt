@@ -35,7 +35,8 @@ Ext.application({
     userProfile:null,
 
     views: [
-        'MainView', 'LaunchView', 'setting.UserSettingView',
+        'MainView', 'WelcomeView', 'UpgradeView', 'ActivityView', 'setting.UserSettingView',
+
         'common.MessageMainView', 'common.MessageGroupView', 'common.FieldEditView', 'common.FieldEditView',
         'common.CommentMainView', 'common.TimeSelectionView', 'common.ConsultMainView',
 

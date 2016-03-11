@@ -47,7 +47,7 @@ public class HomeRestResource {
 	 * @return
 	 * @throws Exception
 	 */
-	@Path("launch/{accessId}/{lastAccessDate}/{version}")
+	@Path("launch")
 	@GET
 	public ResponseDataVO<LaunchVO> launchApp(@PathParam("accessId") String accessId,
 											  @PathParam("lastAccessDate") Long lastAccessDate,
