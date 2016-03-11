@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Vector;
 
 import com.yt.business.bean.HotPlayingBean;
-import com.yt.business.bean.NewsBean;
+import com.yt.business.bean.BannerBean;
 import com.yt.business.bean.RouteMainBean;
 import com.yt.vo.route.RouteVO;
 
@@ -15,25 +15,25 @@ import com.yt.vo.route.RouteVO;
  * 
  */
 public class RecommendInHomeVO {
-	private List<NewsVO> news;
+	private List<BannerVO> banners;
 	private List<RouteVO> routes;
 	private List<HotPlayingVO> hotPlayings;
 
 	public RecommendInHomeVO() {
 		super();
-		this.news = new Vector<NewsVO>();
+		this.banners = new Vector<BannerVO>();
 		this.routes = new Vector<RouteVO>();
 		this.hotPlayings = new Vector<HotPlayingVO>();
 	}
 
-	public static RecommendInHomeVO transform(List<NewsBean> newBeans,
+	public static RecommendInHomeVO transform(List<BannerBean> bannerBeans,
 			List<RouteMainBean> routeBeans, List<HotPlayingBean> hotPlayingBeans) {
 		RecommendInHomeVO vo = new RecommendInHomeVO();
-		for (NewsBean info : newBeans) {
-			if (info == null) {
+		for (BannerBean banner : bannerBeans) {
+			if (banner == null) {
 				continue;
 			}
-			vo.news.add(NewsVO.transform(info));
+			vo.banners.add(BannerVO.transform(banner));
 		}
 		for (RouteMainBean route : routeBeans) {
 			if (route == null) {
@@ -50,8 +50,8 @@ public class RecommendInHomeVO {
 		return vo;
 	}
 
-	public List<NewsVO> getNews() {
-		return news;
+	public List<BannerVO> getBanners() {
+		return banners;
 	}
 
 	public List<RouteVO> getRoutes() {

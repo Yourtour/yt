@@ -2,6 +2,7 @@ package com.yt.rest.resource;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
@@ -17,16 +18,16 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.yt.business.bean.ActivityBean;
+import com.yt.business.bean.BannerBean;
 import com.yt.business.bean.HotPlayingBean;
 import com.yt.business.bean.LaunchBean;
-import com.yt.business.bean.NewsBean;
 import com.yt.business.bean.RouteMainBean;
-import com.yt.business.service.IBaseService;
+import com.yt.business.bean.VersionBean;
 import com.yt.business.service.IHomeService;
 import com.yt.core.common.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
-import com.yt.vo.HomeVO;
-import com.yt.vo.LaunchVO;
+import com.yt.vo.home.LaunchVO;
 import com.yt.vo.home.RecommendInHomeVO;
 
 @Component
@@ -37,23 +38,22 @@ public class HomeRestResource {
 	private static final Log LOG = LogFactory.getLog(HomeRestResource.class);
 
 	@Autowired
-	private IBaseService service;
-
-	@Autowired
 	private IHomeService homeService;
 
+	@Path("/home/recommend")
+	@GET
 	@SuppressWarnings("unchecked")
 	public ResponseDataVO<RecommendInHomeVO> getRecommend() {
 		try {
 			Map<String, Object> recommends = homeService.getRecommends();
-			List<NewsBean> newBeans = (List<NewsBean>) recommends
-					.get("newsBeans");
+			List<BannerBean> banners = (List<BannerBean>) recommends
+					.get(IHomeService.KEY_BANNERS);
 			List<RouteMainBean> routes = (List<RouteMainBean>) recommends
-					.get("routes");
+					.get(IHomeService.KEY_ROUTES);
 			List<HotPlayingBean> hotPlayings = (List<HotPlayingBean>) recommends
-					.get("hotPlayings");
+					.get(IHomeService.KEY_HOTPLAYINGS);
 			return new ResponseDataVO<RecommendInHomeVO>(
-					RecommendInHomeVO.transform(newBeans, routes, hotPlayings));
+					RecommendInHomeVO.transform(banners, routes, hotPlayings));
 		} catch (Exception ex) {
 			if (LOG.isErrorEnabled()) {
 				LOG.error(
@@ -63,23 +63,6 @@ public class HomeRestResource {
 			return new ResponseDataVO<RecommendInHomeVO>(
 					StaticErrorEnum.FETCH_DB_DATA_FAIL);
 		}
-	}
-
-	/**
-	 * 获取首页信息
-	 * 
-	 * @param placeId
-	 * @param request
-	 * @return
-	 */
-	@Path("/home")
-	@GET
-	public ResponseDataVO<HomeVO> getHomeInfo(
-			@PathParam("placeId") String placeId,
-			@Context HttpServletRequest request) {
-		HomeVO homeVO = new HomeVO();
-
-		return new ResponseDataVO<HomeVO>(homeVO);
 	}
 
 	/**
@@ -96,11 +79,21 @@ public class HomeRestResource {
 	public ResponseDataVO<LaunchVO> launchApp(
 			@PathParam("accessId") String accessId,
 			@PathParam("lastAccessDate") Long lastAccessDate,
-			@PathParam("version") String version) throws Exception {
-
-		LaunchBean bean = this.service
-				.launch(accessId, lastAccessDate, version);
-
-		return new ResponseDataVO<LaunchVO>(LaunchVO.transform(bean));
+			@PathParam("version") String srcVersion,
+			@Context HttpServletRequest request) throws Exception {
+		String accessToken = request.getHeader("accessToken");
+		if (accessToken == null || accessToken.isEmpty()) {
+			// 第一次运行本系统
+			accessToken = UUID.randomUUID().toString();
+		}
+		Map<String, Object> map = homeService.launch(accessToken,
+				lastAccessDate, srcVersion);
+		LaunchBean launch = (LaunchBean) map.get(IHomeService.KEY_LAUNCHBEAN);
+		VersionBean version = (VersionBean) map
+				.get(IHomeService.KEY_VERSIONBEAN);
+		ActivityBean activity = (ActivityBean) map
+				.get(IHomeService.KEY_ACTIVITYBEAN);
+		return new ResponseDataVO<LaunchVO>(LaunchVO.transform(launch, version,
+				activity));
 	}
 }

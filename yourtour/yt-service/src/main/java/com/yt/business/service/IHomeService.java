@@ -12,7 +12,7 @@ public interface IHomeService {
 	/**
 	 * 推荐资讯的键名
 	 */
-	public static final String KEY_NEWSBEAN = "news";
+	public static final String KEY_BANNERS = "banners";
 	/**
 	 * 推荐行程的键名
 	 */
@@ -32,4 +32,22 @@ public interface IHomeService {
 	 *             获取信息过程中发生的异常
 	 */
 	public Map<String, Object> getRecommends() throws Exception;
+
+	public static final String KEY_LAUNCHBEAN = "launchBean";
+	public static final String KEY_VERSIONBEAN = "versionBean";
+	public static final String KEY_ACTIVITYBEAN = "activityBean";
+
+	/**
+	 * 客户端的运行访问
+	 * 
+	 * @param accessToken
+	 *            访问Token
+	 * @param lastAccessDate
+	 *            最后访问时间
+	 * @param version
+	 *            客户端版本号
+	 * @return 客户端启动的基础信息，形式为键值对，包括：运行信息、版本信息、活动信息。
+	 */
+	public Map<String, Object> launch(String accessToken, Long lastAccessDate,
+			String version);
 }
