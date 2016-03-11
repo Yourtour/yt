@@ -706,9 +706,11 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.util.Context": [
     "YourTour.Context"
   ],
-  "YourTour.view.LaunchView": [],
+  "YourTour.view.ActivityView": [],
   "YourTour.view.MainView": [],
   "YourTour.view.SearchMain": [],
+  "YourTour.view.UpgradeView": [],
+  "YourTour.view.WelcomeView": [],
   "YourTour.view.along.AlongEditView": [],
   "YourTour.view.along.AlongFormUserView": [],
   "YourTour.view.along.AlongFormView": [],
@@ -1702,13 +1704,15 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.util.Context": [
     "Context"
   ],
-  "YourTour.view.LaunchView": [],
+  "YourTour.view.ActivityView": [],
   "YourTour.view.MainView": [
     "widget.MainView"
   ],
   "YourTour.view.SearchMain": [
     "widget.searchmain"
   ],
+  "YourTour.view.UpgradeView": [],
+  "YourTour.view.WelcomeView": [],
   "YourTour.view.along.AlongEditView": [],
   "YourTour.view.along.AlongFormUserView": [],
   "YourTour.view.along.AlongFormView": [],
