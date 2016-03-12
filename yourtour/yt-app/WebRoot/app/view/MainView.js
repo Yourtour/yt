@@ -4,7 +4,6 @@ Ext.define('YourTour.view.MainView', {
     xtype: 'MainView',
     config: {
     	id:'MainView',
-    	
     	navigationBar:false,
     	layout: {
             type: 'card',
@@ -15,13 +14,11 @@ Ext.define('YourTour.view.MainView', {
                 direction: 'left'
             }
         },
-        
+
         items: [
-        	{	
+        	{
         		xtype:'tabpanel',
         		itemId:'menuTab',
-        		ui:'dark',
-				cls:'tabbar',
         		tabBarPosition:'bottom',
         		tabBar : {
                     defaults: {
@@ -31,27 +28,30 @@ Ext.define('YourTour.view.MainView', {
         	    items:[
 					{
 						xtype:'HomeMainView',
-						itemId:'btnHome', 
-					    title:'首页',
+						itemId:'btnHome',
+					    title:'推荐',
 					    iconCls:'home',
 					    iconAlign:'top'
 					},
+
 					{
-						xtype:'PlaceMainView',
+                        xtype:'PlaceMainView',
 						itemId:'btnPlace',
 						title:'目的地',
 						iconCls:'locate',
 						iconAlign:'top'
 					},
+
 					{
-						xtype:'RouteMainView',
+                        xtype:'RouteMainView',
 					    itemId:'btnRoute',
 					    title:'行程',
 					    iconCls:'bookmarks',
 					    iconAlign:'top'
 					},
+
 					{
-						xtype:'UserMainView',
+                        xtype:'UserMainView',
 						itemId:'btnPersonal',
 						title:'个人',
 					    iconCls:'user',

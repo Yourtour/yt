@@ -1,10 +1,9 @@
 Ext.define('YourTour.view.home.HomeMainView', {
-    extend: 'YourTour.view.widget.XPage',
+    extend: 'Ext.Container',
     xtype: 'HomeMainView',
     config: {
         id: 'HomeMainView',
-        layout: 'vbox',
-
+        layout:'vbox',
         items: [
             {
                 xtype: 'xheaderbar',

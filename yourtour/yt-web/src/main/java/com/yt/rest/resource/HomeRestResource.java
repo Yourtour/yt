@@ -41,19 +41,16 @@ public class HomeRestResource {
 
 	/**
 	 * APP 启动调用接口
-	 * @param accessId
-	 * @param lastAccessDate
 	 * @param version
 	 * @return
 	 * @throws Exception
 	 */
-	@Path("launch")
+	@Path("/{devType}/{version}/launch")
 	@GET
-	public ResponseDataVO<LaunchVO> launchApp(@PathParam("accessId") String accessId,
-											  @PathParam("lastAccessDate") Long lastAccessDate,
+	public ResponseDataVO<LaunchVO> launchApp(@PathParam("devType") String devType,
 											  @PathParam("version") String version) throws Exception {
 
-		LaunchBean bean = this.service.launch(accessId, lastAccessDate, version);
+		LaunchBean bean = this.service.launch(devType, 0l, version);
 
 		return new ResponseDataVO<LaunchVO>(LaunchVO.transform(bean));
 	}

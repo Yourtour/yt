@@ -1,10 +1,9 @@
 Ext.define('YourTour.view.user.UserMainView', {
-    extend: 'YourTour.view.widget.XPage',
+    extend: 'Ext.Container',
     requires: ['YourTour.view.widget.XHeaderBar', 'YourTour.view.widget.XLabel'],
     xtype: 'UserMainView',
     config: {
         id: 'UserMainView',
-        layout: 'vbox',
         items: [
             {
                 xtype: 'xheaderbar',
