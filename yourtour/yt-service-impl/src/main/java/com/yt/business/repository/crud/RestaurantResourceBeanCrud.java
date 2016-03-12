@@ -5,4 +5,4 @@ import org.springframework.stereotype.Service;
 import com.yt.business.bean.RestaurantResourceBean;
 
 @Service
-public class RestaurantResourceBeanCrud extends CrudGeneralOperate<RestaurantResourceBean>{}
+public class RestaurantResourceBeanCrud extends CrudGeneralOperate<RestaurantResourceBean> { }

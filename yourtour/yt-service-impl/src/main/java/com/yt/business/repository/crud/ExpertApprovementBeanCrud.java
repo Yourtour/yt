@@ -5,4 +5,4 @@ import org.springframework.stereotype.Service;
 import com.yt.business.bean.ExpertApprovementBean;
 
 @Service
-public class ExpertApprovementBeanCrud extends CrudGeneralOperate<ExpertApprovementBean>{}
+public class ExpertApprovementBeanCrud extends CrudGeneralOperate<ExpertApprovementBean> { }

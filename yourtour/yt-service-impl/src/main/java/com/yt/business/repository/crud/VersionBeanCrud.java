@@ -5,4 +5,4 @@ import org.springframework.stereotype.Service;
 import com.yt.business.bean.VersionBean;
 
 @Service
-public class VersionBeanCrud extends CrudGeneralOperate<VersionBean>{}
+public class VersionBeanCrud extends CrudGeneralOperate<VersionBean> { }

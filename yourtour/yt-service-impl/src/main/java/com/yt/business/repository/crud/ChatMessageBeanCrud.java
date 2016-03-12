@@ -5,4 +5,4 @@ import org.springframework.stereotype.Service;
 import com.yt.business.bean.ChatMessageBean;
 
 @Service
-public class ChatMessageBeanCrud extends CrudGeneralOperate<ChatMessageBean>{}
+public class ChatMessageBeanCrud extends CrudGeneralOperate<ChatMessageBean> { }

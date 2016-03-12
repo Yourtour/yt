@@ -5,4 +5,4 @@ import org.springframework.stereotype.Service;
 import com.yt.business.bean.CommentBean;
 
 @Service
-public class CommentBeanCrud extends CrudGeneralOperate<CommentBean>{}
+public class CommentBeanCrud extends CrudGeneralOperate<CommentBean> { }

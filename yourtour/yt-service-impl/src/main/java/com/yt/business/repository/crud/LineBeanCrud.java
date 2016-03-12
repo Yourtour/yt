@@ -5,4 +5,4 @@ import org.springframework.stereotype.Service;
 import com.yt.business.bean.LineBean;
 
 @Service
-public class LineBeanCrud extends CrudGeneralOperate<LineBean>{}
+public class LineBeanCrud extends CrudGeneralOperate<LineBean> { }

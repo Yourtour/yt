@@ -5,4 +5,4 @@ import org.springframework.stereotype.Service;
 import com.yt.business.bean.HotPlayingBean;
 
 @Service
-public class HotPlayingBeanCrud extends CrudGeneralOperate<HotPlayingBean>{}
+public class HotPlayingBeanCrud extends CrudGeneralOperate<HotPlayingBean> { }

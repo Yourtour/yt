@@ -5,4 +5,4 @@ import org.springframework.stereotype.Service;
 import com.yt.business.bean.TravelCartBean;
 
 @Service
-public class TravelCartBeanCrud extends CrudGeneralOperate<TravelCartBean>{}
+public class TravelCartBeanCrud extends CrudGeneralOperate<TravelCartBean> { }

@@ -5,4 +5,4 @@ import org.springframework.stereotype.Service;
 import com.yt.business.bean.FavoriteBean;
 
 @Service
-public class FavoriteBeanCrud extends CrudGeneralOperate<FavoriteBean>{}
+public class FavoriteBeanCrud extends CrudGeneralOperate<FavoriteBean> { }

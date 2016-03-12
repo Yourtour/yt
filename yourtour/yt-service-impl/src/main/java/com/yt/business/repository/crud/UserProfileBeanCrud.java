@@ -5,4 +5,4 @@ import org.springframework.stereotype.Service;
 import com.yt.business.bean.UserProfileBean;
 
 @Service
-public class UserProfileBeanCrud extends CrudGeneralOperate<UserProfileBean>{}
+public class UserProfileBeanCrud extends CrudGeneralOperate<UserProfileBean> { }

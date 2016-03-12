@@ -5,4 +5,4 @@ import org.springframework.stereotype.Service;
 import com.yt.business.bean.SceneResourceBean;
 
 @Service
-public class SceneResourceBeanCrud extends CrudGeneralOperate<SceneResourceBean>{}
+public class SceneResourceBeanCrud extends CrudGeneralOperate<SceneResourceBean> { }

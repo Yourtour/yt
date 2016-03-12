@@ -5,4 +5,4 @@ import org.springframework.stereotype.Service;
 import com.yt.business.bean.RouteReservationBean;
 
 @Service
-public class RouteReservationBeanCrud extends CrudGeneralOperate<RouteReservationBean>{}
+public class RouteReservationBeanCrud extends CrudGeneralOperate<RouteReservationBean> { }

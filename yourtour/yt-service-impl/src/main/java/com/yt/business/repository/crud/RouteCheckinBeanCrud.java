@@ -5,4 +5,4 @@ import org.springframework.stereotype.Service;
 import com.yt.business.bean.RouteCheckinBean;
 
 @Service
-public class RouteCheckinBeanCrud extends CrudGeneralOperate<RouteCheckinBean>{}
+public class RouteCheckinBeanCrud extends CrudGeneralOperate<RouteCheckinBean> { }

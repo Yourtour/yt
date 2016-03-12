@@ -5,4 +5,4 @@ import org.springframework.stereotype.Service;
 import com.yt.business.bean.ChatJoinHistoryBean;
 
 @Service
-public class ChatJoinHistoryBeanCrud extends CrudGeneralOperate<ChatJoinHistoryBean>{}
+public class ChatJoinHistoryBeanCrud extends CrudGeneralOperate<ChatJoinHistoryBean> { }

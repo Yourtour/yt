@@ -5,4 +5,4 @@ import org.springframework.stereotype.Service;
 import com.yt.business.bean.RouteScheduleBean;
 
 @Service
-public class RouteScheduleBeanCrud extends CrudGeneralOperate<RouteScheduleBean>{}
+public class RouteScheduleBeanCrud extends CrudGeneralOperate<RouteScheduleBean> { }
