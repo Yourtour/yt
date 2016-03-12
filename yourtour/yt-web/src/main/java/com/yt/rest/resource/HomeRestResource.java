@@ -73,7 +73,7 @@ public class HomeRestResource extends RestResource {
 	 * @return
 	 * @throws Exception
 	 */
-	@Path("launch")
+	@Path("/app/launch")
 	@GET
 	public ResponseDataVO<LaunchVO> launchApp(
 			@QueryParam("version") String srcVersion,
@@ -86,11 +86,9 @@ public class HomeRestResource extends RestResource {
 		}
 		Map<String, Object> map = homeService.launch(accessToken, srcVersion);
 		LaunchBean launch = (LaunchBean) map.get(IHomeService.KEY_LAUNCHBEAN);
-		VersionBean version = (VersionBean) map
-				.get(IHomeService.KEY_VERSIONBEAN);
-		ActivityBean activity = (ActivityBean) map
-				.get(IHomeService.KEY_ACTIVITYBEAN);
-		return new ResponseDataVO<LaunchVO>(LaunchVO.transform(launch, version,
+		VersionBean versionBean = (VersionBean) map.get(IHomeService.KEY_VERSIONBEAN);
+		ActivityBean activity = (ActivityBean) map.get(IHomeService.KEY_ACTIVITYBEAN);
+		return new ResponseDataVO<LaunchVO>(LaunchVO.transform(launch, versionBean,
 				activity));
 	}
 }
