@@ -6,7 +6,9 @@ import com.yt.business.BaseBeanImpl;
 import com.yt.hbase.annotation.HbaseTable;
 
 /**
- * Created by 林平 on 2016/3/2.
+ * 相关APP发布的版本信息
+ * 
+ * Created by John.Peng on 2016/3/12.
  */
 @HbaseTable(name = "T_VERSION_INFO")
 @NodeEntity
@@ -26,6 +28,36 @@ public class VersionBean extends BaseBeanImpl {
 
 	public VersionBean() {
 		super();
+	}
+
+	@Override
+	public int compareTo(BaseBeanImpl o) {
+		VersionBean version = (VersionBean) o;
+		if (version == null) {
+			return -1;
+		}
+		String srcVersion = this.version, tarVersion = version.getVersion();
+		if (srcVersion == null && tarVersion == null) {
+			return 0;
+		}
+		if (srcVersion == null) {
+			return 1;
+		}
+		if (tarVersion == null) {
+			return 1;
+		}
+		// 两个版本都不为空
+		String[] src = srcVersion.split("\\."), tar = tarVersion.split("\\.");
+		int len = Math.min(src.length, tar.length);
+		for (int i = 0; i < len; i++) {
+			int result = Integer.valueOf(tar[i]) - Integer.valueOf(src[i]);
+			if (result == 0) {
+				continue;
+			} else {
+				return result;
+			}
+		}
+		return 0;
 	}
 
 	public TYPE getType() {
@@ -67,4 +99,5 @@ public class VersionBean extends BaseBeanImpl {
 	public void setForceUpgrade(boolean isForceUpgrade) {
 		this.isForceUpgrade = isForceUpgrade;
 	}
+
 }

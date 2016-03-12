@@ -42,12 +42,9 @@ public interface IHomeService {
 	 * 
 	 * @param accessToken
 	 *            访问Token
-	 * @param lastAccessDate
-	 *            最后访问时间
 	 * @param version
 	 *            客户端版本号
 	 * @return 客户端启动的基础信息，形式为键值对，包括：运行信息、版本信息、活动信息。
 	 */
-	public Map<String, Object> launch(String accessToken, Long lastAccessDate,
-			String version);
+	public Map<String, Object> launch(String accessToken, String version);
 }

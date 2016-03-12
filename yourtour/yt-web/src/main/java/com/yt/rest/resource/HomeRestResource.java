@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
@@ -34,7 +34,7 @@ import com.yt.vo.home.RecommendInHomeVO;
 @Path("/app")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class HomeRestResource {
+public class HomeRestResource extends RestResource {
 	private static final Log LOG = LogFactory.getLog(HomeRestResource.class);
 
 	@Autowired
@@ -43,7 +43,8 @@ public class HomeRestResource {
 	@Path("/home/recommend")
 	@GET
 	@SuppressWarnings("unchecked")
-	public ResponseDataVO<RecommendInHomeVO> getRecommend() {
+	public ResponseDataVO<RecommendInHomeVO> getRecommend(
+			@Context HttpServletRequest request) {
 		try {
 			Map<String, Object> recommends = homeService.getRecommends();
 			List<BannerBean> banners = (List<BannerBean>) recommends
@@ -68,8 +69,6 @@ public class HomeRestResource {
 	/**
 	 * APP 启动调用接口
 	 * 
-	 * @param accessId
-	 * @param lastAccessDate
 	 * @param version
 	 * @return
 	 * @throws Exception
@@ -77,17 +76,15 @@ public class HomeRestResource {
 	@Path("launch")
 	@GET
 	public ResponseDataVO<LaunchVO> launchApp(
-			@PathParam("accessId") String accessId,
-			@PathParam("lastAccessDate") Long lastAccessDate,
-			@PathParam("version") String srcVersion,
+			@QueryParam("version") String srcVersion,
 			@Context HttpServletRequest request) throws Exception {
+		super.fillUserInfo(request);
 		String accessToken = request.getHeader("accessToken");
 		if (accessToken == null || accessToken.isEmpty()) {
 			// 第一次运行本系统
 			accessToken = UUID.randomUUID().toString();
 		}
-		Map<String, Object> map = homeService.launch(accessToken,
-				lastAccessDate, srcVersion);
+		Map<String, Object> map = homeService.launch(accessToken, srcVersion);
 		LaunchBean launch = (LaunchBean) map.get(IHomeService.KEY_LAUNCHBEAN);
 		VersionBean version = (VersionBean) map
 				.get(IHomeService.KEY_VERSIONBEAN);

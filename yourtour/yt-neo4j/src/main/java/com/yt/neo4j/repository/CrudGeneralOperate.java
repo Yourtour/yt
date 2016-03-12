@@ -7,12 +7,12 @@
  */
 package com.yt.neo4j.repository;
 
-import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -29,6 +29,8 @@ import org.springframework.data.neo4j.annotation.QueryResult;
 import org.springframework.data.neo4j.conversion.Result;
 import org.springframework.data.neo4j.support.Neo4jTemplate;
 
+import com.yt.core.common.ThreadCurrentUser;
+import com.yt.core.common.UserInfor;
 import com.yt.neo4j.Neo4jBaseBean;
 import com.yt.neo4j.Neo4jBaseDictBean;
 import com.yt.neo4j.cache.Neo4jBeanDescriptor;
@@ -66,13 +68,15 @@ import com.yt.neo4j.cache.Neo4jBeanDescriptorCache;
  * @author john
  * 
  */
-public class CrudGeneralOperate<T extends Neo4jBaseBean> implements CrudOperate<T>{
+public class CrudGeneralOperate<T extends Neo4jBaseBean> implements
+		CrudOperate<T> {
 	/** 静态变量：系统日志 */
 	private static final Log LOG = LogFactory.getLog(CrudGeneralOperate.class);
 
 	@Autowired
 	protected Neo4jTemplate template;
 
+	@SuppressWarnings("rawtypes")
 	@Autowired
 	protected Neo4jBeanDescriptorCache cache;
 
@@ -85,13 +89,12 @@ public class CrudGeneralOperate<T extends Neo4jBaseBean> implements CrudOperate<
 
 	/**
 	 * 获取泛型类型
+	 * 
 	 * @return
 	 */
-	protected Class<T> getClazz(){
+	@SuppressWarnings("unchecked")
+	protected Class<T> getClazz() {
 		Type genType = this.getClass().getGenericSuperclass();
-
-		File f = null;
-
 		Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
 
 		return (Class<T>) params[0];
@@ -102,7 +105,6 @@ public class CrudGeneralOperate<T extends Neo4jBaseBean> implements CrudOperate<
 	 * 
 	 * @see com.yt.neo4j.repository.CrudOperate#count(java.lang.Class)
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public long count() throws Exception {
 		return template.count(getClazz());
@@ -135,24 +137,27 @@ public class CrudGeneralOperate<T extends Neo4jBaseBean> implements CrudOperate<
 		return bean;
 	}
 
-	public List<T> query(String queryStr, Map<String, Object> params) throws Exception {
+	@SuppressWarnings("unchecked")
+	public List<T> query(String queryStr, Map<String, Object> params)
+			throws Exception {
 		Class<T> clazz = this.getClazz();
 
 		List<T> list = new ArrayList<>();
 		Result<Map<String, Object>> result = template.query(queryStr, params);
 		Object tar = null;
 		for (Map<String, Object> row : result) {
-			if(clazz.isAnnotationPresent(QueryResult.class)){
+			if (clazz.isAnnotationPresent(QueryResult.class)) {
 				tar = clazz.newInstance();
 				BeanWrapper bw = new BeanWrapperImpl(tar);
 				Field[] fields = clazz.getDeclaredFields();
-				for(Field field : fields){
-					if(row.containsKey(field.getName())){
-						bw.setPropertyValue(field.getName(), template.convert(row.get(field.getName()), field.getType()));
+				for (Field field : fields) {
+					if (row.containsKey(field.getName())) {
+						bw.setPropertyValue(field.getName(), template.convert(
+								row.get(field.getName()), field.getType()));
 					}
 				}
 
-			}else {
+			} else {
 				tar = template.convert(row, clazz.getClass());
 			}
 			list.add((T) tar);
@@ -285,12 +290,10 @@ public class CrudGeneralOperate<T extends Neo4jBaseBean> implements CrudOperate<
 	 * @see com.yt.neo4j.repository.CrudOperate#get(java.lang.Class, boolean)
 	 */
 	@Override
-	public List<T> get( boolean loadRelations)
-			throws Exception {
+	public List<T> get(boolean loadRelations) throws Exception {
 		Class<T> clazz = this.getClazz();
 
-		Result<T> result = template
-				.findAll((Class<T>) clazz);
+		Result<T> result = template.findAll((Class<T>) clazz);
 		List<T> list = new Vector<T>();
 		for (T bean : result) {
 			if (bean != null && loadRelations) {
@@ -325,8 +328,8 @@ public class CrudGeneralOperate<T extends Neo4jBaseBean> implements CrudOperate<
 	 * int, boolean)
 	 */
 	@Override
-	public List<T> getByPage(int start, int limit,
-			boolean loadRelations) throws Exception {
+	public List<T> getByPage(int start, int limit, boolean loadRelations)
+			throws Exception {
 		Class<T> clazz = this.getClazz();
 
 		String query = String.format("MATCH (n:%s) RETURN n SKIP %d LIMIT %d",
@@ -387,14 +390,12 @@ public class CrudGeneralOperate<T extends Neo4jBaseBean> implements CrudOperate<
 	@Override
 	public void delete() throws Exception {
 		Class<T> clazz = this.getClazz();
-		Result<T> result = template
-				.findAll(clazz);
+		Result<T> result = template.findAll(clazz);
 		long count = 0;
 		for (T bean : result) {
 			// 先删除该节点为起点的所有关系
 			String deleteRelationQuery = String.format(
-					"START n=node(%d) MATCH n-[r]-m DELETE r",
-					bean.getId());
+					"START n=node(%d) MATCH n-[r]-m DELETE r", bean.getId());
 			template.query(deleteRelationQuery, null);
 			// 再删除指定的节点
 			template.delete(bean);
@@ -428,7 +429,6 @@ public class CrudGeneralOperate<T extends Neo4jBaseBean> implements CrudOperate<
 			}
 			throw new NullPointerException("The Neo4jBean is null.");
 		}
-		Class<T> clazz = (Class<T>) neo4jBean.getClass();
 		// 判断该图节点是否存在
 		Neo4jBaseBean bean = null;
 		if (neo4jBean.getId() != null) {
@@ -439,10 +439,28 @@ public class CrudGeneralOperate<T extends Neo4jBaseBean> implements CrudOperate<
 			// 如果是字典类型的节点，则通过代码来判断该bean是否已经存在
 			bean = get("code", ((Neo4jBaseDictBean) neo4jBean).getCode());
 		}
+		UserInfor user = ThreadCurrentUser.getCurrentUserInfor();
+		if (user == null) {
+			if (LOG.isWarnEnabled()) {
+				LOG.warn("The UserInfor in this thread is null.");
+			}
+			user = new UserInfor(-1, "NA");
+		}
+		if (bean == null) {
+			// 新增
+			neo4jBean.setId(null);
+			neo4jBean.setCreatedTime(new Date().getTime());
+			neo4jBean.setCreatedUserId(user.getId());
+		} else {
+			// 修改
+			neo4jBean.setId(bean.getId());
+		}
+		neo4jBean.setUpdatedTime(new Date().getTime());
+		neo4jBean.setUpdatedUserId(user.getId());
 		// 先保存指定的节点
 		T tar = template.save(neo4jBean);
 
-		if(saveRelation) {
+		if (saveRelation) {
 			// 再保存关系
 			saveRelations(neo4jBean);
 		}
@@ -460,12 +478,12 @@ public class CrudGeneralOperate<T extends Neo4jBaseBean> implements CrudOperate<
 	}
 
 	/*
-         * (non-Javadoc)
-         *
-         * @see
-         * com.yt.neo4j.repository.CrudOperate#saveRelationsOnly(com.yt.neo4j.bean
-         * .Neo4jBaseBean)
-         */
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.yt.neo4j.repository.CrudOperate#saveRelationsOnly(com.yt.neo4j.bean
+	 * .Neo4jBaseBean)
+	 */
 	@Override
 	public void saveRelationsOnly(T neo4jBean) throws Exception {
 		if (neo4jBean == null) {
@@ -491,11 +509,11 @@ public class CrudGeneralOperate<T extends Neo4jBaseBean> implements CrudOperate<
 	 * .Neo4jBaseBean, java.lang.String[])
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public void saveRelationsOnly(T neo4jBean,String[] relationshipFieldNames) throws Exception {
+	public void saveRelationsOnly(T neo4jBean, String[] relationshipFieldNames)
+			throws Exception {
 		if (LOG.isDebugEnabled()) {
 			LOG.debug(String.format("Save the relations node for %s[%d].",
-					neo4jBean.getClass().getSimpleName(),
-					neo4jBean.getId()));
+					neo4jBean.getClass().getSimpleName(), neo4jBean.getId()));
 		}
 		// 取出现有的关系
 		T ori = this.get(neo4jBean.getId());
@@ -527,10 +545,9 @@ public class CrudGeneralOperate<T extends Neo4jBaseBean> implements CrudOperate<
 						T tarBean = (T) tarList.get(i);
 						int found = -1;
 						for (int j = oriList.size() - 1; j >= 0; j--) {
-							T oriBean = (T) oriList
-									.get(j);
-							if (tarBean.getId().longValue() == oriBean
-									.getId().longValue()) {
+							T oriBean = (T) oriList.get(j);
+							if (tarBean.getId().longValue() == oriBean.getId()
+									.longValue()) {
 								found = j;
 								break;
 							}
@@ -565,8 +582,8 @@ public class CrudGeneralOperate<T extends Neo4jBaseBean> implements CrudOperate<
 				} else {
 					T oriBean = (T) field.get(ori);
 					if (oriBean != null) {
-						if (oriBean.getId().longValue() != ((T) tar)
-								.getId().longValue()) {
+						if (oriBean.getId().longValue() != ((T) tar).getId()
+								.longValue()) {
 							// 关系改变了，要先删除原来的关系
 							if (rd.getDirection() == Direction.INCOMING
 									|| rd.getDirection() == Direction.BOTH) {
@@ -579,8 +596,9 @@ public class CrudGeneralOperate<T extends Neo4jBaseBean> implements CrudOperate<
 										oriBean, rd.getRelationship());
 							}
 							// 创建关系
-							this.doCreateRelation(neo4jBean, (Neo4jBaseBean) tar,
-									rd.getRelationship(), rd.getDirection());
+							this.doCreateRelation(neo4jBean,
+									(Neo4jBaseBean) tar, rd.getRelationship(),
+									rd.getDirection());
 						}
 					} else {
 						// 否则只要创建一个关系即可。
@@ -597,16 +615,17 @@ public class CrudGeneralOperate<T extends Neo4jBaseBean> implements CrudOperate<
 		}
 	}
 
-
 	/**
 	 * 构建两个实体之间的关系
+	 * 
 	 * @param src
 	 * @param tar
 	 * @param relationship
 	 * @param direction
 	 * @throws Exception
 	 */
-	private void doCreateRelation(Neo4jBaseBean src, Neo4jBaseBean tar, String relationship, Direction direction) throws Exception {
+	private void doCreateRelation(Neo4jBaseBean src, Neo4jBaseBean tar,
+			String relationship, Direction direction) throws Exception {
 		// 注意：CREATE语句创建关系只能有一个方向，因此如果direction = Direction.BOTH，那么需要执行两次语句
 		if (direction == Direction.BOTH || direction == Direction.OUTGOING) {
 			// 创建outgoing方向的关系
@@ -616,8 +635,7 @@ public class CrudGeneralOperate<T extends Neo4jBaseBean> implements CrudOperate<
 				// 只有该关系不存在，则建立新的关系。
 				String createRelationQuery = String
 						.format("START src=node(%d), tar=node(%d) CREATE src-[:%s]->tar",
-								src.getId(), tar.getId(),
-								relationship);
+								src.getId(), tar.getId(), relationship);
 				template.query(createRelationQuery, null);
 			}
 		}
@@ -629,8 +647,7 @@ public class CrudGeneralOperate<T extends Neo4jBaseBean> implements CrudOperate<
 			if (r == null) {
 				String createRelationQuery = String
 						.format("START src=node(%d), tar=node(%d) CREATE src<-[:%s]-tar",
-								src.getId(), tar.getId(),
-								relationship);
+								src.getId(), tar.getId(), relationship);
 				template.query(createRelationQuery, null);
 			}
 		}
