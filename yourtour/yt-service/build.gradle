@@ -1,51 +1,8 @@
-apply plugin: RepositoryGeneratorPlugin
-
-repositoryGenerator {
-    source = 'E:/workspace/yt/yourtour/yt-service/src/main/java/com/yt/business/bean'
-    target = 'E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/repository/'
-    packageName = 'com.yt.business.repository'
-}
-
-class RepositoryGeneratorPlugin implements Plugin<Project> {
-    void apply(Project project) {
-        project.extensions.create("repositoryGenerator", RepositoryGeneratorPluginExtension)
-
-        project.task('generator') << {
-            def sourceDir = new File(project.repositoryGenerator.source)
-            if (sourceDir.isDirectory()) {
-                sourceDir.eachFileRecurse { file ->
-                    def beanName = file.getName().split("[.]")[0]
-                    if(beanName != 'package-info') {
-                        def repositoryFileName = beanName + "Repository"
-                        def repositoryFile = new File(project.repositoryGenerator.target + repositoryFileName + ".java")
-                        if (!repositoryFile.exists()) {
-                            def printWriter = repositoryFile.newPrintWriter() //
-                            printWriter.write('package com.yt.business.repository;\n\n')
-                            printWriter.write('import com.yt.neo4j.repository.CrudGeneralOperate;\n')
-                            printWriter.write('import org.springframework.stereotype.Service;\n')
-                            printWriter.write('import com.yt.business.bean.' + beanName + ';\n\n')
-
-                            printWriter.write('@Service\n')
-                            printWriter.write('public class ' + repositoryFileName + ' extends CrudGeneralOperate<' + beanName + '>{}')
-                            printWriter.flush()
-                            printWriter.close()
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-class RepositoryGeneratorPluginExtension {
-    String source = "E:/workspace/yt/yourtour/yt-service/src/main/java/com/yt/business/bean"
-    String target = "E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/repository"
-    String packageName = "com.yt.business.repository"
-}
-
 dependencies {
 	ext {
                 springDataVersion = "3.2.0.RELEASE"
+                beanSrcDir = 'src/main/java/com/yt/business/bean/'
+				crudTarDir = '../yt-service-impl/src/main/java/com/yt/business/repository/crud/'
         }
 	compile project(":yt-core"),
 		"org.springframework.data:spring-data-neo4j:${springDataVersion}",
@@ -54,3 +11,30 @@ dependencies {
                              "org.neo4j:neo4j-cypher-dsl:2.1.4",
                              "javax.validation:validation-api:1.1.0.Final"
 }
+
+task generateCrud() {/*1*/
+	def beanDir = project.dependencies.ext.beanSrcDir;
+	def crudDir = project.dependencies.ext.crudTarDir;
+	def srcDir = new File(beanDir)
+	if (srcDir.isDirectory()) {/*2*/
+		srcDir.eachFileRecurse {/*3*/ file ->
+			def beanName = file.getName().split("[.]")[0]
+			if(beanName != 'package-info') {/*4*/
+				def crudFileName = beanName + "Crud"
+				def crudFile = new File(crudDir + crudFileName + ".java")
+				if (!crudFile.exists()) {/*5*/
+					def printWriter = crudFile.newPrintWriter()
+					printWriter.write('package com.yt.business.repository.crud;\n\n')
+					printWriter.write('import com.yt.neo4j.repository.CrudGeneralOperate;\n')
+					printWriter.write('import org.springframework.stereotype.Service;\n')
+					printWriter.write('import com.yt.business.bean.' + beanName + ';\n\n')
+					printWriter.write('@Service\n')
+					printWriter.write('public class ' + crudFileName + ' extends CrudGeneralOperate<' + beanName + '> { }')
+					printWriter.flush()
+					printWriter.close()
+					println 'create a crud file: ' + crudFile
+				}/*5*/
+			}/*4*/
+		}/*3*/
+	}/*2*/
+}/*1*/

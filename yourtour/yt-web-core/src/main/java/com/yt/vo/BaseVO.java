@@ -2,10 +2,8 @@ package com.yt.vo;
 
 import com.yt.business.BaseBeanImpl;
 
-import java.util.UUID;
-
 public class BaseVO {
-	private Long graphId;
+	private Long id;
 	private String rowKey;
 	private Long createdUserId = 0l;
 	private long createdTime;
@@ -38,15 +36,15 @@ public class BaseVO {
 	}
 
 	public Long getId() {
-		return graphId;
+		return id;
 	}
 
-	public void setId(Long graphid) {
-		this.graphId = graphid == 0 ? null : graphid;
+	public void setId(Long id) {
+		this.id = id == 0 ? null : id;
 	}
 
 	public String getRowKey() {
-		return UUID.randomUUID().toString();
+		return rowKey;
 	}
 
 	public void setRowKey(String rowKey) {

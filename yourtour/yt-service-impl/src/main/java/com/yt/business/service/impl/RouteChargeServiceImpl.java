@@ -3,7 +3,7 @@ package com.yt.business.service.impl;
 import com.yt.business.bean.RouteChargeBean;
 import com.yt.business.common.Constants;
 import com.yt.business.repository.neo4j.ChargeTuple;
-import com.yt.business.repository.neo4j.RouteRepository;
+import com.yt.business.repository.neo4j.RouteMainBeanRepository;
 import com.yt.business.service.IRouteChargeService;
 import com.yt.core.common.AppException;
 import com.yt.core.common.StaticErrorEnum;
@@ -27,7 +27,7 @@ public class RouteChargeServiceImpl extends ServiceBase implements IRouteChargeS
     private static final Log logger = LogFactory.getLog(RouteChargeServiceImpl.class);
 
     @Autowired
-    private RouteRepository routeRepository;
+    private RouteMainBeanRepository routeRepository;
 
     @Autowired
     private CrudOperate<RouteChargeBean> chargeCrudOperate;

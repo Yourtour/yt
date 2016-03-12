@@ -16,6 +16,6 @@ public class DebugMain {
 
         Type genType = debugMain.getClass().getGenericSuperclass();
         Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
-        System.out.println(params[0].getTypeName());
+        //System.out.println(params[0].getTypeName());
     }
 }

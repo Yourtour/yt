@@ -1,19 +1,34 @@
 package com.yt.rest.resource;
 
-import com.yt.business.bean.LaunchBean;
-import com.yt.business.service.IBaseService;
-import com.yt.response.ResponseDataVO;
-import com.yt.vo.LaunchVO;
-import com.yt.vo.HomeVO;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
+import com.yt.business.bean.ActivityBean;
+import com.yt.business.bean.BannerBean;
+import com.yt.business.bean.HotPlayingBean;
+import com.yt.business.bean.LaunchBean;
+import com.yt.business.bean.RouteMainBean;
+import com.yt.business.bean.VersionBean;
+import com.yt.business.service.IHomeService;
+import com.yt.core.common.StaticErrorEnum;
+import com.yt.response.ResponseDataVO;
+import com.yt.vo.home.LaunchVO;
+import com.yt.vo.home.RecommendInHomeVO;
 
 @Component
 @Path("/app")
@@ -23,35 +38,54 @@ public class HomeRestResource {
 	private static final Log LOG = LogFactory.getLog(HomeRestResource.class);
 
 	@Autowired
-	private IBaseService service;
+	private IHomeService homeService;
 
-	/**
-	 * 获取首页信息
-	 * @param placeId
-	 * @param request
-	 * @return
-	 */
-	@Path("/home")
+	@Path("/home/recommend")
 	@GET
-	public ResponseDataVO<HomeVO> getHomeInfo(@PathParam("placeId") String placeId, @Context HttpServletRequest request) {
-		HomeVO homeVO = new HomeVO();
-
-		return new ResponseDataVO<HomeVO>(homeVO);
+	@SuppressWarnings("unchecked")
+	public ResponseDataVO<RecommendInHomeVO> getRecommend() {
+		try {
+			Map<String, Object> recommends = homeService.getRecommends();
+			List<BannerBean> banners = (List<BannerBean>) recommends
+					.get(IHomeService.KEY_BANNERS);
+			List<RouteMainBean> routes = (List<RouteMainBean>) recommends
+					.get(IHomeService.KEY_ROUTES);
+			List<HotPlayingBean> hotPlayings = (List<HotPlayingBean>) recommends
+					.get(IHomeService.KEY_HOTPLAYINGS);
+			return new ResponseDataVO<RecommendInHomeVO>(
+					RecommendInHomeVO.transform(banners, routes, hotPlayings));
+		} catch (Exception ex) {
+			if (LOG.isErrorEnabled()) {
+				LOG.error(
+						"Fetch the recommends information in home page fail.",
+						ex);
+			}
+			return new ResponseDataVO<RecommendInHomeVO>(
+					StaticErrorEnum.FETCH_DB_DATA_FAIL);
+		}
 	}
 
 	/**
-	 * APP 启动调用接口
-	 * @param version
-	 * @return
-	 * @throws Exception
+	 *
 	 */
 	@Path("/{devType}/{version}/launch")
 	@GET
 	public ResponseDataVO<LaunchVO> launchApp(@PathParam("devType") String devType,
-											  @PathParam("version") String version) throws Exception {
+											  @PathParam("version") String version,
+											  @PathParam("lastAccessDate") Long lastAccessDate,
+											  @Context HttpServletRequest request) throws Exception {
 
-		LaunchBean bean = this.service.launch(devType, 0l, version);
-
-		return new ResponseDataVO<LaunchVO>(LaunchVO.transform(bean));
+		String accessToken = request.getHeader("Access-Token");
+		if (accessToken == null || accessToken.isEmpty()) {
+			// 第一次运行本系统
+			accessToken = UUID.randomUUID().toString();
+		}
+		Map<String, Object> map = homeService.launch(accessToken,
+				lastAccessDate, version);
+		LaunchBean launch = (LaunchBean) map.get(IHomeService.KEY_LAUNCHBEAN);
+		VersionBean versionBean = (VersionBean) map.get(IHomeService.KEY_VERSIONBEAN);
+		ActivityBean activity = (ActivityBean) map.get(IHomeService.KEY_ACTIVITYBEAN);
+		return new ResponseDataVO<LaunchVO>(LaunchVO.transform(launch, versionBean,
+				activity));
 	}
 }

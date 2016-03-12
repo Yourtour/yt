@@ -2,7 +2,94 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92ee94f3-3d6c-4f6d-925a-699d6360b737" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/页面交互图1.0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ActivityBean.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/ActivityBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/BannerBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/neo4j/BannerBeanRepository.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/home/BannerVO.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/ChatJoinHistoryBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/ChatMessageBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/ChatSessionBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/CommentBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/ExpertApplicationBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/ExpertApprovementBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/ExpertBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/ExpertServiceBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/FavoriteBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/HomeServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/HotPlayingBean.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/HotPlayingBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/neo4j/HotPlayingBeanRepository.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/home/HotPlayingVO.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/HotelResourceBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IHomeService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/LaunchBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/home/LaunchVO.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/LineBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/PlaceBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/home/RecommendInHomeVO.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/ResourceActivityItemBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/ResourceBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/RestaurantResourceBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/RouteActivityBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/RouteActivityItemBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/RouteChargeBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/RouteCheckinBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/RouteMainBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/RouteMemberBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/RouteNotesBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/RouteProvisionBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/RouteReservationBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/RouteScheduleBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/RouteServiceBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/SceneResourceBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/ThemeBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/TravelCartBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/UserAccountBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/UserProfileBeanCrud.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/VersionBeanCrud.java" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-app\WebRoot\cordova\platforms\android\assets\www\plugins\phonegap-plugin-barcodescanner\www\barcodescanner.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\BannerBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\ChatJoinHistoryBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\ChatMessageBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\ChatSessionBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\CommentBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\ConsultBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\ExpertApplicationBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\ExpertApprovementBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\ExpertBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\ExpertServiceBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\FavoriteBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\HomeBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\HotelResourceBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\LaunchBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\LineBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\PlaceBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\ResourceActivityItemBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\ResourceBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\RestaurantResourceBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\RouteActivityBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\RouteActivityItemBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\RouteChargeBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\RouteCheckinBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\RouteMainBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\RouteMemberBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\RouteNotesBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\RouteProvisionBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\RouteReservationBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\RouteScheduleBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\RouteServiceBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\SceneResourceBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\ThemeBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\TravelCartBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\UserAccountBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\UserProfileBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\VersionBeanRepository.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\service\impl\BaseServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service\src\main\java\com\yt\business\bean\ConsultBean.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service\src\main\java\com\yt\business\bean\HomeBean.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-service\src\main\java\com\yt\business\service\IBaseService.java" afterPath="" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-web\WebRoot\WEB-INF\classes\.gitignore" afterPath="" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-web\WebRoot\WEB-INF\classes\application-hbase-context.xml" afterPath="" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-web\WebRoot\WEB-INF\classes\application-neo4j-context.xml" afterPath="" />
@@ -10,499 +97,26 @@
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-web\WebRoot\WEB-INF\classes\commons-logging.properties" afterPath="" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-web\WebRoot\WEB-INF\classes\config.properties" afterPath="" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-web\WebRoot\WEB-INF\classes\log4j.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-web\src\main\java\com\yt\vo\HomeVO.java" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-web\src\main\java\com\yt\vo\LaunchVO.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documents/design/游徒平台接口设计.xlsx" afterPath="$PROJECT_DIR$/documents/design/游徒平台接口设计.xlsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/accelerometer/Abstract.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/accelerometer/Abstract.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/browser/Abstract.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/browser/Abstract.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/camera/Abstract.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/camera/Abstract.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/capture/Abstract.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/capture/Abstract.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/compass/Abstract.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/compass/Abstract.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/connection/Abstract.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/connection/Abstract.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/contacts/Abstract.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/contacts/Abstract.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/device/Abstract.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/device/Abstract.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/filesystem/Abstract.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/filesystem/Abstract.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/geolocation/Abstract.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/geolocation/Abstract.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/globalization/Abstract.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/globalization/Abstract.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/media/Abstract.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/media/Abstract.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/notification/Abstract.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/notification/Abstract.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/orientation/Abstract.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/orientation/Abstract.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/push/Abstract.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/push/Abstract.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/splashscreen/Abstract.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/splashscreen/Abstract.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/storage/Abstract.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/storage/Abstract.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/tunnel/Abstract.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/tunnel/Abstract.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/animation/Abstract.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/animation/Abstract.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/easing/Abstract.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/easing/Abstract.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/layout/card/Abstract.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/layout/card/Abstract.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/layout/Abstract.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/layout/Abstract.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/scroll/indicator/Abstract.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/scroll/indicator/Abstract.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/paintmonitor/Abstract.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/paintmonitor/Abstract.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/sizemonitor/Abstract.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/sizemonitor/Abstract.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/translatable/Abstract.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/translatable/Abstract.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/device/analytics/Abstract.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/device/analytics/Abstract.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/device/twitter/Abstract.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/device/twitter/Abstract.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/AbstractComponent.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/AbstractComponent.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/AbstractManager.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/AbstractManager.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/AbstractMixedCollection.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/AbstractMixedCollection.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/AbstractPlugin.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/AbstractPlugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Accelerometer.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Accelerometer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/app/Action.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/app/Action.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/ActionOverFlowMenuButton.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/ActionOverFlowMenuButton.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ActionSheet.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ActionSheet.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Ajax.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Ajax.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/proxy/Ajax.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/proxy/Ajax.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/device/Analytics.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/device/Analytics.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/communicator/Android.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/communicator/Android.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/viewport/Android.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/viewport/Android.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Anim.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Anim.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/Animation.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/Animation.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/AnimationQueue.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/AnimationQueue.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/app/Application.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/app/Application.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/ApplicationMenu.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/ApplicationMenu.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/core/lang/Array.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/core/lang/Array.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/reader/Array.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/reader/Array.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/platform/src/data/sync/Array.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/platform/src/data/sync/Array.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/ArrayStore.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/ArrayStore.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/association/Association.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/association/Association.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Audio.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Audio.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Audio.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Audio.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/navigation/Bar.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/navigation/Bar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/tab/Bar.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/tab/Bar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/core/class/Base.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/core/class/Base.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/log/Base.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/log/Base.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/Batch.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/Batch.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/behavior/Behavior.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/behavior/Behavior.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/association/BelongsTo.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/association/BelongsTo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/mixin/Bindable.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/mixin/Bindable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/BingMap.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/BingMap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/easing/Bounce.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/easing/Bounce.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/easing/BoundMomentum.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/easing/BoundMomentum.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/layout/Box.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/layout/Box.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/layout/wrapper/BoxDock.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/layout/wrapper/BoxDock.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Browser.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Browser.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/env/Browser.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/env/Browser.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/plugin/Buffered.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/plugin/Buffered.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/BufferedCollection.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/BufferedCollection.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/plugin/BufferedList.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/plugin/BufferedList.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Button.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Button.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/platform/src/data/sync/CS.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/platform/src/data/sync/CS.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/platform/src/data/sync/CSGenerator.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/platform/src/data/sync/CSGenerator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/platform/src/data/sync/CSV.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/platform/src/data/sync/CSV.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Camera.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Camera.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Capture.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Capture.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/layout/Card.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/layout/Card.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/layout/Card.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/layout/Card.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/carousel/Carousel.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/carousel/Carousel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/table/Cell.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/table/Cell.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/Checkbox.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/Checkbox.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/filesystem/Chrome.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/filesystem/Chrome.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/core/class/Class.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/core/class/Class.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/core/class/ClassManager.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/core/class/ClassManager.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/proxy/Client.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/proxy/Client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/platform/src/data/sync/Clock.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/platform/src/data/sync/Clock.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Collection.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Collection.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Communicator.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Communicator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Compass.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Compass.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Component.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Component.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/publisher/ComponentDelegation.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/publisher/ComponentDelegation.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ComponentManager.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ComponentManager.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/publisher/ComponentPaint.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/publisher/ComponentPaint.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ComponentQuery.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ComponentQuery.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/publisher/ComponentSize.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/publisher/ComponentSize.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dom/CompositeElement.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dom/CompositeElement.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dom/CompositeElementLite.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dom/CompositeElementLite.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/platform/src/data/sync/Config.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/platform/src/data/sync/Config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/Connection.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/Connection.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Connection.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Connection.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/tunnel/Connection.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/tunnel/Connection.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/log/writer/Console.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/log/writer/Console.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Contacts.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Contacts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Container.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Container.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dataview/component/Container.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dataview/component/Container.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dataview/element/Container.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dataview/element/Container.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/ContextMenu.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/ContextMenu.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/app/Controller.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/app/Controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/Controller.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/Controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/accelerometer/Cordova.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/accelerometer/Cordova.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/browser/Cordova.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/browser/Cordova.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/camera/Cordova.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/camera/Cordova.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/capture/Cordova.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/capture/Cordova.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/compass/Cordova.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/compass/Cordova.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/connection/Cordova.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/connection/Cordova.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/contacts/Cordova.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/contacts/Cordova.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/device/Cordova.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/device/Cordova.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/filesystem/Cordova.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/filesystem/Cordova.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/geolocation/Cordova.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/geolocation/Cordova.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/globalization/Cordova.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/globalization/Cordova.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/media/Cordova.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/media/Cordova.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/notification/Cordova.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/notification/Cordova.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/push/Cordova.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/push/Cordova.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/splashscreen/Cordova.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/splashscreen/Cordova.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/storage/Cordova.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/storage/Cordova.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/device/analytics/Cordova.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/device/analytics/Cordova.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/device/twitter/Cordova.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/device/twitter/Cordova.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/layout/card/Cover.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/layout/card/Cover.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/runner/Css.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/runner/Css.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/runner/CssAnimation.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/runner/CssAnimation.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/paintmonitor/CssAnimation.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/paintmonitor/CssAnimation.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/translatable/CssPosition.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/translatable/CssPosition.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/scroll/indicator/CssTransform.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/scroll/indicator/CssTransform.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/translatable/CssTransform.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/translatable/CssTransform.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/runner/CssTransition.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/runner/CssTransition.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/animation/Cube.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/animation/Cube.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/layout/card/Cube.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/layout/card/Cube.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dataview/component/DataItem.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dataview/component/DataItem.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dataview/DataView.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dataview/DataView.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/storage/HTML5/Database.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/storage/HTML5/Database.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/platform/src/data/sync/DatabaseDefinition.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/platform/src/data/sync/DatabaseDefinition.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/core/lang/Date.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/core/lang/Date.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/picker/Date.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/picker/Date.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/DateExtras.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/DateExtras.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/DatePicker.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/DatePicker.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/DatePickerNative.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/DatePickerNative.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Decorator.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Decorator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/communicator/Default.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/communicator/Default.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/layout/Default.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/layout/Default.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/log/formatter/Default.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/log/formatter/Default.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/sizemonitor/Default.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/sizemonitor/Default.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/viewport/Default.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/viewport/Default.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/DelayedTask.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/DelayedTask.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Device.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Device.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/proxy/Direct.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/proxy/Direct.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/DirectStore.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/DirectStore.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/Dispatcher.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/Dispatcher.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/layout/wrapper/Dock.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/layout/wrapper/Dock.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/log/writer/DocumentTitle.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/log/writer/DocumentTitle.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/Dom.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/Dom.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/publisher/Dom.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/publisher/Dom.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/translatable/Dom.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/translatable/Dom.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/recognizer/DoubleTap.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/recognizer/DoubleTap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/recognizer/Drag.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/recognizer/Drag.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/behavior/Draggable.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/behavior/Draggable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Draggable.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Draggable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Droppable.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Droppable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/easing/EaseIn.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/easing/EaseIn.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/easing/EaseOut.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/easing/EaseOut.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/Easing.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/Easing.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/recognizer/EdgeSwipe.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/recognizer/EdgeSwipe.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dom/Element.alignment.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dom/Element.alignment.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dom/Element.insertion.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dom/Element.insertion.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dom/Element.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dom/Element.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dom/Element.position.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dom/Element.position.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dom/Element.static.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dom/Element.static.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dom/Element.style.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dom/Element.style.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dom/Element.traversal.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dom/Element.traversal.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/publisher/ElementPaint.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/publisher/ElementPaint.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/publisher/ElementSize.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/publisher/ElementSize.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/Email.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/Email.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/core/lang/Error.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/core/lang/Error.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/Error.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/Error.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/Errors.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/Errors.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/direct/Event.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/direct/Event.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/Event.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/Event.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/core/EventManager.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/core/EventManager.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Evented.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Evented.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/direct/ExceptionEvent.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/direct/ExceptionEvent.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/core/Ext-more.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/core/Ext-more.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/core/Ext.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/core/Ext.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/animation/Fade.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/animation/Fade.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/layout/card/Fade.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/layout/card/Fade.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/animation/FadeOut.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/animation/FadeOut.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/env/Feature.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/env/Feature.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/Field.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/Field.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/Field.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/Field.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/form/FieldSet.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/form/FieldSet.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/File.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/File.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/FileInput.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/FileInput.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/FileSystem.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/FileSystem.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/log/filter/Filter.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/log/filter/Filter.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Filter.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Filter.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/mixin/Filterable.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/mixin/Filterable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/layout/Fit.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/layout/Fit.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/layout/FlexBox.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/layout/FlexBox.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/animation/Flip.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/animation/Flip.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/layout/card/Flip.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/layout/card/Flip.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/layout/Float.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/layout/Float.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Format.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Format.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/log/formatter/Formatter.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/log/formatter/Formatter.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/core/lang/Function.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/core/lang/Function.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Geolocation.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Geolocation.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Geolocation.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Geolocation.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Globalization.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Globalization.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Grouper.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Grouper.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/layout/HBox.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/layout/HBox.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/filesystem/HTML5.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/filesystem/HTML5.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/orientation/HTML5.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/orientation/HTML5.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/storage/HTML5/HTML5.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/storage/HTML5/HTML5.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/association/HasMany.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/association/HasMany.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/association/HasOne.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/association/HasOne.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/HashMap.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/HashMap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dom/Helper.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dom/Helper.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/parse/Helper.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/parse/Helper.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/Hidden.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/Hidden.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/app/History.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/app/History.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/controller/HomeMainCtrl.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/controller/HomeMainCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/view/home/HomeMainView.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/view/home/HomeMainView.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/BannerBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/BannerBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-web-core/src/main/java/com/yt/vo/BaseVO.java" afterPath="$PROJECT_DIR$/yt-web-core/src/main/java/com/yt/vo/BaseVO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/ConsultVO.java" afterPath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/ConsultVO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service-impl/src/test/java/com/yt/business/repository/neo4j/DebugMain.java" afterPath="$PROJECT_DIR$/yt-service-impl/src/test/java/com/yt/business/repository/neo4j/DebugMain.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ExpertBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ExpertBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/ExpertServiceImpl.java" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/ExpertServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/FavoriteBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/FavoriteBean.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/HomeRestResource.java" afterPath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/HomeRestResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/recognizer/HorizontalSwipe.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/recognizer/HorizontalSwipe.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/mixin/Identifiable.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/mixin/Identifiable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/log/formatter/Identity.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/log/formatter/Identity.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Img.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Img.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dataview/IndexBar.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dataview/IndexBar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/carousel/Indicator.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/carousel/Indicator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/scroll/Indicator.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/scroll/Indicator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/carousel/Infinite.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/carousel/Infinite.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Inflector.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Inflector.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/layout/wrapper/Inner.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/layout/wrapper/Inner.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/Input.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/Input.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/InputBlocker.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/InputBlocker.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/viewport/Ios.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/viewport/Ios.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/carousel/Item.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/carousel/Item.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ItemCollection.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ItemCollection.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/core/lang/JSON.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/core/lang/JSON.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/reader/Json.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/reader/Json.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/writer/Json.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/writer/Json.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/JsonP.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/JsonP.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/proxy/JsonP.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/proxy/JsonP.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/direct/JsonProvider.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/direct/JsonProvider.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/JsonStore.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/JsonStore.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Label.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Label.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/LineSegment.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/LineSegment.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/easing/Linear.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/easing/Linear.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dataview/List.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dataview/List.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dataview/element/List.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dataview/element/List.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dataview/component/ListItem.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dataview/component/ListItem.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dataview/ListItemHeader.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dataview/ListItemHeader.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/plugin/ListPaging.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/plugin/ListPaging.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/ListenerStack.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/ListenerStack.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/LoadMask.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/LoadMask.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/core/class/Loader.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/core/class/Loader.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/proxy/LocalStorage.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/proxy/LocalStorage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/log/Logger.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/log/Logger.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/recognizer/LongPress.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/recognizer/LongPress.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/controller/MainCtrl.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/controller/MainCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/view/MainView.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/view/MainView.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/direct/Manager.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/direct/Manager.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Map.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Map.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Mask.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Mask.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Media.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Media.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Media.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Media.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/proxy/Memory.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/proxy/Memory.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Menu.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Menu.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/MenuButton.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/MenuButton.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/MessageBox.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/MessageBox.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/MixedCollection.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/MixedCollection.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/mixin/Mixin.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/mixin/Mixin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/Model.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/Model.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/parse/Model.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/parse/Model.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/ModelManager.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/ModelManager.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/easing/Momentum.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/easing/Momentum.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/recognizer/MultiTouch.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/recognizer/MultiTouch.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dataview/NestedList.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dataview/NestedList.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/NodeInterface.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/NodeInterface.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/NodeStore.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/NodeStore.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Notification.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Notification.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/core/lang/Number.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/core/lang/Number.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/Number.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/Number.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/env/OS.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/env/OS.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/core/lang/Object.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/core/lang/Object.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/mixin/Observable.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/mixin/Observable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Offset.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Offset.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/Operation.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/Operation.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Orientation.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Orientation.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/paintmonitor/OverflowChange.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/paintmonitor/OverflowChange.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/sizemonitor/OverflowChange.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/sizemonitor/OverflowChange.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/PaintMonitor.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/PaintMonitor.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Panel.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Panel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/form/Panel.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/form/Panel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/tab/Panel.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/tab/Panel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/Password.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/Password.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/picker/Picker.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/picker/Picker.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/recognizer/Pinch.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/recognizer/Pinch.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/view/place/PlaceMainView.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/view/place/PlaceMainView.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Point.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Point.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/parse/association/Pointer.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/parse/association/Pointer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/direct/PollingProvider.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/direct/PollingProvider.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/animation/Pop.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/animation/Pop.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/layout/card/Pop.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/layout/card/Pop.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/animation/PopOut.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/animation/PopOut.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/PositionMap.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/PositionMap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/log/filter/Priority.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/log/filter/Priority.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/app/Profile.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/app/Profile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ProgressIndicator.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ProgressIndicator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/mixin/Progressable.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/mixin/Progressable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Promise.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Promise.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/platform/src/data/sync/Protocol.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/platform/src/data/sync/Protocol.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/direct/Provider.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/direct/Provider.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/proxy/Proxy.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/proxy/Proxy.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/parse/Proxy.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/parse/Proxy.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/publisher/Publisher.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/publisher/Publisher.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/plugin/PullRefresh.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/plugin/PullRefresh.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Purchases.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Purchases.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Push.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Push.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dom/Query.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dom/Query.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/Radio.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/Radio.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/reader/Reader.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/reader/Reader.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/parse/Reader.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/parse/Reader.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/recognizer/Recognizer.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/recognizer/Recognizer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Region.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Region.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/parse/association/Relation.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/parse/association/Relation.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/log/writer/Remote.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/log/writer/Remote.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/direct/RemotingEvent.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/direct/RemotingEvent.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/direct/RemotingMethod.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/direct/RemotingMethod.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/direct/RemotingProvider.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/direct/RemotingProvider.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/Request.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/Request.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/proxy/Rest.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/proxy/Rest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/ResultSet.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/ResultSet.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/layout/card/Reveal.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/layout/card/Reveal.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/recognizer/Rotate.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/recognizer/Rotate.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/scroll/indicator/Rounded.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/scroll/indicator/Rounded.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/app/Route.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/app/Route.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteMainView.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteMainView.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/app/Router.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/app/Router.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/table/Row.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/table/Row.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/Runner.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/Runner.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/storage/HTML5/SQLStatement.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/storage/HTML5/SQLStatement.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/SQLite.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/SQLite.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/layout/card/Scroll.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/layout/card/Scroll.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/sizemonitor/Scroll.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/sizemonitor/Scroll.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/layout/card/ScrollCover.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/layout/card/ScrollCover.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/scroll/indicator/ScrollPosition.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/scroll/indicator/ScrollPosition.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/translatable/ScrollPosition.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/translatable/ScrollPosition.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/layout/card/ScrollReveal.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/layout/card/ScrollReveal.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/behavior/Scrollable.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/behavior/Scrollable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/scroll/Scroller.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/scroll/Scroller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/Search.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/Search.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/SegmentedButton.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/SegmentedButton.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/Select.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/Select.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/mixin/Selectable.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/mixin/Selectable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/camera/Sencha.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/camera/Sencha.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/connection/Sencha.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/connection/Sencha.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/contacts/Sencha.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/contacts/Sencha.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/device/Sencha.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/device/Sencha.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/filesystem/Sencha.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/filesystem/Sencha.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/geolocation/Sencha.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/geolocation/Sencha.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/notification/Sencha.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/notification/Sencha.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/orientation/Sencha.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/orientation/Sencha.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/purchases/Sencha.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/purchases/Sencha.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/push/Sencha.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/push/Sencha.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/sqlite/Sencha.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/sqlite/Sencha.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/tunnel/Sencha.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/tunnel/Sencha.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/identifier/Sequential.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/identifier/Sequential.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/proxy/Server.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/proxy/Server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/proxy/SessionStorage.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/proxy/SessionStorage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Sheet.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Sheet.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/identifier/Simple.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/identifier/Simple.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dataview/component/SimpleListItem.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dataview/component/SimpleListItem.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/accelerometer/Simulator.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/accelerometer/Simulator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/browser/Simulator.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/browser/Simulator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/camera/Simulator.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/camera/Simulator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/compass/Simulator.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/compass/Simulator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/connection/Simulator.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/connection/Simulator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/device/Simulator.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/device/Simulator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/filesystem/Simulator.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/filesystem/Simulator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/geolocation/Simulator.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/geolocation/Simulator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/globalization/Simulator.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/globalization/Simulator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/notification/Simulator.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/notification/Simulator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/splashscreen/Simulator.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/splashscreen/Simulator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/storage/Simulator.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/storage/Simulator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/tunnel/Simulator.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/tunnel/Simulator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/recognizer/SingleTouch.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/recognizer/SingleTouch.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/SizeMonitor.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/SizeMonitor.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/animation/Slide.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/animation/Slide.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/layout/card/Slide.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/layout/card/Slide.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/animation/SlideOut.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/animation/SlideOut.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/Slider.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/Slider.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/slider/Slider.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/slider/Slider.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/picker/Slot.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/picker/Slot.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/SortTypes.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/SortTypes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Sortable.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Sortable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/mixin/Sortable.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/mixin/Sortable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Sortable.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Sortable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/plugin/SortableList.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/plugin/SortableList.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Sorter.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Sorter.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Spacer.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Spacer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/Spinner.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/Spinner.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Splashscreen.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Splashscreen.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/proxy/Sql.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/proxy/Sql.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/State.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/State.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Storage.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Storage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/Store.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/Store.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/parse/Store.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/parse/Store.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/StoreManager.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/StoreManager.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/core/lang/String.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/core/lang/String.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/layout/card/Style.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/layout/card/Style.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/recognizer/Swipe.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/recognizer/Swipe.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/platform/src/data/sync/SyncModel.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/platform/src/data/sync/SyncModel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/platform/src/data/proxies/SyncProxy.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/platform/src/data/proxies/SyncProxy.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/platform/src/data/proxies/SyncStorageProxy.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/platform/src/data/proxies/SyncStorageProxy.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/platform/src/data/stores/SyncStore.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/platform/src/data/stores/SyncStore.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/tab/Tab.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/tab/Tab.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/TabMenuButton.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/TabMenuButton.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/table/Table.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/table/Table.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/recognizer/Tap.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/recognizer/Tap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/TapRepeater.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/TapRepeater.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/TaskQueue.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/TaskQueue.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/mixin/Templatable.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/mixin/Templatable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Template.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Template.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/Text.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/Text.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/TextArea.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/TextArea.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/TextAreaInput.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/TextAreaInput.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/slider/Thumb.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/slider/Thumb.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Title.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Title.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/TitleBar.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/TitleBar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Toast.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Toast.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/Toggle.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/Toggle.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/slider/Toggle.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/slider/Toggle.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Toolbar.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Toolbar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/Touch.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/Touch.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/recognizer/Touch.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/recognizer/Touch.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/publisher/TouchGesture.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/publisher/TouchGesture.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/direct/Transaction.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/direct/Transaction.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/behavior/Translatable.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/behavior/Translatable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Translatable.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Translatable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/TranslatableGroup.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/TranslatableGroup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/TranslatableList.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/TranslatableList.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/mixin/Traversable.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/mixin/Traversable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/TreeStore.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/TreeStore.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Tunnel.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/Tunnel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/device/Twitter.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/ux/device/Twitter.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/Types.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/Types.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/platform/src/data/sync/UUIDGenerator.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/platform/src/data/sync/UUIDGenerator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/platform/src/data/sync/Updates.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/platform/src/data/sync/Updates.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/Url.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/field/Url.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/view/user/UserMainView.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/view/user/UserMainView.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/platform/src/data/sync/Utilities.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/platform/src/data/sync/Utilities.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/identifier/Uuid.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/identifier/Uuid.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/layout/VBox.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/layout/VBox.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/Validations.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/Validations.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/core/version/Version.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/core/version/Version.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/recognizer/VerticalSwipe.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/event/recognizer/VerticalSwipe.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Video.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Video.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/navigation/View.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/navigation/View.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/scroll/View.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/scroll/View.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/viewport/Viewport.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/viewport/Viewport.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/proxy/WebStorage.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/proxy/WebStorage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/browser/Window.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/device/browser/Window.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/viewport/WindowsPhone.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/viewport/WindowsPhone.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/animation/Wipe.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/animation/Wipe.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/animation/WipeOut.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/fx/animation/WipeOut.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Wrapper.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Wrapper.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/writer/Writer.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/writer/Writer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/log/writer/Writer.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/log/writer/Writer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/XTemplate.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/XTemplate.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/XTemplateCompiler.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/XTemplateCompiler.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/XTemplateParser.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/XTemplateParser.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/reader/Xml.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/reader/Xml.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/writer/Xml.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/data/writer/Xml.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/assets/www/app.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/assets/www/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/www/app.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/www/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/res/xml/config.xml" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/res/xml/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/locale/ext-lang-en.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/locale/ext-lang-en.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/LaunchBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/LaunchBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteChargeServiceImpl.java" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteChargeServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteMemberServiceImpl.java" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteMemberServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteServiceImpl.java" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/VersionBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/VersionBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/build.gradle" afterPath="$PROJECT_DIR$/yt-service/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MOVED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\AlongBeanRepository.java" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/AlongBeanCrud.java" />
+      <change type="MOVED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\repository\neo4j\RouteRepository.java" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/neo4j/RouteMainBeanRepository.java" />
     </list>
     <ignored path="yourtour.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -579,16 +193,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Component.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/touch/src/Component.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.0666666">
-              <caret line="238" column="0" selection-start-line="238" selection-start-column="0" selection-end-line="238" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="HomeMainView.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/home/HomeMainView.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -619,16 +223,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserMainView.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/user/UserMainView.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1" column="26" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="MainView.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/MainView.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -649,11 +243,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HomeMainCtrl.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="HomeMainCtrl.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/controller/HomeMainCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.4122808">
-              <caret line="18" column="41" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HomeRestResource.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/HomeRestResource.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.43603605">
+              <caret line="81" column="9" selection-start-line="81" selection-start-column="9" selection-end-line="81" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LaunchVO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/home/LaunchVO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="86" column="33" selection-start-line="86" selection-start-column="33" selection-end-line="86" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ResponseDataVO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yt-web-core/src/main/java/com/yt/response/ResponseDataVO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -3485,7 +3109,6 @@
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/UpgradeView.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/ActivityView.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/cordova/config.xml" />
-        <option value="$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/HomeRestResource.java" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/util/Context.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/touch/src/tab/Panel.js" />
@@ -3499,6 +3122,7 @@
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/home/HomeMainView.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/controller/MainCtrl.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/controller/HomeMainCtrl.js" />
+        <option value="$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/HomeRestResource.java" />
       </list>
     </option>
   </component>
@@ -4239,7 +3863,7 @@
   <component name="PropertiesComponent">
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="HomeMainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/HomeMainCtrl.js&#10;MainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/MainCtrl.js&#10;User&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/user/UserMainView.js&#10;PlaceMain&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/place/PlaceMainView.js&#10;XPage.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XPage.js&#10;UserMainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/user/UserMainView.js&#10;PlacemainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/place/PlaceMainView.js&#10;RouteMainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/route/RouteMainView.js&#10;HomeMainView.JS&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/home/HomeMainView.js&#10;index.html&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/index.html&#10;Component.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/Component.js&#10;HomeMainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/home/HomeMainView.js&#10;panel&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/tab/Panel.js&#10;Tab.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/tab/Tab.js&#10;Button.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/Button.js&#10;Context.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/util/Context.js&#10;Panel&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/tab/Panel.js&#10;MainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/MainView.js&#10;PlaceMainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/PlaceMainCtrl.js&#10;LaunchS&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/store/LaunchStore.js&#10;launchStore&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/store/LaunchStore.js&#10;HomeRestRes&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/HomeRestResource.java&#10;Config.xml&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/cordova/config.xml&#10;XImage.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XImage.js&#10;LaunchModel.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/model/LaunchModel.js&#10;RouteMainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/route/RouteMainCtrl.js&#10;LaunchStore.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/store/LaunchStore.js&#10;app.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app.js&#10;RouteMainBean&#9;PSI&#9;JAVA://com.yt.business.bean.RouteMainBean&#10;LaunchVO&#9;PSI&#9;JAVA://com.yt.vo.LaunchVO&#10;application&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/resources/application-neo4j-context.xml&#10;RouteServiceImpl.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteServiceImpl.java&#10;Crud&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-neo4j/src/main/java/com/yt/neo4j/repository/CrudGeneralOperate.java&#10;CrudGe&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-neo4j/src/main/java/com/yt/neo4j/repository/CrudGeneralOperate.java&#10;DebugMain&#9;RUN_CONFIGURATION&#9;DebugMain&#10;ContextList&#9;PSI&#9;JAVA://com.yt.ContextLoaderListener&#10;PropertiesReader.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web-core/src/main/java/com/yt/PropertiesReader.java&#10;ServiceRest&#9;PSI&#9;JAVA://com.yt.rest.resource.ServiceRestResource&#10;ServiceRestResource.JAVA&#9;null&#9;null&#10;ResourceRestResource.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/ResourceRestResource.java&#10;LaunchRestResource.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/LaunchRestResource.java&#10;CommentServiceImpl.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/service/impl/CommentServiceImpl.java&#10;RelationshipCrudOperate.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-neo4j/src/main/java/com/yt/neo4j/repository/RelationshipCrudGeneralOperate.java&#10;CrudAllInOneOperateImpl.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-repository/src/main/java/com/yt/repository/CrudAllInOneOperateImpl.java&#10;CrudAllInOneConfig.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-repository/src/main/java/com/yt/repository/CrudAllInOneConfig.java&#10;baseBean.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service/src/main/java/com/yt/business/BaseBeanImpl.java&#10;CrudGeneralOperate.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-neo4j/src/main/java/com/yt/neo4j/repository/CrudGeneralOperate.java&#10;crudAllInOneOperate.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/CrudAllInOneOperate.java&#10;FavoriteTuple.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/repository/neo4j/FavoriteTuple.java&#10;AdminUserInitializeService.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/utils/AdminUserInitializeService.java" />
+    <property name="SearchEverywhereHistoryKey" value="HomeRes&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/HomeRestResource.java&#10;HomeMainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/HomeMainCtrl.js&#10;MainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/MainCtrl.js&#10;User&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/user/UserMainView.js&#10;PlaceMain&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/place/PlaceMainView.js&#10;XPage.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XPage.js&#10;UserMainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/user/UserMainView.js&#10;PlacemainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/place/PlaceMainView.js&#10;RouteMainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/route/RouteMainView.js&#10;HomeMainView.JS&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/home/HomeMainView.js&#10;index.html&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/index.html&#10;Component.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/Component.js&#10;HomeMainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/home/HomeMainView.js&#10;panel&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/tab/Panel.js&#10;Tab.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/tab/Tab.js&#10;Button.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/Button.js&#10;Context.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/util/Context.js&#10;Panel&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/tab/Panel.js&#10;MainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/MainView.js&#10;PlaceMainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/PlaceMainCtrl.js&#10;LaunchS&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/store/LaunchStore.js&#10;launchStore&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/store/LaunchStore.js&#10;HomeRestRes&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/HomeRestResource.java&#10;Config.xml&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/cordova/config.xml&#10;XImage.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XImage.js&#10;LaunchModel.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/model/LaunchModel.js&#10;RouteMainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/route/RouteMainCtrl.js&#10;LaunchStore.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/store/LaunchStore.js&#10;app.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app.js&#10;RouteMainBean&#9;PSI&#9;JAVA://com.yt.business.bean.RouteMainBean&#10;LaunchVO&#9;PSI&#9;JAVA://com.yt.vo.LaunchVO&#10;application&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/resources/application-neo4j-context.xml&#10;RouteServiceImpl.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteServiceImpl.java&#10;Crud&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-neo4j/src/main/java/com/yt/neo4j/repository/CrudGeneralOperate.java&#10;CrudGe&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-neo4j/src/main/java/com/yt/neo4j/repository/CrudGeneralOperate.java&#10;DebugMain&#9;RUN_CONFIGURATION&#9;DebugMain&#10;ContextList&#9;PSI&#9;JAVA://com.yt.ContextLoaderListener&#10;PropertiesReader.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web-core/src/main/java/com/yt/PropertiesReader.java&#10;ServiceRest&#9;PSI&#9;JAVA://com.yt.rest.resource.ServiceRestResource&#10;ServiceRestResource.JAVA&#9;null&#9;null&#10;ResourceRestResource.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/ResourceRestResource.java&#10;LaunchRestResource.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/LaunchRestResource.java&#10;CommentServiceImpl.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/service/impl/CommentServiceImpl.java&#10;RelationshipCrudOperate.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-neo4j/src/main/java/com/yt/neo4j/repository/RelationshipCrudGeneralOperate.java&#10;CrudAllInOneOperateImpl.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-repository/src/main/java/com/yt/repository/CrudAllInOneOperateImpl.java&#10;CrudAllInOneConfig.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-repository/src/main/java/com/yt/repository/CrudAllInOneConfig.java&#10;baseBean.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service/src/main/java/com/yt/business/BaseBeanImpl.java&#10;CrudGeneralOperate.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-neo4j/src/main/java/com/yt/neo4j/repository/CrudGeneralOperate.java&#10;crudAllInOneOperate.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/CrudAllInOneOperate.java&#10;FavoriteTuple.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/repository/neo4j/FavoriteTuple.java" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="project.structure.last.edited" value="Artifacts" />
@@ -4824,12 +4448,12 @@
       <workItem from="1457657267669" duration="10806000" />
       <workItem from="1457674118858" duration="5591000" />
       <workItem from="1457679814428" duration="12452000" />
-      <workItem from="1457743448979" duration="4980000" />
+      <workItem from="1457743448979" duration="5650000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="248071000" />
+    <option name="totallyTimeSpent" value="248741000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -4842,7 +4466,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -4854,7 +4478,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.65849674" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27124184" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.7663399" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7663399" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27382752" sideWeight="0.49346405" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4852941" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -4939,24 +4563,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/neo4j/AlongBeanRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7169811">
-          <caret line="24" column="7" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/yt-service-impl/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.1509434">
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/AlongBeanRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="46" />
         </state>
       </provider>
     </entry>
@@ -5070,13 +4680,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/LaunchVO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3018868">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/PlaceServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3773585">
@@ -5125,14 +4728,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/HomeRestResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -5319,8 +4914,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/controller/HomeMainCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.4122808">
-          <caret line="18" column="41" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-web-core/src/main/java/com/yt/response/ResponseDataVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/home/LaunchVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="86" column="33" selection-start-line="86" selection-start-column="33" selection-end-line="86" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/LaunchBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.44596913">
+          <caret line="17" column="32" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/HomeRestResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43603605">
+          <caret line="81" column="9" selection-start-line="81" selection-start-column="9" selection-end-line="81" selection-end-column="9" />
           <folding />
         </state>
       </provider>
