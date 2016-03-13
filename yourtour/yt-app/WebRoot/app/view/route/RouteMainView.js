@@ -1,5 +1,5 @@
 Ext.define('YourTour.view.route.RouteMainView', {
-    extend: 'YourTour.view.widget.XPage',
+    extend: 'Ext.Container',
     xtype: 'RouteMainView',
     requires: ['Ext.Carousel', 'YourTour.view.widget.XHeaderBar', 'Ext.field.Hidden', 'Ext.Img'],
     config: {

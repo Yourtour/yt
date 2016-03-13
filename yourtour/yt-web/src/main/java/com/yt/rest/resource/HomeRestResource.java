@@ -55,7 +55,7 @@ public class HomeRestResource extends RestResource {
 	 * @return
 	 * @throws Exception
 	 */
-	@Path("/app/launch")
+	@Path("/{devType}/{appType}/{version}/launch")
 	@GET
 	public ResponseDataVO<LaunchVO> launchApp(@PathParam("devType") String devType,
 											  @PathParam("appType") String appType,

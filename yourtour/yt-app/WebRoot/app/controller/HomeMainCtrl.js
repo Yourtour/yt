@@ -10,19 +10,14 @@ Ext.define('YourTour.controller.HomeMainCtrl', {
 
     },
 
-    init:function(){
-      this.showMainPage();
-    },
-
     showMainPage: function () {
         YourTour.util.Context.mainview = this.getHomeMainView();
-        var me = this, view = me.getHomeMainView(), routeList = me.getRouteList();
+        var me = this;
 
         var options = {
-            model: 'YourTour.model.RouteModel',
-            url: '/routes/recommend/6/7',
+            model: 'YourTour.model.HomeModel',
+            url: '/home/0',
             success: function (store) {
-                routeList.setStore(store);
             }
         };
         me.getApplication().query(options);

@@ -77,7 +77,7 @@ Ext.application({
     ],
 
     models: [
-        'SimpleModel', 'LaunchModel', 'RouteModel', 'RouteActivityModel', 'LineModel', 'UserModel', 'OptionModel', 'HomeModel', 'LiveModel', 'ChatModel', 'AlongModel', 'TalentModel', 'HomeCarouselModel', 'CommentModel', 'PlaceModel',
+        'ActivityModel', 'SimpleModel', 'LaunchModel', 'RouteModel', 'RouteActivityModel', 'LineModel', 'UserModel', 'OptionModel', 'HomeModel', 'LiveModel', 'ChatModel', 'AlongModel', 'TalentModel', 'HomeCarouselModel', 'CommentModel', 'PlaceModel',
         'CacheModel', 'ActivityItemModel', 'RouteServiceModel', 'ExpertModel', 'ExpertServiceModel', 'ChargeModel', 'MessageContentModel'
     ],
 
@@ -223,6 +223,17 @@ Ext.application({
         );
     },
 
+    getVersion:function(){
+        return '1.0.0';
+    },
+
+    getDeviceType:function(){
+        return 'android';
+    },
+
+    getAppType:function(){
+        return 'user';
+    },
     /**
      * 保存到本地缓存
      * @param values

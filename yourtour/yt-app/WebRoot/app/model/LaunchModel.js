@@ -5,23 +5,16 @@ Ext.define('YourTour.model.LaunchModel', {
 			{
 				type: 'hasMany',
 				model: 'YourTour.model.DeviceModel',
-				name:'devices',
-				associationKey:'devices'
+				name:'device',
+				associationKey:'device'
 			},
-
-   	    	{  
-   	            type: 'hasMany',   
-   	            model: 'YourTour.model.PlaceModel',   
-   	            name:'places',
-   	            associationKey:'places'
-   	        },
 
 			{
 				type: 'hasMany',
-				model: 'YourTour.model.SimpleModel',
-				name:'tags',
-				associationKey:'tags'
-			}
+				model: 'YourTour.model.ActivityModel',
+				name:'activity',
+				associationKey:'activity'
+			},
 	    ]
     }
 });

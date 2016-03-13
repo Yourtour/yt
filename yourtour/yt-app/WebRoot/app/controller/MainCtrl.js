@@ -29,7 +29,7 @@ Ext.define('YourTour.controller.MainCtrl', {
         if (!welcomeVisited) { //首次安装访问，显示欢迎页
             Ext.Viewport.add(Ext.create('YourTour.view.WelcomeView'));
         } else { //启动后台接口调用
-            me.launch();
+            me.doStartup();
         }
     },
 
@@ -44,30 +44,29 @@ Ext.define('YourTour.controller.MainCtrl', {
     doEnter: function () {
         this.getApplication().storeCached({key: 'welcome.visited', value: '1'});
 
-        this.launch();
+        this.doStartup();
     },
 
     /**
      * 调用远程接口获取数据，包括：基础数据，首页数据以及升级数据
      */
-    launch: function () {
-        var me = this;
+    doStartup: function () {
+        var me = this,
+            deviceTpe = me.getApplication().getDeviceType(),
+            version = me.getApplication().getVersion(),
+            appType = me.getApplication().getAppType();
 
         var options = {
             model: 'YourTour.model.LaunchModel',
-            url: '/launch',
+            url: Ext.String.format('/{0}/{1}/{2}/launch', deviceTpe, appType, version),
             success: function (store) {
                 var data = store.first();
                 if (data.deviceStore) { //检查是否需要升级
                     me.showAppUpgrade(data.deviceStore);
+                } else if (data.activityStore) { //检查是否有活动数据，如果有显示活动页面
+                    me.showActivityPage(data.activityStore);
                 } else {
-                    var json = Ext.JSON.encode(this.store.first().raw);
-                    me.getApplication().storeCached({key: 'app.basedata', value: json}); //缓存基础数据
-                    if (data.activityStore) { //检查是否有活动数据，如果有显示活动页面
-                        me.showActivityPage(data.activityStore);
-                    } else {
-                        me.showMainPage(data);
-                    }
+                    me.showMainPage();
                 }
             }
         };
@@ -84,10 +83,10 @@ Ext.define('YourTour.controller.MainCtrl', {
     /**
      * 显示APP主页
      */
-    showMainPage: function (data) {
+    showMainPage: function () {
         Ext.Viewport.setActiveItem(Ext.create('YourTour.view.MainView'));
 
-        this.showHomeView(data);
+        this.showHomeView();
     },
 
     onActiveItemChange: function (tabBar, newTab, oldTab) {

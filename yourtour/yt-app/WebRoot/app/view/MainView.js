@@ -51,15 +51,9 @@ Ext.define('YourTour.view.MainView', {
 					    iconAlign:'top'
 					},
 					{
-<<<<<<< HEAD
                         xtype:'CartMainView',
 						itemId:'btnTravelCart',
 						title:'旅行车',
-=======
-						xtype:'UserMainView',
-						itemId:'btnPersonal',
-						title:'个人',
->>>>>>> 2e51e1ee7f1bc2c3cf4126351b6534d4636dac1d
 					    iconCls:'user',
 					    iconAlign:'top'
 					},

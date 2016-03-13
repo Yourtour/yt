@@ -3,55 +3,67 @@ Ext.define('YourTour.view.widget.XCarousel', {
     xtype: 'xcarousel',
     config: {
         cls: 'x-xcarousel',
-        timer:0, //定时间隔，单位为毫秒
-        status:'normal' //定时状态， normal/cancel
+        timer: 0, //定时间隔，单位为毫秒
+        task:null,
+        status: 'activate', //定时状态， normal/cancel,
+        animation: {
+            duration: 500,
+            easing: {
+                type: 'ease-out'
+            }
+        },
     },
 
-    initialize:function(){
+    initialize: function () {
         this.callParent(arguments);
 
-        var me = this, timer = this.timer || this.getTimer();
-        if(timer != 0){
-            var task = Ext.create('Ext.util.DelayedTask',function(){
-                me.move();
-            });
-            task.delay(timer); //一秒后执行调用updateClock函数
-        }
+        this.on('activeitemchange', this.onActiveItemChange);
+        this.reset();
     },
 
-    updateTimer:function(timer){
+    updateTimer: function (timer) {
         this.timer = timer;
     },
 
-    move:function(){
+    onActiveItemChange: function () {
         var me = this,
-            timer = this.timer || this.getTimer(),
-            activeIndex = this.getActiveIndex(),
-            size = this.items().length,
-            status = this.status || this.getStatus();
-
-        if(status == 'cancel') return;
-
-        if(activeIndex < size - 1){
-            this.setActiveItem(activeIndex + 1);
-        }else{
-            this.setActiveItems(0);
+            task = me.task || me.getTask();
+        if(task != null) {
+            task.cancel();
+            task = null;
         }
 
-        var task = Ext.create('Ext.util.DelayedTask',function(){
-            me.move();
-        });
-        task.delay(timer); //一秒后执行调用updateClock函数
+        var status = this.status || this.getStatus();
+        if (status == 'deactivate') return;
+
+        this.nextItem();
     },
 
-    destroy: function() {
-        var task = this.task || this.getTask();
+    nextItem:function(){
+        var me = this,
+            timer = me.timer || me.getTimer(),
+            activeIndex = me.getActiveIndex(),
+            size = me.getItems().length;
 
-        if(task != null){
-            task.cancel();
-            this.status = 'cancel';
-        }
+        me.task = Ext.create('Ext.util.DelayedTask', function () {
+            if (activeIndex < size - 2) {
+                me.setActiveItem(activeIndex + 1);
+            } else {
+                me.setActiveItem(0);
+            }
+        });
+        me.task.delay(timer); //一秒后执行调用updateClock函数
+    },
 
-        this.callParent(arguments);
+    pause: function () {
+       this.status = 'deactivate';
+    },
+
+    reset: function () {
+        var me = this;
+
+        me.status = 'activate';
+
+        this.nextItem();
     }
 })
