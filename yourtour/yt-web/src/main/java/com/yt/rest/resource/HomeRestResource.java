@@ -47,19 +47,23 @@ public class HomeRestResource extends RestResource {
 	}
 
 	/**
-	 * APP 启动调用接口
-	 * 
-	 * @param version
+	 * 客户端启动调用接口
+	 * @param devType  设备类型，目前为Android和IOS
+	 * @param appType  APP类型, 达人版和游客版
+	 * @param version  当前客户端版本，为三段式
+	 * @param request
 	 * @return
 	 * @throws Exception
 	 */
 	@Path("/app/launch")
 	@GET
 	public ResponseDataVO<LaunchVO> launchApp(@PathParam("devType") String devType,
+											  @PathParam("appType") String appType,
 											  @PathParam("version") String version,
 											  @Context HttpServletRequest request) throws Exception {
 		String accessToken = request.getHeader("Access-Token");
-		Map<String, Object> map = homeService.launch(accessToken, devType, version);
+		Map<String, Object> map = homeService.launch(accessToken, devType, appType, version);
+
 		LaunchBean launch = (LaunchBean) map.get(IHomeService.KEY_LAUNCHBEAN);
 		VersionBean versionBean = (VersionBean) map.get(IHomeService.KEY_VERSIONBEAN);
 		ActivityBean activity = (ActivityBean) map.get(IHomeService.KEY_ACTIVITYBEAN);

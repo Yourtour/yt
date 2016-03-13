@@ -50,7 +50,7 @@ public class HomeServiceImpl extends ServiceBase implements IHomeService {
     }
 
     @Override
-    public Map<String, Object> launch(String accessToken, String devType, String version) throws Exception{
+    public Map<String, Object> launch(String accessToken, String devType, String appType, String version) throws Exception{
         Map<String, Object> map = new HashMap<String, Object>();
         if (StringUtils.isNull(accessToken)) { // 第一次运行本系统
             accessToken = UUID.randomUUID().toString();
