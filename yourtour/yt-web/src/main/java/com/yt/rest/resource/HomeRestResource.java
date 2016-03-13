@@ -28,10 +28,17 @@ public class HomeRestResource extends RestResource {
 	@Autowired
 	private IHomeService homeService;
 
+	/**
+	 * 获取首页数据
+	 * @param lastModifiedTime 首页上次修改数据，用于判断客户端缓存的首页数据在服务器端是否改变，如改变返回最新的首页数据，否则
+	 * @return
+	 * @throws Exception
+	 */
 	@Path("/home/{lastModifiedTime}")
 	@GET
 	public ResponseDataVO<RecommendInHomeVO> getHomeDate(@PathParam("lastModifiedTime") Long lastModifiedTime) throws Exception{
 		Map<String, Object> recommends = homeService.getHomeData(SessionUtils.getCurrentLoginUser(), lastModifiedTime);
+
 		List<BannerBean> banners = (List<BannerBean>) recommends.get(IHomeService.KEY_BANNERS);
 		List<RouteMainBean> routes = (List<RouteMainBean>) recommends.get(IHomeService.KEY_ROUTES);
 		List<HotPlayingBean> hotPlayings = (List<HotPlayingBean>) recommends.get(IHomeService.KEY_HOTPLAYINGS);

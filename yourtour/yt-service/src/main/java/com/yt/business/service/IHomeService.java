@@ -46,9 +46,5 @@ public interface IHomeService {
 	 *            客户端版本号
 	 * @return 客户端启动的基础信息，形式为键值对，包括：运行信息、版本信息、活动信息。
 	 */
-<<<<<<< HEAD
-	public Map<String, Object> launch(String accessToken, String devType, String version);
-=======
-	public Map<String, Object> launch(String accessToken, String version);
->>>>>>> 2e51e1ee7f1bc2c3cf4126351b6534d4636dac1d
+	public Map<String, Object> launch(String accessToken, String devType, String version) throws Exception;
 }
