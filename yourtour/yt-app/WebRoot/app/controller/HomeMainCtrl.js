@@ -10,9 +10,13 @@ Ext.define('YourTour.controller.HomeMainCtrl', {
 
     },
 
+    init:function(){
+      this.showMainPage();
+    },
+
     showMainPage: function () {
         YourTour.util.Context.mainview = this.getHomeMainView();
-        var me = this, routeList = me.getRouteList();
+        var me = this, view = me.getHomeMainView(), routeList = me.getRouteList();
 
         var options = {
             model: 'YourTour.model.RouteModel',

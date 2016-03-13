@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92ee94f3-3d6c-4f6d-925a-699d6360b737" name="Default" comment="">
+<<<<<<< HEAD
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/view/cart/CartMainView.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/view/discovery/DiscoveryMainView.js" />
+=======
+>>>>>>> 2e51e1ee7f1bc2c3cf4126351b6534d4636dac1d
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-app\WebRoot\cordova\platforms\android\assets\www\plugins\phonegap-plugin-barcodescanner\www\barcodescanner.js" afterPath="" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-web\WebRoot\WEB-INF\classes\.gitignore" afterPath="" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-web\WebRoot\WEB-INF\classes\application-hbase-context.xml" afterPath="" />
@@ -12,6 +15,7 @@
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-web\WebRoot\WEB-INF\classes\commons-logging.properties" afterPath="" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-web\WebRoot\WEB-INF\classes\config.properties" afterPath="" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-web\WebRoot\WEB-INF\classes\log4j.xml" afterPath="" />
+<<<<<<< HEAD
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
@@ -26,6 +30,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/assets/www/app.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/assets/www/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/www/app.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/www/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/bootstrap.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/bootstrap.js" />
+=======
+>>>>>>> 2e51e1ee7f1bc2c3cf4126351b6534d4636dac1d
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="yourtour.iws" />
@@ -103,42 +109,77 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+<<<<<<< HEAD
       <file leaf-file-name="PlaceMainView.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/place/PlaceMainView.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+=======
+      <file leaf-file-name="Context.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/util/Context.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
+>>>>>>> 2e51e1ee7f1bc2c3cf4126351b6534d4636dac1d
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="CartMainView.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/cart/CartMainView.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
+=======
+      <file leaf-file-name="HomeRestResource.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/HomeRestResource.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="46" column="14" selection-start-line="46" selection-start-column="14" selection-end-line="46" selection-end-column="14" />
+>>>>>>> 2e51e1ee7f1bc2c3cf4126351b6534d4636dac1d
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="HomeMainCtrl.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/controller/HomeMainCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+=======
+      <file leaf-file-name="ChargeRestResource.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/ChargeRestResource.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+>>>>>>> 2e51e1ee7f1bc2c3cf4126351b6534d4636dac1d
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="DiscoveryMainView.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/discovery/DiscoveryMainView.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="5" column="29" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="29" />
               <folding />
+=======
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6112116">
+              <caret line="128" column="27" selection-start-line="128" selection-start-column="17" selection-end-line="128" selection-end-column="27" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+>>>>>>> 2e51e1ee7f1bc2c3cf4126351b6534d4636dac1d
             </state>
           </provider>
         </entry>
@@ -158,48 +199,85 @@
       <file leaf-file-name="MainCtrl.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/controller/MainCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state vertical-scroll-proportion="-6.0666666">
               <caret line="103" column="9" selection-start-line="103" selection-start-column="9" selection-end-line="103" selection-end-column="9" />
+=======
+            <state vertical-scroll-proportion="0.0">
+              <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+>>>>>>> 2e51e1ee7f1bc2c3cf4126351b6534d4636dac1d
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="MainView.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/MainView.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-2.357143">
               <caret line="46" column="42" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
+=======
+      <file leaf-file-name="UpgradeView.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/UpgradeView.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="3" column="37" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="37" />
+>>>>>>> 2e51e1ee7f1bc2c3cf4126351b6534d4636dac1d
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="HomeRestResource.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/HomeRestResource.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-13.357142">
               <caret line="46" column="117" selection-start-line="46" selection-start-column="117" selection-end-line="46" selection-end-column="117" />
+=======
+      <file leaf-file-name="ActivityView.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/ActivityView.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+>>>>>>> 2e51e1ee7f1bc2c3cf4126351b6534d4636dac1d
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="IHomeService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IHomeService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-8.821428">
               <caret line="33" column="77" selection-start-line="33" selection-start-column="43" selection-end-line="33" selection-end-column="77" />
+=======
+      <file leaf-file-name="LaunchModel.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/model/LaunchModel.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="8" column="39" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="39" />
+>>>>>>> 2e51e1ee7f1bc2c3cf4126351b6534d4636dac1d
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="HomeServiceImpl.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/HomeServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.11891892">
               <caret line="29" column="33" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
+=======
+      <file leaf-file-name="WelcomeView.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/WelcomeView.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="15" column="61" selection-start-line="15" selection-start-column="61" selection-end-line="15" selection-end-column="61" />
+>>>>>>> 2e51e1ee7f1bc2c3cf4126351b6534d4636dac1d
               <folding />
             </state>
           </provider>
@@ -2994,6 +3072,23 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+<<<<<<< HEAD
+=======
+        <option value="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/BaseService.java" />
+        <option value="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/ServiceBase.java" />
+        <option value="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IBaseService.java" />
+        <option value="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/BaseServiceImpl.java" />
+        <option value="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/ConsultVO.java" />
+        <option value="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/BannerVO.java" />
+        <option value="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/HomeVO.java" />
+        <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XNavCarousel.js" />
+        <option value="$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/MemberRestResource.java" />
+        <option value="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/ChatServiceImpl.java" />
+        <option value="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/route/RouteMemberVO.java" />
+        <option value="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/route/RouteActivityVO.java" />
+        <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XCarousel.js" />
+        <option value="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/BannerBean.java" />
+>>>>>>> 2e51e1ee7f1bc2c3cf4126351b6534d4636dac1d
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/model/HomeModel.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/store/LocalStore.js" />
         <option value="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/UserServiceImpl.java" />
@@ -3025,8 +3120,10 @@
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/WelcomeView.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/model/LaunchModel.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/UpgradeView.js" />
+        <option value="$PROJECT_DIR$/yt-app/WebRoot/app.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/ActivityView.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/cordova/config.xml" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/yt-app/WebRoot/touch/src/tab/Panel.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/touch/src/Button.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/touch/src/dom/Element.style.js" />
@@ -3043,6 +3140,10 @@
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/MainView.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/cart/CartMainView.js" />
         <option value="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IHomeService.java" />
+=======
+        <option value="$PROJECT_DIR$/yt-app/WebRoot/app/controller/MainCtrl.js" />
+        <option value="$PROJECT_DIR$/yt-app/WebRoot/app/util/Context.js" />
+>>>>>>> 2e51e1ee7f1bc2c3cf4126351b6534d4636dac1d
         <option value="$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/HomeRestResource.java" />
         <option value="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/HomeServiceImpl.java" />
       </list>
@@ -3745,6 +3846,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+<<<<<<< HEAD
               <option name="myItemId" value="yt-app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -3887,24 +3989,30 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+=======
+>>>>>>> 2e51e1ee7f1bc2c3cf4126351b6534d4636dac1d
               <option name="myItemId" value=".gradle" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+<<<<<<< HEAD
     <property name="SearchEverywhereHistoryKey" value="HomeRest&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/HomeRestResource.java&#10;HomeMain&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/HomeMainCtrl.js&#10;app.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app.js&#10;MainVi&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/MainView.js&#10;Context.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/util/Context.js&#10;LaunchModel&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/model/LaunchModel.js&#10;HomeRes&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/HomeRestResource.java&#10;HomeMainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/HomeMainCtrl.js&#10;MainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/MainCtrl.js&#10;User&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/user/UserMainView.js&#10;PlaceMain&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/place/PlaceMainView.js&#10;XPage.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XPage.js&#10;UserMainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/user/UserMainView.js&#10;PlacemainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/place/PlaceMainView.js&#10;RouteMainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/route/RouteMainView.js&#10;HomeMainView.JS&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/home/HomeMainView.js&#10;index.html&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/index.html&#10;Component.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/Component.js&#10;HomeMainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/home/HomeMainView.js&#10;panel&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/tab/Panel.js&#10;Tab.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/tab/Tab.js&#10;Button.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/Button.js&#10;Panel&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/tab/Panel.js&#10;MainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/MainView.js&#10;PlaceMainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/PlaceMainCtrl.js&#10;LaunchS&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/store/LaunchStore.js&#10;launchStore&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/store/LaunchStore.js&#10;HomeRestRes&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/HomeRestResource.java&#10;Config.xml&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/cordova/config.xml&#10;XImage.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XImage.js&#10;LaunchModel.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/model/LaunchModel.js&#10;RouteMainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/route/RouteMainCtrl.js&#10;LaunchStore.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/store/LaunchStore.js&#10;RouteMainBean&#9;PSI&#9;JAVA://com.yt.business.bean.RouteMainBean&#10;LaunchVO&#9;PSI&#9;JAVA://com.yt.vo.LaunchVO&#10;application&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/resources/application-neo4j-context.xml&#10;RouteServiceImpl.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteServiceImpl.java&#10;Crud&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-neo4j/src/main/java/com/yt/neo4j/repository/CrudGeneralOperate.java&#10;CrudGe&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-neo4j/src/main/java/com/yt/neo4j/repository/CrudGeneralOperate.java&#10;DebugMain&#9;RUN_CONFIGURATION&#9;DebugMain&#10;ContextList&#9;PSI&#9;JAVA://com.yt.ContextLoaderListener&#10;PropertiesReader.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web-core/src/main/java/com/yt/PropertiesReader.java&#10;ServiceRest&#9;PSI&#9;JAVA://com.yt.rest.resource.ServiceRestResource&#10;ServiceRestResource.JAVA&#9;null&#9;null&#10;ResourceRestResource.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/ResourceRestResource.java&#10;LaunchRestResource.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/LaunchRestResource.java&#10;CommentServiceImpl.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/service/impl/CommentServiceImpl.java&#10;RelationshipCrudOperate.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-neo4j/src/main/java/com/yt/neo4j/repository/RelationshipCrudGeneralOperate.java&#10;CrudAllInOneOperateImpl.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-repository/src/main/java/com/yt/repository/CrudAllInOneOperateImpl.java&#10;CrudAllInOneConfig.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-repository/src/main/java/com/yt/repository/CrudAllInOneConfig.java" />
+=======
+    <property name="SearchEverywhereHistoryKey" value="HomeRestRes&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/HomeRestResource.java&#10;Config.xml&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/cordova/config.xml&#10;XImage.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XImage.js&#10;LaunchModel.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/model/LaunchModel.js&#10;RouteMainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/route/RouteMainCtrl.js&#10;LaunchStore.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/store/LaunchStore.js&#10;index.html&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/index.html&#10;app.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app.js&#10;MainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/MainCtrl.js&#10;RouteMainBean&#9;PSI&#9;JAVA://com.yt.business.bean.RouteMainBean&#10;LaunchVO&#9;PSI&#9;JAVA://com.yt.vo.LaunchVO&#10;Context.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/util/Context.js&#10;application&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/resources/application-neo4j-context.xml&#10;RouteServiceImpl.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteServiceImpl.java&#10;Crud&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-neo4j/src/main/java/com/yt/neo4j/repository/CrudGeneralOperate.java&#10;CrudGe&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-neo4j/src/main/java/com/yt/neo4j/repository/CrudGeneralOperate.java&#10;DebugMain&#9;RUN_CONFIGURATION&#9;DebugMain&#10;ContextList&#9;PSI&#9;JAVA://com.yt.ContextLoaderListener&#10;PropertiesReader.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web-core/src/main/java/com/yt/PropertiesReader.java&#10;ServiceRest&#9;PSI&#9;JAVA://com.yt.rest.resource.ServiceRestResource&#10;ServiceRestResource.JAVA&#9;null&#9;null&#10;ResourceRestResource.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/ResourceRestResource.java&#10;LaunchRestResource.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/LaunchRestResource.java&#10;CommentServiceImpl.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/service/impl/CommentServiceImpl.java&#10;RelationshipCrudOperate.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-neo4j/src/main/java/com/yt/neo4j/repository/RelationshipCrudGeneralOperate.java&#10;CrudAllInOneOperateImpl.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-repository/src/main/java/com/yt/repository/CrudAllInOneOperateImpl.java&#10;CrudAllInOneConfig.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-repository/src/main/java/com/yt/repository/CrudAllInOneConfig.java&#10;baseBean.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service/src/main/java/com/yt/business/BaseBeanImpl.java&#10;CrudGeneralOperate.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-neo4j/src/main/java/com/yt/neo4j/repository/CrudGeneralOperate.java&#10;crudAllInOneOperate.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/CrudAllInOneOperate.java&#10;FavoriteTuple.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/repository/neo4j/FavoriteTuple.java&#10;AdminUserInitializeService.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/utils/AdminUserInitializeService.java&#10;UserServiceImpl&#9;PSI&#9;JAVA://com.yt.business.service.impl.UserServiceImpl&#10;AdminUserInitializeService.js&#9;null&#9;null&#10;LocalStore.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/store/LocalStore.js&#10;HomeModel.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/model/HomeModel.js&#10;AccountMainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/AccountMainCtrl.js&#10;UserMainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/UserMainCtrl.js&#10;AjaxStore.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/store/AjaxStore.js&#10;ChatServiceImpl&#9;PSI&#9;JAVA://com.yt.business.service.impl.ChatServiceImpl&#10;MemberRest&#9;PSI&#9;JAVA://com.yt.rest.resource.MemberRestResource&#10;DelayedTask.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/util/DelayedTask.js&#10;Carousel.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/carousel/Carousel.js&#10;XCarousel.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XCarousel.js&#10;WebUtils.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web-core/src/main/java/com/yt/utils/WebUtils.java&#10;ChargeRest&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/ChargeRestResource.java&#10;CommentSer&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/service/impl/CommentServiceImpl.java&#10;Constants&#9;PSI&#9;JAVA://com.yt.business.common.Constants&#10;RouteMainBean.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service/src/main/java/com/yt/business/bean/RouteMainBean.java&#10;iExpertSer&#9;PSI&#9;JAVA://com.yt.business.service.IExpertService" />
+>>>>>>> 2e51e1ee7f1bc2c3cf4126351b6534d4636dac1d
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.120033115" />
     <property name="project.structure.side.proportion" value="0.19567263" />
     <property name="FullScreen" value="false" />
@@ -4359,7 +4467,7 @@
         </artifact>
         <artifact name="yt-web:war exploded">
           <settings>
-            <option name="CONTEXT_PATH" value="/yt-web" />
+            <option name="CONTEXT_PATH" value="/" />
           </settings>
         </artifact>
       </deployment>
@@ -4485,13 +4593,21 @@
       <workItem from="1457599737565" duration="5470000" />
       <workItem from="1457657267669" duration="10806000" />
       <workItem from="1457674118858" duration="5591000" />
+<<<<<<< HEAD
       <workItem from="1457679814428" duration="12452000" />
       <workItem from="1457743448979" duration="9606000" />
+=======
+      <workItem from="1457679814428" duration="4154000" />
+>>>>>>> 2e51e1ee7f1bc2c3cf4126351b6534d4636dac1d
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="252697000" />
+=======
+    <option name="totallyTimeSpent" value="234793000" />
+>>>>>>> 2e51e1ee7f1bc2c3cf4126351b6534d4636dac1d
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -4512,24 +4628,27 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5571895" sideWeight="0.7405446" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15359478" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15196079" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.65849674" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27124184" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28267974" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.07942511" sideWeight="0.49346405" order="0" side_tool="false" content_ui="combo" />
+=======
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1482602" sideWeight="0.49346405" order="0" side_tool="false" content_ui="combo" />
+>>>>>>> 2e51e1ee7f1bc2c3cf4126351b6534d4636dac1d
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4852941" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24508321" sideWeight="0.50653595" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6960784" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24508321" sideWeight="0.51272726" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27124184" sideWeight="0.25945538" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.60620916" sideWeight="0.25945538" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -4537,6 +4656,7 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4101307" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -4592,7 +4712,7 @@
           <properties />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="8" />
+      <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -4601,6 +4721,161 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IAlongService.java">
+=======
+    <entry file="file://$PROJECT_DIR$/yt-web/src/main/resources/application-rest-context.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20754717">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-web/src/main/resources/application-hbase-context.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.056603774">
+          <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-service-impl/src/test/java/com/yt/business/repository/neo4j/DataGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-service-impl/src/test/java/com/yt/business/repository/neo4j/IText.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="24" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-service-impl/src/test/java/com/yt/business/repository/neo4j/Text.java">
+>>>>>>> 2e51e1ee7f1bc2c3cf4126351b6534d4636dac1d
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="31" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-service-impl/src/test/java/com/yt/business/repository/neo4j/DebugMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="32" column="34" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/repository/CrudGeneralOperate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.285714">
+          <caret line="94" column="0" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/AlongBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/BannerBeanRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1509434">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ExpertBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.28301886">
+          <caret line="20" column="44" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/HotelResourceBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2264151">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/TravelCartBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20754717">
+          <caret line="9" column="48" selection-start-line="9" selection-start-column="48" selection-end-line="9" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/HomeBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.28301886">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/LaunchBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.26415095">
+          <caret line="7" column="44" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/neo4j/AlongBeanRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7169811">
+          <caret line="24" column="7" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-service-impl/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1509434">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/AlongBeanRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XImage.js">
+=======
+    <entry file="file://$PROJECT_DIR$/yt-service/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.103286386">
+          <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/AlongServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/BaseDictBeanImpl.java">
+>>>>>>> 2e51e1ee7f1bc2c3cf4126351b6534d4636dac1d
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IAlongService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.41509435">
@@ -4613,7 +4888,7 @@
         <state vertical-scroll-proportion="0.3327616">
           <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -4632,6 +4907,9 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/controller/PlaceMainCtrl.js">
+=======
     <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/cordova/plugins/cordova-plugin-app-version/www/AppVersionPlugin.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -4640,6 +4918,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/cordova/plugins/cordova-plugin-app-version/plugin.xml">
+>>>>>>> 2e51e1ee7f1bc2c3cf4126351b6534d4636dac1d
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="36" column="34" selection-start-line="36" selection-start-column="34" selection-end-line="36" selection-end-column="34" />
@@ -4651,17 +4930,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.39849624">
           <caret line="1" column="48697" selection-start-line="1" selection-start-column="48697" selection-end-line="1" selection-end-column="48697" />
+          <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/ChargeRestResource.java">
+=======
     <entry file="file://$PROJECT_DIR$/yt-android/platforms/android/build/intermediates/incremental/mergeAssets/debug/merger.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.39849624">
           <caret line="1" column="10565" selection-start-line="1" selection-start-column="10565" selection-end-line="1" selection-end-column="10565" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/AndroidManifest.xml">
+>>>>>>> 2e51e1ee7f1bc2c3cf4126351b6534d4636dac1d
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="52" column="84" selection-start-line="52" selection-start-column="84" selection-end-line="52" selection-end-column="84" />
@@ -4687,6 +4972,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.482821">
           <caret line="297" column="0" selection-start-line="297" selection-start-column="0" selection-end-line="297" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="996" column="62" selection-start-line="996" selection-start-column="62" selection-end-line="996" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/store/LaunchStore.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33962265">
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/LaunchVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3018868">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -4697,86 +5006,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/WelcomeView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="61" selection-start-line="15" selection-start-column="61" selection-end-line="15" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/controller/route/RouteMainCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.29294756">
           <caret line="103" column="8" selection-start-line="103" selection-start-column="8" selection-end-line="119" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XImage.js">
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/model/LaunchModel.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/cordova/www/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="0" column="594215" selection-start-line="0" selection-start-column="594202" selection-end-line="0" selection-end-column="594215" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/cordova/plugins/org.apache.cordova.splashscreen/src/android/SplashScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49387756">
-          <caret line="213" column="37" selection-start-line="213" selection-start-column="37" selection-end-line="213" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/cordova/config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/SearchMain.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/controller/PlaceMainCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/build/package/YourTour/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3692946">
-          <caret line="0" column="605207" selection-start-line="0" selection-start-column="605207" selection-end-line="0" selection-end-column="605207" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/ChargeRestResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/touch/src/dom/Element.style.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45318353">
-          <caret line="583" column="38" selection-start-line="583" selection-start-column="38" selection-end-line="583" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/touch/src/Button.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="356" column="26" selection-start-line="356" selection-start-column="26" selection-end-line="356" selection-end-column="26" />
+          <caret line="8" column="39" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="39" />
           <folding />
         </state>
       </provider>
@@ -4789,78 +5037,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/WelcomeView.js">
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XImage.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="61" selection-start-line="15" selection-start-column="61" selection-end-line="15" selection-end-column="61" />
+          <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/ActivityView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.67913383">
-          <caret line="721" column="18" selection-start-line="721" selection-start-column="18" selection-end-line="721" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/touch/src/tab/Bar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="27" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/touch/src/tab/Panel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="258" column="13" selection-start-line="258" selection-start-column="4" selection-end-line="258" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/touch/src/Component.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.0666666">
-          <caret line="238" column="0" selection-start-line="238" selection-start-column="0" selection-end-line="238" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/touch/src/tab/Tab.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.044989776">
-          <caret line="75" column="28" selection-start-line="75" selection-start-column="28" selection-end-line="75" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/user/UserMainView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1" column="26" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/home/HomeMainView.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -4889,50 +5074,85 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.44596913">
           <caret line="17" column="32" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/route/RouteMainView.js">
+=======
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/cordova/www/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="21" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="0" column="594215" selection-start-line="0" selection-start-column="594202" selection-end-line="0" selection-end-column="594215" />
+>>>>>>> 2e51e1ee7f1bc2c3cf4126351b6534d4636dac1d
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/cordova/plugins/org.apache.cordova.splashscreen/src/android/SplashScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.49387756">
+          <caret line="213" column="37" selection-start-line="213" selection-start-column="37" selection-end-line="213" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#10639#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/model/LaunchModel.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="32" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
+=======
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/cordova/config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.50612247">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+>>>>>>> 2e51e1ee7f1bc2c3cf4126351b6534d4636dac1d
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/util/Context.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="36" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
+=======
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/ActivityView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+>>>>>>> 2e51e1ee7f1bc2c3cf4126351b6534d4636dac1d
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/controller/MainCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state vertical-scroll-proportion="-6.0666666">
           <caret line="103" column="9" selection-start-line="103" selection-start-column="9" selection-end-line="103" selection-end-column="9" />
+=======
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+>>>>>>> 2e51e1ee7f1bc2c3cf4126351b6534d4636dac1d
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/place/PlaceMainView.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/util/Context.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
+>>>>>>> 2e51e1ee7f1bc2c3cf4126351b6534d4636dac1d
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -4947,10 +5167,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="29" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="29" />
+=======
+    <entry file="file://$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/ChargeRestResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+>>>>>>> 2e51e1ee7f1bc2c3cf4126351b6534d4636dac1d
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/MainView.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.357143">
@@ -4971,12 +5198,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/HomeRestResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="14" selection-start-line="46" selection-start-column="14" selection-end-line="46" selection-end-column="14" />
+>>>>>>> 2e51e1ee7f1bc2c3cf4126351b6534d4636dac1d
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/HomeRestResource.java">
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app.js">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state vertical-scroll-proportion="-13.357142">
           <caret line="46" column="117" selection-start-line="46" selection-start-column="117" selection-end-line="46" selection-end-column="117" />
           <folding />
@@ -4996,6 +5230,13 @@
         <state vertical-scroll-proportion="0.11891892">
           <caret line="29" column="33" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
           <folding />
+=======
+        <state vertical-scroll-proportion="0.6112116">
+          <caret line="128" column="27" selection-start-line="128" selection-start-column="17" selection-end-line="128" selection-end-column="27" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+>>>>>>> 2e51e1ee7f1bc2c3cf4126351b6534d4636dac1d
         </state>
       </provider>
     </entry>
@@ -5005,7 +5246,7 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>yt-app:war exploded</last-edited>
+          <last-edited>yt-web:war exploded</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -5069,7 +5310,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.19567263" />
+                <option value="0.2530574" />
               </list>
             </option>
           </splitter-proportions>

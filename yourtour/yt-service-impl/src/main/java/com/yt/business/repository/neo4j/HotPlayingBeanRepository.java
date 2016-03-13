@@ -22,7 +22,7 @@ public interface HotPlayingBeanRepository extends
 	 *            前n名
 	 * @return 符合条件的推荐大家都在玩
 	 */
-	@Query("MATCH (HotPlayingBean) "
+	@Query("MATCH (n:HotPlayingBean) "
 			+ "RETURN n ORDER BY n.commentScore DESC LIMIT {1}")
 	public List<HotPlayingBean> getRecommendHotPlayings(int n);
 }

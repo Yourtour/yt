@@ -1,9 +1,10 @@
 Ext.define('YourTour.view.place.PlaceMainView', {
-	extend: 'Ext.Container',
+	extend: 'YourTour.view.widget.XPage',
     requires:['YourTour.view.widget.XHeaderBar','YourTour.view.widget.XDataView','YourTour.view.place.PlaceMainDataItem'],
     xtype:'PlaceMainView',
 	config: {
     	id:'PlaceMainView',
+      	layout:'vbox',
         items: [
 			{    
 				xtype: 'xheaderbar',

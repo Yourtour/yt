@@ -135,15 +135,7 @@ Ext.application({
 
         YourTour.util.Context.setApplication(this);
 
-        this.getController('MainCtrl').startup();
-    },
-
-    getVersion:function(){
-        return '1.0.0';
-    },
-
-    getDeviceType:function(){
-        return 'android';
+        this.initAppContext();
     },
 
     getBaseStore:function(){

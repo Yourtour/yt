@@ -1,5 +1,22 @@
 package com.yt.rest.resource;
 
+import java.util.List;
+import java.util.Vector;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.yt.business.bean.ChatMessageBean;
 import com.yt.business.bean.ChatSessionBean;
 import com.yt.business.service.IChatService;
@@ -7,17 +24,6 @@ import com.yt.core.common.StaticErrorEnum;
 import com.yt.response.ResponseDataVO;
 import com.yt.vo.chat.ChatMessageVO;
 import com.yt.vo.chat.ChatSessionVO;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import java.util.List;
-import java.util.Vector;
 
 @Component
 @Path("app/chat")
