@@ -57,7 +57,6 @@ Ext.define('YourTour.controller.MainCtrl', {
                 } else {
                     var json = Ext.JSON.encode(data.raw);
                     me.getApplication().storeCached({key: 'app.basedata', value: json}); //缓存基础数据
-
                     if (data.activityStore) { //检查是否有活动数据，如果有显示活动页面
                         me.showActivityPage(data.activityStore);
                     } else {

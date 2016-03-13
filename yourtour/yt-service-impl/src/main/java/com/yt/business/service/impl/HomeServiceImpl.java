@@ -1,9 +1,6 @@
 package com.yt.business.service.impl;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,19 +25,12 @@ public class HomeServiceImpl extends ServiceBase implements IHomeService {
 	@Autowired
 	private HotPlayingBeanRepository hotPlayingRepository;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.yt.business.service.IHomeService#getRecommends()
-	 */
 	@Override
-	public Map<String, Object> getRecommends() throws Exception {
+	public Map<String, Object> getHomeData(Long userId, Long lastModifiedTime) throws Exception {
 		Map<String, Object> recommends = new HashMap<String, Object>();
-		List<BannerBean> banners = bannerRepository.getRecommendBanners(
-				new Date().getTime(), 3);
+		List<BannerBean> banners = bannerRepository.getRecommendBanners(new Date().getTime(), 3);
 		List<RouteMainBean> routes = routeRepository.getRecommendRoutes(3);
-		List<HotPlayingBean> hotPlayings = hotPlayingRepository
-				.getRecommendHotPlayings(3);
+		List<HotPlayingBean> hotPlayings = hotPlayingRepository.getRecommendHotPlayings(3);
 
 		recommends.put(IHomeService.KEY_BANNERS, banners);
 		recommends.put(IHomeService.KEY_ROUTES, routes);
@@ -55,8 +45,12 @@ public class HomeServiceImpl extends ServiceBase implements IHomeService {
 	 * java.lang.Long, java.lang.String)
 	 */
 	@Override
-	public Map<String, Object> launch(String accessToken, Long lastAccessDate,
-			String version) {
+	public Map<String, Object> launch(String accessToken,String devType, String version) {
+		if (accessToken == null || accessToken.isEmpty()) {
+			// 第一次运行本系统
+			accessToken = UUID.randomUUID().toString();
+		}
+
 		// TODO Auto-generated method stub
 		return null;
 	}

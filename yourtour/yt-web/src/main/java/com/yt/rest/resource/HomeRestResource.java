@@ -13,6 +13,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import com.yt.utils.SessionUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,29 +41,18 @@ public class HomeRestResource {
 	@Autowired
 	private IHomeService homeService;
 
-	@Path("/home/recommend")
+	@Path("/home/{lastModifiedTime}")
 	@GET
-	@SuppressWarnings("unchecked")
-	public ResponseDataVO<RecommendInHomeVO> getRecommend() {
-		try {
-			Map<String, Object> recommends = homeService.getRecommends();
-			List<BannerBean> banners = (List<BannerBean>) recommends
-					.get(IHomeService.KEY_BANNERS);
-			List<RouteMainBean> routes = (List<RouteMainBean>) recommends
-					.get(IHomeService.KEY_ROUTES);
-			List<HotPlayingBean> hotPlayings = (List<HotPlayingBean>) recommends
-					.get(IHomeService.KEY_HOTPLAYINGS);
-			return new ResponseDataVO<RecommendInHomeVO>(
-					RecommendInHomeVO.transform(banners, routes, hotPlayings));
-		} catch (Exception ex) {
-			if (LOG.isErrorEnabled()) {
-				LOG.error(
-						"Fetch the recommends information in home page fail.",
-						ex);
-			}
-			return new ResponseDataVO<RecommendInHomeVO>(
-					StaticErrorEnum.FETCH_DB_DATA_FAIL);
-		}
+	public ResponseDataVO<RecommendInHomeVO> getHomeDate(@PathParam("lastModifiedTime") Long lastModifiedTime) throws Exception{
+		Map<String, Object> recommends = homeService.getHomeData(SessionUtils.getCurrentLoginUser(), lastModifiedTime);
+		List<BannerBean> banners = (List<BannerBean>) recommends
+				.get(IHomeService.KEY_BANNERS);
+		List<RouteMainBean> routes = (List<RouteMainBean>) recommends
+				.get(IHomeService.KEY_ROUTES);
+		List<HotPlayingBean> hotPlayings = (List<HotPlayingBean>) recommends
+				.get(IHomeService.KEY_HOTPLAYINGS);
+		return new ResponseDataVO<RecommendInHomeVO>(
+				RecommendInHomeVO.transform(banners, routes, hotPlayings));
 	}
 
 	/**
@@ -72,20 +62,12 @@ public class HomeRestResource {
 	@GET
 	public ResponseDataVO<LaunchVO> launchApp(@PathParam("devType") String devType,
 											  @PathParam("version") String version,
-											  @PathParam("lastAccessDate") Long lastAccessDate,
 											  @Context HttpServletRequest request) throws Exception {
-
 		String accessToken = request.getHeader("Access-Token");
-		if (accessToken == null || accessToken.isEmpty()) {
-			// 第一次运行本系统
-			accessToken = UUID.randomUUID().toString();
-		}
-		Map<String, Object> map = homeService.launch(accessToken,
-				lastAccessDate, version);
+		Map<String, Object> map = homeService.launch(accessToken, devType, version);
 		LaunchBean launch = (LaunchBean) map.get(IHomeService.KEY_LAUNCHBEAN);
 		VersionBean versionBean = (VersionBean) map.get(IHomeService.KEY_VERSIONBEAN);
 		ActivityBean activity = (ActivityBean) map.get(IHomeService.KEY_ACTIVITYBEAN);
-		return new ResponseDataVO<LaunchVO>(LaunchVO.transform(launch, versionBean,
-				activity));
+		return new ResponseDataVO<LaunchVO>(LaunchVO.transform(launch, versionBean, activity));
 	}
 }

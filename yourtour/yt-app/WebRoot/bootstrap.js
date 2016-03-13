@@ -717,6 +717,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.along.AlongListDataItem": [],
   "YourTour.view.along.AlongListView": [],
   "YourTour.view.along.AlongView": [],
+  "YourTour.view.cart.CartMainView": [],
   "YourTour.view.charge.ChargeDivisionFormView": [],
   "YourTour.view.charge.ChargeDivisionView": [],
   "YourTour.view.charge.ChargeFormView": [],
@@ -738,6 +739,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.common.SimpleDataItem": [],
   "YourTour.view.common.TimeSelectionView": [],
   "YourTour.view.community.LiveMainView": [],
+  "YourTour.view.discovery.DiscoveryMainView": [],
   "YourTour.view.expert.ExpertApplyView": [],
   "YourTour.view.expert.ExpertGridDataItem": [],
   "YourTour.view.expert.ExpertListDataItem": [],
@@ -1723,6 +1725,9 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.along.AlongView": [
     "widget.alongview"
   ],
+  "YourTour.view.cart.CartMainView": [
+    "widget.CartMainView"
+  ],
   "YourTour.view.charge.ChargeDivisionFormView": [],
   "YourTour.view.charge.ChargeDivisionView": [],
   "YourTour.view.charge.ChargeFormView": [],
@@ -1759,6 +1764,9 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.common.TimeSelectionView": [],
   "YourTour.view.community.LiveMainView": [
     "widget.LiveMainView"
+  ],
+  "YourTour.view.discovery.DiscoveryMainView": [
+    "widget.DiscoveryMainView"
   ],
   "YourTour.view.expert.ExpertApplyView": [
     "widget.ExpertApplyView"

@@ -26,12 +26,12 @@ public interface IHomeService {
 	 * 获取当前系统首页推荐内容.<br>
 	 * 目前包括：推荐旅游资讯、推荐行程、推荐大家都在玩。<br>
 	 * 采用键值对方式返回数据，便于后续扩展。
-	 * 
-	 * @return 包含首页推荐中的所有信息内容。
+	 * @param userId  当前用户ID
+	 * @param lastModifiedTime  上次访问的首页数据的修改时间
+	 * @return
 	 * @throws Exception
-	 *             获取信息过程中发生的异常
 	 */
-	public Map<String, Object> getRecommends() throws Exception;
+	public Map<String, Object> getHomeData(Long userId, Long lastModifiedTime) throws Exception;
 
 	public static final String KEY_LAUNCHBEAN = "launchBean";
 	public static final String KEY_VERSIONBEAN = "versionBean";
@@ -42,12 +42,9 @@ public interface IHomeService {
 	 * 
 	 * @param accessToken
 	 *            访问Token
-	 * @param lastAccessDate
-	 *            最后访问时间
 	 * @param version
 	 *            客户端版本号
 	 * @return 客户端启动的基础信息，形式为键值对，包括：运行信息、版本信息、活动信息。
 	 */
-	public Map<String, Object> launch(String accessToken, Long lastAccessDate,
-			String version);
+	public Map<String, Object> launch(String accessToken, String devType, String version);
 }

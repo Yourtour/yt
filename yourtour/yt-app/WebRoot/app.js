@@ -39,7 +39,8 @@ Ext.application({
 
         'common.MessageMainView', 'common.MessageGroupView', 'common.FieldEditView', 'common.FieldEditView',
         'common.CommentMainView', 'common.TimeSelectionView', 'common.ConsultMainView',
-
+        'cart.CartMainView',
+        'discovery.DiscoveryMainView',
         'home.HomeMainView', 'home.BestListView', 'home.TalentListView', 'SearchMain',
         'route.RouteMainView', 'route.RoutePlanView', 'route.RouteImpressionView', 'route.RouteImageView',
         'route.RouteScheduleListView', 'route.RouteSchedulePlanView', 'route.RouteScheduleReferenceListView', 'route.RouteScheduleFormView',
