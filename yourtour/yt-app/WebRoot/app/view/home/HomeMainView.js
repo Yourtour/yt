@@ -1,6 +1,7 @@
 Ext.define('YourTour.view.home.HomeMainView', {
     extend: 'Ext.Container',
     xtype: 'HomeMainView',
+    requires:['YourTour.view.widget.XZoomCarousel'],
     config: {
         id: 'HomeMainView',
         layout: 'vbox',
@@ -25,24 +26,26 @@ Ext.define('YourTour.view.home.HomeMainView', {
                 layout: 'vbox',
                 items: [
                     {
-                        xtype:'xcarousel',
+                        xtype:'xzoomcarousel',
                         itemId:'activityCarousel',
-                        timer:2000,
                         height: 200,
                         items:[
                             {
                                 xtype: 'img',
                                 src: 'resources/images/img_home.jpg',
+                                mode:'tag',
                                 height: 200
                             },
                             {
                                 xtype: 'img',
                                 src: 'resources/images/img_personal_view.jpg',
+                                mode:'tag',
                                 height: 200
                             },
                             {
                                 xtype: 'img',
                                 src: 'resources/images/image_member.jpg',
+                                mode:'tag',
                                 height: 200
                             }
                         ]
@@ -60,7 +63,7 @@ Ext.define('YourTour.view.home.HomeMainView', {
         ]
     },
 
-    initialize:function(){
+    /*initialize:function(){
         this.callParent(arguments);
 
         var carousel = this.down('#activityCarousel');
@@ -73,6 +76,6 @@ Ext.define('YourTour.view.home.HomeMainView', {
                 carousel.pause();
             }
         })
-    }
+    }*/
 });
 

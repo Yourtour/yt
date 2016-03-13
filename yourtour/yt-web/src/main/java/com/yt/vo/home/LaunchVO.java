@@ -95,6 +95,7 @@ public class LaunchVO {
 		} else {
 			vo.device = null;
 		}
+
 		if (activity != null) {
 			vo.activity.id = activity.getId();
 			vo.activity.imageUrl = activity.getImageUrl();

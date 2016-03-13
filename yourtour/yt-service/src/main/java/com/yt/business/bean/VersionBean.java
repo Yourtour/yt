@@ -15,12 +15,18 @@ import com.yt.hbase.annotation.HbaseTable;
 public class VersionBean extends BaseBeanImpl {
 	private static final long serialVersionUID = 1655657744495996545L;
 
-	public enum TYPE {
-		APP, // 游徒APP
-		EXPERT_APP// 达人APP
+	public enum APP_TYPE {
+		TOURIST, // 游徒APP
+		EXPERT// 达人APP
 	}
 
-	private TYPE type = TYPE.APP; // 应用类型
+	public enum DEV_TYPE {
+		ANDROID, // Android平台
+		IOS// IOS平台
+	}
+
+	private APP_TYPE appType = APP_TYPE.TOURIST; // 应用类型
+	private DEV_TYPE devType = DEV_TYPE.ANDROID; // 应用类型
 	private String version; // 版本号
 	private String versionUrl; // 新版本路径
 	private String releaseNotes; // 发布说明
@@ -37,15 +43,10 @@ public class VersionBean extends BaseBeanImpl {
 			return -1;
 		}
 		String srcVersion = this.version, tarVersion = version.getVersion();
-		if (srcVersion == null && tarVersion == null) {
+		if (srcVersion == null || tarVersion == null) {
 			return 0;
 		}
-		if (srcVersion == null) {
-			return 1;
-		}
-		if (tarVersion == null) {
-			return 1;
-		}
+
 		// 两个版本都不为空
 		String[] src = srcVersion.split("\\."), tar = tarVersion.split("\\.");
 		int len = Math.min(src.length, tar.length);
@@ -60,12 +61,20 @@ public class VersionBean extends BaseBeanImpl {
 		return 0;
 	}
 
-	public TYPE getType() {
-		return type;
+	public APP_TYPE getAppType() {
+		return appType == null ? APP_TYPE.TOURIST : appType;
 	}
 
-	public void setType(TYPE type) {
-		this.type = type;
+	public void setAppType(APP_TYPE appType) {
+		this.appType = appType;
+	}
+
+	public DEV_TYPE getDevType() {
+		return devType == null ? DEV_TYPE.ANDROID : devType;
+	}
+
+	public void setDevType(DEV_TYPE devType) {
+		this.devType = devType;
 	}
 
 	public String getVersion() {
