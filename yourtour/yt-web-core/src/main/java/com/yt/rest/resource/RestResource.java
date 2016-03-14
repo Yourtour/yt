@@ -8,27 +8,11 @@ package com.yt.rest.resource;
  */
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-
-import com.yt.core.common.ThreadCurrentUser;
 import com.yt.utils.SessionUtils;
 
 public class RestResource {
 	public RestResource() {
 		super();
-	}
-
-	protected void fillUserInfo(HttpServletRequest request) {
-		String userId = request.getHeader("userId");
-		String userName = request.getHeader("userName");
-		ThreadCurrentUser.setUserInfor(Long.valueOf(userId), userName);
-	}
-
-	protected void fillUserInfor() {
-		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder
-				.getRequestAttributes()).getRequest();
-		this.fillUserInfo(request);
 	}
 
 	protected String getCurrentUserId(HttpServletRequest request)

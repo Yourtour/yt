@@ -17,10 +17,12 @@ public class LaunchBean extends BaseBeanImpl {
 	private static final long serialVersionUID = -1678777442987394947L;
 	@Indexed
 	private String accessToken;
-	private long lastAccessDate;
-	
+
+	private transient String sessionToken;
+
 	public LaunchBean() {
 		super();
+		super.setId(-1l);
 	}
 
 	public String getAccessToken() {
@@ -31,11 +33,11 @@ public class LaunchBean extends BaseBeanImpl {
 		this.accessToken = accessToken;
 	}
 
-	public long getLastAccessDate() {
-		return lastAccessDate;
+	public String getSessionToken() {
+		return sessionToken;
 	}
 
-	public void setLastAccessDate(long lastAccessDate) {
-		this.lastAccessDate = lastAccessDate;
+	public void setSessionToken(String sessionToken) {
+		this.sessionToken = sessionToken;
 	}
 }

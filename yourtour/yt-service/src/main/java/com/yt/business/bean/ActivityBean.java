@@ -1,9 +1,15 @@
 package com.yt.business.bean;
 
+import java.util.List;
+import java.util.Vector;
+
 import org.springframework.data.neo4j.annotation.NodeEntity;
 
 import com.yt.business.BaseBeanImpl;
+import com.yt.business.common.Constants;
 import com.yt.hbase.annotation.HbaseTable;
+import com.yt.neo4j.annotation.Neo4jRelationship;
+import com.yt.neo4j.annotation.Neo4jRelationship.Direction;
 
 /**
  * 系统发布的活动信息，包括：平台活动和达人活动等。
@@ -27,8 +33,15 @@ public class ActivityBean extends BaseBeanImpl {
 	private String imageUrl;
 	private Status status = Status.DRAFT;
 
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_AT, type = PlaceBean.class, direction = Direction.OUTGOING)
+	private transient PlaceBean place;
+
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RELATED, type = RouteMainBean.class, direction = Direction.OUTGOING, isList = true)
+	private transient List<RouteMainBean> routes;
+
 	public ActivityBean() {
 		super();
+		this.routes = new Vector<RouteMainBean>();
 	}
 
 	public String getImageUrl() {
@@ -45,6 +58,18 @@ public class ActivityBean extends BaseBeanImpl {
 
 	public void setStatus(Status status) {
 		this.status = status;
+	}
+
+	public PlaceBean getPlace() {
+		return place;
+	}
+
+	public void setPlace(PlaceBean place) {
+		this.place = place;
+	}
+
+	public List<RouteMainBean> getRoutes() {
+		return routes;
 	}
 
 }
