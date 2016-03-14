@@ -43,7 +43,7 @@
   </appender>
   
   <category name="com.yt">      
-    <level value="WARN" />    
+    <level value="DEBUG" />    
     <appender-ref ref="CONSOLE" />   
   </category> 
   

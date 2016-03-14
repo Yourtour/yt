@@ -46,6 +46,17 @@ public interface IUserService {
 			throws Exception;
 
 	/**
+	 * 获取短信动态验证码，首先从缓存中获取动态验证码，如果不存在，则发送新的动态验证码并缓存
+	 * 
+	 * @param mobileNO
+	 *            手机号码
+	 * @return 该手机号码对应的验证码
+	 * @throws Exception
+	 *             发送过程中发生的异常
+	 */
+	public String getAuthcode(String mobileNO) throws Exception;
+
+	/**
 	 * 用户注销
 	 * 
 	 * @param userId
@@ -54,7 +65,7 @@ public interface IUserService {
 	public void logout(Long userId) throws Exception;
 
 	/**
-	 * 用户账号注册
+	 * 用户账号注册，并清除前面生成的动态验证码
 	 * 
 	 * @param userName
 	 *            用户名，一般使用手机号

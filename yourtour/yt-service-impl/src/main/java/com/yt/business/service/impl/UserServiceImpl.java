@@ -1,8 +1,13 @@
 package com.yt.business.service.impl;
 
+import java.util.Date;
+import java.util.Random;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.yt.PropertiesReader;
@@ -75,9 +80,29 @@ public class UserServiceImpl extends ServiceBase implements IUserService {
 
 	@Override
 	public void logout(Long userId) throws Exception {
-
+		// TODO 登出系统
 	}
 
+	@Cacheable("default")
+	@Override
+	public String getAuthcode(String mobileNO) throws Exception {
+		Random random = new Random(new Date().getTime());
+		int len = 6;
+		StringBuffer sb = new StringBuffer();
+		// 生成6位随机数
+		for (int i = 0; i < len; i++) {
+			int value = random.nextInt(10);
+			sb.append(value);
+		}
+		if (LOG.isDebugEnabled()) {
+			LOG.debug(String.format("Generate a authenticate code: '%s'.",
+					sb.toString()));
+		}
+		// TODO 发送短信动态验证码
+		return sb.toString();
+	}
+
+	@CacheEvict(value="default", key = "#userName")
 	@Override
 	public UserProfileBean regist(String userName, String password)
 			throws Exception {
@@ -88,10 +113,12 @@ public class UserServiceImpl extends ServiceBase implements IUserService {
 
 		// 先创建UserProfile
 		UserProfileBean profile = new UserProfileBean();
+		super.updateBaseInfo(profile, -1l);
 		profile.setMobileNo(userName);
 		profileCrudOperate.save(profile);
 
 		account = new UserAccountBean();
+		super.updateBaseInfo(account, profile.getId());
 		account.setUserName(userName);
 		account.setPwd(MessageDigestUtils.digest(
 				propertiesReader.getProperty("digest.algorithm", "SHA-1"),
@@ -110,7 +137,7 @@ public class UserServiceImpl extends ServiceBase implements IUserService {
 		if (existed != null) {
 			throw new AppException(StaticErrorEnum.NICKNAME_EXIST);
 		}
-
+		super.updateBaseInfo(profile, profile.getId());
 		this.profileCrudOperate.save(profile, false);
 
 		return (UserProfileBean) profileCrudOperate.get(profile.getId(), false);
