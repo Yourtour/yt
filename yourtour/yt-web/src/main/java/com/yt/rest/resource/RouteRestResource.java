@@ -55,14 +55,13 @@ public class RouteRestResource extends RestResource {
 	/**
 	 * 根据指定的ID获取对应的行程数据
 	 * 
-	 * @param rid 行程ID，该ID可能是GrphId，也可能是RowKey
+	 * @param id 行程ID
 	 * @return 行程数据值对象，如果指定行程不存在，则行程数据值对象中的data为空。
 	 */
 	@GET
-	@Path("{rid}/query")
-	public ResponseDataVO<RouteLoadVO> getRoute(@PathParam("rid") Long rid) throws Exception {
-			RouteMainBean bean = routeService.getRoute(rid);
-
+	@Path("{id}")
+	public ResponseDataVO<RouteLoadVO> getRoute(@PathParam("id") Long id) throws Exception {
+			RouteMainBean bean = routeService.getRoute(id);
 			RouteLoadVO vo = new RouteLoadVO(bean);
 			return new ResponseDataVO<RouteLoadVO>(vo);
 	}

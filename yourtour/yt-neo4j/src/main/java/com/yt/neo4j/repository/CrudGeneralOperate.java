@@ -12,7 +12,6 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -29,8 +28,6 @@ import org.springframework.data.neo4j.annotation.QueryResult;
 import org.springframework.data.neo4j.conversion.Result;
 import org.springframework.data.neo4j.support.Neo4jTemplate;
 
-import com.yt.core.common.ThreadCurrentUser;
-import com.yt.core.common.UserInfor;
 import com.yt.neo4j.Neo4jBaseBean;
 import com.yt.neo4j.Neo4jBaseDictBean;
 import com.yt.neo4j.cache.Neo4jBeanDescriptor;
@@ -439,24 +436,6 @@ public class CrudGeneralOperate<T extends Neo4jBaseBean> implements
 			// 如果是字典类型的节点，则通过代码来判断该bean是否已经存在
 			bean = get("code", ((Neo4jBaseDictBean) neo4jBean).getCode());
 		}
-		UserInfor user = ThreadCurrentUser.getCurrentUserInfor();
-		if (user == null) {
-			if (LOG.isWarnEnabled()) {
-				LOG.warn("The UserInfor in this thread is null.");
-			}
-			user = new UserInfor(-1, "NA");
-		}
-		if (bean == null) {
-			// 新增
-			neo4jBean.setId(null);
-			neo4jBean.setCreatedTime(new Date().getTime());
-			neo4jBean.setCreatedUserId(user.getId());
-		} else {
-			// 修改
-			neo4jBean.setId(bean.getId());
-		}
-		neo4jBean.setUpdatedTime(new Date().getTime());
-		neo4jBean.setUpdatedUserId(user.getId());
 		// 先保存指定的节点
 		T tar = template.save(neo4jBean);
 
