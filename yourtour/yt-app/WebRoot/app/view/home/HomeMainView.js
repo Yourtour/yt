@@ -29,36 +29,36 @@ Ext.define('YourTour.view.home.HomeMainView', {
                         xtype:'xzoomcarousel',
                         itemId:'activityCarousel',
                         height: 200,
+                        defaults:{
+                            height: '100%',
+                            width: '100%'
+                        },
                         items:[
                             {
                                 xtype: 'img',
                                 src: 'resources/images/img_home.jpg',
-                                mode:'tag',
-                                height: 200
+                                mode:'tag'
+
                             },
                             {
                                 xtype: 'img',
                                 src: 'resources/images/img_personal_view.jpg',
-                                mode:'tag',
-                                height: 200
+                                mode:'tag'
                             },
                             {
                                 xtype: 'img',
                                 src: 'resources/images/image_member.jpg',
-                                mode:'tag',
-                                height: 200
+                                mode:'tag'
                             },
                             {
                                 xtype: 'img',
                                 src: 'resources/images/img_personal_view.jpg',
-                                mode:'tag',
-                                height: 200
+                                mode:'tag'
                             },
                             {
                                 xtype: 'img',
                                 src: 'resources/images/image_member.jpg',
-                                mode:'tag',
-                                height: 200
+                                mode:'tag'
                             }
                         ]
                     },

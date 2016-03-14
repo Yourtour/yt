@@ -2,246 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92ee94f3-3d6c-4f6d-925a-699d6360b737" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/079_page_16.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/086_case_16.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-13/20160313-游徒.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-13/20160313-游徒2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-13/20160313-游徒全图.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-13/20160313-游徒说明.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/225_responsive_16.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/228_togglenotes_16.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/229_variables_16.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/231_event_16.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/232_search_16.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/233_hyperlink_16.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/235_folderclosed_16.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/236_folderopen_16.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/images/259_close_12rollover1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/images/259_close_12rollover2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/images/260_collapse_12rollover1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/images/260_collapse_12rollover2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/images/261_expand_12rollover1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/images/261_expand_12rollover2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/adaptivecheck.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/chrome/allow_access.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/chrome/axure-chrome-extension.crx" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/chrome/axure_logo.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/chrome/axure_logo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/page_notes/styles/images/back.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/page_notes/styles/images/back_hover.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/images/close.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/images/close_hover.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/images/divider.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/images/expand.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/images/expand_hover.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/chrome/extensions_menu.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/flow.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/folder_closed.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/folder_open.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/page_notes/styles/images/footnotes.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/page_notes/styles/images/footnotes_hover.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/page_notes/styles/images/footnotes_on.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/page_notes/styles/images/forward.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/page_notes/styles/images/forward_hover.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/hotspots.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/hotspots_hover.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/hotspots_on.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/minus.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/css/images/newwindow.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/css/images/note.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/note.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/page_notes/styles/images/notes_hover.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/page_notes/styles/images/notes_off.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/page_notes/styles/images/notes_on.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/page.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/plus.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/share.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/share_hover.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/share_on.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/sitemap_hover.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/sitemap_off.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/sitemap_on.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/chrome/splitter.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/chrome/splitter.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/images/transparent.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/home/u1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/home/u101.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/page1/u1021.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/page1/u1025.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/page1/u1040.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/page1/u1042.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/page1/u1074.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/page1/u1076.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/home/u113.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/home/u13.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/page1/u1486.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/page1/u1488.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/page1/u1549.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/page1/u1625.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/home/u170.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/home/u180.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/home/u3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/home/u309.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/home/u33.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/page1/u667.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/home/u67.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/home/u69.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/page1/u731.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/page1/u743.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/page1/u754.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/page1/u756.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/home/u76.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/page1/u760.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/page1/u766.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/page1/u768.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/page1/u772.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/page1/u774.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/home/u80.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/page1/u819.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/home/u82.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/page1/u827.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/page1/u829.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/home/u84.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/page1/u840.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/page1/u870.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/page1/u875.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/page1/u881.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/page1/u883.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/home/u93.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/home/u95.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/page1/u953.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/images/page1/u987.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/css/images/ui-bg_flat_0_aaaaaa_40x100.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/css/images/ui-bg_glass_55_fbf9ee_1x400.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/css/images/ui-bg_glass_65_ffffff_1x400.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/css/images/ui-bg_glass_75_dadada_1x400.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/css/images/ui-bg_glass_75_e6e6e6_1x400.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/css/images/ui-bg_glass_75_ffffff_1x400.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/css/images/ui-bg_highlight-soft_75_cccccc_1x100.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/css/images/ui-bg_inset-soft_95_fef1ec_1x100.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/css/images/ui-icons_222222_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/css/images/ui-icons_2e83ff_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/css/images/ui-icons_454545_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/css/images/ui-icons_888888_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/css/images/ui-icons_cd0a0a_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/debug/styles/images/variables_hover.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/debug/styles/images/variables_off.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/debug/styles/images/variables_on.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/views.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/views_hover.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/views_on.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/home/ActivityVO.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/Other.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/home/VersionVO.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/axure/action.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/axure/adaptive.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/axure/annotation.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/axure/axQuery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/axure/axQuery.std.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/player/axplayer.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/css/axure_rp_page.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/axutils.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/page_notes/styles/images/back.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/page_notes/styles/images/back_hover.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/chrome/chrome.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/images/close.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/images/close_hover.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/files/home/data.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/files/page1/data.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/files/page_2/data.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/files/page_3/data.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/debug/styles/debug.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/debug/debug.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/css/default.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/images/divider.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/axure/doc.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/data/document.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/axure/drag.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/axure/events.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/expand.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/images/expand.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/images/expand_hover.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/axure/expr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/flow.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/axure/flyout.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/folder_closed.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/folder_open.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/page_notes/styles/images/footnotes.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/page_notes/styles/images/footnotes_hover.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/page_notes/styles/images/footnotes_on.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/page_notes/styles/images/forward.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/page_notes/styles/images/forward_hover.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/axure/geometry.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/axure/globals.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/home.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/hotspots.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/hotspots_hover.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/hotspots_on.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/axure/ie.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/images.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/css/images/images.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/images/images.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/axure/init.temp.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/jquery-1.7.1.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/jquery-ui-1.8.10.custom.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/css/jquery-ui-themes.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/axure/legacy.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/axure/math.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/messagecenter.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/axure/model.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/axure/move.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/note.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/page_notes/styles/images/notes_hover.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/page_notes/styles/images/notes_off.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/page_notes/styles/images/notes_on.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/page.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/page1.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/page_2.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/page_3.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/page_notes/styles/page_notes.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/page_notes/page_notes.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/axure/recording.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/recordplay/styles/recordplay.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/recordplay/recordplay.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/reload.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/axure/repeater.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/css/reset.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/debug/styles/images/reset.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/debug/styles/images/reset_hover.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/share.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/share_hover.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/share_on.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/sitemap.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/sitemap.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/sitemap_hover.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/sitemap_off.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/sitemap_on.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/player/splitter.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/start.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/start_c_1.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/start_g_0.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/axure/sto.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/axure/style.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/data/styles.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/files/home/styles.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/files/page1/styles.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/files/page_2/styles.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/files/page_3/styles.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/axure/tree.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/axure/utils.temp.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/axure/variables.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/debug/styles/images/variables_hover.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/debug/styles/images/variables_off.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/debug/styles/images/variables_on.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/axure/viewer.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/views.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/views_hover.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/plugins/sitemap/styles/images/views_on.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-10/resources/scripts/axure/visibility.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XTranslatableGroup.js" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-app\WebRoot\cordova\platforms\android\assets\www\plugins\phonegap-plugin-barcodescanner\www\barcodescanner.js" afterPath="" />
-      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-core\src\main\java\com\yt\core\common\ThreadCurrentUser.java" afterPath="" />
-      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-core\src\main\java\com\yt\core\common\UserInfor.java" afterPath="" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-web\WebRoot\WEB-INF\classes\.gitignore" afterPath="" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-web\WebRoot\WEB-INF\classes\application-hbase-context.xml" afterPath="" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-web\WebRoot\WEB-INF\classes\application-neo4j-context.xml" afterPath="" />
@@ -249,17 +11,20 @@
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-web\WebRoot\WEB-INF\classes\commons-logging.properties" afterPath="" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-web\WebRoot\WEB-INF\classes\config.properties" afterPath="" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-web\WebRoot\WEB-INF\classes\log4j.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documents/design/游徒平台接口设计.xlsx" afterPath="$PROJECT_DIR$/documents/design/游徒平台接口设计.xlsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ActivityBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ActivityBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/BaseBeanImpl.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/BaseBeanImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/repository/CrudGeneralOperate.java" afterPath="$PROJECT_DIR$/yt-neo4j/src/main/java/com/yt/neo4j/repository/CrudGeneralOperate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/HomeRestResource.java" afterPath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/HomeRestResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/HomeServiceImpl.java" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/HomeServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IHomeService.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IHomeService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/LaunchBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/LaunchBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/home/LaunchVO.java" afterPath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/home/LaunchVO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-web-core/src/main/java/com/yt/rest/resource/RestResource.java" afterPath="$PROJECT_DIR$/yt-web-core/src/main/java/com/yt/rest/resource/RestResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/RouteRestResource.java" afterPath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/RouteRestResource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/carousel/Carousel.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/touch/src/carousel/Carousel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/util/Context.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/util/Context.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/view/home/HomeMainView.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/view/home/HomeMainView.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XZoomCarousel.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XZoomCarousel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/assets/www/app.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/assets/www/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/www/app.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/www/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/bootstrap.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/bootstrap.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/assets/www/index.html" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/assets/www/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/www/index.html" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/www/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="yourtour.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -305,41 +70,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="Context.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/util/Context.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6646526">
+              <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="XZoomCarousel.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XZoomCarousel.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="48" column="35" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
+              <caret line="35" column="9" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Carousel.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/touch/src/carousel/Carousel.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.8">
-              <caret line="341" column="0" selection-start-line="341" selection-start-column="0" selection-end-line="341" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LaunchVO.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/home/LaunchVO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.094339624">
-              <caret line="24" column="9" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TranslatableGroup.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/TranslatableGroup.js">
+      <file leaf-file-name="HomeMainView.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/home/HomeMainView.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="34" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="34" />
+              <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -349,57 +104,57 @@
         <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/translatable/Abstract.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="83" column="29" selection-start-line="83" selection-start-column="29" selection-end-line="83" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Anim.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/touch/src/Anim.js">
+      <file leaf-file-name="TranslatableGroup.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/TranslatableGroup.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.2">
+              <caret line="3" column="38" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Carousel.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/touch/src/carousel/Carousel.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.097561">
+              <caret line="565" column="69" selection-start-line="537" selection-start-column="8" selection-end-line="565" selection-end-column="69" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="XTranslatableGroup.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XTranslatableGroup.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="373" column="29" selection-start-line="373" selection-start-column="29" selection-end-line="373" selection-end-column="29" />
+              <caret line="39" column="17" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Translatable.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/Translatable.js">
+      <file leaf-file-name="XTitleBar.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XTitleBar.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
+              <caret line="0" column="12" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Abstract.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/touch/src/layout/Abstract.js">
+      <file leaf-file-name="XToolbar.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XToolbar.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="3" column="35" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AdminUserInitializeService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/utils/AdminUserInitializeService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="2" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.84615386">
-              <caret line="992" column="20" selection-start-line="992" selection-start-column="20" selection-end-line="992" selection-end-column="20" />
+              <caret line="0" column="12" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -425,8 +180,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XGenderField.js" />
-        <option value="$PROJECT_DIR$/yt-manager-app/index.html" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XLabelField.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/user/RegisterProfileView.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/user/UserProfileView.js" />
@@ -468,14 +221,16 @@
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/model/VersionModel.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/model/DeviceModel.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/model/LaunchModel.js" />
-        <option value="$PROJECT_DIR$/yt-app/WebRoot/app/util/Context.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/touch/src/carousel/Item.js" />
-        <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/home/HomeMainView.js" />
-        <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XZoomCarousel.js" />
         <option value="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/utils/AdminUserInitializeService.java" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/index.html" />
-        <option value="$PROJECT_DIR$/yt-app/WebRoot/touch/src/carousel/Carousel.js" />
         <option value="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/home/LaunchVO.java" />
+        <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/home/HomeMainView.js" />
+        <option value="$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/TranslatableGroup.js" />
+        <option value="$PROJECT_DIR$/yt-app/WebRoot/touch/src/carousel/Carousel.js" />
+        <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XZoomCarousel.js" />
+        <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XTranslatableGroup.js" />
+        <option value="$PROJECT_DIR$/yt-app/WebRoot/app/util/Context.js" />
       </list>
     </option>
   </component>
@@ -968,7 +723,7 @@
   <component name="PropertiesComponent">
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="LaunchVO.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/vo/home/LaunchVO.java&#10;translatable.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/util/Translatable.js&#10;Abstract.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/layout/Abstract.js&#10;TranslatableGroup.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/util/TranslatableGroup.js&#10;index.html&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/index.html&#10;adminUserInitializeService.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/utils/AdminUserInitializeService.java&#10;Container.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/Container.js&#10;Item.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/carousel/Item.js&#10;HomeMainview.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/home/HomeMainView.js&#10;Carousel.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/carousel/Carousel.js&#10;Context.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/util/Context.js&#10;XZOO&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XZoomCarousel.js&#10;app.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app.js&#10;LaunchModel.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/model/LaunchModel.js&#10;LocalStore.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/store/LocalStore.js&#10;HomeRest&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/HomeRestResource.java&#10;XZOOM&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XZoomCarousel.js&#10;Img.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/Img.js&#10;HomeRes&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/HomeRestResource.java&#10;HomeServiceImpl.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/service/impl/HomeServiceImpl.java&#10;MainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/MainCtrl.js&#10;HomeMainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/home/HomeMainView.js&#10;HomeSer&#9;PSI&#9;JAVA://com.yt.business.service.impl.HomeServiceImpl&#10;Thread&#9;PSI&#9;JAVA://com.yt.core.common.ThreadCurrentUser&#10;XCarousel.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XCarousel.js&#10;DataView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/dataview/DataView.js&#10;XSelectfield.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XSelectField.js&#10;RouteMain&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/route/RouteMainView.js&#10;PlaceMainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/place/PlaceMainView.js&#10;mainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/MainView.js&#10;MainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/home/HomeMainView.js&#10;HomeMainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/HomeMainCtrl.js&#10;HomeMain.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/home/HomeMain.js&#10;XImageSelect.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XImageSelect.js&#10;XImageField.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XImageField.js&#10;PlaceMainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/PlaceMainCtrl.js&#10;xField.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XField.js&#10;xselectfield.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XSelectField.js&#10;UserProfileView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/user/UserProfileView.js&#10;XField.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XField.js&#10;Index.html&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/index.html&#10;AccountMainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/AccountMainCtrl.js&#10;RegisterProfileView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/user/RegisterProfileView.js&#10;XPickerField.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XPickerField.js&#10;XGenderField.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XGenderField.js&#10;UserMainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/UserMainCtrl.js&#10;UserMainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/user/UserMainView.js&#10;Picker.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/picker/Picker.js&#10;xgridview.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/grid/XGridView.js&#10;XGridS&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XGridSheet.js" />
+    <property name="SearchEverywhereHistoryKey" value="Context.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/util/Context.js&#10;TranslatableGroup.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/util/TranslatableGroup.js&#10;Ca&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/carousel/Carousel.js&#10;HomeMainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/home/HomeMainView.js&#10;Item.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/carousel/Item.js&#10;Container.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/Container.js&#10;LaunchVO.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/vo/home/LaunchVO.java&#10;translatable.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/util/Translatable.js&#10;Abstract.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/layout/Abstract.js&#10;index.html&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/index.html&#10;adminUserInitializeService.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/utils/AdminUserInitializeService.java&#10;HomeMainview.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/home/HomeMainView.js&#10;Carousel.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/carousel/Carousel.js&#10;XZOO&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XZoomCarousel.js&#10;app.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app.js&#10;LaunchModel.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/model/LaunchModel.js&#10;LocalStore.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/store/LocalStore.js&#10;HomeRest&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/HomeRestResource.java&#10;XZOOM&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XZoomCarousel.js&#10;Img.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/Img.js&#10;HomeRes&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/HomeRestResource.java&#10;HomeServiceImpl.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/service/impl/HomeServiceImpl.java&#10;MainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/MainCtrl.js&#10;HomeSer&#9;PSI&#9;JAVA://com.yt.business.service.impl.HomeServiceImpl&#10;Thread&#9;PSI&#9;JAVA://com.yt.core.common.ThreadCurrentUser&#10;XCarousel.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XCarousel.js&#10;DataView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/dataview/DataView.js&#10;XSelectfield.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XSelectField.js&#10;RouteMain&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/route/RouteMainView.js&#10;PlaceMainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/place/PlaceMainView.js&#10;mainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/MainView.js&#10;MainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/home/HomeMainView.js&#10;HomeMainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/HomeMainCtrl.js&#10;HomeMain.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/home/HomeMain.js&#10;XImageSelect.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XImageSelect.js&#10;XImageField.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XImageField.js&#10;PlaceMainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/PlaceMainCtrl.js&#10;xField.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XField.js&#10;xselectfield.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XSelectField.js&#10;UserProfileView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/user/UserProfileView.js&#10;XField.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XField.js&#10;Index.html&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/index.html&#10;AccountMainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/AccountMainCtrl.js&#10;RegisterProfileView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/user/RegisterProfileView.js&#10;XPickerField.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XPickerField.js&#10;XGenderField.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XGenderField.js&#10;UserMainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/UserMainCtrl.js&#10;UserMainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/user/UserMainView.js&#10;Picker.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/picker/Picker.js&#10;xgridview.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/grid/XGridView.js" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -984,8 +739,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\workspace\yt\yourtour\yt-app\WebRoot\app\model" />
       <recent name="E:\workspace\yt\yourtour\yt-app\WebRoot\app\view\widget" />
+      <recent name="E:\workspace\yt\yourtour\yt-app\WebRoot\app\model" />
       <recent name="E:\workspace\yt\yourtour\yt-app\WebRoot\app\view\common" />
       <recent name="E:\workspace\yt\yourtour\yt-app\WebRoot\app\view\user" />
     </key>
@@ -1433,12 +1188,12 @@
       <workItem from="1457857625177" duration="10407000" />
       <workItem from="1457870557458" duration="7167000" />
       <workItem from="1457916692928" duration="17039000" />
-      <workItem from="1457938173455" duration="3221000" />
+      <workItem from="1457938173455" duration="11700000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="107490000" />
+    <option name="totallyTimeSpent" value="115969000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1451,7 +1206,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1463,9 +1218,9 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.8218954" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4117647" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26701966" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28441754" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1506,20 +1261,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/yt-core/test.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-core/.project">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1326782">
-          <caret line="39" column="21" selection-start-line="39" selection-start-column="21" selection-end-line="39" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/yt-core/.classpath">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1761,62 +1502,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/util/Context.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/touch/src/carousel/Item.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/home/HomeMainView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="61" column="29" selection-start-line="61" selection-start-column="29" selection-end-line="61" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/touch/src/Container.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1083" column="19" selection-start-line="1083" selection-start-column="4" selection-end-line="1083" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XZoomCarousel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="48" column="35" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/utils/AdminUserInitializeService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="2" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.84615386">
-          <caret line="992" column="20" selection-start-line="992" selection-start-column="20" selection-end-line="992" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/touch/src/layout/Abstract.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1833,18 +1518,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/TranslatableGroup.js">
+    <entry file="file://$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/home/LaunchVO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="34" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/translatable/Abstract.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.26415095">
+          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
           <folding />
         </state>
       </provider>
@@ -1852,23 +1529,111 @@
     <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/touch/src/Anim.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="373" column="29" selection-start-line="373" selection-start-column="29" selection-end-line="373" selection-end-column="29" />
+          <caret line="243" column="0" selection-start-line="243" selection-start-column="0" selection-end-line="243" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/touch/src/Container.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1084" column="21" selection-start-line="1084" selection-start-column="21" selection-end-line="1084" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/touch/src/carousel/Item.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.23809524">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/utils/AdminUserInitializeService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="2" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/translatable/Abstract.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="83" column="29" selection-start-line="83" selection-start-column="29" selection-end-line="83" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35321102">
+          <caret line="992" column="20" selection-start-line="992" selection-start-column="20" selection-end-line="992" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/home/HomeMainView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XToolbar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="12" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XTitleBar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="12" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/touch/src/util/TranslatableGroup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.2">
+          <caret line="3" column="38" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/touch/src/carousel/Carousel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.8">
-          <caret line="341" column="0" selection-start-line="341" selection-start-column="0" selection-end-line="341" selection-end-column="0" />
+        <state vertical-scroll-proportion="-6.097561">
+          <caret line="565" column="69" selection-start-line="537" selection-start-column="8" selection-end-line="565" selection-end-column="69" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/home/LaunchVO.java">
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XZoomCarousel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.094339624">
-          <caret line="24" column="9" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="35" column="9" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XTranslatableGroup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="39" column="17" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/util/Context.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6646526">
+          <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
           <folding />
         </state>
       </provider>

@@ -220,7 +220,6 @@ Ext.define('Ext.carousel.Carousel', {
 
             for (i = 0,ln = items.length; i < ln; i++) {
                 item = items[i];
-
                 if (!item.isInnerItem()) {
                     item.setRendered(rendered);
                 }
@@ -480,6 +479,8 @@ Ext.define('Ext.carousel.Carousel', {
         this.offset = offset;
 
         if (Ext.isNumber(this.itemOffset)) {
+            var activeIndex = this.getActiveIndex();
+
             this.getTranslatable().translateAxis(this.currentAxis, offset + this.itemOffset);
         }
 
