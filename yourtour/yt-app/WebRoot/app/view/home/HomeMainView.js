@@ -47,6 +47,18 @@ Ext.define('YourTour.view.home.HomeMainView', {
                                 src: 'resources/images/image_member.jpg',
                                 mode:'tag',
                                 height: 200
+                            },
+                            {
+                                xtype: 'img',
+                                src: 'resources/images/img_personal_view.jpg',
+                                mode:'tag',
+                                height: 200
+                            },
+                            {
+                                xtype: 'img',
+                                src: 'resources/images/image_member.jpg',
+                                mode:'tag',
+                                height: 200
                             }
                         ]
                     },

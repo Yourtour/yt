@@ -77,7 +77,7 @@ Ext.application({
     ],
 
     models: [
-        'ActivityModel', 'SimpleModel', 'LaunchModel', 'RouteModel', 'RouteActivityModel', 'LineModel', 'UserModel', 'OptionModel', 'HomeModel', 'LiveModel', 'ChatModel', 'AlongModel', 'TalentModel', 'HomeCarouselModel', 'CommentModel', 'PlaceModel',
+        'DeviceModel', 'VersionModel', 'ActivityModel', 'SimpleModel', 'LaunchModel', 'RouteModel', 'RouteActivityModel', 'LineModel', 'UserModel', 'OptionModel', 'HomeModel', 'LiveModel', 'ChatModel', 'AlongModel', 'TalentModel', 'HomeCarouselModel', 'CommentModel', 'PlaceModel',
         'CacheModel', 'ActivityItemModel', 'RouteServiceModel', 'ExpertModel', 'ExpertServiceModel', 'ChargeModel', 'MessageContentModel'
     ],
 

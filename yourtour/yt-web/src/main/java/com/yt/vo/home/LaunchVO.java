@@ -10,6 +10,7 @@ public class LaunchVO {
 
 	public class DeviceVO {
 		private String accessToken, newVersionUrl, releaseNotes;
+
 		private boolean isForceUpgrade;
 
 		public DeviceVO() {
@@ -80,8 +81,7 @@ public class LaunchVO {
 		this.activity = new ActivityVO();
 	}
 
-	public static LaunchVO transform(LaunchBean launch, VersionBean version,
-			ActivityBean activity) {
+	public static LaunchVO transform(LaunchBean launch, VersionBean version, ActivityBean activity) {
 		LaunchVO vo = new LaunchVO();
 		if (launch != null && version != null) {
 			if (launch != null) {
@@ -112,5 +112,4 @@ public class LaunchVO {
 	public ActivityVO getActivity() {
 		return activity;
 	}
-
 }

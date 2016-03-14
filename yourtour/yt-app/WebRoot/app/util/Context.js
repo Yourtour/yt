@@ -7,9 +7,9 @@ Ext.define('YourTour.util.Context', {
     	userKey:'user',
 
 		//server:'192.168.1.103:8080',
-    	server:'192.168.2.101:8080',
+    	//server:'192.168.2.101:8080',
 		//server:'120.55.76.201:8080',
-		//server:'localhost:8080',
+		server:'localhost:8080',
 
 		application:null
     },

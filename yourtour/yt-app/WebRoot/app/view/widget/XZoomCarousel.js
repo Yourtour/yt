@@ -1,13 +1,56 @@
 Ext.define('YourTour.view.widget.XZoomCarousel', {
-    extend: 'Ext.Container',
+    extend: 'Ext.Carousel',
     xtype: 'xzoomcarousel',
     config: {
         cls: 'x-xzoomcarousel',
         layout: 'hbox',
-        activeIndex: 0
+        indicator:false,
     },
 
-    initialize: function () {
+
+    /**
+     * @private
+     * @chainable
+     */
+    setOffset: function(offset) {
+        var delta = Math.abs(offset) / 200;
+        delta = delta - 0.2 ? '0.2' : delta;
+
+        this.offset = offset;
+
+        if (Ext.isNumber(this.itemOffset)) {
+            var activeIndex = this.getActiveIndex(),
+                activeItem = this.getAt(activeIndex),
+                leftItem = activeIndex == 0 ? null : this.getAt(activeIndex - 1);
+                rightItem = activeIndex == this.getMaxItemIndex() ? null: this.getAt(activeIndex + 1);
+
+            activeItem.setHeight((1 - delta) * 100 + '%');
+
+            if(offset > 0) {
+                if(leftItem != null){
+                    leftItem.setHeight((0.8 + delta) * 100 + '%')
+                }
+            }else{
+                if(rightItem != null) {
+                    rightItem.setHeight((0.8 + delta) * 100 + '%');
+                }
+            }
+
+            this.getTranslatable().translateAxis(this.currentAxis, offset + this.itemOffset);
+        }
+
+        return this;
+    },
+
+
+    doItemLayoutAdd: function(item) {
+        console.log(item);
+
+        this.callParent(arguments);
+    }
+
+
+    /*initialize: function () {
         this.callParent(arguments);
 
         var items = this.getItems();
@@ -34,15 +77,12 @@ Ext.define('YourTour.view.widget.XZoomCarousel', {
             nextItemIndex = (activeIndex == length - 1) ? 0 : activeIndex + 1;
 
         activeItem.setWidth('80%');
-        activeItem.setCentered(true);
 
         var preItem = this.getAt(preItemIndex);
         preItem.setHeight('80%');
-        preItem.setLeft(-150);
 
         var nextItem = this.getAt(nextItemIndex);
         nextItem.setHeight('80%');
-        nextItem.setRight(-160);
     },
 
     onTouchStart: function (a) {
@@ -65,11 +105,8 @@ Ext.define('YourTour.view.widget.XZoomCarousel', {
     },
 
     onTouchEnd: function (a) {
-        /*alert('end')
         var startX = this.startX, lastX = a.pageX;
-
         if(Math.abs(lastX - startX) > 20){
-            console.log('move')
-        }*/
-    }
+        }
+    }*/
 })
