@@ -673,6 +673,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.model.ChargeModel": [],
   "YourTour.model.ChatModel": [],
   "YourTour.model.CommentModel": [],
+  "YourTour.model.DeviceModel": [],
   "YourTour.model.ExpertModel": [],
   "YourTour.model.ExpertServiceModel": [],
   "YourTour.model.HomeCarouselModel": [],
@@ -694,6 +695,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.model.SimpleModel": [],
   "YourTour.model.TalentModel": [],
   "YourTour.model.UserModel": [],
+  "YourTour.model.VersionModel": [],
   "YourTour.model.common.ResponseModel": [],
   "YourTour.store.AjaxStore": [],
   "YourTour.store.DummyStore": [],
@@ -860,7 +862,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.user.UserProfileView": [],
   "YourTour.view.user.UserTagDataItem": [],
   "YourTour.view.user.UserView": [],
-  "YourTour.view.widget.ToolButton": [],
   "YourTour.view.widget.XActionSheet": [],
   "YourTour.view.widget.XButton": [],
   "YourTour.view.widget.XButtonGroup": [],
@@ -1673,6 +1674,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.model.ChargeModel": [],
   "YourTour.model.ChatModel": [],
   "YourTour.model.CommentModel": [],
+  "YourTour.model.DeviceModel": [],
   "YourTour.model.ExpertModel": [],
   "YourTour.model.ExpertServiceModel": [],
   "YourTour.model.HomeCarouselModel": [],
@@ -1696,6 +1698,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.model.SimpleModel": [],
   "YourTour.model.TalentModel": [],
   "YourTour.model.UserModel": [],
+  "YourTour.model.VersionModel": [],
   "YourTour.model.common.ResponseModel": [],
   "YourTour.store.AjaxStore": [],
   "YourTour.store.DummyStore": [],
@@ -2039,9 +2042,6 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.user.UserView": [
     "widget.UserView"
-  ],
-  "YourTour.view.widget.ToolButton": [
-    "widget.toolbutton"
   ],
   "YourTour.view.widget.XActionSheet": [],
   "YourTour.view.widget.XButton": [

@@ -12,7 +12,7 @@ import com.yt.business.bean.UserAccountBean;
 import com.yt.business.service.IUserService;
 import com.yt.core.utils.MessageDigestUtils;
 
-@Service
+//@Service
 public class AdminUserInitializeService implements InitializingBean {
 	/** 静态变量：系统日志 */
 	private static final Log LOG = LogFactory

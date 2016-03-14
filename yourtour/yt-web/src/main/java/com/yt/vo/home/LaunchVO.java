@@ -16,8 +16,7 @@ public class LaunchVO {
 		this.activity = new ActivityVO();
 	}
 
-	public static LaunchVO transform(LaunchBean launch, VersionBean version,
-			ActivityBean activity) {
+	public static LaunchVO transform(LaunchBean launch, VersionBean version, ActivityBean activity) {
 		LaunchVO vo = new LaunchVO();
 		if (launch != null) {
 			vo.id = launch.getId();
@@ -55,5 +54,4 @@ public class LaunchVO {
 	public ActivityVO getActivity() {
 		return activity;
 	}
-
 }
