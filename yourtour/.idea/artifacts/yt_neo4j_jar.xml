@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="yt-neo4j:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/yt_neo4j_jar</output-path>
-    <root id="archive" name="yt-neo4j.jar">
-      <element id="module-output" name="yt-neo4j" />
-    </root>
-  </artifact>
-</component>
