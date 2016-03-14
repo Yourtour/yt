@@ -665,6 +665,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.controller.route.ScheduleReferenceCtrl": [],
   "YourTour.controller.user.UserListCtrl": [],
   "YourTour.model.ActivityItemModel": [],
+  "YourTour.model.ActivityModel": [],
   "YourTour.model.AlongModel": [],
   "YourTour.model.BaseModel": [],
   "YourTour.model.BestModel": [],
@@ -911,6 +912,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.XToolbar": [],
   "YourTour.view.widget.XUserLogo": [],
   "YourTour.view.widget.XVerticalLine": [],
+  "YourTour.view.widget.XZoomCarousel": [],
   "YourTour.view.widget.grid.XGridItem": [],
   "YourTour.view.widget.grid.XGridView": [],
   "YourTour.view.widget.grid.component.Container": [],
@@ -1663,6 +1665,7 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.controller.route.ScheduleReferenceCtrl": [],
   "YourTour.controller.user.UserListCtrl": [],
   "YourTour.model.ActivityItemModel": [],
+  "YourTour.model.ActivityModel": [],
   "YourTour.model.AlongModel": [],
   "YourTour.model.BaseModel": [],
   "YourTour.model.BestModel": [],
@@ -2164,6 +2167,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.widget.XVerticalLine": [
     "widget.xvline"
+  ],
+  "YourTour.view.widget.XZoomCarousel": [
+    "widget.xzoomcarousel"
   ],
   "YourTour.view.widget.grid.XGridItem": [],
   "YourTour.view.widget.grid.XGridView": [
