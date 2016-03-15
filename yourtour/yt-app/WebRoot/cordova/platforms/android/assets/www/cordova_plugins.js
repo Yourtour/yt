@@ -41,13 +41,6 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/cordova-plugin-extra/www/ExtraInfo.js",
-        "id": "cordova-plugin-extra.ExtraInfo",
-        "clobbers": [
-            "ExtraInfo"
-        ]
-    },
-    {
         "file": "plugins/cordova-plugin-image-picker/www/imagepicker.js",
         "id": "cordova-plugin-image-picker.ImagePicker",
         "clobbers": [
@@ -55,17 +48,46 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/cordova-plugin-app-version/www/AppVersionPlugin.js",
-        "id": "cordova-plugin-app-version.cordova.getAppVersion",
-        "clobbers": [
-            "cordova.getAppVersion"
-        ]
-    },
-    {
         "file": "plugins/org.apache.cordova.splashscreen/www/splashscreen.js",
         "id": "org.apache.cordova.splashscreen.SplashScreen",
         "clobbers": [
             "navigator.splashscreen"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-vibration/www/vibration.js",
+        "id": "cordova-plugin-vibration.notification",
+        "merges": [
+            "navigator.notification",
+            "navigator"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-dialogs/www/notification.js",
+        "id": "cordova-plugin-dialogs.notification",
+        "merges": [
+            "navigator.notification"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-dialogs/www/android/notification.js",
+        "id": "cordova-plugin-dialogs.notification_android",
+        "merges": [
+            "navigator.notification"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-device/www/device.js",
+        "id": "cordova-plugin-device.device",
+        "clobbers": [
+            "device"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-app/www/AppInfo.js",
+        "id": "cordova-plugin-app.AppInfo",
+        "clobbers": [
+            "AppInfo"
         ]
     }
 ];
@@ -76,10 +98,12 @@ module.exports.metadata =
     "cordova-plugin-camera": "1.2.0",
     "phonegap-plugin-barcodescanner": "4.0.1",
     "cordova-plugin-x-socialsharing": "5.0.8-dev",
-    "cordova-plugin-extra": "1.2.0",
     "cordova-plugin-image-picker": "1.0.8",
-    "cordova-plugin-app-version": "0.1.8",
-    "org.apache.cordova.splashscreen": "1.0.0"
+    "org.apache.cordova.splashscreen": "1.0.0",
+    "cordova-plugin-vibration": "2.1.1-dev",
+    "cordova-plugin-dialogs": "1.2.1-dev",
+    "cordova-plugin-device": "1.1.2-dev",
+    "cordova-plugin-app": "1.2.0"
 }
 // BOTTOM OF METADATA
 });

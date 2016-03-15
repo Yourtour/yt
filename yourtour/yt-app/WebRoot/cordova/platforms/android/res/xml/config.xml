@@ -14,9 +14,6 @@
     <feature name="SocialSharing">
         <param name="android-package" value="nl.xservices.plugins.SocialSharing" />
     </feature>
-    <feature name="ExtraInfo">
-        <param name="android-package" value="com.yt.cordova.extra.ExtraInfo" />
-    </feature>
     <feature name="ImagePicker">
         <param name="android-package" value="com.synconset.ImagePicker" />
     </feature>
@@ -26,6 +23,18 @@
     <feature name="SplashScreen">
         <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
         <param name="onload" value="true" />
+    </feature>
+    <feature name="Vibration">
+        <param name="android-package" value="org.apache.cordova.vibration.Vibration" />
+    </feature>
+    <feature name="Notification">
+        <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
+    </feature>
+    <feature name="Device">
+        <param name="android-package" value="org.apache.cordova.device.Device" />
+    </feature>
+    <feature name="AppInfo">
+        <param name="android-package" value="com.yt.cordova.plugins.AppInfo" />
     </feature>
     <allow-intent href="market:*" />
     <name>游徒</name>

@@ -102,24 +102,55 @@ Ext.application({
         '1496x2048': 'resources/startup/launch.png'
     },
 
+    version:'unknow',
+
     launch: function () {
         try {
-            document.addEventListener("deviceready", this.onDeviceReady, false);
+            var me = this;
+            document.addEventListener("backbutton", function () {
+                var canPop = false;
+                var id = Ext.Viewport.getActiveItem().id;
+
+                if (id.indexOf("MainView") != -1) {
+                    var mainview = Ext.Viewport.getActiveItem();
+                    var length = mainview.getItems().length;
+                    if (length > 2) {
+                        canPop = true;
+                    }
+                }
+
+                if (canPop) {
+                    Ext.ComponentManager.get('MainView').pop();
+                } else {
+                    navigator.notification.confirm('您确定要退出应用吗?',
+                        function(buttonIndex) {
+                            if (buttonIndex == "1") {
+                                navigator.app.exitApp();
+                            }
+                        },
+                        '提示',
+                        '确定,取消'
+                    );
+                }
+            }, false);
+
+            document.addEventListener("deviceready",
+                function () {
+                    AppInfo.getVersion(function(version){
+                        me.version = version;
+                        me.initialize();
+                    });
+                },
+                false);
         } catch (e) {
             alert(e.name + ":" + e.message);
         }
-
-        this.initialize();
     },
 
     initialize: function () {
         var me = this;
-
         Ext.Ajax.on('beforerequest', (function (conn, options, eOpts) {
             var versionNo='1.0.0';
-            /*cordova.getAppVersion.getVersionNumber(function (version) {
-             versionNo = version;
-             });*/
 
             var accessToken = 'ABCDEFG';//this.getCached('Access-Token');
             var userToken = me.getUserId();
@@ -150,7 +181,6 @@ Ext.application({
      * APP基础数据初始化
      */
     initAppContext:function(){
-        console.log('Initializing App Context.......');
         var me = this, localStore =  Ext.StoreManager.get('LocalStore'), json;
 
         localStore.load(function(){
@@ -182,34 +212,7 @@ Ext.application({
         });
     },
 
-    onDeviceReady: function () {
-        try {
-            document.addEventListener("backbutton", function () {
-                var canPop = false;
-                var id = Ext.Viewport.getActiveItem().id;
 
-                if (id.indexOf("MainView") != -1) {
-                    var mainview = Ext.Viewport.getActiveItem();
-                    var length = mainview.getItems().length;
-                    if (length > 2) {
-                        canPop = true;
-                    }
-                }
-
-                if (canPop) {
-                    Ext.ComponentManager.get('MainView').pop();
-                } else {
-                    Ext.Msg.confirm("提示", "您确定要退出应用吗?", function (e) {
-                        if (e == "yes") {
-                            navigator.app.exitApp();
-                        }
-                    }, this);
-                }
-            }, false);
-        } catch (e) {
-            alert(e.name + ":" + e.message);
-        }
-    },
 
     onUpdated: function () {
         Ext.Msg.confirm(
@@ -224,11 +227,16 @@ Ext.application({
     },
 
     getVersion:function(){
-        return '1.0.0';
+        return this.version;
     },
 
     getDeviceType:function(){
-        return 'android';
+        try {
+            return device.platform;
+        }catch(e){
+            this.toast(e.name + ":" + e.message);
+            return 'unknown';
+        }
     },
 
     getAppType:function(){
@@ -314,20 +322,6 @@ Ext.application({
         }
 
         return me.userProfile;
-    },
-
-    /**
-     * 退出应用
-     */
-    quit: function () {
-        var me = this;
-        Ext.Msg.confirm("提示", "您确定要退出应用吗?", function (e) {
-            if (e == "yes") {
-                me.localStorage.clear();
-
-                navigator.app.exitApp();
-            }
-        }, this);
     },
 
     /**
@@ -483,6 +477,41 @@ Ext.application({
     },
 
     toast: function (msg) {
-        Ext.Msg.alert(msg);
+        this.alert(msg);
+    },
+
+    /**
+     * 信息确认窗口
+     * @param title
+     * @param message
+     * @param callback
+     */
+    confirm:function(title, message, callback){
+        navigator.notification.confirm(message,
+            function(buttonIndex) {
+                callback(buttonIndex);
+            },
+            title,
+            '确定,取消'
+        );
+    },
+
+    /**
+     * 信息提示窗口
+     * @param o
+     */
+    alert:function(o){
+        var options = {
+            title:'提示',
+            message:'',
+            callback:Ext.emptyFn
+        };
+
+        if(Ext.isString(o)){
+            Ext.apply(options, {message:o});
+        }else{
+            Ext.apply(options, o);
+        }
+        navigator.notification.alert(options.message, options.title,'确定');
     }
 });

@@ -52,13 +52,14 @@ Ext.define('YourTour.controller.MainCtrl', {
      */
     doStartup: function () {
         var me = this,
-            deviceTpe = me.getApplication().getDeviceType(),
+            devType = me.getApplication().getDeviceType(),
             version = me.getApplication().getVersion(),
             appType = me.getApplication().getAppType();
 
         var options = {
             model: 'YourTour.model.LaunchModel',
-            url: Ext.String.format('/{0}/{1}/{2}/launch', deviceTpe, appType, version),
+            url: 'launch',
+            params:[{name:'devType', value:devType},{name:'appType', value:appType}, {name:'version', value:version}],
             success: function (store) {
                 var data = store.first();
                 if (data.deviceStore) { //检查是否需要升级

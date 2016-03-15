@@ -25,10 +25,6 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"ExtraInfo\"><param name=\"android-package\" value=\"com.yt.cordova.extra.ExtraInfo\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"ImagePicker\"><param name=\"android-package\" value=\"com.synconset.ImagePicker\" /></feature>",
                             "count": 1
                         },
@@ -38,6 +34,22 @@
                         },
                         {
                             "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Vibration\"><param name=\"android-package\" value=\"org.apache.cordova.vibration.Vibration\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Notification\"><param name=\"android-package\" value=\"org.apache.cordova.dialogs.Notification\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"AppInfo\"><param name=\"android-package\" value=\"com.yt.cordova.plugins.AppInfo\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -84,6 +96,10 @@
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.VIBRATE\" />",
                             "count": 1
                         }
                     ]
@@ -586,16 +602,22 @@
         "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "foo.bar.YourTour"
         },
-        "cordova-plugin-extra": {
-            "PACKAGE_NAME": "foo.bar.YourTour"
-        },
         "cordova-plugin-image-picker": {
             "PACKAGE_NAME": "foo.bar.YourTour"
         },
-        "cordova-plugin-app-version": {
+        "org.apache.cordova.splashscreen": {
             "PACKAGE_NAME": "foo.bar.YourTour"
         },
-        "org.apache.cordova.splashscreen": {
+        "cordova-plugin-vibration": {
+            "PACKAGE_NAME": "foo.bar.YourTour"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "foo.bar.YourTour"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "foo.bar.YourTour"
+        },
+        "cordova-plugin-app": {
             "PACKAGE_NAME": "foo.bar.YourTour"
         }
     },

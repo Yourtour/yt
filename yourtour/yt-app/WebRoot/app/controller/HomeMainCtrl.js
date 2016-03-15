@@ -16,7 +16,8 @@ Ext.define('YourTour.controller.HomeMainCtrl', {
 
         var options = {
             model: 'YourTour.model.HomeModel',
-            url: '/home/0',
+            url: '/home',
+            params:[{name:'lastModifiedTime', value:0}],
             success: function (store) {
             }
         };

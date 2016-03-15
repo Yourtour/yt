@@ -33,14 +33,6 @@
         "is_top_level": true,
         "variables": {}
     },
-    "cordova-plugin-extra": {
-        "source": {
-            "type": "local",
-            "path": "e:\\tmp\\plugin\\ExtraInfo"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
     "cordova-plugin-image-picker": {
         "source": {
             "type": "registry",
@@ -49,19 +41,69 @@
         "is_top_level": true,
         "variables": {}
     },
-    "cordova-plugin-app-version": {
+    "org.apache.cordova.splashscreen": {
+        "source": {
+            "type": "registry",
+            "id": "org.apache.cordova.splashscreen"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-vibration": {
         "source": {
             "type": "git",
-            "url": "https://github.com/whiteoctober/cordova-plugin-app-version.git",
+            "url": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-vibration.git",
             "subdir": "."
         },
         "is_top_level": true,
         "variables": {}
     },
-    "org.apache.cordova.splashscreen": {
+    "cordova-plugin-dialogs": {
         "source": {
-            "type": "registry",
-            "id": "org.apache.cordova.splashscreen"
+            "type": "git",
+            "url": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-dialogs.git",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-device": {
+        "source": {
+            "type": "git",
+            "url": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-device.git",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-yt-app": {
+        "source": {
+            "type": "local",
+            "path": "E:\\workspace\\yt\\yourtour\\yt-app\\WebRoot\\cordova\\plugins\\cordova-plugin-yt-app"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "AppInfo": {
+        "source": {
+            "type": "local",
+            "path": "E:\\workspace\\yt\\yourtour\\yt-app\\WebRoot\\cordova\\plugins\\AppInfo"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-appinfo": {
+        "source": {
+            "type": "local",
+            "path": "E:\\workspace\\yt\\yourtour\\yt-app\\WebRoot\\cordova\\plugins\\cordova-plugin-appinfo"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-app": {
+        "source": {
+            "type": "local",
+            "path": "E:\\workspace\\yt\\yourtour\\yt-app\\WebRoot\\cordova\\plugins\\cordova-plugin-appinfo"
         },
         "is_top_level": true,
         "variables": {}

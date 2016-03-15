@@ -19,18 +19,18 @@
         <engine name="cordova" version=">=3.0.0" />
     </engines>
 
-    <js-module name="cordova.getAppVersion" src="www/AppVersionPlugin.js">
-       <clobbers target="cordova.getAppVersion" />
+    <js-module name="AppInfo" src="www/AppInfo.js">
+       <clobbers target="AppInfo" />
     </js-module>
 
     <!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="cordova.getAppVersion">
-                <param name="android-package" value="uk.co.whiteoctober.cordova.AppVersion"/>
+            <feature name="AppInfo">
+                <param name="android-package" value="com.yt.cordova.app.AppInfo"/>
             </feature>
         </config-file>
-        <source-file src="src/android/AppVersion.java" target-dir="src/uk/co/whiteoctober/cordova" />
+        <source-file src="src/android/AppVersion.java" target-dir="src/com/yt/cordova/app" />
     </platform>
 
     <!-- blackberry10 -->

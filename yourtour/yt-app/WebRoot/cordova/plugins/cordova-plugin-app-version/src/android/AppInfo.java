@@ -1,4 +1,4 @@
-package uk.co.whiteoctober.cordova;
+package com.yt.cordova.app;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -10,7 +10,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.PackageManager;
 
-public class AppVersion extends CordovaPlugin {
+public class AppInfo extends CordovaPlugin {
   @Override
   public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
