@@ -33,7 +33,7 @@ import com.yt.vo.member.RegisterVO;
 import com.yt.vo.member.UserVO;
 
 @Component
-@Path("app/users")
+@Path("/app/users")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class UserRestResource extends RestResource {
@@ -49,7 +49,7 @@ public class UserRestResource extends RestResource {
 	 * @return
 	 */
 	@GET
-	@Path("{id}")
+	@Path("/{id}")
 	public ResponseDataVO<UserVO> getUser(@PathParam("id") Long id)
 			throws Exception {
 		UserProfileBean bean = userService.getUserProfileInfo(id);
@@ -65,10 +65,11 @@ public class UserRestResource extends RestResource {
 	 * 用户登录注销接口
 	 * 
 	 * @param id
+	 *            用户Profile的ID
 	 * @return
 	 */
 	@GET
-	@Path("logout/{id}")
+	@Path("/{id}/logout")
 	public ResponseVO logout(@PathParam("id") Long id) throws Exception {
 		userService.logout(id);
 
@@ -92,6 +93,14 @@ public class UserRestResource extends RestResource {
 		return new ResponseDataVO<UserVO>(profile);
 	}
 
+	@Path("/{mobileNO}/sendAuthcode")
+	@GET
+	public ResponseDataVO<String> sendAuthcode(
+			@PathParam("mobileNO") String mobileNO) throws Exception {
+		String authcode = userService.getAuthcode(mobileNO);
+		return new ResponseDataVO<String>(authcode);
+	}
+
 	/**
 	 * APP 用户账户注册接口
 	 * 
@@ -99,9 +108,16 @@ public class UserRestResource extends RestResource {
 	 * @return
 	 */
 	@POST
-	@Path("/account/register")
+	@Path("/register")
 	public ResponseDataVO<UserVO> registerUserAccount(RegisterVO registervo)
 			throws Exception {
+		// 验证动态验证码
+		String mobileNO = registervo.getMobile();
+		String authcode = registervo.getAuthcode();
+		if (!authcode.equals(userService.getAuthcode(mobileNO))) {
+			// 验证码不匹配
+			return new ResponseDataVO<UserVO>(StaticErrorEnum.AUTHENTICATE_FAIL);
+		}
 		UserProfileBean profile = userService.regist(registervo.getMobile(),
 				registervo.getPassword());
 		return new ResponseDataVO<UserVO>(UserVO.transform(profile));
@@ -120,7 +136,7 @@ public class UserRestResource extends RestResource {
 	 */
 	@POST
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	@Path("/{id}/profile/save")
+	@Path("/{id}/register")
 	public ResponseDataVO<UserVO> registerProfile(
 			@FormDataParam("id") Long profileId,
 			@FormDataParam("nickName") String nickName,

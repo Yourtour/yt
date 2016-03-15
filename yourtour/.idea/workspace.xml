@@ -2,9 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92ee94f3-3d6c-4f6d-925a-699d6360b737" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/plugins/cordova-plugin-appinfo/src/android/AppInfo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/plugins/cordova-plugin-appinfo/www/AppInfo.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/plugins/cordova-plugin-appinfo/plugin.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-14/20160314-游徒A.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-14/20160314-游徒B.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-14/20160314-游徒全图A.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/protype/2016-03-14/20160314-游徒全图B.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/requirement/游徒APP的页面清单1.0.xlsx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-web/src/main/resources/application-cache-context.xml" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\.idea\.name" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\.idea\artifacts\yt_neo4j_jar.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\.idea\artifacts\yt_web_war_exploded.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\.idea\compiler.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\.idea\copyright\profiles_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\.idea\encodings.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\.idea\libraries\lib.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\.idea\misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\.idea\modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\.idea\uiDesigner.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\.idea\vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\.idea\workspace - 副本.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\1.txt" afterPath="" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-app\WebRoot\cordova\platforms\android\assets\www\plugins\cordova-plugin-app-version\www\AppVersionPlugin.js" afterPath="" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-app\WebRoot\cordova\platforms\android\assets\www\plugins\cordova-plugin-extra\www\ExtraInfo.js" afterPath="" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-app\WebRoot\cordova\platforms\android\assets\www\plugins\phonegap-plugin-barcodescanner\www\barcodescanner.js" afterPath="" />
@@ -32,24 +48,12 @@
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-web\WebRoot\WEB-INF\classes\commons-logging.properties" afterPath="" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-web\WebRoot\WEB-INF\classes\config.properties" afterPath="" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-web\WebRoot\WEB-INF\classes\log4j.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/util/Context.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/util/Context.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/controller/HomeMainCtrl.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/controller/HomeMainCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/controller/MainCtrl.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/controller/MainCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XTranslatableGroup.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XTranslatableGroup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XZoomCarousel.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XZoomCarousel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/plugins/android.json" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/plugins/android.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/assets/www/app.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/assets/www/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/www/app.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/www/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/config.xml" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/res/xml/config.xml" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/res/xml/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/assets/www/cordova_plugins.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/assets/www/cordova_plugins.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/plugins/fetch.json" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/plugins/fetch.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documents/design/游徒平台接口设计.xlsx" afterPath="$PROJECT_DIR$/documents/design/游徒平台接口设计.xlsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IUserService.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IUserService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/member/RegisterVO.java" afterPath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/member/RegisterVO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/UserRestResource.java" afterPath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/UserRestResource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/UserServiceImpl.java" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/UserServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-web/src/main/resources/log4j.xml" afterPath="$PROJECT_DIR$/yt-web/src/main/resources/log4j.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="yourtour.iws" />
@@ -119,7 +123,7 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.29258516">
+            <state vertical-scroll-proportion="0.9358974">
               <caret line="140" column="0" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -1214,7 +1218,6 @@
       <method>
         <option name="BuildArtifacts" enabled="true">
           <artifact name="yt-app" />
-          <artifact name="yt-web:war exploded" />
           <artifact name="yt-app:war exploded" />
         </option>
       </method>
@@ -1254,12 +1257,12 @@
       <workItem from="1458003963570" duration="16173000" />
       <workItem from="1458029148446" duration="6831000" />
       <workItem from="1458036229687" duration="1093000" />
-      <workItem from="1458044853074" duration="5879000" />
+      <workItem from="1458044853074" duration="6061000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="146228000" />
+    <option name="totallyTimeSpent" value="146410000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1272,7 +1275,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1284,7 +1287,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13725491" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.6977124" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19213313" sideWeight="0.49362478" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1738,7 +1741,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29258516">
+        <state vertical-scroll-proportion="0.9358974">
           <caret line="140" column="0" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
