@@ -49,7 +49,15 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"AppInfo\"><param name=\"android-package\" value=\"com.yt.cordova.plugins.AppInfo\" /></feature>",
+                            "xml": "<feature name=\"File\"><param name=\"android-package\" value=\"org.apache.cordova.file.FileUtils\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"FileTransfer\"><param name=\"android-package\" value=\"org.apache.cordova.filetransfer.FileTransfer\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"App\"><param name=\"android-package\" value=\"com.yt.cordova.plugins.App\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -60,7 +68,7 @@
                     "/*": [
                         {
                             "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
-                            "count": 2
+                            "count": 4
                         }
                     ],
                     "/manifest/application": [
@@ -615,6 +623,12 @@
             "PACKAGE_NAME": "foo.bar.YourTour"
         },
         "cordova-plugin-device": {
+            "PACKAGE_NAME": "foo.bar.YourTour"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "foo.bar.YourTour"
+        },
+        "cordova-plugin-file-transfer": {
             "PACKAGE_NAME": "foo.bar.YourTour"
         },
         "cordova-plugin-app": {

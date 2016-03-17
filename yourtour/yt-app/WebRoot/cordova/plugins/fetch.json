@@ -100,10 +100,28 @@
         "is_top_level": true,
         "variables": {}
     },
+    "cordova-plugin-file": {
+        "source": {
+            "type": "git",
+            "url": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-file.git",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-file-transfer": {
+        "source": {
+            "type": "git",
+            "url": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-file-transfer.git",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
     "cordova-plugin-app": {
         "source": {
             "type": "local",
-            "path": "E:\\workspace\\yt\\yourtour\\yt-app\\WebRoot\\cordova\\plugins\\cordova-plugin-appinfo"
+            "path": "E:\\workspace\\yt\\yourtour\\yt-app\\WebRoot\\cordova\\cordova-plugin-app"
         },
         "is_top_level": true,
         "variables": {}

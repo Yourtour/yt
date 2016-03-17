@@ -5,7 +5,9 @@ Ext.define('YourTour.controller.MainCtrl', {
             welcomeview: '#WelcomeView',
 
             mainView: '#MainView',
-            menuTab: '#MainView #menuTab'
+            menuTab: '#MainView #menuTab',
+
+            upgradeView : '#UpgradeView',
         },
 
         control: {
@@ -15,6 +17,14 @@ Ext.define('YourTour.controller.MainCtrl', {
 
             '#WelcomeView #enter': {
                 tap: 'doEnter'
+            },
+
+            '#UpgradeView #btnCancel':{
+                tap:'cancelUpgrade'
+            },
+
+            '#UpgradeView #btnUpgrade':{
+                tap:'doUpgrade'
             }
         }
     },
@@ -25,7 +35,7 @@ Ext.define('YourTour.controller.MainCtrl', {
     startup: function () {
         var me = this, index;
 
-        var welcomeVisited = me.getApplication().getCached('welcome.visited');
+        var welcomeVisited = me.getApplication().getLocalStorage().get('welcome.visited');
         if (!welcomeVisited) { //首次安装访问，显示欢迎页
             Ext.Viewport.add(Ext.create('YourTour.view.WelcomeView'));
         } else { //启动后台接口调用
@@ -33,16 +43,8 @@ Ext.define('YourTour.controller.MainCtrl', {
         }
     },
 
-    /**
-     * 显示客户端升级提示页面
-     * @param store
-     */
-    showAppUpgrade: function (store) {
-        Ext.Viewport.add(Ext.create('YourTour.view.UpgradeView'));
-    },
-
     doEnter: function () {
-        this.getApplication().storeCached({key: 'welcome.visited', value: '1'});
+        this.getApplication().getLocalStorage().save({key: 'welcome.visited', value: '1'});
 
         this.doStartup();
     },
@@ -62,8 +64,16 @@ Ext.define('YourTour.controller.MainCtrl', {
             params:[{name:'devType', value:devType},{name:'appType', value:appType}, {name:'version', value:version}],
             success: function (store) {
                 var data = store.first();
-                if (data.deviceStore) { //检查是否需要升级
-                    me.showAppUpgrade(data.deviceStore);
+
+                var accessToken = me.getApplication().getLocalStorage().get('access-token');
+                if(! accessToken){
+                    me.getApplication().getLocalStorage().save({key:'access-token', value:data.get('accessToken')});
+                }
+
+                me.getApplication().getSessionStorage().save({key:'session-token', value:data.get('sessionToken')})
+
+                if (data.versionStore) { //检查是否需要升级
+                    me.showAppUpgrade(data.versionStore);
                 } else if (data.activityStore) { //检查是否有活动数据，如果有显示活动页面
                     me.showActivityPage(data.activityStore);
                 } else {
@@ -77,17 +87,80 @@ Ext.define('YourTour.controller.MainCtrl', {
     /**
      * 显示APP主页
      */
-    showActivityPage: function (store) {
-        Ext.Viewport.setActiveItem(Ext.create('YourTour.view.ActivityView'));
+    showMainPage: function () {
+        Ext.Viewport.setActiveItem(Ext.create('YourTour.view.MainView'));
+
+        this.showHomeView();
+    },
+
+    /**
+     * 显示客户端升级提示页面
+     * @param store
+     */
+    showAppUpgrade: function (store) {
+        Ext.Viewport.add(Ext.create('YourTour.view.UpgradeView'));
+
+        var version = store.first();
+        var me = this, upgradeView = me.getUpgradeView(), memo = upgradeView.down('#memo');
+
+        upgradeView.bindData(version);
+
+        memo.setText(version.get('releaseNotes'));
+    },
+
+    cancelUpgrade:function(){
+        this.showMainPage();
+    },
+
+    doUpgrade:function(){
+        var me = this, upgradeView = me.getUpgradeView(),
+            version = upgradeView.getData(),
+            memo = upgradeView.down('#memo'),
+            progressbar = upgradeView.down('#progressbar'),
+            btnCancel = upgradeView.down('#btnCancel'),
+            btnUpgrade = upgradeView.down('#btnUpgrade');
+
+        btnCancel.hide();
+        btnUpgrade.hide();
+        progressbar.show();
+
+        var fileTransfer = new FileTransfer();
+        fileTransfer.onprogress = function(progressEvent) {
+            if (progressEvent.lengthComputable) {
+                progressbar.setPercent(progressEvent.loaded / progressEvent.total);
+            }
+        };
+
+        var uri = 'http://' + YourTour.util.Context.getRemoteServer() + '/yt-web/' + encodeURI(version.get('newVersionUrl')),
+            filePath= '/mnt/sdcard/android-debug.apk';
+
+        fileTransfer.download(
+            uri,
+            filePath,
+            function(entry) {
+                App.install(filePath, function(message){
+                },function(message){
+                    me.getApplication().info('升级失败。');
+                });
+            },
+            function(error) {
+                me.getApplication().info('下载异常，请稍后再试。');
+                memo.setText("download error code=" + error.source);
+            },
+            false,
+            {
+                headers: {
+                    "Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
+                }
+            }
+        );
     },
 
     /**
      * 显示APP主页
      */
-    showMainPage: function () {
-        Ext.Viewport.setActiveItem(Ext.create('YourTour.view.MainView'));
-
-        this.showHomeView();
+    showActivityPage: function (store) {
+        Ext.Viewport.setActiveItem(Ext.create('YourTour.view.ActivityView'));
     },
 
     onActiveItemChange: function (tabBar, newTab, oldTab) {

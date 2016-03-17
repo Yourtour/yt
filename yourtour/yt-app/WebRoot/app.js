@@ -27,12 +27,12 @@ Ext.application({
     /**
      * 系统基础数据
      */
-    baseStore:null,
+    baseStore: null,
 
     /**
      * 用户数据
      */
-    userProfile:null,
+    userProfile: null,
 
     views: [
         'MainView', 'WelcomeView', 'UpgradeView', 'ActivityView', 'setting.UserSettingView',
@@ -82,7 +82,7 @@ Ext.application({
     ],
 
     stores: [
-        'GenderStore','LaunchStore', 'LocalStore'],
+        'GenderStore', 'LaunchStore', 'LocalStore', 'SessionStore'],
 
     icon: {
         '57': 'resources/icons/Icon.png',
@@ -102,7 +102,13 @@ Ext.application({
         '1496x2048': 'resources/startup/launch.png'
     },
 
-    version:'unknow',
+    version: '1.0.0',
+
+    baseStore:'',
+
+    localStorage:null,
+
+    sessionStorage:null,
 
     launch: function () {
         try {
@@ -123,7 +129,7 @@ Ext.application({
                     Ext.ComponentManager.get('MainView').pop();
                 } else {
                     navigator.notification.confirm('您确定要退出应用吗?',
-                        function(buttonIndex) {
+                        function (buttonIndex) {
                             if (buttonIndex == "1") {
                                 navigator.app.exitApp();
                             }
@@ -134,30 +140,35 @@ Ext.application({
                 }
             }, false);
 
-            document.addEventListener("deviceready",
-                function () {
-                    AppInfo.getVersion(function(version){
-                        me.version = version;
-                        me.initialize();
-                    });
-                },
-                false);
+            if (!Ext.os.is.Windows) {
+                document.addEventListener("deviceready",
+                    function () {
+                        App.getVersion(function (version) {
+                            me.version = version;
+                            me.initialize();
+                        });
+                    },
+                    false);
+            } else {
+                me.initialize();
+            }
         } catch (e) {
             alert(e.name + ":" + e.message);
         }
     },
 
     initialize: function () {
-        var me = this;
+        var me = this,
+            localStorage = me.getLocalStorage(),
+            sessionStorage = me.getSessionStorage(),
+            accessToken = localStorage.get('access-token'),
+            sessionToken = sessionStorage.get('session-token'),
+            userToken = me.getUserId();
+
         Ext.Ajax.on('beforerequest', (function (conn, options, eOpts) {
-            var versionNo='1.0.0';
-
-            var accessToken = 'ABCDEFG';//this.getCached('Access-Token');
-            var userToken = me.getUserId();
-
             options.headers = {
-                'Access-Token':accessToken,  //客户端令牌
-                'App-Version':versionNo,  //客户端版本号
+                'Access-Token': accessToken,  //客户端令牌
+                'Session-Token': sessionToken,  //客户端令牌
                 'User-Token': userToken,  //用户令牌
 
                 'Content-Type': 'application/json'
@@ -169,8 +180,8 @@ Ext.application({
         this.initAppContext();
     },
 
-    getBaseStore:function(){
-        if(this.baseStore == null){
+    getBaseStore: function () {
+        if (this.baseStore == null) {
             this.initAppContext();
         }
 
@@ -180,39 +191,36 @@ Ext.application({
     /**
      * APP基础数据初始化
      */
-    initAppContext:function(){
-        var me = this, localStore =  Ext.StoreManager.get('LocalStore'), json;
+    initAppContext: function () {
+        var me = this, localStore = this.getLocalStorage(), json;
 
-        localStore.load(function(){
+        localStore.load(function () {
             var index = localStore.find('key', 'app.basedata');
-            if(index < 0){ //本地没有缓存
+            if (index < 0) { //本地没有缓存
                 console.log('Loading base data from remote server.......');
-                var store = Ext.create('YourTour.store.LaunchStore', {itemId:'lanuchStore'});
-                var success = function(){
-                    try{
+                var store = Ext.create('YourTour.store.LaunchStore', {itemId: 'lanuchStore'});
+                var success = function () {
+                    try {
                         var json = Ext.JSON.encode(store.first().raw);
-                        localStore.add({key:'app.basedata', value:json});
+                        localStore.add({key: 'app.basedata', value: json});
                         localStore.sync();
 
                         me.baseStore = Ext.create('YourTour.store.LaunchStore', store.first());
-                    }catch(e){
+                    } catch (e) {
                         alert(e.name + ": " + e.message);
                     }
 
                     me.getController('MainCtrl').startup();
                 };
                 store.load(success, this);
-            }else{
+            } else {
                 console.log('Loading base data from local.......');
                 json = localStore.getAt(index).get('value');
-                me.baseStore = Ext.create('YourTour.store.LaunchStore', {data:Ext.JSON.decode(json)});
-
+                me.baseStore = Ext.create('YourTour.store.LaunchStore', {data: Ext.JSON.decode(json)});
                 me.getController('MainCtrl').startup();
             }
         });
     },
-
-
 
     onUpdated: function () {
         Ext.Msg.confirm(
@@ -226,72 +234,41 @@ Ext.application({
         );
     },
 
-    getVersion:function(){
+    getVersion: function () {
         return this.version;
     },
 
-    getDeviceType:function(){
-        try {
+    getDeviceType: function () {
+        if (!Ext.os.is.Windows) {
             return device.platform;
-        }catch(e){
-            this.toast(e.name + ":" + e.message);
-            return 'unknown';
+        }else{
+            return 'ANDROID';
         }
     },
 
-    getAppType:function(){
-        return 'user';
-    },
-    /**
-     * 保存到本地缓存
-     * @param values
-     */
-    storeCached: function (values) {
-        var me = this, localStore = Ext.StoreManager.get('LocalStore');
-        localStore.load();
-
-        var v = [];
-        if (Ext.isArray(values)) {
-            v = values;
-        } else {
-            v.push(values);
-        }
-
-        var found = false;
-        Ext.Array.forEach(v, function (value) {
-            if(value.key == 'user.profile'){
-                me.userProfile = null;
-            }
-
-            found = false;
-            localStore.each(function(item){
-                if(item.get('key') == value.key){
-                    found = true;
-                    item.set('value', value.value);
-                }
-            });
-
-            if(! found) {
-                localStore.add(v);
-            }
-        });
-
-        localStore.sync();
+    getAppType: function () {
+        return 'TOURIST';
     },
 
-    /**
-     * 本地缓存获取
-     * @param key
-     */
-    getCached: function (key) {
-        var me = this, localStore = Ext.StoreManager.get('LocalStore');
-        localStore.load();
+    getLocalStorage:function(){
+        var me = this;
 
-        var index = localStore.find('key', key);
-        if (index >= 0) {
-            var data = localStore.getAt(index);
-            return Ext.JSON.decode(data.get('value'));
+        if(me.localStorage == null) {
+            me.localStorage = Ext.StoreManager.get('LocalStore');
+            me.localStorage.load();
         }
+
+        return me.localStorage;
+    },
+
+    getSessionStorage:function(){
+        var me = this;
+
+        if(me.sessionStorage == null) {
+            me.sessionStorage = Ext.StoreManager.get('SessionStore');
+            me.sessionStorage.load();
+        }
+        return me.sessionStorage;
     },
 
     /**
@@ -300,7 +277,7 @@ Ext.application({
      */
     getUserId: function () {
         var profile = this.getUserProfile();
-        if(profile == null) return null;
+        if (profile == null) return null;
 
         return profile.id;
     },
@@ -311,13 +288,11 @@ Ext.application({
      */
     getUserProfile: function () {
         var me = this;
-        if(this.userProfile == null){
-            var localStore = Ext.StoreManager.get('LocalStore');
-            localStore.load();
-            var index = localStore.find('key', 'user.profile');
-            if (index >= 0) {
-                var userProfile = localStore.getAt(index);
-                me.userProfile = Ext.JSON.decode(userProfile.get('value'));
+        if (this.userProfile == null) {
+            var localStore = this.getLocalStorage();
+            var userProfile = localStore.get('user.profile');
+            if(userProfile) {
+                me.userProfile = Ext.JSON.decode(userProfile);
             }
         }
 
@@ -379,14 +354,14 @@ Ext.application({
             var base64, mimeString, byteString, arrayBuffer, intArray, blob;
             Ext.Array.forEach(files, function (file) {
                 base64 = file.getAsBase64();
-                mimeString =  base64.split(',')[0].split(':')[1].split(';')[0]; // mime类型
+                mimeString = base64.split(',')[0].split(':')[1].split(';')[0]; // mime类型
                 byteString = atob(base64.split(',')[1]); //base64 解码
                 arrayBuffer = new ArrayBuffer(byteString.length); //创建缓冲数组
                 intArray = new Uint8Array(arrayBuffer); //创建视图
                 for (var i = 0; i < byteString.length; i += 1) {
                     intArray[i] = byteString.charCodeAt(i);
                 }
-                blob = new Blob([intArray], { type:  mimeString }); //转成blob
+                blob = new Blob([intArray], {type: mimeString}); //转成blob
 
                 formdata.append(fileContainer.getItemId(), blob, file.getFileName());
             })
@@ -395,7 +370,7 @@ Ext.application({
         var xhr = new XMLHttpRequest();
         xhr.open('POST', YourTour.util.Context.getContext(options.url), true);
 
-        xhr.onload = function(event) {
+        xhr.onload = function (event) {
             if (xhr.status === 200) {
                 var respObj = Ext.JSON.decode(event.target.responseText);
                 if (respObj.errorCode != '0') {
@@ -419,21 +394,21 @@ Ext.application({
      */
     query: function (options) {
         try {
-            var me = this, url = options.url, localStore =  Ext.StoreManager.get('LocalStore');
+            var me = this, url = options.url, localStore = Ext.StoreManager.get('LocalStore');
 
             var cached = options.cached;
-            if(cached){ //从本地缓存获取
+            if (cached) { //从本地缓存获取
                 var data = me.getCached(url);
-                if(data != null){
-                    var store = Ext.create('Ext.data.Store', {model: options.model, data:data});
+                if (data != null) {
+                    var store = Ext.create('Ext.data.Store', {model: options.model, data: data});
                     options.success(store);
                 }
             }
 
             var ajaxStore;
-            if(options.config){
+            if (options.config) {
                 ajaxStore = Ext.create('YourTour.store.AjaxStore', options.config);
-            }else{
+            } else {
                 ajaxStore = Ext.create('YourTour.store.AjaxStore', {model: options.model});
             }
             var proxy = ajaxStore.getProxy();
@@ -452,12 +427,13 @@ Ext.application({
                     url += param.name + '=' + param.value;
                 });
             }
+            this.debug(YourTour.util.Context.getContext(url));
             proxy.setUrl(YourTour.util.Context.getContext(url));
 
             ajaxStore.load(function () {
-                options.success(ajaxStore, cached?'true':'false'); //true:表示需要刷新
+                options.success(ajaxStore, cached ? 'true' : 'false'); //true:表示需要刷新
 
-                if(cached){ //本地缓存
+                if (cached) { //本地缓存
                     //me.StoreCached([{key:url, value:Ext.JSON.encode(ajaxStore.getData())}]);
                 }
 
@@ -477,7 +453,7 @@ Ext.application({
     },
 
     toast: function (msg) {
-        this.alert(msg);
+        this.info(msg);
     },
 
     /**
@@ -486,32 +462,46 @@ Ext.application({
      * @param message
      * @param callback
      */
-    confirm:function(title, message, callback){
-        navigator.notification.confirm(message,
-            function(buttonIndex) {
-                callback(buttonIndex);
-            },
-            title,
-            '确定,取消'
-        );
+    confirm: function (title, message, callback) {
+        if (!Ext.os.is.Windows) {
+            navigator.notification.confirm(message,
+                function (buttonIndex) {
+                    callback(buttonIndex);
+                },
+                title,
+                '确定,取消'
+            );
+        } else {
+            Ext.MessageBox.confirm(title, message, callback, this);
+        }
+    },
+
+    debug: function (message) {
+        console.log(message);
     },
 
     /**
      * 信息提示窗口
      * @param o
      */
-    alert:function(o){
+    info: function (o) {
         var options = {
-            title:'提示',
-            message:'',
-            callback:Ext.emptyFn
+            title: '提示',
+            message: '',
+            callback: Ext.emptyFn
         };
 
-        if(Ext.isString(o)){
-            Ext.apply(options, {message:o});
-        }else{
+        if (Ext.isString(o)) {
+            Ext.apply(options, {message: o});
+        } else {
             Ext.apply(options, o);
         }
-        navigator.notification.alert(options.message, options.title,'确定');
+
+
+        if (!Ext.os.is.Windows) {
+            navigator.notification.alert(options.message, options.title, '确定');
+        } else {
+            Ext.MessageBox.alert(options.message);
+        }
     }
 });

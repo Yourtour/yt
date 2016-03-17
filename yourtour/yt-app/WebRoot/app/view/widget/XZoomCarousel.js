@@ -672,9 +672,10 @@ Ext.define('YourTour.view.widget.XZoomCarousel', {
 
         var itemHeight = this.itemHeight;
         Ext.Array.forEach(orderedCarouselItems, function(item, index){
+            item.itemHeight = itemHeight;
             if(index != 1){
-                item.setHeight('75%');
-                item.setTop( itemHeight * 0.25 / 2);
+                item.setHeight('60%');
+                item.setTop( itemHeight * 0.4 / 2);
             }else{
                 item.setTop(0);
                 item.setHeight('100%');

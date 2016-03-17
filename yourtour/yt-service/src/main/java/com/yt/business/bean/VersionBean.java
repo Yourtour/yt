@@ -22,7 +22,7 @@ public class VersionBean extends BaseBeanImpl {
 
 	public enum DEV_TYPE {
 		ANDROID, // Android平台
-		IOS// IOS平台
+		IOS// IOS平台,
 	}
 
 	private APP_TYPE appType = APP_TYPE.TOURIST; // 应用类型
