@@ -14,7 +14,7 @@ Ext.application({
     name: 'YourTour',
 
     requires: [
-        'Ext.data.proxy.LocalStorage', 'Ext.MessageBox', 'YourTour.view.widget.XProcessing', 'Ext.form.Hidden', 'YourTour.util.Context', 'YourTour.view.widget.XImageSelect'
+        'Ext.data.proxy.SessionStorage', 'YourTour.store.GenderStore', 'Ext.data.proxy.LocalStorage', 'Ext.MessageBox', 'YourTour.view.widget.XProcessing', 'Ext.form.Hidden', 'YourTour.util.Context', 'YourTour.view.widget.XImageSelect'
     ],
 
     /**
@@ -102,7 +102,7 @@ Ext.application({
         '1496x2048': 'resources/startup/launch.png'
     },
 
-    version: '1.0.0',
+    version: '0.0.0.0',
 
     baseStore:'',
 
@@ -167,9 +167,9 @@ Ext.application({
 
         Ext.Ajax.on('beforerequest', (function (conn, options, eOpts) {
             options.headers = {
-                'Access-Token': accessToken,  //客户端令牌
-                'Session-Token': sessionToken,  //客户端令牌
-                'User-Token': userToken,  //用户令牌
+                'Access-Token': !accessToken ? '' : accessToken,  //客户端令牌
+                'Session-Token': !sessionToken ? '' : sessionToken,  //客户端令牌
+                'User-Token': !userToken ? '' : userToken,  //用户令牌
 
                 'Content-Type': 'application/json'
             };
@@ -177,49 +177,7 @@ Ext.application({
 
         YourTour.util.Context.setApplication(this);
 
-        this.initAppContext();
-    },
-
-    getBaseStore: function () {
-        if (this.baseStore == null) {
-            this.initAppContext();
-        }
-
-        return this.baseStore;
-    },
-
-    /**
-     * APP基础数据初始化
-     */
-    initAppContext: function () {
-        var me = this, localStore = this.getLocalStorage(), json;
-
-        localStore.load(function () {
-            var index = localStore.find('key', 'app.basedata');
-            if (index < 0) { //本地没有缓存
-                console.log('Loading base data from remote server.......');
-                var store = Ext.create('YourTour.store.LaunchStore', {itemId: 'lanuchStore'});
-                var success = function () {
-                    try {
-                        var json = Ext.JSON.encode(store.first().raw);
-                        localStore.add({key: 'app.basedata', value: json});
-                        localStore.sync();
-
-                        me.baseStore = Ext.create('YourTour.store.LaunchStore', store.first());
-                    } catch (e) {
-                        alert(e.name + ": " + e.message);
-                    }
-
-                    me.getController('MainCtrl').startup();
-                };
-                store.load(success, this);
-            } else {
-                console.log('Loading base data from local.......');
-                json = localStore.getAt(index).get('value');
-                me.baseStore = Ext.create('YourTour.store.LaunchStore', {data: Ext.JSON.decode(json)});
-                me.getController('MainCtrl').startup();
-            }
-        });
+        me.getController('MainCtrl').startup();
     },
 
     onUpdated: function () {
@@ -427,7 +385,6 @@ Ext.application({
                     url += param.name + '=' + param.value;
                 });
             }
-            this.debug(YourTour.util.Context.getContext(url));
             proxy.setUrl(YourTour.util.Context.getContext(url));
 
             ajaxStore.load(function () {

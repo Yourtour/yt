@@ -6,7 +6,7 @@ Ext.define('YourTour.view.widget.XHeaderBar', {
     	docked: 'top',
 		layout:'hbox',
 		padding:'0 0 0 0',
-		baseCls:'x-xheaderbar',
+		baseCls:'x-xheaderbar x-xheaderbar-color',
 		title:null,
 		backButton:true,
 		backAction:function(headerbar){
@@ -97,6 +97,8 @@ Ext.define('YourTour.view.widget.XHeaderBar', {
 
 	doSetTitle:function(){
 		var me = this, title = me.title, back = me.backButton, label;
+
+		if(! title) return;
 
 		if(title == ''){
 			me.middlePanel.hide();

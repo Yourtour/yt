@@ -12,14 +12,12 @@ Ext.define('YourTour.view.WelcomeView', {
             	direction:'horizontal',
             	items:[
             		{
-            			xtype:"image",
-            			src:'resources/images/welcome_1.jpg',
-            			style:'width:100%;background-size:cover'
+            			xtype:"panel",
+						style:"width: 100%; background-image: url(resources/images/welcome_1.jpg); background-size: cover;"
             		},
             		{
-						xtype:"image",
-            			src:'resources/images/welcome_2.jpg',
-            			style:'width:100%;background-size:cover'
+						xtype:"panel",
+						style:"width: 100%; background-image: url(resources/images/welcome_2.jpg); background-size: cover;"
             		},
             		{
 		            	xtype:"panel",

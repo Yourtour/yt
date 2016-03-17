@@ -13,7 +13,7 @@ Ext.define('YourTour.view.widget.XZoomCarousel', {
          * @cfg
          * @inheritdoc
          */
-        baseCls: 'x-carousel',
+        baseCls: 'x-xzoomcarousel',
 
         /**
          * @cfg {String} direction

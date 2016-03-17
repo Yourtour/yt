@@ -8,6 +8,8 @@ Ext.define('YourTour.controller.MainCtrl', {
             menuTab: '#MainView #menuTab',
 
             upgradeView : '#UpgradeView',
+
+            activityView : '#ActivityView',
         },
 
         control: {
@@ -25,6 +27,10 @@ Ext.define('YourTour.controller.MainCtrl', {
 
             '#UpgradeView #btnUpgrade':{
                 tap:'doUpgrade'
+            },
+
+            '#ActivityView #btnSkip':{
+                tap:'skipActivity'
             }
         }
     },
@@ -98,7 +104,7 @@ Ext.define('YourTour.controller.MainCtrl', {
      * @param store
      */
     showAppUpgrade: function (store) {
-        Ext.Viewport.add(Ext.create('YourTour.view.UpgradeView'));
+        Ext.Viewport.setActiveItem(Ext.create('YourTour.view.UpgradeView'));
 
         var version = store.first();
         var me = this, upgradeView = me.getUpgradeView(), memo = upgradeView.down('#memo');
@@ -112,6 +118,9 @@ Ext.define('YourTour.controller.MainCtrl', {
         this.showMainPage();
     },
 
+    /**
+     * 客户端升级
+     */
     doUpgrade:function(){
         var me = this, upgradeView = me.getUpgradeView(),
             version = upgradeView.getData(),
@@ -161,6 +170,48 @@ Ext.define('YourTour.controller.MainCtrl', {
      */
     showActivityPage: function (store) {
         Ext.Viewport.setActiveItem(Ext.create('YourTour.view.ActivityView'));
+
+        var me = this,
+            activity = store.first(),
+            activityView = me.getActivityView(),
+            image = activityView.down('#img');
+
+        image.setSrc(YourTour.util.Context.getImageResource(activity.get('imageUrl')));
+
+        me.startTimer(10);
+    },
+
+    /**
+     * 定时控制活动页面显示
+     */
+    startTimer:function(count){
+        var me = this,
+            activityView = me.getActivityView(),
+            button = activityView.down('#btnSkip');
+
+        if(count < 10)
+            button.setText('跳过>>0' + count + '秒');
+        else
+            button.setText('跳过>>' + count + '秒');
+
+        button.show();
+
+        me.task = Ext.create('Ext.util.DelayedTask', function () {
+            if(count > 0){
+                me.startTimer(count - 1);
+            }else {
+                me.showMainPage();
+            }
+        });
+
+        me.task.delay(1000); //5秒后执行调用updateClock函数
+    },
+
+    /**
+     * 跳过活动显示页面
+     */
+    skipActivity:function(){
+        this.showMainPage();
     },
 
     onActiveItemChange: function (tabBar, newTab, oldTab) {
@@ -179,6 +230,11 @@ Ext.define('YourTour.controller.MainCtrl', {
      * 显示首页
      */
     showHomeView: function () {
+        var me = this, task = me.task;
+        if(task){
+            task.cancel();
+        }
+
         var controller = this.getApplication().getController('HomeMainCtrl');
         controller.showMainPage();
     },

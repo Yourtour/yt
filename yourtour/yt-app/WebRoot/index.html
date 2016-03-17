@@ -16,7 +16,6 @@
         */
         html, body {
             height: 100%;
-            background-color: #1985D0
         }
 
         #appLoadingIndicator {
@@ -375,8 +374,11 @@
         /*********************************************************************************************************/
         .x-xheaderbar {
             color: white !important;
-            background-color: #3CB371 !important;
             height: 45px;
+        }
+
+        .x-xheaderbar.x-xheaderbar-color {
+            background-color: #3CB371 !important;
         }
 
         .x-xheaderbar .x-xtitle {
@@ -760,7 +762,7 @@
 
         .x-xopacity {
             background-color: grey;
-            opacity: 0.2;
+            opacity: 0.8;
             z-index: 100;
         }
 
@@ -988,7 +990,7 @@
             font-size:14px!important;
         }
 
-        .x-carousel-item, .x-carousel-item>*{
+        .x-xzoomcarousel .x-carousel-item, .x-xzoomcarousel .x-carousel-item>*{
             height:80% !important;
             width: 60% !important;
         }

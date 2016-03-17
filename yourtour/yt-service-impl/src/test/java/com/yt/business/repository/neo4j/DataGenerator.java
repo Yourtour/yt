@@ -14,7 +14,7 @@ public class DataGenerator {
 
 	@Before
 	public void setUp() throws Exception {
-		context = new ClassPathXmlApplicationContext(new String[] {
+		context = new ClassPathXmlApplicationContext(new String[] {"application-rest-context.xml",
 				"application-hbase-context.xml", "application-neo4j-context.xml" });
 	}
 

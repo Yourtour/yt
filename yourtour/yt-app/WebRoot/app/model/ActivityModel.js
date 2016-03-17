@@ -6,7 +6,7 @@ Ext.define('YourTour.model.ActivityModel', {
     config:{
 	    fields:[
 			{name:'id', type:'string'},
-			{name:'img', type:'string'},
+			{name:'imageUrl', type:'string'},
 			{name:'memo', type:'string'}
 	    ]
     }

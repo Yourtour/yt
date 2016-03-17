@@ -56,14 +56,6 @@ Ext.define('YourTour.view.MainView', {
 						title:'旅行车',
 					    iconCls:'user',
 					    iconAlign:'top'
-					},
-
-					{
-						xtype:'DiscoveryMainView',
-						itemId:'btnExplorer',
-						title:'探索',
-						iconCls:'user',
-						iconAlign:'top'
 					}
         	    ]
         	}

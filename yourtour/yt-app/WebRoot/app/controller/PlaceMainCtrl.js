@@ -4,21 +4,14 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
     config: {
         refs: {
             placeMainView: '#PlaceMainView',
-            imageCarousel: '#PlaceMainView #imageCarousel',
-            resourceList:'#PlaceMainView #resourceList',
 
             placeCommunityView:'#PlaceCommunityView',
 
             residenceSelectionView:'#ResidenceSelectionView',
-            residencePlaceList:'#ResidenceSelectionView #placeList',
-
+            residencePlaceList:'#ResidenceSelectionView #placeList'
         },
 
         control: {
-            resourceList:{
-                itemtap:'showResource'
-            },
-
             '#PlaceMainView #placeCommunity': {
                 tap: 'showCommunityMainView'
             },
@@ -45,8 +38,33 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
      * 进入目的地首页
      * @param placeId
      * @param placeName
+     * @Status formal
      */
-    showMainPage: function (placeId, placeName) {
+    showMainPage: function () {
+        var me = this,
+            mainview = me.getPlaceMainView(),
+            places = mainview.down('#container');
+
+        var options = {
+            model: 'YourTour.model.PlaceModel',
+            url: '/places',
+            success: function (store) {
+                if(store){
+                    store.each(function(place,index){
+                        places.add([Ext.create('YourTour.view.place.PlaceMainItem', {data: place})]);
+                    })
+                }
+            }
+        };
+        me.getApplication().query(options);
+    },
+
+    /**
+     * 进入目的地首页
+     * @param placeId
+     * @param placeName
+     */
+    showPlacePage: function (placeId, placeName) {
         /*Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.place.PlaceMainView'));*/
         var me = this, mainview = me.getPlaceMainView(), resourceList = me.getResourceList(), navPanel = mainview.down('#navPanel');
 
@@ -80,12 +98,9 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
         }
     },
 
+
     showCommunityMainView:function(){
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.place.PlaceCommunityView'));
-    },
-
-    showResource:function(dataview, index, item, record){
-        this.showResourceImages(record);
     },
 
     showResourceImages:function(resource){

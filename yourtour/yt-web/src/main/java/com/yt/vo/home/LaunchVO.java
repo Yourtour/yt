@@ -12,8 +12,8 @@ public class LaunchVO {
 
 	public LaunchVO() {
 		super();
-		this.version = new VersionVO();
-		this.activity = new ActivityVO();
+
+
 	}
 
 	public static LaunchVO transform(LaunchBean launch, VersionBean version, ActivityBean activity) {
@@ -24,14 +24,15 @@ public class LaunchVO {
 			vo.sessionToken = launch.getSessionToken();
 		}
 		if (version != null) {
+			vo.version = new VersionVO();
 			vo.version = VersionVO.transform(version);
 		}
 
 		if (activity != null) {
+			vo.activity = new ActivityVO();
 			vo.activity = ActivityVO.transform(activity);
-		} else {
-			vo.activity = null;
 		}
+
 		return vo;
 	}
 

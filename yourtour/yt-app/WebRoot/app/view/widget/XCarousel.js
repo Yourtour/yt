@@ -28,6 +28,7 @@ Ext.define('YourTour.view.widget.XCarousel', {
     onActiveItemChange: function () {
         var me = this,
             task = me.task || me.getTask();
+
         if(task != null) {
             task.cancel();
             task = null;
@@ -45,14 +46,16 @@ Ext.define('YourTour.view.widget.XCarousel', {
             activeIndex = me.getActiveIndex(),
             size = me.getItems().length;
 
-        me.task = Ext.create('Ext.util.DelayedTask', function () {
-            if (activeIndex < size - 2) {
-                me.setActiveItem(activeIndex + 1);
-            } else {
-                me.setActiveItem(0);
-            }
-        });
-        me.task.delay(timer); //一秒后执行调用updateClock函数
+        if(timer != 0) {
+            me.task = Ext.create('Ext.util.DelayedTask', function () {
+                if (activeIndex < size - 2) {
+                    me.setActiveItem(activeIndex + 1);
+                } else {
+                    me.setActiveItem(0);
+                }
+            });
+            me.task.delay(timer); //一秒后执行调用updateClock函数
+        }
     },
 
     pause: function () {

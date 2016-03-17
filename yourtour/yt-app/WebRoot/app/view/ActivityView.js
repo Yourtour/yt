@@ -10,6 +10,15 @@ Ext.define('YourTour.view.ActivityView', {
             {
                 xtype:'img',
                 itemId:'img'
+            },
+
+            {
+                xtype:'button',
+                itemId:'btnSkip',
+                text: '跳过',
+                hidden:true,
+                top:20,
+                right:20
             }
         ]
     }

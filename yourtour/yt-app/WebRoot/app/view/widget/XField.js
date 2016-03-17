@@ -132,6 +132,8 @@ Ext.define('YourTour.view.widget.XField', {
             }
 
             element.show();
+        }else{
+            element.hide();
         }
     },
 
@@ -227,13 +229,15 @@ Ext.define('YourTour.view.widget.XField', {
      * @param config
      */
     updateLabel: function (config) {
+        if(! config) return;
+
         var me = this,
             label = me.label || me.getLabel();
 
-        if (Ext.isObject(label)) {
+        if (Ext.isObject(config) && config.visible && config.text != null) {
             config.visible = true;
             Ext.apply(label, config);
-        } else {
+        } else if(Ext.isString(config)){
             Ext.apply(label, {text: config, visible: true});
         }
     },

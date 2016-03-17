@@ -75,8 +75,8 @@ public class HomeServiceImpl extends ServiceBase implements IHomeService {
 		Map<String, Object> map = new HashMap<String, Object>();
 		LaunchBean launch = new LaunchBean();
 		if (StringUtils.isNull(accessToken)) { // 第一次运行本系统
+			launch.setId(null);
 			launch.setAccessToken(UUID.randomUUID().toString());
-			super.updateBaseInfo(launch, userId);
 			launchCrud.save(launch);
 		} else {
 			launch.setAccessToken(accessToken);
@@ -85,20 +85,31 @@ public class HomeServiceImpl extends ServiceBase implements IHomeService {
 		map.put(IHomeService.KEY_LAUNCHBEAN, launch);
 
 		// 版本检查
-		List<VersionBean> versions = versionCrud.get();
-		Collections.sort(versions);
-		if (!versions.isEmpty()) {
-			for (VersionBean vBean : versions) {
-				if (devType.equalsIgnoreCase(vBean.getDevType().name())
-						&& appType.equalsIgnoreCase(vBean.getAppType().name())) {
-					if (!version.equals(vBean.getVersion())) {
-						// 有新版本
-						map.put(IHomeService.KEY_VERSIONBEAN, vBean);
-						break;
+		if(! "0.0.0.0".equalsIgnoreCase(version)) {
+			List<VersionBean> versions = versionCrud.get();
+			Collections.sort(versions);
+			if (!versions.isEmpty()) {
+				for (VersionBean vBean : versions) {
+					if (devType.equalsIgnoreCase(vBean.getDevType().name())
+							&& appType.equalsIgnoreCase(vBean.getAppType().name())) {
+
+						// 两个版本都不为空
+						String[] src = version.split("\\."), tar = vBean.getVersion().split("\\.");
+						int len = Math.min(src.length, tar.length);
+						for (int i = 0; i < len; i++) {
+							int result = Integer.valueOf(tar[i]) - Integer.valueOf(src[i]);
+							if (result > 0) {
+								map.put(IHomeService.KEY_VERSIONBEAN, vBean);
+								break;
+							} else if (result < 0) {
+								break;
+							}
+						}
 					}
 				}
 			}
 		}
+
 		if (!map.containsKey(IHomeService.KEY_VERSIONBEAN)) {
 			// 没有升级版本，则获取当前活动
 			List<ActivityBean> activities = activityRepository

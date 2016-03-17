@@ -34,8 +34,7 @@ Ext.define('YourTour.view.widget.XTranslatableGroup', {
 
         for (i = 0, ln = items.length; i < ln; i++) {
             item = items[i];
-            if (item) {
-                console.log(i);
+            if (item) {m
                 itemHeight = item.itemHeight;
                 offset = (i - activeIndex);
 
