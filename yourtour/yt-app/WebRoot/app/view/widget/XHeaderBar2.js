@@ -6,6 +6,7 @@ Ext.define('YourTour.view.widget.XHeaderBar2', {
 		top:0,
 		width:'100%',
 		baseCls:'x-xheaderbar',
+		padding:'0 10',
 		items:[]
     },
 
@@ -17,8 +18,7 @@ Ext.define('YourTour.view.widget.XHeaderBar2', {
 
 		var me = this;
 
-		me.leftPanel.setWidth(45);
-		me.leftPanel.addCls('x-xleft icon-user x-xtitle');
+		me.leftPanel.addCls('x-xleft icon-user');
 		me.leftPanel.element.on({
 			scope : me,
 			tap : function(e, t) {

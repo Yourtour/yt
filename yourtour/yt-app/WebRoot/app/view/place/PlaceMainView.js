@@ -9,12 +9,10 @@ Ext.define('YourTour.view.place.PlaceMainView', {
 				xtype:'xheaderbar2',
 				items:[
 					{
-						xtype:'img',
-						itemId:'placeSelection',
-						align:'right',
-						src:'resources/icons/24/icon_user.png',
-						width:30,
-						height:30
+						xtype: 'xbutton',
+						itemId: 'placeSelection',
+						align: 'right',
+						icon:'resources/icons/24/icon_user.png'
 					}
 				]
 			},
