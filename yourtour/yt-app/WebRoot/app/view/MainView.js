@@ -23,6 +23,13 @@ Ext.define('YourTour.view.MainView', {
         		ui:'dark',
 				cls:'tabbar',
         		tabBarPosition:'bottom',
+				layout: {
+					type: 'card',
+					animation: {
+						type: 'fade',
+						duration:1000
+					}
+				},
         		tabBar : {
                     defaults: {
                         flex:1

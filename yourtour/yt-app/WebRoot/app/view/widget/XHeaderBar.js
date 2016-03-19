@@ -5,7 +5,7 @@ Ext.define('YourTour.view.widget.XHeaderBar', {
 		itemId:'headerbar',
     	docked: 'top',
 		layout:'hbox',
-		padding:'0 0 0 0',
+		padding:'0 10',
 		baseCls:'x-xheaderbar x-xheaderbar-color',
 		title:null,
 		backButton:true,
@@ -28,12 +28,12 @@ Ext.define('YourTour.view.widget.XHeaderBar', {
 		var me = this;
 		var back = me.backButton;
 		if(back  == false){
-			me.middlePanel.addCls('x-xmiddle x-xtitle');
+			me.middlePanel.addCls('x-xtitle');
 
 			me.leftPanel.setFlex(1);
 			me.rightPanel.setFlex(1);
 		}else{
-			me.leftPanel.addCls('x-xleft icon-back x-xtitle');
+			me.leftPanel.addCls('icon-back x-xtitle');
 			me.leftPanel.element.on({
 				scope : me,
 				tap : function(e, t) {
@@ -52,9 +52,9 @@ Ext.define('YourTour.view.widget.XHeaderBar', {
 		var me = this;
 		me.initialItems = items;
 
-		me.leftPanel = me.add({xtype:'panel', itemId:'left'});
-		me.middlePanel = me.add({xtype:'panel', itemId:'middle', layout:'hbox'});
-		me.rightPanel = me.add({xtype:'panel', itemId:'right', layout:'hbox', items:[{xtype:'spacer', flex:1}]});
+		me.leftPanel = me.add({xtype:'container', itemId:'left', cls:'x-xleft'});
+		me.middlePanel = me.add({xtype:'container', itemId:'middle', layout:'hbox', cls:'x-xmiddle'});
+		me.rightPanel = me.add({xtype:'container', itemId:'right', cls:'x-xright', layout:'hbox'});
 
 		me.doAdd = me._doAdd;
 		me.remove = me.doItemRemove;

@@ -1,8 +1,7 @@
 package com.yt.business.service;
 
-import com.yt.business.bean.ExpertBean;
-import com.yt.business.bean.PlaceBean;
-import com.yt.business.bean.RouteMainBean;
+import com.yt.business.bean.*;
+import com.yt.business.bean.pack.PlaceBeanPack;
 
 import java.util.List;
 
@@ -27,6 +26,14 @@ public interface IPlaceService {
 	public void deletePlace(Long id, Long userId) throws Exception;
 
 	/**
+	 * 获取目的地首页显示信息
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public PlaceBeanPack getPlacePack(Long id, Long lastModifiedTime) throws Exception;
+
+	/**
 	 * 获取目的地
 	 * @param id
 	 * @return
@@ -35,25 +42,19 @@ public interface IPlaceService {
 	public PlaceBean getPlace(Long id) throws Exception;
 
 	/**
-	 *
+	 * 获取所有目的地信息，并且按照树状结构返回
 	 * @return
 	 * @throws Exception
 	 */
-	public List<PlaceBean> getAllRootPlaces() throws Exception;
+	public List<PlaceBean> getPlaces() throws Exception;
 
 	/**
-	 * 获取某个目的地的下属目的地
-	 * @param parentCode
-	 * @return
-	 */
-	public List<PlaceBean> getPlaces(String parentCode);
-
-	/**
-	 * 获取和指定目的地相关的目的地
+	 * 获取目的地的咨询信息
 	 * @param placeId
 	 * @return
+	 * @throws Exception
 	 */
-	public List<PlaceBean> getRelatedPlaces(Long placeId);
+	public List<InfoBean> getInfoes(Long placeId, Long nextCursor, int limit) throws Exception;
 
 	/**
 	 * 获取目的地达人
@@ -74,6 +75,4 @@ public interface IPlaceService {
 	 * @throws Exception
 	 */
 	public List<RouteMainBean> getRoutes(Long placeId, Long nextCursor, int limit) throws Exception;
-
-
 }

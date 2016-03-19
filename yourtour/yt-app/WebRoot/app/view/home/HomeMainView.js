@@ -8,6 +8,7 @@ Ext.define('YourTour.view.home.HomeMainView', {
         items: [
             {
                 xtype:'xheaderbar2',
+                title:'推荐'
             },
             {
                 xtype:'container',
@@ -29,7 +30,7 @@ Ext.define('YourTour.view.home.HomeMainView', {
                     {
                         xtype:'xcarousel',
                         itemId:'bannerCarousel',
-                        height:250,
+                        minHeight:200,
                         items:[
                             {
                                 xtype:'img',
@@ -41,41 +42,7 @@ Ext.define('YourTour.view.home.HomeMainView', {
                                 src:'resources/images/img_personal_view.jpg'
                             },
                         ]
-                    },
-
-                    {
-                        xtype:'xcarousel',
-                        itemId:'bannerCarousel2',
-                        height:250,
-                        items:[
-                            {
-                                xtype:'img',
-                                src:'resources/images/img_home.jpg'
-                            },
-
-                            {
-                                xtype:'img',
-                                src:'resources/images/img_personal_view.jpg'
-                            },
-                        ]
-                    },
-
-                    {
-                        xtype:'xcarousel',
-                        itemId:'bannerCarousel3',
-                        height:250,
-                        items:[
-                            {
-                                xtype:'img',
-                                src:'resources/images/img_home.jpg'
-                            },
-
-                            {
-                                xtype:'img',
-                                src:'resources/images/img_personal_view.jpg'
-                            },
-                        ]
-                    },
+                    }
                 ]
             }
         ]
@@ -99,7 +66,6 @@ Ext.define('YourTour.view.home.HomeMainView', {
         if(y < 10){
             if(headerbar.hidden) return;
             headerbar.removeCls('x-xheaderbar-color');
-            headerbar.hide();
         }else if( y > 10 && y < 30){
             headerbar.addCls('x-xheaderbar-color');
 

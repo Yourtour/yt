@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import com.yt.utils.SessionUtils;
 
 public class RestResource {
+	public static final String FILE_SEPERATOR = ","; //多文件存储时，文件名之间的分隔符
+
 	public RestResource() {
 		super();
 	}

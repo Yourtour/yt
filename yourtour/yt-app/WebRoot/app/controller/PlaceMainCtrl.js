@@ -4,6 +4,7 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
     config: {
         refs: {
             placeMainView: '#PlaceMainView',
+            placeCarousel: '#PlaceMainView #places',
 
             placeCommunityView:'#PlaceCommunityView',
 
@@ -12,24 +13,8 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
         },
 
         control: {
-            '#PlaceMainView #placeCommunity': {
-                tap: 'showCommunityMainView'
-            },
-
-            '#PlaceMainView #placeAlongs': {
-                tap: 'showAlongView'
-            },
-
-            '#PlaceMainView #placeExperts': {
-                tap: 'showExpertView'
-            },
-
-            '#PlaceMainView #placeLines': {
-                tap: 'showLineView'
-            },
-
-            '#PlaceMainView #placePosition': {
-                tap: 'showResourceView'
+            placeCarousel: {
+                activeitemchange: 'onPlaceActiveItemChange'
             }
         }
     },
@@ -43,20 +28,46 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
     showMainPage: function () {
         var me = this,
             mainview = me.getPlaceMainView(),
-            places = mainview.down('#container');
+            places = me.getPlaceCarousel(),
+            store = mainview.store;
 
-        var options = {
-            model: 'YourTour.model.PlaceModel',
-            url: '/places',
-            success: function (store) {
-                if(store){
-                    store.each(function(place,index){
-                        places.add([Ext.create('YourTour.view.place.PlaceMainItem', {data: place})]);
-                    })
+        if(! store) {
+            var options = {
+                model: 'YourTour.model.PlaceModel',
+                url: '/places',
+                success: function (store) {
+                    if (store) {
+                        mainview.store = store;
+                        store.each(function (place, index) {
+                            places.add([Ext.create('YourTour.view.place.PlaceMainItem', {data: place})]);
+                        })
+                    }
                 }
-            }
-        };
-        me.getApplication().query(options);
+            };
+            me.getApplication().query(options);
+        }else{
+            places.setActiveItem(0);
+        }
+    },
+
+    /**
+     *
+     * @param carousel
+     * @param value
+     * @param oldValue
+     * @param eOpts
+     * @Status formal
+     */
+    onPlaceActiveItemChange:function( carousel, value, oldValue, eOpts){
+        var me = this,
+            mainview = me.getPlaceMainView(),
+            headerbar = mainview.down('#headerbar');
+
+        if(value){
+            var store = mainview.store,
+                place = store.getAt(carousel.getActiveIndex(value));
+            headerbar.setTitle(place.get('name'));
+        }
     },
 
     /**
@@ -65,7 +76,6 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
      * @param placeName
      */
     showPlacePage: function (placeId, placeName) {
-        /*Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.place.PlaceMainView'));*/
         var me = this, mainview = me.getPlaceMainView(), resourceList = me.getResourceList(), navPanel = mainview.down('#navPanel');
 
         mainview.down('#headerbar').setTitle(placeName);

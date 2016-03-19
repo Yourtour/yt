@@ -4,6 +4,7 @@ import com.yt.business.bean.ResourceBean;
 import com.yt.business.common.Constants;
 import com.yt.business.repository.neo4j.ResourceBeanRepository;
 import com.yt.business.service.IResourceService;
+import com.yt.core.utils.BeanUtils;
 import com.yt.neo4j.repository.CrudOperate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -25,10 +26,18 @@ public class ResourceServiceImpl extends ServiceBase implements IResourceService
     @Autowired
     private CrudOperate<ResourceBean> resourceCrudOperate;
 
-
     @Override
     public void saveResource(ResourceBean resource, Constants.ResType resType, Long userId) throws Exception {
-        resourceCrudOperate.save(resource);
+        ResourceBean existed = resource;
+        if(existed.isNew()){
+            resourceCrudOperate.save(resource);
+        }else{
+            existed = resourceCrudOperate.get(resource.getId(), false);
+            BeanUtils.merge(resource, existed);
+        }
+
+        super.updateBaseInfo(existed, userId);
+        resourceCrudOperate.save(existed);
     }
 
     @Override
@@ -47,6 +56,7 @@ public class ResourceServiceImpl extends ServiceBase implements IResourceService
 
     @Override
     public List<? extends ResourceBean> getResources(Long placeId, Long nextCursor, int limit, Constants.ResType resType) throws Exception {
+        //repository.getResources(placeId, nextCursor, limit, resType);
         return null;
     }
 }
