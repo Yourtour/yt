@@ -27,7 +27,7 @@ public class ChatSessionUtils {
 	}
 
 	public static void addChatSession(ChatSessionTypeEnum type, String code,
-			Session session, String userId) {
+			Session session, long userId) {
 		if (code == null || code.isEmpty() || session == null) {
 			if (LOG.isWarnEnabled()) {
 				LOG.warn("The code or session is null, the operate is ignored.");
@@ -49,7 +49,7 @@ public class ChatSessionUtils {
 	}
 
 	public static void delChatSession(ChatSessionTypeEnum type, String code,
-			Session session, String userId) {
+			Session session, long userId) {
 		if (code == null || code.isEmpty() || session == null) {
 			if (LOG.isWarnEnabled()) {
 				LOG.warn("The code or session is null, the operate is ignored.");

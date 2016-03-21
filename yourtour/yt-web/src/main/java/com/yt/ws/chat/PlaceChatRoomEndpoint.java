@@ -20,14 +20,14 @@ import com.yt.ws.chat.ChatSessionUtils.ChatSessionTypeEnum;
 public class PlaceChatRoomEndpoint extends AbstractChatRoomEndpoint {
 	private static final Log LOG = LogFactory
 			.getLog(PlaceChatRoomEndpoint.class);
-	
+
 	public PlaceChatRoomEndpoint() {
 		super();
 	}
 
 	@OnOpen
 	public void onOpen(Session session, @PathParam("placeId") String placeId,
-			@PathParam("userId") String userId) {
+			@PathParam("userId") Long userId) {
 		super.openSession(ChatSessionTypeEnum.PLACE_SESSION, placeId, session,
 				userId);
 		if (LOG.isDebugEnabled()) {
@@ -38,7 +38,7 @@ public class PlaceChatRoomEndpoint extends AbstractChatRoomEndpoint {
 
 	@OnClose
 	public void onClose(Session session, @PathParam("placeId") String placeId,
-			@PathParam("userId") String userId, CloseReason reason) {
+			@PathParam("userId") Long userId, CloseReason reason) {
 		super.closeSession(ChatSessionTypeEnum.PLACE_SESSION, placeId, session,
 				userId);
 		if (LOG.isDebugEnabled()) {
@@ -48,7 +48,7 @@ public class PlaceChatRoomEndpoint extends AbstractChatRoomEndpoint {
 									.toString(), reason.getReasonPhrase()));
 		}
 	}
-	
+
 	@OnError
 	public void onError(Session session, Throwable throwable) {
 		super.onError(session, throwable);
@@ -57,7 +57,7 @@ public class PlaceChatRoomEndpoint extends AbstractChatRoomEndpoint {
 	@OnMessage
 	public void onMessage(Session session,
 			@PathParam("placeId") String placeId,
-			@PathParam("userId") String userId, String command)
+			@PathParam("userId") Long userId, String command)
 			throws IOException {
 		super.processMessage(ChatSessionTypeEnum.PLACE_SESSION, placeId,
 				session, userId, command);

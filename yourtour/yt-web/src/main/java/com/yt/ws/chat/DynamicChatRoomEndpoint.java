@@ -27,7 +27,7 @@ public class DynamicChatRoomEndpoint extends AbstractChatRoomEndpoint {
 
 	@OnOpen
 	public void onOpen(Session session, @PathParam("roomCode") String roomCode,
-			@PathParam("userId") String userId) {
+			@PathParam("userId") Long userId) {
 		super.openSession(ChatSessionTypeEnum.DYNAMIC_SESSION, roomCode,
 				session, userId);
 		if (LOG.isDebugEnabled()) {
@@ -39,7 +39,7 @@ public class DynamicChatRoomEndpoint extends AbstractChatRoomEndpoint {
 	@OnClose
 	public void onClose(Session session,
 			@PathParam("roomCode") String roomCode,
-			@PathParam("userId") String userId, CloseReason reason) {
+			@PathParam("userId") Long userId, CloseReason reason) {
 		super.closeSession(ChatSessionTypeEnum.DYNAMIC_SESSION, roomCode,
 				session, userId);
 		if (LOG.isDebugEnabled()) {
@@ -58,7 +58,7 @@ public class DynamicChatRoomEndpoint extends AbstractChatRoomEndpoint {
 	@OnMessage
 	public void onMessage(Session session,
 			@PathParam("roomCode") String roomCode,
-			@PathParam("userId") String userId, String command)
+			@PathParam("userId") Long userId, String command)
 			throws IOException {
 		super.processMessage(ChatSessionTypeEnum.DYNAMIC_SESSION, roomCode,
 				session, userId, command);

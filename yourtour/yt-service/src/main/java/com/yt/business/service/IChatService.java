@@ -13,13 +13,13 @@ public interface IChatService {
 	 * 
 	 * @param placeId
 	 *            目的的ID
-	 * @param operator
+	 * @param userId
 	 *            操作人员ID
 	 * @return 成功返回目的的聊天室会话对象，否在返回null。
 	 * @throws Exception
 	 *             操作过程中发生的异常
 	 */
-	public ChatSessionBean openPlaceChatRoom(long placeId, String operator)
+	public ChatSessionBean openPlaceChatRoom(long placeId, long userId)
 			throws Exception;
 
 	/**
@@ -27,13 +27,13 @@ public interface IChatService {
 	 * 
 	 * @param routeId
 	 *            行程ID
-	 * @param operator
+	 * @param userId
 	 *            操作人员ID
 	 * @return 成功返回目的的聊天室会话对象，否在返回null。
 	 * @throws Exception
 	 *             操作过程中发生的异常
 	 */
-	public ChatSessionBean openRouteChatRoom(long routeId, String operator)
+	public ChatSessionBean openRouteChatRoom(long routeId, long userId)
 			throws Exception;
 
 	/**
@@ -41,13 +41,13 @@ public interface IChatService {
 	 * 
 	 * @param roomNo
 	 *            聊天室房间号，一般是以“d”开头的UUID号码。
-	 * @param operator
+	 * @param userId
 	 *            操作人员ID
 	 * @return 成功返回目的的聊天室会话对象，否在返回null。
 	 * @throws Exception
 	 *             操作过程中发生的异常
 	 */
-	public ChatSessionBean openDynamicChatRoom(String roomNo, String operator)
+	public ChatSessionBean openDynamicChatRoom(String roomNo, long userId)
 			throws Exception;
 
 	/**
@@ -174,9 +174,10 @@ public interface IChatService {
 	public ChatJoinHistoryBean getNewestChatJoinRecord(long userId)
 			throws Exception;
 
-	public void saveChatJoinRecord(String userId, ChatSessionBean sessionBean)
+	public void saveChatJoinRecord(long userId, ChatSessionBean sessionBean)
 			throws Exception;
 
-	public ChatMessageBean saveChatMessage(boolean isNotice, String textMessage,
-			ChatSessionBean chatSessionBean, long userId) throws Exception;
+	public ChatMessageBean saveChatMessage(boolean isNotice,
+			String textMessage, ChatSessionBean chatSessionBean, long userId)
+			throws Exception;
 }

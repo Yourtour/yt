@@ -27,7 +27,7 @@ public class RouteChatRoomEndpoint extends AbstractChatRoomEndpoint {
 
 	@OnOpen
 	public void onOpen(Session session, @PathParam("routeId") String routeId,
-			@PathParam("userId") String userId) {
+			@PathParam("userId") Long userId) {
 		super.openSession(ChatSessionTypeEnum.ROUTE_SESSION, routeId, session,
 				userId);
 		if (LOG.isDebugEnabled()) {
@@ -38,7 +38,7 @@ public class RouteChatRoomEndpoint extends AbstractChatRoomEndpoint {
 
 	@OnClose
 	public void onClose(Session session, @PathParam("routeId") String routeId,
-			@PathParam("userId") String userId, CloseReason reason) {
+			@PathParam("userId") Long userId, CloseReason reason) {
 		super.closeSession(ChatSessionTypeEnum.ROUTE_SESSION, routeId, session,
 				userId);
 		if (LOG.isDebugEnabled()) {
@@ -57,7 +57,7 @@ public class RouteChatRoomEndpoint extends AbstractChatRoomEndpoint {
 	@OnMessage
 	public void onMessage(Session session,
 			@PathParam("routeId") String routeId,
-			@PathParam("userId") String userId, String command)
+			@PathParam("userId") Long userId, String command)
 			throws IOException {
 		super.processMessage(ChatSessionTypeEnum.ROUTE_SESSION, routeId,
 				session, userId, command);

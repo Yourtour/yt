@@ -7,6 +7,10 @@ public interface Constants {
 	 */
 	public static final String RELATION_TYPE_RELATED = "RELATED";
 	/**
+	 * 收藏
+	 */
+	public static final String RELATION_TYPE_COLLECTED = "COLLECTED";
+	/**
 	 * 包括
 	 */
 	public static final String RELATION_TYPE_CONTAIN = "CONTAIN";

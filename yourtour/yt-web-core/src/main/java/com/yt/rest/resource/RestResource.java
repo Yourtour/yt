@@ -8,21 +8,30 @@ package com.yt.rest.resource;
  */
 import javax.servlet.http.HttpServletRequest;
 
-import com.yt.utils.SessionUtils;
+import com.yt.utils.WebUtils;
 
 public class RestResource {
-	public static final String FILE_SEPERATOR = ","; //多文件存储时，文件名之间的分隔符
+	public static final String FILE_SEPERATOR = ","; // 多文件存储时，文件名之间的分隔符
 
 	public RestResource() {
 		super();
 	}
 
-	protected String getCurrentUserId(HttpServletRequest request)
+	protected String getCurrentAccess(HttpServletRequest request)
 			throws Exception {
-		return request.getHeader("User-Token");
+		return request.getHeader("Access-Token");
+	}
+
+	protected String getCurrentAccess() throws Exception {
+		return getCurrentAccess(WebUtils.getHttpServletRequest());
+	}
+
+	protected Long getCurrentUserId(HttpServletRequest request)
+			throws Exception {
+		return Long.valueOf(request.getHeader("User-Token"));
 	}
 
 	protected Long getCurrentUserId() throws Exception {
-		return SessionUtils.getCurrentLoginUser();
+		return getCurrentUserId(WebUtils.getHttpServletRequest());
 	}
 }

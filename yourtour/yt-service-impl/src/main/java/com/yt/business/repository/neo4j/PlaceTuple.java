@@ -7,30 +7,29 @@ import com.yt.business.bean.PlaceBean;
 
 @QueryResult
 public class PlaceTuple {
-	@ResultColumn("parent")
-	private PlaceBean parent;
+	@ResultColumn("parentPlace")
+	private PlaceBean parentPlace;
 
-	@ResultColumn("child")
-	private PlaceBean child;
-	
-	public PlaceTuple(){
+	@ResultColumn("place")
+	private PlaceBean place;
+
+	public PlaceTuple() {
 	}
 
-	public PlaceBean getParent() {
-		return parent;
+	public PlaceBean getParentPlace() {
+		return parentPlace;
 	}
 
-	public void setParent(PlaceBean parent) {
-		this.parent = parent;
+	public void setParentPlace(PlaceBean parentPlace) {
+		this.parentPlace = parentPlace;
 	}
 
-	public PlaceBean getChild() {
-		return child;
+	public PlaceBean getPlace() {
+		return place;
 	}
 
-	public void setChild(PlaceBean child) {
-		this.child = child;
+	public void setPlace(PlaceBean place) {
+		this.place = place;
 	}
-	
-	
+
 }

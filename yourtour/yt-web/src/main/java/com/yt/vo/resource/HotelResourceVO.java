@@ -4,7 +4,7 @@
 package com.yt.vo.resource;
 
 import com.yt.business.bean.HotelResourceBean;
-import com.yt.business.common.Constants.ResType;
+import com.yt.business.bean.ResourceBean.ResourceType;
 
 public class HotelResourceVO extends ResourceVO {
 	private String accommodationStandard; // 住宿标准
@@ -42,7 +42,7 @@ public class HotelResourceVO extends ResourceVO {
 
 	public HotelResourceVO() {
 		super();
-		super.setType(ResType.HOTEL);
+		super.setType(ResourceType.HOTEL);
 	}
 
 	public String getAccommodationStandard() {

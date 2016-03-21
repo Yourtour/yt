@@ -1,18 +1,23 @@
 package com.yt.business.service.impl;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.neo4j.graphdb.Node;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.stereotype.Service;
 
 import com.yt.PropertiesReader;
 import com.yt.business.bean.UserAccountBean;
 import com.yt.business.bean.UserProfileBean;
+import com.yt.business.common.Constants;
 import com.yt.business.repository.neo4j.UserBeanRepository;
 import com.yt.business.repository.neo4j.UserTuple;
 import com.yt.business.service.IUserService;
@@ -41,15 +46,24 @@ public class UserServiceImpl extends ServiceBase implements IUserService {
 	@Autowired
 	private PropertiesReader propertiesReader;
 
+	@Autowired
+	protected Neo4jTemplate template;
+
 	@Override
-	public UserProfileBean getUserProfileInfo(Long userId) throws Exception {
-		UserProfileBean user = profileCrudOperate.get(userId);
+	public UserProfileBean getUserProfileInfo(Long userId,
+			boolean loadRelationship) throws Exception {
+		UserProfileBean user = profileCrudOperate.get(userId, loadRelationship);
 		if (user == null) {
 			LOG.warn(String
 					.format("No UserProfileBean found for ID=%d", userId));
 		}
 
 		return user;
+	}
+
+	@Override
+	public UserProfileBean getUserProfileInfo(Long userId) throws Exception {
+		return getUserProfileInfo(userId, true);
 	}
 
 	@Override
@@ -102,7 +116,7 @@ public class UserServiceImpl extends ServiceBase implements IUserService {
 		return sb.toString();
 	}
 
-	@CacheEvict(value="default", key = "#userName")
+	@CacheEvict(value = "default", key = "#userName")
 	@Override
 	public UserProfileBean regist(String userName, String password)
 			throws Exception {
@@ -141,5 +155,41 @@ public class UserServiceImpl extends ServiceBase implements IUserService {
 		this.profileCrudOperate.save(profile, false);
 
 		return (UserProfileBean) profileCrudOperate.get(profile.getId(), false);
+	}
+
+	@Override
+	public void collectSomething(long userId, String type, long id)
+			throws Exception {
+		Node srcNode = template.getNode(userId);
+		Node tarNode = template.getNode(id);
+		Map<String, Object> properties = new HashMap<String, Object>();
+		properties.put("type", type);
+		template.createRelationshipBetween(srcNode, tarNode,
+				Constants.RELATION_TYPE_COLLECTED, properties);
+	}
+
+	@Override
+	public void uncollectSomething(long userId, String type, long id)
+			throws Exception {
+		Node srcNode = template.getNode(userId);
+		Node tarNode = template.getNode(id);
+		template.deleteRelationshipBetween(srcNode, tarNode,
+				Constants.RELATION_TYPE_COLLECTED);
+	}
+
+	@Override
+	public void watchSomeone(long userId, long id) throws Exception {
+		Node srcNode = template.getNode(userId);
+		Node tarNode = template.getNode(id);
+		template.createRelationshipBetween(srcNode, tarNode,
+				Constants.RELATION_TYPE_WATCH, null);
+	}
+
+	@Override
+	public void unwatchSomeone(long userId, long id) throws Exception {
+		Node srcNode = template.getNode(userId);
+		Node tarNode = template.getNode(id);
+		template.deleteRelationshipBetween(srcNode, tarNode,
+				Constants.RELATION_TYPE_WATCH);
 	}
 }

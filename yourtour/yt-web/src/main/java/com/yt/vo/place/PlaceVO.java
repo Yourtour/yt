@@ -1,7 +1,7 @@
 package com.yt.vo.place;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import com.yt.business.bean.PlaceBean;
 import com.yt.business.bean.ResourceBean;
@@ -9,14 +9,16 @@ import com.yt.core.utils.CollectionUtils;
 import com.yt.vo.resource.ResourceVO;
 
 public class PlaceVO {
-	private Long graphId = -1l, parentId = null;
+	private Long id = -1l, parentId = null;
 	private String parentCode, code, shorter, text, memo, imageUrl, name;
 	private boolean expandable = false, leaf = false;
-	private int favoiteNum = 0; //关注人数
-	private int goneNum = 0;  //去过人数
-	private int goingNum = 0;  //想去人数
-	private int num = 0;  //下辖目的地个数
+	private int favoiteNum = 0; // 关注人数
+	private int goneNum = 0; // 去过人数
+	private int goingNum = 0; // 想去人数
+	private int subPlaceNum = 0; // 下辖目的地个数
 	private int alongNum = 0;
+
+	private List<PlaceVO> subPlaces;
 
 	private List<ResourceVO> resources;
 
@@ -26,8 +28,8 @@ public class PlaceVO {
 		}
 		PlaceBean bean = new PlaceBean();
 		bean.setCode(vo.getCode());
-		if (vo.getGraphId() != null && vo.getGraphId().longValue() != -1l) {
-			bean.setId(vo.getGraphId());
+		if (vo.getId() != null && vo.getId().longValue() != -1l) {
+			bean.setId(vo.getId());
 		}
 		bean.setName(vo.getText());
 		bean.setMemo(vo.getMemo());
@@ -57,22 +59,25 @@ public class PlaceVO {
 		vo.setImageUrl(bean.getImageUrl());
 		vo.setGoingNum(bean.getGoingNum());
 		vo.setGoneNum(bean.getGoneNum());
-		vo.setNum(bean.getSubs().size());
-		vo.setExpandable(CollectionUtils.isNotEmpty(bean.getSubs()));
+		vo.setSubPlaceNum(bean.getSubPlaces().size());
+		vo.setExpandable(vo.getSubPlaceNum() > 0);
 		vo.setAlongNum(bean.getAlongNum());
 
-		if(bean.getParent() != null){
+		if (bean.getParent() != null) {
 			vo.setParentCode(bean.getParent().getCode());
 		}
 
-		List<? extends ResourceBean> resources = bean.getResources();
-		if(CollectionUtils.isNotEmpty(resources)){
-			List<ResourceVO> voes = new ArrayList<>();
-			for(ResourceBean resource : resources){
-				voes.add(ResourceVO.transform(resource));
-			}
+		List<PlaceBean> subPlaces = bean.getSubPlaces();
+		for (PlaceBean subBean : subPlaces) {
+			PlaceVO subVO = PlaceVO.transform(subBean);
+			vo.getSubPlaces().add(subVO);
+		}
 
-			vo.setResources(voes);
+		List<? extends ResourceBean> resources = bean.getResources();
+		if (CollectionUtils.isNotEmpty(resources)) {
+			for (ResourceBean resource : resources) {
+				vo.getResources().add(ResourceVO.transform(resource));
+			}
 		}
 
 		return vo;
@@ -80,18 +85,16 @@ public class PlaceVO {
 
 	public PlaceVO() {
 		super();
-	}
-
-	public Long getGraphId() {
-		return graphId;
+		this.subPlaces = new Vector<PlaceVO>();
+		this.resources = new Vector<ResourceVO>();
 	}
 
 	public Long getId() {
-		return graphId;
+		return id;
 	}
 
 	public void setId(Long graphId) {
-		this.graphId = graphId;
+		this.id = graphId;
 	}
 
 	public Long getParentId() {
@@ -202,12 +205,12 @@ public class PlaceVO {
 		this.goingNum = goingNum;
 	}
 
-	public int getNum() {
-		return num;
+	public int getSubPlaceNum() {
+		return subPlaceNum;
 	}
 
-	public void setNum(int num) {
-		this.num = num;
+	public void setSubPlaceNum(int num) {
+		this.subPlaceNum = num;
 	}
 
 	public void setName(String name) {
@@ -218,7 +221,7 @@ public class PlaceVO {
 		return resources;
 	}
 
-	public void setResources(List<ResourceVO> resources) {
-		this.resources = resources;
+	public List<PlaceVO> getSubPlaces() {
+		return subPlaces;
 	}
 }

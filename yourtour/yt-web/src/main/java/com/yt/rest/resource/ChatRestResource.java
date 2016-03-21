@@ -45,21 +45,21 @@ public class ChatRestResource extends RestResource {
 			@Context HttpServletRequest request,
 			@PathParam("type") String type,
 			@PathParam("roomCode") String roomCode) throws Exception {
-		String operator = super.getCurrentUserId(request);
+		Long userId = super.getCurrentUserId(request);
 		ChatSessionBean sessionBean = null;
 		switch (type) {
 		case "PLACE_SESSION":
 			sessionBean = chatService.openPlaceChatRoom(
-					Long.valueOf(roomCode), operator);
+					Long.valueOf(roomCode), userId);
 			break;
 		case "ROUTE_SESSION":
 			sessionBean = chatService.openRouteChatRoom(
-					Long.valueOf(roomCode), operator);
+					Long.valueOf(roomCode), userId);
 			break;
 		case "DYNAMIC_SESSION":
 		default:
 			sessionBean = chatService.openDynamicChatRoom(roomCode,
-					operator);
+					userId);
 			break;
 		}
 		if (sessionBean != null) {

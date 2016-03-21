@@ -1,92 +1,164 @@
 package com.yt.rest.resource;
 
-import com.yt.business.bean.PlaceBean;
-import com.yt.business.service.IPlaceService;
-import com.yt.core.utils.CollectionUtils;
-import com.yt.response.ResponseDataVO;
-import com.yt.vo.place.PlaceVO;
+import java.util.List;
+import java.util.Vector;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import java.util.ArrayList;
-import java.util.List;
+import com.yt.business.bean.ExpertBean;
+import com.yt.business.bean.PlaceBean;
+import com.yt.business.bean.ResourceBean;
+import com.yt.business.bean.RouteMainBean;
+import com.yt.business.service.IPlaceService;
+import com.yt.response.ResponseDataVO;
+import com.yt.vo.member.ExpertVO;
+import com.yt.vo.place.PlaceVO;
+import com.yt.vo.resource.ResourceVO;
+import com.yt.vo.route.RouteVO;
 
 @Component
 @Path("app/places")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class PlaceRestResource {
-    private static final Log LOG = LogFactory.getLog(PlaceRestResource.class);
+	private static final Log LOG = LogFactory.getLog(PlaceRestResource.class);
+	private static final int DEFAULT_LIMIT = 100;
 
-    @Autowired
-    private IPlaceService placeService;
+	@Autowired
+	private IPlaceService placeService;
 
-    /**
-     * 获取目的地首页数据
-     *
-     * @return
-     */
-    @GET
-    public ResponseDataVO<List<PlaceVO>> getPlaces() throws Exception {
-        List<PlaceVO> list = new ArrayList<PlaceVO>();
-        List<PlaceBean> places = new ArrayList<>(); //placeService.getAllRootPlaces();
+	/**
+	 * 获取所有的目的地信息
+	 * 
+	 * @return
+	 */
+	@GET
+	public ResponseDataVO<List<PlaceVO>> getAllPlaces() throws Exception {
+		List<PlaceVO> roots = new Vector<PlaceVO>();
+		List<PlaceBean> places = placeService.getAllPlaces();
+		for (PlaceBean place : places) {
+			if (place == null) {
+				continue;
+			}
+			roots.add(PlaceVO.transform(place));
+		}
+		return new ResponseDataVO<List<PlaceVO>>(roots);
+	}
 
-        String[] names = new String[]{"重庆", "上海", "北京"};
-        String[] images = new String[]{"resources/images/chongqing.jpg", "resources/images/shanghai.jpg", "resources/images/beijing.jpg"};
-        String[] memos = new String[]{"重庆，它是一座山城，因建立在重重山峦之上，起伏的山势和依山而建的楼房让地图在这里显得用处不大，因为地图是平面的，而重庆则是立体的。",
-                                      "上海，又称“上海滩”，是一座极具现代化而又不失中国传统特色的国际大都市。由于其地处中国漫长海岸线的最正中，是中国四个中央直辖市之一，是中国的历史文化名城。",
-                                      "北京，中国首都。每个人心中，都有一个“我爱北京天安门”的北京情结，都曾梦想着生活在传说中的紫禁城；梦想着穿梭在王朔笔下的胡同和大院；也梦想着爬上万里长城，大喊：我是好汉！在每个人心中，都一个人属于自己的北京。 "};
-        for (int index = 0; index < 3; index++) {
-            PlaceBean place = new PlaceBean();
-            place.setId((long) index);
-            place.setImageUrl(images[index]);
-            place.setName(names[index]);
-            place.setMemo(memos[index]);
+	/**
+	 * 获取所有推荐的目的地清单
+	 * 
+	 * @return
+	 */
+	@GET
+	@Path("/recommend")
+	public ResponseDataVO<List<PlaceVO>> getRecommendPlaces() throws Exception {
+		List<PlaceBean> beans = placeService.getRecommendPlaces();
+		List<PlaceVO> placeVOs = new Vector<PlaceVO>();
+		for (PlaceBean bean : beans) {
+			if (bean == null) {
+				continue;
+			}
+			placeVOs.add(PlaceVO.transform(bean));
+		}
+		return new ResponseDataVO<List<PlaceVO>>(placeVOs);
+	}
 
-            places.add(place);
-        }
+	/**
+	 * 获取目的地信息
+	 * 
+	 * @param placeId
+	 * @return
+	 */
+	@GET
+	@Path("/{placeId}")
+	public ResponseDataVO<PlaceVO> queryMainInfo(
+			@PathParam("placeId") Long placeId) throws Exception {
+		PlaceBean place = placeService.getPlace(placeId);
+		PlaceVO vo = PlaceVO.transform(place);
+		return new ResponseDataVO<PlaceVO>(vo);
+	}
 
-        for (PlaceBean place : places) {
-            list.add(PlaceVO.transform(place));
-        }
+	@GET
+	@Path("/{placeId}/experts")
+	public ResponseDataVO<List<ExpertVO>> getExpertsAtPlace(
+			@PathParam("placeId") Long placeId,
+			@QueryParam("nextCursor") Long nextCursor,
+			@QueryParam("limit") int limit) throws Exception {
+		if (nextCursor == null) {
+			nextCursor = new Long(0);
+		}
+		if (limit <= 0) {
+			limit = DEFAULT_LIMIT;
+		}
+		List<ExpertBean> experts = placeService.getExperts(placeId, nextCursor,
+				limit);
+		List<ExpertVO> expertVOs = new Vector<ExpertVO>();
+		for (ExpertBean expert : experts) {
+			if (expert == null) {
+				continue;
+			}
+			expertVOs.add(ExpertVO.transform(expert));
+		}
+		return new ResponseDataVO<List<ExpertVO>>(expertVOs);
+	}
 
-        return new ResponseDataVO<List<PlaceVO>>(list);
-    }
+	@GET
+	@Path("/{placeId}/resources")
+	public ResponseDataVO<List<ResourceVO>> getResourcesAtPlace(
+			@PathParam("placeId") Long placeId,
+			@QueryParam("nextCursor") Long nextCursor,
+			@QueryParam("limit") int limit) throws Exception {
+		if (nextCursor == null) {
+			nextCursor = new Long(0);
+		}
+		if (limit <= 0) {
+			limit = DEFAULT_LIMIT;
+		}
+		List<ResourceBean> resources = placeService.getResources(placeId,
+				nextCursor, limit);
+		List<ResourceVO> resourceVOs = new Vector<ResourceVO>();
+		for (ResourceBean resource : resources) {
+			if (resource == null) {
+				continue;
+			}
+			resourceVOs.add(ResourceVO.transform(resource));
+		}
+		return new ResponseDataVO<List<ResourceVO>>(resourceVOs);
+	}
 
-
-    /**
-     * 获取和指定目的地相关的目的地
-     *
-     * @return
-     */
-    @GET
-    @Path("/relative/{placeId}/query")
-    public ResponseDataVO<List<PlaceVO>> getRelatedPlaces(@PathParam("placeId") Long placeId) throws Exception {
-        List<PlaceVO> list = new ArrayList<PlaceVO>();
-        List<PlaceBean> places = null; //
-        /* placeService.getRelatedPlaces(placeId);
-        for (PlaceBean place : places) {
-            list.add(PlaceVO.transform(place));
-        }*/
-
-        return new ResponseDataVO<List<PlaceVO>>(list);
-    }
-
-    /**
-     * 获取目的地信息
-     *
-     * @param placeId
-     * @return
-     */
-    @GET
-    @Path("/{placeId}")
-    public ResponseDataVO<PlaceVO> queryMainInfo(@PathParam("placeId") Long placeId) {
-        PlaceVO vo = null;
-
-        return new ResponseDataVO<PlaceVO>(vo);
-    }
+	@GET
+	@Path("/{placeId}/routes")
+	public ResponseDataVO<List<RouteVO>> getRoutesAtPlace(
+			@PathParam("placeId") Long placeId,
+			@QueryParam("nextCursor") Long nextCursor,
+			@QueryParam("limit") int limit) throws Exception {
+		if (nextCursor == null) {
+			nextCursor = new Long(0);
+		}
+		if (limit <= 0) {
+			limit = DEFAULT_LIMIT;
+		}
+		List<RouteMainBean> routes = placeService.getRoutes(placeId,
+				nextCursor, limit);
+		List<RouteVO> routeVOs = new Vector<RouteVO>();
+		for (RouteMainBean route : routes) {
+			if (route == null) {
+				continue;
+			}
+			routeVOs.add(RouteVO.transform(route));
+		}
+		return new ResponseDataVO<List<RouteVO>>(routeVOs);
+	}
 }

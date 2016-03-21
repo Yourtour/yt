@@ -1,7 +1,7 @@
 package com.yt.business.bean;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
@@ -45,23 +45,23 @@ import com.yt.neo4j.annotation.Neo4jRelationship.Direction;
 @NodeEntity
 public class PlaceBean extends SocialBeanImpl {
 	private static final long serialVersionUID = -6977525800090683657L;
-	
+
 	@HbaseColumn(name = "shor")
 	@Indexed
 	private String shorter = ""; // 简称
 
 	private String name;
 	private String code;
-	
+
 	private String imageUrl;
 
-	private boolean home; //是否国内
-	
+	private boolean home; // 是否国内
+
 	@HbaseColumn(name = "memo")
 	private String memo = ""; // 备注
 
 	@HbaseColumn(name = "recm")
-	private int recommended = 0; // 是否推荐 0:不推荐 1：推荐
+	private boolean recommended = false; // 是否推荐
 
 	@HbaseColumn(name = "root")
 	private boolean root = false; // 是否为根节点
@@ -69,21 +69,24 @@ public class PlaceBean extends SocialBeanImpl {
 	@HbaseColumn(name = "leaf")
 	private boolean leaf = true; // 是否为叶子节点
 
-	private int goneNum = 0;  //去过人数
+	private int goneNum = 0; // 去过人数
 
-	private int goingNum = 0;  //想去人数
+	private int goingNum = 0; // 想去人数
 
-	private int alongNum = 0; //结伴条数
+	private int alongNum = 0; // 结伴条数
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_PARENT, type = PlaceBean.class, direction = Direction.OUTGOING)
-	private transient PlaceBean parent = null;
-	
-	private transient List<PlaceBean> subs = new ArrayList<PlaceBean>();
+	private transient PlaceBean parent = null; // 关联父级目的地
 
-	private transient List<? extends ResourceBean> resources = null; //关联游玩资源
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_AT, type = ResourceBean.class, direction = Direction.INCOMING, isList = true)
+	private transient List<ResourceBean> resources = null; // 关联游玩资源
+	
+	private transient List<PlaceBean> subPlaces = null;
 
 	public PlaceBean() {
 		super();
+		this.resources = new Vector<>();
+		this.subPlaces = new Vector<>();
 	}
 
 	public String getName() {
@@ -118,11 +121,11 @@ public class PlaceBean extends SocialBeanImpl {
 		this.memo = memo;
 	}
 
-	public int getRecommended() {
+	public boolean isRecommended() {
 		return recommended;
 	}
 
-	public void setRecommended(int recommended) {
+	public void setRecommended(boolean recommended) {
 		this.recommended = recommended;
 	}
 
@@ -142,24 +145,12 @@ public class PlaceBean extends SocialBeanImpl {
 		this.parent = parent;
 	}
 
-	public List<PlaceBean> getSubs() {
-		return subs;
-	}
-
-	public void setSubs(List<PlaceBean> subs) {
-		this.subs = subs;
-	}
-
 	public boolean isLeaf() {
 		return leaf;
 	}
 
 	public void setLeaf(boolean leaf) {
 		this.leaf = leaf;
-	}
-	
-	public void addSub(PlaceBean sub){
-		this.subs.add(sub);
 	}
 
 	public int getGoneNum() {
@@ -202,12 +193,20 @@ public class PlaceBean extends SocialBeanImpl {
 		this.code = code;
 	}
 
-	public List<? extends ResourceBean> getResources() {
+	public List<ResourceBean> getResources() {
 		return resources;
 	}
 
-	public void setResources(List<? extends ResourceBean> resources) {
+	public void setResources(List<ResourceBean> resources) {
 		this.resources = resources;
+	}
+
+	public List<PlaceBean> getSubPlaces() {
+		return subPlaces;
+	}
+
+	public void setSubPlaces(List<PlaceBean> subPlaces) {
+		this.subPlaces = subPlaces;
 	}
 
 	@Override
@@ -217,11 +216,13 @@ public class PlaceBean extends SocialBeanImpl {
 
 	@Override
 	public boolean equals(Object obj) {
-		if(obj == null) return false;
-		
-		if(obj == this) return true;
-		
-		PlaceBean target =(PlaceBean) obj;
+		if (obj == null)
+			return false;
+
+		if (obj == this)
+			return true;
+
+		PlaceBean target = (PlaceBean) obj;
 		return target.getId().equals(super.getId());
 	}
 }
