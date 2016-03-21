@@ -6,7 +6,6 @@ import org.springframework.data.neo4j.annotation.NodeEntity;
 
 import com.yt.business.SocialBeanImpl;
 import com.yt.business.common.Constants;
-import com.yt.business.common.Constants.ResType;
 import com.yt.hbase.annotation.HbaseColumn;
 import com.yt.neo4j.annotation.Neo4jRelationship;
 import com.yt.neo4j.annotation.Neo4jRelationship.Direction;
@@ -43,6 +42,14 @@ import com.yt.neo4j.annotation.Neo4jRelationship.Direction;
 public class ResourceBean extends SocialBeanImpl {
 	private static final long serialVersionUID = -8980153602025087935L;
 
+	public enum ResourceType {
+		SCENE, // 景点资源
+		FOOD, // 美食资源
+		HOTEL, // 住宿资源
+		SHOPPING, // 购物资源
+		TRAFFIC // 交通资源
+	}
+
 	private String code;
 
 	private String name;
@@ -51,7 +58,7 @@ public class ResourceBean extends SocialBeanImpl {
 	private String imageUrl; // 图片
 
 	@HbaseColumn(name = "type")
-	private ResType type; // 类型
+	private ResourceType type; // 资源类型
 
 	@HbaseColumn(name = "otime")
 	private String openTime; // 开放时间 hh24:mi
@@ -90,20 +97,20 @@ public class ResourceBean extends SocialBeanImpl {
 	@HbaseColumn(name = "anum")
 	private int arriveNum; // 到达人数
 
-	private int     goodNum;	//好评
-	private int		mediumNum;  //中评
-	private int 	badNum;     //差评
-	private int		imageNum;   //晒图
+	private int goodNum; // 好评
+	private int mediumNum; // 中评
+	private int badNum; // 差评
+	private int imageNum; // 晒图
 
-	private double   healthScore = 0d;
+	private double healthScore = 0d;
 
-	private double   trafficScore = 0d;
+	private double trafficScore = 0d;
 
-	private	double	facilityScore = 0d;
+	private double facilityScore = 0d;
 
-	private double	environmentScore = 0d;
+	private double environmentScore = 0d;
 
-	private double  serviceScore = 0d;
+	private double serviceScore = 0d;
 
 	@HbaseColumn(name = "bmemo")
 	private String bookingMemo; // 预订须知
@@ -155,11 +162,11 @@ public class ResourceBean extends SocialBeanImpl {
 		this.imageUrl = imageUrl;
 	}
 
-	public ResType getType() {
+	public ResourceType getType() {
 		return type;
 	}
 
-	public void setType(ResType type) {
+	public void setType(ResourceType type) {
 		this.type = type;
 	}
 

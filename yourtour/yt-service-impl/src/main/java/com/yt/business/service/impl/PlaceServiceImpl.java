@@ -1,8 +1,17 @@
 package com.yt.business.service.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.yt.business.bean.ExpertBean;
 import com.yt.business.bean.InfoBean;
 import com.yt.business.bean.PlaceBean;
+import com.yt.business.bean.ResourceBean;
 import com.yt.business.bean.RouteMainBean;
 import com.yt.business.bean.pack.PlaceBeanPack;
 import com.yt.business.repository.neo4j.ExpertTuple;
@@ -13,11 +22,6 @@ import com.yt.business.service.IPlaceService;
 import com.yt.core.utils.BeanUtils;
 import com.yt.core.utils.CollectionUtils;
 import com.yt.neo4j.repository.CrudOperate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class PlaceServiceImpl extends ServiceBase implements IPlaceService {
@@ -32,12 +36,14 @@ public class PlaceServiceImpl extends ServiceBase implements IPlaceService {
 	}
 
 	@Override
-	public List<ExpertBean> getExperts(Long placeId, Long nextCursor, int limit) throws Exception {
-		List<ExpertTuple> tuples = repository.getExperts(placeId, nextCursor, limit);
+	public List<ExpertBean> getExperts(Long placeId, Long nextCursor, int limit)
+			throws Exception {
+		List<ExpertTuple> tuples = repository.getExperts(placeId, nextCursor,
+				limit);
 
 		List<ExpertBean> experts = new ArrayList<>();
-		if(CollectionUtils.isNotEmpty(tuples)){
-			for(ExpertTuple tuple : tuples){
+		if (CollectionUtils.isNotEmpty(tuples)) {
+			for (ExpertTuple tuple : tuples) {
 				experts.add(tuple.getExpert());
 			}
 		}
@@ -46,12 +52,20 @@ public class PlaceServiceImpl extends ServiceBase implements IPlaceService {
 	}
 
 	@Override
-	public List<RouteMainBean> getRoutes(Long placeId, Long nextCursor, int limit) throws Exception {
+	public List<ResourceBean> getResources(Long placeId, Long nextCursor,
+			int limit) throws Exception {
+		return this.repository.getResources(placeId, nextCursor, limit);
+	}
+
+	@Override
+	public List<RouteMainBean> getRoutes(Long placeId, Long nextCursor,
+			int limit) throws Exception {
 		List<RouteMainBean> routes = new ArrayList<>();
 
-		List<RouteTuple> tuples = this.repository.getRoutes(placeId, nextCursor, limit);
-		if(tuples != null){
-			for(RouteTuple tuple : tuples){
+		List<RouteTuple> tuples = this.repository.getRoutes(placeId,
+				nextCursor, limit);
+		if (tuples != null) {
+			for (RouteTuple tuple : tuples) {
 				routes.add(tuple.getRoute());
 			}
 		}
@@ -66,7 +80,7 @@ public class PlaceServiceImpl extends ServiceBase implements IPlaceService {
 		PlaceBean original = place;
 		if (place.getId() != null) {
 			original = placeCrudOperate.get(place.getId());
-			if (original != null && ! place.getCode().equals(original.getCode())) {
+			if (original != null && !place.getCode().equals(original.getCode())) {
 				codeChanged = true;
 			}
 
@@ -97,54 +111,68 @@ public class PlaceServiceImpl extends ServiceBase implements IPlaceService {
 		}
 	}
 
-	/*private void iterateUpdateRowkey(PlaceBean place, Long operator)
-			throws Exception {
-		String rowkey = place.getRowKey();
-		List<PlaceBean> children = repository.getAllSubPlaces(place.getId());
-		for (PlaceBean child : children) {
-			child.setRowKey(String.format("%s-%s", rowkey, child.getCode()));
-			placeCrudOperate.save(child);
-			iterateUpdateRowkey(child, operator);
-		}
-	}
-*/
+	/*
+	 * private void iterateUpdateRowkey(PlaceBean place, Long operator) throws
+	 * Exception { String rowkey = place.getRowKey(); List<PlaceBean> children =
+	 * repository.getAllSubPlaces(place.getId()); for (PlaceBean child :
+	 * children) { child.setRowKey(String.format("%s-%s", rowkey,
+	 * child.getCode())); placeCrudOperate.save(child);
+	 * iterateUpdateRowkey(child, operator); } }
+	 */
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.yt.business.service.IPlaceService#getAllPlaces()
+	 */
 	@Override
-	public List<PlaceBean> getPlaces() {
-		List<PlaceBean> places = new ArrayList<PlaceBean>();
-		List<PlaceTuple> tuples = null;
-		PlaceBean parent = null, child = null;
+	public List<PlaceBean> getAllPlaces() {
+		List<PlaceBean> roots = new ArrayList<PlaceBean>();
+		Map<String, PlaceBean> history = new HashMap<String, PlaceBean>();
 
-		List<PlaceBean> roots = repository.getRootPlaces();
-		for(PlaceBean root : roots){
-			tuples = this.repository.getPlaces(root.getCode());
-			if(CollectionUtils.isNotEmpty(tuples)) {
-				for (PlaceTuple tuple : tuples) {
-					parent = tuple.getParent();
-					child = tuple.getChild();
-
-					if (places.contains(parent)) {
-						for (PlaceBean p : places) {
-							if (p.equals(parent)) {
-								p.addSub(child);
-							}
-						}
-					} else {
-						parent.setParent(root);
-
-						parent.addSub(child);
-						places.add(parent);
-					}
+		// 首先获取具有父级关系的目的地
+		List<PlaceTuple> tuples = repository.getPlacesHasParentRelationship();
+		for (PlaceTuple pt : tuples) {
+			PlaceBean parent = pt.getParentPlace();
+			PlaceBean place = pt.getPlace();
+			if (!history.containsKey(parent.getShorter())) {
+				history.put(parent.getShorter(), parent);
+				if (parent.isRoot()) {
+					roots.add(parent);
 				}
+			}
+			parent = history.get(parent.getShorter());
+			if (!history.containsKey(place.getShorter())) {
+				place.setParent(parent);
+				parent.getSubPlaces().add(place);
+				history.put(place.getShorter(), place);
 			}
 		}
 
-		return places;
+		// 然后获取没有父级关系的目的地
+		List<PlaceBean> places = repository.getPlacesHasnotParentRelationship();
+		if (places != null && !places.isEmpty()) {
+			roots.addAll(places);
+		}
+
+		return roots;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.yt.business.service.IPlaceService#getRecommendPlaces()
+	 */
+	@Override
+	public List<PlaceBean> getRecommendPlaces() throws Exception {
+		return repository.getRecommendPlaces();
 	}
 
 	@Override
 	public void deletePlace(Long id, Long userId) throws Exception {
 		PlaceBean place = this.getPlace(id);
-		if(place == null) return;
+		if (place == null)
+			return;
 
 		this.placeCrudOperate.delete(place);
 	}
@@ -155,27 +183,30 @@ public class PlaceServiceImpl extends ServiceBase implements IPlaceService {
 	}
 
 	@Override
-	public PlaceBeanPack getPlacePack(Long id, Long lastModifiedTime) throws Exception {
+	public PlaceBeanPack getPlacePack(Long id, Long lastModifiedTime)
+			throws Exception {
 		PlaceBeanPack pack = new PlaceBeanPack();
 
 		PlaceBean place = this.getPlace(id);
-		if(place == null) return pack;
+		if (place == null)
+			return pack;
 		pack.setPlace(place);
 
-		//获取目的地推荐行程
+		// 获取目的地推荐行程
 		pack.setRoutes(this.getRoutes(id, 0l, 5));
 
-		//获取目的地推荐的达人
+		// 获取目的地推荐的达人
 		pack.setExperts(this.getExperts(id, 0l, 5));
 
-		//获取目的地咨询信息
+		// 获取目的地咨询信息
 		pack.setInfoes(this.getInfoes(id, 0l, 5));
 
 		return pack;
 	}
 
 	@Override
-	public List<InfoBean> getInfoes(Long placeId, Long nextCursor, int limit) throws Exception {
+	public List<InfoBean> getInfoes(Long placeId, Long nextCursor, int limit)
+			throws Exception {
 		return null;
 	}
 }

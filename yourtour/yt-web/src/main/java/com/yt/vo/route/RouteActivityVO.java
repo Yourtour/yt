@@ -5,12 +5,12 @@ import java.util.List;
 
 import com.yt.business.bean.HotelResourceBean;
 import com.yt.business.bean.ResourceBean;
+import com.yt.business.bean.ResourceBean.ResourceType;
 import com.yt.business.bean.RestaurantResourceBean;
 import com.yt.business.bean.RouteActivityBean;
 import com.yt.business.bean.RouteActivityItemBean;
 import com.yt.business.bean.RouteScheduleBean;
 import com.yt.business.bean.SceneResourceBean;
-import com.yt.business.common.Constants.ResType;
 import com.yt.vo.BaseVO;
 import com.yt.vo.resource.HotelResourceVO;
 import com.yt.vo.resource.ResourceVO;
@@ -46,15 +46,15 @@ public class RouteActivityVO extends BaseVO {
 			scheduleVO.setDate(bean.getSchedule().getDate());
 			vo.setSchedule(scheduleVO);
 		}
-		
+
 		ResourceBean resourceBean = bean.getResource();
 		if (resourceBean != null) {
 			ResourceVO resourceVO = null;
-			if (resourceBean.getType() == ResType.SCENE) {
+			if (resourceBean.getType() == ResourceType.SCENE) {
 				resourceVO = new SceneResourceVO();
-			} else if (resourceBean.getType() == ResType.HOTEL) {
+			} else if (resourceBean.getType() == ResourceType.HOTEL) {
 				resourceVO = new HotelResourceVO();
-			} else if (resourceBean.getType() == ResType.FOOD) {
+			} else if (resourceBean.getType() == ResourceType.FOOD) {
 				resourceVO = new RestaurantResourceVO();
 			}
 			if (resourceVO != null) {
@@ -69,9 +69,9 @@ public class RouteActivityVO extends BaseVO {
 		}
 
 		List<RouteActivityItemBean> items = bean.getItems();
-		if(items != null){
+		if (items != null) {
 			List<RouteActivityItemVO> voes = new ArrayList<>();
-			for(RouteActivityItemBean item : items){
+			for (RouteActivityItemBean item : items) {
 				voes.add(RouteActivityItemVO.transform(item));
 			}
 			vo.setItems(voes);
@@ -101,11 +101,11 @@ public class RouteActivityVO extends BaseVO {
 		ResourceVO resourceVO = vo.getResource();
 		if (resourceVO != null) {
 			ResourceBean resourceBean = null;
-			if (resourceVO.getType() == ResType.SCENE) {
+			if (resourceVO.getType() == ResourceType.SCENE) {
 				resourceBean = new SceneResourceBean();
-			} else if (resourceVO.getType() == ResType.HOTEL) {
+			} else if (resourceVO.getType() == ResourceType.HOTEL) {
 				resourceBean = new HotelResourceBean();
-			} else if (resourceVO.getType() == ResType.FOOD) {
+			} else if (resourceVO.getType() == ResourceType.FOOD) {
 				resourceBean = new RestaurantResourceBean();
 			}
 			if (resourceBean != null) {

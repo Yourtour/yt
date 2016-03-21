@@ -3,8 +3,8 @@
  */
 package com.yt.vo.resource;
 
+import com.yt.business.bean.ResourceBean.ResourceType;
 import com.yt.business.bean.RestaurantResourceBean;
-import com.yt.business.common.Constants.ResType;
 
 public class RestaurantResourceVO extends ResourceVO {
 	private String deliciouFood; // 特色菜品
@@ -42,7 +42,7 @@ public class RestaurantResourceVO extends ResourceVO {
 
 	public RestaurantResourceVO() {
 		super();
-		super.setType(ResType.FOOD);
+		super.setType(ResourceType.FOOD);
 	}
 
 	public String getDeliciouFood() {
