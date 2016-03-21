@@ -205,5 +205,7 @@
     <orderEntry type="library" exported="" name="Gradle: org.apache.hadoop:hadoop-auth:2.6.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.aspectj:aspectjweaver:1.8.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.aspectj:aspectjweaver:1.8.6" level="project" />
+    <orderEntry type="library" name="freemarker-2.3.9" level="project" />
+    <orderEntry type="library" name="sitemesh-3.0.1" level="project" />
   </component>
 </module>

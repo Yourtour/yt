@@ -2,670 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92ee94f3-3d6c-4f6d-925a-699d6360b737" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/01.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/01.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/010.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/011.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/012.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/013.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/014.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/015.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/016.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/017.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/02.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/02.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/03.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/03.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/04.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/04.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/05.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/05.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/06.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/06.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/07.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/07.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/08-long.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/08.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/08.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/09.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/09.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/400x300/1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/10.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/10.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/100.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/101.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/102.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/103.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/11.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/11.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/12.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/12.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/13.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/13.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/14.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/14.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/15.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/15.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/16.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/16.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/17.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/17.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/18.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/18.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/19.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/19.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/400x300/2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/20.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/20.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/21.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/21.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/22.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/22.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/23.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/23.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/24.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/24.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/25.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/25.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/26.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/26.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/27.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/27.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/28.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/28.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/29.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/29.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/400x300/3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/30.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/30.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/31.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/31.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/32.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/32.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/33.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/33.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/34.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/34.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/35.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/35.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/36.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/36.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/37.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/37.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/38.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/38.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/39.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/39.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/4.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/4.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/40.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/40.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/41.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/41.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/42.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/42.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/43.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/43.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/44.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/44.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/45.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/45.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/46.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/46.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/47.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/47.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/48.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/48.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/49.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/49.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/5.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/5.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/50.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/50.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/51.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/51.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/52.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/52.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/53.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/53.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/54.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/54.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/55.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/55.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/56.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/56.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/57.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/57.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/58.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/58.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/59.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/59.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/6.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/6.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/60.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/60.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/61.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/61.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/62.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/62.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/63.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/63.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/64.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/64.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/65.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/65.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/66.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/66.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/67.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/67.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/68.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/68.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/69.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/69.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/7.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/7.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/70.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/70.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/71.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/71.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/72.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/72.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/73.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/73.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/74.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/74.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/75.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/75.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/76.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/76.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/77.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/77.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/78.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/78.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/79.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/79.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/8.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/8.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/80.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/80.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/81.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/81.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/82.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/82.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/83.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/83.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/84.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/84.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/85.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/85.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/86.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/86.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/87.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/87.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/88.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/88.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/89.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/89.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/9.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/9.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/90.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/90.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/91.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/91.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/92.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/92.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/93.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/93.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/94.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/94.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/95.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/95.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/96.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/96.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/97.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/97.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/98.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/98.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/1200x900/99.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portfolio/600x600/99.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/Thumbs.db" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/aboutme.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/accordion-plusminus.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ad.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ae.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/af.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ag.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ai.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/ajax-loading.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/ajax-loading.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/ajax-modal-loading.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/ajax-modal-loading.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/al.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/am.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/amazon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/an.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ao.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ar.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/arrow-down.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/as.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/at.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/au.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/avatar.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/avatar1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/avatar10.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/avatar11.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/avatar1_small.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/avatar2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/avatar3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/avatar3_small.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/avatar4.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/avatar5.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/avatar6.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/avatar7.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/avatar8.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/avatar9.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/aw.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ax.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/az.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ba.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/bb.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/bd.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/be.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/behance.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/bf.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/bg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/bh.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/bi.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/bj.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/blogger.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/bm.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/bn.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/bo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/br.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/bs.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/bt.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/bv.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/bw.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/by.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/bz.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ca.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/catalonia.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/cc.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/cd.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/cf.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/cg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ch.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ci.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ck.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/cl.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/cm.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/cn.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/co.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/cr.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/cs.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/cu.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/cv.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/cx.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/cy.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/cz.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/datatable-row-openclose.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/de.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/deviantart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/dj.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/dk.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/dm.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/do.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/dribbble.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/dropbox.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/dz.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ec.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ee.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/eg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/eh.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/england.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/er.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/es.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/et.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/europeanunion.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/evernote.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/facebook.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/fam.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/fi.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/fj.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/fk.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/flickr.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/fm.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/fo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/forrst.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/foursquare.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/fr.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ga.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/gb.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/gd.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ge.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/gf.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/gh.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/gi.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/github.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/gl.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/gm.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/gn.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/googleplus.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/gp.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/gq.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/gr.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/gravatar.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/gs.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/gt.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/gu.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/gw.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/gy.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/hk.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/hm.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/hn.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/hor-menu-red-arrow.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/hr.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ht.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/hu.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/icon-color-close.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/icon-color.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/icon-img-down.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/icon-img-up.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/id.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ie.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/il.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/in.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/inbox-nav-arrow-blue.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/input-spinner.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/instagram.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/io.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/iq.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ir.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/is.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/it.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/jm.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/jo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/jolicloud.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/jp.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ke.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/kg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/kh.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ki.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/klout.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/km.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/kn.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/kp.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/kr.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/kw.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ky.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/kz.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/la.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/last-fm.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/lb.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/lc.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/li.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/linkedin.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/lk.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/loading-spinner-blue.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/loading-spinner-blue.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/loading-spinner-default.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/loading-spinner-default.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/loading-spinner-grey.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/loading-spinner-grey.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/loading.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/loading.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/logo-big-white.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/logo-big.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/logo-default.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/logo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/lr.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ls.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/lt.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/lu.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/lv.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ly.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ma.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/mc.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/md.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/me.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/menu-toggler.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/mg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/mh.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/mk.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ml.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/mm.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/mn.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/mo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/mp.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/mq.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/mr.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ms.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/mt.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/mu.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/mv.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/mw.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/mx.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/my.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/myspace.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/mz.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/na.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/nc.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ne.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/nf.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ng.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ni.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/nl.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/no.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/np.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/nr.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/nu.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/nz.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/om.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/overlay-icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/pa.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/pe.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/pf.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/pg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ph.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/photo1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/photo2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/picasa.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/pintrest.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/pk.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/pl.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/pm.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/pn.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portlet-collapse-icon-white.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portlet-collapse-icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portlet-config-icon-white.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portlet-config-icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portlet-expand-icon-white.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portlet-expand-icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portlet-reload-icon-white.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portlet-reload-icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portlet-remove-icon-white.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/portlet-remove-icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/pr.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ps.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/pt.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/pw.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/py.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/qa.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/quora.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/re.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/reddit.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/remove-icon-small.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/remove-icon-small.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ro.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/rs.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/rss.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ru.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/rw.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/sa.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/sb.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/sc.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/scotland.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/sd.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/se.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/search_icon_light.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/sg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/sh.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/si.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/sidebar-menu-arrow-reverse.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/sidebar-menu-arrow-right.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/sidebar-menu-arrow.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/sidebar-toggler-inverse.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/sidebar-toggler.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/sidebar_arrow_icon_light.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/sidebar_arrow_icon_light_rtl.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/sidebar_inline_toggler_icon_blue.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/sidebar_inline_toggler_icon_darkblue.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/sidebar_inline_toggler_icon_default.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/sidebar_inline_toggler_icon_grey.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/sidebar_inline_toggler_icon_light.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/sidebar_inline_toggler_icon_light2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/sidebar_toggler_icon_blue.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/sidebar_toggler_icon_darkblue.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/sidebar_toggler_icon_default.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/sidebar_toggler_icon_grey.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/sidebar_toggler_icon_light.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/img/sidebar_toggler_icon_light2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/sj.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/sk.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/skype.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/sl.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/sm.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/sn.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/so.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/spotify.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/sr.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/st.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/stumbleupon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/sv.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/sy.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/syncfusion-icons-white.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/syncfusion-icons.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/sz.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/tc.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/td.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/tf.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/tg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/th.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/tj.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/tk.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/tl.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/tm.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/tn.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/to.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/tr.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/tt.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/tumblr.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/tv.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/tw.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/twitter.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/tz.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ua.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ug.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/um.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/us.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/uy.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/uz.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/va.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/vc.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ve.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/vg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/vi.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/vimeo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/vk.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/vn.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/vu.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/wales.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/wf.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/wordpress.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ws.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/xing.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/yahoo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/ye.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/social/youtube.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/yt.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/za.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/zm.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/zw.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-core/src/main/java/com/yt/core/utils/BeanUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/InfoBean.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/pack/PlaceBeanPack.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/scripts/app.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/css/themes/blue.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/plugins/bootstrap/css/bootstrap.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/plugins/bootstrap/js/bootstrap.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/css/components.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/css/custom.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/pages/scripts/dashboard.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/scripts/datatable.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/scripts/demo.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/plugins/excanvas.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/plugins/font-awesome/css/font-awesome.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/plugins/jquery.blockui.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/plugins/jquery.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/plugins/uniform/jquery.uniform.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/plugins/js.cookie.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/css/layout.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/layout2/scripts/layout.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/plugins/moment.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/plugins/morris/morris.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/plugins/morris/morris.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/css/plugins.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/layouts/global/scripts/quick-sidebar.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/plugins/morris/raphael-min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/img/flags/readme.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/plugins/respond.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/plugins/uniform/css/uniform.default.css" />
-      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-oms\src\main\resources\app.properties" afterPath="" />
-      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-oms\src\main\resources\application-hbase-context.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-oms\src\main\resources\application-neo4j-context.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-oms\src\main\resources\application-rest-context.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-oms\src\main\resources\log4j.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/assets/www/resources/icons/24/icon_user.png" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/assets/www/resources/icons/24/icon_user.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/www/resources/icons/24/icon_user.png" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/www/resources/icons/24/icon_user.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/decorators/admin.ftl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/decorators.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/admin/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/sitemesh3.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../.gitignore" afterPath="$PROJECT_DIR$/../.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/view/home/HomeMainView.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/view/home/HomeMainView.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IPlaceService.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IPlaceService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/view/MainView.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/view/MainView.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/neo4j/PlaceBeanRepository.java" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/neo4j/PlaceBeanRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/controller/PlaceMainCtrl.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/controller/PlaceMainCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/view/place/PlaceMainItem.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/view/place/PlaceMainItem.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/view/place/PlaceMainView.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/view/place/PlaceMainView.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/PlaceRestResource.java" afterPath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/PlaceRestResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/PlaceServiceImpl.java" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/PlaceServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/ResourceRestResource.java" afterPath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/ResourceRestResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/ResourceServiceImpl.java" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/ResourceServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-web-core/src/main/java/com/yt/rest/resource/RestResource.java" afterPath="$PROJECT_DIR$/yt-web-core/src/main/java/com/yt/rest/resource/RestResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-core/src/main/java/com/yt/core/utils/StringUtils.java" afterPath="$PROJECT_DIR$/yt-core/src/main/java/com/yt/core/utils/StringUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XHeaderBar.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XHeaderBar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XHeaderBar2.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XHeaderBar2.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/assets/www/app.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/assets/www/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/www/app.js" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/www/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/index.html" afterPath="$PROJECT_DIR$/yt-app/WebRoot/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/assets/www/index.html" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/assets/www/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-app/WebRoot/cordova/www/index.html" afterPath="$PROJECT_DIR$/yt-app/WebRoot/cordova/www/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/build.gradle" afterPath="$PROJECT_DIR$/yt-oms/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/WebRoot/index.html" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/web.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/yt-oms.iml" afterPath="$PROJECT_DIR$/yt-oms/yt-oms.iml" />
@@ -724,12 +68,64 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33206832">
-              <caret line="28" column="79" selection-start-line="28" selection-start-column="62" selection-end-line="28" selection-end-column="79" />
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="1487" column="12" selection-start-line="1487" selection-start-column="12" selection-end-line="1487" selection-end-column="34" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="decorators.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/decorators.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yt-oms/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="15" column="46" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/admin/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="web.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/web.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin.ftl" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/decorators/admin.ftl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.4164038">
+              <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+              <folding>
+                <marker date="1458544091214" expanded="true" signature="27193:27341" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -3716,14 +3112,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/yt-app/WebRoot/cordova/plugins/cordova-plugin-appinfo/www/App.js" />
-        <option value="$PROJECT_DIR$/yt-app/WebRoot/cordova/plugins/cordova-plugin-appinfo/src/android/App.java" />
-        <option value="$PROJECT_DIR$/yt-app/WebRoot/cordova/cordova-plugin-app/www/App.js" />
-        <option value="$PROJECT_DIR$/yt-app/WebRoot/cordova/plugins/cordova-plugin-app/www/App.js" />
-        <option value="$PROJECT_DIR$/yt-app/WebRoot/cordova/cordova-plugin-app/src/android/App.java" />
-        <option value="$PROJECT_DIR$/yt-app/WebRoot/cordova/platforms/android/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/WelcomeView.js" />
-        <option value="$PROJECT_DIR$/yt-app/WebRoot/app/store/LocalStore.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XZoomCarousel.js" />
         <option value="$PROJECT_DIR$/yt-app/WebRoot/cordova/config.xml" />
         <option value="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/home/LaunchVO.java" />
@@ -3765,8 +3153,16 @@
         <option value="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/pack/PlaceBeanPack.java" />
         <option value="$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/PlaceRestResource.java" />
         <option value="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/PlaceServiceImpl.java" />
-        <option value="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/yt-oms/WebRoot/index.html" />
+        <option value="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/decorators/footer.ftl" />
+        <option value="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/decorators/header.ftl" />
+        <option value="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/decorators/sidebar.ftl" />
+        <option value="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/decorators/admin.ftl" />
+        <option value="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/decorators.xml" />
+        <option value="$PROJECT_DIR$/yt-oms/WebRoot/admin/index.html" />
+        <option value="$PROJECT_DIR$/yt-oms/build.gradle" />
+        <option value="$PROJECT_DIR$/yt-oms/.classpath" />
+        <option value="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/web.xml" />
       </list>
     </option>
   </component>
@@ -3814,6 +3210,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -3821,6 +3218,10 @@
               <option name="myItemId" value="yourtour" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -3843,24 +3244,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="yt-oms" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yourtour" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yourtour" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yt-oms" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WebRoot" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -3879,10 +3262,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="WebRoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -3904,11 +3283,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="global" />
+              <option name="myItemId" value="WEB-INF" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -3930,15 +3305,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
+              <option name="myItemId" value="WEB-INF" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="global" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
+              <option name="myItemId" value="decorators" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -3956,13 +3327,16 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
+              <option name="myItemId" value="WebRoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -3972,7 +3346,7 @@
     <property name="SearchEverywhereHistoryKey" value="ExpertServiceImpl&#9;PSI&#9;JAVA://com.yt.business.service.impl.ExpertServiceImpl&#10;ExpertServiceBean.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service/src/main/java/com/yt/business/bean/ExpertServiceBean.java&#10;PlaceServi&#9;PSI&#9;JAVA://com.yt.business.service.impl.PlaceServiceImpl&#10;PlaceRest&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/PlaceRestResource.java&#10;BeanUtils.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-core/src/main/java/com/yt/core/utils/BeanUtils.java&#10;BeanUtils.&#9;FILE&#9;jar://C:/Users/林平/.gradle/caches/modules-2/files-2.1/commons-beanutils/commons-beanutils-core/1.8.0/175dc721f87e4bc5cc0573f990e28c3cf9117508/commons-beanutils-core-1.8.0.jar!/org/apache/commons/beanutils/BeanUtils.class&#10;StringUtils.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-core/src/main/java/com/yt/core/utils/StringUtils.java&#10;UserRest&#9;PSI&#9;JAVA://com.yt.rest.resource.UserRestResource&#10;ResourceRestRes&#9;PSI&#9;JAVA://com.yt.rest.resource.ResourceRestResource&#10;XHEa&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XHeaderBar.js&#10;XHea&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XHeaderBar2.js&#10;MainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/MainView.js&#10;Panel.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/tab/Panel.js&#10;HomeMainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/home/HomeMainView.js&#10;PlaceMainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/place/PlaceMainView.js&#10;Context.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/util/Context.js&#10;XMultiField.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XMultiField.js&#10;PlaceRestRe&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/PlaceRestResource.java&#10;XZoom&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XZoomCarousel.js&#10;Scroller&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/scroll/Scroller.js&#10;Carousel.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/carousel/Carousel.js&#10;ani&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/fx/Animation.js&#10;Context&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/util/Context.js&#10;PlacemainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/place/PlaceMainView.js&#10;Xhea&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XHeaderBar2.js&#10;Xheader&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XHeaderBar.js&#10;PlaceMainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/PlaceMainCtrl.js&#10;PlaceMain&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/place/PlaceMainItem.js&#10;RoutemainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/route/RouteMainView.js&#10;XHeader&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XHeaderBar2.js&#10;XPage.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XPageBody.js&#10;RouteScheduleFormView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/route/RouteScheduleFormView.js&#10;XHeaderbar.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XHeaderBar.js&#10;placeRest&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/PlaceRestResource.java&#10;PlaceMainItem.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/place/PlaceMainItem.js&#10;xspacer.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XSpacer.js&#10;index.html&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/index.html&#10;XPageBody.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XPageBody.js&#10;Xcarousel.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XCarousel.js&#10;RouteMainView.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/route/RouteMainView.js&#10;XField.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XField.js&#10;XMultifield.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XMultiField.js&#10;RouteMainCtrl.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/route/RouteMainCtrl.js&#10;PlaceModel.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/model/PlaceModel.js&#10;PlaceVO&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/vo/place/PlaceVO.java&#10;Route&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/route/RouteMainCtrl.js&#10;PlaceR&#9;PSI&#9;JAVA://com.yt.rest.resource.PlaceRestResource&#10;XZOOM&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XZoomCarousel.js&#10;XCarousel.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/view/widget/XCarousel.js&#10;Index.html&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/index.html" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.120033115" />
     <property name="project.structure.side.proportion" value="0.3960489" />
     <property name="FullScreen" value="false" />
@@ -3981,18 +3355,21 @@
     <property name="JavaScriptPreferStrict" value="true" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/yt-oms/WebRoot" />
+    <property name="last_opened_file_path" value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.sitemesh/sitemesh/3.0.1/3fe2fdca831ba69eebd820782b2ab4a4857d9d76/sitemesh-3.0.1.jar!/" />
     <property name="dynamic.classpath" value="false" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\workspace\yt\yourtour\yt-oms\WebRoot\WEB-INF\decorators" />
+      <recent name="E:\workspace\yt\yourtour\yt-oms\WebRoot\WEB-INF" />
+      <recent name="E:\workspace\yt\yourtour\yt-oms\WebRoot\admin" />
       <recent name="E:\workspace\yt\yourtour\yt-oms\WebRoot\assets\global" />
       <recent name="E:\workspace\yt\yourtour\yt-oms\WebRoot\assets\layouts\layout2" />
-      <recent name="E:\workspace\yt\yourtour\yt-oms\WebRoot\assets\global\plugins\morris" />
-      <recent name="E:\workspace\yt\yourtour\yt-oms\WebRoot\assets\global\plugins\bootstrap-daterangepicker" />
-      <recent name="E:\workspace\yt\yourtour\yt-oms\WebRoot\assets\layouts\global\scripts" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.yt.business.bean" />
@@ -4462,8 +3839,8 @@
     </configuration>
     <list size="3">
       <item index="0" class="java.lang.String" itemvalue="JUnit.ActivityGenerator.save" />
-      <item index="1" class="java.lang.String" itemvalue="Gradle.ActivityGenerator" />
-      <item index="2" class="java.lang.String" itemvalue="Tomcat Server.yt-server" />
+      <item index="1" class="java.lang.String" itemvalue="Tomcat Server.yt-server" />
+      <item index="2" class="java.lang.String" itemvalue="Gradle.ActivityGenerator" />
     </list>
     <recent_temporary>
       <list size="1">
@@ -4520,12 +3897,15 @@
       <workItem from="1458391229734" duration="1268000" />
       <workItem from="1458392826385" duration="4700000" />
       <workItem from="1458397645736" duration="2167000" />
-      <workItem from="1458399900726" duration="1092000" />
+      <workItem from="1458399900726" duration="1761000" />
+      <workItem from="1458478727177" duration="1201000" />
+      <workItem from="1458526965873" duration="2602000" />
+      <workItem from="1458537528485" duration="6722000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="220709000" />
+    <option name="totallyTimeSpent" value="231903000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -4546,13 +3926,13 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4362745" sideWeight="0.5030257" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38071895" sideWeight="0.48789713" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3382353" sideWeight="0.48789713" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4852941" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23366013" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5637255" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.03945372" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2336874" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -4561,7 +3941,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.05392157" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39215687" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -4632,69 +4012,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XHeaderBar2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/home/HomeMainView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="40" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/place/PlaceMainView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="65" selection-start-line="12" selection-start-column="24" selection-end-line="14" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/view/widget/XHeaderBar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/UserRestResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="209" column="9" selection-start-line="200" selection-start-column="8" selection-end-line="209" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-web-core/src/main/java/com/yt/rest/resource/RestResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="45" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/ResourceRestResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="90" column="36" selection-start-line="90" selection-start-column="24" selection-end-line="90" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/ServiceBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-core/src/main/java/com/yt/core/utils/StringUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="14" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-beanutils/commons-beanutils-core/1.8.0/175dc721f87e4bc5cc0573f990e28c3cf9117508/commons-beanutils-core-1.8.0.jar!/org/apache/commons/beanutils/BeanUtils.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -4804,14 +4121,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="101" column="23" selection-start-line="101" selection-start-column="23" selection-end-line="101" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37288135">
-          <caret line="5" column="10" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4985,9 +4294,59 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33206832">
-          <caret line="28" column="79" selection-start-line="28" selection-start-column="62" selection-end-line="28" selection-end-column="79" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1487" column="12" selection-start-line="1487" selection-start-column="12" selection-end-line="1487" selection-end-column="34" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-oms/.classpath">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.2991072">
+          <caret line="848" column="334" selection-start-line="848" selection-start-column="334" selection-end-line="848" selection-end-column="334" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/decorators.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-oms/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="46" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/admin/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/decorators/admin.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4164038">
+          <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+          <folding>
+            <marker date="1458544091214" expanded="true" signature="27193:27341" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -5057,7 +4416,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>Gradle: junit:junit:4.11</last-edited>
+          <last-edited>sitemesh-3.0.1</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
