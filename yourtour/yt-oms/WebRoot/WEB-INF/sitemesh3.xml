@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>  
+<sitemesh>
+	<mapping  path="/admin/*.html" decorator="/WEB-INF/decorators/admin.ftl">
+ 		<pattern>/admin/*.html</pattern>
+	</mapping >
+</sitemesh>

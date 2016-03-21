@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>  
+<decorators defaultdir="/WEB-INF/view/decorators">
+	<decorator name="admin" page="admin.ftl">
+ 		<pattern>/admin/*.html</pattern>
+	</decorator>
+</decorators>
