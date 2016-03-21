@@ -42,7 +42,7 @@ public class ChatServiceImpl extends ServiceBase implements IChatService {
 	}
 
 	@Override
-	public ChatSessionBean openPlaceChatRoom(long placeId, String operator)
+	public ChatSessionBean openPlaceChatRoom(long placeId, long userId)
 			throws Exception {
 		ChatSessionBean room = null;
 		String roomNo = String.format("p%d", placeId);
@@ -78,7 +78,7 @@ public class ChatServiceImpl extends ServiceBase implements IChatService {
 	}
 
 	@Override
-	public ChatSessionBean openRouteChatRoom(long routeId, String operator)
+	public ChatSessionBean openRouteChatRoom(long routeId, long userId)
 			throws Exception {
 		ChatSessionBean room = null;
 		String roomNo = String.format("r%d", routeId);
@@ -113,7 +113,7 @@ public class ChatServiceImpl extends ServiceBase implements IChatService {
 	}
 
 	@Override
-	public ChatSessionBean openDynamicChatRoom(String roomNo, String operator)
+	public ChatSessionBean openDynamicChatRoom(String roomNo, long userId)
 			throws Exception {
 		ChatSessionBean room = null;
 		try {
@@ -204,11 +204,11 @@ public class ChatServiceImpl extends ServiceBase implements IChatService {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.yt.business.service.IChatService#saveChatJoinRecord(java.lang.String,
+	 * com.yt.business.service.IChatService#saveChatJoinRecord(java.lang.long,
 	 * com.yt.business.bean.ChatSessionBean)
 	 */
 	@Override
-	public void saveChatJoinRecord(String userId, ChatSessionBean sessionBean)
+	public void saveChatJoinRecord(long userId, ChatSessionBean sessionBean)
 			throws Exception {
 		UserProfileBean userProfile = userCrudOperate.get(Long.valueOf(userId));
 		if (userProfile != null) {

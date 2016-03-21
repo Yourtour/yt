@@ -29,10 +29,8 @@ public class ChatCommandChatterDel extends AbstractChatCommandChatter {
 			ChatSessionManager sessionManager, IChatService repository,
 			Session session, ChatSessionBean chatSessionBean, long userId) {
 		String[] chatters = super.getChatters().split(",");
-		String operator = session.getUserPrincipal().getName();
 		for (String userCode : chatters) {
-			sessionManager.delDynamiceChatWhiteList(roomCode, userCode,
-					operator);
+			sessionManager.delDynamiceChatWhiteList(roomCode, userCode, userId);
 		}
 	}
 

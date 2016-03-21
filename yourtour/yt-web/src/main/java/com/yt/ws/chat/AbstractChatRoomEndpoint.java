@@ -26,7 +26,7 @@ public abstract class AbstractChatRoomEndpoint {
 	}
 
 	public void openSession(ChatSessionTypeEnum type, String roomCode,
-			Session session, String userId) {
+			Session session, long userId) {
 		// 在管理器中添加建立的会话
 		ChatSessionUtils.addChatSession(type, roomCode, session, userId);
 		// 检测并打开指定的目的地聊天室
@@ -59,7 +59,7 @@ public abstract class AbstractChatRoomEndpoint {
 	}
 
 	public void closeSession(ChatSessionTypeEnum type, String roomCode,
-			Session session, String userId) {
+			Session session, long userId) {
 		// 在管理器中移除关闭的会话
 		ChatSessionUtils.delChatSession(type, roomCode, session, userId);
 		// 更新该用户最近聊天加入历史的退出时间
@@ -99,7 +99,7 @@ public abstract class AbstractChatRoomEndpoint {
 	}
 
 	public void processMessage(ChatSessionTypeEnum type, String roomCode,
-			Session session, String userId, String command) {
+			Session session, long userId, String command) {
 		try {
 			ChatSessionBean chatSessionBean = null;
 			switch (type.name()) {

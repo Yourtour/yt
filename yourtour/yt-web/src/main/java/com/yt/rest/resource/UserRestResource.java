@@ -30,6 +30,7 @@ import com.yt.utils.FileUtils;
 import com.yt.utils.SessionUtils;
 import com.yt.vo.member.LoginVO;
 import com.yt.vo.member.RegisterVO;
+import com.yt.vo.member.UserBasicVO;
 import com.yt.vo.member.UserVO;
 
 @Component
@@ -226,5 +227,13 @@ public class UserRestResource extends RestResource {
 
 		profile = this.userService.saveUseProfile(profile);
 		return new ResponseDataVO<UserVO>(UserVO.transform(profile));
+	}
+
+	@GET
+	@Path("/{userId}/basic")
+	public ResponseDataVO<UserBasicVO> getUserBasicInfor(
+			@PathParam("userId") long userId) throws Exception {
+		UserProfileBean user = userService.getUserProfileInfo(userId, false);
+		return new ResponseDataVO<UserBasicVO>(UserBasicVO.transform(user));
 	}
 }
