@@ -1,0 +1,8 @@
+table.dataTable thead {
+    background-color:#eaeaea;
+}
+
+table.dataTable thead tr th{
+    text-align:center;
+
+}

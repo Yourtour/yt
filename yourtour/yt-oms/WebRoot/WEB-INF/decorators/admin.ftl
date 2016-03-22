@@ -3,7 +3,7 @@
 -->
 <html lang="en">
   <head>
-  	<title>游徒APP管理平台-<sitemesh:write property='title'/></title>
+  	<title>游徒管理平台-<sitemesh:write property='title'/></title>
 	<meta name="keywords" content="">
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -20,6 +20,7 @@
 	<link href="../../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
 	<link href="../../assets/global/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
 	<link href="../../assets/global/plugins/jquery-datatable/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+	<link href="../../assets/global/plugins/jquery-datatable/css/jquery.dataTables.setting.css" rel="stylesheet" type="text/css" />
 	<!-- END PAGE LEVEL PLUGINS -->
 
 	<!-- BEGIN THEME GLOBAL STYLES -->
@@ -38,13 +39,13 @@
 	<script src="../../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
 	<script src="../../assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 	<script src="../../assets/global/plugins/jquery-datatable/js/jquery.dataTables.min.js" type="text/javascript"></script>
+	<script src="../../assets/global/plugins/jquery-datatable/js/jquery.dataTable.setting.js" type="text/javascript"></script>
 
-	<script src="../../assets/apps/js/default-setting.js" type="text/javascript"></script>
     <script type="text/javascript">
 		var base = '${base}';
 	</script>
   </head>
-  
+
   <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
   	<!-- BEGIN HEADER -->
     <div class="page-header navbar navbar-fixed-top">
