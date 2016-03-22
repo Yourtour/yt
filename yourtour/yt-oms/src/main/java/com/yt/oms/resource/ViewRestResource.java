@@ -34,7 +34,7 @@ public class ViewRestResource extends RestResource {
      * @throws Exception
      */
     @GET
-    @Produces("text/html")
+    @Produces("text/html;charset=utf-8")
     @Path("admin/{name}")
     public Response getAdminResources(@PathParam("name") String name) throws Exception{
         String ftl = "admin/" + name + ".ftl";
@@ -42,6 +42,8 @@ public class ViewRestResource extends RestResource {
         Map<String, Object> model = this.viewService.getValue(name);
         StringWriter out = new StringWriter();
         configuration.getTemplate(ftl).process(model, out);
+
+        System.out.println(out.toString());
         return Response.ok().entity(out.toString()).build();
     }
 
