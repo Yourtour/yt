@@ -200,5 +200,6 @@
     <orderEntry type="library" scope="TEST" name="Gradle: org.aspectj:aspectjweaver:1.8.6" level="project" />
     <orderEntry type="library" exported="" name="freemarker-2.3.9" level="project" />
     <orderEntry type="library" exported="" name="sitemesh-3.0.1" level="project" />
+    <orderEntry type="module" module-name="yt-service-impl" exported="" />
   </component>
 </module>
