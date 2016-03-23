@@ -6,14 +6,13 @@
 $.extend( true, $.fn.dataTable.defaults, {
     "bAutoWidth": false,
     "bLengthChange":false,
-    "iDisplayLength" : 10,
+    "iDisplayLength" : 20,
     "bFilter": false,
     "bSort": false,
     "bStateSave" : false,
     "bRetrieve":true,
-    "bServerSide": true,
-    "bProcessing": true,
-    "sAjaxSource" : 'Query/Pagination.action',
+    "bProcessing": false, // 是否显示取数据时的那个等待提示
+    "bServerSide": true,//这个用来指明是通过服务端来取数据
     "sPaginationType" : "full_numbers",
     "aoColumnDefs" : [{
         sDefaultContent : '',
@@ -36,6 +35,41 @@ $.extend( true, $.fn.dataTable.defaults, {
             sLast: "末页",
             sNext: "下一页",
             sPrevious: "上一页"
+        }
+    },
+
+    fnServerData: function ( sSource, aoData, fnCallback ) {
+        var rest = this.attr("data-rest");
+
+        console.log(aoData);
+        var context = {};
+        $.each(aoData, function(index, data){
+            context[data.name] = data.value;
+        })
+
+        $.ajax({
+            "dataType": 'json',
+            "contentType" : "application/json",
+            "type": "POST",
+            "url": rest,
+            "data": JSON.stringify(context),
+            "success": function (response){
+                fnCallback(response);
+            }
+        });
+    },
+
+    fnServerParams: function( aoData ){
+        var frm = this.attr("data-criteria");
+        if(frm != undefined){
+            var values = $("#" + frm).serializeArray();
+            $.each(values, function(i, field){
+                var value = field.value.trim();
+
+                if(value != ''){
+                    aoData[field.name] = value;
+                }
+            });
         }
     }
 });

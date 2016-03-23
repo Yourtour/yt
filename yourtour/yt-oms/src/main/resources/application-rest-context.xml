@@ -22,7 +22,12 @@
     </bean>
 
     <bean id="configuration" class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
-        <property name="templateLoaderPath" value="/WEB-INF/template"/>
+        <property name="templateLoaderPaths">
+            <list>
+                <value>/WEB-INF/template</value>
+                <value>/WEB-INF/decorates</value>
+            </list>
+        </property>
         <property name="defaultEncoding" value="utf-8" />
         <property name="freemarkerSettings">
             <props>

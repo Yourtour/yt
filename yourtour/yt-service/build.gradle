@@ -17,24 +17,26 @@ task generateCrud() {/*1*/
 	def crudDir = project.dependencies.ext.crudTarDir;
 	def srcDir = new File(beanDir)
 	if (srcDir.isDirectory()) {/*2*/
-		srcDir.eachFileRecurse {/*3*/ file ->
-			def beanName = file.getName().split("[.]")[0]
-			if(beanName != 'package-info') {/*4*/
-				def crudFileName = beanName + "Crud"
-				def crudFile = new File(crudDir + crudFileName + ".java")
-				if (!crudFile.exists()) {/*5*/
-					def printWriter = crudFile.newPrintWriter()
-					printWriter.write('package com.yt.business.repository.crud;\n\n')
-					printWriter.write('import com.yt.neo4j.repository.CrudGeneralOperate;\n')
-					printWriter.write('import org.springframework.stereotype.Service;\n')
-					printWriter.write('import com.yt.business.bean.' + beanName + ';\n\n')
-					printWriter.write('@Service\n')
-					printWriter.write('public class ' + crudFileName + ' extends CrudGeneralOperate<' + beanName + '> { }')
-					printWriter.flush()
-					printWriter.close()
-					println 'create a crud file: ' + crudFile
-				}/*5*/
-			}/*4*/
+		srcDir.eachFile {/*3*/ file ->
+			if(file.isFile()) {
+				def beanName = file.getName().split("[.]")[0]
+				if (beanName != 'package-info') {/*4*/
+					def crudFileName = beanName + "Crud"
+					def crudFile = new File(crudDir + crudFileName + ".java")
+					if (!crudFile.exists()) {/*5*/
+						def printWriter = crudFile.newPrintWriter()
+						printWriter.write('package com.yt.business.repository.crud;\n\n')
+						printWriter.write('import com.yt.neo4j.repository.CrudGeneralOperate;\n')
+						printWriter.write('import org.springframework.stereotype.Service;\n')
+						printWriter.write('import com.yt.business.bean.' + beanName + ';\n\n')
+						printWriter.write('@Service\n')
+						printWriter.write('public class ' + crudFileName + ' extends CrudGeneralOperate<' + beanName + '> { }')
+						printWriter.flush()
+						printWriter.close()
+						println 'create a crud file: ' + crudFile
+					}/*5*/
+				}/*4*/
+			}
 		}/*3*/
 	}/*2*/
 }/*1*/

@@ -1,8 +1,16 @@
+table.dataTable{
+
+}
+
 table.dataTable thead {
     background-color:#eaeaea;
 }
 
 table.dataTable thead tr th{
     text-align:center;
+    font-size:14px;
+}
 
+table.dataTable tbody tr td{
+    font-size:14px;
 }

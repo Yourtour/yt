@@ -6,12 +6,15 @@ import freemarker.template.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import java.io.StringWriter;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -19,7 +22,7 @@ import java.util.Map;
  */
 
 @Component
-@Path("/")
+@Path("/view")
 public class ViewRestResource extends RestResource {
     @Autowired
     private Configuration configuration;
@@ -36,14 +39,17 @@ public class ViewRestResource extends RestResource {
     @GET
     @Produces("text/html;charset=utf-8")
     @Path("admin/{name}")
-    public Response getAdminResources(@PathParam("name") String name) throws Exception{
+    public Response getAdminResources(@Context HttpServletRequest request, @PathParam("name") String name) throws Exception{
         String ftl = "admin/" + name + ".ftl";
 
         Map<String, Object> model = this.viewService.getValue(name);
+        if(model == null) model = new HashMap<>();
+
+        model.put("context", request.getContextPath());
+
         StringWriter out = new StringWriter();
         configuration.getTemplate(ftl).process(model, out);
 
-        System.out.println(out.toString());
         return Response.ok().entity(out.toString()).build();
     }
 

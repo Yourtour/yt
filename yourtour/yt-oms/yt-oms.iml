@@ -201,5 +201,15 @@
     <orderEntry type="library" exported="" name="freemarker-2.3.9" level="project" />
     <orderEntry type="library" exported="" name="sitemesh-3.0.1" level="project" />
     <orderEntry type="module" module-name="yt-service-impl" exported="" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/4.1.6.RELEASE/e1ee19a5359f214d65cc18972df8aba17ce1e423/spring-webmvc-4.1.6.RELEASE.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="spring-webmvc-4.1.6.RELEASE" level="project" />
   </component>
 </module>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>  
 <sitemesh>
-	<mapping  path="/view/admin/*" decorator="/WEB-INF/decorators/admin.ftl">
+	<mapping  path="/rest/view/admin/*" decorator="/WEB-INF/template/admin/template.ftl">
 	</mapping>
 
-	<mapping  path="/view/expert/*" decorator="/WEB-INF/decorators/expert.ftl">
+	<mapping  path="/rest/view/expert/*" decorator="/WEB-INF/decorators/expert.ftl">
 	</mapping>
 </sitemesh>

@@ -83,7 +83,7 @@ public class PlaceRestResource {
 	 */
 	@GET
 	@Path("/{placeId}")
-	public ResponseDataVO<PlaceVO> queryMainInfo(
+	public ResponseDataVO<PlaceVO> getMainInfo(
 			@PathParam("placeId") Long placeId) throws Exception {
 		PlaceBean place = placeService.getPlace(placeId);
 		PlaceVO vo = PlaceVO.transform(place);
