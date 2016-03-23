@@ -248,7 +248,6 @@ public class RouteRestResource extends RestResource {
 	 * @return
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
 	@Path("/place/{placeId}")
 	@GET
 	public ResponseDataVO<List<RouteVO>> getRecommendedRoutes(@PathParam("placeId") Long placeId,
@@ -275,7 +274,6 @@ public class RouteRestResource extends RestResource {
 	 * @return
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
 	@Path("/place/{placeIds}/{duration}")
 	@GET
 	public ResponseDataVO<List<RouteVO>> getRecommendedRoutes(@PathParam("placeIds") String placeIds,

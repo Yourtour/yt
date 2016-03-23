@@ -1,55 +1,13 @@
 package com.yt.business.service;
 
-import com.yt.business.bean.ChatJoinHistoryBean;
-import com.yt.business.bean.ChatMessageBean;
-import com.yt.business.bean.ChatSessionBean;
-import com.yt.business.bean.UserProfileBean;
-
 import java.util.List;
 
+import com.yt.business.bean.ChatMessageBean;
+import com.yt.business.bean.ChatMessageBean.MessageType;
+import com.yt.business.bean.ChatRoomBean;
+import com.yt.business.bean.UserProfileBean;
+
 public interface IChatService {
-	/**
-	 * 根据指定的目的的ID打开对应的目的的聊天室，如该聊天室不存在，则创建一个新的聊天室。
-	 * 
-	 * @param placeId
-	 *            目的的ID
-	 * @param userId
-	 *            操作人员ID
-	 * @return 成功返回目的的聊天室会话对象，否在返回null。
-	 * @throws Exception
-	 *             操作过程中发生的异常
-	 */
-	public ChatSessionBean openPlaceChatRoom(long placeId, long userId)
-			throws Exception;
-
-	/**
-	 * 根据指定的行程ID打开对应的行程聊天室，如该聊天室不存在，则创建一个行程聊天室。
-	 * 
-	 * @param routeId
-	 *            行程ID
-	 * @param userId
-	 *            操作人员ID
-	 * @return 成功返回目的的聊天室会话对象，否在返回null。
-	 * @throws Exception
-	 *             操作过程中发生的异常
-	 */
-	public ChatSessionBean openRouteChatRoom(long routeId, long userId)
-			throws Exception;
-
-	/**
-	 * 根据指定的动态聊天室号码打开指定的动态聊天室，如该聊天室不存在，则创建一个新的动态聊天室。
-	 * 
-	 * @param roomNo
-	 *            聊天室房间号，一般是以“d”开头的UUID号码。
-	 * @param userId
-	 *            操作人员ID
-	 * @return 成功返回目的的聊天室会话对象，否在返回null。
-	 * @throws Exception
-	 *             操作过程中发生的异常
-	 */
-	public ChatSessionBean openDynamicChatRoom(String roomNo, long userId)
-			throws Exception;
-
 	/**
 	 * 返回指定聊天室中的聊天人员列表。
 	 * 
@@ -62,6 +20,17 @@ public interface IChatService {
 	public List<UserProfileBean> getChatters(String roomNo) throws Exception;
 
 	/**
+	 * 返回指定用户的历史聊天室列表，按照最近聊天排序。
+	 * 
+	 * @param userId
+	 *            指定的用户ID
+	 * @return 该用户历史聊天室列表
+	 * @throws Exception
+	 *             操作过程中发生异常
+	 */
+	public List<ChatRoomBean> getChatRooms(long userId) throws Exception;
+
+	/**
 	 * 获取最热的前N名聊天室
 	 * 
 	 * @param n
@@ -70,18 +39,7 @@ public interface IChatService {
 	 * @throws Exception
 	 *             操作过程中发生的异常
 	 */
-	public List<ChatSessionBean> getTopNChatRooms(int n) throws Exception;
-
-	/**
-	 * 获取最热的前N名目的的聊天室
-	 * 
-	 * @param n
-	 *            名次数
-	 * @return 最热的目的的聊天室列表
-	 * @throws Exception
-	 *             操作过程中发生的异常
-	 */
-	public List<ChatSessionBean> getTopNPlaceChatRooms(int n) throws Exception;
+	public List<ChatRoomBean> getTopNChatRooms(int n) throws Exception;
 
 	/**
 	 * 获取最热的前N名行程聊天室
@@ -92,7 +50,7 @@ public interface IChatService {
 	 * @throws Exception
 	 *             操作过程中发生的异常
 	 */
-	public List<ChatSessionBean> getTopNRouteChatRooms(int n) throws Exception;
+	public List<ChatRoomBean> getTopNRouteChatRooms(int n) throws Exception;
 
 	/**
 	 * 获取最热的前N名动态聊天室
@@ -103,8 +61,7 @@ public interface IChatService {
 	 * @throws Exception
 	 *             操作过程中发生的异常
 	 */
-	public List<ChatSessionBean> getTopNDynamicChatRooms(int n)
-			throws Exception;
+	public List<ChatRoomBean> getTopNDynamicChatRooms(int n) throws Exception;
 
 	/**
 	 * 返回指定聊天室中指定用户ID的所有未阅读消息总数
@@ -151,33 +108,105 @@ public interface IChatService {
 			int skip, int limit) throws Exception;
 
 	/**
-	 * 返回指定用户的历史聊天室列表，按照最近聊天排序。
+	 * 为行程创建一个专属聊天室
 	 * 
+	 * @param routeId
+	 *            行程ID
 	 * @param userId
-	 *            指定的用户ID
-	 * @return 该用户历史聊天室列表
+	 *            用户ID
+	 * @return 创建好的行程聊天室
 	 * @throws Exception
-	 *             操作过程中发生异常
+	 *             创建过程中发生的异常
 	 */
-	public List<ChatSessionBean> getHistoryChatRooms(long userId)
+	public ChatRoomBean createRouteChatRoom(Long routeId, Long userId)
 			throws Exception;
 
 	/**
-	 * 返回指定用户最新创建的历史聊天室加入记录。
+	 * 为某群用户创建一个动态聊天室
 	 * 
 	 * @param userId
-	 *            指定的用户ID
-	 * @return 该用户历史聊天室加入记录
+	 *            用户ID
+	 * @param member
+	 *            聊天成员，用户ID的集合
+	 * @return 创建好的动态聊天室
 	 * @throws Exception
-	 *             操作过程中发生异常
+	 *             创建过程中发生的异常
 	 */
-	public ChatJoinHistoryBean getNewestChatJoinRecord(long userId)
+	public ChatRoomBean createDynamicChatRoom(Long userId, List<Long> member)
 			throws Exception;
 
-	public void saveChatJoinRecord(long userId, ChatSessionBean sessionBean)
+	/**
+	 * 向指定的动态聊天室添加聊天者
+	 * 
+	 * @param chatRoomNO
+	 *            动态聊天室代码
+	 * @param chatters
+	 *            聊天者ID列表
+	 * @param userId
+	 *            操作用户ID
+	 * @return 添加后的聊天室
+	 * @throws Exception
+	 *             操作过程中发生的异常
+	 */
+	public ChatRoomBean addDynamicChatters(String chatRoomNO,
+			List<Long> chatters, Long userId) throws Exception;
+
+	/**
+	 * 在指定的动态聊天室删除聊天者
+	 * 
+	 * @param chatRoomNO
+	 *            动态聊天室代码
+	 * @param chatters
+	 *            聊天者ID列表
+	 * @param userId
+	 *            操作用户ID
+	 * @return 添加后的聊天室
+	 * @throws Exception
+	 *             操作过程中发生的异常
+	 */
+	public ChatRoomBean delDynamicChatters(String chatRoomNO,
+			List<Long> chatters, Long userId) throws Exception;
+
+	/**
+	 * 保存一条行程聊天室中的聊天消息
+	 * 
+	 * @param routeId
+	 *            行程ID
+	 * @param userId
+	 *            用户ID
+	 * @param messageType
+	 *            消息类型
+	 * @param content
+	 *            聊天内容
+	 * @param isNotice
+	 *            是否为通告内容
+	 * @return 保存好的聊天消息
+	 * @throws Exception
+	 *             保存过程中发生的异常
+	 */
+	public ChatMessageBean saveRouteChatMessage(Long routeId, Long userId,
+			MessageType messageType, String content, boolean isNotice)
 			throws Exception;
 
-	public ChatMessageBean saveChatMessage(boolean isNotice,
-			String textMessage, ChatSessionBean chatSessionBean, long userId)
-			throws Exception;
+	/**
+	 * 保存一条动态聊天室的聊天消息
+	 * 
+	 * @param chatRoomNO
+	 *            动态聊天室号码，d打头的UUID
+	 * @param userId
+	 *            用户ID
+	 * @param messageType
+	 *            消息类型
+	 * @param content
+	 *            聊天内容
+	 * @param isNotice
+	 *            是否为通告内容
+	 * @return 保存好的聊天消息
+	 * @throws Exception
+	 *             保存过程中发生的异常
+	 */
+	public ChatMessageBean saveDynamicChatMessage(String chatRoomNO,
+			Long userId, MessageType messageType, String content,
+			boolean isNotice) throws Exception;
+
 }

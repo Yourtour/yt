@@ -25,11 +25,11 @@ public class ChatMessageVO implements Serializable {
 	}
 
 	public String getText() {
-		return bean.getMessage();
+		return bean.getContent();
 	}
 
 	public UserVO getFromUser() {
-		return UserVO.transform(bean.getUserProfile());
+		return UserVO.transform(bean.getSender());
 	}
 
 }
