@@ -1,10 +1,9 @@
 package com.yt.response;
 
-
 import com.yt.core.common.StaticErrorEnum;
 
 public class ResponsePagingDataVO<T> extends ResponseDataVO<T> {
-	private long totalCount = 0;
+	private int totalPages = 0, currentPageNum = 0;
 
 	public ResponsePagingDataVO() {
 		super();
@@ -16,16 +15,26 @@ public class ResponsePagingDataVO<T> extends ResponseDataVO<T> {
 		super.setErrorText(error.errorText);
 	}
 
-	public ResponsePagingDataVO(long totalCount, T data) {
+	public ResponsePagingDataVO(int totalPages, int currentPageNum, T data) {
 		super(data);
-		this.totalCount = totalCount;
+		this.totalPages = totalPages;
+		this.currentPageNum = currentPageNum;
 	}
 
-	public long getTotalCount() {
-		return totalCount;
+	public int getTotalPages() {
+		return totalPages;
 	}
 
-	public void setTotalCount(long totalCount) {
-		this.totalCount = totalCount;
+	public void setTotalPages(int totalPages) {
+		this.totalPages = totalPages;
 	}
+
+	public int getCurrentPageNum() {
+		return currentPageNum;
+	}
+
+	public void setCurrentPageNum(int currentPageNum) {
+		this.currentPageNum = currentPageNum;
+	}
+
 }

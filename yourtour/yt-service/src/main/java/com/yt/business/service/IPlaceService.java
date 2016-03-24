@@ -12,11 +12,13 @@ public interface IPlaceService {
 	/**
 	 * 保存目的地
 	 * 
+	 * @param parentId
 	 * @param place
 	 * @param place
 	 * @throws Exception
 	 */
-	public void savePlace(PlaceBean place, Long userId) throws Exception;
+	public void savePlace(Long parentId, PlaceBean place, Long userId)
+			throws Exception;
 
 	/**
 	 * 删除目的地
@@ -25,7 +27,7 @@ public interface IPlaceService {
 	 * @return
 	 * @throws Exception
 	 */
-	public void deletePlace(Long id, Long userId) throws Exception;
+	public PlaceBean deletePlace(Long id, Long userId) throws Exception;
 
 	/**
 	 * 获取目的地首页显示信息

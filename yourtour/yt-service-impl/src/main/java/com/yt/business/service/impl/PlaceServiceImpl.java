@@ -74,51 +74,40 @@ public class PlaceServiceImpl extends ServiceBase implements IPlaceService {
 	}
 
 	@Override
-	public void savePlace(PlaceBean place, Long operator) throws Exception {
-		// 由于目的地是一棵树，保存操作可能涉及到其他节点的rowKey的变更，因此在原有方法是进行扩展。
-		boolean codeChanged = false;
-		PlaceBean original = place;
+	public void savePlace(Long parentId, PlaceBean place, Long userId)
+			throws Exception {
 		if (place.getId() != null) {
-			original = placeCrudOperate.get(place.getId());
-			if (original != null && !place.getCode().equals(original.getCode())) {
-				codeChanged = true;
+			PlaceBean original = placeCrudOperate.get(place.getId());
+			if (original != null) {
+				BeanUtils.merge(original, place);
+				if (parentId != null && parentId > 0) {
+					PlaceBean parent = placeCrudOperate.get(parentId);
+					if (parent == null) {
+						throw new Exception(String.format(
+								"The parent place not exist, placeId(%d).",
+								parentId));
+					}
+					place.setParent(parent);
+				}
 			}
-
-			BeanUtils.merge(place, original);
 		}
 
-		PlaceBean parent = original.getParent();
+		// 先保存父节点
+		PlaceBean parent = place.getParent();
 		if (parent != null && parent.getId() != null) {
 			parent = placeCrudOperate.get(parent.getId());
 			if (parent.isLeaf()) {
 				parent.setLeaf(false);
+				super.updateBaseInfo(parent, userId);
 				placeCrudOperate.save(parent);
 			}
 		}
 
 		// 没有父节点，则当前节点就是根节点
 		place.setRoot(parent == null);
-
-		// 设置rowkey，rowkey就是fullcode
-		String rowkey = place.getCode();
-		if (parent != null) {
-			rowkey = String.format("%s-%s", parent.getRowKey(), rowkey);
-		}
-		place.setRowKey(rowkey);
+		super.updateBaseInfo(place, userId);
 		placeCrudOperate.save(place);
-		if (codeChanged) {
-			// 由于代码修改过，因此相关子节点的rowkey也需要同步修改
-		}
 	}
-
-	/*
-	 * private void iterateUpdateRowkey(PlaceBean place, Long operator) throws
-	 * Exception { String rowkey = place.getRowKey(); List<PlaceBean> children =
-	 * repository.getAllSubPlaces(place.getId()); for (PlaceBean child :
-	 * children) { child.setRowKey(String.format("%s-%s", rowkey,
-	 * child.getCode())); placeCrudOperate.save(child);
-	 * iterateUpdateRowkey(child, operator); } }
-	 */
 
 	/*
 	 * (non-Javadoc)
@@ -169,12 +158,14 @@ public class PlaceServiceImpl extends ServiceBase implements IPlaceService {
 	}
 
 	@Override
-	public void deletePlace(Long id, Long userId) throws Exception {
+	public PlaceBean deletePlace(Long id, Long userId) throws Exception {
 		PlaceBean place = this.getPlace(id);
 		if (place == null)
-			return;
-
-		this.placeCrudOperate.delete(place);
+			return null;
+		place.setDeleted(true);
+		super.updateBaseInfo(place, userId);
+		placeCrudOperate.save(place);
+		return place;
 	}
 
 	@Override
