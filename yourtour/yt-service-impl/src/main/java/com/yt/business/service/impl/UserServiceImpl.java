@@ -23,7 +23,6 @@ import com.yt.business.repository.neo4j.UserTuple;
 import com.yt.business.service.IUserService;
 import com.yt.core.common.AppException;
 import com.yt.core.common.StaticErrorEnum;
-import com.yt.core.utils.Base64Utils;
 import com.yt.core.utils.MessageDigestUtils;
 import com.yt.neo4j.repository.CrudOperate;
 
@@ -80,7 +79,9 @@ public class UserServiceImpl extends ServiceBase implements IUserService {
 		}
 
 		String rPassword = tuple.getAccount().getPwd();
-		if (!rPassword.equals(Base64Utils.MD5(password.trim()))) {
+		if (!rPassword.equals(MessageDigestUtils.digest(
+				propertiesReader.getProperty("digest.algorithm", "SHA-1"),
+				password.trim()))) {
 			throw new AppException(StaticErrorEnum.AUTHENTICATE_FAIL);
 		}
 
