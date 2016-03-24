@@ -5,9 +5,11 @@ import java.util.List;
 import org.apache.commons.lang.NullArgumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.yt.business.PagingDataBean;
 import com.yt.business.bean.BannerBean;
 import com.yt.business.repository.neo4j.BannerBeanRepository;
 import com.yt.business.service.IBannerService;
+import com.yt.core.utils.BeanUtils;
 import com.yt.neo4j.repository.CrudOperate;
 
 public class BannerService extends ServiceBase implements IBannerService {
@@ -24,9 +26,12 @@ public class BannerService extends ServiceBase implements IBannerService {
 	 * int)
 	 */
 	@Override
-	public List<BannerBean> getBanners(Long nextCursor, int limit)
-			throws Exception {
-		return repository.getBanners(nextCursor, limit);
+	public PagingDataBean<List<BannerBean>> getBanners(Long nextCursor,
+			int limit) throws Exception {
+		long totalCount = bannerCrudOperate.count();
+		List<BannerBean> banners = repository.getBanners(nextCursor, limit);
+		return new PagingDataBean<List<BannerBean>>(totalCount, nextCursor,
+				limit, banners);
 	}
 
 	/*
@@ -51,6 +56,9 @@ public class BannerService extends ServiceBase implements IBannerService {
 	 */
 	@Override
 	public BannerBean saveBanner(BannerBean bean, Long userId) throws Exception {
+		if (!bean.isNew()) {
+			BeanUtils.merge(bannerCrudOperate.get(bean.getId()), bean, true);
+		}
 		super.updateBaseInfo(bean, userId);
 		bannerCrudOperate.save(bean);
 		return bean;

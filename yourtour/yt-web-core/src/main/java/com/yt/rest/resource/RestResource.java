@@ -6,8 +6,15 @@ package com.yt.rest.resource;
  * 2）在给接口中，涉及到数据修改保存的接口，第一步必须先从数据存储中获取已经存在的数据，然后根据每个接口提交的数据进行修改，防止数据破坏
  *
  */
+import java.io.InputStream;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
+import com.sun.jersey.core.header.FormDataContentDisposition;
+import com.sun.jersey.multipart.FormDataBodyPart;
+import com.sun.jersey.multipart.FormDataMultiPart;
+import com.yt.utils.FileUtils;
 import com.yt.utils.WebUtils;
 
 public class RestResource {
@@ -34,5 +41,33 @@ public class RestResource {
 
 	protected Long getCurrentUserId() throws Exception {
 		return getCurrentUserId(WebUtils.getHttpServletRequest());
+	}
+
+	/**
+	 * 通过FORM方式上传媒体文件
+	 * 
+	 * @param form
+	 *            FORM
+	 * @param fieldName
+	 *            FORM中的字段名
+	 * @param rootPath
+	 *            媒体文件存储的路径
+	 * @return 返回媒体文件存储的全路径，没有存储文件返回null。
+	 * @throws Exception
+	 *             存储过程中发生的异常
+	 */
+	protected String uploadMediaFile(FormDataMultiPart form, String fieldName,
+			String rootPath) throws Exception {
+		List<FormDataBodyPart> l = form.getFields(fieldName);
+		if (l != null) {
+			for (FormDataBodyPart p : l) {
+				InputStream is = p.getValueAs(InputStream.class);
+				FormDataContentDisposition detail = p
+						.getFormDataContentDisposition();
+				return (FileUtils.saveFile(rootPath,
+						FileUtils.getType(detail.getFileName()), is));
+			}
+		}
+		return null;
 	}
 }

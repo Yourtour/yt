@@ -34,22 +34,22 @@ public class BannerBean extends SocialBeanImpl {
 		APPROVED_NOT_PASS // 审核不通过
 	}
 
-	private String imageUrl; // 资讯图片
+	private String imageUrl; // Banner图片
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	private String title; // 资讯标题
+	private String title; // Banner标题
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	private String subTitle; // 资讯子（副）标题
+	private String subTitle; // Banner子（副）标题
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	private String content; // 资讯内容，可能是一篇编辑好的HTML5文档
+	private String content; // Banner内容，可能是一篇编辑好的HTML5文档
 
-	private long startTime; // 资讯有效开始时间
-	private long endTime; // 资讯有效结束时间
+	private long startTime; // Banner有效开始时间
+	private long endTime; // Banner有效结束时间
 	private Status status = Status.DRAFT;
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RELATED, type = RouteMainBean.class, direction = Direction.OUTGOING, isList = true)
-	private transient List<RouteMainBean> routes; // 资讯关联的行程
+	private transient List<RouteMainBean> routes; // Banner关联的行程
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RELATED, type = ExpertBean.class, direction = Direction.OUTGOING, isList = true)
-	private transient List<ExpertBean> experts; // 资讯关联的达人
+	private transient List<ExpertBean> experts; // Banner关联的达人
 
 	public BannerBean() {
 		super();
