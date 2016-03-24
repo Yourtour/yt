@@ -1,79 +1,74 @@
-<html>
-<head>
-    <title>基础数据管理</title>
-</head>
+<div id="Page_DictListView" class="row" data-role="page">
+    <div class="col-lg-12">
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li>
+                    <i class="icon-home"></i>
+                    <a href="index.html">首页</a>
+                    <i class="fa fa-angle-right"></i>
+                </li>
+                <li>
+                    <span>基础数据管理</span>
+                </li>
+            </ul>
+        </div>
+        <!-- END PAGE HEADER-->
 
-<body>
-    <!-- END THEME PANEL -->
-    <h3 class="page-title"> 基础数据管理
-    </h3>
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN SAMPLE FORM PORTLET-->
+                <div class="portlet light ">
+                    <div class="portlet-body">
+                        <div id="DictListView_Criteria">
+                            <div class="row bottom-space">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="table-group-actions pull-left">
+                                        <select id="type" name="type" class="table-group-action-input form-control input-inline">
+                                            <option value="">请选择分类</option>
 
-    <div class="page-bar">
-        <ul class="page-breadcrumb">
-            <li>
-                <i class="icon-home"></i>
-                <a href="index.html">首页</a>
-                <i class="fa fa-angle-right"></i>
-            </li>
-            <li>
-                <span>基础数据管理</span>
-            </li>
-        </ul>
-    </div>
-    <!-- END PAGE HEADER-->
-
-    <div class="row">
-        <div class="col-md-12">
-            <!-- BEGIN SAMPLE FORM PORTLET-->
-            <div class="portlet light ">
-                <div class="portlet-body">
-                    <form id="frm_dictlistview">
-                        <div class="row bottom-space">
-                            <div class="col-md-6 col-sm-12">
-                                <div class="table-group-actions pull-left">
-                                    <label class="control-label">Inline Help</label>
-                                    <select id="type" name="type" class="table-group-action-input form-control input-inline">
-                                        <option value="">请选择</option>
-
-                                        <#list types as type>
-                                            <option value="${type.code}">${type.name}</option>
-                                        </#list>
-                                    </select>
+                                            <#list types as type>
+                                                <option value="${type.code}">${type.name}</option>
+                                            </#list>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="col-md-6 col-sm-12">
-                                <div class="table-group-actions pull-right">
-                                    <button id="btn_add" class="btn btn-sm red table-group-action-submit">
-                                        <i class="fa fa-plus"></i> 新增</button>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="pull-right">
+                                        <button id="btn_add" class="btn red">
+                                            <i class="fa fa-plus"></i> 新增</button>
+
+                                        <button id="btn_edit" class="btn default">
+                                            <i class="fa fa-edit"></i> 修改</button>
+
+                                        <button id="btn_delete" class="btn default">
+                                            <i class="fa fa-times"></i> 删除</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </form>
 
-                    <table id="datatable_dict" class="row-border" cellspacing="0" width="100%" data-criteria="frm_dictlistview" data-rest="${context}/rest/admin/dicts/query">
-                        <thead>
-                            <tr>
-                                <th>分类</th>
-                                <th>名称</th>
-                                <th>编码</th>
-                                <th>值</th>
-                            </tr>
-                        </thead>
+                        <table id="datatable_dict" class="row-border" cellspacing="0" width="100%" data-criteria="DictListView_Criteria"
+                               data-rest="${context}/rest/admin/dicts/query">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <input type="checkbox" class="group-checkable">
+                                    </th>
+                                    <th>分类</th>
+                                    <th>名称</th>
+                                    <th>编码</th>
+                                    <th>值</th>
+                                </tr>
+                            </thead>
 
-                        <tbody>
+                            <tbody>
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $.DictListView.initial();
-        } );
-    </script>
-</body>
-</html>  
+</div>

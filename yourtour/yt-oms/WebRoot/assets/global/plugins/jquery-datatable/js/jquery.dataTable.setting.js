@@ -41,7 +41,6 @@ $.extend( true, $.fn.dataTable.defaults, {
     fnServerData: function ( sSource, aoData, fnCallback ) {
         var rest = this.attr("data-rest");
 
-        console.log(aoData);
         var context = {};
         $.each(aoData, function(index, data){
             context[data.name] = data.value;
@@ -55,6 +54,8 @@ $.extend( true, $.fn.dataTable.defaults, {
             "data": JSON.stringify(context),
             "success": function (response){
                 fnCallback(response);
+
+                $("input[type='radio'], input[type='checkbox']").uniform();
             }
         });
     },
@@ -73,3 +74,63 @@ $.extend( true, $.fn.dataTable.defaults, {
         }
     }
 });
+
+(function($){
+    $.fn.extend({
+        edit:function(callback){
+            var datatable = $(this), selectedItems=[];
+
+            datatable.find(".checkboxes").each(function(index, item){
+                var checkbox = $(item);
+
+                if(checkbox.is(":checked")) {
+                    selectedItems.push(checkbox.val());
+                }
+            });
+
+            if(selectedItems.length != 1){
+                bootbox.alert("请选择一条需要修改的记录。");
+                return;
+            }
+
+            callback(selectedItems[0]);
+        },
+
+        delete:function(callback){
+            var datatable = $(this), selectedItems=[];
+
+            datatable.find(".checkboxes").each(function(index, item){
+                var checkbox = $(item);
+                if(checkbox.is(":checked")) {
+                    selectedItems.push(checkbox.val());
+                }
+            });
+
+            if(selectedItems.length == 0){
+                bootbox.alert("请选择需要删除的记录。");
+                return;
+            }
+
+            bootbox.confirm("确定要删除选择的记录吗?", function(result){
+                if (result) {
+                    callback(selectedItems.join(","));
+                }
+            })
+        }
+    });
+
+    $(".group-checkable").each(function(){
+        $(this).on("change", function(){
+            var checked = $(this).is(":checked");
+            $(".checkboxes",$(this).parents(".dataTable")).each(function(index){
+                var e = $(this);
+                if(checked)
+                    e.prop("checked", !0);
+                else
+                    e.prop("checked", !1);
+
+                jQuery.uniform.update(e);
+            });
+        });
+    });
+})(jQuery);

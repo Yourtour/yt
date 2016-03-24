@@ -8,6 +8,7 @@ import com.yt.business.bean.DictBean;
 public class DictVO {
     private Long id;
     private String type;
+    private String typeName;
     private String name;
     private String code;
     private String value;
@@ -36,7 +37,8 @@ public class DictVO {
         vo.setCode(bean.getCode());
         vo.setName(bean.getName());
         vo.setValue(bean.getValue());
-        vo.setType(bean.getType().name);
+        vo.setTypeName(bean.getType().name);
+        vo.setType(bean.getType().code);
 
         return vo;
     }
@@ -55,6 +57,14 @@ public class DictVO {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 
     public String getName() {

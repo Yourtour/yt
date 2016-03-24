@@ -16,24 +16,14 @@ import java.util.Map;
 public class ViewServiceImpl  extends ServiceBase implements IViewService {
     @Override
     public Map<String, Object> getValue(String name) throws Exception {
-        if(name.equalsIgnoreCase("DictListView")){
-            return this.getValue4DictListView();
-        }else if(name.equalsIgnoreCase("DictFormView")){
-            return getValue4DictFormView();
+        if(name.equalsIgnoreCase("DictManagement")){
+            return this.getValue4DictManagement();
         }
 
         return null;
     }
 
-    private Map<String, Object> getValue4DictListView(){
-        Map<String, Object> values = new HashMap<>();
-
-        values.put("types", getDictType());
-
-        return values;
-    }
-
-    private Map<String, Object> getValue4DictFormView(){
+    private Map<String, Object> getValue4DictManagement(){
         Map<String, Object> values = new HashMap<>();
 
         values.put("types", getDictType());

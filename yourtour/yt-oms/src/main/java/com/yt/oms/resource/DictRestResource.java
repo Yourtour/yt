@@ -60,19 +60,25 @@ public class DictRestResource extends RestResource {
 
     /**
      * 删除字典数据
-     * @param dictId
+     * @param dictIds
      * @return
      * @throws Exception
      */
-    @Path("/{dictId}/delete")
-    public ResponseVO deleteDictInfo(@PathParam("dictId") Long dictId) throws Exception{
-        if(dictId == null){
+    @Path("/{dictIds}/delete")
+    @GET
+    public ResponseVO deleteDictInfo(@PathParam("dictIds") String dictIds) throws Exception{
+        if(dictIds == null){
             LOG.error("Input parameter is null when deleting");
 
             return new ResponseVO(StaticErrorEnum.INPUT_IS_NULL);
         }
 
-        this.service.deleteDictInfo(dictId, SessionUtils.getCurrentLoginUser());
+        String[] sDictIds = dictIds.split(",");
+        Long[] lDictIds = new Long[sDictIds.length];
+        for(int index = 0; index < sDictIds.length; index++){
+            lDictIds[index] = Long.valueOf(sDictIds[index]);
+        }
+        this.service.deleteDictInfo(lDictIds, SessionUtils.getCurrentLoginUser());
 
         return new ResponseVO();
     }
@@ -95,6 +101,24 @@ public class DictRestResource extends RestResource {
         }
 
         return new ResponseDataVO<>(voes);
+    }
+
+    /**
+     * 获取所有的字典数据
+     * @return
+     * @throws Exception
+     */
+    @Path("/{dictId}")
+    @GET
+    public ResponseDataVO<DictVO> getDictInfo(@PathParam("dictId") Long dictId) throws Exception{
+        DictVO vo = null;
+
+        DictBean bean = service.getDictInfo(dictId);
+        if(bean != null){
+            vo = DictVO.transform(bean);
+        }
+
+        return new ResponseDataVO<>(vo);
     }
 }
 

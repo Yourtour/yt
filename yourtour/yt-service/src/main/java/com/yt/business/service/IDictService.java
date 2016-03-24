@@ -25,9 +25,16 @@ public interface IDictService {
 
     /**
      *
+     * @return
+     * @throws Exception
+     */
+    public DictBean getDictInfo(Long dictid) throws Exception;
+
+    /**
+     *
      * @param id
      * @param userId
      * @throws Exception
      */
-    public void deleteDictInfo(Long id, Long userId) throws Exception;
+    public void deleteDictInfo(Long[] id, Long userId) throws Exception;
 }

@@ -15,16 +15,6 @@
 	</listener>
 
 	<servlet>
-		<servlet-name>framemarkerServlet</servlet-name>
-		<servlet-class>com.yt.oms.FreemarkerDecoratorServlet</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>framemarkerServlet</servlet-name>
-		<url-pattern>*.ftl</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
 		<servlet-name>jerseyRestful</servlet-name>
 		<servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
 		<init-param>
@@ -41,6 +31,11 @@
 	<servlet-mapping>
 		<servlet-name>jerseyRestful</servlet-name>
 		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>jerseyRestful</servlet-name>
+		<url-pattern>*.ftl</url-pattern>
 	</servlet-mapping>
 
 	<filter>

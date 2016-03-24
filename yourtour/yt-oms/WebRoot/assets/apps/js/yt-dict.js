@@ -1,61 +1,72 @@
-/**
- * 字典列表页面
- * @type {{initial: Function, query: Function}}
- */
-jQuery.DictListView = {
-    initial:function(){
-        var me = this;
+$(document).ready(function(){
+    $.Page.show("Page_DictListView");
 
-        $("#btn_add").on('click', function(){
-            $.DictFormView.show();
+    $.DictManagement.query();
+
+    $("#Page_DictListView #btn_add").on('click', function(){
+        $.Page.show("Page_DictFormView", function(){
+            $.DictManagement.loadDictInfo();
         });
+    });
 
-        $('#type').change(function(){
-            me.query();
+    $("#Page_DictListView #btn_edit").on('click', function(){
+        $("#datatable_dict").edit(function(id){
+            $.DictManagement.loadDictInfo(id);
         })
+    });
 
-        this.query();
-    },
+    $("#Page_DictListView #btn_delete").on('click', function(){
+        $("#datatable_dict").delete(function(ids){
+            $.DictManagement.deleteDictInfo(ids);
+        })
+    });
 
-    show:function(){
-        window.location="DictListView";
-    },
+    $('#Page_DictListView #type').change(function(){
+        $.DictManagement.query();
+    });
 
+    //保存按钮事件
+    $("#Page_DictFormView #btnSave").on('click', function(){
+        $.DictManagement.saveDictInfo()
+    });
+
+    //取消按钮事件
+    $("#Page_DictFormView #btnCancel").on('click', function(){
+        $.Page.back();
+    });
+});
+
+/**
+ *
+ * @type {{query: Function, saveDictInfo: Function, loadDictInfo: Function}}
+ */
+jQuery.DictManagement = {
+    /**
+     * 列表查询
+     */
     query:function(){
         $("#datatable_dict").dataTable().fnDestroy();
         $("#datatable_dict").dataTable({
             "aoColumns": [
+                {"mData": "id", "sClass":"center", "sWidth": "20px", "mRender": function (data, type, row) {
+                    return "<input type='checkbox' class='checkboxes' value='" + data + "'/>";
+                }},
                 {
-                    "mData": "type",
+                    "mData": "typeName",
                     "sWidth": "20%"
                 },
                 {"mData": "name", "sWidth": "30%"},
                 {"mData": "code", "sWidth": "20%"},
-                {"mData": "value", "sWidth": "30%"}
+                {"mData": "value", "sWidth": "30%"},
             ]
         });
-    }
-};
-
-/**
- * 字典表单页面
- * @type {{initial: Function}}
- */
-jQuery.DictFormView = {
-    initial:function(){
-        $("#btnCancle").on('click', function(){
-            $.DictListView.show();
-        });
-
-        $("#btnSave").on('click', this.saveDictInfo);
     },
 
-    show:function(){
-        window.location="DictFormView";
-    },
-
+    /**
+     * 保存字典数据
+     */
     saveDictInfo:function(){
-        var dict = {}, dictForm = $('#dictForm');
+        var dict = {}, dictForm = $('#dictForm'), me = this;
         dict.id = dictForm.find('#id').val();
         dict.name = dictForm.find('#name').val();
         dict.type = dictForm.find('#type').val();
@@ -64,9 +75,34 @@ jQuery.DictFormView = {
 
         $.Request.post("/yt-oms/rest/admin/dicts/save",dict,function(result){
             bootbox.alert("保存成功。", function(){
-                $.DictListView.show();
+                $.Page.back(function(){
+                    me.query();
+                });
             });
         })
-    }
-}
+    },
+
+    /**
+     * 装载字典数据
+     */
+    loadDictInfo:function(dictId){
+        $.Page.show("Page_DictFormView", function(){
+            $("#Page_DictFormView").clear();
+            $.Request.get("/yt-oms/rest/admin/dicts/" + dictId, null, function(data){
+                $("#Page_DictFormView").deserialize(data);
+            });
+        });
+    },
+
+    /**
+     * 装载字典数据
+     */
+    deleteDictInfo:function(dictIds){
+        var me = this;
+
+        $.Request.get("/yt-oms/rest/admin/dicts/" + dictIds + "/delete", null, function(data){
+            me.query();
+        });
+    },
+};
 

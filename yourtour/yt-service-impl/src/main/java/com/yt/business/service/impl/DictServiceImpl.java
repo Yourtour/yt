@@ -37,13 +37,20 @@ public class DictServiceImpl extends ServiceBase implements IDictService {
     }
 
     @Override
-    public void deleteDictInfo(Long id, Long userId) throws Exception {
-        DictBean bean = crudOperate.get(id);
-        if(bean == null){
-            LOG.warn("No dict data found for id=" + id);
-            return;
-        }
+    public void deleteDictInfo(Long[] ids, Long userId) throws Exception {
+        for(Long id : ids) {
+            DictBean bean = crudOperate.get(id);
+            if (bean == null) {
+                LOG.warn("No dict data found for id=" + id);
+                return;
+            }
 
-        this.crudOperate.delete(bean);
+            this.crudOperate.delete(bean);
+        }
+    }
+
+    @Override
+    public DictBean getDictInfo(Long dictid) throws Exception {
+        return crudOperate.get(dictid);
     }
 }
