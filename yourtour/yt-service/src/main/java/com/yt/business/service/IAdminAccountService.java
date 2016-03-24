@@ -2,6 +2,8 @@ package com.yt.business.service;
 
 import com.yt.business.bean.AdminAccountBean;
 
+import java.util.List;
+
 /**
  * Created by 林平 on 2016/3/24.
  */
@@ -29,4 +31,7 @@ public interface IAdminAccountService {
      * @throws Exception
      */
     public void deleteAccountInfo(String userName, Long userId) throws Exception;
+
+
+    public List<AdminAccountBean> getAccountInfoes() throws Exception;
 }

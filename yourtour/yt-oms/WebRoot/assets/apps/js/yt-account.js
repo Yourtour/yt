@@ -3,28 +3,28 @@
  *
  * @type {{query: Function, saveDictInfo: Function, loadDictInfo: Function}}
  */
-jQuery.ActivityManagement = {
+jQuery.AccountManagement = {
     init:function(){
-        $.Page.show("Page_ActivityListView");
+        $.Page.show("Page_AccountListView");
+
+        this.query();
     },
 
     /**
      * 列表查询
      */
     query:function(){
-        $("#datatable_dict").dataTable().fnDestroy();
-        $("#datatable_dict").dataTable({
+        $("#datatable_account").dataTable().fnDestroy();
+        $("#datatable_account").dataTable({
             "aoColumns": [
                 {"mData": "id", "sClass":"center", "sWidth": "20px", "mRender": function (data, type, row) {
                     return "<input type='checkbox' class='checkboxes' value='" + data + "'/>";
                 }},
                 {
-                    "mData": "typeName",
+                    "mData": "userName",
                     "sWidth": "20%"
                 },
-                {"mData": "name", "sWidth": "30%"},
-                {"mData": "code", "sWidth": "20%"},
-                {"mData": "value", "sWidth": "30%"},
+                {"mData": "realName", "sWidth": "30%"},
             ]
         });
     },

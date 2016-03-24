@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.commons.lang.NullArgumentException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.yt.business.PagingDataBean;
 import com.yt.business.bean.BannerBean;
@@ -12,6 +13,7 @@ import com.yt.business.service.IBannerService;
 import com.yt.core.utils.BeanUtils;
 import com.yt.neo4j.repository.CrudOperate;
 
+@Service
 public class BannerService extends ServiceBase implements IBannerService {
 	@Autowired
 	private CrudOperate<BannerBean> bannerCrudOperate;
@@ -26,12 +28,11 @@ public class BannerService extends ServiceBase implements IBannerService {
 	 * int)
 	 */
 	@Override
-	public PagingDataBean<List<BannerBean>> getBanners(Long nextCursor,
-			int limit) throws Exception {
+	public PagingDataBean<List<BannerBean>> getBanners(Long nextCursor, int limit) throws Exception {
 		long totalCount = bannerCrudOperate.count();
 		List<BannerBean> banners = repository.getBanners(nextCursor, limit);
-		return new PagingDataBean<List<BannerBean>>(totalCount, nextCursor,
-				limit, banners);
+
+		return new PagingDataBean<List<BannerBean>>(totalCount, nextCursor,	limit, banners);
 	}
 
 	/*

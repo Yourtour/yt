@@ -2,11 +2,7 @@ package com.yt.business.service.impl;
 
 import com.yt.PropertiesReader;
 import com.yt.business.bean.AdminAccountBean;
-import com.yt.business.bean.UserAccountBean;
-import com.yt.business.bean.UserProfileBean;
 import com.yt.business.repository.neo4j.AdminAccountBeanRepository;
-import com.yt.business.repository.neo4j.UserBeanRepository;
-import com.yt.business.repository.neo4j.UserTuple;
 import com.yt.business.service.IAdminAccountService;
 import com.yt.core.common.AppException;
 import com.yt.core.common.StaticErrorEnum;
@@ -17,6 +13,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by 林平 on 2016/3/24.
@@ -71,4 +69,10 @@ public class AdminAccountServiceImpl extends ServiceBase implements IAdminAccoun
     public void deleteAccountInfo(String userName, Long userId) throws Exception {
 
     }
+
+    public List<AdminAccountBean> getAccountInfoes() throws Exception{
+        return accountCrudOperate.get();
+    }
+
+
 }

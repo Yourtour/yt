@@ -42,7 +42,7 @@
                             </div>
                         </div>
 
-                        <table id="datatable_dict" class="row-border" cellspacing="0" width="100%"  data-rest="${context}/rest/admin/account/query">
+                        <table id="datatable_account" class="row-border" cellspacing="0" width="100%"  data-rest="${context}/rest/admin/account/query">
                             <thead>
                                 <tr>
                                     <th>
