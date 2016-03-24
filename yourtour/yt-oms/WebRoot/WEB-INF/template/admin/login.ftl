@@ -43,6 +43,8 @@
   </head>
 
   <body class="login">
+  	  <input id="context" type="hidden" value="${context}"/>
+
 	  <div class="menu-toggler sidebar-toggler"></div>
 	  <!-- END SIDEBAR TOGGLER BUTTON -->
 	  <!-- BEGIN LOGO -->
@@ -68,7 +70,7 @@
 				  <label class="control-label visible-ie8 visible-ie9">Password</label>
 				  <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" id="password" name="password" /> </div>
 			  <div class="form-actions">
-				  <button type="submit" class="btn green uppercase">Login</button>
+				  <button id="login" type="button" class="btn green uppercase">Login</button>
 				  <label class="rememberme check">
 					  <input type="checkbox" name="remember" value="1" />Remember </label>
 			  </div>
@@ -106,13 +108,24 @@
 	<script src="${context}/assets/apps/js/yt-dict.js" type="text/javascript"></script>
 	<script src="${context}/assets/apps/js/yt-activity.js" type="text/javascript"></script>
 	<script src="${context}/assets/apps/js/yt-information.js" type="text/javascript"></script>
+    <script src="${context}/assets/apps/js/yt-account.js" type="text/javascript"></script>
 
-	<!-- END THEME GLOBAL SCRIPTS -->
+      <!-- END THEME GLOBAL SCRIPTS -->
 	<!-- BEGIN PAGE LEVEL SCRIPTS -->
 	<!-- END PAGE LEVEL SCRIPTS -->
 	<!-- BEGIN THEME LAYOUT SCRIPTS -->
 	<script src="${context}/assets/layouts/layout2/scripts/layout.min.js" type="text/javascript"></script>
 	<script src="${context}/assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
 	<!-- END THEME LAYOUT SCRIPTS -->
+
+	  <script language="javascript">
+		  $(document).ready(function(){
+			  $("#login").on('click', function(){
+				  $.AccountManagement.login();
+			  })
+		  });
+	  </script>
+
+
   </body>
-</html>	
+</html>

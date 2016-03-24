@@ -19,7 +19,8 @@ import com.yt.utils.WebUtils;
 
 public class RestResource {
 	public static final String FILE_SEPERATOR = ","; // 多文件存储时，文件名之间的分隔符
-	public static final int DEFAULT_LIMIT_APAGE = 30; // 每页默认的行数
+
+	public static final int DEFAULT_LIMIT_PAGE = 30; // 每页默认的行数
 
 	public RestResource() {
 		super();
@@ -58,16 +59,19 @@ public class RestResource {
 	 */
 	protected String uploadMediaFile(FormDataMultiPart form, String fieldName,
 			String rootPath) throws Exception {
+		StringBuffer images = new StringBuffer();
 		List<FormDataBodyPart> l = form.getFields(fieldName);
 		if (l != null) {
 			for (FormDataBodyPart p : l) {
 				InputStream is = p.getValueAs(InputStream.class);
 				FormDataContentDisposition detail = p
 						.getFormDataContentDisposition();
-				return (FileUtils.saveFile(rootPath,
-						FileUtils.getType(detail.getFileName()), is));
+				if(images.length() > 0) images.append(FILE_SEPERATOR);
+
+				images.append(FileUtils.saveFile(rootPath, FileUtils.getType(detail.getFileName()), is));
 			}
 		}
-		return null;
+
+		return images.toString();
 	}
 }
