@@ -82,38 +82,6 @@
 			<div class="page-sidebar navbar-collapse collapse">
 				<!-- BEGIN SIDEBAR MENU -->
 				<ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
-					<li class="nav-item ">
-						<a href="javascript:;" class="nav-link nav-toggle">
-							<i class="icon-home"></i>
-							<span class="title">资源管理</span>
-							<span class="selected"></span>
-							<span class="arrow open"></span>
-						</a>
-						<ul class="sub-menu">
-							<li class="nav-item start active open">
-								<a href="index.html" class="nav-link ">
-									<i class="icon-bar-chart"></i>
-									<span class="title">游玩</span>
-									<span class="selected"></span>
-								</a>
-							</li>
-							<li class="nav-item start ">
-								<a href="dashboard_2.html" class="nav-link ">
-									<i class="icon-bulb"></i>
-									<span class="title">美食</span>
-									<span class="badge badge-success">1</span>
-								</a>
-							</li>
-							<li class="nav-item start ">
-								<a href="dashboard_3.html" class="nav-link ">
-									<i class="icon-graph"></i>
-									<span class="title">住宿</span>
-									<span class="badge badge-danger">5</span>
-								</a>
-							</li>
-						</ul>
-					</li>
-
 					<li class="nav-item  active start  open">
 						<a href="PlaceFormView" class="nav-link nav-toggle">
 							<i class="icon-diamond"></i>
@@ -154,6 +122,24 @@
 						</ul>
 					</li>
 
+					<li class="nav-item ">
+						<a href="ActivityManagement" class="nav-link nav-toggle">
+							<i class="icon-home"></i>
+							<span class="title">活动管理</span>
+							<span class="selected"></span>
+							<span class="arrow open"></span>
+						</a>
+					</li>
+
+					<li class="nav-item ">
+						<a href="InformationManagement" class="nav-link nav-toggle">
+							<i class="icon-home"></i>
+							<span class="title">资讯管理</span>
+							<span class="selected"></span>
+							<span class="arrow open"></span>
+						</a>
+					</li>
+
 					<li class="nav-item  ">
 						<a href="PlaceFormView" class="nav-link nav-toggle">
 							<i class="icon-diamond"></i>
@@ -182,6 +168,14 @@
 						<a href="PlaceFormView" class="nav-link nav-toggle">
 							<i class="icon-diamond"></i>
 							<span class="title">推荐管理</span>
+							<span class="arrow"></span>
+						</a>
+					</li>
+
+					<li class="nav-item  ">
+						<a href="AccountManagement" class="nav-link nav-toggle">
+							<i class="icon-diamond"></i>
+							<span class="title">用户管理</span>
 							<span class="arrow"></span>
 						</a>
 					</li>
@@ -245,6 +239,9 @@
 	<script src="${context}/assets/global/scripts/app.min.js" type="text/javascript"></script>
 	<script src="${context}/assets/apps/js/yt-plugin.js" type="text/javascript"></script>
 	<script src="${context}/assets/apps/js/yt-dict.js" type="text/javascript"></script>
+	<script src="${context}/assets/apps/js/yt-activity.js" type="text/javascript"></script>
+	<script src="${context}/assets/apps/js/yt-information.js" type="text/javascript"></script>
+	<script src="${context}/assets/apps/js/yt-account.js" type="text/javascript"></script>
 
 	<!-- END THEME GLOBAL SCRIPTS -->
 	<!-- BEGIN PAGE LEVEL SCRIPTS -->

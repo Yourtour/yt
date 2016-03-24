@@ -78,7 +78,6 @@ public class UserRestResource extends RestResource {
 		SessionUtils.clear();
 		return new ResponseVO();
 	}
-
 	/**
 	 * APP用户登录接口
 	 * 
@@ -88,8 +87,7 @@ public class UserRestResource extends RestResource {
 	@POST
 	@Path("/login")
 	public ResponseDataVO<UserVO> login(LoginVO loginVO) throws Exception {
-		UserProfileBean user = userService.login(loginVO.getMobile(),
-				loginVO.getPassword());
+		UserProfileBean user = userService.login(loginVO.getMobile(), loginVO.getPassword());
 		UserVO profile = UserVO.transform(user);
 		return new ResponseDataVO<UserVO>(profile);
 	}

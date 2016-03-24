@@ -3,41 +3,9 @@
  *
  * @type {{query: Function, saveDictInfo: Function, loadDictInfo: Function}}
  */
-jQuery.DictManagement = {
+jQuery.InformationManagement = {
     init:function(){
-        $.Page.show("Page_DictListView");
-
-        $.DictManagement.query();
-
-        $("#Page_DictListView #btn_add").on('click', function(){
-            $.DictManagement.loadDictInfo();
-        });
-
-        $("#Page_DictListView #btn_edit").on('click', function(){
-            $("#datatable_dict").edit(function(id){
-                $.DictManagement.loadDictInfo(id);
-            })
-        });
-
-        $("#Page_DictListView #btn_delete").on('click', function(){
-            $("#datatable_dict").delete(function(ids){
-                $.DictManagement.deleteDictInfo(ids);
-            })
-        });
-
-        $('#Page_DictListView #type').change(function(){
-            $.DictManagement.query();
-        });
-
-        //保存按钮事件
-        $("#Page_DictFormView #btnSave").on('click', function(){
-            $.DictManagement.saveDictInfo()
-        });
-
-        //取消按钮事件
-        $("#Page_DictFormView #btnCancel").on('click', function(){
-            $.Page.back();
-        });
+        $.Page.show("Page_InformationListView");
     },
 
     /**

@@ -60,7 +60,7 @@ public class BannerRestResource extends RestResource {
 	}
 
 	@GET
-	@Path("/{bannerId")
+	@Path("/{bannerId}")
 	public ResponseDataVO<BannerVO> getBanner(
 			@PathParam("bannerId") Long bannerId) throws Exception {
 		BannerBean banner = bannerService.getBanner(bannerId);
@@ -89,7 +89,7 @@ public class BannerRestResource extends RestResource {
 		banner.setEndTime(endTime);
 		banner.setStatus(BannerBean.Status.valueOf(status));
 		// 保存图片
-		List<FormDataBodyPart> l = form.getFields("userLogo");
+		List<FormDataBodyPart> l = form.getFields("bannerImg");
 		if (l != null) {
 			for (FormDataBodyPart p : l) {
 				InputStream is = p.getValueAs(InputStream.class);
@@ -99,6 +99,7 @@ public class BannerRestResource extends RestResource {
 						FileUtils.getType(detail.getFileName()), is));
 			}
 		}
+
 		Long userId = super.getCurrentUserId(request);
 		bannerService.saveBanner(banner, userId);
 		return new ResponseDataVO<BannerVO>(BannerVO.transform(banner));
@@ -113,5 +114,4 @@ public class BannerRestResource extends RestResource {
 		BannerBean banner = bannerService.deleteBanner(bannerId, userId);
 		return new ResponseDataVO<BannerVO>(BannerVO.transform(banner));
 	}
-
 }
