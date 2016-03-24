@@ -12,6 +12,7 @@ import com.yt.utils.WebUtils;
 
 public class RestResource {
 	public static final String FILE_SEPERATOR = ","; // 多文件存储时，文件名之间的分隔符
+	public static final int DEFAULT_LIMIT_APAGE = 30; // 每页默认的行数
 
 	public RestResource() {
 		super();

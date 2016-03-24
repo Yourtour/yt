@@ -9,6 +9,19 @@ import org.springframework.data.neo4j.annotation.ResultColumn;
 import org.springframework.data.neo4j.repository.GraphRepository;
 
 public interface RouteMainBeanRepository extends GraphRepository<RouteMainBean> {
+	/**
+	 * 判断指定的用户ID是否是指定行程的成员
+	 * 
+	 * @param routeId
+	 *            行程ID
+	 * @param userId
+	 *            用户ID
+	 * @return 如果返回值大于0,则表示是其成员，否则不是。
+	 */
+	@Query("START route=node({0}), user=node({1}) MATCH route<-[:MEMBER]-user "
+			+ "WITH COUNT(user) AS number RETURN number")
+	public int isRouteMember(Long routeId, Long userId);
+
 	@QueryResult
 	public class OwnerRouteTuple {
 		@ResultColumn("r.imageUrl")
@@ -128,6 +141,9 @@ public interface RouteMainBeanRepository extends GraphRepository<RouteMainBean> 
 	 */
 	@Query("START route=node({0}) MATCH route -[r:MEMBER]- (user:UserProfileBean) RETURN r.role, user")
 	public List<RouteMemberBean> getRouteMember(Long routeId);
+
+	@Query("START route=node({0}) MATCH route -[r:MEMBER]- (user:UserProfileBean) RETURN user")
+	public List<UserProfileBean> getRouteMemberUserProfiles(Long routeId);
 
 	/**
 	 * 

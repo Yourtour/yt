@@ -11,6 +11,7 @@ import com.yt.core.common.StaticErrorEnum;
 import com.yt.core.utils.CollectionUtils;
 import com.yt.neo4j.repository.CrudOperate;
 import com.yt.neo4j.repository.RelationshipCrudOperate;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.neo4j.graphdb.Direction;
@@ -25,7 +26,7 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 
 	@Autowired
 	private RouteMainBeanRepository repository;
-	
+
 	@Autowired
 	private CrudOperate<RouteMainBean> routeCrudOperate;
 
@@ -51,6 +52,17 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 		super();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.yt.business.service.IRouteService#isRouteMember(java.lang.Long,
+	 * java.lang.Long)
+	 */
+	@Override
+	public boolean isRouteMember(Long routeId, Long userId) {
+		return repository.isRouteMember(routeId, userId) > 0;
+	}
+
 	@Override
 	public void deleteRoute(Long routeId, Long operatorId) throws Exception {
 		RouteMainBean route = routeCrudOperate.get(routeId);
@@ -61,21 +73,24 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 	}
 
 	@Override
-	public void saveRoute(RouteMainBean route, Long operatorId) throws Exception {
+	public void saveRoute(RouteMainBean route, Long operatorId)
+			throws Exception {
 		this.updateBaseInfo(route, operatorId);
 
 		routeCrudOperate.save(route);
 	}
 
 	@Override
-	public void saveRouteMainAndSchedules(RouteMainBean route, Long operatorId) throws Exception {
+	public void saveRouteMainAndSchedules(RouteMainBean route, Long operatorId)
+			throws Exception {
 		// 如果存在日程，则先删除原先的日程信息
 		boolean isNew = route.isNew();
-		if(! isNew) {
+		if (!isNew) {
 			Long routeId = route.getId();
-			List<RouteScheduleBean> schedules = repository.getRouteSchedules(routeId);
-			if(schedules != null){
-				for(RouteScheduleBean schedule : schedules){
+			List<RouteScheduleBean> schedules = repository
+					.getRouteSchedules(routeId);
+			if (schedules != null) {
+				for (RouteScheduleBean schedule : schedules) {
 					scheduleCrudOperate.delete(schedule);
 				}
 			}
@@ -84,31 +99,34 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 		this.updateBaseInfo(route, operatorId);
 		routeCrudOperate.save(route);
 
-		if(isNew){ //保存用户在行程中的成员关系
+		if (isNew) { // 保存用户在行程中的成员关系
 			UserProfileBean user = new UserProfileBean(operatorId);
 			Map<String, Object> member = new HashMap<>();
 			member = new HashMap<>();
 			member.put("permission", "W");
 			member.put("role", Constants.GroupRole.LEADER.code);
 
-			memberRelationship.createRelation(user, route, Constants.RELATION_TYPE_MEMBER, Direction.INCOMING, member);
+			memberRelationship.createRelation(user, route,
+					Constants.RELATION_TYPE_MEMBER, Direction.INCOMING, member);
 		}
 	}
 
 	@Override
-	public RouteMainBean cloneRoute(Long sourceId, RouteMainBean target, Long operatorId) throws Exception {
+	public RouteMainBean cloneRoute(Long sourceId, RouteMainBean target,
+			Long operatorId) throws Exception {
 		this.saveRouteMainAndSchedules(target, operatorId);
 
 		RouteMainBean source = this.getRoute(sourceId);
-		if(source == null){
+		if (source == null) {
 			throw new AppException(StaticErrorEnum.DATA_NOT_EXIST);
 		}
 
 		List<RouteProvisionBean> sProvisions = source.getProvisions();
 		List<RouteProvisionBean> tProvisions = new ArrayList<>();
-		if(sProvisions != null){
-			for(RouteProvisionBean sProvision : sProvisions){
-				RouteProvisionBean tProvision = (RouteProvisionBean) sProvision.clone();
+		if (sProvisions != null) {
+			for (RouteProvisionBean sProvision : sProvisions) {
+				RouteProvisionBean tProvision = (RouteProvisionBean) sProvision
+						.clone();
 
 				this.updateBaseInfo(tProvision, operatorId);
 				tProvision.setRouteMain(target);
@@ -122,14 +140,16 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 
 		List<RouteScheduleBean> sSchedules = source.getSchedules();
 		List<RouteScheduleBean> tSchedules = target.getSchedules();
-		if(sSchedules != null){
+		if (sSchedules != null) {
 			int len = tSchedules.size();
-			for(int index = 0; index < len && index < sSchedules.size(); index++){
-				List<RouteActivityBean> sActivities = sSchedules.get(index).getActivities();
+			for (int index = 0; index < len && index < sSchedules.size(); index++) {
+				List<RouteActivityBean> sActivities = sSchedules.get(index)
+						.getActivities();
 				List<RouteActivityBean> tActivities = new ArrayList<>();
 
-				for(RouteActivityBean sActivity : sActivities){
-					RouteActivityBean tActivity = (RouteActivityBean) sActivity.clone();
+				for (RouteActivityBean sActivity : sActivities) {
+					RouteActivityBean tActivity = (RouteActivityBean) sActivity
+							.clone();
 					tActivity.setUpdatedUserId(operatorId);
 					tActivity.setCreatedUserId(operatorId);
 					tActivity.setSchedule(tSchedules.get(index));
@@ -152,7 +172,8 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 		RouteMainBean route = null;
 		List<RouteMainBean> list = new ArrayList<RouteMainBean>();
 
-		List<OwnerRouteTuple> routes = repository.getRoutes(userId, 0l , 20, "MEMBER|LEADER");
+		List<OwnerRouteTuple> routes = repository.getRoutes(userId, 0l, 20,
+				"MEMBER|LEADER");
 		for (OwnerRouteTuple bean : routes) {
 			route = bean.getRoute();
 			if (route == null) {
@@ -173,12 +194,14 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 	}
 
 	@Override
-	public List<RouteMainBean> getRoutes(Long placeId, Long nextCursor, int limit) throws Exception {
+	public List<RouteMainBean> getRoutes(Long placeId, Long nextCursor,
+			int limit) throws Exception {
 		List<RouteMainBean> routes = new ArrayList<>();
 
-		List<RouteTuple> tuples = repository.getRecommendRoutes(placeId, nextCursor, limit);
-		if(CollectionUtils.isNotEmpty(tuples)){
-			for(RouteTuple tuple : tuples){
+		List<RouteTuple> tuples = repository.getRecommendRoutes(placeId,
+				nextCursor, limit);
+		if (CollectionUtils.isNotEmpty(tuples)) {
+			for (RouteTuple tuple : tuples) {
 				routes.add(tuple.getRoute());
 			}
 		}
@@ -187,12 +210,14 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 	}
 
 	@Override
-	public List<RouteMainBean> getRoutes(Long[] placeIds, int duration, Long nextCursor, int limit) throws Exception {
+	public List<RouteMainBean> getRoutes(Long[] placeIds, int duration,
+			Long nextCursor, int limit) throws Exception {
 		List<RouteMainBean> routes = new ArrayList<>();
 
-		List<RouteTuple> tuples = repository.getRecommendRoutes(placeIds, duration, nextCursor, limit);
-		if(CollectionUtils.isNotEmpty(tuples)){
-			for(RouteTuple tuple : tuples){
+		List<RouteTuple> tuples = repository.getRecommendRoutes(placeIds,
+				duration, nextCursor, limit);
+		if (CollectionUtils.isNotEmpty(tuples)) {
+			for (RouteTuple tuple : tuples) {
 				routes.add(tuple.getRoute());
 			}
 		}
@@ -207,14 +232,19 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 		if (route != null) {
 			List<RouteScheduleBean> schedules = route.getSchedules();
 			if (schedules != null && schedules.size() > 0) {
-				List<RouteScheduleBean> newSchedules = new Vector<RouteScheduleBean>(schedules.size());
+				List<RouteScheduleBean> newSchedules = new Vector<RouteScheduleBean>(
+						schedules.size());
 				for (RouteScheduleBean schedule : schedules) {
-					RouteScheduleBean newSchedule = scheduleCrudOperate.get(schedule.getId());
-					List<RouteActivityBean> activities = newSchedule.getActivities();
+					RouteScheduleBean newSchedule = scheduleCrudOperate
+							.get(schedule.getId());
+					List<RouteActivityBean> activities = newSchedule
+							.getActivities();
 					if (activities != null && activities.size() > 0) {
-						List<RouteActivityBean> newActivities = new Vector<RouteActivityBean>(activities.size());
+						List<RouteActivityBean> newActivities = new Vector<RouteActivityBean>(
+								activities.size());
 						for (RouteActivityBean activity : activities) {
-							RouteActivityBean newActivity = activityCrudOperate.get(activity.getId());
+							RouteActivityBean newActivity = activityCrudOperate
+									.get(activity.getId());
 							newActivities.add(newActivity);
 						}
 
@@ -231,17 +261,26 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 	}
 
 	@Override
-	public void saveSchedule(RouteScheduleBean schedule, Long operatorId) throws Exception {
+	public List<UserProfileBean> getRouteMember(Long routeId) throws Exception {
+		return repository.getRouteMemberUserProfiles(routeId);
+	}
+
+	@Override
+	public void saveSchedule(RouteScheduleBean schedule, Long operatorId)
+			throws Exception {
 		this.updateBaseInfo(schedule, operatorId);
 
 		scheduleCrudOperate.save(schedule);
 	}
 
 	@Override
-	public void deleteSchedule(Long routeId, Long scheduleId, Long uoperatorIdid) throws Exception {
+	public void deleteSchedule(Long routeId, Long scheduleId, Long uoperatorIdid)
+			throws Exception {
 		RouteScheduleBean schedule = scheduleCrudOperate.get(scheduleId);
-		if(schedule == null){
-			LOG.warn(String.format("No Schedule found for route=[%d] and schedule=[%d]", routeId, scheduleId));
+		if (schedule == null) {
+			LOG.warn(String.format(
+					"No Schedule found for route=[%d] and schedule=[%d]",
+					routeId, scheduleId));
 
 			return;
 		}
@@ -250,16 +289,19 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 	}
 
 	@Override
-	public RouteActivityBean getScheduleActivity(Long activityId) throws Exception {
+	public RouteActivityBean getScheduleActivity(Long activityId)
+			throws Exception {
 		RouteActivityBean activity = activityCrudOperate.get(activityId);
 
-		if(activity != null){
+		if (activity != null) {
 			List<RouteActivityItemBean> items = activity.getItems();
-			if(items != null){
-				for(RouteActivityItemBean item : items){
-					if(item.getResourceActivityItemId() == null) continue;
+			if (items != null) {
+				for (RouteActivityItemBean item : items) {
+					if (item.getResourceActivityItemId() == null)
+						continue;
 
-					item.setResourceActivityItem(resourceActivityItemCrudOperate.get(item.getResourceActivityItemId(), false));
+					item.setResourceActivityItem(resourceActivityItemCrudOperate
+							.get(item.getResourceActivityItemId(), false));
 				}
 			}
 		}
@@ -268,9 +310,10 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 	}
 
 	@Override
-	public void saveScheduleActivity(Long routeId, RouteActivityBean activity, Long operatorId) throws Exception {
+	public void saveScheduleActivity(Long routeId, RouteActivityBean activity,
+			Long operatorId) throws Exception {
 		RouteMainBean route = routeCrudOperate.get(routeId);
-		if(route == null){
+		if (route == null) {
 			throw new Exception("No Route found for id=" + routeId);
 		}
 
@@ -280,10 +323,13 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 	}
 
 	@Override
-	public void deleteScheduleActivity(Long routeId, Long activityId, Long operatorId) throws Exception {
+	public void deleteScheduleActivity(Long routeId, Long activityId,
+			Long operatorId) throws Exception {
 		RouteActivityBean activity = this.activityCrudOperate.get(activityId);
-		if(activity == null){
-			LOG.warn(String.format("No activity found for route=[%d] and activity=[%d]", routeId, activityId));
+		if (activity == null) {
+			LOG.warn(String.format(
+					"No activity found for route=[%d] and activity=[%d]",
+					routeId, activityId));
 			return;
 		}
 
@@ -292,10 +338,13 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 	}
 
 	@Override
-	public void deleteScheduleActivityItem(Long routeId, Long activityId, Long itemId, Long operatorId) throws Exception {
+	public void deleteScheduleActivityItem(Long routeId, Long activityId,
+			Long itemId, Long operatorId) throws Exception {
 		RouteActivityItemBean item = this.activityItemCrudOperate.get(itemId);
-		if(item == null){
-			LOG.warn(String.format("No activity item found for route=[%d], activity=[%d], itemId=%d ", routeId, activityId, itemId));
+		if (item == null) {
+			LOG.warn(String
+					.format("No activity item found for route=[%d], activity=[%d], itemId=%d ",
+							routeId, activityId, itemId));
 			return;
 		}
 
@@ -303,11 +352,11 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 		this.activityItemCrudOperate.delete(item);
 	}
 
-
 	@Override
-	public void saveRouteProvision(Long routeId, RouteProvisionBean provision, Long operatorId) throws Exception {
+	public void saveRouteProvision(Long routeId, RouteProvisionBean provision,
+			Long operatorId) throws Exception {
 		RouteMainBean route = routeCrudOperate.get(routeId);
-		if(route == null){
+		if (route == null) {
 			throw new AppException(StaticErrorEnum.DATA_NOT_EXIST);
 		}
 
@@ -316,10 +365,13 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 	}
 
 	@Override
-	public void deleteRouteProvision(Long routeId, Long provisionId, Long operatorId) throws Exception {
+	public void deleteRouteProvision(Long routeId, Long provisionId,
+			Long operatorId) throws Exception {
 		RouteProvisionBean provision = provisionCrudOperate.get(provisionId);
-		if(provision == null){
-			LOG.warn(String.format("No provision found for route=[%d], provision=[%d]", routeId, provisionId));
+		if (provision == null) {
+			LOG.warn(String.format(
+					"No provision found for route=[%d], provision=[%d]",
+					routeId, provisionId));
 			return;
 		}
 

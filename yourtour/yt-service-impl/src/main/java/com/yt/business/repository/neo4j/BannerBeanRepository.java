@@ -27,4 +27,16 @@ public interface BannerBeanRepository extends GraphRepository<BannerBean> {
 			+ "WHERE b.status = 'RELEASED' AND b.endTime < {0} RETURN b "
 			+ "ORDER BY b.commentScore DESC LIMIT {1}")
 	public List<BannerBean> getRecommendBanners(long time, int n);
+
+	/**
+	 * 分页获取所有的Banner信息
+	 * 
+	 * @param nextCursor
+	 *            当前开始游标
+	 * @param limit
+	 *            获取信息条数
+	 * @return 符合条件的Banner信息列表
+	 */
+	@Query("MATCH (b:BannerBean RETURN b ORDER BY b.startTime DESC SKIP {0} LIMIT {1}")
+	public List<BannerBean> getBanners(Long nextCursor, int limit);
 }

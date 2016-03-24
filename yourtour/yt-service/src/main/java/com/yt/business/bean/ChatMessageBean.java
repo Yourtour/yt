@@ -11,7 +11,7 @@ import com.yt.neo4j.annotation.Neo4jRelationship;
 import com.yt.neo4j.annotation.Neo4jRelationship.Direction;
 
 /**
- * 该实体定义聊天数据信息。
+ * 该实体定义聊天消息数据信息。
  * 
  * <p>
  * <b>修改历史：</b>
@@ -38,18 +38,27 @@ import com.yt.neo4j.annotation.Neo4jRelationship.Direction;
 public class ChatMessageBean extends BaseBeanImpl {
 	private static final long serialVersionUID = -8960391956314705776L;
 	private static final String INDEX_NAME = "chatMessage"; // 定义了本实体中全文检索的索引名称。
-	
-	private boolean isNotice = false; // 标识本内容是否为一条公告内容
-	
-	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
-	private String message = null; // 聊天内容
-	// 注：聊天时间使用父类中的createedTime，聊天内容将来可以扩展成为JSON标识的复杂对象。
-	
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RELATED, type = UserProfileBean.class, direction = Direction.OUTGOING)
-	private transient UserProfileBean userProfile = null; // 关联的聊天人
 
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RELATED, type = ChatSessionBean.class, direction = Direction.OUTGOING)
-	private transient ChatSessionBean chatSession = null; // 关联的聊天室
+	public enum MessageType {
+		TEXT, // 文本消息
+		IMAGE, // 图片消息
+		AUDIO, // 音频消息
+		VIDEO // 视频消息
+	}
+
+	private boolean isNotice = false; // 标识本内容是否为一条公告内容
+
+	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
+	private String content = null; // 聊天内容，如果是图片等，则为存放路径
+	// 注：聊天时间使用父类中的createdTime
+
+	private MessageType messageType = MessageType.TEXT; // 消息类型
+
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = UserProfileBean.class, direction = Direction.INCOMING)
+	private transient UserProfileBean sender = null; // 消息发送人
+
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RELATED, type = ChatRoomBean.class, direction = Direction.OUTGOING)
+	private transient ChatRoomBean chatRoom = null; // 关联的聊天室
 
 	public ChatMessageBean() {
 		super();
@@ -67,28 +76,48 @@ public class ChatMessageBean extends BaseBeanImpl {
 		this.isNotice = isNotice;
 	}
 
-	public String getMessage() {
-		return message;
+	public String getContent() {
+		return content;
 	}
 
-	public void setMessage(String message) {
-		this.message = message;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
-	public UserProfileBean getUserProfile() {
-		return userProfile;
+	/**
+	 * @return the messageType
+	 */
+	public MessageType getMessageType() {
+		return messageType;
 	}
 
-	public void setUserProfile(UserProfileBean userProfile) {
-		this.userProfile = userProfile;
+	/**
+	 * @param messageType the messageType to set
+	 */
+	public void setMessageType(MessageType messageType) {
+		this.messageType = messageType;
 	}
 
-	public ChatSessionBean getChatSession() {
-		return chatSession;
+	/**
+	 * @return the sender
+	 */
+	public UserProfileBean getSender() {
+		return sender;
 	}
 
-	public void setChatSession(ChatSessionBean chatSession) {
-		this.chatSession = chatSession;
+	/**
+	 * @param sender the sender to set
+	 */
+	public void setSender(UserProfileBean sender) {
+		this.sender = sender;
+	}
+
+	public ChatRoomBean getChatRoom() {
+		return chatRoom;
+	}
+
+	public void setChatRoom(ChatRoomBean chatRoom) {
+		this.chatRoom = chatRoom;
 	}
 
 }
