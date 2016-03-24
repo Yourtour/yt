@@ -26,11 +26,12 @@ import com.yt.response.ResponseDataVO;
 import com.yt.rest.resource.RestResource;
 
 @Component
-@Path("places/")
+@Path("/oms/places/")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class PlaceRestResource extends RestResource {
 	public static final String PLACE_IMAGE_PATH = "/images/places/";
+
 	@Autowired
 	private IPlaceService placeService;
 

@@ -4,12 +4,10 @@ import com.yt.business.PagingDataBean;
 import com.yt.business.bean.AdminAccountBean;
 import com.yt.business.service.IAdminAccountService;
 import com.yt.core.utils.CollectionUtils;
-import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponsePagingDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.rest.resource.RestResource;
 import com.yt.utils.SessionUtils;
-import com.yt.vo.PaginationVO;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +22,7 @@ import java.util.Map;
  * Created by 林平 on 2016/3/24.
  */
 @Component
-@Path("admin/account")
+@Path("oms/account")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 
