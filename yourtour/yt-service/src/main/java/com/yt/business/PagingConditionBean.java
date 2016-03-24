@@ -1,14 +1,14 @@
 package com.yt.business;
 
 public class PagingConditionBean {
-	private long nextCursor, total;
-	private int limit;
+	private long nextCursor;
+	private int limit, total;
 
 	public PagingConditionBean() {
 		super();
 	}
 
-	public PagingConditionBean(long nextCursor, int limit, long total) {
+	public PagingConditionBean(long nextCursor, int limit, int total) {
 		this();
 		this.nextCursor = nextCursor;
 		this.limit = limit;
@@ -23,7 +23,7 @@ public class PagingConditionBean {
 		return limit;
 	}
 
-	public long getTotal() {
+	public int getTotal() {
 		return total;
 	}
 

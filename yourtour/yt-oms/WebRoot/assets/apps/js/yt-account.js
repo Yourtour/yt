@@ -72,11 +72,11 @@ jQuery.AccountManagement = {
             username = $('#username', loginview).val(),
             password = $('#password', loginview).val();
 
-        user.userName = userName;
-        user.pwd = password;
+        account.userName = username;
+        account.pwd = password;
 
         $.Request.post("/rest/admin/account/authenticate",account,function(result){
-
+            window.location = "Home";
         })
     }
 };

@@ -57,16 +57,19 @@ public class RestResource {
 	 */
 	protected String uploadMediaFile(FormDataMultiPart form, String fieldName,
 			String rootPath) throws Exception {
+		StringBuffer images = new StringBuffer();
 		List<FormDataBodyPart> l = form.getFields(fieldName);
 		if (l != null) {
 			for (FormDataBodyPart p : l) {
 				InputStream is = p.getValueAs(InputStream.class);
 				FormDataContentDisposition detail = p
 						.getFormDataContentDisposition();
-				return (FileUtils.saveFile(rootPath,
-						FileUtils.getType(detail.getFileName()), is));
+				if(images.length() > 0) images.append(FILE_SEPERATOR);
+
+				images.append(FileUtils.saveFile(rootPath, FileUtils.getType(detail.getFileName()), is));
 			}
 		}
-		return null;
+
+		return images.toString();
 	}
 }

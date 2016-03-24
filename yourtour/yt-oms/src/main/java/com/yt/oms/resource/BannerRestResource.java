@@ -42,7 +42,7 @@ public class BannerRestResource extends RestResource {
 	public ResponsePagingDataVO<List<BannerVO>> getBanners(
 			@DefaultValue("0") @QueryParam("nextCursor") Long nextCursor,
 			@DefaultValue("20") @QueryParam("limit") int limit,
-			@QueryParam("total") long total) throws Exception {
+			@QueryParam("total") int total) throws Exception {
 		PagingDataBean<List<BannerBean>> pagingData = bannerService
 				.getBanners(new PagingConditionBean(nextCursor, limit, total));
 		List<BannerVO> vos = new Vector<>();
@@ -53,7 +53,7 @@ public class BannerRestResource extends RestResource {
 			vos.add(BannerVO.transform(bean));
 		}
 		return new ResponsePagingDataVO<List<BannerVO>>(pagingData.getTotal(),
-				vos);
+				vos.size(), vos);
 	}
 
 	@GET

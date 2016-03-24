@@ -25,7 +25,7 @@ import java.util.Map;
  */
 
 @Component
-@Path("admin/dicts")
+@Path("oms/dicts")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class DictRestResource extends RestResource {

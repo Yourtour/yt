@@ -31,9 +31,9 @@ public class BannerService extends ServiceBase implements IBannerService {
 	@Override
 	public PagingDataBean<List<BannerBean>> getBanners(
 			PagingConditionBean pagingCondition) throws Exception {
-		long totalCount = pagingCondition.getTotal();
+		int totalCount = pagingCondition.getTotal();
 		if (totalCount <= 0) {
-			totalCount = bannerCrudOperate.count();
+			totalCount = (int)bannerCrudOperate.count();
 		}
 		List<BannerBean> banners = repository.getBanners(
 				pagingCondition.getNextCursor(), pagingCondition.getLimit());

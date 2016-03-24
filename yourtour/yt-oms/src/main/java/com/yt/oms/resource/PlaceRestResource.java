@@ -26,11 +26,12 @@ import com.yt.response.ResponseDataVO;
 import com.yt.rest.resource.RestResource;
 
 @Component
-@Path("places/")
+@Path("/oms/places/")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class PlaceRestResource extends RestResource {
 	public static final String PLACE_IMAGE_PATH = "/images/places/";
+
 	@Autowired
 	private IPlaceService placeService;
 
@@ -89,9 +90,7 @@ public class PlaceRestResource extends RestResource {
 
 	@GET
 	@Path("/{placeId}/delete")
-	public ResponseDataVO<PlaceVO> deletePlace(
-			@PathParam("placeId") Long placeId,
-			@Context HttpServletRequest request) throws Exception {
+	public ResponseDataVO<PlaceVO> deletePlace(@PathParam("placeId") Long placeId, @Context HttpServletRequest request) throws Exception {
 		Long userId = super.getCurrentUserId(request);
 		PlaceBean place = placeService.deletePlace(placeId, userId);
 		return new ResponseDataVO<PlaceVO>(PlaceVO.transform(place));

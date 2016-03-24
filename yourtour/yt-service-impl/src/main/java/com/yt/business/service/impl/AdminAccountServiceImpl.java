@@ -60,7 +60,7 @@ public class AdminAccountServiceImpl extends ServiceBase implements IAdminAccoun
         }
 
         String rPassword = account.getPwd();
-        if (!rPassword.equals(Base64Utils.MD5(password.trim()))) {
+        if (!rPassword.equals(MessageDigestUtils.digest(propertiesReader.getProperty("digest.algorithm", "SHA-1"),password))) {
             throw new AppException(StaticErrorEnum.AUTHENTICATE_FAIL);
         }
 

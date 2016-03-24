@@ -28,7 +28,7 @@ import com.yt.utils.SessionUtils;
  * Created by 林平 on 2016/3/24.
  */
 @Component
-@Path("admin/account")
+@Path("oms/account")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class UserRestResource extends RestResource {
@@ -90,7 +90,7 @@ public class UserRestResource extends RestResource {
 				account.setPwd("");
 			}
 		}
-		return new ResponsePagingDataVO(pagingData.getTotal(),
-				pagingData.getData());
+		return new ResponsePagingDataVO(pagingData.getTotal(), pagingData
+				.getData().size(), pagingData.getData());
 	}
 }

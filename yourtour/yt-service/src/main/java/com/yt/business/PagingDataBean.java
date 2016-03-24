@@ -2,13 +2,13 @@ package com.yt.business;
 
 public class PagingDataBean<T> {
 	private T data = null;
-	private long total = 0;
+	private int total = 0;
 
 	public PagingDataBean() {
 		super();
 	}
 
-	public PagingDataBean(long totalCount, T data) {
+	public PagingDataBean(int totalCount, T data) {
 		this();
 		this.total = totalCount;
 		this.setData(data);
@@ -22,11 +22,11 @@ public class PagingDataBean<T> {
 		this.data = data;
 	}
 
-	public long getTotal() {
+	public int getTotal() {
 		return total;
 	}
 
-	public void setTotal(long total) {
+	public void setTotal(int total) {
 		this.total = total;
 	}
 
