@@ -7,13 +7,10 @@ import java.util.Map;
  * Created by 林平 on 2016/3/24.
  */
 public class PaginationVO {
-    @FormParam("total")
     private int total;
 
-    @FormParam("start")
     private Long nextCursor;
 
-    @FormParam("length")
     private int limit;
 
     private Map<String, Object> params;

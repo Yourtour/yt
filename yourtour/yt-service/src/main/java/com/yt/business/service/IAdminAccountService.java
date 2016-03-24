@@ -1,8 +1,11 @@
 package com.yt.business.service;
 
+import com.yt.business.PagingDataBean;
 import com.yt.business.bean.AdminAccountBean;
+import com.yt.business.bean.BannerBean;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by 林平 on 2016/3/24.
@@ -33,5 +36,5 @@ public interface IAdminAccountService {
     public void deleteAccountInfo(String userName, Long userId) throws Exception;
 
 
-    public List<AdminAccountBean> getAccountInfoes() throws Exception;
+    public PagingDataBean<List<AdminAccountBean>> getAccountInfoes(Long nextCursor, int limit, int total, Map<String, Object> params) throws Exception;
 }

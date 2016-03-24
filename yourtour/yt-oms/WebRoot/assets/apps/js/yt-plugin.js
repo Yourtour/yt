@@ -1,8 +1,9 @@
 jQuery.Request={
     post:function(url, data, callback){
+        var context = $('#context').val();
         $.ajax({
             type: "POST",
-            url: url,
+            url: context + url,
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(data),
             dataType: "json",
@@ -18,7 +19,9 @@ jQuery.Request={
     },
 
     get:function(url, data, success, fail){
-        $.get(url, data, function(message){
+        var context = $('#context').val();
+
+        $.get(context + url, data, function(message){
             if(message.errorCode == "0") {
                 success(message.data);
             }else{

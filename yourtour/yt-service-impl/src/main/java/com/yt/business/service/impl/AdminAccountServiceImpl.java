@@ -1,6 +1,7 @@
 package com.yt.business.service.impl;
 
 import com.yt.PropertiesReader;
+import com.yt.business.PagingDataBean;
 import com.yt.business.bean.AdminAccountBean;
 import com.yt.business.repository.neo4j.AdminAccountBeanRepository;
 import com.yt.business.service.IAdminAccountService;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by 林平 on 2016/3/24.
@@ -70,8 +72,11 @@ public class AdminAccountServiceImpl extends ServiceBase implements IAdminAccoun
 
     }
 
-    public List<AdminAccountBean> getAccountInfoes() throws Exception{
-        return accountCrudOperate.get();
+    public PagingDataBean<List<AdminAccountBean>> getAccountInfoes(Long nextCursor, int limit, int total, Map<String, Object> params) throws Exception{
+        PagingDataBean<List<AdminAccountBean>> pagination = new PagingDataBean<>();
+        pagination.setData(accountCrudOperate.get());
+
+        return pagination;
     }
 
 

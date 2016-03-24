@@ -39,19 +39,27 @@ $.extend( true, $.fn.dataTable.defaults, {
     },
 
     fnServerData: function ( sSource, aoData, fnCallback ) {
-        var rest = this.attr("data-rest");
+        var rest = this.attr("data-rest"), nextCursor, limit, total, params, name;
 
-        var context = {};
         $.each(aoData, function(index, data){
-            context[data.name] = data.value;
+            name = data.name;
+
+            if(name == 'start'){
+                nextCursor = data.value;
+            }else if (name == 'length'){
+                limit = data.value;
+            }else if(name == 'params'){
+                params = data.value;
+            }
         })
 
+        rest = rest + "?nextCursor=" + nextCursor + "&limit=" + limit + "&total=0" ;
         $.ajax({
             "dataType": 'json',
             "contentType" : "application/json",
             "type": "POST",
             "url": rest,
-            "data": JSON.stringify(context),
+            "data": JSON.stringify(params),
             "success": function (response){
                 fnCallback(response);
 
@@ -61,6 +69,8 @@ $.extend( true, $.fn.dataTable.defaults, {
     },
 
     fnServerParams: function( aoData ){
+        var params = {};
+
         var frm = this.attr("data-criteria");
         if(frm != undefined){
             var values = $("#" + frm).serializeArray();
@@ -68,10 +78,12 @@ $.extend( true, $.fn.dataTable.defaults, {
                 var value = field.value.trim();
 
                 if(value != ''){
-                    aoData[field.name] = value;
+                    params[field.name] = value;
                 }
             });
         }
+
+        aoData.params = params;
     }
 });
 

@@ -5,7 +5,25 @@
  */
 jQuery.AccountManagement = {
     init:function(){
+        var me = this;
+
         $.Page.show("Page_AccountListView");
+
+        var listview = $("#Page_AccountListView");
+        $("#btn_add", listview).on('click', function(){
+            $.Page.show("Page_AccountFormView");
+        });
+
+        var formview = $("#Page_AccountFormView");
+        //保存按钮事件
+        $("#btnSave", formview).on('click', function(){
+            me.saveAccountInfo()
+        });
+
+        //取消按钮事件
+        $(" #btnCancel", formview).on('click', function(){
+            $.Page.back();
+        });
 
         this.query();
     },
@@ -17,14 +35,14 @@ jQuery.AccountManagement = {
         $("#datatable_account").dataTable().fnDestroy();
         $("#datatable_account").dataTable({
             "aoColumns": [
-                {"mData": "id", "sClass":"center", "sWidth": "20px", "mRender": function (data, type, row) {
+                {"mData": "id", "sClass":"center", "sWidth": "5%", "mRender": function (data, type, row) {
                     return "<input type='checkbox' class='checkboxes' value='" + data + "'/>";
                 }},
                 {
                     "mData": "userName",
                     "sWidth": "20%"
                 },
-                {"mData": "realName", "sWidth": "30%"},
+                {"mData": "realName", "sWidth": "75%"}
             ]
         });
     },
@@ -32,15 +50,14 @@ jQuery.AccountManagement = {
     /**
      * 保存字典数据
      */
-    saveDictInfo:function(){
-        var dict = {}, dictForm = $('#dictForm'), me = this;
-        dict.id = dictForm.find('#id').val();
-        dict.name = dictForm.find('#name').val();
-        dict.type = dictForm.find('#type').val();
-        dict.code = dictForm.find('#code').val();
-        dict.value = dictForm.find('#value').val();
+    saveAccountInfo:function(){
+        var account = {}, accountForm = $('#accountForm'), me = this;
+        account.id = accountForm.find('#id').val();
+        account.realName = accountForm.find('#realName').val();
+        account.userName = accountForm.find('#userName').val();
+        account.pwd = accountForm.find('#password').val();
 
-        $.Request.post("/yt-oms/rest/admin/dicts/save",dict,function(result){
+        $.Request.post("/rest/admin/account/save",account,function(result){
             bootbox.alert("保存成功。", function(){
                 $.Page.back(function(){
                     me.query();
@@ -49,27 +66,18 @@ jQuery.AccountManagement = {
         })
     },
 
-    /**
-     * 装载字典数据
-     */
-    loadDictInfo:function(dictId){
-        $.Page.show("Page_DictFormView", function(){
-            $("#Page_DictFormView").clear();
-            $.Request.get("/yt-oms/rest/admin/dicts/" + dictId, null, function(data){
-                $("#Page_DictFormView").deserialize(data);
-            });
-        });
-    },
+    login:function(){
+        var loginview = $(".login"),
+            account = {},
+            username = $('#username', loginview).val(),
+            password = $('#password', loginview).val();
 
-    /**
-     * 装载字典数据
-     */
-    deleteDictInfo:function(dictIds){
-        var me = this;
+        user.userName = userName;
+        user.pwd = password;
 
-        $.Request.get("/yt-oms/rest/admin/dicts/" + dictIds + "/delete", null, function(data){
-            me.query();
-        });
-    },
+        $.Request.post("/rest/admin/account/authenticate",account,function(result){
+
+        })
+    }
 };
 

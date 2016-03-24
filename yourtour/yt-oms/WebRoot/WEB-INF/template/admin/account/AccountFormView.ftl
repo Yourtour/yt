@@ -19,13 +19,13 @@
                 <!-- BEGIN SAMPLE FORM PORTLET-->
                 <div class="portlet light ">
                     <div class="portlet-body">
-                        <form id="dictForm" class="form-horizontal" role="form">
+                        <form id="accountForm" class="form-horizontal" role="form">
                             <input type="hidden" class="form-control" id="id" name="id">
 
                             <div class="form-group">
                                 <label for="name" class="col-md-2 control-label">姓名</label>
                                 <div class="col-md-4">
-                                    <input type="text" class="form-control" name="name" id="name" placeholder="姓名">
+                                    <input type="text" class="form-control" name="realName" id="realName" placeholder="姓名">
                                 </div>
                             </div>
 

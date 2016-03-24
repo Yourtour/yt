@@ -1,9 +1,11 @@
 package com.yt.oms.resource;
 
+import com.yt.business.PagingDataBean;
 import com.yt.business.bean.AdminAccountBean;
 import com.yt.business.service.IAdminAccountService;
 import com.yt.core.utils.CollectionUtils;
 import com.yt.response.ResponseDataVO;
+import com.yt.response.ResponsePagingDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.rest.resource.RestResource;
 import com.yt.utils.SessionUtils;
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Component;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by 林平 on 2016/3/24.
@@ -47,17 +50,15 @@ public class UserRestResource  extends RestResource {
 
     /**
      * 登录验证
-     * @param userName
-     * @param password
+     * @param account
      * @return
      * @throws Exception
      */
     @Path("/authenticate")
     @POST
-    public ResponseDataVO<AdminAccountBean> authenticateAccountInfo(@QueryParam("userName") String userName, @QueryParam("password") String password) throws Exception{
-        AdminAccountBean account = this.service.authenticate(userName, password);
-        account.setPwd("");
-        return new ResponseDataVO(account);
+    public ResponseVO authenticateAccountInfo(AdminAccountBean account) throws Exception{
+        account = this.service.authenticate(account.getUserName(), account.getPwd());
+        return new ResponseVO();
     }
 
     /**
@@ -67,13 +68,15 @@ public class UserRestResource  extends RestResource {
      */
     @Path("/query")
     @POST
-    public ResponseDataVO<List<AdminAccountBean>> getAccountInfoes(PaginationVO pagination) throws Exception{
-        List<AdminAccountBean> accounts = this.service.getAccountInfoes();
-        if(CollectionUtils.isNotEmpty(accounts)){
+    public ResponsePagingDataVO<List<AdminAccountBean>> getAccountInfoes(@QueryParam("nextCursor") Long nextCursor, @QueryParam("limit") int limit, @QueryParam("total") int total, Map<String, Object> params) throws Exception{
+        PagingDataBean<List<AdminAccountBean>> pagingData = this.service.getAccountInfoes(nextCursor, limit, total, params);
+
+        if(CollectionUtils.isNotEmpty(pagingData.getData())){
+            List<AdminAccountBean> accounts = pagingData.getData();
             for(AdminAccountBean account : accounts){
                 account.setPwd("");
             }
         }
-        return new ResponseDataVO(accounts);
+        return new ResponsePagingDataVO(pagingData.getTotalPages(), pagingData.getCurrentPageNum(), pagingData.getData());
     }
 }

@@ -44,6 +44,7 @@
 
   <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
   	<!-- BEGIN HEADER -->
+  	<input id="context" type="hidden" value="${context}"/>
     <div class="page-header navbar navbar-fixed-top">
   		<!-- BEGIN HEADER INNER -->
 		<div class="page-header-inner ">
