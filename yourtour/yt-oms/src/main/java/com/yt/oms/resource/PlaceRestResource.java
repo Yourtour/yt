@@ -90,9 +90,7 @@ public class PlaceRestResource extends RestResource {
 
 	@GET
 	@Path("/{placeId}/delete")
-	public ResponseDataVO<PlaceVO> deletePlace(
-			@PathParam("placeId") Long placeId,
-			@Context HttpServletRequest request) throws Exception {
+	public ResponseDataVO<PlaceVO> deletePlace(@PathParam("placeId") Long placeId, @Context HttpServletRequest request) throws Exception {
 		Long userId = super.getCurrentUserId(request);
 		PlaceBean place = placeService.deletePlace(placeId, userId);
 		return new ResponseDataVO<PlaceVO>(PlaceVO.transform(place));
