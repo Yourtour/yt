@@ -85,19 +85,22 @@ public class HomeServiceImpl extends ServiceBase implements IHomeService {
 		map.put(IHomeService.KEY_LAUNCHBEAN, launch);
 
 		// 版本检查
-		if(! "0.0.0.0".equalsIgnoreCase(version)) {
+		if (!"0.0.0.0".equalsIgnoreCase(version)) {
 			List<VersionBean> versions = versionCrud.get();
 			Collections.sort(versions);
 			if (!versions.isEmpty()) {
 				for (VersionBean vBean : versions) {
 					if (devType.equalsIgnoreCase(vBean.getDevType().name())
-							&& appType.equalsIgnoreCase(vBean.getAppType().name())) {
+							&& appType.equalsIgnoreCase(vBean.getAppType()
+									.name())) {
 
 						// 两个版本都不为空
-						String[] src = version.split("\\."), tar = vBean.getVersion().split("\\.");
+						String[] src = version.split("\\."), tar = vBean
+								.getVersion().split("\\.");
 						int len = Math.min(src.length, tar.length);
 						for (int i = 0; i < len; i++) {
-							int result = Integer.valueOf(tar[i]) - Integer.valueOf(src[i]);
+							int result = Integer.valueOf(tar[i])
+									- Integer.valueOf(src[i]);
 							if (result > 0) {
 								map.put(IHomeService.KEY_VERSIONBEAN, vBean);
 								break;
