@@ -1,7 +1,5 @@
 package com.yt.business.bean;
 
-import java.util.List;
-
 import org.springframework.data.neo4j.annotation.NodeEntity;
 
 import com.yt.business.SocialBeanImpl;
@@ -127,12 +125,6 @@ public class ResourceBean extends SocialBeanImpl {
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_AT, type = PlaceBean.class, direction = Direction.OUTGOING)
 	private transient PlaceBean place = null;
-
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RECOMMEND, type = UserProfileBean.class, direction = Direction.OUTGOING)
-	private transient UserProfileBean user = null;
-
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = ResourceActivityItemBean.class, direction = Direction.OUTGOING, isList = true)
-	private transient List<ResourceActivityItemBean> activities = null;
 
 	public ResourceBean() {
 		super();
@@ -280,22 +272,6 @@ public class ResourceBean extends SocialBeanImpl {
 
 	public void setPlace(PlaceBean place) {
 		this.place = place;
-	}
-
-	public UserProfileBean getUser() {
-		return user;
-	}
-
-	public void setUser(UserProfileBean user) {
-		this.user = user;
-	}
-
-	public List<ResourceActivityItemBean> getActivities() {
-		return activities;
-	}
-
-	public void setActivities(List<ResourceActivityItemBean> activities) {
-		this.activities = activities;
 	}
 
 	public String getPrice() {

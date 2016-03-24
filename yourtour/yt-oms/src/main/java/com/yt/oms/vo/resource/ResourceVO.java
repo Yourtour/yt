@@ -1,4 +1,4 @@
-package com.yt.vo.resource;
+package com.yt.oms.vo.resource;
 
 import com.yt.business.bean.PlaceBean;
 import com.yt.business.bean.ResourceBean;

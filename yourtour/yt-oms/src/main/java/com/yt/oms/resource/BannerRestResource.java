@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Component;
 
 import com.sun.jersey.multipart.FormDataMultiPart;
 import com.sun.jersey.multipart.FormDataParam;
+import com.yt.business.PagingConditionBean;
 import com.yt.business.PagingDataBean;
 import com.yt.business.bean.BannerBean;
 import com.yt.business.service.IBannerService;
@@ -38,16 +40,11 @@ public class BannerRestResource extends RestResource {
 
 	@GET
 	public ResponsePagingDataVO<List<BannerVO>> getBanners(
-			@QueryParam("nextCursor") Long nextCursor,
-			@QueryParam("limit") int limit) throws Exception {
-		if (nextCursor == null) {
-			nextCursor = 0l;
-		}
-		if (limit <= 0) {
-			limit = RestResource.DEFAULT_LIMIT_APAGE;
-		}
-		PagingDataBean<List<BannerBean>> pagingData = bannerService.getBanners(
-				nextCursor, limit);
+			@DefaultValue("0") @QueryParam("nextCursor") Long nextCursor,
+			@DefaultValue("20") @QueryParam("limit") int limit,
+			@QueryParam("total") long total) throws Exception {
+		PagingDataBean<List<BannerBean>> pagingData = bannerService
+				.getBanners(new PagingConditionBean(nextCursor, limit, total));
 		List<BannerVO> vos = new Vector<>();
 		for (BannerBean bean : pagingData.getData()) {
 			if (bean == null) {
@@ -55,8 +52,8 @@ public class BannerRestResource extends RestResource {
 			}
 			vos.add(BannerVO.transform(bean));
 		}
-		return new ResponsePagingDataVO<List<BannerVO>>(
-				pagingData.getTotalPages(), pagingData.getCurrentPageNum(), vos);
+		return new ResponsePagingDataVO<List<BannerVO>>(pagingData.getTotal(),
+				vos);
 	}
 
 	@GET

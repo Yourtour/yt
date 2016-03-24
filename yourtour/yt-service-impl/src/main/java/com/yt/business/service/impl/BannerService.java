@@ -6,6 +6,7 @@ import org.apache.commons.lang.NullArgumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.yt.business.PagingConditionBean;
 import com.yt.business.PagingDataBean;
 import com.yt.business.bean.BannerBean;
 import com.yt.business.repository.neo4j.BannerBeanRepository;
@@ -24,15 +25,20 @@ public class BannerService extends ServiceBase implements IBannerService {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.yt.business.service.IBannerService#getBanners(java.lang.Long,
-	 * int)
+	 * @see com.yt.business.service.IBannerService#getBanners(com.yt.business.
+	 * PagingConditionBean)
 	 */
 	@Override
-	public PagingDataBean<List<BannerBean>> getBanners(Long nextCursor, int limit) throws Exception {
-		long totalCount = bannerCrudOperate.count();
-		List<BannerBean> banners = repository.getBanners(nextCursor, limit);
+	public PagingDataBean<List<BannerBean>> getBanners(
+			PagingConditionBean pagingCondition) throws Exception {
+		long totalCount = pagingCondition.getTotal();
+		if (totalCount <= 0) {
+			totalCount = bannerCrudOperate.count();
+		}
+		List<BannerBean> banners = repository.getBanners(
+				pagingCondition.getNextCursor(), pagingCondition.getLimit());
 
-		return new PagingDataBean<List<BannerBean>>(totalCount, nextCursor,	limit, banners);
+		return new PagingDataBean<List<BannerBean>>(totalCount, banners);
 	}
 
 	/*
