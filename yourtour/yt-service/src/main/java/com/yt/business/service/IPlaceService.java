@@ -12,12 +12,11 @@ public interface IPlaceService {
 	/**
 	 * 保存目的地
 	 * 
-	 * @param parentId
 	 * @param place
 	 * @param place
 	 * @throws Exception
 	 */
-	public void savePlace(Long parentId, PlaceBean place, Long userId)
+	public void savePlace(PlaceBean place, Long userId)
 			throws Exception;
 
 	/**

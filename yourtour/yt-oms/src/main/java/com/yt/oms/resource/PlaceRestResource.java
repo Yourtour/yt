@@ -13,6 +13,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import com.yt.core.utils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -46,15 +47,17 @@ public class PlaceRestResource extends RestResource {
 			if (place == null) {
 				continue;
 			}
+
 			roots.add(PlaceTreeVO.transform(place));
 		}
+
 		return new ResponseDataVO<List<PlaceTreeVO>>(roots);
 	}
 
 	@GET
 	@Path("/{placeId}")
 	public ResponseDataVO<PlaceVO> getPlace(@PathParam("placeId") Long placeId)
-			throws Exception {
+	throws Exception {
 		PlaceBean place = placeService.getPlace(placeId);
 		return new ResponseDataVO<PlaceVO>(PlaceVO.transform(place));
 	}
@@ -62,29 +65,12 @@ public class PlaceRestResource extends RestResource {
 	@POST
 	@Path("/save")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public ResponseDataVO<PlaceVO> savePlace(
-			@Context HttpServletRequest request,
-			@FormDataParam("id") Long placeId,
-			@FormDataParam("parentId") Long parentId,
-			@FormDataParam("code") String code,
-			@FormDataParam("shorter") String shorter,
-			@FormDataParam("name") String name,
-			@FormDataParam("memo") String memo,
-			@FormDataParam("isHome") boolean isHome,
-			@FormDataParam("recommended") boolean recommended,
-			FormDataMultiPart form) throws Exception {
-		PlaceBean place = new PlaceBean();
-		place.setId(placeId);
-		place.setCode(code);
-		place.setShorter(shorter);
-		place.setName(name);
-		place.setHome(isHome);
-		place.setImageUrl(super.uploadMediaFile(form, "placeImage",
-				PLACE_IMAGE_PATH));
-		place.setMemo(memo);
-		place.setRecommended(recommended);
-		Long userId = super.getCurrentUserId(request);
-		placeService.savePlace(parentId, place, userId);
+	public ResponseDataVO<PlaceVO> savePlace(@FormDataParam("place") String json, FormDataMultiPart form) throws Exception {
+		PlaceBean place = (PlaceBean) BeanUtils.deserialize(json, PlaceBean.class);
+		place.setImageUrl(super.uploadMediaFile(form, "placeImage",	PLACE_IMAGE_PATH));
+
+		Long userId = super.getCurrentUserId();
+		placeService.savePlace(place, userId);
 		return new ResponseDataVO<PlaceVO>(PlaceVO.transform(place));
 	}
 

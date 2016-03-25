@@ -21,6 +21,7 @@ public class SessionUtils {
 		if (StringUtils.isNull(value)) {
 			HttpSession session = request.getSession(true);
 			value = (String) session.getAttribute(USER_TOKEN);
+			if(value == null) value = "0";
 		}
 
 		return value;

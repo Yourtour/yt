@@ -18,6 +18,25 @@ jQuery.Request={
         });
     },
 
+    postFormData:function(url, formdata, callback){
+        var context = $('#context').val();
+        $.ajax({
+            type: "POST",
+            url: context + url,
+            data: formdata,
+            processData: false,
+            contentType: false,
+            success: function (message) {
+                if(callback) {
+                    callback(message.data);
+                }
+            },
+            error: function (message) {
+                bootbox.alert("系统异常，请稍后再试。");
+            }
+        });
+    },
+
     get:function(url, data, success, fail){
         var context = $('#context').val();
 
@@ -142,6 +161,15 @@ jQuery.Page={
                     }
                 }
             });
+        },
+
+        serialize:function(){
+            var serializeObj={};
+            $(this.serializeArray()).each( function (){
+                serializeObj[this.name]= this.value;
+            });
+
+            return serializeObj;
         },
 
         reset:function(){

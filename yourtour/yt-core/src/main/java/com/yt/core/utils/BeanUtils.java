@@ -4,6 +4,7 @@ import java.beans.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import com.alibaba.fastjson.JSON;
 
 public class BeanUtils {
 	private static final String SETTER_PREFIX = "set";
@@ -115,4 +116,13 @@ public class BeanUtils {
 		return null;
 	}
 
+	/**
+	 * 将JSON数据转换成对象
+	 * @param json
+	 * @return
+	 * @throws Exception
+	 */
+	public static Object deserialize(String json, Class<?> clazz) throws Exception {
+		return JSON.parseObject(json, clazz);
+	}
 }

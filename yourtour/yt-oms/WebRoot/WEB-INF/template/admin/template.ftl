@@ -21,6 +21,8 @@
 	<link href="${context}/assets/global/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
 	<link href="${context}/assets/global/plugins/jquery-datatable/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
 	<link href="${context}/assets/global/plugins/jquery-datatable/css/jquery.dataTables.setting.css" rel="stylesheet" type="text/css" />
+	<link href="${context}/assets/global/plugins/jquery-jstree/css/default/style.min.css" rel="stylesheet" type="text/css" />
+
 	<!-- END PAGE LEVEL PLUGINS -->
 
 	<!-- BEGIN THEME GLOBAL STYLES -->
@@ -84,7 +86,7 @@
 				<!-- BEGIN SIDEBAR MENU -->
 				<ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
 					<li class="nav-item  active start  open">
-						<a href="PlaceFormView" class="nav-link nav-toggle">
+						<a href="Place" class="nav-link nav-toggle">
 							<i class="icon-diamond"></i>
 							<span class="title">目的地管理</span>
 							<span class="arrow"></span>
@@ -124,7 +126,7 @@
 					</li>
 
 					<li class="nav-item ">
-						<a href="ActivityManagement" class="nav-link nav-toggle">
+						<a href="Activity" class="nav-link nav-toggle">
 							<i class="icon-home"></i>
 							<span class="title">活动管理</span>
 							<span class="selected"></span>
@@ -133,7 +135,7 @@
 					</li>
 
 					<li class="nav-item ">
-						<a href="InformationManagement" class="nav-link nav-toggle">
+						<a href="Information" class="nav-link nav-toggle">
 							<i class="icon-home"></i>
 							<span class="title">资讯管理</span>
 							<span class="selected"></span>
@@ -174,7 +176,7 @@
 					</li>
 
 					<li class="nav-item  ">
-						<a href="AccountManagement" class="nav-link nav-toggle">
+						<a href="Account" class="nav-link nav-toggle">
 							<i class="icon-diamond"></i>
 							<span class="title">用户管理</span>
 							<span class="arrow"></span>
@@ -182,7 +184,7 @@
 					</li>
 
 					<li class="nav-item  ">
-						<a href="DictManagement" class="nav-link nav-toggle">
+						<a href="Dictionary" class="nav-link nav-toggle">
 							<i class="icon-diamond"></i>
 							<span class="title">基础数据管理</span>
 							<span class="arrow"></span>
@@ -229,6 +231,7 @@
 	<script src="${context}/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
 	<script src="${context}/assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
 	<script src="${context}/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+	<script src="${context}/assets/global/plugins/jquery-jstree/js/jquery.jstree.min.js" type="text/javascript"></script>
 
 	<!-- END CORE PLUGINS -->
 
@@ -243,6 +246,7 @@
 	<script src="${context}/assets/apps/js/yt-activity.js" type="text/javascript"></script>
 	<script src="${context}/assets/apps/js/yt-information.js" type="text/javascript"></script>
 	<script src="${context}/assets/apps/js/yt-account.js" type="text/javascript"></script>
+	<script src="${context}/assets/apps/js/yt-place.js" type="text/javascript"></script>
 
 	<!-- END THEME GLOBAL SCRIPTS -->
 	<!-- BEGIN PAGE LEVEL SCRIPTS -->

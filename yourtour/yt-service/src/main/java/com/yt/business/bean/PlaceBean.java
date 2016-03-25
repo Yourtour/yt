@@ -1,5 +1,6 @@
 package com.yt.business.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -46,47 +47,32 @@ import com.yt.neo4j.annotation.Neo4jRelationship.Direction;
 public class PlaceBean extends SocialBeanImpl {
 	private static final long serialVersionUID = -6977525800090683657L;
 
-	@HbaseColumn(name = "shor")
-	@Indexed
-	private String shorter = ""; // 简称
-
+	private Long parentId; //父级目的地
+	private String code;  //目的地编码，
 	private String name;
-	private String code;
-
-	private String imageUrl;
-
-	private boolean home; // 是否国内
-
+	private String intro; //简介
+	private String feature; //特色
+	private String traffic; //交通
+	private String imageUrl; //图片， 可以有多张
+	private String specialty; //特产
 	@HbaseColumn(name = "memo")
 	private String memo = ""; // 备注
 
-	@HbaseColumn(name = "recm")
-	private boolean recommended = false; // 是否推荐
-
-	@HbaseColumn(name = "root")
-	private boolean root = false; // 是否为根节点
-
-	@HbaseColumn(name = "leaf")
-	private boolean leaf = true; // 是否为叶子节点
+	private int level = 0; //层级
 
 	private int goneNum = 0; // 去过人数
-
 	private int goingNum = 0; // 想去人数
-
-	private int alongNum = 0; // 结伴条数
-
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_PARENT, type = PlaceBean.class, direction = Direction.OUTGOING)
-	private transient PlaceBean parent = null; // 关联父级目的地
-
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_AT, type = ResourceBean.class, direction = Direction.INCOMING, isList = true)
-	private transient List<ResourceBean> resources = null; // 关联游玩资源
-	
-	private transient List<PlaceBean> subPlaces = null;
 
 	public PlaceBean() {
 		super();
-		this.resources = new Vector<>();
-		this.subPlaces = new Vector<>();
+	}
+
+	public Long getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(Long parentId) {
+		this.parentId = parentId;
 	}
 
 	public String getName() {
@@ -95,14 +81,6 @@ public class PlaceBean extends SocialBeanImpl {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getShorter() {
-		return shorter;
-	}
-
-	public void setShorter(String shorter) {
-		this.shorter = shorter;
 	}
 
 	public String getImageUrl() {
@@ -121,38 +99,6 @@ public class PlaceBean extends SocialBeanImpl {
 		this.memo = memo;
 	}
 
-	public boolean isRecommended() {
-		return recommended;
-	}
-
-	public void setRecommended(boolean recommended) {
-		this.recommended = recommended;
-	}
-
-	public boolean isRoot() {
-		return root;
-	}
-
-	public void setRoot(boolean root) {
-		this.root = root;
-	}
-
-	public PlaceBean getParent() {
-		return parent;
-	}
-
-	public void setParent(PlaceBean parent) {
-		this.parent = parent;
-	}
-
-	public boolean isLeaf() {
-		return leaf;
-	}
-
-	public void setLeaf(boolean leaf) {
-		this.leaf = leaf;
-	}
-
 	public int getGoneNum() {
 		return goneNum;
 	}
@@ -169,22 +115,6 @@ public class PlaceBean extends SocialBeanImpl {
 		this.goingNum = goingNum;
 	}
 
-	public int getAlongNum() {
-		return alongNum;
-	}
-
-	public void setAlongNum(int alongNum) {
-		this.alongNum = alongNum;
-	}
-
-	public boolean isHome() {
-		return home;
-	}
-
-	public void setHome(boolean home) {
-		this.home = home;
-	}
-
 	public String getCode() {
 		return code;
 	}
@@ -193,20 +123,44 @@ public class PlaceBean extends SocialBeanImpl {
 		this.code = code;
 	}
 
-	public List<ResourceBean> getResources() {
-		return resources;
+	public int getLevel() {
+		return level;
 	}
 
-	public void setResources(List<ResourceBean> resources) {
-		this.resources = resources;
+	public void setLevel(int level) {
+		this.level = level;
 	}
 
-	public List<PlaceBean> getSubPlaces() {
-		return subPlaces;
+	public String getIntro() {
+		return intro;
 	}
 
-	public void setSubPlaces(List<PlaceBean> subPlaces) {
-		this.subPlaces = subPlaces;
+	public void setIntro(String intro) {
+		this.intro = intro;
+	}
+
+	public String getFeature() {
+		return feature;
+	}
+
+	public void setFeature(String feature) {
+		this.feature = feature;
+	}
+
+	public String getTraffic() {
+		return traffic;
+	}
+
+	public void setTraffic(String traffic) {
+		this.traffic = traffic;
+	}
+
+	public String getSpecialty() {
+		return specialty;
+	}
+
+	public void setSpecialty(String specialty) {
+		this.specialty = specialty;
 	}
 
 	@Override

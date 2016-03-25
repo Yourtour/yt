@@ -1,27 +1,21 @@
 package com.yt.business.service.impl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.yt.business.bean.ExpertBean;
-import com.yt.business.bean.InfoBean;
-import com.yt.business.bean.PlaceBean;
-import com.yt.business.bean.ResourceBean;
-import com.yt.business.bean.RouteMainBean;
+import com.yt.business.bean.*;
 import com.yt.business.bean.pack.PlaceBeanPack;
 import com.yt.business.repository.neo4j.ExpertTuple;
 import com.yt.business.repository.neo4j.PlaceBeanRepository;
-import com.yt.business.repository.neo4j.PlaceTuple;
 import com.yt.business.repository.neo4j.RouteTuple;
 import com.yt.business.service.IPlaceService;
 import com.yt.core.utils.BeanUtils;
 import com.yt.core.utils.CollectionUtils;
 import com.yt.neo4j.repository.CrudOperate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class PlaceServiceImpl extends ServiceBase implements IPlaceService {
@@ -74,37 +68,15 @@ public class PlaceServiceImpl extends ServiceBase implements IPlaceService {
 	}
 
 	@Override
-	public void savePlace(Long parentId, PlaceBean place, Long userId)
-			throws Exception {
+	public void savePlace(PlaceBean place, Long userId) throws Exception {
+		PlaceBean original = place;
 		if (place.getId() != null) {
-			PlaceBean original = placeCrudOperate.get(place.getId());
+			original = placeCrudOperate.get(place.getId());
 			if (original != null) {
 				BeanUtils.merge(original, place);
-				if (parentId != null && parentId > 0) {
-					PlaceBean parent = placeCrudOperate.get(parentId);
-					if (parent == null) {
-						throw new Exception(String.format(
-								"The parent place not exist, placeId(%d).",
-								parentId));
-					}
-					place.setParent(parent);
-				}
 			}
 		}
 
-		// 先保存父节点
-		PlaceBean parent = place.getParent();
-		if (parent != null && parent.getId() != null) {
-			parent = placeCrudOperate.get(parent.getId());
-			if (parent.isLeaf()) {
-				parent.setLeaf(false);
-				super.updateBaseInfo(parent, userId);
-				placeCrudOperate.save(parent);
-			}
-		}
-
-		// 没有父节点，则当前节点就是根节点
-		place.setRoot(parent == null);
 		super.updateBaseInfo(place, userId);
 		placeCrudOperate.save(place);
 	}
@@ -116,35 +88,31 @@ public class PlaceServiceImpl extends ServiceBase implements IPlaceService {
 	 */
 	@Override
 	public List<PlaceBean> getAllPlaces() {
-		List<PlaceBean> roots = new ArrayList<PlaceBean>();
-		Map<String, PlaceBean> history = new HashMap<String, PlaceBean>();
+		List<PlaceBean> places = this.repository.getAllPlaces();
 
-		// 首先获取具有父级关系的目的地
-		List<PlaceTuple> tuples = repository.getPlacesHasParentRelationship();
-		for (PlaceTuple pt : tuples) {
-			PlaceBean parent = pt.getParentPlace();
-			PlaceBean place = pt.getPlace();
-			if (!history.containsKey(parent.getShorter())) {
-				history.put(parent.getShorter(), parent);
-				if (parent.isRoot()) {
-					roots.add(parent);
+		return places;
+
+		/*if(CollectionUtils.isNotEmpty(places)){
+			List<PlaceBean> roots = new ArrayList<>();
+
+			Map<Long, PlaceBean> maps = new HashMap<>();
+			for(PlaceBean place :places){
+				maps.put(place.getId(), place);
+			}
+
+			PlaceBean parent = null;
+			for(PlaceBean place : places){
+				if(place.getParentId() != null){
+					maps.get(place.getParentId()).addSubPlace(place);
+				}else{
+					roots.add(place);
 				}
 			}
-			parent = history.get(parent.getShorter());
-			if (!history.containsKey(place.getShorter())) {
-				place.setParent(parent);
-				parent.getSubPlaces().add(place);
-				history.put(place.getShorter(), place);
-			}
+
+			return roots;
 		}
 
-		// 然后获取没有父级关系的目的地
-		List<PlaceBean> places = repository.getPlacesHasnotParentRelationship();
-		if (places != null && !places.isEmpty()) {
-			roots.addAll(places);
-		}
-
-		return roots;
+		return null;*/
 	}
 
 	/*

@@ -41,5 +41,6 @@
     <orderEntry type="library" scope="TEST" name="Gradle: junit:junit:4.8.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: log4j:log4j:1.2.17" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.aspectj:aspectjweaver:1.8.6" level="project" />
+    <orderEntry type="library" name="Gradle: com.alibaba:fastjson:1.2.7" level="project" />
   </component>
 </module>

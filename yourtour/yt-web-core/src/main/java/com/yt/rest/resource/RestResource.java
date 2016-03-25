@@ -15,6 +15,7 @@ import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataBodyPart;
 import com.sun.jersey.multipart.FormDataMultiPart;
 import com.yt.utils.FileUtils;
+import com.yt.utils.SessionUtils;
 import com.yt.utils.WebUtils;
 
 public class RestResource {
@@ -37,11 +38,11 @@ public class RestResource {
 
 	protected Long getCurrentUserId(HttpServletRequest request)
 			throws Exception {
-		return Long.valueOf(request.getHeader("User-Token"));
+		return SessionUtils.getCurrentLoginUser();
 	}
 
 	protected Long getCurrentUserId() throws Exception {
-		return getCurrentUserId(WebUtils.getHttpServletRequest());
+		return SessionUtils.getCurrentLoginUser();
 	}
 
 	/**
