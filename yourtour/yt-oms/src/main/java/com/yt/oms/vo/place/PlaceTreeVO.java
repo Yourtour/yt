@@ -1,4 +1,4 @@
-package com.yt.oms.vo;
+package com.yt.oms.vo.place;
 
 import java.util.List;
 import java.util.Vector;
