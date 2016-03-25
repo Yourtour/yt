@@ -1,4 +1,4 @@
-package com.yt.oms.vo;
+package com.yt.oms.vo.place;
 
 import com.yt.business.bean.PlaceBean;
 import com.yt.vo.TreeVO;

@@ -21,7 +21,7 @@ import com.sun.jersey.multipart.FormDataMultiPart;
 import com.sun.jersey.multipart.FormDataParam;
 import com.yt.business.bean.PlaceBean;
 import com.yt.business.service.IPlaceService;
-import com.yt.oms.vo.PlaceTreeVO;
+import com.yt.oms.vo.place.PlaceTreeVO;
 import com.yt.oms.vo.place.PlaceVO;
 import com.yt.response.ResponseDataVO;
 import com.yt.rest.resource.RestResource;

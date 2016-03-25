@@ -2,6 +2,7 @@ package com.yt.business.service;
 
 import java.util.List;
 
+import com.yt.business.PagingConditionBean;
 import com.yt.business.PagingDataBean;
 import com.yt.business.bean.BannerBean;
 
@@ -15,16 +16,14 @@ public interface IBannerService {
 	/**
 	 * 分页获取所有的Banner信息
 	 * 
-	 * @param nextCursor
-	 *            当前开始游标
-	 * @param limit
-	 *            获取信息条数
+	 * @param pagingCondition
+	 *            分页条件
 	 * @return 符合条件的Banner信息列表，包含分页信息
 	 * @throws Exception
 	 *             获取过程中发生的异常
 	 */
-	public PagingDataBean<List<BannerBean>> getBanners(Long nextCursor,
-			int limit) throws Exception;
+	public PagingDataBean<List<BannerBean>> getBanners(
+			PagingConditionBean pagingCondition) throws Exception;
 
 	/**
 	 * 获取指定ID的banner信息
