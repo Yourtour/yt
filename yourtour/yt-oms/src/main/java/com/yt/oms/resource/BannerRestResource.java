@@ -1,23 +1,5 @@
 package com.yt.oms.resource;
 
-import java.util.List;
-import java.util.Vector;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DefaultValue;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import com.sun.jersey.multipart.FormDataMultiPart;
 import com.sun.jersey.multipart.FormDataParam;
 import com.yt.business.PagingConditionBean;
@@ -39,7 +21,7 @@ import java.util.List;
 import java.util.Vector;
 
 @Component
-@Path("banners/")
+@Path("/oms/banners/")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class BannerRestResource extends RestResource {
@@ -83,7 +65,7 @@ public class BannerRestResource extends RestResource {
 			@FormDataParam("startTime") long startTime,
 			@FormDataParam("endTime") long endTime,
 			@FormDataParam("status") String status, FormDataMultiPart form)
-			throws Exception {
+	throws Exception {
 		BannerBean banner = new BannerBean();
 		banner.setId(bannerId);
 		banner.setTitle(title);

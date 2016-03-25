@@ -7,13 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="92ee94f3-3d6c-4f6d-925a-699d6360b737" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/oms/vo/resource/HotelResourceVO.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/PagingConditionBean.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-web-core/src/main/java/com/yt/vo/PagingConditionVO.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/oms/resource/ResourceRestResource.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/oms/vo/resource/ResourceVO.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/oms/vo/resource/RestaurantResourceVO.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/oms/vo/resource/SceneResourceVO.java" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-oms\WebRoot\assets\global\plugins\font-awesome\css\font-awesome.css" afterPath="" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-oms\WebRoot\assets\global\plugins\simple-line-icons\License.txt" afterPath="" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-oms\WebRoot\assets\global\plugins\simple-line-icons\Readme.txt" afterPath="" />
@@ -21,22 +14,6 @@
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-oms\WebRoot\assets\global\plugins\uniform\jquery.uniform.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../.gitignore" afterPath="$PROJECT_DIR$/../.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/oms/resource/BannerRestResource.java" afterPath="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/oms/resource/BannerRestResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IBannerService.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IBannerService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IResourceService.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IResourceService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/PagingDataBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/PagingDataBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/oms/resource/PlaceRestResource.java" afterPath="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/oms/resource/PlaceRestResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ResourceBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ResourceBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/neo4j/ResourceBeanRepository.java" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/neo4j/ResourceBeanRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/ResourceRestResource.java" afterPath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/rest/resource/ResourceRestResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/ResourceServiceImpl.java" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/ResourceServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/resource/ResourceVO.java" afterPath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/resource/ResourceVO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-web-core/src/main/java/com/yt/response/ResponsePagingDataVO.java" afterPath="$PROJECT_DIR$/yt-web-core/src/main/java/com/yt/response/ResponsePagingDataVO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-web-core/src/main/java/com/yt/rest/resource/RestResource.java" afterPath="$PROJECT_DIR$/yt-web-core/src/main/java/com/yt/rest/resource/RestResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/oms/resource/UserRestResource.java" afterPath="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/oms/resource/UserRestResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/build.gradle" afterPath="$PROJECT_DIR$/yt-oms/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="E:\workspace\yt\yourtour\yt-oms\src\main\java\com\yt\oms\vo\PlaceTreeVO.java" afterPath="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/oms/vo/place/PlaceTreeVO.java" />
-      <change type="MOVED" beforePath="E:\workspace\yt\yourtour\yt-service-impl\src\main\java\com\yt\business\service\impl\BannerService.java" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/BannerServiceImpl.java" />
     </list>
     <ignored path="yourtour.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -108,8 +85,8 @@
       <file leaf-file-name="BannerRestResource.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/yt-oms/src/main/java/com/yt/oms/resource/BannerRestResource.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.56">
-              <caret line="98" column="67" selection-start-line="98" selection-start-column="67" selection-end-line="98" selection-end-column="67" />
+            <state vertical-scroll-proportion="0.6794425">
+              <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -4348,12 +4325,12 @@
       <workItem from="1458883114044" duration="4397000" />
       <workItem from="1458887623955" duration="3474000" />
       <workItem from="1458892184105" duration="6669000" />
-      <workItem from="1458901561730" duration="225000" />
+      <workItem from="1458901561730" duration="329000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="368155000" />
+    <option name="totallyTimeSpent" value="368259000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -4376,7 +4353,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39137647" sideWeight="0.48789713" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977098" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19237147" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.039800994" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26865673" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.09389313" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -4846,8 +4823,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/yt-oms/src/main/java/com/yt/oms/resource/BannerRestResource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.56">
-          <caret line="98" column="67" selection-start-line="98" selection-start-column="67" selection-end-line="98" selection-end-column="67" />
+        <state vertical-scroll-proportion="0.6794425">
+          <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
