@@ -15,7 +15,7 @@ import com.yt.core.utils.BeanUtils;
 import com.yt.neo4j.repository.CrudOperate;
 
 @Service
-public class BannerService extends ServiceBase implements IBannerService {
+public class BannerServiceImpl extends ServiceBase implements IBannerService {
 	@Autowired
 	private CrudOperate<BannerBean> bannerCrudOperate;
 

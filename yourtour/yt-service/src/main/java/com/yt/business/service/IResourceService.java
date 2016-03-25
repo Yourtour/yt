@@ -15,8 +15,8 @@ public interface IResourceService {
 	 * @param userId
 	 * @throws Exception
 	 */
-	public void saveResource(ResourceBean resource, ResourceType resourceType,
-			Long userId) throws Exception;
+	public void saveResource(ResourceBean resource, Long userId)
+			throws Exception;
 
 	/**
 	 * 获取资源信息
@@ -58,8 +58,8 @@ public interface IResourceService {
 	 * @return
 	 * @throws Exception
 	 */
-	public PagingDataBean<List<? extends ResourceBean>> getPlaceResources(Long placeId,
-			PagingConditionBean pagingCondition) throws Exception;
+	public PagingDataBean<List<? extends ResourceBean>> getPlaceResources(
+			Long placeId, PagingConditionBean pagingCondition) throws Exception;
 
 	/**
 	 * 分页获取目的地指定类型的资源
@@ -70,7 +70,7 @@ public interface IResourceService {
 	 * @return
 	 * @throws Exception
 	 */
-	public PagingDataBean<List<? extends ResourceBean>> getPlaceResources(Long placeId,
-			ResourceType resourceType, PagingConditionBean pagingCondition)
-			throws Exception;
+	public PagingDataBean<List<? extends ResourceBean>> getPlaceResources(
+			Long placeId, ResourceType resourceType,
+			PagingConditionBean pagingCondition) throws Exception;
 }

@@ -31,8 +31,8 @@ public class ResourceServiceImpl extends ServiceBase implements
 	private CrudOperate<ResourceBean> resourceCrudOperate;
 
 	@Override
-	public void saveResource(ResourceBean resource, ResourceType resourceType,
-			Long userId) throws Exception {
+	public void saveResource(ResourceBean resource, Long userId)
+			throws Exception {
 		ResourceBean existed = resource;
 		if (existed.isNew()) {
 			resourceCrudOperate.save(resource);

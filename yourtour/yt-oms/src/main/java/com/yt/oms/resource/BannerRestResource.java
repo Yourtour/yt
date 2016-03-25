@@ -85,8 +85,6 @@ public class BannerRestResource extends RestResource {
 		banner.setStartTime(startTime);
 		banner.setEndTime(endTime);
 		banner.setStatus(BannerBean.Status.valueOf(status));
-		// 保存图片
-
 		banner.setImageUrl(super.uploadMediaFile(form, "bannerImage",
 				BANNER_IMAGE_PATH));
 		Long userId = super.getCurrentUserId(request);

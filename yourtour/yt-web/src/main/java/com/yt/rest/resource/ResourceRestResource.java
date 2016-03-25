@@ -103,7 +103,7 @@ public class ResourceRestResource extends RestResource {
 			resource.setImageUrl(images.toString());
 		}
 
-		resourceService.saveResource(resource, ResourceType.valueOf(type),
+		resourceService.saveResource(resource,
 				SessionUtils.getCurrentLoginUser());
 
 		return new ResponseVO();
