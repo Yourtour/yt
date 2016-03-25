@@ -2,6 +2,8 @@ package com.yt.business.service;
 
 import java.util.List;
 
+import com.yt.business.PagingConditionBean;
+import com.yt.business.PagingDataBean;
 import com.yt.business.bean.ResourceBean;
 import com.yt.business.bean.ResourceBean.ResourceType;
 
@@ -37,16 +39,38 @@ public interface IResourceService {
 			ResourceType resourceType, Long userId) throws Exception;
 
 	/**
-	 * 获取目的地资源
+	 * 获取资源
 	 * 
-	 * @param placeId
-	 * @param nextCursor
-	 * @param limit
-	 * @param resType
+	 * @param resourceType
+	 * @param pagingCondition
 	 * @return
 	 * @throws Exception
 	 */
-	public List<? extends ResourceBean> getResources(Long placeId,
-			Long nextCursor, int limit, ResourceType resourceType)
+	public PagingDataBean<List<? extends ResourceBean>> getResources(
+			ResourceType resourceType, PagingConditionBean pagingCondition)
+			throws Exception;
+
+	/**
+	 * 分页获取目的地资源
+	 * 
+	 * @param placeId
+	 * @param pagingCondition
+	 * @return
+	 * @throws Exception
+	 */
+	public PagingDataBean<List<? extends ResourceBean>> getPlaceResources(Long placeId,
+			PagingConditionBean pagingCondition) throws Exception;
+
+	/**
+	 * 分页获取目的地指定类型的资源
+	 * 
+	 * @param placeId
+	 * @param resourceType
+	 * @param pagingCondition
+	 * @return
+	 * @throws Exception
+	 */
+	public PagingDataBean<List<? extends ResourceBean>> getPlaceResources(Long placeId,
+			ResourceType resourceType, PagingConditionBean pagingCondition)
 			throws Exception;
 }

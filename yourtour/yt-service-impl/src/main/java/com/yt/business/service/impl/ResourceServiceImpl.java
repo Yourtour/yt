@@ -7,6 +7,8 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.yt.business.PagingConditionBean;
+import com.yt.business.PagingDataBean;
 import com.yt.business.bean.ResourceBean;
 import com.yt.business.bean.ResourceBean.ResourceType;
 import com.yt.business.repository.neo4j.ResourceBeanRepository;
@@ -63,14 +65,72 @@ public class ResourceServiceImpl extends ServiceBase implements
 		resource.setDeleted(true);
 		super.updateBaseInfo(resource, userId);
 		resourceCrudOperate.save(resource);
+		if (LOG.isDebugEnabled()) {
+			LOG.debug(String
+					.format("Logical delete a resource successfully, resource(%d), type(%s), user(%d).",
+							resourceId, resourceType.name(), userId));
+		}
 		return resource;
 	}
 
 	@Override
-	public List<? extends ResourceBean> getResources(Long placeId,
-			Long nextCursor, int limit, ResourceType resourceType)
+	public PagingDataBean<List<? extends ResourceBean>> getResources(
+			ResourceType resourceType, PagingConditionBean pagingCondition)
 			throws Exception {
-		// repository.getResources(placeId, nextCursor, limit, resType);
-		return null;
+		int total = pagingCondition.getTotal();
+		if (total <= 0) {
+			total = repository.count(resourceType.name());
+		}
+		List<ResourceBean> resources = repository.getResources(
+				resourceType.name(), pagingCondition.getNextCursor(),
+				pagingCondition.getLimit());
+		if (LOG.isDebugEnabled()) {
+			LOG.debug(String
+					.format("Fetch resources data successfully, type(%s), total(%d), condition(%s).",
+							resourceType.name(), resources.size(),
+							pagingCondition.toString()));
+		}
+		return new PagingDataBean<List<? extends ResourceBean>>(total,
+				resources);
+	}
+
+	@Override
+	public PagingDataBean<List<? extends ResourceBean>> getPlaceResources(
+			Long placeId, PagingConditionBean pagingCondition) throws Exception {
+		int total = pagingCondition.getTotal();
+		if (total <= 0) {
+			total = repository.count(placeId);
+		}
+		List<ResourceBean> resources = repository.getPlaceResources(placeId,
+				pagingCondition.getNextCursor(), pagingCondition.getLimit());
+		if (LOG.isDebugEnabled()) {
+			LOG.debug(String
+					.format("Fetch resources at the place data successfully, place(%d), total(%d), condition(%s).",
+							placeId, resources.size(),
+							pagingCondition.toString()));
+		}
+		return new PagingDataBean<List<? extends ResourceBean>>(total,
+				resources);
+	}
+
+	@Override
+	public PagingDataBean<List<? extends ResourceBean>> getPlaceResources(
+			Long placeId, ResourceType resourceType,
+			PagingConditionBean pagingCondition) throws Exception {
+		int total = pagingCondition.getTotal();
+		if (total <= 0) {
+			total = repository.count(placeId, resourceType.name());
+		}
+		List<ResourceBean> resources = repository.getPlaceResources(placeId,
+				resourceType.name(), pagingCondition.getNextCursor(),
+				pagingCondition.getLimit());
+		if (LOG.isDebugEnabled()) {
+			LOG.debug(String
+					.format("Fetch resources at the place data successfully, place(%d), type(%s), total(%d), condition(%s).",
+							placeId, resourceType.name(), resources.size(),
+							pagingCondition.toString()));
+		}
+		return new PagingDataBean<List<? extends ResourceBean>>(total,
+				resources);
 	}
 }

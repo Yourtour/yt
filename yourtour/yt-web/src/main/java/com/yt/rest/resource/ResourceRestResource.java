@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.apache.commons.logging.Log;
@@ -20,10 +22,13 @@ import org.springframework.stereotype.Component;
 import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataBodyPart;
 import com.sun.jersey.multipart.FormDataMultiPart;
+import com.yt.business.PagingConditionBean;
+import com.yt.business.PagingDataBean;
 import com.yt.business.bean.ResourceBean;
 import com.yt.business.bean.ResourceBean.ResourceType;
 import com.yt.business.service.IResourceService;
 import com.yt.response.ResponseDataVO;
+import com.yt.response.ResponsePagingDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.utils.FileUtils;
 import com.yt.utils.SessionUtils;
@@ -131,19 +136,23 @@ public class ResourceRestResource extends RestResource {
 	 */
 	@Path("/place/{placeId}/{type}")
 	@GET
-	public ResponseDataVO<List<ResourceVO>> getResources(
-			@PathParam("placeId") Long placeId, @PathParam("type") String type)
-			throws Exception {
+	public ResponsePagingDataVO<List<ResourceVO>> getResources(
+			@PathParam("placeId") Long placeId, @PathParam("type") String type,
+			@DefaultValue("0") @QueryParam("nextCursor") Long nextCursor,
+			@DefaultValue("20") @QueryParam("limit") int limit,
+			@QueryParam("total") int total) throws Exception {
 		List<ResourceVO> list = new ArrayList<>();
-		List<? extends ResourceBean> result = resourceService.getResources(
-				placeId, 0l, 20, ResourceType.valueOf(type));
-		for (ResourceBean bean : result) {
+		PagingDataBean<List<? extends ResourceBean>> result = resourceService
+				.getPlaceResources(placeId, ResourceType.valueOf(type),
+						new PagingConditionBean(nextCursor, limit, total));
+		for (ResourceBean bean : result.getData()) {
 			if (bean == null) {
 				continue;
 			}
 			list.add(ResourceVO.transform(bean));
 		}
 
-		return new ResponseDataVO<List<ResourceVO>>(list);
+		return new ResponsePagingDataVO<List<ResourceVO>>(result.getTotal(),
+				list.size(), list);
 	}
 }

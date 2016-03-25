@@ -1,5 +1,6 @@
 package com.yt.oms.vo.resource;
 
+import com.yt.business.BaseBeanImpl;
 import com.yt.business.bean.PlaceBean;
 import com.yt.business.bean.ResourceBean;
 import com.yt.business.bean.ResourceBean.ResourceType;
@@ -30,7 +31,7 @@ public class ResourceVO extends BaseVO {
 	private String tags;
 	private String feature;
 
-	private String place; // 目的地
+	private String placeName; // 目的地名称
 	private Long placeId; // 目的地对象ID
 
 	private double commentScore = 0f;
@@ -52,54 +53,7 @@ public class ResourceVO extends BaseVO {
 		}
 
 		ResourceVO vo = new ResourceVO();
-
 		vo.fromBean(bean);
-
-		vo.setCode(bean.getCode());
-		vo.setName(bean.getName());
-		vo.setAddress(bean.getAddress());
-		vo.setArriveNum(bean.getArriveNum());
-		vo.setBookingMemo(bean.getBookingMemo());
-		vo.setFavoriteNum(bean.getFavoriteNum());
-		vo.setImageUrl(bean.getImageUrl());
-		vo.setMember(bean.isMember());
-		vo.setOpenTime(bean.getOpenTime());
-		vo.setPayment(bean.getPayment());
-		vo.setPhone(bean.getPhone());
-		vo.setPosition(bean.getPosition());
-		vo.setPostCode(bean.getPostCode());
-		vo.setShareNum(bean.getShareNum());
-		vo.setStar(bean.getStar());
-		vo.setTips(bean.getTips());
-		vo.setTrafficIntro(bean.getTrafficIntro());
-		vo.setType(bean.getType());
-		vo.setWebsite(bean.getWebsite());
-
-		vo.setTags(bean.getTags());
-		vo.setFeature(bean.getFeature());
-		vo.setCommentNum(bean.getCommentNum());
-		vo.setGoodNum(bean.getGoodNum());
-		vo.setBadNum(bean.getBadNum());
-		vo.setMediumNum(bean.getMediumNum());
-		vo.setImageNum(bean.getImageNum());
-
-		vo.setCommentScore(bean.getCommentScore());
-		vo.setHealthScore(bean.getHealthScore());
-		vo.setTrafficScore(bean.getTrafficScore());
-		vo.setFacilityScore(bean.getFacilityScore());
-		vo.setEnvironmentScore(bean.getEnvironmentScore());
-		vo.setServiceScore(bean.getServiceScore());
-
-		// 从目的地对象中获取ID和名称，便于前端显示
-		PlaceBean place = bean.getPlace();
-		if (place != null) {
-			vo.setPlace(place.getName());
-			vo.setPlaceId(place.getId());
-		} else {
-			vo.setPlace("");
-			vo.setPlaceId(null);
-		}
-
 		return vo;
 	}
 
@@ -109,40 +63,98 @@ public class ResourceVO extends BaseVO {
 		}
 
 		ResourceBean bean = new ResourceBean();
-
 		vo.toBean(bean);
-		bean.setCode(vo.getCode());
-		bean.setName(vo.getName());
-		bean.setAddress(vo.getAddress());
-		bean.setArriveNum(vo.getArriveNum());
-		bean.setBookingMemo(vo.getBookingMemo());
-		bean.setCommentNum(vo.getCommentNum());
-		bean.setCommentScore(vo.getCommentScore());
-		bean.setFavoriteNum(vo.getFavoriteNum());
-		bean.setImageUrl(vo.getImageUrl());
-		bean.setMember(vo.isMember());
-		bean.setOpenTime(vo.getOpenTime());
-		bean.setPayment(vo.getPayment());
-		bean.setPhone(vo.getPhone());
-		bean.setPosition(vo.getPosition());
-		bean.setPostCode(vo.getPostCode());
-		bean.setShareNum(vo.getShareNum());
-		bean.setStar(vo.getStar());
-		bean.setTips(vo.getTips());
-		bean.setTrafficIntro(vo.getTrafficIntro());
-		bean.setType(vo.getType());
-		bean.setWebsite(vo.getWebsite());
-
-		// 从VO中取出目的地的ID，并设置到PlaceBean中，便于后续建立关联关系
-		PlaceBean place = new PlaceBean();
-		place.setId(vo.getPlaceId());
-		bean.setPlace(place);
-
 		return bean;
 	}
 
 	public ResourceVO() {
 		super();
+	}
+
+	@Override
+	public void fromBean(BaseBeanImpl bean) {
+		if (bean == null) {
+			return;
+		}
+		super.fromBean(bean);
+	
+		ResourceBean resource = (ResourceBean) bean;
+		this.setCode(resource.getCode());
+		this.setName(resource.getName());
+		this.setAddress(resource.getAddress());
+		this.setArriveNum(resource.getArriveNum());
+		this.setBookingMemo(resource.getBookingMemo());
+		this.setFavoriteNum(resource.getFavoriteNum());
+		this.setImageUrl(resource.getImageUrl());
+		this.setMember(resource.isMember());
+		this.setOpenTime(resource.getOpenTime());
+		this.setPayment(resource.getPayment());
+		this.setPhone(resource.getPhone());
+		this.setPosition(resource.getPosition());
+		this.setPostCode(resource.getPostCode());
+		this.setShareNum(resource.getShareNum());
+		this.setStar(resource.getStar());
+		this.setTips(resource.getTips());
+		this.setTrafficIntro(resource.getTrafficIntro());
+		this.setType(resource.getType());
+		this.setWebsite(resource.getWebsite());
+	
+		this.setTags(resource.getTags());
+		this.setFeature(resource.getFeature());
+		this.setCommentNum(resource.getCommentNum());
+		this.setGoodNum(resource.getGoodNum());
+		this.setBadNum(resource.getBadNum());
+		this.setMediumNum(resource.getMediumNum());
+		this.setImageNum(resource.getImageNum());
+	
+		this.setCommentScore(resource.getCommentScore());
+		this.setHealthScore(resource.getHealthScore());
+		this.setTrafficScore(resource.getTrafficScore());
+		this.setFacilityScore(resource.getFacilityScore());
+		this.setEnvironmentScore(resource.getEnvironmentScore());
+		this.setServiceScore(resource.getServiceScore());
+	
+		// 从目的地对象中获取ID和名称，便于前端显示
+		PlaceBean place = resource.getPlace();
+		if (place != null) {
+			this.setPlace(place.getName());
+			this.setPlaceId(place.getId());
+		} else {
+			this.setPlace("");
+			this.setPlaceId(null);
+		}
+	}
+
+	@Override
+	public void toBean(BaseBeanImpl bean) {
+		toBean(bean);
+		ResourceBean resource = (ResourceBean) bean;
+		resource.setCode(getCode());
+		resource.setName(getName());
+		resource.setAddress(getAddress());
+		resource.setArriveNum(getArriveNum());
+		resource.setBookingMemo(getBookingMemo());
+		resource.setCommentNum(getCommentNum());
+		resource.setCommentScore(getCommentScore());
+		resource.setFavoriteNum(getFavoriteNum());
+		resource.setImageUrl(getImageUrl());
+		resource.setMember(isMember());
+		resource.setOpenTime(getOpenTime());
+		resource.setPayment(getPayment());
+		resource.setPhone(getPhone());
+		resource.setPosition(getPosition());
+		resource.setPostCode(getPostCode());
+		resource.setShareNum(getShareNum());
+		resource.setStar(getStar());
+		resource.setTips(getTips());
+		resource.setTrafficIntro(getTrafficIntro());
+		resource.setType(getType());
+		resource.setWebsite(getWebsite());
+	
+		// 从VO中取出目的地的ID，并设置到PlaceBean中，便于后续建立关联关系
+		PlaceBean place = new PlaceBean();
+		place.setId(getPlaceId());
+		resource.setPlace(place);
 	}
 
 	public String getCode() {
@@ -329,11 +341,11 @@ public class ResourceVO extends BaseVO {
 	}
 
 	public String getPlace() {
-		return place;
+		return placeName;
 	}
 
 	public void setPlace(String place) {
-		this.place = place;
+		this.placeName = place;
 	}
 
 	public Long getPlaceId() {

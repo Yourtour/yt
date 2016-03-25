@@ -1,19 +1,24 @@
 package com.yt.oms.resource;
 
 import java.util.List;
+import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.yt.business.PagingConditionBean;
+import com.yt.business.PagingDataBean;
 import com.yt.business.bean.HotelResourceBean;
 import com.yt.business.bean.ResourceBean;
 import com.yt.business.bean.ResourceBean.ResourceType;
@@ -37,10 +42,22 @@ public class ResourceRestResource extends RestResource {
 
 	@GET
 	@Path("/hotels")
-	public ResponsePagingDataVO<List<HotelResourceVO>> getHotels()
-			throws Exception {
-		// TODO
-		return null;
+	public ResponsePagingDataVO<List<HotelResourceVO>> getHotels(
+			@DefaultValue("0") @QueryParam("nextCursor") Long nextCursor,
+			@DefaultValue("20") @QueryParam("limit") int limit,
+			@QueryParam("total") int total) throws Exception {
+		PagingDataBean<List<? extends ResourceBean>> pagingData = resourceService
+				.getResources(ResourceType.HOTEL, new PagingConditionBean(
+						nextCursor, limit, total));
+		List<HotelResourceVO> vos = new Vector<>();
+		for (ResourceBean bean : pagingData.getData()) {
+			if (bean == null) {
+				continue;
+			}
+			vos.add(HotelResourceVO.transform((HotelResourceBean) bean));
+		}
+		return new ResponsePagingDataVO<List<HotelResourceVO>>(
+				pagingData.getTotal(), vos.size(), vos);
 	}
 
 	@GET
@@ -83,10 +100,23 @@ public class ResourceRestResource extends RestResource {
 
 	@GET
 	@Path("/restaurants")
-	public ResponsePagingDataVO<List<RestaurantResourceVO>> getRestaurants()
-			throws Exception {
-		// TODO
-		return null;
+	public ResponsePagingDataVO<List<RestaurantResourceVO>> getRestaurants(
+			@DefaultValue("0") @QueryParam("nextCursor") Long nextCursor,
+			@DefaultValue("20") @QueryParam("limit") int limit,
+			@QueryParam("total") int total) throws Exception {
+		PagingDataBean<List<? extends ResourceBean>> pagingData = resourceService
+				.getResources(ResourceType.HOTEL, new PagingConditionBean(
+						nextCursor, limit, total));
+		List<RestaurantResourceVO> vos = new Vector<>();
+		for (ResourceBean bean : pagingData.getData()) {
+			if (bean == null) {
+				continue;
+			}
+			vos.add(RestaurantResourceVO
+					.transform((RestaurantResourceBean) bean));
+		}
+		return new ResponsePagingDataVO<List<RestaurantResourceVO>>(
+				pagingData.getTotal(), vos.size(), vos);
 	}
 
 	@GET
@@ -110,10 +140,22 @@ public class ResourceRestResource extends RestResource {
 
 	@GET
 	@Path("/scenes")
-	public ResponsePagingDataVO<List<SceneResourceVO>> getScenes()
-			throws Exception {
-		// TODO
-		return null;
+	public ResponsePagingDataVO<List<SceneResourceVO>> getScenes(
+			@DefaultValue("0") @QueryParam("nextCursor") Long nextCursor,
+			@DefaultValue("20") @QueryParam("limit") int limit,
+			@QueryParam("total") int total) throws Exception {
+		PagingDataBean<List<? extends ResourceBean>> pagingData = resourceService
+				.getResources(ResourceType.HOTEL, new PagingConditionBean(
+						nextCursor, limit, total));
+		List<SceneResourceVO> vos = new Vector<>();
+		for (ResourceBean bean : pagingData.getData()) {
+			if (bean == null) {
+				continue;
+			}
+			vos.add(SceneResourceVO.transform((SceneResourceBean) bean));
+		}
+		return new ResponsePagingDataVO<List<SceneResourceVO>>(
+				pagingData.getTotal(), vos.size(), vos);
 	}
 
 	@GET
