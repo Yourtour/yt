@@ -28,6 +28,7 @@ import com.yt.business.bean.ResourceBean.ResourceType;
 import com.yt.business.bean.RestaurantResourceBean;
 import com.yt.business.bean.SceneResourceBean;
 import com.yt.business.service.IResourceService;
+import com.yt.core.utils.BeanUtils;
 import com.yt.oms.vo.resource.HotelResourceVO;
 import com.yt.oms.vo.resource.RestaurantResourceVO;
 import com.yt.oms.vo.resource.SceneResourceVO;
@@ -110,57 +111,12 @@ public class ResourceRestResource extends RestResource {
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public ResponseDataVO<HotelResourceVO> saveHotel(
 			@Context HttpServletRequest request,
-			@FormDataParam("id") Long hotelId,
-			@FormDataParam("code") String code,
-			@FormDataParam("name") String name,
-			@FormDataParam("address") String address,
-			@FormDataParam("bookingMemo") String bookingMemo,
-			@FormDataParam("currency") String currency,
-			@FormDataParam("feature") String feature,
-			@FormDataParam("intro") String intro,
-			@FormDataParam("member") boolean isMember,
-			@FormDataParam("openTime") String openTime,
-			@FormDataParam("payment") String payment,
-			@FormDataParam("phone") String phone,
-			@FormDataParam("position") String position,
-			@FormDataParam("postCode") String postCode,
-			@FormDataParam("price") String price,
-			@FormDataParam("star") int star,
-			@FormDataParam("tags") String tags,
-			@FormDataParam("tips") String tips,
-			@FormDataParam("trafficIntro") String trafficIntro,
-			@FormDataParam("website") String website,
-			@FormDataParam("accommodationStandard") String accommodationStandard,
-			@FormDataParam("networkInfo") String networkInfo,
-			@FormDataParam("roomEquipment") String roomEquipment,
-			FormDataMultiPart form) throws Exception {
-		HotelResourceBean hotel = new HotelResourceBean();
-		hotel.setId(hotelId);
-		hotel.setCode(code);
-		hotel.setName(name);
-		hotel.setAddress(address);
-		hotel.setBookingMemo(bookingMemo);
-		hotel.setCurrency(currency);
-		hotel.setFeature(feature);
-		hotel.setIntro(intro);
-		hotel.setMember(isMember);
-		hotel.setOpenTime(openTime);
-		hotel.setPayment(payment);
-		hotel.setPhone(phone);
-		hotel.setPosition(position);
-		hotel.setPrice(price);
-		hotel.setPostCode(postCode);
-		hotel.setStar(star);
-		hotel.setTags(tags);
-		hotel.setTips(tips);
-		hotel.setTrafficIntro(trafficIntro);
-		hotel.setWebsite(website);
+			@FormDataParam("place") String json, FormDataMultiPart form)
+			throws Exception {
+		HotelResourceBean hotel = (HotelResourceBean) BeanUtils.deserialize(
+				json, HotelResourceBean.class);
 		hotel.setImageUrl(super.uploadMediaFile(form, "hotelImage",
 				HOTEL_IMAGE_PATH));
-
-		hotel.setAccommodationStandard(accommodationStandard);
-		hotel.setNetworkInfo(networkInfo);
-		hotel.setRoomEquipment(roomEquipment);
 
 		Long userId = super.getCurrentUserId(request);
 		resourceService.saveResource(hotel, userId);
@@ -228,65 +184,18 @@ public class ResourceRestResource extends RestResource {
 									.getClass().getName()));
 		}
 	}
-	
+
 	@POST
 	@Path("/restaurants/save")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public ResponseDataVO<RestaurantResourceVO> saveRestaurant(
 			@Context HttpServletRequest request,
-			@FormDataParam("id") Long hotelId,
-			@FormDataParam("code") String code,
-			@FormDataParam("name") String name,
-			@FormDataParam("address") String address,
-			@FormDataParam("bookingMemo") String bookingMemo,
-			@FormDataParam("currency") String currency,
-			@FormDataParam("feature") String feature,
-			@FormDataParam("intro") String intro,
-			@FormDataParam("member") boolean isMember,
-			@FormDataParam("openTime") String openTime,
-			@FormDataParam("payment") String payment,
-			@FormDataParam("phone") String phone,
-			@FormDataParam("position") String position,
-			@FormDataParam("postCode") String postCode,
-			@FormDataParam("price") String price,
-			@FormDataParam("star") int star,
-			@FormDataParam("tags") String tags,
-			@FormDataParam("tips") String tips,
-			@FormDataParam("trafficIntro") String trafficIntro,
-			@FormDataParam("website") String website,
-			@FormDataParam("deliciouFood") String deliciouFood,
-			@FormDataParam("foodStandard") String foodStandard,
-			@FormDataParam("foodTags") String foodTags,
-			@FormDataParam("networkInfo") String networkInfo,
-			FormDataMultiPart form) throws Exception {
-		RestaurantResourceBean restaurant = new RestaurantResourceBean();
-		restaurant.setId(hotelId);
-		restaurant.setCode(code);
-		restaurant.setName(name);
-		restaurant.setAddress(address);
-		restaurant.setBookingMemo(bookingMemo);
-		restaurant.setCurrency(currency);
-		restaurant.setFeature(feature);
-		restaurant.setIntro(intro);
-		restaurant.setMember(isMember);
-		restaurant.setOpenTime(openTime);
-		restaurant.setPayment(payment);
-		restaurant.setPhone(phone);
-		restaurant.setPosition(position);
-		restaurant.setPrice(price);
-		restaurant.setPostCode(postCode);
-		restaurant.setStar(star);
-		restaurant.setTags(tags);
-		restaurant.setTips(tips);
-		restaurant.setTrafficIntro(trafficIntro);
-		restaurant.setWebsite(website);
-		restaurant.setImageUrl(super.uploadMediaFile(form, "hotelImage",
+			@FormDataParam("restaurant") String json, FormDataMultiPart form)
+			throws Exception {
+		RestaurantResourceBean restaurant = (RestaurantResourceBean) BeanUtils
+				.deserialize(json, RestaurantResourceBean.class);
+		restaurant.setImageUrl(super.uploadMediaFile(form, "restaurantImage",
 				HOTEL_IMAGE_PATH));
-
-		restaurant.setDeliciouFood(deliciouFood);
-		restaurant.setFoodStandard(foodStandard);
-		restaurant.setFoodTags(foodTags);
-		restaurant.setNetworkInfo(networkInfo);
 
 		Long userId = super.getCurrentUserId(request);
 		resourceService.saveResource(restaurant, userId);
@@ -357,59 +266,12 @@ public class ResourceRestResource extends RestResource {
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public ResponseDataVO<SceneResourceVO> saveScene(
 			@Context HttpServletRequest request,
-			@FormDataParam("id") Long hotelId,
-			@FormDataParam("code") String code,
-			@FormDataParam("name") String name,
-			@FormDataParam("address") String address,
-			@FormDataParam("bookingMemo") String bookingMemo,
-			@FormDataParam("currency") String currency,
-			@FormDataParam("feature") String feature,
-			@FormDataParam("intro") String intro,
-			@FormDataParam("member") boolean isMember,
-			@FormDataParam("openTime") String openTime,
-			@FormDataParam("payment") String payment,
-			@FormDataParam("phone") String phone,
-			@FormDataParam("position") String position,
-			@FormDataParam("postCode") String postCode,
-			@FormDataParam("price") String price,
-			@FormDataParam("star") int star,
-			@FormDataParam("tags") String tags,
-			@FormDataParam("tips") String tips,
-			@FormDataParam("trafficIntro") String trafficIntro,
-			@FormDataParam("website") String website,
-			@FormDataParam("ticket") String ticket,
-			@FormDataParam("sceneMap") String sceneMap,
-			@FormDataParam("sceneTraffic") String sceneTraffic,
-			@FormDataParam("specialScene") String specialScene,
-			FormDataMultiPart form) throws Exception {
-		SceneResourceBean scene = new SceneResourceBean();
-		scene.setId(hotelId);
-		scene.setCode(code);
-		scene.setName(name);
-		scene.setAddress(address);
-		scene.setBookingMemo(bookingMemo);
-		scene.setCurrency(currency);
-		scene.setFeature(feature);
-		scene.setIntro(intro);
-		scene.setMember(isMember);
-		scene.setOpenTime(openTime);
-		scene.setPayment(payment);
-		scene.setPhone(phone);
-		scene.setPosition(position);
-		scene.setPrice(price);
-		scene.setPostCode(postCode);
-		scene.setStar(star);
-		scene.setTags(tags);
-		scene.setTips(tips);
-		scene.setTrafficIntro(trafficIntro);
-		scene.setWebsite(website);
+			@FormDataParam("scene") String json, FormDataMultiPart form)
+			throws Exception {
+		SceneResourceBean scene = (SceneResourceBean) BeanUtils.deserialize(
+				json, SceneResourceBean.class);
 		scene.setImageUrl(super.uploadMediaFile(form, "sceneImage",
 				HOTEL_IMAGE_PATH));
-
-		scene.setTicket(ticket);
-		scene.setSceneMap(sceneMap);
-		scene.setSceneTraffic(sceneTraffic);
-		scene.setSpecialScene(specialScene);
 
 		Long userId = super.getCurrentUserId(request);
 		resourceService.saveResource(scene, userId);
