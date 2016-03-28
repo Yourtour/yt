@@ -90,7 +90,7 @@ Ext.define('YourTour.view.widget.XCalendar', {
     onActiveItemChange: function (carousel, value, oldValue, eOpts) {
         var me = this;
 
-        if(value) {
+        if (value) {
             if (me.initialized) {
                 var year = value.getYear(), month = value.getMonth();
 
@@ -112,8 +112,8 @@ Ext.define('YourTour.view.widget.XCalendar', {
     onItemTap: function (panel, item, date, active) {
         var me = this, selectedItems = me.selectedItems;
 
-        var result =  me.fireEvent('itemtap', me, panel, item, date, active);
-        if(result) {
+        var result = me.fireEvent('itemtap', me, panel, item, date, active);
+        if (result) {
             if (active) {
                 selectedItems.push(item);
             } else {
@@ -127,8 +127,33 @@ Ext.define('YourTour.view.widget.XCalendar', {
         return result;
     },
 
-    setDate: function (year, month) {
-        var me = this, calendar = me.down('#calendar');
+    setDate: function (date) {
+        var me = this, year, month,
+            calendar = me.down('#calendar'),
+            startDate = null, endDate = null;
+
+        if (Ext.isArray(date)) {
+            startDate = date[0];
+
+            if (date.length > 1) {
+                endDate = date[1];
+            }
+        } else {
+            startDate = date;
+        }
+
+        me.defaultDate = [];
+        if (startDate != null) {
+            me.defaultDate.push(startDate);
+        }
+
+        if (endDate != null) {
+            me.defaultDate.push(endDate);
+        }
+
+
+        year = startDate.getFullYear();
+        month = startDate.getMonth() + 1;
 
         me.insertMonth(year, month);
         calendar.add(Ext.create('YourTour.view.widget.XCalendarPanel', {year: year, month: month, calendar: me}));
@@ -141,9 +166,10 @@ Ext.define('YourTour.view.widget.XCalendar', {
 
     insertMonth: function (year, month) {
         var me = this, calendar = me.down('#calendar');
-        if(calendar) {
+        if (calendar) {
             var dMonth = month != 1 ? month - 1 : 12;
             var dyear = dMonth == 12 ? year - 1 : year;
+
             calendar.insert(0, Ext.create('YourTour.view.widget.XCalendarPanel', {
                 year: dyear,
                 month: dMonth,
@@ -154,8 +180,7 @@ Ext.define('YourTour.view.widget.XCalendar', {
 
     appendMonth: function (year, month) {
         var me = this, calendar = me.down('#calendar');
-
-        if(calendar) {
+        if (calendar) {
             var dMonth = month != 12 ? month + 1 : 11;
             var dyear = dMonth == 1 ? year + 1 : year;
             calendar.add(Ext.create('YourTour.view.widget.XCalendarPanel', {year: dyear, month: dMonth, calendar: me}));
@@ -166,8 +191,12 @@ Ext.define('YourTour.view.widget.XCalendar', {
         return this.selectedItems;
     },
 
-    reset:function(){
-        Ext.Array.forEach(this.selectedItems, function(item){
+    getDefaultDate: function () {
+        return this.defaultDate;
+    },
+
+    reset: function () {
+        Ext.Array.forEach(this.selectedItems, function (item) {
             item.removeCls('active');
         })
     }

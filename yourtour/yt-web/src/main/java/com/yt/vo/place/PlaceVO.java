@@ -1,47 +1,39 @@
 package com.yt.vo.place;
 
-import com.yt.business.bean.*;
-import com.yt.business.common.Constants.Status;
-import com.yt.core.utils.CollectionUtils;
-import com.yt.vo.member.ExpertVO;
-import com.yt.vo.resource.ResourceVO;
-import com.yt.vo.route.LineVO;
-import com.yt.vo.route.RouteVO;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.yt.business.bean.PlaceBean;
 
 public class PlaceVO {
-	private Long graphId = -1l, parentId = null;
-	private String parentCode, code, shorter, text, memo, imageUrl, name;
-	private boolean expandable = false, leaf = false;
-	private Status status = Status.ACTIVED;
-	private int followedNum = 0; //关注人数
-	private int goneNum = 0;  //去过人数
-	private int goingNum = 0;  //想去人数
-	private int num = 0;  //下辖目的地个数
-	private int alongNum = 0;
-
-	private List<ResourceVO> resources;
+	private Long id = -1l;
+	private Long parentId; //父级目的地
+	private String code;  //目的地编码，
+	private String name;
+	private String intro; //简介
+	private String feature; //特色
+	private String traffic; //交通
+	private String imageUrl; //图片， 可以有多张
+	private String specialty; //特产
+	private String memo = ""; // 备注
+	private int goneNum = 0; // 去过人数
+	private int goingNum = 0; // 想去人数
 
 	public static PlaceBean transform(PlaceVO vo) {
 		if (vo == null) {
 			return null;
 		}
+
 		PlaceBean bean = new PlaceBean();
 		bean.setCode(vo.getCode());
-		if (vo.getGraphId() != null && vo.getGraphId().longValue() != -1l) {
-			bean.setGraphId(vo.getGraphId());
+		if (vo.getId() != null && vo.getId().longValue() != -1l) {
+			bean.setId(vo.getId());
 		}
-		bean.setName(vo.getText());
+		bean.setParentId(vo.getParentId());
+		bean.setName(vo.getName());
+		bean.setCode(vo.getCode());
+		bean.setFeature(vo.getFeature());
+		bean.setIntro(vo.getIntro());
+		bean.setTraffic(vo.getTraffic());
+		bean.setSpecialty(vo.getSpecialty());
 		bean.setMemo(vo.getMemo());
-		bean.setShorter(vo.getShorter());
-		bean.setStatus(vo.getStatus());
-		if (vo.getParentId() != null && vo.getParentId().longValue() != -1l) {
-			PlaceBean parent = new PlaceBean();
-			parent.setGraphId(vo.getParentId());
-			bean.setParent(parent);
-		}
 
 		return bean;
 	}
@@ -53,34 +45,17 @@ public class PlaceVO {
 
 		PlaceVO vo = new PlaceVO();
 		vo.setCode(bean.getCode());
-		vo.setId(bean.getGraphId());
-		vo.setLeaf(bean.isLeaf());
+		vo.setId(bean.getId());
 		vo.setName(bean.getName());
 		vo.setMemo(bean.getMemo());
-		vo.setShorter(bean.getShorter());
-		vo.setStatus(bean.getStatus());
-		vo.setText(bean.getName());
 		vo.setImageUrl(bean.getImageUrl());
 		vo.setGoingNum(bean.getGoingNum());
 		vo.setGoneNum(bean.getGoneNum());
-		vo.setFollowedNum(bean.getFollowedNum());
-		vo.setNum(bean.getSubs().size());
-		vo.setExpandable(CollectionUtils.isNotEmpty(bean.getSubs()));
-		vo.setAlongNum(bean.getAlongNum());
-
-		if(bean.getParent() != null){
-			vo.setParentCode(bean.getParent().getCode());
-		}
-
-		List<? extends ResourceBean> resources = bean.getResources();
-		if(CollectionUtils.isNotEmpty(resources)){
-			List<ResourceVO> voes = new ArrayList<>();
-			for(ResourceBean resource : resources){
-				voes.add(ResourceVO.transform(resource));
-			}
-
-			vo.setResources(voes);
-		}
+		vo.setSpecialty(bean.getSpecialty());
+		vo.setTraffic(bean.getTraffic());
+		vo.setIntro(bean.getIntro());
+		vo.setParentId(bean.getParentId());
+		vo.setFeature(bean.getFeature());
 
 		return vo;
 	}
@@ -89,16 +64,12 @@ public class PlaceVO {
 		super();
 	}
 
-	public Long getGraphId() {
-		return graphId;
-	}
-
 	public Long getId() {
-		return graphId;
+		return id;
 	}
 
-	public void setId(Long graphId) {
-		this.graphId = graphId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Long getParentId() {
@@ -109,14 +80,6 @@ public class PlaceVO {
 		this.parentId = parentId;
 	}
 
-	public String getParentCode() {
-		return parentCode;
-	}
-
-	public void setParentCode(String parentCode) {
-		this.parentCode = parentCode;
-	}
-
 	public String getCode() {
 		return code;
 	}
@@ -125,66 +88,37 @@ public class PlaceVO {
 		this.code = code;
 	}
 
-	public String getShorter() {
-		return shorter;
-	}
-
-	public void setShorter(String shorter) {
-		this.shorter = shorter;
-	}
-
 	public String getName() {
 		return name;
 	}
 
-	public String getText() {
-		return text;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public String getIntro() {
+		return intro;
 	}
 
-	public int getAlongNum() {
-		return alongNum;
+	public void setIntro(String intro) {
+		this.intro = intro;
 	}
 
-	public void setAlongNum(int alongNum) {
-		this.alongNum = alongNum;
+	public String getFeature() {
+		return feature;
 	}
 
-	public String getMemo() {
-		return memo;
+	public void setFeature(String feature) {
+		this.feature = feature;
 	}
 
-	public void setMemo(String memo) {
-		this.memo = memo;
+	public String getTraffic() {
+		return traffic;
 	}
 
-	public boolean isExpandable() {
-		return expandable;
+	public void setTraffic(String traffic) {
+		this.traffic = traffic;
 	}
-
-	public void setExpandable(boolean expandable) {
-		this.expandable = expandable;
-	}
-
-	public boolean isLeaf() {
-		return leaf;
-	}
-
-	public void setLeaf(boolean leaf) {
-		this.leaf = leaf;
-	}
-
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
-	}
-
 
 	public String getImageUrl() {
 		return imageUrl;
@@ -194,12 +128,20 @@ public class PlaceVO {
 		this.imageUrl = imageUrl;
 	}
 
-	public int getFollowedNum() {
-		return followedNum;
+	public String getSpecialty() {
+		return specialty;
 	}
 
-	public void setFollowedNum(int followedNum) {
-		this.followedNum = followedNum;
+	public void setSpecialty(String specialty) {
+		this.specialty = specialty;
+	}
+
+	public String getMemo() {
+		return memo;
+	}
+
+	public void setMemo(String memo) {
+		this.memo = memo;
 	}
 
 	public int getGoneNum() {
@@ -216,25 +158,5 @@ public class PlaceVO {
 
 	public void setGoingNum(int goingNum) {
 		this.goingNum = goingNum;
-	}
-
-	public int getNum() {
-		return num;
-	}
-
-	public void setNum(int num) {
-		this.num = num;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public List<ResourceVO> getResources() {
-		return resources;
-	}
-
-	public void setResources(List<ResourceVO> resources) {
-		this.resources = resources;
 	}
 }

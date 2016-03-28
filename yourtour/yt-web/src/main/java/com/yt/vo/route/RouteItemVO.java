@@ -1,14 +1,10 @@
 package com.yt.vo.route;
 
-import java.io.Serializable;
-import java.util.Calendar;
-import java.util.Date;
-
 import com.yt.business.bean.RouteMainBean;
 import com.yt.core.utils.DateUtils;
 import com.yt.core.utils.StringUtils;
-import com.yt.vo.member.UserBriefVO;
-import org.apache.hadoop.hbase.security.User;
+
+import java.io.Serializable;
 
 public class RouteItemVO implements Serializable{
 	private static final long serialVersionUID = 8326191052746173505L;
@@ -20,7 +16,7 @@ public class RouteItemVO implements Serializable{
 	}
 	
 	public Long getId(){
-		return route.getGraphId();
+		return route.getId();
 	}
 	
 	public String getName() {

@@ -46,6 +46,17 @@ Ext.define('YourTour.view.widget.XImageField', {
         this.data = data;
     },
 
+    setSrc:function(src){
+        var me = this;
+
+        var style = {};
+        style['background-image'] = 'url(' + src + ')';
+        style['background-repeat'] = 'no-repeat';
+        style['background-position'] = 'center center';
+        style['background-size'] = '100% 100%';
+        me.setStyle(style);
+    },
+
     getAsBase64: function () {
         return 'data:image/jpeg;base64,' + this.data;
     },
@@ -55,9 +66,7 @@ Ext.define('YourTour.view.widget.XImageField', {
     },
 
     getFileName: function () {
-        var me = this, image = me.image || me.getImage();
-
-        return image.fileName;
+        return this.fileName;
     }
 });
 

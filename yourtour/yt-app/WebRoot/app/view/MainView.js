@@ -23,6 +23,13 @@ Ext.define('YourTour.view.MainView', {
         		ui:'dark',
 				cls:'tabbar',
         		tabBarPosition:'bottom',
+				layout: {
+					type: 'card',
+					animation: {
+						type: 'fade',
+						duration:1000
+					}
+				},
         		tabBar : {
                     defaults: {
                         flex:1
@@ -51,9 +58,9 @@ Ext.define('YourTour.view.MainView', {
 					    iconAlign:'top'
 					},
 					{
-						xtype:'UserMainView',
-						itemId:'btnPersonal',
-						title:'个人',
+                        xtype:'CartMainView',
+						itemId:'btnTravelCart',
+						title:'旅行车',
 					    iconCls:'user',
 					    iconAlign:'top'
 					}

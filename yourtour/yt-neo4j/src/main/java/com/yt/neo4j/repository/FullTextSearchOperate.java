@@ -9,7 +9,7 @@ package com.yt.neo4j.repository;
 
 import java.util.List;
 
-import com.yt.neo4j.bean.Neo4jBaseBean;
+import com.yt.neo4j.Neo4jBaseBean;
 
 /**
  * 定义了基于Neo4j的全文检索的接口方法。

@@ -13,8 +13,7 @@ Ext.define('YourTour.view.expert.ExpertApplyView', {
 				title:'达人申请',
 				items:[
 					{
-						xtype: "toolbutton",
-						ui: "normal",
+						xtype: "xbutton",
 						text:'提交',
 						itemId:'btnSubmit',
 						align:'right'

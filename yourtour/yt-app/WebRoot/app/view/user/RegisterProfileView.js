@@ -1,14 +1,14 @@
 Ext.define('YourTour.view.user.RegisterProfileView', {
 	extend: 'Ext.Container',
     xtype: 'RegisterProfileView',
-    requires:['Ext.Panel','Ext.field.Radio','Ext.field.File', 'YourTour.view.widget.XImageSelect', 'YourTour.view.widget.XSpacer', 'YourTour.view.widget.XTitleBar', 'Ext.field.Password','YourTour.view.widget.XTextField', 'YourTour.view.widget.XButton', 'YourTour.view.widget.ToolButton'],
+    requires:['Ext.Panel', 'YourTour.store.GenderStore', 'YourTour.view.widget.XImageSelect', 'YourTour.view.widget.XSpacer','YourTour.view.widget.XTextField', 'YourTour.view.widget.XButton', 'YourTour.view.widget.XSelectField'],
     config: {
 		layout: 'vbox',
 		defaults: {
 			padding: '0 10 0 10',
 			style:'background-color:white'
 		},
-		scrollable: 'none',
+		scrollable: null,
         items: [
 			{
 				xtype: 'xheaderbar',
@@ -17,7 +17,6 @@ Ext.define('YourTour.view.user.RegisterProfileView', {
 					headerbar.up('#LoginMainView').setActiveItem(1);
 				}
 			},
-
 
 			{
 				xtype: 'container',
@@ -43,12 +42,18 @@ Ext.define('YourTour.view.user.RegisterProfileView', {
 				padding: '0 10 0 50',
 				items: [
 					{
-						xtype:'xgenderselect',
+						xtype:'xselectfield',
 						itemId:'gender',
-						name:'gener',
-						displayField:"text",
-						valueField:"value",
-						flex: 1
+						field:{
+							align:'left',
+						},
+						underline:false,
+						flex: 1,
+						editable:{
+							enable:true,
+							icon:'none'
+						},
+						store:Ext.create('YourTour.store.GenderStore')
 					}
 				]
 			},
@@ -65,6 +70,10 @@ Ext.define('YourTour.view.user.RegisterProfileView', {
 						itemId:'userLogo',
 						cls:'x-xuserlogo',
 						flex:1,
+						image:{
+							fileName:'user.jpg',
+							maximumImageCount:1
+						},
 						maxHeight:75
 					}
 				]
@@ -74,32 +83,31 @@ Ext.define('YourTour.view.user.RegisterProfileView', {
 			},
 
 			{
-				xtype:'panel',
-				layout:'hbox',
-				margin:'10 0 0 0',
-				items:[{
-					xtype:'panel',
-					layout:'hbox',
-					cls:'textfield',
-					style:'width:100%',
-					items:[
-						{
-							xtype:'label',
-							html:'-',
-							fit:1
+				xtype: 'container',
+				layout: 'hbox',
+				cls: 'row underline',
+				padding: '0 10 0 50',
+				items: [
+					{
+						xtype: 'xselectfield',
+						itemId: 'tags',
+						dd:'dddd',
+						field:{
+							align:'left',
+							placeHolder:'标签选择'
 						},
-						{
-							xtype:'label',
-							html:'标签',
-							fit:1
+						selectable: {
+							style: 'grid',
+							multiselect: true
 						},
-						{
-							xtype:'label',
-							html:'-',
-							fit:1
-						}
-					]
-				}]
+						editable:{
+							enable:true,
+							icon:'none'
+						},
+						underline:false,
+						flex: 1
+					}
+				]
 			},
 
             {

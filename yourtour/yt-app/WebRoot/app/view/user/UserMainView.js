@@ -14,7 +14,7 @@ Ext.define('YourTour.view.user.UserMainView', {
                     {
                         xtype: "xbutton",
                         itemId: 'btnSetting',
-                        icon: 'resources/icons/icon_header_setting.png',
+                        icon: 'resources/icons/24/icon_header_setting.png',
                         align: 'right'
                     }
                 ]
@@ -25,49 +25,47 @@ Ext.define('YourTour.view.user.UserMainView', {
                 layout: 'vbox',
                 items: [
                     {
-                        xtype: 'xpanel',
-                        layout: 'hbox',
-                        itemId: 'profile',
-                        style: 'background-color:white',
-                        cls: 'nav-arrow',
-                        padding: 10,
-                        items: [
-                            {
-                                itemId: 'userLogo',
-                                xtype: 'image',
-                                model: 'tag'
-                            },
-                            {
-                                xtype: 'xlabel',
-                                html: '我是达人',
-                                flex: 1
-                            }
-                        ]
-                    },
-
-                    {
-                        xtype: 'xspacer'
-                    },
-
-                    {
-                        xtype: 'panel',
+                        xtype: 'container',
                         layout: 'vbox',
+                        style: 'background-image: url(./resources/images/img_personal_view.jpg); background-repeat: no-repeat; ackground-position: center center;',
+                        height:200,
                         items: [
                             {
-                                xtype: 'xbutton',
-                                itemId:'btnApply',
-                                cls:'x-button-primary',
-                                text:'达人申请'
-                            },
+                                xtype:'container',
+                                centered:true,
+                                layout: 'vbox',
+                                items:[
+                                    {
+                                        xtype:'container',
+                                        itemId:'profilePanel',
+                                        layout:'hbox',
 
-                            {
-                                xtype: 'xlabel',
-                                itemId: 'expert',
-                                html: '达人服务',
-                                cls: 'row font-medium underline font-grey',
-                                indicator: 'nav-arrow',
-                                padding: '0 10 0 10',
-                                hidden:true
+                                        items:[
+                                            {
+                                                xtype:'spacer',
+                                                flex:1
+                                            },
+                                            {
+                                                xtype: 'xuserlogo',
+                                                itemId: 'userLogo',
+                                                cls:'x-xmedium',
+                                            },
+                                            {
+                                                xtype:'spacer',
+                                                flex:1
+                                            }
+                                        ]
+                                    },
+
+                                    {
+                                        xtype:'xfield',
+                                        itemId:'profile',
+                                        margin:'5 0 0 0',
+                                        padding:'5 10',
+                                        fieldCls:'font-white text-align-center',
+                                        underline:false
+                                    }
+                                ]
                             }
                         ]
                     },

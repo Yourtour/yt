@@ -1,7 +1,6 @@
 package com.yt.vo.route;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import com.yt.business.bean.RouteMainBean;
 import com.yt.business.bean.RouteProvisionBean;
@@ -23,7 +22,7 @@ public class RouteProvisionVO extends BaseVO {
 		bean.setIndex(vo.getIndex());
 		
 		RouteMainBean route = new RouteMainBean();
-		route.setGraphId(vo.getRouteId());
+		route.setId(vo.getRouteId());
 		bean.setRouteMain(route);
 		
 		return bean;

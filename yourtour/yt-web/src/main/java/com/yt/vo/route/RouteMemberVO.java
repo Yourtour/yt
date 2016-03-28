@@ -2,77 +2,51 @@ package com.yt.vo.route;
 
 import java.io.Serializable;
 
+import com.yt.business.bean.CommentBean;
+import com.yt.business.bean.RouteMemberBean;
 import com.yt.business.bean.UserProfileBean;
 import com.yt.business.common.Constants;
 import com.yt.core.utils.StringUtils;
+import com.yt.vo.BaseVO;
+import com.yt.vo.member.UserVO;
 
-public class RouteMemberVO implements Serializable{
+public class RouteMemberVO extends BaseVO{
 	private static final long serialVersionUID = 2714649904252429482L;
-	private Long id;
-	private Long userId;
-	private String nickName;
-	private String imageUrl;	
-	private Long routeId;
 	private String role; // 线路名称
+	private UserVO profile;
 
-	public RouteMemberVO() {
-		super();
-	}
-	
-	public RouteMemberVO(UserProfileBean profile) {
-		super();
-		
-		this.id = profile.getGraphId();
-		this.nickName = profile.getNickName();
-		this.imageUrl = profile.getImageUrl();
-	}
-	
-	public Long getId() {
-		return id;
+	public static RouteMemberBean transform(RouteMemberVO vo){
+		RouteMemberBean bean = new RouteMemberBean();
+
+		return bean;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
 
-	public Long getUserId() {
-		return userId;
-	}
+	public static RouteMemberVO transform(RouteMemberBean bean){
+		RouteMemberVO vo = new RouteMemberVO();
 
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
+		vo.fromBean(bean);
+		vo.setRole(bean.getRole());
 
-	public Long getRouteId() {
-		return routeId;
-	}
+		UserProfileBean profile = bean.getUser();
+		vo.setProfile(UserVO.transform(profile));
 
-	public void setRouteId(Long routeId) {
-		this.routeId = routeId;
+		return vo;
 	}
 
 	public String getRole() {
-		return StringUtils.isNull(role)?Constants.GroupRole.MEMBER.toString():role;
+		return role;
 	}
 
 	public void setRole(String role) {
 		this.role = role;
 	}
 
-	public String getNickName() {
-		return nickName;
+	public UserVO getProfile() {
+		return profile;
 	}
 
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
+	public void setProfile(UserVO profile) {
+		this.profile = profile;
 	}
-
-	public String getImageUrl() {
-		return imageUrl;
-	}
-
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
-	
 }

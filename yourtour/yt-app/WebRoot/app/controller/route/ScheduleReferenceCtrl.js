@@ -1,6 +1,6 @@
 Ext.define('YourTour.controller.route.ScheduleReferenceCtrl', {
     extend: 'YourTour.controller.BaseCtrl',
-    requires:['YourTour.store.RouteStore', 'YourTour.model.RouteModel'],
+    requires:['YourTour.model.RouteModel'],
     
     config: {
        refs: {
@@ -45,10 +45,6 @@ Ext.define('YourTour.controller.route.ScheduleReferenceCtrl', {
        store:null,
        
        routeId:null
-    },
-    
-    init:function(){
-		this.store = Ext.create('YourTour.store.RouteStore');	    	
     },
     
     backToRecommendReference:function(){

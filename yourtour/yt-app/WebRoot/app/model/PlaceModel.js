@@ -10,6 +10,7 @@ Ext.define('YourTour.model.PlaceModel', {
             {name: 'num', type: 'string'},
             {name: 'imageUrl', type: 'string'},
             {name: 'leaf', type: 'string'},
+            {name: 'memo', type: 'string'},
 
             {name: 'expandable', type: 'string'},
             {name: 'followedNum', type: 'string'},

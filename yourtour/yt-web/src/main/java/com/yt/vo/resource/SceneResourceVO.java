@@ -3,8 +3,8 @@
  */
 package com.yt.vo.resource;
 
+import com.yt.business.bean.ResourceBean.ResourceType;
 import com.yt.business.bean.SceneResourceBean;
-import com.yt.business.common.Constants.ResType;
 
 public class SceneResourceVO extends ResourceVO {
 	private String intro; // 简介
@@ -45,7 +45,7 @@ public class SceneResourceVO extends ResourceVO {
 
 	public SceneResourceVO() {
 		super();
-		super.setType(ResType.SCENE);
+		super.setType(ResourceType.SCENE);
 	}
 
 	public String getIntro() {

@@ -1,6 +1,11 @@
+.git
+.metadata
 *.class
 
-**/build/
+/Servers/
+
+**/*build
+**/build-*
 **/bin/
 **/target/
 
@@ -9,9 +14,6 @@
 **/.classpath
 **/.settings/
 **/.myeclipse/
-
-# gradle
-**/.gradle/
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/

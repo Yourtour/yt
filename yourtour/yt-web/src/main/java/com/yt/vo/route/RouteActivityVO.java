@@ -3,11 +3,15 @@ package com.yt.vo.route;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.yt.business.bean.*;
-import com.yt.business.common.Constants;
-import com.yt.business.common.Constants.ResType;
+import com.yt.business.bean.HotelResourceBean;
+import com.yt.business.bean.ResourceBean;
+import com.yt.business.bean.ResourceBean.ResourceType;
+import com.yt.business.bean.RestaurantResourceBean;
+import com.yt.business.bean.RouteActivityBean;
+import com.yt.business.bean.RouteActivityItemBean;
+import com.yt.business.bean.RouteScheduleBean;
+import com.yt.business.bean.SceneResourceBean;
 import com.yt.vo.BaseVO;
-import com.yt.vo.member.ExpertServiceVO;
 import com.yt.vo.resource.HotelResourceVO;
 import com.yt.vo.resource.ResourceVO;
 import com.yt.vo.resource.RestaurantResourceVO;
@@ -21,7 +25,6 @@ public class RouteActivityVO extends BaseVO {
 	private String startTime, endTime;
 	private RouteScheduleVO schedule = new RouteScheduleVO();
 	private ResourceVO resource = new ResourceVO();
-	private List<RouteServiceVO> services = new ArrayList<>();
 	private List<RouteActivityItemVO> items = new ArrayList<>();
 
 	public static RouteActivityVO transform(RouteActivityBean bean) {
@@ -39,23 +42,23 @@ public class RouteActivityVO extends BaseVO {
 		vo.setDate(bean.getDate());
 		if (bean.getSchedule() != null) {
 			RouteScheduleVO scheduleVO = new RouteScheduleVO();
-			scheduleVO.setId(bean.getSchedule().getGraphId());
+			scheduleVO.setId(bean.getSchedule().getId());
 			scheduleVO.setDate(bean.getSchedule().getDate());
 			vo.setSchedule(scheduleVO);
 		}
-		
+
 		ResourceBean resourceBean = bean.getResource();
 		if (resourceBean != null) {
 			ResourceVO resourceVO = null;
-			if (resourceBean.getType() == ResType.SCENE) {
+			if (resourceBean.getType() == ResourceType.SCENE) {
 				resourceVO = new SceneResourceVO();
-			} else if (resourceBean.getType() == ResType.HOTEL) {
+			} else if (resourceBean.getType() == ResourceType.HOTEL) {
 				resourceVO = new HotelResourceVO();
-			} else if (resourceBean.getType() == ResType.FOOD) {
+			} else if (resourceBean.getType() == ResourceType.FOOD) {
 				resourceVO = new RestaurantResourceVO();
 			}
 			if (resourceVO != null) {
-				resourceVO.setId(resourceBean.getGraphId());
+				resourceVO.setId(resourceBean.getId());
 				resourceVO.setCode(resourceBean.getCode());
 				resourceVO.setName(resourceBean.getName());
 				resourceVO.setImageUrl(resourceBean.getImageUrl());
@@ -66,23 +69,14 @@ public class RouteActivityVO extends BaseVO {
 		}
 
 		List<RouteActivityItemBean> items = bean.getItems();
-		if(items != null){
+		if (items != null) {
 			List<RouteActivityItemVO> voes = new ArrayList<>();
-			for(RouteActivityItemBean item : items){
+			for (RouteActivityItemBean item : items) {
 				voes.add(RouteActivityItemVO.transform(item));
 			}
 			vo.setItems(voes);
 		}
 
-		List<RouteServiceBean> serviceBeans = bean.getServices();
-		if(serviceBeans != null){
-			List<RouteServiceVO> voes = new ArrayList<>();
-			for(RouteServiceBean service : serviceBeans){
-				voes.add(RouteServiceVO.transform(service));
-			}
-			vo.setServices(voes);
-		}
-		
 		return vo;
 	}
 
@@ -98,25 +92,24 @@ public class RouteActivityVO extends BaseVO {
 		bean.setStartTime(vo.getStartTime());
 		bean.setEndTime(vo.getEndTime());
 		bean.setDate(vo.getDate());
-		bean.setStatus(Constants.Status.valueOf(vo.getStatus()));
 
 		if (vo.getSchedule() != null) {
 			RouteScheduleBean schedule = new RouteScheduleBean();
-			schedule.setGraphId(vo.getSchedule().getId());
+			schedule.setId(vo.getSchedule().getId());
 			bean.setSchedule(schedule);
 		}
 		ResourceVO resourceVO = vo.getResource();
 		if (resourceVO != null) {
 			ResourceBean resourceBean = null;
-			if (resourceVO.getType() == ResType.SCENE) {
+			if (resourceVO.getType() == ResourceType.SCENE) {
 				resourceBean = new SceneResourceBean();
-			} else if (resourceVO.getType() == ResType.HOTEL) {
+			} else if (resourceVO.getType() == ResourceType.HOTEL) {
 				resourceBean = new HotelResourceBean();
-			} else if (resourceVO.getType() == ResType.FOOD) {
+			} else if (resourceVO.getType() == ResourceType.FOOD) {
 				resourceBean = new RestaurantResourceBean();
 			}
 			if (resourceBean != null) {
-				resourceBean.setGraphId(resourceVO.getId());
+				resourceBean.setId(resourceVO.getId());
 				bean.setResource(resourceBean);
 			}
 		}
@@ -189,14 +182,6 @@ public class RouteActivityVO extends BaseVO {
 
 	public void setResource(ResourceVO resource) {
 		this.resource = resource;
-	}
-
-	public List<RouteServiceVO> getServices() {
-		return services;
-	}
-
-	public void setServices(List<RouteServiceVO> services) {
-		this.services = services;
 	}
 
 	public List<RouteActivityItemVO> getItems() {

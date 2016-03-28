@@ -1,0 +1,24 @@
+<?xmlversion="1.0"encoding="utf-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:rim="http://www.blackberry.com/ns/widgets"
+    id="cordova-plugin-app"
+    version="1.2.0">
+
+    <name>App</name>
+    <description>Description</description>
+    
+    <js-module name="App" src="www/App.js">
+        <clobbers target="App"/> <!-- JS 中对象的引用 -->
+    </js-module>
+
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="App">
+                <param name="android-package" value="com.yt.cordova.plugins.App"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/App.java" target-dir="src/com/yt/cordova/plugins"/>
+    </platform>
+</plugin>

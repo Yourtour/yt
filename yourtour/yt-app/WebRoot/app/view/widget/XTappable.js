@@ -1,5 +1,6 @@
 Ext.define('YourTour.view.widget.XTappable', {
     extend: 'Ext.Container',
+    xtype:'xtappablecontainer',
     config: {
         indicator: 'none'
     },

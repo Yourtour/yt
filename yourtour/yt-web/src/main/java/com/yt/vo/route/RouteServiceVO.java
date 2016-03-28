@@ -28,7 +28,7 @@ public class RouteServiceVO extends BaseVO {
 		}
 
 		RouteServiceVO valueObject = new RouteServiceVO();
-		valueObject.setId(bean.getGraphId());
+		valueObject.setId(bean.getId());
 		valueObject.setMemo(bean.getMemo());
 		valueObject.setFromDate(bean.getFromDate());
 		valueObject.setEndDate(bean.getEndDate());
@@ -44,7 +44,7 @@ public class RouteServiceVO extends BaseVO {
 	public static RouteServiceBean transform(RouteServiceVO vo) {
 		RouteServiceBean bean = new RouteServiceBean();
 
-		bean.setGraphId(vo.getId());
+		bean.setId(vo.getId());
 		bean.setChildNum(vo.getChildNum());
 		bean.setAdultNum(vo.getAdultNum());
 		bean.setOldNum(vo.getOldNum());

@@ -2,37 +2,77 @@ Ext.define('YourTour.view.widget.XDateField', {
     extend: 'YourTour.view.widget.XField',
     xtype: 'xdatefield',
     config: {
-        editable:true
-    },
+        single: true,
+        seperator: '~',
+        datatype:'long',
 
-    getValue:function(){
-        var value = this.callParent(arguments);
+        listeners: {
+            getter: function (field, value) {
+                if(value == null || value == ''){
+                    field.setValue(null);
+                }else{
+                    if(field.datatype == 'long') {
+                        field.setValue(new Date(value).getTime());
+                    }else{
+                        field.setValue(new Date(value));
+                    }
+                }
 
-        if(value && value != ''){
-            return new Date(value).getTime();
-        }else{
-            return 0;
-        }
-    },
+                return true;
+            },
 
-    setText:function(text){
-        if(text && text != ''){
-            if(Ext.isDate(text)){
-                this.callParent([text]);
-            }else if(Ext.isNumber(text)){
-                this.callParent([Ext.Date.format(new Date(text),'Y/m/d')]);
-            }else{
-                this.callParent([text]);
+            setter: function (field, text) {
+                if(! (text == '' || text == null)){
+                    if (Ext.isNumber(text)){
+                        field.fillText(Ext.Date.format(new Date(text),'Y/m/d'));
+                    }
+                }
+
+                return true;
             }
         }
     },
 
-    updateValue:function(value){
-        this.setValue(value);
+    onEditTap: function () {
+        var me = this,
+            application = YourTour.util.Context.getApplication(),
+            controller = application.getController('CommonMainCtrl'),
+            date = me.getFieldText();
+
+        var dates = [];
+        if (date != null) {
+            var sDate = date.split('~');
+            Ext.Array.forEach(sDate, function (d) {
+                dates.push(new Date(d));
+            });
+        }
+
+        if (dates.length == 0) {
+            dates.push(new Date());
+        }
+
+        var options = {
+            single: me.single,
+            title: me.getFieldLabel(),
+            dates: dates
+        };
+        controller.showTimeSelectionView(options, function (startDate, endDate, duration) {
+            if (endDate) {
+                me.modifyText(startDate + ' ~ ' + endDate + ',' + duration);
+            } else {
+                me.modifyText(startDate);
+            }
+
+            Ext.ComponentManager.get('MainView').pop();
+        });
+    } ,
+
+    updateSingle: function (single) {
+        this.single = single;
     },
 
-    setValue:function(value){
-        this.setText(Ext.Date.format(value, 'Y-m-d'));
+    updateSeperator: function (seperator) {
+        this.seperator = seperator;
     }
 });
 

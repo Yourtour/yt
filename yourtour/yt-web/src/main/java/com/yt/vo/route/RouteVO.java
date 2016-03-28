@@ -10,7 +10,7 @@ import java.util.Set;
 import com.yt.business.bean.*;
 import com.yt.core.utils.DateUtils;
 import com.yt.core.utils.StringUtils;
-import com.yt.utils.WebUtils;
+import com.yt.utils.SessionUtils;
 import com.yt.vo.BaseVO;
 import com.yt.vo.member.UserVO;
 
@@ -27,9 +27,9 @@ public class RouteVO extends BaseVO {
 	private int  olderNum;
 
 	private int  budget; //预算
-	private float commentScore;
+	private double commentScore;
 	private int readNum;
-	private int thumbupNum;
+	private int likeNum;
 	private int favoriteNum;
 	private int shareNum;
 	private int commentNum;
@@ -76,7 +76,7 @@ public class RouteVO extends BaseVO {
 		routeVO.setCommentNum(bean.getCommentNum());
 		routeVO.setFavoriteNum(bean.getFavoriteNum());
 		routeVO.setShareNum(bean.getShareNum());
-		routeVO.setThumbupNum(bean.getThumbupNum());
+		routeVO.setLikeNum(bean.getLikeNum());
 
 		routeVO.setReason(bean.getReason());
 		routeVO.setFeature(bean.getFeature());
@@ -130,7 +130,7 @@ public class RouteVO extends BaseVO {
 
 		if (StringUtils.isNotNull(vo.getFromPlace())) {
 			PlaceBean placeBean = new PlaceBean();
-			placeBean.setGraphId(Long.valueOf(vo.getFromPlace().split(",")[0]));
+			placeBean.setId(Long.valueOf(vo.getFromPlace().split(",")[0]));
 			bean.setFromPlaceBean(placeBean);
 		}
 
@@ -139,7 +139,7 @@ public class RouteVO extends BaseVO {
 		String[] places = vo.getToPlaces().split("[|]");
 		for(String place : places){
 			PlaceBean destination = new PlaceBean();
-			destination.setGraphId(Long.valueOf(place.split(",")[0]));
+			destination.setId(Long.valueOf(place.split(",")[0]));
 			destinations.add(destination);
 		}
 		bean.setToPlaceBeans(new ArrayList<>(destinations));
@@ -156,8 +156,8 @@ public class RouteVO extends BaseVO {
 			scheduleBean.setIndex(DateUtils.getDateNumber(scheduleDate.getTime()) * 1000);
 			scheduleBean.setDate(scheduleDate.getTime());
 			scheduleBean.setTitle(String.format("第%s天-%s", index+1, DateUtils.formatDate(scheduleDate.getTime())));
-			scheduleBean.setCreatedUserId(WebUtils.getCurrentLoginUser());
-			scheduleBean.setUpdatedUserId(WebUtils.getCurrentLoginUser());
+			scheduleBean.setCreatedUserId(SessionUtils.getCurrentLoginUser());
+			scheduleBean.setUpdatedUserId(SessionUtils.getCurrentLoginUser());
 			scheduleBean.setCreatedTime(DateUtils.getCurrentTimeMillis());
 			scheduleBean.setUpdatedTime(DateUtils.getCurrentTimeMillis());
 
@@ -228,14 +228,6 @@ public class RouteVO extends BaseVO {
 		this.budget = budget;
 	}
 
-	public float getCommentScore() {
-		return commentScore;
-	}
-
-	public void setCommentScore(float commentScore) {
-		this.commentScore = commentScore;
-	}
-
 	public int getReadNum() {
 		return readNum;
 	}
@@ -244,12 +236,20 @@ public class RouteVO extends BaseVO {
 		this.readNum = readNum;
 	}
 
-	public int getThumbupNum() {
-		return thumbupNum;
+	public double getCommentScore() {
+		return commentScore;
 	}
 
-	public void setThumbupNum(int thumbupNum) {
-		this.thumbupNum = thumbupNum;
+	public void setCommentScore(double commentScore) {
+		this.commentScore = commentScore;
+	}
+
+	public int getLikeNum() {
+		return likeNum;
+	}
+
+	public void setLikeNum(int likeNum) {
+		this.likeNum = likeNum;
 	}
 
 	public int getFavoriteNum() {

@@ -14,7 +14,7 @@ Ext.application({
     name: 'YourTour',
 
     requires: [
-        'Ext.data.proxy.LocalStorage', 'Ext.MessageBox', 'YourTour.view.widget.XProcessing', 'Ext.form.Hidden', 'YourTour.util.Context', 'YourTour.view.widget.XImageSelect'
+        'Ext.data.proxy.SessionStorage', 'YourTour.store.GenderStore', 'Ext.data.proxy.LocalStorage', 'Ext.MessageBox', 'YourTour.view.widget.XProcessing', 'Ext.form.Hidden', 'YourTour.util.Context', 'YourTour.view.widget.XImageSelect'
     ],
 
     /**
@@ -24,13 +24,25 @@ Ext.application({
      */
     localStorage: window.localStorage,
 
+    /**
+     * 系统基础数据
+     */
+    baseStore: null,
+
+    /**
+     * 用户数据
+     */
+    userProfile: null,
+
     views: [
-        'MainView', 'LaunchView', 'setting.UserSettingView',
+        'MainView', 'WelcomeView', 'UpgradeView', 'ActivityView', 'setting.UserSettingView',
+
         'common.MessageMainView', 'common.MessageGroupView', 'common.FieldEditView', 'common.FieldEditView',
         'common.CommentMainView', 'common.TimeSelectionView', 'common.ConsultMainView',
-
+        'cart.CartMainView',
+        'discovery.DiscoveryMainView',
         'home.HomeMainView', 'home.BestListView', 'home.TalentListView', 'SearchMain',
-        'route.RouteMainView', 'route.RouteSettingView', 'route.RouteImpressionView', 'route.RouteImageView',
+        'route.RouteMainView', 'route.RoutePlanView', 'route.RouteImpressionView', 'route.RouteImageView',
         'route.RouteScheduleListView', 'route.RouteSchedulePlanView', 'route.RouteScheduleReferenceListView', 'route.RouteScheduleFormView',
         'route.RouteProvisionView', 'route.RouteProvisionEditView', 'route.RouteScheduleEditView', 'route.RouteScheduleView',
         'route.RouteActivityEditView', 'route.RoutePlaceEditView', 'route.RouteCheckinView',
@@ -65,13 +77,12 @@ Ext.application({
     ],
 
     models: [
-        'LaunchModel', 'RouteModel', 'RouteActivityModel', 'LineModel', 'UserModel', 'OptionModel', 'HomeModel', 'LiveModel', 'ChatModel', 'AlongModel', 'TalentModel', 'HomeCarouselModel', 'CommentModel', 'PlaceModel',
+        'DeviceModel', 'VersionModel', 'ActivityModel', 'SimpleModel', 'LaunchModel', 'RouteModel', 'RouteActivityModel', 'LineModel', 'UserModel', 'OptionModel', 'HomeModel', 'LiveModel', 'ChatModel', 'AlongModel', 'TalentModel', 'HomeCarouselModel', 'CommentModel', 'PlaceModel',
         'CacheModel', 'ActivityItemModel', 'RouteServiceModel', 'ExpertModel', 'ExpertServiceModel', 'ChargeModel', 'MessageContentModel'
     ],
 
     stores: [
-        'LaunchStore', 'RouteStore', 'RouteMemberStore', 'LineStore', 'ResourcePlayStore', 'ResourceFoodStore', 'UserStore', 'HomeStore', 'BestListStore', 'TalentListStore', 'AlongListStore', 'CommentStore', 'PlaceStore', 'LocalStore'
-    ],
+        'GenderStore', 'LaunchStore', 'LocalStore', 'SessionStore'],
 
     icon: {
         '57': 'resources/icons/Icon.png',
@@ -91,31 +102,17 @@ Ext.application({
         '1496x2048': 'resources/startup/launch.png'
     },
 
+    version: '0.0.0.0',
+
+    baseStore:'',
+
+    localStorage:null,
+
+    sessionStorage:null,
+
     launch: function () {
         try {
-            document.addEventListener("deviceready", this.onDeviceReady, false);
-        } catch (e) {
-            alert(e.name + ":" + e.message);
-        }
-
-        this.init();
-    },
-
-    init: function () {
-        var me = this;
-        Ext.Ajax.on('beforerequest', (function (conn, options, eOpts) {
-            var userToken = me.getUserId();
-            options.headers = {
-                'User-Token': userToken,
-                'Content-Type': 'application/json'
-            };
-        }), this);
-
-        YourTour.util.Context.setApplication(this);
-    },
-
-    onDeviceReady: function () {
-        try {
+            var me = this;
             document.addEventListener("backbutton", function () {
                 var canPop = false;
                 var id = Ext.Viewport.getActiveItem().id;
@@ -131,16 +128,56 @@ Ext.application({
                 if (canPop) {
                     Ext.ComponentManager.get('MainView').pop();
                 } else {
-                    Ext.Msg.confirm("提示", "您确定要退出应用吗?", function (e) {
-                        if (e == "yes") {
-                            navigator.app.exitApp();
-                        }
-                    }, this);
+                    navigator.notification.confirm('您确定要退出应用吗?',
+                        function (buttonIndex) {
+                            if (buttonIndex == "1") {
+                                navigator.app.exitApp();
+                            }
+                        },
+                        '提示',
+                        '确定,取消'
+                    );
                 }
             }, false);
+
+            if (!Ext.os.is.Windows) {
+                document.addEventListener("deviceready",
+                    function () {
+                        App.getVersion(function (version) {
+                            me.version = version;
+                            me.initialize();
+                        });
+                    },
+                    false);
+            } else {
+                me.initialize();
+            }
         } catch (e) {
             alert(e.name + ":" + e.message);
         }
+    },
+
+    initialize: function () {
+        var me = this,
+            localStorage = me.getLocalStorage(),
+            sessionStorage = me.getSessionStorage(),
+            accessToken = localStorage.get('access-token'),
+            sessionToken = sessionStorage.get('session-token'),
+            userToken = me.getUserId();
+
+        Ext.Ajax.on('beforerequest', (function (conn, options, eOpts) {
+            options.headers = {
+                'Access-Token': !accessToken ? '' : accessToken,  //客户端令牌
+                'Session-Token': !sessionToken ? '' : sessionToken,  //客户端令牌
+                'User-Token': !userToken ? '' : userToken,  //用户令牌
+
+                'Content-Type': 'application/json'
+            };
+        }), this);
+
+        YourTour.util.Context.setApplication(this);
+
+        me.getController('MainCtrl').startup();
     },
 
     onUpdated: function () {
@@ -155,17 +192,41 @@ Ext.application({
         );
     },
 
-    store: function (values) {
-        var localStore = Ext.StoreManager.get('LocalStore');
-        localStore.load();
-        if (Ext.isArray(values)) {
-            Ext.Array.forEach(values, function (value) {
-                localStore.add(value);
-            });
-        } else {
-            localStore.add(values);
+    getVersion: function () {
+        return this.version;
+    },
+
+    getDeviceType: function () {
+        if (!Ext.os.is.Windows) {
+            return device.platform;
+        }else{
+            return 'ANDROID';
         }
-        localStore.sync();
+    },
+
+    getAppType: function () {
+        return 'TOURIST';
+    },
+
+    getLocalStorage:function(){
+        var me = this;
+
+        if(me.localStorage == null) {
+            me.localStorage = Ext.StoreManager.get('LocalStore');
+            me.localStorage.load();
+        }
+
+        return me.localStorage;
+    },
+
+    getSessionStorage:function(){
+        var me = this;
+
+        if(me.sessionStorage == null) {
+            me.sessionStorage = Ext.StoreManager.get('SessionStore');
+            me.sessionStorage.load();
+        }
+        return me.sessionStorage;
     },
 
     /**
@@ -173,17 +234,10 @@ Ext.application({
      * @returns {*}
      */
     getUserId: function () {
-        var localStore = Ext.StoreManager.get('LocalStore');
-        localStore.load();
+        var profile = this.getUserProfile();
+        if (profile == null) return null;
 
-        var index = localStore.find('key', 'user.profile');
-        if (index >= 0) {
-            var userProfile = localStore.getAt(index);
-            var profile = Ext.JSON.decode(userProfile.get('value'));
-            return profile.id;
-        }
-
-        return '';
+        return profile.id;
     },
 
     /**
@@ -191,51 +245,16 @@ Ext.application({
      * @returns {*}
      */
     getUserProfile: function () {
-        var localStore = Ext.StoreManager.get('LocalStore');
-        localStore.load();
-
-        var index = localStore.find('key', 'user.profile');
-        if (index >= 0) {
-            var userProfile = localStore.getAt(index);
-            var profile = Ext.JSON.decode(userProfile.get('value'));
-            return profile;
+        var me = this;
+        if (this.userProfile == null) {
+            var localStore = this.getLocalStorage();
+            var userProfile = localStore.get('user.profile');
+            if(userProfile) {
+                me.userProfile = Ext.JSON.decode(userProfile);
+            }
         }
 
-        return '';
-    },
-
-    /**
-     * 退出应用
-     */
-    quit: function () {
-        var me = this;
-        Ext.Msg.confirm("提示", "您确定要退出应用吗?", function (e) {
-            if (e == "yes") {
-                me.localStorage.clear();
-
-                navigator.app.exitApp();
-            }
-        }, this);
-    },
-
-    /**
-     * 获取图片
-     * @param source
-     * @param successFn
-     */
-    getPhoto: function (source, successFn) {
-        var me = this;
-
-        navigator.camera.getPicture(
-            successFn,
-            function () {
-            },
-            {
-                quality: 50,
-                destinationType: navigator.camera.DestinationType.FILE_URI,
-                sourceType: source
-            }
-        );
+        return me.userProfile;
     },
 
     /**
@@ -258,13 +277,7 @@ Ext.application({
                 },
 
                 failure: function (response) {
-                    var respObj = Ext.JSON.decode(response.responseText);
-
-                    if (options.failure) {
-                        options.failure(respObj)
-                    } else {
-                        Ext.Msg.alert("Error", respObj.status.statusMessage);
-                    }
+                    Ext.Msg.alert("Error", '系统异常，请稍后再试！');
                 }
             };
             if (options.params) {
@@ -293,50 +306,43 @@ Ext.application({
             }
         }
 
-        var fileContainer = options.file;
+        var fileContainer = options.fileContainer;
         if (fileContainer) {
             var files = fileContainer.getImages();
-
             var base64, mimeString, byteString, arrayBuffer, intArray, blob;
             Ext.Array.forEach(files, function (file) {
                 base64 = file.getAsBase64();
-                mimeString =  base64.split(',')[0].split(':')[1].split(';')[0]; // mime类型
+                mimeString = base64.split(',')[0].split(':')[1].split(';')[0]; // mime类型
                 byteString = atob(base64.split(',')[1]); //base64 解码
                 arrayBuffer = new ArrayBuffer(byteString.length); //创建缓冲数组
                 intArray = new Uint8Array(arrayBuffer); //创建视图
                 for (var i = 0; i < byteString.length; i += 1) {
                     intArray[i] = byteString.charCodeAt(i);
                 }
+                blob = new Blob([intArray], {type: mimeString}); //转成blob
 
-                blob = new Blob([intArray], { type:  mimeString }); //转成blob
-                formdata.append(file.getItemId(), blob, file.getFileName());
+                formdata.append(fileContainer.getItemId(), blob, file.getFileName());
             })
         }
 
         var xhr = new XMLHttpRequest();
         xhr.open('POST', YourTour.util.Context.getContext(options.url), true);
-        xhr.send(formdata,
-            function (response) {
-                var respObj = Ext.JSON.decode(response.responseText);
+
+        xhr.onload = function (event) {
+            if (xhr.status === 200) {
+                var respObj = Ext.JSON.decode(event.target.responseText);
                 if (respObj.errorCode != '0') {
                     Ext.Msg.alert(respObj.errorText);
                     return;
                 }
 
-                options.success(respObj.data)
-            },
-
-            function (response) {
-                console.log(response);
-                var respObj = Ext.JSON.decode(response.responseText);
-
-                if (options.failure) {
-                    options.failure(respObj)
-                } else {
-                    Ext.Msg.alert("Error", respObj.status.statusMessage);
-                }
+                options.success(respObj.data);
+            } else {
+                Ext.Msg.alert("Error", '系统异常，请稍后再试！');
             }
-        ) ;
+        };
+
+        xhr.send(formdata);
     },
 
 
@@ -346,10 +352,25 @@ Ext.application({
      */
     query: function (options) {
         try {
-            var store = Ext.create('YourTour.store.AjaxStore', {model: options.model});
-            var proxy = store.getProxy();
+            var me = this, url = options.url, localStore = Ext.StoreManager.get('LocalStore');
 
-            var url = options.url;
+            var cached = options.cached;
+            if (cached) { //从本地缓存获取
+                var data = me.getCached(url);
+                if (data != null) {
+                    var store = Ext.create('Ext.data.Store', {model: options.model, data: data});
+                    options.success(store);
+                }
+            }
+
+            var ajaxStore;
+            if (options.config) {
+                ajaxStore = Ext.create('YourTour.store.AjaxStore', options.config);
+            } else {
+                ajaxStore = Ext.create('YourTour.store.AjaxStore', {model: options.model});
+            }
+            var proxy = ajaxStore.getProxy();
+
             var params = options.params;
             if (params) {
                 url += '?';
@@ -366,8 +387,12 @@ Ext.application({
             }
             proxy.setUrl(YourTour.util.Context.getContext(url));
 
-            store.load(function () {
-                options.success(store);
+            ajaxStore.load(function () {
+                options.success(ajaxStore, cached ? 'true' : 'false'); //true:表示需要刷新
+
+                if (cached) { //本地缓存
+                    //me.StoreCached([{key:url, value:Ext.JSON.encode(ajaxStore.getData())}]);
+                }
 
                 var navigationView = Ext.ComponentManager.get('MainView');
                 if (navigationView) {
@@ -384,15 +409,56 @@ Ext.application({
         }
     },
 
-    /*open:function(options){
-     var navigationView = Ext.ComponentManager.get('MainView');
-     navigationView.push(Ext.create(options.view));
+    toast: function (msg) {
+        this.info(msg);
+    },
 
-     var processor = options.processor;
-     processor();
-     },*/
+    /**
+     * 信息确认窗口
+     * @param title
+     * @param message
+     * @param callback
+     */
+    confirm: function (title, message, callback) {
+        if (!Ext.os.is.Windows) {
+            navigator.notification.confirm(message,
+                function (buttonIndex) {
+                    callback(buttonIndex);
+                },
+                title,
+                '确定,取消'
+            );
+        } else {
+            Ext.MessageBox.confirm(title, message, callback, this);
+        }
+    },
 
-    alert: function (msg) {
-        Ext.Msg.alert(msg);
+    debug: function (message) {
+        console.log(message);
+    },
+
+    /**
+     * 信息提示窗口
+     * @param o
+     */
+    info: function (o) {
+        var options = {
+            title: '提示',
+            message: '',
+            callback: Ext.emptyFn
+        };
+
+        if (Ext.isString(o)) {
+            Ext.apply(options, {message: o});
+        } else {
+            Ext.apply(options, o);
+        }
+
+
+        if (!Ext.os.is.Windows) {
+            navigator.notification.alert(options.message, options.title, '确定');
+        } else {
+            Ext.MessageBox.alert(options.message);
+        }
     }
 });

@@ -28,7 +28,7 @@ public class RouteLoadVO implements Serializable {
 	}
 	
 	public String getId(){
-		return this.route.getGraphId().toString();
+		return this.route.getId().toString();
 	}
 	
 	public String getName() {
@@ -86,7 +86,7 @@ public class RouteLoadVO implements Serializable {
 				provision.setMemo(provisionBean.getMemo());
 				provision.setType(TYPE.ProvisionItem);
 				provision.setIndex(provisionBean.getIndex());
-				provision.setId(provisionBean.getGraphId().toString());
+				provision.setId(provisionBean.getId().toString());
 				provisions.add(provision);
 			}
 
@@ -112,7 +112,7 @@ public class RouteLoadVO implements Serializable {
 			RouteActivityBean activityBean = null;
 			for (RouteScheduleBean scheduleBean : scheduleBeans) {
 				RouteSchedule group = new RouteSchedule();
-				group.setId(scheduleBean.getGraphId().toString());
+				group.setId(scheduleBean.getId().toString());
 
 				group.setTitle("DAY " + String.valueOf(index++));
 				group.setStartTime(DateUtils.formatDate(scheduleBean.getDate()));
@@ -140,7 +140,7 @@ public class RouteLoadVO implements Serializable {
 						activity.setMemo(activityBean.getMemo());
 						activity.setType(TYPE.ScheduleItem);
 						activity.setParentId(group.getId());
-						activity.setId(activityBean.getGraphId().toString());
+						activity.setId(activityBean.getId().toString());
 						activity.setDate(activityBean.getDate());
 						activity.setStartTime(getTime(activityBean.getStartTime()));
 						activity.setEndTime(getTime(activityBean.getEndTime()));
@@ -156,12 +156,11 @@ public class RouteLoadVO implements Serializable {
 						ResourceBean resource = activityBean.getResource();
 						if (resource != null) {
 							activity.setImageUrl(activityBean.getResource().getImageUrl());
-							activity.setResourceId(resource.getGraphId().toString());
+							activity.setResourceId(resource.getId().toString());
 							activity.setResourceType(resource.getType().toString());
 							activity.setCommentNum(resource.getCommentNum());
 							activity.setShareNum(resource.getShareNum());
 							activity.setFavoriteNum(resource.getFavoriteNum());
-							activity.setRankScore(resource.getRankScore());
 						}
 
 						if( i > 0){

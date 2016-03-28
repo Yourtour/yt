@@ -125,6 +125,7 @@ Ext.define('YourTour.controller.CommonMainCtrl', {
     showTimeSelectionView: function (options, callback) {
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.common.TimeSelectionView', {callback: callback}));
         var view = this.getTimeSelectionView();
+
         view.bindData(options);
 
         this.initializeTimeSelectionView(view);
@@ -132,16 +133,9 @@ Ext.define('YourTour.controller.CommonMainCtrl', {
 
     initializeTimeSelectionView:function(view){
         var options = view.getData();
-        var defaults = {
-            date:new Date(),
-            single:true,
-            title:'行程日期安排'
-        };
-        Ext.applyIf(options, defaults);
-
-        var date = options.date, year = date.getFullYear(), month = date.getMonth() + 1;
         var calendar = view.down('#calendar');
-        calendar.setDate(year, month);
+
+        calendar.setDate(options.dates);
 
         var headerbar = view.down('#headerbar');
         headerbar.setTitle(options.title);
@@ -253,19 +247,19 @@ Ext.define('YourTour.controller.CommonMainCtrl', {
         var me = this, view = me.getFieldEditView(), headerbar = view.down('#headerbar'), content = view.down('#content');
         view.bindData(field);
 
-        headerbar.setTitle(field.getLabel());
+        headerbar.setTitle(field.getFieldLabel());
 
         var text = field.getText();
         if(text == null){
             content.setPlaceHolder(field.getPlaceHolder())
         }else {
-            content.setValue(field.getText());
+            content.setValue(field.getFieldText());
         }
     },
 
     saveFieldValue:function(){
         var me = this, view = me.getFieldEditView(), field = view.getData(), content = view.down('#content');
-        field.setText(content.getValue());
+        field.modifyText(content.getValue());
 
         Ext.ComponentManager.get('MainView').pop();
     }

@@ -59,6 +59,7 @@ Ext.define('YourTour.view.widget.XCalendarItem', {
         this.enabled = enabled;
         if (active) {
             this.addCls('active');
+            this.onItemTap();
         }
     },
 

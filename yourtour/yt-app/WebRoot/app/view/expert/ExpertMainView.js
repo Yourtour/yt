@@ -12,8 +12,7 @@ Ext.define('YourTour.view.expert.ExpertMainView', {
 				title:'服务行程',
 				items:[
 					{
-						xtype: "toolbutton",
-						ui: "normal",
+						xtype: "xbutton",
 						text: '申请',
 						itemId: 'btnApply',
 						align: 'right'

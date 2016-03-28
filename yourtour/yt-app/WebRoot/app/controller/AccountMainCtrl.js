@@ -5,30 +5,28 @@ Ext.define('YourTour.controller.AccountMainCtrl', {
             loginMainView: '#LoginMainView',
             loginView: '#LoginView',
             rgisterAccountView: '#RegisterAccountView',
-            registerProfileView: '#RegisterProfileView',
-            portraitOptions: '#RegisterProfileView #portraitOptions'
+            registerProfileView: '#RegisterProfileView'
         },
 
         control: {
-            '#LoginView #btnRegister': {
-                tap: 'onRegisterTap'
+            '#LoginView #btnLogin': {
+                tap: 'doLogin'
             },
 
-            '#LoginView #btnLogin': {
-                tap: 'onLoginTap'
-
+            '#LoginView #btnRegister': {
+                tap: 'doAccountRegister'
             },
 
             '#RegisterAuthView #getCode': {
-                tap: 'onGetAuthCode'
+                tap: 'doGetAuthCode'
             },
 
             '#RegisterAccountView #btnRegisterAccount': {
-                tap: 'registerUserAccount'
+                tap: 'doRegisterUserAccount'
             },
 
             '#RegisterProfileView #btnRegisterDone': {
-                tap: 'onRegisterDoneTap'
+                tap: 'doRegisterProfile'
             }
         },
     },
@@ -42,75 +40,106 @@ Ext.define('YourTour.controller.AccountMainCtrl', {
         Ext.Viewport.setActiveItem(loginMainView);
     },
 
-    onRegisterTap: function () {
+    doAccountRegister: function () {
         this.getLoginMainView().setActiveItem(1);
+
+        var me = this,
+            tags = me.getRegisterProfileView().down('#tags'),
+            store = this.getApplication().getBaseStore().first().tagsStore;
+
+        tags.setStore(store);
     },
 
-    onGetAuthCode: function () {
+    doGetAuthCode: function () {
 
     },
 
     /**
      * 账户注册
      */
-    registerUserAccount: function () {
-        var me = this;
-
-        /*var accountview = this.getRgisterAccountView();
-         var values = accountview.getValues();
-
-         var mobile = values.mobile;
-         if(mobile == ''){
-         Ext.Msg.alert('请输入手机号码。');
-         return;
-         }
-
-         var authcode = values.authcode;
-         if(authcode == ''){
-         Ext.Msg.alert('请输入验证码。');
-         return;
-         }
-
-         var pass = values.password, confirm = values.confirmPassword;
-         if(pass == '' || confirm == ''){
-         Ext.Msg.alert('请输入密码或者验证密码。');
-         return;
-         }
-
-         if(pass != confirm){
-         Ext.Msg.alert('两次输入的密码不一致，请重新输入。');
-         return;
-         }
-
-         delete values['confirmPassword'];*/
+    doRegisterUserAccount: function () {
+        var me = this, accountview = this.getRgisterAccountView();
+        var values = accountview.getValues();
 
         me.getLoginMainView().setActiveItem(2);
 
-        /*this.getApplication().callService({
-         url: '/users/account/register',
-         method: "POST",
-         params: values,
-         success: function (response) {
-         me.getApplication().store({key:'user.profile', value:Ext.JSON.encode(response)});
+        /*var mobile = values.mobile;
+        if (mobile == '') {
+            Ext.Msg.alert('请输入手机号码。');
+            return;
+        }
 
-         me.getLoginMainView().setActiveItem(2);
-         }
-         });*/
+        var authcode = values.authcode;
+        if (authcode == '') {
+            Ext.Msg.alert('请输入验证码。');
+            return;
+        }
+
+        var pass = values.password, confirm = values.confirmPassword;
+        if (pass == '' || confirm == '') {
+            Ext.Msg.alert('请输入密码或者验证密码。');
+            return;
+        }
+
+        if (pass != confirm) {
+            Ext.Msg.alert('两次输入的密码不一致，请重新输入。');
+            return;
+        }
+
+        delete values['confirmPassword'];
+
+        this.getApplication().callService({
+            url: '/users/account/register',
+            method: "POST",
+            params: values,
+            success: function (response) {
+                me.getApplication().store([{key: 'account.authenticated', value: '1'}, {
+                    key: 'user.profile',
+                    value: Ext.JSON.encode(response)
+                }]);
+
+                me.getLoginMainView().setActiveItem(2);
+            }
+        });*/
     },
 
     /**
      *
      */
-    onRegisterDoneTap: function () {
+    doRegisterProfile: function () {
         var me = this, profileview = this.getRegisterProfileView();
 
-        var options = {url: '/users/profile/save'}, params = {}, files = [];
-        params.nickName = 'adfasdfdsaf';
-        params.gender = 'M';
-        params.id = 301;
+        var options = {url: '/users/profile/save'}, params = {};
+        params.nickName = profileview.down('#nickName').getValue();
+        if(params.nickName == ''){
+            this.getApplication().alert('请输入昵称');
+            return;
+        }
+        params.gender = profileview.down('#gender').getValue();
+        if(params.gender == ''){
+            this.getApplication().alert('请选择性别');
+            return;
+        }
+
+        var tags = view.down('#tags');
+        if (tags.isModified()) {
+            params.tags = tags.getValue();
+        }
+
+        params.id = me.getApplication().getUserId();
         options.params = params;
 
-        options.files = profileview.query('#userLogo');
+        options.fileContainer = profileview.down('#userLogo');
+
+        options.success=function(response){
+            me.getApplication().store([{key: 'account.authenticated', value: '1'}, {
+                key: 'user.profile',
+                value: Ext.JSON.encode(response)
+            }]);
+
+            var controller = me.getApplication().getController('MainCtrl');
+            controller.showMainPage();
+        }
 
         this.getApplication().uploadService(options);
     },
@@ -118,7 +147,7 @@ Ext.define('YourTour.controller.AccountMainCtrl', {
     /**
      * 登录
      */
-    onLoginTap: function () {
+    doLogin: function () {
         var me = this;
         var loginInfo = {};
 
@@ -138,7 +167,7 @@ Ext.define('YourTour.controller.AccountMainCtrl', {
         }
 
         this.getApplication().callService({
-            url: '/users/account/login',
+            url: '/users/login',
             method: "POST",
             params: loginInfo,
             success: function (response) {

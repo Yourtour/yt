@@ -1,7 +1,7 @@
 Ext.define('YourTour.view.widget.XImageSelect', {
     extend: 'Ext.Container',
     xtype: 'ximageselect',
-    requires:['YourTour.view.widget.XImageField'],
+    requires:['YourTour.view.widget.XImageField','YourTour.view.widget.XNavSelect'],
     config: {
         layout: 'vbox',
         flex: 1,
@@ -11,12 +11,12 @@ Ext.define('YourTour.view.widget.XImageSelect', {
             width: 200,
             height: 200,
             maximumImageCount: 9,  //需要采集的图片总数
-            maximumImageColCount: 3 //每行允许显示的图片
+            maximumImageColCount: 4 //每行允许显示的图片
         },
         imageContainer: null,
         items: [
             {
-                xtype: 'selectfield',
+                xtype: 'xnavselect',
                 itemId: 'imageSelect',
                 hidden: true,
                 usePicker: true,
@@ -37,11 +37,12 @@ Ext.define('YourTour.view.widget.XImageSelect', {
 
         me.imageCount = 0;
         me.createImageRowContainer();
-        me.imageContainer = me.query('.container')[0];
 
         imageSelect.on('change', function (select, newValue, oldValue, eOpts) {
             Ext.device.Camera.capture({
                 success: function (image) {
+                    me.modified = true;
+
                     var images = me.imageContainer.query('.ximagefield'), activeImage, activeIndex = -100;
                     Ext.Array.forEach(images, function (image, index) {
                         if (image.active) {
@@ -60,9 +61,7 @@ Ext.define('YourTour.view.widget.XImageSelect', {
                     });
 
                     activeImage.setData(image);
-
-                    me.imageCount += 1;
-                    if (activeIndex == image.maximumImageColCount - 1 && me.imageCount < image.maximumImageCount) {
+                    if (activeIndex == image.maximumImageColCount - 1) {
                         me.createImageRowContainer();
                         me.add(me.imageContainer);
                     }
@@ -91,20 +90,20 @@ Ext.define('YourTour.view.widget.XImageSelect', {
      *
      */
     createImageRowContainer: function () {
+        var imageCount = this.imageCount;
         this.imageContainer = Ext.create('Ext.Container', {
             layout: 'hbox',
             flex: 1,
             cls: 'x-ximage-row',
             defaults: {
-                flex: 1,
-                padding: 5
+                padding: '5 10'
             },
             items: []
         });
         this.add(this.imageContainer);
 
         var image = this.image || this.getImage();
-        for (var i = 0; i < image.maximumImageColCount; i++) {
+        for (var i = 0; i < image.maximumImageColCount && imageCount < image.maximumImageCount; i++) {
             if (i == 0) {
                 this.imageContainer.add({
                     xtype: 'ximagefield',
@@ -117,7 +116,11 @@ Ext.define('YourTour.view.widget.XImageSelect', {
                     fileName:image.fileName
                 })
             }
+
+            imageCount += 1;
         }
+
+        this.imageCount = imageCount;
         this.imageContainer.getAt(0).addCls('icon-add');
 
         this.bindEvents(this.imageContainer);
@@ -136,6 +139,16 @@ Ext.define('YourTour.view.widget.XImageSelect', {
         });
 
         return results;
+    },
+
+    setSrc:function(src){
+        var me = this, field = me.query('.ximagefield')[0];
+
+       field.setSrc(src);
+    },
+
+    isModified:function(){
+        return this.modified;
     }
 });
 

@@ -9,7 +9,6 @@ import org.apache.commons.logging.LogFactory;
 import com.yt.business.bean.UserProfileBean;
 import com.yt.business.common.Constants.GenderType;
 import com.yt.business.common.Constants.Role;
-import com.yt.business.common.Constants.Status;
 import com.yt.vo.BaseVO;
 
 public class UserVO extends BaseVO {
@@ -31,7 +30,6 @@ public class UserVO extends BaseVO {
 	private String constellation; // 星座
 	private Role role; // 角色
 	private int rank; // 等级
-	private Status status;
 	private String slogan; // 个人口号
 	private String  identity;
 	private String  age;
@@ -68,13 +66,11 @@ public class UserVO extends BaseVO {
 		vo.setNativePlace(bean.getNativePlace());
 		vo.setNickName(bean.getNickName());
 		vo.setRank(bean.getRank());
-		vo.setRealName(bean.getName());
+		vo.setRealName(bean.getRealName());
 		vo.setResidence(bean.getResidence());
 		vo.setRole(bean.getRole());
 		vo.setGender(bean.getGender());
 		vo.setSlogan(bean.getSlogan());
-		vo.setStatus(bean.getStatus());
-		vo.setUserName(bean.getCode());
 		vo.setAge(bean.getAge());
 		vo.setIdentity(bean.getIdentity());
 		vo.setSnsAuthenticate(bean.getSnsAuthenticate());
@@ -111,13 +107,11 @@ public class UserVO extends BaseVO {
 		bean.setMobileNo(vo.getMobileNo());
 		bean.setNativePlace(vo.getNativePlace());
 		bean.setNickName(vo.getNickName());
-		bean.setName(vo.getRealName());
+		bean.setRealName(vo.getRealName());
 		bean.setResidence(vo.getResidence());
 		bean.setRole(vo.getRole());
 		bean.setGender(vo.getGender());
 		bean.setSlogan(vo.getSlogan());
-		bean.setStatus(vo.getStatus());
-		bean.setCode(vo.getUserName());
 		return bean;
 	}
 
@@ -243,14 +237,6 @@ public class UserVO extends BaseVO {
 
 	public void setRank(int rank) {
 		this.rank = rank;
-	}
-
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
 	}
 
 	public String getSlogan() {

@@ -1,6 +1,6 @@
 Ext.define('YourTour.controller.route.RouteScheduleListCtrl', {
     extend: 'YourTour.controller.BaseCtrl',
-    requires:['YourTour.store.RouteStore', 'YourTour.model.RouteModel'],
+    requires:[ 'YourTour.model.RouteModel'],
     
     config: {
        refs: {

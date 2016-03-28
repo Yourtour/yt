@@ -12,5 +12,9 @@ Ext.define('YourTour.controller.BaseCtrl', {
 
     getValues:function(formview, fields){
         return YourTour.util.Context.getViewFields(formview, fields);
+    },
+
+    alert:function(msg) {
+        Ext.Msg.alert(msg);
     }
 });

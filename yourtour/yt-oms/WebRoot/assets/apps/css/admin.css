@@ -1,0 +1,15 @@
+.page-sidebar .page-sidebar-menu>li>a>.title{
+    margin-top:20px !important;
+}
+
+.bottom-space{
+    margin-bottom:10px;
+}
+
+.top-space{
+    margin-top:10px;
+}
+
+button i.fa{
+    padding-right:5px;
+}

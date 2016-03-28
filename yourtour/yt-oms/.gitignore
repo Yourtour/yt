@@ -1,0 +1,7 @@
+.classpath
+.project
+.settings
+./bin
+./build
+./WebRoot/WEB-INF/classess
+/bin

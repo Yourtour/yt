@@ -14,7 +14,7 @@ public class ActivityItemVO extends BaseVO {
 			return null;
 		}
 		ActivityItemVO vo = new ActivityItemVO();
-		vo.setId(bean.getGraphId());
+		vo.setId(bean.getId());
 		vo.setTitle(bean.getTitle());
 		vo.setMemo(bean.getMemo());
 		vo.setImageUrl(bean.getImageUrl());

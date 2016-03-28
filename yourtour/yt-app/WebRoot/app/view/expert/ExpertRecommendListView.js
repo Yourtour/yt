@@ -1,6 +1,6 @@
 Ext.define('YourTour.view.expert.ExpertRecommendListView', {
     extend: 'YourTour.view.widget.XPage',
-    requires:['Ext.Panel','Ext.Img', 'Ext.DataView','YourTour.view.widget.XHeaderBar', 'Ext.Spacer','YourTour.view.widget.ToolButton'],
+    requires:['Ext.Panel','Ext.Img', 'Ext.DataView','YourTour.view.widget.XHeaderBar', 'Ext.Spacer'],
     config: {
     	id:'ExpertRecommendListView',
     	layout:'vbox',
@@ -13,8 +13,7 @@ Ext.define('YourTour.view.expert.ExpertRecommendListView', {
 				xtype: 'xheaderbar',
 				items:[
 					{
-	                	xtype: "toolbutton",
-	                    ui: "normal",
+	                	xtype: "xbutton",
 	                	text:'定制',
 	                	itemId:'btnCustomize',
 	                	align:'right'

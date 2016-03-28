@@ -3,7 +3,7 @@ package com.yt.vo.chat;
 import java.io.Serializable;
 
 import com.yt.business.bean.ChatMessageBean;
-import com.yt.vo.member.UserProfileVO;
+import com.yt.vo.member.UserVO;
 
 public class ChatMessageVO implements Serializable {
 
@@ -17,7 +17,7 @@ public class ChatMessageVO implements Serializable {
 	}
 
 	public Long getId() {
-		return bean.getGraphId();
+		return bean.getId();
 	}
 
 	public boolean isNotice() {
@@ -25,11 +25,11 @@ public class ChatMessageVO implements Serializable {
 	}
 
 	public String getText() {
-		return bean.getMessage();
+		return bean.getContent();
 	}
 
-	public UserProfileVO getFromUser() {
-		return new UserProfileVO(bean.getUserProfile());
+	public UserVO getFromUser() {
+		return UserVO.transform(bean.getSender());
 	}
 
 }

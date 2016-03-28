@@ -25,11 +25,39 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"ExtraInfo\"><param name=\"android-package\" value=\"com.yt.cordova.extra.ExtraInfo\" /></feature>",
+                            "xml": "<feature name=\"ImagePicker\"><param name=\"android-package\" value=\"com.synconset.ImagePicker\" /></feature>",
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"ImagePicker\"><param name=\"android-package\" value=\"com.synconset.ImagePicker\" /></feature>",
+                            "xml": "<feature name=\"AppVersion\"><param name=\"android-package\" value=\"uk.co.whiteoctober.cordova.AppVersion\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Vibration\"><param name=\"android-package\" value=\"org.apache.cordova.vibration.Vibration\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Notification\"><param name=\"android-package\" value=\"org.apache.cordova.dialogs.Notification\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"File\"><param name=\"android-package\" value=\"org.apache.cordova.file.FileUtils\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"FileTransfer\"><param name=\"android-package\" value=\"org.apache.cordova.filetransfer.FileTransfer\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"App\"><param name=\"android-package\" value=\"com.yt.cordova.plugins.App\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -40,7 +68,7 @@
                     "/*": [
                         {
                             "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
-                            "count": 2
+                            "count": 4
                         }
                     ],
                     "/manifest/application": [
@@ -76,6 +104,10 @@
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.VIBRATE\" />",
                             "count": 1
                         }
                     ]
@@ -578,10 +610,28 @@
         "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "foo.bar.YourTour"
         },
-        "cordova-plugin-extra": {
+        "cordova-plugin-image-picker": {
             "PACKAGE_NAME": "foo.bar.YourTour"
         },
-        "cordova-plugin-image-picker": {
+        "org.apache.cordova.splashscreen": {
+            "PACKAGE_NAME": "foo.bar.YourTour"
+        },
+        "cordova-plugin-vibration": {
+            "PACKAGE_NAME": "foo.bar.YourTour"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "foo.bar.YourTour"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "foo.bar.YourTour"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "foo.bar.YourTour"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "foo.bar.YourTour"
+        },
+        "cordova-plugin-app": {
             "PACKAGE_NAME": "foo.bar.YourTour"
         }
     },

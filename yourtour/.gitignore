@@ -1,4 +1,9 @@
-.metadata
-
-/out
-/yt-android/
+.idea
+.idea/workspace.xml
+.idea/**
+.gradle/**
+out/**
+yt-android/**
+yt-dal/**
+yt-rsal/**
+yt-manager-app/**

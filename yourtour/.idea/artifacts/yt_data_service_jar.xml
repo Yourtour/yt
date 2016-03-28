@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="yt-data-service:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/yt_data_service_jar</output-path>
-    <root id="archive" name="yt-data-service.jar">
-      <element id="module-output" name="yt-data-service" />
-    </root>
-  </artifact>
-</component>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:neo4j="http://www.springframework.org/schema/data/neo4j"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/data/neo4j
+            http://www.springframework.org/schema/data/neo4j/spring-neo4j.xsd
+            http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<context:annotation-config />
+	<context:spring-configured />
+
+	<neo4j:config graphDatabaseService="graphDatabaseService"
+		base-package="com.yt.business.bean" />
+
+	<neo4j:repositories base-package="com.yt.business.repository.neo4j" />
+
+	<context:component-scan base-package="com.yt.business.service, com.yt.neo4j.repository" />
+
+	<bean id="graphDatabaseService"
+		class="org.springframework.data.neo4j.rest.SpringRestGraphDatabase">
+		<!--<constructor-arg index="0"
+			value="http://yt-database:7474/db/data" />-->
+		<constructor-arg index="0"
+						 value="http://120.55.76.201:7474/db/data" />
+	</bean>
+	<!--neo4j:config storeDirectory="data/yt.db" base-package="com.yt.business.bean"
+		/ -->
+
+	<bean id="crudAllInOneOperate" class="com.yt.repository.CrudAllInOneOperateImpl" />
+
+	<!--<bean id="neo4jCrud" class="com.yt.neo4j.repository.CrudGeneralOperate" />-->
+	<bean id="neo4jFts" class="com.yuserServiceImplt.neo4j.repository.FullTextSearchGeneralOperate" />
+
+	<!-- 初始化Neo4j相关的关系实体缓存 -->
+	<bean id="neo4jBeanDescriptorGeneralCacheImpl" class="com.yt.neo4j.cache.Neo4jBeanDescriptorGeneralCacheImpl">
+		<property name="beanRepositories" value="com.yt.business.bean,com.yt.neo4j.bean" />
+	</bean>
+
+	<!-- 注入包装了hbase和neo4j操作的配置类 -->
+	<bean id="crudAllInOneConfig" class="com.yt.repository.CrudAllInOneConfig">
+		<property name="save2Hbase" value="false" />
+		<!--property name="hbaseCrud" ref="hbaseCrud" / -->
+	</bean>
+</beans>

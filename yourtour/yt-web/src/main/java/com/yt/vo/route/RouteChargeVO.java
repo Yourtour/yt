@@ -1,19 +1,10 @@
 package com.yt.vo.route;
 
 import com.yt.business.bean.*;
-import com.yt.business.common.Constants;
-import com.yt.business.common.Constants.ResType;
-import com.yt.core.utils.DateUtils;
+import com.yt.core.utils.CollectionUtils;
 import com.yt.vo.BaseVO;
-import com.yt.vo.member.UserVO;
-import com.yt.vo.resource.HotelResourceVO;
-import com.yt.vo.resource.ResourceVO;
-import com.yt.vo.resource.RestaurantResourceVO;
-import com.yt.vo.resource.SceneResourceVO;
-import org.apache.commons.httpclient.util.DateUtil;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class RouteChargeVO extends BaseVO {
@@ -30,13 +21,15 @@ public class RouteChargeVO extends BaseVO {
 	private String	nickName;
 	private String  userImageUrl;
 
+	private List<RouteChargeVO> divisions = null;
+
 	public static RouteChargeVO transform(RouteChargeBean bean) {
 		if (bean == null) {
 			return null;
 		}
 
 		RouteChargeVO vo = new RouteChargeVO();
-		vo.setId(bean.getGraphId());
+		vo.setId(bean.getId());
 		vo.setName(bean.getName());
 		vo.setItem(bean.getItem());
 		vo.setAmount(bean.getAmount());
@@ -49,11 +42,21 @@ public class RouteChargeVO extends BaseVO {
 
 		UserProfileBean user = bean.getOwner();
 		if(user != null) {
-			vo.setUserId(user.getGraphId());
+			vo.setUserId(user.getId());
 			vo.setNickName(user.getNickName());
 			vo.setUserImageUrl(user.getImageUrl());
 		}
 
+		List<RouteChargeBean> divisions = bean.getDivision();
+		if(CollectionUtils.isNotEmpty(divisions)){
+			List<RouteChargeVO> divisionvo = new ArrayList<>();
+
+			for(RouteChargeBean division : divisions){
+				divisionvo.add(RouteChargeVO.transform(division));
+			}
+
+			vo.setDivisions(divisionvo);
+		}
 		return vo;
 	}
 
@@ -175,5 +178,13 @@ public class RouteChargeVO extends BaseVO {
 
 	public void setUserImageUrl(String userImageUrl) {
 		this.userImageUrl = userImageUrl;
+	}
+
+	public List<RouteChargeVO> getDivisions() {
+		return divisions;
+	}
+
+	public void setDivisions(List<RouteChargeVO> divisions) {
+		this.divisions = divisions;
 	}
 }

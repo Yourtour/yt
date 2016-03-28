@@ -1,6 +1,6 @@
 Ext.define('YourTour.controller.route.RouteMainCtrl', {
     extend: 'YourTour.controller.BaseCtrl',
-    requires: ['YourTour.store.RouteStore', 'YourTour.view.route.RouteMainItem'],
+    requires: ['YourTour.view.route.RouteMainItem'],
 
     config: {
         refs: {
@@ -105,7 +105,6 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
             model: 'YourTour.model.RouteModel',
             url: '/routes/personal/query',
             success: function (store) {
-                console.log(route);
                 var route = store.first();
                 mainview.setData(route);
 
@@ -123,7 +122,7 @@ Ext.define('YourTour.controller.route.RouteMainCtrl', {
 
     onRouteNew: function () {
         var controller = this.getApplication().getController('route.RouteSchedulePlanCtrl')
-        controller.createNewRoute();
+        controller.showRoutePlanView();
     },
 
     /**

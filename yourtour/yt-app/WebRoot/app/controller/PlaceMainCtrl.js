@@ -4,35 +4,17 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
     config: {
         refs: {
             placeMainView: '#PlaceMainView',
-            imageCarousel: '#PlaceMainView #imageCarousel',
-            resourceList:'#PlaceMainView #resourceList',
+            placeCarousel: '#PlaceMainView #places',
 
-            placeCommunityView:'#PlaceCommunityView'
+            placeCommunityView:'#PlaceCommunityView',
+
+            residenceSelectionView:'#ResidenceSelectionView',
+            residencePlaceList:'#ResidenceSelectionView #placeList'
         },
 
         control: {
-            resourceList:{
-                itemtap:'showResource'
-            },
-
-            '#PlaceMainView #placeCommunity': {
-                tap: 'showCommunityMainView'
-            },
-
-            '#PlaceMainView #placeAlongs': {
-                tap: 'showAlongView'
-            },
-
-            '#PlaceMainView #placeExperts': {
-                tap: 'showExpertView'
-            },
-
-            '#PlaceMainView #placeLines': {
-                tap: 'showLineView'
-            },
-
-            '#PlaceMainView #placePosition': {
-                tap: 'showResourceView'
+            placeCarousel: {
+                activeitemchange: 'onPlaceActiveItemChange'
             }
         }
     },
@@ -41,9 +23,59 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
      * 进入目的地首页
      * @param placeId
      * @param placeName
+     * @Status formal
      */
-    showMainPage: function (placeId, placeName) {
-        /*Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.place.PlaceMainView'));*/
+    showMainPage: function () {
+        var me = this,
+            mainview = me.getPlaceMainView(),
+            places = me.getPlaceCarousel(),
+            store = mainview.store;
+
+        if(! store) {
+            var options = {
+                model: 'YourTour.model.PlaceModel',
+                url: '/places',
+                success: function (store) {
+                    if (store) {
+                        mainview.store = store;
+                        store.each(function (place, index) {
+                            places.add([Ext.create('YourTour.view.place.PlaceMainItem', {data: place})]);
+                        })
+                    }
+                }
+            };
+            me.getApplication().query(options);
+        }else{
+            places.setActiveItem(0);
+        }
+    },
+
+    /**
+     *
+     * @param carousel
+     * @param value
+     * @param oldValue
+     * @param eOpts
+     * @Status formal
+     */
+    onPlaceActiveItemChange:function( carousel, value, oldValue, eOpts){
+        var me = this,
+            mainview = me.getPlaceMainView(),
+            headerbar = mainview.down('#headerbar');
+
+        if(value){
+            var store = mainview.store,
+                place = store.getAt(carousel.getActiveIndex(value));
+            headerbar.setTitle(place.get('name'));
+        }
+    },
+
+    /**
+     * 进入目的地首页
+     * @param placeId
+     * @param placeName
+     */
+    showPlacePage: function (placeId, placeName) {
         var me = this, mainview = me.getPlaceMainView(), resourceList = me.getResourceList(), navPanel = mainview.down('#navPanel');
 
         mainview.down('#headerbar').setTitle(placeName);
@@ -76,12 +108,9 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
         }
     },
 
+
     showCommunityMainView:function(){
         Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.place.PlaceCommunityView'));
-    },
-
-    showResource:function(dataview, index, item, record){
-        this.showResourceImages(record);
     },
 
     showResourceImages:function(resource){
@@ -182,5 +211,36 @@ Ext.define('YourTour.controller.PlaceMainCtrl', {
 
         var controller = this.getApplication().getController('AlongMainCtrl');
         controller.showAlongList(place);
+    },
+
+    showResidenceSelectionView:function(field){
+        Ext.ComponentManager.get('MainView').push(Ext.create('YourTour.view.place.ResidenceSelectionView'));
+
+        var me = this, residenceSelectionView = me.getResidenceSelectionView(), residencePlaceList = me.getResidencePlaceList();
+        residenceSelectionView.down('#headerbar').setTitle(field.getLabelText());
+
+        residencePlaceList.on('itemtap', function(list, index, item, record){
+            field.modifyText(record.get('name'));
+            field.setValue(record.get('id') +',' + record.get('name'));
+            Ext.ComponentManager.get('MainView').pop();
+        });
+
+        var options = {
+            config:{
+                model: 'YourTour.model.PlaceModel',
+                grouper:{
+                    groupFn: function(record) {
+                        return record.get('code').substr(0, 1);
+                    },
+                    sortProperty: 'code'
+                }
+            },
+            url: '/place/residence/query',
+            success: function (store) {
+                residencePlaceList.setStore(null);
+                residencePlaceList.setStore(store);
+            }
+        };
+        me.getApplication().query(options);
     }
 });

@@ -16,7 +16,6 @@
         */
         html, body {
             height: 100%;
-            background-color: #1985D0
         }
 
         #appLoadingIndicator {
@@ -62,7 +61,7 @@
         .icon-user {
             background-image: url(./resources/icons/24/icon_user.png);
             background-repeat: no-repeat;
-            background-position: 10px center;
+            background-position: 0px center;
         }
 
         .icon-password {
@@ -259,17 +258,19 @@
         }
 
         .icon-male {
-            width: 24px;
+            padding-right:40px;
             background-image: url(./resources/icons/16/icon_male.png);
             background-repeat: no-repeat;
-            background-position: 0px center;
+            background-position: right center;
+            min-height:20px;
         }
 
         .icon-female {
-            width: 16px;
+            padding-right:40px;
             background-image: url(./resources/icons/16/icon_female.png);
             background-repeat: no-repeat;
-            background-position: 0px center;
+            background-position: right center;
+            min-height:20px;
         }
 
         .icon-report {
@@ -360,7 +361,6 @@
 
         .x-field-more {
             text-align: left !important;
-            margin: 0px 10px 0px 0px;
         }
 
         .marked {
@@ -374,8 +374,11 @@
         /*********************************************************************************************************/
         .x-xheaderbar {
             color: white !important;
-            background-color: #3CB371 !important;
             height: 45px;
+        }
+
+        .x-xheaderbar.x-xheaderbar-color {
+            background-color: #3CB371 !important;
         }
 
         .x-xheaderbar .x-xtitle {
@@ -385,6 +388,13 @@
 
         .x-xheaderbar .x-xleft {
             padding: 0px 0px 0px 25px;
+        }
+
+        .x-xheaderbar .x-xmiddle {
+            line-height: 45px;
+            font-size: 18px !important;
+            text-align:center;
+            font-weight:bold;
         }
 
         .x-xheaderbar .x-button {
@@ -441,11 +451,6 @@
         .tabbar .x-tab {
             height: 50px;
         }
-
-        /*        .tabbar .x-button-label {
-                    color: grey !important;
-                    font-size: 12px !important;
-                }*/
 
         .x-xtoolbar {
             height: 50px;
@@ -553,12 +558,6 @@
             background-color: white;
         }
 
-        .scheduleItemList .x-item-selected {
-            background-image: url(./resources/icons/icon_checked_24.png);
-            background-repeat: no-repeat;
-            background-position: right center;
-        }
-
         /** End 行程列表CSS 定义**/
 
         .verticledataitem .info {
@@ -636,8 +635,8 @@
         }
 
         .x-xuser-logo.x-xmedium {
-            width: 48px;
-            height: 48px;
+            width: 70px;
+            height: 70px;
         }
 
         .row {
@@ -667,22 +666,22 @@
             min-height: 25px;
         }
 
-        .x-xfield .icon-edit {
+        .icon-edit {
             background-image: url(./resources/icons/16/icon_edit.png);
             background-repeat: no-repeat;
             background-position: right center;
-            float: right;
-            width: 2.2em;
-            height: 1.5em;
+            padding-right:30px;
         }
 
         .x-xfield.x-xfield-default {
             line-height: 25px;
+            text-align: right;
         }
 
         .x-xfield.x-xfield-multi {
             line-height: 25px;
             min-height: 45px;
+            text-align: left;
         }
 
         .x-xfield .active {
@@ -770,7 +769,7 @@
 
         .x-xopacity {
             background-color: grey;
-            opacity: 0.2;
+            opacity: 0.8;
             z-index: 100;
         }
 
@@ -971,13 +970,36 @@
         }
 
         .x-xuserlogo .x-ximage{
-            border: 1px solid #EDEDED;
+            width:75px;
+            height:75px;
+            border-radius: 100%;
         }
 
         .x-ximage-row .icon-add {
             background-image: url(./resources/icons/32/icon_add.png);
             background-repeat: no-repeat;
             background-position: center center;
+        }
+
+        .x-list .x-list-header{
+            height:45px;
+            line-height: 45px;
+            font-size:14px!important;
+        }
+
+        .x-list .x-list-item-tpl{
+            color:grey!important;
+        }
+
+        .x-list .x-indexbar-alphabet div{
+            padding: 1px 0px;
+            color:grey!important;
+            font-size:14px!important;
+        }
+
+        .x-xzoomcarousel .x-carousel-item, .x-xzoomcarousel .x-carousel-item>*{
+            height:80% !important;
+            width: 60% !important;
         }
     </style>
 
