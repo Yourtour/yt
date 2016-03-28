@@ -1,14 +1,14 @@
 package com.yt.vo;
 
-import java.util.List;
-
+/**
+ * 前端树控件数据结构
+ */
 public class TreeVO {
-	private String id;
-	private String parent;
-	private String text;
-	private String icon;
-	private String state;
-	private List<TreeVO> children;
+	private String id; //当前节点ID
+	private String parent;  //父节点ID
+	private String text;  //节点显示名称
+	private String icon; //节点图标
+	private String state; //节点状态, opened, disabled, selected
 
 	public TreeVO() {
 		super();
@@ -52,13 +52,5 @@ public class TreeVO {
 
 	public void setState(String state) {
 		this.state = state;
-	}
-
-	public List<TreeVO> getChildren() {
-		return children;
-	}
-
-	public void setChildren(List<TreeVO> children) {
-		this.children = children;
 	}
 }

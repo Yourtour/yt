@@ -14,6 +14,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import com.yt.core.utils.BeanUtils;
+import com.yt.core.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -67,7 +68,10 @@ public class PlaceRestResource extends RestResource {
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public ResponseDataVO<PlaceVO> savePlace(@FormDataParam("place") String json, FormDataMultiPart form) throws Exception {
 		PlaceBean place = (PlaceBean) BeanUtils.deserialize(json, PlaceBean.class);
-		place.setImageUrl(super.uploadMediaFile(form, "placeImage",	PLACE_IMAGE_PATH));
+		String imageUrls = super.uploadMediaFile(form, "placeImage", PLACE_IMAGE_PATH);
+		if(StringUtils.isNotNull(imageUrls)) {
+			place.setImageUrl(imageUrls);
+		}
 
 		Long userId = super.getCurrentUserId();
 		placeService.savePlace(place, userId);

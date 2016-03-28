@@ -16,7 +16,7 @@ import java.util.Map;
 public class ViewServiceImpl  extends ServiceBase implements IViewService {
     @Override
     public Map<String, Object> getValue(String name) throws Exception {
-        if(name.equalsIgnoreCase("DictManagement")){
+        if(name.equalsIgnoreCase("Dictionary")){
             return this.getValue4DictManagement();
         }
 

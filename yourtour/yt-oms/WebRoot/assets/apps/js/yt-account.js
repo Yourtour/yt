@@ -3,7 +3,7 @@
  *
  * @type {{query: Function, saveDictInfo: Function, loadDictInfo: Function}}
  */
-jQuery.AccountManagement = {
+jQuery.Account = {
     init:function(){
         var me = this;
 
@@ -57,7 +57,7 @@ jQuery.AccountManagement = {
         account.userName = accountForm.find('#userName').val();
         account.pwd = accountForm.find('#password').val();
 
-        $.Request.post("/rest/admin/account/save",account,function(result){
+        $.Request.post("/rest/oms/account/save",account,function(result){
             bootbox.alert("保存成功。", function(){
                 $.Page.back(function(){
                     me.query();
@@ -75,7 +75,7 @@ jQuery.AccountManagement = {
         account.userName = username;
         account.pwd = password;
 
-        $.Request.post("/rest/admin/account/authenticate",account,function(result){
+        $.Request.post("/rest/oms/account/authenticate",account,function(result){
             window.location = "Home";
         })
     }

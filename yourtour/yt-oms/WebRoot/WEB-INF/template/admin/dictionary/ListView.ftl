@@ -49,7 +49,7 @@
                         </div>
 
                         <table id="datatable_dict" class="row-border" cellspacing="0" width="100%" data-criteria="DictListView_Criteria"
-                               data-rest="${context}/rest/admin/dicts/query">
+                               data-rest="${context}/rest/oms/dicts/query">
                             <thead>
                                 <tr>
                                     <th>

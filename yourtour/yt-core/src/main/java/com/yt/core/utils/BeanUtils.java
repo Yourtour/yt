@@ -122,7 +122,7 @@ public class BeanUtils {
 	 * @return
 	 * @throws Exception
 	 */
-	public static Object deserialize(String json, Class<?> clazz) throws Exception {
-		return JSON.parseObject(json, clazz);
+	public static<T>  T deserialize(String json, Class<T> clazz) throws Exception {
+		return (T) JSON.parseObject(json, clazz);
 	}
 }

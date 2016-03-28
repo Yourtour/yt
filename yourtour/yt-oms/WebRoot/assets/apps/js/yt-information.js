@@ -3,7 +3,7 @@
  *
  * @type {{query: Function, saveDictInfo: Function, loadDictInfo: Function}}
  */
-jQuery.InformationManagement = {
+jQuery.Information = {
     init:function(){
         $.Page.show("Page_InformationListView");
     },

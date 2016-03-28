@@ -49,6 +49,20 @@ jQuery.Request={
                 }
             }
         } );
+    },
+
+    delete:function(url, data, success, fail){
+        var context = $('#context').val();
+
+        $.get(context + url, data, function(message){
+            if(message.errorCode == "0") {
+                success(message.data);
+            }else{
+                if(fail){
+                    fail(message);
+                }
+            }
+        } );
     }
 };
 

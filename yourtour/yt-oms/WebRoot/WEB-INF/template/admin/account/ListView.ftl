@@ -1,4 +1,4 @@
-<div id="Page_ActivityListView" class="row" data-role="page">
+<div id="Page_AccountListView" class="row" data-role="page">
     <div class="col-lg-12">
         <div class="page-bar">
             <ul class="page-breadcrumb">
@@ -8,7 +8,7 @@
                     <i class="fa fa-angle-right"></i>
                 </li>
                 <li>
-                    <span>活动管理</span>
+                    <span>账户管理</span>
                 </li>
             </ul>
         </div>
@@ -42,17 +42,14 @@
                             </div>
                         </div>
 
-                        <table id="datatable_dict" class="row-border" cellspacing="0" width="100%" data-criteria="DictListView_Criteria"
-                               data-rest="${context}/rest/admin/dicts/query">
+                        <table id="datatable_account" class="row-border" cellspacing="0" width="100%"  data-rest="${context}/rest/oms/account/query">
                             <thead>
                                 <tr>
                                     <th>
                                         <input type="checkbox" class="group-checkable">
                                     </th>
-                                    <th>分类</th>
-                                    <th>名称</th>
-                                    <th>编码</th>
-                                    <th>值</th>
+                                    <th>账号</th>
+                                    <th>姓名</th>
                                 </tr>
                             </thead>
 

@@ -9,7 +9,7 @@
 
     <script language="javascript">
         $(document).ready(function(){
-            $.PlaceManagement.init();
+            $.Place.init();
         });
     </script>
 </body>

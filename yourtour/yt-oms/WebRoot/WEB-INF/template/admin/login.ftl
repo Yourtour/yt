@@ -121,7 +121,7 @@
 	  <script language="javascript">
 		  $(document).ready(function(){
 			  $("#login").on('click', function(){
-				  $.AccountManagement.login();
+				  $.Account.login();
 			  })
 		  });
 	  </script>

@@ -2,6 +2,7 @@ package com.yt.utils;
 
 import com.yt.core.utils.Neo4jUtils;
 import com.yt.core.utils.StringUtils;
+import com.yt.vo.UserVO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,8 +21,11 @@ public class SessionUtils {
 
 		if (StringUtils.isNull(value)) {
 			HttpSession session = request.getSession(true);
-			value = (String) session.getAttribute(USER_TOKEN);
-			if(value == null) value = "0";
+			UserVO user = (UserVO) session.getAttribute(USER_TOKEN);
+			if(user == null)
+				value = "0";
+			else
+				value = user.getUserId().toString();
 		}
 
 		return value;
@@ -38,12 +42,11 @@ public class SessionUtils {
 	}
 
 	/**
-	 * 缓存用户访问令牌
-	 * 
-	 * @param username
+	 * 缓存用户信息
+	 * @param user
 	 */
-	public static void setCurrentLoginUser(String username) {
-		setAttribute(USER_TOKEN, username);
+	public static void setCurrentLoginUser(UserVO user) {
+		setAttribute(USER_TOKEN, user);
 	}
 
 	/**

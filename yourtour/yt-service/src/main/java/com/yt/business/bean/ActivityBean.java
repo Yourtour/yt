@@ -16,25 +16,24 @@ import com.yt.neo4j.annotation.Neo4jRelationship.Direction;
  * 
  * Created by John.Peng on 2016/3/12.
  */
+
 @HbaseTable(name = "T_ACTIVITY_INFO")
 @NodeEntity
 public class ActivityBean extends BaseBeanImpl {
 	private static final long serialVersionUID = -5019182758425160992L;
 
-	public enum Status {
-		DRAFT, // 草稿
-		APPROVED_PASS, // 审核通过
-		APPROVED_NOT_PASS, // 审核不通过
-		PENDDING, // 排队中
-		RELEASED, // 发布
-		CLOSED // 关闭
-	}
+	private String 	title;			//标题
+	private String 	subTitle;		//副标题
+	private Long 	startTime;		//开始时间
+	private Long 	endTime;		//结束时间
+	private String 	imageUrl;		//图片
+	private String	brief;			//概述
+	private	String  feature;		//特色
+	private String 	tags;           //活动标签
+	private int		recommendIndex; //推荐指数
 
-	private String imageUrl;
-	private Status status = Status.DRAFT;
-
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_AT, type = PlaceBean.class, direction = Direction.OUTGOING)
-	private transient PlaceBean place;
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = ActivityContentBean.class, direction = Direction.OUTGOING, isList = true)
+	private transient List<ActivityContentBean> contents;
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RELATED, type = RouteMainBean.class, direction = Direction.OUTGOING, isList = true)
 	private transient List<RouteMainBean> routes;
@@ -42,6 +41,38 @@ public class ActivityBean extends BaseBeanImpl {
 	public ActivityBean() {
 		super();
 		this.routes = new Vector<RouteMainBean>();
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getSubTitle() {
+		return subTitle;
+	}
+
+	public void setSubTitle(String subTitle) {
+		this.subTitle = subTitle;
+	}
+
+	public Long getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(Long startTime) {
+		this.startTime = startTime;
+	}
+
+	public Long getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(Long endTime) {
+		this.endTime = endTime;
 	}
 
 	public String getImageUrl() {
@@ -52,24 +83,51 @@ public class ActivityBean extends BaseBeanImpl {
 		this.imageUrl = imageUrl;
 	}
 
-	public Status getStatus() {
-		return status;
+	public String getBrief() {
+		return brief;
 	}
 
-	public void setStatus(Status status) {
-		this.status = status;
+	public void setBrief(String brief) {
+		this.brief = brief;
 	}
 
-	public PlaceBean getPlace() {
-		return place;
+	public String getFeature() {
+		return feature;
 	}
 
-	public void setPlace(PlaceBean place) {
-		this.place = place;
+	public void setFeature(String feature) {
+		this.feature = feature;
+	}
+
+	public String getTags() {
+		return tags;
+	}
+
+	public void setTags(String tags) {
+		this.tags = tags;
+	}
+
+	public int getRecommendIndex() {
+		return recommendIndex;
+	}
+
+	public void setRecommendIndex(int recommendIndex) {
+		this.recommendIndex = recommendIndex;
+	}
+
+	public List<ActivityContentBean> getContents() {
+		return contents;
+	}
+
+	public void setContents(List<ActivityContentBean> contents) {
+		this.contents = contents;
 	}
 
 	public List<RouteMainBean> getRoutes() {
 		return routes;
 	}
 
+	public void setRoutes(List<RouteMainBean> routes) {
+		this.routes = routes;
+	}
 }

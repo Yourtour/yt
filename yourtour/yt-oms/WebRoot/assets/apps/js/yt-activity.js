@@ -3,30 +3,47 @@
  *
  * @type {{query: Function, saveDictInfo: Function, loadDictInfo: Function}}
  */
-jQuery.ActivityManagement = {
+jQuery.Activity = {
     init:function(){
         $.Page.show("Page_ActivityListView");
+
+        var me = this,
+            listview = $("#Page_ActivityListView"),
+            formview = $("#Page_ActivityFormView");
+
+        $("#btn_add", listview).on("click", function(){
+            me.createActivityInfo();
+        });
+
+        $('.date-picker', formview).datepicker({
+            format: 'yyyy-mm-dd',
+            clearBtn:true
+        });
+
+        //me.query();
     },
 
     /**
      * 列表查询
      */
     query:function(){
-        $("#datatable_dict").dataTable().fnDestroy();
-        $("#datatable_dict").dataTable({
+        $("#datatable_activity").dataTable().fnDestroy();
+        $("#datatable_activity").dataTable({
             "aoColumns": [
                 {"mData": "id", "sClass":"center", "sWidth": "20px", "mRender": function (data, type, row) {
                     return "<input type='checkbox' class='checkboxes' value='" + data + "'/>";
                 }},
-                {
-                    "mData": "typeName",
-                    "sWidth": "20%"
-                },
                 {"mData": "name", "sWidth": "30%"},
-                {"mData": "code", "sWidth": "20%"},
-                {"mData": "value", "sWidth": "30%"},
+                {"mData": "code", "sWidth": "25%"},
+                {"mData": "name", "sWidth": "20%"},
+                {"mData": "code", "sWidth": "10%"},
+                {"mData": "value", "sWidth": "10%"}
             ]
         });
+    },
+
+    createActivityInfo:function(){
+        $.Page.show("Page_ActivityFormView");
     },
 
     /**

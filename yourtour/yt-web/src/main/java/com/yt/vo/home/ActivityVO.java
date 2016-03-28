@@ -26,9 +26,7 @@ public class ActivityVO {
 		ActivityVO vo = new ActivityVO();
 		vo.setId(bean.getId());
 		vo.setImageUrl(bean.getImageUrl());
-		if (bean.getPlace() != null) {
-			vo.setPlace(PlaceVO.transform(bean.getPlace()));
-		}
+
 		for (RouteMainBean route : bean.getRoutes()) {
 			if (route == null) {
 				continue;

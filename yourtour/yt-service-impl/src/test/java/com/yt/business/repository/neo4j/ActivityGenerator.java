@@ -21,7 +21,6 @@ public class ActivityGenerator extends DataGenerator{
 
 		ActivityBean activity = new ActivityBean();
 		activity.setImageUrl("resources/images/launch_image.jpg");
-		activity.setStatus(ActivityBean.Status.RELEASED);
 		operator.save(activity);
 	}
 

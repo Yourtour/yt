@@ -3,41 +3,42 @@
  *
  * @type {{query: Function, saveDictInfo: Function, loadDictInfo: Function}}
  */
-jQuery.DictManagement = {
+jQuery.Dictionary = {
     init:function(){
         $.Page.show("Page_DictListView");
 
-        $.DictManagement.query();
-
+        var me = this;
         $("#Page_DictListView #btn_add").on('click', function(){
-            $.DictManagement.loadDictInfo();
+            me.loadDictInfo();
         });
 
         $("#Page_DictListView #btn_edit").on('click', function(){
             $("#datatable_dict").edit(function(id){
-                $.DictManagement.loadDictInfo(id);
+                me.loadDictInfo(id);
             })
         });
 
         $("#Page_DictListView #btn_delete").on('click', function(){
             $("#datatable_dict").delete(function(ids){
-                $.DictManagement.deleteDictInfo(ids);
+                me.deleteDictInfo(ids);
             })
         });
 
         $('#Page_DictListView #type').change(function(){
-            $.DictManagement.query();
+            me.query();
         });
 
         //保存按钮事件
         $("#Page_DictFormView #btnSave").on('click', function(){
-            $.DictManagement.saveDictInfo()
+            me.saveDictInfo()
         });
 
         //取消按钮事件
         $("#Page_DictFormView #btnCancel").on('click', function(){
             $.Page.back();
         });
+
+        me.query();
     },
 
     /**

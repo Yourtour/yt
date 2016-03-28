@@ -3,7 +3,7 @@
  *
  * @type {{query: Function, saveDictInfo: Function, loadDictInfo: Function}}
  */
-jQuery.PlaceManagement = {
+jQuery.Place = {
     init:function(){
         $.Page.show("Page_PlaceListView");
 
@@ -14,6 +14,10 @@ jQuery.PlaceManagement = {
 
         $("#btn_save", view).on('click', function(){
             me.savePlaceInfo();
+        });
+
+        $("#btn_delete", view).on('click', function(){
+            me.deletePlaceInfo();
         });
 
         this.inittree();
@@ -63,6 +67,32 @@ jQuery.PlaceManagement = {
         $.Request.get("/rest/oms/places/" + placeId,null,function(result){
             $("#PlaceForm").deserialize(result);
         });
+    },
+
+    /**
+     * 删除指定目的地
+     */
+    deletePlaceInfo:function(){
+        var me = this,
+            placeId = $("#Page_PlaceListView #id").val();
+
+        console.log(placeId);
+        if(placeId && placeId == null){
+            bootbox.alert("选择需要删除的目的地。");
+
+            return;
+        }
+
+        bootbox.confirm("确定要删除选择的目的地吗?", function(result){
+            if (result) {
+                $.Request.delete("/rest/oms/places/" + placeId + "/delete", null, function(result){
+                    var placetree = $('#placetree').jstree(true),
+                        sel = placetree.get_selected();
+
+                    placetree.delete_node(sel);
+                })
+            }
+        })
     },
 
     /**

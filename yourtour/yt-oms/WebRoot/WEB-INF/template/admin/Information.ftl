@@ -5,12 +5,12 @@
 <body>
     <h3 class="page-title"> 资讯管理 </h3>
 
-    <#include "information/InformationListView.ftl">
-    <#include "information/InformationFormView.ftl">
+    <#include "information/ListView.ftl">
+    <#include "information/FormView.ftl">
 
     <script language="javascript">
         $(document).ready(function(){
-            $.InformationManagement.init();
+            $.Information.init();
         });
     </script>
 </body>

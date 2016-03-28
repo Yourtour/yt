@@ -13,16 +13,15 @@
 	<link href="${context}/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
 	<link href="${context}/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link href="${context}/assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css" />
-
 	<link href="${context}/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
 	<!-- END GLOBAL MANDATORY STYLES -->
+
 	<!-- BEGIN PAGE LEVEL PLUGINS -->
-	<link href="${context}/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
+	<link href="${context}/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
 	<link href="${context}/assets/global/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
 	<link href="${context}/assets/global/plugins/jquery-datatable/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
 	<link href="${context}/assets/global/plugins/jquery-datatable/css/jquery.dataTables.setting.css" rel="stylesheet" type="text/css" />
 	<link href="${context}/assets/global/plugins/jquery-jstree/css/default/style.min.css" rel="stylesheet" type="text/css" />
-
 	<!-- END PAGE LEVEL PLUGINS -->
 
 	<!-- BEGIN THEME GLOBAL STYLES -->
@@ -239,6 +238,7 @@
 	<!-- END PAGE LEVEL PLUGINS -->
 	<!-- BEGIN THEME GLOBAL SCRIPTS -->
 	<script src="${context}/assets/global/plugins/jquery-datatable/js/jquery.dataTable.setting.js" type="text/javascript"></script>
+	<script src="${context}/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
 
 	<script src="${context}/assets/global/scripts/app.min.js" type="text/javascript"></script>
 	<script src="${context}/assets/apps/js/yt-plugin.js" type="text/javascript"></script>

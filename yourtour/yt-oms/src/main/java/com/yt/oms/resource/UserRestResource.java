@@ -10,6 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import com.yt.vo.UserVO;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,10 +64,15 @@ public class UserRestResource extends RestResource {
 	 */
 	@Path("/authenticate")
 	@POST
-	public ResponseVO authenticateAccountInfo(AdminAccountBean account)
-			throws Exception {
-		account = this.service.authenticate(account.getUserName(),
-				account.getPwd());
+	public ResponseVO authenticateAccountInfo(AdminAccountBean account) throws Exception {
+		account = this.service.authenticate(account.getUserName(),account.getPwd());
+
+		UserVO user = new UserVO();
+		user.setUserId(account.getId());
+		user.setName(account.getRealName());
+
+		SessionUtils.setCurrentLoginUser(user);
+
 		return new ResponseVO();
 	}
 

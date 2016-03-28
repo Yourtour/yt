@@ -5,12 +5,12 @@
 <body>
     <h3 class="page-title"> 活动管理 </h3>
 
-    <#include "activity/ActivityListView.ftl">
-    <#include "activity/ActivityFormView.ftl">
+    <#include "activity/ListView.ftl">
+    <#include "activity/FormView.ftl">
 
     <script language="javascript">
         $(document).ready(function(){
-            $.ActivityManagement.init();
+            $.Activity.init();
         });
     </script>
 </body>
