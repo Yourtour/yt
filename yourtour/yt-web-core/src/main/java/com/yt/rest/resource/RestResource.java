@@ -20,6 +20,7 @@ import com.yt.utils.WebUtils;
 
 public class RestResource {
 	public static final String FILE_SEPERATOR = ","; // 多文件存储时，文件名之间的分隔符
+	public static final String VALUE_SEPERATOR = ","; // 多值分隔符
 
 	public RestResource() {
 		super();

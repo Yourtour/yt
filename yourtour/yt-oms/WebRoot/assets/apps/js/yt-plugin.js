@@ -66,6 +66,16 @@ jQuery.Request={
     }
 };
 
+jQuery.Utils ={
+    isNull:function(str){
+        return str == '' || str == 'null' || str == null;
+    },
+
+    isNotNull:function(str){
+        return ! this.isNull(str);
+    }
+},
+
 /**
  * 隐藏所有页面
  */

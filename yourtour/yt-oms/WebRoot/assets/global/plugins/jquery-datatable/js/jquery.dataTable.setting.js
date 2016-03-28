@@ -39,7 +39,7 @@ $.extend( true, $.fn.dataTable.defaults, {
     },
 
     fnServerData: function ( sSource, aoData, fnCallback ) {
-        var rest = this.attr("data-rest"), nextCursor, limit, total, params, name;
+        var rest = this.attr("data-rest"), nextCursor, limit, total, params, name, type="GET";
 
         $.each(aoData, function(index, data){
             name = data.name;
@@ -50,6 +50,7 @@ $.extend( true, $.fn.dataTable.defaults, {
                 limit = data.value;
             }else if(name == 'params'){
                 params = data.value;
+                type = "POST";
             }
         })
 
@@ -57,7 +58,7 @@ $.extend( true, $.fn.dataTable.defaults, {
         $.ajax({
             "dataType": 'json',
             "contentType" : "application/json",
-            "type": "POST",
+            "type": type,
             "url": rest,
             "data": JSON.stringify(params),
             "success": function (response){

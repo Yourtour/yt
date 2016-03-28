@@ -1,13 +1,17 @@
 package com.yt.oms.resource;
 
 import com.sun.jersey.multipart.FormDataMultiPart;
+import com.sun.jersey.multipart.FormDataParam;
 import com.yt.business.bean.ActivityBean;
 import com.yt.business.bean.ActivityContentBean;
 import com.yt.business.service.IActivityService;
 import com.yt.core.utils.BeanUtils;
+import com.yt.core.utils.CollectionUtils;
 import com.yt.core.utils.StringUtils;
+import com.yt.oms.vo.ActivityContentVO;
 import com.yt.oms.vo.ActivityVO;
 import com.yt.response.ResponseDataVO;
+import com.yt.response.ResponseVO;
 import com.yt.rest.resource.RestResource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -16,6 +20,9 @@ import org.springframework.stereotype.Component;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 活动管理Restful接口
@@ -33,14 +40,49 @@ public class ActivityRestResource extends RestResource {
     @Autowired
     private IActivityService activityService;
 
+    /**
+     * 活动查询
+     * @param nextCursor
+     * @param limit
+     * @param total
+     * @param params
+     * @return
+     * @throws Exception
+     */
+    @POST
+    @Path("/query")
+    public ResponseDataVO<List<ActivityVO>> queryActivityInfo(  @DefaultValue("0") @QueryParam("nextCursor") Long nextCursor,
+                                                                @DefaultValue("20") @QueryParam("limit") int limit,
+                                                                @QueryParam("total") int total, Map<String, Object> params)
+    throws Exception{
+        List<ActivityVO> voes = new ArrayList<>();
+
+        List<ActivityBean> activities = activityService.queryActivityInfoes(nextCursor, limit, total, params);
+        if(CollectionUtils.isNotEmpty(activities)){
+            for(ActivityBean activity : activities){
+                voes.add(ActivityVO.transform(activity));
+            }
+        }
+        return new ResponseDataVO<>(voes);
+    }
+
+    /**
+     * 保存活动基本信息
+     * @param activity
+     * @param multipart
+     * @return
+     * @throws Exception
+     */
     @POST
     @Path("/intro/save")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public ResponseDataVO<ActivityVO> saveActivityInfo(@QueryParam("activity") String activity,  FormDataMultiPart form) throws Exception{
-        ActivityBean activityBean = BeanUtils.deserialize(activity, ActivityBean.class);
+    public ResponseDataVO<ActivityVO> saveActivityInfo(@FormDataParam("activity") String activity,  FormDataMultiPart multipart) throws Exception{
+        ActivityVO activityVO = BeanUtils.deserialize(activity, ActivityVO.class);
 
-        String imageUrls = super.uploadMediaFile(form, "imageUrl", ACTIVITY_IMAGE_PATH);
-        if(StringUtils.isNotNull(imageUrls)){
+        ActivityBean activityBean = ActivityVO.transform(activityVO);
+
+        String imageUrls = super.uploadMediaFile(multipart, "imageUrl", ACTIVITY_IMAGE_PATH);
+        if(StringUtils.isNotNull(imageUrls)){e
             activityBean.setImageUrl(imageUrls);
         }
 
@@ -50,11 +92,59 @@ public class ActivityRestResource extends RestResource {
         return new ResponseDataVO<>(vo);
     }
 
+    /**
+     * 删除指定的活动数据
+     * @param ids
+     * @return
+     * @throws Exception
+     */
+    @GET
+    @Path("/{ids}/delete")
+    public ResponseVO deleteActivityInfo(@PathParam("ids") String ids) throws Exception{
+        if(StringUtils.isNull(ids)) return new ResponseVO();
+
+        String[] sids = ids.split(VALUE_SEPERATOR);
+        Long[] lids = new Long[sids.length];
+
+        for(int index = 0; index < sids.length; index++){
+            lids[index] = Long.valueOf(sids[index]);
+        }
+
+        this.activityService.deleteActivityInfo(lids, super.getCurrentUserId());
+        return new ResponseVO();
+    }
+
+    /**
+     * 获取指定活动信息
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    @GET
+    @Path("/{id}")
+    public ResponseDataVO<ActivityVO> getActivityInfo(@PathParam("id") Long id) throws Exception{
+        ActivityBean activity = this.activityService.getActivityInfo(id);
+        if(activity != null){
+            return new ResponseDataVO<>(ActivityVO.transform(activity));
+        }
+
+        return new ResponseDataVO();
+    }
+
+    /**
+     * 保存活动详细描述
+     * @param content
+     * @param form
+     * @return
+     * @throws Exception
+     */
     @POST
     @Path("/content/save")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public ResponseDataVO<Long> saveActivityContentInfo(@QueryParam("content") String content,  FormDataMultiPart form) throws Exception{
-        ActivityContentBean contentBean = BeanUtils.deserialize(content, ActivityContentBean.class);
+    public ResponseDataVO<Long> saveActivityContentInfo(@FormDataParam("content") String content,  FormDataMultiPart form) throws Exception{
+        ActivityContentVO contentvo = BeanUtils.deserialize(content, ActivityContentVO.class);
+
+        ActivityContentBean contentBean = ActivityContentVO.transform(contentvo);
 
         String imageUrls = super.uploadMediaFile(form, "imageUrl", ACTIVITY_IMAGE_PATH);
         if(StringUtils.isNotNull(imageUrls)){
@@ -63,5 +153,35 @@ public class ActivityRestResource extends RestResource {
 
         this.activityService.saveActivityContentInfo(contentBean, super.getCurrentUserId());
         return new ResponseDataVO<>(contentBean.getId());
+    }
+
+    /**
+     * 删除活动内容
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    @GET
+    @Path("/content/{id}/delete")
+    public ResponseVO deleteActivityContentInfo(@PathParam("id") Long id) throws Exception{
+        this.activityService.deleteActivityContentInfo(id, super.getCurrentUserId());
+        return new ResponseVO();
+    }
+
+    /**
+     * 获取指定活动信息
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    @GET
+    @Path("/content/{id}")
+    public ResponseDataVO<ActivityContentVO> getActivityContentInfo(@PathParam("id") Long id) throws Exception{
+        ActivityContentBean content = this.activityService.getActivityConentInfo(id);
+        if(content != null){
+            return new ResponseDataVO<>(ActivityContentVO.transform(content));
+        }
+
+        return new ResponseDataVO();
     }
 }

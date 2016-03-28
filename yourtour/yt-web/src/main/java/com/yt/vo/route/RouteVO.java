@@ -153,7 +153,7 @@ public class RouteVO extends BaseVO {
 			scheduleDate = DateUtils.add(start, index, Calendar.DATE);
 
 			RouteScheduleBean scheduleBean = new RouteScheduleBean();
-			scheduleBean.setIndex(DateUtils.getDateNumber(scheduleDate.getTime()) * 1000);
+			scheduleBean.setIndex(DateUtils.formatDateAsInteger(scheduleDate.getTime()) * 1000);
 			scheduleBean.setDate(scheduleDate.getTime());
 			scheduleBean.setTitle(String.format("第%s天-%s", index+1, DateUtils.formatDate(scheduleDate.getTime())));
 			scheduleBean.setCreatedUserId(SessionUtils.getCurrentLoginUser());
