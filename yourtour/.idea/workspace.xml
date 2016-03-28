@@ -7,35 +7,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="92ee94f3-3d6c-4f6d-925a-699d6360b737" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/crud/ActivityContentBeanCrud.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/oms/vo/ActivityContentVO.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/activity/ContentFormView.ftl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/scripts/String.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/business/YourTour BP 2.0.pptx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/business/YourTour BP 3.0-合作.pptx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/operate/歙县古民居和油菜花之旅.docx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/operate/目的地歙县的推广要素－20151206 V1.2-frank.xlsx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/business/运营模式1.1.vsd" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/operate/遂昌.xlsx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/design/页面流1.0.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents/design/页面清单1.0.xlsx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/resource/SceneFormView.ftl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/resource/SceneListView.ftl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/SceneResource.ftl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-web-core/src/main/java/com/yt/vo/SocialVO.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/js/yt-sceneResource.js" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-oms\WebRoot\assets\global\plugins\font-awesome\css\font-awesome.css" afterPath="" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-oms\WebRoot\assets\global\plugins\simple-line-icons\License.txt" afterPath="" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-oms\WebRoot\assets\global\plugins\simple-line-icons\Readme.txt" afterPath="" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-oms\WebRoot\assets\global\plugins\simple-line-icons\simple-line-icons.css" afterPath="" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-oms\WebRoot\assets\global\plugins\uniform\jquery.uniform.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../.gitignore" afterPath="$PROJECT_DIR$/../.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/Activity.ftl" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/Activity.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ActivityBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ActivityBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ActivityContentBean.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ActivityContentBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/oms/resource/ActivityRestResource.java" afterPath="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/oms/resource/ActivityRestResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/ActivityServiceImpl.java" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/ActivityServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/oms/vo/ActivityVO.java" afterPath="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/oms/vo/ActivityVO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-core/src/main/java/com/yt/core/utils/DateUtils.java" afterPath="$PROJECT_DIR$/yt-core/src/main/java/com/yt/core/utils/DateUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/activity/FormView.ftl" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/activity/FormView.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IActivityService.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IActivityService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/activity/ListView.ftl" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/activity/ListView.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-web-core/src/main/java/com/yt/rest/resource/RestResource.java" afterPath="$PROJECT_DIR$/yt-web-core/src/main/java/com/yt/rest/resource/RestResource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/neo4j/ResourceBeanRepository.java" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/repository/neo4j/ResourceBeanRepository.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/oms/resource/ResourceRestResource.java" afterPath="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/oms/resource/ResourceRestResource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/oms/vo/resource/ResourceVO.java" afterPath="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/oms/vo/resource/ResourceVO.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/route/RouteVO.java" afterPath="$PROJECT_DIR$/yt-web/src/main/java/com/yt/vo/route/RouteVO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/css/admin.css" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/css/admin.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/plugins/jquery-datatable/js/jquery.dataTable.setting.js" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/plugins/jquery-datatable/js/jquery.dataTable.setting.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/template.ftl" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/template.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/js/yt-activity.js" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/js/yt-activity.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/js/yt-place.js" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/js/yt-place.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/js/yt-plugin.js" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/js/yt-plugin.js" />
     </list>
     <ignored path="yourtour.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -94,127 +91,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="FormView.ftl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/activity/FormView.ftl">
+      <file leaf-file-name="template.ftl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/template.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.923077">
-              <caret line="70" column="46" selection-start-line="70" selection-start-column="46" selection-end-line="70" selection-end-column="46" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="246" column="91" selection-start-line="246" selection-start-column="91" selection-end-line="246" selection-end-column="91" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ActivityRestResource.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-oms/src/main/java/com/yt/oms/resource/ActivityRestResource.java">
+      <file leaf-file-name="jquery.dataTable.setting.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/assets/global/plugins/jquery-datatable/js/jquery.dataTable.setting.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="84" column="46" selection-start-line="84" selection-start-column="46" selection-end-line="84" selection-end-column="46" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="yt-plugin.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/js/yt-plugin.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="174" column="21" selection-start-line="174" selection-start-column="21" selection-end-line="174" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ActivityServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/ActivityServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ActivityVO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-oms/src/main/java/com/yt/oms/vo/ActivityVO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="55" column="18" selection-start-line="55" selection-start-column="18" selection-end-line="55" selection-end-column="18" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#4198#4199#0" expanded="true" />
-                <element signature="e#4234#4235#0" expanded="true" />
-                <element signature="e#4289#4290#0" expanded="true" />
-                <element signature="e#4339#4340#0" expanded="true" />
-                <element signature="e#4377#4378#0" expanded="true" />
-                <element signature="e#4414#4415#0" expanded="true" />
-                <element signature="e#4471#4472#0" expanded="true" />
-                <element signature="e#4523#4524#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ActivityBean.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ActivityBean.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="111" column="35" selection-start-line="111" selection-start-column="35" selection-end-line="111" selection-end-column="35" />
-              <folding>
-                <element signature="e#2519#2520#0" expanded="true" />
-                <element signature="e#2571#2572#0" expanded="true" />
-                <element signature="e#2612#2613#0" expanded="true" />
-                <element signature="e#2647#2648#0" expanded="true" />
-                <element signature="e#2675#2676#0" expanded="true" />
-                <element signature="e#2729#2730#0" expanded="true" />
-                <element signature="e#2772#2773#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IActivityService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IActivityService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="69" column="56" selection-start-line="69" selection-start-column="56" selection-end-line="69" selection-end-column="56" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="yt-activity.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/js/yt-activity.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8767507">
-              <caret line="72" column="38" selection-start-line="72" selection-start-column="38" selection-end-line="72" selection-end-column="38" />
-              <folding>
-                <marker date="1459160090499" expanded="true" signature="1985:2022" placeholder="..." />
-                <marker date="1459160090499" expanded="true" signature="7211:7226" placeholder="..." />
-                <marker date="1459160090499" expanded="true" signature="7537:7554" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ListView.ftl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/activity/ListView.ftl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="56" column="43" selection-start-line="56" selection-start-column="43" selection-end-line="56" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ContentFormView.ftl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/activity/ContentFormView.ftl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="21" column="53" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="53" />
+            <state vertical-scroll-proportion="0.3773585">
+              <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -3240,14 +3131,12 @@
         <option value="$PROJECT_DIR$/yt-core/src/main/java/com/yt/core/utils/DateUtils.java" />
         <option value="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/js/yt-place.js" />
         <option value="$PROJECT_DIR$/yt-web-core/src/main/java/com/yt/rest/resource/RestResource.java" />
-        <option value="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/plugins/jquery-datatable/js/jquery.dataTable.setting.js" />
         <option value="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/Activity.ftl" />
         <option value="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/oms/vo/ActivityContentVO.java" />
         <option value="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/bean/ActivityContentBean.java" />
         <option value="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/activity/ContentFormView.ftl" />
         <option value="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/scripts/String.js" />
         <option value="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/js/yt-plugin.js" />
-        <option value="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/template.ftl" />
         <option value="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IActivityService.java" />
         <option value="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/oms/resource/ActivityRestResource.java" />
         <option value="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/ActivityServiceImpl.java" />
@@ -3256,6 +3145,8 @@
         <option value="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/oms/vo/ActivityVO.java" />
         <option value="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/activity/FormView.ftl" />
         <option value="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/js/yt-activity.js" />
+        <option value="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/template.ftl" />
+        <option value="$PROJECT_DIR$/yt-oms/WebRoot/assets/global/plugins/jquery-datatable/js/jquery.dataTable.setting.js" />
       </list>
     </option>
   </component>
@@ -3625,7 +3516,7 @@
   <component name="PropertiesComponent">
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/js/yt-activity.js&#10;yt-plugin&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/js/yt-plugin.js&#10;ActivityVO&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/java/com/yt/oms/vo/ActivityVO.java&#10;ListView&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/activity/ListView.ftl&#10;yt-place.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/js/yt-place.js&#10;content&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/activity/ContentFormView.ftl&#10;Acti&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/java/com/yt/oms/resource/ActivityRestResource.java&#10;yt-plugin.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/js/yt-plugin.js&#10;template.ftl&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/template.ftl&#10;template.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/Template.js&#10;Act&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/java/com/yt/oms/resource/ActivityRestResource.java&#10;JSONField&#9;PSI&#9;JAVA://com.alibaba.fastjson.annotation.JSONField&#10;ActivityContentVO&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/java/com/yt/oms/vo/ActivityContentVO.java&#10;formview.ftl&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/activity/FormView.ftl&#10;Ac&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service/src/main/java/com/yt/business/bean/ActivityContentBean.java&#10;FormView.ftl&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/activity/FormView.ftl&#10;formView.ftl&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/activity/FormView.ftl&#10;Content&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/activity/ContentFormView.ftl&#10;ActivityRe&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/java/com/yt/oms/resource/ActivityRestResource.java&#10;ActivityConten&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service/src/main/java/com/yt/business/bean/ActivityContentBean.java&#10;FormVIew.ftl&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/place/FormView.ftl&#10;activity.ftl&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/Activity.ftl&#10;ViewSer&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/service/impl/ViewServiceImpl.java&#10;FormV&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/activity/FormView.ftl&#10;yt-account&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/js/yt-account.js&#10;yt-place&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/js/yt-place.js&#10;jquery&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/global/plugins/jquery-datatable/js/jquery.dataTable.setting.js&#10;PlaceRest&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/java/com/yt/oms/resource/PlaceRestResource.java&#10;DateUtils.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-core/src/main/java/com/yt/core/utils/DateUtils.java&#10;viewRest&#9;PSI&#9;JAVA://com.yt.oms.resource.ViewRestResource&#10;admin.css&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/css/admin.css&#10;Banner&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/java/com/yt/oms/resource/BannerRestResource.java&#10;Activity&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/java/com/yt/oms/resource/ActivityRestResource.java&#10;FormView.&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/place/FormView.ftl&#10;ActivityRest&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/java/com/yt/oms/resource/ActivityRestResource.java&#10;Activity.ftl&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/Activity.ftl&#10;Templ&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/template.ftl&#10;List&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/activity/ListView.ftl&#10;jquery.dta&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/global/plugins/jquery-datatable/css/jquery.dataTables.setting.css&#10;viewser&#9;PSI&#9;JAVA://com.yt.business.service.impl.ViewServiceImpl&#10;template&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/template.ftl&#10;Session&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web-core/src/main/java/com/yt/utils/SessionUtils.java&#10;UserRe&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/java/com/yt/oms/resource/UserRestResource.java&#10;app.properties&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/resources/app.properties&#10;jq&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/global/plugins/jquery-datatable/js/jquery.dataTable.setting.js&#10;yt-dict&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/js/yt-dict.js&#10;yt-plug&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/js/yt-plugin.js&#10;TreeVO&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/java/com/yt/oms/vo/PlaceTreeVO.java&#10;app.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app.js&#10;DictList&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/dict/DictListView.ftl" />
+    <property name="SearchEverywhereHistoryKey" value="jq&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/global/plugins/jquery-datatable/js/jquery.dataTable.setting.js&#10;template&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/template.ftl&#10;yt-plugin&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/js/yt-plugin.js&#10;ActivityVO&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/java/com/yt/oms/vo/ActivityVO.java&#10;ListView&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/activity/ListView.ftl&#10;yt-place.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/js/yt-place.js&#10;content&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/activity/ContentFormView.ftl&#10;Acti&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/java/com/yt/oms/resource/ActivityRestResource.java&#10;yt-plugin.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/js/yt-plugin.js&#10;template.ftl&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/template.ftl&#10;template.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/Template.js&#10;Act&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/java/com/yt/oms/resource/ActivityRestResource.java&#10;JSONField&#9;PSI&#9;JAVA://com.alibaba.fastjson.annotation.JSONField&#10;ActivityContentVO&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/java/com/yt/oms/vo/ActivityContentVO.java&#10;formview.ftl&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/activity/FormView.ftl&#10;Ac&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service/src/main/java/com/yt/business/bean/ActivityContentBean.java&#10;FormView.ftl&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/activity/FormView.ftl&#10;formView.ftl&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/activity/FormView.ftl&#10;Content&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/activity/ContentFormView.ftl&#10;ActivityRe&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/java/com/yt/oms/resource/ActivityRestResource.java&#10;ActivityConten&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service/src/main/java/com/yt/business/bean/ActivityContentBean.java&#10;FormVIew.ftl&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/place/FormView.ftl&#10;activity.ftl&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/Activity.ftl&#10;ViewSer&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/service/impl/ViewServiceImpl.java&#10;FormV&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/activity/FormView.ftl&#10;yt-account&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/js/yt-account.js&#10;yt-place&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/js/yt-place.js&#10;jquery&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/global/plugins/jquery-datatable/js/jquery.dataTable.setting.js&#10;PlaceRest&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/java/com/yt/oms/resource/PlaceRestResource.java&#10;DateUtils.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-core/src/main/java/com/yt/core/utils/DateUtils.java&#10;viewRest&#9;PSI&#9;JAVA://com.yt.oms.resource.ViewRestResource&#10;admin.css&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/css/admin.css&#10;Banner&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/java/com/yt/oms/resource/BannerRestResource.java&#10;Activity&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/java/com/yt/oms/resource/ActivityRestResource.java&#10;FormView.&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/place/FormView.ftl&#10;ActivityRest&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/java/com/yt/oms/resource/ActivityRestResource.java&#10;Activity.ftl&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/Activity.ftl&#10;Templ&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/template.ftl&#10;List&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/activity/ListView.ftl&#10;jquery.dta&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/global/plugins/jquery-datatable/css/jquery.dataTables.setting.css&#10;viewser&#9;PSI&#9;JAVA://com.yt.business.service.impl.ViewServiceImpl&#10;Session&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web-core/src/main/java/com/yt/utils/SessionUtils.java&#10;UserRe&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/java/com/yt/oms/resource/UserRestResource.java&#10;app.properties&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/resources/app.properties&#10;yt-dict&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/js/yt-dict.js&#10;yt-plug&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/js/yt-plugin.js&#10;TreeVO&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/java/com/yt/oms/vo/PlaceTreeVO.java&#10;app.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app.js&#10;DictList&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/dict/DictListView.ftl" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -4226,12 +4117,12 @@
       <workItem from="1459132273229" duration="11188000" />
       <workItem from="1459147024012" duration="590000" />
       <workItem from="1459147772589" duration="11767000" />
-      <workItem from="1459159620947" duration="602000" />
+      <workItem from="1459159620947" duration="697000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="409932000" />
+    <option name="totallyTimeSpent" value="410027000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -4256,7 +4147,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977098" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19237147" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4852941" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36928105" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6372549" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.034039333" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -4497,13 +4388,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/assets/global/plugins/jquery-datatable/js/jquery.dataTable.setting.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/js/yt-account.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -4630,13 +4514,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/template.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.464286">
-          <caret line="244" column="0" selection-start-line="244" selection-start-column="0" selection-end-line="244" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IActivityService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -4743,10 +4620,26 @@
         <state vertical-scroll-proportion="0.8767507">
           <caret line="72" column="38" selection-start-line="72" selection-start-column="38" selection-end-line="72" selection-end-column="38" />
           <folding>
-            <marker date="1459160090499" expanded="true" signature="1985:2022" placeholder="..." />
-            <marker date="1459160090499" expanded="true" signature="7211:7226" placeholder="..." />
-            <marker date="1459160090499" expanded="true" signature="7537:7554" placeholder="..." />
+            <marker date="1459160090499" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1459160090499" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1459160090499" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/template.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="246" column="91" selection-start-line="246" selection-start-column="91" selection-end-line="246" selection-end-column="91" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/assets/global/plugins/jquery-datatable/js/jquery.dataTable.setting.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3773585">
+          <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

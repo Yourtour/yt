@@ -7,14 +7,17 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.yt.business.bean.*;
+import com.yt.business.bean.PlaceBean;
+import com.yt.business.bean.RouteMainBean;
+import com.yt.business.bean.RouteProvisionBean;
+import com.yt.business.bean.RouteScheduleBean;
 import com.yt.core.utils.DateUtils;
 import com.yt.core.utils.StringUtils;
 import com.yt.utils.SessionUtils;
-import com.yt.vo.BaseVO;
+import com.yt.vo.SocialVO;
 import com.yt.vo.member.UserVO;
 
-public class RouteVO extends BaseVO {
+public class RouteVO extends SocialVO {
 	private String 	name; // 行程名称
 	private String 	lineName;
 	private String 	imageUrl;

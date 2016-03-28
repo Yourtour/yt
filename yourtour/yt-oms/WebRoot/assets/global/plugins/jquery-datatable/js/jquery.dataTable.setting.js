@@ -39,7 +39,7 @@ $.extend( true, $.fn.dataTable.defaults, {
     },
 
     fnServerData: function ( sSource, aoData, fnCallback ) {
-        var rest = this.attr("data-rest"), nextCursor, limit, total, params, name, type="GET";
+        var rest = this.attr("data-rest"), type="GET", nextCursor, limit, total, params, name;
 
         $.each(aoData, function(index, data){
             name = data.name;
@@ -70,11 +70,11 @@ $.extend( true, $.fn.dataTable.defaults, {
     },
 
     fnServerParams: function( aoData ){
-        var params = {};
-
         var frm = this.attr("data-criteria");
         if(frm != undefined){
-            var values = $("#" + frm).serializeArray();
+        	var params = {};
+        	
+        	var values = $("#" + frm).serializeArray();
             $.each(values, function(i, field){
                 var value = field.value.trim();
 
@@ -82,9 +82,11 @@ $.extend( true, $.fn.dataTable.defaults, {
                     params[field.name] = value;
                 }
             });
+            
+            aoData.params = params;
         }
 
-        aoData.params = params;
+        
     }
 });
 

@@ -54,7 +54,7 @@ public interface ResourceBeanRepository extends GraphRepository<ResourceBean> {
 	 *            获取数据行数
 	 * @return 符合条件的资源列表
 	 */
-	@Query("MATCH (r:ResourceBean) WHERE t.tpe={0} RETURN r ORDER BY r.id SKIP {1} LIMIT {2}")
+	@Query("MATCH (r:ResourceBean) WHERE r.type={0} RETURN r ORDER BY r.id SKIP {1} LIMIT {2}")
 	public List<ResourceBean> getResources(String type, Long nextCursor,
 			int limit);
 
