@@ -37,7 +37,7 @@ import com.yt.response.ResponsePagingDataVO;
 import com.yt.rest.resource.RestResource;
 
 @Component
-@Path("/resources")
+@Path("/oms/resources")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class ResourceRestResource extends RestResource {
@@ -131,7 +131,7 @@ public class ResourceRestResource extends RestResource {
 			@DefaultValue("20") @QueryParam("limit") int limit,
 			@QueryParam("total") int total) throws Exception {
 		PagingDataBean<List<? extends ResourceBean>> pagingData = resourceService
-				.getResources(ResourceType.HOTEL, new PagingConditionBean(
+				.getResources(ResourceType.FOOD, new PagingConditionBean(
 						nextCursor, limit, total));
 		List<RestaurantResourceVO> vos = new Vector<>();
 		for (ResourceBean bean : pagingData.getData()) {
@@ -204,13 +204,13 @@ public class ResourceRestResource extends RestResource {
 	}
 
 	@GET
-	@Path("/scenes")
+	@Path("/scenes/query")
 	public ResponsePagingDataVO<List<SceneResourceVO>> getScenes(
 			@DefaultValue("0") @QueryParam("nextCursor") Long nextCursor,
 			@DefaultValue("20") @QueryParam("limit") int limit,
 			@QueryParam("total") int total) throws Exception {
 		PagingDataBean<List<? extends ResourceBean>> pagingData = resourceService
-				.getResources(ResourceType.HOTEL, new PagingConditionBean(
+				.getResources(ResourceType.SCENE, new PagingConditionBean(
 						nextCursor, limit, total));
 		List<SceneResourceVO> vos = new Vector<>();
 		for (ResourceBean bean : pagingData.getData()) {

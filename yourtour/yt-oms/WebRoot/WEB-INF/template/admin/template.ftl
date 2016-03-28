@@ -101,21 +101,21 @@
 						</a>
 						<ul class="sub-menu">
 						    <li class="nav-item start active open">
-						        <a href="index.html" class="nav-link ">
+						        <a href="SceneResource" class="nav-link ">
 						            <i class="icon-bar-chart"></i>
 						            <span class="title">游玩</span>
 						            <span class="selected"></span>
 						        </a>
 						    </li>
 						    <li class="nav-item start ">
-						        <a href="dashboard_2.html" class="nav-link ">
+						        <a href="RestaurantResource" class="nav-link ">
 						            <i class="icon-bulb"></i>
 						            <span class="title">美食</span>
 						            <span class="badge badge-success">1</span>
 						        </a>
 						    </li>
 						    <li class="nav-item start ">
-						        <a href="dashboard_3.html" class="nav-link ">
+						        <a href="HotelResource" class="nav-link ">
 						            <i class="icon-graph"></i>
 						            <span class="title">住宿</span>
 						            <span class="badge badge-danger">5</span>
@@ -247,6 +247,7 @@
 	<script src="${context}/assets/apps/js/yt-information.js" type="text/javascript"></script>
 	<script src="${context}/assets/apps/js/yt-account.js" type="text/javascript"></script>
 	<script src="${context}/assets/apps/js/yt-place.js" type="text/javascript"></script>
+	<script src="${context}/assets/apps/js/yt-sceneResource.js" type="text/javascript"></script>
 
 	<!-- END THEME GLOBAL SCRIPTS -->
 	<!-- BEGIN PAGE LEVEL SCRIPTS -->
