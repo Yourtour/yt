@@ -87,7 +87,9 @@ jQuery.Activity = {
         var me = this,
             formview = $("#Page_ActivityFormView");
 
+
         $.Page.show("Page_ActivityFormView", function(){
+            $("#id", formview).val("-1");
             $("#ActivityForm", formview).clear();
 
             $("#tab_content",formview).hide();

@@ -1,5 +1,6 @@
 package com.yt.vo;
 
+import com.yt.business.BaseBeanImpl;
 import com.yt.business.SocialBeanImpl;
 
 public class SocialVO extends BaseVO {
@@ -14,27 +15,31 @@ public class SocialVO extends BaseVO {
 		super();
 	}
 
-	public void fromBean(SocialBeanImpl bean) {
+	@Override
+	public void fromBean(BaseBeanImpl bean) {
 		if (bean == null) {
 			return;
 		}
 		super.fromBean(bean);
-		setCommentNum(bean.getCommentNum());
-		setCommentScore(bean.getCommentScore());
-		setFavoriteNum(bean.getFavoriteNum());
-		setLikeNum(bean.getLikeNum());
-		setReadNum(bean.getReadNum());
-		setShareNum(bean.getShareNum());
+		SocialBeanImpl socaial = (SocialBeanImpl) bean;
+		setCommentNum(socaial.getCommentNum());
+		setCommentScore(socaial.getCommentScore());
+		setFavoriteNum(socaial.getFavoriteNum());
+		setLikeNum(socaial.getLikeNum());
+		setReadNum(socaial.getReadNum());
+		setShareNum(socaial.getShareNum());
 	}
 
-	public void toBean(SocialBeanImpl bean) {
+	@Override
+	public void toBean(BaseBeanImpl bean) {
 		super.toBean(bean);
-		bean.setCommentNum(getCommentNum());
-		bean.setCommentScore(getCommentScore());
-		bean.setFavoriteNum(getFavoriteNum());
-		bean.setLikeNum(getLikeNum());
-		bean.setReadNum(getReadNum());
-		bean.setShareNum(getShareNum());
+		SocialBeanImpl social = (SocialBeanImpl) bean;
+		social.setCommentNum(getCommentNum());
+		social.setCommentScore(getCommentScore());
+		social.setFavoriteNum(getFavoriteNum());
+		social.setLikeNum(getLikeNum());
+		social.setReadNum(getReadNum());
+		social.setShareNum(getShareNum());
 	}
 
 	public double getCommentScore() {

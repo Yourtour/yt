@@ -1,4 +1,4 @@
-<div id="Page_SceneListView" class="row" data-role="page">
+<div id="Page_HotelListView" class="row" data-role="page">
     <div class="col-lg-12">
         <div class="page-bar">
             <ul class="page-breadcrumb">
@@ -8,7 +8,7 @@
                     <i class="fa fa-angle-right"></i>
                 </li>
                 <li>
-                    <span>游玩管理</span>
+                    <span>住宿管理</span>
                 </li>
             </ul>
         </div>
@@ -42,7 +42,7 @@
                             </div>
                         </div>
 
-                        <table id="datatable_scene" class="row-border" cellspacing="0" width="100%"  data-rest="${context}/rest/oms/resources/scenes/query">
+                        <table id="datatable_hotel" class="row-border" cellspacing="0" width="100%"  data-rest="${context}/rest/oms/resources/hotels/query">
                             <thead>
                                 <tr>
                                     <th>
@@ -50,7 +50,7 @@
                                     </th>
                                     <th>代码</th>
                                     <th>名称</th>
-                                    <th>简介</th>
+                                    <th>特色房</th>
                                 </tr>
                             </thead>
 

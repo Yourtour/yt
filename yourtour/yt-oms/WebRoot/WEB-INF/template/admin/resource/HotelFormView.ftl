@@ -1,4 +1,4 @@
-<div id="Page_SceneFormView" class="row" data-role="page">
+<div id="Page_HotelFormView" class="row" data-role="page">
     <div class="col-lg-12">
         <div class="page-bar">
             <ul class="page-breadcrumb">
@@ -8,7 +8,7 @@
                     <i class="fa fa-angle-right"></i>
                 </li>
                 <li>
-                    <span>游玩编辑</span>
+                    <span>住宿编辑</span>
                 </li>
             </ul>
         </div>
@@ -19,37 +19,31 @@
                 <!-- BEGIN SAMPLE FORM PORTLET-->
                 <div class="portlet light ">
                     <div class="portlet-body">
-                        <form id="SceneForm" class="form-horizontal" role="form">
+                        <form id="HotelForm" class="form-horizontal" role="form">
                             <#include "ResourceFormView.ftl">
 
                             <div class="form-group">
-                                <label for="intro" class="col-md-2 control-label">游玩简介</label>
+                                <label for="accommodationStandard" class="col-md-2 control-label">住宿标准</label>
                                 <div class="col-md-4">
-                                    <textarea class="form-control" name="intro" id="intro" rows="3" cols="160" placeholder="游玩简介"></textarea>
+                                    <textarea class="form-control" name="accommodationStandard" id="accommodationStandard" rows="3" cols="160" placeholder="住宿标准"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="ticket" class="col-md-2 control-label">门票信息</label>
+                                <label for="specialRoom" class="col-md-2 control-label">特色房</label>
                                 <div class="col-md-4">
-                                    <textarea class="form-control" name="ticket" id="ticket" rows="3" cols="160" placeholder="门票信息"></textarea>
+                                    <textarea class="form-control" name="specialRoom" id="specialRoom" rows="3" cols="160" placeholder="特色房"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="sceneMap" class="col-md-2 control-label">景区地图</label>
+                                <label for="roomEquipment" class="col-md-2 control-label">房间设施</label>
                                 <div class="col-md-4">
-                                    <input type="text" class="form-control" name="sceneMap" id="sceneMap" placeholder="景区地图">
+                                    <textarea class="form-control" name="roomEquipment" id="roomEquipment" rows="3" cols="160" placeholder="房间设施"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="specialScene" class="col-md-2 control-label">必玩景点</label>
+                                <label for="networkInfo" class="col-md-2 control-label">网络信息</label>
                                 <div class="col-md-4">
-                                    <textarea class="form-control" name="specialScene" id="specialScene" rows="3" cols="160" placeholder="必玩景点"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="sceneTraffic" class="col-md-2 control-label">景区交通</label>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" name="sceneTraffic" id="sceneTraffic" placeholder="景区交通">
+                                    <textarea class="form-control" name="networkInfo" id="networkInfo" rows="3" cols="160" placeholder="网络信息"></textarea>
                                 </div>
                             </div>
 
