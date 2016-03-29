@@ -82,7 +82,7 @@ public class ActivityRestResource extends RestResource {
         ActivityBean activityBean = ActivityVO.transform(activityVO);
 
         String imageUrls = super.uploadMediaFile(multipart, "imageUrl", ACTIVITY_IMAGE_PATH);
-        if(StringUtils.isNotNull(imageUrls)){e
+        if(StringUtils.isNotNull(imageUrls)){
             activityBean.setImageUrl(imageUrls);
         }
 
