@@ -2,14 +2,12 @@ package com.yt.business.service.impl;
 
 import com.yt.business.bean.ActivityBean;
 import com.yt.business.bean.ActivityContentBean;
-import com.yt.business.bean.AdminAccountBean;
 import com.yt.business.service.IActivityService;
 import com.yt.core.utils.BeanUtils;
 import com.yt.neo4j.repository.CrudOperate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.xml.ws.WebServiceRefs;
 import java.util.List;
 import java.util.Map;
 
