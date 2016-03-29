@@ -51,7 +51,7 @@ public class UserRestResource extends RestResource {
 		UserProfileBean profile = new UserProfileBean();
 		profile.setRealName(vo.getRealName());
 
-		this.service.register(account, profile);
+		this.service.register(account, profile, this.getCurrentUserId());
 
 		return new ResponseVO();
 	}

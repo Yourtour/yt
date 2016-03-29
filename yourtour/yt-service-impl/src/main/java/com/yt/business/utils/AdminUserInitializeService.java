@@ -1,5 +1,6 @@
 package com.yt.business.utils;
 
+import com.yt.business.bean.UserProfileBean;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.InitializingBean;
@@ -12,7 +13,7 @@ import com.yt.business.bean.UserAccountBean;
 import com.yt.business.service.IUserService;
 import com.yt.core.utils.MessageDigestUtils;
 
-//@Service
+@Service
 public class AdminUserInitializeService implements InitializingBean {
 	/** 静态变量：系统日志 */
 	private static final Log LOG = LogFactory
@@ -72,7 +73,16 @@ public class AdminUserInitializeService implements InitializingBean {
 		if (LOG.isWarnEnabled()) {
 			LOG.warn("The admin user is not exist, will initialize it.");
 		}
-		service.register("admin", "admin");
+
+		UserAccountBean account = new UserAccountBean();
+		account.setPwd("admin");
+		account.setUserName("admin");
+		account.setType(UserAccountBean.Type.Admin);
+
+		UserProfileBean profile = new UserProfileBean();
+		profile.setRealName("admin");
+
+		service.register(account, profile, 0l);
 		if (LOG.isDebugEnabled()) {
 			LOG.debug("Initialize admin employee successfully, default code = admin, password = admin, pls change the password..");
 		}

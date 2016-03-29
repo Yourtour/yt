@@ -159,19 +159,20 @@ public class UserServiceImpl extends ServiceBase implements IUserService {
 	}
 
 	@Override
-	public UserProfileBean register(UserAccountBean account, UserProfileBean profile) throws Exception {
+	public UserProfileBean register(UserAccountBean account, UserProfileBean profile, Long userId) throws Exception {
 		if (accountCrudOperate.get("userName", account.getUserName()) != null) {
 			throw new AppException(StaticErrorEnum.USER_EXIST);
 		}
 
-		// 先创建UserProfile
+		//创建UserProfile
+		super.updateBaseInfo(profile, userId);
 		profileCrudOperate.save(profile);
 
-		super.updateBaseInfo(account, profile.getId());
+		//创建账号
+		super.updateBaseInfo(account, userId);
 		account.setPwd(MessageDigestUtils.digest(propertiesReader.getProperty("digest.algorithm", "SHA-1"),
 				account.getPwd()));
 		account.setProfile(profile);
-
 		this.accountCrudOperate.save(account);
 
 		return account.getProfile();

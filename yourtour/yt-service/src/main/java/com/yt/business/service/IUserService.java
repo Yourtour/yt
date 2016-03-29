@@ -110,7 +110,7 @@ public interface IUserService {
 	 * @return
 	 * @throws Exception
 	 */
-	public UserProfileBean register(UserAccountBean account, UserProfileBean profile)
+	public UserProfileBean register(UserAccountBean account, UserProfileBean profile, Long userId)
 			throws Exception;
 
 	/**
