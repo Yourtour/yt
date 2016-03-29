@@ -54,7 +54,7 @@ public class RouteRestResource extends RestResource {
      */
     @POST
     @Path("/query")
-    public ResponseDataVO<List<RouteVO>> queryRouteInfo(  @DefaultValue("0") @QueryParam("nextCursor") Long nextCursor,
+    public ResponseDataVO<List<RouteVO>> getRouteInfoes(  @DefaultValue("0") @QueryParam("nextCursor") Long nextCursor,
                                                           @DefaultValue("20") @QueryParam("limit") int limit,
                                                           @QueryParam("total") int total, Map<String, Object> params)
     throws Exception{
@@ -77,9 +77,9 @@ public class RouteRestResource extends RestResource {
      * @throws Exception
      */
     @POST
-    @Path("/main/save")
+    @Path("/save")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public ResponseDataVO<Long> saveRouteMainInfo(@FormDataParam("route") String route,  FormDataMultiPart multipart) throws Exception{
+    public ResponseDataVO<Long> saveRouteInfo(@FormDataParam("route") String route,  FormDataMultiPart multipart) throws Exception{
         RouteVO routeVO = BeanUtils.deserialize(route, RouteVO.class);
 
         RouteMainBean routeBean = RouteVO.transform(routeVO);
@@ -89,8 +89,38 @@ public class RouteRestResource extends RestResource {
             routeBean.setImageUrl(imageUrls);
         }
 
-        this.routeService.saveRoute(routeBean, super.getCurrentUserId());
+        this.routeService.saveRouteInfo(routeBean, super.getCurrentUserId());
 
         return new ResponseDataVO<>(routeBean.getId());
     }
+
+    /**
+     * 获取行程基本信息
+     * @param routeId
+     * @return
+     * @throws Exception
+     */
+    @GET
+    @Path("/{routeId}/main")
+    public ResponseDataVO<RouteVO> getRouteMainInfo(@PathParam("routeId") Long routeId) throws Exception{
+        RouteMainBean route = this.routeService.getRouteMain(routeId);
+
+        return new ResponseDataVO<>(RouteVO.transform(route));
+    }
+
+    /**
+     * 获取行程完整信息
+     * @param routeId
+     * @return
+     * @throws Exception
+     */
+    @GET
+    @Path("/{routeId}")
+    public ResponseDataVO<RouteVO> getRouteInfo(@PathParam("routeId") Long routeId) throws Exception{
+        RouteMainBean route = this.routeService.getRoute(routeId);
+
+        return new ResponseDataVO<>(RouteVO.transform(route));
+    }
+
+
 }

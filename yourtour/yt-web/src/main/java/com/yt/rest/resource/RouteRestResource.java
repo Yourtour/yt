@@ -80,7 +80,7 @@ public class RouteRestResource extends RestResource {
 
 		UserProfileBean profileBean = new UserProfileBean(SessionUtils.getCurrentLoginUser());
 
-		routeService.saveRouteMainAndSchedules(bean,SessionUtils.getCurrentLoginUser());
+		routeService.saveRouteInfo(bean,SessionUtils.getCurrentLoginUser());
 
 		RouteLoadVO loadvo = new RouteLoadVO(bean);
 		return new ResponseDataVO<RouteLoadVO>(loadvo);

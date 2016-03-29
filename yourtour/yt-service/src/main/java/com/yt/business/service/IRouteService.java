@@ -13,23 +13,13 @@ public interface IRouteService {
 	public boolean isRouteMember(Long routeId, Long userId);
 
 	/**
-	 * 保存行程
-	 * 
-	 * @param route
-	 * @param operatorId
-	 * @throws Exception
-	 */
-	public void saveRoute(RouteMainBean route, Long operatorId)
-			throws Exception;
-
-	/**
 	 * 保存行程信息，包括行程计划内容以及日程信息；
 	 * 
 	 * @param route
 	 * @param operatorId
 	 * @throws Exception
 	 */
-	public void saveRouteMainAndSchedules(RouteMainBean route, Long operatorId)
+	public void saveRouteInfo(RouteMainBean route, Long operatorId)
 			throws Exception;
 
 	/**
@@ -52,6 +42,17 @@ public interface IRouteService {
 	 * @throws Exception
 	 */
 	public void deleteRoute(Long routeId, Long operatorId) throws Exception;
+
+	/**
+	 * 根据指定的行程ID，返回行程概要信息。
+	 *
+	 * @param routeId
+	 *            行程ID
+	 * @return 完整的行程对象
+	 * @throws Exception
+	 *             获取数据过程中发生的异常
+	 */
+	public RouteMainBean getRouteMain(Long routeId) throws Exception;
 
 	/**
 	 * 根据指定的行程ID，返回完整的行程对象。

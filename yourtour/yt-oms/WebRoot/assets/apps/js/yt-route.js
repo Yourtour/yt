@@ -12,7 +12,11 @@ jQuery.Route = {
             formview = $("#Page_RouteFormView");
 
         $("#btn_add", listview).on('click', function(){
-            $.Page.show("Page_RouteFormView");
+            me.createRouteInfo();
+        });
+
+        $("#btn_edit", listview).on('click', function(){
+            me.loadRouteInfo();
         });
 
         //保存按钮事件
@@ -26,6 +30,17 @@ jQuery.Route = {
         });
 
         this.query();
+    },
+
+    createRouteInfo:function(){
+        var formview = $("#Page_RouteFormView"),
+            form = $("#RouteForm", formview);
+
+        $.Page.show("Page_RouteFormView", function(){
+            form.clear();
+
+            $('#id', form).val(-1);
+        });
     },
 
     /**
@@ -80,6 +95,27 @@ jQuery.Route = {
         });
     },
 
+    /**
+     * 获取行程信息
+     */
+    loadRouteInfo:function(){
+        var me = this,
+            formview = $("#Page_RouteFormView"),
+            form = $("#RouteForm", formview),
+            dt = $("#Page_RouteListView #datatable_route");
+
+        dt.edit(function(id){
+            $.Request.get("/rest/oms/route/" + id, null, function(result){
+                $.Page.show("Page_RouteFormView", function(){
+                    form.deserialize(result);
+                });
+            })
+        })
+    },
+
+    /**
+     * 保存行程基本信息
+     */
     saveRouteInfo:function(){
         var me = this,
             formview = $("#Page_RouteFormView"),
@@ -96,7 +132,7 @@ jQuery.Route = {
             }
         })
 
-        $.Request.postFormData("/rest/oms/route/main/save",formdata,function(result){
+        $.Request.postFormData("/rest/oms/route/save",formdata,function(result){
             bootbox.alert("保存成功。", function(){
                 "use strict";
                 $.Page.back(function(){

@@ -81,6 +81,22 @@ public interface RouteMainBeanRepository extends GraphRepository<RouteMainBean> 
 	}
 
 	/**
+	 * 获取行程相关目的地
+	 * @param routeId
+	 * @return
+	 */
+	@Query("START route=node({0}) MATCH route-[r:TO]->(place:PlaceBean) RETURN place")
+	public List<PlaceBean> getPlaces(Long routeId);
+
+	/**
+	 * 获取行程相关目的地
+	 * @param routeId
+	 * @return
+	 */
+	@Query("START route=node({0}) MATCH route-[r:HAS]->(schedule:RouteScheduleBean) RETURN schedule")
+	public List<RouteScheduleBean> getSchedules(Long routeId);
+
+	/**
 	 * 获取和指定用户相关的行程。
 	 * 
 	 * @param userId

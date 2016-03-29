@@ -55,13 +55,16 @@ public class BeanUtils {
 			if (targetWriteMethod != null && sourceProp != null && sourceProp.getReadMethod() != null) {
 				Object value = getValue(sourceProp.getReadMethod(), source, new Object[0]);
 				if (value != null) {
-					//判断getter与setter的参数类型是否匹配，否则容易报IllegalArgumentException: argument type mismatch
+					if(value.getClass().isPrimitive() || value.getClass().equals(String.class)){
+						setValue(targetWriteMethod, target, new Object[]{value});
+					}
+					/*//判断getter与setter的参数类型是否匹配，否则容易报IllegalArgumentException: argument type mismatch
 					if (value.getClass() == targetWriteMethod.getParameterTypes()[0]) {
 						setValue(targetWriteMethod, target, new Object[]{value});
 					} else if (value.getClass().isPrimitive()
 							|| targetWriteMethod.getParameterTypes()[0].isPrimitive()) {
 						setValue(targetWriteMethod, target, new Object[]{value});
-					}
+					}*/
 				}
 			}
 		}

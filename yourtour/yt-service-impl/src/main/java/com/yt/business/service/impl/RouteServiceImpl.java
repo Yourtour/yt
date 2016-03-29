@@ -8,7 +8,9 @@ import com.yt.business.repository.neo4j.RouteTuple;
 import com.yt.business.service.IRouteService;
 import com.yt.core.common.AppException;
 import com.yt.core.common.StaticErrorEnum;
+import com.yt.core.utils.BeanUtils;
 import com.yt.core.utils.CollectionUtils;
+import com.yt.core.utils.StringUtils;
 import com.yt.neo4j.repository.CrudOperate;
 import com.yt.neo4j.repository.RelationshipCrudOperate;
 
@@ -48,6 +50,9 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 	@Autowired
 	private RelationshipCrudOperate<UserProfileBean, RouteMainBean> memberRelationship;
 
+	@Autowired
+	private RelationshipCrudOperate<PlaceBean, RouteMainBean> placeRelationship;
+
 	public RouteServiceImpl() {
 		super();
 	}
@@ -73,48 +78,68 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 	}
 
 	@Override
-	public void saveRoute(RouteMainBean route, Long operatorId)
-			throws Exception {
-		this.updateBaseInfo(route, operatorId);
-
-		routeCrudOperate.save(route);
-	}
-
-	@Override
-	public void saveRouteMainAndSchedules(RouteMainBean route, Long operatorId)
-			throws Exception {
-		// 如果存在日程，则先删除原先的日程信息
+	public void saveRouteInfo(RouteMainBean route, Long operatorId)
+	throws Exception {
 		boolean isNew = route.isNew();
-		if (!isNew) {
-			Long routeId = route.getId();
-			List<RouteScheduleBean> schedules = repository
-					.getRouteSchedules(routeId);
-			if (schedules != null) {
-				for (RouteScheduleBean schedule : schedules) {
-					scheduleCrudOperate.delete(schedule);
+		RouteMainBean saved = null;
+		if(! isNew){
+			//解除目的地关系
+			List<PlaceBean> places = repository.getPlaces(route.getId());
+			if(CollectionUtils.isNotEmpty(places)){
+				for(PlaceBean place : places){
+					placeRelationship.deleteRelation(place, route, Constants.RELATION_TYPE_TO);
+				}
+			}
+
+			saved = this.routeCrudOperate.get(route.getId(), false);
+			if(saved != null){
+				String imageUrl = saved.getImageUrl(); //图片字段特殊处理，采用附加方式。
+				BeanUtils.merge(route, saved);
+				if(StringUtils.isNotNull(imageUrl)){
+					if(StringUtils.isNull(saved.getImageUrl())){
+						saved.setImageUrl(imageUrl);
+					}else {
+						saved.setImageUrl(imageUrl + "," + saved.getImageUrl());
+					}
 				}
 			}
 		}
 
-		this.updateBaseInfo(route, operatorId);
-		routeCrudOperate.save(route);
+		if(saved == null){
+			saved = route;
+		}
 
-		if (isNew) { // 保存用户在行程中的成员关系
+		//保存行程信息
+		List<RouteScheduleBean> schedules = route.getSchedules();
+		route.setSchedules(null); //不自动保存日程信息
+		this.updateBaseInfo(saved, operatorId);
+		routeCrudOperate.save(saved);
+
+		if(isNew) {
+			// 保存用户在行程中的成员关系
 			UserProfileBean user = new UserProfileBean(operatorId);
 			Map<String, Object> member = new HashMap<>();
 			member = new HashMap<>();
 			member.put("permission", "W");
 			member.put("role", Constants.GroupRole.LEADER.code);
+			memberRelationship.createRelation(user, route, Constants.RELATION_TYPE_MEMBER, Direction.INCOMING, member);
+		}
 
-			memberRelationship.createRelation(user, route,
-					Constants.RELATION_TYPE_MEMBER, Direction.INCOMING, member);
+		//保存日程信息
+		List<RouteScheduleBean> existedSchedules = this.repository.getRouteSchedules(route.getId());
+		if (CollectionUtils.isEmpty(existedSchedules) && CollectionUtils.isNotEmpty(schedules)) {
+			for (RouteScheduleBean schedule : schedules) {
+				schedule.setRouteMain(route);
+				super.updateBaseInfo(schedule, operatorId);
+				scheduleCrudOperate.save(schedule);
+			}
 		}
 	}
 
 	@Override
 	public RouteMainBean cloneRoute(Long sourceId, RouteMainBean target,
 			Long operatorId) throws Exception {
-		this.saveRouteMainAndSchedules(target, operatorId);
+		this.saveRouteInfo(target, operatorId);
 
 		RouteMainBean source = this.getRoute(sourceId);
 		if (source == null) {
@@ -220,6 +245,13 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 		}
 
 		return routes;
+	}
+
+	@Override
+	public RouteMainBean getRouteMain(Long routeId) throws Exception {
+		RouteMainBean route = routeCrudOperate.get(routeId, false);
+
+		return route;
 	}
 
 	@Override

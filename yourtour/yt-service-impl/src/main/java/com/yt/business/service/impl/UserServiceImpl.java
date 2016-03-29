@@ -92,9 +92,7 @@ public class UserServiceImpl extends ServiceBase implements IUserService {
 		}
 
 		String rPassword = tuple.getAccount().getPwd();
-		if (!rPassword.equals(MessageDigestUtils.digest(
-				propertiesReader.getProperty("digest.algorithm", "SHA-1"),
-				password.trim()))) {
+		if (!rPassword.equals(encryptPassword(password))) {
 			throw new AppException(StaticErrorEnum.AUTHENTICATE_FAIL);
 		}
 
@@ -148,9 +146,7 @@ public class UserServiceImpl extends ServiceBase implements IUserService {
 		account = new UserAccountBean();
 		super.updateBaseInfo(account, profile.getId());
 		account.setUserName(userName);
-		account.setPwd(MessageDigestUtils.digest(
-				propertiesReader.getProperty("digest.algorithm", "SHA-1"),
-				password));
+		account.setPwd(encryptPassword(encryptPassword(password)));
 		account.setProfile(profile);
 
 		this.accountCrudOperate.save(account);
@@ -170,8 +166,7 @@ public class UserServiceImpl extends ServiceBase implements IUserService {
 
 		//创建账号
 		super.updateBaseInfo(account, userId);
-		account.setPwd(MessageDigestUtils.digest(propertiesReader.getProperty("digest.algorithm", "SHA-1"),
-				account.getPwd()));
+		account.setPwd(encryptPassword(account.getPwd()));
 		account.setProfile(profile);
 		this.accountCrudOperate.save(account);
 
@@ -225,5 +220,9 @@ public class UserServiceImpl extends ServiceBase implements IUserService {
 		Node tarNode = template.getNode(id);
 		template.deleteRelationshipBetween(srcNode, tarNode,
 				Constants.RELATION_TYPE_WATCH);
+	}
+
+	private String encryptPassword(String password) throws Exception{
+		return MessageDigestUtils.digest(propertiesReader.getProperty("digest.algorithm", "SHA-1"), password.trim());
 	}
 }

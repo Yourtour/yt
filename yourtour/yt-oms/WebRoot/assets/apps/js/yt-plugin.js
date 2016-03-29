@@ -142,6 +142,8 @@ jQuery.Page={
                 if(element.attr("value") == value){
                     element.parent().addClass("checked");
                 }
+            }else if(type == 'file'){
+                element.val("");
             }
         }else if(element.is('select')){
             element.find('option[value="' + value + '"]').attr("selected", true);

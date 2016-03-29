@@ -3,6 +3,7 @@ package com.yt.business.bean;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.yt.core.utils.StringUtils;
 import org.codehaus.jackson.map.annotate.JsonRootName;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;

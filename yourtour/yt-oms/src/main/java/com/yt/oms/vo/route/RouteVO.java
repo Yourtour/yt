@@ -23,13 +23,6 @@ public class RouteVO implements Serializable {
     private int  charge; //费用
     private String chargeIncludes;
     private String chargeExcludes;
-
-    private double commentScore;
-    private int readNum;
-    private int likeNum;
-    private int favoriteNum;
-    private int shareNum;
-    private int commentNum;
     private String tags;
 
     private String 	feature; //行程特点
@@ -52,15 +45,11 @@ public class RouteVO implements Serializable {
         routeVO.setStartDate(new Date(bean.getStartDate()).getTime());
         routeVO.setImageUrl(bean.getImageUrl());
         routeVO.setToPlaces(bean.getToPlaces());
-
+        routeVO.setDuration(bean.getDuration());
         routeVO.setTags(bean.getTags());
-        routeVO.setReadNum(bean.getReadNum());
-        routeVO.setCommentScore(bean.getCommentScore());
-        routeVO.setCommentNum(bean.getCommentNum());
-        routeVO.setFavoriteNum(bean.getFavoriteNum());
-        routeVO.setShareNum(bean.getShareNum());
-        routeVO.setLikeNum(bean.getLikeNum());
-
+        routeVO.setCharge(bean.getCharge());
+        routeVO.setChargeExcludes(bean.getChargeExcludes());
+        routeVO.setChargeIncludes(bean.getChargeIncludes());
         routeVO.setFeature(bean.getFeature());
 
         return routeVO;
@@ -75,10 +64,15 @@ public class RouteVO implements Serializable {
 
         bean.setId(vo.getId());
         bean.setName(vo.getName());
+        bean.setLineName(vo.getLineName());
         bean.setStartDate(vo.getStartDate());
         bean.setEndDate(vo.getEndDate());
         bean.setDuration(vo.getDuration());
         bean.setToPlaces(vo.getToPlaces());
+        bean.setCharge(vo.getCharge());
+        bean.setFeature(vo.getFeature());
+        bean.setChargeExcludes(vo.getChargeExcludes());
+        bean.setChargeIncludes(vo.getChargeIncludes());
 
         //保存目的地
         Set<PlaceBean> destinations = new HashSet<>();
@@ -180,54 +174,6 @@ public class RouteVO implements Serializable {
 
     public void setChargeExcludes(String chargeExcludes) {
         this.chargeExcludes = chargeExcludes;
-    }
-
-    public int getReadNum() {
-        return readNum;
-    }
-
-    public void setReadNum(int readNum) {
-        this.readNum = readNum;
-    }
-
-    public double getCommentScore() {
-        return commentScore;
-    }
-
-    public void setCommentScore(double commentScore) {
-        this.commentScore = commentScore;
-    }
-
-    public int getLikeNum() {
-        return likeNum;
-    }
-
-    public void setLikeNum(int likeNum) {
-        this.likeNum = likeNum;
-    }
-
-    public int getFavoriteNum() {
-        return favoriteNum;
-    }
-
-    public void setFavoriteNum(int favoriteNum) {
-        this.favoriteNum = favoriteNum;
-    }
-
-    public int getShareNum() {
-        return shareNum;
-    }
-
-    public void setShareNum(int shareNum) {
-        this.shareNum = shareNum;
-    }
-
-    public int getCommentNum() {
-        return commentNum;
-    }
-
-    public void setCommentNum(int commentNum) {
-        this.commentNum = commentNum;
     }
 
     public String getTags() {
