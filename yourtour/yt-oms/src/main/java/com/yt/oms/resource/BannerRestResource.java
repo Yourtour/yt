@@ -33,6 +33,7 @@ public class BannerRestResource extends RestResource {
 	private IBannerService bannerService;
 
 	@GET
+	@Path("/query")
 	public ResponsePagingDataVO<List<BannerVO>> getBanners(
 			@DefaultValue("0") @QueryParam("nextCursor") Long nextCursor,
 			@DefaultValue("20") @QueryParam("limit") int limit,
@@ -66,8 +67,9 @@ public class BannerRestResource extends RestResource {
 			@Context HttpServletRequest request,
 			@FormDataParam("banner") String json, FormDataMultiPart form)
 			throws Exception {
-		BannerBean banner = (BannerBean) BeanUtils.deserialize(json,
-				BannerBean.class);
+		BannerVO bannerVO = (BannerVO) BeanUtils.deserialize(json,
+				BannerVO.class);
+		BannerBean banner = BannerVO.transform(bannerVO);
 		banner.setImageUrl(super.uploadMediaFile(form, "bannerImage",
 				BANNER_IMAGE_PATH));
 		Long userId = super.getCurrentUserId(request);

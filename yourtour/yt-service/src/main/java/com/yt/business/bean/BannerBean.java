@@ -50,11 +50,14 @@ public class BannerBean extends SocialBeanImpl {
 	private transient List<RouteMainBean> routes; // Banner关联的行程
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RELATED, type = ExpertBean.class, direction = Direction.OUTGOING, isList = true)
 	private transient List<ExpertBean> experts; // Banner关联的达人
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RELATED, type = ActivityBean.class, direction = Direction.OUTGOING, isList = true)
+	private transient List<ActivityBean> activities; // Banner关联的活动
 
 	public BannerBean() {
 		super();
 		this.routes = new Vector<RouteMainBean>();
 		this.experts = new Vector<ExpertBean>();
+		this.activities = new Vector<ActivityBean>();
 	}
 
 	public String getImageUrl() {
@@ -119,6 +122,10 @@ public class BannerBean extends SocialBeanImpl {
 
 	public List<ExpertBean> getExperts() {
 		return experts;
+	}
+
+	public List<ActivityBean> getActivities() {
+		return activities;
 	}
 
 }
