@@ -2,27 +2,27 @@
  *
  * @type {{query: Function, saveDictInfo: Function, loadDictInfo: Function}}
  */
-jQuery.SceneResource = {
+jQuery.RestaurantResource = {
     init: function () {
         var me = this,
-            listview = $("#Page_SceneListView"),
-            formview = $("#Page_SceneFormView");
+            listview = $("#Page_RestaurantListView"),
+            formview = $("#Page_RestaurantFormView");
 
-        $.Page.show("Page_SceneListView");
+        $.Page.show("Page_RestaurantListView");
 
         $("#btn_add", listview).on('click', function () {
-            me.createSceneInfo();
+            me.createRestaurantInfo();
         });
         $("#btn_edit", listview).on('click', function () {
-            me.loadSceneInfo();
+            me.loadRestaurantInfo();
         });
         $("#btn_delete", listview).on("click", function () {
-            me.deleteSceneInfo();
+            me.deleteRestaurantInfo();
         });
 
         // 保存按钮事件
         $("#btnSave", formview).on('click', function () {
-            me.saveSceneInfo()
+            me.saveRestaurantInfo()
         });
 
         // 取消按钮事件
@@ -34,43 +34,43 @@ jQuery.SceneResource = {
     },
 
     /**
-     * 弹出Form创建一个新的景点
+     * 弹出Form创建一个新的饭店
      */
-    createSceneInfo: function () {
+    createRestaurantInfo: function () {
         var me = this,
-            formview = $("#Page_SceneFormView");
+            formview = $("#Page_RestaurantFormView");
 
 
-        $.Page.show("Page_SceneFormView", function () {
-            $("#SceneForm", formview).clear();
+        $.Page.show("Page_RestaurantFormView", function () {
+            $("#RestaurantForm", formview).clear();
             $("#id", formview).val("-1");
         });
     },
 
     /**
-     * 加载景点信息到Form便于修改
+     * 加载饭店信息到Form便于修改
      */
-    loadSceneInfo: function () {
+    loadRestaurantInfo: function () {
         var me = this,
-            formview = $("#Page_SceneFormView");
+            formview = $("#Page_RestaurantFormView");
 
-        $("#datatable_scene").edit(function (id) {
-            $.Request.get("/rest/oms/resources/scenes/" + id, null, function (result) {
-                $.Page.show("Page_SceneFormView", function () {
-                    $("#SceneForm").deserialize(result);
+        $("#datatable_restaurant").edit(function (id) {
+            $.Request.get("/rest/oms/resources/restaurants/" + id, null, function (result) {
+                $.Page.show("Page_RestaurantFormView", function () {
+                    $("#RestaurantForm").deserialize(result);
                 });
             })
         })
     },
 
     /**
-     * 逻辑删除景点
+     * 逻辑删除饭店
      */
-    deleteSceneInfo: function () {
+    deleteRestaurantInfo: function () {
         var me = this;
 
-        $("#datatable_scene").delete(function (id) {
-            $.Request.delete("/rest/oms/resources/scenes/" + id + "/delete", null, function (result) {
+        $("#datatable_restaurant").delete(function (id) {
+            $.Request.delete("/rest/oms/resources/restaurants/" + id + "/delete", null, function (result) {
                 me.query();
             })
         })
@@ -80,8 +80,8 @@ jQuery.SceneResource = {
      * 列表查询
      */
     query: function () {
-        $("#datatable_scene").dataTable().fnDestroy();
-        $("#datatable_scene")
+        $("#datatable_restaurant").dataTable().fnDestroy();
+        $("#datatable_restaurant")
             .dataTable(
             {
                 "aoColumns": [
@@ -100,7 +100,7 @@ jQuery.SceneResource = {
                         "mData": "name",
                         "sWidth": "30%"
                     }, {
-                        "mData": "intro",
+                        "mData": "deliciouFood",
                         "sWidth": "40%"
                     }]
             });
@@ -109,17 +109,16 @@ jQuery.SceneResource = {
     /**
      * 保存字典数据
      */
-    saveSceneInfo: function () {
-        var scene = {}, sceneForm = $('#SceneForm'), me = this;
-        scene = sceneForm.serialize();
-        // TODO 删除不需要的字段
+    saveRestaurantInfo: function () {
+        var restaurant = {}, restaurantForm = $('#RestaurantForm'), me = this;
+        restaurant = restaurantForm.serialize();
         var fd = new FormData();
-        fd.append('scene', JSON.stringify(scene));
+        fd.append('restaurant', JSON.stringify(restaurant));
         //fd.append("imageUrl", $("#imageUrl")[0].files[0]);
 
-        console.log(scene);
+        console.log(restaurant);
 
-        $.Request.postFormData("/rest/oms/resources/scenes/save", fd, function (result) {
+        $.Request.postFormData("/rest/oms/resources/restaurants/save", fd, function (result) {
             bootbox.alert("保存成功。", function () {
                 $.Page.back(function () {
                     me.query();

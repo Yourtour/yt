@@ -18,7 +18,7 @@ public interface ResourceBeanRepository extends GraphRepository<ResourceBean> {
 	 *            目的地ID
 	 * @return 资源数量
 	 */
-	@Query("START place=node({0}) MATCH place<-[:AT]-(resource:ResourceBean) RETURN COUNT(resource)")
+	@Query("START place=node({0}) MATCH place<-[:AT]-(resource:ResourceBean) WHERE NOT resource.isDeleted RETURN COUNT(resource)")
 	public int count(Long placeId);
 
 	/**
@@ -30,7 +30,7 @@ public interface ResourceBeanRepository extends GraphRepository<ResourceBean> {
 	 *            资源类型
 	 * @return 资源数量
 	 */
-	@Query("START place=node({0}) MATCH place<-[:AT]-(resource:ResourceBean) WHERE resource.type = {1} RETURN COUNT(resource)")
+	@Query("START place=node({0}) MATCH place<-[:AT]-(resource:ResourceBean) WHERE resource.type = {1} AND NOT resource.isDeleted RETURN COUNT(resource)")
 	public int count(Long placeId, String type);
 
 	/**
@@ -40,7 +40,7 @@ public interface ResourceBeanRepository extends GraphRepository<ResourceBean> {
 	 *            指定的资源类型
 	 * @return 资源数量
 	 */
-	@Query("MATCH (r:ResourceBean) WHERE r.type = {0} RETURN COUNT(r)")
+	@Query("MATCH (r:ResourceBean) WHERE r.type = {0} AND NOT r.isDeleted RETURN COUNT(r)")
 	public int count(String type);
 
 	/**
@@ -54,7 +54,7 @@ public interface ResourceBeanRepository extends GraphRepository<ResourceBean> {
 	 *            获取数据行数
 	 * @return 符合条件的资源列表
 	 */
-	@Query("MATCH (r:ResourceBean) WHERE r.type={0} RETURN r ORDER BY r.id SKIP {1} LIMIT {2}")
+	@Query("MATCH (r:ResourceBean) WHERE r.type={0} AND NOT r.isDeleted RETURN r ORDER BY r.id SKIP {1} LIMIT {2}")
 	public List<ResourceBean> getResources(String type, Long nextCursor,
 			int limit);
 
@@ -69,7 +69,7 @@ public interface ResourceBeanRepository extends GraphRepository<ResourceBean> {
 	 *            获取数据行数
 	 * @return 符合条件的资源列表
 	 */
-	@Query("START place=node({0}) MATCH place<-[:AT]-(resource:ResourceBean) RETURN resource ORDER BY resource.id SKIP {1} LIMIT {2}")
+	@Query("START place=node({0}) MATCH place<-[:AT]-(resource:ResourceBean) WHERE NOT resource.isDeleted RETURN resource ORDER BY resource.id SKIP {1} LIMIT {2}")
 	public List<ResourceBean> getPlaceResources(Long placeId, Long nextCursor,
 			int limit);
 
@@ -86,7 +86,7 @@ public interface ResourceBeanRepository extends GraphRepository<ResourceBean> {
 	 *            获取数据行数
 	 * @return 符合条件的资源列表
 	 */
-	@Query("START place=node({0}) MATCH place<-[:AT]-(resource:ResourceBean) WHERE resource.type = {1} RETURN resource "
+	@Query("START place=node({0}) MATCH place<-[:AT]-(resource:ResourceBean) WHERE resource.type = {1} AND NOT resource.isDeleted RETURN resource "
 			+ "ORDER BY resource.id SKIP {2} LIMIT {3}")
 	public List<ResourceBean> getPlaceResources(Long placeId, String type,
 			Long nextCursor, int limit);

@@ -2,27 +2,27 @@
  *
  * @type {{query: Function, saveDictInfo: Function, loadDictInfo: Function}}
  */
-jQuery.SceneResource = {
+jQuery.HotelResource = {
     init: function () {
         var me = this,
-            listview = $("#Page_SceneListView"),
-            formview = $("#Page_SceneFormView");
+            listview = $("#Page_HotelListView"),
+            formview = $("#Page_HotelFormView");
 
-        $.Page.show("Page_SceneListView");
+        $.Page.show("Page_HotelListView");
 
         $("#btn_add", listview).on('click', function () {
-            me.createSceneInfo();
+            me.createHotelInfo();
         });
         $("#btn_edit", listview).on('click', function () {
-            me.loadSceneInfo();
+            me.loadHotelInfo();
         });
         $("#btn_delete", listview).on("click", function () {
-            me.deleteSceneInfo();
+            me.deleteHotelInfo();
         });
 
         // 保存按钮事件
         $("#btnSave", formview).on('click', function () {
-            me.saveSceneInfo()
+            me.saveHotelInfo()
         });
 
         // 取消按钮事件
@@ -34,43 +34,43 @@ jQuery.SceneResource = {
     },
 
     /**
-     * 弹出Form创建一个新的景点
+     * 弹出Form创建一个新的宾馆
      */
-    createSceneInfo: function () {
+    createHotelInfo: function () {
         var me = this,
-            formview = $("#Page_SceneFormView");
+            formview = $("#Page_HotelFormView");
 
 
-        $.Page.show("Page_SceneFormView", function () {
-            $("#SceneForm", formview).clear();
+        $.Page.show("Page_HotelFormView", function () {
+            $("#HotelForm", formview).clear();
             $("#id", formview).val("-1");
         });
     },
 
     /**
-     * 加载景点信息到Form便于修改
+     * 加载宾馆信息到Form便于修改
      */
-    loadSceneInfo: function () {
+    loadHotelInfo: function () {
         var me = this,
-            formview = $("#Page_SceneFormView");
+            formview = $("#Page_HotelFormView");
 
-        $("#datatable_scene").edit(function (id) {
-            $.Request.get("/rest/oms/resources/scenes/" + id, null, function (result) {
-                $.Page.show("Page_SceneFormView", function () {
-                    $("#SceneForm").deserialize(result);
+        $("#datatable_hotel").edit(function (id) {
+            $.Request.get("/rest/oms/resources/hotels/" + id, null, function (result) {
+                $.Page.show("Page_HotelFormView", function () {
+                    $("#HotelForm").deserialize(result);
                 });
             })
         })
     },
 
     /**
-     * 逻辑删除景点
+     * 逻辑删除宾馆
      */
-    deleteSceneInfo: function () {
+    deleteHotelInfo: function () {
         var me = this;
 
-        $("#datatable_scene").delete(function (id) {
-            $.Request.delete("/rest/oms/resources/scenes/" + id + "/delete", null, function (result) {
+        $("#datatable_hotel").delete(function (id) {
+            $.Request.delete("/rest/oms/resources/hotels/" + id + "/delete", null, function (result) {
                 me.query();
             })
         })
@@ -80,8 +80,8 @@ jQuery.SceneResource = {
      * 列表查询
      */
     query: function () {
-        $("#datatable_scene").dataTable().fnDestroy();
-        $("#datatable_scene")
+        $("#datatable_hotel").dataTable().fnDestroy();
+        $("#datatable_hotel")
             .dataTable(
             {
                 "aoColumns": [
@@ -100,7 +100,7 @@ jQuery.SceneResource = {
                         "mData": "name",
                         "sWidth": "30%"
                     }, {
-                        "mData": "intro",
+                        "mData": "specialRoom",
                         "sWidth": "40%"
                     }]
             });
@@ -109,17 +109,16 @@ jQuery.SceneResource = {
     /**
      * 保存字典数据
      */
-    saveSceneInfo: function () {
-        var scene = {}, sceneForm = $('#SceneForm'), me = this;
-        scene = sceneForm.serialize();
-        // TODO 删除不需要的字段
+    saveHotelInfo: function () {
+        var hotel = {}, hotelForm = $('#HotelForm'), me = this;
+        hotel = hotelForm.serialize();
         var fd = new FormData();
-        fd.append('scene', JSON.stringify(scene));
+        fd.append('hotel', JSON.stringify(hotel));
         //fd.append("imageUrl", $("#imageUrl")[0].files[0]);
 
-        console.log(scene);
+        console.log(hotel);
 
-        $.Request.postFormData("/rest/oms/resources/scenes/save", fd, function (result) {
+        $.Request.postFormData("/rest/oms/resources/hotels/save", fd, function (result) {
             bootbox.alert("保存成功。", function () {
                 $.Page.back(function () {
                     me.query();

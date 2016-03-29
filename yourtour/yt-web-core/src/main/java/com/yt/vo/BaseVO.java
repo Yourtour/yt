@@ -25,7 +25,7 @@ public class BaseVO {
 	public void toBean(BaseBeanImpl bean) {
 		bean.setCreatedTime(getCreatedTime());
 		bean.setCreatedUserId(getCreatedUserId());
-		bean.setId(getId());
+		bean.setId(getId() == null || getId() == -1 ? null : getId());
 		bean.setRowKey(getRowKey());
 		bean.setUpdatedTime(getUpdatedTime());
 		bean.setUpdatedUserId(getUpdatedUserId());

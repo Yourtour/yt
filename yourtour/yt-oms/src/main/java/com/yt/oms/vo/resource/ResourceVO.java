@@ -120,7 +120,7 @@ public class ResourceVO extends SocialVO {
 
 	@Override
 	public void toBean(BaseBeanImpl bean) {
-		toBean(bean);
+		super.toBean(bean);
 		ResourceBean resource = (ResourceBean) bean;
 		resource.setCode(getCode());
 		resource.setName(getName());

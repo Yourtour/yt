@@ -49,7 +49,7 @@ public class ResourceRestResource extends RestResource {
 	private IResourceService resourceService;
 
 	@GET
-	@Path("/hotels")
+	@Path("/hotels/query")
 	public ResponsePagingDataVO<List<HotelResourceVO>> getHotels(
 			@DefaultValue("0") @QueryParam("nextCursor") Long nextCursor,
 			@DefaultValue("20") @QueryParam("limit") int limit,
@@ -111,10 +111,11 @@ public class ResourceRestResource extends RestResource {
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public ResponseDataVO<HotelResourceVO> saveHotel(
 			@Context HttpServletRequest request,
-			@FormDataParam("place") String json, FormDataMultiPart form)
+			@FormDataParam("hotel") String json, FormDataMultiPart form)
 			throws Exception {
-		HotelResourceBean hotel = (HotelResourceBean) BeanUtils.deserialize(
-				json, HotelResourceBean.class);
+		HotelResourceVO hotelVO = (HotelResourceVO) BeanUtils.deserialize(json,
+				HotelResourceVO.class);
+		HotelResourceBean hotel = HotelResourceVO.transform(hotelVO);
 		hotel.setImageUrl(super.uploadMediaFile(form, "hotelImage",
 				HOTEL_IMAGE_PATH));
 
@@ -125,7 +126,7 @@ public class ResourceRestResource extends RestResource {
 	}
 
 	@GET
-	@Path("/restaurants")
+	@Path("/restaurants/query")
 	public ResponsePagingDataVO<List<RestaurantResourceVO>> getRestaurants(
 			@DefaultValue("0") @QueryParam("nextCursor") Long nextCursor,
 			@DefaultValue("20") @QueryParam("limit") int limit,
@@ -192,8 +193,10 @@ public class ResourceRestResource extends RestResource {
 			@Context HttpServletRequest request,
 			@FormDataParam("restaurant") String json, FormDataMultiPart form)
 			throws Exception {
-		RestaurantResourceBean restaurant = (RestaurantResourceBean) BeanUtils
-				.deserialize(json, RestaurantResourceBean.class);
+		RestaurantResourceVO restaurantVO = (RestaurantResourceVO) BeanUtils
+				.deserialize(json, RestaurantResourceVO.class);
+		RestaurantResourceBean restaurant = RestaurantResourceVO
+				.transform(restaurantVO);
 		restaurant.setImageUrl(super.uploadMediaFile(form, "restaurantImage",
 				HOTEL_IMAGE_PATH));
 
@@ -268,8 +271,9 @@ public class ResourceRestResource extends RestResource {
 			@Context HttpServletRequest request,
 			@FormDataParam("scene") String json, FormDataMultiPart form)
 			throws Exception {
-		SceneResourceBean scene = (SceneResourceBean) BeanUtils.deserialize(
-				json, SceneResourceBean.class);
+		SceneResourceVO sceneVO = (SceneResourceVO) BeanUtils.deserialize(json,
+				SceneResourceVO.class);
+		SceneResourceBean scene = SceneResourceVO.transform(sceneVO);
 		scene.setImageUrl(super.uploadMediaFile(form, "sceneImage",
 				HOTEL_IMAGE_PATH));
 
