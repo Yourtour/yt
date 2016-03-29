@@ -1,13 +1,16 @@
 package com.yt.oms.vo.home;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
+import com.yt.business.bean.ActivityBean;
 import com.yt.business.bean.BannerBean;
 import com.yt.business.bean.BannerBean.Status;
-import com.yt.business.bean.ActivityBean;
 import com.yt.business.bean.ExpertBean;
 import com.yt.business.bean.RouteMainBean;
+import com.yt.vo.BaseVO;
 
 /**
  * 首页Banner的数据对象
@@ -15,9 +18,10 @@ import com.yt.business.bean.RouteMainBean;
  * @author John.Peng
  * 
  */
-public class BannerVO {
-	private String title, subTitle, imageUrl, content;
-	private long id, startTime, endTime;
+public class BannerVO extends BaseVO {
+	private static final SimpleDateFormat sdf = new SimpleDateFormat(
+			"yyyy-MM-dd");
+	private String title, subTitle, imageUrl, content, startTime, endTime;
 	private BannerBean.Status status = Status.DRAFT;
 	private List<RouteVO> routes;
 	private List<ExpertVO> experts;
@@ -119,33 +123,34 @@ public class BannerVO {
 			return null;
 		}
 		BannerVO vo = new BannerVO();
-		vo.setId(bean.getId());
+		vo.fromBean(bean);
 		vo.setTitle(bean.getTitle());
 		vo.setSubTitle(bean.getSubTitle());
 		vo.setContent(bean.getContent());
 		vo.setImageUrl(bean.getImageUrl());
 		vo.setStatus(bean.getStatus());
-		vo.setStartTime(bean.getStartTime());
-		vo.setEndTime(bean.getEndTime());
+		vo.setStartTime(sdf.format(new Date(bean.getStartTime())));
+		vo.setEndTime(sdf.format(new Date(bean.getEndTime())));
 		vo.transformRoutes(bean.getRoutes());
 		vo.transformExperts(bean.getExperts());
 		vo.transformActivities(bean.getActivities());
 		return vo;
 	}
 
-	public static BannerBean transform(BannerVO vo) {
+	public static BannerBean transform(BannerVO vo) throws Exception {
 		if (vo == null) {
 			return null;
 		}
 		BannerBean bean = new BannerBean();
-		bean.setId(vo.getId());
+		vo.toBean(bean);
+		bean.setRowKey(vo.getTitle());
 		bean.setTitle(vo.getTitle());
 		bean.setSubTitle(vo.getSubTitle());
 		bean.setContent(vo.getContent());
 		bean.setImageUrl(vo.getImageUrl());
 		bean.setStatus(vo.getStatus());
-		bean.setStartTime(vo.getStartTime());
-		bean.setEndTime(vo.getEndTime());
+		bean.setStartTime(sdf.parse(vo.getStartTime()).getTime());
+		bean.setEndTime(sdf.parse(vo.getEndTime()).getTime());
 		if (vo.getRoutes() != null) {
 			for (RouteVO routeVO : vo.getRoutes()) {
 				if (routeVO == null) {
@@ -256,32 +261,24 @@ public class BannerVO {
 		this.content = content;
 	}
 
-	public long getId() {
-		return id;
+	public BannerBean.Status getStatus() {
+		return status;
 	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public long getStartTime() {
+	public String getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(long startTime) {
+	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
 
-	public long getEndTime() {
+	public String getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(long endTime) {
+	public void setEndTime(String endTime) {
 		this.endTime = endTime;
-	}
-
-	public BannerBean.Status getStatus() {
-		return status;
 	}
 
 	public void setStatus(BannerBean.Status status) {
