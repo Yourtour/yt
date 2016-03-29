@@ -50,6 +50,13 @@
                                     <input type="date" class="form-control" name="endTime" id="startTime" placeholder="结束时间">
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label for="files" class="col-md-2 control-label">Banner图片</label>
+                                <textarea class="form-control" name="imageUrl" disabled id="imageUrl"></textarea>
+                                <div class="col-md-2">
+                                    <input type="file" id="files" name="files" multiple="multiple">
+                                </div>
+                            </div>
 
                             <hr>
                             <div class="form-group">

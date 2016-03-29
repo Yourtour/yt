@@ -114,10 +114,11 @@ jQuery.Banner = {
         banner = bannerForm.serialize();
         var fd = new FormData();
         fd.append('banner', JSON.stringify(banner));
-        //fd.append("imageUrl", $("#imageUrl")[0].files[0]);
-
-        console.log(banner);
-
+        var ctlFiles = $("#files")[0];
+        for (var index = 0; index < ctlFiles.files.length; index ++)
+        {
+            fd.append("files", ctlFiles.files[index]);
+        }
         $.Request.postFormData("/rest/oms/banners/save", fd, function (result) {
             bootbox.alert("保存成功。", function () {
                 $.Page.back(function () {

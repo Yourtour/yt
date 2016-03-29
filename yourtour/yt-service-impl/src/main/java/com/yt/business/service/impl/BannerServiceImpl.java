@@ -11,7 +11,6 @@ import com.yt.business.PagingDataBean;
 import com.yt.business.bean.BannerBean;
 import com.yt.business.repository.neo4j.BannerBeanRepository;
 import com.yt.business.service.IBannerService;
-import com.yt.core.utils.BeanUtils;
 import com.yt.neo4j.repository.CrudOperate;
 
 @Service
@@ -63,9 +62,6 @@ public class BannerServiceImpl extends ServiceBase implements IBannerService {
 	 */
 	@Override
 	public BannerBean saveBanner(BannerBean bean, Long userId) throws Exception {
-		if (!bean.isNew()) {
-			BeanUtils.merge(bannerCrudOperate.get(bean.getId()), bean, true);
-		}
 		super.updateBaseInfo(bean, userId);
 		bannerCrudOperate.save(bean);
 		return bean;
