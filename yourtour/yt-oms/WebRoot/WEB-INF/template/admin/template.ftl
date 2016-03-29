@@ -252,6 +252,7 @@
 	<script src="${context}/assets/apps/js/yt-sceneResource.js" type="text/javascript"></script>
 	<script src="${context}/assets/apps/js/yt-hotelResource.js" type="text/javascript"></script>
 	<script src="${context}/assets/apps/js/yt-restaurantResource.js" type="text/javascript"></script>
+	<script src="${context}/assets/apps/js/yt-banner.js" type="text/javascript"></script>
 
 	<!-- END THEME GLOBAL SCRIPTS -->
 	<!-- BEGIN PAGE LEVEL SCRIPTS -->

@@ -428,13 +428,20 @@ public class CrudGeneralOperate<T extends Neo4jBaseBean> implements
 		}
 		// 判断该图节点是否存在
 		Neo4jBaseBean bean = null;
-		if (neo4jBean.getId() != null) {
+		Long id = neo4jBean.getId();
+		if (id != null && id != -1l) {
 			// 以ID是否存在为最优先
 			bean = get(neo4jBean.getId());
+		} else  {
+			bean = null;
+			neo4jBean.setId(null);
 		}
 		if (bean == null && neo4jBean instanceof Neo4jBaseDictBean) {
 			// 如果是字典类型的节点，则通过代码来判断该bean是否已经存在
 			bean = get("code", ((Neo4jBaseDictBean) neo4jBean).getCode());
+		}
+		if (bean != null) {
+			neo4jBean.setId(bean.getId());
 		}
 		// 先保存指定的节点
 		T tar = template.save(neo4jBean);

@@ -27,4 +27,11 @@ public class PagingConditionBean {
 		return total;
 	}
 
+	@Override
+	public String toString() {
+		return String.format(
+				"paging condition: total(%d), nextCursor(%d), limit(%d).",
+				total, nextCursor, limit);
+	}
+
 }

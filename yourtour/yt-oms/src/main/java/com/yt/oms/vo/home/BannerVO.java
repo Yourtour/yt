@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import com.yt.business.bean.BannerBean;
 import com.yt.business.bean.BannerBean.Status;
+import com.yt.business.bean.ActivityBean;
 import com.yt.business.bean.ExpertBean;
 import com.yt.business.bean.RouteMainBean;
 
@@ -20,9 +21,10 @@ public class BannerVO {
 	private BannerBean.Status status = Status.DRAFT;
 	private List<RouteVO> routes;
 	private List<ExpertVO> experts;
+	private List<ActivityVO> activities;
 
 	public class RouteVO {
-		private long id;
+		private long id = -1;
 		private String name, imageUrl;
 
 		public long getId() {
@@ -51,7 +53,7 @@ public class BannerVO {
 	}
 
 	public class ExpertVO {
-		private long id;
+		private long id = -1;
 		private String nickName, imageUrl;
 
 		public long getId() {
@@ -68,6 +70,35 @@ public class BannerVO {
 
 		public void setNickName(String name) {
 			this.nickName = name;
+		}
+
+		public String getImageUrl() {
+			return imageUrl;
+		}
+
+		public void setImageUrl(String imageUrl) {
+			this.imageUrl = imageUrl;
+		}
+	}
+
+	public class ActivityVO {
+		private long id = -1;
+		private String title, imageUrl;
+
+		public long getId() {
+			return id;
+		}
+
+		public void setId(long id) {
+			this.id = id;
+		}
+
+		public String getTitle() {
+			return title;
+		}
+
+		public void setTitle(String title) {
+			this.title = title;
 		}
 
 		public String getImageUrl() {
@@ -98,7 +129,54 @@ public class BannerVO {
 		vo.setEndTime(bean.getEndTime());
 		vo.transformRoutes(bean.getRoutes());
 		vo.transformExperts(bean.getExperts());
+		vo.transformActivities(bean.getActivities());
 		return vo;
+	}
+
+	public static BannerBean transform(BannerVO vo) {
+		if (vo == null) {
+			return null;
+		}
+		BannerBean bean = new BannerBean();
+		bean.setId(vo.getId());
+		bean.setTitle(vo.getTitle());
+		bean.setSubTitle(vo.getSubTitle());
+		bean.setContent(vo.getContent());
+		bean.setImageUrl(vo.getImageUrl());
+		bean.setStatus(vo.getStatus());
+		bean.setStartTime(vo.getStartTime());
+		bean.setEndTime(vo.getEndTime());
+		if (vo.getRoutes() != null) {
+			for (RouteVO routeVO : vo.getRoutes()) {
+				if (routeVO == null) {
+					continue;
+				}
+				RouteMainBean routeBean = new RouteMainBean();
+				routeBean.setId(routeVO.getId());
+				bean.getRoutes().add(routeBean);
+			}
+		}
+		if (vo.getExperts() != null) {
+			for (ExpertVO expertVO : vo.getExperts()) {
+				if (expertVO == null) {
+					continue;
+				}
+				ExpertBean expertBean = new ExpertBean();
+				expertBean.setId(expertVO.getId());
+				bean.getExperts().add(expertBean);
+			}
+		}
+		if (vo.getActivities() != null) {
+			for (ActivityVO activityVO : vo.getActivities()) {
+				if (activityVO == null) {
+					continue;
+				}
+				ActivityBean activityBean = new ActivityBean();
+				activityBean.setId(activityVO.getId());
+				bean.getActivities().add(activityBean);
+			}
+		}
+		return bean;
 	}
 
 	private void transformRoutes(List<RouteMainBean> routeBeans) {
@@ -129,6 +207,21 @@ public class BannerVO {
 			experts.add(vo);
 		}
 		this.setExperts(experts);
+	}
+
+	private void transformActivities(List<ActivityBean> activityBeans) {
+		List<ActivityVO> activities = new Vector<ActivityVO>();
+		for (ActivityBean bean : activityBeans) {
+			if (bean == null) {
+				continue;
+			}
+			ActivityVO vo = new ActivityVO();
+			vo.setId(bean.getId());
+			vo.setTitle(bean.getTitle());
+			vo.setImageUrl(bean.getImageUrl());
+			activities.add(vo);
+		}
+		this.setActivities(activities);
 	}
 
 	public String getTitle() {
@@ -209,6 +302,14 @@ public class BannerVO {
 
 	public void setExperts(List<ExpertVO> experts) {
 		this.experts = experts;
+	}
+
+	public List<ActivityVO> getActivities() {
+		return activities;
+	}
+
+	public void setActivities(List<ActivityVO> activities) {
+		this.activities = activities;
 	}
 
 }
