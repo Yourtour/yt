@@ -46,8 +46,4 @@ public class RouteItemVO implements Serializable{
 	public String getImageUrl(){
 		return route.getImageUrl();
 	}
-
-	public String getImpression(){
-		return route.getImpression();
-	}
 }

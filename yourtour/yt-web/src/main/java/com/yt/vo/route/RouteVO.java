@@ -29,7 +29,10 @@ public class RouteVO extends SocialVO {
 	private int  childNum;
 	private int  olderNum;
 
-	private int  budget; //预算
+	private int  charge; //费用
+	private String chargeIncludes;
+	private String chargeExcludes;
+
 	private double commentScore;
 	private int readNum;
 	private int likeNum;
@@ -38,15 +41,8 @@ public class RouteVO extends SocialVO {
 	private int commentNum;
 	private String tags;
 
-	private	String 	impression;
-
-	private String bestTime; //最佳时间
-	private String 	reason; //推荐理由
 	private String 	feature; //行程特点
-	private String 	chargeMemo; //费用说明
-	private String	withdrawMemo; //退改说明
-	private String  useMemo; //使用说明
-	private String  orderMemo; //预订须知
+	private String 	routeMemo;
 
 	//作为请求参数时，格式为id, 作为相应参数时格式为：id,name
 	private String fromPlace; // 行程出发地点
@@ -56,7 +52,7 @@ public class RouteVO extends SocialVO {
 
 	private List<RouteScheduleVO> schedules; // 行程日程列表
 
-	private UserVO expert;
+	private UserVO user;
 
 	public static RouteVO transform(RouteMainBean bean) {
 		if (bean == null) {
@@ -71,8 +67,6 @@ public class RouteVO extends SocialVO {
 		routeVO.setImageUrl(bean.getImageUrl());
 		routeVO.setToPlaces(bean.getToPlaces());
 
-		routeVO.setBudget(bean.getBudget());
-		routeVO.setBestTime(bean.getBestTime());
 		routeVO.setTags(bean.getTags());
 		routeVO.setReadNum(bean.getReadNum());
 		routeVO.setCommentScore(bean.getCommentScore());
@@ -81,12 +75,7 @@ public class RouteVO extends SocialVO {
 		routeVO.setShareNum(bean.getShareNum());
 		routeVO.setLikeNum(bean.getLikeNum());
 
-		routeVO.setReason(bean.getReason());
 		routeVO.setFeature(bean.getFeature());
-		routeVO.setWithdrawMemo(bean.getWithdrawMemo());
-		routeVO.setChargeMemo(bean.getChargeMemo());
-		routeVO.setUseMemo(bean.getUseMemo());
-		routeVO.setOrderMemo(bean.getOrderMemo());
 
 		if (bean.getSchedules() != null && bean.getSchedules().size() > 0) {
 			for (RouteScheduleBean scheduleBean : bean.getSchedules()) {
@@ -127,9 +116,6 @@ public class RouteVO extends SocialVO {
 		bean.setAdultNum(vo.getAdultNum());
 		bean.setChildNum(vo.getChildNum());
 		bean.setOlderNum(vo.getOlderNum());
-
-		bean.setBudget(vo.getBudget());
-		bean.setBestTime(vo.getBestTime());
 
 		if (StringUtils.isNotNull(vo.getFromPlace())) {
 			PlaceBean placeBean = new PlaceBean();
@@ -199,14 +185,6 @@ public class RouteVO extends SocialVO {
 		this.imageUrl = imageUrl;
 	}
 
-	public String getImpression() {
-		return impression;
-	}
-
-	public void setImpression(String impression) {
-		this.impression = impression;
-	}
-
 	public String getFeature() {
 		return feature;
 	}
@@ -215,20 +193,28 @@ public class RouteVO extends SocialVO {
 		this.feature = feature;
 	}
 
-	public String getBestTime() {
-		return bestTime;
+	public int getCharge() {
+		return charge;
 	}
 
-	public void setBestTime(String bestTime) {
-		this.bestTime = bestTime;
+	public void setCharge(int charge) {
+		this.charge = charge;
 	}
 
-	public int getBudget() {
-		return budget;
+	public String getChargeIncludes() {
+		return chargeIncludes;
 	}
 
-	public void setBudget(int budget) {
-		this.budget = budget;
+	public void setChargeIncludes(String chargeIncludes) {
+		this.chargeIncludes = chargeIncludes;
+	}
+
+	public String getChargeExcludes() {
+		return chargeExcludes;
+	}
+
+	public void setChargeExcludes(String chargeExcludes) {
+		this.chargeExcludes = chargeExcludes;
 	}
 
 	public int getReadNum() {
@@ -362,51 +348,19 @@ public class RouteVO extends SocialVO {
 		this.duration = duration;
 	}
 
-	public String getReason() {
-		return reason;
+	public String getRouteMemo() {
+		return routeMemo;
 	}
 
-	public void setReason(String reason) {
-		this.reason = reason;
+	public void setRouteMemo(String routeMemo) {
+		this.routeMemo = routeMemo;
 	}
 
-	public String getChargeMemo() {
-		return chargeMemo;
+	public UserVO getUser() {
+		return user;
 	}
 
-	public void setChargeMemo(String chargeMemo) {
-		this.chargeMemo = chargeMemo;
-	}
-
-	public String getWithdrawMemo() {
-		return withdrawMemo;
-	}
-
-	public void setWithdrawMemo(String withdrawMemo) {
-		this.withdrawMemo = withdrawMemo;
-	}
-
-	public String getUseMemo() {
-		return useMemo;
-	}
-
-	public void setUseMemo(String useMemo) {
-		this.useMemo = useMemo;
-	}
-
-	public String getOrderMemo() {
-		return orderMemo;
-	}
-
-	public void setOrderMemo(String orderMemo) {
-		this.orderMemo = orderMemo;
-	}
-
-	public UserVO getExpert() {
-		return expert;
-	}
-
-	public void setExpert(UserVO expert) {
-		this.expert = expert;
+	public void setUser(UserVO user) {
+		this.user = user;
 	}
 }

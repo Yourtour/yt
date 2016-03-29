@@ -8,6 +8,7 @@
     <#include "activity/ListView.ftl">
     <#include "activity/FormView.ftl">
     <#include "activity/ContentFormView.ftl">
+    <#include "route/SearchListView.ftl">
 
     <script language="javascript">
         $(document).ready(function(){

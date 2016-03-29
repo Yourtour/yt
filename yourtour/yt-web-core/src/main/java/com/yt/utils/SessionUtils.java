@@ -1,8 +1,8 @@
 package com.yt.utils;
 
+import com.yt.business.bean.UserProfileBean;
 import com.yt.core.utils.Neo4jUtils;
 import com.yt.core.utils.StringUtils;
-import com.yt.vo.UserVO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -21,11 +21,11 @@ public class SessionUtils {
 
 		if (StringUtils.isNull(value)) {
 			HttpSession session = request.getSession(true);
-			UserVO user = (UserVO) session.getAttribute(USER_TOKEN);
+			UserProfileBean user = (UserProfileBean) session.getAttribute(USER_TOKEN);
 			if(user == null)
 				value = "0";
 			else
-				value = user.getUserId().toString();
+				value = user.getId().toString();
 		}
 
 		return value;
@@ -45,7 +45,7 @@ public class SessionUtils {
 	 * 缓存用户信息
 	 * @param user
 	 */
-	public static void setCurrentLoginUser(UserVO user) {
+	public static void setCurrentLoginUser(UserProfileBean user) {
 		setAttribute(USER_TOKEN, user);
 	}
 

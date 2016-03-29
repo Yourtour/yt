@@ -23,7 +23,7 @@ public class DateUtils {
 	 * @return
 	 * @throws Exception
 	 */
-	public static long getDateAsLong(String date) throws Exception{
+	public static Long getDateAsLong(String date) throws Exception{
 		return getDateAsLong(date, "yyyyMMdd");
 	}
 

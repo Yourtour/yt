@@ -39,7 +39,8 @@ $.extend( true, $.fn.dataTable.defaults, {
     },
 
     fnServerData: function ( sSource, aoData, fnCallback ) {
-        var rest = this.attr("data-rest"), type="GET", nextCursor, limit, total, params, name;
+        var rest = this.attr("data-rest"),
+            type = this.data("method"), nextCursor, limit, total, params = {}, name;
 
         $.each(aoData, function(index, data){
             name = data.name;
@@ -50,7 +51,6 @@ $.extend( true, $.fn.dataTable.defaults, {
                 limit = data.value;
             }else if(name == 'params'){
                 params = data.value;
-                type = "POST";
             }
         })
 
@@ -58,7 +58,7 @@ $.extend( true, $.fn.dataTable.defaults, {
         $.ajax({
             "dataType": 'json',
             "contentType" : "application/json",
-            "type": type,
+            "type": type ? type : "GET",
             "url": rest,
             "data": JSON.stringify(params),
             "success": function (response){
@@ -131,6 +131,28 @@ $.extend( true, $.fn.dataTable.defaults, {
                     callback(selectedItems.join(","));
                 }
             })
+        },
+
+        select:function(callback, message){
+            var datatable = $(this), selectedItems=[];
+
+            datatable.find(".checkboxes").each(function(index, item){
+                var checkbox = $(item);
+                if(checkbox.is(":checked")) {
+                    selectedItems.push(checkbox.val());
+                }
+            });
+
+            if(selectedItems.length == 0){
+                if(message) {
+                    bootbox.alert(message);
+                }else{
+                    bootbox.alert("请选择记录。");
+                }
+                return;
+            }
+
+            callback(selectedItems.join(","));
         }
     });
 

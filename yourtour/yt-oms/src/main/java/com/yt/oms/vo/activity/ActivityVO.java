@@ -1,4 +1,4 @@
-package com.yt.oms.vo;
+package com.yt.oms.vo.activity;
 
 import com.yt.business.bean.ActivityBean;
 import com.yt.business.bean.ActivityContentBean;

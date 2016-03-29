@@ -1,6 +1,7 @@
 package com.yt.business.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.yt.business.bean.RouteActivityBean;
 import com.yt.business.bean.RouteMainBean;
@@ -85,6 +86,17 @@ public interface IRouteService {
 	 */
 	public List<RouteMainBean> getRoutes(Long placeId, Long nextCursor,
 			int limit) throws Exception;
+
+	/**
+	 * 查询行程
+	 * @param nextCursor
+	 * @param limit
+	 * @param total
+	 * @param params
+	 * @return
+	 * @throws Exception
+	 */
+	public List<RouteMainBean> getRoutes(Long nextCursor, int limit, int total, Map<String, Object> params) throws Exception;
 
 	/**
 	 * 行程智能匹配，实现根据用户输入的行程条件，系统进行匹配并推荐

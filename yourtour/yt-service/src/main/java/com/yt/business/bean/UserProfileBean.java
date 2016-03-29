@@ -115,30 +115,12 @@ public class UserProfileBean extends BaseBeanImpl {
 	private int thumbupNum = 0;
 	private int albumNum = 0;
 
-	@Neo4jRelationship(relationship=Constants.RELATION_TYPE_AT, type = PlaceBean.class, direction = Direction.OUTGOING)
-	private transient PlaceBean place;
-
-	@Neo4jRelationship(relationship=Constants.RELATION_TYPE_FOLLOW, type = UserProfileBean.class, direction = Direction.OUTGOING, isList = true)
-	private transient List<UserProfileBean> followers;
-	
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_WATCH, type = UserProfileBean.class, direction = Direction.OUTGOING, isList = true)
-	private transient List<UserProfileBean> watchers;
-	
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_WATCH, type = LineBean.class, direction = Direction.OUTGOING, isList = true)
-	private transient List<LineBean> watchedLines;
-
-	private transient List<CommentBean> comments = null;
-	private transient List<RouteMainBean> routes = null;
-
 	public UserProfileBean(Long id){
 		super(id);
 	}
 
 	public UserProfileBean() {
 		super();
-		this.followers = new Vector<UserProfileBean>();
-		this.watchers = new Vector<UserProfileBean>();
-		this.watchedLines = new Vector<LineBean>();
 	}
 
 	public String getRealName() {
@@ -291,30 +273,6 @@ public class UserProfileBean extends BaseBeanImpl {
 
 	public void setIdAuthenticate(int idAuthenticate) {
 		this.idAuthenticate = idAuthenticate;
-	}
-
-	public PlaceBean getPlace() {
-		return place;
-	}
-
-	public void setPlace(PlaceBean place) {
-		this.place = place;
-	}
-
-	public List<CommentBean> getComments() {
-		return comments;
-	}
-
-	public void setComments(List<CommentBean> comments) {
-		this.comments = comments;
-	}
-
-	public List<RouteMainBean> getRoutes() {
-		return routes;
-	}
-
-	public void setRoutes(List<RouteMainBean> routes) {
-		this.routes = routes;
 	}
 
 	public int getFollowingNum() {

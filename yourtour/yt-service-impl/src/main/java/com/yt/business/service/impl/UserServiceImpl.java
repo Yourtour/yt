@@ -1,10 +1,10 @@
 package com.yt.business.service.impl;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
+import com.yt.business.PagingDataBean;
+import com.yt.business.bean.ResourceBean;
+import com.yt.core.utils.CollectionUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.neo4j.graphdb.Node;
@@ -71,6 +71,19 @@ public class UserServiceImpl extends ServiceBase implements IUserService {
 	}
 
 	@Override
+	public PagingDataBean<List<UserAccountBean>> getUserProfileInfoes(Long nextCursor, int limit, int total, Map<String, Object> params) throws Exception {
+		List<UserTuple> tuples = repository.getAdminUserProfileInfoes();
+
+		List<UserAccountBean> accounts = new ArrayList<>();
+		if(CollectionUtils.isNotEmpty(tuples)){
+			for(UserTuple tuple : tuples){
+				accounts.add(tuple.getAccount());
+			}
+		}
+		return new PagingDataBean<List<UserAccountBean>>(accounts.size(), accounts);
+	}
+
+	@Override
 	public UserProfileBean login(String userName, String password)
 			throws Exception {
 		UserTuple tuple = repository.getUserByUserName(userName);
@@ -119,7 +132,7 @@ public class UserServiceImpl extends ServiceBase implements IUserService {
 
 	@CacheEvict(value = "default", key = "#userName")
 	@Override
-	public UserProfileBean regist(String userName, String password)
+	public UserProfileBean register(String userName, String password)
 			throws Exception {
 		UserAccountBean account = accountCrudOperate.get("userName", userName);
 		if (account != null) {
@@ -138,6 +151,25 @@ public class UserServiceImpl extends ServiceBase implements IUserService {
 		account.setPwd(MessageDigestUtils.digest(
 				propertiesReader.getProperty("digest.algorithm", "SHA-1"),
 				password));
+		account.setProfile(profile);
+
+		this.accountCrudOperate.save(account);
+
+		return account.getProfile();
+	}
+
+	@Override
+	public UserProfileBean register(UserAccountBean account, UserProfileBean profile) throws Exception {
+		if (accountCrudOperate.get("userName", account.getUserName()) != null) {
+			throw new AppException(StaticErrorEnum.USER_EXIST);
+		}
+
+		// 先创建UserProfile
+		profileCrudOperate.save(profile);
+
+		super.updateBaseInfo(account, profile.getId());
+		account.setPwd(MessageDigestUtils.digest(propertiesReader.getProperty("digest.algorithm", "SHA-1"),
+				account.getPwd()));
 		account.setProfile(profile);
 
 		this.accountCrudOperate.save(account);

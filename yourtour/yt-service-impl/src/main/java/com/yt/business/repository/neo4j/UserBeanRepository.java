@@ -32,6 +32,13 @@ public interface UserBeanRepository extends GraphRepository<UserAccountBean> {
 	public List<UserProfileBean> getUsersWatchSameRoutes(UserProfileBean user);
 
 	/**
+	 * 获取管理账号
+	 * @return
+	 */
+	@Query("match (account:UserAccountBean)-[:BELONG]->(profile:UserProfileBean) where account.type='Admin' RETURN profile, account;")
+	public List<UserTuple> getAdminUserProfileInfoes();
+
+	/**
 	 * 根据昵称获取用户信息
 	 * @param nickName
 	 * @return
@@ -46,6 +53,7 @@ public interface UserBeanRepository extends GraphRepository<UserAccountBean> {
 	 */
 	@Query("MATCH (profile:UserProfileBean)<-[:BELONG]-(account:UserAccountBean) WHERE account.userName={0} RETURN profile, account")
 	public UserTuple getUserByUserName(String userName);
+
 
 	@Query("match (account:UserAccountBean)-[:BELONG]->(profile:UserProfileBean) where account.userName={0} or profile.nickName={0} or profile.mobileNo={0} RETURN profile;")
 	public List<UserProfileBean> getUsers(String searchWords);

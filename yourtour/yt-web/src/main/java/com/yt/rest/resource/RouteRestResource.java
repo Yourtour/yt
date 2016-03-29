@@ -79,7 +79,6 @@ public class RouteRestResource extends RestResource {
 		RouteMainBean bean = RouteVO.transform(vo);
 
 		UserProfileBean profileBean = new UserProfileBean(SessionUtils.getCurrentLoginUser());
-		bean.setOwner(profileBean);
 
 		routeService.saveRouteMainAndSchedules(bean,SessionUtils.getCurrentLoginUser());
 
@@ -101,7 +100,6 @@ public class RouteRestResource extends RestResource {
 
 			RouteMainBean bean = RouteVO.transform(vo);
 			UserProfileBean profileBean = new UserProfileBean(uid);
-			bean.setOwner(profileBean);
 
 			RouteMainBean route = routeService.cloneRoute(routeId, bean, uid);
 

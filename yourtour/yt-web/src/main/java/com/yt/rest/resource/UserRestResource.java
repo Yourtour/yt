@@ -117,7 +117,7 @@ public class UserRestResource extends RestResource {
 			// 验证码不匹配
 			return new ResponseDataVO<UserVO>(StaticErrorEnum.AUTHENTICATE_FAIL);
 		}
-		UserProfileBean profile = userService.regist(registervo.getMobile(),
+		UserProfileBean profile = userService.register(registervo.getMobile(),
 				registervo.getPassword());
 		return new ResponseDataVO<UserVO>(UserVO.transform(profile));
 	}
