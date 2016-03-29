@@ -50,8 +50,15 @@ public class UserAccountBean extends BaseBeanImpl {
 	@HbaseColumn(name = "pwd")
 	private String pwd; // 登录密码
 
+	private Type  type = Type.User;
+
 	public enum Status {
 		VALIDATED, INVALIDE, FROOZE
+	}
+
+	public static enum Type{
+		Admin,  //管理账号
+		User    //用户账号
 	}
 
 	@HbaseColumn(name = "stat")
@@ -101,5 +108,13 @@ public class UserAccountBean extends BaseBeanImpl {
 	 */
 	public void setStatus(Status status) {
 		this.status = status;
+	}
+
+	public Type getType() {
+		return type;
+	}
+
+	public void setType(Type type) {
+		this.type = type;
 	}
 }

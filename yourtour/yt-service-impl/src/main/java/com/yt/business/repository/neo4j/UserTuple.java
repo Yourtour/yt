@@ -18,6 +18,7 @@ public class UserTuple {
 	}
 
 	public UserAccountBean getAccount() {
+		account.setProfile(this.profile);
 		return account;
 	}
 

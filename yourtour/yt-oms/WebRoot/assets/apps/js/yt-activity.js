@@ -10,7 +10,7 @@ jQuery.Activity = {
         var me = this,
             listview = $("#Page_ActivityListView"),
             formview = $("#Page_ActivityFormView"),
-            contentformview = $("#Page_ActivityContentFormView")
+            contentformview = $("#Page_ActivityContentFormView");
 
         $("#btn_add", listview).on("click", function(){
             me.createActivityInfo();
@@ -41,6 +41,12 @@ jQuery.Activity = {
             me.createContentInfo();
         });
 
+        $('#btn_route_add', formview).on("click", function(){
+            $.Route.showSearchView(function(rooutes){
+                alert('afadsfadf');
+            });
+        });
+
         $('#btn_save', contentformview).on("click", function(){
             me.saveActivityContentInfo();
         });
@@ -67,10 +73,10 @@ jQuery.Activity = {
                     return row.startTime + '<span style="padding-left:10px;padding-right:10px;">~</span>' + row.endTime;
                 }},
                 {"mData": "createdTime", "sWidth": "10%"},
-                {"mData": "homeRecommend", "sWidth": "10%","mRender": function (data, type, row) {
+                {"mData": "homeRecommend",  "sClass":"center", "sWidth": "10%","mRender": function (data, type, row) {
                     return data == 1 ? "是" : "";
                 }},
-                {"mData": "placeRecommend", "sWidth": "10%","mRender": function (data, type, row) {
+                {"mData": "placeRecommend", "sClass":"center", "sWidth": "10%","mRender": function (data, type, row) {
                     return data == 1 ? "是" : "";
                 }}
             ]
@@ -85,6 +91,7 @@ jQuery.Activity = {
             $("#ActivityForm", formview).clear();
 
             $("#tab_content",formview).hide();
+            $("#tab_route",formview).hide();
         });
     },
 
@@ -104,6 +111,7 @@ jQuery.Activity = {
             bootbox.alert("保存成功。", function(){
                 $("#id", form).val(result.id);
                 $("#tab_content", formview).show();
+                $("#tab_route",formview).show();
             });
         })
     },
@@ -132,6 +140,7 @@ jQuery.Activity = {
             $.Request.get("/rest/oms/activity/" + id, null, function(result){
                 $.Page.show("Page_ActivityFormView", function(){
                     $("#tab_content", formview).show();
+                    $("#tab_route",formview).show();
 
                     $("#ActivityForm").deserialize(result);
 

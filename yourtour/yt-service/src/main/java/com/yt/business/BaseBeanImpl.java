@@ -19,7 +19,7 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 	private String rowKey = UUID.randomUUID().toString();
 
 	@GraphId
-	private Long id = null;
+	private Long id = -1l;
 
 	@HbaseColumn(name = "cuid")
 	private Long createdUserId = 0l;

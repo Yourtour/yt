@@ -87,8 +87,7 @@ public interface RouteMainBeanRepository extends GraphRepository<RouteMainBean> 
 	 * @return
 	 */
 	@Query("START user=node({0}) MATCH user-[r:MEMBER]->(route:RouteMainBean) where r.role=~{4} RETURN r.imageUrl, r.impression, r.permission, r.role, route")
-	public List<OwnerRouteTuple> getRoutes(Long userId, Long startIndex,
-			int limit, String roles);
+	public List<OwnerRouteTuple> getRoutes(Long userId, Long startIndex, int limit, String roles);
 
 	/**
 	 * 获取所有行程中点评分的前n名
@@ -118,8 +117,7 @@ public interface RouteMainBeanRepository extends GraphRepository<RouteMainBean> 
 	 * @return
 	 */
 	@Query("START user=node({0}) MATCH user-[r:RECOMMEND]->(route:RouteMainBean) RETURN route, user")
-	public List<RouteTuple> getRecommendRoutes(Long placeId, Long nextCursor,
-			int limit);
+	public List<RouteTuple> getRecommendRoutes(Long placeId, Long nextCursor, int limit);
 
 	/**
 	 * 获取目的地行程
@@ -130,8 +128,7 @@ public interface RouteMainBeanRepository extends GraphRepository<RouteMainBean> 
 	 * @return
 	 */
 	@Query("START user=node({0}) MATCH user-[r:RECOMMEND]->(route:RouteMainBean) RETURN route, user")
-	public List<RouteTuple> getRecommendRoutes(Long[] placeId, int duration,
-			Long nextCursor, int limit);
+	public List<RouteTuple> getRecommendRoutes(Long[] placeId, int duration, Long nextCursor, int limit);
 
 	/**
 	 * 根据指定的行程和成员角色，返回该行程中的用户。

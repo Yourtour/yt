@@ -1,8 +1,7 @@
-package com.yt.oms.vo;
+package com.yt.oms.vo.activity;
 
 import com.yt.business.bean.ActivityBean;
 import com.yt.business.bean.ActivityContentBean;
-import com.yt.core.utils.DateUtils;
 
 /**
  * Created by 林平 on 2016/3/26.

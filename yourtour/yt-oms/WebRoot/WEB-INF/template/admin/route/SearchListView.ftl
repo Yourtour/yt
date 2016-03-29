@@ -1,4 +1,4 @@
-<div id="Page_ActivityListView" class="row" data-role="page">
+<div id="Page_Route_SearchListView" class="row" data-role="page">
     <div class="col-lg-12">
         <div class="page-bar">
             <ul class="page-breadcrumb">
@@ -8,7 +8,7 @@
                     <i class="fa fa-angle-right"></i>
                 </li>
                 <li>
-                    <span>活动管理</span>
+                    <span>行程搜索管理</span>
                 </li>
             </ul>
         </div>
@@ -19,7 +19,7 @@
                 <!-- BEGIN SAMPLE FORM PORTLET-->
                 <div class="portlet light ">
                     <div class="portlet-body">
-                        <div id="DictListView_Criteria">
+                        <div id="DictListView_Criteria">搜索
                             <div class="row bottom-space">
                                 <div class="col-md-6 col-sm-12">
                                     <div class="table-group-actions pull-left">
@@ -29,32 +29,22 @@
 
                                 <div class="col-md-6 col-sm-12">
                                     <div class="pull-right">
-                                        <button id="btn_add" class="btn red">
-                                            <i class="fa fa-plus"></i> 新增</button>
+                                        <button id="btn_ok" class="btn red">
+                                            <i class="fa fa-check"></i> 确定</button>
 
-                                        <button id="btn_edit" class="btn default">
-                                            <i class="fa fa-edit"></i> 修改</button>
-
-                                        <button id="btn_delete" class="btn default">
-                                            <i class="fa fa-times"></i> 删除</button>
-                                    </div>
+                                        <button id="btn_back" class="btn default">
+                                            <i class="fa fa-close"></i> 返回</button>
                                 </div>
                             </div>
                         </div>
 
-                        <table id="datatable_activity" class="row-border" cellspacing="0" width="100%"
-                               data-rest="${context}/rest/oms/activity/query" data-method="POST">
+                        <table id="datatable_routes" class="row-border" cellspacing="0" width="100%"  data-rest="${context}/rest/oms/account/query">
                             <thead>
                                 <tr>
                                     <th>
                                         <input type="checkbox" class="group-checkable">
                                     </th>
-                                    <th>活动名称</th>
-                                    <th>活动主题</th>
-                                    <th>活动时间</th>
-                                    <th>发布时间</th>
-                                    <th>首页推荐</th>
-                                    <th>目的地推荐</th>
+                                    <th>简介</th>
                                 </tr>
                             </thead>
 

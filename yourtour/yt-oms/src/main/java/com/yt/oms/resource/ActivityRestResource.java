@@ -8,8 +8,8 @@ import com.yt.business.service.IActivityService;
 import com.yt.core.utils.BeanUtils;
 import com.yt.core.utils.CollectionUtils;
 import com.yt.core.utils.StringUtils;
-import com.yt.oms.vo.ActivityContentVO;
-import com.yt.oms.vo.ActivityVO;
+import com.yt.oms.vo.activity.ActivityContentVO;
+import com.yt.oms.vo.activity.ActivityVO;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.rest.resource.RestResource;
@@ -82,7 +82,7 @@ public class ActivityRestResource extends RestResource {
         ActivityBean activityBean = ActivityVO.transform(activityVO);
 
         String imageUrls = super.uploadMediaFile(multipart, "imageUrl", ACTIVITY_IMAGE_PATH);
-        if(StringUtils.isNotNull(imageUrls)){e
+        if(StringUtils.isNotNull(imageUrls)){
             activityBean.setImageUrl(imageUrls);
         }
 

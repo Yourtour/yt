@@ -143,7 +143,7 @@
 					</li>
 
 					<li class="nav-item  ">
-						<a href="PlaceFormView" class="nav-link nav-toggle">
+						<a href="Route" class="nav-link nav-toggle">
 							<i class="icon-diamond"></i>
 							<span class="title">行程管理</span>
 							<span class="arrow"></span>
@@ -248,6 +248,7 @@
 	<script src="${context}/assets/apps/js/yt-information.js" type="text/javascript"></script>
 	<script src="${context}/assets/apps/js/yt-account.js" type="text/javascript"></script>
 	<script src="${context}/assets/apps/js/yt-place.js" type="text/javascript"></script>
+	<script src="${context}/assets/apps/js/yt-route.js" type="text/javascript"></script>
 	<script src="${context}/assets/apps/js/yt-sceneResource.js" type="text/javascript"></script>
 
 	<!-- END THEME GLOBAL SCRIPTS -->

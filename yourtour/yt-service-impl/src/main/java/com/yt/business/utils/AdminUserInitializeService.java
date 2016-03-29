@@ -72,7 +72,7 @@ public class AdminUserInitializeService implements InitializingBean {
 		if (LOG.isWarnEnabled()) {
 			LOG.warn("The admin user is not exist, will initialize it.");
 		}
-		service.regist("admin", "admin");
+		service.register("admin", "admin");
 		if (LOG.isDebugEnabled()) {
 			LOG.debug("Initialize admin employee successfully, default code = admin, password = admin, pls change the password..");
 		}

@@ -172,8 +172,7 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 		RouteMainBean route = null;
 		List<RouteMainBean> list = new ArrayList<RouteMainBean>();
 
-		List<OwnerRouteTuple> routes = repository.getRoutes(userId, 0l, 20,
-				"MEMBER|LEADER");
+		List<OwnerRouteTuple> routes = repository.getRoutes(userId, 0l, 20,	"MEMBER|LEADER");
 		for (OwnerRouteTuple bean : routes) {
 			route = bean.getRoute();
 			if (route == null) {
@@ -185,8 +184,6 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 			member.setRole(bean.getRole());
 			member.setImpression(bean.impression);
 			member.setPermission(bean.permission);
-
-			route.setMember(member);
 
 			list.add(route);
 		}
@@ -377,5 +374,10 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 
 		this.updateBaseInfo(provision, operatorId);
 		provisionCrudOperate.delete(provision);
+	}
+
+	@Override
+	public List<RouteMainBean> getRoutes(Long nextCursor, int limit, int total, Map<String, Object> params) throws Exception {
+		return this.routeCrudOperate.get();
 	}
 }

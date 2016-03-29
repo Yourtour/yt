@@ -26,6 +26,10 @@
                             <li id="tab_content">
                                 <a href="#portlet_content" data-toggle="tab">活动内容</a>
                             </li>
+
+                            <li id="tab_route">
+                                <a href="#portlet_route" data-toggle="tab">推荐行程</a>
+                            </li>
                         </ul>
                     </div>
 
@@ -91,14 +95,38 @@
                                 </form>
                             </div>
 
-                            <div class="tab-pane active" id="portlet_content">
-                                <div id="activity_content">
+                            <div class="tab-pane" id="portlet_content">
+                                <div class="row" >
+                                    <div class="col-md-12" id="activity_content">
 
+                                    </div>
                                 </div>
 
-                                <div style="margin-top:20px;">
-                                    <button id="btn_content_add" class="btn red">
+                                <div class="row" style="margin-top:10px">
+                                    <div class="col-md-12">
+                                    <button id="btn_content_add" class="btn red pull-right">
                                         <i class="fa fa-plus"></i>添加</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane" id="portlet_route">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button id="btn_route_add" class="btn red pull-right">
+                                        <i class="fa fa-plus"></i>添加</button>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table id="datatable_activity_route" class="row-border" cellspacing="0" width="100%"
+                                               data-rest="${context}/rest/oms/activity/query">
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
