@@ -20,34 +20,34 @@
                 <div class="portlet light ">
                     <div class="portlet-body">
                         <form id="BannerForm" class="form-horizontal" role="form">
+                            <input type="hidden" class="form-control" id="id" name="id">
+
                             <div class="form-group">
-                                <label for="intro" class="col-md-2 control-label">游玩简介</label>
-                                <div class="col-md-4">
-                                    <textarea class="form-control" name="intro" id="intro" rows="3" cols="160" placeholder="游玩简介"></textarea>
+                                <label for="title" class="col-md-2 control-label">标题</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" name="title" id="title" placeholder="标题">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="ticket" class="col-md-2 control-label">门票信息</label>
-                                <div class="col-md-4">
-                                    <textarea class="form-control" name="ticket" id="ticket" rows="3" cols="160" placeholder="门票信息"></textarea>
+                                <label for="subTitle" class="col-md-2 control-label">子标题</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" name="subTitle" id="subTitle" placeholder="子标题">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="sceneMap" class="col-md-2 control-label">景区地图</label>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" name="sceneMap" id="sceneMap" placeholder="景区地图">
+                                <label for="content" class="col-md-2 control-label">内容</label>
+                                <div class="col-md-8">
+                                    <textarea class="form-control" name="content" id="content" rows="3" cols="160" placeholder="内容"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="specialScene" class="col-md-2 control-label">必玩景点</label>
+                                <label for="startTime" class="col-md-2 control-label">开始时间</label>
                                 <div class="col-md-4">
-                                    <textarea class="form-control" name="specialScene" id="specialScene" rows="3" cols="160" placeholder="必玩景点"></textarea>
+                                    <input type="date" class="form-control" name="startTime" id="startTime" placeholder="开始时间">
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="sceneTraffic" class="col-md-2 control-label">景区交通</label>
+                                <label for="endTime" class="col-md-2 control-label">结束时间</label>
                                 <div class="col-md-4">
-                                    <input type="text" class="form-control" name="sceneTraffic" id="sceneTraffic" placeholder="景区交通">
+                                    <input type="date" class="form-control" name="endTime" id="startTime" placeholder="结束时间">
                                 </div>
                             </div>
 

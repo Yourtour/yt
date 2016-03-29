@@ -125,6 +125,15 @@
 					</li>
 
 					<li class="nav-item ">
+						<a href="Banner" class="nav-link nav-toggle">
+							<i class="icon-home"></i>
+							<span class="title">广告位管理</span>
+							<span class="selected"></span>
+							<span class="arrow open"></span>
+						</a>
+					</li>
+
+					<li class="nav-item ">
 						<a href="Activity" class="nav-link nav-toggle">
 							<i class="icon-home"></i>
 							<span class="title">活动管理</span>
