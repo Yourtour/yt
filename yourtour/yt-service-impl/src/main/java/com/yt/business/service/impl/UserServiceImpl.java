@@ -1,10 +1,12 @@
 package com.yt.business.service.impl;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
-import com.yt.business.PagingDataBean;
-import com.yt.business.bean.ResourceBean;
-import com.yt.core.utils.CollectionUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.neo4j.graphdb.Node;
@@ -15,6 +17,8 @@ import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.stereotype.Service;
 
 import com.yt.PropertiesReader;
+import com.yt.business.PagingDataBean;
+import com.yt.business.bean.ExpertApplicationBean;
 import com.yt.business.bean.UserAccountBean;
 import com.yt.business.bean.UserProfileBean;
 import com.yt.business.common.Constants;
@@ -23,6 +27,7 @@ import com.yt.business.repository.neo4j.UserTuple;
 import com.yt.business.service.IUserService;
 import com.yt.core.common.AppException;
 import com.yt.core.common.StaticErrorEnum;
+import com.yt.core.utils.CollectionUtils;
 import com.yt.core.utils.MessageDigestUtils;
 import com.yt.neo4j.repository.CrudOperate;
 
@@ -41,6 +46,9 @@ public class UserServiceImpl extends ServiceBase implements IUserService {
 
 	@Autowired
 	private CrudOperate<UserAccountBean> accountCrudOperate;
+
+	@Autowired
+	private CrudOperate<ExpertApplicationBean> applicationCrudOperate;
 
 	@Autowired
 	private PropertiesReader propertiesReader;
@@ -71,16 +79,19 @@ public class UserServiceImpl extends ServiceBase implements IUserService {
 	}
 
 	@Override
-	public PagingDataBean<List<UserAccountBean>> getUserProfileInfoes(Long nextCursor, int limit, int total, Map<String, Object> params) throws Exception {
+	public PagingDataBean<List<UserAccountBean>> getUserProfileInfoes(
+			Long nextCursor, int limit, int total, Map<String, Object> params)
+			throws Exception {
 		List<UserTuple> tuples = repository.getAdminUserProfileInfoes();
 
 		List<UserAccountBean> accounts = new ArrayList<>();
-		if(CollectionUtils.isNotEmpty(tuples)){
-			for(UserTuple tuple : tuples){
+		if (CollectionUtils.isNotEmpty(tuples)) {
+			for (UserTuple tuple : tuples) {
 				accounts.add(tuple.getAccount());
 			}
 		}
-		return new PagingDataBean<List<UserAccountBean>>(accounts.size(), accounts);
+		return new PagingDataBean<List<UserAccountBean>>(accounts.size(),
+				accounts);
 	}
 
 	@Override
@@ -155,22 +166,36 @@ public class UserServiceImpl extends ServiceBase implements IUserService {
 	}
 
 	@Override
-	public UserProfileBean register(UserAccountBean account, UserProfileBean profile, Long userId) throws Exception {
+	public UserProfileBean register(UserAccountBean account,
+			UserProfileBean profile, Long userId) throws Exception {
 		if (accountCrudOperate.get("userName", account.getUserName()) != null) {
 			throw new AppException(StaticErrorEnum.USER_EXIST);
 		}
 
-		//创建UserProfile
+		// 创建UserProfile
 		super.updateBaseInfo(profile, userId);
 		profileCrudOperate.save(profile);
 
-		//创建账号
+		// 创建账号
 		super.updateBaseInfo(account, userId);
 		account.setPwd(encryptPassword(account.getPwd()));
 		account.setProfile(profile);
 		this.accountCrudOperate.save(account);
 
 		return account.getProfile();
+	}
+
+	@Override
+	public UserProfileBean registerExpert(UserAccountBean accountBean,
+			UserProfileBean profileBean, ExpertApplicationBean applicationBean)
+			throws Exception {
+		UserProfileBean profile = this.register(accountBean, profileBean, -1l);
+
+		// 保存申请信息
+		super.updateBaseInfo(applicationBean, -1l);
+		applicationBean.setExpert(profile);
+		this.applicationCrudOperate.save(applicationBean);
+		return profile;
 	}
 
 	@Override
@@ -222,7 +247,9 @@ public class UserServiceImpl extends ServiceBase implements IUserService {
 				Constants.RELATION_TYPE_WATCH);
 	}
 
-	private String encryptPassword(String password) throws Exception{
-		return MessageDigestUtils.digest(propertiesReader.getProperty("digest.algorithm", "SHA-1"), password.trim());
+	private String encryptPassword(String password) throws Exception {
+		return MessageDigestUtils.digest(
+				propertiesReader.getProperty("digest.algorithm", "SHA-1"),
+				password.trim());
 	}
 }

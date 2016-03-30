@@ -180,11 +180,35 @@
 					</li>
 
 					<li class="nav-item  ">
-						<a href="PlaceFormView" class="nav-link nav-toggle">
+						<a href="Expert" class="nav-link nav-toggle">
 							<i class="icon-diamond"></i>
 							<span class="title">达人管理</span>
 							<span class="arrow"></span>
 						</a>
+					</li>
+
+					<li class="nav-item  ">
+						<a href="javascript:;" class="nav-link nav-toggle">
+							<i class="icon-diamond"></i>
+							<span class="title">审核管理</span>
+							<span class="arrow"></span>
+						</a>
+						<ul class="sub-menu">
+							<li class="nav-item start active open">
+								<a href="ExpertApplicationApprove" class="nav-link ">
+									<i class="icon-bar-chart"></i>
+									<span class="title">达人资格审核</span>
+									<span class="selected"></span>
+								</a>
+							</li>
+							<li class="nav-item start ">
+								<a href="ExpertContentApprove" class="nav-link ">
+									<i class="icon-bulb"></i>
+									<span class="title">达人内容审核</span>
+									<span class="badge badge-success">1</span>
+								</a>
+							</li>
+						</ul>
 					</li>
 
 					<li class="nav-item  ">
@@ -282,6 +306,9 @@
 	<script src="${context}/assets/apps/js/yt-hotelResource.js" type="text/javascript"></script>
 	<script src="${context}/assets/apps/js/yt-restaurantResource.js" type="text/javascript"></script>
 	<script src="${context}/assets/apps/js/yt-banner.js" type="text/javascript"></script>
+	<script src="${context}/assets/apps/js/yt-expert.js" type="text/javascript"></script>
+	<script src="${context}/assets/apps/js/yt-expertApplicationApprove.js" type="text/javascript"></script>
+	<script src="${context}/assets/apps/js/yt-expertContentApprove.js" type="text/javascript"></script>
 	<script src="${context}/assets/apps/js/yt-app.js" type="text/javascript"></script>
 
 	<!-- END THEME GLOBAL SCRIPTS -->

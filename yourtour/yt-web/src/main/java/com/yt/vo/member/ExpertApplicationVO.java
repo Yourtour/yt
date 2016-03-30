@@ -6,9 +6,10 @@ import java.util.Date;
 import com.yt.business.bean.ExpertApplicationBean;
 import com.yt.business.bean.ExpertApplicationBean.IdentityCardType;
 import com.yt.business.bean.ExpertApplicationBean.Status;
-import com.yt.vo.BaseVO;
+import com.yt.business.bean.UserAccountBean;
+import com.yt.business.bean.UserProfileBean;
 
-public class ExpertApplicationVO extends BaseVO {
+public class ExpertApplicationVO extends RegisterVO {
 	private static final SimpleDateFormat sdf = new SimpleDateFormat(
 			"yyyy-MM-dd");
 	private IdentityCardType identityType = IdentityCardType.IDENTITY_CARD;
@@ -40,6 +41,12 @@ public class ExpertApplicationVO extends BaseVO {
 		vo.setApproveState(bean.getApproveState());
 		vo.setUserProfile(UserVO.transform(bean.getExpert()));
 		return vo;
+	}
+
+	public static void transform(ExpertApplicationVO vo,
+			UserAccountBean accountBean, UserProfileBean profileBean,
+			ExpertApplicationBean applicationBean) {
+		// TODO
 	}
 
 	public ExpertApplicationVO() {
