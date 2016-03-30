@@ -1,11 +1,12 @@
 package com.yt.business.service;
 
-import com.yt.business.PagingDataBean;
-import com.yt.business.bean.UserAccountBean;
-import com.yt.business.bean.UserProfileBean;
-
 import java.util.List;
 import java.util.Map;
+
+import com.yt.business.PagingDataBean;
+import com.yt.business.bean.ExpertApplicationBean;
+import com.yt.business.bean.UserAccountBean;
+import com.yt.business.bean.UserProfileBean;
 
 /**
  * 和用户相关的服务接口 Created by 林平 on 2016/3/7.
@@ -21,7 +22,8 @@ public interface IUserService {
 	 * @return
 	 * @throws Exception
 	 */
-	public UserProfileBean getUserProfileInfo(Long userId,boolean loadRelationships) throws Exception;
+	public UserProfileBean getUserProfileInfo(Long userId,
+			boolean loadRelationships) throws Exception;
 
 	/**
 	 * 根据用户ID获取个人信息，并加载关系
@@ -43,6 +45,7 @@ public interface IUserService {
 
 	/**
 	 * 用户信息分页查询
+	 * 
 	 * @param nextCursor
 	 * @param limit
 	 * @param total
@@ -50,7 +53,9 @@ public interface IUserService {
 	 * @return
 	 * @throws Exception
 	 */
-	public PagingDataBean<List<UserAccountBean>> getUserProfileInfoes(Long nextCursor, int limit, int total, Map<String, Object> params) throws Exception;
+	public PagingDataBean<List<UserAccountBean>> getUserProfileInfoes(
+			Long nextCursor, int limit, int total, Map<String, Object> params)
+			throws Exception;
 
 	/**
 	 * 根据用户名获取用户账户对象
@@ -69,7 +74,8 @@ public interface IUserService {
 	 * @return
 	 * @throws Exception
 	 */
-	public UserProfileBean login(String userName, String password)	throws Exception;
+	public UserProfileBean login(String userName, String password)
+			throws Exception;
 
 	/**
 	 * 获取短信动态验证码，首先从缓存中获取动态验证码，如果不存在，则发送新的动态验证码并缓存
@@ -105,12 +111,26 @@ public interface IUserService {
 
 	/**
 	 * 注册账号以及个人信息
+	 * 
 	 * @param account
 	 * @param profile
 	 * @return
 	 * @throws Exception
 	 */
-	public UserProfileBean register(UserAccountBean account, UserProfileBean profile, Long userId)
+	public UserProfileBean register(UserAccountBean account,
+			UserProfileBean profile, Long userId) throws Exception;
+
+	/**
+	 * 注册一个达人帐号以及相应的个人信息和审核申请信息
+	 * 
+	 * @param accountBean
+	 * @param profileBean
+	 * @param applicationBean
+	 * @return
+	 * @throws Exception
+	 */
+	public UserProfileBean registerExpert(UserAccountBean accountBean,
+			UserProfileBean profileBean, ExpertApplicationBean applicationBean)
 			throws Exception;
 
 	/**
@@ -120,7 +140,8 @@ public interface IUserService {
 	 * @return
 	 * @throws Exception
 	 */
-	public UserProfileBean saveUseProfile(UserProfileBean profile)throws Exception;
+	public UserProfileBean saveUseProfile(UserProfileBean profile)
+			throws Exception;
 
 	/**
 	 * 用户收藏了某种内容
@@ -133,7 +154,8 @@ public interface IUserService {
 	 *            收藏内容ID
 	 * @throws Exception
 	 */
-	public void collectSomething(long userId, String type, long id)	throws Exception;
+	public void collectSomething(long userId, String type, long id)
+			throws Exception;
 
 	/**
 	 * 用户取消收藏了某种内容
@@ -146,7 +168,8 @@ public interface IUserService {
 	 *            取消收藏内容ID
 	 * @throws Exception
 	 */
-	public void uncollectSomething(long userId, String type, long id)throws Exception;
+	public void uncollectSomething(long userId, String type, long id)
+			throws Exception;
 
 	/**
 	 * 用户关注了某人
