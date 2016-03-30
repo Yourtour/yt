@@ -8,14 +8,14 @@ import java.util.List;
 /**
  * Created by 林平 on 2016/3/19.
  */
-public class PlaceBeanPack implements Serializable {
+public class PlacePackBean implements Serializable {
     private PlaceBean place;
     private List<BannerBean> banners;
     private List<RouteMainBean> routes;
     private List<ExpertBean> experts;
     private List<InfoBean> infoes;
 
-    public PlaceBeanPack(){
+    public PlacePackBean(){
 
     }
 

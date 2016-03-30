@@ -11,7 +11,7 @@ import com.yt.business.bean.InfoBean;
 import com.yt.business.bean.PlaceBean;
 import com.yt.business.bean.ResourceBean;
 import com.yt.business.bean.RouteMainBean;
-import com.yt.business.bean.pack.PlaceBeanPack;
+import com.yt.business.bean.pack.PlacePackBean;
 import com.yt.business.repository.neo4j.ExpertTuple;
 import com.yt.business.repository.neo4j.PlaceBeanRepository;
 import com.yt.business.repository.neo4j.RouteTuple;
@@ -145,9 +145,9 @@ public class PlaceServiceImpl extends ServiceBase implements IPlaceService {
 	}
 
 	@Override
-	public PlaceBeanPack getPlacePack(Long id, Long lastModifiedTime)
+	public PlacePackBean getPlacePack(Long id, Long lastModifiedTime)
 			throws Exception {
-		PlaceBeanPack pack = new PlaceBeanPack();
+		PlacePackBean pack = new PlacePackBean();
 
 		PlaceBean place = this.getPlace(id);
 		if (place == null)

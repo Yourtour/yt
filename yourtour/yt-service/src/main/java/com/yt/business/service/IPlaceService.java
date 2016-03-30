@@ -1,7 +1,7 @@
 package com.yt.business.service;
 
 import com.yt.business.bean.*;
-import com.yt.business.bean.pack.PlaceBeanPack;
+import com.yt.business.bean.pack.PlacePackBean;
 
 import java.util.List;
 
@@ -35,7 +35,7 @@ public interface IPlaceService {
 	 * @return
 	 * @throws Exception
 	 */
-	public PlaceBeanPack getPlacePack(Long id, Long lastModifiedTime)
+	public PlacePackBean getPlacePack(Long id, Long lastModifiedTime)
 			throws Exception;
 
 	/**
