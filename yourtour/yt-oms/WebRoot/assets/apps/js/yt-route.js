@@ -9,7 +9,8 @@ jQuery.Route = {
 
         var me = this,
             listview = $("#Page_RouteListView"),
-            formview = $("#Page_RouteFormView");
+            formview = $("#Page_RouteFormView"),
+            scheduleformview = $("#Page_ScheduleFormView");
 
         $("#btn_add", listview).on('click', function(){
             me.createRouteInfo();
@@ -17,6 +18,10 @@ jQuery.Route = {
 
         $("#btn_edit", listview).on('click', function(){
             me.loadRouteInfo();
+        });
+
+        $("#btn_plan", listview).on('click', function(){
+            me.loadRouteScheduleInfo();
         });
 
         //保存按钮事件
@@ -27,6 +32,10 @@ jQuery.Route = {
         //取消按钮事件
         $(" #btn_cancel", formview).on('click', function(){
             $.Page.back();
+        });
+
+        $(".schedule-indicator", scheduleformview).on("click", function(){
+            alert('adfadsfads');
         });
 
         this.query();
@@ -55,7 +64,22 @@ jQuery.Route = {
                 }},
                 {
                     "mData": "name",
-                    "sWidth": "95%"
+                    "sWidth": "25%"
+                },
+
+                {
+                    "mData": "lineName",
+                    "sWidth": "25%"
+                },
+
+                {
+                    "mData": "duration",
+                    "sWidth": "10%"
+                },
+
+                {
+                    "mData": "name",
+                    "sWidth": "35%"
                 }
             ]
         });
@@ -140,6 +164,37 @@ jQuery.Route = {
                 });
             });
         })
+    },
+
+    /**
+     * 装载行程安排信息
+     */
+    loadRouteScheduleInfo:function(){
+        var view = $('#Page_ScheduleFormView');
+        $("#img_scale").show();
+        $.Page.show("Page_ScheduleFormView",function(){
+            var map = new BMap.Map('map-container');//指向map的容器
+            map.enableScrollWheelZoom(true);
+            map.centerAndZoom('上海', 11);
+        });
+    },
+
+    setScheduleWindow:function(){
+        var view = $('#Page_ScheduleFormView'),
+            sizeInput = $("#size", view),
+            size = $("#size", view).val();
+
+        if(sizeInput.val() == "full"){
+            $("#page-title").hide();
+            $("#page-bar").hide();
+
+            sizeInput.val("restore");
+        }else{
+            $("#page-title").show();
+            $("#page-bar").show();
+
+            sizeInput.val("full");
+        }
     }
 };
 

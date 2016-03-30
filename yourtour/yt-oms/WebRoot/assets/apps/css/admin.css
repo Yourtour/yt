@@ -17,3 +17,27 @@ button i.fa{
 div[data-role="page"]{
     font-size:14px;
 }
+
+.timeline .timeline-badge{
+    height:64px;
+    width:80px;
+}
+
+.timeline .timeline-body{
+    margin-left:90px;
+}
+
+.schedule-indicator{
+    background-image: url(../icon/icon-schedule-indicator.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.schedule-indicator h2{
+    position: relative;
+    left: 30px;
+    top:5px;
+    font-weight:bold;
+    font-size:18px;
+    color:white;
+}

@@ -29,6 +29,9 @@
 
                                 <div class="col-md-6 col-sm-12">
                                     <div class="pull-right">
+                                        <button id="btn_plan" class="btn red">
+                                            <i class="fa fa-plus"></i>规划</button>
+
                                         <button id="btn_add" class="btn red">
                                             <i class="fa fa-plus"></i> 新增</button>
 
@@ -50,7 +53,21 @@
                                     <th>
                                         <input type="checkbox" class="group-checkable">
                                     </th>
-                                    <th></th>
+                                    <th>
+                                        名称
+                                    </th>
+
+                                    <th>
+                                        线路
+                                    </th>
+
+                                    <th>
+                                        天数
+                                    </th>
+
+                                    <th>
+                                        类型
+                                    </th>
                                 </tr>
                             </thead>
 
