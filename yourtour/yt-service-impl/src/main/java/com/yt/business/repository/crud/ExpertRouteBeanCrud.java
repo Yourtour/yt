@@ -2,7 +2,7 @@ package com.yt.business.repository.crud;
 
 import com.yt.neo4j.repository.CrudGeneralOperate;
 import org.springframework.stereotype.Service;
-import com.yt.business.bean.ExpertBean;
+import com.yt.business.bean.ExpertRouteBean;
 
 @Service
-public class ExpertBeanCrud extends CrudGeneralOperate<ExpertBean> { }
+public class ExpertRouteBeanCrud extends CrudGeneralOperate<ExpertRouteBean> { }

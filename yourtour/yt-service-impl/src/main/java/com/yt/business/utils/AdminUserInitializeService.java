@@ -77,7 +77,7 @@ public class AdminUserInitializeService implements InitializingBean {
 		UserAccountBean account = new UserAccountBean();
 		account.setPwd("admin");
 		account.setUserName("admin");
-		account.setType(UserAccountBean.Type.Admin);
+		account.setType(UserAccountBean.AccountType.ADMINISTRATOR);
 
 		UserProfileBean profile = new UserProfileBean();
 		profile.setRealName("admin");

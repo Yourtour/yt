@@ -1,6 +1,17 @@
 package com.yt.business.service.impl;
 
-import com.yt.business.bean.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.yt.business.bean.ExpertApplicationBean;
+import com.yt.business.bean.ExpertServiceBean;
+import com.yt.business.bean.RouteMainBean;
+import com.yt.business.bean.UserProfileBean;
 import com.yt.business.repository.neo4j.ExpertBeanRepository;
 import com.yt.business.repository.neo4j.ExpertTuple;
 import com.yt.business.repository.neo4j.RouteMainBeanRepository;
@@ -9,13 +20,6 @@ import com.yt.business.service.IExpertService;
 import com.yt.core.utils.CollectionUtils;
 import com.yt.core.utils.StringUtils;
 import com.yt.neo4j.repository.CrudOperate;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class ExpertServiceImpl extends ServiceBase implements IExpertService {
@@ -25,13 +29,10 @@ public class ExpertServiceImpl extends ServiceBase implements IExpertService {
 	private CrudOperate<ExpertApplicationBean> applicationCrudOperate;
 
 	@Autowired
-	private CrudOperate<ExpertApprovementBean> approveCrudOperate;
-
-	@Autowired
-	private CrudOperate<ExpertBean> expertCrudOperate;
-
-	@Autowired
 	private CrudOperate<ExpertServiceBean> serviceCrudOperate;
+	
+	@Autowired
+	private CrudOperate<UserProfileBean> profileCrudOperate;
 
 	@Autowired
 	private ExpertBeanRepository expertBeanRepository;
@@ -44,7 +45,7 @@ public class ExpertServiceImpl extends ServiceBase implements IExpertService {
 	}
 
 	@Override
-	public List<ExpertBean> getExperts(String placeIds, String pServices) throws Exception {
+	public List<UserProfileBean> getExperts(String placeIds, String pServices) throws Exception {
 		Long[] places = null, services = null;
 		List<ExpertTuple> tuples = null;
 
@@ -68,11 +69,10 @@ public class ExpertServiceImpl extends ServiceBase implements IExpertService {
 			tuples = expertBeanRepository.getExperts(places,services);
 		}
 
-		List<ExpertBean> experts = new ArrayList<>();
+		List<UserProfileBean> experts = new ArrayList<>();
 		if(CollectionUtils.isNotEmpty(tuples)){
 			for(ExpertTuple tuple : tuples){
-				ExpertBean expert = tuple.getExpert();
-				expert.setProfile(tuple.getProfile());
+				UserProfileBean expert = tuple.getProfile();
 
 				experts.add(expert);
 			}
@@ -120,17 +120,8 @@ public class ExpertServiceImpl extends ServiceBase implements IExpertService {
 	}
 
 	@Override
-	public void saveApprovement(Long applicationId, ExpertApprovementBean approvement, Long userId) throws Exception {
-		this.approveCrudOperate.save(approvement);
-
-		ExpertBean expert = this.expertCrudOperate.get(approvement.getApplication().getExpertId());
-		expert.setResult(approvement.getResult());
-		this.expertCrudOperate.save(expert);
-	}
-
-	@Override
-	public ExpertBean getExpert(Long userId) throws Exception {
-		ExpertBean expert = this.expertCrudOperate.get(userId);
+	public UserProfileBean getExpert(Long userId) throws Exception {
+		UserProfileBean expert = this.profileCrudOperate.get(userId);
 
 		return expert;
 	}

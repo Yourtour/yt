@@ -11,7 +11,11 @@ public class SocialBeanImpl extends BaseBeanImpl {
 	private int likeNum = 0; //点赞数
 	private int readNum = 0; //浏览数
 	private int shareNum; // 分享数
-
+	private int goodNum; // 好评数
+	private int mediumNum; // 中评数
+	private int badNum; // 差评数
+	private int imageNum; // 晒图数
+	
 	public SocialBeanImpl(){
 		super();
 	}
@@ -66,5 +70,37 @@ public class SocialBeanImpl extends BaseBeanImpl {
 
 	public void setShareNum(int shareNum) {
 		this.shareNum = shareNum;
+	}
+
+	public int getGoodNum() {
+		return goodNum;
+	}
+
+	public void setGoodNum(int goodNum) {
+		this.goodNum = goodNum;
+	}
+
+	public int getMediumNum() {
+		return mediumNum;
+	}
+
+	public void setMediumNum(int mediumNum) {
+		this.mediumNum = mediumNum;
+	}
+
+	public int getBadNum() {
+		return badNum;
+	}
+
+	public void setBadNum(int badNum) {
+		this.badNum = badNum;
+	}
+
+	public int getImageNum() {
+		return imageNum;
+	}
+
+	public void setImageNum(int imageNum) {
+		this.imageNum = imageNum;
 	}
 }

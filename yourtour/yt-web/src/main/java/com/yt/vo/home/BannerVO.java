@@ -3,10 +3,10 @@ package com.yt.vo.home;
 import java.util.List;
 import java.util.Vector;
 
-import com.yt.business.bean.ExpertBean;
 import com.yt.business.bean.BannerBean;
 import com.yt.business.bean.BannerBean.Status;
 import com.yt.business.bean.RouteMainBean;
+import com.yt.business.bean.UserProfileBean;
 import com.yt.vo.BaseVO;
 import com.yt.vo.member.ExpertVO;
 import com.yt.vo.route.RouteVO;
@@ -43,7 +43,7 @@ public class BannerVO extends BaseVO {
 			}
 			vo.routes.add(RouteVO.transform(route));
 		}
-		for (ExpertBean expert : bean.getExperts()) {
+		for (UserProfileBean expert : bean.getExperts()) {
 			if (expert == null) {
 				continue;
 			}

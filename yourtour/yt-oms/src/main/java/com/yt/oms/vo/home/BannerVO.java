@@ -8,8 +8,8 @@ import java.util.Vector;
 import com.yt.business.bean.ActivityBean;
 import com.yt.business.bean.BannerBean;
 import com.yt.business.bean.BannerBean.Status;
-import com.yt.business.bean.ExpertBean;
 import com.yt.business.bean.RouteMainBean;
+import com.yt.business.bean.UserProfileBean;
 import com.yt.vo.BaseVO;
 
 /**
@@ -166,7 +166,7 @@ public class BannerVO extends BaseVO {
 				if (expertVO == null) {
 					continue;
 				}
-				ExpertBean expertBean = new ExpertBean();
+				UserProfileBean expertBean = new UserProfileBean();
 				expertBean.setId(expertVO.getId());
 				bean.getExperts().add(expertBean);
 			}
@@ -199,16 +199,16 @@ public class BannerVO extends BaseVO {
 		this.setRoutes(routes);
 	}
 
-	private void transformExperts(List<ExpertBean> expertBeans) {
+	private void transformExperts(List<UserProfileBean> expertBeans) {
 		List<ExpertVO> experts = new Vector<ExpertVO>();
-		for (ExpertBean bean : expertBeans) {
+		for (UserProfileBean bean : expertBeans) {
 			if (bean == null) {
 				continue;
 			}
 			ExpertVO vo = new ExpertVO();
 			vo.setId(bean.getId());
-			vo.setNickName(bean.getProfile().getNickName());
-			vo.setImageUrl(bean.getProfile().getImageUrl());
+			vo.setNickName(bean.getNickName());
+			vo.setImageUrl(bean.getImageUrl());
 			experts.add(vo);
 		}
 		this.setExperts(experts);

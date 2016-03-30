@@ -1,25 +1,30 @@
 package com.yt.rest.resource;
 
-import com.yt.business.bean.*;
-import com.yt.business.service.IExpertService;
-import com.yt.core.utils.CollectionUtils;
-import com.yt.response.ResponseDataVO;
-import com.yt.response.ResponseVO;
-import com.yt.utils.SessionUtils;
-import com.yt.vo.member.ExpertApplicationVO;
-import com.yt.vo.member.ExpertApprovementVO;
-import com.yt.vo.member.ExpertServiceVO;
-import com.yt.vo.member.ExpertVO;
-import com.yt.vo.route.RouteItemVO;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import java.util.ArrayList;
-import java.util.List;
+import com.yt.business.bean.RouteMainBean;
+import com.yt.business.bean.UserProfileBean;
+import com.yt.business.service.IExpertService;
+import com.yt.core.utils.CollectionUtils;
+import com.yt.response.ResponseDataVO;
+import com.yt.response.ResponseVO;
+import com.yt.vo.member.ExpertApplicationVO;
+import com.yt.vo.member.ExpertVO;
+import com.yt.vo.route.RouteItemVO;
 
 @Component
 @Path("/app/expert")
@@ -42,9 +47,9 @@ public class ExpertRestResource extends RestResource {
 	public ResponseDataVO<List<ExpertVO>> query(@PathParam("placeIds") String placeIds,
 												@PathParam("serviceType") String type) throws Exception{
 		List<ExpertVO> experts = new ArrayList<>();
-		List<ExpertBean> beans = this.expertService.getExperts(placeIds, type.equalsIgnoreCase("ALL")?null:type);
+		List<UserProfileBean> beans = this.expertService.getExperts(placeIds, type.equalsIgnoreCase("ALL")?null:type);
 		if(CollectionUtils.isNotEmpty(beans)){
-			for(ExpertBean expert : beans){
+			for(UserProfileBean expert : beans){
 				experts.add(ExpertVO.transform(expert));
 			}
 		}
@@ -60,7 +65,7 @@ public class ExpertRestResource extends RestResource {
 	@GET
 	@Path("/{uid}")
 	public ResponseDataVO<ExpertVO> get(@PathParam("uid") Long uid) throws Exception{
-		ExpertBean bean = this.expertService.getExpert(uid);
+		UserProfileBean bean = this.expertService.getExpert(uid);
 
 		ExpertVO expert = ExpertVO.transform(bean);
 
@@ -77,42 +82,7 @@ public class ExpertRestResource extends RestResource {
 	public ResponseVO saveApplication(ExpertApplicationVO applicationVO) throws Exception {
 		Long userId = this.getCurrentUserId();
 
-		UserProfileBean user = new UserProfileBean(userId);
-		ExpertBean expert = null; //user.getExpert();
-
-		ExpertApplicationBean application = this.expertService.getApplication(Long.valueOf(userId));
-		if(application == null){
-			application = ExpertApplicationVO.getBean(applicationVO);
-		}else{
-			application.setRealName(applicationVO.getRealName());
-			application.setCertNo(applicationVO.getCertNo());
-			application.setCertType(applicationVO.getCertType());
-			application.setTags(applicationVO.getTags());
-		}
-
-		application.setExpert(expert);
-
-		this.expertService.saveApplication(application, userId);
-		return new ResponseVO();
-	}
-
-	/**
-	 * 达人审批
-	 * @param applicationId
-	 * @param approvementVO
-	 * @return
-	 */
-	@POST
-	@Path("/{uid}/{applicationId}/approve")
-	public ResponseVO saveApprovement(@PathParam("uid") Long uid,
-									  @PathParam("applicationId") Long applicationId,
-									  ExpertApprovementVO approvementVO) throws Exception{
-		Long userId = this.getCurrentUserId();
-
-		ExpertApprovementBean approvement = ExpertApprovementVO.transform(approvementVO);
-
-		this.expertService.saveApprovement(applicationId, approvement, userId);
-
+		// TODO 保存一个资格审查申请
 		return new ResponseVO();
 	}
 

@@ -16,10 +16,10 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.yt.business.bean.ExpertBean;
 import com.yt.business.bean.PlaceBean;
 import com.yt.business.bean.ResourceBean;
 import com.yt.business.bean.RouteMainBean;
+import com.yt.business.bean.UserProfileBean;
 import com.yt.business.service.IPlaceService;
 import com.yt.response.ResponseDataVO;
 import com.yt.vo.member.ExpertVO;
@@ -102,10 +102,10 @@ public class PlaceRestResource {
 		if (limit <= 0) {
 			limit = DEFAULT_LIMIT;
 		}
-		List<ExpertBean> experts = placeService.getExperts(placeId, nextCursor,
+		List<UserProfileBean> experts = placeService.getExperts(placeId, nextCursor,
 				limit);
 		List<ExpertVO> expertVOs = new Vector<ExpertVO>();
-		for (ExpertBean expert : experts) {
+		for (UserProfileBean expert : experts) {
 			if (expert == null) {
 				continue;
 			}

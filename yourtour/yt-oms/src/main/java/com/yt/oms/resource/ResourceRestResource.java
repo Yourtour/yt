@@ -18,7 +18,7 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.sun.jersey.multipart.FormDataMultiPart;
+import com.sun.jersey.multipart.FormDataBodyPart;
 import com.sun.jersey.multipart.FormDataParam;
 import com.yt.business.PagingConditionBean;
 import com.yt.business.PagingDataBean;
@@ -111,13 +111,13 @@ public class ResourceRestResource extends RestResource {
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public ResponseDataVO<HotelResourceVO> saveHotel(
 			@Context HttpServletRequest request,
-			@FormDataParam("hotel") String json, FormDataMultiPart form)
+			@FormDataParam("hotel") String json,
+			@FormDataParam("files") List<FormDataBodyPart> files)
 			throws Exception {
 		HotelResourceVO hotelVO = (HotelResourceVO) BeanUtils.deserialize(json,
 				HotelResourceVO.class);
 		HotelResourceBean hotel = HotelResourceVO.transform(hotelVO);
-		hotel.setImageUrl(super.uploadMediaFile(form, "hotelImage",
-				HOTEL_IMAGE_PATH));
+		hotel.setImageUrl(super.uploadMediaFile(files, HOTEL_IMAGE_PATH));
 
 		Long userId = super.getCurrentUserId(request);
 		resourceService.saveResource(hotel, userId);
@@ -191,14 +191,14 @@ public class ResourceRestResource extends RestResource {
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public ResponseDataVO<RestaurantResourceVO> saveRestaurant(
 			@Context HttpServletRequest request,
-			@FormDataParam("restaurant") String json, FormDataMultiPart form)
+			@FormDataParam("restaurant") String json,
+			@FormDataParam("files") List<FormDataBodyPart> files)
 			throws Exception {
 		RestaurantResourceVO restaurantVO = (RestaurantResourceVO) BeanUtils
 				.deserialize(json, RestaurantResourceVO.class);
 		RestaurantResourceBean restaurant = RestaurantResourceVO
 				.transform(restaurantVO);
-		restaurant.setImageUrl(super.uploadMediaFile(form, "restaurantImage",
-				HOTEL_IMAGE_PATH));
+		restaurant.setImageUrl(super.uploadMediaFile(files, HOTEL_IMAGE_PATH));
 
 		Long userId = super.getCurrentUserId(request);
 		resourceService.saveResource(restaurant, userId);
@@ -269,13 +269,13 @@ public class ResourceRestResource extends RestResource {
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public ResponseDataVO<SceneResourceVO> saveScene(
 			@Context HttpServletRequest request,
-			@FormDataParam("scene") String json, FormDataMultiPart form)
+			@FormDataParam("scene") String json,
+			@FormDataParam("files") List<FormDataBodyPart> files)
 			throws Exception {
 		SceneResourceVO sceneVO = (SceneResourceVO) BeanUtils.deserialize(json,
 				SceneResourceVO.class);
 		SceneResourceBean scene = SceneResourceVO.transform(sceneVO);
-		scene.setImageUrl(super.uploadMediaFile(form, "sceneImage",
-				HOTEL_IMAGE_PATH));
+		scene.setImageUrl(super.uploadMediaFile(files, HOTEL_IMAGE_PATH));
 
 		Long userId = super.getCurrentUserId(request);
 		resourceService.saveResource(scene, userId);

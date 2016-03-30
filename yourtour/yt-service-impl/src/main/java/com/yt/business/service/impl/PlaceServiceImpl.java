@@ -1,7 +1,17 @@
 package com.yt.business.service.impl;
 
-import com.yt.business.bean.*;
-import com.yt.business.bean.pack.PlaceBeanPack;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.yt.business.bean.InfoBean;
+import com.yt.business.bean.PlaceBean;
+import com.yt.business.bean.ResourceBean;
+import com.yt.business.bean.RouteMainBean;
+import com.yt.business.bean.UserProfileBean;
+import com.yt.business.bean.pack.PlacePackBean;
 import com.yt.business.repository.neo4j.ExpertTuple;
 import com.yt.business.repository.neo4j.PlaceBeanRepository;
 import com.yt.business.repository.neo4j.RouteTuple;
@@ -9,13 +19,6 @@ import com.yt.business.service.IPlaceService;
 import com.yt.core.utils.BeanUtils;
 import com.yt.core.utils.CollectionUtils;
 import com.yt.neo4j.repository.CrudOperate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Service
 public class PlaceServiceImpl extends ServiceBase implements IPlaceService {
@@ -30,15 +33,15 @@ public class PlaceServiceImpl extends ServiceBase implements IPlaceService {
 	}
 
 	@Override
-	public List<ExpertBean> getExperts(Long placeId, Long nextCursor, int limit)
+	public List<UserProfileBean> getExperts(Long placeId, Long nextCursor, int limit)
 			throws Exception {
 		List<ExpertTuple> tuples = repository.getExperts(placeId, nextCursor,
 				limit);
 
-		List<ExpertBean> experts = new ArrayList<>();
+		List<UserProfileBean> experts = new ArrayList<>();
 		if (CollectionUtils.isNotEmpty(tuples)) {
 			for (ExpertTuple tuple : tuples) {
-				experts.add(tuple.getExpert());
+				experts.add(tuple.getProfile());
 			}
 		}
 
@@ -142,9 +145,9 @@ public class PlaceServiceImpl extends ServiceBase implements IPlaceService {
 	}
 
 	@Override
-	public PlaceBeanPack getPlacePack(Long id, Long lastModifiedTime)
+	public PlacePackBean getPlacePack(Long id, Long lastModifiedTime)
 			throws Exception {
-		PlaceBeanPack pack = new PlaceBeanPack();
+		PlacePackBean pack = new PlacePackBean();
 
 		PlaceBean place = this.getPlace(id);
 		if (place == null)
