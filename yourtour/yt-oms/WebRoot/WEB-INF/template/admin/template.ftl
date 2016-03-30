@@ -194,14 +194,14 @@
 						</a>
 						<ul class="sub-menu">
 							<li class="nav-item start active open">
-								<a href="ExpertApprove" class="nav-link ">
+								<a href="ExpertApplicationApprove" class="nav-link ">
 									<i class="icon-bar-chart"></i>
 									<span class="title">达人资格审核</span>
 									<span class="selected"></span>
 								</a>
 							</li>
 							<li class="nav-item start ">
-								<a href="ExpertService" class="nav-link ">
+								<a href="ExpertContentApprove" class="nav-link ">
 									<i class="icon-bulb"></i>
 									<span class="title">达人内容审核</span>
 									<span class="badge badge-success">1</span>
