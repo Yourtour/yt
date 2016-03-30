@@ -160,11 +160,34 @@
 					</li>
 
 					<li class="nav-item  ">
-						<a href="PlaceFormView" class="nav-link nav-toggle">
+						<a href="javascript:;" class="nav-link nav-toggle">
 							<i class="icon-diamond"></i>
 							<span class="title">达人管理</span>
 							<span class="arrow"></span>
 						</a>
+						<ul class="sub-menu">
+							<li class="nav-item start active open">
+								<a href="ExpertApprove" class="nav-link ">
+									<i class="icon-bar-chart"></i>
+									<span class="title">达人审核</span>
+									<span class="selected"></span>
+								</a>
+							</li>
+							<li class="nav-item start ">
+								<a href="ExpertService" class="nav-link ">
+									<i class="icon-bulb"></i>
+									<span class="title">达人服务</span>
+									<span class="badge badge-success">1</span>
+								</a>
+							</li>
+							<li class="nav-item start ">
+								<a href="ExpertRoute" class="nav-link ">
+									<i class="icon-graph"></i>
+									<span class="title">达人推荐行程</span>
+									<span class="badge badge-danger">5</span>
+								</a>
+							</li>
+						</ul>
 					</li>
 
 					<li class="nav-item  ">
