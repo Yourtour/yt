@@ -49,6 +49,7 @@
 	<input type = "hidden" id="window-size" value="full" />
   	<!-- BEGIN HEADER -->
   	<input id="context" type="hidden" value="${context}"/>
+
     <div class="page-header navbar navbar-fixed-top">
   		<!-- BEGIN HEADER INNER -->
 		<div class="page-header-inner ">

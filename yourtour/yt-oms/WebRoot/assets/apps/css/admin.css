@@ -27,8 +27,14 @@ div[data-role="page"]{
     margin-left:90px;
 }
 
-.schedule-indicator{
+.timeline-item .schedule-indicator{
     background-image: url(../icon/icon-schedule-indicator.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.timeline-item .schedule-indicator.active{
+    background-image: url(../icon/icon-schedule-indicator-active.png);
     background-repeat: no-repeat;
     background-position: center center;
 }
@@ -40,4 +46,38 @@ div[data-role="page"]{
     font-weight:bold;
     font-size:18px;
     color:white;
+}
+
+#Page_ScheduleFormView .search{
+    position: absolute;
+    top:20px;
+    left:35px;
+    z-index:100;
+    width:500px;
+}
+
+#Page_ScheduleFormView .detail{
+    position: relative;
+    top:0px;
+    z-index:999;
+    background:white;
+    padding-top:30px;
+}
+
+.timeline-item .schedule-play{
+    background-image: url(../icon/icon-schedule-play.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.timeline-item .schedule-food{
+    background-image: url(../icon/icon-schedule-food.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.timeline-item .schedule-hotel{
+    background-image: url(../icon/icon-schedule-hotel.png);
+    background-repeat: no-repeat;
+    background-position: center center;
 }

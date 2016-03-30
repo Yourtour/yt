@@ -35,7 +35,15 @@ jQuery.Route = {
         });
 
         $(".schedule-indicator", scheduleformview).on("click", function(){
-            alert('adfadsfads');
+            me.loadResources(this);
+        });
+
+        $("#btn-hide", scheduleformview).on("click", function(){
+            me.hideResourceDetail();
+        });
+
+        $("#btn-add", scheduleformview).on("click", function(){
+            me.addToRouteSchedule();
         });
 
         this.query();
@@ -170,31 +178,90 @@ jQuery.Route = {
      * 装载行程安排信息
      */
     loadRouteScheduleInfo:function(){
-        var view = $('#Page_ScheduleFormView');
-        $("#img_scale").show();
+        var view = $('#Page_ScheduleFormView'),
+            mapPanel = $("#mapPanel", view),
+            detailPanel = $("#detailPanel", view);
         $.Page.show("Page_ScheduleFormView",function(){
+            mapPanel.show();
+            detailPanel.hide();
+
             var map = new BMap.Map('map-container');//指向map的容器
             map.enableScrollWheelZoom(true);
             map.centerAndZoom('上海', 11);
         });
     },
 
-    setScheduleWindow:function(){
+    /**
+     * 显示选择的资源信息
+     * @param schedule
+     */
+    loadResources:function(schedule){
+        var me = this,
+            view = $('#Page_ScheduleFormView'),
+            mapPanel = $("#mapPanel", view),
+            detailPanel = $("#detailPanel", view),
+            map = new BMap.Map('map-container'),
+            positions = "121.50715,31.242905|121.511578,31.240468".split("|"),
+            pos;
+
+        $.each($(".schedule-item", view), function(index, item){
+            $(item).hide();
+        });
+
+        $.each($(".schedule .active", view), function(index, item){
+            $(item).removeClass("active");
+        });
+
+        //当前日程的处理
+        $(schedule).addClass("active");
+        $(schedule).parent().nextUntil(".schedule").show();
+
+        detailPanel.hide();
+        mapPanel.show();
+
+        map.enableScrollWheelZoom(true);
+        map.centerAndZoom('上海', 11);
+
+        $.each(positions, function(index, position) {
+                pos = position.split(',');
+                var new_point = new BMap.Point(pos[0], pos[1]);
+                var marker = new BMap.Marker(new_point);  // 创建标注
+                marker.addEventListener("click",function(){
+                    me.showResourceDetail(marker, position)
+                });
+                map.addOverlay(marker);              // 将标注添加到地图中
+        });
+    },
+
+    /**
+     * 显示资源明细Panel
+     * @param marker
+     * @param position
+     */
+    showResourceDetail:function(marker, position){
         var view = $('#Page_ScheduleFormView'),
-            sizeInput = $("#size", view),
-            size = $("#size", view).val();
+            mapPanel = $("#mapPanel", view),
+            detailPanel = $("#detailPanel", view);
 
-        if(sizeInput.val() == "full"){
-            $("#page-title").hide();
-            $("#page-bar").hide();
+        mapPanel.hide();
+        detailPanel.slideDown(1000);
+    },
 
-            sizeInput.val("restore");
-        }else{
-            $("#page-title").show();
-            $("#page-bar").show();
+    /**
+     * 隐藏资源明细Panel
+     * @returns {boolean}
+     */
+    hideResourceDetail:function(){
+        var view = $('#Page_ScheduleFormView'),
+            mapPanel = $("#mapPanel", view),
+            detailPanel = $("#detailPanel", view);
 
-            sizeInput.val("full");
-        }
+        detailPanel.hide();
+        mapPanel.slideDown(1000);
+    },
+
+    addToRouteSchedule:function(){
+        this.hideResourceDetail();
     }
 };
 

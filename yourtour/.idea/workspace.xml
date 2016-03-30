@@ -7,19 +7,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="92ee94f3-3d6c-4f6d-925a-699d6360b737" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/icon/icon-scale.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/icon/icon-schedule-indicator.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/route/ScheduleFormView.ftl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/js/yt-app.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/icon/icon-expand.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/icon/icon-schedule-food.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/icon/icon-schedule-hotel.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/icon/icon-schedule-indicator-active.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/icon/icon-schedule-play.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/icon/icon-toggler.png" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-oms\WebRoot\assets\global\plugins\font-awesome\css\font-awesome.css" afterPath="" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-oms\WebRoot\assets\global\plugins\simple-line-icons\License.txt" afterPath="" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-oms\WebRoot\assets\global\plugins\simple-line-icons\Readme.txt" afterPath="" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-oms\WebRoot\assets\global\plugins\simple-line-icons\simple-line-icons.css" afterPath="" />
       <change type="DELETED" beforePath="E:\workspace\yt\yourtour\yt-oms\WebRoot\assets\global\plugins\uniform\jquery.uniform.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../.gitignore" afterPath="$PROJECT_DIR$/../.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/route/ListView.ftl" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/route/ListView.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/Route.ftl" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/Route.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteServiceImpl.java" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/route/ScheduleFormView.ftl" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/route/ScheduleFormView.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/css/admin.css" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/css/admin.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/template.ftl" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/template.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -82,11 +82,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="yt-route.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="yt-route.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/js/yt-route.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.77328646">
-              <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="219" column="24" selection-start-line="219" selection-start-column="24" selection-end-line="219" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -105,7 +105,7 @@
       <file leaf-file-name="Route.ftl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/Route.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.461538">
+            <state vertical-scroll-proportion="0.0">
               <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding />
             </state>
@@ -115,8 +115,8 @@
       <file leaf-file-name="template.ftl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/template.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.642857">
-              <caret line="48" column="31" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="242" column="14" selection-start-line="242" selection-start-column="14" selection-end-line="242" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -135,31 +135,28 @@
       <file leaf-file-name="ScheduleFormView.ftl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/route/ScheduleFormView.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.769231">
-              <caret line="35" column="77" selection-start-line="35" selection-start-column="59" selection-end-line="35" selection-end-column="77" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MemberMainCtrl.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/controller/MemberMainCtrl.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="136" column="19" selection-start-line="136" selection-start-column="19" selection-end-line="136" selection-end-column="19" />
+            <state vertical-scroll-proportion="-0.84615386">
+              <caret line="49" column="57" selection-start-line="49" selection-start-column="44" selection-end-line="49" selection-end-column="57" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="admin.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/css/admin.css">
+      <file leaf-file-name="FormView.ftl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/route/FormView.ftl">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+              <caret line="34" column="34" selection-start-line="24" selection-start-column="28" selection-end-line="34" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/css/admin.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.9226714">
+              <caret line="73" column="52" selection-start-line="73" selection-start-column="52" selection-end-line="73" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -3205,12 +3202,12 @@
         <option value="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteServiceImpl.java" />
         <option value="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/route/ListView.ftl" />
         <option value="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/route/ScheduleListView.ftl" />
-        <option value="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/css/admin.css" />
-        <option value="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/route/ScheduleFormView.ftl" />
-        <option value="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/template.ftl" />
         <option value="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/js/yt-app.js" />
         <option value="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/Route.ftl" />
+        <option value="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/template.ftl" />
         <option value="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/js/yt-route.js" />
+        <option value="$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/route/ScheduleFormView.ftl" />
+        <option value="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/css/admin.css" />
       </list>
     </option>
   </component>
@@ -3260,7 +3257,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -3882,13 +3878,14 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="Member&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/MemberMainCtrl.js&#10;Sche&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/route/ScheduleFormView.ftl&#10;route.&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/Route.ftl&#10;route.ftl&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/Route.ftl&#10;Schedule&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/route/ScheduleFormView.ftl&#10;index.html&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/index.html&#10;template&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/template.ftl&#10;admin.css&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/css/admin.css&#10;Route.ftl&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/Route.ftl&#10;template.ftl&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/template.ftl&#10;listview&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/route/ListView.ftl&#10;formv&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/route/FormView.ftl&#10;yt-plugin.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/js/yt-plugin.js&#10;BeanUtils.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-core/src/main/java/com/yt/core/utils/BeanUtils.java&#10;RouteMainBean&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service/src/main/java/com/yt/business/bean/RouteMainBean.java&#10;formview.ftl&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/route/FormView.ftl&#10;yt-ac&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/js/yt-activity.js&#10;yt-route&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/js/yt-route.js&#10;Routerest&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/java/com/yt/oms/resource/RouteRestResource.java&#10;RouteRest&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/RouteRestResource.java&#10;RouteMainBean.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service/src/main/java/com/yt/business/bean/RouteMainBean.java&#10;ActivityServiceImpl.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/service/impl/ActivityServiceImpl.java&#10;BaseBea&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service/src/main/java/com/yt/business/BaseBeanImpl.java&#10;yt-account&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/js/yt-account.js&#10;UserA&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service/src/main/java/com/yt/business/bean/UserAccountBean.java&#10;UserAccountBean&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service/src/main/java/com/yt/business/bean/UserAccountBean.java&#10;ResourceSer&#9;PSI&#9;JAVA://com.yt.business.service.impl.ResourceServiceImpl&#10;UserRest&#9;PSI&#9;JAVA://com.yt.oms.resource.UserRestResource&#10;AccountBean&#9;PSI&#9;JAVA://com.yt.business.bean.UserAccountBean&#10;Listview.&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/route/ListView.ftl&#10;formview.&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/route/FormView.ftl&#10;yt-acti&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/js/yt-activity.js&#10;yt-route.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/js/yt-route.js&#10;Content&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/activity/ContentFormView.ftl&#10;RouteVO&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/vo/route/RouteVO.java&#10;jquery&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/global/plugins/jquery-datatable/js/jquery.dataTable.setting.js&#10;activity.ftl&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/Activity.ftl&#10;FormView.&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/activity/FormView.ftl&#10;listview.ftl&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/activity/ListView.ftl&#10;jq&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/global/plugins/jquery-datatable/js/jquery.dataTable.setting.js&#10;yt-plugin&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/js/yt-plugin.js&#10;ActivityVO&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/java/com/yt/oms/vo/ActivityVO.java&#10;ListView&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/activity/ListView.ftl&#10;yt-place.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/js/yt-place.js&#10;content&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/activity/ContentFormView.ftl&#10;Acti&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/java/com/yt/oms/resource/ActivityRestResource.java&#10;template.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/Template.js&#10;Act&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/java/com/yt/oms/resource/ActivityRestResource.java&#10;JSONField&#9;PSI&#9;JAVA://com.alibaba.fastjson.annotation.JSONField&#10;ActivityContentVO&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/java/com/yt/oms/vo/ActivityContentVO.java" />
+    <property name="SearchEverywhereHistoryKey" value="formv&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/route/FormView.ftl&#10;Member&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/app/controller/MemberMainCtrl.js&#10;Sche&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/route/ScheduleFormView.ftl&#10;route.&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/Route.ftl&#10;route.ftl&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/Route.ftl&#10;Schedule&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/route/ScheduleFormView.ftl&#10;index.html&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/index.html&#10;template&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/template.ftl&#10;admin.css&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/css/admin.css&#10;Route.ftl&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/Route.ftl&#10;template.ftl&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/template.ftl&#10;listview&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/route/ListView.ftl&#10;yt-plugin.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/js/yt-plugin.js&#10;BeanUtils.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-core/src/main/java/com/yt/core/utils/BeanUtils.java&#10;RouteMainBean&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service/src/main/java/com/yt/business/bean/RouteMainBean.java&#10;formview.ftl&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/route/FormView.ftl&#10;yt-ac&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/js/yt-activity.js&#10;yt-route&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/js/yt-route.js&#10;Routerest&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/java/com/yt/oms/resource/RouteRestResource.java&#10;RouteRest&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/rest/resource/RouteRestResource.java&#10;RouteMainBean.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service/src/main/java/com/yt/business/bean/RouteMainBean.java&#10;ActivityServiceImpl.java&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service-impl/src/main/java/com/yt/business/service/impl/ActivityServiceImpl.java&#10;BaseBea&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service/src/main/java/com/yt/business/BaseBeanImpl.java&#10;yt-account&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/js/yt-account.js&#10;UserA&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service/src/main/java/com/yt/business/bean/UserAccountBean.java&#10;UserAccountBean&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-service/src/main/java/com/yt/business/bean/UserAccountBean.java&#10;ResourceSer&#9;PSI&#9;JAVA://com.yt.business.service.impl.ResourceServiceImpl&#10;UserRest&#9;PSI&#9;JAVA://com.yt.oms.resource.UserRestResource&#10;AccountBean&#9;PSI&#9;JAVA://com.yt.business.bean.UserAccountBean&#10;Listview.&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/route/ListView.ftl&#10;formview.&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/route/FormView.ftl&#10;yt-acti&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/js/yt-activity.js&#10;yt-route.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/js/yt-route.js&#10;Content&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/activity/ContentFormView.ftl&#10;RouteVO&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-web/src/main/java/com/yt/vo/route/RouteVO.java&#10;jquery&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/global/plugins/jquery-datatable/js/jquery.dataTable.setting.js&#10;activity.ftl&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/Activity.ftl&#10;FormView.&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/activity/FormView.ftl&#10;listview.ftl&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/activity/ListView.ftl&#10;jq&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/global/plugins/jquery-datatable/js/jquery.dataTable.setting.js&#10;yt-plugin&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/js/yt-plugin.js&#10;ActivityVO&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/java/com/yt/oms/vo/ActivityVO.java&#10;ListView&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/activity/ListView.ftl&#10;yt-place.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/assets/apps/js/yt-place.js&#10;content&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/WebRoot/WEB-INF/template/admin/activity/ContentFormView.ftl&#10;Acti&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/java/com/yt/oms/resource/ActivityRestResource.java&#10;template.js&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-app/WebRoot/touch/src/Template.js&#10;Act&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/java/com/yt/oms/resource/ActivityRestResource.java&#10;JSONField&#9;PSI&#9;JAVA://com.alibaba.fastjson.annotation.JSONField&#10;ActivityContentVO&#9;FILE&#9;file://E:/workspace/yt/yourtour/yt-oms/src/main/java/com/yt/oms/vo/ActivityContentVO.java" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -3911,8 +3908,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\workspace\yt\yourtour\yt-oms\WebRoot\assets\apps\js" />
       <recent name="E:\workspace\yt\yourtour\yt-oms\WebRoot\assets\apps\icon" />
+      <recent name="E:\workspace\yt\yourtour\yt-oms\WebRoot\assets\apps\js" />
       <recent name="E:\workspace\yt\yourtour\yt-oms\WebRoot\WEB-INF\template\admin\route" />
       <recent name="E:\workspace\yt\yourtour\yt-oms\WebRoot\WEB-INF\template\admin" />
       <recent name="E:\workspace\yt\yourtour\yt-oms\WebRoot\assets\global\scripts" />
@@ -4495,12 +4492,13 @@
       <workItem from="1459239715798" duration="210000" />
       <workItem from="1459239974320" duration="8005000" />
       <workItem from="1459310962373" duration="8022000" />
-      <workItem from="1459319185522" duration="4281000" />
+      <workItem from="1459319185522" duration="15892000" />
+      <workItem from="1459342232596" duration="1662000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="451323000" />
+    <option name="totallyTimeSpent" value="464596000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -4527,7 +4525,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4852941" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.8316994" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12859304" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15506808" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -4797,10 +4795,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="118" column="11" selection-start-line="118" selection-start-column="11" selection-end-line="118" selection-end-column="11" />
-          <folding>
-            <element signature="e#2826#2827#0" expanded="true" />
-            <element signature="e#2842#2843#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4808,7 +4802,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4845,10 +4838,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7358491">
           <caret line="207" column="60" selection-start-line="207" selection-start-column="60" selection-end-line="207" selection-end-column="60" />
-          <folding>
-            <element signature="e#3760#3761#0" expanded="true" />
-            <element signature="e#3818#3819#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4856,7 +4845,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="55" column="53" selection-start-line="55" selection-start-column="51" selection-end-line="55" selection-end-column="53" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4885,7 +4873,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="96" column="47" selection-start-line="96" selection-start-column="35" selection-end-line="96" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4908,7 +4895,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="254" column="0" selection-start-line="254" selection-start-column="0" selection-end-line="254" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4916,15 +4902,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/route/FormView.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="43" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4943,35 +4920,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/css/admin.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="128" column="16" selection-start-line="128" selection-start-column="16" selection-end-line="128" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.031088082">
           <caret line="1006" column="4" selection-start-line="1006" selection-start-column="4" selection-end-line="1006" selection-end-column="85" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/template.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.642857">
-          <caret line="48" column="31" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4985,35 +4937,63 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/Route.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.461538">
+        <state vertical-scroll-proportion="0.0">
           <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/route/ScheduleFormView.ftl">
+    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/controller/MemberMainCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.769231">
-          <caret line="35" column="77" selection-start-line="35" selection-start-column="59" selection-end-line="35" selection-end-column="77" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.8896926">
+          <caret line="148" column="11" selection-start-line="139" selection-start-column="8" selection-end-line="148" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/yt-app/WebRoot/app/controller/MemberMainCtrl.js">
+    <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/template.ftl">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="136" column="19" selection-start-line="136" selection-start-column="19" selection-end-line="136" selection-end-column="19" />
+          <caret line="242" column="14" selection-start-line="242" selection-start-column="14" selection-end-line="242" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/RouteServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="128" column="16" selection-start-line="128" selection-start-column="16" selection-end-line="128" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/route/FormView.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="34" selection-start-line="24" selection-start-column="28" selection-end-line="34" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/js/yt-route.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.77328646">
-          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="219" column="24" selection-start-line="219" selection-start-column="24" selection-end-line="219" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/WEB-INF/template/admin/route/ScheduleFormView.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.84615386">
+          <caret line="49" column="57" selection-start-line="49" selection-start-column="44" selection-end-line="49" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/css/admin.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9226714">
+          <caret line="73" column="52" selection-start-line="73" selection-start-column="52" selection-end-line="73" selection-end-column="52" />
           <folding />
         </state>
       </provider>
