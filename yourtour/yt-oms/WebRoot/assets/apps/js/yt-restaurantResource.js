@@ -114,9 +114,11 @@ jQuery.RestaurantResource = {
         restaurant = restaurantForm.serialize();
         var fd = new FormData();
         fd.append('restaurant', JSON.stringify(restaurant));
-        //fd.append("imageUrl", $("#imageUrl")[0].files[0]);
-
-        console.log(restaurant);
+        var ctlFiles = $("#files")[0];
+        for (var index = 0; index < ctlFiles.files.length; index ++)
+        {
+            fd.append("files", ctlFiles.files[index]);
+        }
 
         $.Request.postFormData("/rest/oms/resources/restaurants/save", fd, function (result) {
             bootbox.alert("保存成功。", function () {

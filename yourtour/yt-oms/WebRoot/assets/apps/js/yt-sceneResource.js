@@ -115,9 +115,11 @@ jQuery.SceneResource = {
         // TODO 删除不需要的字段
         var fd = new FormData();
         fd.append('scene', JSON.stringify(scene));
-        //fd.append("imageUrl", $("#imageUrl")[0].files[0]);
-
-        console.log(scene);
+        var ctlFiles = $("#files")[0];
+        for (var index = 0; index < ctlFiles.files.length; index ++)
+        {
+            fd.append("files", ctlFiles.files[index]);
+        }
 
         $.Request.postFormData("/rest/oms/resources/scenes/save", fd, function (result) {
             bootbox.alert("保存成功。", function () {

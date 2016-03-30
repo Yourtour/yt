@@ -36,13 +36,20 @@
 </div>
 
 <div class="form-group">
-    <label for="address" class="col-md-2 control-label">地址</label>
-    <div class="col-md-4">
+    <label for="address" class="col-md-1 control-label">地址</label>
+    <div class="col-md-2">
         <input type="text" class="form-control" name="address" id="address" placeholder="地址">
     </div>
-    <label for="postCode" class="col-md-2 control-label">邮编</label>
-    <div class="col-md-4">
+    <label for="postCode" class="col-md-1 control-label">邮编</label>
+    <div class="col-md-2">
         <input type="text" class="form-control" name="postCode" id="postCode" placeholder="邮编">
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="website" class="col-md-2 control-label">网址</label>
+    <div class="col-md-4">
+        <input type="url" class="form-control" name="website" id="website" placeholder="网址">
     </div>
 </div>
 

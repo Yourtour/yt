@@ -47,6 +47,14 @@
                                 </div>
                             </div>
 
+                            <div class="form-group">
+                                <label for="files" class="col-md-2 control-label">酒店图片</label>
+                                <textarea class="form-control" name="imageUrl" disabled id="imageUrl"></textarea>
+                                <div class="col-md-2">
+                                    <input type="file" id="files" name="files" multiple="multiple">
+                                </div>
+                            </div>
+
                             <hr>
                             <div class="form-group">
                                 <div class="col-md-12 pull-right">

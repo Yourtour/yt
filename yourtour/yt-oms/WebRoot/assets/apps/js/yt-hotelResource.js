@@ -114,9 +114,11 @@ jQuery.HotelResource = {
         hotel = hotelForm.serialize();
         var fd = new FormData();
         fd.append('hotel', JSON.stringify(hotel));
-        //fd.append("imageUrl", $("#imageUrl")[0].files[0]);
-
-        console.log(hotel);
+        var ctlFiles = $("#files")[0];
+        for (var index = 0; index < ctlFiles.files.length; index ++)
+        {
+            fd.append("files", ctlFiles.files[index]);
+        }
 
         $.Request.postFormData("/rest/oms/resources/hotels/save", fd, function (result) {
             bootbox.alert("保存成功。", function () {

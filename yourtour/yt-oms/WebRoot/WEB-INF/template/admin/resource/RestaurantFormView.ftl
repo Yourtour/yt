@@ -46,6 +46,13 @@
                                     <textarea class="form-control" name="networkInfo" id="networkInfo" rows="3" cols="160" placeholder="网络信息"></textarea>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label for="files" class="col-md-2 control-label">美食图片</label>
+                                <textarea class="form-control" name="imageUrl" disabled id="imageUrl"></textarea>
+                                <div class="col-md-2">
+                                    <input type="file" id="files" name="files" multiple="multiple">
+                                </div>
+                            </div>
 
                             <hr>
                             <div class="form-group">
