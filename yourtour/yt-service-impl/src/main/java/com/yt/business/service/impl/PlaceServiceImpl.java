@@ -6,11 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.yt.business.bean.ExpertBean;
 import com.yt.business.bean.InfoBean;
 import com.yt.business.bean.PlaceBean;
 import com.yt.business.bean.ResourceBean;
 import com.yt.business.bean.RouteMainBean;
+import com.yt.business.bean.UserProfileBean;
 import com.yt.business.bean.pack.PlacePackBean;
 import com.yt.business.repository.neo4j.ExpertTuple;
 import com.yt.business.repository.neo4j.PlaceBeanRepository;
@@ -33,15 +33,15 @@ public class PlaceServiceImpl extends ServiceBase implements IPlaceService {
 	}
 
 	@Override
-	public List<ExpertBean> getExperts(Long placeId, Long nextCursor, int limit)
+	public List<UserProfileBean> getExperts(Long placeId, Long nextCursor, int limit)
 			throws Exception {
 		List<ExpertTuple> tuples = repository.getExperts(placeId, nextCursor,
 				limit);
 
-		List<ExpertBean> experts = new ArrayList<>();
+		List<UserProfileBean> experts = new ArrayList<>();
 		if (CollectionUtils.isNotEmpty(tuples)) {
 			for (ExpertTuple tuple : tuples) {
-				experts.add(tuple.getExpert());
+				experts.add(tuple.getProfile());
 			}
 		}
 

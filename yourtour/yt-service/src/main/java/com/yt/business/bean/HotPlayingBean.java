@@ -20,8 +20,8 @@ public class HotPlayingBean extends SocialBeanImpl {
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RELATED, type = PlaceBean.class, direction = Direction.OUTGOING)
 	private transient PlaceBean place;
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RELATED, type = ExpertBean.class, direction = Direction.OUTGOING)
-	private transient ExpertBean expert;
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RELATED, type = UserProfileBean.class, direction = Direction.OUTGOING)
+	private transient UserProfileBean expert;
 
 	public HotPlayingBean() {
 		super();
@@ -59,11 +59,11 @@ public class HotPlayingBean extends SocialBeanImpl {
 		this.place = place;
 	}
 
-	public ExpertBean getExpert() {
+	public UserProfileBean getExpert() {
 		return expert;
 	}
 
-	public void setExpert(ExpertBean expert) {
+	public void setExpert(UserProfileBean expert) {
 		this.expert = expert;
 	}
 

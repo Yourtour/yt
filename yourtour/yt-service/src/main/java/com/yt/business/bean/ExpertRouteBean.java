@@ -10,22 +10,22 @@ import com.yt.neo4j.annotation.Neo4jRelationship;
 import com.yt.neo4j.annotation.Neo4jRelationship.Direction;
 
 /**
- * 达人服务实体
+ * 达人推荐行程实体
  * 
  * @author John.Peng
  * 
  */
-@HbaseTable(name = "T_EXPERT_SERVICE")
+@HbaseTable(name = "T_EXPERT_ROUTE")
 @NodeEntity
-public class ExpertServiceBean extends SocialBeanImpl {
-	private static final long serialVersionUID = 6259294378320824143L;
+public class ExpertRouteBean extends SocialBeanImpl {
+	private static final long serialVersionUID = 8766988875819182198L;
 
 	@HbaseColumn(name = "title")
-	private String title; // 服务名称
-	private String category; // 服务分类，来自于字典表
+	private String title; // 行程名称
 	private String imageUrl;
-	private String content; // 服务内容
-	private String fee;
+	private String intro; // 行程简介
+	private String tags; // 行程标签
+	private String fee; // 行程费用
 	private String currency;
 	private String feeIncluding;
 	private String feeExcluding;
@@ -34,11 +34,11 @@ public class ExpertServiceBean extends SocialBeanImpl {
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = UserProfileBean.class, direction = Direction.INCOMING)
 	private transient UserProfileBean user = null; // 服务相关达人
 
-	public ExpertServiceBean() {
+	public ExpertRouteBean() {
 		super();
 	}
 
-	public ExpertServiceBean(Long id) {
+	public ExpertRouteBean(Long id) {
 		super(id);
 	}
 
@@ -74,12 +74,20 @@ public class ExpertServiceBean extends SocialBeanImpl {
 		this.withdraw = withdraw;
 	}
 
-	public String getContent() {
-		return content;
+	public String getIntro() {
+		return intro;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setIntro(String intro) {
+		this.intro = intro;
+	}
+
+	public String getTags() {
+		return tags;
+	}
+
+	public void setTags(String tags) {
+		this.tags = tags;
 	}
 
 	public String getCurrency() {
@@ -104,14 +112,6 @@ public class ExpertServiceBean extends SocialBeanImpl {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
-	}
-
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
 	}
 
 	public UserProfileBean getUser() {

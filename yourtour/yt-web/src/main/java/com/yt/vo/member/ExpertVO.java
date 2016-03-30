@@ -1,20 +1,18 @@
 package com.yt.vo.member;
 
-import com.yt.business.bean.*;
+import com.yt.business.bean.UserProfileBean;
 import com.yt.vo.BaseVO;
 
 public class ExpertVO extends BaseVO {
-	private static final long serialVersionUID = 7565498288049730405L;
-
-	private String 	places;
+	private String places;
 	private UserVO profile;
 
-	public static ExpertVO transform(ExpertBean bean){
+	public static ExpertVO transform(UserProfileBean bean) {
 		ExpertVO expert = new ExpertVO();
 
 		expert.fromBean(bean);
 
-		expert.setProfile(UserVO.transform(bean.getProfile()));
+		expert.setProfile(UserVO.transform(bean));
 
 		return expert;
 	}

@@ -89,8 +89,8 @@ public class LineBean extends SocialBeanImpl {
 	private transient PlaceBean place = null;
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_CONTAIN, type = SceneResourceBean.class, direction = Direction.OUTGOING, isList = true)
 	private transient List<SceneResourceBean> scenes = null;
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RECOMMEND, type = ExpertBean.class, direction = Direction.OUTGOING, isList = true)
-	private transient List<ExpertBean> experts = null;
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RECOMMEND, type = UserProfileBean.class, direction = Direction.OUTGOING, isList = true)
+	private transient List<UserProfileBean> experts = null;
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RECOMMEND, type = RouteMainBean.class, direction = Direction.OUTGOING, isList = true)
 	private transient List<RouteMainBean> routes = null;
 
