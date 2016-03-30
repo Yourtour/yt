@@ -112,6 +112,7 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 		//保存行程信息
 		List<RouteScheduleBean> schedules = route.getSchedules();
 		route.setSchedules(null); //不自动保存日程信息
+		saved.setToPlaceBeans(route.getToPlaceBeans());
 		this.updateBaseInfo(saved, operatorId);
 		routeCrudOperate.save(saved);
 

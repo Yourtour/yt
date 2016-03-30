@@ -41,9 +41,12 @@
 	<script src="${context}/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 	<script src="${context}/assets/global/plugins/jquery-datatable/js/jquery.dataTables.min.js" type="text/javascript"></script>
 
+	<script src="http://api.map.baidu.com/api?v=1.4" type="text/javascript"></script>
   </head>
 
   <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
+  	<img id="img_scale" style="z-index:10000; position:fixed; top:20px; right:20px;" src="${context}/assets/apps/icon/icon-scale.png"/>
+	<input type = "hidden" id="window-size" value="full" />
   	<!-- BEGIN HEADER -->
   	<input id="context" type="hidden" value="${context}"/>
     <div class="page-header navbar navbar-fixed-top">
@@ -152,11 +155,27 @@
 					</li>
 
 					<li class="nav-item  ">
-						<a href="Route" class="nav-link nav-toggle">
+						<a href="javascript:;" class="nav-link nav-toggle">
 							<i class="icon-diamond"></i>
 							<span class="title">行程管理</span>
 							<span class="arrow"></span>
 						</a>
+
+						<ul class="sub-menu">
+							<li class="nav-item start active open">
+								<a href="SceneResource" class="nav-link ">
+									<i class="icon-bar-chart"></i>
+									<span class="title">定制</span>
+									<span class="selected"></span>
+								</a>
+							</li>
+							<li class="nav-item start ">
+								<a href="Route" class="nav-link ">
+									<i class="icon-bulb"></i>
+									<span class="title">推荐</span>
+								</a>
+							</li>
+						</ul>
 					</li>
 
 					<li class="nav-item  ">
@@ -285,6 +304,7 @@
 	<script src="${context}/assets/apps/js/yt-hotelResource.js" type="text/javascript"></script>
 	<script src="${context}/assets/apps/js/yt-restaurantResource.js" type="text/javascript"></script>
 	<script src="${context}/assets/apps/js/yt-banner.js" type="text/javascript"></script>
+	<script src="${context}/assets/apps/js/yt-app.js" type="text/javascript"></script>
 
 	<!-- END THEME GLOBAL SCRIPTS -->
 	<!-- BEGIN PAGE LEVEL SCRIPTS -->
