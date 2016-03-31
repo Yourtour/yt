@@ -1,20 +1,21 @@
 package com.yt.business.service.impl;
 
-import java.util.List;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.yt.business.PagingConditionBean;
 import com.yt.business.PagingDataBean;
 import com.yt.business.bean.ResourceBean;
 import com.yt.business.bean.ResourceBean.ResourceType;
 import com.yt.business.repository.neo4j.ResourceBeanRepository;
+import com.yt.business.repository.query.IResourceQuery;
 import com.yt.business.service.IResourceService;
 import com.yt.core.utils.BeanUtils;
 import com.yt.neo4j.repository.CrudOperate;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by 林平 on 2016/2/21.
@@ -29,6 +30,9 @@ public class ResourceServiceImpl extends ServiceBase implements
 
 	@Autowired
 	private CrudOperate<ResourceBean> resourceCrudOperate;
+
+	@Autowired
+	private IResourceQuery  resourceQuery;
 
 	@Override
 	public void saveResource(ResourceBean resource, Long userId)
@@ -132,5 +136,10 @@ public class ResourceServiceImpl extends ServiceBase implements
 		}
 		return new PagingDataBean<List<? extends ResourceBean>>(total,
 				resources);
+	}
+
+	@Override
+	public PagingDataBean<List<ResourceBean>> getResources(PagingConditionBean pagingCondition, Map<String, Object> params) throws Exception {
+		return resourceQuery.getResources(pagingCondition, params);
 	}
 }

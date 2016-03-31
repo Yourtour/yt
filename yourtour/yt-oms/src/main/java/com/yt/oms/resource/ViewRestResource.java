@@ -22,7 +22,7 @@ import java.util.Map;
  */
 
 @Component
-@Path("/view")
+@Path("/")
 public class ViewRestResource extends RestResource {
     @Autowired
     private Configuration configuration;
@@ -40,7 +40,7 @@ public class ViewRestResource extends RestResource {
      */
     @GET
     @Produces("text/html;charset=utf-8")
-    @Path("template/{module}/{name}.ftl")
+    @Path("/decorators/{module}/{name}.html")
     public Response getTemplateResource(@Context HttpServletRequest request, @PathParam("module") String module, @PathParam("name") String name) throws Exception{
         return this.getResource(request, module, name);
     }
@@ -55,7 +55,7 @@ public class ViewRestResource extends RestResource {
      */
     @GET
     @Produces("text/html;charset=utf-8")
-    @Path("{module}/{name}")
+    @Path("/{module}/{name}.html")
     public Response getAdminResources(@Context HttpServletRequest request, @PathParam("module") String module, @PathParam("name") String name) throws Exception{
         return this.getResource(request, module, name);
     }

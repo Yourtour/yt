@@ -28,23 +28,31 @@ div[data-role="page"]{
     padding:5px!important;
 }
 
+.timeline .timeline-body.inactive{
+    background-color: white;
+}
+
+.timeline .timeline-body.inactive .timeline-body-head{
+    display:none;
+}
+
 .timeline .timeline-body .title{
     margin-top:10px;
 }
 
-.timeline-item .schedule-indicator{
+.timeline-item .schedule-day{
     background-image: url(../icon/icon-schedule-indicator.png);
     background-repeat: no-repeat;
     background-position: center center;
 }
 
-.timeline-item .schedule-indicator.active{
+.timeline-item .schedule-day.active{
     background-image: url(../icon/icon-schedule-indicator-active.png);
     background-repeat: no-repeat;
     background-position: center center;
 }
 
-.schedule-indicator h2{
+.timeline-item .schedule-day h2{
     position: relative;
     left: 30px;
     top:5px;

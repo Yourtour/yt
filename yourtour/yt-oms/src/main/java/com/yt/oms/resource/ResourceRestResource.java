@@ -1,6 +1,8 @@
 package com.yt.oms.resource;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +17,10 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import com.yt.business.bean.*;
+import com.yt.business.common.Constants;
+import com.yt.oms.vo.resource.ResourceVO;
+import com.yt.oms.vo.route.RouteVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,11 +28,7 @@ import com.sun.jersey.multipart.FormDataBodyPart;
 import com.sun.jersey.multipart.FormDataParam;
 import com.yt.business.PagingConditionBean;
 import com.yt.business.PagingDataBean;
-import com.yt.business.bean.HotelResourceBean;
-import com.yt.business.bean.ResourceBean;
 import com.yt.business.bean.ResourceBean.ResourceType;
-import com.yt.business.bean.RestaurantResourceBean;
-import com.yt.business.bean.SceneResourceBean;
 import com.yt.business.service.IResourceService;
 import com.yt.core.utils.BeanUtils;
 import com.yt.oms.vo.resource.HotelResourceVO;
@@ -282,4 +284,29 @@ public class ResourceRestResource extends RestResource {
 		return new ResponseDataVO<SceneResourceVO>(
 				SceneResourceVO.transform(scene));
 	}
+
+
+	@POST
+	@Path("/query")
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
+	public ResponsePagingDataVO<List<ResourceVO>> getResources(@DefaultValue("0") @QueryParam("nextCursor") Long nextCursor,
+														 @DefaultValue("20") @QueryParam("limit") int limit,
+														 @QueryParam("total") int total,
+														 Map<String, Object> params)
+	throws Exception{
+		List<ResourceVO> voes = new ArrayList<>();
+
+		PagingDataBean<List<ResourceBean>> paginationData = this.resourceService.getResources(new PagingConditionBean(nextCursor, limit, total), params);
+		if(paginationData != null && paginationData.getTotal() > 0){
+			List<ResourceBean> resources = paginationData.getData();
+			for(ResourceBean resource : resources){
+				ResourceVO vo = new ResourceVO();
+				vo.fromBean(resource);
+				voes.add(vo);
+			}
+		}
+
+		return new ResponsePagingDataVO<List<ResourceVO>>(0, voes.size(), voes);
+	}
+
 }

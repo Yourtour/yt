@@ -7,7 +7,7 @@ import com.yt.vo.BaseVO;
 import java.util.List;
 
 public class RouteScheduleVO extends BaseVO {
-	private long index;
+	private int index;
 	private long date;
 	private int  days;
 	private String placeIds;
@@ -45,11 +45,11 @@ public class RouteScheduleVO extends BaseVO {
 		super();
 	}
 
-	public long getIndex() {
+	public int getIndex() {
 		return index;
 	}
 
-	public void setIndex(long index) {
+	public void setIndex(int index) {
 		this.index = index;
 	}
 

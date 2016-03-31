@@ -62,7 +62,6 @@ public class RouteMainBean extends SocialBeanImpl {
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = RouteProvisionBean.class, direction = Direction.OUTGOING, isList = true)
 	private transient List<RouteProvisionBean> provisions = null; // 行程包含的准备
 
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_BELONG, type = UserProfileBean.class, direction = Direction.INCOMING)
 	private transient UserProfileBean user = null; // 行程相关人,缺省可以表示行程创建者
 
 	public RouteMainBean() {

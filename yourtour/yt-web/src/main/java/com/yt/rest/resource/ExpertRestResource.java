@@ -94,7 +94,7 @@ public class ExpertRestResource extends RestResource {
 	@GET
 	@Path("/{uid}/routes")
 	public ResponseDataVO<List<RouteItemVO>> getServicedRoutes( @PathParam("uid") Long uid) throws Exception{
-		List<RouteItemVO> valueobjects = new ArrayList<>();
+		/*List<RouteItemVO> valueobjects = new ArrayList<>();
 
 		List<RouteMainBean> routes = this.expertService.getServicedRoutes(uid, 0l, 20);
 		if(routes != null){
@@ -102,7 +102,9 @@ public class ExpertRestResource extends RestResource {
 				valueobjects.add(new RouteItemVO(route));
 			}
 		}
-		return new ResponseDataVO<List<RouteItemVO>>(valueobjects);
+		return new ResponseDataVO<List<RouteItemVO>>(valueobjects);*/
+
+		return null;
 	}
 
 	/**
@@ -114,7 +116,7 @@ public class ExpertRestResource extends RestResource {
 	@GET
 	@Path("/{uid}/routes/recommend")
 	public ResponseDataVO<List<RouteItemVO>> getRecommendRoutes(@PathParam("uid") Long uid) throws Exception{
-		List<RouteMainBean> routes = this.expertService.getRecommendRoutes(uid, 0l, 20);
+		/*List<RouteMainBean> routes = this.expertService.getRecommendRoutes(uid, 0l, 20);
 		List<RouteItemVO> valueobjects = new ArrayList<>();
 
 		if(routes != null){
@@ -122,6 +124,8 @@ public class ExpertRestResource extends RestResource {
 				valueobjects.add(new RouteItemVO(route));
 			}
 		}
-		return new ResponseDataVO<List<RouteItemVO>>(valueobjects);
+		return new ResponseDataVO<List<RouteItemVO>>(valueobjects);*/
+
+		return null;
 	}
 }

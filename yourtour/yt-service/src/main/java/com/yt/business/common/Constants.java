@@ -71,6 +71,11 @@ public interface Constants {
 	public static final String RELATION_TYPE_RECOMMEND = "RECOMMEND";
 
 	/**
+	 * 定制关系
+	 */
+	public static final String RELATION_TYPE_MADE = "MADE";
+
+	/**
 	 * 服务关系
 	 */
 	public static final String RELATION_TYPE_SERVICE = "SERVICE";
@@ -150,20 +155,6 @@ public interface Constants {
 				if(v.getCode().equalsIgnoreCase(value)) return v;
 
 			throw new IllegalArgumentException();
-		}
-	}
-
-	// 资源枚举
-	public static enum ScheduleType {
-		PLAY("PLAY", "游玩"), FOOD("FOOD", "餐饮"), HOTEL("HOTEL", "住宿"), TRAFFIC(
-				"TRAFFIC", "交通"), FREE("FREE", "自行安排"), MATTER("MATTER", "事项");
-
-		public String code;
-		public String name;
-
-		private ScheduleType(String code, String name) {
-			this.code = code;
-			this.name = name;
 		}
 	}
 

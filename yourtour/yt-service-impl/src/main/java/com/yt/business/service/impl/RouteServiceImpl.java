@@ -1,5 +1,7 @@
 package com.yt.business.service.impl;
 
+import com.yt.business.PagingConditionBean;
+import com.yt.business.PagingDataBean;
 import com.yt.business.bean.*;
 import com.yt.business.common.Constants;
 import com.yt.business.repository.neo4j.RouteMainBeanRepository;
@@ -66,16 +68,18 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 	}
 
 	@Override
-	public void deleteRoute(Long routeId, Long operatorId) throws Exception {
-		RouteMainBean route = routeCrudOperate.get(routeId);
+	public void deleteRouteInfoes(Long[] routeIds, Long operatorId) throws Exception {
+		for(Long routeId : routeIds){
+			RouteMainBean route = routeCrudOperate.get(routeId, false);
+			this.updateBaseInfo(route, operatorId);
 
-		this.updateBaseInfo(route, operatorId);
-
-		routeCrudOperate.delete(route);
+			route.setDeleted(true);
+			routeCrudOperate.save(route, false);
+		}
 	}
 
 	@Override
-	public void saveRouteInfo(RouteMainBean route, Long operatorId)
+	public void saveRouteInfo(RouteMainBean route, Long operatorId, String relation)
 	throws Exception {
 		boolean isNew = route.isNew();
 		RouteMainBean saved = null;
@@ -116,30 +120,29 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 		if(isNew) {
 			// 保存用户在行程中的成员关系
 			UserProfileBean user = new UserProfileBean(operatorId);
-			Map<String, Object> member = new HashMap<>();
-			member = new HashMap<>();
-			member.put("permission", "W");
-			member.put("role", Constants.GroupRole.LEADER.code);
-			memberRelationship.createRelation(user, route, Constants.RELATION_TYPE_MEMBER, Direction.INCOMING, member);
+			memberRelationship.createRelation(user, route, relation, Direction.INCOMING);
 		}
 
-		//保存日程信息
+		//保存日程信息E
 		List<RouteScheduleBean> existedSchedules = this.repository.getSchedules(route.getId());
 		if (CollectionUtils.isEmpty(existedSchedules) && CollectionUtils.isNotEmpty(schedules)) {
+			int index = 1;
 			for (RouteScheduleBean schedule : schedules) {
 				schedule.setRouteMain(route);
+				schedule.setIndex(index);
+				schedule.setType(RouteScheduleBean.ScheduleType.DAY);
+				schedule.setName("D" + index);
 				super.updateBaseInfo(schedule, operatorId);
 				scheduleCrudOperate.save(schedule);
+
+				index++;
 			}
 		}
 	}
 
 	@Override
-	public RouteMainBean cloneRoute(Long sourceId, RouteMainBean target,
-			Long operatorId) throws Exception {
-		this.saveRouteInfo(target, operatorId);
-
-		RouteMainBean source = this.getRoute(sourceId);
+	public RouteMainBean cloneRouteInfo(Long sourceId, RouteMainBean target, Long operatorId, String relation) throws Exception {
+		RouteMainBean source = this.getRouteInfo(sourceId, true);
 		if (source == null) {
 			throw new AppException(StaticErrorEnum.DATA_NOT_EXIST);
 		}
@@ -171,75 +174,54 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 
 		routeCrudOperate.save(target);
 
-		return this.getRoute(target.getId());
+		// 保存用户在行程中的成员关系
+		UserProfileBean user = new UserProfileBean(operatorId);
+		memberRelationship.createRelation(user, target, relation, Direction.INCOMING);
+
+		return this.getRouteInfo(target.getId(), true);
 	}
 
 	@Override
-	public List<RouteMainBean> getRoutes(Long userId) throws Exception {
-		RouteMainBean route = null;
-		List<RouteMainBean> list = new ArrayList<RouteMainBean>();
-
-		List<OwnerRouteTuple> routes = repository.getRoutes(userId, 0l, 20,	"MEMBER|LEADER");
-		for (OwnerRouteTuple bean : routes) {
-			route = bean.getRoute();
-			if (route == null) {
-				continue;
-			}
-
-			RouteMemberBean member = new RouteMemberBean(route.getId());
-			member.setImageUrl(bean.getImageUrl());
-			member.setRole(bean.getRole());
-			member.setImpression(bean.impression);
-			member.setPermission(bean.permission);
-
-			list.add(route);
-		}
-		return list;
-	}
-
-	@Override
-	public List<RouteMainBean> getRoutes(Long placeId, Long nextCursor,
-			int limit) throws Exception {
-		List<RouteMainBean> routes = new ArrayList<>();
-
-		List<RouteTuple> tuples = repository.getRecommendRoutes(placeId,
-				nextCursor, limit);
-		if (CollectionUtils.isNotEmpty(tuples)) {
-			for (RouteTuple tuple : tuples) {
-				routes.add(tuple.getRoute());
-			}
+	public PagingDataBean<List<RouteMainBean>> getUserRouteInfoes(Long userId, String relationship, PagingConditionBean condition, Map<String, Object> params) throws Exception {
+		int total = condition.getTotal();
+		if (total <= 0) {
+			total = repository.getRouteNum4User(userId, relationship);
 		}
 
-		return routes;
+		List<RouteMainBean> list = repository.getRoutes(userId, condition.getNextCursor(), condition.getLimit(), relationship);
+
+		return new PagingDataBean<>(total,list);
 	}
 
 	@Override
-	public List<RouteMainBean> getRoutes(Long[] placeIds, int duration,
-			Long nextCursor, int limit) throws Exception {
-		List<RouteMainBean> routes = new ArrayList<>();
-
-		List<RouteTuple> tuples = repository.getRecommendRoutes(placeIds,
-				duration, nextCursor, limit);
-		if (CollectionUtils.isNotEmpty(tuples)) {
-			for (RouteTuple tuple : tuples) {
-				routes.add(tuple.getRoute());
-			}
+	public PagingDataBean<List<RouteMainBean>> getUserRouteInfoes(Long userId, String relationship, PagingConditionBean condition) throws Exception {
+		int total = condition.getTotal();
+		if (total <= 0) {
+			total = repository.getRouteNum4User(userId, relationship);
 		}
 
-		return routes;
+		List<RouteMainBean> list = repository.getRoutes(userId, condition.getNextCursor(), condition.getLimit(), relationship);
+
+		return new PagingDataBean<>(total,list);
 	}
 
 	@Override
-	public RouteMainBean getRouteMain(Long routeId) throws Exception {
-		RouteMainBean route = routeCrudOperate.get(routeId, false);
-
-		return route;
+	public PagingDataBean<List<RouteMainBean>> getPlaceRouteInfoes(Long placeId, PagingConditionBean condition) throws Exception {
+		return null;
 	}
 
 	@Override
-	public RouteMainBean getRoute(Long routeId) throws Exception {
-		RouteMainBean route = routeCrudOperate.get(routeId);
-		return route;
+	public PagingDataBean<List<RouteMainBean>> getPlaceRouteInfoes(Long[] placeIds, int duration, PagingConditionBean condition) throws Exception {
+		return null;
+	}
+
+	@Override
+	public RouteMainBean getRouteInfo(Long routeId, boolean isFull) throws Exception {
+		if(! isFull){
+			return routeCrudOperate.get(routeId, false);
+		}else{
+			return routeCrudOperate.get(routeId, true);
+		}
 	}
 
 	@Override
@@ -248,7 +230,7 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 	}
 
 	@Override
-	public void saveSchedule(RouteScheduleBean schedule, Long operatorId)
+	public void saveRouteSchedule(RouteScheduleBean schedule, Long operatorId)
 			throws Exception {
 		this.updateBaseInfo(schedule, operatorId);
 
@@ -256,7 +238,7 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 	}
 
 	@Override
-	public void deleteSchedule(Long routeId, Long scheduleId, Long uoperatorIdid)
+	public void deleteRouteSchedule(Long routeId, Long scheduleId, Long uoperatorIdid)
 			throws Exception {
 		RouteScheduleBean schedule = scheduleCrudOperate.get(scheduleId);
 		if (schedule == null) {
@@ -299,10 +281,5 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 
 		this.updateBaseInfo(provision, operatorId);
 		provisionCrudOperate.delete(provision);
-	}
-
-	@Override
-	public List<RouteMainBean> getRoutes(Long nextCursor, int limit, int total, Map<String, Object> params) throws Exception {
-		return this.routeCrudOperate.get(false);
 	}
 }

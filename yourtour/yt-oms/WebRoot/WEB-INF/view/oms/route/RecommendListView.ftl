@@ -46,7 +46,7 @@
                         </div>
 
                         <table id="datatable_route" class="row-border" cellspacing="0" width="100%"
-                               data-rest="${context}/rest/oms/route/query"
+                               data-rest="${context}/rest/oms/route/recommend/query"
                                data-method="POST">
                             <thead>
                                 <tr>

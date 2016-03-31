@@ -9,7 +9,6 @@ import com.yt.business.common.Constants;
  */
 public class TravelCartBean extends BaseBeanImpl {
     private Long subjectId;
-    private Constants.ScheduleType type;
 
     public TravelCartBean(){
     }
@@ -22,11 +21,4 @@ public class TravelCartBean extends BaseBeanImpl {
         this.subjectId = subjectId;
     }
 
-    public Constants.ScheduleType getType() {
-        return type;
-    }
-
-    public void setType(Constants.ScheduleType type) {
-        this.type = type;
-    }
 }

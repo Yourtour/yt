@@ -144,7 +144,7 @@ public class RouteVO extends SocialVO {
 			RouteScheduleBean scheduleBean = new RouteScheduleBean();
 			scheduleBean.setIndex(DateUtils.formatDateAsInteger(scheduleDate.getTime()) * 1000);
 			scheduleBean.setDate(scheduleDate.getTime());
-			scheduleBean.setTitle(String.format("第%s天-%s", index+1, DateUtils.formatDate(scheduleDate.getTime())));
+			scheduleBean.setName(String.format("第%s天-%s", index+1, DateUtils.formatDate(scheduleDate.getTime())));
 			scheduleBean.setCreatedUserId(SessionUtils.getCurrentLoginUser());
 			scheduleBean.setUpdatedUserId(SessionUtils.getCurrentLoginUser());
 			scheduleBean.setCreatedTime(DateUtils.getCurrentTimeMillis());

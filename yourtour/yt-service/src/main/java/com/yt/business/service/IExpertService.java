@@ -41,25 +41,4 @@ public interface IExpertService {
 	 * @throws Exception
 	 */
 	public UserProfileBean getExpert(Long userId) throws Exception;
-
-
-	/**
-	 * 达人推荐的行程
-	 * @param expertId
-	 * @param nextCursor
-	 * @param limit
-	 * @return
-	 * @throws Exception
-	 */
-	public List<RouteMainBean> getRecommendRoutes(Long expertId, Long nextCursor, int limit) throws Exception;
-
-	/**
-	 * 达人服务的行程
-	 * @param expertId
-	 * @param nextCursor
-	 * @param limit
-	 * @return
-	 * @throws Exception
-	 */
-	public List<RouteMainBean> getServicedRoutes(Long expertId, Long nextCursor, int limit) throws Exception;
 }

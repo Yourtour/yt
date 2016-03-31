@@ -35,7 +35,7 @@
 
 	<servlet-mapping>
 		<servlet-name>jerseyRestful</servlet-name>
-		<url-pattern>*.ftl</url-pattern>
+		<url-pattern>/view/*</url-pattern>
 	</servlet-mapping>
 
 	<filter>
@@ -65,6 +65,6 @@
 
 	<filter-mapping>
 		<filter-name>sitemesh3</filter-name>
-		<url-pattern>/rest/*</url-pattern>
+		<url-pattern>/view/*</url-pattern>
 	</filter-mapping>
 </web-app>

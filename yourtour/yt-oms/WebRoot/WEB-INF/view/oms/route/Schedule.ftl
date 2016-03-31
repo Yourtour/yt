@@ -171,7 +171,7 @@
 								</a>
 							</li>
 							<li class="nav-item start ">
-								<a href="Route" class="nav-link ">
+								<a href="RouteRecommend" class="nav-link ">
 									<i class="icon-bulb"></i>
 									<span class="title">推荐</span>
 								</a>

@@ -1,6 +1,7 @@
 package com.yt.business.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.yt.business.PagingConditionBean;
 import com.yt.business.PagingDataBean;
@@ -49,6 +50,17 @@ public interface IResourceService {
 	public PagingDataBean<List<? extends ResourceBean>> getResources(
 			ResourceType resourceType, PagingConditionBean pagingCondition)
 			throws Exception;
+
+	/**
+	 * 获取资源
+	 *
+	 * @param pagingCondition
+	 * @return
+	 * @throws Exception
+	 */
+	public PagingDataBean<List<ResourceBean>> getResources(PagingConditionBean pagingCondition, Map<String, Object> params)
+			throws Exception;
+
 
 	/**
 	 * 分页获取目的地资源

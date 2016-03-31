@@ -81,33 +81,6 @@ public class ExpertServiceImpl extends ServiceBase implements IExpertService {
 		return experts;
 	}
 
-	@Override
-	public List<RouteMainBean> getRecommendRoutes(Long uid, Long nextCursor, int limit) throws Exception {
-		List<RouteMainBean> routes = new ArrayList<>();
-
-		List<RouteTuple> tuples = routeRepository.getRecommendRoutes(uid, nextCursor, limit);
-		if(CollectionUtils.isNotEmpty(tuples)){
-			for(RouteTuple tuple : tuples){
-				routes.add(tuple.getRoute());
-			}
-		}
-
-		return routes;
-	}
-
-	@Override
-	public List<RouteMainBean> getServicedRoutes(Long expertId, Long nextCursor, int limit) throws Exception {
-		List<RouteMainBean> routes = new ArrayList<>();
-
-		List<RouteMainBeanRepository.OwnerRouteTuple> tuples = this.routeRepository.getRoutes(expertId, nextCursor, limit, "EXPERT");
-		if(CollectionUtils.isNotEmpty(tuples)){
-			for(RouteMainBeanRepository.OwnerRouteTuple tuple : tuples){
-				routes.add(tuple.getRoute());
-			}
-		}
-
-		return routes;
-	}
 
 	@Override
 	public void saveApplication(ExpertApplicationBean application, Long uid) throws Exception {

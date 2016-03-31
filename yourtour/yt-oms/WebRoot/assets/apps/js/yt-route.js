@@ -3,7 +3,7 @@
  *
  * @type {{query: Function, saveDictInfo: Function, loadDictInfo: Function}}
  */
-jQuery.Route = {
+jQuery.RouteRecommend = {
     init:function(){
         $.Page.show("Page_RouteListView");
 
@@ -25,6 +25,10 @@ jQuery.Route = {
             me.loadRouteInfo();
         });
 
+        $("#btn_delete", listview).on('click', function(){
+            me.deleteRouteInfo();
+        });
+
         $("#btn_plan", listview).on('click', function(){
             me.loadRouteScheduleInfo();
         });
@@ -37,10 +41,6 @@ jQuery.Route = {
         //取消按钮事件
         $(" #btn_cancel", formview).on('click', function(){
             $.Page.back();
-        });
-
-        $(".schedule-indicator", scheduleformview).on("click", function(){
-            me.loadResources(this);
         });
 
         $("#btn-hide", scheduleformview).on("click", function(){
@@ -184,6 +184,16 @@ jQuery.Route = {
         })
     },
 
+    deleteRouteInfo:function(){
+        var me = this;
+
+        $("#datatable_route").delete(function(ids){
+            $.Request.delete("/rest/oms/route/" + ids + "/delete", null, function(result){
+                me.query();
+            })
+        })
+    },
+
     /**
      * 保存行程基本信息
      */
@@ -203,9 +213,8 @@ jQuery.Route = {
             }
         })
 
-        $.Request.postFormData("/rest/oms/route/save",formdata,function(result){
+        $.Request.postFormData("/rest/oms/route/recommend/save",formdata,function(result){
             bootbox.alert("保存成功。", function(){
-                "use strict";
                 $.Page.back(function(){
                     me.query();
                 });
@@ -217,43 +226,108 @@ jQuery.Route = {
      * 装载行程安排信息
      */
     loadRouteScheduleInfo:function(){
-        var view = $('#Page_ScheduleFormView'),
+        var me = this,
+            view = $('#Page_ScheduleFormView'),
             mapPanel = $("#mapPanel", view),
             detailPanel = $("#detailPanel", view);
-        $.Page.show("Page_ScheduleFormView",function(){
-            mapPanel.show();
-            detailPanel.hide();
+        $("#datatable_route").select(function(routeId){
+            $.Page.show("Page_ScheduleFormView",function(){
+                mapPanel.show();
+                detailPanel.hide();
 
-            var map = new BMap.Map('map-container');//指向map的容器
-            map.enableScrollWheelZoom(true);
-            map.centerAndZoom('上海', 11);
-        });
+                var map = new BMap.Map('map-container');//指向map的容器
+                map.enableScrollWheelZoom(true);
+                map.centerAndZoom('上海', 11);
+
+                $.Request.get("/rest/oms/route/" + routeId + "/schedules", null, function(result){
+                    if(result){
+                        $.each(result, function(index, schedule){
+                            me.showScheduleInfo(index, schedule);
+                        })
+
+                        $(".timeline-badge", view).on("click", function(){
+                            me.selectTimelineItem($(this));
+                        });
+
+                        //$(".schedule-day",view).first().trigger('click');
+                    }
+                });
+            });
+        }, "请选择需要规划的行程。");
+    },
+
+    /**
+     * 在行程列表中显示日程数据
+     * @param index
+     * @param schedule
+     */
+    showScheduleInfo:function(index, schedule){
+        var me = this,
+            scheduleFormView = $("#Page_ScheduleFormView");
+            timeline = $('#schedule-timeline', scheduleFormView);
+
+        var itemClass = "schedule-" + schedule.type.toLowerCase(),
+            html =  '<div class="timeline-item" id="' + schedule.id + '">' +
+                    '<div class="timeline-badge schedule ' + itemClass + '" >';
+        if(schedule.type == 'DAY') {
+            html += '<h2> D' + schedule.index + '</h2>';
+        }
+
+        html +='</div>' +
+               '<div class="timeline-body inactive">' +
+               '<div class="timeline-body-head">';
+
+        if(schedule.type == "DAY"){
+            html += '<div class="timeline-body-head-caption">' +
+                        '<a href="javascript:;" class="timeline-body-title font-blue-madison">Andres Iniesta</a>' +
+                        '<span class="timeline-body-time font-grey-cascade">Replied at 7:45 PM</span>' +
+                    '</div>';
+        }else{
+            html += '<div class="timeline-body-head-caption">' +
+                        '<a href="javascript:;" class="timeline-body-title font-blue-madison">Andres Iniesta</a>' +
+                        '<span class="timeline-body-time font-grey-cascade">Replied at 7:45 PM</span>' +
+                    '</div>';
+        }
+
+        html += '</div></div></div>';
+
+        $(html).appendTo(timeline);
     },
 
     /**
      * 显示选择的资源信息
      * @param schedule
      */
-    loadResources:function(schedule){
+    selectTimelineItem:function(schedule){
         var me = this,
             view = $('#Page_ScheduleFormView'),
+            timeBody = schedule.siblings(".timeline-body"),
             mapPanel = $("#mapPanel", view),
             detailPanel = $("#detailPanel", view),
             map = new BMap.Map('map-container'),
             positions = "121.50715,31.242905|121.511578,31.240468".split("|"),
-            pos;
+            pos, _item;
 
-        $.each($(".schedule-item", view), function(index, item){
-            $(item).hide();
+        timeBody.removeClass("inactive");
+
+        $.each($(".timeline-badge", view), function(index, item){
+            _item = $(item);
+            _item.removeClass("active");
+            if(_item.parent().attr("id") != schedule.parent().attr("id")){
+                _item.siblings(".timeline-body").addClass("inactive");
+            }
         });
 
-        $.each($(".schedule .active", view), function(index, item){
-            $(item).removeClass("active");
-        });
+        schedule.addClass("active");
 
-        //当前日程的处理
-        $(schedule).addClass("active");
-        $(schedule).parent().nextUntil(".schedule").show();
+        if(schedule.hasClass('schedule-day')) {
+            $.each($(".schedule-item", view), function (index, item) {
+                $(item).hide();
+            });
+
+            //当前日程的处理
+            schedule.parent().nextUntil(".schedule-day").show();
+        }
 
         detailPanel.hide();
         mapPanel.show();

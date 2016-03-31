@@ -2,6 +2,7 @@ package com.yt.business.bean;
 
 import java.util.List;
 
+import com.yt.core.utils.StringUtils;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.data.neo4j.support.index.IndexType;
@@ -19,12 +20,41 @@ public class RouteScheduleBean extends BaseBeanImpl {
 	private static final long serialVersionUID = 8074543232974381934L;
 	private static final String INDEX_NAME = "routeSchedule";
 
-	private String 	title;
+	// 资源枚举
+	public static enum ScheduleType {
+		DAY("DAY","日程"),PLAY("PLAY", "游玩"), FOOD("FOOD", "餐饮"), HOTEL("HOTEL", "住宿"), TRAFFIC(
+				"TRAFFIC", "交通"), FREE("FREE", "自行安排"), MATTER("MATTER", "事项");
+
+		public String code;
+		public String name;
+
+		private ScheduleType(String code, String name) {
+			this.code = code;
+			this.name = name;
+		}
+
+		public static ScheduleType getType(String code){
+			if(StringUtils.isNull(code)) return null;
+
+			ScheduleType[] types = ScheduleType.values();
+			for(ScheduleType type : types){
+				if(type.code.equalsIgnoreCase(code)){
+					return type;
+				}
+			}
+
+			return null;
+		}
+	}
+
+	private String 	name;
 
 	private Long	parentId;
 
+	private ScheduleType type;
+
 	@HbaseColumn(name = "idx")
-	private long index = 1; // 行程日程排序号
+	private int index = 1; // 行程日程排序号
 
 	@HbaseColumn(name = "dt")
 	private Long date = 0l; // 行程日程日期
@@ -34,6 +64,8 @@ public class RouteScheduleBean extends BaseBeanImpl {
 
 	@HbaseColumn(name = "etm")
 	private String endTime = "00:00"; // 行程活动结束时间
+
+	private float	duration; //持续时间
 
 	private String price; //价格信息
 	private String currency; //币种
@@ -65,19 +97,27 @@ public class RouteScheduleBean extends BaseBeanImpl {
 		this.parentId = parentId;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getName() {
+		return name;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public long getIndex() {
+	public ScheduleType getType() {
+		return type;
+	}
+
+	public void setType(ScheduleType type) {
+		this.type = type;
+	}
+
+	public int getIndex() {
 		return index;
 	}
 
-	public void setIndex(long index) {
+	public void setIndex(int index) {
 		this.index = index;
 	}
 
@@ -135,6 +175,14 @@ public class RouteScheduleBean extends BaseBeanImpl {
 
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
+	}
+
+	public float getDuration() {
+		return duration;
+	}
+
+	public void setDuration(float duration) {
+		this.duration = duration;
 	}
 
 	public ResourceBean getResource() {

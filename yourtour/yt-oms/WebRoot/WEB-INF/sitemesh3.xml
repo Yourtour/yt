@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>  
 <sitemesh>
-	<mapping  path="/rest/view/admin/Login" decorator="/rest/view/template/admin/Login.ftl">
-	</mapping>
+	<!--??????-->
+	<mapping decorator="/view/decorators/oms/Main.html"/>
 
-	<mapping  path="/rest/view/admin/*" decorator="/rest/view/template/admin/template.ftl">
-	</mapping>
+	<mapping  path="/view/oms/Login.html" decorator="/view/decorators/oms/Login.html"/>
+
+	<mapping  path="/view/oms/Schedule.html" decorator="/view/decorators/oms/Schedule.html"/>
+
 </sitemesh>

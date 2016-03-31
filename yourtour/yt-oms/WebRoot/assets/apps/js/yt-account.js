@@ -76,7 +76,7 @@ jQuery.Account = {
         account.password = password;
 
         $.Request.post("/rest/oms/account/authenticate",account,function(result){
-            window.location = "Home";
+            window.location = "Home.html";
         })
     }
 };
