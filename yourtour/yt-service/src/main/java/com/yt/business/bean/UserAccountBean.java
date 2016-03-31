@@ -58,7 +58,7 @@ public class UserAccountBean extends BaseBeanImpl {
 		FROOZE
 	}
 
-	public static enum AccountType {
+	public enum AccountType {
 		/**
 		 * 管理账号，一般没有业务功能，仅具有账户管理、安全管理、模块管理、权限管理等功能
 		 */
@@ -91,7 +91,7 @@ public class UserAccountBean extends BaseBeanImpl {
 	private Status status = Status.VALIDATED;
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_BELONG, type = UserProfileBean.class, direction = Direction.OUTGOING)
-	private UserProfileBean profile;
+	private transient UserProfileBean profile;
 
 	public UserAccountBean() {
 		super();

@@ -127,6 +127,7 @@ public class UserRestResource extends RestResource {
 	}
 
 	@POST
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	@Path("/register/expert")
 	public ResponseDataVO<UserVO> registerExpert(
 			@FormDataParam("application") String json,
