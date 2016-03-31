@@ -5,6 +5,7 @@ package com.yt.oms.vo.resource;
 
 import com.yt.business.bean.ResourceBean.ResourceType;
 import com.yt.business.bean.SceneResourceBean;
+import com.yt.core.utils.StringUtils;
 
 public class SceneResourceVO extends ResourceVO {
 	private String intro; // 简介
@@ -20,7 +21,7 @@ public class SceneResourceVO extends ResourceVO {
 		SceneResourceVO vo = new SceneResourceVO();
 		vo.fromBean(bean);
 		vo.setRowKey(bean.getName());
-		vo.setIntro(bean.getIntro());
+		vo.setIntro(StringUtils.truncate(bean.getIntro(), 30));
 		vo.setTicket(bean.getTicket());
 		vo.setSceneMap(bean.getSceneMap());
 		vo.setSpecialScene(bean.getSpecialScene());

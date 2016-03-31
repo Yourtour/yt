@@ -24,33 +24,35 @@
 
                             <div class="form-group">
                                 <label for="accommodationStandard" class="col-md-2 control-label">住宿标准</label>
-                                <div class="col-md-4">
+                                <div class="col-md-10">
                                     <textarea class="form-control" name="accommodationStandard" id="accommodationStandard" rows="3" cols="160" placeholder="住宿标准"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="specialRoom" class="col-md-2 control-label">特色房</label>
-                                <div class="col-md-4">
+                                <div class="col-md-10">
                                     <textarea class="form-control" name="specialRoom" id="specialRoom" rows="3" cols="160" placeholder="特色房"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="roomEquipment" class="col-md-2 control-label">房间设施</label>
-                                <div class="col-md-4">
+                                <div class="col-md-10">
                                     <textarea class="form-control" name="roomEquipment" id="roomEquipment" rows="3" cols="160" placeholder="房间设施"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="networkInfo" class="col-md-2 control-label">网络信息</label>
-                                <div class="col-md-4">
+                                <div class="col-md-10">
                                     <textarea class="form-control" name="networkInfo" id="networkInfo" rows="3" cols="160" placeholder="网络信息"></textarea>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="files" class="col-md-2 control-label">酒店图片</label>
-                                <textarea class="form-control" name="imageUrl" disabled id="imageUrl"></textarea>
-                                <div class="col-md-2">
+                                <div class="col-md-6">
+                                    <textarea class="form-control" name="imageUrl" disabled id="imageUrl"></textarea>
+                                </div>
+                                <div class="col-md-4">
                                     <input type="file" id="files" name="files" multiple="multiple">
                                 </div>
                             </div>
