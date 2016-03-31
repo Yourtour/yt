@@ -24,19 +24,19 @@
 
                             <div class="form-group">
                                 <label for="title" class="col-md-2 control-label">标题</label>
-                                <div class="col-md-8">
+                                <div class="col-md-10">
                                     <input type="text" class="form-control" name="title" id="title" placeholder="标题">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="subTitle" class="col-md-2 control-label">子标题</label>
-                                <div class="col-md-8">
+                                <div class="col-md-10">
                                     <input type="text" class="form-control" name="subTitle" id="subTitle" placeholder="子标题">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="content" class="col-md-2 control-label">内容</label>
-                                <div class="col-md-8">
+                                <div class="col-md-10">
                                     <textarea class="form-control" name="content" id="content" rows="3" cols="160" placeholder="内容"></textarea>
                                 </div>
                             </div>
@@ -52,8 +52,10 @@
                             </div>
                             <div class="form-group">
                                 <label for="files" class="col-md-2 control-label">Banner图片</label>
-                                <textarea class="form-control" name="imageUrl" disabled id="imageUrl"></textarea>
-                                <div class="col-md-2">
+                                <div class="col-md-6">
+                                    <textarea class="form-control" name="imageUrl" rows="3" disabled id="imageUrl"></textarea>
+                                </div>
+                                <div class="col-md-4">
                                     <input type="file" id="files" name="files" multiple="multiple">
                                 </div>
                             </div>

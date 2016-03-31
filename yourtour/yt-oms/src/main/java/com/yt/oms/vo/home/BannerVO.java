@@ -10,6 +10,7 @@ import com.yt.business.bean.BannerBean;
 import com.yt.business.bean.BannerBean.Status;
 import com.yt.business.bean.RouteMainBean;
 import com.yt.business.bean.UserProfileBean;
+import com.yt.core.utils.StringUtils;
 import com.yt.vo.BaseVO;
 
 /**
@@ -126,7 +127,7 @@ public class BannerVO extends BaseVO {
 		vo.fromBean(bean);
 		vo.setTitle(bean.getTitle());
 		vo.setSubTitle(bean.getSubTitle());
-		vo.setContent(bean.getContent());
+		vo.setContent(StringUtils.truncate(bean.getContent(), 30));
 		vo.setImageUrl(bean.getImageUrl());
 		vo.setStatus(bean.getStatus());
 		vo.setStartTime(sdf.format(new Date(bean.getStartTime())));

@@ -24,32 +24,34 @@
 
                             <div class="form-group">
                                 <label for="deliciouFood" class="col-md-2 control-label">特色菜品</label>
-                                <div class="col-md-4">
+                                <div class="col-md-10">
                                     <textarea class="form-control" name="deliciouFood" id="deliciouFood" rows="3" cols="160" placeholder="特色菜品"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="foodStandard" class="col-md-2 control-label">餐饮标准</label>
-                                <div class="col-md-4">
+                                <div class="col-md-10">
                                     <textarea class="form-control" name="foodStandard" id="foodStandard" rows="3" cols="160" placeholder="餐饮标准"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="foodTags" class="col-md-2 control-label">美食标签</label>
-                                <div class="col-md-4">
+                                <div class="col-md-10">
                                     <textarea class="form-control" name="foodTags" id="foodTags" rows="3" cols="160" placeholder="美食标签"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="networkInfo" class="col-md-2 control-label">网络信息</label>
-                                <div class="col-md-4">
+                                <div class="col-md-10">
                                     <textarea class="form-control" name="networkInfo" id="networkInfo" rows="3" cols="160" placeholder="网络信息"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="files" class="col-md-2 control-label">美食图片</label>
-                                <textarea class="form-control" name="imageUrl" disabled id="imageUrl"></textarea>
-                                <div class="col-md-2">
+                                <div class="col-md-6">
+                                    <textarea class="form-control" name="imageUrl" disabled id="imageUrl"></textarea>
+                                </div>
+                                <div class="col-md-4">
                                     <input type="file" id="files" name="files" multiple="multiple">
                                 </div>
                             </div>

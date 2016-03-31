@@ -24,38 +24,40 @@
 
                             <div class="form-group">
                                 <label for="intro" class="col-md-2 control-label">游玩简介</label>
-                                <div class="col-md-4">
+                                <div class="col-md-10">
                                     <textarea class="form-control" name="intro" id="intro" rows="3" cols="160" placeholder="游玩简介"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="ticket" class="col-md-2 control-label">门票信息</label>
-                                <div class="col-md-4">
+                                <div class="col-md-10">
                                     <textarea class="form-control" name="ticket" id="ticket" rows="3" cols="160" placeholder="门票信息"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="sceneMap" class="col-md-2 control-label">景区地图</label>
-                                <div class="col-md-4">
+                                <div class="col-md-10">
                                     <input type="text" class="form-control" name="sceneMap" id="sceneMap" placeholder="景区地图">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="specialScene" class="col-md-2 control-label">必玩景点</label>
-                                <div class="col-md-4">
+                                <div class="col-md-10">
                                     <textarea class="form-control" name="specialScene" id="specialScene" rows="3" cols="160" placeholder="必玩景点"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="sceneTraffic" class="col-md-2 control-label">景区交通</label>
-                                <div class="col-md-4">
+                                <div class="col-md-10">
                                     <input type="text" class="form-control" name="sceneTraffic" id="sceneTraffic" placeholder="景区交通">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="files" class="col-md-2 control-label">游玩图片</label>
-                                <textarea class="form-control" name="imageUrl" disabled id="imageUrl"></textarea>
-                                <div class="col-md-2">
+                                <div class="col-md-6">
+                                    <textarea class="form-control" name="imageUrl" disabled id="imageUrl"></textarea>
+                                </div>
+                                <div class="col-md-4">
                                     <input type="file" id="files" name="files" multiple="multiple">
                                 </div>
                             </div>
