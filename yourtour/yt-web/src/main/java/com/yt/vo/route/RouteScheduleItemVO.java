@@ -3,44 +3,41 @@ package com.yt.vo.route;
 import com.yt.business.bean.*;
 import com.yt.vo.BaseVO;
 
-public class RouteActivityItemVO extends BaseVO {
+public class RouteScheduleItemVO extends BaseVO {
 	private String title, memo, option, imageUrl;
 	private int index;
 	private Long resourceActivityItemId;
 
-	public static RouteActivityItemVO transform(RouteActivityItemBean bean) {
+	public static RouteScheduleItemVO transform(RouteScheduleItemBean bean) {
 		if (bean == null) {
 			return null;
 		}
-		RouteActivityItemVO vo = new RouteActivityItemVO();
+		RouteScheduleItemVO vo = new RouteScheduleItemVO();
 		vo.fromBean(bean);
 
-		vo.setResourceActivityItemId(bean.getResourceActivityItemId());
 		ResourceActivityItemBean resourceActivityItem = bean.getResourceActivityItem();
 		vo.setTitle(resourceActivityItem.getTitle());
 		vo.setMemo(resourceActivityItem.getMemo());
-		vo.setIndex(bean.getIndex());
 		vo.setOption(bean.getOption());
 		vo.setImageUrl(bean.getImageUrl());
 
 		return vo;
 	}
 
-	public static RouteActivityItemBean transform(RouteActivityItemVO vo) {
+	public static RouteScheduleItemBean transform(RouteScheduleItemVO vo) {
 		if (vo == null) {
 			return null;
 		}
-		RouteActivityItemBean bean = new RouteActivityItemBean();
+		RouteScheduleItemBean bean = new RouteScheduleItemBean();
 		vo.toBean(bean);
 		bean.setTitle(vo.getTitle());
 		bean.setMemo(vo.getMemo());
-		bean.setIndex(vo.getIndex());
 		bean.setOption(vo.getOption());
 
 		return bean;
 	}
 
-	public RouteActivityItemVO() {
+	public RouteScheduleItemVO() {
 		super();
 	}
 

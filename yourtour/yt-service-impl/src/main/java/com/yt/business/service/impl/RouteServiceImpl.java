@@ -33,16 +33,13 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 	private CrudOperate<RouteMainBean> routeCrudOperate;
 
 	@Autowired
-	private CrudOperate<RouteActivityBean> activityCrudOperate;
-
-	@Autowired
 	private CrudOperate<RouteProvisionBean> provisionCrudOperate;
 
 	@Autowired
 	private CrudOperate<RouteScheduleBean> scheduleCrudOperate;
 
 	@Autowired
-	private CrudOperate<RouteActivityItemBean> activityItemCrudOperate;
+	private CrudOperate<RouteScheduleItemBean> activityItemCrudOperate;
 
 	@Autowired
 	private CrudOperate<ResourceActivityItemBean> resourceActivityItemCrudOperate;
@@ -127,7 +124,7 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 		}
 
 		//保存日程信息
-		List<RouteScheduleBean> existedSchedules = this.repository.getRouteSchedules(route.getId());
+		List<RouteScheduleBean> existedSchedules = this.repository.getSchedules(route.getId());
 		if (CollectionUtils.isEmpty(existedSchedules) && CollectionUtils.isNotEmpty(schedules)) {
 			for (RouteScheduleBean schedule : schedules) {
 				schedule.setRouteMain(route);
@@ -169,22 +166,6 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 		if (sSchedules != null) {
 			int len = tSchedules.size();
 			for (int index = 0; index < len && index < sSchedules.size(); index++) {
-				List<RouteActivityBean> sActivities = sSchedules.get(index)
-						.getActivities();
-				List<RouteActivityBean> tActivities = new ArrayList<>();
-
-				for (RouteActivityBean sActivity : sActivities) {
-					RouteActivityBean tActivity = (RouteActivityBean) sActivity
-							.clone();
-					tActivity.setUpdatedUserId(operatorId);
-					tActivity.setCreatedUserId(operatorId);
-					tActivity.setSchedule(tSchedules.get(index));
-
-					activityCrudOperate.save(tActivity);
-					tActivities.add(tActivity);
-				}
-
-				tSchedules.get(index).setActivities(tActivities);
 			}
 		}
 
@@ -258,35 +239,6 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 	@Override
 	public RouteMainBean getRoute(Long routeId) throws Exception {
 		RouteMainBean route = routeCrudOperate.get(routeId);
-
-		if (route != null) {
-			List<RouteScheduleBean> schedules = route.getSchedules();
-			if (schedules != null && schedules.size() > 0) {
-				List<RouteScheduleBean> newSchedules = new Vector<RouteScheduleBean>(
-						schedules.size());
-				for (RouteScheduleBean schedule : schedules) {
-					RouteScheduleBean newSchedule = scheduleCrudOperate
-							.get(schedule.getId());
-					List<RouteActivityBean> activities = newSchedule
-							.getActivities();
-					if (activities != null && activities.size() > 0) {
-						List<RouteActivityBean> newActivities = new Vector<RouteActivityBean>(
-								activities.size());
-						for (RouteActivityBean activity : activities) {
-							RouteActivityBean newActivity = activityCrudOperate
-									.get(activity.getId());
-							newActivities.add(newActivity);
-						}
-
-						newSchedule.getActivities().clear();
-						newSchedule.getActivities().addAll(newActivities);
-					}
-					newSchedules.add(newSchedule);
-				}
-				route.getSchedules().clear();
-				route.getSchedules().addAll(newSchedules);
-			}
-		}
 		return route;
 	}
 
@@ -319,67 +271,8 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 	}
 
 	@Override
-	public RouteActivityBean getScheduleActivity(Long activityId)
-			throws Exception {
-		RouteActivityBean activity = activityCrudOperate.get(activityId);
-
-		if (activity != null) {
-			List<RouteActivityItemBean> items = activity.getItems();
-			if (items != null) {
-				for (RouteActivityItemBean item : items) {
-					if (item.getResourceActivityItemId() == null)
-						continue;
-
-					item.setResourceActivityItem(resourceActivityItemCrudOperate
-							.get(item.getResourceActivityItemId(), false));
-				}
-			}
-		}
-
-		return activity;
-	}
-
-	@Override
-	public void saveScheduleActivity(Long routeId, RouteActivityBean activity,
-			Long operatorId) throws Exception {
-		RouteMainBean route = routeCrudOperate.get(routeId);
-		if (route == null) {
-			throw new Exception("No Route found for id=" + routeId);
-		}
-
-		this.updateBaseInfo(activity, operatorId);
-
-		activityCrudOperate.save(activity);
-	}
-
-	@Override
-	public void deleteScheduleActivity(Long routeId, Long activityId,
-			Long operatorId) throws Exception {
-		RouteActivityBean activity = this.activityCrudOperate.get(activityId);
-		if (activity == null) {
-			LOG.warn(String.format(
-					"No activity found for route=[%d] and activity=[%d]",
-					routeId, activityId));
-			return;
-		}
-
-		this.updateBaseInfo(activity, operatorId);
-		this.activityCrudOperate.delete(activity);
-	}
-
-	@Override
-	public void deleteScheduleActivityItem(Long routeId, Long activityId,
-			Long itemId, Long operatorId) throws Exception {
-		RouteActivityItemBean item = this.activityItemCrudOperate.get(itemId);
-		if (item == null) {
-			LOG.warn(String
-					.format("No activity item found for route=[%d], activity=[%d], itemId=%d ",
-							routeId, activityId, itemId));
-			return;
-		}
-
-		this.updateBaseInfo(item, operatorId);
-		this.activityItemCrudOperate.delete(item);
+	public List<RouteScheduleBean> getRouteSchedules(Long routeId) throws Exception {
+		return this.repository.getSchedules(routeId);
 	}
 
 	@Override
@@ -395,8 +288,7 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 	}
 
 	@Override
-	public void deleteRouteProvision(Long routeId, Long provisionId,
-			Long operatorId) throws Exception {
+	public void deleteRouteProvision(Long routeId, Long provisionId, Long operatorId) throws Exception {
 		RouteProvisionBean provision = provisionCrudOperate.get(provisionId);
 		if (provision == null) {
 			LOG.warn(String.format(
@@ -411,6 +303,6 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 
 	@Override
 	public List<RouteMainBean> getRoutes(Long nextCursor, int limit, int total, Map<String, Object> params) throws Exception {
-		return this.routeCrudOperate.get();
+		return this.routeCrudOperate.get(false);
 	}
 }

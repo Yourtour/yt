@@ -10,9 +10,9 @@ import com.yt.hbase.annotation.HbaseTable;
 import com.yt.neo4j.annotation.Neo4jRelationship;
 import com.yt.neo4j.annotation.Neo4jRelationship.Direction;
 
-@HbaseTable(name = "T_ROUTE_ACTIVITY_ITEM")
+@HbaseTable(name = "T_ROUTE_SCHEDULE_ITEM")
 @NodeEntity
-public class RouteActivityItemBean extends BaseBeanImpl implements Cloneable{
+public class RouteScheduleItemBean extends BaseBeanImpl implements Cloneable{
 	private static final long serialVersionUID = 6259294378320824143L;
 
 	@HbaseColumn(name = "title")
@@ -25,22 +25,17 @@ public class RouteActivityItemBean extends BaseBeanImpl implements Cloneable{
 
 	private String option; //0：可选 1：必须
 
-	private Long   resourceActivityItemId;
-
-	@HbaseColumn(name = "idx")
-	private int index = 1; // 行程活动排序号
-
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = RouteActivityBean.class, direction = Direction.INCOMING)
-	private transient RouteActivityBean activity = null;
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = RouteScheduleBean.class, direction = Direction.INCOMING)
+	private transient RouteScheduleBean schedule = null;
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RELATED, type = ResourceActivityItemBean.class, direction = Direction.OUTGOING)
 	private transient ResourceActivityItemBean resourceActivityItem = null;
 
-	public RouteActivityItemBean() {
+	public RouteScheduleItemBean() {
 		super();
 	}
 
-	public RouteActivityItemBean(Long itemId) {
+	public RouteScheduleItemBean(Long itemId) {
 		super(itemId);
 	}
 
@@ -52,28 +47,12 @@ public class RouteActivityItemBean extends BaseBeanImpl implements Cloneable{
 		this.title = title;
 	}
 
-	public Long getResourceActivityItemId() {
-		return resourceActivityItemId;
-	}
-
-	public void setResourceActivityItemId(Long resourceActivityItemId) {
-		this.resourceActivityItemId = resourceActivityItemId;
-	}
-
 	public String getMemo() {
 		return memo;
 	}
 
 	public void setMemo(String memo) {
 		this.memo = memo;
-	}
-
-	public int getIndex() {
-		return index;
-	}
-
-	public void setIndex(int index) {
-		this.index = index;
 	}
 
 	public String getOption() {
@@ -92,12 +71,12 @@ public class RouteActivityItemBean extends BaseBeanImpl implements Cloneable{
 		this.imageUrl = imageUrl;
 	}
 
-	public RouteActivityBean getActivity() {
-		return activity;
+	public RouteScheduleBean getSchedule() {
+		return schedule;
 	}
 
-	public void setActivity(RouteActivityBean activity) {
-		this.activity = activity;
+	public void setSchedule(RouteScheduleBean schedule) {
+		this.schedule = schedule;
 	}
 
 	public ResourceActivityItemBean getResourceActivityItem() {
@@ -110,10 +89,9 @@ public class RouteActivityItemBean extends BaseBeanImpl implements Cloneable{
 
 	@Override
 	public Object clone() throws CloneNotSupportedException {
-		RouteActivityItemBean item = new RouteActivityItemBean();
+		RouteScheduleItemBean item = new RouteScheduleItemBean();
 
 		item.setTitle(this.getTitle());
-		item.setIndex(this.getIndex());
 		item.setOption(this.getOption());
 		item.setImageUrl(this.getImageUrl());
 		item.setUpdatedTime(DateUtils.getCurrentTimeMillis());

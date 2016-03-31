@@ -1,12 +1,12 @@
 package com.yt.business.repository.neo4j;
 
-import java.util.List;
-
 import com.yt.business.bean.*;
 import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.neo4j.annotation.QueryResult;
 import org.springframework.data.neo4j.annotation.ResultColumn;
 import org.springframework.data.neo4j.repository.GraphRepository;
+
+import java.util.List;
 
 public interface RouteMainBeanRepository extends GraphRepository<RouteMainBean> {
 	/**
@@ -89,7 +89,7 @@ public interface RouteMainBeanRepository extends GraphRepository<RouteMainBean> 
 	public List<PlaceBean> getPlaces(Long routeId);
 
 	/**
-	 * 获取行程相关目的地
+	 * 获取一个行程的日程安排
 	 * @param routeId
 	 * @return
 	 */
@@ -98,7 +98,7 @@ public interface RouteMainBeanRepository extends GraphRepository<RouteMainBean> 
 
 	/**
 	 * 获取和指定用户相关的行程。
-	 * 
+	 *
 	 * @param userId
 	 * @return
 	 */
@@ -157,14 +157,6 @@ public interface RouteMainBeanRepository extends GraphRepository<RouteMainBean> 
 
 	@Query("START route=node({0}) MATCH route -[r:MEMBER]- (user:UserProfileBean) RETURN user")
 	public List<UserProfileBean> getRouteMemberUserProfiles(Long routeId);
-
-	/**
-	 * 
-	 * @param routeId
-	 * @return
-	 */
-	@Query("START route=node({0}) MATCH route -- (schedules:RouteScheduleBean) return schedules")
-	public List<RouteScheduleBean> getRouteSchedules(Long routeId);
 
 	/**
 	 * 

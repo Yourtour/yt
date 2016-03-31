@@ -5,6 +5,7 @@ import com.sun.jersey.multipart.FormDataParam;
 import com.yt.business.bean.ActivityBean;
 import com.yt.business.bean.ActivityContentBean;
 import com.yt.business.bean.RouteMainBean;
+import com.yt.business.bean.RouteScheduleBean;
 import com.yt.business.service.IActivityService;
 import com.yt.business.service.IRouteService;
 import com.yt.core.utils.BeanUtils;
@@ -12,6 +13,7 @@ import com.yt.core.utils.CollectionUtils;
 import com.yt.core.utils.StringUtils;
 import com.yt.oms.vo.activity.ActivityContentVO;
 import com.yt.oms.vo.activity.ActivityVO;
+import com.yt.oms.vo.route.RouteScheduleVO;
 import com.yt.oms.vo.route.RouteVO;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponseVO;
@@ -122,5 +124,27 @@ public class RouteRestResource extends RestResource {
         return new ResponseDataVO<>(RouteVO.transform(route));
     }
 
+    /**
+     * 获取行程的日程安排信息
+     * @param routeId
+     * @return
+     */
+    @GET
+    @Path("/schedules/{routeId}")
+    public ResponseDataVO<List<RouteScheduleVO>> getScheduleInfoes(@PathParam("routeId") Long routeId) throws Exception{
+        List<RouteScheduleVO> schedules = new ArrayList<>();
 
+        List<RouteScheduleBean> scheduleBeans = this.routeService.getRouteSchedules(routeId);
+        if(CollectionUtils.isNotEmpty(scheduleBeans)){
+            for(RouteScheduleBean scheduleBean : scheduleBeans){
+                if(scheduleBean instanceof  RouteScheduleBean){ //日程数据
+
+                }else{ //日程安排
+
+                }
+            }
+        }
+
+        return new ResponseDataVO<>(schedules);
+    }
 }

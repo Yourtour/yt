@@ -70,6 +70,10 @@ jQuery.Request={
     }
 };
 
+/**
+ * 日期工具包
+ * @type {{format: Function, formatLong: Function}}
+ */
 jQuery.Date = {
     /**
      * 日期格式化输出
@@ -86,27 +90,27 @@ jQuery.Date = {
         }
 
         var o = {
-            "M+": this.getMonth() + 1,
-            "d+": this.getDate(),
-            "h+": this.getHours(),
-            "m+": this.getMinutes(),
-            "s+": this.getSeconds(),
-            "q+": Math.floor((this.getMonth() + 3) / 3),
-            "S": this.getMilliseconds()
+            "M+": date.getMonth() + 1,
+            "d+": date.getDate(),
+            "h+": date.getHours(),
+            "m+": date.getMinutes(),
+            "s+": date.getSeconds(),
+            "q+": Math.floor((date.getMonth() + 3) / 3),
+            "S": date.getMilliseconds()
         }
-        if (/(y+)/.test(format)) {
-            format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        if (/(y+)/.test(pattern)) {
+            pattern = pattern.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
         }
         for (var k in o) {
-            if (new RegExp("(" + k + ")").test(format)) {
-                format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+            if (new RegExp("(" + k + ")").test(pattern)) {
+                pattern = pattern.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
             }
         }
-        return format;
+        return pattern;
     },
 
     formatLong:function(l, pattern){
-        return format(new Date(l), pattern);
+        return this.format(new Date(l), pattern);
     }
 
 };
@@ -169,10 +173,16 @@ jQuery.Page={
         var name = element.attr("name");
         if(element.is('input')){
             if(type.match(re)){
-                element.val(value);
+                if(element.hasClass('date-picker')){
+                    if( typeof value =='number' && value != 0){
+                        element.val($.Date.formatLong(value));
+                    }
+                }else {
+                    element.val(value);
 
-                if(element.hasClass('search-item')){
-                    element.lookup();
+                    if (element.hasClass('search-item')) {
+                        element.lookup();
+                    }
                 }
             }else if (type == 'radio'){
                 var radios = $("input[name='" + name + "']");

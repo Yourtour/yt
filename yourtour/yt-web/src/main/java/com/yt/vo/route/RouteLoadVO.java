@@ -7,7 +7,6 @@ import java.util.Comparator;
 import java.util.List;
 
 import com.yt.business.bean.ResourceBean;
-import com.yt.business.bean.RouteActivityBean;
 import com.yt.business.bean.RouteMainBean;
 import com.yt.business.bean.RouteProvisionBean;
 import com.yt.business.bean.RouteScheduleBean;
@@ -109,7 +108,6 @@ public class RouteLoadVO implements Serializable {
 				}
 			});
 
-			RouteActivityBean activityBean = null;
 			for (RouteScheduleBean scheduleBean : scheduleBeans) {
 				RouteSchedule group = new RouteSchedule();
 				group.setId(scheduleBean.getId().toString());
@@ -122,59 +120,6 @@ public class RouteLoadVO implements Serializable {
 				group.setDate(scheduleBean.getDate());
 				group.setFirst(true);
 				schedules.add(group);
-
-				List<RouteActivityBean> activities = scheduleBean.getActivities();
-				if (CollectionUtils.isNotEmpty(activities)) {
-					Collections.sort(activities, new Comparator<RouteActivityBean>() {
-						@Override
-						public int compare(RouteActivityBean o1, RouteActivityBean o2) {
-							return o1.getStartTime().compareTo(o2.getStartTime());
-						}
-					});
-
-					for(int i  = 0; i < activities.size(); i++){
-						activityBean = activities.get(i);
-
-						RouteSchedule activity = new RouteSchedule();
-						activity.setTitle(activityBean.getTitle());
-						activity.setMemo(activityBean.getMemo());
-						activity.setType(TYPE.ScheduleItem);
-						activity.setParentId(group.getId());
-						activity.setId(activityBean.getId().toString());
-						activity.setDate(activityBean.getDate());
-						activity.setStartTime(getTime(activityBean.getStartTime()));
-						activity.setEndTime(getTime(activityBean.getEndTime()));
-						activity.setIndex(activityBean.getIndex());
-
-						if (StringUtils.isNull(activityBean.getPrice()) || StringUtils.isNull(activityBean.getCurrency())) {
-							activity.setPrice("无价格信息");
-						} else {
-							Constants.Currency currency = Constants.Currency.getCurrency(activityBean.getCurrency());
-							activity.setPrice(currency.symbol + " " + activityBean.getPrice() + currency.unit + "/人");
-						}
-
-						ResourceBean resource = activityBean.getResource();
-						if (resource != null) {
-							activity.setImageUrl(activityBean.getResource().getImageUrl());
-							activity.setResourceId(resource.getId().toString());
-							activity.setResourceType(resource.getType().toString());
-							activity.setCommentNum(resource.getCommentNum());
-							activity.setShareNum(resource.getShareNum());
-							activity.setFavoriteNum(resource.getFavoriteNum());
-						}
-
-						if( i > 0){
-							RouteSchedule traffic = new RouteSchedule();
-							traffic.setType(TYPE.ScheduleJoin);
-							traffic.setTitle("1.5km");
-							traffic.setMemo("建议步行");
-							schedules.add(traffic);
-						}
-						schedules.add(activity);
-					}
-
-					schedules.get(schedules.size() - 1).setLast(true);
-				}
 			}
 		}
 

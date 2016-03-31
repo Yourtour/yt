@@ -103,25 +103,30 @@ jQuery.Route = {
                 },
 
                 {
-                    "mData": "duration",
-                    "sWidth": "10%",
-                    "sClass":"center",
+                    "mData": "startDate",
+                    "sWidth": "15%",
                     "mRender": function (data, type, row) {
                         var value = "";
-                        if(row.startDate > 0) {
+                        if(data > 0) {
                             value += $.Date.formatLong(row.startDate);
-
                             value += ' 到 ' + $.Date.formatLong(row.endDate);
                         }
-
-                        value += data;
                         return value;
                     }
                 },
 
                 {
+                    "mData": "duration",
+                    "sWidth": "10%",
+                    "sClass":"center",
+                    "mRender": function (data, type, row) {
+                        return data + "天";
+                    }
+                },
+
+                {
                     "mData": "tags",
-                    "sWidth": "35%"
+                    "sWidth": "20%"
                 }
             ]
         });
