@@ -35,9 +35,18 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="value" class="col-md-1 control-label">天数</label>
-                                <div class="col-md-5">
-                                    <input type="text" class="form-control" name="duration" id="duration" placeholder="行程天数"> </div>
+                                <label for="value" class="col-md-1 control-label">安排</label>
+                                <div class="col-md-2">
+                                    <input id="startDate" name="startDate" class="form-control input-medium date-picker" size="12" type="text" value="" />
+                                </div>
+
+                                <div class="col-md-2">
+                                    <input id="endDate" name="endDate" class="form-control input-medium date-picker" size="12" type="text" value="" />
+                                </div>
+
+                                <div class="col-md-1">
+                                    <input type="text" class="form-control" name="duration" id="duration" placeholder="行程天数">
+                                </div>
 
                                 <label for="value" class="col-md-1 control-label">目的地</label>
                                 <div class="col-md-5">

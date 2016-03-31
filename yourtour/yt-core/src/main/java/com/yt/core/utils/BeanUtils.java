@@ -56,6 +56,7 @@ public class BeanUtils {
 				Object value = getValue(sourceProp.getReadMethod(), source, new Object[0]);
 				if (value != null) {
 					if(value.getClass().isPrimitive() || value.getClass().equals(String.class)){
+						System.out.println(value.getClass().getName());
 						setValue(targetWriteMethod, target, new Object[]{value});
 					}
 					/*//判断getter与setter的参数类型是否匹配，否则容易报IllegalArgumentException: argument type mismatch

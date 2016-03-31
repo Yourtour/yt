@@ -37,12 +37,12 @@
      </layout>
   </appender>
   
-  <category name="com.yt">      
+  <category name="com.yt"  additivity="false">
     <level value="DEBUG" />
     <appender-ref ref="CONSOLE" />
   </category>
   
-  <category name="org.springframework">
+  <category name="org.springframework"  additivity="false">
     <level value="WARN" />
     <appender-ref ref="CONSOLE" />
   </category> 

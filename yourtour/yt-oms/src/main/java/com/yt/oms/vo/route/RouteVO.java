@@ -16,8 +16,8 @@ public class RouteVO implements Serializable {
     private String 	name; // 行程名称
     private String 	lineName;
     private String 	imageUrl;
-    private long 	startDate; // 行程开始日期
-    private long    endDate;
+    private Long 	startDate; // 行程开始日期
+    private Long    endDate;
     private int		duration;
 
     private int  charge; //费用
@@ -42,7 +42,8 @@ public class RouteVO implements Serializable {
         routeVO.setId(bean.getId());
         routeVO.setName(bean.getName());
         routeVO.setLineName(bean.getLineName());
-        routeVO.setStartDate(new Date(bean.getStartDate()).getTime());
+        routeVO.setStartDate(bean.getStartDate());
+        routeVO.setEndDate(bean.getEndDate());
         routeVO.setImageUrl(bean.getImageUrl());
         routeVO.setToPlaces(bean.getToPlaces());
         routeVO.setDuration(bean.getDuration());
@@ -184,19 +185,19 @@ public class RouteVO implements Serializable {
         this.tags = tags;
     }
 
-    public long getStartDate() {
+    public Long getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(long startDate) {
+    public void setStartDate(Long startDate) {
         this.startDate = startDate;
     }
 
-    public long getEndDate() {
+    public Long getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(long endDate) {
+    public void setEndDate(Long endDate) {
         this.endDate = endDate;
     }
 

@@ -12,6 +12,11 @@ jQuery.Route = {
             formview = $("#Page_RouteFormView"),
             scheduleformview = $("#Page_ScheduleFormView");
 
+        $('.date-picker', formview).datepicker({
+            format: 'yyyy-mm-dd',
+            clearBtn:true
+        });
+
         $("#btn_add", listview).on('click', function(){
             me.createRouteInfo();
         });
@@ -81,12 +86,41 @@ jQuery.Route = {
                 },
 
                 {
-                    "mData": "duration",
-                    "sWidth": "10%"
+                    "mData": "toPlaces",
+                    "sWidth": "10%",
+                    "mRender": function (data, type, row) {
+                        var places = "";
+                        if(data){
+                            var arrPlaces = data.split("|");
+                            $.each(arrPlaces, function(index, place){
+                                if(index > 0) places += ",";
+
+                                places += place.split(",")[1];
+                            })
+                        }
+                        return places;
+                    }
                 },
 
                 {
-                    "mData": "name",
+                    "mData": "duration",
+                    "sWidth": "10%",
+                    "sClass":"center",
+                    "mRender": function (data, type, row) {
+                        var value = "";
+                        if(row.startDate > 0) {
+                            value += $.Date.formatLong(row.startDate);
+
+                            value += ' 到 ' + $.Date.formatLong(row.endDate);
+                        }
+
+                        value += data;
+                        return value;
+                    }
+                },
+
+                {
+                    "mData": "tags",
                     "sWidth": "35%"
                 }
             ]

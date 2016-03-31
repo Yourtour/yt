@@ -54,7 +54,7 @@
                                     <div class="timeline-body">
                                         <div class="timeline-body-head">
                                             <div class="timeline-body-head-caption">
-                                                <a href="javascript:;" class="timeline-body-title font-blue-madison">Andres Iniesta</a>
+                                                <a href="javascript:;" class="timeline-body-title font-blue-madison">无锡苏宁凯悦酒店</a>
                                                 <span class="timeline-body-time font-grey-cascade">Replied at 7:45 PM</span>
                                             </div>
                                         </div>
@@ -66,11 +66,12 @@
                                     </div>
 
                                     <div class="timeline-body">
-                                        <div class="timeline-body-head">
-                                            <div class="timeline-body-head-caption">
-                                                <a href="javascript:;" class="timeline-body-title font-blue-madison">Andres Iniesta</a>
-                                                <span class="timeline-body-time font-grey-cascade">Replied at 7:45 PM</span>
-                                            </div>
+                                        <div class="time">
+                                            7:45 PM
+                                        </div>
+
+                                        <div class="title">
+                                            鼋头渚（含游船）/豪华游轮赏太湖+鼋头渚（含游船）
                                         </div>
                                     </div>
                                 </div>
@@ -82,7 +83,7 @@
                                     <div class="timeline-body">
                                         <div class="timeline-body-head">
                                             <div class="timeline-body-head-caption">
-                                                <a href="javascript:;" class="timeline-body-title font-blue-madison">Andres Iniesta</a>
+                                                <a href="javascript:;" class="timeline-body-title font-blue-madison">苏州得月楼</a>
                                                 <span class="timeline-body-time font-grey-cascade">Replied at 7:45 PM</span>
                                             </div>
                                         </div>
