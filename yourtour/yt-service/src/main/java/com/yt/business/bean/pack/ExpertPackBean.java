@@ -47,10 +47,6 @@ public class ExpertPackBean implements Serializable {
 		this.application = application;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	public List<ExpertContentApplicationBean> getContentApplications() {
 		return contentApplications;
 	}
@@ -61,6 +57,19 @@ public class ExpertPackBean implements Serializable {
 
 	public List<ExpertRouteBean> getRoutes() {
 		return routes;
+	}
+
+	public void setContentApplications(
+			List<ExpertContentApplicationBean> contentApplications) {
+		this.contentApplications = contentApplications;
+	}
+
+	public void setServices(List<ExpertServiceBean> services) {
+		this.services = services;
+	}
+
+	public void setRoutes(List<ExpertRouteBean> routes) {
+		this.routes = routes;
 	}
 
 }
