@@ -13,3 +13,82 @@
 button i.fa{
     padding-right:5px;
 }
+
+div[data-role="page"]{
+    font-size:14px;
+}
+
+.timeline .timeline-badge{
+    height:64px;
+    width:80px;
+}
+
+.timeline .timeline-body{
+    margin-left:90px;
+    padding:5px!important;
+}
+
+.timeline .timeline-body .title{
+    margin-top:10px;
+}
+
+.timeline-item .schedule-indicator{
+    background-image: url(../icon/icon-schedule-indicator.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.timeline-item .schedule-indicator.active{
+    background-image: url(../icon/icon-schedule-indicator-active.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.schedule-indicator h2{
+    position: relative;
+    left: 30px;
+    top:5px;
+    font-weight:bold;
+    font-size:18px;
+    color:white;
+}
+
+#Page_ScheduleFormView .search{
+    position: absolute;
+    top:20px;
+    left:35px;
+    z-index:100;
+    width:500px;
+}
+
+#Page_ScheduleFormView .detail{
+    position: relative;
+    top:0px;
+    z-index:999;
+    background:white;
+    padding-top:30px;
+}
+
+.timeline-item .schedule-play{
+    background-image: url(../icon/icon-schedule-play.png);
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height:48px;
+}
+
+.timeline-item .schedule-food{
+    background-image: url(../icon/icon-schedule-food.png);
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height:48px;
+}
+
+.timeline-item .schedule-hotel{
+    background-image: url(../icon/icon-schedule-hotel.png);
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height:48px;
+}

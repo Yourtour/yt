@@ -79,9 +79,8 @@ public class RouteRestResource extends RestResource {
 		RouteMainBean bean = RouteVO.transform(vo);
 
 		UserProfileBean profileBean = new UserProfileBean(SessionUtils.getCurrentLoginUser());
-		bean.setOwner(profileBean);
 
-		routeService.saveRouteMainAndSchedules(bean,SessionUtils.getCurrentLoginUser());
+		routeService.saveRouteInfo(bean,SessionUtils.getCurrentLoginUser());
 
 		RouteLoadVO loadvo = new RouteLoadVO(bean);
 		return new ResponseDataVO<RouteLoadVO>(loadvo);
@@ -101,7 +100,6 @@ public class RouteRestResource extends RestResource {
 
 			RouteMainBean bean = RouteVO.transform(vo);
 			UserProfileBean profileBean = new UserProfileBean(uid);
-			bean.setOwner(profileBean);
 
 			RouteMainBean route = routeService.cloneRoute(routeId, bean, uid);
 
@@ -123,33 +121,6 @@ public class RouteRestResource extends RestResource {
 		RouteScheduleBean bean = RouteScheduleVO.transform(vo);
 		routeService.saveSchedule(bean, SessionUtils.getCurrentLoginUser());
 		return new ResponseDataVO<>();
-	}
-
-	/**
-	 * 保存行程活动值对象到图数据库
-	 * @param routeId
-	 * @param vo
-	 * @return
-	 * @throws Exception
-	 */
-	@POST
-	@Path("/{routeId}/activity/save")
-	public ResponseDataVO<Long> saveScheduleActivity(@PathParam("routeId") Long routeId, RouteActivityVO vo) throws Exception {
-		RouteActivityBean bean = RouteActivityVO.transform(vo);
-
-		routeService.saveScheduleActivity(routeId, bean, SessionUtils.getCurrentLoginUser());
-		if (LOG.isDebugEnabled()) {
-			LOG.debug(String.format(
-					"Save RouteActivityBean['%s'] success.", vo.getRowKey()));
-		}
-		return new ResponseDataVO<Long>(bean.getId());
-	}
-
-	@GET
-	@Path("activity/{activityId}")
-	public ResponseDataVO<RouteActivityVO> getScheduleActivity(@PathParam("activityId") Long activityId) throws Exception {
-		RouteActivityBean activity = routeService.getScheduleActivity(activityId);
-		return new ResponseDataVO<>(RouteActivityVO.transform(activity));
 	}
 
 	/**
@@ -196,20 +167,6 @@ public class RouteRestResource extends RestResource {
 	}
 
 	/**
-	 * 根据指定的行程活动项
-	 * @param routeId
-	 * @param activityId
-	 * @return
-	 * @throws Exception
-	 */
-	@GET
-	@Path("/{routeId}/activity/{activityId}/delete")
-	public ResponseVO deleteScheduleActivity(@PathParam("routeId") Long routeId, @PathParam("activityId") Long activityId) throws Exception{
-			routeService.deleteScheduleActivity(routeId, activityId, SessionUtils.getCurrentLoginUser());
-			return new ResponseVO();
-	}
-
-	/**
 	 * 删除行程准备事项
 	 * @param routeId
 	 * @param provisionId
@@ -220,23 +177,6 @@ public class RouteRestResource extends RestResource {
 	@Path("/{routeId}/provision/{provisionId}/delete")
 	public ResponseVO deleteProvision(@PathParam("routeId") Long routeId, @PathParam("provisionId") Long provisionId) throws Exception{
 		routeService.deleteRouteProvision(routeId, provisionId, SessionUtils.getCurrentLoginUser());
-		return new ResponseVO();
-	}
-
-	/**
-	 * 删除行程中活动安排中活动相
-	 * @param routeId
-	 * @param activityId
-	 * @param itemId
-	 * @return
-	 * @throws Exception
-	 */
-	@POST
-	@Path("/{routeId}/activity/{activityId}/item/{itemId}/delete")
-	public ResponseVO deleteScheduleActivityItem(@PathParam("routeId") Long routeId,
-														   @PathParam("activityId") Long activityId,
-														   @PathParam("itemId") Long itemId) throws Exception {
-		this.routeService.deleteScheduleActivityItem(routeId, activityId, itemId, SessionUtils.getCurrentLoginUser());
 		return new ResponseVO();
 	}
 

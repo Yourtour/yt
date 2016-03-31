@@ -1,7 +1,9 @@
 package com.yt.business.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -15,6 +17,8 @@ import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.stereotype.Service;
 
 import com.yt.PropertiesReader;
+import com.yt.business.PagingDataBean;
+import com.yt.business.bean.ExpertApplicationBean;
 import com.yt.business.bean.UserAccountBean;
 import com.yt.business.bean.UserProfileBean;
 import com.yt.business.common.Constants;
@@ -23,6 +27,7 @@ import com.yt.business.repository.neo4j.UserTuple;
 import com.yt.business.service.IUserService;
 import com.yt.core.common.AppException;
 import com.yt.core.common.StaticErrorEnum;
+import com.yt.core.utils.CollectionUtils;
 import com.yt.core.utils.MessageDigestUtils;
 import com.yt.neo4j.repository.CrudOperate;
 
@@ -41,6 +46,9 @@ public class UserServiceImpl extends ServiceBase implements IUserService {
 
 	@Autowired
 	private CrudOperate<UserAccountBean> accountCrudOperate;
+
+	@Autowired
+	private CrudOperate<ExpertApplicationBean> applicationCrudOperate;
 
 	@Autowired
 	private PropertiesReader propertiesReader;
@@ -71,6 +79,22 @@ public class UserServiceImpl extends ServiceBase implements IUserService {
 	}
 
 	@Override
+	public PagingDataBean<List<UserAccountBean>> getUserProfileInfoes(
+			Long nextCursor, int limit, int total, Map<String, Object> params)
+			throws Exception {
+		List<UserTuple> tuples = repository.getAdminUserProfileInfoes();
+
+		List<UserAccountBean> accounts = new ArrayList<>();
+		if (CollectionUtils.isNotEmpty(tuples)) {
+			for (UserTuple tuple : tuples) {
+				accounts.add(tuple.getAccount());
+			}
+		}
+		return new PagingDataBean<List<UserAccountBean>>(accounts.size(),
+				accounts);
+	}
+
+	@Override
 	public UserProfileBean login(String userName, String password)
 			throws Exception {
 		UserTuple tuple = repository.getUserByUserName(userName);
@@ -79,9 +103,7 @@ public class UserServiceImpl extends ServiceBase implements IUserService {
 		}
 
 		String rPassword = tuple.getAccount().getPwd();
-		if (!rPassword.equals(MessageDigestUtils.digest(
-				propertiesReader.getProperty("digest.algorithm", "SHA-1"),
-				password.trim()))) {
+		if (!rPassword.equals(encryptPassword(password))) {
 			throw new AppException(StaticErrorEnum.AUTHENTICATE_FAIL);
 		}
 
@@ -119,7 +141,7 @@ public class UserServiceImpl extends ServiceBase implements IUserService {
 
 	@CacheEvict(value = "default", key = "#userName")
 	@Override
-	public UserProfileBean regist(String userName, String password)
+	public UserProfileBean register(String userName, String password)
 			throws Exception {
 		UserAccountBean account = accountCrudOperate.get("userName", userName);
 		if (account != null) {
@@ -135,14 +157,45 @@ public class UserServiceImpl extends ServiceBase implements IUserService {
 		account = new UserAccountBean();
 		super.updateBaseInfo(account, profile.getId());
 		account.setUserName(userName);
-		account.setPwd(MessageDigestUtils.digest(
-				propertiesReader.getProperty("digest.algorithm", "SHA-1"),
-				password));
+		account.setPwd(encryptPassword(encryptPassword(password)));
 		account.setProfile(profile);
 
 		this.accountCrudOperate.save(account);
 
 		return account.getProfile();
+	}
+
+	@Override
+	public UserProfileBean register(UserAccountBean account,
+			UserProfileBean profile, Long userId) throws Exception {
+		if (accountCrudOperate.get("userName", account.getUserName()) != null) {
+			throw new AppException(StaticErrorEnum.USER_EXIST);
+		}
+
+		// 创建UserProfile
+		super.updateBaseInfo(profile, userId);
+		profileCrudOperate.save(profile);
+
+		// 创建账号
+		super.updateBaseInfo(account, userId);
+		account.setPwd(encryptPassword(account.getPwd()));
+		account.setProfile(profile);
+		this.accountCrudOperate.save(account);
+
+		return account.getProfile();
+	}
+
+	@Override
+	public UserProfileBean registerExpert(UserAccountBean accountBean,
+			UserProfileBean profileBean, ExpertApplicationBean applicationBean)
+			throws Exception {
+		UserProfileBean profile = this.register(accountBean, profileBean, -1l);
+
+		// 保存申请信息
+		super.updateBaseInfo(applicationBean, -1l);
+		applicationBean.setExpert(profile);
+		this.applicationCrudOperate.save(applicationBean);
+		return profile;
 	}
 
 	@Override
@@ -192,5 +245,11 @@ public class UserServiceImpl extends ServiceBase implements IUserService {
 		Node tarNode = template.getNode(id);
 		template.deleteRelationshipBetween(srcNode, tarNode,
 				Constants.RELATION_TYPE_WATCH);
+	}
+
+	private String encryptPassword(String password) throws Exception {
+		return MessageDigestUtils.digest(
+				propertiesReader.getProperty("digest.algorithm", "SHA-1"),
+				password.trim());
 	}
 }

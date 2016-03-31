@@ -43,6 +43,40 @@ import com.yt.neo4j.annotation.Neo4jRelationship.Direction;
 public class UserAccountBean extends BaseBeanImpl {
 	private static final long serialVersionUID = 6231921514683196684L;
 
+	public enum Status {
+		/**
+		 * 有效的账户
+		 */
+		VALIDATED,
+		/**
+		 * 无效的账户
+		 */
+		INVALIDE,
+		/**
+		 * 冻结的账户
+		 */
+		FROOZE
+	}
+
+	public enum AccountType {
+		/**
+		 * 管理账号，一般没有业务功能，仅具有账户管理、安全管理、模块管理、权限管理等功能
+		 */
+		ADMINISTRATOR,
+		/**
+		 * 运营帐号，一般只能在游徒运维平台中访问系统
+		 */
+		OPERATOR,
+		/**
+		 * 达人帐号，一般只能在游徒达人APP中访问系统
+		 */
+		EXPERT,
+		/**
+		 * 游客账号，一般只能在游徒APP中访问系统
+		 */
+		USER
+	}
+
 	@HbaseColumn(name = "uname")
 	@Indexed
 	private String userName; // 手机
@@ -50,16 +84,14 @@ public class UserAccountBean extends BaseBeanImpl {
 	@HbaseColumn(name = "pwd")
 	private String pwd; // 登录密码
 
-	public enum Status {
-		VALIDATED, INVALIDE, FROOZE
-	}
+	private AccountType type = AccountType.USER;
 
 	@HbaseColumn(name = "stat")
 	@Indexed
 	private Status status = Status.VALIDATED;
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_BELONG, type = UserProfileBean.class, direction = Direction.OUTGOING)
-	private UserProfileBean profile;
+	private transient UserProfileBean profile;
 
 	public UserAccountBean() {
 		super();
@@ -97,9 +129,18 @@ public class UserAccountBean extends BaseBeanImpl {
 	}
 
 	/**
-	 * @param status the status to set
+	 * @param status
+	 *            the status to set
 	 */
 	public void setStatus(Status status) {
 		this.status = status;
+	}
+
+	public AccountType getType() {
+		return type;
+	}
+
+	public void setType(AccountType type) {
+		this.type = type;
 	}
 }

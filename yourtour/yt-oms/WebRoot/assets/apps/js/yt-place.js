@@ -76,7 +76,6 @@ jQuery.Place = {
         var me = this,
             placeId = $("#Page_PlaceListView #id").val();
 
-        console.log(placeId);
         if(placeId && placeId == null){
             bootbox.alert("选择需要删除的目的地。");
 

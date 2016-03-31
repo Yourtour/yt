@@ -1,31 +1,64 @@
 package com.yt.vo.member;
 
-import com.yt.business.bean.ExpertApplicationBean;
-import com.yt.business.bean.ExpertServiceBean;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-/**
- * ��������
- */
-public class ExpertApplicationVO {
-	private String realName;
-	private String certType;
-	private String certNo;
-	private String address;
-	private	String tags;
+import com.yt.business.bean.ExpertApplicationBean;
+import com.yt.business.bean.ExpertApplicationBean.IdentityCardType;
+import com.yt.business.bean.ExpertApplicationBean.Status;
+import com.yt.business.bean.UserAccountBean;
+import com.yt.business.bean.UserProfileBean;
+
+public class ExpertApplicationVO extends RegisterVO {
+	private static final SimpleDateFormat sdf = new SimpleDateFormat(
+			"yyyy-MM-dd");
+	private IdentityCardType identityType = IdentityCardType.IDENTITY_CARD;
+	private String realName, identityCode, identityCardCopyUrl;
+	private String tourGuideCode, tourGuideCopyUrl, tags;
+	private UserVO userProfile;
+	private String requestTime, approvedTime;
+	private String approvedResult;
+	private Status approveState = Status.REQUESTED;
+
+	public static ExpertApplicationVO transform(ExpertApplicationBean bean) {
+		if (bean == null) {
+			return null;
+		}
+		ExpertApplicationVO vo = new ExpertApplicationVO();
+		vo.fromBean(bean);
+		vo.setIdentityType(bean.getIdentityType());
+		vo.setIdentityCode(bean.getIdentityCode());
+		vo.setIdentityCardCopyUrl(bean.getIdentityCardCopyUrl());
+		vo.setRealName(bean.getRealName());
+		vo.setTags(bean.getTags());
+		vo.setTourGuideCode(bean.getTourGuideCode());
+		vo.setTourGuideCopyUrl(bean.getTourGuideCopyUrl());
+		vo.setRequestTime(sdf.format(new Date(bean.getRequestTime())));
+		if (bean.getApprovedTime() > 0) {
+			vo.setApprovedTime(sdf.format(new Date(bean.getApprovedTime())));
+		}
+		vo.setApprovedResult(bean.getApprovedResult());
+		vo.setApproveState(bean.getApproveState());
+		vo.setUserProfile(UserVO.transform(bean.getExpert()));
+		return vo;
+	}
+
+	public static void transform(ExpertApplicationVO vo,
+			UserAccountBean accountBean, UserProfileBean profileBean,
+			ExpertApplicationBean applicationBean) {
+		// TODO
+	}
 
 	public ExpertApplicationVO() {
 		super();
 	}
 
-	public static ExpertApplicationBean getBean(ExpertApplicationVO vo){
-		ExpertApplicationBean bean = new ExpertApplicationBean();
+	public IdentityCardType getIdentityType() {
+		return identityType;
+	}
 
-		bean.setRealName(vo.getRealName());
-		bean.setCertNo(vo.getCertNo());
-		bean.setCertType(vo.getCertType());
-		bean.setTags(vo.getTags());
-
-		return bean;
+	public void setIdentityType(IdentityCardType identityType) {
+		this.identityType = identityType;
 	}
 
 	public String getRealName() {
@@ -36,28 +69,36 @@ public class ExpertApplicationVO {
 		this.realName = realName;
 	}
 
-	public String getCertType() {
-		return certType;
+	public String getIdentityCode() {
+		return identityCode;
 	}
 
-	public void setCertType(String certType) {
-		this.certType = certType;
+	public void setIdentityCode(String identityCode) {
+		this.identityCode = identityCode;
 	}
 
-	public String getCertNo() {
-		return certNo;
+	public String getIdentityCardCopyUrl() {
+		return identityCardCopyUrl;
 	}
 
-	public void setCertNo(String certNo) {
-		this.certNo = certNo;
+	public void setIdentityCardCopyUrl(String identityCardCopyUrl) {
+		this.identityCardCopyUrl = identityCardCopyUrl;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getTourGuideCode() {
+		return tourGuideCode;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setTourGuideCode(String tourGuideCode) {
+		this.tourGuideCode = tourGuideCode;
+	}
+
+	public String getTourGuideCopyUrl() {
+		return tourGuideCopyUrl;
+	}
+
+	public void setTourGuideCopyUrl(String tourGuideCopyUrl) {
+		this.tourGuideCopyUrl = tourGuideCopyUrl;
 	}
 
 	public String getTags() {
@@ -67,4 +108,45 @@ public class ExpertApplicationVO {
 	public void setTags(String tags) {
 		this.tags = tags;
 	}
+
+	public UserVO getUserProfile() {
+		return userProfile;
+	}
+
+	public void setUserProfile(UserVO userProfile) {
+		this.userProfile = userProfile;
+	}
+
+	public String getRequestTime() {
+		return requestTime;
+	}
+
+	public void setRequestTime(String requestTime) {
+		this.requestTime = requestTime;
+	}
+
+	public String getApprovedTime() {
+		return approvedTime;
+	}
+
+	public void setApprovedTime(String approvedTime) {
+		this.approvedTime = approvedTime;
+	}
+
+	public String getApprovedResult() {
+		return approvedResult;
+	}
+
+	public void setApprovedResult(String approvedResult) {
+		this.approvedResult = approvedResult;
+	}
+
+	public Status getApproveState() {
+		return approveState;
+	}
+
+	public void setApproveState(Status approveState) {
+		this.approveState = approveState;
+	}
+
 }

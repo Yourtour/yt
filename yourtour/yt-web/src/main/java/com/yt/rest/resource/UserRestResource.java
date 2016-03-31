@@ -1,6 +1,5 @@
 package com.yt.rest.resource;
 
-import java.io.InputStream;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -16,21 +15,23 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataBodyPart;
-import com.sun.jersey.multipart.FormDataMultiPart;
 import com.sun.jersey.multipart.FormDataParam;
+import com.yt.business.bean.ExpertApplicationBean;
+import com.yt.business.bean.UserAccountBean;
 import com.yt.business.bean.UserProfileBean;
-import com.yt.business.common.Constants;
 import com.yt.business.service.IUserService;
 import com.yt.core.common.StaticErrorEnum;
+import com.yt.core.utils.BeanUtils;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponseVO;
-import com.yt.utils.FileUtils;
 import com.yt.utils.SessionUtils;
+import com.yt.vo.member.ExpertApplicationVO;
 import com.yt.vo.member.LoginVO;
+import com.yt.vo.member.RegisterProfileVO;
 import com.yt.vo.member.RegisterVO;
 import com.yt.vo.member.UserBasicVO;
+import com.yt.vo.member.UserProfileVO;
 import com.yt.vo.member.UserVO;
 
 @Component
@@ -39,6 +40,7 @@ import com.yt.vo.member.UserVO;
 @Consumes(MediaType.APPLICATION_JSON)
 public class UserRestResource extends RestResource {
 	private static final Log LOG = LogFactory.getLog(UserRestResource.class);
+	public static final String USER_IMAGE_PATH = "/images/user";
 
 	@Autowired
 	private IUserService userService;
@@ -78,6 +80,7 @@ public class UserRestResource extends RestResource {
 		SessionUtils.clear();
 		return new ResponseVO();
 	}
+
 	/**
 	 * APP用户登录接口
 	 * 
@@ -87,7 +90,8 @@ public class UserRestResource extends RestResource {
 	@POST
 	@Path("/login")
 	public ResponseDataVO<UserVO> login(LoginVO loginVO) throws Exception {
-		UserProfileBean user = userService.login(loginVO.getMobile(), loginVO.getPassword());
+		UserProfileBean user = userService.login(loginVO.getMobile(),
+				loginVO.getPassword());
 		UserVO profile = UserVO.transform(user);
 		return new ResponseDataVO<UserVO>(profile);
 	}
@@ -117,19 +121,42 @@ public class UserRestResource extends RestResource {
 			// 验证码不匹配
 			return new ResponseDataVO<UserVO>(StaticErrorEnum.AUTHENTICATE_FAIL);
 		}
-		UserProfileBean profile = userService.regist(registervo.getMobile(),
+		UserProfileBean profile = userService.register(registervo.getMobile(),
 				registervo.getPassword());
+		return new ResponseDataVO<UserVO>(UserVO.transform(profile));
+	}
+
+	@POST
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
+	@Path("/register/expert")
+	public ResponseDataVO<UserVO> registerExpert(
+			@FormDataParam("application") String json,
+			@FormDataParam("files") List<FormDataBodyPart> files)
+			throws Exception {
+		ExpertApplicationVO applicationVO = (ExpertApplicationVO) BeanUtils
+				.deserialize(json, ExpertApplicationVO.class);
+		// 验证动态验证码
+		String mobileNO = applicationVO.getMobile();
+		String authcode = applicationVO.getAuthcode();
+		if (!authcode.equals(userService.getAuthcode(mobileNO))) {
+			// 验证码不匹配
+			return new ResponseDataVO<UserVO>(StaticErrorEnum.AUTHENTICATE_FAIL);
+		}
+		UserAccountBean accountBean = new UserAccountBean();
+		UserProfileBean profileBean = new UserProfileBean();
+		ExpertApplicationBean applicationBean = new ExpertApplicationBean();
+		ExpertApplicationVO.transform(applicationVO, accountBean, profileBean,
+				applicationBean);
+		UserProfileBean profile = userService.registerExpert(accountBean,
+				profileBean, applicationBean);
 		return new ResponseDataVO<UserVO>(UserVO.transform(profile));
 	}
 
 	/**
 	 * 用户信息注册保存接口
 	 * 
-	 * @param profileId
-	 * @param nickName
-	 * @param gender
-	 * @param tags
-	 * @param form
+	 * @param json
+	 * @param files
 	 * @return
 	 * @throws Exception
 	 */
@@ -137,30 +164,19 @@ public class UserRestResource extends RestResource {
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	@Path("/{id}/register")
 	public ResponseDataVO<UserVO> registerProfile(
-			@FormDataParam("id") Long profileId,
-			@FormDataParam("nickName") String nickName,
-			@FormDataParam("gender") String gender,
-			@FormDataParam("tags") String tags, FormDataMultiPart form)
+			@FormDataParam("profile") String json,
+			@FormDataParam("files") List<FormDataBodyPart> files)
 			throws Exception {
-		UserProfileBean profile = userService.getUserProfileInfo(profileId);
+		RegisterProfileVO profileVO = (RegisterProfileVO) BeanUtils
+				.deserialize(json, RegisterProfileVO.class);
+		UserProfileBean profile = userService.getUserProfileInfo(profileVO
+				.getId());
 		if (profile == null) {
 			return new ResponseDataVO<UserVO>(StaticErrorEnum.USER_NOT_EXIST);
 		}
 
-		List<FormDataBodyPart> l = form.getFields("userLogo");
-		if (l != null) {
-			for (FormDataBodyPart p : l) {
-				InputStream is = p.getValueAs(InputStream.class);
-				FormDataContentDisposition detail = p
-						.getFormDataContentDisposition();
-				profile.setImageUrl(FileUtils.saveFile("images/user",
-						FileUtils.getType(detail.getFileName()), is));
-			}
-		}
-
-		profile.setNickName(nickName);
-		profile.setGender(Constants.GenderType.getEnum(gender));
-		profile.setTags(tags);
+		RegisterProfileVO.transform(profileVO, profile);
+		profile.setImageUrl(super.uploadMediaFile(files, USER_IMAGE_PATH));
 		profile = this.userService.saveUseProfile(profile);
 		return new ResponseDataVO<UserVO>(UserVO.transform(profile));
 	}
@@ -168,60 +184,28 @@ public class UserRestResource extends RestResource {
 	/**
 	 * 用户信息修改保存接口
 	 * 
-	 * @param id
-	 * @param nickName
-	 * @param birthday
-	 * @param slogan
-	 * @param residence
-	 * @param gender
-	 * @param nativePlace
-	 * @param tags
-	 * @param form
+	 * @param json
+	 * @param files
 	 * @return
 	 * @throws Exception
 	 */
 	@POST
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	@Path("/{id}/save")
-	public ResponseDataVO<UserVO> saveUserProfile(@PathParam("id") Long id,
-			@FormDataParam("nickName") String nickName,
-			@FormDataParam("birthday") Long birthday,
-			@FormDataParam("slogan") String slogan,
-			@FormDataParam("residence") String residence,
-			@FormDataParam("gender") String gender,
-			@FormDataParam("nativePlace") String nativePlace,
-			@FormDataParam("tags") String tags, FormDataMultiPart form)
+	public ResponseDataVO<UserVO> saveUserProfile(
+			@FormDataParam("profile") String json,
+			@FormDataParam("files") List<FormDataBodyPart> files)
 			throws Exception {
-		UserProfileBean profile = userService.getUserProfileInfo(id);
+		UserProfileVO profileVO = (UserProfileVO) BeanUtils.deserialize(json,
+				UserProfileVO.class);
+		UserProfileBean profile = userService.getUserProfileInfo(profileVO
+				.getId());
 		if (profile == null) {
 			return new ResponseDataVO<UserVO>(StaticErrorEnum.USER_NOT_EXIST);
 		}
 
-		List<FormDataBodyPart> l = form.getFields("userLogo");
-		if (l != null) {
-			for (FormDataBodyPart p : l) {
-				InputStream is = p.getValueAs(InputStream.class);
-				FormDataContentDisposition detail = p
-						.getFormDataContentDisposition();
-				profile.setImageUrl(FileUtils.saveFile("images/user",
-						FileUtils.getType(detail.getFileName()), is));
-			}
-		}
-
-		if (nickName != null)
-			profile.setNickName(nickName);
-		if (birthday != null)
-			profile.setBirthday(birthday);
-		if (gender != null)
-			profile.setGender(Constants.GenderType.getEnum(gender));
-		if (slogan != null)
-			profile.setSlogan(slogan);
-		if (nativePlace != null)
-			profile.setNativePlace(nativePlace);
-		if (residence != null)
-			profile.setResidence(residence);
-		if (tags != null)
-			profile.setTags(tags);
+		UserProfileVO.transform(profileVO, profile);
+		profile.setImageUrl(super.uploadMediaFile(files, USER_IMAGE_PATH));
 
 		profile = this.userService.saveUseProfile(profile);
 		return new ResponseDataVO<UserVO>(UserVO.transform(profile));

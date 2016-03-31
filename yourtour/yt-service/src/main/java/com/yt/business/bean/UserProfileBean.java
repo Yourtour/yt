@@ -1,21 +1,14 @@
 package com.yt.business.bean;
 
-import java.util.List;
-import java.util.Vector;
-
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.data.neo4j.support.index.IndexType;
 
 import com.yt.business.BaseBeanImpl;
-import com.yt.business.common.Constants;
-import com.yt.business.common.Constants.GenderType;
 import com.yt.business.common.Constants.Role;
 import com.yt.core.utils.DateUtils;
 import com.yt.hbase.annotation.HbaseColumn;
 import com.yt.hbase.annotation.HbaseTable;
-import com.yt.neo4j.annotation.Neo4jRelationship;
-import com.yt.neo4j.annotation.Neo4jRelationship.Direction;
 
 /**
  * 该实体定义了用户的相关信息
@@ -51,20 +44,35 @@ public class UserProfileBean extends BaseBeanImpl {
 	private static final long serialVersionUID = -6977525800090683657L;
 	private static final String INDEX_NAME = "user"; // 定义了本实体中全文检索的索引名称。
 
+	public enum GenderType {
+		/**
+		 * 男
+		 */
+		MALE,
+		/**
+		 * 女
+		 */
+		FEMALE,
+		/**
+		 * 暂未知
+		 */
+		NA
+	}
+
 	@HbaseColumn(name = "nname")
 	@Indexed
 	private String nickName; // 昵称
 
-	private String realName; //真实姓名
+	private String realName; // 真实姓名
 
-	private String identity; //身份
+	private String identity; // 身份
 
 	@HbaseColumn(name = "sex")
 	private GenderType gender = GenderType.NA; // 性别 F/M
-	
+
 	@HbaseColumn(name = "token")
 	private String token;
-	
+
 	@HbaseColumn(name = "birth")
 	private long birthday; // 生日
 
@@ -96,9 +104,9 @@ public class UserProfileBean extends BaseBeanImpl {
 	@HbaseColumn(name = "role")
 	private Role role = Role.MEMBER; // 角色
 
-	private String tags; //个人标签
+	private String tags; // 个人标签
 
-	private String memo; //个人简介
+	private String memo; // 个人简介
 
 	@Indexed
 	private int rank; // 等级
@@ -115,30 +123,12 @@ public class UserProfileBean extends BaseBeanImpl {
 	private int thumbupNum = 0;
 	private int albumNum = 0;
 
-	@Neo4jRelationship(relationship=Constants.RELATION_TYPE_AT, type = PlaceBean.class, direction = Direction.OUTGOING)
-	private transient PlaceBean place;
-
-	@Neo4jRelationship(relationship=Constants.RELATION_TYPE_FOLLOW, type = UserProfileBean.class, direction = Direction.OUTGOING, isList = true)
-	private transient List<UserProfileBean> followers;
-	
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_WATCH, type = UserProfileBean.class, direction = Direction.OUTGOING, isList = true)
-	private transient List<UserProfileBean> watchers;
-	
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_WATCH, type = LineBean.class, direction = Direction.OUTGOING, isList = true)
-	private transient List<LineBean> watchedLines;
-
-	private transient List<CommentBean> comments = null;
-	private transient List<RouteMainBean> routes = null;
-
-	public UserProfileBean(Long id){
+	public UserProfileBean(Long id) {
 		super(id);
 	}
 
 	public UserProfileBean() {
 		super();
-		this.followers = new Vector<UserProfileBean>();
-		this.watchers = new Vector<UserProfileBean>();
-		this.watchedLines = new Vector<LineBean>();
 	}
 
 	public String getRealName() {
@@ -293,30 +283,6 @@ public class UserProfileBean extends BaseBeanImpl {
 		this.idAuthenticate = idAuthenticate;
 	}
 
-	public PlaceBean getPlace() {
-		return place;
-	}
-
-	public void setPlace(PlaceBean place) {
-		this.place = place;
-	}
-
-	public List<CommentBean> getComments() {
-		return comments;
-	}
-
-	public void setComments(List<CommentBean> comments) {
-		this.comments = comments;
-	}
-
-	public List<RouteMainBean> getRoutes() {
-		return routes;
-	}
-
-	public void setRoutes(List<RouteMainBean> routes) {
-		this.routes = routes;
-	}
-
 	public int getFollowingNum() {
 		return followingNum;
 	}
@@ -357,9 +323,10 @@ public class UserProfileBean extends BaseBeanImpl {
 		this.tags = tags;
 	}
 
-	public String getAge(){
-		if(this.getBirthday() != 0){
-			return DateUtils.formatDate(this.birthday,"yy") +"后  " + this.getConstellation();
+	public String getAge() {
+		if (this.getBirthday() != 0) {
+			return DateUtils.formatDate(this.birthday, "yy") + "后  "
+					+ this.getConstellation();
 		}
 
 		return "";

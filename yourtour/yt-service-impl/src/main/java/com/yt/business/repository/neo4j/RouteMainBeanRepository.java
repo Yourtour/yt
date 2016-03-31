@@ -1,12 +1,12 @@
 package com.yt.business.repository.neo4j;
 
-import java.util.List;
-
 import com.yt.business.bean.*;
 import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.neo4j.annotation.QueryResult;
 import org.springframework.data.neo4j.annotation.ResultColumn;
 import org.springframework.data.neo4j.repository.GraphRepository;
+
+import java.util.List;
 
 public interface RouteMainBeanRepository extends GraphRepository<RouteMainBean> {
 	/**
@@ -81,14 +81,29 @@ public interface RouteMainBeanRepository extends GraphRepository<RouteMainBean> 
 	}
 
 	/**
+	 * 获取行程相关目的地
+	 * @param routeId
+	 * @return
+	 */
+	@Query("START route=node({0}) MATCH route-[r:TO]->(place:PlaceBean) RETURN place")
+	public List<PlaceBean> getPlaces(Long routeId);
+
+	/**
+	 * 获取一个行程的日程安排
+	 * @param routeId
+	 * @return
+	 */
+	@Query("START route=node({0}) MATCH route-[r:HAS]->(schedule:RouteScheduleBean) RETURN schedule")
+	public List<RouteScheduleBean> getSchedules(Long routeId);
+
+	/**
 	 * 获取和指定用户相关的行程。
-	 * 
+	 *
 	 * @param userId
 	 * @return
 	 */
 	@Query("START user=node({0}) MATCH user-[r:MEMBER]->(route:RouteMainBean) where r.role=~{4} RETURN r.imageUrl, r.impression, r.permission, r.role, route")
-	public List<OwnerRouteTuple> getRoutes(Long userId, Long startIndex,
-			int limit, String roles);
+	public List<OwnerRouteTuple> getRoutes(Long userId, Long startIndex, int limit, String roles);
 
 	/**
 	 * 获取所有行程中点评分的前n名
@@ -118,8 +133,7 @@ public interface RouteMainBeanRepository extends GraphRepository<RouteMainBean> 
 	 * @return
 	 */
 	@Query("START user=node({0}) MATCH user-[r:RECOMMEND]->(route:RouteMainBean) RETURN route, user")
-	public List<RouteTuple> getRecommendRoutes(Long placeId, Long nextCursor,
-			int limit);
+	public List<RouteTuple> getRecommendRoutes(Long placeId, Long nextCursor, int limit);
 
 	/**
 	 * 获取目的地行程
@@ -130,8 +144,7 @@ public interface RouteMainBeanRepository extends GraphRepository<RouteMainBean> 
 	 * @return
 	 */
 	@Query("START user=node({0}) MATCH user-[r:RECOMMEND]->(route:RouteMainBean) RETURN route, user")
-	public List<RouteTuple> getRecommendRoutes(Long[] placeId, int duration,
-			Long nextCursor, int limit);
+	public List<RouteTuple> getRecommendRoutes(Long[] placeId, int duration, Long nextCursor, int limit);
 
 	/**
 	 * 根据指定的行程和成员角色，返回该行程中的用户。
@@ -144,14 +157,6 @@ public interface RouteMainBeanRepository extends GraphRepository<RouteMainBean> 
 
 	@Query("START route=node({0}) MATCH route -[r:MEMBER]- (user:UserProfileBean) RETURN user")
 	public List<UserProfileBean> getRouteMemberUserProfiles(Long routeId);
-
-	/**
-	 * 
-	 * @param routeId
-	 * @return
-	 */
-	@Query("START route=node({0}) MATCH route -- (schedules:RouteScheduleBean) return schedules")
-	public List<RouteScheduleBean> getRouteSchedules(Long routeId);
 
 	/**
 	 * 

@@ -1,11 +1,10 @@
 package com.yt.vo.route;
 
-import java.util.List;
-
-import com.yt.business.bean.RouteActivityBean;
 import com.yt.business.bean.RouteScheduleBean;
 import com.yt.core.utils.DateUtils;
 import com.yt.vo.BaseVO;
+
+import java.util.List;
 
 public class RouteScheduleVO extends BaseVO {
 	private long index;
@@ -14,7 +13,6 @@ public class RouteScheduleVO extends BaseVO {
 	private String placeIds;
 	private String places;
 	private String memo;
-	private List<RouteActivityVO> activities;
 
 	public static RouteScheduleVO transform(RouteScheduleBean bean) {
 		if (bean == null) {
@@ -24,7 +22,6 @@ public class RouteScheduleVO extends BaseVO {
 		vo.fromBean(bean);
 		vo.setIndex(bean.getIndex());
 		vo.setDate(bean.getDate());
-		vo.setDays(bean.getDays());
 		vo.setPlaces(bean.getPlaces());
 		
 		return vo;
@@ -39,15 +36,8 @@ public class RouteScheduleVO extends BaseVO {
 		bean.setIndex(vo.getIndex());
 		bean.setDate(vo.getDate());
 		bean.setMemo(vo.getMemo());
-		bean.setDays(vo.getDays());
 		bean.setPlaces(vo.getPlaces());
-		if (vo.getActivities() != null && vo.getActivities().size() > 0) {
-			for (RouteActivityVO activityVO : vo.getActivities()) {
-				RouteActivityBean activity = new RouteActivityBean();
-				activity.setId(activityVO.getId());
-				bean.getActivities().add(activity);
-			}
-		}
+
 		return bean;
 	}
 
@@ -105,10 +95,6 @@ public class RouteScheduleVO extends BaseVO {
 
 	public void setPlaces(String places) {
 		this.places = places;
-	}
-
-	public List<RouteActivityVO> getActivities() {
-		return activities;
 	}
 
 	public String getType(){

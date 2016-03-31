@@ -6,11 +6,6 @@
 	<layout class="org.apache.log4j.PatternLayout">
       <param name="ConversionPattern" value="[%d{yyyyMMdd HH:mm:ss} %-5p] [%c:%L] - %m%n" />
 	</layout>
-	
-	<filter class="org.apache.log4j.varia.LevelRangeFilter">
-		<param name="LevelMax" value="ERROR" />
-		<param name="LevelMin" value="DEBUG" />
-	</filter>
   </appender>
   <appender name="yt" class="org.apache.log4j.RollingFileAppender">
      <param name="Append" value="true"/>
@@ -42,14 +37,14 @@
      </layout>
   </appender>
   
-  <category name="com.yt">      
-    <level value="DEBUG" />    
-    <appender-ref ref="CONSOLE" />   
-  </category> 
+  <category name="com.yt"  additivity="false">
+    <level value="DEBUG" />
+    <appender-ref ref="CONSOLE" />
+  </category>
   
-  <category name="org.springframework">      
-    <level value="INFO" />    
-    <appender-ref ref="CONSOLE" />   
+  <category name="org.springframework"  additivity="false">
+    <level value="WARN" />
+    <appender-ref ref="CONSOLE" />
   </category> 
 
   <root>

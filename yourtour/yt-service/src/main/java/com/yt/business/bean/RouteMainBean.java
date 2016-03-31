@@ -3,6 +3,7 @@ package com.yt.business.bean;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.yt.core.utils.StringUtils;
 import org.codehaus.jackson.map.annotate.JsonRootName;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
@@ -26,31 +27,28 @@ public class RouteMainBean extends SocialBeanImpl {
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
 	private String name; // 行程名称
 	private String 	lineName; //线路名称
-	private String 	reason; //推荐理由
-	private String 	feature; //行程特点
-	private String 	chargeMemo; //费用说明
-	private String	withdrawMemo; //退改说明
-	private String  useMemo; //使用说明
-	private String  orderMemo; //预订须知
+	private String imageUrl;
 
 	@HbaseColumn(name = "sdt")
-	private long startDate = 0; // 行程开始日期
-	private long endDate = 0; // 行程结束日期
+	private Long startDate = null; // 行程开始日期
+	private Long endDate = null; // 行程结束日期
 	private int  duration = 0; // 行程持续时间
 
 	private String fromPlace; //出发地（冗余）
 	private String toPlaces; //目的地（冗余）
 
+	private String 	feature; //特色推荐
+	private String  routeMemo; //行程须知
+
+	private int  charge; //费用
+	private String	chargeIncludes; //费用包括
+	private String  chargeExcludes; //费用不包括
+
 	private int  adultNum;  //成人数
 	private int  childNum;	//儿童数
 	private int  olderNum; //老人数
-	private int  budget; //预算
-
-	private String imageUrl;
-	private transient String impression;
 
 	private String tags;  //标签，数据冗余
-	private String bestTime; //最佳时间
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_FROM, type = PlaceBean.class, direction = Direction.OUTGOING)
 	private transient PlaceBean fromPlaceBean = null; // 行程出发地点
@@ -64,12 +62,8 @@ public class RouteMainBean extends SocialBeanImpl {
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = RouteProvisionBean.class, direction = Direction.OUTGOING, isList = true)
 	private transient List<RouteProvisionBean> provisions = null; // 行程包含的准备
 
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_MEMBER, type = UserProfileBean.class, direction = Direction.INCOMING)
-	private transient UserProfileBean owner = null; // 行程所有者
-
-	private RouteMemberBean member = null; //成员属性
-
-	private UserProfileBean user = null;
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_BELONG, type = UserProfileBean.class, direction = Direction.INCOMING)
+	private transient UserProfileBean user = null; // 行程相关人,缺省可以表示行程创建者
 
 	public RouteMainBean() {
 		super();
@@ -78,7 +72,6 @@ public class RouteMainBean extends SocialBeanImpl {
 	public RouteMainBean(Long id) {
 		super(id);
 	}
-
 
 	public String getName() {
 		return name;
@@ -92,24 +85,8 @@ public class RouteMainBean extends SocialBeanImpl {
 		this.lineName = lineName;
 	}
 
-	public int getBudget() {
-		return budget;
-	}
-
-	public void setBudget(int budget) {
-		this.budget = budget;
-	}
-
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getImpression() {
-		return impression;
-	}
-
-	public void setImpression(String impression) {
-		this.impression = impression;
 	}
 
 	public String getImageUrl() {
@@ -120,11 +97,11 @@ public class RouteMainBean extends SocialBeanImpl {
 		this.imageUrl = imageUrl;
 	}
 
-	public long getStartDate() {
+	public Long getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(long startDate) {
+	public void setStartDate(Long startDate) {
 		this.startDate = startDate;
 	}
 
@@ -172,19 +149,11 @@ public class RouteMainBean extends SocialBeanImpl {
 		return provisions;
 	}
 
-	public UserProfileBean getOwner() {
-		return owner;
-	}
-
-	public void setOwner(UserProfileBean owner) {
-		this.owner = owner;
-	}
-
-	public long getEndDate() {
+	public Long getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(long endDate) {
+	public void setEndDate(Long endDate) {
 		this.endDate = endDate;
 	}
 
@@ -228,14 +197,6 @@ public class RouteMainBean extends SocialBeanImpl {
 		this.toPlaces = toPlaces;
 	}
 
-	public String getReason() {
-		return reason;
-	}
-
-	public void setReason(String reason) {
-		this.reason = reason;
-	}
-
 	public String getFeature() {
 		return feature;
 	}
@@ -244,36 +205,28 @@ public class RouteMainBean extends SocialBeanImpl {
 		this.feature = feature;
 	}
 
-	public String getChargeMemo() {
-		return chargeMemo;
+	public int getCharge() {
+		return charge;
 	}
 
-	public void setChargeMemo(String chargeMemo) {
-		this.chargeMemo = chargeMemo;
+	public void setCharge(int charge) {
+		this.charge = charge;
 	}
 
-	public String getWithdrawMemo() {
-		return withdrawMemo;
+	public String getChargeIncludes() {
+		return chargeIncludes;
 	}
 
-	public void setWithdrawMemo(String withdrawMemo) {
-		this.withdrawMemo = withdrawMemo;
+	public void setChargeIncludes(String chargeIncludes) {
+		this.chargeIncludes = chargeIncludes;
 	}
 
-	public String getUseMemo() {
-		return useMemo;
+	public String getChargeExcludes() {
+		return chargeExcludes;
 	}
 
-	public void setUseMemo(String useMemo) {
-		this.useMemo = useMemo;
-	}
-
-	public String getBestTime() {
-		return bestTime;
-	}
-
-	public void setBestTime(String bestTime) {
-		this.bestTime = bestTime;
+	public void setChargeExcludes(String chargeExcludes) {
+		this.chargeExcludes = chargeExcludes;
 	}
 
 	public String getTags() {
@@ -284,14 +237,6 @@ public class RouteMainBean extends SocialBeanImpl {
 		this.tags = tags;
 	}
 
-	public String getOrderMemo() {
-		return orderMemo;
-	}
-
-	public void setOrderMemo(String orderMemo) {
-		this.orderMemo = orderMemo;
-	}
-
 	public UserProfileBean getUser() {
 		return user;
 	}
@@ -300,11 +245,11 @@ public class RouteMainBean extends SocialBeanImpl {
 		this.user = user;
 	}
 
-	public RouteMemberBean getMember() {
-		return member;
+	public String getRouteMemo() {
+		return routeMemo;
 	}
 
-	public void setMember(RouteMemberBean member) {
-		this.member = member;
+	public void setRouteMemo(String routeMemo) {
+		this.routeMemo = routeMemo;
 	}
 }

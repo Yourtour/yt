@@ -1,3 +1,7 @@
+/**
+ * 与服务区请求交互工具包
+ * @type {{post: Function, postFormData: Function, get: Function, delete: Function}}
+ */
 jQuery.Request={
     post:function(url, data, callback){
         var context = $('#context').val();
@@ -67,6 +71,64 @@ jQuery.Request={
 };
 
 /**
+ * 日期工具包
+ * @type {{format: Function, formatLong: Function}}
+ */
+jQuery.Date = {
+    /**
+     * 日期格式化输出
+     * @param date
+     * @param pattern
+     * @returns {string}
+     */
+    format:function(date, pattern){
+        if (date == undefined) {
+            date = new Date();
+        }
+        if (pattern == undefined) {
+            pattern = "yyyy-MM-dd";
+        }
+
+        var o = {
+            "M+": date.getMonth() + 1,
+            "d+": date.getDate(),
+            "h+": date.getHours(),
+            "m+": date.getMinutes(),
+            "s+": date.getSeconds(),
+            "q+": Math.floor((date.getMonth() + 3) / 3),
+            "S": date.getMilliseconds()
+        }
+        if (/(y+)/.test(pattern)) {
+            pattern = pattern.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+        }
+        for (var k in o) {
+            if (new RegExp("(" + k + ")").test(pattern)) {
+                pattern = pattern.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+            }
+        }
+        return pattern;
+    },
+
+    formatLong:function(l, pattern){
+        return this.format(new Date(l), pattern);
+    }
+
+};
+
+/**
+ * 工具包
+ */
+jQuery.Utils ={
+    isNull:function(str){
+        return str == '' || str == 'null' || str == null;
+    },
+
+    isNotNull:function(str){
+        return ! this.isNull(str);
+    }
+};
+
+/**
  * 隐藏所有页面
  */
 $('#page-content').find("[data-role='page']").each(function(index, page){
@@ -111,10 +173,16 @@ jQuery.Page={
         var name = element.attr("name");
         if(element.is('input')){
             if(type.match(re)){
-                element.val(value);
+                if(element.hasClass('date-picker')){
+                    if( typeof value =='number' && value != 0){
+                        element.val($.Date.formatLong(value));
+                    }
+                }else {
+                    element.val(value);
 
-                if(element.hasClass('search-item')){
-                    element.lookup();
+                    if (element.hasClass('search-item')) {
+                        element.lookup();
+                    }
                 }
             }else if (type == 'radio'){
                 var radios = $("input[name='" + name + "']");
@@ -132,6 +200,8 @@ jQuery.Page={
                 if(element.attr("value") == value){
                     element.parent().addClass("checked");
                 }
+            }else if(type == 'file'){
+                element.val("");
             }
         }else if(element.is('select')){
             element.find('option[value="' + value + '"]').attr("selected", true);

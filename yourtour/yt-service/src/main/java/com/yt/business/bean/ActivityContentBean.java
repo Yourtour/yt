@@ -1,8 +1,12 @@
 package com.yt.business.bean;
 
 import com.yt.business.BaseBeanImpl;
+import com.yt.business.common.Constants;
 import com.yt.hbase.annotation.HbaseTable;
+import com.yt.neo4j.annotation.Neo4jRelationship;
 import org.springframework.data.neo4j.annotation.NodeEntity;
+
+import java.util.List;
 
 /**
  * Created by 林平 on 2016/3/26.
@@ -10,6 +14,8 @@ import org.springframework.data.neo4j.annotation.NodeEntity;
 @HbaseTable(name = "T_ACTIVITY_CONTENT_INFO")
 @NodeEntity
 public class ActivityContentBean  extends BaseBeanImpl {
+    public static enum Type{Title, Text, Image}
+
     private String  title; //标题
     private String  subTitle; //副标题
     private String  content; //内容
@@ -17,7 +23,8 @@ public class ActivityContentBean  extends BaseBeanImpl {
     private String  imageUrl; //图片
     private int     index; //显示位置
 
-    public static enum Type{Title, Text, Image}
+    @Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = ActivityBean.class, direction = Neo4jRelationship.Direction.INCOMING)
+    private transient ActivityBean activity; // Banner关联的达人
 
     public  ActivityContentBean(){}
 
@@ -67,5 +74,13 @@ public class ActivityContentBean  extends BaseBeanImpl {
 
     public void setIndex(int index) {
         this.index = index;
+    }
+
+    public ActivityBean getActivity() {
+        return activity;
+    }
+
+    public void setActivity(ActivityBean activity) {
+        this.activity = activity;
     }
 }

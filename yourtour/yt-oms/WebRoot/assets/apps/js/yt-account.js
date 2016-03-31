@@ -73,7 +73,7 @@ jQuery.Account = {
             password = $('#password', loginview).val();
 
         account.userName = username;
-        account.pwd = password;
+        account.password = password;
 
         $.Request.post("/rest/oms/account/authenticate",account,function(result){
             window.location = "Home";

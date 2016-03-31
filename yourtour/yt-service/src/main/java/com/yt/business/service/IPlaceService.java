@@ -1,9 +1,13 @@
 package com.yt.business.service;
 
-import com.yt.business.bean.*;
-import com.yt.business.bean.pack.PlaceBeanPack;
-
 import java.util.List;
+
+import com.yt.business.bean.InfoBean;
+import com.yt.business.bean.PlaceBean;
+import com.yt.business.bean.ResourceBean;
+import com.yt.business.bean.RouteMainBean;
+import com.yt.business.bean.UserProfileBean;
+import com.yt.business.bean.pack.PlacePackBean;
 
 /**
  * 和目的地相关服务接口定义
@@ -35,7 +39,7 @@ public interface IPlaceService {
 	 * @return
 	 * @throws Exception
 	 */
-	public PlaceBeanPack getPlacePack(Long id, Long lastModifiedTime)
+	public PlacePackBean getPlacePack(Long id, Long lastModifiedTime)
 			throws Exception;
 
 	/**
@@ -84,7 +88,7 @@ public interface IPlaceService {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<ExpertBean> getExperts(Long placeId, Long nextCursor, int limit)
+	public List<UserProfileBean> getExperts(Long placeId, Long nextCursor, int limit)
 			throws Exception;
 
 	/**

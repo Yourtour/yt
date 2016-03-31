@@ -4,10 +4,33 @@ import java.beans.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.util.HashSet;
+import java.util.Set;
+
 import com.alibaba.fastjson.JSON;
+import com.yt.core.common.TestBean;
 
 public class BeanUtils {
 	private static final String SETTER_PREFIX = "set";
+
+	private static Set<String> mergableType = new HashSet<>();
+
+	static{
+		String[] types = {"java.lang.Integer",
+				"java.lang.Double",
+				"java.lang.Float",
+				"java.lang.Long",
+				"java.lang.Short",
+				"java.lang.Byte",
+				"java.lang.Boolean",
+				"java.lang.Char",
+				"java.lang.String",
+				"int","double","long","short","byte","boolean","char","float"};
+
+		for(String type : types){
+			mergableType.add(type);
+		}
+	}
 
 	/**
 	 * 对象合并
@@ -37,6 +60,9 @@ public class BeanUtils {
 		//根据getter来判断有哪些属性
 		PropertyDescriptor[] targetProps = targetBeanInfo.getPropertyDescriptors();
 		for (PropertyDescriptor targetProp : targetProps) {
+			//判断属性是否可合并
+			if(! isMergable(targetProp)) continue;
+
 			//获取source与target相同name的属性
 			PropertyDescriptor sourceProp = getPropertyDescriptor(source.getClass(), targetProp.getName());
 
@@ -55,13 +81,14 @@ public class BeanUtils {
 			if (targetWriteMethod != null && sourceProp != null && sourceProp.getReadMethod() != null) {
 				Object value = getValue(sourceProp.getReadMethod(), source, new Object[0]);
 				if (value != null) {
-					//判断getter与setter的参数类型是否匹配，否则容易报IllegalArgumentException: argument type mismatch
+					setValue(targetWriteMethod, target, new Object[]{value});
+					/*//判断getter与setter的参数类型是否匹配，否则容易报IllegalArgumentException: argument type mismatch
 					if (value.getClass() == targetWriteMethod.getParameterTypes()[0]) {
 						setValue(targetWriteMethod, target, new Object[]{value});
 					} else if (value.getClass().isPrimitive()
 							|| targetWriteMethod.getParameterTypes()[0].isPrimitive()) {
 						setValue(targetWriteMethod, target, new Object[]{value});
-					}
+					}*/
 				}
 			}
 		}
@@ -116,6 +143,12 @@ public class BeanUtils {
 		return null;
 	}
 
+	private static boolean isMergable(PropertyDescriptor targetProp){
+		String type = targetProp.getPropertyType().getName();
+		System.out.println(targetProp.getName() + "," + type + "," + mergableType.contains(type));
+		return mergableType.contains(type);
+	}
+
 	/**
 	 * 将JSON数据转换成对象
 	 * @param json
@@ -124,5 +157,17 @@ public class BeanUtils {
 	 */
 	public static<T>  T deserialize(String json, Class<T> clazz) throws Exception {
 		return (T) JSON.parseObject(json, clazz);
+	}
+
+	public static void main(String[] args) throws Exception{
+		TestBean bean1 = new TestBean();
+		bean1.setField1(1000l);
+		bean1.setField2(1000);
+		TestBean bean2 = new TestBean();
+
+		merge(bean1, bean2);
+
+		System.out.println();
+
 	}
 }

@@ -7,7 +7,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.yt.business.bean.UserProfileBean;
-import com.yt.business.common.Constants.GenderType;
+import com.yt.business.bean.UserProfileBean.GenderType;
 import com.yt.business.common.Constants.Role;
 import com.yt.vo.BaseVO;
 

@@ -1,5 +1,10 @@
 package com.yt.business.service;
 
+import java.util.List;
+import java.util.Map;
+
+import com.yt.business.PagingDataBean;
+import com.yt.business.bean.ExpertApplicationBean;
 import com.yt.business.bean.UserAccountBean;
 import com.yt.business.bean.UserProfileBean;
 
@@ -37,6 +42,20 @@ public interface IUserService {
 	 * @throws Exception
 	 */
 	public UserProfileBean getUserProfileInfo(String userName) throws Exception;
+
+	/**
+	 * 用户信息分页查询
+	 * 
+	 * @param nextCursor
+	 * @param limit
+	 * @param total
+	 * @param params
+	 * @return
+	 * @throws Exception
+	 */
+	public PagingDataBean<List<UserAccountBean>> getUserProfileInfoes(
+			Long nextCursor, int limit, int total, Map<String, Object> params)
+			throws Exception;
 
 	/**
 	 * 根据用户名获取用户账户对象
@@ -87,7 +106,31 @@ public interface IUserService {
 	 * @return 用户Profile对象
 	 * @throws Exception
 	 */
-	public UserProfileBean regist(String userName, String password)
+	public UserProfileBean register(String userName, String password)
+			throws Exception;
+
+	/**
+	 * 注册账号以及个人信息
+	 * 
+	 * @param account
+	 * @param profile
+	 * @return
+	 * @throws Exception
+	 */
+	public UserProfileBean register(UserAccountBean account,
+			UserProfileBean profile, Long userId) throws Exception;
+
+	/**
+	 * 注册一个达人帐号以及相应的个人信息和审核申请信息
+	 * 
+	 * @param accountBean
+	 * @param profileBean
+	 * @param applicationBean
+	 * @return
+	 * @throws Exception
+	 */
+	public UserProfileBean registerExpert(UserAccountBean accountBean,
+			UserProfileBean profileBean, ExpertApplicationBean applicationBean)
 			throws Exception;
 
 	/**

@@ -42,8 +42,8 @@
                             </div>
                         </div>
 
-                        <table id="datatable_activity" class="row-border" cellspacing="0" width="100%" data-criteria="DictListView_Criteria"
-                               data-rest="${context}/rest/admin/dicts/query">
+                        <table id="datatable_activity" class="row-border" cellspacing="0" width="100%"
+                               data-rest="${context}/rest/oms/activity/query" data-method="POST">
                             <thead>
                                 <tr>
                                     <th>
@@ -54,6 +54,7 @@
                                     <th>活动时间</th>
                                     <th>发布时间</th>
                                     <th>首页推荐</th>
+                                    <th>目的地推荐</th>
                                 </tr>
                             </thead>
 

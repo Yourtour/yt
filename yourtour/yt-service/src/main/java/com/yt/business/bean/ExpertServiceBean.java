@@ -2,39 +2,34 @@ package com.yt.business.bean;
 
 import org.springframework.data.neo4j.annotation.NodeEntity;
 
-import com.yt.business.BaseBeanImpl;
+import com.yt.business.SocialBeanImpl;
 import com.yt.business.common.Constants;
 import com.yt.hbase.annotation.HbaseColumn;
 import com.yt.hbase.annotation.HbaseTable;
 import com.yt.neo4j.annotation.Neo4jRelationship;
 import com.yt.neo4j.annotation.Neo4jRelationship.Direction;
 
+/**
+ * 达人服务实体
+ * 
+ * @author John.Peng
+ * 
+ */
 @HbaseTable(name = "T_EXPERT_SERVICE")
 @NodeEntity
-public class ExpertServiceBean extends BaseBeanImpl {
+public class ExpertServiceBean extends SocialBeanImpl {
 	private static final long serialVersionUID = 6259294378320824143L;
 
 	@HbaseColumn(name = "title")
 	private String title; // 服务名称
-	private String category;
+	private String category; // 服务分类，来自于字典表
 	private String imageUrl;
+	private String content; // 服务内容
 	private String fee;
 	private String currency;
 	private String feeIncluding;
 	private String feeExcluding;
-	private String withdraw;
-	private String imageUrls;
-
-	private double 	commentScore = 0f;
-	private int 	commentNum; // 点评数
-
-	private int     goodNum;	//好评
-	private int		mediumNum;  //中评
-	private int 	badNum;     //差评
-	private int		imageNum;   //晒图
-
-	@HbaseColumn(name = "memo")
-	private String memo; // 服务描述
+	private String withdraw; // 退款规则
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = UserProfileBean.class, direction = Direction.INCOMING)
 	private transient UserProfileBean user = null; // 服务相关达人
@@ -79,12 +74,12 @@ public class ExpertServiceBean extends BaseBeanImpl {
 		this.withdraw = withdraw;
 	}
 
-	public String getMemo() {
-		return memo;
+	public String getContent() {
+		return content;
 	}
 
-	public void setMemo(String memo) {
-		this.memo = memo;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	public String getCurrency() {
@@ -111,68 +106,12 @@ public class ExpertServiceBean extends BaseBeanImpl {
 		this.imageUrl = imageUrl;
 	}
 
-	public String getImageUrls() {
-		return imageUrls;
-	}
-
-	public void setImageUrls(String imageUrls) {
-		this.imageUrls = imageUrls;
-	}
-
 	public String getCategory() {
 		return category;
 	}
 
 	public void setCategory(String category) {
 		this.category = category;
-	}
-
-	public double getCommentScore() {
-		return commentScore;
-	}
-
-	public void setCommentScore(double commentScore) {
-		this.commentScore = commentScore;
-	}
-
-	public int getCommentNum() {
-		return commentNum;
-	}
-
-	public void setCommentNum(int commentNum) {
-		this.commentNum = commentNum;
-	}
-
-	public int getGoodNum() {
-		return goodNum;
-	}
-
-	public void setGoodNum(int goodNum) {
-		this.goodNum = goodNum;
-	}
-
-	public int getMediumNum() {
-		return mediumNum;
-	}
-
-	public void setMediumNum(int mediumNum) {
-		this.mediumNum = mediumNum;
-	}
-
-	public int getBadNum() {
-		return badNum;
-	}
-
-	public void setBadNum(int badNum) {
-		this.badNum = badNum;
-	}
-
-	public int getImageNum() {
-		return imageNum;
-	}
-
-	public void setImageNum(int imageNum) {
-		this.imageNum = imageNum;
 	}
 
 	public UserProfileBean getUser() {

@@ -4,9 +4,9 @@ import com.yt.business.BaseBeanImpl;
 import com.yt.business.bean.PlaceBean;
 import com.yt.business.bean.ResourceBean;
 import com.yt.business.bean.ResourceBean.ResourceType;
-import com.yt.vo.BaseVO;
+import com.yt.vo.SocialVO;
 
-public class ResourceVO extends BaseVO {
+public class ResourceVO extends SocialVO {
 	private String code;
 	private String name;
 	private String imageUrl; // 图片
@@ -23,20 +23,13 @@ public class ResourceVO extends BaseVO {
 	private String position; // 位置信息
 	private String postCode; // 邮编
 	private int arriveNum; // 到达人数
-	private int favoriteNum; // 收藏数
-	private int shareNum; // 分享数
 	private String bookingMemo; // 预订须知
 	private String tips; // 贴士
-
 	private String tags;
 	private String feature;
-
 	private String placeName; // 目的地名称
 	private Long placeId; // 目的地对象ID
 
-	private double commentScore = 0f;
-
-	private int commentNum; // 点评数
 	private int goodNum; // 好评
 	private int mediumNum; // 中评
 	private int badNum; // 差评
@@ -127,7 +120,7 @@ public class ResourceVO extends BaseVO {
 
 	@Override
 	public void toBean(BaseBeanImpl bean) {
-		toBean(bean);
+		super.toBean(bean);
 		ResourceBean resource = (ResourceBean) bean;
 		resource.setCode(getCode());
 		resource.setName(getName());
@@ -274,38 +267,6 @@ public class ResourceVO extends BaseVO {
 
 	public void setArriveNum(int arriveNum) {
 		this.arriveNum = arriveNum;
-	}
-
-	public double getCommentScore() {
-		return commentScore;
-	}
-
-	public void setCommentScore(double commentScore) {
-		this.commentScore = commentScore;
-	}
-
-	public int getCommentNum() {
-		return commentNum;
-	}
-
-	public void setCommentNum(int commentNum) {
-		this.commentNum = commentNum;
-	}
-
-	public int getFavoriteNum() {
-		return favoriteNum;
-	}
-
-	public void setFavoriteNum(int favoriteNum) {
-		this.favoriteNum = favoriteNum;
-	}
-
-	public int getShareNum() {
-		return shareNum;
-	}
-
-	public void setShareNum(int shareNum) {
-		this.shareNum = shareNum;
 	}
 
 	public String getBookingMemo() {

@@ -17,23 +17,27 @@ public class DateUtils {
 		return System.currentTimeMillis();
 	}
 
-	public static String formatDate(long millisecond){
-		return formatDate(millisecond, DATE_FORMAT_DEFAULT);
+	/**
+	 * 将字符串格式的日期数据转换成Long型
+	 * @param date
+	 * @return
+	 * @throws Exception
+	 */
+	public static Long getDateAsLong(String date) throws Exception{
+		return getDateAsLong(date, "yyyyMMdd");
 	}
 
-	public static long getLong(String date) throws Exception{
+	/**
+	 * 将字符串格式的日期数据转换成Long型
+	 * @param date
+	 * @return
+	 * @throws Exception
+	 */
+	public static long getDateAsLong(String date, String format) throws Exception{
 		if(StringUtils.isNull(date)) return 0;
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		SimpleDateFormat sdf = new SimpleDateFormat(format);
 		return sdf.parse(date).getTime();
-	}
-
-	public static int getDateNumber(long millisecond){
-		if(millisecond == 0) return 0;
-
-		Date date = new Date(millisecond);
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		return Integer.valueOf(sdf.format(date));
 	}
 
 	public static Date parseDate(String value) throws Exception{
@@ -41,8 +45,16 @@ public class DateUtils {
 		return sdf.parse(value);
 	}
 
-	public static String formatDate(long millisecond, String format){
-		if(millisecond == 0) return "";
+	public static int formatDateAsInteger(long millisecond){
+		return Integer.parseInt(formatDate(millisecond, "yyyyMMdd"));
+	}
+
+	public static String formatDate(Long millisecond){
+		return formatDate(millisecond, DATE_FORMAT_DEFAULT);
+	}
+
+	public static String formatDate(Long millisecond, String format){
+		if(millisecond == null) return "";
 			
 		Date date = new Date(millisecond);
 		SimpleDateFormat sdf = new SimpleDateFormat(format);

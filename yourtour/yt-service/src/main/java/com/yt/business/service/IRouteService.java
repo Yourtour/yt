@@ -1,25 +1,15 @@
 package com.yt.business.service;
 
-import java.util.List;
-
-import com.yt.business.bean.RouteActivityBean;
 import com.yt.business.bean.RouteMainBean;
 import com.yt.business.bean.RouteProvisionBean;
 import com.yt.business.bean.RouteScheduleBean;
 import com.yt.business.bean.UserProfileBean;
 
+import java.util.List;
+import java.util.Map;
+
 public interface IRouteService {
 	public boolean isRouteMember(Long routeId, Long userId);
-
-	/**
-	 * 保存行程
-	 * 
-	 * @param route
-	 * @param operatorId
-	 * @throws Exception
-	 */
-	public void saveRoute(RouteMainBean route, Long operatorId)
-			throws Exception;
 
 	/**
 	 * 保存行程信息，包括行程计划内容以及日程信息；
@@ -28,7 +18,7 @@ public interface IRouteService {
 	 * @param operatorId
 	 * @throws Exception
 	 */
-	public void saveRouteMainAndSchedules(RouteMainBean route, Long operatorId)
+	public void saveRouteInfo(RouteMainBean route, Long operatorId)
 			throws Exception;
 
 	/**
@@ -51,6 +41,17 @@ public interface IRouteService {
 	 * @throws Exception
 	 */
 	public void deleteRoute(Long routeId, Long operatorId) throws Exception;
+
+	/**
+	 * 根据指定的行程ID，返回行程概要信息。
+	 *
+	 * @param routeId
+	 *            行程ID
+	 * @return 完整的行程对象
+	 * @throws Exception
+	 *             获取数据过程中发生的异常
+	 */
+	public RouteMainBean getRouteMain(Long routeId) throws Exception;
 
 	/**
 	 * 根据指定的行程ID，返回完整的行程对象。
@@ -87,6 +88,17 @@ public interface IRouteService {
 			int limit) throws Exception;
 
 	/**
+	 * 查询行程
+	 * @param nextCursor
+	 * @param limit
+	 * @param total
+	 * @param params
+	 * @return
+	 * @throws Exception
+	 */
+	public List<RouteMainBean> getRoutes(Long nextCursor, int limit, int total, Map<String, Object> params) throws Exception;
+
+	/**
 	 * 行程智能匹配，实现根据用户输入的行程条件，系统进行匹配并推荐
 	 * 
 	 * @param placeIds
@@ -120,6 +132,14 @@ public interface IRouteService {
 			throws Exception;
 
 	/**
+	 * 获取行程的日程安排
+	 * @param routeId
+	 * @return
+	 * @throws Exception
+	 */
+	public List<RouteScheduleBean> getRouteSchedules(Long routeId) throws Exception;
+
+	/**
 	 * 删除行程日程安排
 	 * 
 	 * @param routeId
@@ -129,49 +149,6 @@ public interface IRouteService {
 	 */
 	public void deleteSchedule(Long routeId, Long scheduleId, Long operatorId)
 			throws Exception;
-
-	/**
-	 * 获取行程活动完整数据
-	 * 
-	 * @param activityId
-	 * @return
-	 * @throws Exception
-	 */
-	public RouteActivityBean getScheduleActivity(Long activityId)
-			throws Exception;
-
-	/**
-	 * 保存行程日程安排
-	 * 
-	 * @param routeId
-	 * @param activity
-	 * @throws Exception
-	 */
-	public void saveScheduleActivity(Long routeId, RouteActivityBean activity,
-			Long operatorId) throws Exception;
-
-	/**
-	 * 删除行程具体某项活动安排
-	 * 
-	 * @param routeId
-	 * @param activityId
-	 * @param operatorId
-	 * @throws Exception
-	 */
-	public void deleteScheduleActivity(Long routeId, Long activityId,
-			Long operatorId) throws Exception;
-
-	/**
-	 * 删除日程活动安排中具体活动项
-	 * 
-	 * @param routeId
-	 * @param activityId
-	 * @param itemId
-	 * @param operatorId
-	 * @throws Exception
-	 */
-	public void deleteScheduleActivityItem(Long routeId, Long activityId,
-			Long itemId, Long operatorId) throws Exception;
 
 	/**
 	 * 保存行程准备事项

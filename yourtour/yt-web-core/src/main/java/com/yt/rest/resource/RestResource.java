@@ -20,6 +20,7 @@ import com.yt.utils.WebUtils;
 
 public class RestResource {
 	public static final String FILE_SEPERATOR = ","; // 多文件存储时，文件名之间的分隔符
+	public static final String VALUE_SEPERATOR = ","; // 多值分隔符
 
 	public RestResource() {
 		super();
@@ -65,12 +66,44 @@ public class RestResource {
 				InputStream is = p.getValueAs(InputStream.class);
 				FormDataContentDisposition detail = p
 						.getFormDataContentDisposition();
-				if(images.length() > 0) images.append(FILE_SEPERATOR);
+				if (images.length() > 0)
+					images.append(FILE_SEPERATOR);
 
-				images.append(FileUtils.saveFile(rootPath, FileUtils.getType(detail.getFileName()), is));
+				images.append(FileUtils.saveFile(rootPath,
+						FileUtils.getType(detail.getFileName()), is));
 			}
 		}
 
 		return images.toString();
+	}
+
+	/**
+	 * 通过FORM方式上传媒体文件
+	 * 
+	 * @param files
+	 *            FORM中的文件列表
+	 * @param rootPath
+	 *            媒体文件存储的路径
+	 * @return 返回媒体文件存储的全路径，没有存储文件返回空字符串。
+	 * @throws Exception
+	 *             存储过程中发生的异常
+	 */
+	protected String uploadMediaFile(List<FormDataBodyPart> files,
+			String rootPath) throws Exception {
+		StringBuffer imageUrl = new StringBuffer();
+		for (FormDataBodyPart part : files) {
+			if (part == null) {
+				continue;
+			}
+			InputStream is = part.getValueAs(InputStream.class);
+			FormDataContentDisposition detail = part
+					.getFormDataContentDisposition();
+			if (imageUrl.length() > 0)
+				imageUrl.append(FILE_SEPERATOR);
+
+			imageUrl.append(FileUtils.saveFile(rootPath,
+					FileUtils.getType(detail.getFileName()), is));
+		}
+		return imageUrl.toString();
 	}
 }

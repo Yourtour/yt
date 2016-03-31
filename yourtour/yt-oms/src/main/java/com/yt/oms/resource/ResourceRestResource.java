@@ -18,7 +18,7 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.sun.jersey.multipart.FormDataMultiPart;
+import com.sun.jersey.multipart.FormDataBodyPart;
 import com.sun.jersey.multipart.FormDataParam;
 import com.yt.business.PagingConditionBean;
 import com.yt.business.PagingDataBean;
@@ -37,7 +37,7 @@ import com.yt.response.ResponsePagingDataVO;
 import com.yt.rest.resource.RestResource;
 
 @Component
-@Path("/resources")
+@Path("/oms/resources")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class ResourceRestResource extends RestResource {
@@ -49,7 +49,7 @@ public class ResourceRestResource extends RestResource {
 	private IResourceService resourceService;
 
 	@GET
-	@Path("/hotels")
+	@Path("/hotels/query")
 	public ResponsePagingDataVO<List<HotelResourceVO>> getHotels(
 			@DefaultValue("0") @QueryParam("nextCursor") Long nextCursor,
 			@DefaultValue("20") @QueryParam("limit") int limit,
@@ -111,12 +111,13 @@ public class ResourceRestResource extends RestResource {
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public ResponseDataVO<HotelResourceVO> saveHotel(
 			@Context HttpServletRequest request,
-			@FormDataParam("place") String json, FormDataMultiPart form)
+			@FormDataParam("hotel") String json,
+			@FormDataParam("files") List<FormDataBodyPart> files)
 			throws Exception {
-		HotelResourceBean hotel = (HotelResourceBean) BeanUtils.deserialize(
-				json, HotelResourceBean.class);
-		hotel.setImageUrl(super.uploadMediaFile(form, "hotelImage",
-				HOTEL_IMAGE_PATH));
+		HotelResourceVO hotelVO = (HotelResourceVO) BeanUtils.deserialize(json,
+				HotelResourceVO.class);
+		HotelResourceBean hotel = HotelResourceVO.transform(hotelVO);
+		hotel.setImageUrl(super.uploadMediaFile(files, HOTEL_IMAGE_PATH));
 
 		Long userId = super.getCurrentUserId(request);
 		resourceService.saveResource(hotel, userId);
@@ -125,13 +126,13 @@ public class ResourceRestResource extends RestResource {
 	}
 
 	@GET
-	@Path("/restaurants")
+	@Path("/restaurants/query")
 	public ResponsePagingDataVO<List<RestaurantResourceVO>> getRestaurants(
 			@DefaultValue("0") @QueryParam("nextCursor") Long nextCursor,
 			@DefaultValue("20") @QueryParam("limit") int limit,
 			@QueryParam("total") int total) throws Exception {
 		PagingDataBean<List<? extends ResourceBean>> pagingData = resourceService
-				.getResources(ResourceType.HOTEL, new PagingConditionBean(
+				.getResources(ResourceType.FOOD, new PagingConditionBean(
 						nextCursor, limit, total));
 		List<RestaurantResourceVO> vos = new Vector<>();
 		for (ResourceBean bean : pagingData.getData()) {
@@ -190,12 +191,14 @@ public class ResourceRestResource extends RestResource {
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public ResponseDataVO<RestaurantResourceVO> saveRestaurant(
 			@Context HttpServletRequest request,
-			@FormDataParam("restaurant") String json, FormDataMultiPart form)
+			@FormDataParam("restaurant") String json,
+			@FormDataParam("files") List<FormDataBodyPart> files)
 			throws Exception {
-		RestaurantResourceBean restaurant = (RestaurantResourceBean) BeanUtils
-				.deserialize(json, RestaurantResourceBean.class);
-		restaurant.setImageUrl(super.uploadMediaFile(form, "restaurantImage",
-				HOTEL_IMAGE_PATH));
+		RestaurantResourceVO restaurantVO = (RestaurantResourceVO) BeanUtils
+				.deserialize(json, RestaurantResourceVO.class);
+		RestaurantResourceBean restaurant = RestaurantResourceVO
+				.transform(restaurantVO);
+		restaurant.setImageUrl(super.uploadMediaFile(files, HOTEL_IMAGE_PATH));
 
 		Long userId = super.getCurrentUserId(request);
 		resourceService.saveResource(restaurant, userId);
@@ -204,13 +207,13 @@ public class ResourceRestResource extends RestResource {
 	}
 
 	@GET
-	@Path("/scenes")
+	@Path("/scenes/query")
 	public ResponsePagingDataVO<List<SceneResourceVO>> getScenes(
 			@DefaultValue("0") @QueryParam("nextCursor") Long nextCursor,
 			@DefaultValue("20") @QueryParam("limit") int limit,
 			@QueryParam("total") int total) throws Exception {
 		PagingDataBean<List<? extends ResourceBean>> pagingData = resourceService
-				.getResources(ResourceType.HOTEL, new PagingConditionBean(
+				.getResources(ResourceType.SCENE, new PagingConditionBean(
 						nextCursor, limit, total));
 		List<SceneResourceVO> vos = new Vector<>();
 		for (ResourceBean bean : pagingData.getData()) {
@@ -266,12 +269,13 @@ public class ResourceRestResource extends RestResource {
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public ResponseDataVO<SceneResourceVO> saveScene(
 			@Context HttpServletRequest request,
-			@FormDataParam("scene") String json, FormDataMultiPart form)
+			@FormDataParam("scene") String json,
+			@FormDataParam("files") List<FormDataBodyPart> files)
 			throws Exception {
-		SceneResourceBean scene = (SceneResourceBean) BeanUtils.deserialize(
-				json, SceneResourceBean.class);
-		scene.setImageUrl(super.uploadMediaFile(form, "sceneImage",
-				HOTEL_IMAGE_PATH));
+		SceneResourceVO sceneVO = (SceneResourceVO) BeanUtils.deserialize(json,
+				SceneResourceVO.class);
+		SceneResourceBean scene = SceneResourceVO.transform(sceneVO);
+		scene.setImageUrl(super.uploadMediaFile(files, HOTEL_IMAGE_PATH));
 
 		Long userId = super.getCurrentUserId(request);
 		resourceService.saveResource(scene, userId);

@@ -31,6 +31,8 @@ public class ActivityBean extends BaseBeanImpl {
 	private	String  feature;		//特色
 	private String 	tags;           //活动标签
 	private int		recommendIndex; //推荐指数
+	private int     homeRecommend = 0; //是否首页推荐
+	private int     placeRecommend = 0; //是否目的地推荐
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = ActivityContentBean.class, direction = Direction.OUTGOING, isList = true)
 	private transient List<ActivityContentBean> contents;
@@ -105,6 +107,22 @@ public class ActivityBean extends BaseBeanImpl {
 
 	public void setTags(String tags) {
 		this.tags = tags;
+	}
+
+	public int getHomeRecommend() {
+		return homeRecommend;
+	}
+
+	public void setHomeRecommend(int homeRecommend) {
+		this.homeRecommend = homeRecommend;
+	}
+
+	public int getPlaceRecommend() {
+		return placeRecommend;
+	}
+
+	public void setPlaceRecommend(int placeRecommend) {
+		this.placeRecommend = placeRecommend;
 	}
 
 	public int getRecommendIndex() {

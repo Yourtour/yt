@@ -23,9 +23,6 @@ public class RouteCheckinBean extends BaseBeanImpl implements Cloneable{
 
 	private String 	images; //签到图片
 
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_AT, type = RouteActivityBean.class, direction = Direction.OUTGOING)
-	private transient RouteActivityBean activity = null; // 行程准备关联的行程
-
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = UserProfileBean.class, direction = Direction.INCOMING)
 	private transient UserProfileBean  user = null;
 
@@ -47,14 +44,6 @@ public class RouteCheckinBean extends BaseBeanImpl implements Cloneable{
 
 	public void setImages(String images) {
 		this.images = images;
-	}
-
-	public RouteActivityBean getActivity() {
-		return activity;
-	}
-
-	public void setActivity(RouteActivityBean activity) {
-		this.activity = activity;
 	}
 
 	public UserProfileBean getUser() {

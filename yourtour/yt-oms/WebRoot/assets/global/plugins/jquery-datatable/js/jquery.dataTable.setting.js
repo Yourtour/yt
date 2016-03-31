@@ -39,7 +39,8 @@ $.extend( true, $.fn.dataTable.defaults, {
     },
 
     fnServerData: function ( sSource, aoData, fnCallback ) {
-        var rest = this.attr("data-rest"), nextCursor, limit, total, params, name;
+        var rest = this.attr("data-rest"),
+            type = this.data("method"), nextCursor, limit, total, params = {}, name;
 
         $.each(aoData, function(index, data){
             name = data.name;
@@ -57,7 +58,7 @@ $.extend( true, $.fn.dataTable.defaults, {
         $.ajax({
             "dataType": 'json',
             "contentType" : "application/json",
-            "type": "POST",
+            "type": type ? type : "GET",
             "url": rest,
             "data": JSON.stringify(params),
             "success": function (response){
@@ -69,11 +70,11 @@ $.extend( true, $.fn.dataTable.defaults, {
     },
 
     fnServerParams: function( aoData ){
-        var params = {};
-
         var frm = this.attr("data-criteria");
         if(frm != undefined){
-            var values = $("#" + frm).serializeArray();
+        	var params = {};
+        	
+        	var values = $("#" + frm).serializeArray();
             $.each(values, function(i, field){
                 var value = field.value.trim();
 
@@ -81,9 +82,11 @@ $.extend( true, $.fn.dataTable.defaults, {
                     params[field.name] = value;
                 }
             });
+            
+            aoData.params = params;
         }
 
-        aoData.params = params;
+        
     }
 });
 
@@ -128,6 +131,28 @@ $.extend( true, $.fn.dataTable.defaults, {
                     callback(selectedItems.join(","));
                 }
             })
+        },
+
+        select:function(callback, message){
+            var datatable = $(this), selectedItems=[];
+
+            datatable.find(".checkboxes").each(function(index, item){
+                var checkbox = $(item);
+                if(checkbox.is(":checked")) {
+                    selectedItems.push(checkbox.val());
+                }
+            });
+
+            if(selectedItems.length == 0){
+                if(message) {
+                    bootbox.alert(message);
+                }else{
+                    bootbox.alert("请选择记录。");
+                }
+                return;
+            }
+
+            callback(selectedItems.join(","));
         }
     });
 
