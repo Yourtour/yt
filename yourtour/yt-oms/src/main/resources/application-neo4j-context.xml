@@ -28,7 +28,7 @@
 		<!--<constructor-arg index="0"
 			value="http://yt-database:7474/db/data" />-->
 		<constructor-arg index="0"
-						 value="http://localhost:7474/db/data" />
+						 value="http://120.55.76.201:7474/db/data" />
 	</bean>
 	<!--neo4j:config storeDirectory="data/yt.db" base-package="com.yt.business.bean"
 		/ -->
