@@ -6,7 +6,7 @@ import com.yt.business.bean.pack.ExpertPackBean;
 public class ExpertVO {
 
 	private Long id;
-	private String mobileNo, realName, identityCode;
+	private String mobileNo, realName, identityCode, tags;
 	private Status status;
 	private int contentApplicationNum, routeNum, serviceNum;
 
@@ -28,6 +28,7 @@ public class ExpertVO {
 		if (bean.getApplication() != null) {
 			vo.setIdentityCode(bean.getApplication().getIdentityCode());
 			vo.setStatus(bean.getApplication().getApproveState());
+			vo.setTags(bean.getApplication().getTags());
 		}
 		vo.setContentApplicationNum(bean.getContentApplications() == null ? 0
 				: bean.getContentApplications().size());
@@ -63,6 +64,14 @@ public class ExpertVO {
 
 	public void setRealName(String realName) {
 		this.realName = realName;
+	}
+
+	public String getTags() {
+		return tags;
+	}
+
+	public void setTags(String tags) {
+		this.tags = tags;
 	}
 
 	public String getIdentityCode() {
