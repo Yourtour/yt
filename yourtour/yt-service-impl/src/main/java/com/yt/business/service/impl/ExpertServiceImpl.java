@@ -13,13 +13,11 @@ import com.yt.business.PagingConditionBean;
 import com.yt.business.PagingDataBean;
 import com.yt.business.bean.ExpertApplicationBean;
 import com.yt.business.bean.ExpertServiceBean;
-import com.yt.business.bean.RouteMainBean;
 import com.yt.business.bean.UserProfileBean;
 import com.yt.business.bean.pack.ExpertPackBean;
 import com.yt.business.repository.neo4j.ExpertBeanRepository;
 import com.yt.business.repository.neo4j.ExpertTuple;
 import com.yt.business.repository.neo4j.RouteMainBeanRepository;
-import com.yt.business.repository.neo4j.RouteTuple;
 import com.yt.business.service.IExpertService;
 import com.yt.core.utils.CollectionUtils;
 import com.yt.core.utils.StringUtils;
@@ -86,11 +84,14 @@ public class ExpertServiceImpl extends ServiceBase implements IExpertService {
 		return experts;
 	}
 
-
 	@Override
-	public void saveApplication(ExpertApplicationBean application, Long uid)
-			throws Exception {
+	public ExpertApplicationBean saveApplication(
+			ExpertApplicationBean application, Long userId) throws Exception {
+		UserProfileBean profile = profileCrudOperate.get(userId);
+		application.setExpert(profile);
+		super.updateBaseInfo(application, userId);
 		this.applicationCrudOperate.save(application);
+		return application;
 	}
 
 	@Override

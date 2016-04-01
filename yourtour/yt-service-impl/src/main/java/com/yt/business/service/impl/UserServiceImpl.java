@@ -20,6 +20,7 @@ import com.yt.PropertiesReader;
 import com.yt.business.PagingDataBean;
 import com.yt.business.bean.ExpertApplicationBean;
 import com.yt.business.bean.UserAccountBean;
+import com.yt.business.bean.UserAccountBean.AccountType;
 import com.yt.business.bean.UserProfileBean;
 import com.yt.business.common.Constants;
 import com.yt.business.repository.neo4j.UserBeanRepository;
@@ -143,8 +144,13 @@ public class UserServiceImpl extends ServiceBase implements IUserService {
 	@Override
 	public UserProfileBean register(String userName, String password)
 			throws Exception {
+		return register(AccountType.USER, userName, password);
+	}
+
+	private UserProfileBean register(AccountType type, String userName,
+			String password) throws Exception {
 		UserAccountBean account = accountCrudOperate.get("userName", userName);
-		if (account != null) {
+		if (account != null && account.getType() == type) {
 			throw new AppException(StaticErrorEnum.USER_MOBILE_EXIST);
 		}
 
@@ -157,6 +163,7 @@ public class UserServiceImpl extends ServiceBase implements IUserService {
 		account = new UserAccountBean();
 		super.updateBaseInfo(account, profile.getId());
 		account.setUserName(userName);
+		account.setType(type);
 		account.setPwd(encryptPassword(encryptPassword(password)));
 		account.setProfile(profile);
 
@@ -186,16 +193,9 @@ public class UserServiceImpl extends ServiceBase implements IUserService {
 	}
 
 	@Override
-	public UserProfileBean registerExpert(UserAccountBean accountBean,
-			UserProfileBean profileBean, ExpertApplicationBean applicationBean)
+	public UserProfileBean registerExpert(String userName, String password)
 			throws Exception {
-		UserProfileBean profile = this.register(accountBean, profileBean, -1l);
-
-		// 保存申请信息
-		super.updateBaseInfo(applicationBean, -1l);
-		applicationBean.setExpert(profile);
-		this.applicationCrudOperate.save(applicationBean);
-		return profile;
+		return register(AccountType.EXPERT, userName, password);
 	}
 
 	@Override

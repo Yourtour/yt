@@ -46,7 +46,7 @@ public class UserRestResource extends RestResource {
 		UserAccountBean account = new UserAccountBean();
 		account.setPwd(vo.getPassword());
 		account.setUserName(vo.getUserName());
-		account.setType(UserAccountBean.AccountType.ADMINISTRATOR);
+		account.setType(UserAccountBean.AccountType.OPERATOR);
 
 		UserProfileBean profile = new UserProfileBean();
 		profile.setRealName(vo.getRealName());

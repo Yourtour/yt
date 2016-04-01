@@ -17,8 +17,6 @@ import org.springframework.stereotype.Component;
 
 import com.sun.jersey.multipart.FormDataBodyPart;
 import com.sun.jersey.multipart.FormDataParam;
-import com.yt.business.bean.ExpertApplicationBean;
-import com.yt.business.bean.UserAccountBean;
 import com.yt.business.bean.UserProfileBean;
 import com.yt.business.service.IUserService;
 import com.yt.core.common.StaticErrorEnum;
@@ -26,7 +24,6 @@ import com.yt.core.utils.BeanUtils;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.utils.SessionUtils;
-import com.yt.vo.member.ExpertApplicationVO;
 import com.yt.vo.member.LoginVO;
 import com.yt.vo.member.RegisterProfileVO;
 import com.yt.vo.member.RegisterVO;
@@ -126,29 +123,22 @@ public class UserRestResource extends RestResource {
 		return new ResponseDataVO<UserVO>(UserVO.transform(profile));
 	}
 
+	/**
+	 * 达人注册
+	 */
 	@POST
-	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	@Path("/register/expert")
-	public ResponseDataVO<UserVO> registerExpert(
-			@FormDataParam("application") String json,
-			@FormDataParam("files") List<FormDataBodyPart> files)
+	public ResponseDataVO<UserVO> registerExpert(RegisterVO registervo)
 			throws Exception {
-		ExpertApplicationVO applicationVO = (ExpertApplicationVO) BeanUtils
-				.deserialize(json, ExpertApplicationVO.class);
 		// 验证动态验证码
-		String mobileNO = applicationVO.getMobile();
-		String authcode = applicationVO.getAuthcode();
+		String mobileNO = registervo.getMobile();
+		String authcode = registervo.getAuthcode();
 		if (!authcode.equals(userService.getAuthcode(mobileNO))) {
 			// 验证码不匹配
 			return new ResponseDataVO<UserVO>(StaticErrorEnum.AUTHENTICATE_FAIL);
 		}
-		UserAccountBean accountBean = new UserAccountBean();
-		UserProfileBean profileBean = new UserProfileBean();
-		ExpertApplicationBean applicationBean = new ExpertApplicationBean();
-		ExpertApplicationVO.transform(applicationVO, accountBean, profileBean,
-				applicationBean);
-		UserProfileBean profile = userService.registerExpert(accountBean,
-				profileBean, applicationBean);
+		UserProfileBean profile = userService.register(registervo.getMobile(),
+				registervo.getPassword());
 		return new ResponseDataVO<UserVO>(UserVO.transform(profile));
 	}
 
