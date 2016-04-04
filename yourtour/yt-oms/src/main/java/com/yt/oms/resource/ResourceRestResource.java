@@ -19,6 +19,7 @@ import javax.ws.rs.core.MediaType;
 
 import com.yt.business.bean.*;
 import com.yt.business.common.Constants;
+import com.yt.core.utils.CollectionUtils;
 import com.yt.oms.vo.resource.ResourceVO;
 import com.yt.oms.vo.route.RouteVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -288,7 +289,6 @@ public class ResourceRestResource extends RestResource {
 
 	@POST
 	@Path("/query")
-	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public ResponsePagingDataVO<List<ResourceVO>> getResources(@DefaultValue("0") @QueryParam("nextCursor") Long nextCursor,
 														 @DefaultValue("20") @QueryParam("limit") int limit,
 														 @QueryParam("total") int total,
@@ -296,13 +296,15 @@ public class ResourceRestResource extends RestResource {
 	throws Exception{
 		List<ResourceVO> voes = new ArrayList<>();
 
-		PagingDataBean<List<ResourceBean>> paginationData = this.resourceService.getResources(new PagingConditionBean(nextCursor, limit, total), params);
+		PagingDataBean<List<? extends ResourceBean>> paginationData = this.resourceService.getResources(new PagingConditionBean(nextCursor, limit, total), params);
 		if(paginationData != null && paginationData.getTotal() > 0){
-			List<ResourceBean> resources = paginationData.getData();
-			for(ResourceBean resource : resources){
-				ResourceVO vo = new ResourceVO();
-				vo.fromBean(resource);
-				voes.add(vo);
+			List<? extends ResourceBean> resources = paginationData.getData();
+			if(CollectionUtils.isNotEmpty(resources)) {
+				for (ResourceBean resource : resources) {
+					ResourceVO vo = new ResourceVO();
+					vo.fromBean(resource);
+					voes.add(vo);
+				}
 			}
 		}
 

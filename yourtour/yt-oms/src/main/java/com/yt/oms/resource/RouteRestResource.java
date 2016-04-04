@@ -4,10 +4,7 @@ import com.sun.jersey.multipart.FormDataMultiPart;
 import com.sun.jersey.multipart.FormDataParam;
 import com.yt.business.PagingConditionBean;
 import com.yt.business.PagingDataBean;
-import com.yt.business.bean.ActivityBean;
-import com.yt.business.bean.ActivityContentBean;
-import com.yt.business.bean.RouteMainBean;
-import com.yt.business.bean.RouteScheduleBean;
+import com.yt.business.bean.*;
 import com.yt.business.common.Constants;
 import com.yt.business.service.IActivityService;
 import com.yt.business.service.IRouteService;
@@ -131,9 +128,25 @@ public class RouteRestResource extends RestResource {
     @GET
     @Path("/{routeId}/main")
     public ResponseDataVO<RouteVO> getRouteMainInfo(@PathParam("routeId") Long routeId) throws Exception{
-        RouteMainBean route = this.routeService.getRouteInfo(routeId, false);
+        RouteMainBean route = this.routeService.getRouteInfo(routeId, 2);
 
         return new ResponseDataVO<>(RouteVO.transform(route));
+    }
+
+    /**
+     * 保存行程信息
+     * @param schedule
+     * @return
+     * @throws Exception
+     */
+    @POST
+    @Path("/{routeId}/schedule/save")
+    public ResponseDataVO<Long> saveRouteScheduleInfo(@PathParam("routeId") Long routeId, RouteScheduleVO schedule) throws Exception{
+        RouteScheduleBean scheduleBean = RouteScheduleVO.transform(schedule);
+
+        this.routeService.saveRouteSchedule(scheduleBean, this.getCurrentUserId());
+
+        return new ResponseDataVO<>(scheduleBean.getId());
     }
 
     /**
@@ -145,28 +158,8 @@ public class RouteRestResource extends RestResource {
     @GET
     @Path("/{routeId}")
     public ResponseDataVO<RouteVO> getRouteInfo(@PathParam("routeId") Long routeId) throws Exception{
-        RouteMainBean route = this.routeService.getRouteInfo(routeId, true);
+        RouteMainBean route = this.routeService.getRouteInfo(routeId, 2);
 
         return new ResponseDataVO<>(RouteVO.transform(route));
-    }
-
-    /**
-     * 获取行程的日程安排信息
-     * @param routeId
-     * @return
-     */
-    @GET
-    @Path("/{routeId}/schedules")
-    public ResponseDataVO<List<RouteScheduleVO>> getScheduleInfoes(@PathParam("routeId") Long routeId) throws Exception{
-        List<RouteScheduleVO> schedules = new ArrayList<>();
-
-        List<RouteScheduleBean> scheduleBeans = this.routeService.getRouteSchedules(routeId);
-        if(CollectionUtils.isNotEmpty(scheduleBeans)){
-            for(RouteScheduleBean scheduleBean : scheduleBeans){
-                schedules.add(RouteScheduleVO.transform(scheduleBean));
-            }
-        }
-
-        return new ResponseDataVO<>(schedules);
     }
 }

@@ -130,7 +130,7 @@ public class ChatServiceImpl extends ServiceBase implements IChatService {
 			}
 			throw new NullArgumentException();
 		}
-		RouteMainBean route = routeService.getRouteInfo(routeId, false);
+		RouteMainBean route = routeService.getRouteInfo(routeId, 0);
 		if (route == null) {
 			throw new Exception(String.format(
 					"The route is not exist, route(%d).", routeId));

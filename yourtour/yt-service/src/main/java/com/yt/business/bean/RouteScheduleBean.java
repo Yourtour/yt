@@ -74,6 +74,8 @@ public class RouteScheduleBean extends BaseBeanImpl {
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
 	private String memo; // 日程描述
 
+	private String reason; //推荐理由
+
 	private String places; //目的地
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RELATED, type = ResourceBean.class, direction = Direction.OUTGOING)
@@ -207,5 +209,13 @@ public class RouteScheduleBean extends BaseBeanImpl {
 
 	public void setPlaces(String places) {
 		this.places = places;
+	}
+
+	public String getReason() {
+		return reason;
+	}
+
+	public void setReason(String reason) {
+		this.reason = reason;
 	}
 }

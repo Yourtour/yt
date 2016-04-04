@@ -18,6 +18,28 @@ div[data-role="page"]{
     font-size:14px;
 }
 
+#Page_ScheduleFormView .map-container{
+    width:100%;
+    height:100%;
+    background:white;
+}
+
+#Page_ScheduleFormView .detail-container{
+    position: absolute;
+    top:-2px;
+    right:-400px;
+    width:400px;
+    height:100%;
+    background:white;
+}
+
+#Page_ScheduleFormView .detail-container .portlet-body .actions{
+    position: absolute;
+    bottom:0px;
+    left:0px;
+    width:100%;
+}
+
 .timeline .timeline-badge{
     height:64px;
     width:80px;
@@ -28,11 +50,11 @@ div[data-role="page"]{
     padding:5px!important;
 }
 
-.timeline .timeline-body.inactive{
+.timeline .timeline-item.schedule-day .timeline-body{
     background-color: white;
 }
 
-.timeline .timeline-body.inactive .timeline-body-head{
+.timeline .timeline-item.schedule-day .timeline-body .timeline-body-head{
     display:none;
 }
 
@@ -40,19 +62,19 @@ div[data-role="page"]{
     margin-top:10px;
 }
 
-.timeline-item .schedule-day{
+.timeline .timeline-item .icon-schedule-day{
     background-image: url(../icon/icon-schedule-indicator.png);
     background-repeat: no-repeat;
     background-position: center center;
 }
 
-.timeline-item .schedule-day.active{
+.timeline .timeline-item.active .icon-schedule-day{
     background-image: url(../icon/icon-schedule-indicator-active.png);
     background-repeat: no-repeat;
     background-position: center center;
 }
 
-.timeline-item .schedule-day h2{
+.timeline .timeline-item .icon-schedule-day h2{
     position: relative;
     left: 30px;
     top:5px;
@@ -61,31 +83,15 @@ div[data-role="page"]{
     color:white;
 }
 
-#Page_ScheduleFormView .search{
-    position: absolute;
-    top:20px;
-    left:35px;
-    z-index:100;
-    width:500px;
-}
-
-#Page_ScheduleFormView .detail{
-    position: relative;
-    top:0px;
-    z-index:999;
-    background:white;
-    padding-top:30px;
-}
-
-.timeline-item .schedule-play{
-    background-image: url(../icon/icon-schedule-play.png);
+.timeline .timeline-item .icon-schedule-play{
+    background-image: url(../icon/icon-schedule-scene.png);
     background-color: white;
     background-repeat: no-repeat;
     background-position: center center;
     height:48px;
 }
 
-.timeline-item .schedule-food{
+.timeline .timeline-item .icon-schedule-food{
     background-image: url(../icon/icon-schedule-food.png);
     background-color: white;
     background-repeat: no-repeat;
@@ -93,10 +99,62 @@ div[data-role="page"]{
     height:48px;
 }
 
-.timeline-item .schedule-hotel{
+.timeline .timeline-item .icon-schedule-hotel{
     background-image: url(../icon/icon-schedule-hotel.png);
     background-color: white;
     background-repeat: no-repeat;
     background-position: center center;
     height:48px;
 }
+
+.timeline .timeline-item .icon-schedule-add{
+    background-image: url(../icon/icon-schedule-add.png);
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height:48px;
+}
+
+.page-container.schedule .page-sidebar-wrapper{
+    z-index:100;
+    position:relative;
+    top:0px;
+    left:0px;
+}
+
+.page-schedule .page-top .dropdown-menu>li{
+    height:40px;
+    font-size: 14px;
+    text-align:center;
+    line-height:40px;
+}
+
+.page-schedule .page-sidebar{
+    width:300px;
+}
+
+.page-schedule .page-top .dropdown-menu>li:not(:last-child){
+    border-bottom: 1px solid silver;
+}
+
+.icon-hotel{
+    background-image: url(../icon/icon-schedule-hotel.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    height:48px;
+}
+
+.icon-food{
+    background-image: url(../icon/icon-schedule-food.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    height:48px;
+}
+
+.icon-scene{
+    background-image: url(../icon/icon-schedule-scene.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    height:48px;
+}
+

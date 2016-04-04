@@ -174,4 +174,12 @@ public interface RouteMainBeanRepository extends GraphRepository<RouteMainBean> 
 	 */
 	@Query("START root=node({0}) MATCH root-[:DIVIDED]->(charge:RouteChargeBean)-[:BELONG]->(owner:UserProfileBean) RETURN charge, owner")
 	public List<ChargeTuple> getChargeDivisions(Long chargeId);
+
+	/**
+	 * 获取和行程相关的资源
+	 * @param scheduleId
+	 * @return
+	 */
+	@Query("START schedule=node({0}) MATCH schedule-[:RELATED]->(resource:ResourceBean) RETURN resource")
+	public ResourceBean getResource(Long scheduleId);
 }

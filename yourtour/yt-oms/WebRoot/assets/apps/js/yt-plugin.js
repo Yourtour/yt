@@ -125,7 +125,7 @@ jQuery.Utils ={
 
     isNotNull:function(str){
         return ! this.isNull(str);
-    }
+    },
 };
 
 /**

@@ -142,7 +142,7 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 
 	@Override
 	public RouteMainBean cloneRouteInfo(Long sourceId, RouteMainBean target, Long operatorId, String relation) throws Exception {
-		RouteMainBean source = this.getRouteInfo(sourceId, true);
+		RouteMainBean source = this.getRouteInfo(sourceId, 1);
 		if (source == null) {
 			throw new AppException(StaticErrorEnum.DATA_NOT_EXIST);
 		}
@@ -178,7 +178,7 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 		UserProfileBean user = new UserProfileBean(operatorId);
 		memberRelationship.createRelation(user, target, relation, Direction.INCOMING);
 
-		return this.getRouteInfo(target.getId(), true);
+		return this.getRouteInfo(target.getId(), 1);
 	}
 
 	@Override
@@ -216,12 +216,30 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 	}
 
 	@Override
-	public RouteMainBean getRouteInfo(Long routeId, boolean isFull) throws Exception {
-		if(! isFull){
-			return routeCrudOperate.get(routeId, false);
-		}else{
-			return routeCrudOperate.get(routeId, true);
+	public RouteMainBean getRouteInfo(Long routeId, int mode) throws Exception {
+		RouteMainBean route = null;
+		switch (mode){
+			case 0:
+				route = routeCrudOperate.get(routeId, false);
+				break;
+			case 1:
+				route = routeCrudOperate.get(routeId, true);
+				break;
+			case 2:
+				route =  routeCrudOperate.get(routeId, true);
+				List<RouteScheduleBean> schedules = route.getSchedules();
+				if(CollectionUtils.isNotEmpty(schedules)){
+					for(RouteScheduleBean schedule : schedules){
+						if(! schedule.getType().equals(RouteScheduleBean.ScheduleType.DAY)){
+							schedule.setResource(this.repository.getResource(schedule.getId()));
+						}
+					}
+				}
+
+				break;
 		}
+
+		return route;
 	}
 
 	@Override
@@ -231,10 +249,19 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 
 	@Override
 	public void saveRouteSchedule(RouteScheduleBean schedule, Long operatorId)
-			throws Exception {
-		this.updateBaseInfo(schedule, operatorId);
+	throws Exception {
+		RouteScheduleBean saved = null;
+		if(! schedule.isNew()){
+			saved = scheduleCrudOperate.get(schedule.getId(), false);
 
-		scheduleCrudOperate.save(schedule);
+			BeanUtils.merge(schedule, saved);
+		}else{
+			saved = schedule;
+		}
+
+		this.updateBaseInfo(saved, operatorId);
+
+		scheduleCrudOperate.save(saved);
 	}
 
 	@Override
@@ -254,7 +281,14 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 
 	@Override
 	public List<RouteScheduleBean> getRouteSchedules(Long routeId) throws Exception {
-		return this.repository.getSchedules(routeId);
+		List<RouteScheduleBean> schedules = this.repository.getSchedules(routeId);
+		if(CollectionUtils.isNotEmpty(schedules)){
+			for(RouteScheduleBean schedule : schedules){
+				schedule.setResource(this.repository.getResource(schedule.getId()));
+			}
+		}
+
+		return schedules;
 	}
 
 	@Override

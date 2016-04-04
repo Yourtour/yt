@@ -58,7 +58,7 @@ public interface IResourceService {
 	 * @return
 	 * @throws Exception
 	 */
-	public PagingDataBean<List<ResourceBean>> getResources(PagingConditionBean pagingCondition, Map<String, Object> params)
+	public PagingDataBean<List<? extends ResourceBean>> getResources(PagingConditionBean pagingCondition, Map<String, Object> params)
 			throws Exception;
 
 

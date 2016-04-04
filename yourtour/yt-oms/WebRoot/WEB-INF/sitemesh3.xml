@@ -6,5 +6,4 @@
 	<mapping  path="/view/oms/Login.html" decorator="/view/decorators/oms/Login.html"/>
 
 	<mapping  path="/view/oms/Schedule.html" decorator="/view/decorators/oms/Schedule.html"/>
-
 </sitemesh>

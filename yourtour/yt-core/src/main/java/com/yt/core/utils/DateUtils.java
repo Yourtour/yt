@@ -41,6 +41,8 @@ public class DateUtils {
 	}
 
 	public static Date parseDate(String value) throws Exception{
+		if(StringUtils.isNull(value)) return null;
+
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		return sdf.parse(value);
 	}

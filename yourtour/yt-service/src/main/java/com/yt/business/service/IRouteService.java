@@ -41,14 +41,12 @@ public interface IRouteService {
 
 	/**
 	 * 根据指定的行程ID，返回完整的行程对象。
-	 * 
 	 * @param routeId
-	 *            行程ID
-	 * @return 完整的行程对象
+	 * @param mode  0:仅仅获取行程概要信息 1：在0的基础上获取行程日程安排 2：在1的基础上获取行程关联的资源
+	 * @return
 	 * @throws Exception
-	 *             获取数据过程中发生的异常
 	 */
-	public RouteMainBean getRouteInfo(Long routeId, boolean isFull) throws Exception;
+	public RouteMainBean getRouteInfo(Long routeId, int mode) throws Exception;
 
 	/**
 	 * 查询行程(带用户输入查询条件)

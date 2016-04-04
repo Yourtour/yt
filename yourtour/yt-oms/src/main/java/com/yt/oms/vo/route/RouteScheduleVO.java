@@ -1,15 +1,21 @@
 package com.yt.oms.vo.route;
 
+import com.yt.business.bean.ResourceBean;
+import com.yt.business.bean.RouteMainBean;
 import com.yt.business.bean.RouteScheduleBean;
+import com.yt.oms.vo.resource.ResourceVO;
 
 import java.io.Serializable;
 
 public class RouteScheduleVO implements Serializable {
     private Long    id;
     private Long    parentId;
+    private Long    routeId;
+    private Long    resourceId;
     private int     index = 1;
     private String 	name;   //名称
     private String  type;
+    private String  reason; //推荐理由
     private String  lineName; //当天线路
     private String 	place;  //目的地
     private Long    date;   //日程时间
@@ -17,6 +23,8 @@ public class RouteScheduleVO implements Serializable {
     private String  endTime;    //结束时间
     private float   duration;   //持续时间
     private String  memo;   //描述
+
+    private ResourceVO resource = null;
 
     public static RouteScheduleVO transform(RouteScheduleBean bean) {
         if (bean == null) {
@@ -35,6 +43,12 @@ public class RouteScheduleVO implements Serializable {
         schedulevo.setEndTime(bean.getEndTime());
         schedulevo.setDuration(bean.getDuration());
         schedulevo.setType(bean.getType().code);
+        schedulevo.setReason(bean.getReason());
+
+        ResourceBean resource = bean.getResource();
+        if(resource != null){
+            schedulevo.setResource(ResourceVO.transform(resource));
+        }
 
         return schedulevo;
     }
@@ -53,9 +67,18 @@ public class RouteScheduleVO implements Serializable {
         bean.setStartTime(vo.getStartTime());
         bean.setEndTime(vo.getEndTime());
         bean.setDuration(vo.getDuration());
+        bean.setReason(vo.getReason());
         bean.setMemo(vo.getMemo());
         bean.setPlaces(vo.getPlace());
         bean.setType(RouteScheduleBean.ScheduleType.getType(vo.getType()));
+
+        if(vo.getResourceId() != null){
+            bean.setResource(new ResourceBean(vo.getResourceId()));
+        }
+
+        if(vo.getRouteId() != null){
+            bean.setRouteMain(new RouteMainBean(vo.getRouteId()));
+        }
 
         bean.setMemo(vo.getMemo());
 
@@ -146,6 +169,14 @@ public class RouteScheduleVO implements Serializable {
         this.duration = duration;
     }
 
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
     public String getMemo() {
         return memo;
     }
@@ -160,5 +191,29 @@ public class RouteScheduleVO implements Serializable {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Long getRouteId() {
+        return routeId;
+    }
+
+    public void setRouteId(Long routeId) {
+        this.routeId = routeId;
+    }
+
+    public Long getResourceId() {
+        return resourceId;
+    }
+
+    public void setResourceId(Long resourceId) {
+        this.resourceId = resourceId;
+    }
+
+    public ResourceVO getResource() {
+        return resource;
+    }
+
+    public void setResource(ResourceVO resource) {
+        this.resource = resource;
     }
 }

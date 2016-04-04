@@ -18,6 +18,7 @@
 
 	<!-- BEGIN PAGE LEVEL PLUGINS -->
 	<link href="${context}/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
+      <link href="${context}/assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css" />
 	<link href="${context}/assets/global/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
 	<link href="${context}/assets/global/plugins/jquery-datatable/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
 	<link href="${context}/assets/global/plugins/jquery-datatable/css/jquery.dataTables.setting.css" rel="stylesheet" type="text/css" />
@@ -42,46 +43,87 @@
 	<script src="${context}/assets/global/plugins/jquery-datatable/js/jquery.dataTables.min.js" type="text/javascript"></script>
 
 	<script src="http://api.map.baidu.com/api?v=1.4" type="text/javascript"></script>
+
+	  <script src="${context}/assets/apps/js/yt-plugin.js" type="text/javascript"></script>
+	  <script src="${context}/assets/apps/js/yt-schedule.js" type="text/javascript"></script>
+	  <script src="${context}/assets/apps/js/yt-app.js" type="text/javascript"></script>
   </head>
 
-  <body class="page-header-fixed page-sidebar-closed-hide-logo">
+  <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid page-schedule" style=""overflow:hidden!important;">
   	<input id="context" type="hidden" value="${context}"/>
 
-    <div class="page-header navbar navbar-fixed-top">
-  		<!-- BEGIN HEADER INNER -->
-		<div class="page-header-inner ">
-		<!-- BEGIN LOGO -->
-		<div class="page-logo">
-			<img src="${context}/assets/layouts/layout2/img/logo-default.png" alt="logo" class="logo-default" />
-		</div>
-		<!-- END LOGO -->
+    <div id="schedule-page-header" class="page-header navbar navbar-fixed-top">
+        <!-- BEGIN HEADER INNER -->
+        <div class="page-header-inner ">
+            <!-- BEGIN LOGO -->
+            <div class="page-logo">
+                <a href="index.html">
+                    <img src="${context}/assets/layouts/layout2/img/logo-default.png" alt="logo" class="logo-default" /> </a>
 
-		<!-- BEGIN PAGE TOP -->
-		<div class="page-top">
-            <form class="search-form search-form-expanded" action="page_general_search_3.html" method="GET">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search..." name="query">
-					<span class="input-group-btn">
-						<a href="javascript:;" class="btn submit">
-							<i class="icon-magnifier"></i>
-						</a>
-					</span>
+            </div>
+            <!-- END LOGO -->
+
+            <!-- BEGIN PAGE TOP -->
+            <div class="page-top">
+                <!-- BEGIN HEADER SEARCH BOX -->
+                <!-- DOC: Apply "search-form-expanded" right after the "search-form" class to have half expanded search box -->
+                <!-- END HEADER SEARCH BOX -->
+                <!-- BEGIN TOP NAVIGATION MENU -->
+                <div class="top-menu">
+                    <ul class="nav navbar-nav">
+                        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                        <li class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <span> 目的地</span>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-default schedule-places">
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav" >
+                        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                        <li class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <span> 景点 </span>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-default schedule-types">
+                                <li data-value="SCENE" class="selected">景点</li>
+                                <li data-value="HOTEL">酒店</li>
+                                <li data-value="FOOD">美食</li>
+                                <li data-value="TRAFFIC">交通</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <form class="search-form search-form-expanded" action="page_general_search_3.html" method="GET">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="景点/酒店/美食/关键字...... " id="keyword" name="keyword">
+							<span class="input-group-btn">
+								<a href="javascript:;" class="btn submit">
+									<i class="icon-magnifier"></i>
+								</a>
+							</span>
+                        </div>
+                    </form>
                 </div>
-            </form>
-
-		</div>
-		<!-- END PAGE TOP -->
-		</div>
-		<!-- END HEADER INNER -->
-  	</div>
-  	<!-- END HEADER -->
+                <!-- END TOP NAVIGATION MENU -->
+            </div>
+            <!-- END PAGE TOP -->
+        </div>
+        <!-- END HEADER INNER -->
+    </div>
+    <!-- END HEADER -->
 
   	<!-- BEGIN HEADER & CONTENT DIVIDER -->
     <div class="clearfix"> </div>
     <!-- END HEADER & CONTENT DIVIDER -->
 
   	<!-- BEGIN CONTAINER -->
-  	<div id="container" class="page-container">
+  	<div id="schedule-page-container" class="page-container schedule">
+        <input type="hidden" id="routeId" value="${routeId}"/>
         <div class="page-sidebar-wrapper">
             <div class="page-sidebar navbar-collapse collapse">
                 <div class="portlet light portlet-fit">
@@ -105,25 +147,97 @@
         <div class="page-content-wrapper">
 			<!-- BEGIN CONTENT -->
 			<div id="Page_ScheduleFormView">
-				<div class="portlet-body" id="map-container" style="height: 605px; background-color: green">
+				<div  class="portlet-body" style="height: 605px; background-color: green">
+                    <div id="map-container" class="map-container">
+                    </div>
 
+                    <div id="detail-container" class="detail-container">
+                        <div class="portlet light bg-inverse">
+                            <div class="portlet-title">
+                                <div id="caption" class="caption">
+                                    <span id="name" class="caption-subject bold font-green-haze uppercase" style="padding-left:60px">  </span>
+                                </div>
+                                <div class="actions">
+                                    <a id="btn_detail_hide" class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                                        <i class="fa fa-times" ></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+								<div id="info-resource">
+                                    <div class="row static-info" height="100px">
+                                        <div class="col-lg-12">
+                                            <img id="image" style="width:100%"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="row static-info">
+                                        <label for="type" class="col-md-3 control-label">地址</label>
+                                        <div class="col-md-9">
+                                            <span id="address"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="actions">
+                                        <button id="btn-schedule" class="btn btn-lg blue btn-block">加入行程</button>
+                                    </div>
+								</div>
+
+                                <div id="info-schedule">
+                                    <div class="row static-info">
+                                        <label for="type" class="col-md-3 control-label">名称</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="scheduleName" id="scheduleName" placeholder="行程名称">
+                                        </div>
+                                    </div>
+
+                                    <div class="row static-info">
+                                        <label for="type" class="col-md-3 control-label">时间安排</label>
+                                        <div class="col-md-9">
+											<div class="input-icon">
+												<i class="fa fa-clock-o"></i>
+												<input id="startTime" name="startTime" type="text" class="form-control timepicker timepicker-default">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row static-info">
+                                        <label for="type" class="col-md-3 control-label"></label>
+                                        <div class="col-md-9">
+											<div class="input-icon">
+												<i class="fa fa-clock-o"></i>
+												<input id="endTime" name="endTime" type="text" class="form-control timepicker timepicker-default">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row static-info">
+                                        <label for="type" class="col-md-3 control-label">推荐理由</label>
+                                        <div class="col-md-9">
+                                            <textarea class="form-control" rows="6" id="reason" name="reason"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="row static-info">
+                                        <label for="type" class="col-md-3 control-label">安排简述</label>
+                                        <div class="col-md-9">
+                                            <textarea class="form-control" rows="6" id="memo" name="memo"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="actions">
+                                        <button id="btn-save" class="btn btn-lg blue btn-block">保存</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 				</div>
 			</div>
 			<!-- END CONTENT -->
 		</div>
   	</div>
 
-  	<!-- BEGIN FOOTER -->
-  	<div class="page-footer-fixed page-footer">
-  		<div class="page-footer-inner"> 2015 &copy; Metronic by keenthemes.
-		    <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
-		</div>
-		<div class="scroll-to-top">
-		    <i class="icon-arrow-up"></i>
-		</div>
-  	</div>
-  	<!-- END FOOTER -->
-  	
   	<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
 	<!-- BEGIN CORE PLUGINS -->
  	<!--[if lt IE 9]>
@@ -148,24 +262,11 @@
 	<!-- BEGIN THEME GLOBAL SCRIPTS -->
 	<script src="${context}/assets/global/plugins/jquery-datatable/js/jquery.dataTable.setting.js" type="text/javascript"></script>
 	<script src="${context}/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+  <script src="${context}/assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js" type="text/javascript"></script>
 
 	<script src="${context}/assets/global/scripts/app.min.js" type="text/javascript"></script>
 
-	<script src="${context}/assets/apps/js/yt-plugin.js" type="text/javascript"></script>
-	<script src="${context}/assets/apps/js/yt-dict.js" type="text/javascript"></script>
-	<script src="${context}/assets/apps/js/yt-activity.js" type="text/javascript"></script>
-	<script src="${context}/assets/apps/js/yt-information.js" type="text/javascript"></script>
-	<script src="${context}/assets/apps/js/yt-account.js" type="text/javascript"></script>
-	<script src="${context}/assets/apps/js/yt-place.js" type="text/javascript"></script>
-	<script src="${context}/assets/apps/js/yt-route.js" type="text/javascript"></script>
-	<script src="${context}/assets/apps/js/yt-sceneResource.js" type="text/javascript"></script>
-	<script src="${context}/assets/apps/js/yt-hotelResource.js" type="text/javascript"></script>
-	<script src="${context}/assets/apps/js/yt-restaurantResource.js" type="text/javascript"></script>
-	<script src="${context}/assets/apps/js/yt-banner.js" type="text/javascript"></script>
-	<script src="${context}/assets/apps/js/yt-expert.js" type="text/javascript"></script>
-	<script src="${context}/assets/apps/js/yt-expertApplicationApprove.js" type="text/javascript"></script>
-	<script src="${context}/assets/apps/js/yt-expertContentApprove.js" type="text/javascript"></script>
-	<script src="${context}/assets/apps/js/yt-app.js" type="text/javascript"></script>
+
 
 	<!-- END THEME GLOBAL SCRIPTS -->
 	<!-- BEGIN PAGE LEVEL SCRIPTS -->
@@ -174,5 +275,11 @@
 	<script src="${context}/assets/layouts/layout2/scripts/layout.min.js" type="text/javascript"></script>
 	<script src="${context}/assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
 	<!-- END THEME LAYOUT SCRIPTS -->
+
+    <script language="javascript">
+        $(document).ready(function(){
+            $.Schedule.init(${routeId});
+        });
+    </script>
   </body>
 </html>	

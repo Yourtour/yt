@@ -2,8 +2,11 @@ package com.yt.business.service.impl;
 
 import com.yt.business.PagingConditionBean;
 import com.yt.business.PagingDataBean;
+import com.yt.business.bean.HotelResourceBean;
 import com.yt.business.bean.ResourceBean;
 import com.yt.business.bean.ResourceBean.ResourceType;
+import com.yt.business.bean.RestaurantResourceBean;
+import com.yt.business.bean.SceneResourceBean;
 import com.yt.business.repository.neo4j.ResourceBeanRepository;
 import com.yt.business.repository.query.IResourceQuery;
 import com.yt.business.service.IResourceService;
@@ -139,7 +142,22 @@ public class ResourceServiceImpl extends ServiceBase implements
 	}
 
 	@Override
-	public PagingDataBean<List<ResourceBean>> getResources(PagingConditionBean pagingCondition, Map<String, Object> params) throws Exception {
-		return resourceQuery.getResources(pagingCondition, params);
+	public PagingDataBean<List<? extends ResourceBean>> getResources(PagingConditionBean pagingCondition, Map<String, Object> params) throws Exception {
+		/*String type = params.get("type").toString().toString().toUpperCase();
+		switch(ResourceBean.ResourceType.valueOf(type)){
+			case FOOD:
+				resources = this.restaurantOperator.query(String.format(sb.toString(),RestaurantResourceBean.class.getSimpleName()), params);
+				break;
+			case HOTEL:
+				resources = this.hotelOperator.query(String.format(sb.toString(), HotelResourceBean.class.getSimpleName()), params);
+				break;
+			default:
+				resources = this.sceneOperator.query(String.format(sb.toString(), SceneResourceBean.class.getSimpleName()), params);
+				break;
+		}
+*/
+		//return resourceQuery.getResources(pagingCondition, params);
+
+		return new PagingDataBean<>(10, resourceCrudOperate.get(false));
 	}
 }

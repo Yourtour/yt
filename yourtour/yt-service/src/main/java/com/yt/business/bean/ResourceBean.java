@@ -130,6 +130,10 @@ public class ResourceBean extends SocialBeanImpl {
 		super();
 	}
 
+	public ResourceBean(Long id) {
+		super(id);
+	}
+
 	public String getCode() {
 		return code;
 	}

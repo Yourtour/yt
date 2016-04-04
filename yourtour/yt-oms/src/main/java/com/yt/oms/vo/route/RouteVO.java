@@ -1,6 +1,7 @@
 package com.yt.oms.vo.route;
 
 import com.yt.business.bean.*;
+import com.yt.core.utils.CollectionUtils;
 import com.yt.core.utils.DateUtils;
 import com.yt.core.utils.StringUtils;
 import com.yt.oms.vo.UserVO;
@@ -33,6 +34,8 @@ public class RouteVO implements Serializable {
 
     private UserVO user;
 
+    private List<RouteScheduleVO> schedules = null;
+
     public static RouteVO transform(RouteMainBean bean) {
         if (bean == null) {
             return null;
@@ -52,6 +55,31 @@ public class RouteVO implements Serializable {
         routeVO.setChargeExcludes(bean.getChargeExcludes());
         routeVO.setChargeIncludes(bean.getChargeIncludes());
         routeVO.setFeature(bean.getFeature());
+
+        List<RouteScheduleBean> scheduleBeans = bean.getSchedules();
+        if(CollectionUtils.isNotEmpty(scheduleBeans)){
+            Collections.sort(scheduleBeans, new Comparator<RouteScheduleBean>() {
+                @Override
+                public int compare(RouteScheduleBean o1, RouteScheduleBean o2) {
+                    String day1 = DateUtils.formatDate(o1.getDate(), "yyyy-MM-dd"),time1 = StringUtils.isNull(o1.getStartTime())? "00:00:00" : o1.getStartTime();
+                    String day2 = DateUtils.formatDate(o2.getDate(), "yyyy-MM-dd"),time2 = StringUtils.isNull(o1.getStartTime())? "00:00:00" : o2.getStartTime();
+
+                    try{
+                        return DateUtils.parseDate(day1 + " " + time1).compareTo(DateUtils.parseDate(day2 + " " + time2));
+                    }catch(Exception exc){
+                        exc.printStackTrace();
+                        return 0;
+                    }
+                }
+            });
+
+            List<RouteScheduleVO> voes = new ArrayList<>();
+            for(RouteScheduleBean scheduleBean : scheduleBeans){
+                voes.add(RouteScheduleVO.transform(scheduleBean));
+            }
+
+            routeVO.setSchedules(voes);
+        }
 
         return routeVO;
     }
@@ -231,5 +259,13 @@ public class RouteVO implements Serializable {
 
     public void setUser(UserVO user) {
         this.user = user;
+    }
+
+    public List<RouteScheduleVO> getSchedules() {
+        return schedules;
+    }
+
+    public void setSchedules(List<RouteScheduleVO> schedules) {
+        this.schedules = schedules;
     }
 }

@@ -63,7 +63,7 @@ public class RouteRestResource extends RestResource {
 	@GET
 	@Path("{id}")
 	public ResponseDataVO<RouteLoadVO> getRoute(@PathParam("id") Long id) throws Exception {
-			RouteMainBean bean = routeService.getRouteInfo(id, true);
+			RouteMainBean bean = routeService.getRouteInfo(id, 1);
 			RouteLoadVO vo = new RouteLoadVO(bean);
 			return new ResponseDataVO<RouteLoadVO>(vo);
 	}

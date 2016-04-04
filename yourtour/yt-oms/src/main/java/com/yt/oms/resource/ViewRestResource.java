@@ -14,6 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import java.io.StringWriter;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -73,6 +74,14 @@ public class ViewRestResource extends RestResource {
 
         Map<String, Object> model = this.viewService.getValue(name);
         if(model == null) model = new HashMap<>();
+
+        Enumeration<String> names = request.getParameterNames();
+        String paramName = null;
+        while(names.hasMoreElements()){
+            paramName = names.nextElement().toString();
+
+            model.put(paramName, request.getParameter(paramName));
+        }
 
         model.put("context", request.getContextPath());
 

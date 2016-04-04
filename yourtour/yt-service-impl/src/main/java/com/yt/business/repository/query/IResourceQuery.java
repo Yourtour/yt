@@ -18,5 +18,5 @@ public interface IResourceQuery {
      * @return
      * @throws Exception
      */
-    public PagingDataBean<List<ResourceBean>> getResources(PagingConditionBean pagingCondition, Map<String, Object> params) throws Exception;
+    public PagingDataBean<List<? extends ResourceBean>> getResources(PagingConditionBean pagingCondition, Map<String, Object> params) throws Exception;
 }
