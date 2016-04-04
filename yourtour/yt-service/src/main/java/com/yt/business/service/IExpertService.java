@@ -9,7 +9,6 @@ import java.util.List;
 import com.yt.business.PagingConditionBean;
 import com.yt.business.PagingDataBean;
 import com.yt.business.bean.ExpertApplicationBean;
-import com.yt.business.bean.RouteMainBean;
 import com.yt.business.bean.UserProfileBean;
 import com.yt.business.bean.pack.ExpertPackBean;
 
@@ -19,8 +18,8 @@ public interface IExpertService {
 	 * 
 	 * @param application
 	 */
-	public void saveApplication(ExpertApplicationBean application, Long userId)
-			throws Exception;
+	public ExpertApplicationBean saveApplication(
+			ExpertApplicationBean application, Long userId) throws Exception;
 
 	/**
 	 * 获取申请信息

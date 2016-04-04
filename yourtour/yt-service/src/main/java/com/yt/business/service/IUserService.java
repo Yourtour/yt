@@ -121,16 +121,16 @@ public interface IUserService {
 			UserProfileBean profile, Long userId) throws Exception;
 
 	/**
-	 * 注册一个达人帐号以及相应的个人信息和审核申请信息
+	 * 注册一个达人帐号以及相应的个人信息
 	 * 
-	 * @param accountBean
-	 * @param profileBean
-	 * @param applicationBean
+	 * @param userName
+	 *            用户名，一般使用手机号
+	 * @param password
+	 *            用户口令，将使用配置的加密算法进行存储加密。
 	 * @return
 	 * @throws Exception
 	 */
-	public UserProfileBean registerExpert(UserAccountBean accountBean,
-			UserProfileBean profileBean, ExpertApplicationBean applicationBean)
+	public UserProfileBean registerExpert(String userName, String password)
 			throws Exception;
 
 	/**

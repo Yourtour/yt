@@ -23,7 +23,7 @@ import com.yt.response.ResponsePagingDataVO;
 import com.yt.rest.resource.RestResource;
 
 @Component
-@Path("oms/expert")
+@Path("oms/experts")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class ExpertRestResource extends RestResource {
