@@ -431,20 +431,22 @@ jQuery.Schedule = {
         detailPanel.data('value', resource);
         if(schedule){
             $("#id", infoSchedule).html(schedule.id);
-            $("#name", infoSchedule).html(schedule.name);
-            $("#memo", infoSchedule).html(schedule.memo);
-            $("#reason", infoSchedule).html(schedule.reason);
+            $("#scheduleName", infoSchedule).val(schedule.name);
+            $("#startTime", infoSchedule).val(schedule.startTime);
+            $("#endTime", infoSchedule).val(schedule.endTime);
+            $("#memo", infoSchedule).val(schedule.memo);
+            $("#reason", infoSchedule).val(schedule.reason);
             infoResource.hide();
             infoSchedule.show();
         }else {
-            $("#caption", infoResource).attr("class", "caption icon-" + type);
-            $("#name", infoResource).html(resource.name);
-            $("#address", infoResource).html(resource.address);
             $("#image", infoResource).attr('src', context + "/" + resource.imageUrl);
-
             infoResource.show();
             infoSchedule.hide();
         }
+
+        $(".portlet-title", detailPanel).attr("class", "portlet-title icon-" + type);
+        $("#name", detailPanel).html(resource.name);
+        $("#address", detailPanel).html(resource.address);
 
         detailPanel.animate({right:"0px"});
     },

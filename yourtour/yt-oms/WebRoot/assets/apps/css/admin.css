@@ -83,7 +83,7 @@ div[data-role="page"]{
     color:white;
 }
 
-.timeline .timeline-item .icon-schedule-play{
+.timeline .timeline-item .icon-schedule-scene{
     background-image: url(../icon/icon-schedule-scene.png);
     background-color: white;
     background-repeat: no-repeat;
@@ -137,24 +137,31 @@ div[data-role="page"]{
     border-bottom: 1px solid silver;
 }
 
-.icon-hotel{
+.detail-container .portlet-title{
+    width:100%;
+}
+
+.detail-container .portlet-title #address{
+    margin-top:10px;
+    font-size:13px;
+    color:grey;
+}
+
+.detail-container .portlet-title.icon-hotel{
     background-image: url(../icon/icon-schedule-hotel.png);
     background-repeat: no-repeat;
     background-position: left center;
-    height:48px;
 }
 
-.icon-food{
+.detail-container .portlet-title.icon-food{
     background-image: url(../icon/icon-schedule-food.png);
     background-repeat: no-repeat;
     background-position: left center;
-    height:48px;
 }
 
-.icon-scene{
+.detail-container .portlet-title.icon-scene{
     background-image: url(../icon/icon-schedule-scene.png);
     background-repeat: no-repeat;
     background-position: left center;
-    height:48px;
 }
 
