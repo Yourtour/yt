@@ -22,7 +22,7 @@ public class RouteScheduleBean extends BaseBeanImpl {
 
 	// 资源枚举
 	public static enum ScheduleType {
-		DAY("DAY","日程"),PLAY("PLAY", "游玩"), FOOD("FOOD", "餐饮"), HOTEL("HOTEL", "住宿"), TRAFFIC(
+		DAY("DAY","日程"),SCENE("SCENE", "游玩"), FOOD("FOOD", "餐饮"), HOTEL("HOTEL", "住宿"), TRAFFIC(
 				"TRAFFIC", "交通"), FREE("FREE", "自行安排"), MATTER("MATTER", "事项");
 
 		public String code;
