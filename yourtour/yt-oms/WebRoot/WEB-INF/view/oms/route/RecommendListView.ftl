@@ -29,6 +29,12 @@
 
                                 <div class="col-md-6 col-sm-12">
                                     <div class="pull-right">
+                                        <button id="btn_publish" class="btn red">
+                                            <i class="fa fa-plus"></i>发布</button>
+
+                                        <button id="btn_withdraw" class="btn red">
+                                            <i class="fa fa-plus"></i>撤回</button>
+
                                         <button id="btn_plan" class="btn red">
                                             <i class="fa fa-plus"></i>规划</button>
 
@@ -74,7 +80,7 @@
                                     </th>
 
                                     <th>
-                                        类型
+                                        状态
                                     </th>
                                 </tr>
                             </thead>

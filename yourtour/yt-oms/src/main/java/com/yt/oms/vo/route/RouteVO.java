@@ -21,6 +21,7 @@ public class RouteVO implements Serializable {
     private Long    endDate;
     private int		duration;
 
+    private String status;
     private int  charge; //费用
     private String chargeIncludes;
     private String chargeExcludes;
@@ -55,7 +56,7 @@ public class RouteVO implements Serializable {
         routeVO.setChargeExcludes(bean.getChargeExcludes());
         routeVO.setChargeIncludes(bean.getChargeIncludes());
         routeVO.setFeature(bean.getFeature());
-
+        routeVO.setStatus(bean.getStatus().toString());
         List<RouteScheduleBean> scheduleBeans = bean.getSchedules();
         if(CollectionUtils.isNotEmpty(scheduleBeans)){
             Collections.sort(scheduleBeans, new Comparator<RouteScheduleBean>() {
@@ -74,8 +75,11 @@ public class RouteVO implements Serializable {
             });
 
             List<RouteScheduleVO> voes = new ArrayList<>();
+            RouteScheduleVO vo = null;
             for(RouteScheduleBean scheduleBean : scheduleBeans){
-                voes.add(RouteScheduleVO.transform(scheduleBean));
+                vo = RouteScheduleVO.transform(scheduleBean);
+                vo.setRouteId(bean.getId());
+                voes.add(vo);
             }
 
             routeVO.setSchedules(voes);
@@ -267,5 +271,13 @@ public class RouteVO implements Serializable {
 
     public void setSchedules(List<RouteScheduleVO> schedules) {
         this.schedules = schedules;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

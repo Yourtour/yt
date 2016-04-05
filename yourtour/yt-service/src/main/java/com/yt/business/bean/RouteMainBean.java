@@ -23,6 +23,12 @@ public class RouteMainBean extends SocialBeanImpl {
 	private static final long serialVersionUID = -2071225440268179136L;
 	private static final String INDEX_NAME = "route";
 
+	public static enum Status{
+		DRAFT, //草稿
+		PUBLISHED, //发布
+		WITHDRAW  //撤回
+	}
+
 	@HbaseColumn(name = "name")
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
 	private String name; // 行程名称
@@ -49,6 +55,8 @@ public class RouteMainBean extends SocialBeanImpl {
 	private int  olderNum; //老人数
 
 	private String tags;  //标签，数据冗余
+
+	private Status status;
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_FROM, type = PlaceBean.class, direction = Direction.OUTGOING)
 	private transient PlaceBean fromPlaceBean = null; // 行程出发地点
@@ -250,5 +258,13 @@ public class RouteMainBean extends SocialBeanImpl {
 
 	public void setRouteMemo(String routeMemo) {
 		this.routeMemo = routeMemo;
+	}
+
+	public Status getStatus() {
+		return status == null ? Status.PUBLISHED : status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 }

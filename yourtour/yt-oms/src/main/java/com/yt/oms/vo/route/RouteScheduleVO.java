@@ -64,6 +64,7 @@ public class RouteScheduleVO implements Serializable {
         bean.setId(vo.getId());
         bean.setName(vo.getName());
         bean.setDate(vo.getDate());
+        bean.setIndex(vo.getIndex());
         bean.setStartTime(vo.getStartTime());
         bean.setEndTime(vo.getEndTime());
         bean.setDuration(vo.getDuration());
@@ -98,7 +99,7 @@ public class RouteScheduleVO implements Serializable {
     }
 
     public Long getParentId() {
-        return parentId;
+        return parentId  == null?0:parentId;
     }
 
     public void setParentId(Long parentId) {

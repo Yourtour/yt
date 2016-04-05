@@ -99,6 +99,46 @@ public class RouteRestResource extends RestResource {
     }
 
     /**
+     * 行程发布
+     * @param routeIds
+     * @return
+     * @throws Exception
+     */
+    @GET
+    @Path("/{routeIds}/publish")
+    public ResponseVO publishRouteInfoes(@PathParam("routeIds") String routeIds) throws Exception{
+        String[] arrRouteIds = routeIds.split(",");
+        Long[] lRouteIds = new Long[arrRouteIds.length];
+        for(int index = 0; index < arrRouteIds.length; index++){
+            lRouteIds[index] = Long.valueOf(arrRouteIds[index]);
+        }
+
+        this.routeService.publishRouteInfoes(lRouteIds, super.getCurrentUserId());
+
+        return new ResponseVO();
+    }
+
+    /**
+     * 行程撤回
+     * @param routeIds
+     * @return
+     * @throws Exception
+     */
+    @GET
+    @Path("/{routeIds}/withdraw")
+    public ResponseVO withdrawRouteInfoes(@PathParam("routeIds") String routeIds) throws Exception{
+        String[] arrRouteIds = routeIds.split(",");
+        Long[] lRouteIds = new Long[arrRouteIds.length];
+        for(int index = 0; index < arrRouteIds.length; index++){
+            lRouteIds[index] = Long.valueOf(arrRouteIds[index]);
+        }
+
+        this.routeService.withdrawRouteInfoes(lRouteIds, super.getCurrentUserId());
+
+        return new ResponseVO();
+    }
+
+    /**
      *删除行程
      * @param routeIds
      * @return
@@ -147,6 +187,21 @@ public class RouteRestResource extends RestResource {
         this.routeService.saveRouteSchedule(scheduleBean, this.getCurrentUserId());
 
         return new ResponseDataVO<>(scheduleBean.getId());
+    }
+
+    /**
+     * 删除行程安排
+     * @param routeId
+     * @param scheduleId
+     * @return
+     * @throws Exception
+     */
+    @GET
+    @Path("/{routeId}/schedule/{scheduleId}/delete")
+    public ResponseVO deleteRouteScheduleInfo(@PathParam("routeId") Long routeId, @PathParam("scheduleId") Long scheduleId) throws Exception{
+        this.routeService.deleteRouteSchedule(routeId, scheduleId, this.getCurrentUserId());
+
+        return new ResponseVO();
     }
 
     /**

@@ -243,6 +243,32 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 	}
 
 	@Override
+	public void publishRouteInfoes(Long[] routeIds, Long userId) throws Exception {
+		RouteMainBean route = null;
+		for(Long routeId : routeIds){
+			route = routeCrudOperate.get(routeId, false);
+			if(route != null){
+				route.setStatus(RouteMainBean.Status.PUBLISHED);
+				super.updateBaseInfo(route, userId);
+				this.routeCrudOperate.save(route, false);
+			}
+		}
+	}
+
+	@Override
+	public void withdrawRouteInfoes(Long[] routeIds, Long userId) throws Exception {
+		RouteMainBean route = null;
+		for(Long routeId : routeIds){
+			route = routeCrudOperate.get(routeId, false);
+			if(route != null){
+				route.setStatus(RouteMainBean.Status.WITHDRAW);
+				super.updateBaseInfo(route, userId);
+				this.routeCrudOperate.save(route, false);
+			}
+		}
+	}
+
+	@Override
 	public List<UserProfileBean> getRouteMember(Long routeId) throws Exception {
 		return repository.getRouteMemberUserProfiles(routeId);
 	}
@@ -269,8 +295,7 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 			throws Exception {
 		RouteScheduleBean schedule = scheduleCrudOperate.get(scheduleId);
 		if (schedule == null) {
-			LOG.warn(String.format(
-					"No Schedule found for route=[%d] and schedule=[%d]",
+			LOG.warn(String.format("No Schedule found for route=[%d] and schedule=[%d]",
 					routeId, scheduleId));
 
 			return;

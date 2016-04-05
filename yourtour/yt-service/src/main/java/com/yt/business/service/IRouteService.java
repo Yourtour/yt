@@ -20,6 +20,22 @@ public interface IRouteService {
 	public void saveRouteInfo(RouteMainBean route, Long operatorId, String relation) throws Exception;
 
 	/**
+	 * 行程发布
+	 * @param routeId
+	 * @param userId
+	 * @throws Exception
+	 */
+	public void publishRouteInfoes(Long[] routeId, Long userId) throws Exception;
+
+	/**
+	 * 行程回收
+	 * @param routeId
+	 * @param userId
+	 * @throws Exception
+	 */
+	public void withdrawRouteInfoes(Long[] routeId, Long userId) throws Exception;
+
+	/**
 	 * 行程复制
 	 * 
 	 * @param sourceId
