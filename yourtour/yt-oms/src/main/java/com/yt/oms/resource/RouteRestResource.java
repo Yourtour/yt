@@ -87,6 +87,7 @@ public class RouteRestResource extends RestResource {
         RouteVO routeVO = BeanUtils.deserialize(route, RouteVO.class);
 
         RouteMainBean routeBean = RouteVO.transform(routeVO);
+        routeBean.setStatus(RouteMainBean.Status.DRAFT);
 
         String imageUrls = super.uploadMediaFile(multipart, "imageUrl", IMAGE_PATH);
         if(StringUtils.isNotNull(imageUrls)){
@@ -149,7 +150,6 @@ public class RouteRestResource extends RestResource {
     public ResponseVO deleteRouteInfoes(@PathParam("routeIds") String routeIds) throws Exception{
         String[] array = routeIds.split(",");
         Long[] lids = new Long[array.length];
-
         for(int index = 0; index < array.length; index++){
             lids[index] = Long.valueOf(array[index]);
         }
@@ -174,14 +174,44 @@ public class RouteRestResource extends RestResource {
     }
 
     /**
+     * 获取行程完整信息
+     * @param routeId
+     * @return
+     * @throws Exception
+     */
+    @GET
+    @Path("/{routeId}")
+    public ResponseDataVO<RouteVO> getRouteInfo(@PathParam("routeId") Long routeId) throws Exception{
+        RouteMainBean route = this.routeService.getRouteInfo(routeId, 2);
+
+        return new ResponseDataVO<>(RouteVO.transform(route));
+    }
+
+    /**
      * 保存行程信息
      * @param schedule
      * @return
      * @throws Exception
      */
     @POST
-    @Path("/{routeId}/schedule/save")
-    public ResponseDataVO<Long> saveRouteScheduleInfo(@PathParam("routeId") Long routeId, RouteScheduleVO schedule) throws Exception{
+    @Path("/{routeId}/schedule/day/save")
+    public ResponseDataVO<Long> saveRouteScheduleDayInfo(@PathParam("routeId") Long routeId, RouteScheduleVO schedule) throws Exception{
+        RouteScheduleBean scheduleBean = RouteScheduleVO.transform(schedule);
+
+        this.routeService.saveRouteSchedule(scheduleBean, this.getCurrentUserId());
+
+        return new ResponseDataVO<>(scheduleBean.getId());
+    }
+
+    /**
+     * 保存行程信息
+     * @param schedule
+     * @return
+     * @throws Exception
+     */
+    @POST
+    @Path("/{routeId}/schedule/activity/save")
+    public ResponseDataVO<Long> saveRouteScheduleActivityInfo(@PathParam("routeId") Long routeId, RouteScheduleVO schedule) throws Exception{
         RouteScheduleBean scheduleBean = RouteScheduleVO.transform(schedule);
 
         this.routeService.saveRouteSchedule(scheduleBean, this.getCurrentUserId());
@@ -202,19 +232,5 @@ public class RouteRestResource extends RestResource {
         this.routeService.deleteRouteSchedule(routeId, scheduleId, this.getCurrentUserId());
 
         return new ResponseVO();
-    }
-
-    /**
-     * 获取行程完整信息
-     * @param routeId
-     * @return
-     * @throws Exception
-     */
-    @GET
-    @Path("/{routeId}")
-    public ResponseDataVO<RouteVO> getRouteInfo(@PathParam("routeId") Long routeId) throws Exception{
-        RouteMainBean route = this.routeService.getRouteInfo(routeId, 2);
-
-        return new ResponseDataVO<>(RouteVO.transform(route));
     }
 }

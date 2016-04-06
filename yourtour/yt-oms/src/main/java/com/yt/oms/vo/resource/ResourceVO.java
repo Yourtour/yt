@@ -9,6 +9,7 @@ import com.yt.vo.SocialVO;
 public class ResourceVO extends SocialVO {
 	private String code;
 	private String name;
+	private String intro;
 	private String imageUrl; // 图片
 	private ResourceType type; // 类型
 	private String openTime; // 开放时间 hh24:mi
@@ -75,6 +76,7 @@ public class ResourceVO extends SocialVO {
 		this.setCode(resource.getCode());
 		this.setName(resource.getName());
 		this.setAddress(resource.getAddress());
+		this.setIntro(resource.getIntro());
 		this.setArriveNum(resource.getArriveNum());
 		this.setBookingMemo(resource.getBookingMemo());
 		this.setFavoriteNum(resource.getFavoriteNum());
@@ -99,7 +101,7 @@ public class ResourceVO extends SocialVO {
 		this.setBadNum(resource.getBadNum());
 		this.setMediumNum(resource.getMediumNum());
 		this.setImageNum(resource.getImageNum());
-	
+
 		this.setCommentScore(resource.getCommentScore());
 		this.setHealthScore(resource.getHealthScore());
 		this.setTrafficScore(resource.getTrafficScore());
@@ -403,5 +405,21 @@ public class ResourceVO extends SocialVO {
 
 	public void setFeature(String feature) {
 		this.feature = feature;
+	}
+
+	public String getIntro() {
+		return intro;
+	}
+
+	public void setIntro(String intro) {
+		this.intro = intro;
+	}
+
+	public String getPlaceName() {
+		return placeName;
+	}
+
+	public void setPlaceName(String placeName) {
+		this.placeName = placeName;
 	}
 }

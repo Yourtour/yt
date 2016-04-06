@@ -35,6 +35,7 @@ public class RouteScheduleVO implements Serializable {
         schedulevo.setParentId(bean.getParentId());
         schedulevo.setId(bean.getId());
         schedulevo.setName(bean.getName());
+        schedulevo.setMemo(bean.getMemo());
         schedulevo.setIndex(bean.getIndex());
         schedulevo.setLineName(bean.getName());
         schedulevo.setPlace(bean.getPlaces());

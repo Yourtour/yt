@@ -41,7 +41,7 @@ jQuery.Schedule = {
         });
 
         $("#detail-container #btn-save").on("click", function(){
-            me.saveScheduleInfo();
+            me.saveScheduleActivityInfo();
         });
 
         $(".schedule-types>li").on('click', function(){
@@ -57,24 +57,80 @@ jQuery.Schedule = {
             me.getResources();
         });
 
-        $('#detail-container .timepicker').timepicker({
+        $("#detail-container .timepicker").timepicker({
             showSeconds: false
         });
 
         //添加日程
         pageContainer.delegate(".page-sidebar-menu .icon-schedule-add", "click", function(){
-            me.addScheduleDay();
+            me.addRouteScheduleDay();
         });
 
         //选择日程
-        pageContainer.delegate(".page-sidebar-menu .icon-schedule-day", "click", function(){
+        pageContainer.delegate(".page-sidebar-menu .icon-schedule-day", "click", function(event){
             me.selectScheduleDay($(this));
+
+            event.stopPropagation();
         });
 
         //选择日程
         pageContainer.delegate(".page-sidebar-menu .schedule-item .fa-times", "click", function(){
             me.deleteRouteSchedule($(this));
         });
+
+        pageContainer.delegate(".page-sidebar-menu>li", "mouseenter",
+            function (event) {
+                if(event.type == "mouseenter"){
+                    $(".page-sidebar-menu .nav-item.schedule-day .page-actions").remove();
+
+                    if($(this).hasClass("schedule-day")) {
+                        var item = $(me.getScheduleDayAction());
+                        item.appendTo($(this))
+                    }
+                }
+            }
+        );
+
+        pageContainer.delegate(".page-sidebar-menu>li .page-actions .fa-edit", "click",
+            function (event) {
+                var dayItem = $(this).parentsUntil("ul").filter(".schedule-day");
+                me.selectScheduleDay(dayItem);
+                $.Dialog.popup(
+                    {
+                        message:'<div id="message-body"><textarea class="form-control" rows="6" id="memo" name="memo">' + dayItem.data("value").memo + '</textarea></div>',
+                        title:"日程概述",
+                        success:function(messageBody){
+                            var dayInfo = {memo : $("#memo",messageBody).val()};
+
+                            me.saveRouteScheduleDayInfo(dayInfo);
+                        }
+                    }
+                )
+
+                event.stopPropagation();
+            }
+        );
+
+        pageContainer.delegate(".page-sidebar .page-sidebar-menu .nav-item", "click", function(event){
+            me.selectScheduleActivity($(this));
+
+            event.stopPropagation();
+        });
+    },
+
+    /**
+     *
+     * @returns {string}
+     */
+    getScheduleDayAction:function(){
+        var html =  '<div class="page-actions" style="position:absolute;z-index:100; bottom:0px; left:0px; height:40px;background-color: #000;opacity: 0.6;">' +
+                    '<div class="btn-group">' +
+                        '<a href="javascript:;" style="width:33%" class="schedule-day-action btn fa fa-plus">插入</a>' +
+                        '<a href="javascript:;" style="width:33%" class="schedule-day-action btn fa fa fa-edit">编辑</a>' +
+                        '<a href="javascript:;" style="width:33%" class="schedule-day-action btn fa fa-times">删除</a>' +
+                    '</div></div>'
+
+        return html;
     },
 
     /**
@@ -161,7 +217,7 @@ jQuery.Schedule = {
      */
     addScheduleInfo:function(index, schedule){
         if(schedule.parentId == 0){
-            this.addDayScheduleInfo(index, schedule);
+            this.addScheduleDayInfo(index, schedule);
         }else{
             this.addScheduleActivityInfo(index, schedule);
         }
@@ -172,22 +228,20 @@ jQuery.Schedule = {
      * @param index
      * @param schedule
      */
-    addDayScheduleInfo:function(index, schedule){
+    addScheduleDayInfo:function(index, schedule){
         var pageSidebar = $('#schedule-page-container .page-sidebar-menu'),
             addItem  = $('.schedule-add', pageSidebar);
 
-        var itemHtml =  '<li class="nav-item schedule-day" id="' + schedule.id + '">' +
-                    '<a href="javascript:;" class="nav-link nav-toggle">' +
-                    '<div class="icon-schedule-day">D' + schedule.index + '</div>' +
-                    '<span class="title">D' + schedule.index+'</span>' +
-                    '<span class="selected"></span>' +
-                    '<span class="arrow open"></span>' +
-                    '</a>' +
-                    '</li>';
+        var itemHtml =  '<li class="nav-item schedule-day" style="position: relative" id="' + schedule.id + '">' +
+                            '<a href="javascript:;" class="nav-link nav-toggle">' +
+                            '<div class="icon-schedule-day">D' + schedule.index + '</div>' +
+                            '<span class="title">D' + schedule.index+'</span>' +
+                            '</a>' +
+                        '</li>';
 
         var item = $(itemHtml);
         item.insertBefore(addItem);
-        pageSidebar.data("value",schedule);
+        item.data("value",schedule);
     },
 
     /**
@@ -216,9 +270,26 @@ jQuery.Schedule = {
     },
 
     /**
+     * 保存行程日程信息
+     */
+    saveRouteScheduleDayInfo:function(info){
+        var me = this,
+            pageSidebar = $('#schedule-page-container .page-sidebar-menu'),
+            dayItem = $(".schedule-day.active", pageSidebar);
+
+        if(dayItem.length > 0) {
+            var dayInfo = $(dayItem[0]).data("value");
+            dayInfo.memo = info.memo;
+
+            $.Request.post("/rest/oms/route/" + dayInfo.routeId + "/schedule/day/save", dayInfo, function (result) {
+            })
+        }
+    },
+
+    /**
      * 添加日程
      */
-    addScheduleDay:function(){
+    addRouteScheduleDay:function(){
         var me = this,
             schedule = {},
             pageSidebar = $('#schedule-page-container .page-sidebar-menu');
@@ -231,7 +302,7 @@ jQuery.Schedule = {
 
         $.Request.post("/rest/oms/route/" + schedule.routeId + "/schedule/save",schedule,function(result){
            schedule.id = result.data;
-           me.addDayScheduleInfo(length + 1, schedule);
+           me.addScheduleDayInfo(length + 1, schedule);
         })
     },
 
@@ -245,10 +316,27 @@ jQuery.Schedule = {
 
         $(".schedule-day", pageSidebar).removeClass("active");
 
-        //当前选中节点标识为Active， 其他的节点为非Active
-        dayItem.parent().parent().addClass("active");
+        if(dayItem.hasClass("icon-schedule-day")) { //当前选中节点为日程节点
+            dayItem.parent().parent().addClass("active");
+        }else{
+            dayItem.addClass("active");
+        }
 
         me.showResourceMap();
+    },
+
+    /**
+     * 用户点击行程上的日程安排条目
+     * @param dayItem
+     */
+    selectScheduleActivity:function(scheduleItem){
+        var me = this,
+            pageSidebar = $('#schedule-page-container .page-sidebar-menu'),
+            schedule = scheduleItem.data("value");
+
+        me.selectScheduleDay($("#" + schedule.parentId, pageSidebar));
+
+        me.showResourceDetail(schedule.resource, schedule);
     },
 
     /**
@@ -328,7 +416,6 @@ jQuery.Schedule = {
      */
     deleteRouteSchedule:function(item){
         var pageContainer = $("#schedule-page-container"),
-            pageSidebar = $('.page-sidebar-menu', pageContainer),
             schedule = item.parent().data('value');
 
         $.Request.delete("/rest/oms/route/" + schedule.routeId + "/schedule/" + schedule.id + "/delete", null, function(result){
@@ -339,7 +426,7 @@ jQuery.Schedule = {
     /**
      * 保存行程安排信息
      */
-    saveScheduleInfo:function(){
+    saveScheduleActivityInfo:function(){
         var me = this,scheduleInfo = {},
             pageContainer = $("#schedule-page-container"),
             pageHeader = $("#schedule-page-header"),
@@ -370,7 +457,7 @@ jQuery.Schedule = {
         scheduleInfo.place = selectedPlace.data('value') + "," + selectedPlace.html();
         scheduleInfo.memo = $("#memo", detailPanel).val();
 
-        $.Request.post("/rest/oms/route/" + routeId + "/schedule/save",scheduleInfo,function(result){
+        $.Request.post("/rest/oms/route/" + routeId + "/schedule/activity/save",scheduleInfo,function(result){
             bootbox.alert("保存成功。", function(){
                 me.insertScheduleInfo(scheduleInfo);
             });
@@ -402,6 +489,7 @@ jQuery.Schedule = {
             infoSchedule.show();
         }else {
             $("#image", infoResource).attr('src', context + "/" + resource.imageUrl);
+            $("#intro", infoResource).html(resource.intro);
             infoResource.show();
             infoSchedule.hide();
         }

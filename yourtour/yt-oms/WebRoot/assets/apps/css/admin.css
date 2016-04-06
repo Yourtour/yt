@@ -115,6 +115,11 @@ div[data-role="page"]{
     padding: 6px 0px 0px;
 }
 
+#schedule-page-container .page-sidebar .page-sidebar-menu .nav-item:hover {
+    cursor:hand;
+    background-color: #26344B;
+}
+
 .page-schedule .page-top .dropdown-menu>li{
     height:40px;
     font-size: 14px;

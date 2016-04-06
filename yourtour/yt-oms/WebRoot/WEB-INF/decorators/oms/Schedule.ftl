@@ -69,7 +69,7 @@
                 <!-- DOC: Apply "search-form-expanded" right after the "search-form" class to have half expanded search box -->
                 <!-- END HEADER SEARCH BOX -->
                 <!-- BEGIN TOP NAVIGATION MENU -->
-                <div class="top-menu">
+                <div class="top-menu" style="margin-right:10px;">
                     <ul class="nav navbar-nav">
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                         <li class="dropdown">
@@ -108,6 +108,16 @@
 							</span>
                         </div>
                     </form>
+
+                    <div class="page-actions">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default">
+                                <i class="fa fa-search"></i> 预览</button>
+
+                            <button type="button" class="btn btn-default">
+                                <i class="fa fa-cogs"></i> 设置</button>
+                        </div>
+                    </div>
                 </div>
                 <!-- END TOP NAVIGATION MENU -->
             </div>
@@ -164,9 +174,16 @@
                                     </div>
 
                                     <div class="row static-info">
-                                        <label for="type" class="col-md-3 control-label">地址</label>
+                                        <label for="type" class="col-md-3 control-label">简介</label>
                                         <div class="col-md-9">
-                                            <span id="address"></span>
+                                            <span id="memo"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row static-info">
+                                        <label for="type" class="col-md-3 control-label">推荐理由</label>
+                                        <div class="col-md-9">
+                                            <span id="memo"></span>
                                         </div>
                                     </div>
 

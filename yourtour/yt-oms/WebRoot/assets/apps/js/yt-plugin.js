@@ -265,3 +265,24 @@ jQuery.Page={
         }
     });
 })(jQuery);
+
+
+jQuery.Dialog={
+    popup:function(options){
+        bootbox.dialog({
+            message: options.message,
+            title: options.title,
+            buttons:
+            {
+                "success" :
+                {
+                    "label" : "<i class='icon-ok'></i> 确定",
+                    "className" : "btn-sm btn-success",
+                    "callback": function() {
+                        options.success($("#message-body"));
+                    }
+                }
+            }
+        });
+    }
+}
