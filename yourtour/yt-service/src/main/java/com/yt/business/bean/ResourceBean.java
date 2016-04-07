@@ -37,7 +37,7 @@ import com.yt.neo4j.annotation.Neo4jRelationship.Direction;
  * @since 1.0
  */
 @NodeEntity
-public class ResourceBean extends SocialBeanImpl {
+public class ResourceBean extends SocialBeanImpl implements Cloneable{
 	private static final long serialVersionUID = -8980153602025087935L;
 
 	public enum ResourceType {
@@ -388,5 +388,10 @@ public class ResourceBean extends SocialBeanImpl {
 
 	public void setIntro(String intro) {
 		this.intro = intro;
+	}
+
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		return super.clone();
 	}
 }

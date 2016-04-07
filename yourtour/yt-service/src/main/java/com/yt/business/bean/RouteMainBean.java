@@ -3,6 +3,7 @@ package com.yt.business.bean;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.yt.core.utils.CollectionUtils;
 import com.yt.core.utils.StringUtils;
 import org.codehaus.jackson.map.annotate.JsonRootName;
 import org.springframework.data.neo4j.annotation.Indexed;
@@ -19,7 +20,7 @@ import com.yt.neo4j.annotation.Neo4jRelationship.Direction;
 @HbaseTable(name = "T_ROUTE_MAIN")
 @NodeEntity
 @JsonRootName("route")
-public class RouteMainBean extends SocialBeanImpl {
+public class RouteMainBean extends SocialBeanImpl implements Cloneable{
 	private static final long serialVersionUID = -2071225440268179136L;
 	private static final String INDEX_NAME = "route";
 
@@ -60,6 +61,8 @@ public class RouteMainBean extends SocialBeanImpl {
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_FROM, type = PlaceBean.class, direction = Direction.OUTGOING)
 	private transient PlaceBean fromPlaceBean = null; // 行程出发地点
+
+	private transient PlaceBean startPlaceBean = null; //行程起始地点
 	
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_TO, type = PlaceBean.class, direction = Direction.OUTGOING, isList = true)
 	private transient List<PlaceBean> toPlaceBeans = null; //目的地
@@ -122,6 +125,14 @@ public class RouteMainBean extends SocialBeanImpl {
 
 	public PlaceBean getFromPlaceBean() {
 		return fromPlaceBean;
+	}
+
+	public PlaceBean getStartPlaceBean() {
+		return startPlaceBean;
+	}
+
+	public void setStartPlaceBean(PlaceBean startPlaceBean) {
+		this.startPlaceBean = startPlaceBean;
 	}
 
 	public void setFromPlaceBean(PlaceBean fromPlaceBean) {
@@ -266,5 +277,35 @@ public class RouteMainBean extends SocialBeanImpl {
 
 	public void setStatus(Status status) {
 		this.status = status;
+	}
+
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		RouteMainBean clone = (RouteMainBean) super.clone();
+		clone.setId(-1l);
+		clone.startPlaceBean = new PlaceBean(this.startPlaceBean.getId());
+
+		List<PlaceBean> cloneToPlaces = new ArrayList<>();
+		if(CollectionUtils.isNotEmpty(toPlaceBeans)){
+			for(PlaceBean place : toPlaceBeans){
+				cloneToPlaces.add(new PlaceBean(place.getId()));
+			}
+
+			clone.toPlaceBeans = cloneToPlaces;
+		}
+
+		List<RouteScheduleBean> cloneSchedules = new ArrayList<>();
+		if(CollectionUtils.isNotEmpty(schedules)){
+			RouteScheduleBean cloneSchedule = null;
+			for(RouteScheduleBean scheduleBean : schedules){
+				cloneSchedule = (RouteScheduleBean) scheduleBean.clone();
+				cloneSchedule.setRouteMain(clone);
+				cloneSchedules.add(cloneSchedule);
+			}
+
+			clone.schedules = cloneSchedules;
+		}
+
+		return clone;
 	}
 }

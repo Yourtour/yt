@@ -97,6 +97,14 @@ public interface RouteMainBeanRepository extends GraphRepository<RouteMainBean> 
 	public List<RouteScheduleBean> getSchedules(Long routeId);
 
 	/**
+	 * 获取日程下的活动安排
+	 * @param dayId
+	 * @return
+	 */
+	@Query("MATCH (schedule:RouteScheduleBean) WHERE schedule.parentId={0} RETURN schedule")
+	public List<RouteScheduleBean> getScheduleActivities(Long dayId);
+
+	/**
 	 * 获取和指定用户相关的行程。
 	 *
 	 * @param userId

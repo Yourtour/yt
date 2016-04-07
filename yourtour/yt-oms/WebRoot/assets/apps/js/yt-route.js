@@ -1,8 +1,3 @@
-
-/**
- *
- * @type {{query: Function, saveDictInfo: Function, loadDictInfo: Function}}
- */
 jQuery.RouteRecommend = {
     init:function(){
         $.Page.show("Page_RouteListView");
@@ -16,6 +11,8 @@ jQuery.RouteRecommend = {
             format: 'yyyy-mm-dd',
             clearBtn:true
         });
+
+        $("#imageUrl").upload();
 
         $("#btn_add", listview).on('click', function(){
             me.createRouteInfo();

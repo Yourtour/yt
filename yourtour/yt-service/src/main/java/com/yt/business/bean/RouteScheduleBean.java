@@ -16,7 +16,7 @@ import com.yt.neo4j.annotation.Neo4jRelationship.Direction;
 
 @HbaseTable(name = "T_ROUTE_SCHEDULE")
 @NodeEntity
-public class RouteScheduleBean extends BaseBeanImpl {
+public class RouteScheduleBean extends BaseBeanImpl implements Cloneable{
 	private static final long serialVersionUID = 8074543232974381934L;
 	private static final String INDEX_NAME = "routeSchedule";
 
@@ -217,5 +217,18 @@ public class RouteScheduleBean extends BaseBeanImpl {
 
 	public void setReason(String reason) {
 		this.reason = reason;
+	}
+
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		RouteScheduleBean clone = (RouteScheduleBean) super.clone();
+
+		clone.setId(-1l);
+
+		if(this.resource != null){
+			clone.resource = (ResourceBean) this.resource.clone();
+		}
+
+		return clone;
 	}
 }

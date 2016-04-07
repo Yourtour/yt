@@ -44,13 +44,15 @@ import com.yt.neo4j.annotation.Neo4jRelationship.Direction;
  */
 @HbaseTable(name = "T_PLACE_INFO")
 @NodeEntity
-public class PlaceBean extends SocialBeanImpl {
+public class PlaceBean extends SocialBeanImpl implements Cloneable {
 	private static final long serialVersionUID = -6977525800090683657L;
 
 	private Long parentId; //父级目的地
 	private String code;  //目的地编码，
 	private String name;
 	private String intro; //简介
+	@HbaseColumn(name = "pos")
+	private String position; // 位置信息
 	private String feature; //特色
 	private String traffic; //交通
 	private String imageUrl; //图片， 可以有多张
@@ -65,6 +67,10 @@ public class PlaceBean extends SocialBeanImpl {
 
 	public PlaceBean() {
 		super();
+	}
+
+	public PlaceBean(Long id){
+		super(id);
 	}
 
 	public Long getParentId() {
@@ -161,6 +167,14 @@ public class PlaceBean extends SocialBeanImpl {
 
 	public void setSpecialty(String specialty) {
 		this.specialty = specialty;
+	}
+
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
 	}
 
 	@Override

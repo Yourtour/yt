@@ -8,16 +8,14 @@ import java.util.List;
 import java.util.Map;
 
 public interface IRouteService {
-
-
 	/**
 	 * 保存行程信息，包括行程计划内容以及日程信息；
-	 * 
 	 * @param route
+	 * @param relationship, 参照RELATION_TYPE_RECOMMEND, RELATION_TYPE_DRAW, RELATION_TYPE_SERVICE
 	 * @param operatorId
 	 * @throws Exception
 	 */
-	public void saveRouteInfo(RouteMainBean route, Long operatorId, String relation) throws Exception;
+	public void saveRouteInfo(RouteMainBean route, String relationship, Long operatorId) throws Exception;
 
 	/**
 	 * 行程发布
@@ -37,6 +35,16 @@ public interface IRouteService {
 
 	/**
 	 * 行程复制
+	 *
+	 * @param sourceId
+	 * @param operatorId
+	 * @return
+	 * @throws Exception
+	 */
+	public RouteMainBean cloneRouteInfo(Long sourceId, String relationship, Long operatorId) throws Exception;
+
+	/**
+	 * 行程复制
 	 * 
 	 * @param sourceId
 	 * @param target
@@ -44,7 +52,7 @@ public interface IRouteService {
 	 * @return
 	 * @throws Exception
 	 */
-	public RouteMainBean cloneRouteInfo(Long sourceId, RouteMainBean target, Long operatorId, String relation) throws Exception;
+	public RouteMainBean cloneRouteInfo(Long sourceId, RouteMainBean target, String relation, Long operatorId) throws Exception;
 
 	/**
 	 * 删除行程
@@ -145,7 +153,7 @@ public interface IRouteService {
 	 * @param operatorId
 	 * @throws Exception
 	 */
-	public void deleteRouteSchedule(Long routeId, Long scheduleId, Long operatorId)
+	public void deleteRouteSchedule(Long routeId, String type, Long scheduleId, Long operatorId)
 			throws Exception;
 
 	/**

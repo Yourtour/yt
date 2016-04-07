@@ -10,9 +10,13 @@ jQuery.Schedule = {
         var me = this,
             pageContainer = $("#schedule-page-container");
 
-        map = new BMap.Map('map-container');//指向map的容器
+        me.showRouteMapView();
+
+        map = new BMap.Map('Page_RouteMapView');//指向map的容器
         map.enableScrollWheelZoom(true);
         this.changePlaceMap("上海");
+
+        $("#Page_RouteSettingView #imageUrl", pageContainer).upload();
 
         this.loadRouteScheduleInfo(routeId);
 
@@ -22,6 +26,14 @@ jQuery.Schedule = {
 
         $("#btn-add", pageContainer).on("click", function(){
             me.addToRouteSchedule();
+        });
+
+        $("#schedule-page-header #btn-setting").on("click", function(){
+            me.showRouteSettingView();
+        });
+
+        $("#schedule-page-header #btn-map").on("click", function(){
+            me.showRouteMapView();
         });
 
         $("#detail-container #btn_detail_hide").on("click", function(){
@@ -94,19 +106,15 @@ jQuery.Schedule = {
         pageContainer.delegate(".page-sidebar-menu>li .page-actions .fa-edit", "click",
             function (event) {
                 var dayItem = $(this).parentsUntil("ul").filter(".schedule-day");
-                me.selectScheduleDay(dayItem);
-                $.Dialog.popup(
-                    {
-                        message:'<div id="message-body"><textarea class="form-control" rows="6" id="memo" name="memo">' + dayItem.data("value").memo + '</textarea></div>',
-                        title:"日程概述",
-                        success:function(messageBody){
-                            var dayInfo = {memo : $("#memo",messageBody).val()};
+                me.editScheduleDayInfo(dayItem);
+                event.stopPropagation();
+            }
+        );
 
-                            me.saveRouteScheduleDayInfo(dayInfo);
-                        }
-                    }
-                )
-
+        pageContainer.delegate(".page-sidebar-menu>li .page-actions .fa-times", "click",
+            function (event) {
+                var dayItem = $(this).parentsUntil("ul").filter(".schedule-day");
+                me.deleteScheduleDayInfo(dayItem);
                 event.stopPropagation();
             }
         );
@@ -116,6 +124,58 @@ jQuery.Schedule = {
 
             event.stopPropagation();
         });
+    },
+
+    /**
+     * 行程设置
+     */
+    showRouteSettingView:function(){
+        var pageContainer = $("#schedule-page-container");
+
+        $.Page.show("Page_RouteSettingView", function(){
+            $("#page-container", pageContainer).removeClass("padding-zero");
+        });
+    },
+
+    showRouteMapView:function(){
+        var pageContainer = $("#schedule-page-container");
+
+        $.Page.show("Page_RouteMapView", function(){
+            $("#page-container", pageContainer).addClass("padding-zero");
+        });
+    },
+
+    /**
+     * 编辑日程信息
+     * @param dayItem
+     */
+    editScheduleDayInfo:function(dayItem){
+        var me = this;
+        me.selectScheduleDay(dayItem);
+        $.Dialog.popup(
+            {
+                message:'<div id="message-body"><textarea class="form-control" rows="6" id="memo" name="memo">' + dayItem.data("value").memo + '</textarea></div>',
+                title:"日程概述",
+                success:function(messageBody){
+                    var dayInfo = {memo : $("#memo",messageBody).val()};
+
+                    me.saveRouteScheduleDayInfo(dayInfo);
+                }
+            }
+        )
+    },
+
+    /**
+     * 编辑日程信息
+     * @param dayItem
+     */
+    deleteScheduleDayInfo:function(dayItem){
+        var pageContainer = $("#schedule-page-container"),
+            dayInfo = dayItem.data('value');
+
+        $.Request.delete("/rest/oms/route/" + schedule.routeId + "/schedule/DAY/" + dayInfo.id + "/delete", null, function(result){
+            item.remove();
+        })
     },
 
     /**
@@ -162,6 +222,8 @@ jQuery.Schedule = {
             pageContainer.data("value", result);
 
             if(result){
+                $("#Page_RouteSettingView", pageContainer).deserialize(result);
+
                 me.addPlaces(result.toPlaces);
 
                 $.each(result.schedules, function(index, schedule){
@@ -418,7 +480,7 @@ jQuery.Schedule = {
         var pageContainer = $("#schedule-page-container"),
             schedule = item.parent().data('value');
 
-        $.Request.delete("/rest/oms/route/" + schedule.routeId + "/schedule/" + schedule.id + "/delete", null, function(result){
+        $.Request.delete("/rest/oms/route/" + schedule.routeId + "/schedule/" + schedule.type +"/" + schedule.id + "/delete", null, function(result){
             item.parent().remove();
         })
     },

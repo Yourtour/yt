@@ -105,8 +105,8 @@ div[data-role="page"]{
 }
 
 #schedule-page-container .page-sidebar-wrapper{
-    z-index:100;
-    position:relative;
+    /*z-index:100;
+    position:relative;*/
     /*top:0px;
     left:0px;*/
 }
@@ -157,11 +157,44 @@ div[data-role="page"]{
     background-image: url(../icon/icon-schedule-scene.png);
     background-repeat: no-repeat;
     background-position: left center;
-
 }
 
 @media (min-width: 992px) {
     .page-sidebar-menu.page-sidebar-menu-hover-submenu li .sub-menu{
         width:300px;
     }
+}
+
+.image-container{
+    height:100px;
+}
+
+.image-container ul{
+    height:inherit;
+}
+
+.image-container ul>li{
+    list-style: none;
+    float:left;
+    height:inherit;
+}
+
+.image-container ul>li:not(.image-selector){
+    width:18%
+}
+
+.image-container ul>li.image-selector{
+    background-image: url(../icon/icon-image-selector.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    width:10%;
+}
+
+.image-container ul>li img{
+    height:inherit;
+    height:inherit;
+}
+
+.padding-zero{
+    padding:0px !important;
 }

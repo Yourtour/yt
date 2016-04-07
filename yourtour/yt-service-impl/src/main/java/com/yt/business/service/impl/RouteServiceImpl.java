@@ -5,8 +5,6 @@ import com.yt.business.PagingDataBean;
 import com.yt.business.bean.*;
 import com.yt.business.common.Constants;
 import com.yt.business.repository.neo4j.RouteMainBeanRepository;
-import com.yt.business.repository.neo4j.RouteMainBeanRepository.OwnerRouteTuple;
-import com.yt.business.repository.neo4j.RouteTuple;
 import com.yt.business.service.IRouteService;
 import com.yt.core.common.AppException;
 import com.yt.core.common.StaticErrorEnum;
@@ -15,14 +13,15 @@ import com.yt.core.utils.CollectionUtils;
 import com.yt.core.utils.StringUtils;
 import com.yt.neo4j.repository.CrudOperate;
 import com.yt.neo4j.repository.RelationshipCrudOperate;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.neo4j.graphdb.Direction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class RouteServiceImpl extends ServiceBase implements IRouteService {
@@ -79,7 +78,7 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 	}
 
 	@Override
-	public void saveRouteInfo(RouteMainBean route, Long operatorId, String relation)
+	public void saveRouteInfo(RouteMainBean route, String relationship, Long operatorId)
 	throws Exception {
 		boolean isNew = route.isNew();
 		RouteMainBean saved = null;
@@ -118,12 +117,12 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 		routeCrudOperate.save(saved);
 
 		if(isNew) {
-			// 保存用户在行程中的成员关系
+			// 保存用户和行程中关系
 			UserProfileBean user = new UserProfileBean(operatorId);
-			memberRelationship.createRelation(user, route, relation, Direction.INCOMING);
+			memberRelationship.createRelation(user, route, relationship, Direction.INCOMING);
 		}
 
-		//保存日程信息E
+		//保存日程信息
 		List<RouteScheduleBean> existedSchedules = this.repository.getSchedules(route.getId());
 		if (CollectionUtils.isEmpty(existedSchedules) && CollectionUtils.isNotEmpty(schedules)) {
 			int index = 1;
@@ -141,8 +140,21 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 	}
 
 	@Override
-	public RouteMainBean cloneRouteInfo(Long sourceId, RouteMainBean target, Long operatorId, String relation) throws Exception {
-		RouteMainBean source = this.getRouteInfo(sourceId, 1);
+	public RouteMainBean cloneRouteInfo(Long sourceId, String relationship, Long operatorId) throws Exception {
+		RouteMainBean source = this.getRouteInfo(sourceId, 2);
+		if (source == null) {
+			throw new AppException(StaticErrorEnum.DATA_NOT_EXIST);
+		}
+
+		RouteMainBean target = (RouteMainBean) source.clone();
+		this.saveRouteInfo(target, relationship, operatorId);
+
+		return target;
+	}
+
+	@Override
+	public RouteMainBean cloneRouteInfo(Long sourceId, RouteMainBean target, String relation, Long operatorId) throws Exception {
+		RouteMainBean source = this.getRouteInfo(sourceId, 2);
 		if (source == null) {
 			throw new AppException(StaticErrorEnum.DATA_NOT_EXIST);
 		}
@@ -291,7 +303,7 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 	}
 
 	@Override
-	public void deleteRouteSchedule(Long routeId, Long scheduleId, Long uoperatorIdid)
+	public void deleteRouteSchedule(Long routeId, String type, Long scheduleId, Long operatorId)
 			throws Exception {
 		RouteScheduleBean schedule = scheduleCrudOperate.get(scheduleId);
 		if (schedule == null) {
@@ -300,8 +312,17 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 
 			return;
 		}
-
 		scheduleCrudOperate.delete(schedule);
+
+		//删除日程下的活动安排
+		if(type.equalsIgnoreCase(RouteScheduleBean.ScheduleType.DAY.toString())){
+			List<RouteScheduleBean> activities = this.repository.getScheduleActivities(scheduleId);
+			if(CollectionUtils.isNotEmpty(activities)){
+				for(RouteScheduleBean activity : activities) {
+					scheduleCrudOperate.delete(activity);
+				}
+			}
+		}
 	}
 
 	@Override

@@ -80,9 +80,7 @@ public class RouteRestResource extends RestResource {
 	public ResponseDataVO<RouteLoadVO> saveMain(RouteVO vo) throws Exception{
 		RouteMainBean bean = RouteVO.transform(vo);
 
-		UserProfileBean profileBean = new UserProfileBean(SessionUtils.getCurrentLoginUser());
-
-		routeService.saveRouteInfo(bean,SessionUtils.getCurrentLoginUser(), Constants.RELATION_TYPE_MADE);
+		routeService.saveRouteInfo(bean,Constants.RELATION_TYPE_DRAWUP, SessionUtils.getCurrentLoginUser());
 
 		RouteLoadVO loadvo = new RouteLoadVO(bean);
 		return new ResponseDataVO<RouteLoadVO>(loadvo);
@@ -101,12 +99,8 @@ public class RouteRestResource extends RestResource {
 			Long uid = super.getCurrentUserId();
 
 			RouteMainBean bean = RouteVO.transform(vo);
-			UserProfileBean profileBean = new UserProfileBean(uid);
-
-			RouteMainBean route = routeService.cloneRouteInfo(routeId, bean, uid, Constants.RELATION_TYPE_MADE);
-
+			RouteMainBean route = routeService.cloneRouteInfo(routeId, bean, Constants.RELATION_TYPE_DRAWUP, uid);
 			RouteLoadVO loadVo = new RouteLoadVO(route);
-
 			return new ResponseDataVO<RouteLoadVO>(loadVo);
 	}
 
@@ -164,7 +158,7 @@ public class RouteRestResource extends RestResource {
 	@GET
 	@Path("/routeId/schedule/{scheduleId}/delete")
 	public ResponseVO deleteRouteSchedule(@PathParam("routeId") Long routeId, @PathParam("scheduleId") Long scheduleId) throws Exception{
-		routeService.deleteRouteSchedule(routeId, scheduleId, SessionUtils.getCurrentLoginUser());
+		//routeService.deleteRouteSchedule(routeId, scheduleId, SessionUtils.getCurrentLoginUser());
 		return new ResponseVO();
 	}
 

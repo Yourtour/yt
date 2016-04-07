@@ -94,7 +94,7 @@ public class RouteRestResource extends RestResource {
             routeBean.setImageUrl(imageUrls);
         }
 
-        this.routeService.saveRouteInfo(routeBean, super.getCurrentUserId(), Constants.RELATION_TYPE_RECOMMEND);
+        this.routeService.saveRouteInfo(routeBean, Constants.RELATION_TYPE_RECOMMEND, super.getCurrentUserId());
 
         return new ResponseDataVO<>(routeBean.getId());
     }
@@ -227,9 +227,9 @@ public class RouteRestResource extends RestResource {
      * @throws Exception
      */
     @GET
-    @Path("/{routeId}/schedule/{scheduleId}/delete")
-    public ResponseVO deleteRouteScheduleInfo(@PathParam("routeId") Long routeId, @PathParam("scheduleId") Long scheduleId) throws Exception{
-        this.routeService.deleteRouteSchedule(routeId, scheduleId, this.getCurrentUserId());
+    @Path("/{routeId}/schedule/{type}/{scheduleId}/delete")
+    public ResponseVO deleteRouteScheduleInfo(@PathParam("routeId") Long routeId, @PathParam("type") String type, @PathParam("scheduleId") Long scheduleId) throws Exception{
+        this.routeService.deleteRouteSchedule(routeId, type, scheduleId, this.getCurrentUserId());
 
         return new ResponseVO();
     }

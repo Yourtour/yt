@@ -165,6 +165,14 @@ jQuery.Page={
     }
 };
 
+/**
+ * 表单页面插件，包括如下功能：
+ * deserialize：将Json数据填充到表单控件
+ * serialize：将表单数据以Json格式返回
+ * reset：
+ * clear：
+ *
+ */
 (function($){
     var re = /^(?:hidden|color|date|datetime|email|month|number|password|range|search|tel|text|time|url|week)$/i;
 
@@ -262,6 +270,62 @@ jQuery.Page={
 
         clear:function(){
             this.deserialize()
+        }
+    });
+})(jQuery);
+
+/**
+ * 图片附件选择插件
+ */
+(function($){
+
+    $.fn.extend({
+        upload:function(options){
+            var _this = $(this),
+                parent = _this.parent();
+
+            _this.css("display","none");
+            if(! parent.hasClass("image-container")){
+                parent.addClass("image-container");
+            }
+
+            parent.delegate("ul>li>img", "click", function(){
+                console.log(_this[0].files);
+
+                _this[0].files.splice(0, 1);
+                _this.showImages();
+            });
+
+            $('<ul><li class="image-selector"></li></ul>').appendTo(parent);
+
+            $(".image-selector", parent).on("click", function(){
+                _this.click();
+            });
+
+            _this.on("change", function(event){
+                _this.showImages();
+            });
+        },
+
+        showImages:function(){
+            var _this = $(this),
+                files = _this[0].files,
+                imageContainer = _this.parent(),
+                imageSelector = $(".image-selector", imageContainer);
+
+            $("ul>li:not(.image-selector)", imageSelector).remove();
+
+            $.each(files, function(index, file){
+                var reader = new FileReader();
+
+                reader.onload = (function(_file) {
+                    return function(e) {
+                        var image = $('<li><img class="thumb" src="'+ this.result +'" alt="'+ file.name +'" /></li>');
+                        image.insertBefore(imageSelector);
+                    };
+                })(file);
+                reader.readAsDataURL(file);
+            })
         }
     });
 })(jQuery);

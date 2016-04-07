@@ -71,9 +71,10 @@ public interface Constants {
 	public static final String RELATION_TYPE_RECOMMEND = "RECOMMEND";
 
 	/**
-	 * 定制关系
+	 * 制定关系
 	 */
-	public static final String RELATION_TYPE_MADE = "MADE";
+	public static final String RELATION_TYPE_DRAWUP = "DRAWUP";
+
 
 	/**
 	 * 服务关系

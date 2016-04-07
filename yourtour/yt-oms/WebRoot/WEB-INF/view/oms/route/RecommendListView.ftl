@@ -41,6 +41,9 @@
                                         <button id="btn_add" class="btn red">
                                             <i class="fa fa-plus"></i> 新增</button>
 
+                                        <button id="btn_clone" class="btn red">
+                                            <i class="fa fa-plus"></i> 复制</button>
+
                                         <button id="btn_edit" class="btn default">
                                             <i class="fa fa-edit"></i> 修改</button>
 

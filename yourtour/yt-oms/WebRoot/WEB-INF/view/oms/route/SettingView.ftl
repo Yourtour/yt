@@ -1,14 +1,9 @@
-<div id="Page_RouteFormView" class="row" data-role="page">
+<div id="Page_RouteSettingView" class="row" style="display: none" data-role="page" >
     <div class="col-lg-12">
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
-                    <i class="icon-home"></i>
-                    <a href="index.html">首页</a>
-                    <i class="fa fa-angle-right"></i>
-                </li>
-                <li>
-                    <span>行程编辑</span>
+                    <span>行程设置</span>
                 </li>
             </ul>
         </div>
@@ -23,19 +18,19 @@
                             <input type="hidden" class="form-control" id="id" name="id">
 
                             <div class="form-group">
-                                <label for="name" class="col-md-1 control-label">名称</label>
+                                <label for="name" class="col-md-1 control-label">行程名称</label>
                                 <div class="col-md-5">
                                     <input type="text" class="form-control" name="name" id="name" placeholder="行程名称">
                                 </div>
 
-                                <label for="code" class="col-md-1 control-label">线路</label>
+                                <label for="code" class="col-md-1 control-label">行程线路</label>
                                 <div class="col-md-5">
                                     <input type="text" class="form-control" name="lineName" id="lineName" placeholder="行程线路">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="value" class="col-md-1 control-label">安排</label>
+                                <label for="value" class="col-md-1 control-label">日程安排</label>
                                 <div class="col-md-2">
                                     <input id="startDate" name="startDate" class="form-control input-medium date-picker" size="12" type="text" value="" />
                                 </div>
@@ -54,50 +49,57 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="value" class="col-md-1 control-label">费用</label>
+                                <label for="value" class="col-md-1 control-label">行程特点</label>
                                 <div class="col-md-5">
-                                    <input type="text" class="form-control" name="charge" id="charge" placeholder="人均费用"> </div>
-                            </div>
+                                    <textarea class="form-control" rows="6" id="feature" name="feature" placeholder="行程特点"></textarea>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="value" class="col-md-1 control-label">包括</label>
-                                <div class="col-md-11">
-                                    <textarea class="form-control" rows="6" id="chargeIncludes" name="chargeIncludes"></textarea>
+                                <label for="value" class="col-md-1 control-label">推荐理由</label>
+                                <div class="col-md-5">
+                                    <textarea class="form-control" rows="6" id="reason" name="reason" placeholder="推荐理由"></textarea>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="value" class="col-md-1 control-label">不包括</label>
-                                <div class="col-md-11">
-                                    <textarea class="form-control" rows="6" id="chargeExcludes" name="chargeExcludes"></textarea>
+                                <label for="value" class="col-md-1 control-label">适合人群</label>
+                                <div class="col-md-5">
+                                    <textarea class="form-control" rows="6" id="availability" name="availability" placeholder="费用信息"></textarea>
+                                </div>
+
+                                <label for="value" class="col-md-1 control-label">费用信息</label>
+                                <div class="col-md-5">
+                                    <textarea class="form-control" rows="6" id="charge" name="charge" placeholder="费用信息"></textarea>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="value" class="col-md-1 control-label">特点</label>
-                                <div class="col-md-11">
-                                    <textarea class="form-control" rows="6" id="feature" name="feature"></textarea>
+                                <label for="value" class="col-md-1 control-label">费用包括</label>
+                                <div class="col-md-5">
+                                    <textarea class="form-control" rows="6" id="chargeIncludes" name="chargeIncludes" placeholder="费用包括"></textarea>
+                                </div>
+
+                                <label for="value" class="col-md-1 control-label">费用不包括</label>
+                                <div class="col-md-5">
+                                    <textarea class="form-control" rows="6" id="chargeExcludes" name="chargeExcludes" placeholder="费用不包括"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="value" class="col-md-1 control-label">服务承诺</label>
+                                <div class="col-md-5">
+                                    <textarea class="form-control" rows="6" id="promises" name="promises" placeholder="服务承诺"></textarea>
+                                </div>
+
+                                <label for="value" class="col-md-1 control-label">注意实现</label>
+                                <div class="col-md-5">
+                                    <textarea class="form-control" rows="6" id="attentions" name="attentions" placeholder="注意实现"></textarea>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="value" class="col-md-1 control-label">图片</label>
-                                <div class="col-md-11">
-                                    <input type="file" name="imageUrl" id="imageUrl1">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="value" class="col-md-1 control-label"></label>
-                                <div class="col-md-11">
-                                    <input type="file" name="imageUrl" id="imageUrl2">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="value" class="col-md-1 control-label"></label>
-                                <div class="col-md-11">
-                                    <input type="file" name="imageUrl" id="imageUrl3">
+                                <div class="col-md-11" >
+                                    <input type="file" name="imageUrl" id="imageUrl" multiple>
                                 </div>
                             </div>
 
