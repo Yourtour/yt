@@ -48,7 +48,7 @@
                         </li>
                     </ul>
 
-                    <form class="search-form search-form-expanded" action="page_general_search_3.html" method="GET">
+                    <form class="search-form search-form-expanded" method="GET">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="景点/酒店/美食/关键字...... " id="keyword" name="keyword">
                         <span class="input-group-btn">
@@ -65,7 +65,10 @@
                                 <i class="fa fa-map-o"></i> 地图</button>
 
                             <button id="btn-setting" type="button" class="btn btn-default">
-                                <i class="fa fa-cogs"></i> 设置</button>
+                                <i class="fa fa-cogs"></i> 设置
+
+                            <button id="btn-service" type="button" class="btn btn-default"  style="display:none">
+                                <i class="fa fa-cogs"></i> 服务</button>
                         </div>
                     </div>
                 </div>
@@ -81,7 +84,6 @@
     <!-- END HEADER & CONTENT DIVIDER -->
 
     <div id="schedule-page-container" class="page-container">
-        <input type="hidden" id="routeId" value="${routeId}"/>
         <div class="page-sidebar-wrapper">
             <div class="page-sidebar navbar-collapse collapse">
                 <ul  style="height:100%" class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu schedule" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">

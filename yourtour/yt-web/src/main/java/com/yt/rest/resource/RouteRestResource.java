@@ -120,21 +120,6 @@ public class RouteRestResource extends RestResource {
 	}
 
 	/**
-	 * 保存行程事项
-	 * @param routeId
-	 * @param vo
-	 * @return
-	 * @throws Exception
-	 */
-	@POST
-	@Path("/{routeId}/provision/save")
-	public ResponseDataVO<Long> saveRouteProvision(@PathParam("routeId") Long routeId, RouteProvisionVO vo) throws Exception{
-		RouteProvisionBean bean = RouteProvisionVO.transform(vo);
-		routeService.saveRouteProvision(routeId, bean, SessionUtils.getCurrentLoginUser());
-		return new ResponseDataVO<>(bean.getId());
-	}
-
-	/**
 	 * 根据指定的行程ID删除行程
 	 * 
 	 * @param routeId
@@ -159,20 +144,6 @@ public class RouteRestResource extends RestResource {
 	@Path("/routeId/schedule/{scheduleId}/delete")
 	public ResponseVO deleteRouteSchedule(@PathParam("routeId") Long routeId, @PathParam("scheduleId") Long scheduleId) throws Exception{
 		//routeService.deleteRouteSchedule(routeId, scheduleId, SessionUtils.getCurrentLoginUser());
-		return new ResponseVO();
-	}
-
-	/**
-	 * 删除行程准备事项
-	 * @param routeId
-	 * @param provisionId
-	 * @return
-	 * @throws Exception
-	 */
-	@GET
-	@Path("/{routeId}/provision/{provisionId}/delete")
-	public ResponseVO deleteProvision(@PathParam("routeId") Long routeId, @PathParam("provisionId") Long provisionId) throws Exception{
-		routeService.deleteRouteProvision(routeId, provisionId, SessionUtils.getCurrentLoginUser());
 		return new ResponseVO();
 	}
 

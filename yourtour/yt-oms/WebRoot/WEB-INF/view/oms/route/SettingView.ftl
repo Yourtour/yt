@@ -1,8 +1,10 @@
 <div id="Page_RouteSettingView" class="row" style="display: none" data-role="page" >
+    <input type="hidden" id="type" value="${type}"/>
     <div class="col-lg-12">
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
+                    <i class="icon-home"></i>
                     <span>行程设置</span>
                 </li>
             </ul>
@@ -15,7 +17,7 @@
                 <div class="portlet light ">
                     <div class="portlet-body">
                         <form id="RouteForm" class="form-horizontal" role="form">
-                            <input type="hidden" class="form-control" id="id" name="id">
+                            <input type="hidden" value="-1" class="form-control" id="id" name="id">
 
                             <div class="form-group">
                                 <label for="name" class="col-md-1 control-label">行程名称</label>
@@ -31,21 +33,41 @@
 
                             <div class="form-group">
                                 <label for="value" class="col-md-1 control-label">日程安排</label>
-                                <div class="col-md-2">
-                                    <input id="startDate" name="startDate" class="form-control input-medium date-picker" size="12" type="text" value="" />
+                                <div class="col-md-3">
+                                    <input id="startDate" name="startDate" class="form-control input-inline date-picker" size="24" type="text" value="" />
+                                    <span class="help-inline">开始, 一共</span>
                                 </div>
 
                                 <div class="col-md-2">
-                                    <input id="endDate" name="endDate" class="form-control input-medium date-picker" size="12" type="text" value="" />
-                                </div>
-
-                                <div class="col-md-1">
-                                    <input type="text" class="form-control" name="duration" id="duration" placeholder="行程天数">
+                                    <input type="text" class="form-control input-inline" name="duration" id="duration" size="15" placeholder="行程天数">
+                                    <span class="help-inline">天</span>
                                 </div>
 
                                 <label for="value" class="col-md-1 control-label">目的地</label>
                                 <div class="col-md-5">
-                                    <input type="text" class="form-control" name="toPlaces" id="toPlaces" placeholder="选择目的地"> </div>
+                                    <div class="input-group select2-bootstrap-append" style="width:100%">
+                                        <select id="toPlaces" name="toPlaces" class="form-control select2" multiple>
+                                            <option></option>
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                            <option value="C">C</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="value" class="col-md-1 control-label">行程标签</label>
+                                <div class="col-md-5">
+                                    <div class="input-group select2-bootstrap-append" style="width:100%">
+                                        <select id="tags" class="form-control select2" multiple>
+                                            <option></option>
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                            <option value="C">C</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="form-group">
@@ -63,7 +85,7 @@
                             <div class="form-group">
                                 <label for="value" class="col-md-1 control-label">适合人群</label>
                                 <div class="col-md-5">
-                                    <textarea class="form-control" rows="6" id="availability" name="availability" placeholder="费用信息"></textarea>
+                                    <textarea class="form-control" rows="6" id="suitable" name="suitable" placeholder="适合人群"></textarea>
                                 </div>
 
                                 <label for="value" class="col-md-1 control-label">费用信息</label>
@@ -90,16 +112,16 @@
                                     <textarea class="form-control" rows="6" id="promises" name="promises" placeholder="服务承诺"></textarea>
                                 </div>
 
-                                <label for="value" class="col-md-1 control-label">注意实现</label>
+                                <label for="value" class="col-md-1 control-label">注意事项</label>
                                 <div class="col-md-5">
-                                    <textarea class="form-control" rows="6" id="attentions" name="attentions" placeholder="注意实现"></textarea>
+                                    <textarea class="form-control" rows="6" id="attentions" name="attentions" placeholder="注意事项"></textarea>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="value" class="col-md-1 control-label">图片</label>
                                 <div class="col-md-11" >
-                                    <input type="file" name="imageUrl" id="imageUrl" multiple>
+                                    <input type="text" name="imageUrl" id="imageUrl">
                                 </div>
                             </div>
 

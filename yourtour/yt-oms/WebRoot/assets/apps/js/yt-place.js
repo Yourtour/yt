@@ -28,7 +28,7 @@ jQuery.Place = {
      */
     inittree:function(){
         var me = this;
-        $.Request.get("/rest/oms/places",null,function(result){
+        $.Request.get("/oms/places",null,function(result){
             $('#placetree').on('changed.jstree', function (e, data) {
                     var i, j, id;
                     for(i = 0, j = data.selected.length; i < j; i++) {
@@ -64,7 +64,7 @@ jQuery.Place = {
      * @param placeId
      */
     loadPlaceInfo:function(placeId){
-        $.Request.get("/rest/oms/places/" + placeId,null,function(result){
+        $.Request.get("/oms/places/" + placeId,null,function(result){
             $("#PlaceForm").deserialize(result);
         });
     },
@@ -84,7 +84,7 @@ jQuery.Place = {
 
         bootbox.confirm("确定要删除选择的目的地吗?", function(result){
             if (result) {
-                $.Request.delete("/rest/oms/places/" + placeId + "/delete", null, function(result){
+                $.Request.delete("/oms/places/" + placeId + "/delete", null, function(result){
                     var placetree = $('#placetree').jstree(true),
                         sel = placetree.get_selected();
 
@@ -107,7 +107,7 @@ jQuery.Place = {
         fd.append('place', JSON.stringify(place));
         fd.append("imageUrl", $("#imageUrl")[0].files[0]);
 
-        $.Request.postFormData("/rest/oms/places/save",fd,function(result){
+        $.Request.postFormData("/oms/places/save",fd,function(result){
             bootbox.alert("保存成功。");
 
             $('#id', view).val(result.id);

@@ -22,13 +22,17 @@ public class RouteVO implements Serializable {
     private int		duration;
 
     private String status;
-    private int  charge; //费用
+    private String  charge; //费用信息
     private String chargeIncludes;
     private String chargeExcludes;
     private String tags;
 
     private String 	feature; //行程特点
-    private String 	routeMemo;
+    private String  reason;  //推荐理由
+    private String  suitable;  //适合人群
+    private String  promise;  //服务承诺
+    private String  attentions;  //注意事项
+    private String	provisions; //准备事项
 
     //作为请求参数时，格式为id1,id2..., 作为相应参数时格式为：id1,id2|name1,name2
     private String toPlaces;
@@ -56,6 +60,11 @@ public class RouteVO implements Serializable {
         routeVO.setChargeExcludes(bean.getChargeExcludes());
         routeVO.setChargeIncludes(bean.getChargeIncludes());
         routeVO.setFeature(bean.getFeature());
+        routeVO.setReason(bean.getReason());
+        routeVO.setSuitable(bean.getSuitable());
+        routeVO.setPromise(bean.getPromise());
+        routeVO.setAttentions(bean.getAttentions());
+        routeVO.setProvisions(bean.getProvisions());
         routeVO.setStatus(bean.getStatus().toString());
         List<RouteScheduleBean> scheduleBeans = bean.getSchedules();
         if(CollectionUtils.isNotEmpty(scheduleBeans)){
@@ -102,24 +111,34 @@ public class RouteVO implements Serializable {
         bean.setEndDate(vo.getEndDate());
         bean.setDuration(vo.getDuration());
         bean.setToPlaces(vo.getToPlaces());
-        bean.setCharge(vo.getCharge());
         bean.setFeature(vo.getFeature());
+        bean.setReason(vo.getReason());
+        bean.setSuitable(vo.getSuitable());
+        bean.setPromise(vo.getPromise());
+        bean.setAttentions(vo.getAttentions());
+        bean.setProvisions(vo.getProvisions());
+        bean.setCharge(vo.getCharge());
         bean.setChargeExcludes(vo.getChargeExcludes());
         bean.setChargeIncludes(vo.getChargeIncludes());
 
         //保存目的地
-        Set<PlaceBean> destinations = new HashSet<>();
-        String[] places = vo.getToPlaces().split("[|]");
-        for(String place : places){
-            PlaceBean destination = new PlaceBean();
-            destination.setId(Long.valueOf(place.split(",")[0]));
-            destinations.add(destination);
+        if(StringUtils.isNotNull(vo.getToPlaces())) {
+            Set<PlaceBean> destinations = new HashSet<>();
+            String[] places = vo.getToPlaces().split("[|]");
+            for (String place : places) {
+                PlaceBean destination = new PlaceBean();
+                destination.setId(Long.valueOf(place.split(",")[0]));
+                destinations.add(destination);
+            }
+            bean.setToPlaceBeans(new ArrayList<>(destinations));
         }
-        bean.setToPlaceBeans(new ArrayList<>(destinations));
 
         //保存日程安排
         Date start = new Date(bean.getStartDate()), scheduleDate = null;
-        int duration = DateUtils.getDaySub(bean.getStartDate(), bean.getEndDate()) + 2;
+        int duration = bean.getDuration();
+        if(duration == 0) {
+            duration = DateUtils.getDaySub(bean.getStartDate(), bean.getEndDate()) + 2;
+        }
 
         List<RouteScheduleBean> scheduleBeans = new ArrayList<>();
         for(int index = 0; index < duration; index++){
@@ -185,14 +204,6 @@ public class RouteVO implements Serializable {
         this.feature = feature;
     }
 
-    public int getCharge() {
-        return charge;
-    }
-
-    public void setCharge(int charge) {
-        this.charge = charge;
-    }
-
     public String getChargeIncludes() {
         return chargeIncludes;
     }
@@ -249,14 +260,6 @@ public class RouteVO implements Serializable {
         this.duration = duration;
     }
 
-    public String getRouteMemo() {
-        return routeMemo;
-    }
-
-    public void setRouteMemo(String routeMemo) {
-        this.routeMemo = routeMemo;
-    }
-
     public UserVO getUser() {
         return user;
     }
@@ -279,5 +282,53 @@ public class RouteVO implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public void setCharge(String charge) {
+        this.charge = charge;
+    }
+
+    public String getCharge() {
+        return charge;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public String getSuitable() {
+        return suitable;
+    }
+
+    public void setSuitable(String suitable) {
+        this.suitable = suitable;
+    }
+
+    public String getPromise() {
+        return promise;
+    }
+
+    public void setPromise(String promise) {
+        this.promise = promise;
+    }
+
+    public String getAttentions() {
+        return attentions;
+    }
+
+    public void setAttentions(String attentions) {
+        this.attentions = attentions;
+    }
+
+    public String getProvisions() {
+        return provisions;
+    }
+
+    public void setProvisions(String provisions) {
+        this.provisions = provisions;
     }
 }

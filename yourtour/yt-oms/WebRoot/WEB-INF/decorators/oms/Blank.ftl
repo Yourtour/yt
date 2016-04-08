@@ -23,7 +23,9 @@
 	<link href="${context}/assets/global/plugins/jquery-datatable/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
 	<link href="${context}/assets/global/plugins/jquery-datatable/css/jquery.dataTables.setting.css" rel="stylesheet" type="text/css" />
 	<link href="${context}/assets/global/plugins/jquery-jstree/css/default/style.min.css" rel="stylesheet" type="text/css" />
-	<!-- END PAGE LEVEL PLUGINS -->
+	<link href="${context}/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="${context}/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+	  <!-- END PAGE LEVEL PLUGINS -->
 
 	<!-- BEGIN THEME GLOBAL STYLES -->
 	<link href="${context}/assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
@@ -92,7 +94,7 @@
 	<script src="${context}/assets/global/plugins/jquery-datatable/js/jquery.dataTable.setting.js" type="text/javascript"></script>
 	<script src="${context}/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
     <script src="${context}/assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js" type="text/javascript"></script>
-
+    <script src="${context}/assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
 	<script src="${context}/assets/global/scripts/app.min.js" type="text/javascript"></script>
 
 

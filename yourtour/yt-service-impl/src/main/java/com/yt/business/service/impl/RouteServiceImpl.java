@@ -34,9 +34,6 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 	private CrudOperate<RouteMainBean> routeCrudOperate;
 
 	@Autowired
-	private CrudOperate<RouteProvisionBean> provisionCrudOperate;
-
-	@Autowired
 	private CrudOperate<RouteScheduleBean> scheduleCrudOperate;
 
 	@Autowired
@@ -93,15 +90,7 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 
 			saved = this.routeCrudOperate.get(route.getId(), false);
 			if(saved != null){
-				String imageUrl = saved.getImageUrl(); //图片字段特殊处理，采用附加方式。
 				BeanUtils.merge(route, saved);
-				if(StringUtils.isNotNull(imageUrl)){
-					if(StringUtils.isNull(saved.getImageUrl())){
-						saved.setImageUrl(imageUrl);
-					}else {
-						saved.setImageUrl(imageUrl + "," + saved.getImageUrl());
-					}
-				}
 			}
 		}
 
@@ -157,23 +146,6 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 		RouteMainBean source = this.getRouteInfo(sourceId, 2);
 		if (source == null) {
 			throw new AppException(StaticErrorEnum.DATA_NOT_EXIST);
-		}
-
-		List<RouteProvisionBean> sProvisions = source.getProvisions();
-		List<RouteProvisionBean> tProvisions = new ArrayList<>();
-		if (sProvisions != null) {
-			for (RouteProvisionBean sProvision : sProvisions) {
-				RouteProvisionBean tProvision = (RouteProvisionBean) sProvision
-						.clone();
-
-				this.updateBaseInfo(tProvision, operatorId);
-				tProvision.setRouteMain(target);
-
-				provisionCrudOperate.save(tProvision);
-				tProvisions.add(tProvision);
-			}
-
-			target.setProvisions(tProvisions);
 		}
 
 		List<RouteScheduleBean> sSchedules = source.getSchedules();
@@ -335,31 +307,5 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 		}
 
 		return schedules;
-	}
-
-	@Override
-	public void saveRouteProvision(Long routeId, RouteProvisionBean provision,
-			Long operatorId) throws Exception {
-		RouteMainBean route = routeCrudOperate.get(routeId);
-		if (route == null) {
-			throw new AppException(StaticErrorEnum.DATA_NOT_EXIST);
-		}
-
-		this.updateBaseInfo(provision, operatorId);
-		provisionCrudOperate.save(provision);
-	}
-
-	@Override
-	public void deleteRouteProvision(Long routeId, Long provisionId, Long operatorId) throws Exception {
-		RouteProvisionBean provision = provisionCrudOperate.get(provisionId);
-		if (provision == null) {
-			LOG.warn(String.format(
-					"No provision found for route=[%d], provision=[%d]",
-					routeId, provisionId));
-			return;
-		}
-
-		this.updateBaseInfo(provision, operatorId);
-		provisionCrudOperate.delete(provision);
 	}
 }

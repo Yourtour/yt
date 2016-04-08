@@ -1,18 +1,9 @@
-jQuery.RouteRecommend = {
-    init:function(){
-        $.Page.show("Page_RouteListView");
+jQuery.Route = {
+    initRecommend:function(){
+        $.Page.show("Page_RouteRecommendListView");
 
         var me = this,
-            listview = $("#Page_RouteListView"),
-            formview = $("#Page_RouteFormView"),
-            scheduleformview = $("#Page_ScheduleFormView");
-
-        $('.date-picker', formview).datepicker({
-            format: 'yyyy-mm-dd',
-            clearBtn:true
-        });
-
-        $("#imageUrl").upload();
+            listview = $("#Page_RouteRecommendListView");
 
         $("#btn_add", listview).on('click', function(){
             me.createRouteInfo();
@@ -30,35 +21,14 @@ jQuery.RouteRecommend = {
             me.openScheduleWindow();
         });
 
-        //保存按钮事件
-        $("#btn_save", formview).on('click', function(){
-            me.saveRouteInfo()
-        });
-
-        //取消按钮事件
-        $(" #btn_cancel", formview).on('click', function(){
-            $.Page.back();
-        });
-
-        this.query();
-    },
-
-    createRouteInfo:function(){
-        var formview = $("#Page_RouteFormView"),
-            form = $("#RouteForm", formview);
-
-        $.Page.show("Page_RouteFormView", function(){
-            form.clear();
-
-            $('#id', form).val(-1);
-        });
+        this.queryRecommendRoutes();
     },
 
     /**
      * 列表查询
      */
-    query:function(){
-        var dt = $("#Page_RouteListView #datatable_route")
+    queryRecommendRoutes:function(){
+        var dt = $("#Page_RouteRecommendListView #datatable_route")
         dt.dataTable({
             "aoColumns": [
                 {"mData": "id", "sClass":"center", "sWidth": "5%", "mRender": function (data, type, row) {
@@ -156,28 +126,13 @@ jQuery.RouteRecommend = {
     },
 
     /**
-     * 获取行程信息
+     * 删除行程
      */
-    loadRouteInfo:function(){
-        var me = this,
-            formview = $("#Page_RouteFormView"),
-            form = $("#RouteForm", formview),
-            dt = $("#Page_RouteListView #datatable_route");
-
-        dt.edit(function(id){
-            $.Request.get("/rest/oms/route/" + id, null, function(result){
-                $.Page.show("Page_RouteFormView", function(){
-                    form.deserialize(result);
-                });
-            })
-        })
-    },
-
     deleteRouteInfo:function(){
         var me = this;
 
         $("#datatable_route").delete(function(ids){
-            $.Request.delete("/rest/oms/route/" + ids + "/delete", null, function(result){
+            $.Request.delete("/oms/route/" + ids + "/delete", null, function(result){
                 me.query();
             })
         })
@@ -186,23 +141,26 @@ jQuery.RouteRecommend = {
     /**
      * 保存行程基本信息
      */
-    saveRouteInfo:function(){
+    saveRouteInfo:function(url){
         var me = this,
-            formview = $("#Page_RouteFormView"),
+            formview = $("#Page_RouteSettingView"),
             form = $('#RouteForm', formview),
             formdata = new FormData() ;
 
         formdata.append("route", JSON.stringify(form.serialize()));
 
-        var images = $("input[type='file']");
+        var images = $("input[name='imageUrl']", formview);
         $.each(images, function(index, image){
-            var file = $(image)[0].files[0];
-            if(file) {
-                formdata.append("imageUrl", file);
+            var _image = $(image);
+            if(_image.attr("type") == "file") {
+                var file = _image[0].files[0];
+                if (file) {
+                    formdata.append("imageUrl", file);
+                }
             }
-        })
+        });
 
-        $.Request.postFormData("/rest/oms/route/recommend/save",formdata,function(result){
+        $.Request.postFormData(url,formdata,function(result){
             bootbox.alert("保存成功。", function(){
                 $.Page.back(function(){
                     me.query();
@@ -221,7 +179,7 @@ jQuery.RouteRecommend = {
             detailPanel = $("#detailPanel", view);
         $("#datatable_route").select(function(routeId){
             var context = $("#context").val();
-            window.open(context + "/view/oms/Schedule.html?routeId=" + routeId,'newwindow');
+            window.open(context + "/view/oms/Schedule.html?type=recommend&routeId=" + routeId,'newwindow');
         }, "请选择需要规划的行程。");
     }
 };

@@ -24,7 +24,7 @@ jQuery.Expert = {
         var me = this;
 
         $("#datatable_expert").delete(function (id) {
-            $.Request.get("/rest/oms/experts/" + id + "/frozen", null, function (result) {
+            $.Request.get("/oms/experts/" + id + "/frozen", null, function (result) {
                 me.query();
             })
         })

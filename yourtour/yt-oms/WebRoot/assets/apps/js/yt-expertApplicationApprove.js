@@ -34,7 +34,7 @@ jQuery.ExpertApplicationApprove = {
         var me = this;
 
         $("#datatable_banner").delete(function (id) {
-            $.Request.delete("/rest/oms/banners/" + id + "/delete", null, function (result) {
+            $.Request.delete("/oms/banners/" + id + "/delete", null, function (result) {
                 me.query();
             })
         })
@@ -75,7 +75,7 @@ jQuery.ExpertApplicationApprove = {
      */
     saveExpertApplicationApproveInfo: function () {
         var banner = {}, expertApplicationForm = $('#ExpertApplicationForm'), me = this;
-        $.Request.postFormData("/rest/oms/banners/save", expertApplicationForm, function (result) {
+        $.Request.postFormData("/oms/banners/save", expertApplicationForm, function (result) {
             bootbox.alert("保存成功。", function () {
                 $.Page.back(function () {
                     me.query();

@@ -109,7 +109,7 @@ jQuery.Activity = {
             formdata.append("imageUrl", image);
         }
 
-        $.Request.postFormData("/rest/oms/activity/intro/save",formdata,function(result){
+        $.Request.postFormData("/oms/activity/intro/save",formdata,function(result){
             bootbox.alert("保存成功。", function(){
                 $("#id", form).val(result.id);
                 $("#tab_content", formview).show();
@@ -125,7 +125,7 @@ jQuery.Activity = {
         var me = this;
 
         $("#datatable_activity").delete(function(ids){
-            $.Request.delete("/rest/oms/activity/" + ids + "/delete", null, function(result){
+            $.Request.delete("/oms/activity/" + ids + "/delete", null, function(result){
                 me.query();
             })
         })
@@ -139,7 +139,7 @@ jQuery.Activity = {
             formview = $("#Page_ActivityFormView");
 
         $("#datatable_activity").edit(function(id){
-            $.Request.get("/rest/oms/activity/" + id, null, function(result){
+            $.Request.get("/oms/activity/" + id, null, function(result){
                 $.Page.show("Page_ActivityFormView", function(){
                     $("#tab_content", formview).show();
                     $("#tab_route",formview).show();
@@ -190,7 +190,7 @@ jQuery.Activity = {
             formdata.append("imageUrl", image);
         }
 
-        $.Request.postFormData("/rest/oms/activity/content/save",formdata,function(result){
+        $.Request.postFormData("/oms/activity/content/save",formdata,function(result){
             me.showContentInfo(result);
             bootbox.alert("保存成功。", function(){
                 $.Page.back(function(){
@@ -202,7 +202,7 @@ jQuery.Activity = {
     loadContentInfo:function(id){
         var me = this;
 
-        $.Request.get("/rest/oms/activity/content/" + id, null, function(result){
+        $.Request.get("/oms/activity/content/" + id, null, function(result){
             $.Page.show("Page_ActivityContentFormView", function(){
                 $("#ActivityContentForm").deserialize(result);
             });
@@ -216,7 +216,7 @@ jQuery.Activity = {
     deleteContentInfo:function(id){
         bootbox.confirm("确定要删除活动内容吗?", function(result){
             if (result) {
-                $.Request.delete("/rest/oms/activity/content/" + id + "/delete", null, function (result) {
+                $.Request.delete("/oms/activity/content/" + id + "/delete", null, function (result) {
                     var content = $("#Page_ActivityFormView #portlet_content #" + result.id);
                     if(content){
                         content.remove();

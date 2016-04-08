@@ -1,7 +1,7 @@
 
 <html lang="en">
   <head>
-  	<title>游徒管理平台-<sitemesh:write property='title'/></title>
+  	<title>游徒管理平台</title>
 	<meta name="keywords" content="">
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -38,8 +38,6 @@
 
 	<script src="${context}/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
 	<script src="${context}/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="${context}/assets/global/plugins/jquery-datatable/js/jquery.dataTables.min.js" type="text/javascript"></script>
-
   </head>
 
   <body class="login">
@@ -65,10 +63,10 @@
 			  <div class="form-group">
 				  <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
 				  <label class="control-label visible-ie8 visible-ie9">Username</label>
-				  <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" id="username" name="username" /> </div>
+				  <input class="form-control" type="text" placeholder="Username" id="username" name="username" /> </div>
 			  <div class="form-group">
 				  <label class="control-label visible-ie8 visible-ie9">Password</label>
-				  <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" id="password" name="password" /> </div>
+				  <input class="form-control" type="password" placeholder="Password" id="password" name="password" /> </div>
 			  <div class="form-actions">
 				  <button id="login" type="button" class="btn green uppercase">Login</button>
 				  <label class="rememberme check">
@@ -101,13 +99,8 @@
 	<!-- BEGIN PAGE LEVEL PLUGINS -->
 	<!-- END PAGE LEVEL PLUGINS -->
 	<!-- BEGIN THEME GLOBAL SCRIPTS -->
-	<script src="${context}/assets/global/plugins/jquery-datatable/js/jquery.dataTable.setting.js" type="text/javascript"></script>
-
 	<script src="${context}/assets/global/scripts/app.min.js" type="text/javascript"></script>
 	<script src="${context}/assets/apps/js/yt-plugin.js" type="text/javascript"></script>
-	<script src="${context}/assets/apps/js/yt-dict.js" type="text/javascript"></script>
-	<script src="${context}/assets/apps/js/yt-activity.js" type="text/javascript"></script>
-	<script src="${context}/assets/apps/js/yt-information.js" type="text/javascript"></script>
     <script src="${context}/assets/apps/js/yt-account.js" type="text/javascript"></script>
 
       <!-- END THEME GLOBAL SCRIPTS -->
@@ -125,7 +118,5 @@
 			  })
 		  });
 	  </script>
-
-
   </body>
 </html>

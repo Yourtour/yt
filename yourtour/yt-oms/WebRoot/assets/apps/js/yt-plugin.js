@@ -4,7 +4,7 @@
  */
 jQuery.Request={
     post:function(url, data, callback){
-        var context = $('#context').val();
+        var context = $('#context').val() + '/rest';
         $.ajax({
             type: "POST",
             url: context + url,
@@ -23,7 +23,7 @@ jQuery.Request={
     },
 
     postFormData:function(url, formdata, callback){
-        var context = $('#context').val();
+        var context = $('#context').val() + '/rest';
         $.ajax({
             type: "POST",
             url: context + url,
@@ -42,7 +42,7 @@ jQuery.Request={
     },
 
     get:function(url, data, success, fail){
-        var context = $('#context').val();
+        var context = $('#context').val() + '/rest';
 
         $.get(context + url, data, function(message){
             if(message.errorCode == "0") {
@@ -56,7 +56,7 @@ jQuery.Request={
     },
 
     delete:function(url, data, success, fail){
-        var context = $('#context').val();
+        var context = $('#context').val() + '/rest';
 
         $.get(context + url, data, function(message){
             if(message.errorCode == "0") {
@@ -231,10 +231,9 @@ jQuery.Page={
         deserialize:function(data, action){
             var frm = $(this);
             frm.find('[name]').each(function(){
-                var name = this.name || this.id;
-                var element = $(this);
-
-                var value;
+                var name = this.name || this.id,
+                    element = $(this),
+                    value;
 
                 if(data) {
                     var bind = element.data('bind');
@@ -246,7 +245,6 @@ jQuery.Page={
                 }
 
                 setValue(element, value);
-
                 if(action == 'view'){
                     if(element.attr("disabled") != 'disabled'){
                         element.attr('disabled', 'disabled');
@@ -278,9 +276,8 @@ jQuery.Page={
  * 图片附件选择插件
  */
 (function($){
-
     $.fn.extend({
-        upload:function(options){
+        imageSelector:function(options){
             var _this = $(this),
                 parent = _this.parent();
 
@@ -289,48 +286,136 @@ jQuery.Page={
                 parent.addClass("image-container");
             }
 
-            parent.delegate("ul>li>img", "click", function(){
-                console.log(_this[0].files);
-
-                _this[0].files.splice(0, 1);
-                _this.showImages();
+            $('<div class="row image-row" style="display:none"></div>').appendTo(parent);
+            $('<button type="button" class="btn purple-plum">添加附件</button>').appendTo(parent);
+            $("button", parent).on("click", function(){
+                _this.selectImage();
             });
 
-            $('<ul><li class="image-selector"></li></ul>').appendTo(parent);
-
-            $(".image-selector", parent).on("click", function(){
-                _this.click();
-            });
-
-            _this.on("change", function(event){
-                _this.showImages();
-            });
+            _this.initImage();
         },
 
+        /**
+         * 图片初始化，主要显示已经保存的图片
+         */
+        initImage:function(){
+            var me = $(this),
+                imageContainer = me.parent(),
+                imageRow = $(".image-row", imageContainer),
+                imageUrls = me.val();
+
+            imageRow.show();
+            if(imageUrls != '') {
+                $.each(imageUrls.split(","), function (index, item) {
+                    me.createImageCol(item);
+                });
+            }
+        },
+
+        /**
+         * 弹出文件选择对话框
+         */
+        selectImage:function(){
+            var _this = $(this),
+                imageContainer = _this.parent(),
+                imageRow = $(".image-row", imageContainer),
+                imageCols = $(".image-col", imageRow);
+
+            if(imageCols.length == 6){
+                bootbox.alert("最多只能选择6张图片。");
+                return;
+            }
+
+            _this.createImageCol();
+        },
+
+        /**
+         * 显示用户选择的图片
+         */
         showImages:function(){
             var _this = $(this),
-                files = _this[0].files,
                 imageContainer = _this.parent(),
-                imageSelector = $(".image-selector", imageContainer);
+                button = $("button", imageContainer),
+                imageRow = $(".image-row", imageContainer);
+                imageCol = imageRow.children(".image-col").last(),
+                files = $("input", imageCol)[0].files,
 
-            $("ul>li:not(.image-selector)", imageSelector).remove();
-
+            imageRow.show();
             $.each(files, function(index, file){
                 var reader = new FileReader();
 
                 reader.onload = (function(_file) {
                     return function(e) {
-                        var image = $('<li><img class="thumb" src="'+ this.result +'" alt="'+ file.name +'" /></li>');
-                        image.insertBefore(imageSelector);
+                        var image = $('<img class="thumb" src="'+ this.result +'" alt="'+ file.name +'" />');
+                        image.appendTo(imageCol);
+
+                        _this.showRemoveButton(imageCol);
                     };
                 })(file);
                 reader.readAsDataURL(file);
             })
-        }
+        },
+
+        /**
+         * 创建图片显示单元
+         */
+        createImageCol:function(imageUrl){
+            var _this = $(this),
+                context = $("#context").val(),
+                imageContainer = _this.parent(),
+                imageRow = $(".image-row", imageContainer);
+
+            var imageCol;
+            if(imageUrl) {
+                imageCol = $('<div class="col-md-2 image-col" data-image="' + imageUrl + '"><img class="thumb" src="'+ context + "/" + imageUrl +'" /></div>');
+                imageCol.appendTo(imageRow);
+                _this.showRemoveButton(imageCol);
+            }else{
+                imageCol = $('<div class="col-md-2 image-col"><input type="file" style="display:none" id="' + _this.attr("id") + '" name="' + _this.attr("id") + '"></div>');
+                imageCol.appendTo(imageRow);
+                $("input", imageCol).on("change", function(){
+                    _this.showImages();
+                }).click();
+            }
+        },
+
+        /**
+         * 显示图片删除按钮
+         */
+        showRemoveButton:function(imageCol){
+            var removeButton = $('<a href="javascript:;" class="btn btn-circle btn-icon-only"><i class="fa fa-times"></i>删除</a>');
+            removeButton.appendTo(imageCol);
+
+            removeButton.on("click", function(){
+                imageCol.remove();
+            })
+        },
+
+        /*val:function(){
+            var _this = $(this), imageUrls = "";
+                imageContainer = _this.parent(),
+                imageRow = $(".image-row", imageContainer),
+                imageCols = imageRow.children(".image-col");
+
+            $.each(imageCols, function(index, imageCol){
+                var _col = $(imageCol);
+
+                if(_col.attr("data-image")) {
+                    if (imageUrls != "") imageUrls += ",";
+
+                    imageUrls += _col.data("image");
+                }
+            })
+
+            return imageUrls;
+        }*/
     });
 })(jQuery);
 
-
+/**
+ * 对话框
+ * @type {{popup: Function}}
+ */
 jQuery.Dialog={
     popup:function(options){
         bootbox.dialog({

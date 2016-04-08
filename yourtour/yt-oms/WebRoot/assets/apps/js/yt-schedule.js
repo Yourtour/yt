@@ -1,4 +1,3 @@
-
 /**
  *
  * @type {{query: Function, saveDictInfo: Function, loadDictInfo: Function}}
@@ -8,7 +7,10 @@ var map, zoom = 13;
 jQuery.Schedule = {
     init:function(routeId){
         var me = this,
-            pageContainer = $("#schedule-page-container");
+            pageContainer = $("#schedule-page-container"),
+            pageHeader = $("#schedule-page-header"),
+            settingview = $("#Page_RouteSettingView", pageContainer),
+            type = $("#type", settingview).val();
 
         me.showRouteMapView();
 
@@ -16,7 +18,26 @@ jQuery.Schedule = {
         map.enableScrollWheelZoom(true);
         this.changePlaceMap("上海");
 
-        $("#Page_RouteSettingView #imageUrl", pageContainer).upload();
+        $("#tags", settingview).select2({placeholder:"选择行程标签",width:"100%"});
+        $("#toPlaces", settingview).select2({placeholder:"选择行程目的地",width:"100%"});
+        $('#startDate', settingview).datepicker({
+            format: 'yyyy-mm-dd',
+            clearBtn:true
+        });
+
+        if(type == 'recommend'){
+            $("#startDate", settingview).parent().val("1970-01-01").hide();
+            $("#duration", settingview).parent().addClass("col-md-5");
+        }
+
+        //保存行程设置
+        $("#btn_save", settingview).on('click', function(){
+            $.Route.saveRouteInfo("/rest/oms/route/recommend/save/" + routeId);
+        });
+
+        $(" #btn_cancel", settingview).on('click', function(){
+            me.showRouteMapView();
+        });
 
         this.loadRouteScheduleInfo(routeId);
 
@@ -28,11 +49,11 @@ jQuery.Schedule = {
             me.addToRouteSchedule();
         });
 
-        $("#schedule-page-header #btn-setting").on("click", function(){
+        $("#btn-setting", pageHeader).on("click", function(){
             me.showRouteSettingView();
         });
 
-        $("#schedule-page-header #btn-map").on("click", function(){
+        $("#btn-map", pageHeader).on("click", function(){
             me.showRouteMapView();
         });
 
@@ -69,9 +90,9 @@ jQuery.Schedule = {
             me.getResources();
         });
 
-        $("#detail-container .timepicker").timepicker({
+        /*$("#detail-container .timepicker").timepicker({
             showSeconds: false
-        });
+        });*/
 
         //添加日程
         pageContainer.delegate(".page-sidebar-menu .icon-schedule-add", "click", function(){
@@ -130,10 +151,13 @@ jQuery.Schedule = {
      * 行程设置
      */
     showRouteSettingView:function(){
-        var pageContainer = $("#schedule-page-container");
+        var pageContainer = $("#schedule-page-container"),
+            settingview = $("#Page_RouteSettingView", pageContainer);
 
         $.Page.show("Page_RouteSettingView", function(){
             $("#page-container", pageContainer).removeClass("padding-zero");
+
+            $("#imageUrl", settingview).imageSelector();
         });
     },
 
@@ -173,7 +197,7 @@ jQuery.Schedule = {
         var pageContainer = $("#schedule-page-container"),
             dayInfo = dayItem.data('value');
 
-        $.Request.delete("/rest/oms/route/" + schedule.routeId + "/schedule/DAY/" + dayInfo.id + "/delete", null, function(result){
+        $.Request.delete("/oms/route/" + schedule.routeId + "/schedule/DAY/" + dayInfo.id + "/delete", null, function(result){
             item.remove();
         })
     },
@@ -204,7 +228,7 @@ jQuery.Schedule = {
                 keyword:$("#keyword").val()
             };
 
-        $.Request.post("/rest/oms/resources/query", params, function(result){
+        $.Request.post("/oms/resources/query", params, function(result){
             pageContainer.data('resource', result);
 
             me.showResourceMap()
@@ -216,13 +240,16 @@ jQuery.Schedule = {
      */
     loadRouteScheduleInfo:function(routeId){
         var me = this,
-            pageContainer = $('#schedule-page-container');
+            pageContainer = $('#schedule-page-container'),
+            settingview = $("#Page_RouteSettingView", pageContainer),
+            btnSetting = $("#schedule-page-header #btn-setting"),
+            btnService = $("#schedule-page-header #btn-service");
 
-        $.Request.get("/rest/oms/route/" + routeId, null, function(result){
+        $.Request.get("/oms/route/" + routeId, null, function(result){
             pageContainer.data("value", result);
 
             if(result){
-                $("#Page_RouteSettingView", pageContainer).deserialize(result);
+                settingview.deserialize(result);
 
                 me.addPlaces(result.toPlaces);
 
@@ -231,6 +258,9 @@ jQuery.Schedule = {
                 });
 
                 me.getResources();
+
+                btnSetting.show();
+                btnService.show();
             }
         });
     },
@@ -343,7 +373,7 @@ jQuery.Schedule = {
             var dayInfo = $(dayItem[0]).data("value");
             dayInfo.memo = info.memo;
 
-            $.Request.post("/rest/oms/route/" + dayInfo.routeId + "/schedule/day/save", dayInfo, function (result) {
+            $.Request.post("/oms/route/" + dayInfo.routeId + "/schedule/day/save", dayInfo, function (result) {
             })
         }
     },
@@ -359,10 +389,10 @@ jQuery.Schedule = {
         var length = $(".schedule-day", pageSidebar).length;
 
         schedule.type="DAY";
-        schedule.routeId = $("#routeId").val();
+        schedule.routeId = $("#RouteForm #id").val();
         schedule.index = length + 1;
 
-        $.Request.post("/rest/oms/route/" + schedule.routeId + "/schedule/save",schedule,function(result){
+        $.Request.post("/oms/route/" + schedule.routeId + "/schedule/save",schedule,function(result){
            schedule.id = result.data;
            me.addScheduleDayInfo(length + 1, schedule);
         })
@@ -480,7 +510,7 @@ jQuery.Schedule = {
         var pageContainer = $("#schedule-page-container"),
             schedule = item.parent().data('value');
 
-        $.Request.delete("/rest/oms/route/" + schedule.routeId + "/schedule/" + schedule.type +"/" + schedule.id + "/delete", null, function(result){
+        $.Request.delete("/oms/route/" + schedule.routeId + "/schedule/" + schedule.type +"/" + schedule.id + "/delete", null, function(result){
             item.parent().remove();
         })
     },
@@ -505,7 +535,7 @@ jQuery.Schedule = {
             scheduleInfo.parentId = selectedValue.parentId;
         }
 
-        var routeId = $("#routeId", pageContainer).val();
+        var routeId = $("#RouteForm #routeId", pageContainer).val();
         scheduleInfo.id=$("#id", detailPanel).val();
         scheduleInfo.type = resource.type;
         scheduleInfo.resourceId = resource.id;
@@ -519,7 +549,7 @@ jQuery.Schedule = {
         scheduleInfo.place = selectedPlace.data('value') + "," + selectedPlace.html();
         scheduleInfo.memo = $("#memo", detailPanel).val();
 
-        $.Request.post("/rest/oms/route/" + routeId + "/schedule/activity/save",scheduleInfo,function(result){
+        $.Request.post("/oms/route/" + routeId + "/schedule/activity/save",scheduleInfo,function(result){
             bootbox.alert("保存成功。", function(){
                 me.insertScheduleInfo(scheduleInfo);
             });

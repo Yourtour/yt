@@ -145,7 +145,6 @@ public class BeanUtils {
 
 	private static boolean isMergable(PropertyDescriptor targetProp){
 		String type = targetProp.getPropertyType().getName();
-		System.out.println(targetProp.getName() + "," + type + "," + mergableType.contains(type));
 		return mergableType.contains(type);
 	}
 

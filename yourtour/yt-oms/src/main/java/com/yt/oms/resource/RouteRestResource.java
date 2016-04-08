@@ -81,7 +81,7 @@ public class RouteRestResource extends RestResource {
      * @throws Exception
      */
     @POST
-    @Path("/recommend/save")
+    @Path("/recommend/save/{routeId}")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     public ResponseDataVO<Long> saveRecommendRouteInfo(@FormDataParam("route") String route,  FormDataMultiPart multipart) throws Exception{
         RouteVO routeVO = BeanUtils.deserialize(route, RouteVO.class);

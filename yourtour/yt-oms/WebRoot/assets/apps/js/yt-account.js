@@ -57,7 +57,7 @@ jQuery.Account = {
         account.userName = accountForm.find('#userName').val();
         account.pwd = accountForm.find('#password').val();
 
-        $.Request.post("/rest/oms/account/save",account,function(result){
+        $.Request.post("/oms/account/save",account,function(result){
             bootbox.alert("保存成功。", function(){
                 $.Page.back(function(){
                     me.query();
@@ -67,15 +67,15 @@ jQuery.Account = {
     },
 
     login:function(){
-        var loginview = $(".login"),
+        var loginform = $(".login-form"),
             account = {},
-            username = $('#username', loginview).val(),
-            password = $('#password', loginview).val();
+            username = $('#username', loginform).val(),
+            password = $('#password', loginform).val();
 
         account.userName = username;
         account.password = password;
 
-        $.Request.post("/rest/oms/account/authenticate",account,function(result){
+        $.Request.post("/oms/account/authenticate",account,function(result){
             window.location = "Home.html";
         })
     }

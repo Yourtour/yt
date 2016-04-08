@@ -45,9 +45,13 @@ public class RouteMainBean extends SocialBeanImpl implements Cloneable{
 	private String toPlaces; //目的地（冗余）
 
 	private String 	feature; //特色推荐
-	private String  routeMemo; //行程须知
+	private String  reason;  //推荐理由
+	private String  suitable;  //适合人群
+	private String  promise;  //服务承诺
+	private String  attentions;  //注意事项
+	private String	provisions; //准备事项
 
-	private int  charge; //费用
+	private String  charge; //费用
 	private String	chargeIncludes; //费用包括
 	private String  chargeExcludes; //费用不包括
 
@@ -69,9 +73,6 @@ public class RouteMainBean extends SocialBeanImpl implements Cloneable{
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = RouteScheduleBean.class, direction = Direction.OUTGOING, isList = true)
 	private transient List<RouteScheduleBean> schedules = null; // 行程包含的日程
-
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = RouteProvisionBean.class, direction = Direction.OUTGOING, isList = true)
-	private transient List<RouteProvisionBean> provisions = null; // 行程包含的准备
 
 	private transient UserProfileBean user = null; // 行程相关人,缺省可以表示行程创建者
 
@@ -157,16 +158,6 @@ public class RouteMainBean extends SocialBeanImpl implements Cloneable{
 		return schedules;
 	}
 
-	public void setProvisions(List<RouteProvisionBean> provisions) {
-		this.provisions = provisions;
-	}
-
-	public List<RouteProvisionBean> getProvisions() {
-		if(provisions == null) provisions = new ArrayList<>();
-		
-		return provisions;
-	}
-
 	public Long getEndDate() {
 		return endDate;
 	}
@@ -223,11 +214,51 @@ public class RouteMainBean extends SocialBeanImpl implements Cloneable{
 		this.feature = feature;
 	}
 
-	public int getCharge() {
+	public String getReason() {
+		return reason;
+	}
+
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
+
+	public String getSuitable() {
+		return suitable;
+	}
+
+	public void setSuitable(String suitable) {
+		this.suitable = suitable;
+	}
+
+	public String getPromise() {
+		return promise;
+	}
+
+	public void setPromise(String promise) {
+		this.promise = promise;
+	}
+
+	public String getAttentions() {
+		return attentions;
+	}
+
+	public void setAttentions(String attentions) {
+		this.attentions = attentions;
+	}
+
+	public String getProvisions() {
+		return provisions;
+	}
+
+	public void setProvisions(String provisions) {
+		this.provisions = provisions;
+	}
+
+	public String getCharge() {
 		return charge;
 	}
 
-	public void setCharge(int charge) {
+	public void setCharge(String charge) {
 		this.charge = charge;
 	}
 
@@ -261,14 +292,6 @@ public class RouteMainBean extends SocialBeanImpl implements Cloneable{
 
 	public void setUser(UserProfileBean user) {
 		this.user = user;
-	}
-
-	public String getRouteMemo() {
-		return routeMemo;
-	}
-
-	public void setRouteMemo(String routeMemo) {
-		this.routeMemo = routeMemo;
 	}
 
 	public Status getStatus() {

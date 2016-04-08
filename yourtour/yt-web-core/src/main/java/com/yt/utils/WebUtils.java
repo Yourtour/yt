@@ -16,6 +16,14 @@ public class WebUtils {
 	}
 
 	/**
+	 *
+	 * @return
+	 */
+	public static String getContextPath(){
+		return getHttpServletRequest().getContextPath();
+	}
+
+	/**
 	 * 获取客户端上传的请求数据最后修改时间
 	 * @return
 	 */

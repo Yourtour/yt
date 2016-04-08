@@ -9,7 +9,6 @@ import java.util.Set;
 
 import com.yt.business.bean.PlaceBean;
 import com.yt.business.bean.RouteMainBean;
-import com.yt.business.bean.RouteProvisionBean;
 import com.yt.business.bean.RouteScheduleBean;
 import com.yt.core.utils.DateUtils;
 import com.yt.core.utils.StringUtils;
@@ -87,14 +86,6 @@ public class RouteVO extends SocialVO {
 			}
 		}
 		
-		if (bean.getProvisions() != null && bean.getProvisions().size() > 0) {
-			for (RouteProvisionBean provisionBean : bean.getProvisions()) {
-				if (provisionBean == null) {
-					continue;
-				}
-			}
-		}
-
 		return routeVO;
 	}
 

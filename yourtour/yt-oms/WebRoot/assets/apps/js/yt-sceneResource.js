@@ -55,7 +55,7 @@ jQuery.SceneResource = {
             formview = $("#Page_SceneFormView");
 
         $("#datatable_scene").edit(function (id) {
-            $.Request.get("/rest/oms/resources/scenes/" + id, null, function (result) {
+            $.Request.get("/oms/resources/scenes/" + id, null, function (result) {
                 $.Page.show("Page_SceneFormView", function () {
                     $("#SceneForm").deserialize(result);
                 });
@@ -70,7 +70,7 @@ jQuery.SceneResource = {
         var me = this;
 
         $("#datatable_scene").delete(function (id) {
-            $.Request.delete("/rest/oms/resources/scenes/" + id + "/delete", null, function (result) {
+            $.Request.delete("/oms/resources/scenes/" + id + "/delete", null, function (result) {
                 me.query();
             })
         })
@@ -121,7 +121,7 @@ jQuery.SceneResource = {
             fd.append("files", ctlFiles.files[index]);
         }
 
-        $.Request.postFormData("/rest/oms/resources/scenes/save", fd, function (result) {
+        $.Request.postFormData("/oms/resources/scenes/save", fd, function (result) {
             bootbox.alert("保存成功。", function () {
                 $.Page.back(function () {
                     me.query();

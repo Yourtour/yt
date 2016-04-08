@@ -155,25 +155,4 @@ public interface IRouteService {
 	 */
 	public void deleteRouteSchedule(Long routeId, String type, Long scheduleId, Long operatorId)
 			throws Exception;
-
-	/**
-	 * 保存行程准备事项
-	 * 
-	 * @param routeId
-	 * @param provision
-	 * @throws Exception
-	 */
-	public void saveRouteProvision(Long routeId, RouteProvisionBean provision,
-			Long operatorId) throws Exception;
-
-	/**
-	 * 删除行程准备事项
-	 * 
-	 * @param routeId
-	 * @param provisionId
-	 * @param operatorId
-	 * @throws Exception
-	 */
-	public void deleteRouteProvision(Long routeId, Long provisionId,
-			Long operatorId) throws Exception;
 }

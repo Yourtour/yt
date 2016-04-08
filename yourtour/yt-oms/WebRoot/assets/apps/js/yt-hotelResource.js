@@ -55,7 +55,7 @@ jQuery.HotelResource = {
             formview = $("#Page_HotelFormView");
 
         $("#datatable_hotel").edit(function (id) {
-            $.Request.get("/rest/oms/resources/hotels/" + id, null, function (result) {
+            $.Request.get("/oms/resources/hotels/" + id, null, function (result) {
                 $.Page.show("Page_HotelFormView", function () {
                     $("#HotelForm").deserialize(result);
                 });
@@ -70,7 +70,7 @@ jQuery.HotelResource = {
         var me = this;
 
         $("#datatable_hotel").delete(function (id) {
-            $.Request.delete("/rest/oms/resources/hotels/" + id + "/delete", null, function (result) {
+            $.Request.delete("/oms/resources/hotels/" + id + "/delete", null, function (result) {
                 me.query();
             })
         })
@@ -120,7 +120,7 @@ jQuery.HotelResource = {
             fd.append("files", ctlFiles.files[index]);
         }
 
-        $.Request.postFormData("/rest/oms/resources/hotels/save", fd, function (result) {
+        $.Request.postFormData("/oms/resources/hotels/save", fd, function (result) {
             bootbox.alert("保存成功。", function () {
                 $.Page.back(function () {
                     me.query();

@@ -8,7 +8,6 @@ import java.util.List;
 
 import com.yt.business.bean.ResourceBean;
 import com.yt.business.bean.RouteMainBean;
-import com.yt.business.bean.RouteProvisionBean;
 import com.yt.business.bean.RouteScheduleBean;
 import com.yt.business.common.Constants;
 import com.yt.core.utils.CollectionUtils;
@@ -59,42 +58,11 @@ public class RouteLoadVO implements Serializable {
 	public List<RouteSchedule> getSchedules(){
 		List<RouteSchedule> schedules = new ArrayList<>();
 		
-		schedules.addAll(this.getProvisions());
-		
 		schedules.addAll(this.getActivities());
 		
 		return schedules;
 	}
-	
-	private List<RouteSchedule> getProvisions(){
-		List<RouteSchedule> provisions = new ArrayList<>();
 
-		RouteSchedule group = new RouteSchedule();
-		group.setId("0");
-		group.setTitle("准备事项");
-		group.setType(TYPE.Provision);
-		group.setFirst(true);
-		provisions.add(group);
-
-		List<RouteProvisionBean> beans = this.route.getProvisions();
-		if(CollectionUtils.isNotEmpty(beans)) {
-			for (RouteProvisionBean provisionBean : this.route.getProvisions()) {
-				RouteSchedule provision = new RouteSchedule();
-				provision.setParentId(group.getId());
-				provision.setTitle(provisionBean.getTitle());
-				provision.setMemo(provisionBean.getMemo());
-				provision.setType(TYPE.ProvisionItem);
-				provision.setIndex(provisionBean.getIndex());
-				provision.setId(provisionBean.getId().toString());
-				provisions.add(provision);
-			}
-
-			provisions.get(provisions.size() -1 ).setLast(true);
-		}
-
-		return provisions;
-	}
-	
 	private List<RouteSchedule> getActivities(){
 		List<RouteSchedule> schedules = new ArrayList<>();
 

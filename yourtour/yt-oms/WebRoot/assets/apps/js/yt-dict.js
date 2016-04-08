@@ -73,7 +73,7 @@ jQuery.Dictionary = {
         dict.code = dictForm.find('#code').val();
         dict.value = dictForm.find('#value').val();
 
-        $.Request.post("/yt-oms/rest/admin/dicts/save",dict,function(result){
+        $.Request.post("/oms/dicts/save",dict,function(result){
             bootbox.alert("保存成功。", function(){
                 $.Page.back(function(){
                     me.query();
@@ -88,7 +88,7 @@ jQuery.Dictionary = {
     loadDictInfo:function(dictId){
         $.Page.show("Page_DictFormView", function(){
             $("#Page_DictFormView").clear();
-            $.Request.get("/yt-oms/rest/admin/dicts/" + dictId, null, function(data){
+            $.Request.get("/oms/dicts/" + dictId, null, function(data){
                 $("#Page_DictFormView").deserialize(data);
             });
         });
@@ -100,7 +100,7 @@ jQuery.Dictionary = {
     deleteDictInfo:function(dictIds){
         var me = this;
 
-        $.Request.get("/yt-oms/rest/admin/dicts/" + dictIds + "/delete", null, function(data){
+        $.Request.get("/oms/dicts/" + dictIds + "/delete", null, function(data){
             me.query();
         });
     },

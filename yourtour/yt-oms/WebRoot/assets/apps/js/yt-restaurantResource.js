@@ -55,7 +55,7 @@ jQuery.RestaurantResource = {
             formview = $("#Page_RestaurantFormView");
 
         $("#datatable_restaurant").edit(function (id) {
-            $.Request.get("/rest/oms/resources/restaurants/" + id, null, function (result) {
+            $.Request.get("/oms/resources/restaurants/" + id, null, function (result) {
                 $.Page.show("Page_RestaurantFormView", function () {
                     $("#RestaurantForm").deserialize(result);
                 });
@@ -70,7 +70,7 @@ jQuery.RestaurantResource = {
         var me = this;
 
         $("#datatable_restaurant").delete(function (id) {
-            $.Request.delete("/rest/oms/resources/restaurants/" + id + "/delete", null, function (result) {
+            $.Request.delete("/oms/resources/restaurants/" + id + "/delete", null, function (result) {
                 me.query();
             })
         })
@@ -120,7 +120,7 @@ jQuery.RestaurantResource = {
             fd.append("files", ctlFiles.files[index]);
         }
 
-        $.Request.postFormData("/rest/oms/resources/restaurants/save", fd, function (result) {
+        $.Request.postFormData("/oms/resources/restaurants/save", fd, function (result) {
             bootbox.alert("保存成功。", function () {
                 $.Page.back(function () {
                     me.query();

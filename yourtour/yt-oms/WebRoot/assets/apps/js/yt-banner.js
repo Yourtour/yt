@@ -55,7 +55,7 @@ jQuery.Banner = {
             formview = $("#Page_BannerFormView");
 
         $("#datatable_banner").edit(function (id) {
-            $.Request.get("/rest/oms/banners/" + id, null, function (result) {
+            $.Request.get("/oms/banners/" + id, null, function (result) {
                 $.Page.show("Page_BannerFormView", function () {
                     $("#BannerForm").deserialize(result);
                 });
@@ -70,7 +70,7 @@ jQuery.Banner = {
         var me = this;
 
         $("#datatable_banner").delete(function (id) {
-            $.Request.delete("/rest/oms/banners/" + id + "/delete", null, function (result) {
+            $.Request.delete("/oms/banners/" + id + "/delete", null, function (result) {
                 me.query();
             })
         })
@@ -119,7 +119,7 @@ jQuery.Banner = {
         {
             fd.append("files", ctlFiles.files[index]);
         }
-        $.Request.postFormData("/rest/oms/banners/save", fd, function (result) {
+        $.Request.postFormData("/oms/banners/save", fd, function (result) {
             bootbox.alert("保存成功。", function () {
                 $.Page.back(function () {
                     me.query();
