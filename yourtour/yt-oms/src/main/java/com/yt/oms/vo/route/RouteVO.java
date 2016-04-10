@@ -136,10 +136,6 @@ public class RouteVO implements Serializable {
         //保存日程安排
         Date start = new Date(bean.getStartDate()), scheduleDate = null;
         int duration = bean.getDuration();
-        if(duration == 0) {
-            duration = DateUtils.getDaySub(bean.getStartDate(), bean.getEndDate()) + 2;
-        }
-
         List<RouteScheduleBean> scheduleBeans = new ArrayList<>();
         for(int index = 0; index < duration; index++){
             scheduleDate = DateUtils.add(start, index, Calendar.DATE);
@@ -156,6 +152,17 @@ public class RouteVO implements Serializable {
             scheduleBeans.add(scheduleBean);
         }
         bean.setSchedules(scheduleBeans);
+
+        if(StringUtils.isNotNull(vo.getTags())){
+            List<DictBean> tags = new ArrayList<>();
+            String[] array = vo.getTags().split("[|]");
+            for (String tag : array) {
+                DictBean dict = new DictBean();
+                dict.setId(Long.valueOf(tag.split(",")[0]));
+                tags.add(dict);
+            }
+            bean.setTagBeans(tags);
+        }
 
         return bean;
     }
@@ -229,7 +236,7 @@ public class RouteVO implements Serializable {
     }
 
     public Long getStartDate() {
-        return startDate;
+        return startDate == null ? System.currentTimeMillis() : startDate;
     }
 
     public void setStartDate(Long startDate) {

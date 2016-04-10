@@ -46,7 +46,7 @@
 
 	<script src="http://api.map.baidu.com/api?v=1.4" type="text/javascript"></script>
 
-	  <script src="${context}/assets/apps/js/yt-plugin.js" type="text/javascript"></script>
+
 	  <script src="${context}/assets/apps/js/yt-dict.js" type="text/javascript"></script>
 	  <script src="${context}/assets/apps/js/yt-activity.js" type="text/javascript"></script>
 	  <script src="${context}/assets/apps/js/yt-information.js" type="text/javascript"></script>
@@ -60,8 +60,8 @@
 	  <script src="${context}/assets/apps/js/yt-expert.js" type="text/javascript"></script>
 	  <script src="${context}/assets/apps/js/yt-expertApplicationApprove.js" type="text/javascript"></script>
 	  <script src="${context}/assets/apps/js/yt-expertContentApprove.js" type="text/javascript"></script>
-  	<script src="${context}/assets/apps/js/yt-app.js" type="text/javascript"></script>
-	<script src="${context}/assets/apps/js/yt-schedule.js" type="text/javascript"></script>
+  		<script src="${context}/assets/apps/js/yt-app.js" type="text/javascript"></script>
+		<script src="${context}/assets/apps/js/yt-schedule.js" type="text/javascript"></script>
   </head>
 
   <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid page-schedule" style="height:100%; overflow-x:hidden!important;">
@@ -96,8 +96,7 @@
     <script src="${context}/assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js" type="text/javascript"></script>
     <script src="${context}/assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
 	<script src="${context}/assets/global/scripts/app.min.js" type="text/javascript"></script>
-
-
+    <script src="${context}/assets/apps/js/yt-plugin.js" type="text/javascript"></script>
 
 	<!-- END THEME GLOBAL SCRIPTS -->
 	<!-- BEGIN PAGE LEVEL SCRIPTS -->

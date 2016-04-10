@@ -100,6 +100,20 @@ public class RouteRestResource extends RestResource {
     }
 
     /**
+     * 行程复制
+     * @param routeId
+     * @param relation
+     * @return
+     * @throws Exception
+     */
+    @GET
+    @Path("/{routeId}/{relation}/clone")
+    public ResponseDataVO<Long> cloneRouteInfo(@PathParam("routeId") Long routeId, @PathParam("relation") String relation) throws Exception{
+        RouteMainBean route = this.routeService.cloneRouteInfo(routeId, relation.toUpperCase(), super.getCurrentUserId());
+        return new ResponseDataVO<>(route.getId());
+    }
+
+    /**
      * 行程发布
      * @param routeIds
      * @return
@@ -197,8 +211,8 @@ public class RouteRestResource extends RestResource {
     @Path("/{routeId}/schedule/day/save")
     public ResponseDataVO<Long> saveRouteScheduleDayInfo(@PathParam("routeId") Long routeId, RouteScheduleVO schedule) throws Exception{
         RouteScheduleBean scheduleBean = RouteScheduleVO.transform(schedule);
-
-        this.routeService.saveRouteSchedule(scheduleBean, this.getCurrentUserId());
+        scheduleBean.setType(RouteScheduleBean.ScheduleType.DAY);
+        this.routeService.saveRouteScheduleDay(scheduleBean, this.getCurrentUserId());
 
         return new ResponseDataVO<>(scheduleBean.getId());
     }

@@ -1,12 +1,17 @@
 jQuery.Route = {
     initRecommend:function(){
-        $.Page.show("Page_RouteRecommendListView");
+        $.Page.show("Page_RouteListView");
 
         var me = this,
-            listview = $("#Page_RouteRecommendListView");
+            listview = $("#Page_RouteListView");
 
         $("#btn_add", listview).on('click', function(){
             me.createRouteInfo();
+        });
+
+        //
+        $("#btn_clone", listview).on('click', function(){
+            me.cloneRouteInfo();
         });
 
         $("#btn_edit", listview).on('click', function(){
@@ -21,6 +26,14 @@ jQuery.Route = {
             me.openScheduleWindow();
         });
 
+        $("#btn_publish", listview).on('click', function(){
+            me.publishRouteInfoes();
+        });
+
+        $("#btn_withdraw", listview).on('click', function(){
+            me.withdrawRouteInfoes();
+        });
+
         this.queryRecommendRoutes();
     },
 
@@ -28,7 +41,7 @@ jQuery.Route = {
      * 列表查询
      */
     queryRecommendRoutes:function(){
-        var dt = $("#Page_RouteRecommendListView #datatable_route")
+        var dt = $("#Page_RouteListView #datatable_route")
         dt.dataTable({
             "aoColumns": [
                 {"mData": "id", "sClass":"center", "sWidth": "5%", "mRender": function (data, type, row) {
@@ -84,8 +97,17 @@ jQuery.Route = {
                 },
 
                 {
-                    "mData": "tags",
-                    "sWidth": "20%"
+                    "mData": "status",
+                    "sWidth": "20%",
+                    "mRender": function (data, type, row) {
+                        if (data == 'DRAFT') {
+                            return "起草";
+                        } else if (data == 'PUBLISHED') {
+                            return "发布";
+                        } else if (data == 'WITHDRAW') {
+                            return "撤回";
+                        }
+                    }
                 }
             ]
         });
@@ -139,48 +161,51 @@ jQuery.Route = {
     },
 
     /**
-     * 保存行程基本信息
+     * 新建行程
      */
-    saveRouteInfo:function(url){
-        var me = this,
-            formview = $("#Page_RouteSettingView"),
-            form = $('#RouteForm', formview),
-            formdata = new FormData() ;
-
-        formdata.append("route", JSON.stringify(form.serialize()));
-
-        var images = $("input[name='imageUrl']", formview);
-        $.each(images, function(index, image){
-            var _image = $(image);
-            if(_image.attr("type") == "file") {
-                var file = _image[0].files[0];
-                if (file) {
-                    formdata.append("imageUrl", file);
-                }
-            }
-        });
-
-        $.Request.postFormData(url,formdata,function(result){
-            bootbox.alert("保存成功。", function(){
-                $.Page.back(function(){
-                    me.query();
-                });
-            });
-        })
+    createRouteInfo:function(){
+        var context = $("#context").val();
+        window.open(context + "/view/oms/Schedule.html?type=recommend&routeId=-1",'newwindow');
     },
 
     /**
      * 新启窗口进行行程制定
      */
     openScheduleWindow:function(){
-        var me = this,
-            view = $('#Page_ScheduleFormView'),
-            mapPanel = $("#mapPanel", view),
-            detailPanel = $("#detailPanel", view);
         $("#datatable_route").select(function(routeId){
             var context = $("#context").val();
             window.open(context + "/view/oms/Schedule.html?type=recommend&routeId=" + routeId,'newwindow');
         }, "请选择需要规划的行程。");
+    },
+
+    /**
+     * 行程复制
+     */
+    cloneRouteInfo:function(){
+        var type = $("#Page_RouteListView #type").val(),
+            context = $("#context").val();
+        $("#datatable_route").select(function(routeId){
+            $.Request.get("/oms/route/" + routeId + "/" + type + "/clone", null, function(result){
+                window.open(context + "/view/oms/Schedule.html?type=" + type + "/&routeId=" + result,'newwindow');
+            })
+        }, "请选择需要复制的行程。");
+    },
+
+    /**
+     * 行程发布
+     */
+    publishRouteInfoes:function(){
+        $("#datatable_route").select(function(routeId){
+            $.Request.get("/oms/route/" + routeId + "/publish", null, function(result){
+            })
+        }, "请选择需要发布的行程。");
+    },
+
+    withdrawRouteInfoes:function(){
+        $("#datatable_route").select(function(routeId){
+            $.Request.get("/oms/route/" + routeId + "/withdraw", null, function(result){
+            })
+        }, "请选择需要撤回的行程。");
     }
 };
 

@@ -1,5 +1,6 @@
 package com.yt.business;
 
+import com.yt.core.utils.StringUtils;
 import com.yt.hbase.BaseBean;
 import com.yt.hbase.annotation.HbaseColumn;
 import com.yt.neo4j.Neo4jBaseBean;
@@ -94,7 +95,7 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 	 */
 	@Override
 	public String getRowKey() {
-		if (this.rowKey == null || this.rowKey.isEmpty()) {
+		if (StringUtils.isNull(this.rowKey)) {
 			this.rowKey = UUID.randomUUID().toString();
 		}
 		return this.rowKey;
@@ -205,6 +206,6 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 	}
 
 	public boolean isNew() {
-		return this.id == null || this.id.longValue() == -1;
+		return this.id == null || this.id.longValue() < 1;
 	}
 }

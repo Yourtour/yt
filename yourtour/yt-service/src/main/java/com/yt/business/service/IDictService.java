@@ -21,7 +21,7 @@ public interface IDictService {
      * @return
      * @throws Exception
      */
-    public List<DictBean> getDictInfoes() throws Exception;
+    public List<DictBean> getDictInfoes(String type) throws Exception;
 
     /**
      *

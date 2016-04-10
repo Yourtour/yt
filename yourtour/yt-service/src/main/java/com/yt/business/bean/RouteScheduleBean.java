@@ -224,6 +224,7 @@ public class RouteScheduleBean extends BaseBeanImpl implements Cloneable{
 		RouteScheduleBean clone = (RouteScheduleBean) super.clone();
 
 		clone.setId(-1l);
+		clone.setRowKey("");
 
 		if(this.resource != null){
 			clone.resource = (ResourceBean) this.resource.clone();

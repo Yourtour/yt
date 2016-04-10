@@ -25,6 +25,7 @@ jQuery.Dictionary = {
         });
 
         $('#Page_DictListView #type').change(function(){
+            alert($(this).val());
             me.query();
         });
 

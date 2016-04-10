@@ -184,3 +184,20 @@ div[data-role="page"]{
 .padding-zero{
     padding:0px !important;
 }
+
+.place-selector{
+    position: relative;
+}
+
+.place-selector .form-control{
+    border: 1px solid silver;
+}
+
+.place-selector .form-control span{
+    padding:5px;
+    margin-left:5px;
+    color: #666;
+    background-color: #e1e5ec;
+    border-color: #e1e5ec;
+}
+

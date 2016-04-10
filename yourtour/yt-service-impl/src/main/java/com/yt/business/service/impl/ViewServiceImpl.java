@@ -1,7 +1,9 @@
 package com.yt.business.service.impl;
 
 import com.yt.business.bean.DictBean;
+import com.yt.business.repository.neo4j.DictBeanRepository;
 import com.yt.business.service.IViewService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,19 +16,18 @@ import java.util.Map;
  */
 @Service
 public class ViewServiceImpl  extends ServiceBase implements IViewService {
+    @Autowired
+    private DictBeanRepository dictRepository;
+
     @Override
-    public Map<String, Object> getValue(String name) throws Exception {
-        if(name.equalsIgnoreCase("Dictionary")){
-            return this.getValue4DictManagement();
-        }
-
-        return null;
-    }
-
-    private Map<String, Object> getValue4DictManagement(){
+    public Map<String, Object> getValue(String viewname) throws Exception {
         Map<String, Object> values = new HashMap<>();
 
-        values.put("types", getDictType());
+        if(viewname.equalsIgnoreCase("Dictionary")){
+            values.put("types", getDictType());
+        }else if(viewname.equalsIgnoreCase("schedule")){
+            values.put("routeTags", this.getDictInfoes(DictBean.Type.ROUTE_TAGS.toString()));
+        }
 
         return values;
     }
@@ -43,5 +44,9 @@ public class ViewServiceImpl  extends ServiceBase implements IViewService {
         }
 
         return beans;
+    }
+
+    private List<DictBean> getDictInfoes(String type){
+        return dictRepository.getDictInfoes(type);
     }
 }

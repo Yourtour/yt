@@ -295,7 +295,7 @@
 
 	<script src="${context}/assets/global/scripts/app.min.js" type="text/javascript"></script>
 
-	<script src="${context}/assets/apps/js/yt-plugin.js" type="text/javascript"></script>
+
 	<script src="${context}/assets/apps/js/yt-dict.js" type="text/javascript"></script>
 	<script src="${context}/assets/apps/js/yt-activity.js" type="text/javascript"></script>
 	<script src="${context}/assets/apps/js/yt-information.js" type="text/javascript"></script>
@@ -310,6 +310,7 @@
 	<script src="${context}/assets/apps/js/yt-expertApplicationApprove.js" type="text/javascript"></script>
 	<script src="${context}/assets/apps/js/yt-expertContentApprove.js" type="text/javascript"></script>
 	<script src="${context}/assets/apps/js/yt-app.js" type="text/javascript"></script>
+    <script src="${context}/assets/apps/js/yt-plugin.js" type="text/javascript"></script>
 
 	<!-- END THEME GLOBAL SCRIPTS -->
 	<!-- BEGIN PAGE LEVEL SCRIPTS -->

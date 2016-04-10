@@ -130,6 +130,14 @@ public interface IRouteService {
 	public boolean isRouteMember(Long routeId, Long userId);
 
 	/**
+	 * 保存行程的日程信息
+	 * @param schedule
+	 * @param operatorId
+	 * @throws Exception
+	 */
+	public void saveRouteScheduleDay(RouteScheduleBean schedule, Long operatorId) throws Exception;
+
+	/**
 	 * 
 	 * @param schedule
 	 * @param operatorId

@@ -1,4 +1,4 @@
-<div id="Page_RouteSettingView" class="row" style="display: none" data-role="page" >
+<div id="Page_RouteSettingView" class="row" data-role="page" >
     <input type="hidden" id="type" value="${type}"/>
     <div class="col-lg-12">
         <div class="page-bar">
@@ -34,24 +34,19 @@
                             <div class="form-group">
                                 <label for="value" class="col-md-1 control-label">日程安排</label>
                                 <div class="col-md-3">
-                                    <input id="startDate" name="startDate" class="form-control input-inline date-picker" size="24" type="text" value="" />
+                                    <input id="startDate" name="startDate" disabled class="form-control input-inline date-picker" size="24" type="text" value="" />
                                     <span class="help-inline">开始, 一共</span>
                                 </div>
 
                                 <div class="col-md-2">
-                                    <input type="text" class="form-control input-inline" name="duration" id="duration" size="15" placeholder="行程天数">
+                                    <input type="text" value="0" class="form-control input-inline" name="duration" disabled id="duration" size="15" placeholder="行程天数">
                                     <span class="help-inline">天</span>
                                 </div>
 
                                 <label for="value" class="col-md-1 control-label">目的地</label>
                                 <div class="col-md-5">
-                                    <div class="input-group select2-bootstrap-append" style="width:100%">
-                                        <select id="toPlaces" name="toPlaces" class="form-control select2" multiple>
-                                            <option></option>
-                                            <option value="A">A</option>
-                                            <option value="B">B</option>
-                                            <option value="C">C</option>
-                                        </select>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="toPlaces" id="toPlaces" placeholder="目的地">
                                     </div>
                                 </div>
                             </div>
@@ -62,9 +57,9 @@
                                     <div class="input-group select2-bootstrap-append" style="width:100%">
                                         <select id="tags" class="form-control select2" multiple>
                                             <option></option>
-                                            <option value="A">A</option>
-                                            <option value="B">B</option>
-                                            <option value="C">C</option>
+                                            <#list routeTags as tag>
+                                                <option value="${tag.id}">${tag.name}</option>
+                                            </#list>
                                         </select>
                                     </div>
                                 </div>

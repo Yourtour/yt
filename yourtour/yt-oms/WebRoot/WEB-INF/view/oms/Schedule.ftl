@@ -9,7 +9,6 @@
             <div class="page-logo">
                 <a href="index.html">
                     <img src="${context}/assets/layouts/layout2/img/logo-default.png" alt="logo" class="logo-default" /> </a>
-
             </div>
             <!-- END LOGO -->
 
@@ -62,13 +61,13 @@
                     <div class="page-actions">
                         <div class="btn-group">
                             <button id="btn-map" type="button" class="btn btn-default">
-                                <i class="fa fa-map-o"></i> 地图</button>
+                                <i class="fa fa-map-o"></i> 行程规划</button>
 
                             <button id="btn-setting" type="button" class="btn btn-default">
-                                <i class="fa fa-cogs"></i> 设置
+                                <i class="fa fa-cogs"></i> 行程设置
 
                             <button id="btn-service" type="button" class="btn btn-default"  style="display:none">
-                                <i class="fa fa-cogs"></i> 服务</button>
+                                <i class="fa fa-cogs"></i> 服务设置</button>
                         </div>
                     </div>
                 </div>

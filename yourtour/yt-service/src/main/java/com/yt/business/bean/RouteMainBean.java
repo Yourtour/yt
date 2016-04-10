@@ -71,6 +71,9 @@ public class RouteMainBean extends SocialBeanImpl implements Cloneable{
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_TO, type = PlaceBean.class, direction = Direction.OUTGOING, isList = true)
 	private transient List<PlaceBean> toPlaceBeans = null; //目的地
 
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = DictBean.class, direction = Direction.OUTGOING, isList = true)
+	private transient List<DictBean> tagBeans = null; //标签
+
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = RouteScheduleBean.class, direction = Direction.OUTGOING, isList = true)
 	private transient List<RouteScheduleBean> schedules = null; // 行程包含的日程
 
@@ -190,6 +193,14 @@ public class RouteMainBean extends SocialBeanImpl implements Cloneable{
 		this.olderNum = olderNum;
 	}
 
+	public List<DictBean> getTagBeans() {
+		return tagBeans;
+	}
+
+	public void setTagBeans(List<DictBean> tagBeans) {
+		this.tagBeans = tagBeans;
+	}
+
 	public String getFromPlace() {
 		return fromPlace;
 	}
@@ -306,7 +317,11 @@ public class RouteMainBean extends SocialBeanImpl implements Cloneable{
 	public Object clone() throws CloneNotSupportedException {
 		RouteMainBean clone = (RouteMainBean) super.clone();
 		clone.setId(-1l);
-		clone.startPlaceBean = new PlaceBean(this.startPlaceBean.getId());
+		clone.setRowKey("");
+
+		if(this.startPlaceBean != null) {
+			clone.startPlaceBean = new PlaceBean(this.startPlaceBean.getId());
+		}
 
 		List<PlaceBean> cloneToPlaces = new ArrayList<>();
 		if(CollectionUtils.isNotEmpty(toPlaceBeans)){

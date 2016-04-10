@@ -12,27 +12,31 @@ jQuery.Schedule = {
             settingview = $("#Page_RouteSettingView", pageContainer),
             type = $("#type", settingview).val();
 
-        me.showRouteMapView();
-
         map = new BMap.Map('Page_RouteMapView');//指向map的容器
         map.enableScrollWheelZoom(true);
         this.changePlaceMap("上海");
 
+        if(routeId == -1){
+            me.showRouteSettingView();
+        }else{
+            me.showRouteMapView();
+        }
+
         $("#tags", settingview).select2({placeholder:"选择行程标签",width:"100%"});
-        $("#toPlaces", settingview).select2({placeholder:"选择行程目的地",width:"100%"});
+        $("#toPlaces", settingview).place();
         $('#startDate', settingview).datepicker({
             format: 'yyyy-mm-dd',
             clearBtn:true
         });
 
         if(type == 'recommend'){
-            $("#startDate", settingview).parent().val("1970-01-01").hide();
-            $("#duration", settingview).parent().addClass("col-md-5");
+            $("#startDate", settingview).val("1970-01-01");
+            /*$("#duration", settingview).parent().addClass("col-md-5");*/
         }
 
         //保存行程设置
         $("#btn_save", settingview).on('click', function(){
-            $.Route.saveRouteInfo("/rest/oms/route/recommend/save/" + routeId);
+            me.saveRouteInfo("/oms/route/recommend/save/" + routeId);
         });
 
         $(" #btn_cancel", settingview).on('click', function(){
@@ -95,8 +99,10 @@ jQuery.Schedule = {
         });*/
 
         //添加日程
-        pageContainer.delegate(".page-sidebar-menu .icon-schedule-add", "click", function(){
+        pageContainer.delegate(".page-sidebar-menu .icon-schedule-add", "click", function(event){
             me.addRouteScheduleDay();
+
+            event.stopPropagation();
         });
 
         //选择日程
@@ -161,6 +167,9 @@ jQuery.Schedule = {
         });
     },
 
+    /**
+     *
+     */
     showRouteMapView:function(){
         var pageContainer = $("#schedule-page-container");
 
@@ -245,24 +254,30 @@ jQuery.Schedule = {
             btnSetting = $("#schedule-page-header #btn-setting"),
             btnService = $("#schedule-page-header #btn-service");
 
-        $.Request.get("/oms/route/" + routeId, null, function(result){
-            pageContainer.data("value", result);
+        if(routeId == -1){
+            btnSetting.show();
+            btnService.show();
 
-            if(result){
-                settingview.deserialize(result);
+        }else{
+            $.Request.get("/oms/route/" + routeId, null, function(result){
+                pageContainer.data("value", result);
 
-                me.addPlaces(result.toPlaces);
+                if(result){
+                    settingview.deserialize(result);
 
-                $.each(result.schedules, function(index, schedule){
-                    me.addScheduleInfo(index, schedule);
-                });
+                    me.addPlaces(result.toPlaces);
 
-                me.getResources();
+                    $.each(result.schedules, function(index, schedule){
+                        me.addScheduleInfo(index, schedule);
+                    });
 
-                btnSetting.show();
-                btnService.show();
-            }
-        });
+                    me.getResources();
+
+                    btnSetting.show();
+                    btnService.show();
+                }
+            });
+        }
     },
 
     /**
@@ -273,6 +288,10 @@ jQuery.Schedule = {
         var me = this,
             pageHeader = $("#schedule-page-header"),
             schedulePlaces = $(".schedule-places", pageHeader);
+
+        $("li",schedulePlaces).remove();
+
+        if(toPlaces == null || toPlaces == "") return;
 
         var places = toPlaces.split("|"), values;
         $.each(places, function(index, place){
@@ -327,7 +346,7 @@ jQuery.Schedule = {
         var itemHtml =  '<li class="nav-item schedule-day" style="position: relative" id="' + schedule.id + '">' +
                             '<a href="javascript:;" class="nav-link nav-toggle">' +
                             '<div class="icon-schedule-day">D' + schedule.index + '</div>' +
-                            '<span class="title">D' + schedule.index+'</span>' +
+                            '<span class="title">第' + schedule.index+'天</span>' +
                             '</a>' +
                         '</li>';
 
@@ -383,8 +402,17 @@ jQuery.Schedule = {
      */
     addRouteScheduleDay:function(){
         var me = this,
+            pageContainer = $('#schedule-page-container'),
+            settingview = $("#Page_RouteSettingView", pageContainer),
+            routeId = $("#id", settingview).val(),
             schedule = {},
             pageSidebar = $('#schedule-page-container .page-sidebar-menu');
+
+        if(routeId == -1){
+            $.Dialog.alert("请先完成行程设置。");
+
+            return;
+        }
 
         var length = $(".schedule-day", pageSidebar).length;
 
@@ -392,7 +420,7 @@ jQuery.Schedule = {
         schedule.routeId = $("#RouteForm #id").val();
         schedule.index = length + 1;
 
-        $.Request.post("/oms/route/" + schedule.routeId + "/schedule/save",schedule,function(result){
+        $.Request.post("/oms/route/" + schedule.routeId + "/schedule/day/save",schedule,function(result){
            schedule.id = result.data;
            me.addScheduleDayInfo(length + 1, schedule);
         })
@@ -507,11 +535,44 @@ jQuery.Schedule = {
      * @param item
      */
     deleteRouteSchedule:function(item){
-        var pageContainer = $("#schedule-page-container"),
-            schedule = item.parent().data('value');
+        var schedule = item.parent().data('value');
 
         $.Request.delete("/oms/route/" + schedule.routeId + "/schedule/" + schedule.type +"/" + schedule.id + "/delete", null, function(result){
             item.parent().remove();
+        })
+    },
+
+    /**
+     * 保存行程基本信息
+     */
+    saveRouteInfo:function(url){
+        var me = this,
+            formview = $("#Page_RouteSettingView"),
+            pageContainer = $("#schedule-page-container"),
+            form = $('#RouteForm', formview),
+            routeInfo = form.serialize(),
+            formdata = new FormData() ;
+
+        formdata.append("route", JSON.stringify(routeInfo));
+
+        var images = $("input[name='imageUrl']", formview);
+        $.each(images, function(index, image){
+            var _image = $(image);
+            if(_image.attr("type") == "file") {
+                var file = _image[0].files[0];
+                if (file) {
+                    formdata.append("imageUrl", file);
+                }
+            }
+        });
+
+        $.Request.postFormData(url,formdata,function(result){
+            bootbox.alert("保存成功。", function(){
+                me.showRouteMapView();
+
+                $("#id", form).val(result);
+                me.addPlaces(routeInfo.toPlaces);
+            });
         })
     },
 

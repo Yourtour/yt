@@ -258,6 +258,32 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 	}
 
 	@Override
+	public void saveRouteScheduleDay(RouteScheduleBean schedule, Long operatorId)
+			throws Exception {
+		RouteMainBean route = this.routeCrudOperate.get(schedule.getRouteMain().getId(), false);
+
+		boolean isNew = schedule.isNew();
+		RouteScheduleBean saved = null;
+		if(! isNew){
+			saved = scheduleCrudOperate.get(schedule.getId(), false);
+			BeanUtils.merge(schedule, saved);
+		}else{
+			saved = schedule;
+			saved.setIndex(route.getDuration() + 1);
+		}
+
+		this.updateBaseInfo(saved, operatorId);
+
+		scheduleCrudOperate.save(saved);
+
+		if(isNew){ //更新相关行程的日程天数
+			route.setDuration(route.getDuration() + 1);
+			this.routeCrudOperate.save(route);
+		}
+	}
+
+
+	@Override
 	public void saveRouteSchedule(RouteScheduleBean schedule, Long operatorId)
 	throws Exception {
 		RouteScheduleBean saved = null;

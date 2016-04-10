@@ -24,8 +24,6 @@
                                 <div class="col-md-6 col-sm-12">
                                     <div class="table-group-actions pull-left">
                                         <select id="type" name="type" class="table-group-action-input form-control input-inline">
-                                            <option value="">请选择分类</option>
-
                                             <#list types as type>
                                                 <option value="${type.code}">${type.name}</option>
                                             </#list>

@@ -9,9 +9,9 @@ import java.util.Map;
 public interface IViewService {
     /**
      *
-     * @param name:页面名称
+     * @param viewname:页面名称
      * @return
      * @throws Exception
      */
-    public Map<String, Object> getValue(String name) throws Exception;
+    public Map<String, Object> getValue(String viewname) throws Exception;
 }

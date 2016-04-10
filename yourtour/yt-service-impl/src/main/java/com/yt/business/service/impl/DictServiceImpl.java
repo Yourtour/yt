@@ -1,6 +1,7 @@
 package com.yt.business.service.impl;
 
 import com.yt.business.bean.DictBean;
+import com.yt.business.repository.neo4j.DictBeanRepository;
 import com.yt.business.service.IDictService;
 import com.yt.neo4j.repository.CrudOperate;
 import org.apache.commons.logging.Log;
@@ -19,6 +20,9 @@ public class DictServiceImpl extends ServiceBase implements IDictService {
     private static final Log LOG = LogFactory.getLog(DictServiceImpl.class);
 
     @Autowired
+    private DictBeanRepository repository;
+
+    @Autowired
     private CrudOperate<DictBean> crudOperate;
 
     public DictServiceImpl() {
@@ -32,8 +36,8 @@ public class DictServiceImpl extends ServiceBase implements IDictService {
     }
 
     @Override
-    public List<DictBean> getDictInfoes() throws Exception {
-        return crudOperate.get();
+    public List<DictBean> getDictInfoes(String type) throws Exception {
+        return repository.getDictInfoes(type);
     }
 
     @Override

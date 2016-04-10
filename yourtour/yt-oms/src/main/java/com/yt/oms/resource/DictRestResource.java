@@ -12,6 +12,7 @@ import com.yt.utils.SessionUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.stereotype.Component;
 
 import javax.ws.rs.*;
@@ -87,11 +88,11 @@ public class DictRestResource extends RestResource {
      * @throws Exception
      */
     @Path("/query")
-    @POST
-    public ResponseDataVO<List<DictVO>> getAllDictInfoes(Map<String, Object> params) throws Exception{
+    @GET
+    public ResponseDataVO<List<DictVO>> getDictInfoes(@QueryParam("type") String type) throws Exception{
         List<DictVO> voes = new ArrayList<>();
 
-        List<DictBean> beans = service.getDictInfoes();
+        List<DictBean> beans = service.getDictInfoes(type);
         if(CollectionUtils.isNotEmpty(beans)){
             for(DictBean bean : beans){
                 voes.add(DictVO.transform(bean));
