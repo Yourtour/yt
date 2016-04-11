@@ -4,6 +4,6 @@
 .gradle/**
 out/**
 yt-android/**
-yt-dal/**
+#yt-dal/**
 yt-rsal/**
 yt-manager-app/**

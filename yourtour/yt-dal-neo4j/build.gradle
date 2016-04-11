@@ -1,0 +1,7 @@
+dependencies {
+	compile "org.neo4j:neo4j:2.3.3",
+	        "org.neo4j:neo4j-cypher:2.3.3",
+	        "org.neo4j:neo4j-ogm-core:2.0.1",
+	        "org.neo4j:neo4j-ogm-http-driver:2.0.1",
+	        project(":yt-dal")
+}
