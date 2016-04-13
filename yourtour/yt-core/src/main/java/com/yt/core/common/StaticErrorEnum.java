@@ -11,7 +11,9 @@ public enum StaticErrorEnum {
     DATA_NOT_EXIST("3002", "指定的数据不存在。"),
     INPUT_IS_NULL("3003", "输入的数据对象为空。"),
     DB_OPERATE_FAIL("3004", "操作数据库发生错误。"),
-    DB_OPERATE_PERMISSION_FAIL("3005", "数据操作权限异常.");
+    DB_OPERATE_PERMISSION_FAIL("3005", "数据操作权限异常."),
+
+    BUSINESS_ORDER_NOT_EDITABLE("4001", "服务已完成支付，不能再修改。");
 
     public String errorCode;
     public String errorText;

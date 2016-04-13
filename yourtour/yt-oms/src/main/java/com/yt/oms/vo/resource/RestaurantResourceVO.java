@@ -18,7 +18,6 @@ public class RestaurantResourceVO extends ResourceVO {
 		}
 		RestaurantResourceVO vo = new RestaurantResourceVO();
 		vo.fromBean(bean);
-		vo.setRowKey(bean.getName());
 		vo.setDeliciouFood(bean.getDeliciouFood());
 		vo.setFoodStandard(bean.getFoodStandard());
 		vo.setFoodTags(bean.getFoodTags());

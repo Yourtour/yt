@@ -95,14 +95,13 @@
             </div>
         </div>
 
-        <div id="Page_ScheduleFormView" class="page-content-wrapper">
+        <div class="page-content-wrapper">
             <div id="page-container" class="page-content">
                 <div id="Page_RouteMapView" class="map-container" data-role="page">
 
                 </div>
-
-                <#include "route/ActivityView.ftl">
-                <#include "route/SettingView.ftl">
+                <#include "route/SettingFormView.ftl">
+                <#include "route/ScheduleFormView.ftl">
             </div>
         </div>
     </div>

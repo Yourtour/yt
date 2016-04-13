@@ -18,13 +18,13 @@ div[data-role="page"]{
     font-size:14px;
 }
 
-#Page_ScheduleFormView .map-container{
+#schedule-page-container .map-container{
     width:100%;
     height:100%;
     background:white;
 }
 
-#Page_ScheduleFormView .detail-container{
+#schedule-page-container .detail-container{
     position: absolute;
     top:-2px;
     right:-400px;
@@ -33,7 +33,7 @@ div[data-role="page"]{
     background:white;
 }
 
-#Page_ScheduleFormView .detail-container .portlet-body .actions{
+#schedule-page-container .detail-container .portlet-body .actions{
     position: absolute;
     bottom:0px;
     left:0px;
@@ -141,19 +141,19 @@ div[data-role="page"]{
     color:grey;
 }
 
-.detail-container .portlet-title.icon-hotel{
+#Page_ScheduleFormView #info-resource .portlet-title.icon-hotel{
     background-image: url(../icon/icon-schedule-hotel.png);
     background-repeat: no-repeat;
     background-position: left center;
 }
 
-.detail-container .portlet-title.icon-food{
+#Page_ScheduleFormView #info-resource .portlet-title.icon-food{
     background-image: url(../icon/icon-schedule-food.png);
     background-repeat: no-repeat;
     background-position: left center;
 }
 
-.detail-container .portlet-title.icon-scene{
+#Page_ScheduleFormView #info-resource .portlet-title.icon-scene{
     background-image: url(../icon/icon-schedule-scene.png);
     background-repeat: no-repeat;
     background-position: left center;
@@ -199,5 +199,9 @@ div[data-role="page"]{
     color: #666;
     background-color: #e1e5ec;
     border-color: #e1e5ec;
+}
+
+#portlet_content iframe{
+    minHeight:200px;
 }
 

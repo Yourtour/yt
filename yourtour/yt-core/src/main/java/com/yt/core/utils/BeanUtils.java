@@ -5,12 +5,17 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import com.alibaba.fastjson.JSON;
 import com.yt.core.common.TestBean;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class BeanUtils {
+	private static final Log LOG = LogFactory.getLog(BeanUtils.class);
+
 	private static final String SETTER_PREFIX = "set";
 
 	private static Set<String> mergableType = new HashSet<>();
@@ -144,6 +149,10 @@ public class BeanUtils {
 	}
 
 	private static boolean isMergable(PropertyDescriptor targetProp){
+		if(targetProp.getName().equalsIgnoreCase("rowKey")){
+			return false;
+		}
+
 		String type = targetProp.getPropertyType().getName();
 		return mergableType.contains(type);
 	}
@@ -154,8 +163,30 @@ public class BeanUtils {
 	 * @return
 	 * @throws Exception
 	 */
-	public static<T>  T deserialize(String json, Class<T> clazz) throws Exception {
+	public static	<T>  T deserialize(String json, Class<T> clazz) throws Exception {
 		return (T) JSON.parseObject(json, clazz);
+	}
+
+	/**
+	 * 将JSON数据转换成对象
+	 * @param json
+	 * @return
+	 * @throws Exception
+	 */
+	public static Map<String,Object> deserializeAsMap(String json) throws Exception {
+
+		return JSON.parseObject(json, Map.class);
+	}
+
+	/**
+	 * 对象转换成JSON
+	 * @param obj
+	 * @return
+	 * @throws Exception
+	 */
+	public static String serialize(Object obj) throws Exception {
+		if(obj == null) return null;
+		return JSON.toJSONString(obj);
 	}
 
 	public static void main(String[] args) throws Exception{

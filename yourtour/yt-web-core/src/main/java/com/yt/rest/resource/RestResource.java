@@ -41,7 +41,7 @@ public class RestResource {
 	}
 
 	protected Long getCurrentUserId() throws Exception {
-		return SessionUtils.getCurrentLoginUser();
+		return 98l; //SessionUtils.getCurrentLoginUser();
 	}
 
 	/**

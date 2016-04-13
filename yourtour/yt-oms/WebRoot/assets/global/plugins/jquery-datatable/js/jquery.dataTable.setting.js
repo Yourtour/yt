@@ -153,7 +153,30 @@ $.extend( true, $.fn.dataTable.defaults, {
             }
 
             callback(selectedItems.join(","));
+        },
+
+        singleSelect:function(callback, message){
+            var datatable = $(this), selectedItems=[];
+
+            datatable.find(".checkboxes").each(function(index, item){
+                var checkbox = $(item);
+                if(checkbox.is(":checked")) {
+                    selectedItems.push(checkbox.val());
+                }
+            });
+
+            if(selectedItems.length == 0 || selectedItems.length > 1){
+                if(message) {
+                    bootbox.alert(message);
+                }else{
+                    bootbox.alert("请选择记录。");
+                }
+                return;
+            }
+
+            callback(selectedItems[0]);
         }
+
     });
 
     $(".group-checkable").each(function(){

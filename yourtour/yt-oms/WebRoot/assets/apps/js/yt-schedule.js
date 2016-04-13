@@ -61,22 +61,6 @@ jQuery.Schedule = {
             me.showRouteMapView();
         });
 
-        $("#detail-container #btn_detail_hide").on("click", function(){
-            var view = $('#Page_ScheduleFormView'),
-                detailPanel = $("#detail-container", view);
-
-            detailPanel.animate({right:"-400px"});
-        });
-
-        $("#detail-container #btn-schedule").on("click", function(){
-            var detailPanel = $("#Page_ScheduleFormView #detail-container"),
-                infoResource = $("#info-resource", detailPanel),
-                infoSchedule = $("#info-schedule", detailPanel);
-
-            infoResource.hide();
-            infoSchedule.show();
-        });
-
         $("#detail-container #btn-save").on("click", function(){
             me.saveScheduleActivityInfo();
         });
@@ -94,9 +78,9 @@ jQuery.Schedule = {
             me.getResources();
         });
 
-        /*$("#detail-container .timepicker").timepicker({
+        $("#info-schedule .timepicker", pageContainer).timepicker({
             showSeconds: false
-        });*/
+        });
 
         //添加日程
         pageContainer.delegate(".page-sidebar-menu .icon-schedule-add", "click", function(event){
@@ -179,6 +163,18 @@ jQuery.Schedule = {
     },
 
     /**
+     * 行程设置
+     */
+    showRouteScheduleView:function(){
+        var pageContainer = $("#schedule-page-container"),
+            settingview = $("#Page_ScheduleFormView", pageContainer);
+
+        $.Page.show("Page_ScheduleFormView", function(){
+            $("#page-container", pageContainer).removeClass("padding-zero");
+        });
+    },
+
+    /**
      * 编辑日程信息
      * @param dayItem
      */
@@ -230,7 +226,8 @@ jQuery.Schedule = {
      * 资源查询
      */
     getResources:function(){
-        var me = this,pageContainer = $("#schedule-page-container"),
+        var me = this,
+            pageContainer = $("#schedule-page-container"),
             params = {
                 placeId:$(".schedule-places>li.selected").data('value'),
                 type:$(".schedule-types>li.selected").data('value'),
@@ -583,36 +580,32 @@ jQuery.Schedule = {
         var me = this,scheduleInfo = {},
             pageContainer = $("#schedule-page-container"),
             pageHeader = $("#schedule-page-header"),
-            detailPanel = $("#detail-container", pageContainer),
-            resource = detailPanel.data('value'),
-            timeline = $('#schedule-timeline', pageContainer);
+            formview = $("#Page_ScheduleFormView", pageContainer),
+            resource = detailPanel.data('value')
 
-        var selectedItem = $(".timeline-item.active", timeline),
+        var selectedItem = $(".page-sidebar-menu .nav-item.schedule-day.active", pageContainer),
             selectedValue = selectedItem.data("value");
-
-        if(selectedItem.hasClass("schedule-day")){ //当前选中节点是日程型的
-            scheduleInfo.parentId = selectedValue.id;
-        }else{
-            scheduleInfo.parentId = selectedValue.parentId;
-        }
+        scheduleInfo.parentId = selectedValue.id;
 
         var routeId = $("#RouteForm #routeId", pageContainer).val();
-        scheduleInfo.id=$("#id", detailPanel).val();
+        scheduleInfo.id=$("#id", formview).val();
         scheduleInfo.type = resource.type;
         scheduleInfo.resourceId = resource.id;
         scheduleInfo.routeId = routeId;
-        scheduleInfo.name = $("#scheduleName", detailPanel).val();
+        scheduleInfo.name = $("#scheduleName", formview).val();
         scheduleInfo.date = selectedValue.date;
-        scheduleInfo.startTime = $("#startTime", detailPanel).val();
-        scheduleInfo.endTime = $("#endTime", detailPanel).val();
+        scheduleInfo.startTime = $("#startTime", formview).val();
+        scheduleInfo.endTime = $("#endTime", formview).val();
 
         var selectedPlace = $(".schedule-places>li.selected", pageHeader);
         scheduleInfo.place = selectedPlace.data('value') + "," + selectedPlace.html();
-        scheduleInfo.memo = $("#memo", detailPanel).val();
+        scheduleInfo.memo = $("#memo", formview).val();
 
         $.Request.post("/oms/route/" + routeId + "/schedule/activity/save",scheduleInfo,function(result){
             bootbox.alert("保存成功。", function(){
                 me.insertScheduleInfo(scheduleInfo);
+
+                me.showRouteMapView();
             });
         })
     },
@@ -623,14 +616,17 @@ jQuery.Schedule = {
      * @param position
      */
     showResourceDetail:function(resource, schedule){
-        var view = $('#Page_ScheduleFormView'),
-            detailPanel = $("#detail-container", view),
-            type = resource.type.toLowerCase(),
-            context = $('#context').val(),
-            infoResource = $("#info-resource", detailPanel),
-            infoSchedule = $("#info-schedule", detailPanel);
+        this.showRouteScheduleView();
 
-        detailPanel.data('value', resource);
+        var container = $("#schedule-page-container"),
+            formview = $('#Page_ScheduleFormView', container),
+            infoResource = $("#info-resource", formview),
+            infoSchedule = $("#info-schedule", formview),
+            type = resource.type.toLowerCase(),
+            context = $('#context').val();
+
+        formview.data('value', resource);
+
         if(schedule){
             $("#id", infoSchedule).html(schedule.id);
             $("#scheduleName", infoSchedule).val(schedule.name);
@@ -640,34 +636,13 @@ jQuery.Schedule = {
             $("#reason", infoSchedule).val(schedule.reason);
             infoResource.hide();
             infoSchedule.show();
-        }else {
-            $("#image", infoResource).attr('src', context + "/" + resource.imageUrl);
-            $("#intro", infoResource).html(resource.intro);
-            infoResource.show();
-            infoSchedule.hide();
         }
 
-        $(".portlet-title", detailPanel).attr("class", "portlet-title icon-" + type);
-        $("#name", detailPanel).html(resource.name);
-        $("#address", detailPanel).html(resource.address);
+        $("#image", infoResource).attr('src', context + "/" + resource.imageUrl);
+        $("#intro", infoResource).html(resource.intro);
+        $("#address", infoResource).html(resource.address);
 
-        detailPanel.animate({right:"0px"});
-    },
-
-    /**
-     * 隐藏资源明细Panel
-     * @returns {boolean}
-     */
-    hideResourceDetail:function(){
-        var view = $('#Page_ScheduleFormView'),
-            mapPanel = $("#mapPanel", view),
-            detailPanel = $("#detailPanel", view);
-
-        detailPanel.hide();
-        mapPanel.slideDown(1000);
-    },
-
-    addToRouteSchedule:function(){
-        this.hideResourceDetail();
+        $(".portlet-title", infoResource).attr("class", "portlet-title icon-" + type);
+        $("#name", infoResource).html(resource.name);
     }
 };

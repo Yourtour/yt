@@ -22,7 +22,8 @@
 	<link href="${context}/assets/global/plugins/jquery-datatable/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
 	<link href="${context}/assets/global/plugins/jquery-datatable/css/jquery.dataTables.setting.css" rel="stylesheet" type="text/css" />
 	<link href="${context}/assets/global/plugins/jquery-jstree/css/default/style.min.css" rel="stylesheet" type="text/css" />
-	<!-- END PAGE LEVEL PLUGINS -->
+    <link href="${context}/assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css" rel="stylesheet" type="text/css" />
+	  <!-- END PAGE LEVEL PLUGINS -->
 
 	<!-- BEGIN THEME GLOBAL STYLES -->
 	<link href="${context}/assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
@@ -164,7 +165,7 @@
 
 						<ul class="sub-menu">
 							<li class="nav-item start active open">
-								<a href="SceneResource" class="nav-link ">
+								<a href="RouteMake.html" class="nav-link ">
 									<i class="icon-bar-chart"></i>
 									<span class="title">定制</span>
 									<span class="selected"></span>
@@ -284,6 +285,9 @@
 	<script src="${context}/assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
 	<script src="${context}/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
 	<script src="${context}/assets/global/plugins/jquery-jstree/js/jquery.jstree.min.js" type="text/javascript"></script>
+    <script src="${context}/assets/global/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js" type="text/javascript"></script>
+    <script src="${context}/assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js" type="text/javascript"></script>
+    <script src="${context}/assets/global/plugins/bootstrap-wysihtml5/locales/bootstrap-wysihtml5.zh-CN.js" type="text/javascript"></script>
 
 	<!-- END CORE PLUGINS -->
 

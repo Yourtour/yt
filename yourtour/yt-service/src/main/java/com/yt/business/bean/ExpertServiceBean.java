@@ -30,6 +30,8 @@ public class ExpertServiceBean extends SocialBeanImpl {
 	private String feeIncluding;
 	private String feeExcluding;
 	private String withdraw; // 退款规则
+	private String bookingMemo; //预订说明
+	private String useMemo; //使用说明
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = UserProfileBean.class, direction = Direction.INCOMING)
 	private transient UserProfileBean user = null; // 服务相关达人
@@ -120,5 +122,21 @@ public class ExpertServiceBean extends SocialBeanImpl {
 
 	public void setUser(UserProfileBean user) {
 		this.user = user;
+	}
+
+	public String getBookingMemo() {
+		return bookingMemo;
+	}
+
+	public void setBookingMemo(String bookingMemo) {
+		this.bookingMemo = bookingMemo;
+	}
+
+	public String getUseMemo() {
+		return useMemo;
+	}
+
+	public void setUseMemo(String useMemo) {
+		this.useMemo = useMemo;
 	}
 }

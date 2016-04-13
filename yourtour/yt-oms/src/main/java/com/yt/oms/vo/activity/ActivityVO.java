@@ -20,6 +20,7 @@ public class ActivityVO {
     private String	brief;			//概述
     private	String  feature;		//特色
     private String 	tags;           //活动标签
+    private String  content;        //活动内容
     private int		recommendIndex; //推荐指数
     private int     homeRecommend = 0; //是否首页推荐
     private int     placeRecommend = 0; //是否目的地推荐
@@ -42,16 +43,7 @@ public class ActivityVO {
         vo.setHomeRecommend(bean.getHomeRecommend());
         vo.setPlaceRecommend(bean.getPlaceRecommend());
         vo.setCreatedTime(DateUtils.formatDate(bean.getCreatedTime()));
-
-        List<ActivityContentBean> contentBeans = bean.getContents();
-        if(contentBeans != null){
-            List<ActivityContentVO> contents = new ArrayList<>();
-            for(ActivityContentBean contentBean : contentBeans){
-                contents.add(ActivityContentVO.transform(contentBean));
-            }
-
-            vo.setContents(contents);
-        }
+        vo.setContent(bean.getContent());
 
         return vo;
     }
@@ -69,6 +61,7 @@ public class ActivityVO {
         bean.setEndTime(DateUtils.getDateAsLong(vo.getEndTime()));
         bean.setStartTime(DateUtils.getDateAsLong(vo.getStartTime()));
         bean.setTags(vo.getTags());
+        bean.setContent(vo.getContent());
 
         return bean;
     }
@@ -108,7 +101,6 @@ public class ActivityVO {
     public String getEndTime() {
         return endTime;
     }
-
 
     public void setEndTime(String endTime) {
         this.endTime = endTime;
@@ -176,5 +168,13 @@ public class ActivityVO {
 
     public void setPlaceRecommend(int placeRecommend) {
         this.placeRecommend = placeRecommend;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

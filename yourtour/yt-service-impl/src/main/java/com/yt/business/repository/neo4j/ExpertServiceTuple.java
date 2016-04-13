@@ -1,7 +1,6 @@
 package com.yt.business.repository.neo4j;
 
 import com.yt.business.bean.ExpertServiceBean;
-import com.yt.business.bean.RouteServiceBean;
 import com.yt.business.bean.UserProfileBean;
 import org.springframework.data.neo4j.annotation.QueryResult;
 import org.springframework.data.neo4j.annotation.ResultColumn;

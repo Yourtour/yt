@@ -11,6 +11,7 @@ public class PlaceVO {
 	private String feature; //特色
 	private String traffic; //交通
 	private String imageUrl; //图片， 可以有多张
+	private String	position; //地理位置
 	private String specialty; //特产
 	private String memo = ""; // 备注
 	private int goneNum = 0; // 去过人数
@@ -34,6 +35,7 @@ public class PlaceVO {
 		bean.setTraffic(vo.getTraffic());
 		bean.setSpecialty(vo.getSpecialty());
 		bean.setMemo(vo.getMemo());
+		bean.setPosition(vo.getPosition());
 
 		return bean;
 	}
@@ -56,6 +58,7 @@ public class PlaceVO {
 		vo.setIntro(bean.getIntro());
 		vo.setParentId(bean.getParentId());
 		vo.setFeature(bean.getFeature());
+		vo.setPosition(bean.getPosition());
 
 		return vo;
 	}
@@ -158,5 +161,13 @@ public class PlaceVO {
 
 	public void setGoingNum(int goingNum) {
 		this.goingNum = goingNum;
+	}
+
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
 	}
 }

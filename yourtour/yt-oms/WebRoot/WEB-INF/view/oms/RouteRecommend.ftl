@@ -9,7 +9,7 @@
 
     <script language="javascript">
         $(document).ready(function(){
-            $.Route.initRecommend();
+            $.Route.recommend.init();
         });
     </script>
 </body>

@@ -32,7 +32,7 @@ jQuery.Request={
             contentType: false,
             success: function (message) {
                 if(callback) {
-                    callback(message.data);
+                    callback(message);
                 }
             },
             error: function (message) {
@@ -120,7 +120,7 @@ jQuery.Date = {
  */
 jQuery.Utils ={
     isNull:function(str){
-        return str == '' || str == 'null' || str == null;
+        return str == '' || str == 'null' || str == null || str == undefined;
     },
 
     isNotNull:function(str){

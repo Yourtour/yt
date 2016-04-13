@@ -13,7 +13,6 @@ public class BaseVO {
 	private static final SimpleDateFormat sdf = new SimpleDateFormat(
 			"yyyy-MM-dd HH:mm:ss");
 	private Long id;
-	private String rowKey;
 	private Long createdUserId = 0l;
 	private String createdTime;
 	private Long updatedUserId = 0l;
@@ -26,7 +25,6 @@ public class BaseVO {
 		setId(bean.getId());
 		setCreatedTime(sdf.format(new Date(bean.getCreatedTime())));
 		setCreatedUserId(bean.getCreatedUserId());
-		setRowKey(bean.getRowKey());
 		setUpdatedTime(sdf.format(new Date(bean.getUpdatedTime())));
 		setUpdatedUserId(bean.getUpdatedUserId());
 	}
@@ -42,7 +40,6 @@ public class BaseVO {
 		}
 		bean.setCreatedUserId(getCreatedUserId());
 		bean.setId(getId() == null || getId() == -1 ? null : getId());
-		bean.setRowKey(getRowKey());
 		try {
 			bean.setUpdatedTime(sdf.parse(getUpdatedTime()).getTime());
 		} catch (Exception ex) {
@@ -64,14 +61,6 @@ public class BaseVO {
 
 	public void setId(Long id) {
 		this.id = (id == null || id == -1l ? null : id);
-	}
-
-	public String getRowKey() {
-		return rowKey;
-	}
-
-	public void setRowKey(String rowKey) {
-		this.rowKey = rowKey;
 	}
 
 	public Long getCreatedUserId() {

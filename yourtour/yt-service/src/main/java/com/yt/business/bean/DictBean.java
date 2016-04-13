@@ -11,7 +11,9 @@ import org.springframework.data.neo4j.annotation.NodeEntity;
 @NodeEntity
 public class DictBean extends BaseBeanImpl {
 	public static enum Type{
-		USER_TAGS("USER_TAGS", "用户标签"), ROUTE_TAGS("ROUTE_TAGS", "行程标签");
+		USER_TAGS("USER_TAGS", "用户标签"),
+		SERVICE_TYPE("SERVICE_TYPE", "服务分类"),
+		ROUTE_TAGS("ROUTE_TAGS", "行程标签");
 
 		public String code;
 		public String name;
@@ -21,7 +23,6 @@ public class DictBean extends BaseBeanImpl {
 			this.name = name;
 		}
 	}
-
 
 	private Type type;
 	private String name;

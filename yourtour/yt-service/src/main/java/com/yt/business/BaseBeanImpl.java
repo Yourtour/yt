@@ -51,7 +51,6 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 	 */
 	public BaseBeanImpl(Long id) {
 		super();
-
 		this.id = id;
 
 		this.rowKey = UUID.randomUUID().toString();

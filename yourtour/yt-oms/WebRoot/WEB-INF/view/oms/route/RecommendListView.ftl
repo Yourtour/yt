@@ -1,4 +1,4 @@
-<div id="Page_RouteListView" class="row" data-role="page">
+<div id="Page_RecommendListView" class="row" data-role="page">
     <input id="type" type="hidden" value="RECOMMEND"/>
     <div class="col-lg-12">
         <div class="page-bar">

@@ -9,8 +9,9 @@ jQuery.Activity = {
 
         var me = this,
             listview = $("#Page_ActivityListView"),
-            formview = $("#Page_ActivityFormView"),
-            contentformview = $("#Page_ActivityContentFormView");
+            formview = $("#Page_ActivityFormView")
+
+        $(".wysihtml5", formview).wysihtml5({type:'activity', locale:'zh-CN', stylesheets:["../assets/global/plugins/bootstrap-wysihtml5/wysiwyg-color.css"]});
 
         $("#btn_add", listview).on("click", function(){
             me.createActivityInfo();
@@ -43,16 +44,7 @@ jQuery.Activity = {
 
         $('#btn_route_add', formview).on("click", function(){
             $.Route.showSearchView(function(rooutes){
-                alert('afadsfadf');
             });
-        });
-
-        $('#btn_save', contentformview).on("click", function(){
-            me.saveActivityContentInfo();
-        });
-
-        $('#btn_cancel', contentformview).on("click", function(){
-            $.Page.back();
         });
 
         me.query();
@@ -91,9 +83,6 @@ jQuery.Activity = {
         $.Page.show("Page_ActivityFormView", function(){
             $("#id", formview).val("-1");
             $("#ActivityForm", formview).clear();
-
-            $("#tab_content",formview).hide();
-            $("#tab_route",formview).hide();
         });
     },
 
@@ -111,9 +100,7 @@ jQuery.Activity = {
 
         $.Request.postFormData("/oms/activity/intro/save",formdata,function(result){
             bootbox.alert("保存成功。", function(){
-                $("#id", form).val(result.id);
-                $("#tab_content", formview).show();
-                $("#tab_route",formview).show();
+                $.Page.back();
             });
         })
     },
@@ -157,107 +144,5 @@ jQuery.Activity = {
         })
     },
 
-    /**
-     *
-     */
-    createContentInfo:function(){
-        var me = this,
-            formview = $("#Page_ActivityContentFormView");
-
-        $.Page.show("Page_ActivityContentFormView", function(){
-            $("#ActivityContentForm", formview).clear();
-
-            var activityId = $("#Page_ActivityFormView #id").val();
-                eActivityId = $("#Page_ActivityContentFormView #activityId");
-
-            eActivityId.val(activityId);
-        });
-    },
-
-    /**
-     *
-     */
-    saveActivityContentInfo:function(){
-        var me = this,
-            form = $('#ActivityContentForm'),
-            activityContent = $("#Page_ActivityFormView #activity_content"),
-            formdata = new FormData();
-
-        formdata.append("content", JSON.stringify(form.serialize()));
-
-        var image = $("#imageUrl")[0].files[0];
-        if(image) {
-            formdata.append("imageUrl", image);
-        }
-
-        $.Request.postFormData("/oms/activity/content/save",formdata,function(result){
-            me.showContentInfo(result);
-            bootbox.alert("保存成功。", function(){
-                $.Page.back(function(){
-                });
-            });
-        })
-    },
-
-    loadContentInfo:function(id){
-        var me = this;
-
-        $.Request.get("/oms/activity/content/" + id, null, function(result){
-            $.Page.show("Page_ActivityContentFormView", function(){
-                $("#ActivityContentForm").deserialize(result);
-            });
-        })
-    },
-
-    /**
-     *
-     * @param id
-     */
-    deleteContentInfo:function(id){
-        bootbox.confirm("确定要删除活动内容吗?", function(result){
-            if (result) {
-                $.Request.delete("/oms/activity/content/" + id + "/delete", null, function (result) {
-                    var content = $("#Page_ActivityFormView #portlet_content #" + result.id);
-                    if(content){
-                        content.remove();
-                    }
-                });
-            }
-        })
-    },
-
-    /**
-     * 显示活动内容
-     * @param node
-     * @param content
-     */
-    showContentInfo:function(node, content){
-        var html = "";
-        if($.Utils.isNotNull(node.html())){
-            html += '<hr>';
-        }
-
-        html += "<div id='" + content.id + "'>";
-
-        if($.Utils.isNotNull(content.title)) {
-            html += "<div>" + content.title + "</div>";
-        }
-
-        if($.Utils.isNotNull(content.content)){
-            html += "<div>" + content.content + "</div>";
-        }
-
-        if($.Utils.isNotNull(content.imageUrl)){
-            html += "<img src='" + content.imageUrl + "'/>";
-        }
-
-        html += '<div class="row" style="margin-top:10px"><div class="float:right">';
-        html += '<a href="javascript:$.Activity.loadContentInfo(' + content.id + ')" class="btn btn-icon-only default"><i class="fa fa-edit"></i></a>';
-        html += '<a href="javascript:$.Activity.deleteContentInfo(' + content.id + ')" class="btn btn-icon-only default"  style="margin-left:20px;"><i class="fa fa-times"></i></a>';
-        html += '</div></div>';
-        html += "</div>";
-
-        $(html).appendTo(node);
-    }
 };
 

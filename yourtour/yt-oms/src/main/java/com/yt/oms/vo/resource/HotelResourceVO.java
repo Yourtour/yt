@@ -18,7 +18,6 @@ public class HotelResourceVO extends ResourceVO {
 		}
 		HotelResourceVO vo = new HotelResourceVO();
 		vo.fromBean(bean);
-		vo.setRowKey(bean.getName());
 		vo.setAccommodationStandard(bean.getAccommodationStandard());
 		vo.setSpecialRoom(bean.getSpecialRoom());
 		vo.setRoomEquipment(bean.getRoomEquipment());

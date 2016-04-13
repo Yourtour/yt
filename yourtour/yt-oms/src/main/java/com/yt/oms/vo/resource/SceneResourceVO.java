@@ -20,7 +20,6 @@ public class SceneResourceVO extends ResourceVO {
 		}
 		SceneResourceVO vo = new SceneResourceVO();
 		vo.fromBean(bean);
-		vo.setRowKey(bean.getName());
 		vo.setIntro(StringUtils.truncate(bean.getIntro(), 30));
 		vo.setTicket(bean.getTicket());
 		vo.setSceneMap(bean.getSceneMap());

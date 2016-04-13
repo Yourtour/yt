@@ -30,12 +30,10 @@ public class ActivityBean extends BaseBeanImpl {
 	private String	brief;			//概述
 	private	String  feature;		//特色
 	private String 	tags;           //活动标签
+	private String  content;		//活动详细描述
 	private int		recommendIndex; //推荐指数
 	private int     homeRecommend = 0; //是否首页推荐
 	private int     placeRecommend = 0; //是否目的地推荐
-
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = ActivityContentBean.class, direction = Direction.OUTGOING, isList = true)
-	private transient List<ActivityContentBean> contents;
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RELATED, type = RouteMainBean.class, direction = Direction.OUTGOING, isList = true)
 	private transient List<RouteMainBean> routes;
@@ -93,6 +91,14 @@ public class ActivityBean extends BaseBeanImpl {
 		this.brief = brief;
 	}
 
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
 	public String getFeature() {
 		return feature;
 	}
@@ -131,14 +137,6 @@ public class ActivityBean extends BaseBeanImpl {
 
 	public void setRecommendIndex(int recommendIndex) {
 		this.recommendIndex = recommendIndex;
-	}
-
-	public List<ActivityContentBean> getContents() {
-		return contents;
-	}
-
-	public void setContents(List<ActivityContentBean> contents) {
-		this.contents = contents;
 	}
 
 	public List<RouteMainBean> getRoutes() {
