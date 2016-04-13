@@ -142,7 +142,7 @@ public class ResourceRestResource extends RestResource {
 			@DefaultValue("20") @QueryParam("limit") int limit,
 			@QueryParam("total") int total) throws Exception {
 		List<ResourceVO> list = new ArrayList<>();
-		PagingDataBean<List<? extends ResourceBean>> result = resourceService
+		PagingDataBean<List<ResourceBean>> result = resourceService
 				.getPlaceResources(placeId, ResourceType.valueOf(type),
 						new PagingConditionBean(nextCursor, limit, total));
 		for (ResourceBean bean : result.getData()) {

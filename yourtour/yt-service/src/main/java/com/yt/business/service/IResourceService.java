@@ -47,20 +47,20 @@ public interface IResourceService {
 	 * @return
 	 * @throws Exception
 	 */
-	public PagingDataBean<List<? extends ResourceBean>> getResources(
+	public PagingDataBean<List<ResourceBean>> getResources(
 			ResourceType resourceType, PagingConditionBean pagingCondition)
 			throws Exception;
 
 	/**
 	 * 获取资源
-	 *
+	 * 
 	 * @param pagingCondition
 	 * @return
 	 * @throws Exception
 	 */
-	public PagingDataBean<List<? extends ResourceBean>> getResources(PagingConditionBean pagingCondition, Map<String, Object> params)
+	public PagingDataBean<List<ResourceBean>> getResources(
+			PagingConditionBean pagingCondition, Map<String, Object> params)
 			throws Exception;
-
 
 	/**
 	 * 分页获取目的地资源
@@ -70,8 +70,8 @@ public interface IResourceService {
 	 * @return
 	 * @throws Exception
 	 */
-	public PagingDataBean<List<? extends ResourceBean>> getPlaceResources(
-			Long placeId, PagingConditionBean pagingCondition) throws Exception;
+	public PagingDataBean<List<ResourceBean>> getPlaceResources(Long placeId,
+			PagingConditionBean pagingCondition) throws Exception;
 
 	/**
 	 * 分页获取目的地指定类型的资源
@@ -82,7 +82,7 @@ public interface IResourceService {
 	 * @return
 	 * @throws Exception
 	 */
-	public PagingDataBean<List<? extends ResourceBean>> getPlaceResources(
-			Long placeId, ResourceType resourceType,
-			PagingConditionBean pagingCondition) throws Exception;
+	public PagingDataBean<List<ResourceBean>> getPlaceResources(Long placeId,
+			ResourceType resourceType, PagingConditionBean pagingCondition)
+			throws Exception;
 }

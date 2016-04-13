@@ -49,8 +49,8 @@ public class ResourceActivityItemBean extends BaseBeanImpl {
 
 	private int thumbupNum; // 点评数
 
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = SceneResourceBean.class, direction = Direction.INCOMING)
-	private transient SceneResourceBean resource = null;
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_HAS, type = ResourceBean.class, direction = Direction.INCOMING)
+	private transient ResourceBean resource = null;
 
 	public ResourceActivityItemBean() {
 		super();
@@ -88,11 +88,11 @@ public class ResourceActivityItemBean extends BaseBeanImpl {
 		this.thumbupNum = thumbupNum;
 	}
 
-	public SceneResourceBean getResource() {
+	public ResourceBean getResource() {
 		return resource;
 	}
 
-	public void setResource(SceneResourceBean resource) {
+	public void setResource(ResourceBean resource) {
 		this.resource = resource;
 	}
 }

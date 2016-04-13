@@ -41,7 +41,7 @@ public class RouteVO implements Serializable {
 
     private List<RouteScheduleVO> schedules = null;
 
-    public static RouteVO transform(RouteMainBean bean) {
+    public static RouteVO transform(RouteMainBean bean) throws Exception {
         if (bean == null) {
             return null;
         }
