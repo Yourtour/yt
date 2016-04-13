@@ -1,8 +1,14 @@
 package com.yt.vo.resource;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.yt.business.bean.PlaceBean;
 import com.yt.business.bean.ResourceBean;
 import com.yt.business.bean.ResourceBean.ResourceType;
+import com.yt.core.utils.BeanUtils;
 import com.yt.vo.BaseVO;
 
 public class ResourceVO extends BaseVO {
@@ -46,7 +52,9 @@ public class ResourceVO extends BaseVO {
 	private double environmentScore;
 	private double serviceScore;
 
-	public static ResourceVO transform(ResourceBean bean) {
+	private Map<String, Object> specialty;
+
+	public static ResourceVO transform(ResourceBean bean) throws Exception {
 		if (bean == null) {
 			return null;
 		}
@@ -100,10 +108,13 @@ public class ResourceVO extends BaseVO {
 			vo.setPlaceId(null);
 		}
 
+		// 设置资源特性信息
+		vo.setSpecialty(BeanUtils.deserializeAsMap(bean.getSpecialty()));
+
 		return vo;
 	}
 
-	public static ResourceBean transform(ResourceVO vo) {
+	public static ResourceBean transform(ResourceVO vo) throws Exception {
 		if (vo == null) {
 			return null;
 		}
@@ -137,6 +148,8 @@ public class ResourceVO extends BaseVO {
 		PlaceBean place = new PlaceBean();
 		place.setId(vo.getPlaceId());
 		bean.setPlace(place);
+
+		bean.setSpecialty(BeanUtils.serialize(vo.getSpecialty()));
 
 		return bean;
 	}
@@ -430,5 +443,13 @@ public class ResourceVO extends BaseVO {
 
 	public void setFeature(String feature) {
 		this.feature = feature;
+	}
+
+	public Map<String, Object> getSpecialty() {
+		return specialty;
+	}
+
+	public void setSpecialty(Map<String, Object> specialty) {
+		this.specialty = specialty;
 	}
 }

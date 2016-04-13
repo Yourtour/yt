@@ -87,8 +87,8 @@ public class LineBean extends SocialBeanImpl {
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_AT, type = PlaceBean.class, direction = Direction.OUTGOING)
 	private transient PlaceBean place = null;
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_CONTAIN, type = SceneResourceBean.class, direction = Direction.OUTGOING, isList = true)
-	private transient List<SceneResourceBean> scenes = null;
+	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_CONTAIN, type = ResourceBean.class, direction = Direction.OUTGOING, isList = true)
+	private transient List<ResourceBean> scenes = null;
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RECOMMEND, type = UserProfileBean.class, direction = Direction.OUTGOING, isList = true)
 	private transient List<UserProfileBean> experts = null;
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RECOMMEND, type = RouteMainBean.class, direction = Direction.OUTGOING, isList = true)
@@ -96,7 +96,7 @@ public class LineBean extends SocialBeanImpl {
 
 	public LineBean() {
 		super();
-		scenes = new Vector<SceneResourceBean>();
+		scenes = new Vector<ResourceBean>();
 	}
 
 	public String getImageUrl() {
@@ -155,7 +155,7 @@ public class LineBean extends SocialBeanImpl {
 		this.place = place;
 	}
 
-	public List<SceneResourceBean> getScenes() {
+	public List<ResourceBean> getScenes() {
 		return scenes;
 	}
 

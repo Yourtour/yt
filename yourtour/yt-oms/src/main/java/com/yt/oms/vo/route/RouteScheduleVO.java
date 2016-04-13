@@ -26,7 +26,7 @@ public class RouteScheduleVO implements Serializable {
 
     private ResourceVO resource = null;
 
-    public static RouteScheduleVO transform(RouteScheduleBean bean) {
+    public static RouteScheduleVO transform(RouteScheduleBean bean) throws Exception {
         if (bean == null) {
             return null;
         }

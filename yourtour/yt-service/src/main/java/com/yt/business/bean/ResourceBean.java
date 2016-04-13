@@ -29,6 +29,11 @@ import com.yt.neo4j.annotation.Neo4jRelationship.Direction;
  * <td>John.Peng</td>
  * <td>根据定稿后的hbase和neo4j的操作模式进行修改完善，并抽象为一个基类。</td>
  * </tr>
+ * <tr>
+ * <td>2016年4月13日</td>
+ * <td>John.Peng</td>
+ * <td>删除了原来定义的子类（如：宾馆、饭店等），将其中的特定字段封装到一个specialty字段中存储。</td>
+ * </tr>
  * </table>
  * 
  * @author Tony.Zhang
@@ -37,7 +42,7 @@ import com.yt.neo4j.annotation.Neo4jRelationship.Direction;
  * @since 1.0
  */
 @NodeEntity
-public class ResourceBean extends SocialBeanImpl implements Cloneable{
+public class ResourceBean extends SocialBeanImpl implements Cloneable {
 	private static final long serialVersionUID = -8980153602025087935L;
 
 	public enum ResourceType {
@@ -122,6 +127,8 @@ public class ResourceBean extends SocialBeanImpl implements Cloneable{
 
 	@HbaseColumn(name = "intr")
 	private String intro; // 简介
+
+	private String specialty; // 存放某种资源的特定信息内容，采用JSON格式封装。
 
 	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_AT, type = PlaceBean.class, direction = Direction.OUTGOING)
 	private transient PlaceBean place = null;
@@ -388,6 +395,14 @@ public class ResourceBean extends SocialBeanImpl implements Cloneable{
 
 	public void setIntro(String intro) {
 		this.intro = intro;
+	}
+
+	public String getSpecialty() {
+		return specialty;
+	}
+
+	public void setSpecialty(String specialty) {
+		this.specialty = specialty;
 	}
 
 	@Override

@@ -17,11 +17,6 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
-import com.yt.business.bean.*;
-import com.yt.business.common.Constants;
-import com.yt.core.utils.CollectionUtils;
-import com.yt.oms.vo.resource.ResourceVO;
-import com.yt.oms.vo.route.RouteVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,12 +24,12 @@ import com.sun.jersey.multipart.FormDataBodyPart;
 import com.sun.jersey.multipart.FormDataParam;
 import com.yt.business.PagingConditionBean;
 import com.yt.business.PagingDataBean;
+import com.yt.business.bean.ResourceBean;
 import com.yt.business.bean.ResourceBean.ResourceType;
 import com.yt.business.service.IResourceService;
 import com.yt.core.utils.BeanUtils;
-import com.yt.oms.vo.resource.HotelResourceVO;
-import com.yt.oms.vo.resource.RestaurantResourceVO;
-import com.yt.oms.vo.resource.SceneResourceVO;
+import com.yt.core.utils.CollectionUtils;
+import com.yt.oms.vo.resource.ResourceVO;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponsePagingDataVO;
 import com.yt.rest.resource.RestResource;
@@ -53,253 +48,248 @@ public class ResourceRestResource extends RestResource {
 
 	@GET
 	@Path("/hotels/query")
-	public ResponsePagingDataVO<List<HotelResourceVO>> getHotels(
+	public ResponsePagingDataVO<List<ResourceVO>> getHotels(
 			@DefaultValue("0") @QueryParam("nextCursor") Long nextCursor,
 			@DefaultValue("20") @QueryParam("limit") int limit,
 			@QueryParam("total") int total) throws Exception {
-		PagingDataBean<List<? extends ResourceBean>> pagingData = resourceService
+		PagingDataBean<List<ResourceBean>> pagingData = resourceService
 				.getResources(ResourceType.HOTEL, new PagingConditionBean(
 						nextCursor, limit, total));
-		List<HotelResourceVO> vos = new Vector<>();
+		List<ResourceVO> vos = new Vector<>();
 		for (ResourceBean bean : pagingData.getData()) {
 			if (bean == null) {
 				continue;
 			}
-			vos.add(HotelResourceVO.transform((HotelResourceBean) bean));
+			vos.add(ResourceVO.transform(bean));
 		}
-		return new ResponsePagingDataVO<List<HotelResourceVO>>(
+		return new ResponsePagingDataVO<List<ResourceVO>>(
 				pagingData.getTotal(), vos.size(), vos);
 	}
 
 	@GET
 	@Path("/hotels/{hotelId}")
-	public ResponseDataVO<HotelResourceVO> getHotel(
+	public ResponseDataVO<ResourceVO> getHotel(
 			@PathParam("hotelId") Long hotelId) throws Exception {
 		ResourceBean resource = resourceService.getResource(hotelId,
 				ResourceType.HOTEL);
-		if (resource instanceof HotelResourceBean) {
-			return new ResponseDataVO<HotelResourceVO>(
-					HotelResourceVO.transform((HotelResourceBean) resource));
+		if (resource instanceof ResourceBean) {
+			return new ResponseDataVO<ResourceVO>(
+					ResourceVO.transform(resource));
 		} else {
 			throw new Exception(
 					String.format(
 							"Return resource type unmatch, required type: %s, return type: %s",
-							HotelResourceBean.class.getName(), resource
-									.getClass().getName()));
+							resource.getType().name(), resource.getClass()
+									.getName()));
 		}
 	}
 
 	@GET
 	@Path("/hotels/{hotelId}/delete")
-	public ResponseDataVO<HotelResourceVO> deleteHotel(
+	public ResponseDataVO<ResourceVO> deleteHotel(
 			@PathParam("hotelId") Long hotelId,
 			@Context HttpServletRequest request) throws Exception {
 		Long userId = super.getCurrentUserId(request);
 		ResourceBean resource = resourceService.deleteResource(hotelId,
 				ResourceType.HOTEL, userId);
-		if (resource instanceof HotelResourceBean) {
-			return new ResponseDataVO<HotelResourceVO>(
-					HotelResourceVO.transform((HotelResourceBean) resource));
+		if (resource instanceof ResourceBean) {
+			return new ResponseDataVO<ResourceVO>(
+					ResourceVO.transform(resource));
 		} else {
 			throw new Exception(
 					String.format(
 							"Return resource type unmatch, required type: %s, return type: %s",
-							HotelResourceBean.class.getName(), resource
-									.getClass().getName()));
+							resource.getType().name(), resource.getClass()
+									.getName()));
 		}
 	}
 
 	@POST
 	@Path("/hotels/save")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public ResponseDataVO<HotelResourceVO> saveHotel(
+	public ResponseDataVO<ResourceVO> saveHotel(
 			@Context HttpServletRequest request,
 			@FormDataParam("hotel") String json,
 			@FormDataParam("files") List<FormDataBodyPart> files)
 			throws Exception {
-		HotelResourceVO hotelVO = (HotelResourceVO) BeanUtils.deserialize(json,
-				HotelResourceVO.class);
-		HotelResourceBean hotel = HotelResourceVO.transform(hotelVO);
+		ResourceVO hotelVO = (ResourceVO) BeanUtils.deserialize(json,
+				ResourceVO.class);
+		ResourceBean hotel = ResourceVO.transform(hotelVO);
 		hotel.setImageUrl(super.uploadMediaFile(files, HOTEL_IMAGE_PATH));
 
 		Long userId = super.getCurrentUserId(request);
 		resourceService.saveResource(hotel, userId);
-		return new ResponseDataVO<HotelResourceVO>(
-				HotelResourceVO.transform(hotel));
+		return new ResponseDataVO<ResourceVO>(ResourceVO.transform(hotel));
 	}
 
 	@GET
 	@Path("/restaurants/query")
-	public ResponsePagingDataVO<List<RestaurantResourceVO>> getRestaurants(
+	public ResponsePagingDataVO<List<ResourceVO>> getRestaurants(
 			@DefaultValue("0") @QueryParam("nextCursor") Long nextCursor,
 			@DefaultValue("20") @QueryParam("limit") int limit,
 			@QueryParam("total") int total) throws Exception {
-		PagingDataBean<List<? extends ResourceBean>> pagingData = resourceService
+		PagingDataBean<List<ResourceBean>> pagingData = resourceService
 				.getResources(ResourceType.FOOD, new PagingConditionBean(
 						nextCursor, limit, total));
-		List<RestaurantResourceVO> vos = new Vector<>();
+		List<ResourceVO> vos = new Vector<>();
 		for (ResourceBean bean : pagingData.getData()) {
 			if (bean == null) {
 				continue;
 			}
-			vos.add(RestaurantResourceVO
-					.transform((RestaurantResourceBean) bean));
+			vos.add(ResourceVO.transform(bean));
 		}
-		return new ResponsePagingDataVO<List<RestaurantResourceVO>>(
+		return new ResponsePagingDataVO<List<ResourceVO>>(
 				pagingData.getTotal(), vos.size(), vos);
 	}
 
 	@GET
 	@Path("/restaurants/{restaurantId}")
-	public ResponseDataVO<RestaurantResourceVO> getRestaurant(
+	public ResponseDataVO<ResourceVO> getRestaurant(
 			@PathParam("restaurantId") Long restaurantId) throws Exception {
 		ResourceBean resource = resourceService.getResource(restaurantId,
 				ResourceType.FOOD);
-		if (resource instanceof RestaurantResourceBean) {
-			return new ResponseDataVO<RestaurantResourceVO>(
-					RestaurantResourceVO
-							.transform((RestaurantResourceBean) resource));
+		if (resource instanceof ResourceBean) {
+			return new ResponseDataVO<ResourceVO>(
+					ResourceVO.transform(resource));
 		} else {
 			throw new Exception(
 					String.format(
 							"Return resource type unmatch, required type: %s, return type: %s",
-							RestaurantResourceBean.class.getName(), resource
-									.getClass().getName()));
+							resource.getType().name(), resource.getClass()
+									.getName()));
 		}
 	}
 
 	@GET
 	@Path("/restaurants/{restaurantId}/delete")
-	public ResponseDataVO<RestaurantResourceVO> deleteRestaurant(
+	public ResponseDataVO<ResourceVO> deleteRestaurant(
 			@PathParam("restaurantId") Long restaurantId,
 			@Context HttpServletRequest request) throws Exception {
 		Long userId = super.getCurrentUserId(request);
 		ResourceBean resource = resourceService.deleteResource(restaurantId,
 				ResourceType.FOOD, userId);
-		if (resource instanceof RestaurantResourceBean) {
-			return new ResponseDataVO<RestaurantResourceVO>(
-					RestaurantResourceVO
-							.transform((RestaurantResourceBean) resource));
+		if (resource instanceof ResourceBean) {
+			return new ResponseDataVO<ResourceVO>(
+					ResourceVO.transform(resource));
 		} else {
 			throw new Exception(
 					String.format(
 							"Return resource type unmatch, required type: %s, return type: %s",
-							RestaurantResourceBean.class.getName(), resource
-									.getClass().getName()));
+							resource.getType().name(), resource.getClass()
+									.getName()));
 		}
 	}
 
 	@POST
 	@Path("/restaurants/save")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public ResponseDataVO<RestaurantResourceVO> saveRestaurant(
+	public ResponseDataVO<ResourceVO> saveRestaurant(
 			@Context HttpServletRequest request,
 			@FormDataParam("restaurant") String json,
 			@FormDataParam("files") List<FormDataBodyPart> files)
 			throws Exception {
-		RestaurantResourceVO restaurantVO = (RestaurantResourceVO) BeanUtils
-				.deserialize(json, RestaurantResourceVO.class);
-		RestaurantResourceBean restaurant = RestaurantResourceVO
-				.transform(restaurantVO);
+		ResourceVO restaurantVO = (ResourceVO) BeanUtils.deserialize(json,
+				ResourceVO.class);
+		ResourceBean restaurant = ResourceVO.transform(restaurantVO);
 		restaurant.setImageUrl(super.uploadMediaFile(files, HOTEL_IMAGE_PATH));
 
 		Long userId = super.getCurrentUserId(request);
 		resourceService.saveResource(restaurant, userId);
-		return new ResponseDataVO<RestaurantResourceVO>(
-				RestaurantResourceVO.transform(restaurant));
+		return new ResponseDataVO<ResourceVO>(ResourceVO.transform(restaurant));
 	}
 
 	@GET
 	@Path("/scenes/query")
-	public ResponsePagingDataVO<List<SceneResourceVO>> getScenes(
+	public ResponsePagingDataVO<List<ResourceVO>> getScenes(
 			@DefaultValue("0") @QueryParam("nextCursor") Long nextCursor,
 			@DefaultValue("20") @QueryParam("limit") int limit,
 			@QueryParam("total") int total) throws Exception {
-		PagingDataBean<List<? extends ResourceBean>> pagingData = resourceService
+		PagingDataBean<List<ResourceBean>> pagingData = resourceService
 				.getResources(ResourceType.SCENE, new PagingConditionBean(
 						nextCursor, limit, total));
-		List<SceneResourceVO> vos = new Vector<>();
+		List<ResourceVO> vos = new Vector<>();
 		for (ResourceBean bean : pagingData.getData()) {
 			if (bean == null) {
 				continue;
 			}
-			vos.add(SceneResourceVO.transform((SceneResourceBean) bean));
+			vos.add(ResourceVO.transform(bean));
 		}
-		return new ResponsePagingDataVO<List<SceneResourceVO>>(
+		return new ResponsePagingDataVO<List<ResourceVO>>(
 				pagingData.getTotal(), vos.size(), vos);
 	}
 
 	@GET
 	@Path("/scenes/{sceneId}")
-	public ResponseDataVO<SceneResourceVO> getScene(
+	public ResponseDataVO<ResourceVO> getScene(
 			@PathParam("sceneId") Long sceneId) throws Exception {
 		ResourceBean resource = resourceService.getResource(sceneId,
 				ResourceType.SCENE);
-		if (resource instanceof SceneResourceBean) {
-			return new ResponseDataVO<SceneResourceVO>(
-					SceneResourceVO.transform((SceneResourceBean) resource));
+		if (resource instanceof ResourceBean) {
+			return new ResponseDataVO<ResourceVO>(
+					ResourceVO.transform(resource));
 		} else {
 			throw new Exception(
 					String.format(
 							"Return resource type unmatch, required type: %s, return type: %s",
-							SceneResourceBean.class.getName(), resource
-									.getClass().getName()));
+							resource.getType().name(), resource.getClass()
+									.getName()));
 		}
 	}
 
 	@GET
 	@Path("/scenes/{sceneId}/delete")
-	public ResponseDataVO<SceneResourceVO> deleteScene(
+	public ResponseDataVO<ResourceVO> deleteScene(
 			@PathParam("sceneId") Long sceneId,
 			@Context HttpServletRequest request) throws Exception {
 		Long userId = super.getCurrentUserId(request);
 		ResourceBean resource = resourceService.deleteResource(sceneId,
 				ResourceType.SCENE, userId);
-		if (resource instanceof SceneResourceBean) {
-			return new ResponseDataVO<SceneResourceVO>(
-					SceneResourceVO.transform((SceneResourceBean) resource));
+		if (resource instanceof ResourceBean) {
+			return new ResponseDataVO<ResourceVO>(
+					ResourceVO.transform(resource));
 		} else {
 			throw new Exception(
 					String.format(
 							"Return resource type unmatch, required type: %s, return type: %s",
-							SceneResourceBean.class.getName(), resource
-									.getClass().getName()));
+							resource.getType().name(), resource.getClass()
+									.getName()));
 		}
 	}
 
 	@POST
 	@Path("/scenes/save")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public ResponseDataVO<SceneResourceVO> saveScene(
+	public ResponseDataVO<ResourceVO> saveScene(
 			@Context HttpServletRequest request,
 			@FormDataParam("scene") String json,
 			@FormDataParam("files") List<FormDataBodyPart> files)
 			throws Exception {
-		SceneResourceVO sceneVO = (SceneResourceVO) BeanUtils.deserialize(json,
-				SceneResourceVO.class);
-		SceneResourceBean scene = SceneResourceVO.transform(sceneVO);
+		ResourceVO sceneVO = (ResourceVO) BeanUtils.deserialize(json,
+				ResourceVO.class);
+		ResourceBean scene = ResourceVO.transform(sceneVO);
 		scene.setImageUrl(super.uploadMediaFile(files, HOTEL_IMAGE_PATH));
 
 		Long userId = super.getCurrentUserId(request);
 		resourceService.saveResource(scene, userId);
-		return new ResponseDataVO<SceneResourceVO>(
-				SceneResourceVO.transform(scene));
+		return new ResponseDataVO<ResourceVO>(ResourceVO.transform(scene));
 	}
-
 
 	@POST
 	@Path("/query")
-	public ResponsePagingDataVO<List<ResourceVO>> getResources(@DefaultValue("0") @QueryParam("nextCursor") Long nextCursor,
-														 @DefaultValue("20") @QueryParam("limit") int limit,
-														 @QueryParam("total") int total,
-														 Map<String, Object> params)
-	throws Exception{
+	public ResponsePagingDataVO<List<ResourceVO>> getResources(
+			@DefaultValue("0") @QueryParam("nextCursor") Long nextCursor,
+			@DefaultValue("20") @QueryParam("limit") int limit,
+			@QueryParam("total") int total, Map<String, Object> params)
+			throws Exception {
 		List<ResourceVO> voes = new ArrayList<>();
 
-		PagingDataBean<List<? extends ResourceBean>> paginationData = this.resourceService.getResources(new PagingConditionBean(nextCursor, limit, total), params);
-		if(paginationData != null && paginationData.getTotal() > 0){
+		PagingDataBean<List<ResourceBean>> paginationData = this.resourceService
+				.getResources(
+						new PagingConditionBean(nextCursor, limit, total),
+						params);
+		if (paginationData != null && paginationData.getTotal() > 0) {
 			List<? extends ResourceBean> resources = paginationData.getData();
-			if(CollectionUtils.isNotEmpty(resources)) {
+			if (CollectionUtils.isNotEmpty(resources)) {
 				for (ResourceBean resource : resources) {
 					ResourceVO vo = new ResourceVO();
 					vo.fromBean(resource);

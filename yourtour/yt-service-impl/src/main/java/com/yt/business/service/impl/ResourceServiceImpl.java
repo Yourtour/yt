@@ -1,24 +1,22 @@
 package com.yt.business.service.impl;
 
-import com.yt.business.PagingConditionBean;
-import com.yt.business.PagingDataBean;
-import com.yt.business.bean.HotelResourceBean;
-import com.yt.business.bean.ResourceBean;
-import com.yt.business.bean.ResourceBean.ResourceType;
-import com.yt.business.bean.RestaurantResourceBean;
-import com.yt.business.bean.SceneResourceBean;
-import com.yt.business.repository.neo4j.ResourceBeanRepository;
-import com.yt.business.repository.query.IResourceQuery;
-import com.yt.business.service.IResourceService;
-import com.yt.core.utils.BeanUtils;
-import com.yt.neo4j.repository.CrudOperate;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
+import com.yt.business.PagingConditionBean;
+import com.yt.business.PagingDataBean;
+import com.yt.business.bean.ResourceBean;
+import com.yt.business.bean.ResourceBean.ResourceType;
+import com.yt.business.repository.neo4j.ResourceBeanRepository;
+import com.yt.business.repository.query.IResourceQuery;
+import com.yt.business.service.IResourceService;
+import com.yt.core.utils.BeanUtils;
+import com.yt.neo4j.repository.CrudOperate;
 
 /**
  * Created by 林平 on 2016/2/21.
@@ -35,7 +33,7 @@ public class ResourceServiceImpl extends ServiceBase implements
 	private CrudOperate<ResourceBean> resourceCrudOperate;
 
 	@Autowired
-	private IResourceQuery  resourceQuery;
+	private IResourceQuery resourceQuery;
 
 	@Override
 	public void saveResource(ResourceBean resource, Long userId)
@@ -81,7 +79,7 @@ public class ResourceServiceImpl extends ServiceBase implements
 	}
 
 	@Override
-	public PagingDataBean<List<? extends ResourceBean>> getResources(
+	public PagingDataBean<List<ResourceBean>> getResources(
 			ResourceType resourceType, PagingConditionBean pagingCondition)
 			throws Exception {
 		int total = pagingCondition.getTotal();
@@ -97,13 +95,12 @@ public class ResourceServiceImpl extends ServiceBase implements
 							resourceType.name(), resources.size(),
 							pagingCondition.toString()));
 		}
-		return new PagingDataBean<List<? extends ResourceBean>>(total,
-				resources);
+		return new PagingDataBean<List<ResourceBean>>(total, resources);
 	}
 
 	@Override
-	public PagingDataBean<List<? extends ResourceBean>> getPlaceResources(
-			Long placeId, PagingConditionBean pagingCondition) throws Exception {
+	public PagingDataBean<List<ResourceBean>> getPlaceResources(Long placeId,
+			PagingConditionBean pagingCondition) throws Exception {
 		int total = pagingCondition.getTotal();
 		if (total <= 0) {
 			total = repository.count(placeId);
@@ -116,14 +113,13 @@ public class ResourceServiceImpl extends ServiceBase implements
 							placeId, resources.size(),
 							pagingCondition.toString()));
 		}
-		return new PagingDataBean<List<? extends ResourceBean>>(total,
-				resources);
+		return new PagingDataBean<List<ResourceBean>>(total, resources);
 	}
 
 	@Override
-	public PagingDataBean<List<? extends ResourceBean>> getPlaceResources(
-			Long placeId, ResourceType resourceType,
-			PagingConditionBean pagingCondition) throws Exception {
+	public PagingDataBean<List<ResourceBean>> getPlaceResources(Long placeId,
+			ResourceType resourceType, PagingConditionBean pagingCondition)
+			throws Exception {
 		int total = pagingCondition.getTotal();
 		if (total <= 0) {
 			total = repository.count(placeId, resourceType.name());
@@ -137,27 +133,13 @@ public class ResourceServiceImpl extends ServiceBase implements
 							placeId, resourceType.name(), resources.size(),
 							pagingCondition.toString()));
 		}
-		return new PagingDataBean<List<? extends ResourceBean>>(total,
-				resources);
+		return new PagingDataBean<List<ResourceBean>>(total, resources);
 	}
 
 	@Override
-	public PagingDataBean<List<? extends ResourceBean>> getResources(PagingConditionBean pagingCondition, Map<String, Object> params) throws Exception {
-		/*String type = params.get("type").toString().toString().toUpperCase();
-		switch(ResourceBean.ResourceType.valueOf(type)){
-			case FOOD:
-				resources = this.restaurantOperator.query(String.format(sb.toString(),RestaurantResourceBean.class.getSimpleName()), params);
-				break;
-			case HOTEL:
-				resources = this.hotelOperator.query(String.format(sb.toString(), HotelResourceBean.class.getSimpleName()), params);
-				break;
-			default:
-				resources = this.sceneOperator.query(String.format(sb.toString(), SceneResourceBean.class.getSimpleName()), params);
-				break;
-		}
-*/
-		//return resourceQuery.getResources(pagingCondition, params);
-
-		return new PagingDataBean<>(10, resourceCrudOperate.get(false));
+	public PagingDataBean<List<ResourceBean>> getResources(
+			PagingConditionBean pagingCondition, Map<String, Object> params)
+			throws Exception {
+		return resourceQuery.getResources(pagingCondition, params);
 	}
 }

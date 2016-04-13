@@ -1,67 +1,47 @@
 package com.yt.business.repository.query;
 
-import com.yt.business.PagingConditionBean;
-import com.yt.business.PagingDataBean;
-import com.yt.business.bean.HotelResourceBean;
-import com.yt.business.bean.ResourceBean;
-import com.yt.business.bean.RestaurantResourceBean;
-import com.yt.business.bean.SceneResourceBean;
-import com.yt.business.common.Constants;
-import com.yt.neo4j.repository.CrudOperate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.yt.business.PagingConditionBean;
+import com.yt.business.PagingDataBean;
+import com.yt.business.bean.ResourceBean;
+import com.yt.neo4j.repository.CrudOperate;
+
 @Service
-public class ResourceQuery  implements  IResourceQuery {
-    @Autowired
-    private CrudOperate<RestaurantResourceBean> restaurantOperator;
+public class ResourceQuery implements IResourceQuery {
+	@Autowired
+	private CrudOperate<ResourceBean> resourceOperator;
+	
+	@Override
+	public PagingDataBean<List<ResourceBean>> getResources(
+			PagingConditionBean pagingCondition, Map<String, Object> params)
+			throws Exception {
+		StringBuffer sb = new StringBuffer();
 
-    @Autowired
-    private CrudOperate<SceneResourceBean> sceneOperator;
+		// 按目的地检索
 
-    @Autowired
-    private CrudOperate<HotelResourceBean> hotelOperator;
+		if (params.containsKey("placeId")) {
+			sb.append("START n={placeId} MATCH n<-[:AT]-(resource:%s)");
+		} else {
+			sb.append("MATCH (resource:%s)");
+		}
 
+		String type = params.get("type").toString().toString().toUpperCase();
+		sb.append(String.format(" WHERE resource.type=%s", type));
+		// 按名字检索
+		if (params.containsKey("name")) {
+			sb.append(" AND resource.name like {name}");
+		}
 
-    @Override
-    public PagingDataBean<List<? extends ResourceBean>> getResources(PagingConditionBean pagingCondition, Map<String, Object> params) throws Exception {
-        StringBuffer sb = new StringBuffer();
-
-        //按目的地检索
-
-        if(params.containsKey("placeId")){
-            sb.append("START n={placeId} MATCH n<-[:AT]-(resource:%s)");
-        }else{
-            sb.append("MATCH (resource:%s)");
-        }
-
-        boolean whereAppended = false;
-        //按名字检索
-        if(params.containsKey("name")){
-            sb.append(" where resource.name like {name}");
-        }
-
-        sb.append(" return resource");
-
-        //按类型检索
-        List<? extends ResourceBean> resources = null;
-        String type = params.get("type").toString().toString().toUpperCase();
-        switch(ResourceBean.ResourceType.valueOf(type)){
-            case FOOD:
-                resources = this.restaurantOperator.query(String.format(sb.toString(),RestaurantResourceBean.class.getSimpleName()), params);
-                break;
-            case HOTEL:
-                resources = this.hotelOperator.query(String.format(sb.toString(), HotelResourceBean.class.getSimpleName()), params);
-                break;
-            default:
-                resources = this.sceneOperator.query(String.format(sb.toString(), SceneResourceBean.class.getSimpleName()), params);
-                break;
-        }
-
-        return new PagingDataBean<List<? extends ResourceBean>>(10, resources);
-    }
+		// 按类型检索
+		sb.append(" RETURN resource");
+		List<ResourceBean> resources = this.resourceOperator
+				.query(String.format(sb.toString(),
+						ResourceBean.class.getSimpleName()), params);
+		return new PagingDataBean<List<ResourceBean>>(10, resources);
+	}
 }
