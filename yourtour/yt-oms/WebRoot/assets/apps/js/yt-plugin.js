@@ -613,3 +613,22 @@ jQuery.Dialog={
     }
 })(jQuery);
 
+/**
+ *关联行程选择
+ */
+(function($){
+    $.fn.routeSelector=function(){
+        var me = $(this),
+            parent = me.parent(),
+            routeContainer = $('<div class="form-control"></div>'),
+            searchButton = $('<span class="input-group-addon"><i class="fa fa-search"></i></span>');
+
+        routeContainer.appendTo(parent);
+        routeContainer.delegate("span", "click", function(){ //选择项删除
+            $(this).remove();
+        });
+
+        searchButton.appendTo(parent);
+    }
+})(jQuery);
+

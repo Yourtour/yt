@@ -9,9 +9,13 @@ jQuery.Activity = {
 
         var me = this,
             listview = $("#Page_ActivityListView"),
-            formview = $("#Page_ActivityFormView")
+            formview = $("#Page_ActivityFormView");
 
         $(".wysihtml5", formview).wysihtml5({type:'activity', locale:'zh-CN', stylesheets:["../assets/global/plugins/bootstrap-wysihtml5/wysiwyg-color.css"]});
+
+        $("#imageUrl", formview).imageSelector();
+
+        $("#routeIds", formview).routeSelector();
 
         $("#btn_add", listview).on("click", function(){
             me.createActivityInfo();

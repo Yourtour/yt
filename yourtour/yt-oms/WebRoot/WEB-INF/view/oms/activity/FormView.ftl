@@ -107,6 +107,13 @@
                                             <input type="file" id="imageUrl">
                                         </div>
                                     </div>
+
+                                    <div class="form-group">
+                                        <label for="value" class="col-md-1 control-label">推荐行程</label>
+                                        <div class="col-md-11">
+                                            <input type="hidden" id="routeIds"/>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="tab-pane" id="portlet_content">
