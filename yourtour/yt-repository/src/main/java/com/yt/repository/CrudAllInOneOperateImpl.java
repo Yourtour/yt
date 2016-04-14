@@ -59,7 +59,7 @@ public class CrudAllInOneOperateImpl<T extends Neo4jBaseBean> extends CrudGenera
 	public void delete() throws Exception {
 		super.delete();
 
-		Class<T> clazz = super.getClazz();
+		Class<T> clazz = super.getEntityType();
 		if (isSave2Hbase() && clazz.isAssignableFrom(BaseBean.class)) {
 			@SuppressWarnings("unchecked")
 			Class<? extends BaseBean> c = (Class<? extends BaseBean>) clazz;

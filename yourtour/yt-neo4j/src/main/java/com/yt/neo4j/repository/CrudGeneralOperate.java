@@ -90,7 +90,7 @@ public class CrudGeneralOperate<T extends Neo4jBaseBean> implements
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	protected Class<T> getClazz() {
+	protected Class<T> getEntityType() {
 		Type genType = this.getClass().getGenericSuperclass();
 		Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
 
@@ -104,7 +104,7 @@ public class CrudGeneralOperate<T extends Neo4jBaseBean> implements
 	 */
 	@Override
 	public long count() throws Exception {
-		return template.count(getClazz());
+		return template.count(getEntityType());
 	}
 
 	/*
@@ -126,7 +126,7 @@ public class CrudGeneralOperate<T extends Neo4jBaseBean> implements
 	 */
 	@Override
 	public T get(Long graphId, boolean loadRelations) throws Exception {
-		Class<T> clazz = this.getClazz();
+		Class<T> clazz = this.getEntityType();
 		T bean = template.findOne(graphId, clazz);
 		if (bean != null && loadRelations) {
 			bean = loadRelations(bean);
@@ -137,7 +137,7 @@ public class CrudGeneralOperate<T extends Neo4jBaseBean> implements
 	@SuppressWarnings("unchecked")
 	public List<T> query(String queryStr, Map<String, Object> params)
 			throws Exception {
-		Class<T> clazz = this.getClazz();
+		Class<T> clazz = this.getEntityType();
 
 		List<T> list = new ArrayList<>();
 		Result<Map<String, Object>> result = template.query(queryStr, params);
@@ -248,7 +248,7 @@ public class CrudGeneralOperate<T extends Neo4jBaseBean> implements
 	@Override
 	public T get(String indexedPropertyName, String value, boolean loadRelations)
 			throws Exception {
-		Class<T> clazz = this.getClazz();
+		Class<T> clazz = this.getEntityType();
 
 		Result<T> result = template.findByIndexedValue(clazz,
 				indexedPropertyName, value);
@@ -288,7 +288,7 @@ public class CrudGeneralOperate<T extends Neo4jBaseBean> implements
 	 */
 	@Override
 	public List<T> get(boolean loadRelations) throws Exception {
-		Class<T> clazz = this.getClazz();
+		Class<T> clazz = this.getEntityType();
 
 		Result<T> result = template.findAll((Class<T>) clazz);
 		List<T> list = new Vector<T>();
@@ -327,7 +327,7 @@ public class CrudGeneralOperate<T extends Neo4jBaseBean> implements
 	@Override
 	public List<T> getByPage(int start, int limit, boolean loadRelations)
 			throws Exception {
-		Class<T> clazz = this.getClazz();
+		Class<T> clazz = this.getEntityType();
 
 		String query = String.format("MATCH (n:%s) RETURN n SKIP %d LIMIT %d",
 				clazz.getSimpleName(), start, limit);
@@ -386,7 +386,7 @@ public class CrudGeneralOperate<T extends Neo4jBaseBean> implements
 	 */
 	@Override
 	public void delete() throws Exception {
-		Class<T> clazz = this.getClazz();
+		Class<T> clazz = this.getEntityType();
 		Result<T> result = template.findAll(clazz);
 		long count = 0;
 		for (T bean : result) {
