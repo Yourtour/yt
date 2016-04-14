@@ -50,7 +50,6 @@
                                     </th>
                                     <th>代码</th>
                                     <th>名称</th>
-                                    <th>简介</th>
                                 </tr>
                             </thead>
 

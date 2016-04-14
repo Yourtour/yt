@@ -50,7 +50,6 @@
                                     </th>
                                     <th>代码</th>
                                     <th>名称</th>
-                                    <th>特色房</th>
                                 </tr>
                             </thead>
 

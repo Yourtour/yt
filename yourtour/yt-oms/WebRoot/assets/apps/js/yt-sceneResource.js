@@ -57,7 +57,16 @@ jQuery.SceneResource = {
         $("#datatable_scene").edit(function (id) {
             $.Request.get("/oms/resources/scenes/" + id, null, function (result) {
                 $.Page.show("Page_SceneFormView", function () {
-                    $("#SceneForm").deserialize(result);
+                    var scene = result, specialty = scene.specialty;
+                    if (specialty) {
+                        scene.intro = specialty.intro;
+                        scene.ticket = specialty.ticket;
+                        scene.sceneMap = specialty.sceneMap;
+                        scene.specialScene = specialty.specialScene;
+                        scene.sceneTraffic = specialty.sceneTraffic;
+                        delete scene.specialty;
+                    }
+                    $("#SceneForm").deserialize(scene);
                 });
             })
         })
@@ -99,9 +108,6 @@ jQuery.SceneResource = {
                     }, {
                         "mData": "name",
                         "sWidth": "30%"
-                    }, {
-                        "mData": "intro",
-                        "sWidth": "40%"
                     }]
             });
     },
@@ -112,12 +118,22 @@ jQuery.SceneResource = {
     saveSceneInfo: function () {
         var scene = {}, sceneForm = $('#SceneForm'), me = this;
         scene = sceneForm.serialize();
-        // TODO 删除不需要的字段
+        // 封装景点个性化字段，删除不需要的字段
+        var specialty = {
+            'intro': scene.intro, 'ticket': scene.ticket, 'sceneMap': scene.sceneMap,
+            'specialScene': scene.specialScene, 'sceneTraffic': scene.sceneTraffic
+        };
+        scene.specialty = specialty;
+        delete scene.intro;
+        delete scene.ticket;
+        delete scene.sceneMap;
+        delete scene.specialScene;
+        delete scene.sceneTraffic;
+
         var fd = new FormData();
         fd.append('scene', JSON.stringify(scene));
         var ctlFiles = $("#files")[0];
-        for (var index = 0; index < ctlFiles.files.length; index ++)
-        {
+        for (var index = 0; index < ctlFiles.files.length; index++) {
             fd.append("files", ctlFiles.files[index]);
         }
 
