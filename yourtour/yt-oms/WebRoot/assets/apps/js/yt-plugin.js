@@ -841,20 +841,10 @@ jQuery.Dialog={
     }
 })(jQuery);
 
-
+/**
+ * 带检索功能的输入框
+ */
 (function($){
-    var refresh = function(){
-        var me = this,
-            parent = me.parent();
-
-        var ids = "";
-        $(".route-item", parent).each(function(index, item){
-            if(index > 0) ids += ",";
-            ids += $(item).data("value").id;
-        });
-        me.val(ids);
-    };
-
     var methods = {
         /**
          * 初始化
@@ -868,34 +858,103 @@ jQuery.Dialog={
 
             $.extend(true, defaults, options);
 
-            me.css('display', "none");
             if(!parent.hasClass("search-field")){
                 parent.addClass("search-field");
             }
 
-            $("<div style='position:relative; border: 1px solid silver;'><input type='text' class='form-control search-input'><ul></ul></div>").appendTo(parent);
+            parent.delegate("ul>li", "click", function(){
+                var li = $(this),
+                    span = $("<span class='search-selected-item'>" + li.data("value").nickName + "</span>");
+
+                span.insertBefore($(".search-input", parent));
+                $("<i class='fa fa-times'></i>").appendTo(span);
+                span.data("value", li.data(value));
+            }).delegate("span.search-selected-item", "click", function(){
+                $(this).remove();
+            });
+
+            $("<div class='input-group form-control' style='width:100%; border: 1px solid silver;'><ul></ul></div>").appendTo(parent);
+
+            me.removeClass("form-control").addClass("search-input").insertBefore($("ul", parent));
+
             var ul = $("ul", parent);
             ul.css("display", "none");
 
-            $(".search-input", parent).on("keypress", function(event){
-                if(event.keyCode == "13"){
-                    $("<li>dsfasfasfd</li>").appendTo(ul);
-                    $("<li>ssdgdsfgsdfgsdf</li>").appendTo(ul);
+            $(".search-input", parent).on("keypress blur", function(event){
+                var input = $(this);
+                if(event.type == "keypress") {
+                    if (event.keyCode == "13") {
+                        ul.html("");
+                        if (input.val() != "") {
+                            var url = defaults.url + "?key=" + input.val();
+                            $.Request.post(url, null,
+                                function (result) {
+                                    var datas = result.data;
+                                    $.each(datas, function (index, data) {
+                                        var li = $("<li>" + data.nickName + "</li>");
+                                        li.appendTo(ul);
+                                        li.data("value", data);
+                                    })
+                                }
+                            );
+                        }
 
-                    /*if(me.val() != ""){
-                        $.Request.post(defaults.url,{key:me.val()},
-                            function(result){
-                                $("<ul></ul>").append(parent);
-                            }
-                        );
-                    }*/
-
-                    ul.css("display", "block");
+                        ul.css("display", "block");
+                    }
+                }else if(event.type == "blur"){
+                    setTimeout(function () {
+                        ul.css("display", "none");
+                    }, 1000);
                 }
             });
 
             return $(this);
         },
+
+        getValue:function(){
+            var me = $(this),
+                parent = me.parent();
+
+            var spans = parent.find("span.search-selected-item"), values = "";
+            spans.each(function(index, span){
+                var _span = $(span);
+                if(index > 0) values += ",";
+
+                values += _span.data("value") + "," + _span.text();
+            })
+
+            return values;
+        },
+
+        /**
+         *
+         * @param value
+         */
+        setValue:function(value){
+            if($.Utils.isNull(value)) return;
+
+            var me = $(this),
+                parent = me.parent(),
+                values = value.split("|");
+
+            $.each(values, function(index, value){
+                var span = $("<span class='search-selected-item'>" + value.split(",")[1] + "</span>");
+                span.insertBefore($(".search-input", parent));
+                $("<i class='fa fa-times'></i>").appendTo(span);
+
+                span.data("value", value.split("|")[0]);
+            })
+        },
+
+        clear:function(){
+            var me = $(this),
+                parent = me.parent();
+
+            var spans = parent.find("span.search-selected-item"), values = "";
+            spans.each(function(index, span){
+                $(span).remove();
+            })
+        }
     };
 
     $.fn.searchInput = function() {

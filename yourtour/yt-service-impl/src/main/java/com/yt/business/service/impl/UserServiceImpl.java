@@ -96,6 +96,11 @@ public class UserServiceImpl extends ServiceBase implements IUserService {
 	}
 
 	@Override
+	public List<UserProfileBean> getUserProfileInfoes(String nickName, int limit) throws Exception {
+		return this.profileCrudOperate.get();
+	}
+
+	@Override
 	public UserProfileBean login(String userName, String password)
 			throws Exception {
 		UserTuple tuple = repository.getUserByUserName(userName);

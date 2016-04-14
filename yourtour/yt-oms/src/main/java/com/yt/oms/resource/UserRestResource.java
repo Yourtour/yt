@@ -6,6 +6,7 @@ import com.yt.business.bean.UserProfileBean;
 import com.yt.business.service.IUserService;
 import com.yt.core.utils.CollectionUtils;
 import com.yt.oms.vo.UserVO;
+import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponsePagingDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.rest.resource.RestResource;
@@ -99,5 +100,25 @@ public class UserRestResource extends RestResource {
 			}
 		}
 		return new ResponsePagingDataVO(pagingData.getTotal(), pagingData.getData().size(), voes);
+	}
+
+	/**
+	 *
+	 * @return
+	 * @throws Exception
+	 */
+	@Path("/search")
+	@POST
+	public ResponseDataVO<List<UserVO>> getUserInfoes(@QueryParam("key") String key) throws Exception {
+		List<UserProfileBean> profiles = this.service.getUserProfileInfoes(key, 100);
+
+		List<UserVO> voes = new ArrayList<>();
+		if (CollectionUtils.isNotEmpty(profiles)) {
+			for (UserProfileBean profile : profiles) {
+
+				voes.add(UserVO.transform(profile));
+			}
+		}
+		return new ResponseDataVO<>(voes);
 	}
 }

@@ -210,6 +210,15 @@ div[data-role="page"]{
 
 .search-field .search-input{
     border:none;
+    float:left;
+}
+
+.search-field span{
+    float:left;
+    padding:0px 10px;
+    margin:0px 5px;
+    background-color: #e1e5ec;
+    border-color: #e1e5ec;
 }
 
 .search-field ul{
@@ -217,6 +226,7 @@ div[data-role="page"]{
     position:absolute;
     background-color: white;
     top:34px;
+    left:0px;
     z-index:100;
     border: 1px solid silver;
     max-height:200px;
@@ -229,4 +239,5 @@ div[data-role="page"]{
 .search-field ul>li{
     list-style-type:none;
     height:34px;
+    cursor:hand;
 }

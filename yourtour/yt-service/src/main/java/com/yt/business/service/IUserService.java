@@ -58,6 +58,16 @@ public interface IUserService {
 			throws Exception;
 
 	/**
+	 *
+	 * @param nickName
+	 * @param limit
+	 * @return
+	 * @throws Exception
+	 */
+	public List<UserProfileBean> getUserProfileInfoes(String nickName,int limit)
+			throws Exception;
+
+	/**
 	 * 根据用户名获取用户账户对象
 	 * 
 	 * @param userName
