@@ -1,14 +1,8 @@
 package com.yt.business.bean;
 
-import com.yt.business.BaseBeanImpl;
-import com.yt.business.common.Constants;
-import com.yt.hbase.annotation.HbaseTable;
-import com.yt.neo4j.annotation.Neo4jRelationship;
-import com.yt.neo4j.annotation.Neo4jRelationship.Direction;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 
-import java.util.List;
-import java.util.Vector;
+import com.yt.hbase.annotation.HbaseTable;
 
 /**
  * 系统发布的咨询信息。

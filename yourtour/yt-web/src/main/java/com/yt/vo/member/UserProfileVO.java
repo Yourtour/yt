@@ -1,6 +1,7 @@
 package com.yt.vo.member;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -12,6 +13,24 @@ public class UserProfileVO extends RegisterProfileVO {
 	private static final SimpleDateFormat sdf = new SimpleDateFormat(
 			"yyyy-MM-dd");
 	private String birthday, slogan, residence, nativePlace, email;
+	
+	public static UserProfileVO transform(UserProfileBean bean) {
+		if (bean == null) {
+			return null;
+		}
+		UserProfileVO vo = new UserProfileVO();
+		vo.fromBean(bean);
+		vo.setNickName(bean.getNickName());
+		vo.setTags(bean.getTags());
+		vo.setGener(bean.getGender());
+		vo.setMobile(bean.getMobileNo());
+		vo.setEmail(bean.getEmail());
+		vo.setSlogan(bean.getSlogan());
+		vo.setResidence(bean.getResidence());
+		vo.setNativePlace(bean.getNativePlace());
+		vo.setBirthday(sdf.format(new Date(bean.getBirthday())));
+		return vo;
+	}
 
 	public static void transform(UserProfileVO vo, UserProfileBean profile) {
 		profile.setNickName(vo.getNickName());
