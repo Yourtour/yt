@@ -71,7 +71,7 @@
 
                                         <label for="name" class="col-md-1 control-label">活动组织者</label>
                                         <div class="col-md-5">
-                                            <input id="organizer" name="organizer" class="form-control" type="text" value="" />
+                                            <input id="userId" name="userId" class="form-control" type="text" value="" />
                                         </div>
                                     </div>
 

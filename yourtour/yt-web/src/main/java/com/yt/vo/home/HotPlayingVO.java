@@ -23,12 +23,6 @@ public class HotPlayingVO extends BaseVO {
 		vo.content = bean.getContent();
 		vo.feature = bean.getFeature();
 		vo.imageUrl = bean.getImageUrl();
-		if (bean.getPlace() != null) {
-			vo.place = PlaceVO.transform(bean.getPlace());
-		}
-		if (bean.getExpert() != null) {
-			vo.expert = ExpertVO.transform(bean.getExpert());
-		}
 		return vo;
 	}
 

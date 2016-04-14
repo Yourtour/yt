@@ -731,3 +731,187 @@ jQuery.Dialog={
     }
 })(jQuery);
 
+
+(function($){
+    var refresh = function(){
+        var me = this,
+            parent = me.parent();
+
+        var ids = "";
+        $(".route-item", parent).each(function(index, item){
+            if(index > 0) ids += ",";
+            ids += $(item).data("value").id;
+        });
+        me.val(ids);
+    };
+
+    var methods = {
+        /**
+         * 初始化
+         * @param options
+         * @returns {*|HTMLElement}
+         */
+        init: function (options) {
+            var me = this,
+                parent = me.parent(),
+                button = $('<button type="button" class="btn purple-plum">关联行程</button>'),
+                searchListView = $("#Page_Route_SearchListView"),
+                btnSelect = $("#btn_ok", searchListView),
+                btnBack = $("#btn_back", searchListView),
+                dt = $("#datatable_routes", searchListView);
+
+            button.appendTo(parent);
+
+            button.on("click", function(){
+                $.Route.search.init();
+            });
+
+            parent.delegate(".route-delete", "click", function(){
+                methods['remove'].apply(me, [$(this)]);
+            });
+
+            btnSelect.on("click", function(){
+                dt.select(function(routeIds, items){
+                    methods['setValue'].apply(me, [items]);
+
+                    $.Page.back();
+                }, "选择需要关联的行程.");
+            });
+
+            btnBack.on("click", function(){
+                $.Page.back();
+            })
+
+            return $(this);
+        },
+
+        /**
+         * 显示关联行程
+         * @param routes
+         */
+        setValue:function(routes){
+            if(!routes || routes == null) return;
+
+            var me = this,
+                parent = me.parent(),
+                button = $('button', parent);
+            $.each(routes, function(index, item){
+                var control = $('<div class="form-control route-item" style="margin-bottom:10px"><span>' + item.name + '</span><span class="pull-right route-delete"><i class="fa fa-times"></i></span></div>');
+                control.data("value", item);
+                control.insertBefore(button);
+            });
+
+            refresh.apply(this);
+        },
+
+        /**
+         * 删除关联行程
+         * @param item
+         */
+        remove:function(item){
+            item.parent().remove();
+
+            refresh.apply(this);
+        },
+
+        removeAll:function(){
+            var me = this,
+                parent = me.parent();
+
+            $(".route-item", parent).each(function(index, item){
+                item.remove();
+            })
+        }
+    };
+
+    $.fn.routeSelector = function() {
+        var method = arguments[0];
+
+        if(methods[method]) {
+            method = methods[method];
+            arguments = Array.prototype.slice.call(arguments, 1);
+        } else if( typeof(method) == 'object' || !method ) {
+            method = methods.init;
+        } else {
+            $.error( 'Method ' +  method + ' does not exist on jQuery.pluginName' );
+            return this;
+        }
+
+        return method.apply(this, arguments);
+    }
+})(jQuery);
+
+
+(function($){
+    var refresh = function(){
+        var me = this,
+            parent = me.parent();
+
+        var ids = "";
+        $(".route-item", parent).each(function(index, item){
+            if(index > 0) ids += ",";
+            ids += $(item).data("value").id;
+        });
+        me.val(ids);
+    };
+
+    var methods = {
+        /**
+         * 初始化
+         * @param options
+         * @returns {*|HTMLElement}
+         */
+        init: function (options) {
+            var me = this,
+                parent = me.parent(),
+                defaults = {single:true};
+
+            $.extend(true, defaults, options);
+
+            me.css('display', "none");
+            if(!parent.hasClass("search-field")){
+                parent.addClass("search-field");
+            }
+
+            $("<div style='position:relative; border: 1px solid silver;'><input type='text' class='form-control search-input'><ul></ul></div>").appendTo(parent);
+            var ul = $("ul", parent);
+            ul.css("display", "none");
+
+            $(".search-input", parent).on("keypress", function(event){
+                if(event.keyCode == "13"){
+                    $("<li>dsfasfasfd</li>").appendTo(ul);
+                    $("<li>ssdgdsfgsdfgsdf</li>").appendTo(ul);
+
+                    /*if(me.val() != ""){
+                        $.Request.post(defaults.url,{key:me.val()},
+                            function(result){
+                                $("<ul></ul>").append(parent);
+                            }
+                        );
+                    }*/
+
+                    ul.css("display", "block");
+                }
+            });
+
+            return $(this);
+        },
+    };
+
+    $.fn.searchInput = function() {
+        var method = arguments[0];
+
+        if(methods[method]) {
+            method = methods[method];
+            arguments = Array.prototype.slice.call(arguments, 1);
+        } else if( typeof(method) == 'object' || !method ) {
+            method = methods.init;
+        } else {
+            $.error( 'Method ' +  method + ' does not exist on jQuery.searchInput' );
+            return this;
+        }
+
+        return method.apply(this, arguments);
+    }
+})(jQuery);
+

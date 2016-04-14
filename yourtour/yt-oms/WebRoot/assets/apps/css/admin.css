@@ -205,3 +205,28 @@ div[data-role="page"]{
     minHeight:200px;
 }
 
+.search-field{
+}
+
+.search-field .search-input{
+    border:none;
+}
+
+.search-field ul{
+    list-style-type:none;
+    position:absolute;
+    background-color: white;
+    top:34px;
+    z-index:100;
+    border: 1px solid silver;
+    max-height:200px;
+    height:auto;
+    width:100%;
+    margin-left:0px;
+    padding-left:10px;
+}
+
+.search-field ul>li{
+    list-style-type:none;
+    height:34px;
+}

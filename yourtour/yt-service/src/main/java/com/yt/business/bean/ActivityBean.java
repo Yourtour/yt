@@ -1,15 +1,7 @@
 package com.yt.business.bean;
 
-import java.util.List;
-import java.util.Vector;
-
-import org.springframework.data.neo4j.annotation.NodeEntity;
-
-import com.yt.business.BaseBeanImpl;
-import com.yt.business.common.Constants;
 import com.yt.hbase.annotation.HbaseTable;
-import com.yt.neo4j.annotation.Neo4jRelationship;
-import com.yt.neo4j.annotation.Neo4jRelationship.Direction;
+import org.springframework.data.neo4j.annotation.NodeEntity;
 
 /**
  * 系统发布的活动信息，包括：平台活动和达人活动等。
@@ -27,5 +19,21 @@ public class ActivityBean extends ContentBean {
 
 	public ActivityBean() {
 		super();
+	}
+
+	public Long getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(Long startTime) {
+		this.startTime = startTime;
+	}
+
+	public Long getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(Long endTime) {
+		this.endTime = endTime;
 	}
 }

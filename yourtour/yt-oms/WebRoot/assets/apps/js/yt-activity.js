@@ -17,6 +17,8 @@ jQuery.Activity = {
 
         $("#routeIds", formview).routeSelector();
 
+        $("#userId",formview).searchInput();
+
         $("#btn_add", listview).on("click", function(){
             me.createActivityInfo();
         });
