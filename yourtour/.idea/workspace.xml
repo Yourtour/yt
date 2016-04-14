@@ -8,12 +8,8 @@
   <component name="ChangeListManager">
     <list default="true" id="92ee94f3-3d6c-4f6d-925a-699d6360b737" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../.gitignore" afterPath="$PROJECT_DIR$/../.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IUserService.java" afterPath="$PROJECT_DIR$/yt-service/src/main/java/com/yt/business/service/IUserService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/oms/resource/UserRestResource.java" afterPath="$PROJECT_DIR$/yt-oms/src/main/java/com/yt/oms/resource/UserRestResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/UserServiceImpl.java" afterPath="$PROJECT_DIR$/yt-service-impl/src/main/java/com/yt/business/service/impl/UserServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/css/admin.css" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/css/admin.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/js/yt-activity.js" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/js/yt-activity.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/js/yt-plugin.js" afterPath="$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/js/yt-plugin.js" />
     </list>
     <ignored path="yourtour.iws" />
@@ -76,17 +72,15 @@
       <file leaf-file-name="yt-plugin.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/js/yt-plugin.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.39250493">
-              <caret line="871" column="0" selection-start-line="871" selection-start-column="0" selection-end-line="871" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.403255">
+              <caret line="967" column="0" selection-start-line="967" selection-start-column="0" selection-end-line="967" selection-end-column="0" />
               <folding>
-                <marker date="1460642733467" expanded="true" signature="9767:9779" placeholder="..." />
-                <marker date="1460642733467" expanded="true" signature="12629:12641" placeholder="..." />
-                <marker date="1460642733467" expanded="true" signature="15428:15438" placeholder="..." />
-                <marker date="1460642733467" expanded="true" signature="21391:21409" placeholder="..." />
-                <marker date="1460642733467" expanded="true" signature="24496:24514" placeholder="..." />
-                <marker date="1460642733467" expanded="true" signature="26719:26756" placeholder="..." />
-                <marker date="1460642733467" expanded="true" signature="26729:26756" placeholder="..." />
-                <marker date="1460642733467" expanded="true" signature="26731:26756" placeholder="..." />
+                <marker date="1460647538223" expanded="true" signature="9767:9779" placeholder="..." />
+                <marker date="1460647538223" expanded="true" signature="12629:12641" placeholder="..." />
+                <marker date="1460647538223" expanded="true" signature="15428:15438" placeholder="..." />
+                <marker date="1460647538223" expanded="true" signature="21391:21409" placeholder="..." />
+                <marker date="1460647538223" expanded="true" signature="24496:24514" placeholder="..." />
+                <marker date="1460647538223" expanded="true" signature="26796:26843" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -126,7 +120,7 @@
         <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/css/admin.css">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="237" column="0" selection-start-line="237" selection-start-column="0" selection-end-line="237" selection-end-column="0" />
+              <caret line="239" column="0" selection-start-line="239" selection-start-column="0" selection-end-line="239" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -4459,12 +4453,12 @@
       <workItem from="1460601027204" duration="19507000" />
       <workItem from="1460623498720" duration="6072000" />
       <workItem from="1460630159945" duration="3311000" />
-      <workItem from="1460639456663" duration="3247000" />
+      <workItem from="1460639456663" duration="8036000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="820707000" />
+    <option name="totallyTimeSpent" value="825496000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -4491,7 +4485,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3382353" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27124184" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.04462935" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.032526474" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -4500,7 +4494,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24886535" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.0751634" sideWeight="0.49546143" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.0751634" sideWeight="0.49546143" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -5003,24 +4997,22 @@
     <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/css/admin.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="237" column="0" selection-start-line="237" selection-start-column="0" selection-end-line="237" selection-end-column="0" />
+          <caret line="239" column="0" selection-start-line="239" selection-start-column="0" selection-end-line="239" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/yt-oms/WebRoot/assets/apps/js/yt-plugin.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39250493">
-          <caret line="871" column="0" selection-start-line="871" selection-start-column="0" selection-end-line="871" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.403255">
+          <caret line="967" column="0" selection-start-line="967" selection-start-column="0" selection-end-line="967" selection-end-column="0" />
           <folding>
-            <marker date="1460642733467" expanded="true" signature="9767:9779" placeholder="..." />
-            <marker date="1460642733467" expanded="true" signature="12629:12641" placeholder="..." />
-            <marker date="1460642733467" expanded="true" signature="15428:15438" placeholder="..." />
-            <marker date="1460642733467" expanded="true" signature="21391:21409" placeholder="..." />
-            <marker date="1460642733467" expanded="true" signature="24496:24514" placeholder="..." />
-            <marker date="1460642733467" expanded="true" signature="26719:26756" placeholder="..." />
-            <marker date="1460642733467" expanded="true" signature="26729:26756" placeholder="..." />
-            <marker date="1460642733467" expanded="true" signature="26731:26756" placeholder="..." />
+            <marker date="1460647538223" expanded="true" signature="9767:9779" placeholder="..." />
+            <marker date="1460647538223" expanded="true" signature="12629:12641" placeholder="..." />
+            <marker date="1460647538223" expanded="true" signature="15428:15438" placeholder="..." />
+            <marker date="1460647538223" expanded="true" signature="21391:21409" placeholder="..." />
+            <marker date="1460647538223" expanded="true" signature="24496:24514" placeholder="..." />
+            <marker date="1460647538223" expanded="true" signature="26796:26843" placeholder="..." />
           </folding>
         </state>
       </provider>

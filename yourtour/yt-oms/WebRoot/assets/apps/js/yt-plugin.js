@@ -858,6 +858,10 @@ jQuery.Dialog={
 
             $.extend(true, defaults, options);
 
+            if(! me.hasClass("search-input")){
+                me.addClass("search-input");
+            }
+
             if(!parent.hasClass("search-field")){
                 parent.addClass("search-field");
             }
@@ -866,21 +870,33 @@ jQuery.Dialog={
                 var li = $(this),
                     span = $("<span class='search-selected-item'>" + li.data("value").nickName + "</span>");
 
-                span.insertBefore($(".search-input", parent));
+                span.appendTo($(".search-field-result", parent));
                 $("<i class='fa fa-times'></i>").appendTo(span);
                 span.data("value", li.data(value));
             }).delegate("span.search-selected-item", "click", function(){
                 $(this).remove();
             });
 
-            $("<div class='input-group form-control' style='width:100%; border: 1px solid silver;'><ul></ul></div>").appendTo(parent);
+            $("<div style='position:relative; padding-top:0px; border:none' class='form-control'><div class='search-field-container'></div></div>").appendTo(parent);
 
-            me.removeClass("form-control").addClass("search-input").insertBefore($("ul", parent));
+            var container = $(".search-field-container", parent),
+                dropdown = $("<div class='search-field-dropdown'><ul class='search-field-list'></ul></div>");
+            $("<div class='search-field-result form-control'><i class='caret'></i></div>").appendTo(container);
+            dropdown.appendTo(container);
+            me.prependTo(dropdown);
+            dropdown.css("display", "none");
 
-            var ul = $("ul", parent);
-            ul.css("display", "none");
+            $(".search-field-result", container).on("click", function(){
+                if(dropdown.css("display") == "block"){
+                    dropdown.css("display", "none");
+                }else {
+                    dropdown.css("display", "block");
+                    $(".search-input",dropdown).focus();
+                }
+            });
 
-            $(".search-input", parent).on("keypress blur", function(event){
+            var ul = $(".search-field-list", parent);
+            $(".search-input", container).on("keypress blur", function(event){
                 var input = $(this);
                 if(event.type == "keypress") {
                     if (event.keyCode == "13") {
@@ -903,7 +919,7 @@ jQuery.Dialog={
                     }
                 }else if(event.type == "blur"){
                     setTimeout(function () {
-                        ul.css("display", "none");
+                        dropdown.css("display", "none");
                     }, 1000);
                 }
             });
@@ -946,7 +962,7 @@ jQuery.Dialog={
             })
         },
 
-        clear:function(){
+        reset:function(){
             var me = $(this),
                 parent = me.parent();
 
