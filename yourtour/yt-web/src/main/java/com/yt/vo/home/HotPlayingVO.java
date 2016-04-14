@@ -1,19 +1,23 @@
 package com.yt.vo.home;
 
+import java.util.List;
+import java.util.Vector;
+
 import com.yt.business.bean.HotPlayingBean;
+import com.yt.business.bean.PlaceBean;
 import com.yt.vo.BaseVO;
-import com.yt.vo.member.ExpertVO;
+import com.yt.vo.member.UserProfileVO;
 import com.yt.vo.place.PlaceVO;
 
 public class HotPlayingVO extends BaseVO {
 	private String imageUrl, feature, content;
-	private PlaceVO place;
-	private ExpertVO expert;
-	
+	private List<PlaceVO> place;
+	private UserProfileVO user;
+
 	public HotPlayingVO() {
 		super();
 	}
-	
+
 	public static HotPlayingVO transform(HotPlayingBean bean) {
 		if (bean == null) {
 			return null;
@@ -23,11 +27,19 @@ public class HotPlayingVO extends BaseVO {
 		vo.content = bean.getContent();
 		vo.feature = bean.getFeature();
 		vo.imageUrl = bean.getImageUrl();
-		if (bean.getPlace() != null) {
-			vo.place = PlaceVO.transform(bean.getPlace());
+		if (bean.getPlaces() != null && !bean.getPlaces().isEmpty()) {
+			List<PlaceVO> places = new Vector<PlaceVO>();
+			for (PlaceBean place : bean.getPlaces()) {
+				PlaceVO placeVO = PlaceVO.transform(place);
+				if (placeVO == null) {
+					continue;
+				}
+				places.add(placeVO);
+			}
+			vo.place = places;
 		}
-		if (bean.getExpert() != null) {
-			vo.expert = ExpertVO.transform(bean.getExpert());
+		if (bean.getUser() != null) {
+			vo.user = UserProfileVO.transform(bean.getUser());
 		}
 		return vo;
 	}
@@ -44,12 +56,12 @@ public class HotPlayingVO extends BaseVO {
 		return content;
 	}
 
-	public PlaceVO getPlace() {
+	public List<PlaceVO> getPlace() {
 		return place;
 	}
 
-	public ExpertVO getExpert() {
-		return expert;
+	public UserProfileVO getExpert() {
+		return user;
 	}
 
 }
