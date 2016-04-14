@@ -8,9 +8,12 @@ import com.yt.neo4j.annotation.Neo4jRelationship.Direction;
 import java.util.List;
 import java.util.Vector;
 
+import org.springframework.data.neo4j.annotation.NodeEntity;
+
 /**
  * 平台中和内容相关的实体的基础类
  */
+@NodeEntity
 public class ContentBean extends SocialBeanImpl {
 	private static final long serialVersionUID = -5019182758425160992L;
 
