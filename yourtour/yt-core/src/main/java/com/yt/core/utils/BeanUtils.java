@@ -168,12 +168,13 @@ public class BeanUtils {
 	}
 
 	/**
-	 * 将JSON数据转换成对象
+	 * 将JSON数据转换成Map对象
 	 * @param json
 	 * @return
 	 * @throws Exception
 	 */
 	public static Map<String,Object> deserializeAsMap(String json) throws Exception {
+		if(StringUtils.isNull(json)) return null;
 
 		return JSON.parseObject(json, Map.class);
 	}

@@ -1,5 +1,7 @@
 package com.yt.business.bean;
 
+import com.yt.business.common.Constants;
+import com.yt.neo4j.annotation.Neo4jRelationship;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.data.neo4j.support.index.IndexType;
@@ -9,6 +11,8 @@ import com.yt.business.common.Constants.Role;
 import com.yt.core.utils.DateUtils;
 import com.yt.hbase.annotation.HbaseColumn;
 import com.yt.hbase.annotation.HbaseTable;
+
+import java.util.List;
 
 /**
  * 该实体定义了用户的相关信息
@@ -43,6 +47,8 @@ import com.yt.hbase.annotation.HbaseTable;
 public class UserProfileBean extends BaseBeanImpl {
 	private static final long serialVersionUID = -6977525800090683657L;
 	private static final String INDEX_NAME = "user"; // 定义了本实体中全文检索的索引名称。
+
+	public static final String RELATION_TYPE_SERVICE = "SERVICE";
 
 	public enum GenderType {
 		/**
@@ -98,6 +104,8 @@ public class UserProfileBean extends BaseBeanImpl {
 	@Indexed(indexName = INDEX_NAME, indexType = IndexType.FULLTEXT)
 	private String nativePlace; // 籍贯
 
+	private String servicePlaces; //服务目的地
+
 	@HbaseColumn(name = "cstl")
 	private String constellation; // 星座
 
@@ -122,6 +130,9 @@ public class UserProfileBean extends BaseBeanImpl {
 	private int followedNum = 0;
 	private int thumbupNum = 0;
 	private int albumNum = 0;
+
+	@Neo4jRelationship(relationship = RELATION_TYPE_SERVICE, type = PlaceBean.class, direction = Neo4jRelationship.Direction.OUTGOING, isList = true)
+	private transient List<PlaceBean> servicePlaceBeans;
 
 	public UserProfileBean(Long id) {
 		super(id);
@@ -338,5 +349,21 @@ public class UserProfileBean extends BaseBeanImpl {
 
 	public void setMemo(String memo) {
 		this.memo = memo;
+	}
+
+	public String getServicePlaces() {
+		return servicePlaces;
+	}
+
+	public void setServicePlaces(String servicePlaces) {
+		this.servicePlaces = servicePlaces;
+	}
+
+	public List<PlaceBean> getServicePlaceBeans() {
+		return servicePlaceBeans;
+	}
+
+	public void setServicePlaceBeans(List<PlaceBean> servicePlaceBeans) {
+		this.servicePlaceBeans = servicePlaceBeans;
 	}
 }

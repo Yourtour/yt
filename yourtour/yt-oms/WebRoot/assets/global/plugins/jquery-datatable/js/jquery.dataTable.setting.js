@@ -39,7 +39,7 @@ $.extend( true, $.fn.dataTable.defaults, {
     },
 
     fnServerData: function ( sSource, aoData, fnCallback ) {
-        var rest = this.attr("data-rest"),
+        var me = this, rest = this.attr("data-rest"),
             type = this.data("method"), nextCursor, limit, total, params = {}, name;
 
         $.each(aoData, function(index, data){
@@ -62,6 +62,7 @@ $.extend( true, $.fn.dataTable.defaults, {
             "url": rest,
             "data": JSON.stringify(params),
             "success": function (response){
+                me.data('value', response);
                 fnCallback(response);
 
                 $("input[type='radio'], input[type='checkbox']").uniform();
@@ -134,12 +135,13 @@ $.extend( true, $.fn.dataTable.defaults, {
         },
 
         select:function(callback, message){
-            var datatable = $(this), selectedItems=[];
+            var datatable = $(this), selectedItems=[], selectedRows=[], datas = datatable.data("value").data;
 
             datatable.find(".checkboxes").each(function(index, item){
                 var checkbox = $(item);
                 if(checkbox.is(":checked")) {
                     selectedItems.push(checkbox.val());
+                    selectedRows.push(datas[index]);
                 }
             });
 
@@ -152,7 +154,7 @@ $.extend( true, $.fn.dataTable.defaults, {
                 return;
             }
 
-            callback(selectedItems.join(","));
+            callback(selectedItems.join(","), selectedRows);
         },
 
         singleSelect:function(callback, message){

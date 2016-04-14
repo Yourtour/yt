@@ -620,15 +620,42 @@ jQuery.Dialog={
     $.fn.routeSelector=function(){
         var me = $(this),
             parent = me.parent(),
-            routeContainer = $('<div class="form-control"></div>'),
-            searchButton = $('<span class="input-group-addon"><i class="fa fa-search"></i></span>');
+            button = $('<button type="button" class="btn purple-plum">关联行程</button>'),
+            searchListView = $("#Page_Route_SearchListView"),
+            btnSelect = $("#btn_ok", searchListView),
+            btnBack = $("#btn_back", searchListView),
+            dt = $("#datatable_routes", searchListView);
 
-        routeContainer.appendTo(parent);
-        routeContainer.delegate("span", "click", function(){ //选择项删除
-            $(this).remove();
+        button.appendTo(parent);
+        button.on("click", function(){
+            $.Page.show("Page_Route_SearchListView");
         });
 
-        searchButton.appendTo(parent);
+        parent.delegate(".route-delete", "click", function(){
+            $(this).parent().remove();
+        });
+
+        btnSelect.on("click", function(){
+            var data = dt.data();
+
+            dt.select(function(routeIds){
+                var arrIds = routeIds.split(",");
+                $(arrIds, function(index, id){
+                    $.each(data, function(_index, d){
+                        var control = $('<div class="form-control" style="margin-bottom:10px"><span>asdfadsfadsfadsf</span><span class="pull-right route-delete"><i class="fa fa-times"></i></span></div>');
+                        control.insertBefore(button);
+                    })
+                });
+
+                $.Page.back();
+
+                me.val(me.val() + "," + routeIds);
+            }, "选择需要关联的行程.");
+        })
+
+        btnBack.on("click", function(){
+            $.Page.back();
+        })
     }
 })(jQuery);
 

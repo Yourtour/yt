@@ -8,7 +8,7 @@
                     <i class="fa fa-angle-right"></i>
                 </li>
                 <li>
-                    <span>行程搜索管理</span>
+                    <span>行程搜索</span>
                 </li>
             </ul>
         </div>

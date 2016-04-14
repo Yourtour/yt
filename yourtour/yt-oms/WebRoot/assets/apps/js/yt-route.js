@@ -338,10 +338,10 @@ jQuery.Route = {
                     orderIds += value.split("|")[0];
                 })
 
-                $.Request.post("/oms/order/" + orderIds + "/use", null, function(response){
+                /*$.Request.post("/oms/order/" + orderIds + "/use", null, function(response){
                     $.Dialog.alert("交付完成。");
                     me.query();
-                });
+                });*/
             }, "请选择需要交付的定制行程。");
         }
     }
