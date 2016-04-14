@@ -57,7 +57,16 @@ jQuery.RestaurantResource = {
         $("#datatable_restaurant").edit(function (id) {
             $.Request.get("/oms/resources/restaurants/" + id, null, function (result) {
                 $.Page.show("Page_RestaurantFormView", function () {
-                    $("#RestaurantForm").deserialize(result);
+                    var restaurant = result,
+                        specialty = restaurant.specialty;
+                    if (specialty) {
+                        restaurant.deliciouFood = specialty.deliciouFood;
+                        restaurant.foodStandard = specialty.foodStandard;
+                        restaurant.foodTags = specialty.foodTags;
+                        restaurant.networkInfo = specialty.networkInfo;
+                        delete restaurant.specialty;
+                    }
+                    $("#RestaurantForm").deserialize(restaurant);
                 });
             })
         })
@@ -99,9 +108,6 @@ jQuery.RestaurantResource = {
                     }, {
                         "mData": "name",
                         "sWidth": "30%"
-                    }, {
-                        "mData": "deliciouFood",
-                        "sWidth": "40%"
                     }]
             });
     },
@@ -112,11 +118,22 @@ jQuery.RestaurantResource = {
     saveRestaurantInfo: function () {
         var restaurant = {}, restaurantForm = $('#RestaurantForm'), me = this;
         restaurant = restaurantForm.serialize();
+
+        // 拼装饭店个性化字段，并删除
+        var specialty = {
+            'deliciouFood': restaurant.deliciouFood, 'foodStandard': restaurant.foodStandard,
+            'foodTags': restaurant.foodTags, 'networkInfo': restaurant.networkInfo
+        };
+        restaurant.specialty = specialty;
+        delete restaurant.deliciouFood;
+        delete restaurant.foodStandard;
+        delete restaurant.foodTags;
+        delete restaurant.networkInfo;
+
         var fd = new FormData();
         fd.append('restaurant', JSON.stringify(restaurant));
         var ctlFiles = $("#files")[0];
-        for (var index = 0; index < ctlFiles.files.length; index ++)
-        {
+        for (var index = 0; index < ctlFiles.files.length; index++) {
             fd.append("files", ctlFiles.files[index]);
         }
 

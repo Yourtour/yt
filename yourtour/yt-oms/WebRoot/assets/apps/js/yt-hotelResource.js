@@ -57,7 +57,16 @@ jQuery.HotelResource = {
         $("#datatable_hotel").edit(function (id) {
             $.Request.get("/oms/resources/hotels/" + id, null, function (result) {
                 $.Page.show("Page_HotelFormView", function () {
-                    $("#HotelForm").deserialize(result);
+                    var hotel = result,
+                        specialty = hotel.specialty;
+                    if (specialty) {
+                        hotel.accommodationStandard = specialty.accommodationStandard;
+                        hotel.specialRoom = specialty.specialRoom;
+                        hotel.roomEquipment = specialty.roomEquipment;
+                        hotel.networkInfo = specialty.networkInfo;
+                        delete hotel.specialty;
+                    }
+                    $("#HotelForm").deserialize(hotel);
                 });
             })
         })
@@ -99,9 +108,6 @@ jQuery.HotelResource = {
                     }, {
                         "mData": "name",
                         "sWidth": "30%"
-                    }, {
-                        "mData": "specialRoom",
-                        "sWidth": "40%"
                     }]
             });
     },
@@ -112,6 +118,16 @@ jQuery.HotelResource = {
     saveHotelInfo: function () {
         var hotel = {}, hotelForm = $('#HotelForm'), me = this;
         hotel = hotelForm.serialize();
+
+        // 将宾馆的个性字段进行拼装后删除。
+        var specialty = {'accommodationStandard': hotel.accommodationStandard, 'specialRoom': hotel.specialRoom,
+            'roomEquipment': hotel.roomEquipment, 'networkInfo': hotel.networkInfo};
+        hotel.specialty = specialty;
+        delete hotel.accommodationStandard;
+        delete hotel.specialRoom;
+        delete hotel.roomEquipment;
+        delete hotel.networkInfo;
+
         var fd = new FormData();
         fd.append('hotel', JSON.stringify(hotel));
         var ctlFiles = $("#files")[0];
