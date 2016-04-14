@@ -1,8 +1,11 @@
 package com.yt.oms.vo.activity;
 
 import com.yt.business.bean.ActivityBean;
-import com.yt.business.bean.ActivityContentBean;
+import com.yt.business.bean.RouteMainBean;
+import com.yt.core.utils.CollectionUtils;
 import com.yt.core.utils.DateUtils;
+import com.yt.core.utils.StringUtils;
+import com.yt.oms.vo.route.RouteVO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +16,7 @@ import java.util.List;
 public class ActivityVO {
     private Long    id;
     private String 	title;			//标题
+    private String  subTitle;       //副标题
     private String 	startTime;		//开始时间
     private String 	endTime;		//结束时间
     private String  createdTime;    //创建日期
@@ -21,11 +25,10 @@ public class ActivityVO {
     private	String  feature;		//特色
     private String 	tags;           //活动标签
     private String  content;        //活动内容
-    private int		recommendIndex; //推荐指数
     private int     homeRecommend = 0; //是否首页推荐
     private int     placeRecommend = 0; //是否目的地推荐
-
-    private List<ActivityContentVO> contents = null;
+    private List<RouteVO>  routes = null;   //关联行程
+    private String routeIds = null;
 
     public static ActivityVO transform(ActivityBean bean) throws Exception{
         if(bean == null){
@@ -37,14 +40,23 @@ public class ActivityVO {
         vo.setImageUrl(bean.getImageUrl());
         vo.setFeature(bean.getFeature());
         vo.setBrief(bean.getBrief());
+        vo.setContent(bean.getContent());
         vo.setEndTime(DateUtils.formatDate(bean.getEndTime()));
         vo.setStartTime(DateUtils.formatDate(bean.getStartTime()));
         vo.setTitle(bean.getTitle());
+        vo.setSubTitle(bean.getSubTitle());
         vo.setHomeRecommend(bean.getHomeRecommend());
         vo.setPlaceRecommend(bean.getPlaceRecommend());
         vo.setCreatedTime(DateUtils.formatDate(bean.getCreatedTime()));
-        vo.setContent(bean.getContent());
 
+        List<RouteMainBean> routeMainBeans = bean.getRoutes();
+        if(CollectionUtils.isNotEmpty(routeMainBeans)){
+            List<RouteVO> routevoes = new ArrayList<>();
+            for(RouteMainBean routeMainBean : routeMainBeans){
+                routevoes.add(RouteVO.transform(routeMainBean));
+            }
+            vo.setRoutes(routevoes);
+        }
         return vo;
     }
 
@@ -54,6 +66,7 @@ public class ActivityVO {
         ActivityBean bean = new ActivityBean();
         bean.setId(vo.getId());
         bean.setTitle(vo.getTitle());
+        bean.setSubTitle(vo.getSubTitle());
         bean.setFeature(vo.getFeature());
         bean.setBrief(vo.getBrief());
         bean.setHomeRecommend(vo.getHomeRecommend());
@@ -62,6 +75,18 @@ public class ActivityVO {
         bean.setStartTime(DateUtils.getDateAsLong(vo.getStartTime()));
         bean.setTags(vo.getTags());
         bean.setContent(vo.getContent());
+
+        if(StringUtils.isNotNull(vo.getRouteIds())){
+            List<RouteMainBean> routebeans = new ArrayList<>();
+            String[] routeIds = vo.getRouteIds().split(",");
+            for(String routeId : routeIds){
+                RouteMainBean routebean = new RouteMainBean(Long.parseLong(routeId));
+
+                routebeans.add(routebean);
+            }
+
+            bean.setRoutes(routebeans);
+        }
 
         return bean;
     }
@@ -80,6 +105,14 @@ public class ActivityVO {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getSubTitle() {
+        return subTitle;
+    }
+
+    public void setSubTitle(String subTitle) {
+        this.subTitle = subTitle;
     }
 
     public String getCreatedTime() {
@@ -138,22 +171,6 @@ public class ActivityVO {
         this.tags = tags;
     }
 
-    public int getRecommendIndex() {
-        return recommendIndex;
-    }
-
-    public void setRecommendIndex(int recommendIndex) {
-        this.recommendIndex = recommendIndex;
-    }
-
-    public List<ActivityContentVO> getContents() {
-        return contents;
-    }
-
-    public void setContents(List<ActivityContentVO> contents) {
-        this.contents = contents;
-    }
-
     public int getHomeRecommend() {
         return homeRecommend;
     }
@@ -176,5 +193,21 @@ public class ActivityVO {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getRouteIds() {
+        return routeIds;
+    }
+
+    public void setRouteIds(String routeIds) {
+        this.routeIds = routeIds;
+    }
+
+    public List<RouteVO> getRoutes() {
+        return routes;
+    }
+
+    public void setRoutes(List<RouteVO> routes) {
+        this.routes = routes;
     }
 }

@@ -5,6 +5,7 @@ import com.yt.business.PagingDataBean;
 import com.yt.business.bean.*;
 import com.yt.business.common.Constants;
 import com.yt.business.repository.neo4j.RouteMainBeanRepository;
+import com.yt.business.repository.neo4j.RouteTuple;
 import com.yt.business.service.IRouteService;
 import com.yt.core.common.AppException;
 import com.yt.core.common.StaticErrorEnum;
@@ -163,6 +164,25 @@ public class RouteServiceImpl extends ServiceBase implements IRouteService {
 		memberRelationship.createRelation(user, target, relation, Direction.INCOMING);
 
 		return this.getRouteInfo(target.getId(), 1);
+	}
+
+	@Override
+	public PagingDataBean<List<RouteMainBean>> getRouteInfoes(String relationship, PagingConditionBean condition, Map<String, Object> params) throws Exception {
+		int total = condition.getTotal();
+		if (total <= 0) {
+			total = 10;
+		}
+
+		List<RouteMainBean> list = new ArrayList<>();
+
+		List<RouteTuple> tuples = repository.getRoutes(condition.getNextCursor(), condition.getLimit(), relationship);
+		if(CollectionUtils.isNotEmpty(tuples)){
+			for(RouteTuple tuple : tuples){
+				list.add(tuple.getRoute());
+			}
+		}
+
+		return new PagingDataBean<>(total,list);
 	}
 
 	@Override

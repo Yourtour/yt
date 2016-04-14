@@ -207,4 +207,23 @@ public class BaseBeanImpl implements Serializable, BaseBean, Neo4jBaseBean,
 	public boolean isNew() {
 		return this.id == null || this.id.longValue() < 1;
 	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+
+		BaseBeanImpl bean = (BaseBeanImpl) obj;
+
+		return bean.getId().equals(this.getId());
+	}
 }

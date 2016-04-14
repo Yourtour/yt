@@ -17,58 +17,10 @@ import java.util.Vector;
  */
 @HbaseTable(name = "T_INFORMATION_INFO")
 @NodeEntity
-public class InfoBean extends BaseBeanImpl {
+public class InfoBean extends ContentBean {
 	private static final long serialVersionUID = -5019182758425160992L;
-
-	public enum Status {
-		DRAFT, // 草稿
-		APPROVED_PASS, // 审核通过
-		APPROVED_NOT_PASS, // 审核不通过
-		PENDDING, // 排队中
-		RELEASED, // 发布
-		CLOSED // 关闭
-	}
-
-	private String imageUrl;
-	private Status status = Status.DRAFT;
-
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_AT, type = PlaceBean.class, direction = Direction.OUTGOING)
-	private transient PlaceBean place;
-
-	@Neo4jRelationship(relationship = Constants.RELATION_TYPE_RELATED, type = RouteMainBean.class, direction = Direction.OUTGOING, isList = true)
-	private transient List<RouteMainBean> routes;
 
 	public InfoBean() {
 		super();
-		this.routes = new Vector<RouteMainBean>();
 	}
-
-	public String getImageUrl() {
-		return imageUrl;
-	}
-
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
-
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
-	}
-
-	public PlaceBean getPlace() {
-		return place;
-	}
-
-	public void setPlace(PlaceBean place) {
-		this.place = place;
-	}
-
-	public List<RouteMainBean> getRoutes() {
-		return routes;
-	}
-
 }

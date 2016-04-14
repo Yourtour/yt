@@ -66,6 +66,7 @@ public class RouteVO implements Serializable {
         routeVO.setAttentions(bean.getAttentions());
         routeVO.setProvisions(bean.getProvisions());
         routeVO.setStatus(bean.getStatus().toString());
+
         List<RouteScheduleBean> scheduleBeans = bean.getSchedules();
         if(CollectionUtils.isNotEmpty(scheduleBeans)){
             Collections.sort(scheduleBeans, new Comparator<RouteScheduleBean>() {
@@ -92,6 +93,10 @@ public class RouteVO implements Serializable {
             }
 
             routeVO.setSchedules(voes);
+        }
+
+        if(bean.getUser() != null){
+            routeVO.setUser(UserVO.transform(bean.getUser()));
         }
 
         return routeVO;

@@ -72,6 +72,34 @@ public class RouteRestResource extends RestResource {
     }
 
     /**
+     * 行程查询
+     * @param nextCursor
+     * @param limit
+     * @param total
+     * @param params
+     * @return
+     * @throws Exception
+     */
+    @POST
+    @Path("/search")
+    public ResponseDataVO<List<RouteVO>> searchRouteInfoes(  @DefaultValue("0") @QueryParam("nextCursor") Long nextCursor,
+                                                          @DefaultValue("20") @QueryParam("limit") int limit,
+                                                          @QueryParam("total") int total, Map<String, Object> params)
+            throws Exception{
+        List<RouteVO> voes = new ArrayList<>();
+
+        PagingDataBean<List<RouteMainBean>> paginationData = routeService.getRouteInfoes(Constants.RELATION_TYPE_RECOMMEND, new PagingConditionBean(nextCursor, limit, total), params);
+        if(paginationData != null && paginationData.getTotal() > 0){
+            List<RouteMainBean> routes = paginationData.getData();
+            for(RouteMainBean route : routes){
+                voes.add(RouteVO.transform(route));
+            }
+        }
+
+        return new ResponseDataVO<>(voes);
+    }
+
+    /**
      * 保存行程基本信息
      * @param route
      * @param multipart

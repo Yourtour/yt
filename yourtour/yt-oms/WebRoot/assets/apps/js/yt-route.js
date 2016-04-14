@@ -211,6 +211,56 @@ jQuery.Route = {
         }
     },
 
+    search:{
+        init:function(){
+            $.Page.show("Page_Route_SearchListView");
+
+            this.query();
+        },
+
+        query:function(){
+            var dt = $("#Page_Route_SearchListView #datatable_routes");
+            dt.dataTable({
+                "aoColumns": [
+                    {"mData": "id", "sClass":"center", "sWidth": "5%", "mRender": function (data, type, row) {
+                        return "<input type='checkbox' class='checkboxes' value='" + data + "|" + row.routeId + "'/>";
+                    }},
+                    {
+                        "mData": "name",
+                        "sWidth": "25%"
+                    },
+
+                    {
+                        "mData": "user",
+                        "sWidth": "10%",
+                        "mRender": function (data, type, row) {
+                            return data.nickName;
+                        }
+                    },
+
+                    {
+                        "mData": "toPlaces",
+                        "sWidth": "10%",
+                        "sClass":"center",
+                        "mRender": function (data, type, row) {
+                            if(data){
+                                var datas = data.split("|"), places = "";
+
+                                $.each(datas, function(index, value){
+                                    if(index > 0) places += ",";
+
+                                    places += value.split(",")[1];
+                                })
+
+                                return places;
+                            }
+                        }
+                    }
+                ]
+            });
+        }
+    },
+
     /**
      * 行程定制
      */

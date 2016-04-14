@@ -94,15 +94,21 @@ jQuery.Activity = {
      * 保存活动数据
      */
     saveActivityInfo:function(){
-        var me = this, form = $('#ActivityForm'), formdata = new FormData(), formview = $("#Page_ActivityFormView");
-        formdata.append("activity", JSON.stringify(form.serialize()));
+        var me = this,
+            form = $('#ActivityForm'),
+            formdata = new FormData(),
+            formview = $("#Page_ActivityFormView"),
+            json = form.serialize();
+        delete json['_wysihtml5_mode'];
+
+        formdata.append("activity", JSON.stringify(json));
 
         var image = $("#imageUrl")[0].files[0];
         if(image) {
             formdata.append("imageUrl", image);
         }
 
-        $.Request.postFormData("/oms/activity/intro/save",formdata,function(result){
+        $.Request.postFormData("/oms/activity/save",formdata,function(result){
             bootbox.alert("保存成功。", function(){
                 $.Page.back();
             });
@@ -129,20 +135,16 @@ jQuery.Activity = {
         var me = this,
             formview = $("#Page_ActivityFormView");
 
+        $("#routeIds").routeSelector("removeAll");
+
         $("#datatable_activity").edit(function(id){
             $.Request.get("/oms/activity/" + id, null, function(result){
                 $.Page.show("Page_ActivityFormView", function(){
                     $("#tab_content", formview).show();
                     $("#tab_route",formview).show();
 
-                    $("#ActivityForm").deserialize(result);
-
-                    var activityContent = $("#Page_ActivityFormView #activity_content");
-                    activityContent.html("");
-
-                    $.each(result.contents, function(index, content){
-                        me.showContentInfo(activityContent,content);
-                    });
+                    $("#Page_ActivityFormView").deserialize(result);
+                    $("#routeIds").routeSelector("setValue", result.routes);
                 });
             })
         })

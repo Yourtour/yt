@@ -38,14 +38,24 @@
                             </div>
                         </div>
 
-                        <table id="datatable_routes" class="row-border" cellspacing="0" width="100%"  data-rest="${context}/rest/oms/account/query">
+                        <table id="datatable_routes" class="row-border" cellspacing="0" width="100%"  data-rest="${context}/rest/oms/route/search" data-method="POST">
                             <thead>
-                                <tr>
-                                    <th>
-                                        <input type="checkbox" class="group-checkable">
-                                    </th>
-                                    <th>简介</th>
-                                </tr>
+                            <tr>
+                                <th>
+                                    <input type="checkbox" class="group-checkable">
+                                </th>
+                                <th>
+                                    行程名称
+                                </th>
+
+                                <th>
+                                    推荐达人
+                                </th>
+
+                                <th>
+                                    行程目的地
+                                </th>
+                            </tr>
                             </thead>
 
                             <tbody>

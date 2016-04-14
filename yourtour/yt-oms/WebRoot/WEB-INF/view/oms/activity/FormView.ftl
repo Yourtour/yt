@@ -78,14 +78,14 @@
                                     <div class="form-group">
                                         <label for="value" class="col-md-1 control-label">活动概述</label>
                                         <div class="col-md-11">
-                                            <textarea class="form-control" rows="5"></textarea>
+                                            <textarea id="brief" name="brief" class="form-control" rows="5"></textarea>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="code" class="col-md-1 control-label">活动主题</label>
                                         <div class="col-md-11">
-                                            <input type="text" class="form-control" name="tag" id="tag">
+                                            <input type="text" class="form-control" name="tags" id="tags">
                                         </div>
                                     </div>
 
@@ -111,7 +111,7 @@
                                     <div class="form-group">
                                         <label for="value" class="col-md-1 control-label">推荐行程</label>
                                         <div class="col-md-11">
-                                            <input type="hidden" id="routeIds"/>
+                                            <input type="hidden" name="routeIds" id="routeIds"/>
                                         </div>
                                     </div>
                                 </div>
@@ -119,7 +119,7 @@
                                 <div class="tab-pane" id="portlet_content">
                                     <div class="row" >
                                         <div class="col-md-12">
-                                            <textarea id="content" class="wysihtml5 form-control" rows="20"></textarea>
+                                            <textarea id="content" name="content" class="wysihtml5 form-control" rows="20">afdasfasdfasfasdfdsafsd</textarea>
                                         </div>
                                     </div>
                                 </div>

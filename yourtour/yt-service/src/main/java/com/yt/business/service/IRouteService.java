@@ -73,6 +73,16 @@ public interface IRouteService {
 	public RouteMainBean getRouteInfo(Long routeId, int mode) throws Exception;
 
 	/**
+	 * 行程检索(带用户输入查询条件)
+	 * @param condition
+	 * @param params
+	 * @return
+	 * @throws Exception
+	 */
+	public PagingDataBean<List<RouteMainBean>> getRouteInfoes(String relationship, PagingConditionBean condition,  Map<String, Object> params) throws Exception;
+
+
+	/**
 	 * 查询行程(带用户输入查询条件)
 	 * @param userId
 	 * @param condition

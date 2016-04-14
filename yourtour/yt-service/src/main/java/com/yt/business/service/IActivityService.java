@@ -52,38 +52,4 @@ public interface IActivityService {
      * @throws Exception
      */
     public void deleteActivityInfo(Long[] activityIds, Long userId) throws Exception;
-
-    /**
-     * 获取活动信息
-     * @param activityId
-     * @return
-     * @throws Exception
-     */
-    public ActivityContentBean getActivityConentInfo(Long contentId) throws Exception;
-
-    /**
-     * 删除活动内容
-     * @param contentIds
-     * @param userId
-     * @throws Exception
-     */
-    public void deleteActivityContentInfo(Long contentId, Long userId) throws Exception;
-
-    /**
-     * 保存活动关联行程
-     * @param activityId
-     * @param routeIds
-     * @param userId
-     * @throws Exception
-     */
-    public void saveActivityRouteInfoes(Long activityId, Long[] routeIds, Long userId) throws Exception;
-
-    /**
-     * 删除活动关联行程
-     * @param activityId
-     * @param routeIds
-     * @param userId
-     * @throws Exception
-     */
-    public void deleteActivityRouteInfo(Long activityId, Long[] routeIds, Long userId) throws Exception;
 }

@@ -118,7 +118,6 @@
         this.el = el;
         this.type = options.type;
 
-
         var toolbarOpts = options || defaultOptions;
         for(var t in toolbarOpts.customTemplates) {
           tpl[t] = toolbarOpts.customTemplates[t];

@@ -123,6 +123,16 @@ public interface RouteMainBeanRepository extends GraphRepository<RouteMainBean> 
 	public List<RouteMainBean> getRoutes(Long userId, Long startIndex, int limit, String relationship);
 
 	/**
+	 *
+	 * @param startIndex
+	 * @param limit
+	 * @param relationship
+	 * @return
+	 */
+	@Query("MATCH (user:UserProfileBean)-[r]-(route:RouteMainBean) where route.isDeleted=false and Type(r)={2} RETURN route, user")
+	public List<RouteTuple> getRoutes(Long startIndex, int limit, String relationship);
+
+	/**
 	 * 获取所有行程中点评分的前n名
 	 * 
 	 * @param n

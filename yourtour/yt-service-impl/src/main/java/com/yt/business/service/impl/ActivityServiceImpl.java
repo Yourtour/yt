@@ -37,6 +37,8 @@ public class ActivityServiceImpl extends ServiceBase implements IActivityService
 
             if(existed != null) {
                 BeanUtils.merge(activity, existed);
+
+                existed.setRoutes(activity.getRoutes());
             }
         }
 
@@ -45,7 +47,7 @@ public class ActivityServiceImpl extends ServiceBase implements IActivityService
         }
 
         super.updateBaseInfo(existed, userId);
-        this.activityCrudOperate.save(existed);
+        this.activityCrudOperate.save(existed, false);
     }
 
     @Override
@@ -82,28 +84,5 @@ public class ActivityServiceImpl extends ServiceBase implements IActivityService
 
             this.activityCrudOperate.delete(activityBean);
         }
-    }
-
-    @Override
-    public ActivityContentBean getActivityConentInfo(Long contentId) throws Exception {
-        return this.activityContentCrudOperate.get(contentId);
-    }
-
-    @Override
-    public void deleteActivityContentInfo(Long contentId, Long userId) throws Exception {
-        ActivityContentBean contentBean = this.activityContentCrudOperate.get(contentId, false);
-        if(contentBean != null){
-            this.activityContentCrudOperate.delete(contentBean);
-        }
-    }
-
-    @Override
-    public void saveActivityRouteInfoes(Long activityId, Long[] routeIds, Long userId) throws Exception {
-
-    }
-
-    @Override
-    public void deleteActivityRouteInfo(Long activityId, Long[] routeIds, Long userId) throws Exception {
-
     }
 }
