@@ -23,12 +23,6 @@
                             <#include "ResourceFormView.ftl">
 
                             <div class="form-group">
-                                <label for="intro" class="col-md-2 control-label">游玩简介</label>
-                                <div class="col-md-10">
-                                    <textarea class="form-control" name="intro" id="intro" rows="3" cols="160" placeholder="游玩简介"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <label for="ticket" class="col-md-2 control-label">门票信息</label>
                                 <div class="col-md-10">
                                     <textarea class="form-control" name="ticket" id="ticket" rows="3" cols="160" placeholder="门票信息"></textarea>
@@ -53,12 +47,9 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="files" class="col-md-2 control-label">游玩图片</label>
-                                <div class="col-md-6">
-                                    <textarea class="form-control" name="imageUrl" disabled id="imageUrl"></textarea>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="file" id="files" name="files" multiple="multiple">
+                                <label for="imageUrl" class="col-md-2 control-label">游玩图片</label>
+                                <div class="col-md-10">
+                                    <input type="file" name="imageUrl" id="imageUrl">
                                 </div>
                             </div>
 

@@ -2,7 +2,6 @@ package com.yt.oms.vo.resource;
 
 import java.util.Map;
 
-import com.yt.business.BaseBeanImpl;
 import com.yt.business.bean.PlaceBean;
 import com.yt.business.bean.ResourceBean;
 import com.yt.business.bean.ResourceBean.ResourceType;
@@ -15,10 +14,9 @@ public class ResourceVO extends SocialVO {
 	private String intro;
 	private String imageUrl; // 图片
 	private ResourceType type; // 类型
-	private String openTime; // 开放时间 hh24:mi
-	private String closeTime; // 关闭时间 hh24:mi
+	private String openTime; // 开放时间
 	private String trafficIntro; // 公交信息
-	private String payment; // 支付信息
+	private String price, currency, payment; // 价格，货币，支付信息
 	private int star; // 星级
 	private boolean member; // 是否会员
 	private String phone; // 联系电话
@@ -31,18 +29,7 @@ public class ResourceVO extends SocialVO {
 	private String tips; // 贴士
 	private String tags;
 	private String feature;
-	private String placeName; // 目的地名称
-	private Long placeId; // 目的地对象ID
-
-	private int goodNum; // 好评
-	private int mediumNum; // 中评
-	private int badNum; // 差评
-	private int imageNum; // 晒图
-	private double healthScore;
-	private double trafficScore;
-	private double facilityScore;
-	private double environmentScore;
-	private double serviceScore;
+	private String place; // 目的地ID/名称对，比如： id1,name1
 
 	private Map<String, Object> specialty;
 
@@ -63,6 +50,8 @@ public class ResourceVO extends SocialVO {
 		vo.setImageUrl(bean.getImageUrl());
 		vo.setMember(bean.isMember());
 		vo.setOpenTime(bean.getOpenTime());
+		vo.setPrice(bean.getPrice());
+		vo.setCurrency(bean.getCurrency());
 		vo.setPayment(bean.getPayment());
 		vo.setPhone(bean.getPhone());
 		vo.setPosition(bean.getPosition());
@@ -77,28 +66,15 @@ public class ResourceVO extends SocialVO {
 		vo.setTags(bean.getTags());
 		vo.setFeature(bean.getFeature());
 		vo.setCommentNum(bean.getCommentNum());
-		vo.setGoodNum(bean.getGoodNum());
-		vo.setBadNum(bean.getBadNum());
-		vo.setMediumNum(bean.getMediumNum());
-		vo.setImageNum(bean.getImageNum());
-
-		vo.setCommentScore(bean.getCommentScore());
-		vo.setHealthScore(bean.getHealthScore());
-		vo.setTrafficScore(bean.getTrafficScore());
-		vo.setFacilityScore(bean.getFacilityScore());
-		vo.setEnvironmentScore(bean.getEnvironmentScore());
-		vo.setServiceScore(bean.getServiceScore());
 
 		vo.setSpecialty(BeanUtils.deserializeAsMap(bean.getSpecialty()));
 
 		// 从目的地对象中获取ID和名称，便于前端显示
 		PlaceBean place = bean.getPlace();
 		if (place != null) {
-			vo.setPlace(place.getName());
-			vo.setPlaceId(place.getId());
+			vo.setPlace(String.format("%d,%s", place.getId(), place.getName()));
 		} else {
 			vo.setPlace("");
-			vo.setPlaceId(null);
 		}
 		return vo;
 	}
@@ -112,20 +88,19 @@ public class ResourceVO extends SocialVO {
 		vo.toBean(bean);
 		bean.setCode(vo.getCode());
 		bean.setName(vo.getName());
+		bean.setIntro(vo.getIntro());
 		bean.setAddress(vo.getAddress());
 		bean.setArriveNum(vo.getArriveNum());
 		bean.setBookingMemo(vo.getBookingMemo());
-		bean.setCommentNum(vo.getCommentNum());
-		bean.setCommentScore(vo.getCommentScore());
-		bean.setFavoriteNum(vo.getFavoriteNum());
 		bean.setImageUrl(vo.getImageUrl());
 		bean.setMember(vo.isMember());
 		bean.setOpenTime(vo.getOpenTime());
+		bean.setPrice(vo.getPrice());
+		bean.setCurrency(vo.getCurrency());
 		bean.setPayment(vo.getPayment());
 		bean.setPhone(vo.getPhone());
 		bean.setPosition(vo.getPosition());
 		bean.setPostCode(vo.getPostCode());
-		bean.setShareNum(vo.getShareNum());
 		bean.setStar(vo.getStar());
 		bean.setTips(vo.getTips());
 		bean.setTrafficIntro(vo.getTrafficIntro());
@@ -134,9 +109,11 @@ public class ResourceVO extends SocialVO {
 		bean.setSpecialty(BeanUtils.serialize(vo.getSpecialty()));
 
 		// 从VO中取出目的地的ID，并设置到PlaceBean中，便于后续建立关联关系
-		PlaceBean place = new PlaceBean();
-		place.setId(vo.getPlaceId());
-		bean.setPlace(place);
+		if (vo.getPlace() != null && !vo.getPlace().isEmpty()) {
+			PlaceBean place = new PlaceBean();
+			place.setId(Long.valueOf(vo.getPlace().split(",")[0]));
+			bean.setPlace(place);
+		}
 		return bean;
 	}
 
@@ -189,14 +166,6 @@ public class ResourceVO extends SocialVO {
 
 	public void setOpenTime(String openTime) {
 		this.openTime = openTime;
-	}
-
-	public String getCloseTime() {
-		return closeTime;
-	}
-
-	public void setCloseTime(String closeTime) {
-		this.closeTime = closeTime;
 	}
 
 	public String getTrafficIntro() {
@@ -279,6 +248,22 @@ public class ResourceVO extends SocialVO {
 		this.tips = tips;
 	}
 
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
+	public String getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(String currency) {
+		this.currency = currency;
+	}
+
 	public String getPayment() {
 		return payment;
 	}
@@ -296,91 +281,11 @@ public class ResourceVO extends SocialVO {
 	}
 
 	public String getPlace() {
-		return placeName;
+		return place;
 	}
 
 	public void setPlace(String place) {
-		this.placeName = place;
-	}
-
-	public Long getPlaceId() {
-		return placeId;
-	}
-
-	public void setPlaceId(Long placeId) {
-		this.placeId = placeId;
-	}
-
-	public double getHealthScore() {
-		return healthScore;
-	}
-
-	public void setHealthScore(double healthScore) {
-		this.healthScore = healthScore;
-	}
-
-	public double getTrafficScore() {
-		return trafficScore;
-	}
-
-	public void setTrafficScore(double trafficScore) {
-		this.trafficScore = trafficScore;
-	}
-
-	public double getFacilityScore() {
-		return facilityScore;
-	}
-
-	public double getEnvironmentScore() {
-		return environmentScore;
-	}
-
-	public void setEnvironmentScore(double environmentScore) {
-		this.environmentScore = environmentScore;
-	}
-
-	public double getServiceScore() {
-		return serviceScore;
-	}
-
-	public void setServiceScore(double serviceScore) {
-		this.serviceScore = serviceScore;
-	}
-
-	public void setFacilityScore(double facilityScore) {
-		this.facilityScore = facilityScore;
-	}
-
-	public int getGoodNum() {
-		return goodNum;
-	}
-
-	public void setGoodNum(int goodNum) {
-		this.goodNum = goodNum;
-	}
-
-	public int getMediumNum() {
-		return mediumNum;
-	}
-
-	public void setMediumNum(int mediumNum) {
-		this.mediumNum = mediumNum;
-	}
-
-	public int getBadNum() {
-		return badNum;
-	}
-
-	public void setBadNum(int badNum) {
-		this.badNum = badNum;
-	}
-
-	public int getImageNum() {
-		return imageNum;
-	}
-
-	public void setImageNum(int imageNum) {
-		this.imageNum = imageNum;
+		this.place = place;
 	}
 
 	public String getTags() {
@@ -405,14 +310,6 @@ public class ResourceVO extends SocialVO {
 
 	public void setIntro(String intro) {
 		this.intro = intro;
-	}
-
-	public String getPlaceName() {
-		return placeName;
-	}
-
-	public void setPlaceName(String placeName) {
-		this.placeName = placeName;
 	}
 
 	public Map<String, Object> getSpecialty() {

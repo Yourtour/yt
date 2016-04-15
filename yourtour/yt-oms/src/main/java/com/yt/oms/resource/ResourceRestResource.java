@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.sun.jersey.multipart.FormDataBodyPart;
+import com.sun.jersey.multipart.FormDataMultiPart;
 import com.sun.jersey.multipart.FormDataParam;
 import com.yt.business.PagingConditionBean;
 import com.yt.business.PagingDataBean;
@@ -262,12 +263,15 @@ public class ResourceRestResource extends RestResource {
 	public ResponseDataVO<ResourceVO> saveScene(
 			@Context HttpServletRequest request,
 			@FormDataParam("scene") String json,
-			@FormDataParam("files") List<FormDataBodyPart> files)
+			@FormDataParam("imageUrl") List<FormDataBodyPart> files,
+			FormDataMultiPart multipart)
 			throws Exception {
 		ResourceVO sceneVO = (ResourceVO) BeanUtils.deserialize(json,
 				ResourceVO.class);
 		ResourceBean scene = ResourceVO.transform(sceneVO);
-		scene.setImageUrl(super.uploadMediaFile(files, HOTEL_IMAGE_PATH));
+		// TODO 多图片上传貌似还有问题。
+		//scene.setImageUrl(super.uploadMediaFile(files, HOTEL_IMAGE_PATH));
+		scene.setImageUrl(super.uploadMediaFile(multipart, "imageUrl", HOTEL_IMAGE_PATH));
 
 		Long userId = super.getCurrentUserId(request);
 		resourceService.saveResource(scene, userId);

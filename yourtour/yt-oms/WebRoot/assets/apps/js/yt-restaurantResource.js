@@ -10,6 +10,8 @@ jQuery.RestaurantResource = {
 
         $.Page.show("Page_RestaurantListView");
 
+        $("#place", formview).place();
+
         $("#btn_add", listview).on('click', function () {
             me.createRestaurantInfo();
         });
@@ -108,6 +110,12 @@ jQuery.RestaurantResource = {
                     }, {
                         "mData": "name",
                         "sWidth": "30%"
+                    }, {
+                        "mData": "star",
+                        "sWidth": "10%"
+                    }, {
+                        "mData": "price",
+                        "sWidth": "40%"
                     }]
             });
     },

@@ -10,6 +10,10 @@ public class SocialVO extends BaseVO {
 	private int likeNum = 0; // 点赞数
 	private int readNum = 0; // 浏览数
 	private int shareNum; // 分享数
+	private int goodNum; // 好评
+	private int mediumNum; // 中评
+	private int badNum; // 差评
+	private int imageNum; // 晒图
 
 	public SocialVO() {
 		super();
@@ -21,13 +25,17 @@ public class SocialVO extends BaseVO {
 			return;
 		}
 		super.fromBean(bean);
-		SocialBeanImpl socaial = (SocialBeanImpl) bean;
-		setCommentNum(socaial.getCommentNum());
-		setCommentScore(socaial.getCommentScore());
-		setFavoriteNum(socaial.getFavoriteNum());
-		setLikeNum(socaial.getLikeNum());
-		setReadNum(socaial.getReadNum());
-		setShareNum(socaial.getShareNum());
+		SocialBeanImpl social = (SocialBeanImpl) bean;
+		setCommentNum(social.getCommentNum());
+		setCommentScore(social.getCommentScore());
+		setFavoriteNum(social.getFavoriteNum());
+		setLikeNum(social.getLikeNum());
+		setReadNum(social.getReadNum());
+		setShareNum(social.getShareNum());
+		setGoodNum(social.getGoodNum());
+		setMediumNum(social.getMediumNum());
+		setBadNum(social.getBadNum());
+		setImageNum(social.getImageNum());
 	}
 
 	@Override
@@ -40,6 +48,10 @@ public class SocialVO extends BaseVO {
 		social.setLikeNum(getLikeNum());
 		social.setReadNum(getReadNum());
 		social.setShareNum(getShareNum());
+		social.setGoodNum(getGoodNum());
+		social.setMediumNum(getMediumNum());
+		social.setBadNum(getBadNum());
+		social.setImageNum(getImageNum());
 	}
 
 	public double getCommentScore() {
@@ -88,6 +100,38 @@ public class SocialVO extends BaseVO {
 
 	public void setShareNum(int shareNum) {
 		this.shareNum = shareNum;
+	}
+
+	public int getGoodNum() {
+		return goodNum;
+	}
+
+	public void setGoodNum(int goodNum) {
+		this.goodNum = goodNum;
+	}
+
+	public int getMediumNum() {
+		return mediumNum;
+	}
+
+	public void setMediumNum(int mediumNum) {
+		this.mediumNum = mediumNum;
+	}
+
+	public int getBadNum() {
+		return badNum;
+	}
+
+	public void setBadNum(int badNum) {
+		this.badNum = badNum;
+	}
+
+	public int getImageNum() {
+		return imageNum;
+	}
+
+	public void setImageNum(int imageNum) {
+		this.imageNum = imageNum;
 	}
 
 }

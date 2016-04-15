@@ -10,6 +10,8 @@ jQuery.HotelResource = {
 
         $.Page.show("Page_HotelListView");
 
+        $("#place", formview).place();
+
         $("#btn_add", listview).on('click', function () {
             me.createHotelInfo();
         });
@@ -108,6 +110,12 @@ jQuery.HotelResource = {
                     }, {
                         "mData": "name",
                         "sWidth": "30%"
+                    }, {
+                        "mData": "star",
+                        "sWidth": "10%"
+                    }, {
+                        "mData": "price",
+                        "sWidth": "40%"
                     }]
             });
     },
