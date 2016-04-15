@@ -13,7 +13,7 @@ jQuery.Activity = {
 
         $(".wysihtml5", formview).wysihtml5({type:'activity', locale:'zh-CN', stylesheets:["../assets/global/plugins/bootstrap-wysihtml5/wysiwyg-color.css"]});
 
-        $("#imageUrl", formview).imageSelector();
+        $("#imageUrl", formview).imageInput();
 
         $("#routeIds", formview).routeSelector();
 

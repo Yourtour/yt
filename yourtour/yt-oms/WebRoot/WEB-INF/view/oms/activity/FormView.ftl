@@ -104,7 +104,7 @@
                                     <div class="form-group">
                                         <label for="value" class="col-md-1 control-label">封面图片</label>
                                         <div class="col-md-11">
-                                            <input type="file" id="imageUrl">
+                                            <input type="text" id="imageUrl" name="imageUrl">
                                         </div>
                                     </div>
 

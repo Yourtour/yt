@@ -334,12 +334,113 @@ jQuery.Page={
  * 图片附件选择插件
  */
 (function($){
-    $.fn.extend({
-        imageSelector:function(options){
-            var _this = $(this),
+    /**
+     * 图片初始化，主要显示已经保存的图片
+     */
+    var initImage = function(){
+        var _this = this,
+            imageContainer = _this.parent(),
+            imageRow = $(".image-row", imageContainer),
+            imageUrls = _this.val();
+
+        imageRow.show();
+        if(imageUrls != '') {
+            $.each(imageUrls.split(","), function (index, item) {
+                createImageCol.apply(this, item);
+            });
+        }
+    };
+
+    /**
+     * 弹出文件选择对话框
+     */
+    var selectImage = function(){
+        var _this = this,
+            imageContainer = _this.parent(),
+            imageRow = $(".image-row", imageContainer),
+            imageCols = $(".image-col", imageRow);
+
+        if(imageCols.length == 6){
+            bootbox.alert("最多只能选择6张图片。");
+            return;
+        }
+
+        createImageCol.apply(this);
+    };
+
+    /**
+     * 显示用户选择的图片
+     */
+    var showImages = function(){
+        var _this = this,
+            imageContainer = _this.parent(),
+            button = $("button", imageContainer),
+            imageRow = $(".image-row", imageContainer),
+            imageCol = imageRow.children(".image-col").last(),
+            files = $("input", imageCol)[0].files;
+
+        imageRow.show();
+        $.each(files, function(index, file){
+            var reader = new FileReader();
+
+            reader.onload = (function(_file) {
+                return function(e) {
+                    var image = $('<img class="thumb" src="'+ this.result +'" alt="'+ file.name +'" />');
+                    image.appendTo(imageCol);
+
+                    showRemoveButton.apply(_this, imageCol);
+                };
+            })(file);
+            reader.readAsDataURL(file);
+        })
+    };
+
+    /**
+     * 创建图片显示单元
+     */
+    var createImageCol = function(imageUrl){
+        var _this = this,
+            context = $("#context").val(),
+            imageContainer = _this.parent(),
+            imageRow = $(".image-row", imageContainer);
+
+        var imageCol;
+        if(imageUrl) {
+            imageCol = $('<div class="col-md-2 image-col" data-image="' + imageUrl + '"><img class="thumb" src="'+ context + "/" + imageUrl +'" /></div>');
+            imageCol.appendTo(imageRow);
+            showRemoveButton.apply(this, imageCol);
+        }else{
+            imageCol = $('<div class="col-md-2 image-col"><input type="file" style="display:none" id="' + _this.attr("id") + '" name="' + _this.attr("id") + '"></div>');
+            imageCol.appendTo(imageRow);
+            $("input", imageCol).on("change", function(){
+                showImages.apply(_this);
+            }).click();
+        }
+    };
+
+    /**
+     * 显示图片删除按钮
+     */
+    var showRemoveButton = function(imageCol){
+        var removeButton = $('<a href="javascript:;" class="btn btn-circle btn-icon-only"><i class="fa fa-times"></i>删除</a>');
+        removeButton.appendTo(imageCol);
+
+        removeButton.on("click", function(){
+            imageCol.remove();
+        })
+    };
+
+    var methods = {
+        /**
+         * 初始化
+         * @param options
+         * @returns {*|HTMLElement}
+         */
+        init: function (options) {
+            var _this = this,
                 parent = _this.parent();
 
-            _this.css("display","none").addClass("file-field");
+            _this.css("display","none").addClass("image-input");
             if(! parent.hasClass("image-container")){
                 parent.addClass("image-container");
             }
@@ -347,110 +448,15 @@ jQuery.Page={
             $('<div class="row image-row" style="display:none"></div>').appendTo(parent);
             $('<button type="button" class="btn purple-plum">添加附件</button>').appendTo(parent);
             $("button", parent).on("click", function(){
-                _this.selectImage();
+                selectImage.apply(_this);
             });
-
-            _this.initImage();
         },
 
         /**
-         * 图片初始化，主要显示已经保存的图片
+         * 获取选择的图片
          */
-        initImage:function(){
-            var me = $(this),
-                imageContainer = me.parent(),
-                imageRow = $(".image-row", imageContainer),
-                imageUrls = me.val();
-
-            imageRow.show();
-            if(imageUrls != '') {
-                $.each(imageUrls.split(","), function (index, item) {
-                    me.createImageCol(item);
-                });
-            }
-        },
-
-        /**
-         * 弹出文件选择对话框
-         */
-        selectImage:function(){
-            var _this = $(this),
-                imageContainer = _this.parent(),
-                imageRow = $(".image-row", imageContainer),
-                imageCols = $(".image-col", imageRow);
-
-            if(imageCols.length == 6){
-                bootbox.alert("最多只能选择6张图片。");
-                return;
-            }
-
-            _this.createImageCol();
-        },
-
-        /**
-         * 显示用户选择的图片
-         */
-        showImages:function(){
-            var _this = $(this),
-                imageContainer = _this.parent(),
-                button = $("button", imageContainer),
-                imageRow = $(".image-row", imageContainer);
-                imageCol = imageRow.children(".image-col").last(),
-                files = $("input", imageCol)[0].files,
-
-            imageRow.show();
-            $.each(files, function(index, file){
-                var reader = new FileReader();
-
-                reader.onload = (function(_file) {
-                    return function(e) {
-                        var image = $('<img class="thumb" src="'+ this.result +'" alt="'+ file.name +'" />');
-                        image.appendTo(imageCol);
-
-                        _this.showRemoveButton(imageCol);
-                    };
-                })(file);
-                reader.readAsDataURL(file);
-            })
-        },
-
-        /**
-         * 创建图片显示单元
-         */
-        createImageCol:function(imageUrl){
-            var _this = $(this),
-                context = $("#context").val(),
-                imageContainer = _this.parent(),
-                imageRow = $(".image-row", imageContainer);
-
-            var imageCol;
-            if(imageUrl) {
-                imageCol = $('<div class="col-md-2 image-col" data-image="' + imageUrl + '"><img class="thumb" src="'+ context + "/" + imageUrl +'" /></div>');
-                imageCol.appendTo(imageRow);
-                _this.showRemoveButton(imageCol);
-            }else{
-                imageCol = $('<div class="col-md-2 image-col"><input type="file" style="display:none" id="' + _this.attr("id") + '" name="' + _this.attr("id") + '"></div>');
-                imageCol.appendTo(imageRow);
-                $("input", imageCol).on("change", function(){
-                    _this.showImages();
-                }).click();
-            }
-        },
-
-        /**
-         * 显示图片删除按钮
-         */
-        showRemoveButton:function(imageCol){
-            var removeButton = $('<a href="javascript:;" class="btn btn-circle btn-icon-only"><i class="fa fa-times"></i>删除</a>');
-            removeButton.appendTo(imageCol);
-
-            removeButton.on("click", function(){
-                imageCol.remove();
-            })
-        },
-
         getImages:function(){
-            var _this = $(this), imageUrls = "";
+            var _this = this, imageUrls = "",
                 imageContainer = _this.parent(),
                 imageRow = $(".image-row", imageContainer),
                 imageCols = imageRow.children(".image-col");
@@ -466,8 +472,38 @@ jQuery.Page={
             })
 
             return imageUrls;
+        },
+
+        /**
+         * 显示已经选择的图片
+         */
+        setImages:function(){
+
+        },
+
+        /**
+         * 重置
+         */
+        reset:function(){
+
         }
-    });
+    };
+
+    $.fn.imageInput = function() {
+        var method = arguments[0];
+
+        if(methods[method]) {
+            method = methods[method];
+            arguments = Array.prototype.slice.call(arguments, 1);
+        } else if( typeof(method) == 'object' || !method ) {
+            method = methods.init;
+        } else {
+            $.error( 'Method ' +  method + ' does not exist on jQuery.place plugin' );
+            return this;
+        }
+
+        return method.apply(this, arguments);
+    }
 })(jQuery);
 
 /**
@@ -595,35 +631,58 @@ jQuery.Dialog={
         });
     };
 
-    $.fn.place=function(){
-        var me = $(this),
-            parent = me.parent(),
-            placeContainer = $('<div class="form-control"></div>'),
-            searchButton = $('<span class="input-group-addon"><i class="fa fa-search"></i></span>');
+    var methods = {
+        /**
+         * 初始化
+         * @param options
+         * @returns {*|HTMLElement}
+         */
+        init: function (options){
+            var me = $(this),
+                parent = me.parent(),
+                placeContainer = $('<div class="form-control"></div>'),
+                searchButton = $('<span class="input-group-addon"><i class="fa fa-search"></i></span>');
 
-        me.css("display", "none").addClass("multi-value");
-        parent.addClass("place-selector");
+            me.css("display", "none").addClass("multi-value");
+            parent.addClass("place-selector");
 
-        placeContainer.appendTo(parent);
-        placeContainer.delegate("span", "click", function(){ //选择项删除
-            $(this).remove();
-        });
+            placeContainer.appendTo(parent);
+            placeContainer.delegate("span", "click", function(){ //选择项删除
+                $(this).remove();
+            });
 
-        searchButton.appendTo(parent);
-        $.Request.get("/oms/places",null, function(result){
-            searchButton.on("click", function(){
-                open(result, function(values){
-                    if(values){
-                        var array = values.split("|");
-                        $.each(array, function(index, _value){
-                            var places = _value.split(",");
-                            var span = $('<span value="' + places[0] + '"><i class="fa fa-times"></i>' + places[1] + "</span>");
-                            span.appendTo(placeContainer);
-                        })
-                    }
+            searchButton.appendTo(parent);
+            $.Request.get("/oms/places",null, function(result){
+                searchButton.on("click", function(){
+                    open(result, function(values){
+                        if(values){
+                            var array = values.split("|");
+                            $.each(array, function(index, _value){
+                                var places = _value.split(",");
+                                var span = $('<span value="' + places[0] + '"><i class="fa fa-times"></i>' + places[1] + "</span>");
+                                span.appendTo(placeContainer);
+                            })
+                        }
+                    });
                 });
             });
-        });
+        }
+    };
+
+    $.fn.placeSelector = function() {
+        var method = arguments[0];
+
+        if(methods[method]) {
+            method = methods[method];
+            arguments = Array.prototype.slice.call(arguments, 1);
+        } else if( typeof(method) == 'object' || !method ) {
+            method = methods.init;
+        } else {
+            $.error( 'Method ' +  method + ' does not exist on jQuery.place plugin' );
+            return this;
+        }
+
+        return method.apply(this, arguments);
     }
 })(jQuery);
 
