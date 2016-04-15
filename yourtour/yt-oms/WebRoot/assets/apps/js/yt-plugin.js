@@ -309,6 +309,14 @@ jQuery.Page={
                 serializeObj[me.attr("id")] = values;
             })
 
+            //对于下拉搜索输入框控件取值
+            fields = $("input.search-input",$(this));
+            $.each(fields, function(_index, field){
+                var me = $(this);
+
+                serializeObj[me.attr("id")] = me.searchInput("getValue");
+            });
+
             return serializeObj;
         },
 
@@ -704,117 +712,7 @@ jQuery.Dialog={
             refresh.apply(this);
         },
 
-        removeAll:function(){
-            var me = this,
-                parent = me.parent();
-
-            $(".route-item", parent).each(function(index, item){
-                item.remove();
-            })
-        }
-    };
-
-    $.fn.routeSelector = function() {
-        var method = arguments[0];
-
-        if(methods[method]) {
-            method = methods[method];
-            arguments = Array.prototype.slice.call(arguments, 1);
-        } else if( typeof(method) == 'object' || !method ) {
-            method = methods.init;
-        } else {
-            $.error( 'Method ' +  method + ' does not exist on jQuery.pluginName' );
-            return this;
-        }
-
-        return method.apply(this, arguments);
-    }
-})(jQuery);
-
-
-(function($){
-    var refresh = function(){
-        var me = this,
-            parent = me.parent();
-
-        var ids = "";
-        $(".route-item", parent).each(function(index, item){
-            if(index > 0) ids += ",";
-            ids += $(item).data("value").id;
-        });
-        me.val(ids);
-    };
-
-    var methods = {
-        /**
-         * 初始化
-         * @param options
-         * @returns {*|HTMLElement}
-         */
-        init: function (options) {
-            var me = this,
-                parent = me.parent(),
-                button = $('<button type="button" class="btn purple-plum">关联行程</button>'),
-                searchListView = $("#Page_Route_SearchListView"),
-                btnSelect = $("#btn_ok", searchListView),
-                btnBack = $("#btn_back", searchListView),
-                dt = $("#datatable_routes", searchListView);
-
-            button.appendTo(parent);
-
-            button.on("click", function(){
-                $.Route.search.init();
-            });
-
-            parent.delegate(".route-delete", "click", function(){
-                methods['remove'].apply(me, [$(this)]);
-            });
-
-            btnSelect.on("click", function(){
-                dt.select(function(routeIds, items){
-                    methods['setValue'].apply(me, [items]);
-
-                    $.Page.back();
-                }, "选择需要关联的行程.");
-            });
-
-            btnBack.on("click", function(){
-                $.Page.back();
-            })
-
-            return $(this);
-        },
-
-        /**
-         * 显示关联行程
-         * @param routes
-         */
-        setValue:function(routes){
-            if(!routes || routes == null) return;
-
-            var me = this,
-                parent = me.parent(),
-                button = $('button', parent);
-            $.each(routes, function(index, item){
-                var control = $('<div class="form-control route-item" style="margin-bottom:10px"><span>' + item.name + '</span><span class="pull-right route-delete"><i class="fa fa-times"></i></span></div>');
-                control.data("value", item);
-                control.insertBefore(button);
-            });
-
-            refresh.apply(this);
-        },
-
-        /**
-         * 删除关联行程
-         * @param item
-         */
-        remove:function(item){
-            item.parent().remove();
-
-            refresh.apply(this);
-        },
-
-        removeAll:function(){
+        reset:function(){
             var me = this,
                 parent = me.parent();
 
@@ -842,7 +740,11 @@ jQuery.Dialog={
 })(jQuery);
 
 /**
- * 带检索功能的输入框
+ * 带检索功能的输入框。使用方法：
+ * 初始化: $("#input").searchInput({url:'', keyField:'id', textField:'name})；
+ * 取值：$("#input").searchInput("getValue")；
+ * 赋值：$("#input").searchInput("setValue", arrays)；
+ *
  */
 (function($){
     var methods = {
@@ -854,9 +756,10 @@ jQuery.Dialog={
         init: function (options) {
             var me = this,
                 parent = me.parent(),
-                defaults = {single:true};
+                defaults = {single:true, keyField:"id", textField:""};
 
             $.extend(true, defaults, options);
+            me.data("options", defaults);
 
             if(! me.hasClass("search-input")){
                 me.addClass("search-input");
@@ -868,11 +771,11 @@ jQuery.Dialog={
 
             parent.delegate("ul>li", "click", function(){
                 var li = $(this),
-                    span = $("<span class='search-selected-item'>" + li.data("value").nickName + "</span>");
+                    span = $("<span class='search-selected-item'>" + li.data("value")[defaults.textField] + "</span>");
 
                 span.appendTo($(".search-field-result", parent));
                 $("<i class='fa fa-times'></i>").appendTo(span);
-                span.data("value", li.data(value));
+                span.data("value", li.data("value"));
             }).delegate("span.search-selected-item", "click", function(){
                 $(this).remove();
             });
@@ -907,7 +810,7 @@ jQuery.Dialog={
                                 function (result) {
                                     var datas = result.data;
                                     $.each(datas, function (index, data) {
-                                        var li = $("<li>" + data.nickName + "</li>");
+                                        var li = $("<li>" + data[defaults.textField] + "</li>");
                                         li.appendTo(ul);
                                         li.data("value", data);
                                     })
@@ -920,24 +823,28 @@ jQuery.Dialog={
                 }else if(event.type == "blur"){
                     setTimeout(function () {
                         dropdown.css("display", "none");
-                    }, 1000);
+                    }, 500);
                 }
             });
 
+            if(me.val() != ""){
+                setValue.apply(me)
+            }
             return $(this);
         },
 
         getValue:function(){
             var me = $(this),
-                parent = me.parent();
+                parent = me.parent().parent(),
+                options = me.data("options");
 
-            var spans = parent.find("span.search-selected-item"), values = "";
+            var spans = $("span.search-selected-item", parent), values = "";
             spans.each(function(index, span){
-                var _span = $(span);
-                if(index > 0) values += ",";
+                var _span = $(span), value =  _span.data("value");
+                if(index > 0) values += "|";
 
-                values += _span.data("value") + "," + _span.text();
-            })
+                values += value[options.keyField] + "," + value[options.textField];
+            });
 
             return values;
         },
@@ -947,10 +854,14 @@ jQuery.Dialog={
          * @param value
          */
         setValue:function(value){
+            var me = $(this);
+
+            if(! value){
+                value = me.val();
+            }
             if($.Utils.isNull(value)) return;
 
-            var me = $(this),
-                parent = me.parent(),
+            var parent = me.parent().parent(),
                 values = value.split("|");
 
             $.each(values, function(index, value){
@@ -960,6 +871,8 @@ jQuery.Dialog={
 
                 span.data("value", value.split("|")[0]);
             })
+
+            me.val("");
         },
 
         reset:function(){

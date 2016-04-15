@@ -83,7 +83,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="code" class="col-md-1 control-label">活动主题</label>
+                                        <label for="code" class="col-md-1 control-label">主题标签</label>
                                         <div class="col-md-11">
                                             <input type="text" class="form-control" name="tags" id="tags">
                                         </div>
