@@ -100,11 +100,6 @@ public class ResourceBean extends SocialBeanImpl implements Cloneable {
 	@HbaseColumn(name = "anum")
 	private int arriveNum; // 到达人数
 
-	private int goodNum; // 好评
-	private int mediumNum; // 中评
-	private int badNum; // 差评
-	private int imageNum; // 晒图
-
 	private double healthScore = 0d;
 
 	private double trafficScore = 0d;
@@ -339,38 +334,6 @@ public class ResourceBean extends SocialBeanImpl implements Cloneable {
 
 	public void setServiceScore(double serviceScore) {
 		this.serviceScore = serviceScore;
-	}
-
-	public int getGoodNum() {
-		return goodNum;
-	}
-
-	public void setGoodNum(int goodNum) {
-		this.goodNum = goodNum;
-	}
-
-	public int getMediumNum() {
-		return mediumNum;
-	}
-
-	public void setMediumNum(int mediumNum) {
-		this.mediumNum = mediumNum;
-	}
-
-	public int getBadNum() {
-		return badNum;
-	}
-
-	public void setBadNum(int badNum) {
-		this.badNum = badNum;
-	}
-
-	public int getImageNum() {
-		return imageNum;
-	}
-
-	public void setImageNum(int imageNum) {
-		this.imageNum = imageNum;
 	}
 
 	public String getTags() {
