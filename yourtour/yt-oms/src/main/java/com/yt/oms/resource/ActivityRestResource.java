@@ -7,7 +7,7 @@ import com.yt.business.service.IActivityService;
 import com.yt.core.utils.BeanUtils;
 import com.yt.core.utils.CollectionUtils;
 import com.yt.core.utils.StringUtils;
-import com.yt.oms.vo.activity.ActivityVO;
+import com.yt.oms.vo.content.ActivityVO;
 import com.yt.response.ResponseDataVO;
 import com.yt.response.ResponseVO;
 import com.yt.rest.resource.RestResource;

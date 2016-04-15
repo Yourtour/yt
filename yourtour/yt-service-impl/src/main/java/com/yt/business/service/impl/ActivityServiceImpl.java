@@ -39,6 +39,9 @@ public class ActivityServiceImpl extends ServiceBase implements IActivityService
                 BeanUtils.merge(activity, existed);
 
                 existed.setRoutes(activity.getRoutes());
+                existed.setUser(activity.getUser());
+                existed.setPlaceList(activity.getPlaceList());
+                existed.setTagLists(activity.getTagLists());
             }
         }
 
@@ -47,7 +50,7 @@ public class ActivityServiceImpl extends ServiceBase implements IActivityService
         }
 
         super.updateBaseInfo(existed, userId);
-        this.activityCrudOperate.save(existed, false);
+        this.activityCrudOperate.save(existed);
     }
 
     @Override

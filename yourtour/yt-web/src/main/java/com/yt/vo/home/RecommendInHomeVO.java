@@ -6,6 +6,7 @@ import java.util.Vector;
 import com.yt.business.bean.HotPlayingBean;
 import com.yt.business.bean.BannerBean;
 import com.yt.business.bean.RouteMainBean;
+import com.yt.vo.content.HotPlayingVO;
 import com.yt.vo.route.RouteVO;
 
 /**

@@ -15,11 +15,11 @@ jQuery.Activity = {
 
         $("#imageUrl", formview).imageInput();
 
-        $("#routeIds", formview).routeSelector();
+        $("#routeInfo", formview).routeSelector();
 
-        $("#places", formview).popupSearch({popup: $.Popups.place});
+        $("#placeInfo", formview).popupSearch({popup: $.Popups.place});
 
-        $("#userId",formview).dropdownSearch({url:"/oms/account/search", textField:"nickName"});
+        $("#userInfo",formview).dropdownSearch({url:"/oms/account/search", textField:"nickName"});
 
         $("#btn_add", listview).on("click", function(){
             me.createActivityInfo();
@@ -87,10 +87,9 @@ jQuery.Activity = {
         var me = this,
             formview = $("#Page_ActivityFormView");
 
-
         $.Page.show("Page_ActivityFormView", function(){
+            formview.clear();
             $("#id", formview).val("-1");
-            $("#ActivityForm", formview).clear();
         });
     },
 
@@ -101,16 +100,15 @@ jQuery.Activity = {
         var me = this,
             form = $('#ActivityForm'),
             formdata = new FormData(),
-            formview = $("#Page_ActivityFormView"),
             json = form.serialize();
         delete json['_wysihtml5_mode'];
 
         formdata.append("activity", JSON.stringify(json));
 
-        var image = $("#imageUrl")[0].files[0];
-        if(image) {
+        var images = $("#imageUrl").imageInput("getImageFile");
+        $.each(images, function(index, image){
             formdata.append("imageUrl", image);
-        }
+        });
 
         $.Request.postFormData("/oms/activity/save",formdata,function(result){
             bootbox.alert("保存成功。", function(){
@@ -139,15 +137,14 @@ jQuery.Activity = {
         var me = this,
             formview = $("#Page_ActivityFormView");
 
-        $("#routeIds").routeSelector("removeAll");
-
         $("#datatable_activity").edit(function(id){
             $.Request.get("/oms/activity/" + id, null, function(result){
+                formview.clear();
                 $.Page.show("Page_ActivityFormView", function(){
                     $("#tab_content", formview).show();
                     $("#tab_route",formview).show();
 
-                    $("#Page_ActivityFormView").deserialize(result);
+                    formview.deserialize(result);
                     $("#routeIds").routeSelector("setValue", result.routes);
                 });
             })

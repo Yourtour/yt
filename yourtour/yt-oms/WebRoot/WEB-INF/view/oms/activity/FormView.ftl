@@ -61,12 +61,12 @@
                                     <div class="form-group">
                                         <label for="name" class="col-md-1 control-label">活动目的地</label>
                                         <div class="col-md-5">
-                                            <input id="places" name="places" class="form-control" type="text" value="" />
+                                            <input id="placeInfo" name="placeInfo" class="form-control" type="text" value="" />
                                         </div>
 
                                         <label for="name" class="col-md-1 control-label">活动组织者</label>
                                         <div class="col-md-5">
-                                            <input id="userId" name="userId" class="form-control" type="text" value="" />
+                                            <input id="userInfo" name="userInfo" class="form-control" type="text" value="" />
                                         </div>
                                     </div>
 
@@ -83,7 +83,7 @@
 
                                         <label for="code" class="col-md-1 control-label">主题标签</label>
                                         <div class="col-md-5">
-                                            <input type="text" class="form-control" name="tags" id="tags">
+                                            <input type="text" class="form-control" name="tagInfo" id="tagInfo">
                                         </div>
 
                                     </div>
@@ -94,8 +94,6 @@
                                             <textarea id="brief" name="brief" class="form-control" rows="5"></textarea>
                                         </div>
                                     </div>
-
-
 
                                     <div class="form-group">
                                         <label for="code" class="col-md-1 control-label">推荐位置</label>
@@ -119,7 +117,7 @@
                                     <div class="form-group">
                                         <label for="value" class="col-md-1 control-label">推荐行程</label>
                                         <div class="col-md-11">
-                                            <input type="hidden" name="routeIds" id="routeIds"/>
+                                            <input type="hidden" name="routeInfo" id="routeInfo"/>
                                         </div>
                                     </div>
                                 </div>
@@ -127,7 +125,7 @@
                                 <div class="tab-pane" id="portlet_content">
                                     <div class="row" >
                                         <div class="col-md-12">
-                                            <textarea id="content" name="content" class="wysihtml5 form-control" rows="20">afdasfasdfasfasdfdsafsd</textarea>
+                                            <textarea id="content" name="content" class="wysihtml5 form-control" rows="20"></textarea>
                                         </div>
                                     </div>
                                 </div>

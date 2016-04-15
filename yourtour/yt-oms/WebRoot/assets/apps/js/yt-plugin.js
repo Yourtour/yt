@@ -209,149 +209,149 @@ jQuery.Dialog={
  * clear：
  *
  */
-    (function($){
-        var re = /^(?:hidden|color|date|datetime|email|month|number|password|range|search|tel|text|time|url|week)$/i;
+(function($){
+    var re = /^(?:hidden|color|date|datetime|email|month|number|password|range|search|tel|text|time|url|week)$/i;
 
-        function setValue(element, value){
-            var type = element.attr('type');
-            var name = element.attr("name");
-            if(element.is('input')){
-                if(type.match(re)){
-                    if(element.hasClass('date-picker')){
-                        if( typeof value =='number' && value != 0){
-                            element.val($.Date.formatLong(value));
-                        }
-                    }else {
-                        element.val(value);
+    function setValue(element, value){
+        var type = element.attr('type');
+        var name = element.attr("name");
+        if(element.is('input')){
+            if(type.match(re)){
+                if(element.hasClass('date-picker')){
+                    if( typeof value =='number' && value != 0){
+                        element.val($.Date.formatLong(value));
+                    }
+                }else if(element.hasClass("image-input")) {
+                    element.imageInput("setValue", value);
+                }else if(element.hasClass("search-input") && element.hasClass("dropdown")){
+                    element.dropdownSearch("setValue", value);
+                }else if(element.hasClass("search-input") && element.hasClass("popup")){
+                    element.popupSearch("setValue", value);
+                }else{
+                    element.val(value);
 
-                        if (element.hasClass('search-item')) {
-                            element.lookup();
-                        }
+                    if (element.hasClass('search-item')) {
+                        element.lookup();
                     }
-                }else if (type == 'radio'){
-                    var radios = $("input[name='" + name + "']");
-                    radios.each(function(){
-                        var radio = $(this);
-                        if(radio.attr('value') == value){
-                            radio.attr('checked', 'checked');
-                            radio.parent().addClass("checked");
-                        }else{
-                            radio.attr("checked",false);
-                            radio.parent().removeClass("checked");
-                        }
-                    })
-                }else if (type == 'checkbox'){
-                    if(element.attr("value") == value){
-                        element.parent().addClass("checked");
+                }
+            }else if (type == 'radio'){
+                var radios = $("input[name='" + name + "']");
+                radios.each(function(){
+                    var radio = $(this);
+                    if(radio.attr('value') == value){
+                        radio.attr('checked', 'checked');
+                        radio.parent().addClass("checked");
+                    }else{
+                        radio.attr("checked",false);
+                        radio.parent().removeClass("checked");
                     }
-                }else if(type == 'file'){
-                    element.val("");
+                })
+            }else if (type == 'checkbox'){
+                if(element.attr("value") == value){
+                    element.parent().addClass("checked");
                 }
-            }else if(element.is('select')){
-                element.find('option[value="' + value + '"]').attr("selected", true);
-            }else if(element.is('textarea')){
-                element.val(value);
-                if(element.hasClass("wysihtml5")){
-                    $('.wysihtml5-sandbox', element.parent()).contents().find('body').html(value);
-                }
-            }else if(element.is('img')){
-                if(value != undefined && value != ''){
-                    element.attr('src', $.URL.get(value));
-                }
-            }else{
-                element.text(value);
+            }else if(type == 'file'){
+                element.val("");
             }
-
-            element.trigger("valueChanged");
+        }else if(element.is('select')){
+            element.find('option[value="' + value + '"]').attr("selected", true);
+        }else if(element.is('textarea')){
+            element.val(value);
+            if(element.hasClass("wysihtml5")){
+                $('.wysihtml5-sandbox', element.parent()).contents().find('body').html(value);
+            }
+        }else{
+            element.text(value);
         }
+    }
 
-        $.fn.extend({
-            /**
-             * 将数据填写到界面控件
-             */
-            deserialize:function(data, action){
-                var frm = $(this);
-                frm.find('[name]').each(function(){
-                    var name = this.name || this.id,
-                        element = $(this),
-                        value;
+    $.fn.extend({
+        /**
+         * 将数据填写到界面控件
+         */
+        deserialize:function(data, action){
+            var frm = $(this);
+            frm.find('[name]').each(function(){
+                var name = this.name || this.id,
+                    element = $(this),
+                    value;
 
-                    if(data) {
-                        var bind = element.data('bind');
-                        if (bind == undefined || bind == '') {
-                            bind = element.attr('name');
-                        }
-
-                        value = eval('data.' + bind);
+                if(data) {
+                    var bind = element.data('bind');
+                    if (bind == undefined || bind == '') {
+                        bind = element.attr('name');
                     }
 
-                    //setValue.apply(element, element, value);
-                    setValue(element, value);
-                    if(action == 'view'){
-                        if(element.attr("disabled") != 'disabled'){
-                            element.attr('disabled', 'disabled');
-                        }
+                    value = eval('data.' + bind);
+                }
+
+                setValue(element, value);
+                if(action == 'view'){
+                    if(element.attr("disabled") != 'disabled'){
+                        element.attr('disabled', 'disabled');
                     }
-                });
-            },
+                }
+            });
+        },
 
-            serialize:function(){
-                var serializeObj={};
-                $(this.serializeArray()).each( function (){
-                    serializeObj[this.name]= this.value;
-                });
+        serialize:function(){
+            var serializeObj={};
+            $(this.serializeArray()).each( function (){
+                serializeObj[this.name]= this.value;
+            });
 
-                //对于下拉多选框的处理
-                var fields = $("select[multiple]",$(this));
-                $.each(fields, function(index, field){
-                    var _field = $(field), values=""
-                    parent = _field.parent(),
-                        selected = $("ul.select2-selection__rendered>li.select2-selection__choice");
-                    if(selected.length > 0){
-                        $.each(selected, function(index, item){
-                            if(index > 0) values +='|';
+            //对于下拉多选框的处理
+            var fields = $("select[multiple]",$(this));
+            $.each(fields, function(index, field){
+                var _field = $(field), values=""
+                parent = _field.parent(),
+                    selected = $("ul.select2-selection__rendered>li.select2-selection__choice");
+                if(selected.length > 0){
+                    $.each(selected, function(index, item){
+                        if(index > 0) values +='|';
 
-                            $.each(_field.children("option"), function(oindex, oitem){
-                                if($(oitem).text() == $(item).attr("title")){
-                                    values = values + $(oitem).attr("value") + "," + $(oitem).text();
-                                }
-                            })
+                        $.each(_field.children("option"), function(oindex, oitem){
+                            if($(oitem).text() == $(item).attr("title")){
+                                values = values + $(oitem).attr("value") + "," + $(oitem).text();
+                            }
                         })
-                    }
+                    })
+                }
 
-                    serializeObj[_field.attr("id")] = values;
-                });
+                serializeObj[_field.attr("id")] = values;
+            });
 
-                //对于图片文件的处理
-                fields = $("input.image-input",$(this));
-                $.each(fields, function(index, field){
-                    var _field = $(this);
-                    serializeObj[_field.attr("id")] = _field.imageInput("getImage");
-                });
+            //对于图片文件的处理
+            fields = $("input.image-input",$(this));
+            $.each(fields, function(index, field){
+                var _field = $(this);
+                serializeObj[_field.attr("id")] = _field.imageInput("getImageUrl");
+            });
 
-                //对于搜索框控件取值
-                fields = $("input.search-input.dropdown,input.search-input.popup",$(this));
-                $.each(fields, function(_index, field){
-                    var _field = $(this);
-                    if(_field.hasClass("dropdown")) {
-                        serializeObj[_field.attr("id")] = _field.dropdownSearch("getValue");
-                    }else if(_field.hasClass("popup")){
-                        serializeObj[_field.attr("id")] = _field.popupSearch("getValue");
-                    }
-                });
+            //对于搜索框控件取值
+            fields = $("input.search-input.dropdown,input.search-input.popup",$(this));
+            $.each(fields, function(_index, field){
+                var _field = $(this);
+                if(_field.hasClass("dropdown")) {
+                    serializeObj[_field.attr("id")] = _field.dropdownSearch("getValue");
+                }else if(_field.hasClass("popup")){
+                    serializeObj[_field.attr("id")] = _field.popupSearch("getValue");
+                }
+            });
 
-                return serializeObj;
-            },
+            return serializeObj;
+        },
 
-            reset:function(){
-                $(this)[0].reset();
-            },
+        clear:function(){
+            var frm = $(this);
+            frm.find('[name]').each(function() {
+                var element = $(this);
 
-            clear:function(){
-                this.deserialize()
-            }
-        });
-    })(jQuery);
+                setValue(element, null);
+            });
+        }
+    });
+})(jQuery);
 
 /**
  * 图片附件选择插件
@@ -478,7 +478,7 @@ jQuery.Dialog={
         /**
          * 获取选择的图片
          */
-        getImage:function(){
+        getImageUrl:function(){
             var _this = this, imageUrls = "",
                 imageContainer = _this.parent(),
                 imageRow = $(".image-row", imageContainer),
@@ -496,17 +496,52 @@ jQuery.Dialog={
         },
 
         /**
+         * 获取选择的图片
+         */
+        getImageFile:function(){
+            var _this = this, imageFiles = [],
+                imageContainer = _this.parent(),
+                imageRow = $(".image-row", imageContainer),
+                imageCols = imageRow.children(".image-col");
+
+            $.each(imageCols, function(index, imageCol){
+                var _col = $(imageCol), file = $("input[type='file']", _col);
+
+                if(file.length > 0) {
+                    imageFiles.push(file[0].files[0]);
+                }
+            });
+
+            return imageFiles;
+        },
+
+        /**
          * 显示已经选择的图片
          */
-        setImage:function(){
+        setValue:function(images){
+            var _this = this,
+                imageContainer = _this.parent(),
+                imageRow = $(".image-row", imageContainer);
 
+            $(".image-col", imageRow).remove();
+
+            if($.Utils.isNull(images)) return;
+
+            imageRow.show();
+            $.each(images.split(","), function(index, _image){
+                createImageCol.apply(_this, [_image]);
+            });
         },
 
         /**
          * 重置
          */
         reset:function(){
+            var _this = this,
+                imageContainer = _this.parent(),
+                imageRow = $(".image-row", imageContainer);
 
+            $(".image-col", imageRow).remove();
         }
     };
 
@@ -526,8 +561,6 @@ jQuery.Dialog={
         return method.apply(this, arguments);
     }
 })(jQuery);
-
-
 
 /**
  * 目的地选择框市区
@@ -598,22 +631,25 @@ jQuery.Dialog={
          * @param value
          */
         setValue:function(value){
-            var me = $(this);
+            var me = $(this),
+                parent = me.parent();
+            $("span.search-selected-item", parent).remove();
+            if($.Utils.isNull(value)) return;
 
             if(! value){
                 value = me.val();
             }
             if($.Utils.isNull(value)) return;
 
-            var parent = me.parent().parent(),
+            var fieldResult = $(".search-field-result",parent),
                 values = value.split("|");
 
             $.each(values, function(index, value){
                 var span = $("<span class='search-selected-item'>" + value.split(",")[1] + "</span>");
-                span.insertBefore($(".search-input", parent));
+                span.appendTo(fieldResult);
                 $("<i class='fa fa-times'></i>").appendTo(span);
 
-                span.data("value", value.split("|")[0]);
+                span.attr("value", value.split(",")[0]);
             })
 
             me.val("");
@@ -622,11 +658,7 @@ jQuery.Dialog={
         reset:function(){
             var me = $(this),
                 parent = me.parent();
-
-            var spans = parent.find("span.search-selected-item"), values = "";
-            spans.each(function(index, span){
-                $(span).remove();
-            })
+            $("span.search-selected-item", parent).remove();
         }
     };
 
@@ -806,7 +838,7 @@ jQuery.Dialog={
 
                 span.appendTo($(".search-field-result", parent));
                 $("<i class='fa fa-times'></i>").appendTo(span);
-                span.data("value", li.data("value"));
+                span.attr("value", li.data("value")[defaults.keyField]);
             }).delegate("span.search-selected-item", "click", function(){
                 $(this).remove();
             });
@@ -871,10 +903,10 @@ jQuery.Dialog={
 
             var spans = $("span.search-selected-item", parent), values = "";
             spans.each(function(index, span){
-                var _span = $(span), value =  _span.data("value");
+                var _span = $(span);
                 if(index > 0) values += "|";
 
-                values += value[options.keyField] + "," + value[options.textField];
+                values += _span.attr("value") + "," + _span.text();
             });
 
             return values;
@@ -885,7 +917,12 @@ jQuery.Dialog={
          * @param value
          */
         setValue:function(value){
-            var me = $(this);
+            var me = $(this),
+                options = me.data("options"),
+                parent = me.parent().parent();
+
+            $("span.search-selected-item", parent).remove();
+            if($.Utils.isNull(value)) return;
 
             if(! value){
                 value = me.val();
@@ -897,23 +934,21 @@ jQuery.Dialog={
 
             $.each(values, function(index, value){
                 var span = $("<span class='search-selected-item'>" + value.split(",")[1] + "</span>");
-                span.insertBefore($(".search-input", parent));
+                span.appendTo($(".search-field-result", parent));
                 $("<i class='fa fa-times'></i>").appendTo(span);
 
-                span.data("value", value.split("|")[0]);
-            })
+                span.attr("value", value.split(",")[0]);
+            });
 
             me.val("");
         },
 
         reset:function(){
             var me = $(this),
-                parent = me.parent();
+                options = me.data("options"),
+                parent = me.parent().parent();
 
-            var spans = parent.find("span.search-selected-item"), values = "";
-            spans.each(function(index, span){
-                $(span).remove();
-            })
+            $("span.search-selected-item", parent).remove();
         }
     };
 
