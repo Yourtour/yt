@@ -304,6 +304,7 @@
 	<script src="${context}/assets/global/scripts/app.min.js" type="text/javascript"></script>
 
 
+    <script src="${context}/assets/apps/js/yt-common.js" type="text/javascript"></script>
 	<script src="${context}/assets/apps/js/yt-dict.js" type="text/javascript"></script>
 	<script src="${context}/assets/apps/js/yt-activity.js" type="text/javascript"></script>
 	<script src="${context}/assets/apps/js/yt-information.js" type="text/javascript"></script>

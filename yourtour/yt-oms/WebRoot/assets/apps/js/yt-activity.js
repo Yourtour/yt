@@ -17,7 +17,9 @@ jQuery.Activity = {
 
         $("#routeIds", formview).routeSelector();
 
-        $("#userId",formview).searchInput({url:"/oms/account/search", textField:"nickName"});
+        $("#places", formview).popupSearch({popup: $.Popups.place});
+
+        $("#userId",formview).dropdownSearch({url:"/oms/account/search", textField:"nickName"});
 
         $("#btn_add", listview).on("click", function(){
             me.createActivityInfo();
@@ -102,10 +104,6 @@ jQuery.Activity = {
             formview = $("#Page_ActivityFormView"),
             json = form.serialize();
         delete json['_wysihtml5_mode'];
-
-        console.log(json);
-
-        return;
 
         formdata.append("activity", JSON.stringify(json));
 

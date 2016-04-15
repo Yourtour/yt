@@ -185,21 +185,6 @@ div[data-role="page"]{
     padding:0px !important;
 }
 
-.place-selector{
-    position: relative;
-}
-
-.place-selector .form-control{
-    border: 1px solid silver;
-}
-
-.place-selector .form-control span{
-    padding:5px;
-    margin-left:5px;
-    color: #666;
-    background-color: #e1e5ec;
-    border-color: #e1e5ec;
-}
 
 #portlet_content iframe{
     minHeight:200px;
@@ -226,7 +211,11 @@ div[data-role="page"]{
     position:relative;
 }
 
-.search-field .search-field-container .search-field-result span{
+.search-field .search-field-result{
+    position:relative;
+}
+
+.search-field .search-field-container .search-field-result span, .search-field .search-field-result span{
     padding:5px 10px;
     margin:0px 5px;
     background-color: #e1e5ec;
@@ -236,6 +225,13 @@ div[data-role="page"]{
 .search-field .search-field-container .search-field-result i.caret{
     position: absolute;
     top: 50%;
+    right: 12px;
+    vertical-align: middle;
+}
+
+.search-field .search-field-result i.fa-search{
+    position: absolute;
+    top: 30%;
     right: 12px;
     vertical-align: middle;
 }

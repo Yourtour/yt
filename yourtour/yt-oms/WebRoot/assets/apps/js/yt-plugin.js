@@ -166,6 +166,42 @@ jQuery.Page={
 };
 
 /**
+ * 对话框
+ * @type {{popup: Function}}
+ */
+jQuery.Dialog={
+    popup:function(options){
+        bootbox.dialog({
+            message: options.message,
+            title: options.title,
+            buttons:
+            {
+                "success" :
+                {
+                    "label" : "<i class='icon-ok'></i> 确定",
+                    "className" : "btn-sm btn-success",
+                    "callback": function() {
+                        options.success($("#message-body"));
+                    }
+                }
+            }
+        });
+    },
+
+    alert:function(message){
+        bootbox.alert(message);
+    },
+
+    confirm:function(message, callback){
+        bootbox.confirm(message, function(result){
+            if (result) {
+                callback();
+            }
+        })
+    }
+},
+
+/**
  * 表单页面插件，包括如下功能：
  * deserialize：将Json数据填充到表单控件
  * serialize：将表单数据以Json格式返回
@@ -173,162 +209,149 @@ jQuery.Page={
  * clear：
  *
  */
-(function($){
-    var re = /^(?:hidden|color|date|datetime|email|month|number|password|range|search|tel|text|time|url|week)$/i;
+    (function($){
+        var re = /^(?:hidden|color|date|datetime|email|month|number|password|range|search|tel|text|time|url|week)$/i;
 
-    function setValue(element, value){
-        var type = element.attr('type');
-        var name = element.attr("name");
-        if(element.is('input')){
-            if(type.match(re)){
-                if(element.hasClass('date-picker')){
-                    if( typeof value =='number' && value != 0){
-                        element.val($.Date.formatLong(value));
+        function setValue(element, value){
+            var type = element.attr('type');
+            var name = element.attr("name");
+            if(element.is('input')){
+                if(type.match(re)){
+                    if(element.hasClass('date-picker')){
+                        if( typeof value =='number' && value != 0){
+                            element.val($.Date.formatLong(value));
+                        }
+                    }else {
+                        element.val(value);
+
+                        if (element.hasClass('search-item')) {
+                            element.lookup();
+                        }
                     }
-                }else {
-                    element.val(value);
-
-                    if (element.hasClass('search-item')) {
-                        element.lookup();
-                    }
-                }
-            }else if (type == 'radio'){
-                var radios = $("input[name='" + name + "']");
-                radios.each(function(){
-                    var radio = $(this);
-                    if(radio.attr('value') == value){
-                        radio.attr('checked', 'checked');
-                        radio.parent().addClass("checked");
-                    }else{
-                        radio.attr("checked",false);
-                        radio.parent().removeClass("checked");
-                    }
-                })
-            }else if (type == 'checkbox'){
-                if(element.attr("value") == value){
-                    element.parent().addClass("checked");
-                }
-            }else if(type == 'file'){
-                element.val("");
-            }
-        }else if(element.is('select')){
-            element.find('option[value="' + value + '"]').attr("selected", true);
-        }else if(element.is('textarea')){
-            element.val(value);
-            if(element.hasClass("wysihtml5")){
-                $('.wysihtml5-sandbox', element.parent()).contents().find('body').html(value);
-            }
-        }else if(element.is('img')){
-            if(value != undefined && value != ''){
-                element.attr('src', $.URL.get(value));
-            }
-        }else{
-            element.text(value);
-        }
-
-        element.trigger("valueChanged");
-    }
-
-    $.fn.extend({
-        /**
-         * 将数据填写到界面控件
-         */
-        deserialize:function(data, action){
-            var frm = $(this);
-            frm.find('[name]').each(function(){
-                var name = this.name || this.id,
-                    element = $(this),
-                    value;
-
-                if(data) {
-                    var bind = element.data('bind');
-                    if (bind == undefined || bind == '') {
-                        bind = element.attr('name');
-                    }
-
-                    value = eval('data.' + bind);
-                }
-
-                //setValue.apply(element, element, value);
-                setValue(element, value);
-                if(action == 'view'){
-                    if(element.attr("disabled") != 'disabled'){
-                        element.attr('disabled', 'disabled');
-                    }
-                }
-            });
-        },
-
-        serialize:function(){
-            var serializeObj={};
-            $(this.serializeArray()).each( function (){
-                serializeObj[this.name]= this.value;
-            });
-
-            //对于下拉多选框的处理
-            var fields = $("select[multiple]",$(this));
-            $.each(fields, function(index, field){
-                var _field = $(field), values=""
-                    parent = _field.parent(),
-                    selected = $("ul.select2-selection__rendered>li.select2-selection__choice");
-                if(selected.length > 0){
-                    $.each(selected, function(index, item){
-                        if(index > 0) values +='|';
-
-                        $.each(_field.children("option"), function(oindex, oitem){
-                            if($(oitem).text() == $(item).attr("title")){
-                                values = values + $(oitem).attr("value") + "," + $(oitem).text();
-                            }
-                        })
+                }else if (type == 'radio'){
+                    var radios = $("input[name='" + name + "']");
+                    radios.each(function(){
+                        var radio = $(this);
+                        if(radio.attr('value') == value){
+                            radio.attr('checked', 'checked');
+                            radio.parent().addClass("checked");
+                        }else{
+                            radio.attr("checked",false);
+                            radio.parent().removeClass("checked");
+                        }
                     })
+                }else if (type == 'checkbox'){
+                    if(element.attr("value") == value){
+                        element.parent().addClass("checked");
+                    }
+                }else if(type == 'file'){
+                    element.val("");
                 }
+            }else if(element.is('select')){
+                element.find('option[value="' + value + '"]').attr("selected", true);
+            }else if(element.is('textarea')){
+                element.val(value);
+                if(element.hasClass("wysihtml5")){
+                    $('.wysihtml5-sandbox', element.parent()).contents().find('body').html(value);
+                }
+            }else if(element.is('img')){
+                if(value != undefined && value != ''){
+                    element.attr('src', $.URL.get(value));
+                }
+            }else{
+                element.text(value);
+            }
 
-                serializeObj[_field.attr("id")] = values;
-            });
-
-            //对于图片文件的处理
-            fields = $("input.file-field",$(this));
-            $.each(fields, function(index, field){
-                var _field = $(field);
-                serializeObj[_field.attr("id")] = _field.getImages()
-            });
-
-            //对于弹出式多选控件取值
-            fields = $("input.multi-value",$(this));
-            $.each(fields, function(_index, field){
-                var me = $(this),values="",
-                    spans = me.siblings("div.form-control").children("span");
-
-                $.each(spans, function(i, span){
-                    var _span = $(span);
-                    if(i > 0) values += "|";
-
-                    values += _span.attr("value") + "," + _span.text();
-                })
-
-                serializeObj[me.attr("id")] = values;
-            })
-
-            //对于下拉搜索输入框控件取值
-            fields = $("input.search-input",$(this));
-            $.each(fields, function(_index, field){
-                var me = $(this);
-
-                serializeObj[me.attr("id")] = me.searchInput("getValue");
-            });
-
-            return serializeObj;
-        },
-
-        reset:function(){
-            $(this)[0].reset();
-        },
-
-        clear:function(){
-            this.deserialize()
+            element.trigger("valueChanged");
         }
-    });
-})(jQuery);
+
+        $.fn.extend({
+            /**
+             * 将数据填写到界面控件
+             */
+            deserialize:function(data, action){
+                var frm = $(this);
+                frm.find('[name]').each(function(){
+                    var name = this.name || this.id,
+                        element = $(this),
+                        value;
+
+                    if(data) {
+                        var bind = element.data('bind');
+                        if (bind == undefined || bind == '') {
+                            bind = element.attr('name');
+                        }
+
+                        value = eval('data.' + bind);
+                    }
+
+                    //setValue.apply(element, element, value);
+                    setValue(element, value);
+                    if(action == 'view'){
+                        if(element.attr("disabled") != 'disabled'){
+                            element.attr('disabled', 'disabled');
+                        }
+                    }
+                });
+            },
+
+            serialize:function(){
+                var serializeObj={};
+                $(this.serializeArray()).each( function (){
+                    serializeObj[this.name]= this.value;
+                });
+
+                //对于下拉多选框的处理
+                var fields = $("select[multiple]",$(this));
+                $.each(fields, function(index, field){
+                    var _field = $(field), values=""
+                    parent = _field.parent(),
+                        selected = $("ul.select2-selection__rendered>li.select2-selection__choice");
+                    if(selected.length > 0){
+                        $.each(selected, function(index, item){
+                            if(index > 0) values +='|';
+
+                            $.each(_field.children("option"), function(oindex, oitem){
+                                if($(oitem).text() == $(item).attr("title")){
+                                    values = values + $(oitem).attr("value") + "," + $(oitem).text();
+                                }
+                            })
+                        })
+                    }
+
+                    serializeObj[_field.attr("id")] = values;
+                });
+
+                //对于图片文件的处理
+                fields = $("input.image-input",$(this));
+                $.each(fields, function(index, field){
+                    var _field = $(this);
+                    serializeObj[_field.attr("id")] = _field.imageInput("getImage");
+                });
+
+                //对于搜索框控件取值
+                fields = $("input.search-input.dropdown,input.search-input.popup",$(this));
+                $.each(fields, function(_index, field){
+                    var _field = $(this);
+                    if(_field.hasClass("dropdown")) {
+                        serializeObj[_field.attr("id")] = _field.dropdownSearch("getValue");
+                    }else if(_field.hasClass("popup")){
+                        serializeObj[_field.attr("id")] = _field.popupSearch("getValue");
+                    }
+                });
+
+                return serializeObj;
+            },
+
+            reset:function(){
+                $(this)[0].reset();
+            },
+
+            clear:function(){
+                this.deserialize()
+            }
+        });
+    })(jQuery);
 
 /**
  * 图片附件选择插件
@@ -455,7 +478,7 @@ jQuery.Page={
         /**
          * 获取选择的图片
          */
-        getImages:function(){
+        getImage:function(){
             var _this = this, imageUrls = "",
                 imageContainer = _this.parent(),
                 imageRow = $(".image-row", imageContainer),
@@ -463,13 +486,11 @@ jQuery.Page={
 
             $.each(imageCols, function(index, imageCol){
                 var _col = $(imageCol);
-
                 if(_col.attr("data-image")) {
                     if (imageUrls != "") imageUrls += ",";
-
                     imageUrls += _col.data("image");
                 }
-            })
+            });
 
             return imageUrls;
         },
@@ -477,7 +498,7 @@ jQuery.Page={
         /**
          * 显示已经选择的图片
          */
-        setImages:function(){
+        setImage:function(){
 
         },
 
@@ -506,131 +527,12 @@ jQuery.Page={
     }
 })(jQuery);
 
-/**
- * 对话框
- * @type {{popup: Function}}
- */
-jQuery.Dialog={
-    popup:function(options){
-        bootbox.dialog({
-            message: options.message,
-            title: options.title,
-            buttons:
-            {
-                "success" :
-                {
-                    "label" : "<i class='icon-ok'></i> 确定",
-                    "className" : "btn-sm btn-success",
-                    "callback": function() {
-                        options.success($("#message-body"));
-                    }
-                }
-            }
-        });
-    },
 
-    alert:function(message){
-        bootbox.alert(message);
-    },
-
-    confirm:function(message, callback){
-        bootbox.confirm(message, function(result){
-            if (result) {
-                callback();
-            }
-        })
-    }
-},
 
 /**
  * 目的地选择框市区
  */
 (function($){
-    function open(value, callback){
-        var html = '<form id="PlaceForm" class="form-horizontal form-place" role="form">';
-        html +=  '<div class="form-group"><label for="name" class="col-md-3 control-label">地区</label><div class="col-md-9"><select id="district" class="form-control"></select></div></div>';
-        html +=  '<div class="form-group"><label for="name" class="col-md-3 control-label">省/市/州</label><div class="col-md-9"><select id="state" class="form-control"></select></div></div>';
-        html +=  '<div class="form-group"><label for="name" class="col-md-3 control-label">市</label><div class="col-md-9"><div class="input-group select2-bootstrap-append" style="width:100%"><select id="city" class="form-control select2" multiple></select></div></div></div>';
-        html +=  '</form>';
-
-        bootbox.dialog({
-            message:html,
-            title: "目的地选择",
-            buttons:
-            {
-                "success" :
-                {
-                    "label" : "<i class='icon-ok'></i> 确定",
-                    "className" : "btn-sm btn-success",
-                    "callback": function() {
-                        var placeForm = $(".form-place"),values=""
-                            city = $("#city", placeForm);
-                        parent = city.parent(),
-                            selected = $("ul.select2-selection__rendered>li.select2-selection__choice");
-                        if(selected.length > 0){
-                            $.each(selected, function(index, item){
-                                if(index > 0) values +='|';
-
-                                $.each(city.children("option"), function(oindex, oitem){
-                                    if($(oitem).text() == $(item).attr("title")){
-                                        values = values + $(oitem).attr("value") + "," + $(oitem).text();
-                                    }
-                                })
-                            })
-                        }
-
-                        callback(values);
-                    }
-                }
-            }
-        });
-
-        var placeForm = $(".form-place"),
-            district = $("#district", placeForm),
-            state = $("#state", placeForm),
-            city = $("#city", placeForm);
-
-        $.each(value, function(index, item){
-            if(item.parent == "#") {
-                district.append('<option value="' + item.id + '">' + item.text + '</option>');
-            }
-        });
-
-        state.on("click", function(){
-            var me = $(this),
-                parent = me.data("parent"),
-                districtId = district.val();
-
-            if(parent && parent == districtId){
-                return;
-            }
-
-            me.empty();
-            city.empty();
-
-            $.each(value, function(index, item){
-                if(item.parent == districtId) {
-                    me.append('<option value="' + item.id + '">' + item.text + '</option>');
-                }
-            });
-
-            me.data("parent", districtId);
-        });
-
-        city.select2({placeholder:"选择行程标签",width:"100%"});
-        state.on("change", function(){
-            var me = $(this),
-                stateId = me.val();
-
-            city.empty();
-            $.each(value, function(index, item){
-                if(item.parent == stateId) {
-                    city.append('<option value="' + item.id + '">' + item.text + '</option>');
-                }
-            });
-        });
-    };
-
     var methods = {
         /**
          * 初始化
@@ -638,38 +540,97 @@ jQuery.Dialog={
          * @returns {*|HTMLElement}
          */
         init: function (options){
-            var me = $(this),
-                parent = me.parent(),
-                placeContainer = $('<div class="form-control"></div>'),
-                searchButton = $('<span class="input-group-addon"><i class="fa fa-search"></i></span>');
+            var _this = this,
+                parent = _this.parent(),
+                container = $('<div class="form-control search-field-result"><i class="fa fa-search"></i></div>');
 
-            me.css("display", "none").addClass("multi-value");
-            parent.addClass("place-selector");
+            if(! _this.hasClass("search-input")){
+                _this.addClass("search-input");
+            }
 
-            placeContainer.appendTo(parent);
-            placeContainer.delegate("span", "click", function(){ //选择项删除
+            if(! _this.hasClass("popup")){
+                _this.addClass("popup");
+            }
+
+            _this.css("display", "none");
+
+            if(!parent.hasClass("search-field")){
+                parent.addClass("search-field");
+            }
+
+            container.appendTo(parent);
+            container.delegate("span", "click", function(){ //选择项删除
                 $(this).remove();
             });
 
-            searchButton.appendTo(parent);
-            $.Request.get("/oms/places",null, function(result){
-                searchButton.on("click", function(){
-                    open(result, function(values){
-                        if(values){
-                            var array = values.split("|");
-                            $.each(array, function(index, _value){
-                                var places = _value.split(",");
-                                var span = $('<span value="' + places[0] + '"><i class="fa fa-times"></i>' + places[1] + "</span>");
-                                span.appendTo(placeContainer);
-                            })
-                        }
-                    });
+            container.on("click", function(){
+                options.popup(function(selected){
+                    if(selected){
+                        var array = selected.split("|");
+                        $.each(array, function(index, value){
+                            var _value = value.split(",");
+                            var span = $('<span class="search-selected-item" value="' + _value[0] + '"><i class="fa fa-times"></i>' + _value[1] + "</span>");
+                            span.appendTo(container);
+                        })
+                    }
                 });
             });
+        },
+
+        getValue:function(){
+            var me = $(this),
+                parent = me.parent(),
+                options = me.data("options");
+
+            var spans = $("span.search-selected-item", parent), values = "";
+            spans.each(function(index, span){
+                var _span = $(span);
+                if(index > 0) values += "|";
+
+                values += _span.attr("value") + "," + _span.text();
+            });
+
+            return values;
+        },
+
+        /**
+         *
+         * @param value
+         */
+        setValue:function(value){
+            var me = $(this);
+
+            if(! value){
+                value = me.val();
+            }
+            if($.Utils.isNull(value)) return;
+
+            var parent = me.parent().parent(),
+                values = value.split("|");
+
+            $.each(values, function(index, value){
+                var span = $("<span class='search-selected-item'>" + value.split(",")[1] + "</span>");
+                span.insertBefore($(".search-input", parent));
+                $("<i class='fa fa-times'></i>").appendTo(span);
+
+                span.data("value", value.split("|")[0]);
+            })
+
+            me.val("");
+        },
+
+        reset:function(){
+            var me = $(this),
+                parent = me.parent();
+
+            var spans = parent.find("span.search-selected-item"), values = "";
+            spans.each(function(index, span){
+                $(span).remove();
+            })
         }
     };
 
-    $.fn.placeSelector = function() {
+    $.fn.popupSearch = function() {
         var method = arguments[0];
 
         if(methods[method]) {
@@ -678,7 +639,7 @@ jQuery.Dialog={
         } else if( typeof(method) == 'object' || !method ) {
             method = methods.init;
         } else {
-            $.error( 'Method ' +  method + ' does not exist on jQuery.place plugin' );
+            $.error( 'Method ' +  method + ' does not exist on jQuery.popupSearchInput plugin' );
             return this;
         }
 
@@ -740,6 +701,13 @@ jQuery.Dialog={
             })
 
             return $(this);
+        },
+
+        /**
+         * 获取关联的行程
+         */
+        getRoutes:function(){
+
         },
 
         /**
@@ -822,6 +790,10 @@ jQuery.Dialog={
 
             if(! me.hasClass("search-input")){
                 me.addClass("search-input");
+            }
+
+            if(! me.hasClass("dropdown")){
+                me.addClass("dropdown");
             }
 
             if(!parent.hasClass("search-field")){
@@ -945,7 +917,7 @@ jQuery.Dialog={
         }
     };
 
-    $.fn.searchInput = function() {
+    $.fn.dropdownSearch = function() {
         var method = arguments[0];
 
         if(methods[method]) {

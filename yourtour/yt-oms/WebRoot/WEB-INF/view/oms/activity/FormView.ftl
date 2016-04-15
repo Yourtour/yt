@@ -59,6 +59,18 @@
                                     </div>
 
                                     <div class="form-group">
+                                        <label for="name" class="col-md-1 control-label">活动目的地</label>
+                                        <div class="col-md-5">
+                                            <input id="places" name="places" class="form-control" type="text" value="" />
+                                        </div>
+
+                                        <label for="name" class="col-md-1 control-label">活动组织者</label>
+                                        <div class="col-md-5">
+                                            <input id="userId" name="userId" class="form-control" type="text" value="" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
                                         <label for="name" class="col-md-1 control-label">活动时间</label>
                                         <div class="col-md-2">
                                             <input id="startTime" name="startTime" class="form-control date-picker" size="16" type="text" value="" />
@@ -69,10 +81,11 @@
                                         <div class="col-md-1">
                                         </div>
 
-                                        <label for="name" class="col-md-1 control-label">活动组织者</label>
+                                        <label for="code" class="col-md-1 control-label">主题标签</label>
                                         <div class="col-md-5">
-                                            <input id="userId" name="userId" class="form-control" type="text" value="" />
+                                            <input type="text" class="form-control" name="tags" id="tags">
                                         </div>
+
                                     </div>
 
                                     <div class="form-group">
@@ -82,12 +95,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="code" class="col-md-1 control-label">主题标签</label>
-                                        <div class="col-md-11">
-                                            <input type="text" class="form-control" name="tags" id="tags">
-                                        </div>
-                                    </div>
+
 
                                     <div class="form-group">
                                         <label for="code" class="col-md-1 control-label">推荐位置</label>
