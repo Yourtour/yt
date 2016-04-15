@@ -1,16 +1,24 @@
 package com.yt.oms.vo.route;
 
-import com.yt.business.bean.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import com.yt.business.bean.DictBean;
+import com.yt.business.bean.PlaceBean;
+import com.yt.business.bean.RouteMainBean;
+import com.yt.business.bean.RouteScheduleBean;
 import com.yt.core.utils.CollectionUtils;
 import com.yt.core.utils.DateUtils;
 import com.yt.core.utils.StringUtils;
 import com.yt.oms.vo.UserVO;
-import com.yt.oms.vo.activity.ActivityContentVO;
 import com.yt.utils.SessionUtils;
-import com.yt.vo.SocialVO;
-
-import java.io.Serializable;
-import java.util.*;
 
 public class RouteVO implements Serializable {
     private Long    id;
