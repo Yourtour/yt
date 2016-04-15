@@ -309,6 +309,14 @@ jQuery.Page={
                 serializeObj[me.attr("id")] = values;
             })
 
+            //对于下拉搜索输入框控件取值
+            fields = $("input.search-input",$(this));
+            $.each(fields, function(_index, field){
+                var me = $(this);
+
+                serializeObj[me.attr("id")] = me.searchInput("getValue");
+            });
+
             return serializeObj;
         },
 
@@ -326,12 +334,113 @@ jQuery.Page={
  * 图片附件选择插件
  */
 (function($){
-    $.fn.extend({
-        imageSelector:function(options){
-            var _this = $(this),
+    /**
+     * 图片初始化，主要显示已经保存的图片
+     */
+    var initImage = function(){
+        var _this = this,
+            imageContainer = _this.parent(),
+            imageRow = $(".image-row", imageContainer),
+            imageUrls = _this.val();
+
+        imageRow.show();
+        if(imageUrls != '') {
+            $.each(imageUrls.split(","), function (index, item) {
+                createImageCol.apply(this, item);
+            });
+        }
+    };
+
+    /**
+     * 弹出文件选择对话框
+     */
+    var selectImage = function(){
+        var _this = this,
+            imageContainer = _this.parent(),
+            imageRow = $(".image-row", imageContainer),
+            imageCols = $(".image-col", imageRow);
+
+        if(imageCols.length == 6){
+            bootbox.alert("最多只能选择6张图片。");
+            return;
+        }
+
+        createImageCol.apply(this);
+    };
+
+    /**
+     * 显示用户选择的图片
+     */
+    var showImages = function(){
+        var _this = this,
+            imageContainer = _this.parent(),
+            button = $("button", imageContainer),
+            imageRow = $(".image-row", imageContainer),
+            imageCol = imageRow.children(".image-col").last(),
+            files = $("input", imageCol)[0].files;
+
+        imageRow.show();
+        $.each(files, function(index, file){
+            var reader = new FileReader();
+
+            reader.onload = (function(_file) {
+                return function(e) {
+                    var image = $('<img class="thumb" src="'+ this.result +'" alt="'+ file.name +'" />');
+                    image.appendTo(imageCol);
+
+                    showRemoveButton.apply(_this, imageCol);
+                };
+            })(file);
+            reader.readAsDataURL(file);
+        })
+    };
+
+    /**
+     * 创建图片显示单元
+     */
+    var createImageCol = function(imageUrl){
+        var _this = this,
+            context = $("#context").val(),
+            imageContainer = _this.parent(),
+            imageRow = $(".image-row", imageContainer);
+
+        var imageCol;
+        if(imageUrl) {
+            imageCol = $('<div class="col-md-2 image-col" data-image="' + imageUrl + '"><img class="thumb" src="'+ context + "/" + imageUrl +'" /></div>');
+            imageCol.appendTo(imageRow);
+            showRemoveButton.apply(this, imageCol);
+        }else{
+            imageCol = $('<div class="col-md-2 image-col"><input type="file" style="display:none" id="' + _this.attr("id") + '" name="' + _this.attr("id") + '"></div>');
+            imageCol.appendTo(imageRow);
+            $("input", imageCol).on("change", function(){
+                showImages.apply(_this);
+            }).click();
+        }
+    };
+
+    /**
+     * 显示图片删除按钮
+     */
+    var showRemoveButton = function(imageCol){
+        var removeButton = $('<a href="javascript:;" class="btn btn-circle btn-icon-only"><i class="fa fa-times"></i>删除</a>');
+        removeButton.appendTo(imageCol);
+
+        removeButton.on("click", function(){
+            imageCol.remove();
+        })
+    };
+
+    var methods = {
+        /**
+         * 初始化
+         * @param options
+         * @returns {*|HTMLElement}
+         */
+        init: function (options) {
+            var _this = this,
                 parent = _this.parent();
 
-            _this.css("display","none").addClass("file-field");
+            _this.css("display","none").addClass("image-input");
             if(! parent.hasClass("image-container")){
                 parent.addClass("image-container");
             }
@@ -339,110 +448,15 @@ jQuery.Page={
             $('<div class="row image-row" style="display:none"></div>').appendTo(parent);
             $('<button type="button" class="btn purple-plum">添加附件</button>').appendTo(parent);
             $("button", parent).on("click", function(){
-                _this.selectImage();
+                selectImage.apply(_this);
             });
-
-            _this.initImage();
         },
 
         /**
-         * 图片初始化，主要显示已经保存的图片
+         * 获取选择的图片
          */
-        initImage:function(){
-            var me = $(this),
-                imageContainer = me.parent(),
-                imageRow = $(".image-row", imageContainer),
-                imageUrls = me.val();
-
-            imageRow.show();
-            if(imageUrls != '') {
-                $.each(imageUrls.split(","), function (index, item) {
-                    me.createImageCol(item);
-                });
-            }
-        },
-
-        /**
-         * 弹出文件选择对话框
-         */
-        selectImage:function(){
-            var _this = $(this),
-                imageContainer = _this.parent(),
-                imageRow = $(".image-row", imageContainer),
-                imageCols = $(".image-col", imageRow);
-
-            if(imageCols.length == 6){
-                bootbox.alert("最多只能选择6张图片。");
-                return;
-            }
-
-            _this.createImageCol();
-        },
-
-        /**
-         * 显示用户选择的图片
-         */
-        showImages:function(){
-            var _this = $(this),
-                imageContainer = _this.parent(),
-                button = $("button", imageContainer),
-                imageRow = $(".image-row", imageContainer);
-                imageCol = imageRow.children(".image-col").last(),
-                files = $("input", imageCol)[0].files,
-
-            imageRow.show();
-            $.each(files, function(index, file){
-                var reader = new FileReader();
-
-                reader.onload = (function(_file) {
-                    return function(e) {
-                        var image = $('<img class="thumb" src="'+ this.result +'" alt="'+ file.name +'" />');
-                        image.appendTo(imageCol);
-
-                        _this.showRemoveButton(imageCol);
-                    };
-                })(file);
-                reader.readAsDataURL(file);
-            })
-        },
-
-        /**
-         * 创建图片显示单元
-         */
-        createImageCol:function(imageUrl){
-            var _this = $(this),
-                context = $("#context").val(),
-                imageContainer = _this.parent(),
-                imageRow = $(".image-row", imageContainer);
-
-            var imageCol;
-            if(imageUrl) {
-                imageCol = $('<div class="col-md-2 image-col" data-image="' + imageUrl + '"><img class="thumb" src="'+ context + "/" + imageUrl +'" /></div>');
-                imageCol.appendTo(imageRow);
-                _this.showRemoveButton(imageCol);
-            }else{
-                imageCol = $('<div class="col-md-2 image-col"><input type="file" style="display:none" id="' + _this.attr("id") + '" name="' + _this.attr("id") + '"></div>');
-                imageCol.appendTo(imageRow);
-                $("input", imageCol).on("change", function(){
-                    _this.showImages();
-                }).click();
-            }
-        },
-
-        /**
-         * 显示图片删除按钮
-         */
-        showRemoveButton:function(imageCol){
-            var removeButton = $('<a href="javascript:;" class="btn btn-circle btn-icon-only"><i class="fa fa-times"></i>删除</a>');
-            removeButton.appendTo(imageCol);
-
-            removeButton.on("click", function(){
-                imageCol.remove();
-            })
-        },
-
         getImages:function(){
-            var _this = $(this), imageUrls = "";
+            var _this = this, imageUrls = "",
                 imageContainer = _this.parent(),
                 imageRow = $(".image-row", imageContainer),
                 imageCols = imageRow.children(".image-col");
@@ -458,8 +472,38 @@ jQuery.Page={
             })
 
             return imageUrls;
+        },
+
+        /**
+         * 显示已经选择的图片
+         */
+        setImages:function(){
+
+        },
+
+        /**
+         * 重置
+         */
+        reset:function(){
+
         }
-    });
+    };
+
+    $.fn.imageInput = function() {
+        var method = arguments[0];
+
+        if(methods[method]) {
+            method = methods[method];
+            arguments = Array.prototype.slice.call(arguments, 1);
+        } else if( typeof(method) == 'object' || !method ) {
+            method = methods.init;
+        } else {
+            $.error( 'Method ' +  method + ' does not exist on jQuery.place plugin' );
+            return this;
+        }
+
+        return method.apply(this, arguments);
+    }
 })(jQuery);
 
 /**
@@ -587,35 +631,58 @@ jQuery.Dialog={
         });
     };
 
-    $.fn.place=function(){
-        var me = $(this),
-            parent = me.parent(),
-            placeContainer = $('<div class="form-control"></div>'),
-            searchButton = $('<span class="input-group-addon"><i class="fa fa-search"></i></span>');
+    var methods = {
+        /**
+         * 初始化
+         * @param options
+         * @returns {*|HTMLElement}
+         */
+        init: function (options){
+            var me = $(this),
+                parent = me.parent(),
+                placeContainer = $('<div class="form-control"></div>'),
+                searchButton = $('<span class="input-group-addon"><i class="fa fa-search"></i></span>');
 
-        me.css("display", "none").addClass("multi-value");
-        parent.addClass("place-selector");
+            me.css("display", "none").addClass("multi-value");
+            parent.addClass("place-selector");
 
-        placeContainer.appendTo(parent);
-        placeContainer.delegate("span", "click", function(){ //选择项删除
-            $(this).remove();
-        });
+            placeContainer.appendTo(parent);
+            placeContainer.delegate("span", "click", function(){ //选择项删除
+                $(this).remove();
+            });
 
-        searchButton.appendTo(parent);
-        $.Request.get("/oms/places",null, function(result){
-            searchButton.on("click", function(){
-                open(result, function(values){
-                    if(values){
-                        var array = values.split("|");
-                        $.each(array, function(index, _value){
-                            var places = _value.split(",");
-                            var span = $('<span value="' + places[0] + '"><i class="fa fa-times"></i>' + places[1] + "</span>");
-                            span.appendTo(placeContainer);
-                        })
-                    }
+            searchButton.appendTo(parent);
+            $.Request.get("/oms/places",null, function(result){
+                searchButton.on("click", function(){
+                    open(result, function(values){
+                        if(values){
+                            var array = values.split("|");
+                            $.each(array, function(index, _value){
+                                var places = _value.split(",");
+                                var span = $('<span value="' + places[0] + '"><i class="fa fa-times"></i>' + places[1] + "</span>");
+                                span.appendTo(placeContainer);
+                            })
+                        }
+                    });
                 });
             });
-        });
+        }
+    };
+
+    $.fn.placeSelector = function() {
+        var method = arguments[0];
+
+        if(methods[method]) {
+            method = methods[method];
+            arguments = Array.prototype.slice.call(arguments, 1);
+        } else if( typeof(method) == 'object' || !method ) {
+            method = methods.init;
+        } else {
+            $.error( 'Method ' +  method + ' does not exist on jQuery.place plugin' );
+            return this;
+        }
+
+        return method.apply(this, arguments);
     }
 })(jQuery);
 
@@ -704,117 +771,7 @@ jQuery.Dialog={
             refresh.apply(this);
         },
 
-        removeAll:function(){
-            var me = this,
-                parent = me.parent();
-
-            $(".route-item", parent).each(function(index, item){
-                item.remove();
-            })
-        }
-    };
-
-    $.fn.routeSelector = function() {
-        var method = arguments[0];
-
-        if(methods[method]) {
-            method = methods[method];
-            arguments = Array.prototype.slice.call(arguments, 1);
-        } else if( typeof(method) == 'object' || !method ) {
-            method = methods.init;
-        } else {
-            $.error( 'Method ' +  method + ' does not exist on jQuery.pluginName' );
-            return this;
-        }
-
-        return method.apply(this, arguments);
-    }
-})(jQuery);
-
-
-(function($){
-    var refresh = function(){
-        var me = this,
-            parent = me.parent();
-
-        var ids = "";
-        $(".route-item", parent).each(function(index, item){
-            if(index > 0) ids += ",";
-            ids += $(item).data("value").id;
-        });
-        me.val(ids);
-    };
-
-    var methods = {
-        /**
-         * 初始化
-         * @param options
-         * @returns {*|HTMLElement}
-         */
-        init: function (options) {
-            var me = this,
-                parent = me.parent(),
-                button = $('<button type="button" class="btn purple-plum">关联行程</button>'),
-                searchListView = $("#Page_Route_SearchListView"),
-                btnSelect = $("#btn_ok", searchListView),
-                btnBack = $("#btn_back", searchListView),
-                dt = $("#datatable_routes", searchListView);
-
-            button.appendTo(parent);
-
-            button.on("click", function(){
-                $.Route.search.init();
-            });
-
-            parent.delegate(".route-delete", "click", function(){
-                methods['remove'].apply(me, [$(this)]);
-            });
-
-            btnSelect.on("click", function(){
-                dt.select(function(routeIds, items){
-                    methods['setValue'].apply(me, [items]);
-
-                    $.Page.back();
-                }, "选择需要关联的行程.");
-            });
-
-            btnBack.on("click", function(){
-                $.Page.back();
-            })
-
-            return $(this);
-        },
-
-        /**
-         * 显示关联行程
-         * @param routes
-         */
-        setValue:function(routes){
-            if(!routes || routes == null) return;
-
-            var me = this,
-                parent = me.parent(),
-                button = $('button', parent);
-            $.each(routes, function(index, item){
-                var control = $('<div class="form-control route-item" style="margin-bottom:10px"><span>' + item.name + '</span><span class="pull-right route-delete"><i class="fa fa-times"></i></span></div>');
-                control.data("value", item);
-                control.insertBefore(button);
-            });
-
-            refresh.apply(this);
-        },
-
-        /**
-         * 删除关联行程
-         * @param item
-         */
-        remove:function(item){
-            item.parent().remove();
-
-            refresh.apply(this);
-        },
-
-        removeAll:function(){
+        reset:function(){
             var me = this,
                 parent = me.parent();
 
@@ -842,7 +799,11 @@ jQuery.Dialog={
 })(jQuery);
 
 /**
- * 带检索功能的输入框
+ * 带检索功能的输入框。使用方法：
+ * 初始化: $("#input").searchInput({url:'', keyField:'id', textField:'name})；
+ * 取值：$("#input").searchInput("getValue")；
+ * 赋值：$("#input").searchInput("setValue", arrays)；
+ *
  */
 (function($){
     var methods = {
@@ -854,9 +815,10 @@ jQuery.Dialog={
         init: function (options) {
             var me = this,
                 parent = me.parent(),
-                defaults = {single:true};
+                defaults = {single:true, keyField:"id", textField:""};
 
             $.extend(true, defaults, options);
+            me.data("options", defaults);
 
             if(! me.hasClass("search-input")){
                 me.addClass("search-input");
@@ -868,11 +830,11 @@ jQuery.Dialog={
 
             parent.delegate("ul>li", "click", function(){
                 var li = $(this),
-                    span = $("<span class='search-selected-item'>" + li.data("value").nickName + "</span>");
+                    span = $("<span class='search-selected-item'>" + li.data("value")[defaults.textField] + "</span>");
 
                 span.appendTo($(".search-field-result", parent));
                 $("<i class='fa fa-times'></i>").appendTo(span);
-                span.data("value", li.data(value));
+                span.data("value", li.data("value"));
             }).delegate("span.search-selected-item", "click", function(){
                 $(this).remove();
             });
@@ -907,7 +869,7 @@ jQuery.Dialog={
                                 function (result) {
                                     var datas = result.data;
                                     $.each(datas, function (index, data) {
-                                        var li = $("<li>" + data.nickName + "</li>");
+                                        var li = $("<li>" + data[defaults.textField] + "</li>");
                                         li.appendTo(ul);
                                         li.data("value", data);
                                     })
@@ -920,24 +882,28 @@ jQuery.Dialog={
                 }else if(event.type == "blur"){
                     setTimeout(function () {
                         dropdown.css("display", "none");
-                    }, 1000);
+                    }, 500);
                 }
             });
 
+            if(me.val() != ""){
+                setValue.apply(me)
+            }
             return $(this);
         },
 
         getValue:function(){
             var me = $(this),
-                parent = me.parent();
+                parent = me.parent().parent(),
+                options = me.data("options");
 
-            var spans = parent.find("span.search-selected-item"), values = "";
+            var spans = $("span.search-selected-item", parent), values = "";
             spans.each(function(index, span){
-                var _span = $(span);
-                if(index > 0) values += ",";
+                var _span = $(span), value =  _span.data("value");
+                if(index > 0) values += "|";
 
-                values += _span.data("value") + "," + _span.text();
-            })
+                values += value[options.keyField] + "," + value[options.textField];
+            });
 
             return values;
         },
@@ -947,10 +913,14 @@ jQuery.Dialog={
          * @param value
          */
         setValue:function(value){
+            var me = $(this);
+
+            if(! value){
+                value = me.val();
+            }
             if($.Utils.isNull(value)) return;
 
-            var me = $(this),
-                parent = me.parent(),
+            var parent = me.parent().parent(),
                 values = value.split("|");
 
             $.each(values, function(index, value){
@@ -960,6 +930,8 @@ jQuery.Dialog={
 
                 span.data("value", value.split("|")[0]);
             })
+
+            me.val("");
         },
 
         reset:function(){

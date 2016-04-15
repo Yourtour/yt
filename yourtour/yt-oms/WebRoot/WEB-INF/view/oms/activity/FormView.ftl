@@ -83,7 +83,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="code" class="col-md-1 control-label">活动主题</label>
+                                        <label for="code" class="col-md-1 control-label">主题标签</label>
                                         <div class="col-md-11">
                                             <input type="text" class="form-control" name="tags" id="tags">
                                         </div>
@@ -104,7 +104,7 @@
                                     <div class="form-group">
                                         <label for="value" class="col-md-1 control-label">封面图片</label>
                                         <div class="col-md-11">
-                                            <input type="file" id="imageUrl">
+                                            <input type="text" id="imageUrl" name="imageUrl">
                                         </div>
                                     </div>
 

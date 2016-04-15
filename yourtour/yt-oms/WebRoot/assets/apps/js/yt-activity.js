@@ -13,11 +13,11 @@ jQuery.Activity = {
 
         $(".wysihtml5", formview).wysihtml5({type:'activity', locale:'zh-CN', stylesheets:["../assets/global/plugins/bootstrap-wysihtml5/wysiwyg-color.css"]});
 
-        $("#imageUrl", formview).imageSelector();
+        $("#imageUrl", formview).imageInput();
 
         $("#routeIds", formview).routeSelector();
 
-        $("#userId",formview).searchInput({url:"/oms/account/search", fields:{}});
+        $("#userId",formview).searchInput({url:"/oms/account/search", textField:"nickName"});
 
         $("#btn_add", listview).on("click", function(){
             me.createActivityInfo();
@@ -102,6 +102,10 @@ jQuery.Activity = {
             formview = $("#Page_ActivityFormView"),
             json = form.serialize();
         delete json['_wysihtml5_mode'];
+
+        console.log(json);
+
+        return;
 
         formdata.append("activity", JSON.stringify(json));
 
