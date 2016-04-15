@@ -10,6 +10,9 @@ jQuery.SceneResource = {
 
         $.Page.show("Page_SceneListView");
 
+        $("#place", formview).place();
+        $("#imageUrl", formview).imageSelector();
+
         $("#btn_add", listview).on('click', function () {
             me.createSceneInfo();
         });
@@ -59,7 +62,6 @@ jQuery.SceneResource = {
                 $.Page.show("Page_SceneFormView", function () {
                     var scene = result, specialty = scene.specialty;
                     if (specialty) {
-                        scene.intro = specialty.intro;
                         scene.ticket = specialty.ticket;
                         scene.sceneMap = specialty.sceneMap;
                         scene.specialScene = specialty.specialScene;
@@ -108,6 +110,12 @@ jQuery.SceneResource = {
                     }, {
                         "mData": "name",
                         "sWidth": "30%"
+                    }, {
+                        "mData": "star",
+                        "sWidth": "10%"
+                    }, {
+                        "mData": "price",
+                        "sWidth": "40%"
                     }]
             });
     },
@@ -120,11 +128,10 @@ jQuery.SceneResource = {
         scene = sceneForm.serialize();
         // 封装景点个性化字段，删除不需要的字段
         var specialty = {
-            'intro': scene.intro, 'ticket': scene.ticket, 'sceneMap': scene.sceneMap,
+            'ticket': scene.ticket, 'sceneMap': scene.sceneMap,
             'specialScene': scene.specialScene, 'sceneTraffic': scene.sceneTraffic
         };
         scene.specialty = specialty;
-        delete scene.intro;
         delete scene.ticket;
         delete scene.sceneMap;
         delete scene.specialScene;
@@ -132,9 +139,9 @@ jQuery.SceneResource = {
 
         var fd = new FormData();
         fd.append('scene', JSON.stringify(scene));
-        var ctlFiles = $("#files")[0];
+        var ctlFiles = $("#imageUrl")[0];
         for (var index = 0; index < ctlFiles.files.length; index++) {
-            fd.append("files", ctlFiles.files[index]);
+            fd.append("imageUrl", ctlFiles.files[index]);
         }
 
         $.Request.postFormData("/oms/resources/scenes/save", fd, function (result) {

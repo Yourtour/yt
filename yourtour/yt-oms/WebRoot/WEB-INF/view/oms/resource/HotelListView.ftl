@@ -50,6 +50,8 @@
                                     </th>
                                     <th>代码</th>
                                     <th>名称</th>
+                                    <th>星级</th>
+                                    <th>价格</th>
                                 </tr>
                             </thead>
 

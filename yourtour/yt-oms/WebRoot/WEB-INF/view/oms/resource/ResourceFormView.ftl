@@ -15,9 +15,23 @@
 </div>
 
 <div class="form-group">
+    <label for="intro" class="col-md-2 control-label">简介</label>
+    <div class="col-md-10">
+        <textarea class="form-control" name="intro" id="intro" rows="3" cols="160" placeholder="简介"></textarea>
+    </div>
+</div>
+
+<div class="form-group">
     <label for="star" class="col-md-2 control-label">星级</label>
     <div class="col-md-10">
         <input type="range" class="form-control" name="star" id="star" min="1" max="5 placeholder="星级">
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="price" class="col-md-2 control-label">价格</label>
+    <div class="col-md-10">
+        <textarea class="form-control" name="price" id="price" placeholder="价格"></textarea>
     </div>
 </div>
 
@@ -89,8 +103,10 @@
 </div>
 
 <div class="form-group">
-    <label for="placeId" class="col-md-2 control-label">目的地ID</label>
+    <label for="value" class="col-md-2 control-label">目的地</label>
     <div class="col-md-10">
-        <input type="text" class="form-control" name="placeId" id="placeId" placeholder="目的地ID">
+        <div class="input-group">
+            <input type="text" class="form-control" name="place" id="place" placeholder="目的地">
+        </div>
     </div>
 </div>
