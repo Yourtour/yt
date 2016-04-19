@@ -10,7 +10,9 @@ jQuery.HotelResource = {
 
         $.Page.show("Page_HotelListView");
 
-        $("#place", formview).place();
+        $("#place", formview).popupSearch({popup: $.Popups.place});
+
+        $("#imageUrl", formview).imageInput();
 
         $("#btn_add", listview).on('click', function () {
             me.createHotelInfo();
@@ -138,7 +140,7 @@ jQuery.HotelResource = {
 
         var fd = new FormData();
         fd.append('hotel', JSON.stringify(hotel));
-        var ctlFiles = $("#files")[0];
+        var ctlFiles = $("#imageUrl")[0];
         for (var index = 0; index < ctlFiles.files.length; index ++)
         {
             fd.append("files", ctlFiles.files[index]);

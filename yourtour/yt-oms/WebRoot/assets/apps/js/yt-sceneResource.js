@@ -10,8 +10,8 @@ jQuery.SceneResource = {
 
         $.Page.show("Page_SceneListView");
 
-        $("#place", formview).place();
-        $("#imageUrl", formview).imageSelector();
+        $("#place", formview).popupSearch({popup: $.Popups.place});
+        $("#imageUrl", formview).imageInput();
 
         $("#btn_add", listview).on('click', function () {
             me.createSceneInfo();
