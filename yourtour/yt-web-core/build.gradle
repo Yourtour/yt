@@ -1,7 +1,3 @@
-configurations {
-    providedCompile
-}
-
 dependencies {
 	compile  project(":yt-service"),
 					 /*"org.springframework:spring-context:${springVersion}",
@@ -28,7 +24,6 @@ dependencies {
 		       "javax.websocket:javax.websocket-api:1.1",
 		       "javax.websocket:javax.websocket-client-api:1.1",
 		       "dom4j:dom4j:1.6.1",
-		       "com.alibaba:fastjson:1.2.7"
-		       
-	providedCompile "javax.servlet:servlet-api:2.5"
+		       "com.alibaba:fastjson:1.2.7",
+		       "javax.servlet:servlet-api:2.5"
 }
