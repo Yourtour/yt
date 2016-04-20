@@ -710,6 +710,7 @@ Ext.ClassManager.addNameAlternateMappings({
     "YourTour.Context"
   ],
   "YourTour.view.ActivityView": [],
+  "YourTour.view.DemoView": [],
   "YourTour.view.MainView": [],
   "YourTour.view.SearchMain": [],
   "YourTour.view.UpgradeView": [],
@@ -1716,6 +1717,7 @@ Ext.ClassManager.addNameAliasMappings({
     "Context"
   ],
   "YourTour.view.ActivityView": [],
+  "YourTour.view.DemoView": [],
   "YourTour.view.MainView": [
     "widget.MainView"
   ],

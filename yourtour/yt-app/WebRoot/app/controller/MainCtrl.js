@@ -39,14 +39,16 @@ Ext.define('YourTour.controller.MainCtrl', {
      * APP应用启动函数，实现检查是否首次登录，如果是，那么显示欢迎页，否则调用远程服务获取数据。
      */
     startup: function () {
-        var me = this, index;
+        Ext.Viewport.add(Ext.create('YourTour.view.DemoView'));
+
+        /*var me = this, index;
 
         var welcomeVisited = me.getApplication().getLocalStorage().get('welcome.visited');
         if (!welcomeVisited) { //首次安装访问，显示欢迎页
             Ext.Viewport.add(Ext.create('YourTour.view.WelcomeView'));
         } else { //启动后台接口调用
             me.doStartup();
-        }
+        }*/
     },
 
     doEnter: function () {
