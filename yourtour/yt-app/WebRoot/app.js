@@ -17,31 +17,13 @@ Ext.application({
         'Ext.data.proxy.SessionStorage', 'YourTour.store.GenderStore', 'Ext.data.proxy.LocalStorage', 'Ext.MessageBox', 'YourTour.view.widget.XProcessing', 'Ext.form.Hidden', 'YourTour.util.Context', 'YourTour.view.widget.XImageSelect'
     ],
 
-    /**
-     * APP 本地缓存。
-     * this.getApplication().localStorage.setItem('user', this.model.rowKey);
-     * this.getApplication().localStorage.getItem('user');
-     */
-    localStorage: window.localStorage,
-
-    /**
-     * 系统基础数据
-     */
-    baseStore: null,
-
-    /**
-     * 用户数据
-     */
-    userProfile: null,
-
     views: [
-        'DemoView', 'MainView', 'WelcomeView', 'UpgradeView', 'ActivityView', 'setting.UserSettingView',
+        'MainView', 'WelcomeView', 'UpgradeView', 'ActivityView', 'setting.UserSettingView',
 
         'common.MessageMainView', 'common.MessageGroupView', 'common.FieldEditView', 'common.FieldEditView',
         'common.CommentMainView', 'common.TimeSelectionView', 'common.ConsultMainView',
         'cart.CartMainView',
-        'discovery.DiscoveryMainView',
-        'home.HomeMainView', 'home.BestListView', 'home.TalentListView', 'SearchMain',
+        'home.HomeMainView', 'SearchMain',
         'route.RouteMainView', 'route.RoutePlanView', 'route.RouteImpressionView', 'route.RouteImageView',
         'route.RouteScheduleListView', 'route.RouteSchedulePlanView', 'route.RouteScheduleReferenceListView', 'route.RouteScheduleFormView',
         'route.RouteProvisionView', 'route.RouteProvisionEditView', 'route.RouteScheduleEditView', 'route.RouteScheduleView',
@@ -49,31 +31,24 @@ Ext.application({
         'route.RouteRecommendListView', 'route.RouteFormView', 'route.RouteListView', 'route.RouteReservationPlanView',
         'service.RouteServiceMainView', 'service.RouteServiceFormView', 'service.RouteServiceEditView',
         'service.PlaceServiceMainView', 'service.RouteServiceBookView',
-        'user.LoginMainView', 'user.UserListView', 'user.UserMainView', 'user.UserProfileView',
+        'user.LoginMainView', 'user.UserMainView', 'user.UserProfileView',
         'resource.ResourceSelectionView', 'resource.ResourceFormView', 'resource.ResourceMapView', 'resource.ResourceActivityItemListView',
         'resource.ResourceActivityItemFormView', 'resource.ResourceListView',
         'member.MemberMainView', 'member.MemberView', 'member.MemberAddView', 'member.MemberPositionView', 'member.MemberSearchView', 'member.MemberSelectionView',
         'charge.ChargeMainView', 'charge.ChargeFormView', 'charge.ChargeListView', 'charge.ChargeView', 'charge.ChargeDivisionView', 'charge.ChargeDivisionFormView',
         'expert.ExpertMainView', 'expert.ExpertApplyView', 'expert.ExpertListView', 'expert.ExpertServiceEditView',
         'expert.ExpertRecommendListView', 'expert.ExpertRecommendIntroView', 'expert.ExpertView', 'expert.ExpertServiceListView', 'expert.ExpertServiceFormView',
-
-        'line.LineListView',
-
-        'along.AlongListView', 'along.AlongFormView', 'along.AlongFormUserView', 'along.AlongEditView',
-
-        'community.LiveMainView',
         'place.PlaceMainView', 'place.PlaceSelectionView'
     ],
 
     controllers: [
-        'MainCtrl', 'SettingMainCtrl', 'HomeMainCtrl',
+        'StartupMainCtrl', 'SettingMainCtrl', 'HomeMainCtrl',
         'route.RouteMainCtrl',
         'route.RouteScheduleListCtrl', 'route.RouteSchedulePlanCtrl',
         'AccountMainCtrl',
         'route.ScheduleReferenceCtrl', 'route.ScheduleDetailCtrl',
-        'ResourceMainCtrl', 'user.UserListCtrl', 'PlaceSelectionCtrl', 'CommonMainCtrl',
-        'LineMainCtrl', 'MemberMainCtrl', 'ChargeMainCtrl', 'UserMainCtrl', 'ExpertMainCtrl', 'MessageMainCtrl', 'PlaceMainCtrl', 'ServiceMainCtrl',
-        'AlongMainCtrl'
+        'ResourceMainCtrl', 'PlaceSelectionCtrl', 'CommonMainCtrl',
+        'MemberMainCtrl', 'ChargeMainCtrl', 'UserMainCtrl', 'ExpertMainCtrl', 'MessageMainCtrl', 'PlaceMainCtrl', 'ServiceMainCtrl'
     ],
 
     models: [
@@ -104,12 +79,24 @@ Ext.application({
 
     version: '0.0.0.0',
 
-    baseStore:'',
-
+    /**
+     * 本地存储，用户退出后，缓存内容无法自动消失，需要代码维护
+     */
     localStorage:null,
 
+    /**
+     * 会话存储，用户退出系统后自动消失
+     */
     sessionStorage:null,
 
+    /**
+     * 用户数据
+     */
+    userProfile: null,
+
+    /**
+     * APP 启动入口方法
+     */
     launch: function () {
         try {
             var me = this;
@@ -177,19 +164,7 @@ Ext.application({
 
         YourTour.util.Context.setApplication(this);
 
-        me.getController('MainCtrl').startup();
-    },
-
-    onUpdated: function () {
-        Ext.Msg.confirm(
-            "Application Update",
-            "This application has just successfully been updated to the latest version. Reload now?",
-            function (buttonId) {
-                if (buttonId === 'yes') {
-                    window.location.reload();
-                }
-            }
-        );
+        me.getController('StartupMainCtrl').startup();
     },
 
     getVersion: function () {
@@ -197,11 +172,15 @@ Ext.application({
     },
 
     getDeviceType: function () {
-        if (!Ext.os.is.Windows) {
-            return device.platform;
+        if(Ext.os.is.Windows){
+            return "Windows";
         }else{
-            return 'ANDROID';
+            return device.platform;
         }
+    },
+
+    isWindowOS:function(){
+        return this.getDeviceType() == "Windows";
     },
 
     getAppType: function () {

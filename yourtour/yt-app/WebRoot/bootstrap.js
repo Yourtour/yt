@@ -647,7 +647,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.controller.CommonMainCtrl": [],
   "YourTour.controller.ExpertMainCtrl": [],
   "YourTour.controller.HomeMainCtrl": [],
-  "YourTour.controller.LineMainCtrl": [],
   "YourTour.controller.MainCtrl": [],
   "YourTour.controller.MemberMainCtrl": [],
   "YourTour.controller.MessageMainCtrl": [],
@@ -715,12 +714,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.SearchMain": [],
   "YourTour.view.UpgradeView": [],
   "YourTour.view.WelcomeView": [],
-  "YourTour.view.along.AlongEditView": [],
-  "YourTour.view.along.AlongFormUserView": [],
-  "YourTour.view.along.AlongFormView": [],
-  "YourTour.view.along.AlongListDataItem": [],
-  "YourTour.view.along.AlongListView": [],
-  "YourTour.view.along.AlongView": [],
   "YourTour.view.cart.CartMainView": [],
   "YourTour.view.charge.ChargeDivisionFormView": [],
   "YourTour.view.charge.ChargeDivisionView": [],
@@ -740,10 +733,9 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.common.MessageGroupView": [],
   "YourTour.view.common.MessageMainView": [],
   "YourTour.view.common.PlaceGridItemView": [],
+  "YourTour.view.common.SearchMainView": [],
   "YourTour.view.common.SimpleDataItem": [],
   "YourTour.view.common.TimeSelectionView": [],
-  "YourTour.view.community.LiveMainView": [],
-  "YourTour.view.discovery.DiscoveryMainView": [],
   "YourTour.view.expert.ExpertApplyView": [],
   "YourTour.view.expert.ExpertGridDataItem": [],
   "YourTour.view.expert.ExpertListDataItem": [],
@@ -765,19 +757,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.expert.ExpertViewRecommendDataItem": [],
   "YourTour.view.expert.ExpertViewRecommendItem": [],
   "YourTour.view.expert.ExpertViewServiceItem": [],
-  "YourTour.view.home.BestItemView": [],
-  "YourTour.view.home.BestListItemView": [],
-  "YourTour.view.home.BestListView": [],
-  "YourTour.view.home.CarouselItemView": [],
-  "YourTour.view.home.ChatItemView": [],
   "YourTour.view.home.HomeMainView": [],
-  "YourTour.view.home.LiveItemView": [],
-  "YourTour.view.home.TalentItemView": [],
-  "YourTour.view.home.TalentListItemView": [],
-  "YourTour.view.home.TalentListView": [],
-  "YourTour.view.line.LineListDataItem": [],
-  "YourTour.view.line.LineListView": [],
-  "YourTour.view.line.LineResourceItem": [],
   "YourTour.view.member.MemberAddView": [],
   "YourTour.view.member.MemberItemView": [],
   "YourTour.view.member.MemberMainView": [],
@@ -876,6 +856,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "YourTour.view.widget.XDataItem": [],
   "YourTour.view.widget.XDataView": [],
   "YourTour.view.widget.XDateField": [],
+  "YourTour.view.widget.XExtendCarousel": [],
   "YourTour.view.widget.XField": [],
   "YourTour.view.widget.XGridSheet": [],
   "YourTour.view.widget.XHeaderBar": [],
@@ -1652,7 +1633,6 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.controller.CommonMainCtrl": [],
   "YourTour.controller.ExpertMainCtrl": [],
   "YourTour.controller.HomeMainCtrl": [],
-  "YourTour.controller.LineMainCtrl": [],
   "YourTour.controller.MainCtrl": [],
   "YourTour.controller.MemberMainCtrl": [],
   "YourTour.controller.MessageMainCtrl": [],
@@ -1726,16 +1706,6 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.UpgradeView": [],
   "YourTour.view.WelcomeView": [],
-  "YourTour.view.along.AlongEditView": [],
-  "YourTour.view.along.AlongFormUserView": [],
-  "YourTour.view.along.AlongFormView": [],
-  "YourTour.view.along.AlongListDataItem": [
-    "widget.AlongListDataItem"
-  ],
-  "YourTour.view.along.AlongListView": [],
-  "YourTour.view.along.AlongView": [
-    "widget.alongview"
-  ],
   "YourTour.view.cart.CartMainView": [
     "widget.CartMainView"
   ],
@@ -1769,16 +1739,11 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.common.PlaceGridItemView": [
     "widget.PlaceGridItemView"
   ],
+  "YourTour.view.common.SearchMainView": [],
   "YourTour.view.common.SimpleDataItem": [
     "widget.SimpleDataItem"
   ],
   "YourTour.view.common.TimeSelectionView": [],
-  "YourTour.view.community.LiveMainView": [
-    "widget.LiveMainView"
-  ],
-  "YourTour.view.discovery.DiscoveryMainView": [
-    "widget.DiscoveryMainView"
-  ],
   "YourTour.view.expert.ExpertApplyView": [
     "widget.ExpertApplyView"
   ],
@@ -1830,44 +1795,8 @@ Ext.ClassManager.addNameAliasMappings({
   "YourTour.view.expert.ExpertViewServiceItem": [
     "widget.ExpertViewServiceItem"
   ],
-  "YourTour.view.home.BestItemView": [
-    "widget.BestItemView"
-  ],
-  "YourTour.view.home.BestListItemView": [
-    "widget.BestListItemView"
-  ],
-  "YourTour.view.home.BestListView": [
-    "widget.BestListView"
-  ],
-  "YourTour.view.home.CarouselItemView": [
-    "widget.CarouselItemView"
-  ],
-  "YourTour.view.home.ChatItemView": [
-    "widget.ChatItemView"
-  ],
   "YourTour.view.home.HomeMainView": [
     "widget.HomeMainView"
-  ],
-  "YourTour.view.home.LiveItemView": [
-    "widget.LiveItemView"
-  ],
-  "YourTour.view.home.TalentItemView": [
-    "widget.TalentItemView"
-  ],
-  "YourTour.view.home.TalentListItemView": [
-    "widget.TalentListItemView"
-  ],
-  "YourTour.view.home.TalentListView": [
-    "widget.TalentListView"
-  ],
-  "YourTour.view.line.LineListDataItem": [
-    "widget.LineListDataItem"
-  ],
-  "YourTour.view.line.LineListView": [
-    "widget.LineListView"
-  ],
-  "YourTour.view.line.LineResourceItem": [
-    "widget.LineResourceItem"
   ],
   "YourTour.view.member.MemberAddView": [
     "widget.MemberAddView"
@@ -2076,6 +2005,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "YourTour.view.widget.XDateField": [
     "widget.xdatefield"
+  ],
+  "YourTour.view.widget.XExtendCarousel": [
+    "widget.xextendcarousel"
   ],
   "YourTour.view.widget.XField": [
     "widget.xfield"
