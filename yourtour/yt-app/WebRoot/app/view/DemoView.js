@@ -5,6 +5,7 @@ Ext.define('YourTour.view.DemoView', {
     	id:'DemoView',
 		activeIndex:0,
 		spacing:5,
+		translateGroup:null,
         items: [
 			{
 				xtype:'container',
@@ -38,7 +39,7 @@ Ext.define('YourTour.view.DemoView', {
 						xtype:'image',
 						itemId:'4',
 						src:'resources/images/guangdong.jpg'
-					},
+					}/*,
 
 					{
 						xtype:'image',
@@ -50,7 +51,7 @@ Ext.define('YourTour.view.DemoView', {
 						xtype:'image',
 						itemId:'6',
 						src:'resources/images/guangdong.jpg'
-					}
+					}*/
 				]
 			},
 
@@ -78,18 +79,20 @@ Ext.define('YourTour.view.DemoView', {
 
 		me.width = width;
 		me.itemWidth = Math.floor(width * itemPercent);
-		me.displyWidth = Math.floor((width * (1 - itemPercent) - 4 * spacing) / 2);
-		me.hideWidth = me.itemWidth - me.displyWidth;
+		me.displayWidth = Math.floor((width * (1 - itemPercent) - 4 * spacing) / 2);
+		me.hideWidth = me.itemWidth - me.displayWidth;
 		me.activeIndex = 1;
 
-		console.log("width=" + width);
-
+		me.translateGroup = [];
 		items = me.query("image");
-		Ext.each(items, function(item){
+		Ext.each(items, function(item, index){
+			me.translateGroup.push(index);
+
 			item.setWidth(me.itemWidth);
 			item.setHeight('' + (itemPercent * 100) + '%');
 			item.translatex = -1 * (me.hideWidth + spacing);
 		});
+
 		this.doMove();
 
 		me.down('#moveRight').on(
@@ -108,74 +111,44 @@ Ext.define('YourTour.view.DemoView', {
 	},
 
 	moveLeft:function(){
-		var me = this,
+		var me = this, item,
 			items = me.query("image"),
 			len = items.length,
-			spacing = me.spacing || me.getSpacing();
+			translateGroup = me.translateGroup,
+			spacing = me.spacing || me.getSpacing(),
+			distance = (len - 2 - translateGroup[0]) * me.itemWidth + me.displayWidth + (len - 2- translateGroup[0]) * 2 * spacing + spacing;
 
-		if(me.activeIndex == len - 1){
-			me.activeIndex = 0;
-		}else{
-			me.activeIndex += 1;
-		}
-
-		console.log("activeIndex=" + me.activeIndex);
-		Ext.each(items, function(item, index){
-			if(me.activeIndex == 1) { //恢复初始位置
-				item.translatex = -1 * (me.hideWidth + spacing);
-			}else if(me.activeIndex == len - 1){ //最后一个
-				if(index == 0){
-					item.translate(me.width + me.hideWidth + 2 * spacing, 0);
-					item.translatex =  me.itemWidth + me.displyWidth + 3 * spacing;
-				}else{
-					item.translatex = item.translatex - me.itemWidth - 2 * spacing;
-				}
-			}else if(me.activeIndex == 0) {
-				if(index != len - 1){
-				}
-
-				item.translatex = item.translatex - me.itemWidth - 2 * spacing;
-			}else{
-				if(index > 0 && index < len - 1){
-					item.translatex = items[index-1].translatex;
-				}else {
-					console.log("item = " + index + ", translatex=" + item.translatex);
-					item.translatex = item.translatex - me.itemWidth - 2 * spacing;
-				}
-			}
+		Ext.each(translateGroup, function(_index, index) {
+			item = items[_index];
+			item.translatex = item.translatex - me.itemWidth - 2 * spacing;
 		});
 
 		this.doMove();
+
+		item = items[translateGroup[0]];
+		item.translate(distance);
+		item.translatex = distance;
+
+		translateGroup.push(translateGroup.shift());
 	},
 
 	moveRight:function(){
-		var me = this,
+		var me = this,item,
 			items = me.query("image"),
-			len = items.length,
+			translateGroup = me.translateGroup,
 			spacing = me.spacing || me.getSpacing();
 
-		if(me.activeIndex == 0){
-			me.activeIndex = len - 1;
-		}else{
-			me.activeIndex -= 1;
-		}
+		translateGroup.unshift(translateGroup.pop());
+		var distance = - ((translateGroup[0] + 1) * (me.itemWidth + 2* spacing) + (me.hideWidth + spacing));
+		console.log(translateGroup);
+		console.log(distance);
+		item = items[translateGroup[0]];
+		item.translate(distance);
+		item.translatex = distance;
 
-		Ext.each(items, function(item, index){
-			if(me.activeIndex == 1) { //恢复初始位置
-				item.translatex = -1 * (me.hideWidth + spacing);
-			}else if(me.activeIndex == 0) { //第一个
-				if(index == len - 1) {
-					item.translatex = -((index + 1) * me.itemWidth + me.displyWidth + 3 * spacing);
-				}else {
-					item.translatex = item.translatex + me.itemWidth + 2 * spacing;
-				}
-			}else{
-				if(index == me.activeIndex - 1) {
-					item.translatex = items[index + 1].translatex;
-				}
-
-				item.translatex = item.translatex + me.itemWidth + 2 * spacing;
-			}
+		Ext.each(translateGroup, function(_index, index){
+			item = items[_index];
+			item.translatex = item.translatex + me.itemWidth + 2* spacing;
 		});
 
 		this.doMove();
