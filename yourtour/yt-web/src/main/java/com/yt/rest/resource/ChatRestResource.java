@@ -15,7 +15,6 @@ import javax.ws.rs.core.MediaType;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.commons.math3.exception.NullArgumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -55,7 +54,7 @@ public class ChatRestResource extends RestResource {
 			if (LOG.isErrorEnabled()) {
 				LOG.error("The user's id can not pass to server.");
 			}
-			throw new NullArgumentException();
+			throw new NullPointerException();
 		}
 		List<ChatRoomBean> chatRoomBeans = chatService.getChatRooms(userId);
 		Vector<ChatRoomVO> vos = new Vector<>();
@@ -91,7 +90,7 @@ public class ChatRestResource extends RestResource {
 			if (LOG.isErrorEnabled()) {
 				LOG.error("The user's id can not pass to server.");
 			}
-			throw new NullArgumentException();
+			throw new NullPointerException();
 		}
 		List<Long> memberIdList = new Vector<Long>();
 		String[] ids = member.split(",");
@@ -113,7 +112,7 @@ public class ChatRestResource extends RestResource {
 			if (LOG.isErrorEnabled()) {
 				LOG.error("The user's id can not pass to server.");
 			}
-			throw new NullArgumentException();
+			throw new NullPointerException();
 		}
 		List<Long> memberIdList = new Vector<Long>();
 		String[] ids = member.split(",");
@@ -134,7 +133,7 @@ public class ChatRestResource extends RestResource {
 			if (LOG.isErrorEnabled()) {
 				LOG.error("The user's id can not pass to server.");
 			}
-			throw new NullArgumentException();
+			throw new NullPointerException();
 		}
 		List<Long> memberIdList = new Vector<Long>();
 		String[] ids = member.split(",");
