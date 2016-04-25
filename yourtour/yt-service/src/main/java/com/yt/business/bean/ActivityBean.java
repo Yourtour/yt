@@ -19,6 +19,7 @@ public class ActivityBean extends ContentBean {
 
 	public ActivityBean() {
 		super();
+		super.setCategory(ContentCategory.ACTIVITY);
 	}
 
 	public Long getStartTime() {

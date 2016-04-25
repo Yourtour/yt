@@ -32,7 +32,8 @@ public class ContentBean extends SocialBeanImpl {
 	// 内容分类
 	public enum ContentCategory {
 		DISCOVER, // 发现
-		YT_RECOMMEND // 游徒推荐
+		YT_RECOMMEND, // 游徒推荐
+		ACTIVITY // 活动
 	}
 	
 	private String title; // 标题
