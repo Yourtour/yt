@@ -55,11 +55,11 @@ public class RecommendInHomeVO {
 		return banners;
 	}
 
-	public List<ContentVO> getRoutes() {
+	public List<ContentVO> getYtRecommends() {
 		return yt_recommends;
 	}
 
-	public List<DiscoverVO> getHotPlayings() {
+	public List<DiscoverVO> getDiscovers() {
 		return discovers;
 	}
 

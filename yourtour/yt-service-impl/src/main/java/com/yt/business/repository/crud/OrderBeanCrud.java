@@ -2,7 +2,7 @@ package com.yt.business.repository.crud;
 
 import com.yt.neo4j.repository.CrudGeneralOperate;
 import org.springframework.stereotype.Service;
-import com.yt.business.bean.ResourceBean;
+import com.yt.business.bean.OrderBean;
 
 @Service
-public class ResourceBeanCrud extends CrudGeneralOperate<ResourceBean> { }
+public class OrderBeanCrud extends CrudGeneralOperate<OrderBean> { }

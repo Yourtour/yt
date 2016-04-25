@@ -14,14 +14,14 @@ import org.springframework.stereotype.Service;
 
 import com.yt.business.bean.ActivityBean;
 import com.yt.business.bean.BannerBean;
+import com.yt.business.bean.ContentBean;
 import com.yt.business.bean.DiscoverBean;
 import com.yt.business.bean.LaunchBean;
-import com.yt.business.bean.RouteMainBean;
 import com.yt.business.bean.VersionBean;
 import com.yt.business.repository.neo4j.ActivityBeanRepository;
 import com.yt.business.repository.neo4j.BannerBeanRepository;
+import com.yt.business.repository.neo4j.ContentBeanRepository;
 import com.yt.business.repository.neo4j.DiscoverBeanRepository;
-import com.yt.business.repository.neo4j.RouteMainBeanRepository;
 import com.yt.business.service.IHomeService;
 import com.yt.core.utils.StringUtils;
 import com.yt.neo4j.repository.CrudOperate;
@@ -33,7 +33,7 @@ public class HomeServiceImpl extends ServiceBase implements IHomeService {
 	private BannerBeanRepository bannerRepository;
 
 	@Autowired
-	private RouteMainBeanRepository routeRepository;
+	private ContentBeanRepository contentRepository;
 
 	@Autowired
 	private DiscoverBeanRepository discoverRepository;
@@ -53,12 +53,13 @@ public class HomeServiceImpl extends ServiceBase implements IHomeService {
 		Map<String, Object> recommends = new HashMap<String, Object>();
 		List<BannerBean> banners = bannerRepository.getRecommendBanners(
 				new Date().getTime(), 3);
-		List<RouteMainBean> routes = routeRepository.getRecommendRoutes(3);
+		List<ContentBean> yt_recommends = contentRepository
+				.getRecommendContents(3);
 		List<DiscoverBean> discovers = discoverRepository
 				.getRecommendDiscovers(3);
 
 		recommends.put(IHomeService.KEY_BANNERS, banners);
-		recommends.put(IHomeService.KEY_YT_RECOMMENDS, routes);
+		recommends.put(IHomeService.KEY_YT_RECOMMENDS, yt_recommends);
 		recommends.put(IHomeService.KEY_DISCOVERS, discovers);
 		return recommends;
 	}

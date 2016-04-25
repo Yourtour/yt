@@ -24,7 +24,7 @@ public interface BannerBeanRepository extends GraphRepository<BannerBean> {
 	 * @return 符合条件的推荐资讯
 	 */
 	@Query("MATCH (b:BannerBean) "
-			+ "WHERE b.status = 'RELEASED' AND b.endTime < {0} RETURN b AND NOT b.isDeleted "
+			+ "WHERE b.status = 'RELEASED' AND b.endTime < {0} AND NOT b.isDeleted RETURN b "
 			+ "ORDER BY b.commentScore DESC LIMIT {1}")
 	public List<BannerBean> getRecommendBanners(long time, int n);
 
