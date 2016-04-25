@@ -19,9 +19,9 @@ import org.springframework.stereotype.Component;
 
 import com.yt.business.bean.ActivityBean;
 import com.yt.business.bean.BannerBean;
-import com.yt.business.bean.HotPlayingBean;
+import com.yt.business.bean.ContentBean;
+import com.yt.business.bean.DiscoverBean;
 import com.yt.business.bean.LaunchBean;
-import com.yt.business.bean.RouteMainBean;
 import com.yt.business.bean.VersionBean;
 import com.yt.business.service.IHomeService;
 import com.yt.response.ResponseDataVO;
@@ -58,10 +58,10 @@ public class HomeRestResource extends RestResource {
 
 		List<BannerBean> banners = (List<BannerBean>) recommends
 				.get(IHomeService.KEY_BANNERS);
-		List<RouteMainBean> routes = (List<RouteMainBean>) recommends
-				.get(IHomeService.KEY_ROUTES);
-		List<HotPlayingBean> hotPlayings = (List<HotPlayingBean>) recommends
-				.get(IHomeService.KEY_HOTPLAYINGS);
+		List<ContentBean> routes = (List<ContentBean>) recommends
+				.get(IHomeService.KEY_YT_RECOMMENDS);
+		List<DiscoverBean> hotPlayings = (List<DiscoverBean>) recommends
+				.get(IHomeService.KEY_DISCOVERS);
 
 		return new ResponseDataVO<RecommendInHomeVO>(
 				RecommendInHomeVO.transform(banners, routes, hotPlayings));

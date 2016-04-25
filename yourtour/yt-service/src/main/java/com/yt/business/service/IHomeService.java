@@ -10,21 +10,21 @@ import java.util.Map;
  */
 public interface IHomeService {
 	/**
-	 * 推荐资讯的键名
+	 * 编辑推荐的键名
 	 */
 	public static final String KEY_BANNERS = "banners";
 	/**
-	 * 推荐行程的键名
+	 * 游徒推荐的键名
 	 */
-	public static final String KEY_ROUTES = "routes";
+	public static final String KEY_YT_RECOMMENDS = "yt_recommend";
 	/**
-	 * 大家都在玩的键名
+	 * 发现的键名
 	 */
-	public static final String KEY_HOTPLAYINGS = "hotPlayings";
+	public static final String KEY_DISCOVERS = "discover";
 
 	/**
 	 * 获取当前系统首页推荐内容.<br>
-	 * 目前包括：推荐旅游资讯、推荐行程、推荐大家都在玩。<br>
+	 * 目前包括：编辑推荐、游徒推荐、发现。<br>
 	 * 采用键值对方式返回数据，便于后续扩展。
 	 * 
 	 * @param userId

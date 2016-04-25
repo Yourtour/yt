@@ -3,11 +3,11 @@ package com.yt.vo.home;
 import java.util.List;
 import java.util.Vector;
 
-import com.yt.business.bean.HotPlayingBean;
 import com.yt.business.bean.BannerBean;
-import com.yt.business.bean.RouteMainBean;
-import com.yt.vo.content.HotPlayingVO;
-import com.yt.vo.route.RouteVO;
+import com.yt.business.bean.ContentBean;
+import com.yt.business.bean.DiscoverBean;
+import com.yt.vo.content.ContentVO;
+import com.yt.vo.content.DiscoverVO;
 
 /**
  * 首页推荐界面的VO对象
@@ -17,18 +17,18 @@ import com.yt.vo.route.RouteVO;
  */
 public class RecommendInHomeVO {
 	private List<BannerVO> banners;
-	private List<RouteVO> routes;
-	private List<HotPlayingVO> hotPlayings;
+	private List<ContentVO> yt_recommends;
+	private List<DiscoverVO> discovers;
 
 	public RecommendInHomeVO() {
 		super();
 		this.banners = new Vector<BannerVO>();
-		this.routes = new Vector<RouteVO>();
-		this.hotPlayings = new Vector<HotPlayingVO>();
+		this.yt_recommends = new Vector<ContentVO>();
+		this.discovers = new Vector<DiscoverVO>();
 	}
 
 	public static RecommendInHomeVO transform(List<BannerBean> bannerBeans,
-			List<RouteMainBean> routeBeans, List<HotPlayingBean> hotPlayingBeans) {
+			List<ContentBean> recommendBeans, List<DiscoverBean> discoverBeans) {
 		RecommendInHomeVO vo = new RecommendInHomeVO();
 		for (BannerBean banner : bannerBeans) {
 			if (banner == null) {
@@ -36,17 +36,17 @@ public class RecommendInHomeVO {
 			}
 			vo.banners.add(BannerVO.transform(banner));
 		}
-		for (RouteMainBean route : routeBeans) {
-			if (route == null) {
+		for (ContentBean content : recommendBeans) {
+			if (content == null) {
 				continue;
 			}
-			vo.routes.add(RouteVO.transform(route));
+			vo.yt_recommends.add(ContentVO.transform(content));
 		}
-		for (HotPlayingBean hot : hotPlayingBeans) {
-			if (hot == null) {
+		for (DiscoverBean discover : discoverBeans) {
+			if (discover == null) {
 				continue;
 			}
-			vo.hotPlayings.add(HotPlayingVO.transform(hot));
+			vo.discovers.add(DiscoverVO.transform(discover));
 		}
 		return vo;
 	}
@@ -55,12 +55,12 @@ public class RecommendInHomeVO {
 		return banners;
 	}
 
-	public List<RouteVO> getRoutes() {
-		return routes;
+	public List<ContentVO> getRoutes() {
+		return yt_recommends;
 	}
 
-	public List<HotPlayingVO> getHotPlayings() {
-		return hotPlayings;
+	public List<DiscoverVO> getHotPlayings() {
+		return discovers;
 	}
 
 }
